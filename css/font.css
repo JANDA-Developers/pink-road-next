@@ -1,0 +1,31 @@
+﻿@font-face {
+    font-family: 'montserrat';
+    font-style: normal;
+    font-weight: 300;
+    src: url(/fonts/Montserrat-Regular.ttf);
+    src: local('Montserrat-Regular'), url(/fonts/Montserrat-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/fonts/Montserrat-SemiBold.ttf);
+    src: local('Montserrat-SemiBold'), url(/fonts/Montserrat-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'montserrat';
+    font-style: normal;
+    font-weight: 500;
+    src: url(/fonts/Montserrat-Bold.ttf);
+    src: local('Montserrat-Boldr'), url(/fonts/Montserrat-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'montserrat';
+    font-style: normal;
+    font-weight: 600;
+    src: url(/fonts/Montserrat-ExtraBold.ttf);
+    src: local('Montserrat-ExtraBold'), url(/fonts/Montserrat-ExtraBold.ttf) format('truetype');
+}
+/* font familt를 정상적으로 변경했을경우 화면이 달라짐 */

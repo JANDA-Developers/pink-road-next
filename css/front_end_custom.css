@@ -1,0 +1,85 @@
+*[contenteditable="true"]{
+    display: inline-block;
+    width: 100%;
+    outline: 1px dashed;
+}
+*[contenteditable="true"]:focus{
+    outline: 1px solid;
+}
+
+.codex-editor *[contenteditable="true"]:focus{
+    outline: none;
+}
+
+.codex-editor .ce-toolbar__actions {
+    right: -25px;
+}
+
+ul[contenteditable="true"] li {
+    min-height: 20px;
+    display: block!important;
+    width: revert!important;
+}
+
+.JDicon {
+    width: 1em!important;
+    height: auto;
+}
+
+.ce-block__content {
+    width: 100%;
+    max-width: 100%;
+}
+
+.codex-editor {
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    padding: 12px 15px;
+}
+
+.codex-editor:focus {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.ce-toolbar__content {
+    max-width: 100%;
+}
+.codex-editor__redactor {
+    padding-bottom: 80px!important;
+}
+
+.siteInfo_in .top_bg p {
+    font-size: 36px;
+    line-height: 52px;
+    color: #858585;
+    text-align: center;
+}
+
+/* 이미지교체 아이콘 */
+.img_edit {
+    position:relative;
+}
+
+.img_edit:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.40);
+    color: #fff;
+    content: '이미지교체';
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 12px 10px 30px;
+    background-image: url(/img/svg/setting_icon.svg);
+    background-size: 13px;
+    background-repeat: no-repeat;
+    background-position: 13px center;
+    box-sizing: border-box;
+    cursor: pointer;
+    line-height: 17px;
+    width: max-content;
+}
+
+.img_edit:hover:after {
+    background-color: rgba(0, 0, 0, 1);
+}
