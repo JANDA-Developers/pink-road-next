@@ -82,3 +82,5 @@ export const TourMain: React.FC<IProp> = () => {
         </div>
     </div >;
 };
+
+export default TourMain;

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { isEmail, isPassword, isName, isPhone } from "@janda-com/front";
-import { registerChkWarning, policyChkWarning, emptyAllow } from './helper';
+import { policyChkWarning } from './helper';
 import { useMutation } from '@apollo/client';
 import { SIGN_UP } from '../../apollo/mutations';
-import { signUp, signUpVariables } from '../../types/api';
-
+import { signUp, signUpVariables, UserRole } from '../../types/api';
+import { isEmail, isPhone } from 'utils/validation';
+import { TFormNormal } from "./FormNormal";
 
 type TSMS = {
   sns: true,
@@ -23,9 +23,10 @@ export type TPolicyChk = {
 
 interface IProps {
   openPopup: (element: string | null) => void;
-  handleJoinProcess: (processTarget: string) => void;
-  registerInfo: any;
+  handleJoinProcess: (errTarget: any) => void;
+  registerInfo: TFormNormal;
   registerSort?: string
+  handleErrDisplay: (errTarget: any) => void;
 }
 
 const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registerInfo, registerSort }) => {
@@ -246,23 +247,35 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
 
       console.log(registerInfo);
 
+      const { address,
+        address_detail,
+        birthday,
+        contact,
+        email,
+        gender,
+        isKorean,
+        name,
+        password,
+        register_sort
+      } = registerInfo;
+
       productCreateMu({
         variables: {
           data: {
-            email: registerInfo.email,
-            pw: registerInfo.password,
-            is_froreginer: registerInfo.isKorean,
-            role: registerInfo.register_sort,
-            bank_name: registerInfo.bank_name,
-            account_number: registerInfo.account,
-            address: registerInfo.address,
-            brith_date: registerInfo.birthday,
-            bsui_address: registerInfo.address,
-            busi_contact: registerInfo.contact,
-            busi_name: registerInfo.name,
-            busi_num: registerInfo.number,
-            gender: registerInfo.gender,
-            is_priv_corper: registerInfo.isKorean,
+            email,
+            pw: password,
+            is_froreginer: isKorean,
+            role: UserRole.anonymous,
+            bank_name: "",
+            account_number: "",
+            address: address,
+            brith_date: birthday,
+            bsui_address: address,
+            busi_contact: contact,
+            busi_name: name,
+            busi_num: "",
+            gender,
+            is_priv_corper: isKorean,
 
           }
         }

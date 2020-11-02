@@ -1,9 +1,9 @@
 import React, { createContext, useState } from 'react';
 import FormPartnerCor from 'components/join/FormPartnerCor';
 import FormPartnerNormal from 'components/join/FormPartnerNormal';
-import EntryJoin from 'components/join/EntryJoin';
 import PolicyPopup from 'components/policyPopup/PolicyPopup';
 import FormNormal from 'components/join/FormNormal';
+import SubTopNav from 'layout/components/SubTop';
 
 interface IchkPolocy {
     policy_use: boolean,
@@ -144,7 +144,7 @@ const Join = () => {
     return (
         <div>
             <div>
-                <EntryJoin />
+                <SubTopNav title="as" desc="asd" />
                 {/* 개인 */}
                 <div className="sign_in famile">
                     <div className="inner ">

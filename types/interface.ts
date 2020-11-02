@@ -1,3 +1,4 @@
+import { Dispatch } from "react";
 import { productFindById_ProductFindById_data, productFindById_ProductFindById_data_itineraries, productList_ProductList_data, productList_ProductList_page } from "../types/api";
 
 export interface Iitineraries extends productFindById_ProductFindById_data_itineraries {}
@@ -6,7 +7,8 @@ export interface IProduct extends productList_ProductList_data { };
 export interface IPageInfo extends  productList_ProductList_page {}
 export interface ILi extends React.HTMLAttributes<HTMLLIElement> {
 }
-
+export interface IDiv extends React.HTMLAttributes<HTMLDivElement> {
+}
 
 export type TCount = {
     name: string;
@@ -30,3 +32,4 @@ export enum QStatus {
     "PROCESSING" = "PROCESSING",
     "DONE" = "DONE"
 }
+export declare type ISet<T> = Dispatch<React.SetStateAction<T>>;

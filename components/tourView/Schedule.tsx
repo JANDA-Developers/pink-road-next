@@ -1,5 +1,5 @@
-import { IDiv } from '@janda-com/front/dist/types/interface';
 import React from 'react';
+import { IDiv } from "../../types/interface"
 
 interface IProp extends IDiv { }
 

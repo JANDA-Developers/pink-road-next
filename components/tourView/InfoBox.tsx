@@ -1,7 +1,5 @@
 import React from 'react';
-// @ts-ignore
-import Output from 'editorjs-react-renderer';
-import { IDiv } from '@janda-com/front/dist/types/interface';
+import { IDiv } from 'types/interface';
 
 interface IProp extends IDiv {
     title: string
