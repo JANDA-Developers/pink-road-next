@@ -1,4 +1,3 @@
-import { JDdayPicker, useDayPicker } from '@janda-com/front';
 import EditorJs from 'react-editor-js';
 import dayjs from 'dayjs';
 import { useRouter } from "next/router";
@@ -14,7 +13,7 @@ import { EMPTY_EDITOR } from '../../../types/const';
 import { useMutation } from '@apollo/client';
 import { useProductFindById } from '../../../hook/useProductFindById';
 import { PRODUCT_CREATE } from '../../../apollo/mutations';
-
+import DayPicker from "components/dayPicker/DayPicker"
 
 let FILE_SELECT_INDEX = 0;
 interface IProp {
@@ -28,7 +27,10 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
     const start = defaults.schedule[0]?.date || null;
     const end = defaults.schedule[defaults.schedule.length - 1]?.date || null;
     const [schedules, setSchedules] = useState<ItineraryArrayInput[]>(defaults.schedule);
-    const scheduleRangeHook = useDayPicker(start, end);
+    const [range, setRange] = useState({
+        from: undefined,
+        to: undefined
+    });
 
     const [data, setData] = useState<TProductDataPart>({
         address: defaults.address || "",
@@ -77,7 +79,7 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
 
     useEffect(() => {
 
-        const { from, to } = scheduleRangeHook;
+        const { from, to } = range;
 
         if (!to) return;
         if (!from) return;
@@ -101,7 +103,7 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
 
         setSchedules(newSch)
 
-    }, [dayjs(scheduleRangeHook.to || new Date())?.format("MMDD"), dayjs(scheduleRangeHook.to || new Date())?.format("MMDD")])
+    }, [dayjs(range.from || new Date())?.format("MMDD"), dayjs(range.to || new Date())?.format("MMDD")])
 
 
 
@@ -230,7 +232,7 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                 </ul>
                 <div id="texta_01" className="texta">
                     <h5>여행일정</h5>
-                    <JDdayPicker {...scheduleRangeHook} inputComponent={(prop) => <div {...prop}>날짜변경</div>} />
+                    <DayPicker setState={setRange} from={range.from} to={range.to} />
                     {schedules.map((schedule, index) => <Scheduler index={index} setSchedules={setSchedules} schedule={schedule} schedules={schedules} />)}
                 </div>
                 <div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { MyPaths } from '../pages/mypage';
 
 interface IProp { }
 
@@ -38,40 +37,40 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                 <h3>My page</h3>
                 <ul>
                     <li className="on">
-                        <a href={MyPaths.MyProfile}>회원정보</a>
+                        <a href={"/mypage"}>회원정보</a>
                     </li>
                     {/* 개인 -*/}
                     <li>
-                        <a href={MyPaths.myPurchase}>구매내역</a>
+                        <a href="/mypage/purchase">구매내역</a>
                     </li>
                     {/* 개인 -*/}
                     <li>
-                        <a href={MyPaths.myBasket}>장바구니</a>
+                        <a href="/mypage/basket">장바구니</a>
                     </li>
                     {/* 개인 -*/}
                     <li>
-                        <a href={MyPaths.myWrite}>나의 게시글</a>
+                        <a href="/mypage/basket">나의 게시글</a>
                     </li>
                     {/* 개인/기업파트너/개인파트너 -*/}
                     <li>
-                        <a href={MyPaths.myReservation}>예약관리</a>
+                        <a href="/mypage/reservation">예약관리</a>
                     </li>
                     {/* 기업파트너/개인파트너 -*/}
                     <li>
-                        <a href={MyPaths.myGoods}>상품관리</a>
+                        <a href="/mypage/goods">상품관리</a>
                     </li>
                     {/* 기업파트너 -*/}
                     <li>
-                        <a href={MyPaths.myPlainning}>기획관리</a>
+                        <a href="/mypage/plainning">기획관리</a>
                     </li>
                     {/* 개인파트너 -*/}
                     <li>
-                        <a href={MyPaths.mySettlement}>매출/정산관리</a>
+                        <a href="/mypage/settlement">매출/정산관리</a>
                     </li>
                     {/* 기업파트너/개인파트너 -*/}
                 </ul>
             </div>
             {children}
-        </div>;
         </div>
+    </div>
 };

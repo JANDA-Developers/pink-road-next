@@ -1,12 +1,11 @@
+import { MypageLayout } from 'layout/MypageLayout';
 import React from 'react';
-import { MypageLayout } from '../../layout/MypageLayout';
-
 interface IProp { }
 
-export const MyPageBasket: React.FC<IProp> = () => {
+export const MyPageWrite: React.FC<IProp> = () => {
     return <MypageLayout>
         <div className="in board_list mymdeal_div">
-            <h4>상품관리</h4>
+            <h4>나의 게시글</h4>
             <div className="paper_div">
                 <div className="in_box">
                     <div className="list_lightbox">
@@ -49,4 +48,4 @@ export const MyPageBasket: React.FC<IProp> = () => {
     </MypageLayout>
 };
 
-export default MyPageBasket;
+export default MyPageWrite;

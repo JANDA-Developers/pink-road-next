@@ -1,4 +1,3 @@
-import { ISet } from '@janda-com/front/dist/types/interface';
 import React, { useState } from 'react';
 import 'css/all.css';
 import Layout from '../layout/Layout';
@@ -6,6 +5,7 @@ import { ApolloProvider, useQuery } from '@apollo/client';
 import { categoryList, categoryList_CategoryList_data } from 'types/api';
 import { CATEGORY_LIST } from 'apollo/queries';
 import PinkClient from "apollo/client"
+import { ISet } from 'types/interface';
 
 export type TContext = {
   editMode: boolean;

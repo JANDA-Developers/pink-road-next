@@ -1,6 +1,6 @@
-import { DEFAULT_PAGE_INFO, isEmpty } from "@janda-com/front";
 import { DEFAULT_PAGE } from "../types/const";
 import { IPageInfo } from "../types/interface";
+import isEmpty from "./isEmpty";
 
 function extractDoc<T, K extends keyof T, C extends keyof T[K], D>(
     data: T | undefined,

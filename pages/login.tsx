@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { LocalManager, UserType, Storage } from 'utils/Storage';
+import { LocalManager, UserType, Storage, initStorage } from 'utils/Storage';
 import pageInfo from 'info/login.json'
 import { Upload } from 'components/common/Upload';
 import { getEditUtils } from 'utils/pageEdit';
@@ -10,23 +10,33 @@ interface IProp { }
 
 export const Login: React.FC<IProp> = () => {
     const { editMode } = useContext(AppContext)
-    const [saveId, setSaveId] = useState(!!Storage.getLocal("saveid", ""));
-    const [session, setSession] = useState(!!Storage.getLocal("saveSession", ""));
-    const [id, setId] = useState(Storage.getLocal("saveid", ""));
+    const [saveId, setSaveId] = useState(false);
+    const [saveSession, setSaveSession] = useState(false);
+    const [id, setId] = useState("");
     const [pw, setPw] = useState("");
     const [tab, setTab] = useState<UserType>(UserType.individual)
     const [page, setPage] = useState(pageInfo);
     const { edit, ulEdit, imgEdit } = getEditUtils(editMode, page, setPage);
 
-    const saveSession = () => {
-        const answer = window.confirm('브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.\n\n로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.')
+    const sessionSave = () => {
+        const answer = confirm('브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.\n\n로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.')
         if (!answer) return;
-        setSession(true);
+        setSaveSession(true);
         // saveLocal("saveSession", "saved");
     }
     // 로그인성공시
     // saveLocal("saveid", id);
+    useEffect(() => {
+        initStorage()
+        setId(Storage.getLocal("saveid", ""))
+        setSaveId(!!Storage.getLocal("saveId?", ""))
+        setSaveSession(!!Storage.getLocal("saveSession?", ""))
+    }, [])
 
+
+    useEffect(() => {
+
+    }, [saveId, saveSession])
 
     return <div >
         <div className="top_visual">

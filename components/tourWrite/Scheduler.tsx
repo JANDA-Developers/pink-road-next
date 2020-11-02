@@ -1,9 +1,8 @@
-import { s4 } from '@janda-com/front';
-import { ISet } from '@janda-com/front/dist/types/interface';
 import React, { useRef } from 'react';
 // import { Iitineraries } from "../TourWrite";
 import dayjs from "dayjs";
 import { ItineraryArrayInput } from '../../types/api';
+import { ISet } from 'types/interface';
 
 export const DEFAULT_SCHEDULE: ItineraryArrayInput = {
     contents: "asd",

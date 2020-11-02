@@ -1,6 +1,4 @@
 import { useQuery } from "@apollo/client"
-import { DEFAULT_PAGE_INFO } from "@janda-com/front";
-import { ISet } from "@janda-com/front/dist/types/interface";
 import { useState } from "react";
 import { PRODUCT_LIST } from "../apollo/queries";
 import { productList, productListVariables } from "../types/api";
@@ -8,7 +6,7 @@ import { DEFAULT_PAGE } from "../types/const";
 // import { PRODUCT_LIST } from "../apollo/queries";
 // import { productList, productListVariables } from "../types/api";
 // import { PRODUCT_LIST } from "../apollo/queries";
-import { IPageInfo, IProduct } from "../types/interface";
+import { IPageInfo, IProduct, ISet } from "../types/interface";
 
 
 export interface IUseProductList {

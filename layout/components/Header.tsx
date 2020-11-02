@@ -1,3 +1,4 @@
+import Link from "next/link"
 import React, { useEffect, useLayoutEffect } from 'react';
 import { EditBtn } from 'components/common/EditBtn';
 import $ from "jquery";
@@ -67,7 +68,9 @@ export const Header: React.FC<IProp> = () => {
             <div className="nav_wrap">
                 <ul className="deps1">
                     <li className="deps">
-                        <a href="/site-info">PinkRoader</a>
+                        <Link href="/site-info">
+                            <a >PinkRoader</a>
+                        </Link>
                     </li>
                     <li className="deps">
                         <a href="/portfolio">Work</a>

@@ -4,13 +4,14 @@ export type LocalManagerConfig = {
     readonly storage: 'localStorage' | 'sessionStorage';
 };
 
+
 export class LocalManager<T extends string> {
-    readonly storage = window.localStorage;
+    readonly storage = localStorage;
 
     constructor(config: LocalManagerConfig) {
         if (config.storage === 'sessionStorage')
-            this.storage = window.sessionStorage;
-        else this.storage = window.localStorage;
+            this.storage = sessionStorage;
+        else this.storage = localStorage;
     }
 
     saveLocal(key: T, value: string | number | Object): void {
@@ -60,10 +61,15 @@ export class LocalManager<T extends string> {
 }
 
 
+type TStoreKeys = "write" | "bracket" | "saveid" | "saveSession?" | "saveId?";
 
-export const Storage = new LocalManager<"write" | "bracket" | "saveid" | "saveSession">({
-    storage: "localStorage"
-});
+export let Storage: LocalManager<TStoreKeys> | null = null;
+
+export const initStorage = () => {
+    Storage = new LocalManager<TStoreKeys>({
+        storage: "localStorage"
+    });
+}
 
 
 export enum UserType {

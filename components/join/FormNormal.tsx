@@ -1,14 +1,13 @@
 import React, { useState, useContext } from 'react'
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import dayjs from 'dayjs'
-import { isEmail, isPassword, isName, isPhone } from "@janda-com/front";
 import RegisterCheck, { TPolicyChk } from './RegisterCheck';
-import { TForm } from '.';
 import Calendar from '../common/icon/CalendarIcon';
 import 'react-day-picker/lib/style.css';
 import { GENDER } from '../../types/api';
+import { TForm } from 'pages/join';
 
-type TFormNormal = {
+export type TFormNormal = {
     email: string,
     password: string,
     passwordChk: string,

@@ -1,6 +1,6 @@
 import React from "react";
 import $ from "jquery"
-import { ISet } from "@janda-com/front/dist/types/interface";
+import { ISet } from "types/interface";
 
 // export const getSelection = () => window.getSelection();
 

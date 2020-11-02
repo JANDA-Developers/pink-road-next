@@ -1,4 +1,3 @@
-import { ISet } from '@janda-com/front/dist/types/interface';
 import { Paginater } from 'components/common/Paginator';
 import SearchMini from 'components/common/SearchMini';
 import SortSelect from 'components/common/SortMethod';
@@ -6,6 +5,7 @@ import { ViewCount } from 'components/common/ViewCount';
 import { PhotoView } from 'components/news/PhotoView';
 import SubTopNav from 'layout/components/SubTop';
 import React, { useState } from 'react';
+import { ISet } from 'types/interface';
 import { LineView } from '../components/news/LineView';
 
 export enum NewsTypes {
