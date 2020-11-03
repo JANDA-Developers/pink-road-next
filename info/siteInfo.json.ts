@@ -1,7 +1,7 @@
 const info = {
     mainTitle: "핑크빛 희망의 길을 만들어 가는 사람들",
     secondTitle: "We are making a path of pink hope",
-    mainBg: '/img/main_top_bg.jpg',
+    mainBg: '/img/siteinfo_bg01.png',
     pinkVision: `<strong>핑크로더(PinkRoader)</strong>는 ‘핑크빛 희망의 길을 만들어가는
     사람들’이라는 뜻을 가지고 사람-시간-공간의 상생을
     <br className="no" />
