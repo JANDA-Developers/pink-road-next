@@ -245,46 +245,48 @@ rect.allmenu_svg {
 }
 
 .header .hd_right .join {
-	display: inline-block;
+	display: none !important;
 	margin-right: 6px;
 }
 
 .header .hd_right .login {
 	display: inline-block;
-	margin-right: 6px;
+	margin-right: 15px;
+    vertical-align:top;
 }
 
 .header .hd_right .logout {
-	display: inline-block;
+	display: none !important;
 	margin-right: 6px;
 }
 
-.header .hd_right .mypage span,
-.header .hd_right .join span,
-.header .hd_right .login span,
-.header .hd_right .logout span {
-	display: inline-block;
-	border: 2px solid #a2a2a2;
-	border: 0;
-	padding: 5px 7px;
-	letter-spacing: -1px;
-	color: #929292;
-	border-radius: 100px;
-	cursor: pointer;
-	font-weight: 600;
-	font-size: 14px;
-	box-sizing: border-box;
-	vertical-align: middle;
-}
+    .header .hd_right .mypage span,
+    .header .hd_right .join span,
+    .header .hd_right .login span,
+    .header .hd_right .logout span {
+        display: inline-block;
+        border: 2px solid #a2a2a2;
+        border: 0;
+        padding: 0;
+        letter-spacing: -1px;
+        color: #525252;
+        border-radius: 100px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 25px;
+        box-sizing: border-box;
+        vertical-align: middle;
+    }
 
-.header .hd_right .mypage span a,
-.header .hd_right .join span a,
-.header .hd_right .login span a,
-.header .hd_right .logout span a {
-	color: #929292;
-	font-size: 14px;
-	font-weight: 600;
-}
+        .header .hd_right .mypage span a,
+        .header .hd_right .join span a,
+        .header .hd_right .login span a,
+        .header .hd_right .logout span a {
+            color: #525252;
+            font-size: 25px;
+            font-weight: 400;
+            line-height: 22px;
+        }
 
 .header .hd_right .mypage span:hover,
 .header .hd_right .join span:hover,
@@ -302,7 +304,7 @@ rect.allmenu_svg {
 }
 
 .header .hd_right .profile {
-	display: inline-block;
+	display: none !important;
 	position: relative;
 	margin-right: 15px;
 	padding: 0;
@@ -355,34 +357,72 @@ rect.allmenu_svg {
 	background-color: #f5f5f5;
 }
 
-.header .hd_right .search_wrap {
-	width: 340px;
-	height: 36px;
-	position: relative;
-	top: 0;
-	margin-right: 15px;
-	display: inline-block;
-	vertical-align: middle;
-}
+    .header .hd_right .search_top {
+        width: 29px;
+        height: 36px;
+        position: relative;
+        top: 0;
+        margin-right: 9px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+        .header .hd_right .search_top .search_btn {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            width: 24px;
+            padding-top: 4px;
+        }  
+        .header .hd_right .search_top .search_btn object {
+           cursor:pointer;
+            display: inline-block;
+            vertical-align: middle;
+        }
+            .header .hd_right .search_top .search_btn button {
+                width: 30px;
+                height: 30px;
+                display: block;
+                border: none;
+                cursor: pointer;
+                background-color: transparent;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+    .header .hd_right .search_wrap {
+        width: 20%;
+        height: 50px;
+        position: fixed;
+        top: 113px;
+        right: 0;
+        display: block;
+        background-color: #ffffff;
+        vertical-align: middle;
+        z-index: 50;
+        padding: 15px;
+        box-sizing: border-box;
+        box-shadow: 4px 4px 7px #00000038;
+    }
 
-.header .hd_right .search_wrap input {
-	width: 60%;
-	height: 100%;
-	border: none;
-	border: 2px solid #555555;
-	border-radius: 100px;
-	background-color: #fff;
-	padding: 0 44px 0 20px;
-	margin-right: 0;
-	color: #858585;
-	box-sizing: border-box;
-	transition: 0.2s;
-}
+        .header .hd_right .search_wrap input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border: 0;
+            padding: 0 44px 0 20px;
+            border-radius: 100px;
+            background-color: #fff;
+            margin-right: 0;
+            color: #858585;
+            box-sizing: border-box;
+            transition: 0.2s;
+        }
 
-.header .hd_right .search_wrap input:focus {
-	border: 2px solid #e41773;
-	width: 100%;
-}
+        .header .hd_right .search_wrap input:focus {
+            
+            width: 100%;
+            
+        }
 
 .header .hd_right .search_wrap input::placeholder {
 	color: #bababa;
@@ -392,32 +432,21 @@ rect.allmenu_svg {
 
 .header .hd_right .search_wrap .search_btn {
 	position: absolute;
-	top: 9px;
-	right: 14px;
+	display:inline-block;
+    vertical-align:middle;
+    width:22px;
+    padding-top:0;
+    top:50%;
+    right:5%;
+    margin-top:-11px;
 }
 
-.header .hd_right .search_wrap .search_btn:focus .st0 {
-	fill: #ed297b;
-}
-
-.header .hd_right .search_wrap .search_btn button {
-	width: 20px;
-	height: 20px;
-	display: block;
-	border: none;
-	cursor: pointer;
-	background-color: transparent;
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-
-.header .hd_right .search_wrap .search_btn object {
-	width: 19px;
-}
-
+    .header .hd_right .search_wrap .search_btn object {
+        width: 19px;
+        opacity: 0.3;
+    }
 .header .hd_right .all_menu_btn {
-	width: 36px;
+	width: 27px;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
@@ -429,9 +458,9 @@ rect.allmenu_svg {
 	cursor: pointer;
 }
 
-.header .hd_right .search_wrap .search_btn object {
-	width: 19px;
-}
+    .header .hd_right .all_menu_btn object {
+        width: 100%;
+    }
 
 .header .hd_right .all_menu_btn button {
 	width: 36px;
@@ -1128,10 +1157,10 @@ header .all_menu ul .a_menu_tit a {
 /*footer*/
 
 footer .footer_in {
-	padding: 0 0 57px;
-	color: #555;
-	text-align: center;
-	background-color: #f5f5f5;
+    padding: 0 0 57px;
+    color: #555;
+    text-align: center;
+    background-color: #f6f6f6;
 }
 
 footer .footer_in_bottom {
@@ -1261,13 +1290,14 @@ footer .footer_in_bottom {
 }
 
 .footer_in .bottom_nav {
-	display: block;
-	width: 100%;
-	position: relative;
-	line-height: 50px;
-	border-bottom: 1px #dbdbdb solid;
-	margin-bottom: 68px;
-	text-align: left;
+    display: block;
+    width: 100%;
+    position: relative;
+    line-height: 50px;
+    border-top: 1px #eaeaea solid;
+    border-bottom: 1px #eaeaea solid;
+    margin-bottom: 68px;
+    text-align: left;
 }
 
 .footer_in .bottom_nav ul {
@@ -1654,7 +1684,6 @@ i.icon_plus {
 	.header .hd_center .nav_wrap .deps1 {
 		display: flex;
 	}
-	.header .hd_right .search_wrap,
 	.header .hd_right .join,
 	.header .hd_right .login,
 	.header .hd_right .logout,
@@ -1682,7 +1711,6 @@ i.icon_plus {
 	.header .hd_center .nav_wrap .deps1 {
 		display: flex;
 	}
-	.header .hd_right .search_wrap,
 	.header .hd_right .join,
 	.header .hd_right .login,
 	.header .hd_right .logout,
@@ -1725,7 +1753,6 @@ i.icon_plus {
 	.header .hd_center .nav_wrap .deps1 {
 		display: none;
 	}
-	.header .hd_right .search_wrap,
 	.header .hd_right .join,
 	.header .hd_right .login,
 	.header .hd_right .logout,

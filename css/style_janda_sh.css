@@ -3724,33 +3724,41 @@ div.bn_box.line2 a:first-child {
 .login_wrap .sign_in_form span:last-child:after {
 	display: none;
 }
+
+.login_box {
+    position: relative;
+    padding-top: 100px;
+    padding-bottom: 200px;
+    min-height: 700px
+}
 .login_box .white_box {
-	position: absolute;
-	left: 50%;
-	top: 31px;
-	margin-left: -400px;
-	width: 800px;
-	background: #ffffff;
-	border-radius: 5px;
-	padding: 100px 180px 110px 180px;
-	box-sizing: border-box;
-	border: 1px solid #e2e2e2;
-	box-shadow: 0 1px 3px rgb(0 0 0 / 6%), 0 1px 2px rgb(0 0 0 / 8%);
-	-webkit-transition: .3s ease;
-	transition: .3s ease;
-	z-index: 1;
-	opacity: 0;
-	-webkit-transition: opacity linear 0.1s;
-	-moz-transition: opacity linear 0.1s;
-	-o-transition: opacity linear 0.1s;
-	-ms-transition: opacity linear 0.1s;
-	transition: opacity linear 0.1s;
+    position: absolute;
+    left: 50%;
+    top: 31px;
+    margin-left: -400px;
+    width: 800px;
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 100px 180px 110px 180px;
+    box-sizing: border-box;
+    border: 1px solid #e2e2e2;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 6%), 0 1px 2px rgb(0 0 0 / 8%);
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+    z-index: 1;
+    opacity: 0;
+    -webkit-transition: opacity linear 0.1s;
+    -moz-transition: opacity linear 0.1s;
+    -o-transition: opacity linear 0.1s;
+    -ms-transition: opacity linear 0.1s;
+    transition: opacity linear 0.1s;
 }
 .login_box .login_page {
 	position: relative;
 	width: 70%;
 	text-align: left;
 	margin: 0 auto;
+    z-index:0;
 }
 .login_box .login_page .login_tap {
 	display: inline-block;
