@@ -2137,11 +2137,27 @@ ul.rank_ul li .number {
 	vertical-align: top;
 }
 
-.siteInfo_in .con02 li i {
-	display: block;
-	font-size: 55px;
-	margin-top: 44px;
-}
+    .siteInfo_in .con02 li i {
+        display: inline-block;
+        width: 110px;
+        height: 100px;
+        background-position: center;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        margin-top: 22px;
+    }
+        .siteInfo_in .con02 li i.icon_01 {
+            width: 60px;
+            background-image: url(/img/svg/siteinfo_svg_01.svg);
+        }
+        .siteInfo_in .con02 li i.icon_02 {
+            width: 80px;
+            background-image: url(/img/svg/siteinfo_svg_02.svg);
+        }
+        .siteInfo_in .con02 li i.icon_03 {
+            width: 110px;
+            background-image: url(/img/svg/siteinfo_svg_03.svg);
+        }
 
 .siteInfo_in .con02 li strong {
 	display: block;

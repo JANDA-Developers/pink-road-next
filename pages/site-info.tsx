@@ -63,17 +63,23 @@ export const StieInfo: React.FC<IProp> = () => {
                 </div>
                 <ul>
                     <li>
-                        <i className="flaticon-diamond" />
+                        <i className="icon_01" style={{
+                            
+                        }} />
                         <strong {...edit("purpose1_title")} />
                         <p {...edit("purpose1_bottom")} />
                     </li>;
                     <li>
-                        <i className="flaticon-diamond" />
+                        <i className="icon_02" style={{
+                            
+                        }} />
                         <strong  {...edit("purpose2_title")} />
                         <p {...edit("purpose2_bottom")} />
                     </li>
                     <li>
-                        <i className="flaticon-diamond" />
+                        <i className="icon_03" style={{
+                           
+                        }} />
                         <strong  {...edit("purpose3_title")} />
                         <p  {...edit("purpose3_bottom")} />
                     </li>;
