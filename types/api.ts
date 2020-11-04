@@ -119,7 +119,7 @@ export interface itineraryCreate_ItineraryCreate_data {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -157,7 +157,7 @@ export interface itineraryUpdate_ItineraryUpdate_data {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -196,7 +196,7 @@ export interface itineraryDelete_ItineraryDelete_data {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -245,7 +245,7 @@ export interface productCreate_ProductCreate_data_itineraries {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -257,15 +257,13 @@ export interface productCreate_ProductCreate_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: string;
+  content: any;
   author: productCreate_ProductCreate_data_author;
   category: productCreate_ProductCreate_data_category | null;
   Status: ProductStatus;
   itineraryIds: string[];
   itineraries: productCreate_ProductCreate_data_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
+  inOrNor: any;
   info: string;
   caution: string;
   keyWards: string[];
@@ -324,7 +322,7 @@ export interface productUpdate_ProductUpdate_data_itineraries {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -336,15 +334,13 @@ export interface productUpdate_ProductUpdate_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: string;
+  content: any;
   author: productUpdate_ProductUpdate_data_author;
   category: productUpdate_ProductUpdate_data_category | null;
   Status: ProductStatus;
   itineraryIds: string[];
   itineraries: productUpdate_ProductUpdate_data_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
+  inOrNor: any;
   info: string;
   caution: string;
   keyWards: string[];
@@ -404,7 +400,7 @@ export interface productDelete_ProductDelete_data_itineraries {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -416,15 +412,13 @@ export interface productDelete_ProductDelete_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: string;
+  content: any;
   author: productDelete_ProductDelete_data_author;
   category: productDelete_ProductDelete_data_category | null;
   Status: ProductStatus;
   itineraryIds: string[];
   itineraries: productDelete_ProductDelete_data_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
+  inOrNor: any;
   info: string;
   caution: string;
   keyWards: string[];
@@ -451,44 +445,6 @@ export interface productDelete {
 
 export interface productDeleteVariables {
   id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: singleUpload
-// ====================================================
-
-export interface singleUpload_SingleUpload_data {
-  __typename: "File";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  name: string;
-  description: string;
-  extension: string;
-  fileType: string;
-  uri: string;
-  owner: string;
-}
-
-export interface singleUpload_SingleUpload {
-  __typename: "FileUploadResponse";
-  ok: boolean;
-  error: string | null;
-  data: singleUpload_SingleUpload_data | null;
-}
-
-export interface singleUpload {
-  SingleUpload: singleUpload_SingleUpload;
-}
-
-export interface singleUploadVariables {
-  file: any;
 }
 
 /* tslint:disable */
@@ -585,7 +541,7 @@ export interface signInGoogle {
 }
 
 export interface signInGoogleVariables {
-  accessToken: string;
+  code: string;
 }
 
 /* tslint:disable */
@@ -657,7 +613,7 @@ export interface productList_ProductList_data_itineraries {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -669,15 +625,13 @@ export interface productList_ProductList_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: string;
+  content: any;
   author: productList_ProductList_data_author;
   category: productList_ProductList_data_category | null;
   Status: ProductStatus;
   itineraryIds: string[];
   itineraries: productList_ProductList_data_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
+  inOrNor: any;
   info: string;
   caution: string;
   keyWards: string[];
@@ -770,7 +724,7 @@ export interface productFindById_ProductFindById_data_itineraries {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -782,15 +736,13 @@ export interface productFindById_ProductFindById_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: string;
+  content: any;
   author: productFindById_ProductFindById_data_author;
   category: productFindById_ProductFindById_data_category | null;
   Status: ProductStatus;
   itineraryIds: string[];
   itineraries: productFindById_ProductFindById_data_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
+  inOrNor: any;
   info: string;
   caution: string;
   keyWards: string[];
@@ -867,7 +819,7 @@ export interface itineraryFindById_ItineraryFindById_data {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -905,7 +857,7 @@ export interface itineraryList_ItineraryList_data {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -1037,7 +989,7 @@ export interface Fitinerary {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -1071,7 +1023,7 @@ export interface Fproduct_itineraries {
   email: string;
   productId: string;
   title: string;
-  contents: string;
+  contents: string[];
   imgs: string[];
   date: any;
 }
@@ -1083,15 +1035,13 @@ export interface Fproduct {
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: string;
+  content: any;
   author: Fproduct_author;
   category: Fproduct_category | null;
   Status: ProductStatus;
   itineraryIds: string[];
   itineraries: Fproduct_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
+  inOrNor: any;
   info: string;
   caution: string;
   keyWards: string[];
@@ -1188,6 +1138,14 @@ export enum ProductStatus {
 }
 
 /**
+ * 상품 타입
+ */
+export enum ProductType {
+  EXPERIENCE = "EXPERIENCE",
+  TOUR = "TOUR",
+}
+
+/**
  * 유저 역할!
  */
 export enum UserRole {
@@ -1236,7 +1194,7 @@ export interface ItineraryArrayInput {
 export interface ItineraryCreateInput {
   productId: string;
   title: string;
-  contents: string;
+  contents?: string[] | null;
   imgs: string[];
   date?: any | null;
 }
@@ -1250,19 +1208,17 @@ export interface ItineryUpdateInput {
   _id?: string | null;
   productId?: string | null;
   title: string;
-  contents: string;
+  contents?: string[] | null;
   imgs: string[];
   date?: any | null;
 }
 
 export interface ProductCreateInput {
   title: string;
-  content: string;
+  content?: any | null;
   CategoryID?: string | null;
   Status?: ProductStatus | null;
-  include?: any | null;
-  uninclude?: any | null;
-  productInfo?: string | null;
+  inOrNor?: any | null;
   info?: string | null;
   caution?: string | null;
   keyWards?: string[] | null;
@@ -1275,16 +1231,15 @@ export interface ProductCreateInput {
   adult_price?: number | null;
   kids_price?: number | null;
   baby_price?: number | null;
+  type?: ProductType | null;
 }
 
 export interface ProductUpdateInput {
   title?: string | null;
-  content?: string | null;
+  content?: any | null;
   CategoryID?: string | null;
   Status?: ProductStatus | null;
-  include: any;
-  uninclude: any;
-  productInfo?: string | null;
+  inOrNor: any;
   info?: string | null;
   caution?: string | null;
   keyWards?: string[] | null;
@@ -1296,6 +1251,7 @@ export interface ProductUpdateInput {
   adult_price?: number | null;
   kids_price?: number | null;
   baby_price?: number | null;
+  type?: ProductType | null;
 }
 
 export interface pageInput {

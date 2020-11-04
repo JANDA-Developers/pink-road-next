@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "precodegen": "apollo schema:download --endpoint=http://13.209.234.84:4000/graphql",
+    "codegen": "apollo codegen:generate types/api.ts   --includes=apollo/* --queries=apollo/*.ts --addTypename --localSchemaFile=schema.json --target=typescript --outputFlat"
   },
   "dependencies": {
     "@apollo/client": "^3.2.5",

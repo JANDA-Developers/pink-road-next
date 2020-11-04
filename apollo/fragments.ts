@@ -61,9 +61,7 @@ export const F_PRODUCT = gql`
         itineraries {
             ...Fitinerary
         }
-        include
-        uninclude
-        productInfo
+        inOrNor
         info
         caution
         keyWards

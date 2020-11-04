@@ -208,10 +208,10 @@ export const SIGN_UP = gql`
 
 export const SIGN_IN_GOOGLE = gql`
   mutation signInGoogle(
-      $accessToken: String!
+      $code: String!
     ) {
       SignInGoogle(
-        accessToken:$accessToken
+        code:$code
       ) {
       ok
       error 

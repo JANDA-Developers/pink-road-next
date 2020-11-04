@@ -286,7 +286,7 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                     {isCreateMode || <button type="submit" className="btn medium pointcolor">수정</button>}
                     {isCreateMode && <button type="submit" className="btn medium pointcolor">등록</button>}
                     <button onClick={() => {
-                        if (window.confirm("작성을 취소 하고 이전 페이지로 이동하시겠습니까? "))
+                        if (confirm("작성을 취소 하고 이전 페이지로 이동하시겠습니까? "))
                             history.go(-1);
                     }} type="button" className="btn medium impact">취소</button>
                     {isCreateMode || <button type="submit" className="btn medium">삭제</button>}
