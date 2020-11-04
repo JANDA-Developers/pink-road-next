@@ -92,26 +92,16 @@ export const Header: React.FC<IProp> = () => {
         </div>
         <div className="nav_bg"></div>
         <div className="hd_right">
-            <div className="search_wrap">
-                <input type="text" placeholder="검색어를 입력해주세요" />
-                <div className="search_btn">
-                    <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
-                        현재 브라우저는 iframe을 지원하지 않습니다.
-                    </object>
-                    <button />
-                </div>
-            </div>
+            
 
             <div className="join">
                 <span><a href="/join" target="_self">회원가입</a></span>
             </div>
 
             <div className="login">
-                <span ><a href="/login">로그인</a></span>
+                <span ><a href="/login">LOGIN</a></span>
             </div>
-            <div className="mypage">
-                <span><a href="" target="_blank">예약관리</a></span>
-            </div>
+
             <div className="profile">
                 <span className="photo">프로필 사진</span>
                 <ul>
@@ -124,7 +114,23 @@ export const Header: React.FC<IProp> = () => {
                     <li><span >로그아웃</span></li>
                 </ul>
             </div>
-
+            <div className="search_top">
+                <div className="search_btn">
+                    <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
+                        현재 브라우저는 iframe을 지원하지 않습니다.
+                    </object>
+                    <button />
+                </div>
+                <div className="search_wrap">
+                    <input type="text" placeholder="검색어를 입력해주세요" />
+                    <div className="search_btn">
+                        <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
+                            현재 브라우저는 iframe을 지원하지 않습니다.
+                    </object>
+                        <button />
+                    </div>
+                </div>
+            </div>
             <div onClick={handleAllMenu} className="all_menu_btn">
                 <object type="image/svg+xml" data={'/img/svg/allmenu_icon.svg'}>현재 브라우저는 iframe을 지원하지 않습니다.</object>
                 <button />
