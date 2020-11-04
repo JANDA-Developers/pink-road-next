@@ -70,7 +70,7 @@ export const StieInfo: React.FC<IProp> = () => {
                         }} />
                         <strong {...edit("purpose1_title")} />
                         <p {...edit("purpose1_bottom")} />
-                    </li>;
+                    </li>
                     <li>
                         <i className="icon_02" style={{
                             
@@ -84,7 +84,7 @@ export const StieInfo: React.FC<IProp> = () => {
                         }} />
                         <strong  {...edit("purpose3_title")} />
                         <p  {...edit("purpose3_bottom")} />
-                    </li>;
+                    </li>
                 </ul>
             </div>
         </div>

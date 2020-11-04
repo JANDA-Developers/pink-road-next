@@ -1,11 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\components",
     "\\css",
+    "\\info",
     "\\layout",
     "\\layout\\components",
-    "\\pages"
+    "\\pages",
+    "\\public",
+    "\\public\\img",
+    "\\public\\img\\svg"
   ],
-  "SelectedNode": "\\css\\layout.css",
+  "SelectedNode": "\\public\\img\\svg",
   "PreviewInSolutionExplorer": false
 }

@@ -2044,52 +2044,43 @@ ul.rank_ul {
         position: relative;
         display: block;
         width: 100%;
-        height: 710px;
-        padding: 170px 0 0;
+        height: 390px;
+        padding: 100px 5% 0;
         box-sizing: border-box;
         background-color: #fff8c0;
         background-image: url(/img/siteinfo_bg01.png);
-        background-position: center;
-        background-size: 100%;
-    }
+        background-position: center 490px;
+        background-size: 187%;
+    }  
 
         .siteInfo_in .top_bg h3 {
-            font-size: 50px;
-            line-height: 60px;
+            font-size: 30px;
+            line-height: 30px;
             color: #ed297b;
             text-align: center;
         }
 
         .siteInfo_in .top_bg p {
-            font-size: 36px;
-            line-height: 52px;
+            font-size: 21px;
+            line-height: 46px;
             color: #858585;
             text-align: center;
         }
 
-    .siteInfo_in .con01 {
-        padding: 200px 0 240px;
-        background-color: #f5f5f5;
-        /*background-image: url(/img/siteinfo_bg02.png);
-        background-position: right bottom;
-        background-size: 100%;
-        background-repeat: no-repeat;*/
-    }
-
     .siteInfo_in .con02 {
-        padding: 86px 0;
+        padding: 150px 0 50px;
         background-image: url(/img/ptbg05.png/);
     }
 
     .siteInfo_in .con03 {
-        padding: 276px 0 0;
-        min-height: 1150px;
+        padding: 146px 0 0;
+        min-height: 580px;
         box-sizing: border-box;
         text-align: center;
         background-color: #ffebf3;
         background-image: url(/img/siteinfo_bg07.png);
         background-position: center bottom;
-        background-size: 100%;
+        background-size: 140%;
         background-repeat: no-repeat;
     }
 
@@ -2097,27 +2088,14 @@ ul.rank_ul {
         background-color: #ffffff;
         text-align: center;
         position: relative;
+        padding: 0px 0 0;
     }
-
-        .siteInfo_in .con04:after {
-            /*content: '';
-        display: inline-block;
-        width: 2340px;
-        height: 1090px;
-        background-color: #ccc;
-        position: absolute;
-        top: 681px;
-        left: -200px;
-        -webkit-transform: rotate(-175deg);
-        transform: rotate(-175deg);
-        z-index:2;*/
-        }
 
     .siteInfo_in .con05 {
         text-align: center;
         background-image: url(/img/siteinfo_bg05.jpg);
         background-position: center;
-        background-size: 100%;
+        background-size: 300%;
         overflow: hidden;
     }
 
@@ -2127,14 +2105,14 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con07 {
-        padding: 235px 0;
+        padding: 95px 0;
         text-align: center;
         background-color: #fff8c0;
         color: #333;
         overflow: hidden;
         background-image: url(/img/siteinfo_bg06.png);
         background-position: center bottom;
-        background-size: 100%;
+        background-size: 160%;
     }
 
     .siteInfo_in .con02 .top_txt {
@@ -2143,18 +2121,18 @@ ul.rank_ul {
         width: 100%;
         display: block;
         box-sizing: border-box;
-        padding: 150px 0 0;
+        padding:0 5%;
     }
 
         .siteInfo_in .con02 .top_txt h4 {
             color: #fff;
             font-weight: 600;
-            font-size: 56px;
-            line-height: 100%;
+            font-size: 32px;
+            line-height: 65%;
         }
 
         .siteInfo_in .con02 .top_txt p {
-            font-size: 18px;
+            font-size: 14px;
             color: #fff;
             font-weight: 400;
         }
@@ -2168,23 +2146,22 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con02 li {
-        width: 300px;
-        height: 300px;
+        width: 28%;
+        height: 226px;
         display: inline-block;
-        margin: 47px;
+        margin: 2%;
         text-align: center;
         color: #ffffff;
         border-radius: 900px;
-        border: 7px #fff solid;
+        border: 5px #fff solid;
         padding: 10px;
         box-sizing: border-box;
         vertical-align: top;
     }
-
         .siteInfo_in .con02 li i {
             display: inline-block;
             width: 110px;
-            height: 100px;
+            height: 58px;
             background-position: center;
             background-size: 100%;
             background-repeat: no-repeat;
@@ -2192,37 +2169,40 @@ ul.rank_ul {
         }
 
             .siteInfo_in .con02 li i.icon_01 {
-                width: 60px;
+                width: 48px;
                 background-image: url(/img/svg/siteinfo_svg_01.svg);
             }
 
             .siteInfo_in .con02 li i.icon_02 {
-                width: 80px;
+                width: 65px;
                 background-image: url(/img/svg/siteinfo_svg_02.svg);
             }
 
             .siteInfo_in .con02 li i.icon_03 {
-                width: 110px;
+                width: 76px;
                 background-image: url(/img/svg/siteinfo_svg_03.svg);
             }
 
         .siteInfo_in .con02 li strong {
             display: block;
-            font-size: 22px;
+            font-size: 17px;
             margin-top: 10px;
         }
 
         .siteInfo_in .con02 li p {
             display: block;
-            font-size: 14px;
+            font-size: 11px;
             line-height: 20px;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
-    .siteInfo_in .con01{
-        position:relative;
-        overflow:hidden;
-        z-index:0;
+    .siteInfo_in .con01 {
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+        padding: 90px 5% 170px;
+        box-sizing:border-box;
+        background-color: #f5f5f5;
     }
         .siteInfo_in .con01:before {
             content: '';
@@ -2246,12 +2226,12 @@ ul.rank_ul {
     }
         .siteInfo_in .con01 .haf_first {
             display: inline-block;
-            width: 30%;
-            min-height: 450px;
+            width: 100%;
+            min-height: unset;
             padding: 53px;
             box-sizing: border-box;
             vertical-align: top;
-            margin: 0 4% 0 1%;
+            margin: 0;
             text-align: left;
             font-size: 16px;
             line-height: 30px;
@@ -2261,18 +2241,19 @@ ul.rank_ul {
             font-size: 25px;
             color: #333;
         }
-    .siteInfo_in .con01 .haf {
-        display: inline-block;
-        width: 25%;
-        min-height: 450px;
-        padding: 93px 53px 93px 44px;
-        box-sizing: border-box;
-        vertical-align: top;
-        border-top: 4px solid #ed297b;
-        margin: 0 1%;
-        background-color: #ffffffeb;
-        box-shadow: 2px 2px 8px #0000000d;
-    }
+        .siteInfo_in .con01 .haf {
+            display: inline-block;
+            width: 100%;
+            min-height: unset;
+            padding: 93px 53px 93px 44px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            vertical-align: top;
+            border-top: 4px solid #ed297b;
+            margin: 0 0 20px 0;
+            background-color: #ffffffeb;
+            box-shadow: 2px 2px 8px #0000000d;
+        }
 
         .siteInfo_in .con01 .haf strong {
             font-size: 44px;
@@ -2455,14 +2436,16 @@ ul.rank_ul {
 
     .siteInfo_in .con03 h4 {
         text-align: center;
-        font-size: 57px;
-        line-height: 100%;
+        font-size: 40px;
+        line-height: 153%;
         color: #ed297b;
+        font-weight: 500;
+        margin-bottom: 0;
     }
 
     .siteInfo_in .con03 p {
-        font-size: 28px;
-        line-height: 52px;
+        font-size: 15px;
+        line-height: 32px;
         color: #555;
         text-align: center;
     }
@@ -2520,11 +2503,11 @@ ul.rank_ul {
 
     .siteInfo_in .con04 li {
         display: inline-block;
-        width: 30%;
-        min-height: 380px;
+        width: 100%;
+        min-height: unset;
         margin: 1%;
         box-sizing: border-box;
-        padding: 43px;
+        padding: 22px 43px;
         vertical-align: top;
         text-align: left;
         font-size: 15px;
@@ -2546,10 +2529,10 @@ ul.rank_ul {
         text-align: center;
         overflow: hidden;
         background-image: url(/img/siteinfo_bg_005.png);
-        background-position: center;
+        background-position: top right;
         background-repeat: no-repeat;
-        background-size: 100%;
-        padding: 260px 0;
+        background-size: 250%;
+        padding: 114px 0;
     }
 
     .siteInfo_in .con04 .li01 {
@@ -2584,7 +2567,7 @@ ul.rank_ul {
 
     .siteInfo_in .con04 .li03 {
         display: inline-block;
-        width: 20%;
+        width: 100%;
         vertical-align: middle;
     }
 
@@ -2640,13 +2623,13 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con04 .li03 .dong01 {
-        margin-left: -272px;
-        margin-bottom: 20px;
+        margin-left: 0;
+        margin-bottom: 0;
     }
 
         .siteInfo_in .con04 .li03 .dong01:after {
             content: '';
-            display: inline-block;
+            display: none;
             width: 15px;
             height: 15px;
             background-color: #ffc0da;
@@ -2658,7 +2641,7 @@ ul.rank_ul {
 
         .siteInfo_in .con04 .li03 .dong01:before {
             content: '';
-            display: inline-block;
+            display: none;
             width: 42px;
             height: 2px;
             background-color: #ffc0da;
@@ -2676,7 +2659,7 @@ ul.rank_ul {
 
         .siteInfo_in .con04 .li03 .dong02:after {
             content: '';
-            display: inline-block;
+            display: none;
             width: 15px;
             height: 15px;
             background-color: #ffc0da;
@@ -2688,7 +2671,7 @@ ul.rank_ul {
 
         .siteInfo_in .con04 .li03 .dong02:before {
             content: '';
-            display: inline-block;
+            display: none;
             width: 37px;
             height: 2px;
             background-color: #ffc0da;
@@ -2706,7 +2689,7 @@ ul.rank_ul {
 
         .siteInfo_in .con04 .li03 .dong03:after {
             content: '';
-            display: inline-block;
+            display: none;
             width: 15px;
             height: 15px;
             background-color: #ffc0da;
@@ -2718,7 +2701,7 @@ ul.rank_ul {
 
         .siteInfo_in .con04 .li03 .dong03:before {
             content: '';
-            display: inline-block;
+            display: none;
             width: 46px;
             height: 2px;
             background-color: #ffc0da;
@@ -2735,7 +2718,7 @@ ul.rank_ul {
 
         .siteInfo_in .con04 .li03 .dong04:after {
             content: '';
-            display: inline-block;
+            display: none;
             width: 15px;
             height: 15px;
             background-color: #ffc0da;
@@ -2747,7 +2730,7 @@ ul.rank_ul {
 
         .siteInfo_in .con04 .li03 .dong04:before {
             content: '';
-            display: inline-block;
+            display: none;
             width: 50px;
             height: 2px;
             background-color: #ffc0da;
@@ -2804,48 +2787,46 @@ ul.rank_ul {
 
     .siteInfo_in .con05 > div {
         position: relative;
-        padding: 150px 0;
+        padding: 260px 0 150px 0;
     }
 
         .siteInfo_in .con05 > div:before {
             content: '';
-            width: 25px;
+            width: 19px;
             height: 257%;
             display: inline-block;
             background-color: #ffef72;
             position: absolute;
             top: -573px;
-            left: 9.9%;
-            transform: rotate(31deg);
+            left: 70px;
+            transform: rotate(0deg);
         }
 
         .siteInfo_in .con05 > div:after {
             content: '';
-            width: 25px;
+            width: 19px;
             height: 257%;
             display: inline-block;
             background-color: #ffef72;
             position: absolute;
             top: -582px;
-            left: 5.9%;
-            transform: rotate(31deg);
+            left: 40px;
+            transform: rotate(0deg);
         }
-
     .siteInfo_in .con05 h4 {
         font-weight: 600;
-        font-size: 56px;
+        font-size: 46px;
         line-height: 100%;
         width: 25%;
         position: absolute;
-        left: 50px;
-        top: 144px;
+        left: 110px;
+        top: 104px;
         text-align: left;
         color: #fff;
     }
-
     .siteInfo_in .con05 .in_txt {
-        width: 50%;
-        margin-left: 52%;
+        width: 70%;
+        margin-left: 159px;
         display: block;
         position: relative;
         text-align: left;
@@ -2859,41 +2840,41 @@ ul.rank_ul {
         }
 
         .siteInfo_in .con05 .in_txt .y2020 {
-            left: 124px;
+            left: 0;
         }
 
         .siteInfo_in .con05 .in_txt .y2019 {
-            left: 72px;
+            left: 0;
         }
 
         .siteInfo_in .con05 .in_txt .y2018 {
-            left: 14px;
+            left: 0;
         }
 
         .siteInfo_in .con05 .in_txt .y2017 {
-            left: -28px;
+            left: 0;
         }
 
         .siteInfo_in .con05 .in_txt .y2016 {
-            left: -71px;
+            left: 0;
             margin-bottom: 36px;
         }
 
         .siteInfo_in .con05 .in_txt .y2015 {
-            left: -112px;
+            left: 0;
         }
 
         .siteInfo_in .con05 .in_txt .y2014 {
-            left: -191px;
+            left: 0;
             margin-bottom: 39px;
         }
 
         .siteInfo_in .con05 .in_txt .y2013 {
-            left: -230px;
+            left: 0;
         }
 
         .siteInfo_in .con05 .in_txt .y2012 {
-            left: -322px;
+            left: 0;
         }
 
         .siteInfo_in .con05 .in_txt strong {
@@ -2922,17 +2903,17 @@ ul.rank_ul {
             border: 5px solid #ffef72;
             background-color: #ea2074;
         }
-
         .siteInfo_in .con05 .in_txt .year:after {
             position: absolute;
-            left: -200px;
+            left: -80px;
             top: 16px;
             content: '';
             display: block;
-            width: 200px;
+            width: 76px;
             height: 1px;
             border-bottom: 3px dotted #ffef72;
         }
+ 
 
         .siteInfo_in .con05 .in_txt .year li {
             padding-left: 15px;
@@ -2955,14 +2936,14 @@ ul.rank_ul {
         display: block;
         position: relative;
         font-weight: 400;
-        font-size: 36px;
+        font-size: 26px;
         line-height: 100%;
         color: #858585;
         margin-bottom: 50px;
     }
 
         .siteInfo_in .con06 h4 strong {
-            font-size: 50px;
+            font-size: 30px;
             line-height: 160%;
             display: block;
             color: #ed297b;
@@ -2977,7 +2958,7 @@ ul.rank_ul {
     .siteInfo_in .con06 li {
         display: inline-block;
         position: relative;
-        width: 22%;
+        width: 30%;
         margin: 1% 1%;
         background-color: #ffffff;
         border: 1px solid #e0e0e0;
@@ -3027,7 +3008,7 @@ ul.rank_ul {
         display: block;
         position: relative;
         font-weight: 400;
-        font-size: 23px;
+        font-size: 17px;
         line-height: 100%;
         color: #686868;
         margin-bottom: 7px;
@@ -3035,7 +3016,7 @@ ul.rank_ul {
     }
 
         .siteInfo_in .con07 h4 strong {
-            font-size: 33px;
+            font-size: 24px;
             line-height: 160%;
             display: block;
             font-weight: 600;
@@ -8319,6 +8300,21 @@ i.calendar {
     }
 
 @media (min-width: 768px) {
+    .siteInfo_in .top_bg {
+        height: 560px;
+        padding: 130px 0 0;
+        background-position: center 650px;
+        background-size: 200%;
+    }
+    .siteInfo_in .top_bg h3 {
+        font-size: 30px;
+        line-height: 45px;
+    }
+
+    .siteInfo_in .top_bg p {
+        font-size: 23px;
+        line-height: 35px;
+    }
     #viewControl .btn_box .link02 {
         width: 70.4%;
     }
@@ -8349,10 +8345,266 @@ i.calendar {
         border-radius: 0px;
     }
 
-    .portfolio_in .con04 .portfolio_box ul li {
+  
+    .siteInfo_in .con07 {
+        padding: 130px 0;
+        background-size: 150%;
     }
+    .siteInfo_in .con06 li {
+        width: 22%;
+    }
+   
 }
+@media (min-width: 1000px) {
+    .siteInfo_in .top_bg {
+        height: 710px;
+        padding: 170px 0 0;
+        background-image: url(/img/siteinfo_bg01.png);
+        background-position: center;
+        background-size: 180%;
+    }
+    .siteInfo_in .top_bg h3 {
+        font-size: 50px;
+        line-height: 60px;
+    }
+    .siteInfo_in .top_bg p {
+        font-size: 36px;
+        line-height: 52px;
+    }
+    .siteInfo_in .con01 {
+        padding: 200px 0 240px;
+    }
+        .siteInfo_in .con01 .haf_first {
+            width: 30%;
+            min-height: 450px;
+            padding: 53px;
+            margin: 0 4% 0 1%;
+        }
+        .siteInfo_in .con01 .haf {
+            width: 25%;
+            min-height: 450px;
+            padding: 53px;
+            margin: 0 1%;
+        }
+    .siteInfo_in .con02 {
+        padding: 86px 0;
+    }
+        .siteInfo_in .con02 .top_txt {
+            padding: 150px 0 0;
+        }
+            .siteInfo_in .con02 .top_txt h4 {
+                font-size: 56px;
+            }
 
+            .siteInfo_in .con02 .top_txt p {
+                font-size: 18px;
+            }
+        .siteInfo_in .con02 li {
+            width: 300px;
+            height: 300px;
+            margin: 47px;
+            border: 7px #fff solid;
+            padding: 10px;
+        }
+            .siteInfo_in .con02 li i {
+                width: 110px;
+                height: 100px;
+                margin-top: 22px;
+            }
+        .siteInfo_in .con02 li strong {
+            font-size: 22px;
+            margin-top: 10px;
+        }
+
+        .siteInfo_in .con02 li p {
+            font-size: 14px;
+            line-height: 20px;
+            margin-top: 10px;
+        }
+  
+            .siteInfo_in .con02 li i.icon_01 {
+                width: 60px;
+            }
+
+            .siteInfo_in .con02 li i.icon_02 {
+                width: 80px;
+            }
+
+            .siteInfo_in .con02 li i.icon_03 {
+                width: 110px;
+            }
+    .siteInfo_in .con03 {
+        padding: 276px 0 0;
+        min-height: 1150px;
+        background-position: center bottom;
+        background-size: 100%;
+    }
+        .siteInfo_in .con03 h4 {
+            font-size: 57px;
+            line-height: 100%;
+        }
+
+        .siteInfo_in .con03 p {
+            font-size: 28px;
+            line-height: 52px;
+        }
+    .siteInfo_in .con04 {
+        padding: 0;
+    }
+        .siteInfo_in .con04 .infoimg {
+            background-image: url(/img/siteinfo_bg_005.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            padding: 130px 0;
+        }
+        .siteInfo_in .con04 .li03 .dong01 {
+            margin-left: -272px;
+            margin-bottom: 20px;
+        }
+    .siteInfo_in .con04 li {
+        width: 30%;
+        min-height: 380px;
+        margin: 1%;
+        padding: 43px;
+        font-size: 15px;
+    }
+        .siteInfo_in .con04 .li03 {
+            display: inline-block;
+            width: 20%;
+            vertical-align: middle;
+        }
+            .siteInfo_in .con04 .li03 > div {
+                width: 250px;
+                height: 130px;
+                padding: 0 31px;
+                border: 6px rgb(237,41,123) solid;
+            }
+            .siteInfo_in .con04 .li03 .dong01:after {
+                display: inline-block;
+            }
+            .siteInfo_in .con04 .li03 .dong01:before {
+                display: inline-block;
+            }
+                .siteInfo_in .con04 .li03 .dong02:after {
+                    display: inline-block;
+                }
+                .siteInfo_in .con04 .li03 .dong02:before {
+                    display: inline-block;
+                }
+                .siteInfo_in .con04 .li03 .dong03:after {
+                    display: inline-block;
+                }
+                .siteInfo_in .con04 .li03 .dong03:before {
+                    display: inline-block;
+                }
+                .siteInfo_in .con04 .li03 .dong04:after {
+                    display: inline-block;
+                }
+                .siteInfo_in .con04 .li03 .dong04:before {
+                    display: inline-block;
+                }
+    .siteInfo_in .con06 h4 {
+        font-size: 36px;
+    }
+    .siteInfo_in .con06 h4 strong {
+        font-size: 44px;
+    }
+ 
+    .siteInfo_in .con07 {
+        padding: 185px 0;
+        background-size: 130%;
+    }
+        .siteInfo_in .con07 h4 {
+            font-size: 23px;
+        }
+            .siteInfo_in .con07 h4 strong {
+                font-size: 33px;
+            }
+    .siteInfo_in .con05 {
+        background-position: 70% center;
+        background-size: 180%;
+    }
+
+    .siteInfo_in .con05 h4 {
+        font-size: 56px;
+        line-height: 100%;
+        width: 25%;
+        left: 50px;
+        top: 144px;
+        color: #fff;
+    }
+
+        .siteInfo_in .con05 .in_txt {
+            width: 50%;
+            margin-left: 432px;
+        }
+    .siteInfo_in .con05 > div:before {
+        width: 25px;
+        height: 257%;
+        top: -573px;
+        left: 3%;
+        -webkit-transform: rotate(31deg);
+        transform: rotate(31deg);
+    }
+
+    .siteInfo_in .con05 > div:after {
+        width: 25px;
+        height: 257%;
+        top: -582px;
+        left: -2%;
+        -webkit-transform: rotate(31deg);
+        transform: rotate(31deg);
+    }
+
+        .siteInfo_in .con05 .in_txt .y2020 {
+            left: 124px;
+        }
+
+        .siteInfo_in .con05 .in_txt .y2019 {
+            left: 72px;
+        }
+
+        .siteInfo_in .con05 .in_txt .y2018 {
+            left: 14px;
+        }
+
+        .siteInfo_in .con05 .in_txt .y2017 {
+            left: -28px;
+        }
+
+        .siteInfo_in .con05 .in_txt .y2016 {
+            left: -71px;
+            margin-bottom: 36px;
+        }
+
+        .siteInfo_in .con05 .in_txt .y2015 {
+            left: -112px;
+        }
+
+        .siteInfo_in .con05 .in_txt .y2014 {
+            left: -191px;
+            margin-bottom: 39px;
+        }
+
+        .siteInfo_in .con05 .in_txt .y2013 {
+            left: -230px;
+        }
+
+        .siteInfo_in .con05 .in_txt .y2012 {
+            left: -322px;
+        }
+
+        .siteInfo_in .con05 .in_txt .year:after {
+            left: -80px;
+            top: 16px;
+            width: 79px;
+        }
+   
+}
+@media (min-width: 1100px) {
+
+}
 @media (min-width: 1200px) {
     #viewControl .btn_box .link02 {
         width: 61.9%;
@@ -8397,6 +8649,56 @@ i.calendar {
         padding: 0 42px;
         font-size: 17px;
     }
+    .siteInfo_in .top_bg {
+        height: 710px;
+        padding: 170px 0 0;
+        background-image: url(/img/siteinfo_bg01.png);
+        background-position: center;
+        background-size: 130%;
+    }
+
+        .siteInfo_in .top_bg h3 {
+            font-size: 50px;
+            line-height: 60px;
+        }
+
+        .siteInfo_in .top_bg p {
+            font-size: 36px;
+            line-height: 52px;
+        }
+    .siteInfo_in .con05 {
+        background-position: center;
+        background-size: 140%;
+    }
+        .siteInfo_in .con05 > div:before {
+            width: 25px;
+            height: 257%;
+            top: -573px;
+            left: 9.9%;
+            -webkit-transform: rotate(31deg);
+            transform: rotate(31deg);
+        }
+
+        .siteInfo_in .con05 > div:after {
+            width: 25px;
+            height: 257%;
+            top: -582px;
+            left: 5.9%;
+            -webkit-transform: rotate(31deg);
+            transform: rotate(31deg);
+        }
+        .siteInfo_in .con05 .in_txt {
+            width: 50%;
+            margin-left: 52%;
+        }
+        .siteInfo_in .con05 > div {
+            padding: 150px 0;
+        }
+        .siteInfo_in .con05 .in_txt .year:after {
+            left: -200px;
+            top: 16px;
+            width: 200px;
+        }
 }
 
 @media (min-width: 1300px) {
@@ -8417,8 +8719,19 @@ i.calendar {
         height: 269.9px;
         margin: 15px;
     }
+    .siteInfo_in .con05 {
+        background-position: center;
+        background-size: 130%;
+    }
 }
+@media (min-width: 1500px) {
+   
+    .siteInfo_in .con05 {
+        background-size: 100%;
+    }
 
+    
+}
 @media (max-width: 767px) {
     #viewControl .btn_box .link02 {
         width: 69.9%;

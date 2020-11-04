@@ -94,7 +94,7 @@ export const Header: React.FC<IProp> = () => {
             <div className="nav_bg"></div>
             <div className="hd_right">
                 <div className="join">
-                    <span><a href="/join" target="_self">회원가입</a></span>
+                    <span><a href="/join" target="_self">JOIN</a></span>
                 </div>
 
                 <div className="login">
@@ -121,13 +121,24 @@ export const Header: React.FC<IProp> = () => {
                         <button />
                     </div>
                     <div className="search_wrap">
-                        <input type="text" placeholder="검색어를 입력해주세요" />
+                        <input type="text" placeholder="검색어를 입력해주세요" /> 
                         <div className="search_btn">
                             <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
                                 현재 브라우저는 iframe을 지원하지 않습니다.
                         </object>
                             <button />
+                            
                         </div>
+                    </div>
+                </div>
+
+                <div className="inform_top">
+                    <div className="inform_icon">
+                        <object type="image/svg+xml" data={'/img/svg/inform_icon4.svg'}>
+                                현재 브라우저는 iframe을 지원하지 않습니다.
+                        </object>
+                        <button />
+                        <span className="number">99+</span>
                     </div>
                 </div>
                 <div onClick={handleAllMenu} className="all_menu_btn">
