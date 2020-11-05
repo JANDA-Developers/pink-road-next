@@ -1,0 +1,51 @@
+
+.join_wrap2 .information_box .er, .join_wrap2 .information_box2 .er {
+    display:none !important;
+}
+
+.join_wrap2 .information_box .er.on, .join_wrap2 .information_box2 .er.on {
+    display:inline-block !important;
+}
+
+.join_birthday {
+    position:relative;
+}
+
+.apply_relative {
+    position:relative;
+}
+
+.join_birthdayPick {
+    display:none !important;
+    position:absolute; z-index:100;
+    top:0; left:0;
+    background:#ffffff;
+}
+
+.join_birthdayPick.on {
+    display:block !important;
+}
+
+.file_busi_license {
+    position:absolute; z-index:-1;
+    top:0; right:0;
+    opacity:0;
+}
+
+.cus_file_busi_license {
+    height: 22px !important;
+    width: auto !important;
+    padding: 8px 15px !important;
+    background-color: #c4c4c417 !important;
+    color: #7a7a7a !important;
+    border: 1px solid #c4c4c4 !important;
+    font-size: 12px !important;
+    border-radius: 5px !important;
+    font-weight: 600;
+}
+
+.cus_file_busi_license:hover {
+    background-color: #e0e0e0 !important;
+    color: #333333 !important;
+    border: 1px solid #a0a0a0 !important;
+}
