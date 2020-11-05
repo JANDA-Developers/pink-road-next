@@ -15,7 +15,7 @@ interface IProp extends TPhotoLi {
 export const PhotoLi: React.FC<IProp> = ({ category, title, subTitle, onClickImg }) => {
     return <li className="list_in">
         <div className="img" onClick={onClickImg} style={{
-            backgroundImage: `url(/img/keyword_img4.jpg)`
+            backgroundImage: `url(/img/test_img_01.jpg)`
         }}></div>
         <div className="box">
             <div className="category"><span>{category}</span></div>

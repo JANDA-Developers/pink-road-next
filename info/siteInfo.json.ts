@@ -21,14 +21,16 @@ const info = {
         사회적으로는 문화적 다양성을 제고하고, 개인들에게는 새로운 라이프
         스타일 모색의 기회를 제공하는 데 기여함
     </li>`,
-    visionBox2_title: "MISSION",
-    visionBox2_cotnent: `<li >새로운 라이프스타일의 창조(creat new life style)와 공유</li>
-        <li >
-        지역의 문화적 가치 재발견과 사회적 공유 숨겨져 있는 지역문화에서
-        새로운 가치를 발견하고, 이를 널리 공유하는 기회를 제공함으로써
-        사회적으로는 문화적 다양성을 제고하고, 개인들에게는 새로운 라이프
-        스타일 모색의 기회를 제공하는 데 기여함
-    </li>`,
+    visionBox2_title: "VISION",
+    visionBox2_cotnent: `<li>
+                                    동남광역권 최고의 공정여행기업
+                                </li>
+                                <li>
+                                    동남광역권 지역발전과 함께 성장하는 공정여행기업
+                                </li>
+                                <li>
+                                    여행으로 희망을 창조하는 공정여행기업
+                                </li>`,
     purpose_title: 'Purpose and Vision',
     purpose_desc: '목표로 삼고 나아가는 가치있는 생각 3가지',
     purpose1_title: '지속가능한 <br /> 공간을 그리다',

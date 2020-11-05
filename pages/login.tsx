@@ -62,9 +62,7 @@ export const Login: React.FC<IProp> = () => {
                 </ul>
             </div>
         </div>
-        <div style={{
-            minHeight: "700px"
-        }} className="login_box">
+        <div className="login_box">
             <div className="sign_in w1200">
                 <div className="inner">
                     <div className="login_page">

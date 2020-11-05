@@ -16,6 +16,30 @@ export const Header: React.FC<IProp> = () => {
         $('#content-bm').attr("tabindex", -1);
         return false;
     }
+    const handSearch = () => {
+        $('.hidden').css({
+            'display': 'block'
+        });
+        $('.search_wrap').animate({
+            'top': '0'
+        });
+        $('.search_bg').css({
+            'display': 'block'
+        });
+      
+    }
+    const handSearchClose = () => {
+        $('.search_bg').css({
+            'display': 'none'
+        });
+      
+        $('.search_wrap').animate({
+            'top': '-100px'
+        });
+        $('.hidden').css({
+            'display': 'none'
+        });
+    }
 
     const handleAllMenu = () => {
         $('.all_menu').animate({
@@ -24,8 +48,7 @@ export const Header: React.FC<IProp> = () => {
         $('.m_bg').css({
             'display': 'block'
         });
-    }
-
+    } 
     const handleAllClose = () => {
         const target = document.getElementById('all_menu_right');
         if (target)
@@ -38,7 +61,7 @@ export const Header: React.FC<IProp> = () => {
             'display': 'none'
         });
         $('.all_menu').animate({
-            'top': '-2000px'
+            'top': '-2600px'
         });
     }
 
@@ -100,7 +123,9 @@ export const Header: React.FC<IProp> = () => {
                 <div className="login">
                     <span ><a href="/login">LOGIN</a></span>
                 </div>
-
+                <div className="logout">
+                    <span ><a href="/">LOGOUT</a></span>
+                </div>
                 <div className="profile">
                     <span className="photo">프로필 사진</span>
                     <ul>
@@ -118,18 +143,21 @@ export const Header: React.FC<IProp> = () => {
                         <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
                             현재 브라우저는 iframe을 지원하지 않습니다.
                         </object>
-                        <button />
+                        <button onClick={handSearch} />
                     </div>
-                    <div className="search_wrap">
-                        <input type="text" placeholder="검색어를 입력해주세요" /> 
-                        <div className="search_btn">
-                            <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
-                                현재 브라우저는 iframe을 지원하지 않습니다.
-                        </object>
-                            <button />
+                    <div className="hidden">
+                        <div className="search_wrap">
+                            <input type="text" placeholder="검색어를 입력해주세요" /> 
+                            <div className="search_btn">
+                                <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
+                                    현재 브라우저는 iframe을 지원하지 않습니다.
+                            </object>
+                                <button />
                             
+                            </div>
                         </div>
                     </div>
+                    <div onClick={handSearchClose} className="search_bg"></div>
                 </div>
 
                 <div className="inform_top">
@@ -148,15 +176,31 @@ export const Header: React.FC<IProp> = () => {
             </div>
             <div className="all_menu">
                 <strong>전체메뉴</strong>
+                <div className="m_member">
+                    <div className="profile">
+                        <span className="photo"></span>
+                    </div>
+                    <div className="profile_txt">
+                        <span className="text01">포인트</span>
+                        <span className="text02">0원</span>
+                    </div>
+                </div>
+                <div className="m_all_menu_in">
+                    <span><a href="/login">LOGIN</a></span>
+                    <span><a href="/">LOGOUT</a></span>
+                    <span><a href="/my-page">MY PAGE</a></span>
+                    <span><a href="/">알림</a></span>
+                    <span><a href="/">예약관리시스템</a></span>
+                </div>
                 <ul>
-                    <li className="a_menu_tit deps">
-                        <a href="../siteinfo">PinkRoader</a>
+                    <li className="a_menu_tit deps solo_nav">
+                        <a href="../siteinfo">PinkRoader<i className="jandaicon-arr4-right"></i></a>
+                    </li>
+                        <li className="a_menu_tit deps solo_nav">
+                        <a href="../portfolio">Work<i className="jandaicon-arr4-right"></i></a>
                     </li>
                     <li className="a_menu_tit deps">
-                        <a href="../portfolio">Work</a>
-                    </li>
-                    <li className="a_menu_tit deps">
-                        <a href="../tour_main">Tour</a>
+                        <a href="../tour_main">Tour<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
                             <li><a href="/tour-list">Tour - list</a></li>
                             <li><a href="../tour_vziew">Tour - veiw</a></li>
@@ -164,18 +208,18 @@ export const Header: React.FC<IProp> = () => {
                         </ul>
                     </li>
                     <li className="a_menu_tit deps">
-                        <a href="../experience_main">Experience</a>
+                        <a href="../experience_main">Experience<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
                             <li><a href="../experience_list">Experience - list</a></li>
                             <li><a href="../experience_view">Experience - veiw</a></li>
                             <li><a href="../experience_writing">Experience - correction+writing</a></li>
                         </ul>
                     </li>
-                    <li className="a_menu_tit deps">
-                        <a href="/">Design Goods</a>
+                        <li className="a_menu_tit deps solo_nav">
+                        <a href="/">Design Goods<i className="flaticon-link"></i></a>
                     </li>
                     <li className="a_menu_tit deps">
-                        <a href="../tourstory">News</a>
+                        <a href="../tourstory">News<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
                             <li><a href="../tourstory">여행이야기</a></li>
                             <li><a href="../culture">문화이야기</a></li>
@@ -183,8 +227,7 @@ export const Header: React.FC<IProp> = () => {
                         </ul>
                     </li>
                     <li className="a_menu_tit deps">
-
-                        <a href="../mypage">My page</a>
+                        <a href="../mypage">My page<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
                             <li><a href="/my-page">회원정보</a></li>
                             <li><a href="/my-page/purchase">구매내역</a></li>
@@ -198,7 +241,7 @@ export const Header: React.FC<IProp> = () => {
                     </li>
                     <li className="a_menu_tit deps">
 
-                        <a href="../master">Master</a>
+                        <a href="../master">Master<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
                             <li><a href="../m_member">회원관리</a></li>
                             <li><a href="/">상품관리</a></li>
@@ -209,7 +252,7 @@ export const Header: React.FC<IProp> = () => {
 
                     </li>
                     <li className="a_menu_tit deps">
-                        <a href="../login">Member</a>
+                        <a href="../login">Member<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
                             <li><a href="../ligin">로그인</a></li>
                             <li><a href="../join">회원가입</a></li>
