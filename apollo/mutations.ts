@@ -55,60 +55,21 @@ export const CATEGORY_DELETE = gql`
   ${F_CATEGORY}
 `;
 
-
-export const ITINERARY_CREATE = gql`
-  mutation itineraryCreate(
-      $data: ItineraryCreateInput!
-    ) {
-      ItineraryCreate(
-        data:$data
-      ) {
-      ok
-      error 
-      data {
-          ...Fitinerary
-      }
-    }
-  }
-  ${F_ITINERARY}
-`;
-
-
-export const ITINERARY_UPDATE = gql`
-  mutation itineraryUpdate(
-        $data: ItineraryUpdateInput!
-        $id: String!
-    ) {
-    ItineraryUpdate(
-        data:$data
-        id: $id
-      ) {
-      ok
-      error 
-      data {
-          ...Fitinerary
-      }
-    }
-  }
-  ${F_ITINERARY}
-`;
-
-
-// export const ITINERARY_DELETE = gql`
-//   mutation itineraryDelete(
+// export const ITINERY_DELETE = gql`
+//   mutation itineryDelete(
 //       $id: String!
 //     ) {
-//     ItineraryDelete(
+//     ItineryDelete(
 //         id:$id
 //       ) {
 //       ok
 //       error 
 //       data {
-//           ...Fitinerary
+//           ...Fitinery
 //       }
 //     }
 //   }
-//   ${F_ITINERARY}
+//   ${F_ITINERY}
 // `;
 
 

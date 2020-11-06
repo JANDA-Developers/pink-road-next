@@ -31,7 +31,6 @@ export const DayRangePicker: React.FC<IProps> = ({ from, to, setState }) => {
 
     return (
         <div className="RangeExample">
-
             <RCDayPicker
                 className="Selectable"
                 selectedDays={[from, { from, to }]}

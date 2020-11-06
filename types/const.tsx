@@ -1,6 +1,5 @@
-import { IProduct, QStatus, IPageInfo } from "./interface"
-import { IProductComponentProp } from "../component/product/Product";
-import { ProductPostStatus, ProductCreateInput, ItineraryArrayInput } from "./api";
+import { IPageInfo } from "./interface"
+import { ProductPostStatus, } from "./api";
 
 export const DEFAULTS = {
     logo: "src/img/logo_1.png",

@@ -75,31 +75,6 @@ export const CATEGORY_LIST = gql`
   ${F_CATEGORY}
 `;
 
-export const ITINERARY_FIND_BY_ID = gql`
-  query itineraryFindById($id:String!) {
-    ItineraryFindById(id:$id)  {
-        ok
-        error
-        data {
-          ...Fitinerary
-        }
-      }
-  }
-  ${F_ITINERARY}
-`;
-
-export const ITINERARY_LIST = gql`
-  query itineraryList {
-    ItineraryList  {
-        ok
-        error
-        data {
-          ...Fitinerary
-        }
-      }
-  }
-  ${F_ITINERARY}
-`;
 
 export const SIGN_IN = gql`
   query signIn(

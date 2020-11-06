@@ -10,7 +10,7 @@ export const Editor: React.FC<IProp> = (props) => {
 
     useEffect(() => {
         const fetch = async () => {
-            const editorTools = (await import('components/editor/tools')).default;
+            const editorTools = (await import('components/editor/tools.js')).default;
             setTools(editorTools);
         }
 
@@ -21,7 +21,6 @@ export const Editor: React.FC<IProp> = (props) => {
     if (!editorTools) {
         return <div />
     }
-
 
     return <EditorJs {...props} tools={editorTools} />;
 };

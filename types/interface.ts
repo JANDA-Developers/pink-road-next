@@ -1,10 +1,10 @@
 import { Dispatch } from "react";
-import { productFindById_ProductFindById_data, productFindById_ProductFindById_data_itineraries, productList_ProductList_data, productList_ProductList_page } from "../types/api";
+import {  productPostFindById_ProductPostFindById_data, productPostFindById_ProductPostFindById_data_itinery_images, productPostList_ProductPostList_data, productPostList_ProductPostList_page} from "../types/api";
 
-export interface Iitineraries extends productFindById_ProductFindById_data_itineraries {}
-export interface IProductFindById  extends productFindById_ProductFindById_data {}
-export interface IProduct extends productList_ProductList_data { };
-export interface IPageInfo extends  productList_ProductList_page {}
+export interface Iitineraries extends productPostFindById_ProductPostFindById_data_itinery_images {}
+export interface IProductPostFindById  extends productPostFindById_ProductPostFindById_data {}
+export interface IProduct extends productPostList_ProductPostList_data { };
+export interface IPageInfo extends  productPostList_ProductPostList_page {}
 export interface ILi extends React.HTMLAttributes<HTMLLIElement> {
 }
 export interface IDiv extends React.HTMLAttributes<HTMLDivElement> {

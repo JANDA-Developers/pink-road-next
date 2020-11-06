@@ -1,4 +1,4 @@
-import { ItineraryArrayInput, ProductCreateInput, ProductPostStatus } from "../api"
+import {  ProductPostCreateInput, ProductPostStatus } from "../api"
 
 export type TProductDataPart = {
     title: string,
@@ -43,26 +43,25 @@ const DEFAULT_PRODUCT_PART: TProductDataPart = process.env.NODE_ENV === "develop
         keyWards: []
     }
 
-export interface IProductDefaultData extends ProductCreateInput {
-    schedule: ItineraryArrayInput[]
+export interface IProductDefaultData extends ProductPostCreateInput {
 }
 
 export const DEFAULT_PRODUCT_INPUT: IProductDefaultData = process.env.NODE_ENV === "development" ? {
-    CategoryID: "",
-    Status: ProductPostStatus.CLOSE,
+    status: ProductPostStatus.CLOSE,
     info: "a",
     images: [],
     content: "",
     inOrNor: {},
-    schedule: [],
+    itinery: [],
+    categoryId: "",
     ...DEFAULT_PRODUCT_PART
 } : {
-    CategoryID: "",
-    Status: ProductPostStatus.CLOSE,
+    categoryId: "",
+    status: ProductPostStatus.CLOSE,
     info: "a",
     images: [],
     inOrNor: {},
     content: "",
-    schedule: [],
+    itinery: [],
     ...DEFAULT_PRODUCT_PART
 } 

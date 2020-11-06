@@ -3,7 +3,7 @@ import { IDiv } from "../../types/interface"
 
 interface IProp extends IDiv { }
 
-export const Schedule: React.FC<IProp> = ({ ...props }) => {
+export const Itinery: React.FC<IProp> = ({ ...props }) => {
     return <div {...props}>
         <h4>여행일정</h4>
         <div className="hang">

@@ -1,56 +1,59 @@
-import { DEFAULT_SCHEDULE } from "components/tourWrite/Scheduler";
+import { DEFAULT_itinery } from "components/tourWrite/ItineryForm";
 import { EPROTO } from "constants";
 import dayjs from "dayjs";
-import { ItineraryArrayInput } from "types/api";
+import { ItineryCreateInput } from "types/api";
 import { DEFAULT_PRODUCT_INPUT, IProductDefaultData } from "types/defaults/defaultProduct";
+import { IProductPostFindById } from "types/interface";
 
 export type TRange = {
     from?: Date;
     to?: Date;
 }
 
-export const generateSchedule = (range:TRange,schedules:ItineraryArrayInput[]):ItineraryArrayInput[] => {
+export const generateitinery = (range:TRange,itineries:ItineryCreateInput[]):ItineryCreateInput[] => {
     const {from,to} = range;
     if (!to) return;
     if (!from) return;
 
-    let newSch = schedules;
+    let tempSch = itineries;
 
     const diff = dayjs(to).diff(from, "d") + 1;
 
-    // 인덱스 넘치는건 죽이고
-    if (diff < schedules.length)
-        newSch = schedules.slice(0, diff);
+    // 인덱스 뒤에 남은거를 지워야함
+    if (diff < itineries.length)
+        tempSch.slice(0, diff);
 
     // 인덱스 남는거는 default채운후
-    if (diff > schedules.length)
-        newSch = [...newSch, ...Array(diff - newSch.length).fill(DEFAULT_SCHEDULE)]
+    if (diff > itineries.length)
+        tempSch = [...tempSch, ...Array(diff - tempSch.length).fill({...DEFAULT_itinery, contents: []})]
 
-    for (let i = 0; i <= diff; i++) {
-        if (newSch[i])
-            newSch[i].date = dayjs(from).add(i, "d").toDate();
-    }
-
-    return newSch || []
+    // 전체를 리셋함.
+    return tempSch.map((sch,i) => {
+                return {
+                    ...sch,
+                    date: dayjs(from).add(i,"day").toDate()
+                }
+        }) || []
 }
+
 
 
 export const detactRangeChange = (range:TRange):string[] =>  {
     return [dayjs(range.from || new Date())?.format("MMDD"), dayjs(range.to || new Date())?.format("MMDD")]
 }
 
-export const getDefault = (product?:IProductDefaultData) => {
+export const getDefault = (product?:IProductPostFindById) => {
     const defaults: IProductDefaultData = product ? product : DEFAULT_PRODUCT_INPUT
 
-    const from = defaults.schedule[0]?.date || undefined;
-    const to = defaults.schedule[defaults.schedule.length - 1]?.date || undefined;
+    const from = defaults.itinery[0]?.date || undefined;
+    const to = defaults.itinery[defaults.itinery.length - 1]?.date || undefined;
 
     const data = {
         address: defaults.address || "",
-        adult_price: defaults.adult_price || 0,
-        baby_price: defaults.baby_price || 0,
+        adult_price: defaults.adult_price || null,
+        baby_price: defaults.baby_price || null,
         info: defaults.info || "",
-        kids_price: defaults.kids_price || 0,
+        kids_price: defaults.kids_price || null,
         maxMember: defaults.maxMember || 0,
         minMember: defaults.minMember || 0,
         startPoint: defaults.startPoint || "",
