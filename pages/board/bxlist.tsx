@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import Bxlist from 'components/bxlist/Bxlist'
 import {autoComma} from 'utils/formatter'
+import Pagination from 'components/bxlist/Pagination';
 
 type TNaviInfo = {
     pageNum:number,
@@ -13,15 +14,14 @@ const naviNumPerPage = 10;
 const bxlist = () => {
 
     const [boardInfo, setBoardInfo] = useState({
-        postNum : 2000
+        postNum : 1000
     });
 
-    const [naviInfo, setNaviInfo] = useState({
-        pageNum:0,
-        pagiNaviNum:0,
-        sPagi:1,
-        ePagi:10
-    });
+    const [pageNum, setPageNum] = useState<number>();
+    const [pagiNaviNum, setPagiNaviNum] = useState<number>();
+    const [spage, setSPage] = useState<number>(1);
+    const [epage, setEPage] = useState<number>();
+    const [currentPage, setCurrentPage] = useState<number>(1);
 
     const [infoList, setInfoList] = useState([
         {
@@ -58,16 +58,71 @@ const bxlist = () => {
 
         const current_pageNum = Math.ceil(boardInfo.postNum/listNumPerPage); 
         const current_pagiNaviNum = Math.ceil(current_pageNum/naviNumPerPage); 
-        
-        setNaviInfo(
-            {
-                ...naviInfo,
-                pageNum:current_pageNum,
-                pagiNaviNum:current_pagiNaviNum,
-            }
-        )
+        let current_ePage = spage + (naviNumPerPage-1);
+        if(current_ePage >= pageNum) {
+            current_ePage = pageNum;
+        }
+        setPageNum(current_pageNum);
+        setPagiNaviNum(current_pagiNaviNum);
+        setEPage(current_ePage);
 
-      },[]);
+      },[spage]);
+
+
+      const paginationDisplay = () => {
+        let naviList = [];
+        let i = spage;
+        for(i; i<= epage; i++){
+            let pageVal = i;
+            naviList.push(<a href="#" className={currentPage == pageVal ? "on" : "off"} 
+            onClick={(e)=>{handleNavi(e,pageVal)}}>{i}</a>);
+        }
+        return naviList;
+
+    }
+
+    const currentPageUpdate = (currentPage:number) =>{
+        setCurrentPage(currentPage);
+    }
+
+
+    const handleNavi = (e,naviTarget:number) => {
+        e.preventDefault();
+        currentPageUpdate(naviTarget);
+      }
+
+    const handleFirst = (e) => {
+        e.preventDefault();
+        setSPage(1);
+        currentPageUpdate(1);
+      }
+
+      const handleEnd = (e) => {
+        e.preventDefault();
+        const sNumber = pageNum - (naviNumPerPage-1); 
+        setSPage(sNumber);
+        currentPageUpdate(sNumber);
+      }
+
+      const handlePrev = (e) => {
+        e.preventDefault();
+        if(spage > 1) {
+            const prevPage = spage - naviNumPerPage;  
+            setSPage(prevPage);
+            currentPageUpdate(prevPage);
+        }
+      }
+
+      const handleNext = (e) => {
+        e.preventDefault();
+        if(epage < pageNum) {
+            const nextPage = epage + 1;
+            setSPage(nextPage);
+            currentPageUpdate(nextPage);
+        }else{
+            alert('마지막 페이지 입니다')
+        }
+      }
 
     return (
         <>
@@ -75,8 +130,8 @@ const bxlist = () => {
              <div className="w1200">
                 <div>
                     <span>
-                    [aa]  페이지 : {naviInfo.pageNum} 개 [bb] 블록 : {naviInfo.pagiNaviNum}
-                    [cc]  s-Pagi : {naviInfo.sPagi} [dd] e-Pagi : {naviInfo.ePagi}
+                    [ 페이지 ] : {pageNum} 개 [ 블록 ] : {pagiNaviNum} 
+                    [ s-Pagi ] : {spage}  [ e-Pagi ] : {epage}
                     </span>
                 </div>
                 <div className="alignment">
@@ -114,46 +169,31 @@ const bxlist = () => {
                 </div>
                 <div className="pagenate">
                 <div className="page">
-                    <a href="/kor/view.do?no=170" className="page_btn first">
+                    <a href="/kor/view.do?no=170" className="page_btn first" onClick={handleFirst}>
                     처음
                     </a>
-                    <a href="/kor/view.do?no=170" className="page_btn prev">
+                    <a href="/kor/view.do?no=170" className="page_btn prev" onClick={handlePrev}>
                     이전
                     </a>
-                    <a href="#none" className="on">
-                    1
-                    </a>
-                    <a href="/kor/view.do?no=170" className="off">
-                    2
-                    </a>
-                    <a href="/kor/view.do?no=170" className="off">
-                    3
-                    </a>
-                    <a href="/kor/view.do?no=170" className="off">
-                    4
-                    </a>
-                    <a href="/kor/view.do?no=170" className="off">
-                    5
-                    </a>
-                    <a href="/kor/view.do?no=170" className="off">
-                    6
-                    </a>
-                    <a href="/kor/view.do?no=170" className="off">
-                    7
-                    </a>
-                    <a href="/kor/view.do?no=170" className="off">
-                    8
-                    </a>
-                    <a href="/kor/view.do?no=170" className="off">
-                    9
-                    </a>
-                    <a href="/kor/view.do?no=170" className="off">
-                    10
-                    </a>
-                    <a href="/kor/view.do?no=170" className="page_btn next">
+                    {
+                        paginationDisplay()      
+                    }
+                    {/* 
+                        <a href="#none" className="on">
+                        1
+                        </a>
+                        <a href="/kor/view.do?no=170" className="off">
+                        2
+                        </a>
+                        <a href="/kor/view.do?no=170" className="off">
+                        3
+                        </a> 
+                    */}
+
+                    <a href="/kor/view.do?no=170" className="page_btn next" onClick={handleNext}>
                     다음
                     </a>
-                    <a href="/kor/view.do?no=170" className="page_btn end">
+                    <a href="/kor/view.do?no=170" className="page_btn end" onClick={handleEnd}>
                     마지막
                     </a>
                 </div>
