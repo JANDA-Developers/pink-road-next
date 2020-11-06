@@ -1,16 +1,16 @@
 const info = {
     mainTitle: "핑크빛 희망의 길을 만들어 가는 사람들",
     secondTitle: "We are making a path of pink hope",
-    mainBg: '/img/main_top_bg.jpg',
-    pinkVision: `<strong>핑크로더(PinkRoader)</strong>는 ‘핑크빛 희망의 길을 만들어가는
+    mainBg: '/img/siteinfo_bg01.png',
+    pinkVision: `<strong>핑크로더(PinkRoader)</strong>는 <br> ‘핑크빛 희망의 길을 만들어가는
     사람들’이라는 뜻을 가지고 사람-시간-공간의 상생을
-    <br className="no" />
+    
     위해 컨텐츠를 개발하고 잊혀져 가는 소중한 것들의 가치를 지키는 일을 하는
     소셜커뮤니티 컴퍼니 입니다.
     <br className="no" />
     우리는 사회와 지역기반의 가치 있는 문화 컨텐츠를 발굴·개발하여 자체
     스토리텔링을 기반으로 종합 브랜드
-    <br className="no" />
+    
     컨설팅을 진행하며 서로 상생하며 발전할 수 있도록 실질적인 비즈니스
     컨텐츠 구현을 지향합니다.`,
     visionBox1_title: "MISSION",
@@ -21,14 +21,16 @@ const info = {
         사회적으로는 문화적 다양성을 제고하고, 개인들에게는 새로운 라이프
         스타일 모색의 기회를 제공하는 데 기여함
     </li>`,
-    visionBox2_title: "MISSION",
-    visionBox2_cotnent: `<li >새로운 라이프스타일의 창조(creat new life style)와 공유</li>
-        <li >
-        지역의 문화적 가치 재발견과 사회적 공유 숨겨져 있는 지역문화에서
-        새로운 가치를 발견하고, 이를 널리 공유하는 기회를 제공함으로써
-        사회적으로는 문화적 다양성을 제고하고, 개인들에게는 새로운 라이프
-        스타일 모색의 기회를 제공하는 데 기여함
-    </li>`,
+    visionBox2_title: "VISION",
+    visionBox2_cotnent: `<li>
+                                    동남광역권 최고의 공정여행기업
+                                </li>
+                                <li>
+                                    동남광역권 지역발전과 함께 성장하는 공정여행기업
+                                </li>
+                                <li>
+                                    여행으로 희망을 창조하는 공정여행기업
+                                </li>`,
     purpose_title: 'Purpose and Vision',
     purpose_desc: '목표로 삼고 나아가는 가치있는 생각 3가지',
     purpose1_title: '지속가능한 <br /> 공간을 그리다',

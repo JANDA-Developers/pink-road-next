@@ -38,7 +38,7 @@ const fileAction = uploadUrl;
 const fetchAction = ""
 
 /// TODO file
-export const EDITOR_JS_TOOLS = {
+const EDITOR_JS_TOOLS = {
     embed: Embed,
     table: Table,
     paragraph: Paragraph,
@@ -71,3 +71,5 @@ export const EDITOR_JS_TOOLS = {
 //         endpoint: file.fileAction
 //     }
 // } : undefined,
+
+export default EDITOR_JS_TOOLS;

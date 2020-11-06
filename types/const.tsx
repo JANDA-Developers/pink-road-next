@@ -1,6 +1,6 @@
 import { IProduct, QStatus, IPageInfo } from "./interface"
 import { IProductComponentProp } from "../component/product/Product";
-import { ProductStatus, ProductCreateInput, ItineraryArrayInput } from "./api";
+import { ProductPostStatus, ProductCreateInput, ItineraryArrayInput } from "./api";
 
 export const DEFAULTS = {
     logo: "src/img/logo_1.png",
@@ -9,13 +9,13 @@ export const DEFAULTS = {
 
 export const BG = (url: string) => ({ backgroundImage: `url(${url})` })
 
-export const Econvert = (status: ProductStatus) => {
+export const Econvert = (status: ProductPostStatus) => {
 
-    if (status === ProductStatus.OPEN) {
+    if (status === ProductPostStatus.OPEN) {
         return "해결완료"
     }
 
-    if (status === ProductStatus.READY) {
+    if (status === ProductPostStatus.READY) {
         return "해결중"
     }
 }

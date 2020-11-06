@@ -1,4 +1,4 @@
-import { ItineraryArrayInput, ProductCreateInput, ProductStatus } from "../api"
+import { ItineraryArrayInput, ProductCreateInput, ProductPostStatus } from "../api"
 
 export type TProductDataPart = {
     title: string,
@@ -10,6 +10,7 @@ export type TProductDataPart = {
     maxMember: number,
     minMember: number,
     subTitle: string
+    caution: string
     info: string
     keyWards: string[]
 }
@@ -20,6 +21,7 @@ const DEFAULT_PRODUCT_PART: TProductDataPart = process.env.NODE_ENV === "develop
     adult_price: 0,
     baby_price: 0,
     info: "",
+    caution: "",
     kids_price: 0,
     maxMember: 0,
     minMember: 0,
@@ -32,6 +34,7 @@ const DEFAULT_PRODUCT_PART: TProductDataPart = process.env.NODE_ENV === "develop
         adult_price: 0,
         baby_price: 0,
         info: "",
+        caution: "",
         kids_price: 0,
         maxMember: 0,
         minMember: 0,
@@ -46,24 +49,20 @@ export interface IProductDefaultData extends ProductCreateInput {
 
 export const DEFAULT_PRODUCT_INPUT: IProductDefaultData = process.env.NODE_ENV === "development" ? {
     CategoryID: "",
-    Status: ProductStatus.CLOSE,
-    productInfo: "",
+    Status: ProductPostStatus.CLOSE,
     info: "a",
     images: [],
     content: "",
-    include: {},
-    uninclude: {},
+    inOrNor: {},
     schedule: [],
     ...DEFAULT_PRODUCT_PART
 } : {
     CategoryID: "",
-    Status: ProductStatus.CLOSE,
-    productInfo: "",
+    Status: ProductPostStatus.CLOSE,
     info: "a",
     images: [],
+    inOrNor: {},
     content: "",
-    include: {},
-    uninclude: {},
     schedule: [],
     ...DEFAULT_PRODUCT_PART
 } 

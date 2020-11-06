@@ -110,17 +110,30 @@ export interface categoryDeleteVariables {
 // GraphQL mutation operation: itineraryCreate
 // ====================================================
 
+export interface itineraryCreate_ItineraryCreate_data_images {
+  __typename: "File";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  name: string;
+  description: string;
+  extension: string;
+  fileType: string;
+  uri: string;
+  owner: string;
+}
+
 export interface itineraryCreate_ItineraryCreate_data {
   __typename: "Itinerary";
   _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
-  email: string;
-  productId: string;
+  productPostId: string;
   title: string;
-  contents: string;
-  imgs: string[];
+  contents: string[];
+  images: itineraryCreate_ItineraryCreate_data_images[];
   date: any;
 }
 
@@ -148,17 +161,30 @@ export interface itineraryCreateVariables {
 // GraphQL mutation operation: itineraryUpdate
 // ====================================================
 
+export interface itineraryUpdate_ItineraryUpdate_data_images {
+  __typename: "File";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  name: string;
+  description: string;
+  extension: string;
+  fileType: string;
+  uri: string;
+  owner: string;
+}
+
 export interface itineraryUpdate_ItineraryUpdate_data {
   __typename: "Itinerary";
   _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
-  email: string;
-  productId: string;
+  productPostId: string;
   title: string;
-  contents: string;
-  imgs: string[];
+  contents: string[];
+  images: itineraryUpdate_ItineraryUpdate_data_images[];
   date: any;
 }
 
@@ -184,285 +210,21 @@ export interface itineraryUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: itineraryDelete
+// GraphQL mutation operation: productPostCreate
 // ====================================================
 
-export interface itineraryDelete_ItineraryDelete_data {
-  __typename: "Itinerary";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  productId: string;
-  title: string;
-  contents: string;
-  imgs: string[];
-  date: any;
-}
-
-export interface itineraryDelete_ItineraryDelete {
-  __typename: "ItineraryDeleteResponse";
-  ok: boolean;
-  error: string | null;
-  data: itineraryDelete_ItineraryDelete_data | null;
-}
-
-export interface itineraryDelete {
-  ItineraryDelete: itineraryDelete_ItineraryDelete;
-}
-
-export interface itineraryDeleteVariables {
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: productCreate
-// ====================================================
-
-export interface productCreate_ProductCreate_data_author {
+export interface productPostCreate_ProductPostCreate_data_author {
   __typename: "User";
   _id: string;
 }
 
-export interface productCreate_ProductCreate_data_category {
+export interface productPostCreate_ProductPostCreate_data_category {
   __typename: "Category";
   _id: string;
   label: string;
 }
 
-export interface productCreate_ProductCreate_data_itineraries {
-  __typename: "Itinerary";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  productId: string;
-  title: string;
-  contents: string;
-  imgs: string[];
-  date: any;
-}
-
-export interface productCreate_ProductCreate_data {
-  __typename: "Product";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  title: string;
-  content: string;
-  author: productCreate_ProductCreate_data_author;
-  category: productCreate_ProductCreate_data_category | null;
-  Status: ProductStatus;
-  itineraryIds: string[];
-  itineraries: productCreate_ProductCreate_data_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
-  info: string;
-  caution: string;
-  keyWards: string[];
-  address: string;
-  startPoint: string;
-  maxMember: number;
-  minMember: number;
-  subTitle: string;
-  adult_price: number;
-  kids_price: number;
-  baby_price: number;
-}
-
-export interface productCreate_ProductCreate {
-  __typename: "ProductCreateResponse";
-  ok: boolean;
-  error: string | null;
-  data: productCreate_ProductCreate_data | null;
-}
-
-export interface productCreate {
-  ProductCreate: productCreate_ProductCreate;
-}
-
-export interface productCreateVariables {
-  newItinerary: ItineraryArrayInput[];
-  newProduct: ProductCreateInput;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: productUpdate
-// ====================================================
-
-export interface productUpdate_ProductUpdate_data_author {
-  __typename: "User";
-  _id: string;
-}
-
-export interface productUpdate_ProductUpdate_data_category {
-  __typename: "Category";
-  _id: string;
-  label: string;
-}
-
-export interface productUpdate_ProductUpdate_data_itineraries {
-  __typename: "Itinerary";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  productId: string;
-  title: string;
-  contents: string;
-  imgs: string[];
-  date: any;
-}
-
-export interface productUpdate_ProductUpdate_data {
-  __typename: "Product";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  title: string;
-  content: string;
-  author: productUpdate_ProductUpdate_data_author;
-  category: productUpdate_ProductUpdate_data_category | null;
-  Status: ProductStatus;
-  itineraryIds: string[];
-  itineraries: productUpdate_ProductUpdate_data_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
-  info: string;
-  caution: string;
-  keyWards: string[];
-  address: string;
-  startPoint: string;
-  maxMember: number;
-  minMember: number;
-  subTitle: string;
-  adult_price: number;
-  kids_price: number;
-  baby_price: number;
-}
-
-export interface productUpdate_ProductUpdate {
-  __typename: "ProductUpdateResponse";
-  ok: boolean;
-  error: string | null;
-  data: productUpdate_ProductUpdate_data | null;
-}
-
-export interface productUpdate {
-  ProductUpdate: productUpdate_ProductUpdate;
-}
-
-export interface productUpdateVariables {
-  newItinerary: ItineryUpdateInput[];
-  newProduct: ProductUpdateInput;
-  productId: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: productDelete
-// ====================================================
-
-export interface productDelete_ProductDelete_data_author {
-  __typename: "User";
-  _id: string;
-}
-
-export interface productDelete_ProductDelete_data_category {
-  __typename: "Category";
-  _id: string;
-  label: string;
-}
-
-export interface productDelete_ProductDelete_data_itineraries {
-  __typename: "Itinerary";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  productId: string;
-  title: string;
-  contents: string;
-  imgs: string[];
-  date: any;
-}
-
-export interface productDelete_ProductDelete_data {
-  __typename: "Product";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  title: string;
-  content: string;
-  author: productDelete_ProductDelete_data_author;
-  category: productDelete_ProductDelete_data_category | null;
-  Status: ProductStatus;
-  itineraryIds: string[];
-  itineraries: productDelete_ProductDelete_data_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
-  info: string;
-  caution: string;
-  keyWards: string[];
-  address: string;
-  startPoint: string;
-  maxMember: number;
-  minMember: number;
-  subTitle: string;
-  adult_price: number;
-  kids_price: number;
-  baby_price: number;
-}
-
-export interface productDelete_ProductDelete {
-  __typename: "ProductDeleteResponse";
-  ok: boolean;
-  error: string | null;
-  data: productDelete_ProductDelete_data | null;
-}
-
-export interface productDelete {
-  ProductDelete: productDelete_ProductDelete;
-}
-
-export interface productDeleteVariables {
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: singleUpload
-// ====================================================
-
-export interface singleUpload_SingleUpload_data {
+export interface productPostCreate_ProductPostCreate_data_itinerary_images {
   __typename: "File";
   _id: string;
   cratedAt: any;
@@ -476,19 +238,235 @@ export interface singleUpload_SingleUpload_data {
   owner: string;
 }
 
-export interface singleUpload_SingleUpload {
-  __typename: "FileUploadResponse";
+export interface productPostCreate_ProductPostCreate_data_itinerary {
+  __typename: "Itinerary";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  productPostId: string;
+  title: string;
+  contents: string[];
+  images: productPostCreate_ProductPostCreate_data_itinerary_images[];
+  date: any;
+}
+
+export interface productPostCreate_ProductPostCreate_data {
+  __typename: "ProductPost";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  content: any;
+  author: productPostCreate_ProductPostCreate_data_author;
+  category: productPostCreate_ProductPostCreate_data_category | null;
+  status: ProductPostStatus;
+  itinerary: productPostCreate_ProductPostCreate_data_itinerary[];
+  inOrNor: any;
+  info: string;
+  caution: string;
+  keyWards: string[];
+  address: string;
+  startPoint: string;
+  maxMember: number;
+  minMember: number;
+  subTitle: string;
+  adult_price: number;
+  kids_price: number;
+  baby_price: number;
+}
+
+export interface productPostCreate_ProductPostCreate {
+  __typename: "ProductPostCreateResponse";
   ok: boolean;
   error: string | null;
-  data: singleUpload_SingleUpload_data | null;
+  data: productPostCreate_ProductPostCreate_data | null;
 }
 
-export interface singleUpload {
-  SingleUpload: singleUpload_SingleUpload;
+export interface productPostCreate {
+  ProductPostCreate: productPostCreate_ProductPostCreate;
 }
 
-export interface singleUploadVariables {
-  file: any;
+export interface productPostCreateVariables {
+  params: ProductPostCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: productPostUpdate
+// ====================================================
+
+export interface productPostUpdate_ProductPostUpdate_data_author {
+  __typename: "User";
+  _id: string;
+}
+
+export interface productPostUpdate_ProductPostUpdate_data_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface productPostUpdate_ProductPostUpdate_data_itinerary_images {
+  __typename: "File";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  name: string;
+  description: string;
+  extension: string;
+  fileType: string;
+  uri: string;
+  owner: string;
+}
+
+export interface productPostUpdate_ProductPostUpdate_data_itinerary {
+  __typename: "Itinerary";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  productPostId: string;
+  title: string;
+  contents: string[];
+  images: productPostUpdate_ProductPostUpdate_data_itinerary_images[];
+  date: any;
+}
+
+export interface productPostUpdate_ProductPostUpdate_data {
+  __typename: "ProductPost";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  content: any;
+  author: productPostUpdate_ProductPostUpdate_data_author;
+  category: productPostUpdate_ProductPostUpdate_data_category | null;
+  status: ProductPostStatus;
+  itinerary: productPostUpdate_ProductPostUpdate_data_itinerary[];
+  inOrNor: any;
+  info: string;
+  caution: string;
+  keyWards: string[];
+  address: string;
+  startPoint: string;
+  maxMember: number;
+  minMember: number;
+  subTitle: string;
+  adult_price: number;
+  kids_price: number;
+  baby_price: number;
+}
+
+export interface productPostUpdate_ProductPostUpdate {
+  __typename: "ProductPostUpdateResponse";
+  ok: boolean;
+  error: string | null;
+  data: productPostUpdate_ProductPostUpdate_data | null;
+}
+
+export interface productPostUpdate {
+  ProductPostUpdate: productPostUpdate_ProductPostUpdate;
+}
+
+export interface productPostUpdateVariables {
+  params: ProductPostUpdateInput;
+  _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: productPostDelete
+// ====================================================
+
+export interface productPostDelete_ProductPostDelete_data_author {
+  __typename: "User";
+  _id: string;
+}
+
+export interface productPostDelete_ProductPostDelete_data_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface productPostDelete_ProductPostDelete_data_itinerary_images {
+  __typename: "File";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  name: string;
+  description: string;
+  extension: string;
+  fileType: string;
+  uri: string;
+  owner: string;
+}
+
+export interface productPostDelete_ProductPostDelete_data_itinerary {
+  __typename: "Itinerary";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  productPostId: string;
+  title: string;
+  contents: string[];
+  images: productPostDelete_ProductPostDelete_data_itinerary_images[];
+  date: any;
+}
+
+export interface productPostDelete_ProductPostDelete_data {
+  __typename: "ProductPost";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  content: any;
+  author: productPostDelete_ProductPostDelete_data_author;
+  category: productPostDelete_ProductPostDelete_data_category | null;
+  status: ProductPostStatus;
+  itinerary: productPostDelete_ProductPostDelete_data_itinerary[];
+  inOrNor: any;
+  info: string;
+  caution: string;
+  keyWards: string[];
+  address: string;
+  startPoint: string;
+  maxMember: number;
+  minMember: number;
+  subTitle: string;
+  adult_price: number;
+  kids_price: number;
+  baby_price: number;
+}
+
+export interface productPostDelete_ProductPostDelete {
+  __typename: "ProductPostDeleteResponse";
+  ok: boolean;
+  error: string | null;
+  data: productPostDelete_ProductPostDelete_data | null;
+}
+
+export interface productPostDelete {
+  ProductPostDelete: productPostDelete_ProductPostDelete;
+}
+
+export interface productPostDeleteVariables {
+  id: string;
 }
 
 /* tslint:disable */
@@ -585,7 +563,7 @@ export interface signInGoogle {
 }
 
 export interface signInGoogleVariables {
-  accessToken: string;
+  code: string;
 }
 
 /* tslint:disable */
@@ -594,10 +572,10 @@ export interface signInGoogleVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: productList
+// GraphQL query operation: productPostList
 // ====================================================
 
-export interface productList_ProductList_page {
+export interface productPostList_ProductPostList_page {
   __typename: "Page";
   /**
    * 현재 페이지 번호
@@ -637,47 +615,57 @@ export interface productList_ProductList_page {
   next_page_num: number;
 }
 
-export interface productList_ProductList_data_author {
+export interface productPostList_ProductPostList_data_author {
   __typename: "User";
   _id: string;
 }
 
-export interface productList_ProductList_data_category {
+export interface productPostList_ProductPostList_data_category {
   __typename: "Category";
   _id: string;
   label: string;
 }
 
-export interface productList_ProductList_data_itineraries {
+export interface productPostList_ProductPostList_data_itinerary_images {
+  __typename: "File";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  name: string;
+  description: string;
+  extension: string;
+  fileType: string;
+  uri: string;
+  owner: string;
+}
+
+export interface productPostList_ProductPostList_data_itinerary {
   __typename: "Itinerary";
   _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
-  email: string;
-  productId: string;
+  productPostId: string;
   title: string;
-  contents: string;
-  imgs: string[];
+  contents: string[];
+  images: productPostList_ProductPostList_data_itinerary_images[];
   date: any;
 }
 
-export interface productList_ProductList_data {
-  __typename: "Product";
+export interface productPostList_ProductPostList_data {
+  __typename: "ProductPost";
   _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: string;
-  author: productList_ProductList_data_author;
-  category: productList_ProductList_data_category | null;
-  Status: ProductStatus;
-  itineraryIds: string[];
-  itineraries: productList_ProductList_data_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
+  content: any;
+  author: productPostList_ProductPostList_data_author;
+  category: productPostList_ProductPostList_data_category | null;
+  status: ProductPostStatus;
+  itinerary: productPostList_ProductPostList_data_itinerary[];
+  inOrNor: any;
   info: string;
   caution: string;
   keyWards: string[];
@@ -691,19 +679,19 @@ export interface productList_ProductList_data {
   baby_price: number;
 }
 
-export interface productList_ProductList {
-  __typename: "ProductListResponse";
+export interface productPostList_ProductPostList {
+  __typename: "ProductPostListResponse";
   ok: boolean;
   error: string | null;
-  page: productList_ProductList_page;
-  data: productList_ProductList_data[];
+  page: productPostList_ProductPostList_page;
+  data: productPostList_ProductPostList_data[];
 }
 
-export interface productList {
-  ProductList: productList_ProductList;
+export interface productPostList {
+  ProductPostList: productPostList_ProductPostList;
 }
 
-export interface productListVariables {
+export interface productPostListVariables {
   pageInput: pageInput;
 }
 
@@ -747,50 +735,60 @@ export interface categoryFindByIdVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: productFindById
+// GraphQL query operation: productPostFindById
 // ====================================================
 
-export interface productFindById_ProductFindById_data_author {
+export interface productPostFindById_ProductPostFindById_data_author {
   __typename: "User";
   _id: string;
 }
 
-export interface productFindById_ProductFindById_data_category {
+export interface productPostFindById_ProductPostFindById_data_category {
   __typename: "Category";
   _id: string;
   label: string;
 }
 
-export interface productFindById_ProductFindById_data_itineraries {
+export interface productPostFindById_ProductPostFindById_data_itinerary_images {
+  __typename: "File";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  name: string;
+  description: string;
+  extension: string;
+  fileType: string;
+  uri: string;
+  owner: string;
+}
+
+export interface productPostFindById_ProductPostFindById_data_itinerary {
   __typename: "Itinerary";
   _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
-  email: string;
-  productId: string;
+  productPostId: string;
   title: string;
-  contents: string;
-  imgs: string[];
+  contents: string[];
+  images: productPostFindById_ProductPostFindById_data_itinerary_images[];
   date: any;
 }
 
-export interface productFindById_ProductFindById_data {
-  __typename: "Product";
+export interface productPostFindById_ProductPostFindById_data {
+  __typename: "ProductPost";
   _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: string;
-  author: productFindById_ProductFindById_data_author;
-  category: productFindById_ProductFindById_data_category | null;
-  Status: ProductStatus;
-  itineraryIds: string[];
-  itineraries: productFindById_ProductFindById_data_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
+  content: any;
+  author: productPostFindById_ProductPostFindById_data_author;
+  category: productPostFindById_ProductPostFindById_data_category | null;
+  status: ProductPostStatus;
+  itinerary: productPostFindById_ProductPostFindById_data_itinerary[];
+  inOrNor: any;
   info: string;
   caution: string;
   keyWards: string[];
@@ -804,19 +802,19 @@ export interface productFindById_ProductFindById_data {
   baby_price: number;
 }
 
-export interface productFindById_ProductFindById {
-  __typename: "ProductFindByIdResponse";
+export interface productPostFindById_ProductPostFindById {
+  __typename: "ProductPostFindByIdResponse";
   ok: boolean;
   error: string | null;
-  data: productFindById_ProductFindById_data | null;
+  data: productPostFindById_ProductPostFindById_data | null;
 }
 
-export interface productFindById {
-  ProductFindById: productFindById_ProductFindById;
+export interface productPostFindById {
+  ProductPostFindById: productPostFindById_ProductPostFindById;
 }
 
-export interface productFindByIdVariables {
-  id: string;
+export interface productPostFindByIdVariables {
+  _id: string;
 }
 
 /* tslint:disable */
@@ -858,17 +856,30 @@ export interface categoryList {
 // GraphQL query operation: itineraryFindById
 // ====================================================
 
+export interface itineraryFindById_ItineraryFindById_data_images {
+  __typename: "File";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  name: string;
+  description: string;
+  extension: string;
+  fileType: string;
+  uri: string;
+  owner: string;
+}
+
 export interface itineraryFindById_ItineraryFindById_data {
   __typename: "Itinerary";
   _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
-  email: string;
-  productId: string;
+  productPostId: string;
   title: string;
-  contents: string;
-  imgs: string[];
+  contents: string[];
+  images: itineraryFindById_ItineraryFindById_data_images[];
   date: any;
 }
 
@@ -896,17 +907,30 @@ export interface itineraryFindByIdVariables {
 // GraphQL query operation: itineraryList
 // ====================================================
 
+export interface itineraryList_ItineraryList_data_images {
+  __typename: "File";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  name: string;
+  description: string;
+  extension: string;
+  fileType: string;
+  uri: string;
+  owner: string;
+}
+
 export interface itineraryList_ItineraryList_data {
   __typename: "Itinerary";
   _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
-  email: string;
-  productId: string;
+  productPostId: string;
   title: string;
-  contents: string;
-  imgs: string[];
+  contents: string[];
+  images: itineraryList_ItineraryList_data_images[];
   date: any;
 }
 
@@ -1025,8 +1049,45 @@ export interface Fpage {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: Ffile
+// ====================================================
+
+export interface Ffile {
+  __typename: "File";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  name: string;
+  description: string;
+  extension: string;
+  fileType: string;
+  uri: string;
+  owner: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fitinerary
 // ====================================================
+
+export interface Fitinerary_images {
+  __typename: "File";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  name: string;
+  description: string;
+  extension: string;
+  fileType: string;
+  uri: string;
+  owner: string;
+}
 
 export interface Fitinerary {
   __typename: "Itinerary";
@@ -1034,11 +1095,10 @@ export interface Fitinerary {
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
-  email: string;
-  productId: string;
+  productPostId: string;
   title: string;
-  contents: string;
-  imgs: string[];
+  contents: string[];
+  images: Fitinerary_images[];
   date: any;
 }
 
@@ -1048,50 +1108,60 @@ export interface Fitinerary {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: Fproduct
+// GraphQL fragment: FproductPost
 // ====================================================
 
-export interface Fproduct_author {
+export interface FproductPost_author {
   __typename: "User";
   _id: string;
 }
 
-export interface Fproduct_category {
+export interface FproductPost_category {
   __typename: "Category";
   _id: string;
   label: string;
 }
 
-export interface Fproduct_itineraries {
+export interface FproductPost_itinerary_images {
+  __typename: "File";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  name: string;
+  description: string;
+  extension: string;
+  fileType: string;
+  uri: string;
+  owner: string;
+}
+
+export interface FproductPost_itinerary {
   __typename: "Itinerary";
   _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
-  email: string;
-  productId: string;
+  productPostId: string;
   title: string;
-  contents: string;
-  imgs: string[];
+  contents: string[];
+  images: FproductPost_itinerary_images[];
   date: any;
 }
 
-export interface Fproduct {
-  __typename: "Product";
+export interface FproductPost {
+  __typename: "ProductPost";
   _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: string;
-  author: Fproduct_author;
-  category: Fproduct_category | null;
-  Status: ProductStatus;
-  itineraryIds: string[];
-  itineraries: Fproduct_itineraries[] | null;
-  include: any;
-  uninclude: any;
-  productInfo: string;
+  content: any;
+  author: FproductPost_author;
+  category: FproductPost_category | null;
+  status: ProductPostStatus;
+  itinerary: FproductPost_itinerary[];
+  inOrNor: any;
   info: string;
   caution: string;
   keyWards: string[];
@@ -1140,29 +1210,6 @@ export interface Fuser {
 // @generated
 // This file was automatically generated and should not be edited.
 
-// ====================================================
-// GraphQL fragment: Ffile
-// ====================================================
-
-export interface Ffile {
-  __typename: "File";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  name: string;
-  description: string;
-  extension: string;
-  fileType: string;
-  uri: string;
-  owner: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
@@ -1178,13 +1225,21 @@ export enum GENDER {
 /**
  * 성별
  */
-export enum ProductStatus {
+export enum ProductPostStatus {
   CLOSE = "CLOSE",
   HIDE = "HIDE",
   OPEN = "OPEN",
   READY = "READY",
   REFUSED = "REFUSED",
   SOLD = "SOLD",
+}
+
+/**
+ * 상품 타입
+ */
+export enum ProductPostType {
+  EXPERIENCE = "EXPERIENCE",
+  TOUR = "TOUR",
 }
 
 /**
@@ -1226,18 +1281,31 @@ export interface CategoryUpdateInput {
   value?: string | null;
 }
 
-export interface ItineraryArrayInput {
-  title: string;
-  contents: string;
-  imgs: string[];
-  date?: any | null;
+export interface FileCreateInput {
+  name?: string | null;
+  description?: string | null;
+  extension?: string | null;
+  fileType?: string | null;
+  uri: string;
+  owner?: string | null;
+  isDelete?: boolean | null;
+}
+
+export interface FileUpdateInput {
+  name?: string | null;
+  description?: string | null;
+  extension?: string | null;
+  fileType?: string | null;
+  uri: string;
+  owner?: string | null;
+  isDelete?: boolean | null;
 }
 
 export interface ItineraryCreateInput {
-  productId: string;
+  productPostId: string;
   title: string;
-  contents: string;
-  imgs: string[];
+  contents?: string[] | null;
+  imageIds?: string[] | null;
   date?: any | null;
 }
 
@@ -1246,48 +1314,32 @@ export interface ItineraryUpdateInput {
   value?: string | null;
 }
 
-export interface ItineryUpdateInput {
-  _id?: string | null;
-  productId?: string | null;
+export interface ItineryCreateInput {
   title: string;
-  contents: string;
-  imgs: string[];
+  contents?: string[] | null;
+  images?: FileCreateInput[] | null;
   date?: any | null;
 }
 
-export interface ProductCreateInput {
+export interface ItineryUpdateInput {
   title: string;
-  content: string;
-  CategoryID?: string | null;
-  Status?: ProductStatus | null;
-  include?: any | null;
-  uninclude?: any | null;
-  productInfo?: string | null;
-  info?: string | null;
-  caution?: string | null;
-  keyWards?: string[] | null;
-  images?: string[] | null;
-  address?: string | null;
-  startPoint?: string | null;
-  maxMember?: number | null;
-  minMember?: number | null;
-  subTitle?: string | null;
-  adult_price?: number | null;
-  kids_price?: number | null;
-  baby_price?: number | null;
+  contents?: string[] | null;
+  images?: FileUpdateInput[] | null;
+  date?: any | null;
 }
 
-export interface ProductUpdateInput {
-  title?: string | null;
-  content?: string | null;
-  CategoryID?: string | null;
-  Status?: ProductStatus | null;
-  include: any;
-  uninclude: any;
-  productInfo?: string | null;
+export interface ProductPostCreateInput {
+  title: string;
+  content?: any | null;
+  productId?: string | null;
+  categoryId?: string | null;
+  status?: ProductPostStatus | null;
+  itinerary: ItineryCreateInput[];
+  inOrNor?: any | null;
   info?: string | null;
   caution?: string | null;
   keyWards?: string[] | null;
+  images?: FileCreateInput[] | null;
   address?: string | null;
   startPoint?: string | null;
   maxMember?: number | null;
@@ -1296,6 +1348,30 @@ export interface ProductUpdateInput {
   adult_price?: number | null;
   kids_price?: number | null;
   baby_price?: number | null;
+  type?: ProductPostType | null;
+}
+
+export interface ProductPostUpdateInput {
+  title?: string | null;
+  content?: any | null;
+  productId?: string | null;
+  categoryId?: string | null;
+  status?: ProductPostStatus | null;
+  itinerary: ItineryUpdateInput[];
+  inOrNor: any;
+  info?: string | null;
+  caution?: string | null;
+  keyWards?: string[] | null;
+  images?: FileUpdateInput[] | null;
+  address?: string | null;
+  startPoint?: string | null;
+  maxMember?: number | null;
+  minMember?: number | null;
+  subTitle?: string | null;
+  adult_price?: number | null;
+  kids_price?: number | null;
+  baby_price?: number | null;
+  type?: ProductPostType | null;
 }
 
 export interface pageInput {

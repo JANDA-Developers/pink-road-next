@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_ITINERARY, F_CATEGORY, F_PRODUCT, F_FILE } from "./fragments";
+import { F_ITINERARY, F_CATEGORY, F_PRODUCT_POST, F_FILE } from "./fragments";
 
 export const CATEGORY_CREATE = gql`
   mutation categoryCreate(
@@ -17,7 +17,6 @@ export const CATEGORY_CREATE = gql`
   }
   ${F_CATEGORY}
 `;
-
 
 export const CATEGORY_UPDATE = gql`
   mutation categoryUpdate(
@@ -95,81 +94,77 @@ export const ITINERARY_UPDATE = gql`
 `;
 
 
-export const ITINERARY_DELETE = gql`
-  mutation itineraryDelete(
-      $id: String!
+// export const ITINERARY_DELETE = gql`
+//   mutation itineraryDelete(
+//       $id: String!
+//     ) {
+//     ItineraryDelete(
+//         id:$id
+//       ) {
+//       ok
+//       error 
+//       data {
+//           ...Fitinerary
+//       }
+//     }
+//   }
+//   ${F_ITINERARY}
+// `;
+
+
+export const PRODUCT_POST_CREATE = gql`
+  mutation productPostCreate(
+        $params: ProductPostCreateInput!
     ) {
-    ItineraryDelete(
-        id:$id
+    ProductPostCreate(
+        params: $params  
       ) {
       ok
       error 
       data {
-          ...Fitinerary
+          ...FproductPost
       }
     }
   }
-  ${F_ITINERARY}
-`;
-
-
-export const PRODUCT_CREATE = gql`
-  mutation productCreate(
-        $newItinerary: [ItineraryArrayInput!]!
-        $newProduct: ProductCreateInput!
-    ) {
-    ProductCreate(
-        newProduct: $newProduct
-        newItinerary: $newItinerary 
-      ) {
-      ok
-      error 
-      data {
-          ...Fproduct
-      }
-    }
-  }
-  ${F_PRODUCT}
+  ${F_PRODUCT_POST}
 `;
 
 
 export const PRODUCT_UPDATE = gql`
-  mutation productUpdate(
-        $newItinerary: [ItineryUpdateInput!]!
-        $newProduct: ProductUpdateInput!
-        $productId: String!
+  mutation productPostUpdate(
+        $params: ProductPostUpdateInput!
+        $_id: String!
     ) {
-    ProductUpdate(
-        newItinerary: $newItinerary 
-        newProduct: $newProduct 
-        productId: $productId 
+    ProductPostUpdate(
+        params:$params,
+        _id: $_id 
       ) {
       ok
       error 
       data {
-          ...Fproduct
+          ...FproductPost
       }
     }
   }
-  ${F_PRODUCT}
+  ${F_PRODUCT_POST}
 `;
 
 
-export const PRODUCT_DELETE = gql`
-  mutation productDelete(
+export const PRODUCT_POST_DELETE = gql`
+  mutation productPostDelete(
       $id: String!
     ) {
-    ProductDelete(
+    ProductPostDelete(
         id:$id
       ) {
       ok
       error 
       data {
-          ...Fproduct
+          ...FproductPost
       }
     }
   }
-  ${F_PRODUCT}
+  ${F_PRODUCT_POST}
 `;
 
 export const MULTI_UPLOAD = gql`
@@ -208,10 +203,10 @@ export const SIGN_UP = gql`
 
 export const SIGN_IN_GOOGLE = gql`
   mutation signInGoogle(
-      $accessToken: String!
+      $code: String!
     ) {
       SignInGoogle(
-        accessToken:$accessToken
+        code:$code
       ) {
       ok
       error 

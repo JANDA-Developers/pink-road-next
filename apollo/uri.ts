@@ -1,6 +1,6 @@
 export const SERVER_URI =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3000/api/graphql-data"
+    ? process.env.NEXT_PUBLIC_SERVER_URI
     : `${process.env.REACT_APP_API_SERVER_URI}`;
 
 export default (() => {

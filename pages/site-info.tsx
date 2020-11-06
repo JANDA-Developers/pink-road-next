@@ -40,9 +40,11 @@ export const StieInfo: React.FC<IProp> = () => {
         </div>
         {/* <div className="bold" title="Bold" onClick={() => { effectDoc('bold') }}>B</div> */}
         <div className="w100 con01 con_block">
-            <div className="w1200">
-                <h4  {...edit("pinkVision")} />
+            <div className="">
                 <div className="bottom">
+                    <div className="haf_first">
+                        <div {...ulEdit("pinkVision")} />
+                    </div>
                     <div className="haf">
                         <strong {...edit("visionBox1_title")} />
                         <ul onKeyDown {...ulEdit("visionBox1_cotnent")}
@@ -63,20 +65,26 @@ export const StieInfo: React.FC<IProp> = () => {
                 </div>
                 <ul>
                     <li>
-                        <i className="flaticon-diamond" />
+                        <i className="icon_01" style={{
+                            
+                        }} />
                         <strong {...edit("purpose1_title")} />
                         <p {...edit("purpose1_bottom")} />
-                    </li>;
+                    </li>
                     <li>
-                        <i className="flaticon-diamond" />
+                        <i className="icon_02" style={{
+                            
+                        }} />
                         <strong  {...edit("purpose2_title")} />
                         <p {...edit("purpose2_bottom")} />
                     </li>
                     <li>
-                        <i className="flaticon-diamond" />
+                        <i className="icon_03" style={{
+                           
+                        }} />
                         <strong  {...edit("purpose3_title")} />
                         <p  {...edit("purpose3_bottom")} />
-                    </li>;
+                    </li>
                 </ul>
             </div>
         </div>
@@ -87,45 +95,55 @@ export const StieInfo: React.FC<IProp> = () => {
             </div>
         </div>
         <div className="w100 con04 con_block">
-            <div className="w1200">
-                <ul>
-                    <li>
+            <div className="infopp">
+                <ul className="w1200">
+                    <li className="n01">
                         <h4>
                             <strong {...edit("value1_title")} />
                             <span  {...edit("value1_en")} />
                         </h4>
-                        <p title="value1_desc" {...edit("value1_desc")} />
+                        <div className="txt" title="value1_desc" {...edit("value1_desc")} />
                     </li>
-                    <li>
+                    <li className="n02">
+                        <h4>
+                            <strong {...edit("value3_title")} />
+                            <span {...edit("value3_en")} />
+                        </h4>
+                        <div className="txt"  {...edit("value3_desc")} />
+                    </li>
+                    <li className="n03">
                         <h4>
                             <strong {...edit("value2_title")} />
                             <span {...edit("value2_en")} />
                         </h4>
-                        <p  {...edit("value2_desc")} />
+                        <div className="txt"  {...edit("value2_desc")} />
                     </li>
+                   
                 </ul>
-                <div className="infoimg">
+            </div>
+            <div className="infoimg">
+                <div className="w1200">
                     <div {...edit("info_img_title")} className="li01" />
                     <div className="li03">
                         <div className="dong01">
                             <strong>01</strong>
                             <span  {...edit("info_img1_title")} />
-                            <p {...edit("info_img1_desc")} />
+                            <i {...edit("info_img1_desc")} />
                         </div>
                         <div className="dong02">
                             <strong>02</strong>
                             <span  {...edit("info_img2_title")} />
-                            <p {...edit("info_img2_desc")} />
+                            <i {...edit("info_img2_desc")} />
                         </div>
                         <div className="dong03">
                             <strong>03</strong>
                             <span {...edit("info_img3_title")} />
-                            <p {...edit("info_img3_desc")} />
+                            <i {...edit("info_img3_desc")} />
                         </div>
                         <div className="dong04">
                             <strong>04</strong>
                             <span {...edit("info_img4_title")} />
-                            <p {...edit("info_img4_desc")} />
+                            <i {...edit("info_img4_desc")} />
                         </div>
                     </div>
                     <div className="li04">
@@ -190,20 +208,20 @@ export const StieInfo: React.FC<IProp> = () => {
                         return <li key={index}>
                             <a href={link}>
                                 <img src='/img/partners7.png' alt={alt} />
-                                <span onClick={() => {
+                                <span className="del" onClick={() => {
                                     removeArray("partners", index);
-                                }}>제거</span>
+                                }}><i className="flaticon-multiply"></i></span>
                                 <Upload onUpload={(url) => {
                                     editArray("partners", index, { ...partner, img: url })
                                 }} />
                             </a>
                         </li>
                     })}
-                    <li onClick={() => {
+                    <li className="add" onClick={() => {
 
                         addArray("partners", {})
 
-                    }}>추가</li>
+                    }}><i className="flaticon-add"></i>추가</li>
                 </ul>
             </div>
         </div>
