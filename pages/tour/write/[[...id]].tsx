@@ -5,7 +5,7 @@ import { Storage } from '../../../utils/Storage';
 import { Scheduler } from '../../../components/tourWrite/Scheduler';
 import { OutputData } from '@editorjs/editorjs';
 import "react-day-picker/lib/style.css";
-import { Ffile, ItineraryArrayInput, productCreate, ProductCreateInput, productCreateVariables, ProductStatus } from '../../../types/api';
+import { Ffile, ItineraryArrayInput, productCreate, ProductCreateInput, productCreateVariables, ProductPostStatus } from '../../../types/api';
 import { IProductDefaultData, TProductDataPart } from '../../../types/defaults/defaultProduct';
 import { EMPTY_EDITOR } from '../../../types/const';
 import { useMutation } from '@apollo/client';
@@ -46,7 +46,7 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
     const isCreateMode = mode === "create";
 
     const handleChangeStatus = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setStatus(e.currentTarget.value as ProductStatus)
+        setStatus(e.currentTarget.value as ProductPostStatus)
     }
 
     const handleUploadClick = () => {
@@ -194,12 +194,12 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                     <div className="title">판매여부</div>
                     <div className="input_form">
                         <ul>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-open" value={ProductStatus.OPEN} checked={status === ProductStatus.OPEN} className="radio" /><label htmlFor="status-open">판매중</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sold" value={ProductStatus.SOLD} checked={status === ProductStatus.SOLD} className="radio" /><label htmlFor="status-sold">완판</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-close" value={ProductStatus.CLOSE} checked={status === ProductStatus.CLOSE} className="radio" /><label htmlFor="status-close">판매종료</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-refused">거절됨</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.HIDE} checked={status === ProductStatus.HIDE} className="radio" /><label htmlFor="status-hide">숨겨짐</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-ready" value={ProductStatus.READY} checked={status === ProductStatus.READY} className="radio" /><label htmlFor="status-ready">준비중</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-open" value={ProductPostStatus.OPEN} checked={status === ProductPostStatus.OPEN} className="radio" /><label htmlFor="status-open">판매중</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sold" value={ProductPostStatus.SOLD} checked={status === ProductPostStatus.SOLD} className="radio" /><label htmlFor="status-sold">완판</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-close" value={ProductPostStatus.CLOSE} checked={status === ProductPostStatus.CLOSE} className="radio" /><label htmlFor="status-close">판매종료</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductPostStatus.REFUSED} checked={status === ProductPostStatus.REFUSED} className="radio" /><label htmlFor="status-refused">거절됨</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductPostStatus.HIDE} checked={status === ProductPostStatus.HIDE} className="radio" /><label htmlFor="status-hide">숨겨짐</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-ready" value={ProductPostStatus.READY} checked={status === ProductPostStatus.READY} className="radio" /><label htmlFor="status-ready">준비중</label></li>
                         </ul>
                     </div>
                 </div>
