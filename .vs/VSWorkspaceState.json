@@ -3,6 +3,7 @@
     "",
     "\\components",
     "\\components\\main",
+    "\\css",
     "\\layout",
     "\\layout\\components",
     "\\pages",
@@ -11,6 +12,6 @@
     "\\public\\img",
     "\\public\\img\\svg"
   ],
-  "SelectedNode": "\\public\\img\\work_top_bg2.png",
+  "SelectedNode": "\\public\\img\\siteinfo_bg02.png",
   "PreviewInSolutionExplorer": false
 }

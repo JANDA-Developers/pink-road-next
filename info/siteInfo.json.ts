@@ -1,7 +1,7 @@
 const info = {
     mainTitle: "핑크빛 희망의 길을 만들어 가는 사람들",
     secondTitle: "We are making a path of pink hope",
-    mainBg: '/img/siteinfo_bg03.jpg',
+    mainBg: '/img/siteinfo_bg_006.jpg',
     pinkVision: `<strong>핑크로더(PinkRoader)</strong>는 <br> ‘핑크빛 희망의 길을 만들어가는
     사람들’이라는 뜻을 가지고 사람-시간-공간의 상생을
     
@@ -39,8 +39,8 @@ const info = {
     purpose2_bottom: "unforgettable period",
     purpose3_title: '상생하는 <br /> 사람을 그리다',
     purpose3_bottom: "co-prosperity person",
-    value_title: 'Purpose and Vision',
-    value_desc: '목표로 삼고 나아가는 가치있는 생각 3가지',
+    value_title: '따로, 함께, 맞게',
+    value_desc: '우리는 사회·지역·사람을 잇는 활동으로 지속가능한 상생의 가치를 만듭니다.',
     value1_title: '공존하는',
     value1_en: "coexist",
     value1_desc: `가까이 있기에 소중함을 모르고 지냈던 우리 지역과 사회의 자원들을

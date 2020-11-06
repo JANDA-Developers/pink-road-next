@@ -2071,7 +2071,7 @@ ul.rank_ul {
         .siteInfo_in .top_bg h3 {
             font-size: 25px;
             line-height: 30px;
-            color: #fff;
+            color: #333;
             width: 100%;
             text-align: center;
         }
@@ -2079,11 +2079,11 @@ ul.rank_ul {
         .siteInfo_in .top_bg span {
             font-size: 20px;
             line-height: 34px;
-            color: #ffffff;
+            color: #7b7b7b;
             padding-left: 5px;
             width: 100%;
             text-align: center;
-            display:block;
+            display: block;
         }
 
     .siteInfo_in .con02 {
@@ -2092,7 +2092,7 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con03 {
-        padding: 146px 0 0;
+        padding: 146px 5% 0;
         min-height: 580px;
         box-sizing: border-box;
         text-align: center;
@@ -2131,10 +2131,15 @@ ul.rank_ul {
         color: #333;
         overflow: hidden;
         background-image: url(/img/main_bg_06.jpg);
-        background-position: center bottom;
+        background-position: 36% bottom;
         background-size: 160%;
     }
-
+        .siteInfo_in .con07 .w1200 {
+            padding: 0 5%;
+            box-sizing: border-box;
+            margin-bottom: 194px;
+            text-align: left;
+        }
     .siteInfo_in .con02 .top_txt {
         text-align: center;
         position: relative;
@@ -2473,15 +2478,14 @@ ul.rank_ul {
         text-align: center;
         font-size: 40px;
         line-height: 153%;
-        color: #fff;
+        color: #333;
         font-weight: 600;
         margin-bottom: 0;
     }
-
     .siteInfo_in .con03 p {
-        font-size: 15px;
-        line-height: 32px;
-        color: #fff;
+        font-size: 18px;
+        line-height: 120%;
+        color: #333;
         text-align: center;
     }
 
@@ -2494,7 +2498,7 @@ ul.rank_ul {
         text-align: left;
     }
 
-    .siteInfo_in .con04 .n01 h4:after,
+    /*.siteInfo_in .con04 .n01 h4:after,
     .siteInfo_in .con04 .n02 h4:after {
         content: '';
         display: none;
@@ -2506,7 +2510,7 @@ ul.rank_ul {
         bottom: -181px;
         z-index: 1;
         background-color: #d7d7d7;
-    }
+    }*/
 
     .siteInfo_in .con04 h4 strong {
         color: #333;
@@ -2536,27 +2540,31 @@ ul.rank_ul {
         position: relative;
     }
 
-    .siteInfo_in .con04 li {
-        display: inline-block;
-        overflow:hidden;
-        width: 100%;
-        min-height: unset;
-        margin: 0;
-        box-sizing: border-box;
-        padding: 22px 43px;
-        vertical-align: top;
-        text-align: left;
-        font-size: 15px;
-    }
 
     .siteInfo_in .con04 .infopp {
         display: block;
         z-index: 5;
         position: relative;
         text-align: center;
-        padding: 50px 0 90px;
+        padding: 270px 0 90px;
         background-color: #e5e5e5;
+        background-position: -155px -140px;
+        background-size: 480%;
+        background-image: url(/img/siteinfo_bg_001.jpg);
     }
+        .siteInfo_in .con04 .infopp li {
+            display: inline-block;
+            overflow: hidden;
+            width: 80%;
+            min-height: unset;
+            margin: 0 0 15px 0;
+            box-sizing: border-box;
+            padding: 36px 43px 40px;
+            vertical-align: top;
+            text-align: left;
+            font-size: 15px;
+            background-color: #ffffffed;
+        }
 
     .siteInfo_in .con04 .infoimg {
         display: block;
@@ -3044,10 +3052,7 @@ ul.rank_ul {
             max-height: 40px;
         }
 
-    .siteInfo_in .con07 .w1200 {
-        margin-bottom: 124px;
-        text-align:left;
-    }
+ 
     .siteInfo_in .con07 h4 {
         display: block;
         position: relative;
@@ -3070,10 +3075,10 @@ ul.rank_ul {
         }
 
     .siteInfo_in .con07 span {
-        font-size: 20px;
+        font-size: 14px;
         font-weight: 600;
         border-radius: 100px;
-        padding: 8px 110px;
+        padding: 8px 30px;
         margin-top: 15px;
         cursor: pointer;
         border: 2px solid #fff;
@@ -8509,9 +8514,12 @@ i.calendar {
     .siteInfo_in .con06 li {
         width: 22%;
     }
-    .siteInfo_in .con04 .n01 h4:after,
+    /*.siteInfo_in .con04 .n01 h4:after,
     .siteInfo_in .con04 .n02 h4:after {
         display: inline-block;
+    }*/
+    .siteInfo_in .con04 .infopp {
+        background-size: 270%;
     }
     div.bn_box {
         display:flex;
@@ -8684,11 +8692,12 @@ i.calendar {
             padding: 10px;
         }
     .siteInfo_in .con03 {
-        padding: 269px 0 0;
+        padding: 179px 0 0;
         min-height: 905px;
         background-position: center bottom;
-        background-size: 100%;
+        background-size: 150%;
     }
+  
         .siteInfo_in .con03 h4 {
             font-size: 66px;
             line-height: 100%;
@@ -8701,6 +8710,20 @@ i.calendar {
     .siteInfo_in .con04 {
         padding: 0;
     }
+        .siteInfo_in .con04 .infopp {
+            padding: 270px 0 210px;
+            background-position: center;
+            background-size: 150%;
+        }
+        .siteInfo_in .con04 .infopp li {
+            width: 30%;
+            min-height: 380px;
+            margin: 1%;
+            padding: 43px;
+            font-size: 15px;
+            overflow: unset;
+            background-color: #ffffffed;
+        }
         .siteInfo_in .con04 .infoimg {
             background-image: url(/img/siteinfo_bg_005.png);
             background-position: center;
@@ -8708,15 +8731,6 @@ i.calendar {
             background-size: 100%;
             padding: 130px 0;
         }
-     
-    .siteInfo_in .con04 li {
-        width: 30%;
-        min-height: 380px;
-        margin: 1%;
-        padding: 43px;
-        font-size: 15px;
-        overflow:unset;
-    }
         .siteInfo_in .con04 h4 strong {
             display:block;
             font-size: 28px;
@@ -8823,6 +8837,10 @@ i.calendar {
         padding: 185px 0;
         background-size: 130%;
     }
+        .siteInfo_in .con07 .w1200 {
+            padding: 0;
+            margin-bottom: 124px;
+        }
         .siteInfo_in .con07 h4 {
             font-size: 17px;
             line-height: 200%;
@@ -8931,6 +8949,13 @@ i.calendar {
     .login_box .login_page .login_tap.tab-label-1 {
         margin-left: 35px;
     }
+    .siteInfo_in .con03 {
+        background-size: 120%;
+    }
+    .siteInfo_in .con07 span {
+        font-size: 20px;
+        padding: 8px 110px;
+    }
 }
 @media (min-width: 1200px) {
     .main_con_box1 .main_top_images {
@@ -8993,14 +9018,14 @@ i.calendar {
         font-size: 17px;
     }
     .siteInfo_in .top_bg {
-        height: 710px;
-        padding: 170px 0 0;
-        background-position: center;
+        height: 890px;
+        padding: 209px 0 0;
+        background-position: center bottom;
         background-size: 105%;
     }
 
         .siteInfo_in .top_bg h3 {
-            font-size: 50px;
+            font-size: 40px;
             line-height: 60px;
         }
 
