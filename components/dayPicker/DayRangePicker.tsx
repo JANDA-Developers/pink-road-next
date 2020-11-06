@@ -13,13 +13,13 @@ interface IProps {
     }>
 }
 
-export const DayPicker: React.FC<IProps> = ({ from, to, setState }) => {
+export const DayRangePicker: React.FC<IProps> = ({ from, to, setState }) => {
     const defaultProps = {
         numberOfMonths: 2,
     };
 
     function handleDayClick(day) {
-        const range = DateUtils.addDayToRange(day, this.state);
+        const range = DateUtils.addDayToRange(day, { from, to });
         setState(range);
     }
 
@@ -31,19 +31,7 @@ export const DayPicker: React.FC<IProps> = ({ from, to, setState }) => {
 
     return (
         <div className="RangeExample">
-            <p>
-                {!from && !to && 'Please select the first day.'}
-                {from && !to && 'Please select the last day.'}
-                {from &&
-                    to &&
-                    `Selected from ${from.toLocaleDateString()} to
-                ${to.toLocaleDateString()}`}{' '}
-                {from && to && (
-                    <button className="link" onClick={handleResetClick}>
-                        Reset
-                    </button>
-                )}
-            </p>
+
             <RCDayPicker
                 className="Selectable"
                 selectedDays={[from, { from, to }]}
@@ -74,4 +62,4 @@ export const DayPicker: React.FC<IProps> = ({ from, to, setState }) => {
     );
 }
 
-export default DayPicker;
+export default DayRangePicker;

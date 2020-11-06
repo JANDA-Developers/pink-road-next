@@ -92,7 +92,7 @@ export const Header: React.FC<IProp> = () => {
         </div>
         <div className="nav_bg"></div>
         <div className="hd_right">
-            
+
 
             <div className="join">
                 <span><a href="/join" target="_self">회원가입</a></span>
@@ -126,7 +126,7 @@ export const Header: React.FC<IProp> = () => {
                     <div className="search_btn">
                         <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
                             현재 브라우저는 iframe을 지원하지 않습니다.
-                    </object>
+                        </object>
                         <button />
                     </div>
                 </div>
