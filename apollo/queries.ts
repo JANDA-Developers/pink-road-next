@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_CATEGORY, F_ITINERARY, F_PAGE, F_PRODUCT, F_PRODUCT_POST, F_USER } from "./fragments";
+import { F_CATEGORY, F_ITINERARY, F_PAGE, F_PRODUCT_POST, F_USER } from "./fragments";
 
 /* :::::::::::::::::::::::::::::::::::::: 
 
@@ -24,7 +24,7 @@ query productPostList(
     }
   }
 }
-${F_PRODUCT}
+${F_PRODUCT_POST}
 ${F_PAGE}
 `
 

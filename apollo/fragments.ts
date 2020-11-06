@@ -11,6 +11,28 @@ export const F_CATEGORY = gql`
     }
 `
 
+export const F_USER = gql`
+    fragment Fuser  on User  {
+        _id
+        cratedAt
+        updatedAt
+        isDelete
+        email
+        pw
+        role
+        brith_date
+        address
+        is_froreginer
+        gender
+        busi_num
+        is_priv_corper
+        busi_name
+        bsui_address
+        account_number
+        bank_name
+    }
+`
+
 export const F_PAGE = gql`
     fragment Fpage on Page {
         page
@@ -66,7 +88,7 @@ export const F_PRODUCT_POST = gql`
         title
         content
         author {
-            _id
+            ...Fuser
         }
         category {
             _id
@@ -89,28 +111,7 @@ export const F_PRODUCT_POST = gql`
         kids_price
         baby_price
     }
+    ${F_USER}
     ${F_ITINERARY}
 `
 
-
-export const F_USER = gql`
-    fragment Fuser  on User  {
-        _id
-        cratedAt
-        updatedAt
-        isDelete
-        email
-        pw
-        role
-        brith_date
-        address
-        is_froreginer
-        gender
-        busi_num
-        is_priv_corper
-        busi_name
-        bsui_address
-        account_number
-        bank_name
-    }
-`

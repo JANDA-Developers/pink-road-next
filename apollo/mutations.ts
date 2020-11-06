@@ -18,7 +18,6 @@ export const CATEGORY_CREATE = gql`
   ${F_CATEGORY}
 `;
 
-
 export const CATEGORY_UPDATE = gql`
   mutation categoryUpdate(
         $data: CategoryUpdateInput!
