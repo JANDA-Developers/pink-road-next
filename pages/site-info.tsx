@@ -40,9 +40,11 @@ export const StieInfo: React.FC<IProp> = () => {
         </div>
         {/* <div className="bold" title="Bold" onClick={() => { effectDoc('bold') }}>B</div> */}
         <div className="w100 con01 con_block">
-            <div className="w1200">
-                <h4  {...edit("pinkVision")} />
+            <div className="">
                 <div className="bottom">
+                    <div className="haf_first">
+                        <div {...ulEdit("pinkVision")} />
+                    </div>
                     <div className="haf">
                         <strong {...edit("visionBox1_title")} />
                         <ul onKeyDown {...ulEdit("visionBox1_cotnent")}
@@ -68,7 +70,7 @@ export const StieInfo: React.FC<IProp> = () => {
                         }} />
                         <strong {...edit("purpose1_title")} />
                         <p {...edit("purpose1_bottom")} />
-                    </li>;
+                    </li>
                     <li>
                         <i className="icon_02" style={{
                             
@@ -82,7 +84,7 @@ export const StieInfo: React.FC<IProp> = () => {
                         }} />
                         <strong  {...edit("purpose3_title")} />
                         <p  {...edit("purpose3_bottom")} />
-                    </li>;
+                    </li>
                 </ul>
             </div>
         </div>
@@ -206,20 +208,20 @@ export const StieInfo: React.FC<IProp> = () => {
                         return <li key={index}>
                             <a href={link}>
                                 <img src='/img/partners7.png' alt={alt} />
-                                <span onClick={() => {
+                                <span className="del" onClick={() => {
                                     removeArray("partners", index);
-                                }}>제거</span>
+                                }}><i className="flaticon-multiply"></i></span>
                                 <Upload onUpload={(url) => {
                                     editArray("partners", index, { ...partner, img: url })
                                 }} />
                             </a>
                         </li>
                     })}
-                    <li onClick={() => {
+                    <li className="add" onClick={() => {
 
                         addArray("partners", {})
 
-                    }}>추가</li>
+                    }}><i className="flaticon-add"></i>추가</li>
                 </ul>
             </div>
         </div>

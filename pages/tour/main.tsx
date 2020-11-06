@@ -14,7 +14,7 @@ export const TourMain: React.FC<IProp> = () => {
         </SubTopNav>
         <div className="tour_box">
             <div className="w1200">
-                <div className="search">
+                <div id="sub_tap_nav" class="subtop_nav">
                     <ul>
                         <li><a href="/tour-list">전체</a></li>
                         <li><a href="/tour-list">문화·예술여행</a></li>
@@ -24,8 +24,8 @@ export const TourMain: React.FC<IProp> = () => {
                     </ul>
                 </div>
                 <div className="bn_box line2">
-                    <a href="/"><img src={'/img/bn_img.gif'} alt="여행할인이벤트" /></a>
-                    <a href="/"><img src={'/img/bn_img.gif'} alt="여행할인이벤트" /></a>
+                    <a href="/"><img src={'/img/bn_01.jpg'} alt="여행할인이벤트" /></a>
+                    <a href="/"><img src={'/img/bn_01.jpg'} alt="여행할인이벤트" /></a>
                 </div>
                 <div className="deal_list">
                     <div className="alignment">
