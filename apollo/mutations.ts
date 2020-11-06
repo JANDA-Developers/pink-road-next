@@ -161,7 +161,7 @@ export const PRODUCT_POST_DELETE = gql`
       ok
       error 
       data {
-          ...FproductPostPost
+          ...FproductPost
       }
     }
   }

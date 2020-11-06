@@ -20,7 +20,7 @@ query productPostList(
       ...Fpage
     }
     data  {
-      ...Fproduct
+      ...FproductPost
     }
   }
 }
@@ -47,10 +47,10 @@ export const CATEGORY_FIND_BY_ID = gql`
 
 export const PRODUCT_FIND_BY_ID = gql`
   query productPostFindById(
-      $id:String!
+      $_id:String!
     ) {
       ProductPostFindById(
-        id: $id
+        _id: $_id
       ) {
       ok
       error

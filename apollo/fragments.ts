@@ -25,6 +25,20 @@ export const F_PAGE = gql`
     }
 `
 
+export const F_FILE = gql`
+    fragment Ffile on File {
+        _id 
+        cratedAt
+        updatedAt
+        isDelete
+        name
+        description
+        extension
+        fileType
+        uri
+        owner
+    }
+`
 
 export const F_ITINERARY = gql`
     fragment Fitinerary on Itinerary {
@@ -35,9 +49,12 @@ export const F_ITINERARY = gql`
         productPostId
         title
         contents
-        images
+        images {
+            ...Ffile
+        }
         date
     }
+    ${F_FILE}
 `
 
 export const F_PRODUCT_POST = gql`
@@ -95,21 +112,5 @@ export const F_USER = gql`
         bsui_address
         account_number
         bank_name
-    }
-`
-
-
-export const F_FILE = gql`
-    fragment Ffile on File {
-        _id 
-        cratedAt
-        updatedAt
-        isDelete
-        name
-        description
-        extension
-        fileType
-        uri
-        owner
     }
 `
