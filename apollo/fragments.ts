@@ -32,17 +32,16 @@ export const F_ITINERARY = gql`
         cratedAt
         updatedAt
         isDelete
-        email
-        productId
+        productPostId
         title
         contents
-        imgs
+        images
         date
     }
 `
 
-export const F_PRODUCT = gql`
-    fragment Fproduct  on Product  {
+export const F_PRODUCT_POST = gql`
+    fragment FproductPost on ProductPost {
         _id
         cratedAt
         updatedAt
@@ -56,9 +55,8 @@ export const F_PRODUCT = gql`
             _id
             label
         }
-        Status
-        itineraryIds
-        itineraries {
+        status
+        itinerary {
             ...Fitinerary
         }
         inOrNor

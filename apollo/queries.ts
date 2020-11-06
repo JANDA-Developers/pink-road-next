@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_CATEGORY, F_ITINERARY, F_PAGE, F_PRODUCT, F_USER } from "./fragments";
+import { F_CATEGORY, F_ITINERARY, F_PAGE, F_PRODUCT, F_PRODUCT_POST, F_USER } from "./fragments";
 
 /* :::::::::::::::::::::::::::::::::::::: 
 
@@ -7,11 +7,11 @@ import { F_CATEGORY, F_ITINERARY, F_PAGE, F_PRODUCT, F_USER } from "./fragments"
   
 :::::::::::::::::::::::::::::::::::::: */
 
-export const PRODUCT_LIST = gql`
-query productList(
+export const PRODUCT_POST_LIST = gql`
+query productPostList(
   $pageInput:pageInput!
 ) {
-  ProductList(
+  ProductPostList(
   pageInput: $pageInput
   ) {
     ok
@@ -46,20 +46,20 @@ export const CATEGORY_FIND_BY_ID = gql`
 `;
 
 export const PRODUCT_FIND_BY_ID = gql`
-  query productFindById(
+  query productPostFindById(
       $id:String!
     ) {
-      ProductFindById(
+      ProductPostFindById(
         id: $id
       ) {
       ok
       error
       data {
-        ...Fproduct
+        ...FproductPost
       }
     }
   }
-  ${F_PRODUCT}
+  ${F_PRODUCT_POST}
 `;
 
 export const CATEGORY_LIST = gql`

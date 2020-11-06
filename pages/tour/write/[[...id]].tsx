@@ -10,11 +10,11 @@ import { IProductDefaultData, TProductDataPart } from '../../../types/defaults/d
 import { EMPTY_EDITOR } from '../../../types/const';
 import { useMutation } from '@apollo/client';
 import { useProductFindById } from '../../../hook/useProductFindById';
-import { PRODUCT_CREATE } from '../../../apollo/mutations';
 import DayPicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
 import { detactRangeChange, generateSchedule, getDefault } from './helper';
 import { useUpload } from "hook/useUpload";
+import { PRODUCT_POST_CREATE } from "apollo/mutations";
 const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
 
 let FILE_SELECT_INDEX = 0;
@@ -323,7 +323,7 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
     const { query } = useRouter(); // => 넥스트에서는 변경
     const id = query.id as string | undefined;
 
-    const [productCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCT_CREATE)
+    const [productCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCT_POST_CREATE)
     const { product, loading: findLoading } = useProductFindById({
         variables: {
             id: id!
