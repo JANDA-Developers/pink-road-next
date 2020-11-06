@@ -5,6 +5,8 @@ import { SIGN_UP } from '../../apollo/mutations';
 import { signUp, signUpVariables, UserRole } from '../../types/api';
 import { isEmail, isPhone } from 'utils/validation';
 import { TFormNormal } from "./FormNormal";
+import { TFormPartnetCor } from "./FormPartnerCor";
+import { TFormPartnerNormal } from "./FormPartnerNormal";
 
 type TSMS = {
   sns: true,
@@ -24,7 +26,7 @@ export type TPolicyChk = {
 interface IProps {
   openPopup: (element: string | null) => void;
   handleJoinProcess: (errTarget: any) => void;
-  registerInfo: TFormNormal;
+  registerInfo: any;
   registerSort?: string
   handleErrDisplay: (errTarget: any) => void;
 }

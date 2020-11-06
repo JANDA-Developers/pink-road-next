@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import RegisterCheck from './RegisterCheck';
-import { TForm } from '.';
+import { TForm } from 'pages/join';
 import Calendar from '../common/icon/CalendarIcon';
 
-type TFormPartnetCor = {
+export type TFormPartnetCor = {
   email: string,
   password: string,
   passwordChk: string,

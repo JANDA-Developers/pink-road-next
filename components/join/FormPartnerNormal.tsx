@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import RegisterCheck from './RegisterCheck';
-import { TForm } from '.';
+import { TForm } from 'pages/join';
 
-type TFormPartnerNormal = {
+export type TFormPartnerNormal = {
   email: string,
   password: string,
   passwordChk: string,
