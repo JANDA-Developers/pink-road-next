@@ -2064,7 +2064,6 @@ ul.rank_ul {
         padding: 100px 5% 0;
         box-sizing: border-box;
         background-color: #fff8c0;
-        background-image: url(/img/siteinfo_bg01.png);
         background-position: center 490px;
         background-size: 187%;
     }
@@ -2072,15 +2071,19 @@ ul.rank_ul {
         .siteInfo_in .top_bg h3 {
             font-size: 25px;
             line-height: 30px;
-            color: #ed297b;
+            color: #fff;
+            width: 100%;
             text-align: center;
         }
 
-        .siteInfo_in .top_bg p {
+        .siteInfo_in .top_bg span {
             font-size: 20px;
-            line-height: 38px;
-            color: #858585;
+            line-height: 34px;
+            color: #ffffff;
+            padding-left: 5px;
+            width: 100%;
             text-align: center;
+            display:block;
         }
 
     .siteInfo_in .con02 {
@@ -2094,7 +2097,7 @@ ul.rank_ul {
         box-sizing: border-box;
         text-align: center;
         background-color: #ffebf3;
-        background-image: url(/img/siteinfo_bg07.png);
+        background-image: url(/img/siteinfo_bg03.jpg);
         background-position: center bottom;
         background-size: 140%;
         background-repeat: no-repeat;
@@ -2127,7 +2130,7 @@ ul.rank_ul {
         background-color: #fff8c0;
         color: #333;
         overflow: hidden;
-        background-image: url(/img/siteinfo_bg06.png);
+        background-image: url(/img/main_bg_06.jpg);
         background-position: center bottom;
         background-size: 160%;
     }
@@ -2470,7 +2473,7 @@ ul.rank_ul {
         text-align: center;
         font-size: 40px;
         line-height: 153%;
-        color: #ed297b;
+        color: #fff;
         font-weight: 600;
         margin-bottom: 0;
     }
@@ -2478,7 +2481,7 @@ ul.rank_ul {
     .siteInfo_in .con03 p {
         font-size: 15px;
         line-height: 32px;
-        color: #555;
+        color: #fff;
         text-align: center;
     }
 
@@ -3041,15 +3044,20 @@ ul.rank_ul {
             max-height: 40px;
         }
 
+    .siteInfo_in .con07 .w1200 {
+        margin-bottom: 124px;
+        text-align:left;
+    }
     .siteInfo_in .con07 h4 {
         display: block;
         position: relative;
         font-weight: 400;
         font-size: 17px;
         line-height: 100%;
-        color: #686868;
-        margin-bottom: 7px;
+        color: #ffffff;
         z-index: 5;
+        width: 52%;
+        text-align: left;
     }
 
         .siteInfo_in .con07 h4 strong {
@@ -3057,26 +3065,28 @@ ul.rank_ul {
             line-height: 160%;
             display: block;
             font-weight: 600;
-            color: #ed296b;
+            color: #fff;
+            margin-left:-5px;
         }
 
     .siteInfo_in .con07 span {
-        font-size: 17px;
+        font-size: 20px;
         font-weight: 600;
         border-radius: 100px;
-        padding: 8px 40px;
-        margin-top: 18px;
+        padding: 8px 110px;
+        margin-top: 15px;
         cursor: pointer;
-        border: 1px solid #ed296b;
+        border: 2px solid #fff;
         color: #ffffff;
-        background-color: #ed297b;
+        background-color: rgba(255, 255, 255, 0.12);
         display: inline-block;
         z-index: 5;
     }
 
         .siteInfo_in .con07 span:hover {
-            background-color: #fff8c0;
-            color: #ed296b;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 2px solid #fff;
         }
 
 /* tour */
@@ -8392,7 +8402,7 @@ i.calendar {
         line-height: 45px;
     }
 
-    .siteInfo_in .top_bg p {
+    .siteInfo_in .top_bg span {
         font-size: 23px;
         line-height: 35px;
     }
@@ -8629,7 +8639,6 @@ i.calendar {
     .siteInfo_in .top_bg {
         height: 710px;
         padding: 170px 0 0;
-        background-image: url(/img/siteinfo_bg01.png);
         background-position: center;
         background-size: 180%;
     }
@@ -8637,7 +8646,7 @@ i.calendar {
         font-size: 50px;
         line-height: 60px;
     }
-    .siteInfo_in .top_bg p {
+    .siteInfo_in .top_bg span {
         font-size: 36px;
         line-height: 52px;
     }
@@ -8676,7 +8685,7 @@ i.calendar {
         }
     .siteInfo_in .con03 {
         padding: 269px 0 0;
-        min-height: 1020px;
+        min-height: 905px;
         background-position: center bottom;
         background-size: 100%;
     }
@@ -8815,10 +8824,12 @@ i.calendar {
         background-size: 130%;
     }
         .siteInfo_in .con07 h4 {
-            font-size: 23px;
+            font-size: 17px;
+            line-height: 200%;
         }
             .siteInfo_in .con07 h4 strong {
-                font-size: 33px;
+                font-size: 55px;
+                line-height: 138%;
             }
     .siteInfo_in .con05 {
         background-position: 70% center;
@@ -8984,9 +8995,8 @@ i.calendar {
     .siteInfo_in .top_bg {
         height: 710px;
         padding: 170px 0 0;
-        background-image: url(/img/siteinfo_bg01.png);
         background-position: center;
-        background-size: 130%;
+        background-size: 105%;
     }
 
         .siteInfo_in .top_bg h3 {
@@ -8994,9 +9004,9 @@ i.calendar {
             line-height: 60px;
         }
 
-        .siteInfo_in .top_bg p {
-            font-size: 36px;
-            line-height: 52px;
+        .siteInfo_in .top_bg span {
+            font-size: 20px;
+            line-height: 30px;
         }
     .siteInfo_in .con02 li {
         margin: 40px;
@@ -9035,7 +9045,7 @@ i.calendar {
             width: 200px;
         }
     .siteInfo_in .con07 {
-        padding: 211px 0;
+        padding: 150px 0 260px;
         background-size: 100%;
     }
     div.alignment {

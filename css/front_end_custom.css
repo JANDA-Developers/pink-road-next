@@ -47,12 +47,6 @@ ul[contenteditable="true"] li {
     padding-bottom: 80px!important;
 }
 
-.siteInfo_in .top_bg p {
-    font-size: 36px;
-    line-height: 52px;
-    color: #858585;
-    text-align: center;
-}
 
 /* 이미지교체 아이콘 */
 .img_edit {

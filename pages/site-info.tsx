@@ -34,7 +34,7 @@ export const StieInfo: React.FC<IProp> = () => {
         }} className="top_bg w100">
             <div className="w1200">
                 <h3  {...edit("mainTitle")} />
-                <p  {...edit("secondTitle")} />
+                <span  {...edit("secondTitle")} />
             </div>
             <Upload onUpload={imgEdit("mainBg")} />
         </div>
