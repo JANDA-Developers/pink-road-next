@@ -63,24 +63,9 @@ export const Main: React.FC<IProp> = () => {
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
     <div className="main_con_box1">
-<<<<<<< HEAD
-          <div
-            className="main_top_images"
-              style={{ backgroundImage: `url(/img/main_bg_07.jpg)` }}
-          >
-                <div className="w1200">
-                      <strong {...edit("title")} />
-                      <span {...edit('subtitle')}>
-                      </span>
-                      <div className="btn_list">
-                        <a className="tourLink" href="/tour">투어</a>
-                        <a href="/experience_main">체험</a>
-                      </div>
-                </div>
-=======
       <div
         className="main_top_images"
-        style={{ backgroundImage: `url(/img/main_bg_03.jpg)` }}
+        style={{ backgroundImage: `url(/img/main_bg_07.jpg)` }}
       >
         <div className="w1200">
           <strong {...edit("title")} />
@@ -89,7 +74,6 @@ export const Main: React.FC<IProp> = () => {
           <div className="btn_list">
             <a className="tourLink" href="/tour">투어</a>
             <a href="/experience_main">체험</a>
->>>>>>> 1b96babefe2c326a413b4fa68050c1c51013c003
           </div>
         </div>
       </div>
