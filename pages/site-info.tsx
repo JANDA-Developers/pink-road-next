@@ -232,7 +232,9 @@ export const StieInfo: React.FC<IProp> = () => {
                     We walk the right path rather than the easy one
                 </h4>
                 <span>제휴문의</span>
+                
             </div>
+            <div className="ovj"></div>
             <div className="bg" />
         </div>
         {open && <div style={{
