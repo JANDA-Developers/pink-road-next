@@ -2,43 +2,44 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from 'react';
 import { Storage } from '../../../utils/Storage';
-import { Scheduler } from '../../../components/tourWrite/Scheduler';
 import { OutputData } from '@editorjs/editorjs';
 import "react-day-picker/lib/style.css";
-import { Ffile, ItineraryArrayInput, productCreate, ProductCreateInput, productCreateVariables, ProductPostStatus } from '../../../types/api';
-import { IProductDefaultData, TProductDataPart } from '../../../types/defaults/defaultProduct';
+import { Ffile, ItineryCreateInput, productPostCreate, ProductPostCreateInput, productPostCreateVariables, ProductPostStatus } from '../../../types/api';
+import { TProductDataPart } from '../../../types/defaults/defaultProduct';
 import { EMPTY_EDITOR } from '../../../types/const';
 import { useMutation } from '@apollo/client';
 import { useProductFindById } from '../../../hook/useProductFindById';
 import DayPicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
-import { detactRangeChange, generateSchedule, getDefault } from './helper';
+import { detactRangeChange, generateitinery, getDefault } from '../../../components/tourWrite/helper';
 import { useUpload } from "hook/useUpload";
 import { PRODUCT_POST_CREATE } from "apollo/mutations";
-const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
+import { IProductPostFindById } from "types/interface";
+import { Itinery } from "components/tourView/Itinery";
+import { ItineryForm } from "components/tourWrite/ItineryForm";
+import { autoComma } from "utils/formatter";
 
-let FILE_SELECT_INDEX = 0;
+const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
 interface IProp {
-    product?: IProductDefaultData;
-    mode?: "edit" | "create";
-    createFn: TCreateFn
+    context: ITourWriteWrapContext;
 }
 
-export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
+export const TourWrite: React.FC<IProp> = ({ context }) => {
+    const { createFn, product, mode } = context;
     const { data: defaultData, defaults, range: defaultRange } = getDefault(product);
-    console.log(defaults.schedule);
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
-    const [schedules, setSchedules] = useState<ItineraryArrayInput[]>([]);
+    const [itineries, setitineries] = useState<ItineryCreateInput[]>([]);
     const [range, setRange] = useState(defaultRange);
     const { signleUpload } = useUpload();
     const [data, setData] = useState<TProductDataPart>(defaultData)
-    const [status, setStatus] = useState(defaults.Status);
+    const [status, setStatus] = useState(defaults.status);
     const [thumbs, setThumbs] = useState<Partial<Ffile>[]>([])
     const [tab, setTab] = useState<number>(1);
 
     const [infoProduct, setInfoProduct] = useState<OutputData>({
         blocks: []
     });
+
     const [include, setInclude] = useState<OutputData>({
         blocks: []
     });
@@ -65,16 +66,15 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
     };
 
     const handleClearThumb = (index: number) => {
-        const newThumbs = thumbs.splice(index, 1);
-        setThumbs([...newThumbs])
+        thumbs.splice(index, 1);
+        setThumbs([...thumbs])
     }
 
     useEffect(() => {
 
-        const newSch = generateSchedule(range, schedules)
+        const newSch = generateitinery(range, itineries)
 
-
-        setSchedules(newSch || [])
+        setitineries(newSch || [])
 
     }, detactRangeChange(range))
 
@@ -137,15 +137,15 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                         <div>
                             <span className="mr5">성인</span>
                             <input onChange={(e) => {
-                                set("adult_price", e.currentTarget.value)
+                                set("adult_price", autoComma(e.currentTarget.value))
                             }} value={adult_price} type="text" className="text w20 mr15" />
                             <span className="mr5">소인</span>
                             <input onChange={(e) => {
-                                set("kids_price", e.currentTarget.value)
+                                set("kids_price", autoComma(e.currentTarget.value))
                             }} value={kids_price} type="text" className="text w20 mr15" />
                             <span className="mr5">유아</span>
                             <input onChange={(e) => {
-                                set("baby_price", e.currentTarget.value)
+                                set("baby_price", autoComma(e.currentTarget.value))
                             }} value={baby_price} type="text" className="text w20" />
                         </div>
                         <p className="info_txt">- 원을 빼고 ','를 넣어서 구분해서 입력해주세요. ex) 50,000</p>
@@ -174,7 +174,7 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                         <div>
                             <input onChange={(e) => {
                                 set("address", e.currentTarget.value)
-                            }} value={startPoint} type="text" className="text w100" />
+                            }} value={address} type="text" className="text w100" />
                         </div>
                     </div>
                 </div>
@@ -184,7 +184,7 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                     <div className="input_form">
                         <div>
                             <input onChange={(e) => {
-                                set("address", e.currentTarget.value)
+                                set("startPoint", e.currentTarget.value)
                             }} value={startPoint} type="text" className="text w100" />
                         </div>
                     </div>
@@ -207,7 +207,9 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                 <div className="write_type">
                     <div className="title">키워드</div>
                     <div className="input_form">
-                        <input value={keyWards} type="text" className="text w100" />
+                        <input onChange={(e) => {
+                            set("keyWards", e.currentTarget.value)
+                        }} value={keyWards} type="text" className="text w100" />
                         <p className="input_form info_txt">- ','로 구분시 자동으로 키워드가 생성됩니다.</p>
                     </div>
                 </div>
@@ -219,9 +221,9 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                     <div className="title">썸네일</div>
                     <div className="img_box_add">
                         <ul className="img_add">
-                            {/* {thumbs.map((thumb, i) =>
-                                <li key={thumb._id} className="on_file">{thumb.name}<i onClick={() => { handleClearThumb(i) }} className="flaticon-multiply icon_x"></i></li>
-                            )} */}
+                            {thumbs.map((thumb, i) =>
+                                <li key={i + "thumb"} className="on_file">{thumb.name}<i onClick={() => { handleClearThumb(i) }} className="flaticon-multiply icon_x"></i></li>
+                            )}
                             <li onClick={handleUploadClick}>이미지추가<i className="flaticon-add icon_plus"></i></li>
                             <input onChange={handleChangeSumbNail} ref={hiddenFileInput} hidden type="file" />
                         </ul>
@@ -242,7 +244,7 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                     <div id="texta_01" className="texta">
                         <h5>여행일정</h5>
                         <DayPicker setState={setRange} from={range.from} to={range.to} />
-                        {(schedules || []).map((schedule, index) => <Scheduler index={index} setSchedules={setSchedules} schedule={schedule} schedules={schedules} />)}
+                        {(itineries || []).map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setitineries={setitineries} itinery={itinery} itineries={itineries} />)}
                     </div>
                 }
 
@@ -250,21 +252,19 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                     display: tab === 2 ? undefined : "none"
                 }} id="texta_02" className="texta">
                     <h5>상품 안내문</h5>
-                    <div id="content">
-                        <EditorJs key={"editor1"} holder="content" onChange={(api: any, data?: OutputData) => {
-                            setInfoProduct(data || EMPTY_EDITOR);
-                        }} data={infoProduct} />
-                    </div>
+                    <EditorJs holder="infoProduct" data={infoProduct} onChange={(api: any, data?: OutputData) => {
+                        setInfoProduct(data || EMPTY_EDITOR);
+                    }} />
+                    <div id="infoProduct" />
                 </div>
                 <div style={{
                     display: tab === 3 ? undefined : "none"
                 }} id="texta_03" className="texta">
                     <h5>포함 / 불포함</h5>
-                    <div id="include">
-                        <EditorJs key={"editor2"} holder="include" onChange={(api: any, data?: OutputData) => {
-                            setInclude(data || EMPTY_EDITOR);
-                        }} data={include} />
-                    </div>
+                    <EditorJs holder="include" data={include} onChange={(api: any, data?: OutputData) => {
+                        setInclude(data || EMPTY_EDITOR);
+                    }} />
+                    <div id="include" />
                 </div>
                 {tab === 4 &&
                     <div id="texta_04" className="texta">
@@ -309,13 +309,21 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
             </div>
         </div>
     </div>
-        ;
 };
 
-export type TCreateFn = (newProduct: ProductCreateInput, newItinerary: ItineraryArrayInput[]) => void;
+
+export type TCreateFn = (newProduct: ProductPostCreateInput, newItinery: ItineryCreateInput[]) => void;
 interface IProp {
     isExperience?: boolean;
     mode?: "edit" | "create"
+}
+
+interface ITourWriteWrapContext {
+    createFn: TCreateFn;
+    product: IProductPostFindById;
+    findLoading: boolean;
+    createLoading: boolean;
+    mode: "create" | "edit"
 }
 
 //수정하고 나면 수정한 내용을 그대로 덮어버리면 안됨. 핑크로드의 승인이 필요함.
@@ -323,24 +331,31 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
     const { query } = useRouter(); // => 넥스트에서는 변경
     const id = query.id as string | undefined;
 
-    const [productCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCT_POST_CREATE)
+    const [productCreateMu, { loading: createLoading }] = useMutation<productPostCreate, productPostCreateVariables>(PRODUCT_POST_CREATE)
     const { product, loading: findLoading } = useProductFindById({
         variables: {
-            id: id!
+            _id: id!
         },
         skip: !id
     })
 
-    const createFn: TCreateFn = (newProduct: ProductCreateInput, newItinerary: ItineraryArrayInput[]) => {
+    const createFn: TCreateFn = (params: ProductPostCreateInput) => {
         productCreateMu({
             variables: {
-                newItinerary,
-                newProduct
+                params
             }
         })
     }
 
-    return <TourWrite createFn={createFn} mode={!id ? "create" : "edit"} />;
+    const context: ITourWriteWrapContext = {
+        createFn,
+        product,
+        findLoading,
+        createLoading,
+        mode: !id ? "create" : "edit"
+    }
+
+    return <TourWrite context={context} />;
 };
 
 

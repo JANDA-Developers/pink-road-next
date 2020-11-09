@@ -107,115 +107,28 @@ export interface categoryDeleteVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: itineraryCreate
-// ====================================================
-
-export interface itineraryCreate_ItineraryCreate_data_images {
-  __typename: "File";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  name: string;
-  description: string;
-  extension: string;
-  fileType: string;
-  uri: string;
-  owner: string;
-}
-
-export interface itineraryCreate_ItineraryCreate_data {
-  __typename: "Itinerary";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  productPostId: string;
-  title: string;
-  contents: string[];
-  images: itineraryCreate_ItineraryCreate_data_images[];
-  date: any;
-}
-
-export interface itineraryCreate_ItineraryCreate {
-  __typename: "ItineraryCreateResponse";
-  ok: boolean;
-  error: string | null;
-  data: itineraryCreate_ItineraryCreate_data | null;
-}
-
-export interface itineraryCreate {
-  ItineraryCreate: itineraryCreate_ItineraryCreate;
-}
-
-export interface itineraryCreateVariables {
-  data: ItineraryCreateInput;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: itineraryUpdate
-// ====================================================
-
-export interface itineraryUpdate_ItineraryUpdate_data_images {
-  __typename: "File";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  name: string;
-  description: string;
-  extension: string;
-  fileType: string;
-  uri: string;
-  owner: string;
-}
-
-export interface itineraryUpdate_ItineraryUpdate_data {
-  __typename: "Itinerary";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  productPostId: string;
-  title: string;
-  contents: string[];
-  images: itineraryUpdate_ItineraryUpdate_data_images[];
-  date: any;
-}
-
-export interface itineraryUpdate_ItineraryUpdate {
-  __typename: "ItineraryUpdateResponse";
-  ok: boolean;
-  error: string | null;
-  data: itineraryUpdate_ItineraryUpdate_data | null;
-}
-
-export interface itineraryUpdate {
-  ItineraryUpdate: itineraryUpdate_ItineraryUpdate;
-}
-
-export interface itineraryUpdateVariables {
-  data: ItineraryUpdateInput;
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: productPostCreate
 // ====================================================
 
 export interface productPostCreate_ProductPostCreate_data_author {
   __typename: "User";
   _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  pw: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
 }
 
 export interface productPostCreate_ProductPostCreate_data_category {
@@ -226,7 +139,6 @@ export interface productPostCreate_ProductPostCreate_data_category {
 
 export interface productPostCreate_ProductPostCreate_data_itinerary_images {
   __typename: "File";
-  _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -304,6 +216,22 @@ export interface productPostCreateVariables {
 export interface productPostUpdate_ProductPostUpdate_data_author {
   __typename: "User";
   _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  pw: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
 }
 
 export interface productPostUpdate_ProductPostUpdate_data_category {
@@ -314,7 +242,6 @@ export interface productPostUpdate_ProductPostUpdate_data_category {
 
 export interface productPostUpdate_ProductPostUpdate_data_itinerary_images {
   __typename: "File";
-  _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -393,6 +320,22 @@ export interface productPostUpdateVariables {
 export interface productPostDelete_ProductPostDelete_data_author {
   __typename: "User";
   _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  pw: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
 }
 
 export interface productPostDelete_ProductPostDelete_data_category {
@@ -403,7 +346,6 @@ export interface productPostDelete_ProductPostDelete_data_category {
 
 export interface productPostDelete_ProductPostDelete_data_itinerary_images {
   __typename: "File";
-  _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -480,7 +422,6 @@ export interface productPostDeleteVariables {
 
 export interface multiUpload_MultiUpload_data {
   __typename: "File";
-  _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -618,6 +559,22 @@ export interface productPostList_ProductPostList_page {
 export interface productPostList_ProductPostList_data_author {
   __typename: "User";
   _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  pw: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
 }
 
 export interface productPostList_ProductPostList_data_category {
@@ -628,7 +585,6 @@ export interface productPostList_ProductPostList_data_category {
 
 export interface productPostList_ProductPostList_data_itinerary_images {
   __typename: "File";
-  _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -741,6 +697,22 @@ export interface categoryFindByIdVariables {
 export interface productPostFindById_ProductPostFindById_data_author {
   __typename: "User";
   _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  pw: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
 }
 
 export interface productPostFindById_ProductPostFindById_data_category {
@@ -751,7 +723,6 @@ export interface productPostFindById_ProductPostFindById_data_category {
 
 export interface productPostFindById_ProductPostFindById_data_itinerary_images {
   __typename: "File";
-  _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -853,104 +824,6 @@ export interface categoryList {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: itineraryFindById
-// ====================================================
-
-export interface itineraryFindById_ItineraryFindById_data_images {
-  __typename: "File";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  name: string;
-  description: string;
-  extension: string;
-  fileType: string;
-  uri: string;
-  owner: string;
-}
-
-export interface itineraryFindById_ItineraryFindById_data {
-  __typename: "Itinerary";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  productPostId: string;
-  title: string;
-  contents: string[];
-  images: itineraryFindById_ItineraryFindById_data_images[];
-  date: any;
-}
-
-export interface itineraryFindById_ItineraryFindById {
-  __typename: "ItineraryFindByIdResponse";
-  ok: boolean;
-  error: string | null;
-  data: itineraryFindById_ItineraryFindById_data | null;
-}
-
-export interface itineraryFindById {
-  ItineraryFindById: itineraryFindById_ItineraryFindById;
-}
-
-export interface itineraryFindByIdVariables {
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: itineraryList
-// ====================================================
-
-export interface itineraryList_ItineraryList_data_images {
-  __typename: "File";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  name: string;
-  description: string;
-  extension: string;
-  fileType: string;
-  uri: string;
-  owner: string;
-}
-
-export interface itineraryList_ItineraryList_data {
-  __typename: "Itinerary";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  productPostId: string;
-  title: string;
-  contents: string[];
-  images: itineraryList_ItineraryList_data_images[];
-  date: any;
-}
-
-export interface itineraryList_ItineraryList {
-  __typename: "ItineraryListResponse";
-  ok: boolean;
-  error: string | null;
-  data: itineraryList_ItineraryList_data[];
-}
-
-export interface itineraryList {
-  ItineraryList: itineraryList_ItineraryList;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: signIn
 // ====================================================
 
@@ -992,6 +865,36 @@ export interface Fcategory {
   isDelete: boolean;
   label: string;
   value: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: Fuser
+// ====================================================
+
+export interface Fuser {
+  __typename: "User";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  pw: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
 }
 
 /* tslint:disable */
@@ -1054,7 +957,6 @@ export interface Fpage {
 
 export interface Ffile {
   __typename: "File";
-  _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -1077,7 +979,6 @@ export interface Ffile {
 
 export interface Fitinerary_images {
   __typename: "File";
-  _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -1114,6 +1015,22 @@ export interface Fitinerary {
 export interface FproductPost_author {
   __typename: "User";
   _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  pw: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
 }
 
 export interface FproductPost_category {
@@ -1124,7 +1041,6 @@ export interface FproductPost_category {
 
 export interface FproductPost_itinerary_images {
   __typename: "File";
-  _id: string;
   cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -1173,36 +1089,6 @@ export interface FproductPost {
   adult_price: number;
   kids_price: number;
   baby_price: number;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: Fuser
-// ====================================================
-
-export interface Fuser {
-  __typename: "User";
-  _id: string;
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  pw: string;
-  role: UserRole;
-  brith_date: string;
-  address: string;
-  is_froreginer: boolean;
-  gender: GENDER;
-  busi_num: string;
-  is_priv_corper: boolean;
-  busi_name: string;
-  bsui_address: string;
-  account_number: string;
-  bank_name: string;
 }
 
 /* tslint:disable */
@@ -1299,19 +1185,6 @@ export interface FileUpdateInput {
   uri: string;
   owner?: string | null;
   isDelete?: boolean | null;
-}
-
-export interface ItineraryCreateInput {
-  productPostId: string;
-  title: string;
-  contents?: string[] | null;
-  imageIds?: string[] | null;
-  date?: any | null;
-}
-
-export interface ItineraryUpdateInput {
-  label?: string | null;
-  value?: string | null;
 }
 
 export interface ItineryCreateInput {

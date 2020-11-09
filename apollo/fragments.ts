@@ -49,10 +49,8 @@ export const F_PAGE = gql`
 
 export const F_FILE = gql`
     fragment Ffile on File {
-        _id 
         cratedAt
         updatedAt
-        isDelete
         name
         description
         extension
@@ -63,7 +61,7 @@ export const F_FILE = gql`
 `
 
 export const F_ITINERARY = gql`
-    fragment Fitinerary on Itinerary {
+    fragment Fitinerary on Itinerary  {
         _id
         cratedAt
         updatedAt
@@ -114,4 +112,3 @@ export const F_PRODUCT_POST = gql`
     ${F_USER}
     ${F_ITINERARY}
 `
-

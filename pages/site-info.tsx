@@ -66,21 +66,21 @@ export const StieInfo: React.FC<IProp> = () => {
                 <ul>
                     <li>
                         <i className="icon_01" style={{
-                            
+
                         }} />
                         <strong {...edit("purpose1_title")} />
                         <p {...edit("purpose1_bottom")} />
                     </li>
                     <li>
                         <i className="icon_02" style={{
-                            
+
                         }} />
                         <strong  {...edit("purpose2_title")} />
                         <p {...edit("purpose2_bottom")} />
                     </li>
                     <li>
                         <i className="icon_03" style={{
-                           
+
                         }} />
                         <strong  {...edit("purpose3_title")} />
                         <p  {...edit("purpose3_bottom")} />
@@ -118,7 +118,7 @@ export const StieInfo: React.FC<IProp> = () => {
                         </h4>
                         <div className="txt"  {...edit("value2_desc")} />
                     </li>
-                   
+
                 </ul>
             </div>
             <div className="infoimg">
@@ -254,7 +254,7 @@ export const StieInfo: React.FC<IProp> = () => {
                 })
             }} />
             <input />
-            <input value={addInfo.link} />
+            <input onChange={() => { }} value={addInfo.link} />
         </div>}
     </div>;
 };

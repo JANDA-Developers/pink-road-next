@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client"
 import { useState } from "react";
-import { PRODUCT_LIST } from "../apollo/queries";
-import { productList, productListVariables } from "../types/api";
+import { PRODUCT_POST_LIST } from "../apollo/queries";
+import { productPostList, productPostListVariables } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
 // import { PRODUCT_LIST } from "../apollo/queries";
 // import { productList, productListVariables } from "../types/api";
@@ -37,7 +37,7 @@ export const useProductList = ({
     // const [sort, setSort] = useState<_ProductSort[]>([]);
     const [viewCount, setViewCount] = useState(initialViewCount);
     const [page, setPage] = useState(initialPageIndex);
-    const { data, loading } = useQuery<productList, productListVariables>(PRODUCT_LIST, {
+    const { data, loading } = useQuery<productPostList, productPostListVariables>(PRODUCT_POST_LIST, {
         variables: {
             pageInput: {
                 cntPerPage: viewCount,
@@ -46,8 +46,8 @@ export const useProductList = ({
         }
     })
     
-    const items = data?.ProductList.data || [];
-    const pageInfo = data?.ProductList.page || DEFAULT_PAGE;
+    const items = data?.ProductPostList.data || [];
+    const pageInfo = data?.ProductPostList.page || DEFAULT_PAGE;
     
     return { items, loading, pageInfo, setPage, setViewCount, viewCount }
 }

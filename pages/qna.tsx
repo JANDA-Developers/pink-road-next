@@ -39,3 +39,5 @@ export const QnaTable: React.FC<IProp> = () => {
         </div>
     </div>;
 };
+
+export default QnaTable;

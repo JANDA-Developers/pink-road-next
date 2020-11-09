@@ -1,20 +1,20 @@
 import { MutationHookOptions, useMutation } from "@apollo/client";
 import { getOperationName } from "@apollo/client/utilities";
 import { PRODUCT_UPDATE } from "../apollo/mutations";
-import { PRODUCT_LIST } from "../apollo/queries";
-import { productUpdate, productUpdateVariables } from "../types/api";
+import { PRODUCT_POST_LIST } from "../apollo/queries";
+import { productPostUpdate, productPostUpdateVariables } from "../types/api";
 
-export const useProductUpdate = (options?: MutationHookOptions<productUpdate,productUpdateVariables>) => {
-    const [productUpdateMu, { loading: updateLoading }] = useMutation<productUpdate, productUpdateVariables>(PRODUCT_UPDATE, {
-        refetchQueries: [getOperationName(PRODUCT_LIST) || ""],
+export const useProductUpdate = (options?: MutationHookOptions<productPostUpdate,productPostUpdateVariables>) => {
+    const [productUpdateMu, { loading: updateLoading }] = useMutation<productPostUpdate, productPostUpdateVariables>(PRODUCT_UPDATE, {
+        refetchQueries: [getOperationName(PRODUCT_POST_LIST) || ""],
         ...options
     });
     
-    const productUpdate = (variables: productUpdateVariables, onSucess?: () => void) => {
+    const productUpdate = (variables: productPostUpdateVariables, onSucess?: () => void) => {
         productUpdateMu({
             variables
         }).then((data) => {
-            if (data.data?.ProductUpdate.ok) {
+            if (data.data?.ProductPostUpdate.ok) {
                 onSucess?.()
             }
         })
