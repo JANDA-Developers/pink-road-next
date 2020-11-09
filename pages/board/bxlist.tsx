@@ -7,9 +7,6 @@ type TNaviInfo = {
     pagiNaviNum:number
 }
 
-const listNumPerPage = 10; 
-const naviNumPerPage = 10;
-
 const bxlist = () => {
 
     const [infoList, setInfoList] = useState([
@@ -40,11 +37,77 @@ const bxlist = () => {
             title:"10월의 여행일정 미리 공지",
             newPost:true,
             date:"2020.02.02 11:00"
+        },
+        {
+            id:1,
+            sort:"안내",
+            title:"10월의 여행일정 미리 공지",
+            newPost:true,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:2,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:3,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:1,
+            sort:"안내",
+            title:"10월의 여행일정 미리 공지",
+            newPost:true,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:2,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:3,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:1,
+            sort:"안내",
+            title:"10월의 여행일정 미리 공지",
+            newPost:true,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:2,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:3,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
         }
     ]);
     
     const [boardInfo, setBoardInfo] = useState({
-        postNum : 1000
+        listNumPerPage:10,
+        naviNumPerPage:10,
+        postNum : 1000,
+        listOrder:"recent"
     });
 
     const [pageNum, setPageNum] = useState<number>();
@@ -57,9 +120,9 @@ const bxlist = () => {
 
     useEffect(() => {
 
-        const current_pageNum = Math.ceil(boardInfo.postNum/listNumPerPage); 
+        const current_pageNum = Math.ceil(boardInfo.postNum/boardInfo.listNumPerPage); 
   
-        let current_ePage = spage + (naviNumPerPage-1);
+        let current_ePage = spage + (boardInfo.naviNumPerPage-1);
         if(current_ePage >= pageNum) {
             current_ePage = pageNum;
         }
@@ -75,17 +138,31 @@ const bxlist = () => {
         let i = spage;
         for(i; i<= epage; i++){
             let pageVal = i;
-            naviList.push(<a href="#" className={currentPage == pageVal ? "on" : "off"} 
-            onClick={(e)=>{handleNavi(e,pageVal)}}>{i}</a>);
+            naviList.push(
+                <a href="#" className={currentPage == pageVal ? "on" : "off"} 
+                   onClick={(e)=>{handleNavi(e,pageVal)}}>{i}</a>);
         }
         return naviList;
-
     }
 
     const currentPageUpdate = (currentPage:number) =>{
         setCurrentPage(currentPage);
     }
 
+    const handeOrder = (e) => {
+        setBoardInfo({
+            ...boardInfo,
+            listOrder:e.target.value
+        })
+    }
+
+    const handleListNum = (e) => {
+        const newListNum = parseInt(e.target.value); 
+        setBoardInfo({
+            ...boardInfo,
+            listNumPerPage:newListNum
+        })
+    }
 
     const handleNavi = (e,naviTarget:number) => {
         e.preventDefault();
@@ -100,7 +177,7 @@ const bxlist = () => {
 
       const handleEnd = (e) => {
         e.preventDefault();
-        const sNumber = pageNum - (naviNumPerPage-1); 
+        const sNumber = pageNum - (boardInfo.naviNumPerPage-1); 
         setSPage(sNumber);
         currentPageUpdate(sNumber);
       }
@@ -108,7 +185,7 @@ const bxlist = () => {
       const handlePrev = (e) => {
         e.preventDefault();
         if(spage > 1) {
-            const prevPage = spage - naviNumPerPage;  
+            const prevPage = spage - boardInfo.naviNumPerPage;  
             setSPage(prevPage);
             currentPageUpdate(prevPage);
         }
@@ -121,7 +198,7 @@ const bxlist = () => {
             setSPage(nextPage);
             currentPageUpdate(nextPage);
         }else{
-            alert('마지막 페이지 입니다')
+            alert('마지막 페이지 입니다');
         }
       }
 
@@ -143,15 +220,15 @@ const bxlist = () => {
                    
                 </div>
                 <div className="right_div">
-                    <select className="sel01">
-                    <option>최신↑</option>
-                    <option>최신↓</option>
-                    <option>조회수</option>
+                    <select className="sel01" onChange={(e)=>{handeOrder(e)}}>
+                    <option value="recent">최신↑</option>
+                    <option value="old">최신↓</option>
+                    <option value="viewed">조회수</option>
                     </select>
-                    <select className="sel02">
-                    <option>10개 보기</option>
-                    <option>50개 보기</option>
-                    <option>100개 보기</option>
+                    <select className="sel02" onChange={(e)=>{handleListNum(e)}}>
+                        <option value="10">10개 보기</option>
+                        <option value="50">50개 보기</option>
+                        <option value="100">100개 보기</option>
                     </select>
                 </div>
                 </div>
