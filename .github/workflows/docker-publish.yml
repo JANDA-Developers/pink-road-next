@@ -1,15 +1,7 @@
-name: Docker
-
+name: Publish Docker image
 on:
-  push:
-    # Publish `develop` as Docker `latest` image.
-    branches:
-      - master
-
-env:
-  # TODO: Change variable to your image's name.
-  IMAGE_NAME: colton159/docker-nextjs
-
+  release:
+    types: [published]
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
@@ -22,5 +14,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: colton159/docker-nextjs
+          repository: my-docker-hub-namespace/my-docker-hub-repository
           tag_with_ref: true
