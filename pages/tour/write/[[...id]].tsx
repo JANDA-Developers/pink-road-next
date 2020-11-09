@@ -31,6 +31,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     const [itineries, setitineries] = useState<ItineryCreateInput[]>(itinerary);
     const { signleUpload } = useUpload();
     const [data, setData] = useState<TProductDataPart>(defaultData)
+    const [catId, setCat] = useState(defaults.categoryId);
     const [status, setStatus] = useState(defaults.status);
     const [thumbs, setThumbs] = useState<Partial<Ffile>[]>(images)
     const [tab, setTab] = useState<number>(1);
