@@ -87,3 +87,5 @@ export const TourList: React.FC<IProp> = ({ context }) => {
         </div>
     </div>
 };
+
+export default TourList;

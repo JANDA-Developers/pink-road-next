@@ -52,7 +52,7 @@ export const DEFAULT_PRODUCT_INPUT: IProductDefaultData = process.env.NODE_ENV =
     images: [],
     content: "",
     inOrNor: {},
-    itinery: [],
+    itinerary: [],
     categoryId: "",
     ...DEFAULT_PRODUCT_PART
 } : {
@@ -62,6 +62,6 @@ export const DEFAULT_PRODUCT_INPUT: IProductDefaultData = process.env.NODE_ENV =
     images: [],
     inOrNor: {},
     content: "",
-    itinery: [],
+    itinerary: [],
     ...DEFAULT_PRODUCT_PART
 } 

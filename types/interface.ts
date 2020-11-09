@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
-import {  productPostFindById_ProductPostFindById_data, productPostFindById_ProductPostFindById_data_itinery_images, productPostList_ProductPostList_data, productPostList_ProductPostList_page} from "../types/api";
+import {  productPostFindById_ProductPostFindById_data, productPostFindById_ProductPostFindById_data_itinerary, productPostList_ProductPostList_data, productPostList_ProductPostList_page} from "../types/api";
 
-export interface Iitineraries extends productPostFindById_ProductPostFindById_data_itinery_images {}
+export interface Iitineraries extends productPostFindById_ProductPostFindById_data_itinerary {}
 export interface IProductPostFindById  extends productPostFindById_ProductPostFindById_data {}
 export interface IProduct extends productPostList_ProductPostList_data { };
 export interface IPageInfo extends  productPostList_ProductPostList_page {}

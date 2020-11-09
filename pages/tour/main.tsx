@@ -14,7 +14,7 @@ export const TourMain: React.FC<IProp> = () => {
         </SubTopNav>
         <div className="tour_box">
             <div className="w1200">
-                <div id="sub_tap_nav" class="subtop_nav">
+                <div id="sub_tap_nav" className="subtop_nav">
                     <ul>
                         <li><a href="/tour-list">전체</a></li>
                         <li><a href="/tour-list">문화·예술여행</a></li>

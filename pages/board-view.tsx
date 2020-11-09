@@ -115,7 +115,6 @@ export const BoardView: React.FC<IProp> = () => {
             </div>
         </div>
     </div>;
-    ;
 };
 
-
+export default BoardView;

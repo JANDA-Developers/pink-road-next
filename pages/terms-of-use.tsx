@@ -1,12 +1,12 @@
 import React from 'react'
-import bg from '/img/su_visual_bg.jpg';
+
 const TermsOfUse = () => {
     return (
         <div>
             <div className="top_visual">
                 <div
                     className="sub_header sub_bg"
-                    style={{ backgroundImage: `url(${bg})` }}
+                    style={{ backgroundImage: `url(/img/su_visual_bg.jpg)` }}
                 >
                     <div className="w1200">
                         <h2 className="title">이용약관</h2>

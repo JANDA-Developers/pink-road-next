@@ -45,8 +45,8 @@ export const detactRangeChange = (range:TRange):string[] =>  {
 export const getDefault = (product?:IProductPostFindById) => {
     const defaults: IProductDefaultData = product ? product : DEFAULT_PRODUCT_INPUT
 
-    const from = defaults.itinery[0]?.date || undefined;
-    const to = defaults.itinery[defaults.itinery.length - 1]?.date || undefined;
+    const from = defaults.itinerary[0]?.date || undefined;
+    const to = defaults.itinerary[defaults.itinerary.length - 1]?.date || undefined;
 
     const data = {
         address: defaults.address || "",

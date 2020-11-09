@@ -11,7 +11,7 @@ import { useMutation } from '@apollo/client';
 import { useProductFindById } from '../../../hook/useProductFindById';
 import DayPicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
-import { detactRangeChange, generateitinery, getDefault } from './helper';
+import { detactRangeChange, generateitinery, getDefault } from '../../../components/tourWrite/helper';
 import { useUpload } from "hook/useUpload";
 import { PRODUCT_POST_CREATE } from "apollo/mutations";
 import { IProductPostFindById } from "types/interface";
@@ -222,7 +222,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     <div className="img_box_add">
                         <ul className="img_add">
                             {thumbs.map((thumb, i) =>
-                                <li key={thumb._id} className="on_file">{thumb.name}<i onClick={() => { handleClearThumb(i) }} className="flaticon-multiply icon_x"></i></li>
+                                <li key={i + "thumb"} className="on_file">{thumb.name}<i onClick={() => { handleClearThumb(i) }} className="flaticon-multiply icon_x"></i></li>
                             )}
                             <li onClick={handleUploadClick}>이미지추가<i className="flaticon-add icon_plus"></i></li>
                             <input onChange={handleChangeSumbNail} ref={hiddenFileInput} hidden type="file" />
