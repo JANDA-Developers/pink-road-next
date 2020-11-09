@@ -1,5 +1,5 @@
 import React from 'react';
-import PIcon from "/img/p_icon.png"
+
 interface IProp { }
 
 export const PortFolio: React.FC<IProp> = () => {
