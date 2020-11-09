@@ -95,23 +95,23 @@ export const SIGN_IN = gql`
   ${F_ITINERARY}
 `;
 
-export const GET_MY_PROFILE = gql`
-  query signIn(
-    $email: Email!
-    $pw: String!
-    ) {
-    SignIn(
-      email:$email,
-      pw:$pw
-      )  {
-        ok: Boolean!
-        error: String
-        data: User
-        }
-      }
-  }
-  ${F_ITINERARY}
-`;
+// export const GET_MY_PROFILE = gql`
+//   query signIn(
+//     $email: Email!
+//     $pw: String!
+//     ) {
+//     SignIn(
+//       email:$email,
+//       pw:$pw
+//       )  {
+//         ok
+//         error
+//         data
+//         }
+//       }
+//   }
+//   ${F_ITINERARY}
+// `;
 
 // export const FIND_USER = gql`
 //   query findUser {
