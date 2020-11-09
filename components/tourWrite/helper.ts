@@ -2,7 +2,7 @@ import { DEFAULT_itinery } from "components/tourWrite/ItineryForm";
 import { EPROTO } from "constants";
 import dayjs from "dayjs";
 import { ItineryCreateInput } from "types/api";
-import { DEFAULT_PRODUCT_INPUT, IProductDefaultData } from "types/defaults/defaultProduct";
+import { DEFAULT_PRODUCT_INPUT, IProductDefaultData, TProductDataPart } from "types/defaults/defaultProduct";
 import { IProductPostFindById } from "types/interface";
 
 export type TRange = {
@@ -19,11 +19,11 @@ export const generateitinery = (range:TRange,itineries:ItineryCreateInput[]):Iti
 
     const diff = dayjs(to).diff(from, "d") + 1;
 
-    // 인덱스 뒤에 남은거를 지워야함
+    // 배열 길이가 줄어들었다면 그만큼 잘라주어야함.
     if (diff < itineries.length)
-        tempSch.slice(0, diff);
+        tempSch = tempSch.slice(0, diff);
 
-    // 인덱스 남는거는 default채운후
+    // 인덱스 가 부족하다면 채워줌
     if (diff > itineries.length)
         tempSch = [...tempSch, ...Array(diff - tempSch.length).fill({...DEFAULT_itinery, contents: []})]
 
@@ -37,7 +37,6 @@ export const generateitinery = (range:TRange,itineries:ItineryCreateInput[]):Iti
 }
 
 
-
 export const detactRangeChange = (range:TRange):string[] =>  {
     return [dayjs(range.from || new Date())?.format("MMDD"), dayjs(range.to || new Date())?.format("MMDD")]
 }
@@ -45,10 +44,10 @@ export const detactRangeChange = (range:TRange):string[] =>  {
 export const getDefault = (product?:IProductPostFindById) => {
     const defaults: IProductDefaultData = product ? product : DEFAULT_PRODUCT_INPUT
 
-    const from = defaults.itinerary[0]?.date || undefined;
-    const to = defaults.itinerary[defaults.itinerary.length - 1]?.date || undefined;
+    const from = process.env.NODE_ENV === "development" ? new Date() : defaults.itinerary[0]?.date || undefined ;
+    const to = process.env.NODE_ENV === "development" ? dayjs().add(2,"day").toDate() : defaults.itinerary[defaults.itinerary.length - 1]?.date || undefined;
 
-    const data = {
+    const data:TProductDataPart = {
         address: defaults.address || "",
         adult_price: defaults.adult_price || null,
         baby_price: defaults.baby_price || null,
@@ -62,9 +61,11 @@ export const getDefault = (product?:IProductPostFindById) => {
         caution: defaults.caution || "",
         keyWards: defaults.keyWards || [],
     }
-    
-    const range = {from,to}
 
-    return  {data,range,defaults}
+    const {itinerary,images, content} = defaults
+   
+
+    return  {data,defaults,itinerary,images,content}
 
 }
+

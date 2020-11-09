@@ -20,7 +20,8 @@ export const Upload: React.FC<IUploadProps> = ({ onUpload }) => {
         hiddenImgInput.current?.click()
     }}>  <input ref={hiddenImgInput} onChange={() => {
         const file = hiddenImgInput.current?.files;
-        signleUpload(file || null, (url) => {
+        signleUpload(file || null, (url, data) => {
+            console.log(data);
             onUpload(url);
         })
     }} hidden type="file" /></div>;

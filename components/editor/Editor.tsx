@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import EditorJs from 'react-editor-js';
 import { EditorJsProps } from 'react-editor-js/dist/EditorJs';
 

@@ -5,7 +5,8 @@ import { onError } from "@apollo/client/link/error";
 import { createUploadLink } from "apollo-upload-client";
 
 const headers = {
-};
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluQG5hdmVyLmNvbSIsImlhdCI6MTYwNDkwMjIzMX0.Akxsuj1uVGgqqiSjC8O8WOQ5gOATTSyssIa6VSiqei0"
+}
 
 // const errorLink = onError(({ graphQLErrors, networkError }) => {
 //   if (graphQLErrors) {
