@@ -234,9 +234,6 @@ export const PortFolio: React.FC<IProp> = () => {
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
 
         </div>

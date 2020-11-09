@@ -43,8 +43,6 @@ const closePopup = (element: string | null) => {
     document!.getElementById('fade')!.style.display = 'none';
 }
 
-
-
 const Join = () => {
 
     const [joinForm, setJoinForm] = useState('normal');
