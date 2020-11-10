@@ -100,10 +100,10 @@ export const Header: React.FC<IProp> = () => {
                             <a href="/portfolio">Work</a>
                         </li>
                         <li className="deps">
-                            <a href="/tour/main">Tour</a>
+                            <a href="/tour">Tour</a>
                         </li>
                         <li className="deps">
-                            <a href="/tour/main?type=exp">Experience</a>
+                            <a href="/tour?type=exp">Experience</a>
                         </li>
                         <li className="deps">
                             <a href="/??">Design Goods</a>

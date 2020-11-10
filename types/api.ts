@@ -10,11 +10,10 @@
 export interface categoryCreate_CategoryCreate_data {
   __typename: "Category";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   label: string;
-  value: string;
 }
 
 export interface categoryCreate_CategoryCreate {
@@ -44,11 +43,10 @@ export interface categoryCreateVariables {
 export interface categoryUpdate_CategoryUpdate_data {
   __typename: "Category";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   label: string;
-  value: string;
 }
 
 export interface categoryUpdate_CategoryUpdate {
@@ -79,11 +77,10 @@ export interface categoryUpdateVariables {
 export interface categoryDelete_CategoryDelete_data {
   __typename: "Category";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   label: string;
-  value: string;
 }
 
 export interface categoryDelete_CategoryDelete {
@@ -113,7 +110,7 @@ export interface categoryDeleteVariables {
 export interface productPostCreate_ProductPostCreate_data_author {
   __typename: "User";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
@@ -139,7 +136,7 @@ export interface productPostCreate_ProductPostCreate_data_category {
 
 export interface productPostCreate_ProductPostCreate_data_itinerary_images {
   __typename: "File";
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   name: string;
   description: string;
@@ -152,7 +149,7 @@ export interface productPostCreate_ProductPostCreate_data_itinerary_images {
 export interface productPostCreate_ProductPostCreate_data_itinerary {
   __typename: "Itinerary";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   productPostId: string;
@@ -165,7 +162,7 @@ export interface productPostCreate_ProductPostCreate_data_itinerary {
 export interface productPostCreate_ProductPostCreate_data {
   __typename: "ProductPost";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   title: string;
@@ -215,7 +212,7 @@ export interface productPostCreateVariables {
 export interface productPostUpdate_ProductPostUpdate_data_author {
   __typename: "User";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
@@ -241,7 +238,7 @@ export interface productPostUpdate_ProductPostUpdate_data_category {
 
 export interface productPostUpdate_ProductPostUpdate_data_itinerary_images {
   __typename: "File";
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   name: string;
   description: string;
@@ -254,7 +251,7 @@ export interface productPostUpdate_ProductPostUpdate_data_itinerary_images {
 export interface productPostUpdate_ProductPostUpdate_data_itinerary {
   __typename: "Itinerary";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   productPostId: string;
@@ -267,7 +264,7 @@ export interface productPostUpdate_ProductPostUpdate_data_itinerary {
 export interface productPostUpdate_ProductPostUpdate_data {
   __typename: "ProductPost";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   title: string;
@@ -318,7 +315,7 @@ export interface productPostUpdateVariables {
 export interface productPostDelete_ProductPostDelete_data_author {
   __typename: "User";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
@@ -344,7 +341,7 @@ export interface productPostDelete_ProductPostDelete_data_category {
 
 export interface productPostDelete_ProductPostDelete_data_itinerary_images {
   __typename: "File";
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   name: string;
   description: string;
@@ -357,7 +354,7 @@ export interface productPostDelete_ProductPostDelete_data_itinerary_images {
 export interface productPostDelete_ProductPostDelete_data_itinerary {
   __typename: "Itinerary";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   productPostId: string;
@@ -370,7 +367,7 @@ export interface productPostDelete_ProductPostDelete_data_itinerary {
 export interface productPostDelete_ProductPostDelete_data {
   __typename: "ProductPost";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   title: string;
@@ -536,7 +533,6 @@ export interface pageInfoCreateVariables {
 export interface pageInfoDelete_PageInfoDelete_data {
   __typename: "PageInfo";
   _id: string;
-  cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
   key: string;
@@ -570,7 +566,6 @@ export interface pageInfoDeleteVariables {
 export interface pageInfoUpdate_PageInfoUpdate_data {
   __typename: "PageInfo";
   _id: string;
-  cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
   key: string;
@@ -645,7 +640,7 @@ export interface productPostList_ProductPostList_page {
 export interface productPostList_ProductPostList_data_author {
   __typename: "User";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
@@ -671,7 +666,7 @@ export interface productPostList_ProductPostList_data_category {
 
 export interface productPostList_ProductPostList_data_itinerary_images {
   __typename: "File";
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   name: string;
   description: string;
@@ -684,7 +679,7 @@ export interface productPostList_ProductPostList_data_itinerary_images {
 export interface productPostList_ProductPostList_data_itinerary {
   __typename: "Itinerary";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   productPostId: string;
@@ -697,7 +692,7 @@ export interface productPostList_ProductPostList_data_itinerary {
 export interface productPostList_ProductPostList_data {
   __typename: "ProductPost";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   title: string;
@@ -748,11 +743,10 @@ export interface productPostListVariables {
 export interface categoryFindById_CategoryFindById_data {
   __typename: "Category";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   label: string;
-  value: string;
 }
 
 export interface categoryFindById_CategoryFindById {
@@ -782,7 +776,7 @@ export interface categoryFindByIdVariables {
 export interface productPostFindById_ProductPostFindById_data_author {
   __typename: "User";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
@@ -808,7 +802,7 @@ export interface productPostFindById_ProductPostFindById_data_category {
 
 export interface productPostFindById_ProductPostFindById_data_itinerary_images {
   __typename: "File";
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   name: string;
   description: string;
@@ -821,7 +815,7 @@ export interface productPostFindById_ProductPostFindById_data_itinerary_images {
 export interface productPostFindById_ProductPostFindById_data_itinerary {
   __typename: "Itinerary";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   productPostId: string;
@@ -834,7 +828,7 @@ export interface productPostFindById_ProductPostFindById_data_itinerary {
 export interface productPostFindById_ProductPostFindById_data {
   __typename: "ProductPost";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   title: string;
@@ -884,11 +878,10 @@ export interface productPostFindByIdVariables {
 export interface categoryList_CategoryList_data {
   __typename: "Category";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   label: string;
-  value: string;
 }
 
 export interface categoryList_CategoryList {
@@ -944,7 +937,6 @@ export interface signInVariables {
 export interface pageInfoRead_PageInfoRead_data {
   __typename: "PageInfo";
   _id: string;
-  cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
   key: string;
@@ -972,17 +964,74 @@ export interface pageInfoReadVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: getContext
+// ====================================================
+
+export interface getContext_GetProfile_data {
+  __typename: "User";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  pw: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
+}
+
+export interface getContext_GetProfile {
+  __typename: "MeResponse";
+  ok: boolean;
+  error: string | null;
+  data: getContext_GetProfile_data | null;
+}
+
+export interface getContext_CategoryList_data {
+  __typename: "Category";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  label: string;
+}
+
+export interface getContext_CategoryList {
+  __typename: "CategoryListResponse";
+  ok: boolean;
+  error: string | null;
+  data: getContext_CategoryList_data[];
+}
+
+export interface getContext {
+  GetProfile: getContext_GetProfile;
+  CategoryList: getContext_CategoryList;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fcategory
 // ====================================================
 
 export interface Fcategory {
   __typename: "Category";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   label: string;
-  value: string;
 }
 
 /* tslint:disable */
@@ -997,7 +1046,7 @@ export interface Fcategory {
 export interface Fuser {
   __typename: "User";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
@@ -1027,7 +1076,6 @@ export interface Fuser {
 export interface FpageInfo {
   __typename: "PageInfo";
   _id: string;
-  cratedAt: any;
   updatedAt: any;
   isDelete: boolean;
   key: string;
@@ -1094,7 +1142,7 @@ export interface Fpage {
 
 export interface Ffile {
   __typename: "File";
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   name: string;
   description: string;
@@ -1115,7 +1163,7 @@ export interface Ffile {
 
 export interface Fitinerary_images {
   __typename: "File";
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   name: string;
   description: string;
@@ -1128,7 +1176,7 @@ export interface Fitinerary_images {
 export interface Fitinerary {
   __typename: "Itinerary";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   productPostId: string;
@@ -1150,7 +1198,7 @@ export interface Fitinerary {
 export interface FproductPost_author {
   __typename: "User";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
@@ -1176,7 +1224,7 @@ export interface FproductPost_category {
 
 export interface FproductPost_itinerary_images {
   __typename: "File";
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   name: string;
   description: string;
@@ -1189,7 +1237,7 @@ export interface FproductPost_itinerary_images {
 export interface FproductPost_itinerary {
   __typename: "Itinerary";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   productPostId: string;
@@ -1202,7 +1250,7 @@ export interface FproductPost_itinerary {
 export interface FproductPost {
   __typename: "ProductPost";
   _id: string;
-  cratedAt: any;
+  createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   title: string;
@@ -1293,12 +1341,10 @@ export interface AddUserInput {
 
 export interface CategoryCreateInput {
   label: string;
-  value: string;
 }
 
 export interface CategoryUpdateInput {
   label?: string | null;
-  value?: string | null;
 }
 
 export interface FileCreateInput {

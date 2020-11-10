@@ -11,7 +11,7 @@ import { pageInfoRead_PageInfoRead_data } from 'types/api';
 
 
 type TGetProps = {
-    pageInfo: pageInfoRead_PageInfoRead_data | "",
+    pageInfo: typeof pageInfoDefault | "",
 }
 export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
     const { data } = await usePageInfo("site-info");
@@ -23,18 +23,15 @@ export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
 }
 
 export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
-
-    console.log(pageInfo);
-
+    const original = pageInfo || pageInfoDefault;
     const { editMode } = useContext(AppContext)
-    const [page, setPage] = useState<typeof pageInfoDefault>(pageInfo as any || pageInfoDefault)
+    const [page, setPage] = useState<typeof pageInfoDefault>(original)
     const [open, setOpen] = useState(true);
     const [addInfo, setAddInfo] = useState({
         alt: "",
         img: "",
         link: "",
     })
-
 
     const { edit, ulEdit, imgEdit, editArray, addArray, removeArray } = getEditUtils(editMode, page, setPage);
     const { partners } = page;
@@ -45,7 +42,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
     }
 
     return <div className="siteInfo_in">
-        <HiddenSubmitBtn path="site-info" data={page} />
+        <HiddenSubmitBtn setData={setPage} original={original} path="site-info" data={page} />
         <div style={{
             backgroundImage: `url(${page.mainBg})`
         }} className="top_bg w100">
@@ -222,7 +219,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                 <ul>
                     {partners.map((partner, index) => {
                         const { alt, img, link } = partner;
-                        return <li key={index}>
+                        return <li key={index + "partner"}>
                             <a href={link}>
                                 <img src='/img/partners7.png' alt={alt} />
                                 <span className="del" onClick={() => {

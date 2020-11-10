@@ -31,7 +31,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cratedAt",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
@@ -136,7 +136,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cratedAt",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
@@ -499,7 +499,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cratedAt",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
@@ -548,22 +548,6 @@
           },
           {
             "name": "label",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
             "description": null,
             "args": [],
             "type": {
@@ -1081,7 +1065,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cratedAt",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
@@ -1580,7 +1564,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cratedAt",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
@@ -1751,7 +1735,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cratedAt",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
@@ -1884,7 +1868,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cratedAt",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
@@ -2088,7 +2072,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cratedAt",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
@@ -2550,6 +2534,30 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "updateTargetId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updateTarget",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProductPost",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -2967,7 +2975,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cratedAt",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
@@ -3418,7 +3426,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cratedAt",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
@@ -5323,20 +5331,6 @@
               }
             },
             "defaultValue": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -5390,16 +5384,6 @@
         "inputFields": [
           {
             "name": "label",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "value",
             "description": null,
             "type": {
               "kind": "SCALAR",

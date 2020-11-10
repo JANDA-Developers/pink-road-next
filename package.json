@@ -38,7 +38,8 @@
     "react-daum-postcode": "^2.0.1",
     "react-day-picker": "^7.4.8",
     "react-dom": "16.14.0",
-    "react-editor-js": "^1.6.2"
+    "react-editor-js": "^1.6.2",
+    "react-editorjs-renderer": "^2.1.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.6",

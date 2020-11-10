@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import { CSSProperties, Dispatch } from "react";
 import {  productPostFindById_ProductPostFindById_data, productPostFindById_ProductPostFindById_data_itinerary, productPostList_ProductPostList_data, productPostList_ProductPostList_page} from "../types/api";
 
 export interface Iitineraries extends productPostFindById_ProductPostFindById_data_itinerary {}
@@ -33,3 +33,20 @@ export enum QStatus {
     "DONE" = "DONE"
 }
 export declare type ISet<T> = Dispatch<React.SetStateAction<T>>;
+
+
+export type TPageKeys = "site-info" | "main"  
+
+
+export type TLangs = "kr" | "en" | string
+type TInfoCell = {
+    style:CSSProperties,
+    [key:any]:string
+}
+export type TStieInfo = {
+    [key:string]:TInfoCell
+}
+
+const foo: = {
+    zIndex:2
+}

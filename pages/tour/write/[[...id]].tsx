@@ -14,7 +14,6 @@ import dynamic from 'next/dynamic'
 import { generateitinery, getDefault, TRange } from '../../../components/tourWrite/helper';
 import { useUpload } from "hook/useUpload";
 import { PRODUCT_POST_CREATE } from "apollo/mutations";
-import { IProductPostFindById } from "types/interface";
 import { ItineryForm } from "components/tourWrite/ItineryForm";
 import { autoComma } from "utils/formatter";
 import dayjs from "dayjs";

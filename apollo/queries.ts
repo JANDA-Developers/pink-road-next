@@ -113,6 +113,26 @@ export const PAGE_INFO_READ = gql`
 `;
 
 
+export const GET_CONTEXT = gql`
+  query getContext {
+      GetProfile {
+        ok
+        error
+        data {
+          ...Fuser
+        }
+      }
+      CategoryList  {
+        ok
+        error
+        data {
+          ...Fcategory
+        }
+      }
+  }
+  ${F_CATEGORY}
+  ${F_USER}
+`;
 
 // export const GET_MY_PROFILE = gql`
 //   query signIn(

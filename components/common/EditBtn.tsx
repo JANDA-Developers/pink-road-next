@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import { AppContext } from 'pages/_app';
+import { UserRole } from 'types/api';
 
 interface IProp { }
 
 export const EditBtn: React.FC<IProp> = () => {
-    const { editMode, setEditMode } = useContext(AppContext)
+    const { editMode, setEditMode, role } = useContext(AppContext)
 
     //useEffect(() => {
     //    if (editMode)
@@ -15,9 +16,17 @@ export const EditBtn: React.FC<IProp> = () => {
     //        window.onbeforeunload = () => { }
     //}, [editMode])
 
+    const editable = (role === UserRole.admin || UserRole.manager)
+
+    if (!editable) return null
+
     return <div onClick={() => {
         setEditMode(!editMode)
-        if (editMode && window.confirm("변경내용을 저장 하시겠습니까? (취소시 초기화됨)"))
+        if (!editMode) return;
+        if (window.confirm("변경내용을 저장 하시겠습니까? (취소시 초기화됨)"))
             document.getElementById("PageSubmitBtn")?.click();
+        else
+            document.getElementById("PageRestBtn")?.click();
+
     }} id="setting_link"><i><object type="image/svg+xml" data="/img/svg/setting_icon.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object></i>{editMode ? "편집모드" : "편집종료"}</div>
 };

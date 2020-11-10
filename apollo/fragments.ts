@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 export const F_CATEGORY = gql`
     fragment Fcategory on Category {
         _id
-        cratedAt
+        createdAt
         updatedAt
         isDelete
         label
@@ -13,7 +13,7 @@ export const F_CATEGORY = gql`
 export const F_USER = gql`
     fragment Fuser  on User  {
         _id
-        cratedAt
+        createdAt
         updatedAt
         isDelete
         email
@@ -36,7 +36,6 @@ export const F_USER = gql`
 export const F_PAGE_INFO = gql`
     fragment FpageInfo on PageInfo {
         _id
-        cratedAt
         updatedAt
         isDelete
         key
@@ -61,7 +60,7 @@ export const F_PAGE = gql`
 
 export const F_FILE = gql`
     fragment Ffile on File {
-        cratedAt
+        createdAt
         updatedAt
         name
         description
@@ -75,7 +74,7 @@ export const F_FILE = gql`
 export const F_ITINERARY = gql`
     fragment Fitinerary on Itinerary  {
         _id
-        cratedAt
+        createdAt
         updatedAt
         isDelete
         productPostId
@@ -92,7 +91,7 @@ export const F_ITINERARY = gql`
 export const F_PRODUCT_POST = gql`
     fragment FproductPost on ProductPost {
         _id
-        cratedAt
+        createdAt
         updatedAt
         isDelete
         title

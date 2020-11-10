@@ -1,11 +1,25 @@
 *[contenteditable="true"]{
     display: inline-block;
-    width: 100%;
     outline: 1px dashed;
 }
 *[contenteditable="true"]:focus{
     outline: 1px solid;
 }
+
+div[contenteditable="true"]{
+    width: 100%;
+}
+
+h5[contenteditable="true"],
+h4[contenteditable="true"],
+h3[contenteditable="true"],
+h2[contenteditable="true"],
+h1[contenteditable="true"]
+{
+    width: 100%;
+}
+
+
 
 .codex-editor *[contenteditable="true"]{
     outline: none;
@@ -56,6 +70,7 @@ ul[contenteditable="true"] li {
 
 /* 이미지교체 아이콘 */
 .img_edit {
+    z-index: 9999;
     position:relative;
 }
 

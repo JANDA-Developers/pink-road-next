@@ -129,6 +129,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         },
         contentEditable: editable,
         suppressContentEditableWarning: true,
+        onClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => { e.preventDefault(); },
         ...data(key) as Data
     })
 
