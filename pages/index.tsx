@@ -65,7 +65,7 @@ export const Main: React.FC<IProp> = () => {
     <div className="main_con_box1">
       <div
         className="main_top_images"
-        style={{ backgroundImage: `url(/img/main_bg_07.jpg)` }}
+        style={{ backgroundImage: `url(${page.mainBg})` }}
       >
         <div className="w1200">
           <strong {...edit("title")} />
@@ -78,7 +78,7 @@ export const Main: React.FC<IProp> = () => {
         </div>
       </div>
     </div>
-    
+
     <div className="main_con_box2">
       <div className="w1200">
         <div className="top_txt">

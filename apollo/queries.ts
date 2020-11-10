@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_CATEGORY, F_ITINERARY, F_PAGE, F_PRODUCT_POST, F_USER } from "./fragments";
+import { F_CATEGORY, F_ITINERARY, F_PAGE, F_PAGE_INFO, F_PRODUCT_POST, F_USER } from "./fragments";
 
 /* :::::::::::::::::::::::::::::::::::::: 
 
@@ -75,7 +75,6 @@ export const CATEGORY_LIST = gql`
   ${F_CATEGORY}
 `;
 
-
 export const SIGN_IN = gql`
   query signIn(
     $email: Email!
@@ -94,6 +93,26 @@ export const SIGN_IN = gql`
   }
   ${F_ITINERARY}
 `;
+
+
+export const PAGE_INFO_READ = gql`
+  query pageInfoRead(
+      $key: String!
+    ) {
+    PageInfoRead(
+      key: $key
+      )  {
+        ok
+        error
+        data {
+            ...FpageInfo
+        }
+      }
+  }
+  ${F_PAGE_INFO}
+`;
+
+
 
 // export const GET_MY_PROFILE = gql`
 //   query signIn(

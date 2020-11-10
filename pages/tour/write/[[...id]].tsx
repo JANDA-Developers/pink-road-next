@@ -1,17 +1,17 @@
 
 import { useRouter } from "next/router";
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import { OutputData } from '@editorjs/editorjs';
 import "react-day-picker/lib/style.css";
-import { Ffile, ItineryCreateInput, productPostCreate, ProductPostCreateInput, productPostCreateVariables, ProductPostStatus } from '../../../types/api';
+import { Ffile, ItineraryCreateInput, productPostCreate, ProductPostCreateInput, productPostCreateVariables, ProductPostStatus } from '../../../types/api';
 import { IProductDefaultData, TProductDataPart } from '../../../types/defaults/defaultProduct';
 import { EMPTY_EDITOR } from '../../../types/const';
 import { useMutation } from '@apollo/client';
 import { useProductFindById } from '../../../hook/useProductFindById';
 import DayPicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
-import { detactRangeChange, generateitinery, getDefault, TRange } from '../../../components/tourWrite/helper';
+import { generateitinery, getDefault, TRange } from '../../../components/tourWrite/helper';
 import { useUpload } from "hook/useUpload";
 import { PRODUCT_POST_CREATE } from "apollo/mutations";
 import { IProductPostFindById } from "types/interface";
@@ -28,10 +28,10 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     const { createFn, product, mode } = context;
     const { data: defaultData, defaults, content: contentBlocks, images, itinerary } = getDefault(product);
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
-    const [itineries, setitineries] = useState<ItineryCreateInput[]>(itinerary);
+    const [itineries, setitineries] = useState<ItineraryCreateInput[]>(itinerary);
     const { signleUpload } = useUpload();
     const [data, setData] = useState<TProductDataPart>(defaultData)
-    const [catId, setCat] = useState(defaults.categoryId);
+    const [categoryId, setCategoryId] = useState(defaults.categoryId);
     const [status, setStatus] = useState(defaults.status);
     const [thumbs, setThumbs] = useState<Partial<Ffile>[]>(images)
     const [tab, setTab] = useState<number>(1);
@@ -96,7 +96,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         setData({ ...data, [key]: value })
     }
 
-    const nextData = {
+    const nextData: ProductPostCreateInput = {
         itinerary,
         title,
         address,
@@ -113,7 +113,8 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         minMember,
         startPoint,
         status,
-        subTitle
+        subTitle,
+        categoryId
     }
 
     const handleCreate = () => {

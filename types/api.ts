@@ -141,7 +141,6 @@ export interface productPostCreate_ProductPostCreate_data_itinerary_images {
   __typename: "File";
   cratedAt: any;
   updatedAt: any;
-  isDelete: boolean;
   name: string;
   description: string;
   extension: string;
@@ -244,7 +243,6 @@ export interface productPostUpdate_ProductPostUpdate_data_itinerary_images {
   __typename: "File";
   cratedAt: any;
   updatedAt: any;
-  isDelete: boolean;
   name: string;
   description: string;
   extension: string;
@@ -348,7 +346,6 @@ export interface productPostDelete_ProductPostDelete_data_itinerary_images {
   __typename: "File";
   cratedAt: any;
   updatedAt: any;
-  isDelete: boolean;
   name: string;
   description: string;
   extension: string;
@@ -422,9 +419,6 @@ export interface productPostDeleteVariables {
 
 export interface multiUpload_MultiUpload_data {
   __typename: "File";
-  cratedAt: any;
-  updatedAt: any;
-  isDelete: boolean;
   name: string;
   description: string;
   extension: string;
@@ -513,6 +507,98 @@ export interface signInGoogleVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: pageInfoCreate
+// ====================================================
+
+export interface pageInfoCreate_PageInfoCreate {
+  __typename: "PageInfoCreateResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface pageInfoCreate {
+  PageInfoCreate: pageInfoCreate_PageInfoCreate;
+}
+
+export interface pageInfoCreateVariables {
+  params: PageInfoCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: pageInfoDelete
+// ====================================================
+
+export interface pageInfoDelete_PageInfoDelete_data {
+  __typename: "PageInfo";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  key: string;
+  value: any;
+}
+
+export interface pageInfoDelete_PageInfoDelete {
+  __typename: "PageInfoDeleteResponse";
+  ok: boolean;
+  error: string | null;
+  data: pageInfoDelete_PageInfoDelete_data | null;
+}
+
+export interface pageInfoDelete {
+  PageInfoDelete: pageInfoDelete_PageInfoDelete;
+}
+
+export interface pageInfoDeleteVariables {
+  key: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: pageInfoUpdate
+// ====================================================
+
+export interface pageInfoUpdate_PageInfoUpdate_data {
+  __typename: "PageInfo";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  key: string;
+  value: any;
+}
+
+export interface pageInfoUpdate_PageInfoUpdate {
+  __typename: "PageInfoUpdateResponse";
+  ok: boolean;
+  error: string | null;
+  data: pageInfoUpdate_PageInfoUpdate_data | null;
+}
+
+export interface pageInfoUpdate {
+  PageInfoUpdate: pageInfoUpdate_PageInfoUpdate;
+}
+
+export interface pageInfoUpdateVariables {
+  params: PageInfoUpdateInput;
+  key: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: productPostList
 // ====================================================
 
@@ -587,7 +673,6 @@ export interface productPostList_ProductPostList_data_itinerary_images {
   __typename: "File";
   cratedAt: any;
   updatedAt: any;
-  isDelete: boolean;
   name: string;
   description: string;
   extension: string;
@@ -725,7 +810,6 @@ export interface productPostFindById_ProductPostFindById_data_itinerary_images {
   __typename: "File";
   cratedAt: any;
   updatedAt: any;
-  isDelete: boolean;
   name: string;
   description: string;
   extension: string;
@@ -854,6 +938,40 @@ export interface signInVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: pageInfoRead
+// ====================================================
+
+export interface pageInfoRead_PageInfoRead_data {
+  __typename: "PageInfo";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  key: string;
+  value: any;
+}
+
+export interface pageInfoRead_PageInfoRead {
+  __typename: "PageInfoReadResponse";
+  ok: boolean;
+  error: string | null;
+  data: pageInfoRead_PageInfoRead_data | null;
+}
+
+export interface pageInfoRead {
+  PageInfoRead: pageInfoRead_PageInfoRead;
+}
+
+export interface pageInfoReadVariables {
+  key: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fcategory
 // ====================================================
 
@@ -895,6 +1013,25 @@ export interface Fuser {
   bsui_address: string;
   account_number: string;
   bank_name: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FpageInfo
+// ====================================================
+
+export interface FpageInfo {
+  __typename: "PageInfo";
+  _id: string;
+  cratedAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  key: string;
+  value: any;
 }
 
 /* tslint:disable */
@@ -959,7 +1096,6 @@ export interface Ffile {
   __typename: "File";
   cratedAt: any;
   updatedAt: any;
-  isDelete: boolean;
   name: string;
   description: string;
   extension: string;
@@ -981,7 +1117,6 @@ export interface Fitinerary_images {
   __typename: "File";
   cratedAt: any;
   updatedAt: any;
-  isDelete: boolean;
   name: string;
   description: string;
   extension: string;
@@ -1043,7 +1178,6 @@ export interface FproductPost_itinerary_images {
   __typename: "File";
   cratedAt: any;
   updatedAt: any;
-  isDelete: boolean;
   name: string;
   description: string;
   extension: string;
@@ -1187,27 +1321,37 @@ export interface FileUpdateInput {
   isDelete?: boolean | null;
 }
 
-export interface ItineryCreateInput {
+export interface ItineraryCreateInput {
   title: string;
   contents?: string[] | null;
   images?: FileCreateInput[] | null;
   date?: any | null;
 }
 
-export interface ItineryUpdateInput {
+export interface ItineraryUpdateInput {
   title: string;
   contents?: string[] | null;
   images?: FileUpdateInput[] | null;
   date?: any | null;
 }
 
+export interface PageInfoCreateInput {
+  key: string;
+  value: any;
+}
+
+export interface PageInfoUpdateInput {
+  key?: string | null;
+  value?: any | null;
+}
+
 export interface ProductPostCreateInput {
   title: string;
   content?: any | null;
   productId?: string | null;
-  categoryId?: string | null;
+  categoryId: string;
   status?: ProductPostStatus | null;
-  itinerary: ItineryCreateInput[];
+  itinerary: ItineraryCreateInput[];
   inOrNor?: any | null;
   info?: string | null;
   caution?: string | null;
@@ -1228,9 +1372,9 @@ export interface ProductPostUpdateInput {
   title?: string | null;
   content?: any | null;
   productId?: string | null;
-  categoryId?: string | null;
+  categoryId: string;
   status?: ProductPostStatus | null;
-  itinerary: ItineryUpdateInput[];
+  itinerary: ItineraryUpdateInput[];
   inOrNor: any;
   info?: string | null;
   caution?: string | null;

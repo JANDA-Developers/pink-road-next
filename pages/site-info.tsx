@@ -1,23 +1,40 @@
-import React, { useContext, useLayoutEffect, useState } from 'react';
-import { editUl, getEditUtils } from '../utils/pageEdit';
+import React, { useContext, useState } from 'react';
+import { getEditUtils } from '../utils/pageEdit';
 import { AppContext } from "./_app";
-import pageInfo from 'info/siteInfo.json';
-
-import $ from "jquery";
+import pageInfoDefault from 'info/siteInfo.json';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { Upload } from 'components/common/Upload';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { usePageInfo } from 'hook/usePageInfo';
+import { pageInfoRead_PageInfoRead_data } from 'types/api';
 
-interface IProp { }
 
-export const StieInfo: React.FC<IProp> = () => {
+
+type TGetProps = {
+    pageInfo: pageInfoRead_PageInfoRead_data | "",
+}
+export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
+    const { data } = await usePageInfo("site-info");
+    return {
+        props: {
+            pageInfo: data?.value || ""
+        }, // will be passed to the page component as props
+    }
+}
+
+export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+
+    console.log(pageInfo);
+
     const { editMode } = useContext(AppContext)
-    const [page, setPage] = useState(pageInfo)
+    const [page, setPage] = useState<typeof pageInfoDefault>(pageInfo as any || pageInfoDefault)
     const [open, setOpen] = useState(true);
     const [addInfo, setAddInfo] = useState({
         alt: "",
         img: "",
         link: "",
     })
+
 
     const { edit, ulEdit, imgEdit, editArray, addArray, removeArray } = getEditUtils(editMode, page, setPage);
     const { partners } = page;
@@ -28,7 +45,7 @@ export const StieInfo: React.FC<IProp> = () => {
     }
 
     return <div className="siteInfo_in">
-        <HiddenSubmitBtn path="/" data={page} />
+        <HiddenSubmitBtn path="site-info" data={page} />
         <div style={{
             backgroundImage: `url(${page.mainBg})`
         }} className="top_bg w100">
@@ -232,7 +249,7 @@ export const StieInfo: React.FC<IProp> = () => {
                     We walk the right path rather than the easy one
                 </h4>
                 <span>제휴문의</span>
-                
+
             </div>
             <div className="ovj"></div>
             <div className="bg" />
@@ -260,3 +277,4 @@ export const StieInfo: React.FC<IProp> = () => {
 };
 
 export default StieInfo
+

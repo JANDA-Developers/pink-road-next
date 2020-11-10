@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import 'css/all.css';
 import Layout from '../layout/Layout';
-import { ApolloProvider, useQuery } from '@apollo/client';
-import { categoryList, categoryList_CategoryList_data } from 'types/api';
-import { CATEGORY_LIST } from 'apollo/queries';
+import { ApolloProvider, useMutation, useQuery } from '@apollo/client';
+import { categoryList, categoryList_CategoryList_data, pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables } from 'types/api';
+import { CATEGORY_LIST, PAGE_INFO_READ } from 'apollo/queries';
 import PinkClient from "apollo/client"
 import { ISet } from 'types/interface';
+import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from 'apollo/mutations';
 
 export type TContext = {
   editMode: boolean;
@@ -25,11 +26,37 @@ export const AppContext = React.createContext<TContext>(defaultContext);
 
 function App({ Component, pageProps }) {
 
-  const { data, loading } = useQuery<categoryList>(CATEGORY_LIST, {
+  const [pageInfoCreateMu, { loading: pageInfoCreateLoading }] = useMutation<pageInfoCreate, pageInfoCreateVariables>(PAGE_INFO_CREATE, {
+    client: PinkClient
+  })
+  const [pageInfoUpdateMu, { loading: pageInfoUpdateLoading }] = useMutation<pageInfoUpdate, pageInfoUpdateVariables>(PAGE_INFO_UPDATE, {
+    client: PinkClient
+  })
+  const { data } = useQuery<categoryList>(CATEGORY_LIST, {
     client: PinkClient
   })
 
-  const submitEdit = (pageKey: string, data: any) => {
+  const submitEdit = (key: string, value: any) => {
+    const params = {
+      key,
+      value
+    };
+    pageInfoCreateMu({
+      variables: {
+        params
+      }
+    }).then((data) => {
+      console.log(data)
+      pageInfoUpdateMu({
+        variables: {
+          key,
+          params: {
+            key,
+            value
+          }
+        }
+      })
+    })
   }
 
   const [editMode, setEditMode] = useState<boolean>(false);

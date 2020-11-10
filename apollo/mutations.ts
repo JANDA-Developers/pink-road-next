@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_ITINERARY, F_CATEGORY, F_PRODUCT_POST, F_FILE } from "./fragments";
+import { F_ITINERARY, F_CATEGORY, F_PRODUCT_POST, F_FILE, F_PAGE_INFO } from "./fragments";
 
 export const CATEGORY_CREATE = gql`
   mutation categoryCreate(
@@ -183,3 +183,53 @@ export const SIGN_IN_GOOGLE = gql`
   }
 `;
 
+
+
+export const PAGE_INFO_CREATE = gql`
+  mutation pageInfoCreate(
+    $params: PageInfoCreateInput!
+    ) {
+    PageInfoCreate(
+      params:$params
+      )  {
+        ok
+        error
+      }
+  }
+`;
+
+export const PAGE_INFO_DELETE = gql`
+  mutation pageInfoDelete(
+      $key: String!
+    ) {
+    PageInfoDelete(
+      key: $key
+      )  {
+        ok
+        error
+        data {
+            ...FpageInfo
+        }
+      }
+  }
+  ${F_PAGE_INFO}
+`;
+
+export const PAGE_INFO_UPDATE = gql`
+  mutation pageInfoUpdate(
+      $params: PageInfoUpdateInput!
+      $key: String!
+    ) {
+    PageInfoUpdate(
+      key: $key
+      params: $params
+      )  {
+        ok
+        error
+        data {
+            ...FpageInfo
+        }
+      }
+  }
+  ${F_PAGE_INFO}
+`;

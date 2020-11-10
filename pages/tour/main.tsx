@@ -1,16 +1,30 @@
 import { Meta } from 'components/common/meta/Meta';
 import { Product } from 'components/product/Product';
 import SubTopNav from 'layout/components/SubTop';
+import Link from 'next/link';
 import React from 'react';
-
+import { useRouter } from 'next/router'
 interface IProp { }
 
 export const TourMain: React.FC<IProp> = () => {
+    const router = useRouter();
+    const { exp } = router.query;
+    const isExp = exp!!;
+
+
     return <div >
         <Meta />
         <SubTopNav title="temp" desc="temp" >
-            <li className="homedeps1"><a href="../sub/experience_main.html">Experience</a></li>
-            <li className="homedeps2"><a href="../sub/experience_list.html">상품리스트</a></li>
+            <li className="homedeps1">
+                <Link href="/tour/main?exp=true">
+                    <a>Experience</a>
+                </Link>
+            </li>
+            <li className="homedeps2">
+                <Link href="/tour/list">
+                    <a>상품리스트</a>
+                </Link>
+            </li>
         </SubTopNav>
         <div className="tour_box">
             <div className="w1200">

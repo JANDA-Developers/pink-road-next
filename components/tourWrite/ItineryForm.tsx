@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 // import { Iitineraries } from "../TourWrite";
 import dayjs from "dayjs";
-import { ItineryCreateInput } from '../../types/api';
+import { ItineraryCreateInput } from '../../types/api';
 import { ISet } from 'types/interface';
 
-export const DEFAULT_itinery: ItineryCreateInput = {
+export const DEFAULT_itinery: ItineraryCreateInput = {
     contents: ["asd"],
     images: [],
     date: new Date(),
@@ -13,8 +13,8 @@ export const DEFAULT_itinery: ItineryCreateInput = {
 
 
 interface IProp {
-    itineries: ItineryCreateInput[];
-    itinery: ItineryCreateInput;
+    itineries: ItineraryCreateInput[];
+    itinery: ItineraryCreateInput;
     setitineries: ISet<any[]>
     index: number;
 }

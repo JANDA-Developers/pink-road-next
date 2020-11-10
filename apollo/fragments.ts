@@ -7,7 +7,6 @@ export const F_CATEGORY = gql`
         updatedAt
         isDelete
         label
-        value
     }
 `
 
@@ -32,6 +31,19 @@ export const F_USER = gql`
         bank_name
     }
 `
+
+
+export const F_PAGE_INFO = gql`
+    fragment FpageInfo on PageInfo {
+        _id
+        cratedAt
+        updatedAt
+        isDelete
+        key
+        value
+    }
+`
+
 
 export const F_PAGE = gql`
     fragment Fpage on Page {

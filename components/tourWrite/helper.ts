@@ -1,7 +1,7 @@
 import { DEFAULT_itinery } from "components/tourWrite/ItineryForm";
 import { EPROTO } from "constants";
 import dayjs from "dayjs";
-import { ItineryCreateInput } from "types/api";
+import { ItineraryCreateInput } from "types/api";
 import { DEFAULT_PRODUCT_INPUT, IProductDefaultData, TProductDataPart } from "types/defaults/defaultProduct";
 import { IProductPostFindById } from "types/interface";
 
@@ -10,7 +10,7 @@ export type TRange = {
     to?: Date;
 }
 
-export const generateitinery = (range:TRange,itineries:ItineryCreateInput[]):ItineryCreateInput[] => {
+export const generateitinery = (range:TRange,itineries:ItineraryCreateInput[]):ItineraryCreateInput[] => {
     const {from,to} = range;
     if (!to) return;
     if (!from) return;
