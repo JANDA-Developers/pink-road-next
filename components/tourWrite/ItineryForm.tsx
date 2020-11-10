@@ -53,15 +53,20 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, itineries, setitineries,
         setitineries([...itineries])
     }
 
+    const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+        itinery.title = e.currentTarget.value;
+        setitineries([...itineries])
+    }
+
     return <div className="day_tap">
         <div className="texta_title">
-            <input type="text" className="input_01" placeholder={`${index}일차`} />
-            <input type="text" className="input_02" placeholder={dayjs(itinery.date).format("YYYY.MM.DD (ddd)")} />
+            <input type="text" className="input_01" onChange={handleTitle} value={itinery.title} placeholder={`${index}일차`} />
+            <input readOnly type="text" className="input_02" value={dayjs(itinery.date).format("YYYY.MM.DD (ddd)")} />
         </div>
-        {itinery.contents.map((content, index) =>
+        {itinery.contents.map((content, contentIndex) =>
             <div style={{
                 display: index === 0 ? "none" : undefined
-            }} key={`${_id}index`}>
+            }} key={`${contentIndex}${index}content`}>
                 <textarea onChange={handleOnChange(index)} key={"initeryFrom__content" + index} style={{ width: '100%', minHeight: '100px' }} value={content} />
                 <i onClick={handleDeleteContent(index)} className="delete">삭제</i>
             </div>

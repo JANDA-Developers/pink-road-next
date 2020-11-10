@@ -16,6 +16,8 @@ export const useUpload = (options?: MutationHookOptions<multiUpload, multiUpload
         }).then(({data})=> {
             const url = data?.MultiUpload.data[0]?.uri;
             if(url) {
+                console.log("file Data");
+                console.log(data?.MultiUpload.data);
                 onSucess?.(url,data?.MultiUpload.data?.[0] || undefined)
             }
         })

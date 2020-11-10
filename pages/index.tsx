@@ -78,6 +78,7 @@ export const Main: React.FC<IProp> = () => {
         </div>
       </div>
     </div>
+    
     <div className="main_con_box2">
       <div className="w1200">
         <div className="top_txt">
