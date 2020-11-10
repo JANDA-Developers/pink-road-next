@@ -1424,7 +1424,7 @@ footer .footer_in_bottom {
     color: #333;
     justify-content: center;
     text-align: center;
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -1456,7 +1456,7 @@ footer .footer_in_bottom {
     display: block;
     width: 100%;
     position: relative;
-    line-height: 33px;
+    line-height: 25px;
     border-top: 1px #eaeaea solid;
     border-bottom: 1px #eaeaea solid;
     margin-bottom: 35px;
@@ -1493,12 +1493,13 @@ footer .footer_in_bottom {
             }
 
     .footer_in .bottom_nav .cs {
-        display:inline-block;
+        display: inline-block;
         position: relative;
         right: 0;
         top: 0;
-        margin-left:0;
-        width:auto;
+        margin-left: 0;
+        width: auto;
+        margin-top: 20px;
     }
 
         .footer_in .bottom_nav .cs a {
@@ -1522,9 +1523,10 @@ footer .footer_in_bottom {
 
 .footer_in .sns {
     display: block;
-    width:auto;
+    width: auto;
     text-align: center;
-    margin-left: 15px;
+    margin-left: 0;
+    margin-top: 20px;
     position: relative !important;
     top: 0;
     right: 0;
@@ -1981,6 +1983,7 @@ i.icon_plus {
         display: block;
         text-align: left;
         margin-left: 15px;
+        margin-top:0;
         position: absolute !important;
         top: 1px;
         right: 100px;
@@ -1996,6 +1999,7 @@ i.icon_plus {
             display: inline-block;
             position: absolute;
             right: 0;
+            margin-top: 0;
             top: 11px;
             width: auto;
         }
@@ -2140,6 +2144,9 @@ i.icon_plus {
     .subtop_nav {
         width: 100%;
         padding: 15px;
+    }
+    .footer_in .f_detail_wrap {
+        width: 1200px;
     }
 }
 

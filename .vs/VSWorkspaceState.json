@@ -4,14 +4,14 @@
     "\\components",
     "\\components\\main",
     "\\css",
+    "\\info",
     "\\layout",
     "\\layout\\components",
     "\\pages",
     "\\pages\\tour",
     "\\public",
-    "\\public\\img",
-    "\\public\\img\\svg"
+    "\\public\\img"
   ],
-  "SelectedNode": "\\public\\img\\siteinfo_bg02.png",
+  "SelectedNode": "\\css\\layout.css",
   "PreviewInSolutionExplorer": false
 }

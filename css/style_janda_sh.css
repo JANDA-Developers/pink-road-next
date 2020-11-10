@@ -79,7 +79,8 @@
 .main_con_box2 {
     background-color: #ed297b;
     background-image: url(/img/ptbg05.png/);
-    padding: 70px 0;
+    padding: 70px 3%;
+    box-sizing:border-box;
 }
 
     .main_con_box2 .top_txt {
@@ -89,16 +90,16 @@
         padding: 70px 0 0;
     }
 
+      
         .main_con_box2 .top_txt h2 {
             color: #fff;
-            font-weight: 500;
-            font-size: 35px;
+            font-weight: 600;
+            font-size: 1.7em;
             line-height: 100%;
             margin-bottom: 10px;
         }
-
         .main_con_box2 .top_txt span {
-            font-size: 18px;
+            font-size: 13px;
             color: #fff;
             font-weight: 400;
         }
@@ -111,61 +112,71 @@
         text-align: center;
     }
     .main_con_box2 li {
-        width: 28%;
-        height: 226px;
+        position:relative;
         display: inline-block;
-        margin: 2%;
+        width: 100%;
+        height: 96px;
+        margin: 0 0 4% 0;
+        padding: 10px;
         text-align: center;
         color: #ffffff;
         border-radius: 900px;
         border: 5px #fff solid;
-        padding: 10px;
         box-sizing: border-box;
         vertical-align: top;
     }
 
         .main_con_box2 li i {
+            position: absolute;
+            left: 10%;
+            top: 50%;
             display: inline-block;
             width: 110px;
             height: 58px;
+            margin-top: -29px;
             background-position: center;
             background-size: 100%;
             background-repeat: no-repeat;
-            margin-top: 22px;
         }
 
         .main_con_box2 li strong {
-        
             display: block;
-            font-size: 17px;
-            margin-top: 10px;
+            font-size: 15px;
+            margin-top: 14px;
+            padding: 0 0 0 31%;
+            text-align: left;
+            box-sizing: border-box;
         }
 
-        .main_con_box2 li p {
+        .main_con_box2 li span {
             display: block;
             font-size: 11px;
             line-height: 20px;
-            margin-top: 5px;
+            margin-top: 0;
+            padding: 0 0 0 31%;
+            text-align: left;
+            box-sizing: border-box;
         }
 
         .main_con_box2 li i.icon_01 {
-            width: 48px;
+            width: 33px;
+            left: 12%;
             background-image: url(/img/svg/siteinfo_svg_01.svg);
         }
 
         .main_con_box2 li i.icon_02 {
-            width: 65px;
+            width: 43px;
             background-image: url(/img/svg/siteinfo_svg_02.svg);
         }
 
         .main_con_box2 li i.icon_03 {
-            width: 76px;
+            width: 52px;
             background-image: url(/img/svg/siteinfo_svg_03.svg);
         }
 
 .main_con_box3 {
     background-image: url(/img/main_bg_08.jpg);
-    background-size: 120%;
+    background-size: 840%;
     background-position: center bottom;
 }
 .main_con_box3 .top_txt {
@@ -177,8 +188,8 @@
 
     .main_con_box3 .top_txt h2 {
         color: #333;
-        font-weight: 500;
-        font-size: 38px;
+        font-weight:600;
+        font-size: 28px;
     }
 
     .main_con_box3 .top_txt span {
@@ -186,14 +197,14 @@
         color: #333;
         font-weight: 400;
     }
+    .main_con_box3 ul {
+        position: relative;
+        display: block;
+        box-sizing: border-box;
+        padding: 35px 0 44px;
+        text-align: center;
+    }
 
-.main_con_box3 ul {
-    position: relative;
-    display: block;
-    box-sizing: border-box;
-    padding: 35px 0 330px;
-    text-align: center;
-}
 
     .main_con_box3 li {
         position: relative;
@@ -203,7 +214,7 @@
         display: inline-block;
         vertical-align: top;
         box-sizing: border-box;
-        padding: 22px 60px 31px;
+        padding: 22px 28px 31px;
         text-align: center;
         background-color: rgb(255 255 255 / 87%);
         box-shadow: 2px 2px 4px #0000001c;
@@ -247,7 +258,7 @@
 
 .main_con_box4 {
     overflow: hidden;
-    padding:200px 0;
+    padding:3%;
     box-sizing:border-box;
 }
 
@@ -310,15 +321,15 @@
         width: 100%;
         height: 100%;
         display: block;
-        background-size: 100%;
-        background-position: center;
+        background-size: 200%;
+        background-position: right center;
         z-index: 1;
         opacity: 0.4;
     }
 
     .main_con_box5 .txt {
         position: relative;
-        padding: 150px 0;
+        padding: 150px 3%;
         box-sizing: border-box;
         left: 0;
         top: 0;
@@ -336,7 +347,7 @@
             color: #fff;
             font-weight: 400;
             font-size: 27px;
-            line-height: 62px;
+            line-height: 36px;
         }
 
             .main_con_box5 .txt h2 strong {
@@ -8557,8 +8568,22 @@ i.calendar {
         margin-top: 0;
         border-radius: 0px;
     }
-
+    .main_con_box3 {
+        background-size: 120%;
+    }
+        .main_con_box3 ul {
+            padding: 35px 0 330px;
+        }
+        .main_con_box3 .top_txt h2 {
+            color: #333;
+            font-weight: 500;
+            font-size: 38px;
+        }
+    .main_con_box5 .txt {
+        padding: 150px 3%;
+    }
   
+
     .siteInfo_in .con06 {
         padding: 250px 0;
         background-size: 150%;
@@ -8570,10 +8595,55 @@ i.calendar {
     .siteInfo_in .con06 li {
         width: 22%;
     }
-    /*.siteInfo_in .con04 .n01 h4:after,
-    .siteInfo_in .con04 .n02 h4:after {
-        display: inline-block;
-    }*/
+    .main_con_box2 {
+        padding: 35px 3% 20px;
+    }
+
+    .main_con_box2 li {
+        width: 28%;
+        height: 226px;
+        margin: 2%;
+        text-align: center;
+        padding: 10px;
+    }
+        .main_con_box2 li i {
+            position:relative;
+            width: 110px;
+            height: 58px;
+            background-position: center;
+            background-size: 100%;
+            margin-top: 22px;
+            left:unset;
+            top:unset;
+        }
+        .main_con_box2 .top_txt span {
+            font-size: 18px;
+        }
+        .main_con_box2 .top_txt h2 {
+            font-weight: 500;
+            font-size: 35px;
+        }
+        .main_con_box2 li strong {
+            padding: 0;
+            text-align: center;
+        }
+
+        .main_con_box2 li span {
+            padding: 0;
+            text-align: center;
+        }
+        .main_con_box2 li i.icon_01 {
+            width: 48px;
+            left: unset;
+        }
+
+        .main_con_box2 li i.icon_02 {
+            width: 65px;
+        }
+
+        .main_con_box2 li i.icon_03 {
+            width: 76px;
+        }
     .siteInfo_in .con04 .infopp {
         background-size: 270%;
     }
@@ -8594,8 +8664,15 @@ i.calendar {
         height: 11px;
         margin-right: 3px;
     }
+    .main_con_box5 .main_bg_img {
+        background-size: 150%;
+        background-position: center;
+    }
 }
 @media (min-width: 1000px) {
+    .main_con_box4 {
+        padding: 160px 3%;
+    }
     .login_box {
         padding-top: 100px;
         padding-bottom: 200px;
@@ -8645,6 +8722,7 @@ i.calendar {
     .main_con_box2 ul {
         padding: 35px 0 70px;
     }
+
     .main_con_box2 li {
         width: 300px;
         height: 300px;
@@ -8989,6 +9067,12 @@ i.calendar {
             top: 16px;
             width: 79px;
         }
+    .main_con_box5 .main_bg_img {
+        background-size: 130%;
+    }
+    .main_con_box5 .txt h2 {
+        line-height: 62px;
+    }
    
 }
 @media (min-width: 1100px) {
@@ -9261,7 +9345,7 @@ i.calendar {
         line-height: 33px;
     }
     .main_con_box4 .photo_box {
-        margin-bottom: 110px;
+        margin-bottom: 0;
     }
 
     .main_con_box5 {
@@ -9270,7 +9354,7 @@ i.calendar {
     }
 
         .main_con_box5 .txt {
-            padding: 80px 0;
+            padding: 80px 3%;
         }
 
             .main_con_box5 .txt h2 {
@@ -9301,16 +9385,48 @@ i.calendar {
     }
     .main_con_box1 .main_top_images {
         min-height: 460px;
+        background-position: 70% center;
     }
+        .main_con_box1 .main_top_images strong {
+            width: 100%;
+            font-size: 2.6em;
+            text-align: center;
+            margin-top: 93px;
+        }
+
+        .main_con_box1 .main_top_images span {
+            width: 100%;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        .main_con_box1 .main_top_images .btn_list {
+            text-align: center;
+        }
     .siteInfo_in .con07 .ovj {
         left: 48%;
+    }
+    .main_con_box1 .main_top_images:before {
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-size: 100%;
+        opacity: 0.5 !important;
+        filter: alpha(opacity=50);
+        z-index: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
     }
 }
 
 @media (max-width:360px) {
     .main_con_box1 .main_top_images {
-        min-height: 510px;
+        min-height: 610px;
+        background-size: 379%;
     }
+
     #viewControl .btn_box .link02 {
         width: 69.9%;
     }
