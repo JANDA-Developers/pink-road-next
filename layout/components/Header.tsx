@@ -74,6 +74,7 @@ export const Header: React.FC<IProp> = () => {
     }, [])
 
     return <header className="header">
+        <div className="w1200">
         <div className="u_skip">
             <a href="#nav-bar" onClick={handleNav}><span>상단메뉴 바로가기</span></a>
             <a href="#main" onClick={handleMain}><span>본문 바로가기</span></a>
@@ -93,23 +94,38 @@ export const Header: React.FC<IProp> = () => {
                     <ul className="deps1">
                         <li className="deps">
                             <Link href="/site-info">
-                                <a >PinkRoader</a>
+                                <a>PinkRoader</a>
                             </Link>
                         </li>
                         <li className="deps">
-                            <a href="/portfolio">Work</a>
+                            <Link href="/portfolio">
+                                <a>Work</a>
+                            </Link>
                         </li>
                         <li className="deps">
-                            <a href="/tour">Tour</a>
+                            <Link href="/tour">
+                                <a>Tour</a>
+                            </Link>
                         </li>
                         <li className="deps">
-                            <a href="/tour?type=exp">Experience</a>
+                            <Link href="/tour?type=exp">
+                                <a>Experience</a>
+                            </Link>
                         </li>
                         <li className="deps">
-                            <a href="/??">Design Goods</a>
+                            <Link href="/??">
+                                <a>Design Goods</a>
+                            </Link>
                         </li>
                         <li className="deps">
-                            <a href="/news">News</a>
+                            <Link href="/news">
+                                <a>News</a>
+                            </Link>
+                            <ul className="deps_nav">
+                                <li><Link href="../tourstory"><a>여행이야기</a></Link></li>
+                                <li><Link href="../culture"><a>문화이야기</a></Link></li>
+                                <li><Link href="../news"><a>언론보도</a></Link></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -117,25 +133,37 @@ export const Header: React.FC<IProp> = () => {
             <div className="nav_bg"></div>
             <div className="hd_right">
                 <div className="join">
-                    <span><a href="/join" target="_self">JOIN</a></span>
+                    <span>
+                        <Link href="../join">
+                            <a>JOIN</a>
+                        </Link>
+                    </span>
                 </div>
 
                 <div className="login">
-                    <span ><a href="/login">LOGIN</a></span>
+                    <span>
+                        <Link href="../login">
+                            <a>LOGIN</a>
+                         </Link>
+                    </span>
                 </div>
                 <div className="logout">
-                    <span ><a href="/">LOGOUT</a></span>
+                    <span>
+                        <Link href="/">
+                            <a>LOGOUT</a>
+                        </Link>
+                    </span>
                 </div>
                 <div className="profile">
                     <span className="photo">프로필 사진</span>
                     <ul>
-                        <li><span ><a href="/my-page">회원정보</a></span></li>
-                        <li><span ><a href="/purchase">장바구니</a></span></li>
-                        <li><span >구매내역</span></li>
-                        <li><span >나의 게시글</span></li>
-                        <li><span >예약관리</span></li>
-                        <li><span >매출/정산관리</span></li>
-                        <li><span >로그아웃</span></li>
+                        <li><span><Link href="/my-page"><a>회원정보</a></Link></span></li>
+                        <li><span><Link href="/purchase"><a>장바구니</a></Link></span></li>
+                        <li><span><Link href="/"><a>구매내역</a></Link></span></li>
+                        <li><span><Link href="/"><a>나의 게시글</a></Link></span></li>
+                        <li><span><Link href="/"><a>예약관리</a></Link></span></li>
+                        <li><span><Link href="/"><a>매출/정산관리</a></Link></span></li>
+                        <li><span><Link href="/"><a>로그아웃</a></Link></span></li>
                     </ul>
                 </div>
                 <div className="search_top">
@@ -145,16 +173,20 @@ export const Header: React.FC<IProp> = () => {
                         </object>
                         <button onClick={handSearch} />
                     </div>
-                    <div className="hidden">
-                        <div className="search_wrap">
-                            <input type="text" placeholder="검색어를 입력해주세요" />
-                            <div className="search_btn">
-                                <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
-                                    현재 브라우저는 iframe을 지원하지 않습니다.
-                            </object>
-                                <button />
-
-                            </div>
+                        <div className="hidden">
+                            <div className="w1200">
+                            <div className="search_wrap">
+                               
+                                    <input type="text" placeholder="검색어를 입력해주세요" />
+                                    <div className="search_btn">
+                                        <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>현재 브라우저는 iframe을 지원하지 않습니다.</object>
+                                        <button className="btt1" />
+                                    </div>
+                                    <div className="close_btn" onClick={handSearchClose}>
+                                        <i className="flaticon-multiply"></i>
+                                        <button className="btt2" />
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     <div onClick={handSearchClose} className="search_bg"></div>
@@ -186,11 +218,11 @@ export const Header: React.FC<IProp> = () => {
                     </div>
                 </div>
                 <div className="m_all_menu_in">
-                    <span><a href="/login">LOGIN</a></span>
-                    <span><a href="/">LOGOUT</a></span>
-                    <span><a href="/my-page">MY PAGE</a></span>
-                    <span><a href="/">알림</a></span>
-                    <span><a href="/">예약관리시스템</a></span>
+                    <span><Link href="../login"><a>LOGIN</a></Link></span>
+                    <span><Link href="/"><a>LOGOUT</a></Link></span>
+                    <span><Link href="../my-page"><a>MY PAGE</a></Link></span>
+                    <span><Link href="/"><a>알림</a></Link></span>
+                    <span><Link href="https://booking-app.stayjanda.cloud/#/"><a>예약관리시스템</a></Link></span>
                 </div>
                 <ul>
                     <li className="a_menu_tit deps solo_nav">
@@ -202,17 +234,17 @@ export const Header: React.FC<IProp> = () => {
                     <li className="a_menu_tit deps">
                         <a href="../tour_main">Tour<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
-                            <li><a href="/tour-list">Tour - list</a></li>
-                            <li><a href="../tour_vziew">Tour - veiw</a></li>
-                            <li><a href="../tour_writing">Tour - correction+writing</a></li>
+                            <li className="betatest"><a href="/tour-list">Tour - list</a></li>
+                            <li className="betatest"><a href="../tour_vziew">Tour - veiw</a></li>
+                            <li className="betatest"><a href="../tour_writing">Tour - correction+writing</a></li>
                         </ul>
                     </li>
                     <li className="a_menu_tit deps">
                         <a href="../experience_main">Experience<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
-                            <li><a href="../experience_list">Experience - list</a></li>
-                            <li><a href="../experience_view">Experience - veiw</a></li>
-                            <li><a href="../experience_writing">Experience - correction+writing</a></li>
+                            <li className="betatest"><a href="../experience_list">Experience - list</a></li>
+                            <li className="betatest"><a href="../experience_view">Experience - veiw</a></li>
+                            <li className="betatest"><a href="../experience_writing">Experience - correction+writing</a></li>
                         </ul>
                     </li>
                     <li className="a_menu_tit deps solo_nav">
@@ -226,20 +258,20 @@ export const Header: React.FC<IProp> = () => {
                             <li><a href="../news">언론보도</a></li>
                         </ul>
                     </li>
-                    <li className="a_menu_tit deps">
+                    <li className="a_menu_tit deps betatest">
                         <a href="../mypage">My page<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
-                            <li><a href="/my-page">회원정보</a></li>
-                            <li><a href="/my-page/purchase">구매내역</a></li>
-                            <li><a href="/my-page/basket">장바구니</a></li>
-                            <li><a href="/my-page/write">나의 게시글</a></li>
-                            <li><a href="/my-page/reservation">예약관리</a></li>
-                            <li><a href="/my-page/goods">상품관리</a></li>
-                            <li><a href="/my-page/plainning">기획관리</a></li>
-                            <li><a href="/my-page/settlement">매출/정산관리</a></li>
+                            <li><a href="../mypage">회원정보</a></li>
+                            <li><a href="../mypage/purchase">구매내역</a></li>
+                            <li><a href="../mypage/basket">장바구니</a></li>
+                            <li><a href="../mypage/write">나의 게시글</a></li>
+                            <li><a href="../mypage/reservation">예약관리</a></li>
+                            <li><a href="../mypage/goods">상품관리</a></li>
+                            <li><a href="../mypage/plainning">기획관리</a></li>
+                            <li><a href="../mypage/settlement">매출/정산관리</a></li>
                         </ul>
                     </li>
-                    <li className="a_menu_tit deps">
+                    <li className="a_menu_tit deps betatest">
 
                         <a href="../master">Master<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
@@ -251,7 +283,7 @@ export const Header: React.FC<IProp> = () => {
                         </ul>
 
                     </li>
-                    <li className="a_menu_tit deps">
+                    <li className="a_menu_tit deps betatest">
                         <a href="../login">Member<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
                             <li><a href="../ligin">로그인</a></li>
@@ -269,6 +301,7 @@ export const Header: React.FC<IProp> = () => {
             </div>
             <div className="m_bg" />
             <EditBtn />
-        </div>
+            </div>
+         </div>
     </header >;
 };
