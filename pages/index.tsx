@@ -72,15 +72,16 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const { editMode } = useContext(AppContext);
   const original = pageInfo || pageInfoDefault;
   const [page, setPage] = useState(original);
-  const { edit, imgEdit } = getEditUtils(editMode, page, setPage)
+  const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPage)
 
+  console.log(bg("mainBg"));
 
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
     <div className="main_con_box1">
       <div
         className="main_top_images"
-        style={{ backgroundImage: `url(${page.mainBg})` }}
+        style={{ ...bg("mainBg") }}
       >
         <Upload onUpload={imgEdit("mainBg")} />
         <div className="w1200">
@@ -191,7 +192,7 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
       </div>
       <div
         className="main_bg_img"
-        style={{ backgroundImage: `url(${page.bottom_bg_img})` }}
+        style={{ ...bg("bottom_bg_img") }}
       />
       <Upload onUpload={imgEdit("bottom_bg_img")} />
     </div>

@@ -39,9 +39,11 @@ export type TPageKeys = "site-info" | "main"
 
 
 export type TLangs = "kr" | "en" | string
-type TInfoCell = {
-    style:CSSProperties,
-    [key:any]:string
+interface Foo {
+    style?:CSSProperties,
+}
+interface TInfoCell extends Foo {
+    [key:string]:any
 }
 export type TStieInfo = {
     [key:string]:TInfoCell

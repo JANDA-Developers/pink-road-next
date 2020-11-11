@@ -1,11 +1,11 @@
 
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from 'react';
-import { initStorage, Storage } from '../../utils/Storage';
+import { initStorage, Storage } from '../../../utils/Storage';
 import { OutputData } from '@editorjs/editorjs';
 import "react-day-picker/lib/style.css";
 import { Ffile, ItineraryCreateInput, productPostCreate, ProductPostCreateInput, productPostCreateVariables, ProductPostStatus } from '../../../types/api';
-import { IProductDefaultData, TProductDataPart } from '../../types/defaults/defaultProduct';
+import { IProductDefaultData, TProductDataPart } from '../../../types/defaults/defaultProduct';
 import { useMutation } from '@apollo/client';
 import { useUpload } from "hook/useUpload";
 import { PRODUCT_POST_CREATE } from "apollo/mutations";
