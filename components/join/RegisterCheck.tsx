@@ -35,7 +35,11 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
 
 
   const [productCreateMu, { loading: create_loading }] = useMutation<signUp, signUpVariables>(SIGN_UP, {
-    onCompleted: () => { }
+    onCompleted: () => {
+      console.log('result');
+       /* 최종 Post Values */
+       handleJoinProcess('registered');
+    }
   });
 
 
@@ -247,8 +251,6 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
 
       alert('Validation end');
 
-      console.log(registerInfo);
-
       const { address,
         address_detail,
         birthday,
@@ -283,9 +285,6 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
         }
       })
 
-      /* 최종 Post Values */
-
-      handleJoinProcess('registered');
     }
 
   }
@@ -388,7 +387,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
               </div>
               <div className="in_box2">
                 <a
-                  href="javascript:void(0)"
+                  href="#"
                   onClick={() => {
                     openPopup('Popup02');
                   }}
@@ -409,7 +408,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
               </div>
               <div className="in_box2">
                 <a
-                  href="javascript:void(0)"
+                  href="#"
                   onClick={() => {
                     openPopup('Popup03');
                   }}
@@ -430,7 +429,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
               </div>
               <div className="in_box2">
                 <a
-                  href="javascript:void(0)"
+                  href="#"
                   onClick={() => {
                     openPopup('Popup04');
                   }}
@@ -451,7 +450,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
               </div>
               <div className="in_box2">
                 <a
-                  href="javascript:void(0)"
+                  href="#"
                   onClick={() => {
                     openPopup('Popup07');
                   }}
@@ -472,7 +471,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
               </div>
               <div className="in_box2">
                 <a
-                  href="javascript:void(0)"
+                  href="#"
                   onClick={() => {
                     openPopup('Popup06');
                   }}
@@ -493,7 +492,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
               </div>
               <div className="in_box2">
                 <a
-                  href="javascript:void(0)"
+                  href="#"
                   onClick={() => {
                     openPopup('Popup05');
                   }}
