@@ -8,7 +8,7 @@ import FormPartnerNormal from 'components/join/FormPartnerNormal';
 import PolicyPopup from 'components/policyPopup/PolicyPopup';
 import FormNormal from 'components/join/FormNormal';
 import SubTopNav from 'layout/components/SubTop';
-
+import {SIGNINGOOGLE,SIGNINKAKAO} from "apollo/mutations"
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -46,33 +46,6 @@ const closePopup = (element: string | null) => {
     popupElement!.style.display = 'none';
     document!.getElementById('fade')!.style.display = 'none';
 }
-
-
-export const SIGNINGOOGLE = gql`
-    mutation SignInGoogle($code : String!){
-      SignInGoogle(code : $code){
-        ok
-        error
-        data{
-          token
-          email
-        }
-      }
-    }
-`
-
-export const SIGNINKAKAO= gql`
-    mutation SignInKakao($code : String!){
-      SignInKakao(code : $code){
-        ok
-        error
-        data{
-          token
-          email
-        }
-      }
-    }
-`
 
 
 const Join = () => {

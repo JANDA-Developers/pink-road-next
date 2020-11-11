@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_CATEGORY, F_ITINERARY, F_PAGE, F_PRODUCT_POST, F_USER } from "./fragments";
+import { F_CATEGORY, F_ITINERARY, F_PAGE, F_PAGE_INFO, F_PRODUCT_POST, F_USER } from "./fragments";
 
 /* :::::::::::::::::::::::::::::::::::::: 
 
@@ -75,32 +75,6 @@ export const CATEGORY_LIST = gql`
   ${F_CATEGORY}
 `;
 
-export const ITINERARY_FIND_BY_ID = gql`
-  query itineraryFindById($id:String!) {
-    ItineraryFindById(id:$id)  {
-        ok
-        error
-        data {
-          ...Fitinerary
-        }
-      }
-  }
-  ${F_ITINERARY}
-`;
-
-export const ITINERARY_LIST = gql`
-  query itineraryList {
-    ItineraryList  {
-        ok
-        error
-        data {
-          ...Fitinerary
-        }
-      }
-  }
-  ${F_ITINERARY}
-`;
-
 export const SIGN_IN = gql`
   query signIn(
     $email: Email!
@@ -119,6 +93,64 @@ export const SIGN_IN = gql`
   }
   ${F_ITINERARY}
 `;
+
+
+export const PAGE_INFO_READ = gql`
+  query pageInfoRead(
+      $key: String!
+    ) {
+    PageInfoRead(
+      key: $key
+      )  {
+        ok
+        error
+        data {
+            ...FpageInfo
+        }
+      }
+  }
+  ${F_PAGE_INFO}
+`;
+
+
+export const GET_CONTEXT = gql`
+  query getContext {
+      GetProfile {
+        ok
+        error
+        data {
+          ...Fuser
+        }
+      }
+      CategoryList  {
+        ok
+        error
+        data {
+          ...Fcategory
+        }
+      }
+  }
+  ${F_CATEGORY}
+  ${F_USER}
+`;
+
+// export const GET_MY_PROFILE = gql`
+//   query signIn(
+//     $email: Email!
+//     $pw: String!
+//     ) {
+//     SignIn(
+//       email:$email,
+//       pw:$pw
+//       )  {
+//         ok
+//         error
+//         data
+//         }
+//       }
+//   }
+//   ${F_ITINERARY}
+// `;
 
 // export const FIND_USER = gql`
 //   query findUser {

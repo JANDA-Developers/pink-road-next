@@ -1,21 +1,36 @@
 import React, { useContext } from 'react';
 import { AppContext } from 'pages/_app';
+import { ISet, TPageKeys } from 'types/interface';
 
 interface IProp {
     data: any;
-    path: string;
+    setData: ISet<any>;
+    original: any;
+    path: TPageKeys;
 }
 
-export const HiddenSubmitBtn: React.FC<IProp> = ({ data, path }) => {
+export const HiddenSubmitBtn: React.FC<IProp> = ({ data, original, path, setData }) => {
     const { submitEdit } = useContext(AppContext)
+
     const submit = () => {
+        alert("submmited");
         if (submitEdit)
             submitEdit(path, data)
     }
-    return <div id="PageSubmitBtn" style={{
+
+    const reset = () => {
+        setData(data);
+    }
+
+    const hiddenStyle: React.CSSProperties = {
         opacity: 0,
         position: "absolute",
         width: "1px",
         height: "1px"
-    }} hidden />;
+    }
+
+    return <div style={hiddenStyle}>
+        <div onClick={submit} id="PageSubmitBtn" hidden />
+        <div onClick={reset} id="PageRestBtn" hidden />
+    </div>;
 };

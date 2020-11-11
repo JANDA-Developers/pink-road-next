@@ -1,17 +1,29 @@
-import React, { useContext, useLayoutEffect, useState } from 'react';
-import { editUl, getEditUtils } from '../utils/pageEdit';
+import React, { useContext, useState } from 'react';
+import { getEditUtils } from '../utils/pageEdit';
 import { AppContext } from "./_app";
-import pageInfo from 'info/siteInfo.json';
-
-import $ from "jquery";
+import pageInfoDefault from 'info/siteInfo.json';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { Upload } from 'components/common/Upload';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { usePageInfo } from 'hook/usePageInfo';
 
-interface IProp { }
+type TGetProps = {
+    pageInfo: typeof pageInfoDefault | "",
+}
+export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
+    const { data } = await usePageInfo("site-info");
+    return {
+        props: {
+            pageInfo: data?.value || "",
+            revalidate: 10
+        }, // will be passed to the page component as props
+    }
+}
 
-export const StieInfo: React.FC<IProp> = () => {
+export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+    const original = pageInfo || pageInfoDefault;
     const { editMode } = useContext(AppContext)
-    const [page, setPage] = useState(pageInfo)
+    const [page, setPage] = useState<typeof pageInfoDefault>(original)
     const [open, setOpen] = useState(true);
     const [addInfo, setAddInfo] = useState({
         alt: "",
@@ -28,13 +40,13 @@ export const StieInfo: React.FC<IProp> = () => {
     }
 
     return <div className="siteInfo_in">
-        <HiddenSubmitBtn path="/" data={page} />
+        <HiddenSubmitBtn setData={setPage} original={original} path="site-info" data={page} />
         <div style={{
             backgroundImage: `url(${page.mainBg})`
         }} className="top_bg w100">
             <div className="w1200">
                 <h3  {...edit("mainTitle")} />
-                <p  {...edit("secondTitle")} />
+                <span  {...edit("secondTitle")} />
             </div>
             <Upload onUpload={imgEdit("mainBg")} />
         </div>
@@ -66,21 +78,21 @@ export const StieInfo: React.FC<IProp> = () => {
                 <ul>
                     <li>
                         <i className="icon_01" style={{
-                            
+
                         }} />
                         <strong {...edit("purpose1_title")} />
                         <p {...edit("purpose1_bottom")} />
                     </li>
                     <li>
                         <i className="icon_02" style={{
-                            
+
                         }} />
                         <strong  {...edit("purpose2_title")} />
                         <p {...edit("purpose2_bottom")} />
                     </li>
                     <li>
                         <i className="icon_03" style={{
-                           
+
                         }} />
                         <strong  {...edit("purpose3_title")} />
                         <p  {...edit("purpose3_bottom")} />
@@ -118,7 +130,7 @@ export const StieInfo: React.FC<IProp> = () => {
                         </h4>
                         <div className="txt"  {...edit("value2_desc")} />
                     </li>
-                   
+
                 </ul>
             </div>
             <div className="infoimg">
@@ -205,7 +217,7 @@ export const StieInfo: React.FC<IProp> = () => {
                 <ul>
                     {partners.map((partner, index) => {
                         const { alt, img, link } = partner;
-                        return <li key={index}>
+                        return <li key={index + "partner"}>
                             <a href={link}>
                                 <img src='/img/partners7.png' alt={alt} />
                                 <span className="del" onClick={() => {
@@ -232,7 +244,9 @@ export const StieInfo: React.FC<IProp> = () => {
                     We walk the right path rather than the easy one
                 </h4>
                 <span>제휴문의</span>
+
             </div>
+            <div className="ovj"></div>
             <div className="bg" />
         </div>
         {open && <div style={{
@@ -252,9 +266,10 @@ export const StieInfo: React.FC<IProp> = () => {
                 })
             }} />
             <input />
-            <input value={addInfo.link} />
+            <input onChange={() => { }} value={addInfo.link} />
         </div>}
     </div>;
 };
 
 export default StieInfo
+

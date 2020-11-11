@@ -3,14 +3,15 @@
     "",
     "\\components",
     "\\components\\main",
+    "\\css",
+    "\\info",
     "\\layout",
     "\\layout\\components",
     "\\pages",
     "\\pages\\tour",
     "\\public",
-    "\\public\\img",
-    "\\public\\img\\svg"
+    "\\public\\img"
   ],
-  "SelectedNode": "\\public\\img\\work_top_bg2.png",
+  "SelectedNode": "\\css\\layout.css",
   "PreviewInSolutionExplorer": false
 }

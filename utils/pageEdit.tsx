@@ -1,6 +1,6 @@
 import React from "react";
 import $ from "jquery"
-import { ISet } from "types/interface";
+import { ISet, TStieInfo } from "types/interface";
 
 // export const getSelection = () => window.getSelection();
 
@@ -54,14 +54,15 @@ const keyDownUlManage = (e: any,) => {
 
 
 
-export const onSingleBlur = (data: any, set: ISet<any>, e: React.FocusEvent<HTMLElement>, key: string) => {
+export const onSingleBlur = (data: TStieInfo, set: ISet<TStieInfo>, e: React.FocusEvent<HTMLElement>, key: string) => {
     const text = e.currentTarget.innerHTML;
     console.log("text");
     console.log(text);
     if (!key) throw Error("this Element dose not have name property")
-    if (typeof data[key] !== "string") throw Error(`the key ${key} dose not exisit on data`);
+    if (!data[key]) throw Error(`the key ${key} dose not exisit on data`);
+    if (!data[key]["kr"]) throw Error(`the key ${key} ${"kr"} dose not exisit on data`);
 
-    data[key] = text || "";
+    data[key]["kr"] = text || "";
     set({ ...data })
 }
 
@@ -77,6 +78,7 @@ export const editUl = (e: React.KeyboardEvent<HTMLUListElement>) => {
 
 
 export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean, page: T, setPage: ISet<any>) => {
+    const lang = "kr";
     const editable: "true" | undefined = editMode === true ? "true" : undefined;
 
     const singleBlur = onSingleBlur.bind(onSingleBlur, page, setPage);
@@ -117,7 +119,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
     const data = (key: keyof T) => {
         return {
             dangerouslySetInnerHTML: {
-                __html: page[key]
+                __html: page[key]["kr"]
             }
         }
     }
@@ -129,6 +131,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         },
         contentEditable: editable,
         suppressContentEditableWarning: true,
+        onClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => { e.preventDefault(); },
         ...data(key) as Data
     })
 
@@ -140,15 +143,19 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
     const onImgUpload = (key: keyof T, url: string) => {
         if (!page[key]) throw Error(`there is no key ${key} in page`)
+        //TODO
+        //값이 스트링값이 아니라면 style 
         // @ts-ignore
-        page[key] = url
+        page[key]["kr"] = url
         setPage({ ...page })
     }
 
     const imgEdit = (key: keyof T) => onImgUpload.bind(onImgUpload, key);
 
+    const bg = (key: keyof T) => ({ backgroundImage: `url(${page[key]["kr"]})` })
 
-    return { edit, ulEdit, imgEdit, editArray, addArray, removeArray }
+
+    return { edit, ulEdit, imgEdit, editArray, addArray, removeArray, bg }
 }
 
 

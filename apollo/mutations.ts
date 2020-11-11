@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_ITINERARY, F_CATEGORY, F_PRODUCT_POST, F_FILE } from "./fragments";
+import { F_ITINERARY, F_CATEGORY, F_PRODUCT_POST, F_FILE, F_PAGE_INFO } from "./fragments";
 
 export const CATEGORY_CREATE = gql`
   mutation categoryCreate(
@@ -55,60 +55,21 @@ export const CATEGORY_DELETE = gql`
   ${F_CATEGORY}
 `;
 
-
-export const ITINERARY_CREATE = gql`
-  mutation itineraryCreate(
-      $data: ItineraryCreateInput!
-    ) {
-      ItineraryCreate(
-        data:$data
-      ) {
-      ok
-      error 
-      data {
-          ...Fitinerary
-      }
-    }
-  }
-  ${F_ITINERARY}
-`;
-
-
-export const ITINERARY_UPDATE = gql`
-  mutation itineraryUpdate(
-        $data: ItineraryUpdateInput!
-        $id: String!
-    ) {
-    ItineraryUpdate(
-        data:$data
-        id: $id
-      ) {
-      ok
-      error 
-      data {
-          ...Fitinerary
-      }
-    }
-  }
-  ${F_ITINERARY}
-`;
-
-
-// export const ITINERARY_DELETE = gql`
-//   mutation itineraryDelete(
+// export const ITINERY_DELETE = gql`
+//   mutation itineryDelete(
 //       $id: String!
 //     ) {
-//     ItineraryDelete(
+//     ItineryDelete(
 //         id:$id
 //       ) {
 //       ok
 //       error 
 //       data {
-//           ...Fitinerary
+//           ...Fitinery
 //       }
 //     }
 //   }
-//   ${F_ITINERARY}
+//   ${F_ITINERY}
 // `;
 
 
@@ -177,11 +138,15 @@ export const MULTI_UPLOAD = gql`
       ok
       error 
       data {
-          ...Ffile
+        name
+        description
+        extension
+        fileType
+        uri
+        owner
       }
     }
   }
-  ${F_FILE}
 `;
 
 export const SIGN_UP = gql`
@@ -201,6 +166,26 @@ export const SIGN_UP = gql`
   ${F_FILE}
 `;
 
+
+export const SIGN_IN = gql`
+  mutation signIn(
+      $email: Email!
+      $pw:String!
+    ) {
+      SignIn(
+        email:$email
+        pw:$pw
+      ) {
+      ok
+      error 
+      data {
+          email
+      }
+    }
+  }
+`;
+
+
 export const SIGN_IN_GOOGLE = gql`
   mutation signInGoogle(
       $code: String!
@@ -218,3 +203,80 @@ export const SIGN_IN_GOOGLE = gql`
   }
 `;
 
+
+
+export const PAGE_INFO_CREATE = gql`
+  mutation pageInfoCreate(
+    $params: PageInfoCreateInput!
+    ) {
+    PageInfoCreate(
+      params:$params
+      )  {
+        ok
+        error
+      }
+  }
+`;
+
+
+export const SIGNINGOOGLE = gql`
+    mutation SignInGoogle($code : String!){
+      SignInGoogle(code : $code){
+        ok
+        error
+        data{
+          token
+          email
+        }
+      }
+    }
+`
+
+export const SIGNINKAKAO= gql`
+    mutation SignInKakao($code : String!){
+      SignInKakao(code : $code){
+        ok
+        error
+        data{
+          token
+          email
+        }
+      }
+    }
+`
+
+export const PAGE_INFO_DELETE = gql`
+  mutation pageInfoDelete(
+      $key: String!
+    ) {
+    PageInfoDelete(
+      key: $key
+      )  {
+        ok
+        error
+        data {
+            ...FpageInfo
+        }
+      }
+  }
+  ${F_PAGE_INFO}
+`;
+
+export const PAGE_INFO_UPDATE = gql`
+  mutation pageInfoUpdate(
+      $params: PageInfoUpdateInput!
+      $key: String!
+    ) {
+    PageInfoUpdate(
+      key: $key
+      params: $params
+      )  {
+        ok
+        error
+        data {
+            ...FpageInfo
+        }
+      }
+  }
+  ${F_PAGE_INFO}
+`;

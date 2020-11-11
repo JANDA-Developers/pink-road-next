@@ -1,46 +1,48 @@
 
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from 'react';
-import { Storage } from '../../../utils/Storage';
-import { Scheduler } from '../../../components/tourWrite/Scheduler';
+import { initStorage, Storage } from '../../../utils/Storage';
 import { OutputData } from '@editorjs/editorjs';
 import "react-day-picker/lib/style.css";
-import { Ffile, ItineraryArrayInput, productCreate, ProductCreateInput, productCreateVariables, ProductPostStatus } from '../../../types/api';
+import { Ffile, ItineraryCreateInput, productPostCreate, ProductPostCreateInput, productPostCreateVariables, ProductPostStatus } from '../../../types/api';
 import { IProductDefaultData, TProductDataPart } from '../../../types/defaults/defaultProduct';
 import { EMPTY_EDITOR } from '../../../types/const';
 import { useMutation } from '@apollo/client';
 import { useProductFindById } from '../../../hook/useProductFindById';
 import DayPicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
-import { detactRangeChange, generateSchedule, getDefault } from './helper';
+import { generateitinery, getDefault, TRange } from '../../../components/tourWrite/helper';
 import { useUpload } from "hook/useUpload";
 import { PRODUCT_POST_CREATE } from "apollo/mutations";
-const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
+import { ItineryForm } from "components/tourWrite/ItineryForm";
+import { autoComma } from "utils/formatter";
+import dayjs from "dayjs";
 
-let FILE_SELECT_INDEX = 0;
+const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
 interface IProp {
-    product?: IProductDefaultData;
-    mode?: "edit" | "create";
-    createFn: TCreateFn
+    context: ITourWriteWrapContext;
 }
 
-export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
-    const { data: defaultData, defaults, range: defaultRange } = getDefault(product);
-    console.log(defaults.schedule);
+export const TourWrite: React.FC<IProp> = ({ context }) => {
+    const { createFn, product, mode } = context;
+    const { data: defaultData, defaults, content: contentBlocks, images, itinerary } = getDefault(product);
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
-    const [schedules, setSchedules] = useState<ItineraryArrayInput[]>([]);
-    const [range, setRange] = useState(defaultRange);
+    const [itineries, setitineries] = useState<ItineraryCreateInput[]>(itinerary);
     const { signleUpload } = useUpload();
     const [data, setData] = useState<TProductDataPart>(defaultData)
-    const [status, setStatus] = useState(defaults.Status);
-    const [thumbs, setThumbs] = useState<Partial<Ffile>[]>([])
+    const [categoryId, setCategoryId] = useState(defaults.categoryId);
+    const [status, setStatus] = useState(defaults.status);
+    const [thumbs, setThumbs] = useState<Partial<Ffile>[]>(images)
     const [tab, setTab] = useState<number>(1);
+    const [d, setD] = useState(0);
 
-    const [infoProduct, setInfoProduct] = useState<OutputData>({
-        blocks: []
+
+    const [content, setContent] = useState<OutputData>({
+        blocks: contentBlocks
     });
+
     const [include, setInclude] = useState<OutputData>({
-        blocks: []
+        blocks: contentBlocks
     });
 
     const isCreateMode = mode === "create";
@@ -65,19 +67,9 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
     };
 
     const handleClearThumb = (index: number) => {
-        const newThumbs = thumbs.splice(index, 1);
-        setThumbs([...newThumbs])
+        thumbs.splice(index, 1);
+        setThumbs([...thumbs])
     }
-
-    useEffect(() => {
-
-        const newSch = generateSchedule(range, schedules)
-
-
-        setSchedules(newSch || [])
-
-    }, detactRangeChange(range))
-
 
     const tabOnCheck = (index: number) => tab === index ? "on" : undefined;
 
@@ -85,13 +77,89 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
         setTab(index)
     }
 
-    const { address, keyWards, adult_price, baby_price, info, kids_price, maxMember, minMember, startPoint, subTitle, title } = data;
+    const { address,
+        keyWards,
+        adult_price,
+        baby_price,
+        info,
+        caution,
+        kids_price,
+        maxMember,
+        minMember,
+        startPoint,
+        subTitle,
+        title,
+    } = data;
 
     function set<T extends keyof TProductDataPart>(key: T, value: any) {
         setData({ ...data, [key]: value })
     }
 
-    return <div className="mdeal_writing_in w100 board_write">
+    const nextData: ProductPostCreateInput = {
+        itinerary,
+        title,
+        address,
+        adult_price,
+        baby_price,
+        caution,
+        content,
+        images,
+        inOrNor: include,
+        info,
+        keyWards,
+        kids_price,
+        maxMember,
+        minMember,
+        startPoint,
+        status,
+        subTitle,
+        categoryId
+    }
+
+    const handleCreate = () => {
+        createFn(nextData)
+    }
+
+    const handleTempSave = () => {
+        const data: IProductDefaultData = {
+            ...nextData
+        }
+        Storage.saveLocal("write", data);
+    }
+
+    const handleLoad = () => {
+        const savedData: IProductDefaultData = Storage.getLocalObj("write", undefined);
+        if (!savedData) alert("저장된 정보가 없습니다.")
+        const { itinerary, title, address, adult_price, baby_price, categoryId, caution, content, images, inOrNor, info, keyWards, kids_price, maxMember, minMember, productId, startPoint, status, subTitle, type } = savedData;
+        setData({
+            address,
+            adult_price,
+            baby_price,
+            caution,
+            info,
+            keyWards,
+            kids_price,
+            maxMember,
+            minMember,
+            startPoint,
+            subTitle,
+            title
+        })
+        setThumbs(images)
+        setInclude(inOrNor)
+        setContent(content)
+        setitineries(itinerary)
+        setD(9);
+    }
+
+    const handleEdit = () => {
+
+    }
+    useEffect(() => {
+        initStorage()
+    }, [])
+
+    return <div key={d} className="mdeal_writing_in w100 board_write">
         <div className="w1200">
             <div className="write_box">
                 <div className="write_type">
@@ -137,15 +205,15 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                         <div>
                             <span className="mr5">성인</span>
                             <input onChange={(e) => {
-                                set("adult_price", e.currentTarget.value)
+                                set("adult_price", autoComma(e.currentTarget.value))
                             }} value={adult_price} type="text" className="text w20 mr15" />
                             <span className="mr5">소인</span>
                             <input onChange={(e) => {
-                                set("kids_price", e.currentTarget.value)
+                                set("kids_price", autoComma(e.currentTarget.value))
                             }} value={kids_price} type="text" className="text w20 mr15" />
                             <span className="mr5">유아</span>
                             <input onChange={(e) => {
-                                set("baby_price", e.currentTarget.value)
+                                set("baby_price", autoComma(e.currentTarget.value))
                             }} value={baby_price} type="text" className="text w20" />
                         </div>
                         <p className="info_txt">- 원을 빼고 ','를 넣어서 구분해서 입력해주세요. ex) 50,000</p>
@@ -174,7 +242,7 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                         <div>
                             <input onChange={(e) => {
                                 set("address", e.currentTarget.value)
-                            }} value={startPoint} type="text" className="text w100" />
+                            }} value={address} type="text" className="text w100" />
                         </div>
                     </div>
                 </div>
@@ -184,7 +252,7 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                     <div className="input_form">
                         <div>
                             <input onChange={(e) => {
-                                set("address", e.currentTarget.value)
+                                set("startPoint", e.currentTarget.value)
                             }} value={startPoint} type="text" className="text w100" />
                         </div>
                     </div>
@@ -207,7 +275,9 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                 <div className="write_type">
                     <div className="title">키워드</div>
                     <div className="input_form">
-                        <input value={keyWards} type="text" className="text w100" />
+                        <input onChange={(e) => {
+                            set("keyWards", e.currentTarget.value)
+                        }} value={keyWards} type="text" className="text w100" />
                         <p className="input_form info_txt">- ','로 구분시 자동으로 키워드가 생성됩니다.</p>
                     </div>
                 </div>
@@ -219,9 +289,9 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                     <div className="title">썸네일</div>
                     <div className="img_box_add">
                         <ul className="img_add">
-                            {/* {thumbs.map((thumb, i) =>
-                                <li key={thumb._id} className="on_file">{thumb.name}<i onClick={() => { handleClearThumb(i) }} className="flaticon-multiply icon_x"></i></li>
-                            )} */}
+                            {thumbs.map((thumb, i) =>
+                                <li key={i + "thumb"} className="on_file">{thumb.name}<i onClick={() => { handleClearThumb(i) }} className="flaticon-multiply icon_x"></i></li>
+                            )}
                             <li onClick={handleUploadClick}>이미지추가<i className="flaticon-add icon_plus"></i></li>
                             <input onChange={handleChangeSumbNail} ref={hiddenFileInput} hidden type="file" />
                         </ul>
@@ -241,8 +311,12 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                 {tab === 1 &&
                     <div id="texta_01" className="texta">
                         <h5>여행일정</h5>
-                        <DayPicker setState={setRange} from={range.from} to={range.to} />
-                        {(schedules || []).map((schedule, index) => <Scheduler index={index} setSchedules={setSchedules} schedule={schedule} schedules={schedules} />)}
+                        <DayPicker setState={({ from, to }: TRange) => {
+                            const newItinerary = generateitinery({ from, to }, itinerary);
+                            if (newItinerary)
+                                setitineries([...newItinerary]);
+                        }} from={dayjs(itineries[0]?.date).toDate()} to={dayjs(itineries[itineries.length - 1]?.date).toDate()} />
+                        {(itineries || []).map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setitineries={setitineries} itinery={itinery} itineries={itineries} />)}
                     </div>
                 }
 
@@ -250,31 +324,29 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
                     display: tab === 2 ? undefined : "none"
                 }} id="texta_02" className="texta">
                     <h5>상품 안내문</h5>
-                    <div id="content">
-                        <EditorJs key={"editor1"} holder="content" onChange={(api: any, data?: OutputData) => {
-                            setInfoProduct(data || EMPTY_EDITOR);
-                        }} data={infoProduct} />
-                    </div>
+                    <EditorJs holder="content" data={content} onChange={(api: any, data?: OutputData) => {
+                        setContent(data || EMPTY_EDITOR);
+                    }} />
+                    <div id="content" />
                 </div>
                 <div style={{
                     display: tab === 3 ? undefined : "none"
                 }} id="texta_03" className="texta">
                     <h5>포함 / 불포함</h5>
-                    <div id="include">
-                        <EditorJs key={"editor2"} holder="include" onChange={(api: any, data?: OutputData) => {
-                            setInclude(data || EMPTY_EDITOR);
-                        }} data={include} />
-                    </div>
+                    <EditorJs holder="include" data={include} onChange={(api: any, data?: OutputData) => {
+                        setInclude(data || EMPTY_EDITOR);
+                    }} />
+                    <div id="include" />
                 </div>
                 {tab === 4 &&
                     <div id="texta_04" className="texta">
                         <h5>커리큐럼 유의사항</h5>
-                        <textarea id="warrant" style={{
+                        <textarea value={caution} id="warrant" style={{
                             width: "100%",
                             minHeight: "200px"
                         }} />
                         <h5>간략한 안내문</h5>
-                        <textarea id="warrant" style={{
+                        <textarea value={info} id="warrant" style={{
                             width: "100%",
                             minHeight: "200px"
                         }} />
@@ -283,23 +355,12 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
             </div>
             <div className="boardNavigation">
                 <div className="float_left">
-                    <button onClick={() => {
-                        Storage.saveLocal("write", data)
-                    }} type="button" className="btn medium">임시 저장</button>
-                    <button onClick={() => {
-                        const writeData = Storage.getLocalObj("write", undefined);
-
-                        if (!writeData) {
-                            alert("저장된 정보가 없습니다.");
-                            return;
-                        }
-
-                        setData(writeData);
-                    }} type="button" className="btn medium">불러오기</button>
+                    <button onClick={handleTempSave} type="button" className="btn medium">임시 저장</button>
+                    <button onClick={handleLoad} type="button" className="btn medium">불러오기</button>
                 </div>
                 <div className="float_right">
-                    {isCreateMode || <button type="submit" className="btn medium pointcolor">수정</button>}
-                    {isCreateMode && <button type="submit" className="btn medium pointcolor">등록</button>}
+                    {isCreateMode || <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
+                    {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
                     <button onClick={() => {
                         if (confirm("작성을 취소 하고 이전 페이지로 이동하시겠습니까? "))
                             history.go(-1);
@@ -309,13 +370,21 @@ export const TourWrite: React.FC<IProp> = ({ mode, product, createFn }) => {
             </div>
         </div>
     </div>
-        ;
 };
 
-export type TCreateFn = (newProduct: ProductCreateInput, newItinerary: ItineraryArrayInput[]) => void;
+
+export type TCreateFn = (params: ProductPostCreateInput) => void;
 interface IProp {
     isExperience?: boolean;
     mode?: "edit" | "create"
+}
+
+interface ITourWriteWrapContext {
+    createFn: TCreateFn;
+    product: IProductPostFindById;
+    findLoading: boolean;
+    createLoading: boolean;
+    mode: "create" | "edit"
 }
 
 //수정하고 나면 수정한 내용을 그대로 덮어버리면 안됨. 핑크로드의 승인이 필요함.
@@ -323,24 +392,31 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
     const { query } = useRouter(); // => 넥스트에서는 변경
     const id = query.id as string | undefined;
 
-    const [productCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCT_POST_CREATE)
+    const [productCreateMu, { loading: createLoading }] = useMutation<productPostCreate, productPostCreateVariables>(PRODUCT_POST_CREATE)
     const { product, loading: findLoading } = useProductFindById({
         variables: {
-            id: id!
+            _id: id!
         },
         skip: !id
     })
 
-    const createFn: TCreateFn = (newProduct: ProductCreateInput, newItinerary: ItineraryArrayInput[]) => {
+    const createFn: TCreateFn = (params: ProductPostCreateInput) => {
         productCreateMu({
             variables: {
-                newItinerary,
-                newProduct
+                params
             }
         })
     }
 
-    return <TourWrite createFn={createFn} mode={!id ? "create" : "edit"} />;
+    const context: ITourWriteWrapContext = {
+        createFn,
+        product,
+        findLoading,
+        createLoading,
+        mode: !id ? "create" : "edit"
+    }
+
+    return <TourWrite context={context} />;
 };
 
 

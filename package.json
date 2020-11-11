@@ -32,6 +32,7 @@
     "apollo-upload-client": "^14.1.2",
     "axios": "^0.21.0",
     "dayjs": "^1.9.4",
+    "graphql-request": "^3.3.0",
     "jquery": "^3.5.1",
     "next": "9.5.5",
     "react": "16.14.0",
@@ -40,7 +41,8 @@
     "react-dom": "16.14.0",
     "react-editor-js": "^1.6.2",
     "react-google-login": "^5.1.22",
-    "react-kakao-login": "^2.0.2"
+    "react-kakao-login": "^2.0.2",
+    "react-editorjs-renderer": "^2.1.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.6",
