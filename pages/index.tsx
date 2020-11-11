@@ -63,12 +63,16 @@ export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
   const { data } = await usePageInfo("main");
   return {
     props: {
-      pageInfo: data?.value || ""
+      pageInfo: data?.value || "",
+      revalidate: 10
     }, // will be passed to the page component as props
   }
 }
 
 export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+
+  console.log('pageInfo');
+  console.log(pageInfo);
   const { editMode } = useContext(AppContext);
   const original = pageInfo || pageInfoDefault;
   const [page, setPage] = useState(original);

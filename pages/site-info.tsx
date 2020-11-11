@@ -14,7 +14,8 @@ export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
     const { data } = await usePageInfo("site-info");
     return {
         props: {
-            pageInfo: data?.value || ""
+            pageInfo: data?.value || "",
+            revalidate: 10
         }, // will be passed to the page component as props
     }
 }
