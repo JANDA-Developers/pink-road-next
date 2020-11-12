@@ -828,6 +828,11 @@ ul.photo_ul {
     height: 280px;
 }
 
+.photo_ul.line3 li {
+    width: 100%;
+    margin: 0 0 3% 0;
+    height: 280px;
+}
 ul.photo_ul li .img {
     display: inline-block;
     width: 100%;
@@ -1710,6 +1715,11 @@ div.board_list_mini {
         height: 280px;
         margin: 0;
     }
+    .photo_ul.line3 li {
+        width: 50%;
+        height: 300px;
+        margin:0;
+    }
 }
 @media (min-width:1000px) {
     .board_list.st03 .tbody li > div {
@@ -1742,6 +1752,10 @@ div.board_list_mini {
         width: 25%;
         height: 238px;
         margin: 0;
+    }
+    .photo_ul.line3 li {
+        width: 33%;
+        height: 300px;
     }
 }
 

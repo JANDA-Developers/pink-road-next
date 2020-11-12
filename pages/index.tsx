@@ -161,30 +161,37 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <div className="main_con_box4">
       <div className="w100">
         <div className="photo_box">
-          <ul className="photo_ul line4">
+          <ul className="photo_ul line3">
             <li className="top_txt">
-              <a href="/tour-list">
-                <h2 {...edit("valuable_exp")} />
-                <span {...edit("valuable_exp_sub")} />
+                          <h2 {...edit("valuable_exp")} />
+                          <span className="txt" {...edit("valuable_exp_sub")} />
+                <div className="btn_list">
+                    <span><Link href="/news"><a>공정여행</a></Link></span>
+                    <span><Link href="/news"><a>더많은체험</a></Link></span>
+                </div>
                 <i><svg><polygon points="69.22 12.71 0 12.71 0 10.71 64.33 10.71 54.87 1.43 56.27 0 69.22 12.71" /></svg></i>
-              </a>
+          
             </li>
             <PhotoLi onClickImg={() => {
             }} id={"12"} key={1 + "photo"} {...DummyPhoto[0]} />
             <PhotoLi onClickImg={() => {
             }} id={"12"} key={2 + "photo"} {...DummyPhoto[1]} />
-            <PhotoLi onClickImg={() => {
-            }} id={"12"} key={3 + "photo"} {...DummyPhoto[3]} />
           </ul>
-          <ul className="photo_ul line4">
+          <ul className="photo_ul line3">
             <PhotoLi onClickImg={() => {
             }} id={"12"} key={5 + "photo"} {...DummyPhoto[0]} />
             <PhotoLi onClickImg={() => {
             }} id={"12"} key={6 + "photo"} {...DummyPhoto[1]} />
             <PhotoLi onClickImg={() => {
             }} id={"12"} key={7 + "photo"} {...DummyPhoto[3]} />
+            </ul>
+            <ul className="photo_ul line3">
             <PhotoLi onClickImg={() => {
-            }} id={"12"} key={8 + "photo"} {...DummyPhoto[4]} />
+            }} id={"12"} key={5 + "photo"} {...DummyPhoto[0]} />
+            <PhotoLi onClickImg={() => {
+            }} id={"12"} key={6 + "photo"} {...DummyPhoto[1]} />
+            <PhotoLi onClickImg={() => {
+            }} id={"12"} key={7 + "photo"} {...DummyPhoto[3]} />
           </ul>
         </div>
       </div>

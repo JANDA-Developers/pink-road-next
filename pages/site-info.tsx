@@ -109,30 +109,32 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
         </div>
         <div className="w100 con04 con_block">
             <div className="infopp">
-                <ul className="w1200">
-                    <li className="n01">
-                        <h4>
-                            <strong {...edit("value1_title")} />
-                            <span  {...edit("value1_en")} />
-                        </h4>
-                        <div className="txt" title="value1_desc" {...edit("value1_desc")} />
-                    </li>
-                    <li className="n02">
-                        <h4>
-                            <strong {...edit("value3_title")} />
-                            <span {...edit("value3_en")} />
-                        </h4>
-                        <div className="txt"  {...edit("value3_desc")} />
-                    </li>
-                    <li className="n03">
-                        <h4>
-                            <strong {...edit("value2_title")} />
-                            <span {...edit("value2_en")} />
-                        </h4>
-                        <div className="txt"  {...edit("value2_desc")} />
-                    </li>
-
-                </ul>
+                <div className="w1200">
+                    <strong className="ovj">PINKROADER</strong>
+                    <ul>
+                        <li className="n01">
+                            <h4>
+                                <strong {...edit("value1_title")} />
+                                <span  {...edit("value1_en")} />
+                            </h4>
+                            <div className="txt" title="value1_desc" {...edit("value1_desc")} />
+                        </li>
+                        <li className="n02">
+                            <h4>
+                                <strong {...edit("value3_title")} />
+                                <span {...edit("value3_en")} />
+                            </h4>
+                            <div className="txt"  {...edit("value3_desc")} />
+                        </li>
+                        <li className="n03">
+                            <h4>
+                                <strong {...edit("value2_title")} />
+                                <span {...edit("value2_en")} />
+                            </h4>
+                            <div className="txt"  {...edit("value2_desc")} />
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div className="infoimg">
                 <div className="w1200">

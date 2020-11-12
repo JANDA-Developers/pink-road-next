@@ -73,7 +73,7 @@ export const Header: React.FC<IProp> = () => {
 
     }, [])
 
-    return <header className="header">
+    return <header className="header" id="header">
         <div className="w1200">
         <div className="u_skip">
             <a href="#nav-bar" onClick={handleNav}><span>상단메뉴 바로가기</span></a>
@@ -82,10 +82,10 @@ export const Header: React.FC<IProp> = () => {
         <div className="hd_size">
             <div className="hd_left">
                 <div className="logo">
-                    <h1>
-                        <a href="/">
-                            <img src={'/img/logo_1.png'} alt="logo" />
-                        </a>
+                      <h1>
+                        <Link href="/">
+                            <a> <img src={'/img/logo_1.png'} alt="logo" /></a>
+                        </Link>
                     </h1>
                 </div>
             </div>
@@ -275,7 +275,7 @@ export const Header: React.FC<IProp> = () => {
 
                         <a href="../master">Master<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
-                            <li><a href="../m_member">회원관리</a></li>
+                            <li><a href="/master/ms-member">회원관리</a></li>
                             <li><a href="/">상품관리</a></li>
                             <li><a href="/">예약관리</a></li>
                             <li><a href="../m_design">디자인 설정</a></li>
@@ -286,9 +286,14 @@ export const Header: React.FC<IProp> = () => {
                     <li className="a_menu_tit deps betatest">
                         <a href="../login">Member<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
-                            <li><a href="../ligin">로그인</a></li>
-                            <li><a href="../join">회원가입</a></li>
-                            <li><a href="../idpw_find">아이디/비번 찾기</a></li>
+                            <li><a href="/ligin">로그인</a></li>
+                            <li><a href="/join">회원가입</a></li>
+                            <li><a href="/idpw_find">아이디/비번 찾기</a></li>
+                            <li><a href="/member/rule">이용약관</a></li>
+                            <li><a href="/member/privacy-policy">개인정보처리방침</a></li>
+                            <li><a href="/member/electron-terms">전자상거래이용약관</a></li>
+                            <li><a href="/member/kr-terms">국내여행약관</a></li>
+
                         </ul>
                     </li>
                 </ul>
