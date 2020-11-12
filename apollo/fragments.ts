@@ -9,7 +9,18 @@ export const F_CATEGORY = gql`
         label
     }
 `
-
+export const F_FILE = gql`
+    fragment Ffile on File {
+        createdAt
+        updatedAt
+        name
+        description
+        extension
+        fileType
+        uri
+        owner
+    }
+`
 export const F_USER = gql`
     fragment Fuser  on User  {
         _id
@@ -17,7 +28,6 @@ export const F_USER = gql`
         updatedAt
         isDelete
         email
-        pw
         role
         brith_date
         address
@@ -32,6 +42,26 @@ export const F_USER = gql`
     }
 `
 
+export const F_PORTFOLIO = gql`
+    fragment Fportfolio on Portfolio {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        title
+        summary
+        subTitle
+        content
+        author {
+            ...Fuser
+        }
+        thumb {
+            ...Ffile
+        }
+    }
+    ${F_FILE}
+    ${F_USER}
+`
 
 export const F_PAGE_INFO = gql`
     fragment FpageInfo on PageInfo {
@@ -58,18 +88,7 @@ export const F_PAGE = gql`
     }
 `
 
-export const F_FILE = gql`
-    fragment Ffile on File {
-        createdAt
-        updatedAt
-        name
-        description
-        extension
-        fileType
-        uri
-        owner
-    }
-`
+
 
 export const F_ITINERARY = gql`
     fragment Fitinerary on Itinerary  {

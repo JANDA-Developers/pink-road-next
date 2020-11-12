@@ -13,6 +13,7 @@ import CheckList from "@editorjs/checklist";
 import Delimiter from "@editorjs/delimiter";
 import InlineCode from "@editorjs/inline-code";
 import SimpleImage from "@editorjs/simple-image";
+import {FlexImage} from "./myTool";
 
 const uploadUrl = 'https://kbsjl5pnsi.execute-api.ap-northeast-2.amazonaws.com/dev/upload';
 
@@ -25,7 +26,6 @@ export const EDITOR_JS_TOOLS = {
   marker: Marker,
   list: List,
   warning: Warning,
-  code: Code,
   linkTool: LinkTool,
   image: {
     class: Image,
@@ -42,7 +42,8 @@ export const EDITOR_JS_TOOLS = {
   checklist: CheckList,
   delimiter: Delimiter,
   inlineCode: InlineCode,
-  simpleImage: SimpleImage
+  simpleImage: SimpleImage,
+  foo: FlexImage
 };
 
 export default EDITOR_JS_TOOLS;

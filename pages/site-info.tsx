@@ -6,6 +6,7 @@ import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { Upload } from 'components/common/Upload';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
+import { BG } from 'types/const';
 
 type TGetProps = {
     pageInfo: typeof pageInfoDefault | "",
@@ -31,7 +32,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
         link: "",
     })
 
-    const { edit, ulEdit, imgEdit, editArray, addArray, removeArray } = getEditUtils(editMode, page, setPage);
+    const { edit, ulEdit, imgEdit, editArray, addArray, removeArray, bg } = getEditUtils(editMode, page, setPage);
     const { partners } = page;
 
     const changePartner = (key: string) => (e: any) => {
@@ -42,7 +43,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
     return <div className="siteInfo_in">
         <HiddenSubmitBtn setData={setPage} original={original} path="site-info" data={page} />
         <div style={{
-            backgroundImage: `url(${page.mainBg})`
+            ...bg("mainBg")
         }} className="top_bg w100">
             <div className="w1200">
                 <h3  {...edit("mainTitle")} />
@@ -215,7 +216,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <span {...edit("pink_supporter_sub")} />
                 </h4>
                 <ul>
-                    {partners.map((partner, index) => {
+                    {partners.kr.map((partner, index) => {
                         const { alt, img, link } = partner;
                         return <li key={index + "partner"}>
                             <a href={link}>

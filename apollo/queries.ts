@@ -1,11 +1,72 @@
 import { gql } from "@apollo/client";
-import { F_CATEGORY, F_ITINERARY, F_PAGE, F_PAGE_INFO, F_PRODUCT_POST, F_USER } from "./fragments";
+import { F_CATEGORY, F_ITINERARY, F_PAGE, F_PAGE_INFO, F_PORTFOLIO, F_PRODUCT_POST, F_USER } from "./fragments";
 
 /* :::::::::::::::::::::::::::::::::::::: 
 
   Queries 
   
 :::::::::::::::::::::::::::::::::::::: */
+
+export const PCAT_LIST = gql`
+  query pcategoryList {
+    pCategoryList {
+      ok
+      error
+      data {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        label
+      }
+    }
+  }
+`
+
+export const PORTFOLIO_FIND_BY_ID = gql`
+  query portfolioFindById(
+    $id: String!
+  ) {
+    PortfolioFindById(
+      id:$id
+    ) {
+    ok
+    error 
+    data {
+      ...Fportfolio
+      pCategory {
+        _id
+        label
+      }
+    }
+  }
+}
+${F_PORTFOLIO}
+`
+export const PORT_FOLIO_LIST = gql`
+query portfolioList(
+  $pageInput:pageInput!
+) {
+  PortfolioList(
+  pageInput: $pageInput
+  ) {
+    ok
+    error
+    page {
+      ...Fpage
+    }
+    data  {
+      ...Fportfolio
+      pCategory {
+        _id
+        label
+      }
+    }
+  }
+}
+${F_PAGE}
+${F_PORTFOLIO}
+`
 
 export const PRODUCT_POST_LIST = gql`
 query productPostList(

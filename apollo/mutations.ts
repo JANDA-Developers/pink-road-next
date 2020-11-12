@@ -18,25 +18,93 @@ export const CATEGORY_CREATE = gql`
   ${F_CATEGORY}
 `;
 
-export const CATEGORY_UPDATE = gql`
-  mutation categoryUpdate(
-        $data: CategoryUpdateInput!
-        $id: String!
+export const PORTFOLIO_CREATE = gql`
+  mutation portfolioCreate(
+    $params: PortfolioCreateInput!
+  ) {
+    PortfolioCreate(
+      params:$params
     ) {
-    CategoryUpdate(
-        data:$data
-        id: $id
-      ) {
-      ok
-      error 
-      data {
-          ...Fcategory
-      }
+    ok
+    error
+    data {
+      _id
     }
   }
-  ${F_CATEGORY}
-`;
+}
+`
+export const PORTFOLIO_DELETE = gql`
+  mutation portfolioDelete(
+    $id: String!
+  ) {
+    PortfolioDelete(
+      id:$id
+    ) {
+    ok
+    error 
+  }
+}
+`
+  
+export const PCATEGORY_CREATAE = gql`
+  mutation pcategoryCreate(
+    $params: pCategoryCreateInput!
+  ) {
+    pCategoryCreate(
+      params:$params
+    ) {
+    ok
+    error 
+  }
+}
+`
 
+
+export const PCATEGORY_DELETE = gql`
+  mutation pcategoryDelete(
+    $_id: String!
+  ) {
+    pCategoryDelete(
+      _id:$_id
+    ) {
+    ok
+    error 
+  }
+}
+`
+
+export const PCATEGORY_UPDATE = gql`
+  mutation pcategoryUpdate(
+    $data: pCategoryUpdateInput!
+    $id: String!
+  ) {
+    pCategoryUpdate(
+      data: $data 
+      id: $id
+      ) {
+        ok
+        error
+      }
+}
+`
+
+export const PORTFOLIO_UPDAET = gql`
+  mutation portfolioUpdate(
+    $params: PortfolioUpdateInput!
+    $id: String!
+  ) {
+  PortfolioUpdate(
+      params:$params
+      id: $id
+    ) {
+    ok
+    error 
+    data {
+      _id
+    }
+  }
+}
+`
 
 export const CATEGORY_DELETE = gql`
   mutation categoryDelete(
@@ -56,11 +124,13 @@ export const CATEGORY_DELETE = gql`
 `;
 
 // export const ITINERY_DELETE = gql`
-//   mutation itineryDelete(
+//   mutation categoryUpdate(
+//       $params: PortfolioUpdateInput!
 //       $id: String!
 //     ) {
-//     ItineryDelete(
-//         id:$id
+//     CategoryUpdate(
+//         params:$params
+//         id: id
 //       ) {
 //       ok
 //       error 

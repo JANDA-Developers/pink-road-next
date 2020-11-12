@@ -21,12 +21,12 @@ export const Econvert = (status: ProductPostStatus) => {
 
 export const DEFAULT_PAGE: IPageInfo = {
     __typename: "Page",
-    cntPerPage: 0,
+    cntPerPage: 1,
     end_page_num: 0,
     isNext: false,
     isPrev: false,
     next_page_num: 0,
-    page: 0,
+    page: 1,
     prev_page_num: 0,
     start_page_num: 0,
     totalPageSize: 0

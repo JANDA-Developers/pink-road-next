@@ -37,31 +37,149 @@ export interface categoryCreateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: categoryUpdate
+// GraphQL mutation operation: portfolioCreate
 // ====================================================
 
-export interface categoryUpdate_CategoryUpdate_data {
-  __typename: "Category";
+export interface portfolioCreate_PortfolioCreate_data {
+  __typename: "Portfolio";
   _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  label: string;
 }
 
-export interface categoryUpdate_CategoryUpdate {
-  __typename: "CategoryUpdateResponse";
+export interface portfolioCreate_PortfolioCreate {
+  __typename: "PortfolioCreateResponse";
   ok: boolean;
   error: string | null;
-  data: categoryUpdate_CategoryUpdate_data | null;
+  data: portfolioCreate_PortfolioCreate_data | null;
 }
 
-export interface categoryUpdate {
-  CategoryUpdate: categoryUpdate_CategoryUpdate;
+export interface portfolioCreate {
+  PortfolioCreate: portfolioCreate_PortfolioCreate;
 }
 
-export interface categoryUpdateVariables {
-  data: CategoryUpdateInput;
+export interface portfolioCreateVariables {
+  params: PortfolioCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: portfolioDelete
+// ====================================================
+
+export interface portfolioDelete_PortfolioDelete {
+  __typename: "PortfolioDeleteResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface portfolioDelete {
+  PortfolioDelete: portfolioDelete_PortfolioDelete;
+}
+
+export interface portfolioDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: pcategoryCreate
+// ====================================================
+
+export interface pcategoryCreate_pCategoryCreate {
+  __typename: "pCategoryCreateResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface pcategoryCreate {
+  pCategoryCreate: pcategoryCreate_pCategoryCreate;
+}
+
+export interface pcategoryCreateVariables {
+  params: pCategoryCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: pcategoryDelete
+// ====================================================
+
+export interface pcategoryDelete_pCategoryDelete {
+  __typename: "pCategoryDeleteResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface pcategoryDelete {
+  pCategoryDelete: pcategoryDelete_pCategoryDelete;
+}
+
+export interface pcategoryDeleteVariables {
+  _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: pcategoryUpdate
+// ====================================================
+
+export interface pcategoryUpdate_pCategoryUpdate {
+  __typename: "pCategoryUpdateResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface pcategoryUpdate {
+  pCategoryUpdate: pcategoryUpdate_pCategoryUpdate;
+}
+
+export interface pcategoryUpdateVariables {
+  data: pCategoryUpdateInput;
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: portfolioUpdate
+// ====================================================
+
+export interface portfolioUpdate_PortfolioUpdate_data {
+  __typename: "Portfolio";
+  _id: string;
+}
+
+export interface portfolioUpdate_PortfolioUpdate {
+  __typename: "PortfolioUpdateResponse";
+  ok: boolean;
+  error: string | null;
+  data: portfolioUpdate_PortfolioUpdate_data | null;
+}
+
+export interface portfolioUpdate {
+  PortfolioUpdate: portfolioUpdate_PortfolioUpdate;
+}
+
+export interface portfolioUpdateVariables {
+  params: PortfolioUpdateInput;
   id: string;
 }
 
@@ -114,7 +232,6 @@ export interface productPostCreate_ProductPostCreate_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
-  pw: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -139,9 +256,9 @@ export interface productPostCreate_ProductPostCreate_data_itinerary_images {
   createdAt: any;
   updatedAt: any;
   name: string;
-  description: string;
-  extension: string;
-  fileType: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -216,7 +333,6 @@ export interface productPostUpdate_ProductPostUpdate_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
-  pw: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -241,9 +357,9 @@ export interface productPostUpdate_ProductPostUpdate_data_itinerary_images {
   createdAt: any;
   updatedAt: any;
   name: string;
-  description: string;
-  extension: string;
-  fileType: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -319,7 +435,6 @@ export interface productPostDelete_ProductPostDelete_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
-  pw: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -344,9 +459,9 @@ export interface productPostDelete_ProductPostDelete_data_itinerary_images {
   createdAt: any;
   updatedAt: any;
   name: string;
-  description: string;
-  extension: string;
-  fileType: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -417,9 +532,9 @@ export interface productPostDeleteVariables {
 export interface multiUpload_MultiUpload_data {
   __typename: "File";
   name: string;
-  description: string;
-  extension: string;
-  fileType: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -594,6 +709,230 @@ export interface pageInfoUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: pcategoryList
+// ====================================================
+
+export interface pcategoryList_pCategoryList_data {
+  __typename: "pCategory";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  label: string;
+}
+
+export interface pcategoryList_pCategoryList {
+  __typename: "pCategoryListResponse";
+  ok: boolean;
+  error: string | null;
+  data: pcategoryList_pCategoryList_data[];
+}
+
+export interface pcategoryList {
+  pCategoryList: pcategoryList_pCategoryList;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: portfolioFindById
+// ====================================================
+
+export interface portfolioFindById_PortfolioFindById_data_author {
+  __typename: "User";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
+}
+
+export interface portfolioFindById_PortfolioFindById_data_thumb {
+  __typename: "File";
+  createdAt: any;
+  updatedAt: any;
+  name: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
+  uri: string;
+  owner: string;
+}
+
+export interface portfolioFindById_PortfolioFindById_data_pCategory {
+  __typename: "pCategory";
+  _id: string;
+  label: string;
+}
+
+export interface portfolioFindById_PortfolioFindById_data {
+  __typename: "Portfolio";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  summary: string | null;
+  subTitle: string | null;
+  content: any;
+  author: portfolioFindById_PortfolioFindById_data_author;
+  thumb: portfolioFindById_PortfolioFindById_data_thumb | null;
+  pCategory: portfolioFindById_PortfolioFindById_data_pCategory | null;
+}
+
+export interface portfolioFindById_PortfolioFindById {
+  __typename: "PortfolioFindByIdResponse";
+  ok: boolean;
+  error: string | null;
+  data: portfolioFindById_PortfolioFindById_data | null;
+}
+
+export interface portfolioFindById {
+  PortfolioFindById: portfolioFindById_PortfolioFindById;
+}
+
+export interface portfolioFindByIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: portfolioList
+// ====================================================
+
+export interface portfolioList_PortfolioList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+}
+
+export interface portfolioList_PortfolioList_data_author {
+  __typename: "User";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
+}
+
+export interface portfolioList_PortfolioList_data_thumb {
+  __typename: "File";
+  createdAt: any;
+  updatedAt: any;
+  name: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
+  uri: string;
+  owner: string;
+}
+
+export interface portfolioList_PortfolioList_data_pCategory {
+  __typename: "pCategory";
+  _id: string;
+  label: string;
+}
+
+export interface portfolioList_PortfolioList_data {
+  __typename: "Portfolio";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  summary: string | null;
+  subTitle: string | null;
+  content: any;
+  author: portfolioList_PortfolioList_data_author;
+  thumb: portfolioList_PortfolioList_data_thumb | null;
+  pCategory: portfolioList_PortfolioList_data_pCategory | null;
+}
+
+export interface portfolioList_PortfolioList {
+  __typename: "PortfolioListResponse";
+  ok: boolean;
+  error: string | null;
+  page: portfolioList_PortfolioList_page;
+  data: portfolioList_PortfolioList_data[];
+}
+
+export interface portfolioList {
+  PortfolioList: portfolioList_PortfolioList;
+}
+
+export interface portfolioListVariables {
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: productPostList
 // ====================================================
 
@@ -644,7 +983,6 @@ export interface productPostList_ProductPostList_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
-  pw: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -669,9 +1007,9 @@ export interface productPostList_ProductPostList_data_itinerary_images {
   createdAt: any;
   updatedAt: any;
   name: string;
-  description: string;
-  extension: string;
-  fileType: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -780,7 +1118,6 @@ export interface productPostFindById_ProductPostFindById_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
-  pw: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -805,9 +1142,9 @@ export interface productPostFindById_ProductPostFindById_data_itinerary_images {
   createdAt: any;
   updatedAt: any;
   name: string;
-  description: string;
-  extension: string;
-  fileType: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -974,7 +1311,6 @@ export interface getContext_GetProfile_data {
   updatedAt: any;
   isDelete: boolean;
   email: string;
-  pw: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -1040,6 +1376,27 @@ export interface Fcategory {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: Ffile
+// ====================================================
+
+export interface Ffile {
+  __typename: "File";
+  createdAt: any;
+  updatedAt: any;
+  name: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
+  uri: string;
+  owner: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fuser
 // ====================================================
 
@@ -1050,7 +1407,6 @@ export interface Fuser {
   updatedAt: any;
   isDelete: boolean;
   email: string;
-  pw: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -1062,6 +1418,61 @@ export interface Fuser {
   bsui_address: string;
   account_number: string;
   bank_name: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: Fportfolio
+// ====================================================
+
+export interface Fportfolio_author {
+  __typename: "User";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
+}
+
+export interface Fportfolio_thumb {
+  __typename: "File";
+  createdAt: any;
+  updatedAt: any;
+  name: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
+  uri: string;
+  owner: string;
+}
+
+export interface Fportfolio {
+  __typename: "Portfolio";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  summary: string | null;
+  subTitle: string | null;
+  content: any;
+  author: Fportfolio_author;
+  thumb: Fportfolio_thumb | null;
 }
 
 /* tslint:disable */
@@ -1137,27 +1548,6 @@ export interface Fpage {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: Ffile
-// ====================================================
-
-export interface Ffile {
-  __typename: "File";
-  createdAt: any;
-  updatedAt: any;
-  name: string;
-  description: string;
-  extension: string;
-  fileType: string;
-  uri: string;
-  owner: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL fragment: Fitinerary
 // ====================================================
 
@@ -1166,9 +1556,9 @@ export interface Fitinerary_images {
   createdAt: any;
   updatedAt: any;
   name: string;
-  description: string;
-  extension: string;
-  fileType: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -1202,7 +1592,6 @@ export interface FproductPost_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
-  pw: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -1227,9 +1616,9 @@ export interface FproductPost_itinerary_images {
   createdAt: any;
   updatedAt: any;
   name: string;
-  description: string;
-  extension: string;
-  fileType: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -1343,10 +1732,6 @@ export interface CategoryCreateInput {
   label: string;
 }
 
-export interface CategoryUpdateInput {
-  label?: string | null;
-}
-
 export interface FileCreateInput {
   name?: string | null;
   description?: string | null;
@@ -1370,6 +1755,10 @@ export interface FileUpdateInput {
 export interface ItineraryCreateInput {
   title: string;
   contents?: string[] | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
   images?: FileCreateInput[] | null;
   date?: any | null;
 }
@@ -1377,6 +1766,10 @@ export interface ItineraryCreateInput {
 export interface ItineraryUpdateInput {
   title: string;
   contents?: string[] | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
   images?: FileUpdateInput[] | null;
   date?: any | null;
 }
@@ -1391,23 +1784,47 @@ export interface PageInfoUpdateInput {
   value?: any | null;
 }
 
+export interface PortfolioCreateInput {
+  title: string;
+  content?: any | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  thumb?: FileCreateInput | null;
+  pCategoryId: string;
+}
+
+export interface PortfolioUpdateInput {
+  title?: string | null;
+  content?: any | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  thumb?: FileCreateInput | null;
+  pCategoryId?: string | null;
+}
+
 export interface ProductPostCreateInput {
   title: string;
   content?: any | null;
   productId?: string | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
   categoryId: string;
   status?: ProductPostStatus | null;
   itinerary: ItineraryCreateInput[];
   inOrNor?: any | null;
   info?: string | null;
   caution?: string | null;
-  keyWards?: string[] | null;
   images?: FileCreateInput[] | null;
   address?: string | null;
   startPoint?: string | null;
   maxMember?: number | null;
   minMember?: number | null;
-  subTitle?: string | null;
   adult_price?: number | null;
   kids_price?: number | null;
   baby_price?: number | null;
@@ -1417,6 +1834,10 @@ export interface ProductPostCreateInput {
 export interface ProductPostUpdateInput {
   title?: string | null;
   content?: any | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
   productId?: string | null;
   categoryId: string;
   status?: ProductPostStatus | null;
@@ -1424,17 +1845,23 @@ export interface ProductPostUpdateInput {
   inOrNor: any;
   info?: string | null;
   caution?: string | null;
-  keyWards?: string[] | null;
   images?: FileUpdateInput[] | null;
   address?: string | null;
   startPoint?: string | null;
   maxMember?: number | null;
   minMember?: number | null;
-  subTitle?: string | null;
   adult_price?: number | null;
   kids_price?: number | null;
   baby_price?: number | null;
   type?: ProductPostType | null;
+}
+
+export interface pCategoryCreateInput {
+  label: string;
+}
+
+export interface pCategoryUpdateInput {
+  label?: string | null;
 }
 
 export interface pageInput {

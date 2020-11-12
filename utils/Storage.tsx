@@ -61,7 +61,7 @@ export class LocalManager<T extends string> {
 }
 
 
-type TStoreKeys = "write" | "bracket" | "saveid" | "saveSession?" | "saveId?";
+type TStoreKeys = "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite";
 
 export let Storage: LocalManager<TStoreKeys> | null = null;
 

@@ -19,8 +19,6 @@ h1[contenteditable="true"]
     width: 100%;
 }
 
-
-
 .codex-editor *[contenteditable="true"]{
     outline: none;
 }
@@ -103,7 +101,9 @@ ul[contenteditable="true"] li {
     left: -30px;
 } */
 
-
+.cdx-input image-tool__caption {
+    display: none;
+}
 .input_01 {
     margin-right: 0.4rem;
 }
