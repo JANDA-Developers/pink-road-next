@@ -6,8 +6,8 @@ interface IProp {
     subTopBg?: string;
 }
 
-export const SubTopNav: React.FC<IProp> = ({ children, desc, title, subTopBg = "/img/su_visual_bg.jpg" }) => {
-    return <div className="top_visual">
+export const SubTopNav: React.FC<IProp> = ({ children, desc, title, subTopBg = "/img/work_top_bg2.jpg" }) => {
+    return <div className="top_visual"> 
         <div
             className="sub_header sub_bg"
             style={{ backgroundImage: `url(${subTopBg})` }}

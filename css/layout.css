@@ -117,7 +117,7 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin-bottom: 20px;
-    background-color: #00000045;
+    background-color: #000000bf;
 }
 
     .subtop_nav li {
@@ -1617,7 +1617,7 @@ footer .footer_in_bottom {
             cursor: pointer;
             font-size: 12px;
             font-weight: 600;
-            padding: 5px 20px;
+            padding: 5px 12px;
             line-height: 18px;
             text-align: center;
             border: 1px solid #b0b0b0;
@@ -1647,20 +1647,24 @@ footer .footer_in_bottom {
         width: 25px;
         height: 25px;
         text-align: center;
-        line-height: 25px;
-        color: #333;
-        font-weight: 600;
+        line-height: 28px;
+        background-color: #acacac;
+        color: #f6f6f6;
+        font-weight: 500;
         border-radius: 100px;
-        font-size: 15px !important;
+        font-size: 11px !important;
+        margin-right:6px;
     }
 
         .footer_in .sns a i {
             font-style: normal;
+            color: #f6f6f6;
+            font-weight: 500;
         }
 
         .footer_in .sns a:hover {
-            font-weight: 600;
-            color: #ed297b !important;
+            font-weight: 500;
+            background-color: #ed297b;
         }
 
 .footer_in .f_detail_wrap .ft_left .logo_bottom {
@@ -1952,9 +1956,13 @@ i.icon_plus {
         background-color: #000000;
     }
     .top_visual .sub_bg {
-        background-position: center top;
         background-size: 136%;
-        height:100%;
+        height: 100%;
+        -webkit-animation: topmove 25s;
+        animation: topmove 25s;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+        background-position: center 90%;
     }
 
     .top_visual .sub_header {
@@ -1974,6 +1982,35 @@ i.icon_plus {
             color: #fff;
             text-align: center;
         }
+
+
+@-webkit-keyframes topmove {
+    0% {
+        background-position: center 70%;
+    }
+
+    50% {
+        background-position: center 80%;
+    }
+
+    100% {
+        background-position: center 90%;
+    }
+}
+
+@keyframes topmove {
+    0% {
+        background-position: 0 center 70%;
+    }
+
+    50% {
+        background-position: center 80%;
+    }
+
+    100% {
+        background-position: center 90%;
+    }
+}
 
 @media (min-width:768px) {
     .pc {
