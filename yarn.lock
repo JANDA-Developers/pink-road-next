@@ -2879,7 +2879,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-class@^15.6.0:
+create-react-class@^15.5.2, create-react-class@^15.6.0:
   version "15.7.0"
   resolved "https://registry.npmjs.org/create-react-class/-/create-react-class-15.7.0.tgz#7499d7ca2e69bb51d13faf59bd04f0c65a1d6c1e"
   integrity sha512-QZv4sFWG9S5RUvkTYWbflxeZX+JG7Cz0Tn33rQBJ+WFQTqTfUTjMjiv9tnfXazjsO5r0KhPs+AqCjyrQX6h2ng==
@@ -3595,6 +3595,11 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
+font-awesome@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.npmjs.org/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
+  integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
+
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -3615,6 +3620,11 @@ fragment-cache@^0.2.1:
   integrity sha1-QpD60n8T6Jvn8zeZxrxaCr//DRk=
   dependencies:
     map-cache "^0.2.2"
+
+froala-editor@3.2.3:
+  version "3.2.3"
+  resolved "https://registry.npmjs.org/froala-editor/-/froala-editor-3.2.3.tgz#d86908e916529121f2efeefccdaba99c26f136fa"
+  integrity sha512-yi+CfAy1M+/pI/ZVC9+UuD8ErFiu0TjQ1QbFZe/7LfZr4ld5oFgfgvWHh3g7OpAo2a+xW1MNASD7TFYmPLLNSg==
 
 from2@^2.1.0:
   version "2.3.0"
@@ -5431,6 +5441,14 @@ react-editorjs-renderer@^2.1.0:
   dependencies:
     prop-types "^15.7.2"
     react-html-parser "^2.0.2"
+
+react-froala-wysiwyg@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.npmjs.org/react-froala-wysiwyg/-/react-froala-wysiwyg-3.2.3.tgz#2e2de53500ed9b18cb35c188a6bfeeadc274e243"
+  integrity sha512-dVNI6dPwyYeM7S3ndPK0jrWgipRqXGDIJCoNcB4sMGOw5V/x53pW75j03jJaqT8wU3ZPG6BeGZS6Ka9u91JLww==
+  dependencies:
+    create-react-class "^15.5.2"
+    froala-editor "3.2.3"
 
 react-html-parser@^2.0.2:
   version "2.0.2"

@@ -49,6 +49,8 @@ export const F_PORTFOLIO = gql`
         updatedAt
         isDelete
         title
+        isOpen
+        keyWards
         summary
         subTitle
         content

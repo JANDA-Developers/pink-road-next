@@ -28,10 +28,10 @@ export const getDefault = (product?: IPortfolio):PortfolioCreateInput => {
          title: product.title,
           content: product.content,
           pCategoryId: product.pCategory._id,
-          isOpen: false,
+          isOpen: product.isOpen,
           keyWards: [],
-          subTitle: "",
-          summary: ""
+          subTitle: product.subTitle,
+          summary: product.summary
         } : DEFAULT_PORTFOLIO_INPUT
 
     return  defaults

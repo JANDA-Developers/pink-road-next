@@ -247,8 +247,6 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
 
       alert('Validation end');
 
-      console.log(registerInfo);
-
       const { address,
         address_detail,
         birthday,

@@ -3,10 +3,10 @@ import { F_ITINERARY, F_CATEGORY, F_PRODUCT_POST, F_FILE, F_PAGE_INFO } from "./
 
 export const CATEGORY_CREATE = gql`
   mutation categoryCreate(
-      $data: CategoryCreateInput!
+      $params: CategoryCreateInput!
     ) {
     CategoryCreate(
-        data:$data
+        params:$params
       ) {
       ok
       error 
@@ -75,11 +75,11 @@ export const PCATEGORY_DELETE = gql`
 
 export const PCATEGORY_UPDATE = gql`
   mutation pcategoryUpdate(
-    $data: pCategoryUpdateInput!
+    $params: pCategoryUpdateInput!
     $id: String!
   ) {
     pCategoryUpdate(
-      data: $data 
+      params: $params 
       id: $id
       ) {
         ok

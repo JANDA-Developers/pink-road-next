@@ -1,6 +1,6 @@
 import { OutputData } from "@editorjs/editorjs";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Ffile, FileCreateInput, PortfolioCreateInput } from "types/api"
 import { EMPTY_EDITOR } from "types/const";
 import { TElements } from "types/interface";
@@ -48,10 +48,12 @@ interface IProps {
 
 export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, WriteInjection, onCancel, onCreate, onDelete, onEdit, onLoad, onSave }) => {
     const isCreateMode = mode === "create";
+    console.log('defaults.summary');
+    console.log(defaults.summary);
     const { signleUpload } = useUpload();
     const [isOpen, setIsOpen] = useState<boolean>(defaults.isOpen);
     const [title, setTitle] = useState<string>(defaults.title)
-    const [category, setCategory] = useState<string>(defaults.category._id);
+    const [category, setCategory] = useState<string>(defaults.category?._id);
     const [subTitle, setSubTitle] = useState<string>(defaults.subTitle);
     const [summary, setSummary] = useState<string>(defaults.summary);
     const [files, setFiles] = useState<Ffile[]>([]);
@@ -60,6 +62,7 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
     const { categoryList, author } = defaults;
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
 
+
     const data: Partial<IBoard> = {
         categoryId: category,
         content,
@@ -67,7 +70,8 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
         isOpen,
         subTitle,
         summary,
-        title
+        title,
+        thumb,
     }
 
     const handleCatChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -87,6 +91,7 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
     }
 
     const handleCreate = () => {
+        
         onCreate(data)
     }
 
@@ -113,17 +118,13 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
         if (!event.target.files) return;
         const fileUploaded = event.target.files;
         const onUpload = (url, data: Ffile) => {
-            console.log("data");
-            console.log(data);
             setThumb(data)
         }
+
         signleUpload(fileUploaded, onUpload);
         // data.images[FILE_SELECT_INDEX] = fileUploaded;
     };
 
-
-    console.log("thumb");
-    console.log(thumb?.name);
 
     return (
         <div className="writing_in w100 board_write">
@@ -153,7 +154,7 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
                     <div className="write_type">
                         <div className="title">제목</div>
                         <div className="input_form">
-                            <input onChange={(e) => {
+                            <input id="title" onChange={(e) => {
                                 setTitle(e.currentTarget.value)
                             }} value={title} type="text" name="title" className="inputText w100" />
                         </div>

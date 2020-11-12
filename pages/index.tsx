@@ -9,6 +9,9 @@ import Link from 'next/link';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
+import dynamic from 'next/dynamic';
+const EditorJs = dynamic(() => import('components/editor2/Ediotr2'), { ssr: false })
+
 
 const DummyPhoto = [{
   category: "문화/예술",
@@ -74,6 +77,10 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const original = pageInfo || pageInfoDefault;
   const [page, setPage] = useState(original);
   const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPage)
+  const [model, setModel] = useState();
+
+  console.log("model");
+  console.log(model);
 
 
   return <div className="body main" id="main" >
@@ -99,7 +106,21 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         </div>
       </div>
     </div>
-
+    <div dangerouslySetInnerHTML={{
+      __html: '<ol><li style="text-align: justify;"><h1><strong>zxczxczx</strong></h1></li><li style="text-align: justify;"><h1><strong><img src="blob:http://localhost:3000/5ba01d7b-815a-4e98-8e45-0e2bc9e91cac" style="width: 300px;" class="fr-fic fr-dii"></strong></h1></li><li style="text-align: justify;"><h1><strong>asasd</strong></h1></li><li style="text-align: justify;"><h1><strong>asdasd</strong></h1></li><li style="text-align: justify;"><h1><strong>a</strong></h1></li></ol><h1 style="text-align: right;"><strong>sdasd</strong></h1><ol><li style="text-align: justify;"><h1><strong>asd</strong></h1></li><li style="text-align: justify;"><h1><strong>zxc</strong></h1><ol><li style="text-align: justify;"><h1><strong>ㅁㄴㅇㅁㄴㅇ</strong></h1></li><li style="text-align: justify;"><h1><strong>ㅋㅌㅊ</strong></h1></li><li style="text-align: justify;"><h1><strong>ㅁㄴㅇ</strong></h1></li></ol></li></ol><p style="text-align: center;"><strong>casdasdaqweqwe1231231</strong></p>'
+    }}></div>
+    {/* <div dangerouslySetInnerHTML={model}/> */}
+    <EditorJs onModelChange={setModel} model={model} config={{
+       fontFamily: {
+        "Roboto,sans-serif": 'Roboto',
+        "Oswald,sans-serif": 'Oswald',
+        "Montserrat,sans-serif": 'Montserrat',
+        "'Open Sans Condensed',sans-serif": 'Open Sans Condensed',
+        "montserrat": "기본글꼴"
+      },
+      fontFamilySelection: true,
+      language: 'ko'
+    }}/>
     <div className="main_con_box2">
       <div className="w1200">
         <div className="top_txt">

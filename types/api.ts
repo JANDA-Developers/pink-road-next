@@ -19,7 +19,7 @@ export interface categoryCreate_CategoryCreate_data {
 export interface categoryCreate_CategoryCreate {
   __typename: "CategoryCreateResponse";
   ok: boolean;
-  error: string;
+  error: string | null;
   data: categoryCreate_CategoryCreate_data | null;
 }
 
@@ -28,7 +28,7 @@ export interface categoryCreate {
 }
 
 export interface categoryCreateVariables {
-  data: CategoryCreateInput;
+  params: CategoryCreateInput;
 }
 
 /* tslint:disable */
@@ -149,7 +149,7 @@ export interface pcategoryUpdate {
 }
 
 export interface pcategoryUpdateVariables {
-  data: pCategoryUpdateInput;
+  params: pCategoryUpdateInput;
   id: string;
 }
 
@@ -786,6 +786,8 @@ export interface portfolioFindById_PortfolioFindById_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  isOpen: boolean | null;
+  keyWards: string[];
   summary: string | null;
   subTitle: string | null;
   content: any;
@@ -903,6 +905,8 @@ export interface portfolioList_PortfolioList_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  isOpen: boolean | null;
+  keyWards: string[];
   summary: string | null;
   subTitle: string | null;
   content: any;
@@ -1468,6 +1472,8 @@ export interface Fportfolio {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  isOpen: boolean | null;
+  keyWards: string[];
   summary: string | null;
   subTitle: string | null;
   content: any;
@@ -1759,6 +1765,8 @@ export interface ItineraryCreateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
+  attachFiles?: FileCreateInput[] | null;
+  thumb?: FileCreateInput | null;
   images?: FileCreateInput[] | null;
   date?: any | null;
 }
@@ -1770,6 +1778,8 @@ export interface ItineraryUpdateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
+  attachFiles?: FileUpdateInput[] | null;
+  thumb?: FileUpdateInput | null;
   images?: FileUpdateInput[] | null;
   date?: any | null;
 }
@@ -1791,6 +1801,7 @@ export interface PortfolioCreateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
+  attachFiles?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   pCategoryId: string;
 }
@@ -1802,7 +1813,8 @@ export interface PortfolioUpdateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  thumb?: FileCreateInput | null;
+  attachFiles?: FileUpdateInput[] | null;
+  thumb?: FileUpdateInput | null;
   pCategoryId?: string | null;
 }
 
@@ -1814,6 +1826,8 @@ export interface ProductPostCreateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
+  attachFiles?: FileCreateInput[] | null;
+  thumb?: FileCreateInput | null;
   categoryId: string;
   status?: ProductPostStatus | null;
   itinerary: ItineraryCreateInput[];
@@ -1838,6 +1852,8 @@ export interface ProductPostUpdateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
+  attachFiles?: FileUpdateInput[] | null;
+  thumb?: FileUpdateInput | null;
   productId?: string | null;
   categoryId: string;
   status?: ProductPostStatus | null;

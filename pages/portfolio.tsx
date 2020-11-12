@@ -108,7 +108,9 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                         )}
                     </ul>
                     {role === UserRole.admin || UserRole.manager && 
-                        <Link href={`/portfolio/write`} ><li className="add"><i className="flaticon-add"></i>추가</li></Link>
+                        <Link href={`/portfolio/write`} >
+                            <button  type="button" className="btn medium">추가</button>
+                        </Link>
                     }
                     <div className="boardNavigation">
                         <div className="center">
