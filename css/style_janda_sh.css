@@ -8338,24 +8338,12 @@ i.calendar {
                 color: #fff;
             }
 
-        .portfolio_in .con04 .photo_tap_div .tab-selector-1:checked ~ .tab-label-1,
-        .portfolio_in .con04 .photo_tap_div .tab-selector-2:checked ~ .tab-label-2,
-        .portfolio_in .con04 .photo_tap_div .tab-selector-3:checked ~ .tab-label-3,
-        .portfolio_in .con04 .photo_tap_div .tab-selector-4:checked ~ .tab-label-4,
-        .portfolio_in .con04 .photo_tap_div .tab-selector-5:checked ~ .tab-label-5,
-        .portfolio_in .con04 .photo_tap_div .tab-selector-6:checked ~ .tab-label-6,
-        .portfolio_in .con04 .photo_tap_div .tab-selector-7:checked ~ .tab-label-7 {
+        .portfolio_in .con04 .photo_tap_div .tab-selector-1:checked + .tab-label-1{
             color: #fff;
             z-index: 61;
         }
 
-            .portfolio_in .con04 .photo_tap_div .tab-selector-1:checked ~ .tab-label-1:after,
-            .portfolio_in .con04 .photo_tap_div .tab-selector-2:checked ~ .tab-label-2:after,
-            .portfolio_in .con04 .photo_tap_div .tab-selector-3:checked ~ .tab-label-3:after,
-            .portfolio_in .con04 .photo_tap_div .tab-selector-4:checked ~ .tab-label-4:after,
-            .portfolio_in .con04 .photo_tap_div .tab-selector-5:checked ~ .tab-label-5:after,
-            .portfolio_in .con04 .photo_tap_div .tab-selector-6:checked ~ .tab-label-6:after,
-            .portfolio_in .con04 .photo_tap_div .tab-selector-7:checked ~ .tab-label-7:after {
+            .portfolio_in .con04 .photo_tap_div .tab-selector-1:checked + .tab-label-1:after {
                 content: '';
                 width: 80%;
                 height: 5px;

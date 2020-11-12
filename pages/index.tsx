@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import pageInfoDefault from 'info/main.json';
 import { getEditUtils } from 'utils/pageEdit';
 import { AppContext } from './_app'

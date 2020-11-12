@@ -17,6 +17,7 @@ import { PRODUCT_POST_CREATE } from "apollo/mutations";
 import { ItineryForm } from "components/tourWrite/ItineryForm";
 import { autoComma } from "utils/formatter";
 import dayjs from "dayjs";
+import { IProductPostFindById } from "types/interface";
 
 const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
 interface IProp {

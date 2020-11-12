@@ -7,18 +7,18 @@ export const useUpload = (options?: MutationHookOptions<multiUpload, multiUpload
         ...options
     });
 
-    const signleUpload = (file: FileList | null , onSucess?: (url:string,data:multiUpload_MultiUpload_data | undefined) => void) => {
+    const signleUpload = (file: FileList | null , onSucess?: (url:string,data:Exclude<multiUpload_MultiUpload_data,"__typenmae"> | undefined) => void) => {
         if(!file) return;
         multMu({
             variables: {
                 file
             }
         }).then(({data})=> {
-            const url = data?.MultiUpload.data[0]?.uri;
+            const file = data?.MultiUpload.data[0];
+            const url = file?.uri;
             if(url) {
-                console.log("file Data");
-                console.log(data?.MultiUpload.data);
-                onSucess?.(url,data?.MultiUpload.data?.[0] || undefined)
+                delete file.__typename
+                onSucess?.(url,file || undefined)
             }
         })
     }
