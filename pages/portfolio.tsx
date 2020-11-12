@@ -1,11 +1,9 @@
-import { useQuery } from '@apollo/client';
-import { PORT_FOLIO_LIST } from 'apollo/queries';
 import { usePageInfo } from 'hook/usePageInfo';
 import { usePortfolioList, IUsePortfolioList } from 'hook/usePortfolioList';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
-import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { pcategoryList_pCategoryList_data, portfolioList, portfolioListVariables, portfolioList_PortfolioList_data } from 'types/api';
+import React, { Fragment, useContext, useState } from 'react';
+import { pcategoryList_pCategoryList_data, UserRole } from 'types/api';
 import { getEditUtils } from 'utils/pageEdit';
 import { AppContext } from './_app';
 import pageInfoDefault from "info/portfolio.json"
@@ -18,19 +16,20 @@ interface IProp {
 
 export const PortFolio: React.FC<IProp> = ({ context }) => {
     const { editMode } = useContext(AppContext);
-    const { items: portfolios = [], pageInfo, setPage, sitePageInfo, pcategories } = context;
+    const { items: portfolios = [], pageInfo, setPage, sitePageInfo, pcategories, role } = context;
     const original = sitePageInfo || pageInfoDefault;
     const [page, setPageInfo] = useState(original);
     const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPageInfo)
     const [viewCat, setViewCat] = useState("");
 
-    const filteredPortfolios = viewCat ? portfolios.filter(pt => pt.pCategory._id === viewCat) : portfolios;
+    const filteredPortfolios = viewCat ? portfolios.filter(pt => pt.pCategory?._id === viewCat) : portfolios;
 
     const handlePrev = () =>
-        setPage(pageInfo.prev_page_num)
+        setPage(pageInfo.page - 1)
 
-    const handleNext = () =>
-        setPage(pageInfo.next_page_num)
+    const handleNext = () =>{
+        setPage(pageInfo.page + 1)
+    }
 
     const handleCatChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const nextCat = event.currentTarget.value;
@@ -78,10 +77,10 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
         </div>
         <div className="w100 con03 con_block">
             <h4 {...edit('con3_title')} />
-            <span {...edit('con3_subtitle')} />
+            <span {...edit('con3_subTitle')} />
         </div>
         <div className="w100 con04 con_block">
-            <div className="photo_tap_div">
+            <div id="list" className="photo_tap_div">
 
                 <input value="" onChange={handleCatChange} id="tab-00" type="radio" name="radio-set" className="tab-selector-1" checked={viewCat === ""}></input>
                 <label htmlFor="tab-00" className="tab-label-1 photo_tap">ALL</label>
@@ -97,32 +96,26 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                 <div className="portfolio_box box01" id="portfolio_box_1">
                     <ul>
                         {filteredPortfolios.map((portfolio) =>
-                            <Link key={portfolio._id} href={`/portfolio/${portfolio._id}`}>
-                                <li>
+                            <Link key={portfolio._id} href={`/portfolio/view/${portfolio._id}`}>
+                                <li style={{ backgroundImage: `url(${portfolio.thumb?.uri})` }}>
                                     <div className="box">
-                                        <i className="category">{portfolio.title}</i>
+                                        {portfolio?.pCategory && <i className="category">{portfolio.pCategory.label}</i>}
                                         <strong className="title">{portfolio.title}</strong>
-                                        <span className="txt">{portfolio.title}</span>
+                                        <span className="txt">{portfolio.summary}</span>
                                     </div>
                                 </li>
                             </Link>
                         )}
-                        <Link href={`/portfolio/write/`}>
-                            <li>
-                                <div className="box">
-                                    <i className="category">디자인</i>
-                                    <strong className="title">제목제목</strong>
-                                    <span className="txt">내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</span>
-                                </div>
-                            </li>
-                        </Link>
                     </ul>
+                    {role === UserRole.admin || UserRole.manager && 
+                        <Link href={`/portfolio/write`} ><li className="add"><i className="flaticon-add"></i>추가</li></Link>
+                    }
                     <div className="boardNavigation">
                         <div className="center">
                             <div className="pagenate_mini">
-                                <div onClick={handlePrev} className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
+                                <div onClick={handlePrev} className={`${pageInfo.page === 1 && 'disabled-btn'} page_btn first`}><i className="jandaicon-arr4-left"></i></div>
                                 <div className="count"><strong>{pageInfo.page}</strong> / {pageInfo.totalPageSize}</div>
-                                <div onClick={handleNext} className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
+                                <div onClick={handleNext} className={`${pageInfo.page === pageInfo.totalPageSize && 'disabled-btn'} page_btn end`}><i className="jandaicon-arr4-right"></i></div>
                             </div>
                         </div>
                     </div>
@@ -158,14 +151,14 @@ export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
     return {
         props: {
             pageInfo: data?.value || "",
-            revalidate: 10
+            revalidate: 8
         }, // will be passed to the page component as props
     }
 }
 
 const PortFolioWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
     const { pcategories } = usePcategory()
-    const portfolioList = usePortfolioList({ initialPageIndex: 1, initialViewCount: 10 })
+    const portfolioList = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8 })
 
     const context: IPortfolioWrapContext = {
         ...portfolioList,

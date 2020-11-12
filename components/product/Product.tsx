@@ -15,7 +15,7 @@ export const Product: React.FC<IProductComponentProp> = ({ id, category, subTitl
             <div className="category"><span>{"category?.label"}</span></div>
             <div className="title">{title}</div>
             <div className="bottom_txt">
-                <div className="subtitle">
+                <div className="subTitle">
                     {subTitle}
                 </div>
                 {keyWards?.map((tag, i) =>

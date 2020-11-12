@@ -445,7 +445,7 @@ ul.list_ul li .title {
     font-weight: 600;
 }
 
-ul.list_ul li .subtitle {
+ul.list_ul li .subTitle {
     width: 100%;
     display: block;
     text-align: left;
@@ -570,7 +570,7 @@ ul.boardlist_ul li .title {
     font-weight: 600;
 }
 
-ul.boardlist_ul li .subtitle {
+ul.boardlist_ul li .subTitle {
     width: 100%;
     display: block;
     text-align: left;
@@ -860,7 +860,7 @@ ul.photo_ul li .title {
     font-weight: 600;
 }
 
-ul.photo_ul li .subtitle {
+ul.photo_ul li .subTitle {
     font-size: 14px;
     font-weight: 400;
 }
@@ -1777,7 +1777,7 @@ div.board_list_mini {
     ul.photo_ul li .title {
         font-size: 17px;
     }
-    ul.photo_ul li .subtitle {
+    ul.photo_ul li .subTitle {
         font-size: 12px;
     }
     ul.photo_ul li .category {

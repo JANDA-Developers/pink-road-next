@@ -20,7 +20,7 @@ export const PhotoLi: React.FC<IProp> = ({ category, title, subTitle, onClickImg
         <div className="box">
             <div className="category"><span>{category}</span></div>
             <div className="title">{title}</div>
-            <div className="subtitle">
+            <div className="subTitle">
                 {subTitle}
             </div>
         </div>

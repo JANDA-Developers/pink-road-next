@@ -5660,7 +5660,7 @@ i.important_icon {
         font-weight: 600;
     }
 
-    .option_tb .subtitle {
+    .option_tb .subTitle {
         display: block;
         text-align: left;
         font-size: 16px;
@@ -8389,7 +8389,6 @@ i.calendar {
             background-color: #000000;
             vertical-align: top;
             cursor: pointer;
-            background-image: url(/img/store_01.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: 150%;

@@ -70,15 +70,11 @@ export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
 }
 
 export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
-
-  console.log('pageInfo');
-  console.log(pageInfo);
   const { editMode } = useContext(AppContext);
   const original = pageInfo || pageInfoDefault;
   const [page, setPage] = useState(original);
   const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPage)
 
-  console.log(bg("mainBg"));
 
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />

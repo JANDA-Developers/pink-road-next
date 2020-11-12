@@ -7,6 +7,7 @@ import { Upload } from 'components/common/Upload';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
 import { BG } from 'types/const';
+import { UserRole } from 'types/api';
 
 type TGetProps = {
     pageInfo: typeof pageInfoDefault | "",
@@ -23,7 +24,7 @@ export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
 
 export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
     const original = pageInfo || pageInfoDefault;
-    const { editMode } = useContext(AppContext)
+    const { editMode, role } = useContext(AppContext)
     const [page, setPage] = useState<typeof pageInfoDefault>(original)
     const [open, setOpen] = useState(true);
     const [addInfo, setAddInfo] = useState({
@@ -230,11 +231,11 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                             </a>
                         </li>
                     })}
-                    <li className="add" onClick={() => {
-
-                        addArray("partners", {})
-
-                    }}><i className="flaticon-add"></i>추가</li>
+                    {role === UserRole.admin || UserRole.manager && 
+                        <li className="add" onClick={() => {
+                            addArray("partners", {})
+                        }}><i className="flaticon-add"></i>추가</li>
+                    }
                 </ul>
             </div>
         </div>

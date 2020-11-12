@@ -1,7 +1,7 @@
 import { OutputData } from "@editorjs/editorjs";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { Ffile, FileCreateInput } from "types/api"
+import { Ffile, FileCreateInput, PortfolioCreateInput } from "types/api"
 import { EMPTY_EDITOR } from "types/const";
 import { TElements } from "types/interface";
 import React from "react";
@@ -9,7 +9,7 @@ import { useUpload } from "hook/useUpload";
 
 const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
 
-interface IBoard {
+export interface IBoard {
     categoryList: TCategory[]
     category: TCategory
     categoryId: string;
@@ -18,9 +18,9 @@ interface IBoard {
     isOpen: boolean;
     files: Ffile[]
     content: OutputData;
-    subtitle: string;
+    subTitle: string;
     summary: string;
-    thumb: Ffile;
+    thumb: FileCreateInput;
 }
 
 interface IOpen {
@@ -28,7 +28,6 @@ interface IOpen {
     subTitle: boolean;
     category: boolean;
     files: boolean;
-    subtitle: boolean;
     summary: boolean;
     thumb: boolean;
 }
@@ -47,13 +46,13 @@ interface IProps {
     opens: IOpen
 }
 
-export const Write: React.FC<IProps> = ({ defaults = {}, opens, mode, WriteInjection, onCancel, onCreate, onDelete, onEdit, onLoad, onSave }) => {
+export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, WriteInjection, onCancel, onCreate, onDelete, onEdit, onLoad, onSave }) => {
     const isCreateMode = mode === "create";
     const { signleUpload } = useUpload();
     const [isOpen, setIsOpen] = useState<boolean>(defaults.isOpen);
     const [title, setTitle] = useState<string>(defaults.title)
     const [category, setCategory] = useState<string>(defaults.category._id);
-    const [subtitle, setSubTitle] = useState<string>(defaults.subtitle);
+    const [subTitle, setSubTitle] = useState<string>(defaults.subTitle);
     const [summary, setSummary] = useState<string>(defaults.summary);
     const [files, setFiles] = useState<Ffile[]>([]);
     const [thumb, setThumb] = useState<FileCreateInput>(defaults.thumb)
@@ -64,9 +63,9 @@ export const Write: React.FC<IProps> = ({ defaults = {}, opens, mode, WriteInjec
     const data: Partial<IBoard> = {
         categoryId: category,
         content,
-        files,
+        // files,
         isOpen,
-        subtitle,
+        subTitle,
         summary,
         title
     }
@@ -114,11 +113,18 @@ export const Write: React.FC<IProps> = ({ defaults = {}, opens, mode, WriteInjec
         if (!event.target.files) return;
         const fileUploaded = event.target.files;
         const onUpload = (url, data: Ffile) => {
+            console.log("data");
+            console.log(data);
             setThumb(data)
         }
         signleUpload(fileUploaded, onUpload);
         // data.images[FILE_SELECT_INDEX] = fileUploaded;
     };
+
+
+    console.log("thumb");
+    console.log(thumb?.name);
+
     return (
         <div className="writing_in w100 board_write">
             <div className="w1200">
@@ -157,7 +163,10 @@ export const Write: React.FC<IProps> = ({ defaults = {}, opens, mode, WriteInjec
                             <div className="title">썸네일</div>
                             <div className="img_box_add">
                                 <ul className="img_add">
-                                    <li onClick={handleUploadClick} className="on_file">{thumb.name}</li>
+                                    {thumb ? (
+                                        <li onClick={handleUploadClick} className="on_file">{thumb.name}</li>) :
+                                        (<li onClick={handleUploadClick}>이미지추가<i className="flaticon-add icon_plus"></i></li>)
+                                    }
                                     <input onChange={handleChangeSumbNail} multiple={false} ref={hiddenFileInput} hidden type="file" />
                                 </ul>
                                 <p className="input_form info_txt">- 썸네일 이미지사이즈 400px * 400px</p>
@@ -170,17 +179,7 @@ export const Write: React.FC<IProps> = ({ defaults = {}, opens, mode, WriteInjec
                             <div className="input_form">
                                 <input onChange={(e) => {
                                     setSubTitle(e.currentTarget.value)
-                                }} value={title} type="text" name="title" className="inputText w100" />
-                            </div>
-                        </div>
-                    }
-                    {opens.subTitle &&
-                        <div className="write_type">
-                            <div className="title">부제목</div>
-                            <div className="input_form">
-                                <input onChange={(e) => {
-                                    setSubTitle(e.currentTarget.value)
-                                }} value={title} type="text" name="subTitle" className="inputText w100" />
+                                }} value={subTitle} type="text" name="subTitle" className="inputText w100" />
                             </div>
                         </div>
                     }
@@ -224,6 +223,7 @@ export const Write: React.FC<IProps> = ({ defaults = {}, opens, mode, WriteInjec
                     <EditorJs holder="content" data={content} onChange={(api: any, data?: OutputData) => {
                         setContent(data || EMPTY_EDITOR);
                     }} />
+                    <div id="content" />
                 </div>
                 {/* 하단메뉴 */}
                 <div className="boardNavigation">
@@ -242,3 +242,5 @@ export const Write: React.FC<IProps> = ({ defaults = {}, opens, mode, WriteInjec
         </div>
     )
 }
+
+export default BoardWrite;

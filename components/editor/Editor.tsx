@@ -21,7 +21,6 @@ export const Editor: React.FC<IProp> = (props) => {
     if (!editorTools) {
         return <div />
     }
-    console.log(editorTools);
 
     return <EditorJs  {...props} tools={editorTools} />;
 };

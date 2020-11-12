@@ -39,7 +39,7 @@ const info:TStieInfo = {
     con3_title: {
         kr: 'Portfolio'
     },
-    con3_subtitle: {
+    con3_subTitle: {
         kr: '디테일한 스토리텔링을 통해 다양한 컨텐츠를 만들어 갑니다.'
     },
 

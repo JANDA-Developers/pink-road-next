@@ -39,6 +39,9 @@ ul[contenteditable="true"] li {
     max-width: unset;
 }
 
+.ce-toolbar__content {
+    width: 100%;
+}
 
 .codex-editor {
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
@@ -108,6 +111,19 @@ ul[contenteditable="true"] li {
     margin-right: 0.4rem;
 }
 
+.codex-editor--narrow .ce-toolbar__actions {
+    right: -30px;
+}
+@media (max-width:768px) {
+.ce-toolbar__actions {
+    right: 30px!important;
+}
+}
+
 .day_tap .initrary__imgInput {
     margin-bottom: 5px;
+}
+
+.disabled-btn {
+    pointer-events: none;
 }
