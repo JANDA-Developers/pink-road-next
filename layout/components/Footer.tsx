@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from "jquery";
+import Link from "next/link"
 
 interface IProp { }
 
@@ -27,7 +28,7 @@ export const Footer: React.FC<IProp> = () => {
                             <a className="link4" href="/"><i>N</i></a>
                         </div>
                     </li>
-                    <li className="cs"> <a href="mailto:pinkroader@gmail.com">제휴문의</a></li>
+                    <li className="cs"> <a href="mailto:pinkroader@gmail.com">CONTACT</a></li>
                 </ul>
             </div>
             <div className="f_detail_wrap">
@@ -48,7 +49,7 @@ export const Footer: React.FC<IProp> = () => {
 
                         <li>
                             <span>사업자등록번호</span>
-                            <strong>603-81-87668<a href="http://www.ftc.go.kr/www/bizCommList.do?key=232" target="_blank">사업자정보확인</a></strong>
+                            <strong>603-81-87668<Link href="http://www.ftc.go.kr/www/bizCommList.do?key=232"><a>사업자정보확인</a></Link></strong>
                         </li>
                         <li>
                             <span>통신판매업신고번호</span>
@@ -71,7 +72,7 @@ export const Footer: React.FC<IProp> = () => {
 
                         <li>
                             <span>주소</span>
-                            <strong>부산시 중구 대청로 135번길 3-1, 장안빌딩 5F<i className="flaticon-placeholder-3"></i></strong>
+                            <strong>부산광역시 중구 40계단길 10, 3F<i className="flaticon-placeholder-3"></i></strong>
                         </li>
                         <li>
                             <span>계좌번호</span>
@@ -81,23 +82,31 @@ export const Footer: React.FC<IProp> = () => {
                             Copyright © 2020 PINKROADER Co., Ltd. All rights reserved
                     </li>
                     </ul>
-                </div>
-                <div className="bottom_bn">
-
-                    <div className="partner">
-                        <span className="link"><img src="/img/partners7.png" alt="사회적기업" /></span>
-                        <span className="link"><img src="/img/partners7.png" alt="공유경제부산" /></span>
-                        <span className="link"><img src="/img/partners7.png" alt="여성기업" /></span>
-                        <span className="link"><img src="/img/partners7.png" alt="벤처기업" /></span>
-                        <span className="link"><img src="/img/partners7.png" alt="도시재생전문기업" /></span>
+                    <div className="bottom_bn">
+                        <div className="partner">
+                            <span className="link"><img src="/img/partners7.png" alt="사회적기업" /></span>
+                            <span className="link"><img src="/img/partners7.png" alt="공유경제부산" /></span>
+                            <span className="link"><img src="/img/partners7.png" alt="여성기업" /></span>
+                            <span className="link"><img src="/img/partners7.png" alt="벤처기업" /></span>
+                            <span className="link"><img src="/img/partners7.png" alt="도시재생전문기업" /></span>
+                        </div>
                     </div>
+                </div>
+                
+            </div>
+        </div>
+        <div id="fade1" onClick={handleFadeClick} />
+        <div className="footer-area-bottom">
+            <div className="container">
+                <div className="janda_txt">
+                    <p>
+                        <a href="https://stayjanda.com/" target="_blank" rel="noopener">
+                            <i className="jandaicon-janda"></i>
+                            대한민국 1등 온·오프라인 숙소운영 및 통합예약 솔루션
+                                                    </a>
+                    </p>
                 </div>
             </div>
         </div>
-        <div className="footer_middle">
-        </div>
-        <div className="footer_in_bottom">
-        </div>
-        <div id="fade1" onClick={handleFadeClick} />
     </footer>;
 };

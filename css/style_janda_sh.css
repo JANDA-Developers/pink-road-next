@@ -671,20 +671,50 @@ div.alignment {
         box-sizing: border-box;
         border: 1px solid #d2d2d2;
     }
-
-div.search {
-    width: 94%;
-    margin:0 auto;
-    display: block;
-    position: relative;
-    margin-bottom: 10px;
-    background-color: #f5f5f5;
-    padding: 40px 0 40px;
-    text-align: center;
-    box-sizing: border-box;
-    margin-top: 100px;
-    border-top: 2px solid #333;
-}
+    div.alignment .move-left,
+    div.alignment .move-right {
+        position:relative;
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        text-align: center;
+        font-size: 11px;
+        color: #999;
+        cursor: pointer;
+        padding: 0 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        line-height:22px;
+    }
+    div.alignment .move-right {
+        margin-right: 10px;
+        margin-left: 3px;
+    }
+        div.alignment .move-left button,
+        div.alignment .move-right button {
+            width: 22px;
+            height: 22px;
+            display: block;
+            border: none;
+            cursor: pointer;
+            background-color: transparent;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        div.search {
+            width: 94%;
+            margin: 0 auto;
+            display: block;
+            position: relative;
+            margin-bottom: 10px;
+            background-color: #f5f5f5;
+            padding: 40px 0 40px;
+            text-align: center;
+            box-sizing: border-box;
+            margin-top: 100px;
+            border-top: 2px solid #333;
+        }
 
     div.search li {
         display: inline-block;
@@ -7806,7 +7836,7 @@ i.calendar {
 
 /* tourstory */
 .tourstory_box {
-    padding-top: 50px;
+    padding-top: 63px;
     padding-bottom: 100px;
 }
 
@@ -8068,9 +8098,6 @@ i.calendar {
         -ms-transition: opacity ease-out 0.2s 0.1s;
         transition: opacity ease-out 0.2s 0.1s;
         height: auto;
-        /*border-left: 1px solid #ccc;
-        border-right: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;*/
         border-top: 1px solid #ccc;
     }
 
@@ -8079,13 +8106,12 @@ i.calendar {
 .portfolio_in .top_bg {
     position: relative;
     display: block;
-    height: 1000px;
+    height: 550px;
     width: 100%;
     background-image: url(/img/portfolio_top_bg.jpg);
-    background-color: #ffe4f5;
     background-position: left bottom;
     background-repeat: no-repeat;
-    background-size: 180%;
+    background-size: 360%;
     z-index: 2;
 }
 
@@ -8124,16 +8150,16 @@ i.calendar {
         position: relative;
     }
 
+
     .portfolio_in .top_bg h3 {
         color: #fff;
         display: block;
-        font-size: 94px;
+        font-size: 44px;
         text-align: center;
-        padding-top: 400px;
+        padding-top: 210px;
         font-weight: 600;
         z-index: 10;
     }
-
     .portfolio_in .top_bg span {
         color: #c7c7c7;
         display: block;
@@ -8148,9 +8174,8 @@ i.calendar {
 }
 
 .portfolio_in .con02 {
-    background-image: url(/img/ptbg03.png);
-    padding-top: 250px;
-    padding-bottom: 250px;
+    padding:250px 3%;
+    box-sizing:border-box;
 }
     .portfolio_in .con02::after {
         content: '';
@@ -8190,14 +8215,14 @@ i.calendar {
 
     .portfolio_in .con02 ul li {
         display: inline-block;
-        width: 22%;
-        margin: 1%;
+        width: 45%;
+        margin: 1% 1% 5%;
     }
 
         .portfolio_in .con02 ul li .img {
             display: inline-block;
-            width: 260px;
-            height: 230px;
+            width: 100px;
+            height: 100px;
             border-radius: 10px;
             background-position: center;
             background-repeat: no-repeat;
@@ -8207,27 +8232,27 @@ i.calendar {
         }
 
     .portfolio_in .con02 li.img01 .img {
-        background-size: 110px;
+        background-size: 55px;
         background-image: url('/img/svg/work_icon_04.svg');
     }
 
     .portfolio_in .con02 li.img02 .img {
-        background-size: 100px;
+        background-size: 50px;
         background-image: url('/img/svg/work_icon_02.svg');
     }
 
     .portfolio_in .con02 li.img03 .img {
-        background-size: 120px;
+        background-size: 50px;
         background-image: url('/img/svg/work_icon_03.svg');
     }
 
     .portfolio_in .con02 li.img04 .img {
-        background-size: 120px;
+        background-size: 50px;
         background-image: url('/img/svg/work_icon_01.svg');
     }
 
     .portfolio_in .con02 ul li h5 {
-        font-size: 21px;
+        font-size: 16px;
         font-weight: 600;
         color: #555;
     }
@@ -8310,7 +8335,7 @@ i.calendar {
                 content: '';
                 width: 80%;
                 height: 5px;
-                background-color: #fff;
+                background-color: #ed297b;
                 position: absolute;
                 bottom: 0;
                 left: 10%;
@@ -8424,7 +8449,50 @@ i.calendar {
         display: block;
         color: #ffffff;
     }
-
+.portfolio_in .con05 {
+    min-height: 220px;
+    padding: 0 3% 0;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    background-color: #333;
+}
+    .portfolio_in .con05 .link {
+        display: inline-block;
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        top: 50%;
+        margin-top: -60px;
+        right: 0;
+        border-radius: 500px;
+        background-color: #d2d2d2;
+        text-align: center;
+        padding-top: 41px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-weight: 600;
+        font-size: 14px;
+        box-shadow: 2px 2px 2px #000;
+    }    
+    .portfolio_in .con05 .link:hover {
+       background-color:#ed297b;
+       color:#fff;
+    }  
+    .portfolio_in .con05 .txt {
+        color:#fff;
+        position:relative;
+        top:0;
+        padding-top:85px;
+    }
+        .portfolio_in .con05 .txt h4 {
+            color: #fff;
+            font-size: 21px;
+        }
+        .portfolio_in .con05 .txt span {
+            color: #bebebe;
+            font-size: 14px;
+        }
 @media (min-width: 768px) {
     .main_con_box1 .main_top_images {
         background-size: 150%;
@@ -9239,6 +9307,48 @@ i.calendar {
     }
     div.bn_box {
         width: 100%;
+    }
+    .portfolio_in .top_bg {
+        height: 810px;
+        width: 100%;
+        background-image: url(/img/portfolio_top_bg.jpg);
+        background-position: left bottom;
+        background-size: 180%;
+    }
+        .portfolio_in .top_bg h3 {
+            font-size: 94px;
+            padding-top: 360px;
+        }
+    .portfolio_in .con02 {
+    }
+    .portfolio_in .con02 ul li {
+        width: 22%;
+    }
+        .portfolio_in .con02 ul li .img {
+            display: inline-block;
+            width: 190px;
+            height: 180px;
+            border-radius: 10px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 50px;
+            margin-bottom: 10px;
+            background-color: #ed297b;
+        }
+    .portfolio_in .con02 li.img01 .img {
+        background-size: 110px;
+    }
+    .portfolio_in .con02 li.img02 .img {
+        background-size: 100px;
+    }
+    .portfolio_in .con02 li.img03 .img {
+        background-size: 120px;
+    }
+    .portfolio_in .con02 li.img04 .img {
+        background-size: 120px;
+    }
+    .portfolio_in .con02 ul li h5 {
+        font-size: 21px;
     }
 }
 

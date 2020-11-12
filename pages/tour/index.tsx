@@ -30,7 +30,7 @@ export const TourMain: React.FC<IProp> = () => {
             <div className="w1200">
                 <div id="sub_tap_nav" className="subtop_nav">
                     <ul>
-                        <li><a href="/tour-list">전체</a></li>
+                        <li className="on"><a href="/tour-list">전체</a></li>
                         <li><a href="/tour-list">문화·예술여행</a></li>
                         <li><a href="/tour-list">교육·답사여행</a></li>
                         <li><a href="/tour-list">역사여행</a></li>
@@ -45,7 +45,8 @@ export const TourMain: React.FC<IProp> = () => {
                     <div className="alignment">
                         <div className="left_div"><h4>문화·예술여행</h4></div>
                         <div className="right_div">
-                            <span className="goto_page"><a href="/tour-list">바로가기<i className="flaticon-menu-1"></i></a></span>
+                            <span className="move-left"><i className="jandaicon-arr4-left" /><button></button></span>
+                            <span className="move-right"><i className="jandaicon-arr4-right" /><button></button></span>
                         </div>
                     </div>
                     <ul className="list_ul line3">
@@ -58,7 +59,8 @@ export const TourMain: React.FC<IProp> = () => {
                     <div className="alignment">
                         <div className="left_div"><h4>교육·답사여행</h4></div>
                         <div className="right_div">
-                            <span className="goto_page"><a href="/tour-list">바로가기<i className="flaticon-menu-1"></i></a></span>
+                            <span className="move-left"><i className="jandaicon-arr4-left" /><button></button></span>
+                            <span className="move-right"><i className="jandaicon-arr4-right" /><button></button></span>
                         </div>
                     </div>
                     <ul className="list_ul line3">
@@ -71,7 +73,8 @@ export const TourMain: React.FC<IProp> = () => {
                     <div className="alignment">
                         <div className="left_div"><h4>역사여행</h4></div>
                         <div className="right_div">
-                            <span className="goto_page"><a href="/tour-list">바로가기<i className="flaticon-menu-1"></i></a></span>
+                            <span className="move-left"><i className="jandaicon-arr4-left" /><button></button></span>
+                            <span className="move-right"><i className="jandaicon-arr4-right" /><button></button></span>
                         </div>
                     </div>
                     <ul className="list_ul line3">
@@ -85,7 +88,8 @@ export const TourMain: React.FC<IProp> = () => {
                     <div className="alignment">
                         <div className="left_div"><h4>팸투어</h4></div>
                         <div className="right_div">
-                            <span className="goto_page"><a href="/tour-list">바로가기<i className="flaticon-menu-1"></i></a></span>
+                            <span className="move-left"><i className="jandaicon-arr4-left" /><button></button></span>
+                            <span className="move-right"><i className="jandaicon-arr4-right" /><button></button></span>
                         </div>
                     </div>
                     <ul className="list_ul line3">

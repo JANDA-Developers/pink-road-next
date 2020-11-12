@@ -1,17 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\components",
-    "\\components\\main",
+    "\\components\\news",
     "\\css",
-    "\\info",
     "\\layout",
     "\\layout\\components",
     "\\pages",
-    "\\pages\\tour",
-    "\\public",
-    "\\public\\img"
+    "\\pages\\board",
+    "\\pages\\master",
+    "\\pages\\mypage\\api",
+    "\\pages\\tour"
   ],
-  "SelectedNode": "\\css\\layout.css",
+  "SelectedNode": "\\css\\common.css",
   "PreviewInSolutionExplorer": false
 }

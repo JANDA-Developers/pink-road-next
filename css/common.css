@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6,h7,h8 {
 a {
     color: #333;
     text-decoration: none;
-    transition: all 0.3s ease 0s;
+    /*transition: all 0.3s ease 0s;*/
 }
 
     a:link {
@@ -121,7 +121,9 @@ select:focus {
     font-size: 0;
     line-height: 0;
 }
-
+.betatest {/* 핑크로더는 볼수 없게 none */
+    display:inline-block !important;
+}
 .btn {
     box-shadow: none;
     background-color: #fff;
