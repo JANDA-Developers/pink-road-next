@@ -11,15 +11,23 @@ export const Footer: React.FC<IProp> = () => {
         $('fade1').css("display", 'none');
     }
 
-    return <footer className="footer">
+    return <footer className="footer" id="footer">
+        <div id="gotop">
+            <Link href="#header">
+                <a className="top"><i className="jandaicon-arr4-top" /></a>
+            </Link>
+            <Link href="#footer">
+                <a className="down"><i className="jandaicon-arr4-bottom" /></a>
+            </Link>
+        </div>
         <div className="footer_in">
             <div className="bottom_nav">
                 <ul className="w1200">
-                    <li><a href="/">회사소개</a></li>
-                    <li><a href="/">이용약관</a></li>
-                    <li><a href="/">국내여행약관</a></li>
-                    <li><a href="/">전자상거래이용약관</a></li>
-                    <li><a href="/">개인정보처리방침</a></li>
+                    <li><Link href="/site-info"><a>회사소개</a></Link></li>
+                    <li><Link href="/member/rule"><a>이용약관</a></Link></li>
+                    <li><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
+                    <li><Link href="/member/electron-terms"><a>전자상거래이용약관</a></Link></li>
+                    <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
                     <li className="sns">
                         <div>
                             <a className="link1" href="/"><i className="jandaicon-facebook"></i></a>
