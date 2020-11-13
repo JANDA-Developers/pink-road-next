@@ -10,6 +10,7 @@ import { BG } from '../types/const';
 import { signIn, signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';
 import clinet from "../apollo/client"
+import Link from 'next/link';
 interface IProp { 
 
 }
@@ -42,6 +43,8 @@ export const Login: React.FC<IProp> = () => {
 
 
     useEffect(() => {
+        Storage.saveLocal("saveid",saveId)
+        Storage.saveLocal("saveSession?",saveSession)
 
     }, [saveId, saveSession])
 
@@ -60,10 +63,15 @@ export const Login: React.FC<IProp> = () => {
     }
 
     const [LoginQu, { loading: create_loading }] = useLazyQuery<signIn,signInVariables>(SIGN_IN, {
+        fetchPolicy: "network-only",
         onCompleted: ({SignIn}) => {
-            localStorage.setItem("JWT", SignIn.data.token);
-            alert("환영합니다.")
-            location.href = "/"
+            if(SignIn.ok) {
+                Storage.saveLocal("jwt", SignIn.data.token);
+                alert("환영합니다.")
+                location.href = "/"
+            } else {
+                alert(SignIn.error)
+            }
         },
     })
 
@@ -75,8 +83,6 @@ export const Login: React.FC<IProp> = () => {
             }
         })
     }
-
-
 
     return <div >
         <div className="top_visual">
@@ -151,28 +157,7 @@ export const Login: React.FC<IProp> = () => {
                         <label htmlFor="tab-4" className="tab-label-4 login_tap tap_03">
                             <b>매니저</b>
                         </label>
-                        <Box index={1} handleId={handleId} handlePw={handlePw} handleLogin={handleLogin} />
-                        <Box index={2} handleId={handleId} handlePw={handlePw} handleLogin={handleLogin} />
-                        <Box index={3} handleId={handleId} handlePw={handlePw} handleLogin={handleLogin} />
-                        <Box index={4} handleId={handleId} handlePw={handlePw} handleLogin={handleLogin} />
-                    </div>
-                </div>
-            </div>
-    </div>
-    </div>
-};
-
-
-interface IBoxProp {
-    index: number;
-    handleId:(id:string) => void;
-    handlePw:(pw:string) => void;
-    handleLogin:() => void;
-}
-
-const Box: React.FC<IBoxProp> = ({ index, handleId, handlePw, handleLogin }) => {
-
-    return <div className={`login_wrap white_box login_0${index}`} id={`login_0${index}`}>
+                        <div className={`login_wrap white_box`}>
         <h3>
             <strong>FAMILY</strong> LOGIN
         </h3>
@@ -207,9 +192,7 @@ const Box: React.FC<IBoxProp> = ({ index, handleId, handlePw, handleLogin }) => 
                     name="keep_signed"
                     id="keepid_opt"
                     defaultValue="Y"
-                    onClick={() => {
-
-                    }}
+                    onClick={sessionSave}
                 />
             로그인 유지
         </label>
@@ -223,13 +206,23 @@ const Box: React.FC<IBoxProp> = ({ index, handleId, handlePw, handleLogin }) => 
         </button>
         <div className="sign_in_form">
             <span>
-                <a href="../join">회원가입</a>
+                <Link href="/join">
+                    <a>회원가입</a>
+                </Link>
             </span>
             <span>
-                <a href="../findmembers">ID/PW 찾기</a>
+            <Link href="/findmembers">
+                    <a>회원가입</a>
+                </Link>
             </span>
         </div>
     </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
 };
+
 
 export default Login

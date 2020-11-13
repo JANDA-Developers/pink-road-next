@@ -1,5 +1,4 @@
 import { Meta } from 'components/common/meta/Meta';
-import { Product } from 'components/product/Product';
 import SubTopNav from 'layout/components/SubTop';
 import Link from 'next/link';
 import React from 'react';
@@ -7,7 +6,7 @@ import { useRouter } from 'next/router'
 import { IUseProductList, useProductPostList } from 'hook/useProductPostList';
 import { productPostList_ProductPostList_data_category } from 'types/api';
 import { IProduct } from 'types/interface';
-interface IProp { 
+interface IProp {
     context: ITourMianWrapContext
 }
 
@@ -16,18 +15,19 @@ type TSortedData = {
     items: IProduct[]
 }
 
-export const TourMain: React.FC<IProp> = ({context}) => {
-    const {items}  = context;
+export const TourMain: React.FC<IProp> = ({ context }) => {
+    const { items } = context;
     const router = useRouter();
     const { exp } = router.query;
     const isExp = exp!!;
 
-    const sortedData:TSortedData[] = [];
-    
+    const sortedData: TSortedData[] = [];
+
     items.forEach(item => {
+        if (!item.category) return;
         //카테고리가 삽입 되어있는지 검사
         const target = sortedData.find(d => d?.category?._id === item?.category?._id);
-        if(!target) {
+        if (!target) {
             sortedData.push({
                 category: item.category,
                 items: [item]
@@ -57,7 +57,7 @@ export const TourMain: React.FC<IProp> = ({context}) => {
                             <Link href="/tour/list">
                                 <a >전체</a>
                             </Link>
-                            </li>
+                        </li>
                         <li>
                             <Link href="/tour/list">
                                 <a >문화·예술여행</a>
@@ -72,39 +72,39 @@ export const TourMain: React.FC<IProp> = ({context}) => {
                     <a href="/"><img src={'/img/bn_01.jpg'} alt="여행할인이벤트" /></a>
                     <a href="/"><img src={'/img/bn_01.jpg'} alt="여행할인이벤트" /></a>
                 </div>
-                {sortedData.map(data => 
-                <div key={data?.category?._id} className="deal_list">
-                    <div className="alignment">
-                        {data.category && <div className="left_div"><h4>{data?.category?.label}</h4></div>}
-                        <div className="right_div">
-                            <span className="move-left"><i className="jandaicon-arr4-left" /><button></button></span>
-                            <span className="move-right"><i className="jandaicon-arr4-right" /><button></button></span>
+                {sortedData.map(data =>
+                    <div key={data?.category?._id} className="deal_list">
+                        <div className="alignment">
+                            {data.category && <div className="left_div"><h4>{data?.category?.label}</h4></div>}
+                            <div className="right_div">
+                                <span className="move-left"><i className="jandaicon-arr4-left" /><button></button></span>
+                                <span className="move-right"><i className="jandaicon-arr4-right" /><button></button></span>
+                            </div>
                         </div>
-                    </div>
-                    <ul className="list_ul line3">
-                        {data.items.map(data =>
-                            <Link href={`/tour/view/${data._id}`}>
-                            <li key={data._id} className="list_in" >
-                                <div className="img" style={data.images ? {
-                                    backgroundImage: `url(${data.images[0]?.uri})`
-                                } : undefined}>상품이미지</div>
-                                <div className="box">
-                                    <div className="category"><span>{data.category?.label}</span></div>
-                                    <div className="title">{data.title}</div>
-                                    <div className="bottom_txt">
-                                        <div className="subTitle">
-                                            {data.subTitle}
+                        <ul className="list_ul line3">
+                            {data.items.map(data =>
+                                <Link href={`/tour/view/${data._id}`}>
+                                    <li key={data._id} className="list_in" >
+                                        <div className="img" style={data.images ? {
+                                            backgroundImage: `url(${data.images[0]?.uri})`
+                                        } : undefined}>상품이미지</div>
+                                        <div className="box">
+                                            <div className="category"><span>{data.category?.label}</span></div>
+                                            <div className="title">{data.title}</div>
+                                            <div className="bottom_txt">
+                                                <div className="subTitle">
+                                                    {data.subTitle}
+                                                </div>
+                                                {data.keyWards?.map((tag, i) =>
+                                                    <span key={`${data._id}tag${i}`}>{tag}</span>
+                                                )}
+                                            </div>
                                         </div>
-                                        {data.keyWards?.map((tag, i) =>
-                                            <span key={`${data._id}tag${i}`}>{tag}</span>
-                                        )}
-                                    </div>
-                                </div>
-                            </li >
-                            </Link>
-                        )}
-                    </ul>
-                </div>
+                                    </li >
+                                </Link>
+                            )}
+                        </ul>
+                    </div>
                 )}
             </div>
         </div>
@@ -119,11 +119,11 @@ export const TourMainWrap = () => {
 
     const productPostList = useProductPostList();
 
-    const context:ITourMianWrapContext = {
-        ...productPostList 
+    const context: ITourMianWrapContext = {
+        ...productPostList
     }
 
-    if(productPostList.loading) return null;
+    if (productPostList.loading) return null;
 
     return <TourMain context={context} />
 }

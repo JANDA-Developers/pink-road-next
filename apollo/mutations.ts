@@ -172,11 +172,10 @@ export const PRODUCT_POST_UPDATE = gql`
       ok
       error 
       data {
-          ...FproductPost
-      }
+        _id
+      } 
     }
   }
-  ${F_PRODUCT_POST}
 `;
 
 

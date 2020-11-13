@@ -184,7 +184,7 @@ export const GET_CONTEXT = gql`
           ...Fuser
         }
       }
-      CategoryList  {
+      CategoryList {
         ok
         error
         data {

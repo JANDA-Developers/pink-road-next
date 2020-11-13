@@ -5,26 +5,26 @@ import { IPageInfo, TElements } from 'types/interface';
 import { autoComma } from 'utils/formatter';
 
 interface IProp {
-    context?: any;
-    onWrite?: () => void;
-    FilterSort?: TElements;
-    onSearch?: (value:string) => void;
-    pageInfo?: IPageInfo;
-    totalCount?: number;
+  context?: any;
+  onWrite?: () => void;
+  FilterSort?: TElements;
+  onSearch?: (value: string) => void;
+  pageInfo?: IPageInfo;
+  totalCount?: number;
 }
 
-export const BoardList: React.FC<IProp> = ({ context, FilterSort, children, onWrite, onSearch:handleSearch, pageInfo ,totalCount}) => {
-    return <div className="board_box">
+export const BoardList: React.FC<IProp> = ({ context, FilterSort, children, onWrite, onSearch: handleSearch, pageInfo, totalCount }) => {
+  return <div className="board_box">
     <div className="w1200">
       <div className="alignment">
-          <div className="left_div"><span className="infotxt">총 <strong>{autoComma(totalCount)}</strong>개</span></div>
+        <div className="left_div"><span className="infotxt">총 <strong>{autoComma(totalCount || 0)}</strong>개</span></div>
         <div className="right_div">
-            {FilterSort}
+          {FilterSort}
         </div>
       </div>
       <div className="board_list st01">
         <div className="tbody">
-            {children}
+          {children}
         </div>
       </div>
       {pageInfo && <Paginater pageNumber={pageInfo.page} totalPageCount={pageInfo.totalPageSize} />}
@@ -32,7 +32,7 @@ export const BoardList: React.FC<IProp> = ({ context, FilterSort, children, onWr
         <div className="btn_footer">
           {onWrite && <button onClick={onWrite} type="submit" className="btn medium pointcolor">글쓰기</button>}
         </div>
-        {handleSearch && <SearchMini onSubmit={handleSearch}  />}
+        {handleSearch && <SearchMini onSubmit={handleSearch} />}
       </div>
     </div>
   </div>

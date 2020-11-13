@@ -17,7 +17,7 @@ export interface IBoard {
     title: string;
     isOpen: boolean;
     files: Ffile[]
-    content: OutputData;
+    contents: OutputData;
     subTitle: string;
     summary: string;
     thumb: FileCreateInput;
@@ -56,13 +56,13 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
     const [summary, setSummary] = useState<string>(defaults.summary);
     const [files, setFiles] = useState<Ffile[]>([]);
     const [thumb, setThumb] = useState<FileCreateInput>(defaults.thumb)
-    const [content, setContent] = useState<OutputData>(defaults.content)
+    const [contents, setContents] = useState<OutputData>(defaults.contents)
     const { categoryList, author } = defaults;
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
 
     const data: Partial<IBoard> = {
         categoryId: category,
-        content,
+        contents,
         // files,
         isOpen,
         subTitle,
@@ -218,8 +218,8 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
                 }
                 {/* 내용 */}
                 <div className="write_con">
-                    <EditorJs holder="content" data={content} onChange={(api: any, data?: OutputData) => {
-                        setContent(data || EMPTY_EDITOR);
+                    <EditorJs holder="content" data={contents} onChange={(api: any, data?: OutputData) => {
+                        setContents(data || EMPTY_EDITOR);
                     }} />
                     <div id="content" />
                 </div>

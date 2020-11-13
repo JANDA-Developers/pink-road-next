@@ -254,94 +254,9 @@ export interface productPostCreateVariables {
 // GraphQL mutation operation: productPostUpdate
 // ====================================================
 
-export interface productPostUpdate_ProductPostUpdate_data_author {
-  __typename: "User";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  role: UserRole;
-  brith_date: string;
-  address: string;
-  is_froreginer: boolean;
-  gender: GENDER;
-  busi_num: string;
-  is_priv_corper: boolean;
-  busi_name: string;
-  bsui_address: string;
-  account_number: string;
-  bank_name: string;
-}
-
-export interface productPostUpdate_ProductPostUpdate_data_category {
-  __typename: "Category";
-  _id: string;
-  label: string;
-}
-
-export interface productPostUpdate_ProductPostUpdate_data_itinerary_images {
-  __typename: "File";
-  createdAt: any;
-  updatedAt: any;
-  name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
-  uri: string;
-  owner: string;
-}
-
-export interface productPostUpdate_ProductPostUpdate_data_itinerary {
-  __typename: "Itinerary";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  productPostId: string;
-  title: string;
-  contents: string[];
-  images: productPostUpdate_ProductPostUpdate_data_itinerary_images[];
-  date: any;
-}
-
-export interface productPostUpdate_ProductPostUpdate_data_images {
-  __typename: "File";
-  createdAt: any;
-  updatedAt: any;
-  name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
-  uri: string;
-  owner: string;
-}
-
 export interface productPostUpdate_ProductPostUpdate_data {
   __typename: "ProductPost";
   _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  title: string;
-  content: any;
-  author: productPostUpdate_ProductPostUpdate_data_author;
-  category: productPostUpdate_ProductPostUpdate_data_category | null;
-  status: ProductPostStatus;
-  itinerary: productPostUpdate_ProductPostUpdate_data_itinerary[];
-  inOrNor: any;
-  info: string;
-  caution: string;
-  images: productPostUpdate_ProductPostUpdate_data_images[];
-  keyWards: string[];
-  address: string;
-  startPoint: string;
-  maxMember: number;
-  minMember: number;
-  subTitle: string;
-  adult_price: number;
-  kids_price: number;
-  baby_price: number;
 }
 
 export interface productPostUpdate_ProductPostUpdate {
@@ -413,7 +328,6 @@ export interface productPostDelete_ProductPostDelete_data_itinerary {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  productPostId: string;
   title: string;
   contents: string[];
   images: productPostDelete_ProductPostDelete_data_itinerary_images[];
@@ -439,24 +353,24 @@ export interface productPostDelete_ProductPostDelete_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: any;
+  contents: any | null;
   author: productPostDelete_ProductPostDelete_data_author;
   category: productPostDelete_ProductPostDelete_data_category | null;
   status: ProductPostStatus;
-  itinerary: productPostDelete_ProductPostDelete_data_itinerary[];
-  inOrNor: any;
-  info: string;
-  caution: string;
-  images: productPostDelete_ProductPostDelete_data_images[];
-  keyWards: string[];
-  address: string;
-  startPoint: string;
-  maxMember: number;
-  minMember: number;
-  subTitle: string;
-  adult_price: number;
-  kids_price: number;
-  baby_price: number;
+  itinerary: productPostDelete_ProductPostDelete_data_itinerary[] | null;
+  inOrNor: any | null;
+  info: string | null;
+  caution: string | null;
+  images: productPostDelete_ProductPostDelete_data_images[] | null;
+  keyWards: string[] | null;
+  address: string | null;
+  startPoint: string | null;
+  maxMember: number | null;
+  minMember: number | null;
+  subTitle: string | null;
+  adult_price: number | null;
+  kids_price: number | null;
+  baby_price: number | null;
 }
 
 export interface productPostDelete_ProductPostDelete {
@@ -588,6 +502,66 @@ export interface pageInfoCreate {
 
 export interface pageInfoCreateVariables {
   params: PageInfoCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SignInGoogle
+// ====================================================
+
+export interface SignInGoogle_SignInGoogle_data {
+  __typename: "SignInGoogle";
+  token: string;
+  email: string;
+}
+
+export interface SignInGoogle_SignInGoogle {
+  __typename: "SignInGoogleResponse";
+  ok: boolean;
+  error: string | null;
+  data: SignInGoogle_SignInGoogle_data | null;
+}
+
+export interface SignInGoogle {
+  SignInGoogle: SignInGoogle_SignInGoogle;
+}
+
+export interface SignInGoogleVariables {
+  code: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SignInKakao
+// ====================================================
+
+export interface SignInKakao_SignInKakao_data {
+  __typename: "SignInKakao";
+  token: string;
+  email: string;
+}
+
+export interface SignInKakao_SignInKakao {
+  __typename: "SignInKakaoResponse";
+  ok: boolean;
+  error: string | null;
+  data: SignInKakao_SignInKakao_data | null;
+}
+
+export interface SignInKakao {
+  SignInKakao: SignInKakao_SignInKakao;
+}
+
+export interface SignInKakaoVariables {
+  code: string;
 }
 
 /* tslint:disable */
@@ -741,10 +715,10 @@ export interface portfolioFindById_PortfolioFindById_data {
   isDelete: boolean;
   title: string;
   isOpen: boolean | null;
-  keyWards: string[];
+  keyWards: string[] | null;
   summary: string | null;
   subTitle: string | null;
-  content: any;
+  contents: any | null;
   author: portfolioFindById_PortfolioFindById_data_author;
   thumb: portfolioFindById_PortfolioFindById_data_thumb | null;
   pCategory: portfolioFindById_PortfolioFindById_data_pCategory | null;
@@ -860,10 +834,10 @@ export interface portfolioList_PortfolioList_data {
   isDelete: boolean;
   title: string;
   isOpen: boolean | null;
-  keyWards: string[];
+  keyWards: string[] | null;
   summary: string | null;
   subTitle: string | null;
-  content: any;
+  contents: any | null;
   author: portfolioList_PortfolioList_data_author;
   thumb: portfolioList_PortfolioList_data_thumb | null;
   pCategory: portfolioList_PortfolioList_data_pCategory | null;
@@ -978,7 +952,6 @@ export interface productPostList_ProductPostList_data_itinerary {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  productPostId: string;
   title: string;
   contents: string[];
   images: productPostList_ProductPostList_data_itinerary_images[];
@@ -1004,24 +977,24 @@ export interface productPostList_ProductPostList_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: any;
+  contents: any | null;
   author: productPostList_ProductPostList_data_author;
   category: productPostList_ProductPostList_data_category | null;
   status: ProductPostStatus;
-  itinerary: productPostList_ProductPostList_data_itinerary[];
-  inOrNor: any;
-  info: string;
-  caution: string;
-  images: productPostList_ProductPostList_data_images[];
-  keyWards: string[];
-  address: string;
-  startPoint: string;
-  maxMember: number;
-  minMember: number;
-  subTitle: string;
-  adult_price: number;
-  kids_price: number;
-  baby_price: number;
+  itinerary: productPostList_ProductPostList_data_itinerary[] | null;
+  inOrNor: any | null;
+  info: string | null;
+  caution: string | null;
+  images: productPostList_ProductPostList_data_images[] | null;
+  keyWards: string[] | null;
+  address: string | null;
+  startPoint: string | null;
+  maxMember: number | null;
+  minMember: number | null;
+  subTitle: string | null;
+  adult_price: number | null;
+  kids_price: number | null;
+  baby_price: number | null;
 }
 
 export interface productPostList_ProductPostList {
@@ -1126,7 +1099,6 @@ export interface productPostFindById_ProductPostFindById_data_itinerary {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  productPostId: string;
   title: string;
   contents: string[];
   images: productPostFindById_ProductPostFindById_data_itinerary_images[];
@@ -1152,24 +1124,24 @@ export interface productPostFindById_ProductPostFindById_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: any;
+  contents: any | null;
   author: productPostFindById_ProductPostFindById_data_author;
   category: productPostFindById_ProductPostFindById_data_category | null;
   status: ProductPostStatus;
-  itinerary: productPostFindById_ProductPostFindById_data_itinerary[];
-  inOrNor: any;
-  info: string;
-  caution: string;
-  images: productPostFindById_ProductPostFindById_data_images[];
-  keyWards: string[];
-  address: string;
-  startPoint: string;
-  maxMember: number;
-  minMember: number;
-  subTitle: string;
-  adult_price: number;
-  kids_price: number;
-  baby_price: number;
+  itinerary: productPostFindById_ProductPostFindById_data_itinerary[] | null;
+  inOrNor: any | null;
+  info: string | null;
+  caution: string | null;
+  images: productPostFindById_ProductPostFindById_data_images[] | null;
+  keyWards: string[] | null;
+  address: string | null;
+  startPoint: string | null;
+  maxMember: number | null;
+  minMember: number | null;
+  subTitle: string | null;
+  adult_price: number | null;
+  kids_price: number | null;
+  baby_price: number | null;
 }
 
 export interface productPostFindById_ProductPostFindById {
@@ -1453,10 +1425,10 @@ export interface Fportfolio {
   isDelete: boolean;
   title: string;
   isOpen: boolean | null;
-  keyWards: string[];
+  keyWards: string[] | null;
   summary: string | null;
   subTitle: string | null;
-  content: any;
+  contents: any | null;
   author: Fportfolio_author;
   thumb: Fportfolio_thumb | null;
 }
@@ -1555,7 +1527,6 @@ export interface Fitinerary {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  productPostId: string;
   title: string;
   contents: string[];
   images: Fitinerary_images[];
@@ -1615,7 +1586,6 @@ export interface FproductPost_itinerary {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  productPostId: string;
   title: string;
   contents: string[];
   images: FproductPost_itinerary_images[];
@@ -1641,24 +1611,24 @@ export interface FproductPost {
   updatedAt: any;
   isDelete: boolean;
   title: string;
-  content: any;
+  contents: any | null;
   author: FproductPost_author;
   category: FproductPost_category | null;
   status: ProductPostStatus;
-  itinerary: FproductPost_itinerary[];
-  inOrNor: any;
-  info: string;
-  caution: string;
-  images: FproductPost_images[];
-  keyWards: string[];
-  address: string;
-  startPoint: string;
-  maxMember: number;
-  minMember: number;
-  subTitle: string;
-  adult_price: number;
-  kids_price: number;
-  baby_price: number;
+  itinerary: FproductPost_itinerary[] | null;
+  inOrNor: any | null;
+  info: string | null;
+  caution: string | null;
+  images: FproductPost_images[] | null;
+  keyWards: string[] | null;
+  address: string | null;
+  startPoint: string | null;
+  maxMember: number | null;
+  minMember: number | null;
+  subTitle: string | null;
+  adult_price: number | null;
+  kids_price: number | null;
+  baby_price: number | null;
 }
 
 /* tslint:disable */
@@ -1738,7 +1708,6 @@ export interface FileCreateInput {
   fileType?: string | null;
   uri: string;
   owner?: string | null;
-  isDelete?: boolean | null;
 }
 
 export interface FileUpdateInput {
@@ -1748,7 +1717,6 @@ export interface FileUpdateInput {
   fileType?: string | null;
   uri: string;
   owner?: string | null;
-  isDelete?: boolean | null;
 }
 
 export interface ItineraryCreateInput {
@@ -1789,7 +1757,8 @@ export interface PageInfoUpdateInput {
 
 export interface PortfolioCreateInput {
   title: string;
-  content?: any | null;
+  contents?: any | null;
+  isNotice?: boolean | null;
   isOpen?: boolean | null;
   summary?: string | null;
   subTitle?: string | null;
@@ -1801,7 +1770,8 @@ export interface PortfolioCreateInput {
 
 export interface PortfolioUpdateInput {
   title?: string | null;
-  content?: any | null;
+  contents?: any | null;
+  isNotice?: boolean | null;
   isOpen?: boolean | null;
   summary?: string | null;
   subTitle?: string | null;
@@ -1813,8 +1783,9 @@ export interface PortfolioUpdateInput {
 
 export interface ProductPostCreateInput {
   title: string;
-  content?: any | null;
+  contents?: any | null;
   productId?: string | null;
+  isNotice?: boolean | null;
   isOpen?: boolean | null;
   summary?: string | null;
   subTitle?: string | null;
@@ -1840,7 +1811,8 @@ export interface ProductPostCreateInput {
 
 export interface ProductPostUpdateInput {
   title?: string | null;
-  content?: any | null;
+  contents?: any | null;
+  isNotice?: boolean | null;
   isOpen?: boolean | null;
   summary?: string | null;
   subTitle?: string | null;
@@ -1851,7 +1823,7 @@ export interface ProductPostUpdateInput {
   categoryId: string;
   status?: ProductPostStatus | null;
   itinerary: ItineraryUpdateInput[];
-  inOrNor: any;
+  inOrNor?: any | null;
   info?: string | null;
   caution?: string | null;
   images?: FileUpdateInput[] | null;

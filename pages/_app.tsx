@@ -8,6 +8,9 @@ import PinkClient from "apollo/client"
 import { ISet } from 'types/interface';
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from 'apollo/mutations';
 import { roleCheck } from 'utils/roleCheck';
+import "dayjs/locale/ko"
+import dayjs from 'dayjs';
+dayjs.locale('ko')
 
 export type TContext = {
   editMode: boolean;
@@ -44,7 +47,8 @@ function App({ Component, pageProps }) {
     client: PinkClient
   })
   const { data } = useQuery<getContext>(GET_CONTEXT, {
-    client: PinkClient
+    client: PinkClient,
+    nextFetchPolicy: "network-only"
   })
 
   const catList = data?.CategoryList?.data || []

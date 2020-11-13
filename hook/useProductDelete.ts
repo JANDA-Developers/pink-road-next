@@ -1,11 +1,11 @@
 import { MutationHookOptions, useMutation } from "@apollo/client";
 import { getOperationName } from "@apollo/client/utilities";
-import { PRODUCT_POST_UPDATE } from "apollo/mutations";
+import { PRODUCT_POST_DELETE, PRODUCT_POST_UPDATE } from "apollo/mutations";
 import { PRODUCT_POST_LIST } from "../apollo/queries";
 import { productPostDelete, productPostDeleteVariables } from "../types/api";
 
 export const useProductPostDelete = (options?: MutationHookOptions<productPostDelete,productPostDeleteVariables>) => {
-    const [productUpdateMu, { loading: deleteLoading }] = useMutation<productPostDelete, productPostDeleteVariables>(PRODUCT_POST_UPDATE, {
+    const [productUpdateMu, { loading: deleteLoading }] = useMutation<productPostDelete, productPostDeleteVariables>(PRODUCT_POST_DELETE, {
         refetchQueries: [getOperationName(PRODUCT_POST_LIST) || ""],
         ...options
     });

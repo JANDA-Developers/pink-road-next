@@ -23,6 +23,9 @@ import { useProductPostUpdate } from "hook/useProductPostUpdate";
 import { useProductPostDelete } from "hook/useProductDelete";
 import { TDeleteFn } from "pages/portfolio/write/[[...id]]";
 import Page404 from "pages/404";
+import { Validater } from "utils/validate";
+import { toNumber } from "utils/toNumber";
+const omitDeep = require("omit-deep-lodash");
 
 const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
 interface IProp {
@@ -32,9 +35,9 @@ interface IProp {
 export const TourWrite: React.FC<IProp> = ({ context }) => {
 
     const router = useRouter();
-    const {categories} = useContext(AppContext);
-    const { createFn,updateFn,deleteFn, productPost, mode } = context;
-    const { data: defaultData, defaults, content: contentBlocks, images, itinerary } = getDefault(productPost);
+    const { categories } = useContext(AppContext);
+    const { createFn, updateFn, deleteFn, productPost, mode } = context;
+    const { data: defaultData, defaults, contents: contentBlocks, images, itinerary, inOrNor } = getDefault(productPost);
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
     const [itineries, setitineries] = useState<ItineraryCreateInput[]>(itinerary);
     const { signleUpload } = useUpload();
@@ -45,13 +48,9 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     const [tab, setTab] = useState<number>(1);
     const [d, setD] = useState(0);
 
-    const [content, setContent] = useState<OutputData>({
-        blocks: contentBlocks
-    });
+    const [contents, setContents] = useState<OutputData>(contentBlocks);
 
-    const [include, setInclude] = useState<OutputData>({
-        blocks: contentBlocks
-    });
+    const [include, setInclude] = useState<OutputData>(inOrNor);
 
     const isCreateMode = mode === "create";
 
@@ -104,28 +103,65 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     }
 
     const nextData: ProductPostCreateInput = {
-        itinerary,
+        itinerary: itineries,
         title,
         address,
-        adult_price,
-        baby_price,
+        adult_price: toNumber(adult_price),
+        baby_price: toNumber(baby_price),
         caution,
-        content,
-        images,
+        contents,
+        images: thumbs.map(thumb => ({
+            ...thumb,
+            uri: thumb?.uri!
+        })),
         inOrNor: include,
         info,
         keyWards,
-        kids_price,
-        maxMember,
-        minMember,
+        kids_price: toNumber(kids_price),
+        maxMember: toNumber(maxMember),
+        minMember: toNumber(minMember),
         startPoint,
         status,
         subTitle,
         categoryId
     }
 
+    const { validate } = new Validater([{
+        value: !!thumbs?.[0]?.uri,
+        failMsg: "썸네일은 필수 입니다.",
+        id: "thumb"
+    }, {
+        value: !!title,
+        failMsg: "제목값은 필수 입니다.",
+        id: "title"
+    }, {
+        value: !!contents,
+        failMsg: "안내 및값은 필수 입니다.",
+        id: "content"
+    }, {
+        value: !!categoryId,
+        failMsg: "카테고리 값은 필수 입니다.",
+        id: "category"
+    }, {
+        value: !!itineries?.[0],
+        failMsg: "여행일정은 필수 입니다.",
+        id: "itinerary"
+    }, {
+        value: !!keyWards?.[0],
+        failMsg: "키워드 값은 필수 입니다.",
+        id: "keywards"
+    }]);
+
     const handleCreate = () => {
-        createFn(nextData)
+        if (validate())
+            createFn(nextData)
+    }
+    const handleEdit = () => {
+        if (!productPost) return;
+        if (validate()) {
+            // @ts-ignore
+            updateFn(productPost._id, nextData)
+        }
     }
 
     const handleTempSave = () => {
@@ -138,7 +174,11 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     const handleLoad = () => {
         const savedData: IProductDefaultData = Storage.getLocalObj("write", undefined);
         if (!savedData) alert("저장된 정보가 없습니다.")
-        const { itinerary, title, address, adult_price, baby_price, categoryId, caution, content, images, inOrNor, info, keyWards, kids_price, maxMember, minMember, productId, startPoint, status, subTitle, type } = savedData;
+        const { itinerary, title, address, adult_price, baby_price, categoryId, caution, contents, images, inOrNor, info, keyWards, kids_price, maxMember, minMember, productId, startPoint, status, subTitle, type } = savedData;
+
+        console.log("contents");
+        console.log(contents);
+
         setData({
             address,
             adult_price,
@@ -155,23 +195,19 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         })
         setThumbs(images)
         setInclude(inOrNor)
-        setContent(content)
+        setContents(contents)
         setitineries(itinerary)
-        setD(9);
+        setD(d + 1);
     }
 
-    const handleEdit = () => {
-        if(!productPost) return;
-        // @ts-ignore
-        updateFn(productPost._id, nextData)
-    }
+
     const handleDelete = () => {
-        if(confirm("정말로 게시글을 삭제 하시겠습니까?"))
+        if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
             deleteFn(productPost._id)
     }
 
     const handleCancel = () => {
-        if(confirm("작성하시던 내용이 저장되지 않을 수 있습니다."))
+        if (confirm("작성하시던 내용이 저장되지 않을 수 있습니다."))
             router.push("/tour/list")
     }
 
@@ -197,7 +233,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                                         {cat.label}
                                     </option>
                                 )}
-                                <option  value="">
+                                <option value="">
                                     선택없음
                                 </option>
                             </select>
@@ -207,7 +243,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                 <div className="write_type">
                     <div className="title">제목</div>
                     <div className="input_form">
-                        <input onChange={(e) => {
+                        <input id="title" onChange={(e) => {
                             set("title", e.currentTarget.value)
                         }} value={title} type="text" name="title" className="inputText w100" />
                     </div>
@@ -298,7 +334,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                 <div className="write_type">
                     <div className="title">키워드</div>
                     <div className="input_form">
-                        <input onChange={(e) => {
+                        <input id="keywards" onChange={(e) => {
                             set("keyWards", e.currentTarget.value)
                         }} value={keyWards} type="text" className="text w100" />
                         <p className="input_form info_txt">- ','로 구분시 자동으로 키워드가 생성됩니다.</p>
@@ -315,7 +351,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                             {thumbs.map((thumb, i) =>
                                 <li key={i + "thumb"} className="on_file">{thumb.name}<i onClick={() => { handleClearThumb(i) }} className="flaticon-multiply icon_x"></i></li>
                             )}
-                            <li onClick={handleUploadClick}>이미지추가<i className="flaticon-add icon_plus"></i></li>
+                            <li id="thumb" onClick={handleUploadClick}>이미지추가<i className="flaticon-add icon_plus"></i></li>
                             <input onChange={handleChangeSumbNail} ref={hiddenFileInput} hidden type="file" />
                         </ul>
                         <p className="input_form info_txt">- 썸네일 이미지사이즈 400px * 400px</p>
@@ -333,9 +369,9 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                 </ul>
                 {tab === 1 &&
                     <div id="texta_01" className="texta">
-                        <h5>여행일정</h5>
+                        <h5 id="itinerary">여행일정</h5>
                         <DayPicker setState={({ from, to }: TRange) => {
-                            const newItinerary = generateitinery({ from, to }, itinerary);
+                            const newItinerary = generateitinery({ from, to }, itineries);
                             if (newItinerary)
                                 setitineries([...newItinerary]);
                         }} from={dayjs(itineries[0]?.date).toDate()} to={dayjs(itineries[itineries.length - 1]?.date).toDate()} />
@@ -347,8 +383,8 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     display: tab === 2 ? undefined : "none"
                 }} id="texta_02" className="texta">
                     <h5>상품 안내문</h5>
-                    <EditorJs holder="content" data={content} onChange={(api: any, data?: OutputData) => {
-                        setContent(data || EMPTY_EDITOR);
+                    <EditorJs holder="content" data={contents} onChange={(api: any, data?: OutputData) => {
+                        setContents(data || EMPTY_EDITOR);
                     }} />
                     <div id="content" />
                 </div>
@@ -364,12 +400,16 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                 {tab === 4 &&
                     <div id="texta_04" className="texta">
                         <h5>커리큐럼 유의사항</h5>
-                        <textarea value={caution} id="warrant" style={{
+                        <textarea onChange={(e) => {
+                            set("caution", e.currentTarget.value)
+                        }} value={caution} id="warrant" style={{
                             width: "100%",
                             minHeight: "200px"
                         }} />
                         <h5>간략한 안내문</h5>
-                        <textarea value={info} id="warrant" style={{
+                        <textarea onChange={(e) => {
+                            set("info", e.currentTarget.value)
+                        }} value={info} id="warrant" style={{
                             width: "100%",
                             minHeight: "200px"
                         }} />
@@ -394,7 +434,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
 
 
 type TCreateFn = (params: ProductPostCreateInput) => void;
-type TUpdateFn = (_id:string, params: ProductPostUpdateInput) => void;
+type TUpdateFn = (_id: string, params: ProductPostUpdateInput) => void;
 interface IProp {
     isExperience?: boolean;
     mode?: "edit" | "create"
@@ -413,28 +453,28 @@ interface ITourWriteWrapContext {
 //수정하고 나면 수정한 내용을 그대로 덮어버리면 안됨. 핑크로드의 승인이 필요함.
 export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
     const router = useRouter(); // => 넥스트에서는 변경
-    const {query} = router;
-    
+    const { query } = router;
+
     const id = query.id?.[0] as string | undefined;
 
-    const {productPostDelete, deleteLoading} = useProductPostDelete({
+    const { productPostDelete, deleteLoading } = useProductPostDelete({
         onCompleted: ({
             ProductPostDelete
         }) => {
-            if(ProductPostDelete.ok)
+            if (ProductPostDelete.ok)
                 router.push("/tour/list")
-            
+
         }
     })
-    const {productPostUpdate, updateLoading} = useProductPostUpdate({
-        onCompleted:({ProductPostUpdate}) => {
+    const { productPostUpdate, updateLoading } = useProductPostUpdate({
+        onCompleted: ({ ProductPostUpdate }) => {
             router.push(`/tour/view/${ProductPostUpdate?.data?._id}`)
         }
     })
 
-    const [productCreateMu, { loading: createLoading }] = useMutation<productPostCreate, productPostCreateVariables>(PRODUCT_POST_CREATE,{
-        onCompleted: ({ProductPostCreate}) => {
-            if(ProductPostCreate.ok) 
+    const [productCreateMu, { loading: createLoading }] = useMutation<productPostCreate, productPostCreateVariables>(PRODUCT_POST_CREATE, {
+        onCompleted: ({ ProductPostCreate }) => {
+            if (ProductPostCreate.ok)
                 router.push(`/tour/view/${ProductPostCreate.data._id}`)
         }
     })
@@ -443,7 +483,7 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
         variables: {
             _id: id!
         },
-    skip: !id
+        skip: !id
     })
 
     const createFn: TCreateFn = (params: ProductPostCreateInput) => {
@@ -454,22 +494,26 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
         })
     }
 
-    const updateFn:TUpdateFn = (_id,params) => {
+    const updateFn: TUpdateFn = (_id, params) => {
+        const ommited = omitDeep(params, "createdAt", "updatedAt", "__typename", "isDelete", "_id", "productPostId")
         productPostUpdate({
             _id,
-            params:params
-        })        
+            params: {
+                ...ommited,
+            }
+        })
     }
-    const deleteFn:TDeleteFn = (id) => {
+
+    const deleteFn: TDeleteFn = (id) => {
         productPostDelete({
             id
-        })        
+        })
     }
 
     const unexistId = !findLoading && id && !productPost;
 
-    if(findLoading) return null;
-    if(unexistId) return <Page404/> 
+    if (findLoading) return null;
+    if (unexistId) return <Page404 />
 
     const context: ITourWriteWrapContext = {
         createFn,

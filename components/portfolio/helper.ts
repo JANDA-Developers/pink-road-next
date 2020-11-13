@@ -6,7 +6,7 @@ import { IPortfolio } from "types/interface";
 const DEFAULT_PORTFOLIO_INPUT:PortfolioCreateInput = process.env.NODE_ENV === "development" ? {
     thumb: SAMPLE_FILE,
     title: "타이틀",
-    content: undefined,
+    contents: undefined,
     pCategoryId: "",
     isOpen: false,
     keyWards: ["key1","key2","key3"],
@@ -15,7 +15,7 @@ const DEFAULT_PORTFOLIO_INPUT:PortfolioCreateInput = process.env.NODE_ENV === "d
 } : {
     thumb: undefined,
     title: "",
-    content: undefined,
+    contents: undefined,
     pCategoryId: "",
     isOpen: false,
     keyWards: [],
@@ -26,7 +26,7 @@ export const getDefault = (product?: IPortfolio):PortfolioCreateInput => {
     const defaults:PortfolioCreateInput  = product ? {
         thumb: product.thumb,
          title: product.title,
-          content: product.content,
+        contents: product.contents,
           pCategoryId: product.pCategory._id,
           isOpen: product.isOpen,
           keyWards: [],
