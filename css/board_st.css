@@ -351,7 +351,14 @@ ul.list_ul .list_in {
     ul.list_ul .list_in:hover {
         border: 2px solid #ed297b;
     }
-
+.selectViewList ul.list_ul .list_in {
+    border: 0;
+    border-bottom: 1px solid #e6e6e6;
+}
+    .selectViewList ul.list_ul .list_in:hover {
+        border: 0;
+        border-bottom: 1px solid #e6e6e6;
+    }
 ul.list_ul.line3 li:nth-child(3n+3) {
     margin-right: 0;
 }

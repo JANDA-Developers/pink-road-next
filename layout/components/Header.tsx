@@ -206,7 +206,7 @@ export const Header: React.FC<IProp> = () => {
                     <button />
                 </div>
             </div>
-            <div className="all_menu">
+            <div id="all_menu">
                 <strong>전체메뉴</strong>
                 <div className="m_member">
                     <div className="profile">
@@ -226,40 +226,42 @@ export const Header: React.FC<IProp> = () => {
                 </div>
                 <ul>
                     <li className="a_menu_tit deps solo_nav">
-                        <a href="../siteinfo">PinkRoader<i className="jandaicon-arr4-right"></i></a>
+                        <Link href="/siteinfo"><a>PinkRoader<i className="jandaicon-arr4-right"></i></a></Link>
                     </li>
-                    <li className="a_menu_tit deps solo_nav">
-                        <a href="../portfolio">Work<i className="jandaicon-arr4-right"></i></a>
+                        <li className="a_menu_tit deps solo_nav">
+                            <Link href="/portfolio"><a>Work<i className="jandaicon-arr4-right"></i></a></Link>
                     </li>
                     <li className="a_menu_tit deps">
-                        <a href="../tour_main">Tour<i className="jandaicon-arr4-right"></i></a>
+                        <Link href="/tour/list"><a>Tour<i className="jandaicon-arr4-right"></i></a></Link>
                         <ul className="depth1">
-                            <li className="betatest"><a href="/tour-list">Tour - list</a></li>
-                            <li className="betatest"><a href="../tour_vziew">Tour - veiw</a></li>
-                            <li className="betatest"><a href="../tour_writing">Tour - correction+writing</a></li>
+                            <li className="betatest"><Link href="/tour/list"><a>Tour - list</a></Link></li>
+                            <li className="betatest"><Link href="/tour/list"><a>Tour - veiw</a></Link></li>
+                            <li className="betatest"><Link href="/tour/list"><a>Tour - correction+writing</a></Link></li>
+                   
                         </ul>
                     </li>
                     <li className="a_menu_tit deps">
-                        <a href="../experience_main">Experience<i className="jandaicon-arr4-right"></i></a>
+                        <Link href="/tour?type=exp"><a>Experience<i className="jandaicon-arr4-right"></i></a></Link>
                         <ul className="depth1">
-                            <li className="betatest"><a href="../experience_list">Experience - list</a></li>
-                            <li className="betatest"><a href="../experience_view">Experience - veiw</a></li>
-                            <li className="betatest"><a href="../experience_writing">Experience - correction+writing</a></li>
+                            <li className="betatest"><Link href="/"><a>Experience - list</a></Link></li>
+                            <li className="betatest"><Link href="/"><a>Experience - veiw</a></Link></li>
+                            <li className="betatest"><Link href="/"><a>Experience - correction+writing</a></Link></li>
+                           
                         </ul>
                     </li>
                     <li className="a_menu_tit deps solo_nav">
-                        <a href="/">Design Goods<i className="flaticon-link"></i></a>
+                         <Link href="/"><a target="_blank">Design Goods<i className="jandaicon-arr4-right"></i></a></Link>
                     </li>
                     <li className="a_menu_tit deps">
-                        <a href="../tourstory">News<i className="jandaicon-arr4-right"></i></a>
+                        <Link href="/news"><a target="_blank">News<i className="jandaicon-arr4-right"></i></a></Link>
                         <ul className="depth1">
-                            <li><a href="../tourstory">여행이야기</a></li>
-                            <li><a href="../culture">문화이야기</a></li>
-                            <li><a href="../news">언론보도</a></li>
+                            <li><Link href="/tourstory"><a>여행이야기</a></Link></li>
+                            <li><Link href="/culture"><a>문화이야기</a></Link></li>
+                            <li><Link href="/news"><a>언론보도</a></Link></li>
                         </ul>
                     </li>
                     <li className="a_menu_tit deps betatest">
-                        <a href="../mypage">My page<i className="jandaicon-arr4-right"></i></a>
+                        <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
                         <ul className="depth1">
                             <li><a href="../mypage">회원정보</a></li>
                             <li><a href="../mypage/purchase">구매내역</a></li>
@@ -289,6 +291,7 @@ export const Header: React.FC<IProp> = () => {
                             <li><a href="/ligin">로그인</a></li>
                             <li><a href="/join">회원가입</a></li>
                             <li><a href="/idpw_find">아이디/비번 찾기</a></li>
+                            <li><a href="/member/search">통합검색</a></li>
                             <li><a href="/member/rule">이용약관</a></li>
                             <li><a href="/member/privacy-policy">개인정보처리방침</a></li>
                             <li><a href="/member/electron-terms">전자상거래이용약관</a></li>

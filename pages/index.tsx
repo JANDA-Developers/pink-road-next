@@ -159,15 +159,15 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         <div className="photo_box">
           <ul className="photo_ul line3">
             <li className="top_txt">
-                          <h2 {...edit("valuable_exp")} />
-                          <span className="txt" {...edit("valuable_exp_sub")} />
+                <h2 {...edit("valuable_exp")} />
+                <span className="txt" {...edit("valuable_exp_sub")} />
                 <div className="btn_list">
-                    <span><Link href="/news"><a>공정여행</a></Link></span>
-                    <span><Link href="/news"><a>더많은체험</a></Link></span>
+                    <span><Link href="/tour"><a>공정여행</a></Link></span>
+                    <span><Link href="/tour"><a>더많은체험</a></Link></span>
                 </div>
                 <i><svg><polygon points="69.22 12.71 0 12.71 0 10.71 64.33 10.71 54.87 1.43 56.27 0 69.22 12.71" /></svg></i>
-          
             </li>
+
             <PhotoLi onClickImg={() => {
             }} id={"12"} key={1 + "photo"} {...DummyPhoto[0]} />
             <PhotoLi onClickImg={() => {
