@@ -2480,7 +2480,7 @@
             "deprecationReason": null
           },
           {
-            "name": "categoryID",
+            "name": "categoryId",
             "description": null,
             "args": [],
             "type": {

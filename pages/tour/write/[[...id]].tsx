@@ -1,10 +1,10 @@
 
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import { OutputData } from '@editorjs/editorjs';
 import "react-day-picker/lib/style.css";
-import { Ffile, ItineraryCreateInput, productPostCreate, ProductPostCreateInput, productPostCreateVariables, ProductPostStatus } from '../../../types/api';
+import { Ffile, ItineraryCreateInput, productPostCreate, ProductPostCreateInput, productPostCreateVariables, ProductPostStatus, ProductPostUpdateInput } from '../../../types/api';
 import { IProductDefaultData, TProductDataPart } from '../../../types/defaults/defaultProduct';
 import { EMPTY_EDITOR } from '../../../types/const';
 import { useMutation } from '@apollo/client';
@@ -13,11 +13,15 @@ import DayPicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
 import { generateitinery, getDefault, TRange } from '../../../components/tourWrite/helper';
 import { useUpload } from "hook/useUpload";
-import { PRODUCT_POST_CREATE } from "apollo/mutations";
+import { PRODUCT_POST_CREATE, PRODUCT_POST_UPDATE } from "apollo/mutations";
 import { ItineryForm } from "components/tourWrite/ItineryForm";
 import { autoComma } from "utils/formatter";
 import dayjs from "dayjs";
 import { IProductPostFindById } from "types/interface";
+import { AppContext } from "pages/_app";
+import { useProductPostUpdate } from "hook/useProductPostUpdate";
+import { useProductPostDelete } from "hook/useProductDelete";
+import { TDeleteFn } from "pages/portfolio/write/[[...id]]";
 
 const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
 interface IProp {
@@ -25,18 +29,20 @@ interface IProp {
 }
 
 export const TourWrite: React.FC<IProp> = ({ context }) => {
-    const { createFn, product, mode } = context;
-    const { data: defaultData, defaults, content: contentBlocks, images, itinerary } = getDefault(product);
+
+    const router = useRouter();
+    const {categories} = useContext(AppContext);
+    const { createFn,updateFn,deleteFn, productPost, mode } = context;
+    const { data: defaultData, defaults, content: contentBlocks, images, itinerary } = getDefault(productPost);
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
     const [itineries, setitineries] = useState<ItineraryCreateInput[]>(itinerary);
     const { signleUpload } = useUpload();
     const [data, setData] = useState<TProductDataPart>(defaultData)
-    const [categoryId, setCategoryId] = useState(defaults.categoryId);
+    const [categoryId, setCategoryId] = useState("5fa9e366d8b271340229bbff");
     const [status, setStatus] = useState(defaults.status);
     const [thumbs, setThumbs] = useState<Partial<Ffile>[]>(images)
     const [tab, setTab] = useState<number>(1);
     const [d, setD] = useState(0);
-
 
     const [content, setContent] = useState<OutputData>({
         blocks: contentBlocks
@@ -154,8 +160,24 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     }
 
     const handleEdit = () => {
-
+        // @ts-ignore
+        updateFn(productPost._id, nextData)
     }
+    const handleDelete = () => {
+        if(confirm("정말로 게시글을 삭제 하시겠습니까?"))
+            deleteFn(productPost._id)
+    }
+
+    const handleCancel = () => {
+        if(confirm("작성하시던 내용이 저장되지 않을 수 있습니다."))
+            router.push("/tour/list")
+    }
+
+    const handleCatChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const nextCat = e.currentTarget.value
+        setCategoryId(nextCat)
+    }
+
     useEffect(() => {
         initStorage()
     }, [])
@@ -167,17 +189,15 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     <div className="title">카테고리</div>
                     <div className="input_form">
                         <span className="category r3">
-                            <select name="category_srl">
-                                <option>분류</option>
-                                <option>
-                                    문화/예술
-                            </option>
-                                <option>
-                                    문화/예술
-                            </option>
-                                <option>
-                                    문화/예술
-                            </option>
+                            <select onChange={handleCatChange} value={categoryId} name="category_srl">
+                                {categories.map(cat =>
+                                    <option value={cat._id} key={cat._id}>
+                                        {cat.label}
+                                    </option>
+                                )}
+                                <option  value="">
+                                    선택없음
+                                </option>
                             </select>
                         </span>
                     </div>
@@ -362,11 +382,8 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                 <div className="float_right">
                     {isCreateMode || <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
                     {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
-                    <button onClick={() => {
-                        if (confirm("작성을 취소 하고 이전 페이지로 이동하시겠습니까? "))
-                            history.go(-1);
-                    }} type="button" className="btn medium impact">취소</button>
-                    {isCreateMode || <button type="submit" className="btn medium">삭제</button>}
+                    <button onClick={handleCancel} type="button" className="btn medium impact">취소</button>
+                    {isCreateMode || <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>}
                 </div>
             </div>
         </div>
@@ -374,7 +391,8 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
 };
 
 
-export type TCreateFn = (params: ProductPostCreateInput) => void;
+type TCreateFn = (params: ProductPostCreateInput) => void;
+type TUpdateFn = (_id:string, params: ProductPostUpdateInput) => void;
 interface IProp {
     isExperience?: boolean;
     mode?: "edit" | "create"
@@ -382,7 +400,9 @@ interface IProp {
 
 interface ITourWriteWrapContext {
     createFn: TCreateFn;
-    product: IProductPostFindById;
+    updateFn: TUpdateFn;
+    deleteFn: TDeleteFn;
+    productPost: IProductPostFindById;
     findLoading: boolean;
     createLoading: boolean;
     mode: "create" | "edit"
@@ -390,28 +410,65 @@ interface ITourWriteWrapContext {
 
 //수정하고 나면 수정한 내용을 그대로 덮어버리면 안됨. 핑크로드의 승인이 필요함.
 export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
-    const { query } = useRouter(); // => 넥스트에서는 변경
+    const router = useRouter(); // => 넥스트에서는 변경
+    const {query} = router;
+    
     const id = query.id as string | undefined;
 
-    const [productCreateMu, { loading: createLoading }] = useMutation<productPostCreate, productPostCreateVariables>(PRODUCT_POST_CREATE)
-    const { product, loading: findLoading } = useProductFindById({
+    const {productPostDelete, deleteLoading} = useProductPostDelete({
+        onCompleted: ({
+            ProductPostDelete
+        }) => {
+            if(ProductPostDelete.ok)
+                router.push("/tour/list")
+            
+        }
+    })
+    const {productPostUpdate, updateLoading} = useProductPostUpdate({
+        onCompleted:({ProductPostUpdate}) => {
+            router.push(`/tour/view/${ProductPostUpdate?.data?._id}`)
+        }
+    })
+
+    const [productCreateMu, { loading: createLoading }] = useMutation<productPostCreate, productPostCreateVariables>(PRODUCT_POST_CREATE,{
+        onCompleted: ({ProductPostCreate}) => {
+            if(ProductPostCreate.ok) 
+                router.push(`/tour/view/${ProductPostCreate.data._id}`)
+        }
+    })
+
+    const { productPost, loading: findLoading } = useProductFindById({
         variables: {
             _id: id!
         },
-        skip: !id
+    skip: !id
     })
 
     const createFn: TCreateFn = (params: ProductPostCreateInput) => {
         productCreateMu({
             variables: {
                 params
-            }
+            },
         })
+    }
+
+    const updateFn:TUpdateFn = (_id,params) => {
+        productPostUpdate({
+            _id,
+            params:params
+        })        
+    }
+    const deleteFn:TDeleteFn = (id) => {
+        productPostDelete({
+            id
+        })        
     }
 
     const context: ITourWriteWrapContext = {
         createFn,
-        product,
+        updateFn,
+        deleteFn,
+        productPost,
         findLoading,
         createLoading,
         mode: !id ? "create" : "edit"

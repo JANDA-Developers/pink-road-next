@@ -225,81 +225,9 @@ export interface categoryDeleteVariables {
 // GraphQL mutation operation: productPostCreate
 // ====================================================
 
-export interface productPostCreate_ProductPostCreate_data_author {
-  __typename: "User";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  role: UserRole;
-  brith_date: string;
-  address: string;
-  is_froreginer: boolean;
-  gender: GENDER;
-  busi_num: string;
-  is_priv_corper: boolean;
-  busi_name: string;
-  bsui_address: string;
-  account_number: string;
-  bank_name: string;
-}
-
-export interface productPostCreate_ProductPostCreate_data_category {
-  __typename: "Category";
-  _id: string;
-  label: string;
-}
-
-export interface productPostCreate_ProductPostCreate_data_itinerary_images {
-  __typename: "File";
-  createdAt: any;
-  updatedAt: any;
-  name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
-  uri: string;
-  owner: string;
-}
-
-export interface productPostCreate_ProductPostCreate_data_itinerary {
-  __typename: "Itinerary";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  productPostId: string;
-  title: string;
-  contents: string[];
-  images: productPostCreate_ProductPostCreate_data_itinerary_images[];
-  date: any;
-}
-
 export interface productPostCreate_ProductPostCreate_data {
   __typename: "ProductPost";
   _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  title: string;
-  content: any;
-  author: productPostCreate_ProductPostCreate_data_author;
-  category: productPostCreate_ProductPostCreate_data_category | null;
-  status: ProductPostStatus;
-  itinerary: productPostCreate_ProductPostCreate_data_itinerary[];
-  inOrNor: any;
-  info: string;
-  caution: string;
-  keyWards: string[];
-  address: string;
-  startPoint: string;
-  maxMember: number;
-  minMember: number;
-  subTitle: string;
-  adult_price: number;
-  kids_price: number;
-  baby_price: number;
 }
 
 export interface productPostCreate_ProductPostCreate {
@@ -377,6 +305,18 @@ export interface productPostUpdate_ProductPostUpdate_data_itinerary {
   date: any;
 }
 
+export interface productPostUpdate_ProductPostUpdate_data_images {
+  __typename: "File";
+  createdAt: any;
+  updatedAt: any;
+  name: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
+  uri: string;
+  owner: string;
+}
+
 export interface productPostUpdate_ProductPostUpdate_data {
   __typename: "ProductPost";
   _id: string;
@@ -392,6 +332,7 @@ export interface productPostUpdate_ProductPostUpdate_data {
   inOrNor: any;
   info: string;
   caution: string;
+  images: productPostUpdate_ProductPostUpdate_data_images[];
   keyWards: string[];
   address: string;
   startPoint: string;
@@ -479,6 +420,18 @@ export interface productPostDelete_ProductPostDelete_data_itinerary {
   date: any;
 }
 
+export interface productPostDelete_ProductPostDelete_data_images {
+  __typename: "File";
+  createdAt: any;
+  updatedAt: any;
+  name: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
+  uri: string;
+  owner: string;
+}
+
 export interface productPostDelete_ProductPostDelete_data {
   __typename: "ProductPost";
   _id: string;
@@ -494,6 +447,7 @@ export interface productPostDelete_ProductPostDelete_data {
   inOrNor: any;
   info: string;
   caution: string;
+  images: productPostDelete_ProductPostDelete_data_images[];
   keyWards: string[];
   address: string;
   startPoint: string;
@@ -1031,6 +985,18 @@ export interface productPostList_ProductPostList_data_itinerary {
   date: any;
 }
 
+export interface productPostList_ProductPostList_data_images {
+  __typename: "File";
+  createdAt: any;
+  updatedAt: any;
+  name: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
+  uri: string;
+  owner: string;
+}
+
 export interface productPostList_ProductPostList_data {
   __typename: "ProductPost";
   _id: string;
@@ -1046,6 +1012,7 @@ export interface productPostList_ProductPostList_data {
   inOrNor: any;
   info: string;
   caution: string;
+  images: productPostList_ProductPostList_data_images[];
   keyWards: string[];
   address: string;
   startPoint: string;
@@ -1166,6 +1133,18 @@ export interface productPostFindById_ProductPostFindById_data_itinerary {
   date: any;
 }
 
+export interface productPostFindById_ProductPostFindById_data_images {
+  __typename: "File";
+  createdAt: any;
+  updatedAt: any;
+  name: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
+  uri: string;
+  owner: string;
+}
+
 export interface productPostFindById_ProductPostFindById_data {
   __typename: "ProductPost";
   _id: string;
@@ -1181,6 +1160,7 @@ export interface productPostFindById_ProductPostFindById_data {
   inOrNor: any;
   info: string;
   caution: string;
+  images: productPostFindById_ProductPostFindById_data_images[];
   keyWards: string[];
   address: string;
   startPoint: string;
@@ -1642,6 +1622,18 @@ export interface FproductPost_itinerary {
   date: any;
 }
 
+export interface FproductPost_images {
+  __typename: "File";
+  createdAt: any;
+  updatedAt: any;
+  name: string;
+  description: string | null;
+  extension: string | null;
+  fileType: string | null;
+  uri: string;
+  owner: string;
+}
+
 export interface FproductPost {
   __typename: "ProductPost";
   _id: string;
@@ -1657,6 +1649,7 @@ export interface FproductPost {
   inOrNor: any;
   info: string;
   caution: string;
+  images: FproductPost_images[];
   keyWards: string[];
   address: string;
   startPoint: string;

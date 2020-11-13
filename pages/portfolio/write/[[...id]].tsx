@@ -1,22 +1,19 @@
 
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import "react-day-picker/lib/style.css";
 import { portfolioCreate, portfolioCreateVariables, PortfolioCreateInput, pcategoryList_pCategoryList_data, portfolioUpdate, portfolioUpdateVariables, PortfolioUpdateInput, portfolioDelete, portfolioDeleteVariables, UserRole } from '../../../types/api';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation,  } from '@apollo/client';
 import { useUpload } from "hook/useUpload";
 import { PORTFOLIO_CREATE, PORTFOLIO_DELETE, PORTFOLIO_UPDAET, } from "apollo/mutations";
-import { PORTFOLIO_FIND_BY_ID, PORT_FOLIO_LIST } from "apollo/queries";
+import { PORT_FOLIO_LIST } from "apollo/queries";
 import { getDefault } from "components/portfolio/helper";
 import { IPortfolio } from "types/interface";
 import { usePcategory } from "hook/usePcatList";
 import { usePcategoryDelete } from "hook/usePCategoryDelete";
 import { BoardWrite, IBoard } from "components/board/Write";
 import { usePCategoryCreate } from "hook/usePCategoryCreate";
-import { AppContext } from "pages/_app";
-import { roleCheck } from "utils/roleCheck";
-import Page404 from "pages/404";
 import { getOperationName } from "@apollo/client/utilities";
 import { Validater } from "utils/validate";
 import { usePortfolioFind } from "hook/usePortfolioFind";
@@ -226,11 +223,11 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
                                 </option>
                             </select>
                         </span>
-                        <button style={{ whiteSpace: "nowrap" }} className="btn medium" onClick={handleDeleteCategory}>카테고리삭제</button>
+                        {/* <button style={{ whiteSpace: "nowrap" }} className="btn medium" onClick={handleDeleteCategory}>카테고리삭제</button> */}
                     </div>
                 </div>
             </div>
-            <div className="write_type">
+            {/* <div className="write_type">
                 <div className="title">카테고리추가</div>
                 <div className="input_form">
                     <input style={{
@@ -241,7 +238,7 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
                     }} value={newCat} />
                     <button className="btn medium" onClick={handleAddCategory}>추가</button>
                 </div>
-            </div>
+            </div> */}
         </div>
         } defaults={data} />
 };
@@ -267,7 +264,6 @@ interface ITourWriteWrapContext {
     mode: "create" | "edit"
     id: string;
 }
-
 
 
 //수정하고 나면 수정한 내용을 그대로 덮어버리면 안됨. 핑크로드의 승인이 필요함.
@@ -328,8 +324,6 @@ export const PortFolioWriteWrap: React.FC<IProp> = ({ isExperience }) => {
             }
         })
     }
-
-
 
     const updateFn = (id: string, params: PortfolioUpdateInput) => {
         portfoliotUpdateMu({

@@ -131,6 +131,9 @@ export const F_PRODUCT_POST = gql`
         inOrNor
         info
         caution
+        images {
+            ...Ffile
+        }
         keyWards
         address
         startPoint
@@ -141,6 +144,7 @@ export const F_PRODUCT_POST = gql`
         kids_price
         baby_price
     }
+    ${F_FILE}
     ${F_USER}
     ${F_ITINERARY}
 `

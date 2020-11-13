@@ -153,15 +153,14 @@ export const PRODUCT_POST_CREATE = gql`
       ok
       error 
       data {
-          ...FproductPost
+        _id
       }
     }
   }
-  ${F_PRODUCT_POST}
 `;
 
 
-export const PRODUCT_UPDATE = gql`
+export const PRODUCT_POST_UPDATE = gql`
   mutation productPostUpdate(
         $params: ProductPostUpdateInput!
         $_id: String!

@@ -286,7 +286,7 @@ export const Header: React.FC<IProp> = () => {
                     <li className="a_menu_tit deps betatest">
                         <a href="../login">Member<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
-                            <li><a href="/ligin">로그인</a></li>
+                            <li><a href="/login">로그인</a></li>
                             <li><a href="/join">회원가입</a></li>
                             <li><a href="/idpw_find">아이디/비번 찾기</a></li>
                             <li><a href="/member/rule">이용약관</a></li>

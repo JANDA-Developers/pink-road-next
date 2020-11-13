@@ -64,11 +64,13 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, itineries, setitineries,
             <input readOnly type="text" className="input_02" value={dayjs(itinery.date).format("YYYY.MM.DD (ddd)")} />
         </div>
         {itinery.contents.map((content, contentIndex) =>
-            <div style={{
-                display: index === 0 ? "none" : undefined
-            }} key={`${contentIndex}${index}content`}>
-                <textarea onChange={handleOnChange(index)} key={"initeryFrom__content" + index} style={{ width: '100%', minHeight: '100px' }} value={content} />
-                <i onClick={handleDeleteContent(index)} className="delete">삭제</i>
+            <div  key={`${contentIndex}${index}content`}>
+                <textarea onChange={handleOnChange(contentIndex)} key={"initeryFrom__content" + contentIndex} style={{ width: '100%', minHeight: '100px' }} value={content} />
+                <button style={{
+                    marginBottom: '0.4rem'
+                }} onClick={handleDeleteContent(contentIndex)} className="comment_btn mini">
+                    삭제
+                </button>
             </div>
         )}
         <input className="initrary__imgInput" ref={hiddenFileInput} multiple accept="image/png, image/jpeg" onChange={handleChange} type="file" />

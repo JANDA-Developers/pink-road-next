@@ -127,3 +127,14 @@ ul[contenteditable="true"] li {
 .disabled-btn {
     pointer-events: none;
 }
+
+
+.main_photo_ul  {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main_photo_ul li {
+    flex: 1 1;
+    min-width: 33.3%;
+}

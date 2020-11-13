@@ -24,6 +24,7 @@ interface IProps {
     content?: OutputData;
 }
 
+
 export const BoardView: React.FC<IProps> = (data) => {
     const { catName, createAt, title, writer, comments, files, summary, viewCount, thumb, content, onEdit, onList, onNext, onPrev, onDelete } = data;
 

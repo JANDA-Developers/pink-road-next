@@ -10,8 +10,9 @@ import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
 import dynamic from 'next/dynamic';
-const EditorJs = dynamic(() => import('components/editor2/Ediotr2'), { ssr: false })
-
+import { IUseProductList, useProductPostList } from 'hook/useProductPostList';
+import { useRouter } from 'next/router';
+// const EditorJs = dynamic(() => import('components/editor2/Ediotr2'), { ssr: false })
 
 const DummyPhoto = [{
   category: "문화/예술",
@@ -59,28 +60,23 @@ const DummyPhoto = [{
   title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
 }];
 
-type TGetProps = {
-  pageInfo: typeof pageInfoDefault | "",
-}
-export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
-  const { data } = await usePageInfo("main");
-  return {
-    props: {
-      pageInfo: data?.value || "",
-      revalidate: 10
-    }, // will be passed to the page component as props
-  }
-}
 
-export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+interface IProps { 
+  context: IMainWrapContext
+}
+export const Main: React.FC<IProps> = ({ context }) => {
+  const {items, sitePageInfo} = context;
   const { editMode } = useContext(AppContext);
-  const original = pageInfo || pageInfoDefault;
+  const original = sitePageInfo || pageInfoDefault;
   const [page, setPage] = useState(original);
   const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPage)
   const [model, setModel] = useState();
+  const router = useRouter()
 
-  console.log("model");
-  console.log(model);
+
+  const toProductBoard = (id:string) => {
+    router.push(id);
+  }
 
 
   return <div className="body main" id="main" >
@@ -106,11 +102,8 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         </div>
       </div>
     </div>
-    <div dangerouslySetInnerHTML={{
-      __html: '<ol><li style="text-align: justify;"><h1><strong>zxczxczx</strong></h1></li><li style="text-align: justify;"><h1><strong><img src="blob:http://localhost:3000/5ba01d7b-815a-4e98-8e45-0e2bc9e91cac" style="width: 300px;" class="fr-fic fr-dii"></strong></h1></li><li style="text-align: justify;"><h1><strong>asasd</strong></h1></li><li style="text-align: justify;"><h1><strong>asdasd</strong></h1></li><li style="text-align: justify;"><h1><strong>a</strong></h1></li></ol><h1 style="text-align: right;"><strong>sdasd</strong></h1><ol><li style="text-align: justify;"><h1><strong>asd</strong></h1></li><li style="text-align: justify;"><h1><strong>zxc</strong></h1><ol><li style="text-align: justify;"><h1><strong>ㅁㄴㅇㅁㄴㅇ</strong></h1></li><li style="text-align: justify;"><h1><strong>ㅋㅌㅊ</strong></h1></li><li style="text-align: justify;"><h1><strong>ㅁㄴㅇ</strong></h1></li></ol></li></ol><p style="text-align: center;"><strong>casdasdaqweqwe1231231</strong></p>'
-    }}></div>
     {/* <div dangerouslySetInnerHTML={model}/> */}
-    <EditorJs onModelChange={setModel} model={model} config={{
+    {/* <EditorJs onModelChange={setModel} model={model} config={{
        fontFamily: {
         "Roboto,sans-serif": 'Roboto',
         "Oswald,sans-serif": 'Oswald',
@@ -120,7 +113,7 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
       },
       fontFamilySelection: true,
       language: 'ko'
-    }}/>
+    }}/> */}
     <div className="main_con_box2">
       <div className="w1200">
         <div className="top_txt">
@@ -178,7 +171,7 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <div className="main_con_box4">
       <div className="w100">
         <div className="photo_box">
-          <ul className="photo_ul line3">
+          <ul className="photo_ul line3 main_photo_ul">
             <li className="top_txt">
                           <h2 {...edit("valuable_exp")} />
                           <span className="txt" {...edit("valuable_exp_sub")} />
@@ -189,26 +182,22 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 <i><svg><polygon points="69.22 12.71 0 12.71 0 10.71 64.33 10.71 54.87 1.43 56.27 0 69.22 12.71" /></svg></i>
           
             </li>
-            <PhotoLi onClickImg={() => {
-            }} id={"12"} key={1 + "photo"} {...DummyPhoto[0]} />
-            <PhotoLi onClickImg={() => {
-            }} id={"12"} key={2 + "photo"} {...DummyPhoto[1]} />
-          </ul>
-          <ul className="photo_ul line3">
-            <PhotoLi onClickImg={() => {
-            }} id={"12"} key={5 + "photo"} {...DummyPhoto[0]} />
-            <PhotoLi onClickImg={() => {
-            }} id={"12"} key={6 + "photo"} {...DummyPhoto[1]} />
-            <PhotoLi onClickImg={() => {
-            }} id={"12"} key={7 + "photo"} {...DummyPhoto[3]} />
-            </ul>
-            <ul className="photo_ul line3">
-            <PhotoLi onClickImg={() => {
-            }} id={"12"} key={5 + "photo"} {...DummyPhoto[0]} />
-            <PhotoLi onClickImg={() => {
-            }} id={"12"} key={6 + "photo"} {...DummyPhoto[1]} />
-            <PhotoLi onClickImg={() => {
-            }} id={"12"} key={7 + "photo"} {...DummyPhoto[3]} />
+            {items.map((item) => 
+            <Link href={`/tour/view/${item._id}`}>
+                <li key={item._id} className="list_in">
+                    <div className="img" onClick={()=>{toProductBoard(item._id)}} style={{
+                        backgroundImage: `url(${item.images[0]?.uri})`
+                    }}></div>
+                    <div className="box">
+                        <div className="category"><span>{item.category?.label}</span></div>
+                        <div className="title">{item.title}</div>
+                        <div className="subTitle">             
+                            {item.subTitle}
+                        </div>
+                    </div>
+                </li >
+                </Link>
+            )}
           </ul>
         </div>
       </div>
@@ -228,4 +217,31 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   </div >
 };
 
-export default Main;
+
+interface IGetProps  {
+  sitePageInfo: typeof pageInfoDefault | "",
+}
+export const getStaticProps: GetStaticProps<IGetProps> = async (context) => {
+  const { data } = await usePageInfo("main");
+  return {
+    props: {
+      sitePageInfo: data?.value || "",
+      revalidate: 10
+    }, // will be passed to the page component as props
+  }
+}
+
+interface IMainWrapContext extends IUseProductList,IGetProps {
+}
+
+const MainWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>>  = ({sitePageInfo}) => {
+  const productList = useProductPostList({initialPageIndex:1,initialViewCount:8});
+  const context:IMainWrapContext = {
+    ...productList,
+    sitePageInfo
+  }
+  
+  return <Main  context={context} />
+}
+
+export default MainWrap;
