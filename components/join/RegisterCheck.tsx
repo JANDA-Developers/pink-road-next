@@ -27,12 +27,11 @@ interface IProps {
   openPopup: (element: string | null) => void;
   handleJoinProcess: (errTarget: any) => void;
   registerInfo: any;
-  registerSort?: string
+  registerSort?: string;
   handleErrDisplay: (errTarget: any) => void;
 }
 
 const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registerInfo, registerSort }) => {
-
 
   const [productCreateMu, { loading: create_loading }] = useMutation<signUp, signUpVariables>(SIGN_UP, {
     onCompleted: () => {
@@ -41,7 +40,6 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
        handleJoinProcess('registered');
     }
   });
-
 
   const [chkSMS, setChkSMS] = useState({
     sns: true,

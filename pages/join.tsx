@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 import {gql, useMutation} from "@apollo/client";
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 import KakaoLogin from 'react-kakao-login';
 import axios from "axios";
 import FormPartnerCor from 'components/join/FormPartnerCor';
@@ -24,7 +24,6 @@ export const ContextPolicyChk = createContext<IchkPolocy | null>(null);
 
 export type TForm = {
     openPopup: (element: string | null) => void;
-
     handleJoinProcess: (processTarget: string) => void;
 }
 
@@ -98,24 +97,26 @@ const Join = () => {
     }
 
 
-    const handleVerifyGoogle = async () => {
-        alert('성공적으로 인증되었습니다');
-        let googleverify = false;
-        googleverify = true;
-        if (googleverify) {
+    const handleVerifyGoogle = async (veriState:boolean) => {
+
+        if(veriState){
+            alert('구글 인증에 성공하였습니다');
             handleJoinProcess('verification');
-        } 
+        }else {
+            alert('구글 인증에 실패하였습니다');
+        }
+        
     }
 
-    const handleVerifyKakao = async () => {
-        // alert('성공적으로 인증 되었습니다');
-        let kakaoverify = false;
-        kakaoverify = true;
-        if (kakaoverify) {
-          //  handleJoinProcess('verification');
-        } else {
-            alert('안증에 실패하였습니다')
+    const handleVerifyKakao = async (veriState:boolean) => {
+
+        if(veriState){
+            alert('카카오 인증에 성공하였습니다');
+            handleJoinProcess('verification');
+        }else {
+            alert('카카오 인증에 실패하였습니다');
         }
+
     }
 
 
@@ -232,8 +233,8 @@ const JoinResult = () => {
 
 
 interface IProps {
-    handleVerifyGoogle: () => void;
-    handleVerifyKakao: () => void;
+    handleVerifyGoogle: (veriState:boolean) => void;
+    handleVerifyKakao: (veriState:boolean) => void;
 }
 
 const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao }) => {
@@ -242,6 +243,45 @@ const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao 
     
     const [signInGoogleMutation] = useMutation(SIGNINGOOGLE)
     const [signInKakaoMutation] = useMutation(SIGNINKAKAO)
+
+    const [googlelLoginMu] = useMutation(SIGNINGOOGLE, {
+        onCompleted: () => {}
+    });
+
+    const [kakaoLoginMu] = useMutation(SIGNINKAKAO, {
+        onCompleted: () => {}
+    });
+
+    
+    const loginTokenSend = (type:string, email:string, token:string) => {
+
+        if(type == "google") {
+
+            googlelLoginMu({
+                variables: {
+                  data: {
+                    email: email,
+                    token: token,
+                  }
+                }
+            })
+            
+        }
+        else {
+            
+            kakaoLoginMu({
+                variables: {
+                  data: {
+                    email: email,
+                    token: token,
+                  }
+                }
+            })
+
+        }
+        
+    }
+
 
     const responseGoogle = async (response) => {
         
@@ -252,9 +292,12 @@ const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao 
         const {data} = await signInGoogleMutation({ variables: { code : new String(response.code) } });
         console.log(data);
         if(data.SignInGoogle.ok) {
-            handleVerifyGoogle();
+            handleVerifyGoogle(true);
+            loginTokenSend('google','gemail@naver.com', '12312321332dbdbd');
+            
+        }else{
+            handleVerifyGoogle(false);
         }
-        console.log(data.SignInGoogle.ok);
     }
 
     const responseKakao= async (response) => {
@@ -262,27 +305,20 @@ const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao 
         console.log('kakao');
         console.log(data);
         if(data.SignInKakao.ok) {
-            console.log(data);
+            handleVerifyKakao(true);
+            loginTokenSend('kakao','kakao@navercom','bbdgdfgdf123123');
         }else {
             console.log(data);
-            alert("카카오 인증에 실패하였습니다.");
+            handleVerifyKakao(false);
         }
     }
 
         
     const REST_API_KEY = "f1a52f415e4f545780749d7ea195c398"
     const REDIRECT_URI = "http://localhost:3000"
-    const responsefailure = async()=>{
-        console.log("로그인 실패")
-        const data = await axios.get(`https://kauth.kakao.com//oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`);
-        console.log(data);
-    }
 
     const kako_auth_link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-    const getCodeKakao = async(response) => {
-        console.log(response);
-    }
     const handleClick = (e) => {
         e.preventDefault();
         window.open(kako_auth_link, "myWindow", "width=800, height=800")
