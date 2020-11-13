@@ -6,7 +6,7 @@ import { roleCheck } from 'utils/roleCheck';
 interface IProp { }
 
 export const EditBtn: React.FC<IProp> = () => {
-    const { editMode, setEditMode, isManager } = useContext(AppContext)
+    const { editMode, setEditMode, isManager, } = useContext(AppContext)
 
     //useEffect(() => {
     //    if (editMode)
@@ -17,9 +17,7 @@ export const EditBtn: React.FC<IProp> = () => {
     //        window.onbeforeunload = () => { }
     //}, [editMode])
  
-
-    if( !isManager) return null;
-    if (!editable) return null
+    if  (!isManager) return null;
 
     return <div onClick={() => {
         setEditMode(!editMode)

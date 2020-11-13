@@ -53,7 +53,7 @@ export const F_PORTFOLIO = gql`
         keyWards
         summary
         subTitle
-        content
+        contents
         author {
             ...Fuser
         }
@@ -98,7 +98,6 @@ export const F_ITINERARY = gql`
         createdAt
         updatedAt
         isDelete
-        productPostId
         title
         contents
         images {
@@ -116,7 +115,7 @@ export const F_PRODUCT_POST = gql`
         updatedAt
         isDelete
         title
-        content
+        contents
         author {
             ...Fuser
         }

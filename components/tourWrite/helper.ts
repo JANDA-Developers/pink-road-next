@@ -61,10 +61,10 @@ export const getDefault = (product?:IProductPostFindById) => {
         keyWards: defaults.keyWards || [],
     }
 
-    const {itinerary,images, content} = defaults
+    const {itinerary,images, contents,inOrNor} = defaults
    
 
-    return  {data,defaults,itinerary,images,content}
+    return  {data,defaults,itinerary,images,contents,inOrNor}
 
 }
 

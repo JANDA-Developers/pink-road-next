@@ -51,7 +51,7 @@ export interface IProductDefaultData extends ProductPostCreateInput {
 export const DEFAULT_PRODUCT_INPUT: IProductDefaultData = process.env.NODE_ENV === "development" ? {
     status: ProductPostStatus.CLOSE,
     images: [SAMPLE_FILE,SAMPLE_FILE],
-    content: SAMPLE_EDIOR,
+    contents: {},
     inOrNor: {},
     itinerary: [{
         title:"1일차 여정",
@@ -78,8 +78,8 @@ export const DEFAULT_PRODUCT_INPUT: IProductDefaultData = process.env.NODE_ENV =
     categoryId: "",
     status: ProductPostStatus.CLOSE,
     images: [],
-    inOrNor: {},
-    content: [],
+    inOrNor: {blocks:[]},
+    contents: {blocks:[]},
     itinerary: [],
     ...DEFAULT_PRODUCT_PART
 } 

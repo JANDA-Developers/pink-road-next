@@ -18,7 +18,6 @@ import { getOperationName } from "@apollo/client/utilities";
 import { Validater } from "utils/validate";
 import { usePortfolioFind } from "hook/usePortfolioFind";
 
-
 interface IProp {
     context: ITourWriteWrapContext;
 }
@@ -55,9 +54,9 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
 
 
     const handleUpdate = (params: Partial<IBoard>) => {
-        const { content, isOpen, subTitle, summary, title, thumb } = params;
+        const { contents, isOpen, subTitle, summary, title, thumb } = params;
         updateFn(id, {
-            content,
+            contents,
             isOpen,
             pCategoryId: editCategory,
             subTitle,
@@ -67,7 +66,6 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
                 description: thumb.description,
                 extension: thumb.extension,
                 fileType: thumb.fileType,
-                isDelete: thumb.isDelete,
                 name: thumb.name,
                 owner: thumb.owner
             },
@@ -82,7 +80,7 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
     const handleCreate = (data: Partial<IBoard>) => {
 
         const {validate} = new Validater([{
-            value: !!data.content,
+            value: !!data.contents,
             failMsg: "콘텐츠 값은 필수 입니다.",
             id: "content" 
         },
@@ -97,7 +95,7 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
         createFn({
             pCategoryId: data.categoryId,
             title: data.title,
-            content: data.content,
+            contents: data.contents,
             isOpen: data.isOpen,
             subTitle: data.subTitle,
             summary: data.summary,
@@ -106,7 +104,6 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
                 description: thumb.description,
                 extension: thumb.extension,
                 fileType: thumb.fileType,
-                isDelete: thumb.isDelete,
                 name: thumb.name,
                 owner: thumb.owner
             }
@@ -130,11 +127,11 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
             return
         }
 
-        const { content, isOpen, subTitle, summary, thumb, title } = savedData;
+        const { contents, isOpen, subTitle, summary, thumb, title } = savedData;
 
         setLoadData({
             title,
-            content,
+            contents,
             isOpen,
             subTitle: subTitle,
             summary,
@@ -174,13 +171,12 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
             extension: loadData.thumb?.extension,
             name: loadData.thumb?.name,
             owner: loadData.thumb?.owner,
-            isDelete: loadData.thumb?.isDelete,
         }
     } : {
             author: "관리자",
             category: categoryList[0],
             categoryList,
-            content: defaults.content,
+            contents: defaults.contents,
             isOpen: false,
             subTitle: defaults.subTitle,
             summary: defaults.summary,

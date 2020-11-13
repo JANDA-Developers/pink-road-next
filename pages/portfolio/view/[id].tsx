@@ -6,8 +6,6 @@ import { BoardView } from "components/board/View";
 import { useMutation } from '@apollo/client';
 import { portfolioDelete, portfolioDeleteVariables } from 'types/api';
 import { PORTFOLIO_DELETE } from 'apollo/mutations';
-import { getOperationName } from '@apollo/client/utilities';
-import { PORTFOLIO_FIND_BY_ID, PORT_FOLIO_LIST } from 'apollo/queries';
 import Page404 from 'pages/404';
 
 interface IProp {
@@ -16,7 +14,7 @@ interface IProp {
 
 export const PorfolioDetail: React.FC<IProp> = ({ item }) => {
     const router = useRouter();
-    const { title, subTitle, thumb, createdAt, updatedAt, content, pCategory, summary, isDelete, _id } = item;
+    const { title, subTitle, thumb, createdAt, updatedAt, contents, pCategory, summary, isDelete, _id } = item;
 
     const toDetail = () => {
         router.push(`/portfolio/write/${_id}`)
@@ -42,7 +40,7 @@ export const PorfolioDetail: React.FC<IProp> = ({ item }) => {
             }
         })
     }
-    return <BoardView onList={toList} thumb={thumb} content={content} writer={"관리자"} title={title} summary={summary} onDelete={handleDelete} onEdit={toDetail} createAt={createdAt} catName={pCategory?.label} />
+    return <BoardView onList={toList} thumb={thumb} content={contents} writer={"관리자"} title={title} summary={summary} onDelete={handleDelete} onEdit={toDetail} createAt={createdAt} catName={pCategory?.label} />
 };
 
 

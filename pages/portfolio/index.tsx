@@ -23,6 +23,8 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
     const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPageInfo)
     const [viewCat, setViewCat] = useState("");
 
+    console.log("isManager");
+    console.log(isManager);
     const catPortfolios = viewCat ? portfolios.filter(pt => pt.pCategory?._id === viewCat) : portfolios;
     const filteredPortfolios = (isAdmin || isManager) ? catPortfolios :  catPortfolios.filter(catP => catP.isOpen);
 
@@ -110,7 +112,7 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                             </Link>
                         )}
                     </ul>
-                    {roleCheck([UserRole.admin, UserRole.manager]) && 
+                    {isManager && 
                         <Link href={`/portfolio/write`} >
                             <button  type="button" className="btn medium">추가</button>
                         </Link>

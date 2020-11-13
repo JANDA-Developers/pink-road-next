@@ -12,7 +12,7 @@ const getToken = () => {
     return window.localStorage.getItem("jwt")
 }
 const headers = {
-  "Authorization": getToken()
+  "Authorization": "Bearer " + getToken()
 }
 
 // const errorLink = onError(({ graphQLErrors, networkError }) => {
