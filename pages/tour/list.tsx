@@ -10,19 +10,40 @@ export const TourList: React.FC<IProp> = ({ context }) => {
 
     // const { setSort, setFilter, setViewCount, } = context;
 
-    return <div className="mdeal_box">
-        <div className="w1200">
+    return <div>
+        <div className="top_visual">
+            <div
+                className="sub_header sub_bg"
+                style={{ backgroundImage: `url(/img/work_top_bg2.jpg)` }}
+            >
+                <div className="w1200">
+                    <h2 className="title">Tour</h2>
+                    <p className="text">지금 여행을 떠나세요~!~~!!!!!</p>
+                </div>
+            </div>
+            <div className="header_nav">
+                <ul>
+                    <li className="home">
+                        <a href="/index"></a>
+                    </li>
+                    <li className="homedeps1">Tour</li>
+                </ul>
+            </div>
+        </div>
+
+        <div className="goods_box w1200">
+            <div id="sub_tap_nav" className="subtop_nav">
+                <ul>
+                    <li className="on"><a href="/tour/list">전체</a></li>
+                    <li><a href="/tour/list">문화·예술여행</a></li>
+                    <li><a href="/tour/list">교육·답사여행</a></li>
+                    <li><a href="/tour/list">역사여행</a></li>
+                    <li><a href="/tour/list">팸투어</a></li>
+                </ul>
+            </div>
             <div className="deal_list">
 
-                <div className="search">
-                    <ul>
-                        <li className="on"><a href="/tour-list">전체</a></li>
-                        <li><a href="/tour-list">문화·예술여행</a></li>
-                        <li><a href="/tour-list">교육·답사여행</a></li>
-                        <li><a href="/tour-list">역사여행</a></li>
-                        <li><a href="/tour-list">팸투어</a></li>
-                    </ul>
-                </div>
+              
                 <div className="alignment">
                     <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>개</span></div>
                     <div className="right_div">
@@ -37,6 +58,7 @@ export const TourList: React.FC<IProp> = ({ context }) => {
                             <option value={50}>50개 보기</option>
                             <option value={100}>100개 보기</option>
                         </select>
+                        {/*
                         <ul className="al_02">
                             <div>
                                 <li>
@@ -61,8 +83,8 @@ export const TourList: React.FC<IProp> = ({ context }) => {
                                         </svg>
                                     </a>
                                 </li>
-                            </div>;
-                        </ul>
+                            </div>
+                        </ul>*/}
                     </div>
                 </div>
                 <ul className="list_ul line4">

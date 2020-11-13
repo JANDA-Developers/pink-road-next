@@ -17,24 +17,19 @@ export const TourMain: React.FC<IProp> = () => {
         <SubTopNav title="temp" desc="temp" >
             <li className="homedeps1">
                 <Link href="/tour/main?exp=true">
-                    <a>Experience</a>
-                </Link>
-            </li>
-            <li className="homedeps2">
-                <Link href="/tour/list">
-                    <a>상품리스트</a>
+                    <a>Tour</a>
                 </Link>
             </li>
         </SubTopNav>
-        <div className="tour_box">
+        <div className="goods_box">
             <div className="w1200">
                 <div id="sub_tap_nav" className="subtop_nav">
                     <ul>
-                        <li className="on"><a href="/tour-list">전체</a></li>
-                        <li><a href="/tour-list">문화·예술여행</a></li>
-                        <li><a href="/tour-list">교육·답사여행</a></li>
-                        <li><a href="/tour-list">역사여행</a></li>
-                        <li><a href="/tour-list">팸투어</a></li>
+                        <li className="on"><a href="/tour/list">전체</a></li>
+                        <li><a href="/tour/list">문화·예술여행</a></li>
+                        <li><a href="/tour/list">교육·답사여행</a></li>
+                        <li><a href="/tour/list">역사여행</a></li>
+                        <li><a href="/tour/list">팸투어</a></li>
                     </ul>
                 </div>
                 <div className="bn_box line2">

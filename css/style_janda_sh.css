@@ -3119,26 +3119,26 @@ ul.rank_ul {
     }
 
 /* tour */
-.tour_box {
+.goods_box {
     position: relative;
-    margin-bottom: 100px;
-    margin-top:50px;
+    margin-bottom: 100px !important;
+    margin-top:60px !important;
 }
 
-    .tour_box .deal_list {
+    .goods_box .deal_list {
         position: relative;
         display: block;
         width: 100%;
         padding-top: 30px;
     }
 
-        .tour_box .deal_list h4 {
+        .goods_box .deal_list h4 {
             font-size: 20px;
             line-height: 40px;
             font-weight: 600;
         }
 
-        .tour_box .deal_list ul {
+        .goods_box .deal_list ul {
             position: relative;
             clear: both;
         }
@@ -5714,26 +5714,6 @@ i.important_icon {
 }
 
 /* search */
-.search_in {
-    position: relative;
-    padding: 100px 0 150px;
-}
-
-    .search_in .con_top {
-        position: relative;
-    }
-
-    .search_in h4 {
-        position: relative;
-        display: block;
-        font-size: 25px;
-        line-height: 40px;
-        font-weight: 600;
-    }
-
-        .search_in h4 strong {
-            color: #949494;
-        }
 
 .search_box {
     position: relative;
@@ -6040,7 +6020,209 @@ i.important_icon {
             color: #fff;
             border: 1px solid #ed297b;
         }
+.search_in {
+    position: relative;
+    padding: 100px 0 150px;
+}
 
+    .search_in .con_top {
+        position: relative;
+    }
+
+    .search_in h4 {
+        position: relative;
+        display: block;
+        font-size: 25px;
+        line-height: 40px;
+        font-weight: 600;
+    }
+
+        .search_in h4 strong {
+            color: #949494;
+        }
+
+    .search_in .search_box .jul1 input {
+        border: 2px solid #ccc;
+        box-shadow: 0 3px 0px #f5f5f5;
+        background-color: #fff;
+        width: 100%;
+        margin: 0 auto;
+        display: inline-block;
+        border-radius: 111px;
+        height: 50px;
+        padding: 15px 20px;
+        box-sizing: border-box
+    }
+
+        .search_in .search_box .jul1 input:focus {
+            border: 2px solid #ed297b
+        }
+
+    .search_in .search_box .jul1 svg {
+        width: 20px;
+        color: #ccc;
+        fill: #ccc;
+        position: absolute;
+        top: 38px;
+        right: 30px
+    }
+
+    .search_in .search_box .jul1 input:focus ~ svg {
+        fill: #ed297b
+    }
+
+    .search_in .search_box .jul2 {
+        padding: 10px 0 10px;
+        width: 100%;
+        display: block;
+        border-bottom: 1px dotted #dbdbdb;
+        border-top: 1px dotted #dbdbdb
+    }
+
+    .search_in .search_box .jul3 {
+        padding: 10px 0 10px;
+        width: 100%;
+        display: block;
+        border-bottom: 1px dotted #dbdbdb
+    }
+
+    .search_in .search_box .jul4 {
+        padding: 10px 0 10px;
+        width: 100%;
+        display: block;
+        border-bottom: 1px dotted #dbdbdb
+    }
+
+        .search_in .search_box .jul4 input {
+            width: 20%
+        }
+
+    .search_in .search_box .jul5 {
+        padding: 10px 0 10px;
+        width: 100%;
+        display: block;
+        border-bottom: 1px dotted #dbdbdb
+    }
+
+    .search_in .search_box .jul6 {
+        padding: 10px 0 10px;
+        width: 100%;
+        display: block;
+        border-bottom: 1px dotted #dbdbdb
+    }
+
+    .search_in .search_box .jul0 {
+        padding: 0 0 10px;
+        width: 100%;
+        display: block;
+        text-align: right
+    }
+
+        .search_in .search_box .jul0 button {
+            padding: 20px 0;
+            width: 50%;
+            border: 0;
+            display: inline-block;
+            text-align: center;
+            line-height: 14px;
+            font-size: 15px;
+            border-radius: 100px;
+            overflow: hidden;
+            cursor: pointer;
+            background: #fda230;
+            background: -moz-linear-gradient(-45deg, #fda230 0%, #ed297b 58%);
+            background: -webkit-linear-gradient(-45deg, #fda230 0%,#ed297b 58%);
+            background: linear-gradient(135deg, #fda230 0%,#ed297b 58%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fda230', endColorstr='#ed297b',GradientType=1 );
+            color: #fff
+        }
+
+        .search_in .search_box .jul0 span {
+            color: #999;
+            margin-left: 10px;
+            cursor: pointer
+        }
+
+            .search_in .search_box .jul0 span:hover {
+                color: #333
+            }
+
+            .search_in .search_box .jul0 span i {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                vertical-align: middle;
+                cursor: pointer;
+                padding-left: 5px
+            }
+
+            .search_in .search_box .jul0 span svg {
+                width: 100%;
+                fill: #ccc;
+                vertical-align: top
+            }
+
+            .search_in .search_box .jul0 span:hover svg {
+                fill: #333
+            }
+
+    .search_in .search_box .calendar {
+        width: 26px;
+        height: 26px;
+        vertical-align: middle;
+        display: inline-block;
+        overflow: hidden;
+        cursor: pointer;
+        margin-left: 3px;
+        margin-right: 10px
+    }
+
+        .search_in .search_box .calendar svg {
+            width: 100%;
+            fill: #333 !important
+        }
+
+        .search_in .search_box .calendar:hover svg {
+            fill: #ed297b !important
+        }
+
+    .search_in .search_box .check {
+        margin-right: 5px;
+        position: relative;
+        display: inline-block;
+        background: #fff;
+        border: 1px solid #ccc;
+        font-size: 13px;
+        line-height: 32px;
+        height: 30px;
+        position: relative;
+        padding: 0px 21px;
+        float: left;
+        display: block;
+        color: #777;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-align: center;
+        border-radius: 100px;
+        cursor: pointer
+    }
+
+        .search_in .search_box .check.on {
+            background: #ed297b;
+            z-index: 6;
+            color: #fff;
+            border: 1px solid #ed297b
+        }
+
+        .search_in .search_box .check:hover {
+            color: #ed297b;
+            border: 1px solid #ed297b
+        }
+
+        .search_in .search_box .check.on:hover {
+            color: #fff;
+            border: 1px solid #ed297b
+        }
 .search_in .alignment2 {
     position: relative;
     padding: 24px;
@@ -6090,6 +6272,27 @@ i.important_icon {
         background-color: #f5f5f5;
         font-size: 18px;
     }
+    .search_in .search_box .in {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top
+    }
+
+        .search_in .search_box .in input[type*=text] {
+            border-radius: 5px;
+            height: 32px;
+            padding-left: 10px;
+            box-sizing: border-box;
+            border: 1px solid #d2d2d2
+        }
+
+        .search_in .search_box .in select {
+            border-radius: 5px;
+            height: 32px;
+            padding-left: 5px;
+            box-sizing: border-box;
+            border: 1px solid #d2d2d2
+        }
 
 .selectViewList {
     padding-top: 13px;
@@ -8481,19 +8684,17 @@ i.calendar {
             font-size: 14px;
         }
 
-/* search */
+/* search 
 .search_in {
     position: relative;
     padding: 100px 0 150px
 }
 
-    .search_in
-    .con_top {
+    .search_in con_top {
         position: relative
     }
 
-    .search_in
-    h4 {
+    .search_in h4 {
         position: relative;
         display: block;
         font-size: 25px;
@@ -8501,13 +8702,11 @@ i.calendar {
         font-weight: bold
     }
 
-        .search_in h4
-        strong {
+        .search_in h4 strong {
             color: #949494
         }
 
-    .search_in
-    .search_box {
+    .search_in .search_box {
         position: relative;
         display: block;
         width: 100%;
@@ -8537,8 +8736,7 @@ i.calendar {
             box-sizing: border-box
         }
 
-        .search_in .search_box
-        .title {
+        .search_in .search_box .title {
             display: inline-block;
             width: 8%;
             font-size: 14px;
@@ -8548,8 +8746,7 @@ i.calendar {
             padding: 0 5px
         }
 
-        .search_in .search_box
-        .in {
+        .search_in .search_box .in {
             display: inline-block;
             width: 90%;
             vertical-align: top
@@ -8610,8 +8807,7 @@ i.calendar {
                 fill: #ed297b
             }
 
-        .search_in .search_box
-        .jul2 {
+        .search_in .search_box .jul2 {
             padding: 10px 0 10px;
             width: 100%;
             display: block;
@@ -8619,53 +8815,46 @@ i.calendar {
             border-top: 1px dotted #dbdbdb
         }
 
-        .search_in .search_box
-        .jul3 {
+        .search_in .search_box .jul3 {
             padding: 10px 0 10px;
             width: 100%;
             display: block;
             border-bottom: 1px dotted #dbdbdb
         }
 
-        .search_in .search_box
-        .jul4 {
+        .search_in .search_box .jul4 {
             padding: 10px 0 10px;
             width: 100%;
             display: block;
             border-bottom: 1px dotted #dbdbdb
         }
 
-            .search_in .search_box .jul4
-            input {
+            .search_in .search_box .jul4 input {
                 width: 20%
             }
 
-        .search_in .search_box
-        .jul5 {
+        .search_in .search_box .jul5 {
             padding: 10px 0 10px;
             width: 100%;
             display: block;
             border-bottom: 1px dotted #dbdbdb
         }
 
-        .search_in .search_box
-        .jul6 {
+        .search_in .search_box .jul6 {
             padding: 10px 0 10px;
             width: 100%;
             display: block;
             border-bottom: 1px dotted #dbdbdb
         }
 
-        .search_in .search_box
-        .jul0 {
+        .search_in .search_box .jul0 {
             padding: 0 0 10px;
             width: 100%;
             display: block;
             text-align: right
         }
 
-            .search_in .search_box .jul0
-            button {
+            .search_in .search_box .jul0 button {
                 padding: 20px 0;
                 width: 50%;
                 border: 0;
@@ -8684,8 +8873,7 @@ i.calendar {
                 color: #fff
             }
 
-            .search_in .search_box .jul0
-            span {
+            .search_in .search_box .jul0 span {
                 color: #999;
                 margin-left: 10px;
                 cursor: pointer
@@ -8695,8 +8883,7 @@ i.calendar {
                     color: #333
                 }
 
-                .search_in .search_box .jul0 span
-                i {
+                .search_in .search_box .jul0 span i {
                     display: inline-block;
                     width: 10px;
                     height: 10px;
@@ -8705,20 +8892,17 @@ i.calendar {
                     padding-left: 5px
                 }
 
-                .search_in .search_box .jul0 span
-                svg {
+                .search_in .search_box .jul0 span svg {
                     width: 100%;
                     fill: #ccc;
                     vertical-align: top
                 }
 
-                .search_in .search_box .jul0 span:hover
-                svg {
+                .search_in .search_box .jul0 span:hover svg {
                     fill: #333
                 }
 
-        .search_in .search_box
-        .calendar {
+        .search_in .search_box .calendar {
             width: 26px;
             height: 26px;
             vertical-align: middle;
@@ -8729,19 +8913,16 @@ i.calendar {
             margin-right: 10px
         }
 
-            .search_in .search_box .calendar
-            svg {
+            .search_in .search_box .calendar svg {
                 width: 100%;
                 fill: #333 !important
             }
 
-            .search_in .search_box .calendar:hover
-            svg {
+            .search_in .search_box .calendar:hover svg {
                 fill: #ed297b !important
             }
 
-        .search_in .search_box
-        .check {
+        .search_in .search_box .check {
             margin-right: 5px;
             position: relative;
             display: inline-block;
@@ -8762,8 +8943,7 @@ i.calendar {
             cursor: pointer
         }
 
-            .search_in .search_box
-            .check.on {
+            .search_in .search_box .check.on {
                 background: #ed297b;
                 z-index: 6;
                 color: #fff;
@@ -8780,8 +8960,7 @@ i.calendar {
                 border: 1px solid #ed297b
             }
 
-    .search_in
-    .alignment2 {
+    .search_in .alignment2 {
         position: relative;
         padding: 24px;
         margin-top: 10px;
@@ -8793,13 +8972,11 @@ i.calendar {
         color: #999
     }
 
-        .search_in .alignment2
-        strong {
+        .search_in .alignment2 strong {
             color: #555
         }
 
-    .search_in .alignment
-    select {
+    .search_in .alignment select {
         border-radius: 5px;
         height: 32px;
         padding: 0 10px;
@@ -8807,36 +8984,31 @@ i.calendar {
         border: 1px solid #d2d2d2
     }
 
-    .search_in
-    .con_box {
+    .search_in .con_box {
         position: relative;
         display: block;
         padding: 20px 0
     }
 
-        .search_in .con_box
-        .alignment {
+        .search_in .con_box .alignment {
             border-bottom: 1px solid #d2d2d2
         }
 
-        .search_in .con_box
-        h5 {
+        .search_in .con_box h5 {
             font-size: 19px
         }
 
-            .search_in .con_box h5
-            strong {
+            .search_in .con_box h5 strong {
                 color: #969696
             }
 
-        .search_in .con_box
-        .none {
+        .search_in .con_box .none {
             padding: 50px;
             margin-top: 21px;
             margin-bottom: 10px;
             background-color: #f5f5f5;
             font-size: 17px
-        }
+        }*/
 @media (min-width: 768px) {
     .footer_in .f_detail_wrap,
     #container .row1,

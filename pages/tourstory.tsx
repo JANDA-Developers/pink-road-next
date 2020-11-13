@@ -50,6 +50,14 @@ export const TourStory: React.FC<IProp> = ({ type, search, setSearch }) => {
                     <li className={type === NewsTypes.news ? "on" : undefined}><a href={"/news"}>언론보도</a></li>
                 </ul>
             </div>
+            <div className="alignment">
+                <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>개</span></div>
+                <div className="right_div">
+                    <SortSelect />
+                    <ViewCount value={10} onChange={() => { }} />
+                </div>
+            </div>
+            <div>준비중</div>
         </div>
 
     </div>

@@ -225,11 +225,11 @@ export const Header: React.FC<IProp> = () => {
                     <span><Link href="https://booking-app.stayjanda.cloud/#/"><a>예약관리시스템</a></Link></span>
                 </div>
                 <ul>
-                    <li className="a_menu_tit deps solo_nav">
-                        <Link href="/siteinfo"><a>PinkRoader<i className="jandaicon-arr4-right"></i></a></Link>
+                        <li className="a_menu_tit deps solo_nav">
+                            <Link href="/site-info"><a>PinkRoader<i className="jandaicon-arr4-right"></i></a></Link>
                     </li>
                         <li className="a_menu_tit deps solo_nav">
-                            <Link href="/portfolio"><a>Work<i className="jandaicon-arr4-right"></i></a></Link>
+                         <Link href="/portfolio"><a>Work<i className="jandaicon-arr4-right"></i></a></Link>
                     </li>
                     <li className="a_menu_tit deps">
                         <Link href="/tour/list"><a>Tour<i className="jandaicon-arr4-right"></i></a></Link>
