@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\css",
     "\\layout",
-    "\\layout\\components",
     "\\pages",
-    "\\pages\\board",
-    "\\pages\\master",
-    "\\pages\\member",
+    "\\pages\\experience",
+    "\\pages\\portfolio",
     "\\pages\\tour",
     "\\public",
-    "\\public\\img"
+    "\\public\\img",
+    "\\public\\img\\svg"
   ],
-  "SelectedNode": "\\css\\layout.css",
+  "SelectedNode": "\\pages\\qna.tsx",
   "PreviewInSolutionExplorer": false
 }
