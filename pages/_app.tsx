@@ -18,6 +18,7 @@ export type TContext = {
   isAdmin: boolean,
   isManager: boolean,
   myProfile?: IProfile
+  isLogin?: boolean;
 }
 
 const defaultContext: TContext = {
@@ -28,7 +29,8 @@ const defaultContext: TContext = {
   isAdmin: false,
   isManager: false,
   submitEdit: undefined,
-  myProfile: undefined
+  myProfile: undefined,
+  isLogin: false
 }
 
 export const AppContext = React.createContext<TContext>(defaultContext);
@@ -75,6 +77,10 @@ function App({ Component, pageProps }) {
   const [editMode, setEditMode] = useState<boolean>(false);
   {/* <DaumPostcode autoResize autoClose onSearch={() => { }} onComplete={(asd) => { }} /> */ }
 
+
+  console.log("myProfile");
+  console.log(myProfile);
+
   return (
     <div className="App">
       <ApolloProvider client={PinkClient}>
@@ -86,7 +92,8 @@ function App({ Component, pageProps }) {
           role,
           myProfile,
           isAdmin: role === UserRole.admin,
-          isManager: role === UserRole.manager
+          isManager: role === UserRole.manager,
+          isLogin: !!myProfile
         }}>
           <Layout>
             <Component {...pageProps} />

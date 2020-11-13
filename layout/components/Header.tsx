@@ -1,11 +1,14 @@
 import Link from "next/link"
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { EditBtn } from 'components/common/EditBtn';
 import $ from "jquery";
+import { AppContext } from "pages/_app";
 
 interface IProp { }
 
 export const Header: React.FC<IProp> = () => {
+
+    const {isLogin} = useContext(AppContext);
 
     const handleNav = () => {
         $('#header').attr("tabindex", -1);
@@ -65,6 +68,10 @@ export const Header: React.FC<IProp> = () => {
         });
     }
 
+    const handleLogOut = () => {
+        localStorage.removeItem("jwt");
+        location.reload();
+    }
 
     useEffect(() => {
         $('.nav_wrap ul li').on("hover", function () {
@@ -134,7 +141,7 @@ export const Header: React.FC<IProp> = () => {
             <div className="hd_right">
                 <div className="join">
                     <span>
-                        <Link href="../join">
+                        <Link href="/join">
                             <a>JOIN</a>
                         </Link>
                     </span>
@@ -142,9 +149,11 @@ export const Header: React.FC<IProp> = () => {
 
                 <div className="login">
                     <span>
-                        <Link href="../login">
-                            <a>LOGIN</a>
-                         </Link>
+                        {isLogin ? <a onClick={handleLogOut}>LOGOUT</a> 
+                         : <Link href="/login">
+                         <a>LOGIN</a>
+                     </Link> }
+                         
                     </span>
                 </div>
                 <div className="logout">

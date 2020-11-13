@@ -22,6 +22,7 @@ import { AppContext } from "pages/_app";
 import { useProductPostUpdate } from "hook/useProductPostUpdate";
 import { useProductPostDelete } from "hook/useProductDelete";
 import { TDeleteFn } from "pages/portfolio/write/[[...id]]";
+import Page404 from "pages/404";
 
 const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
 interface IProp {
@@ -160,6 +161,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     }
 
     const handleEdit = () => {
+        if(!productPost) return;
         // @ts-ignore
         updateFn(productPost._id, nextData)
     }
@@ -413,7 +415,7 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
     const router = useRouter(); // => 넥스트에서는 변경
     const {query} = router;
     
-    const id = query.id as string | undefined;
+    const id = query.id?.[0] as string | undefined;
 
     const {productPostDelete, deleteLoading} = useProductPostDelete({
         onCompleted: ({
@@ -463,6 +465,11 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
             id
         })        
     }
+
+    const unexistId = !findLoading && id && !productPost;
+
+    if(findLoading) return null;
+    if(unexistId) return <Page404/> 
 
     const context: ITourWriteWrapContext = {
         createFn,

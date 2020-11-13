@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import { AppContext } from 'pages/_app';
 import { UserRole } from 'types/api';
+import { roleCheck } from 'utils/roleCheck';
 
 interface IProp { }
 
 export const EditBtn: React.FC<IProp> = () => {
-    const { editMode, setEditMode, role } = useContext(AppContext)
+    const { editMode, setEditMode, isManager } = useContext(AppContext)
 
     //useEffect(() => {
     //    if (editMode)
@@ -15,9 +16,9 @@ export const EditBtn: React.FC<IProp> = () => {
     //    elseW
     //        window.onbeforeunload = () => { }
     //}, [editMode])
+ 
 
-    const editable = (role === UserRole.admin || UserRole.manager)
-
+    if( !isManager) return null;
     if (!editable) return null
 
     return <div onClick={() => {
@@ -27,6 +28,5 @@ export const EditBtn: React.FC<IProp> = () => {
             document.getElementById("PageSubmitBtn")?.click();
         else
             document.getElementById("PageRestBtn")?.click();
-
     }} id="setting_link"><i><object type="image/svg+xml" data="/img/svg/setting_icon.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object></i>{editMode ? "편집모드" : "편집종료"}</div>
 };

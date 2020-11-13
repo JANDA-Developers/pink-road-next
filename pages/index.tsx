@@ -183,19 +183,19 @@ export const Main: React.FC<IProps> = ({ context }) => {
           
             </li>
             {items.map((item) => 
-            <Link href={`/tour/view/${item._id}`}>
-                <li key={item._id} className="list_in">
-                    <div className="img" onClick={()=>{toProductBoard(item._id)}} style={{
-                        backgroundImage: `url(${item.images[0]?.uri})`
-                    }}></div>
-                    <div className="box">
-                        <div className="category"><span>{item.category?.label}</span></div>
-                        <div className="title">{item.title}</div>
-                        <div className="subTitle">             
-                            {item.subTitle}
+                <Link href={`/tour/view/${item._id}`}>
+                    <li key={item._id} className="list_in">
+                        <div className="img" onClick={()=>{toProductBoard(item._id)}} style={{
+                            backgroundImage: `url(${item.images[0]?.uri})`
+                        }}></div>
+                        <div className="box">
+                            <div className="category"><span>{item.category?.label}</span></div>
+                            <div className="title">{item.title}</div>
+                            <div className="subTitle">             
+                                {item.subTitle}
+                            </div>
                         </div>
-                    </div>
-                </li >
+                    </li >
                 </Link>
             )}
           </ul>

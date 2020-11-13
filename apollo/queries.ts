@@ -136,6 +136,8 @@ export const CATEGORY_LIST = gql`
   ${F_CATEGORY}
 `;
 
+
+
 export const SIGN_IN = gql`
   query signIn(
     $email: Email!
@@ -152,7 +154,6 @@ export const SIGN_IN = gql`
         }
       }
   }
-  ${F_ITINERARY}
 `;
 
 

@@ -236,24 +236,6 @@ export const SIGN_UP = gql`
 `;
 
 
-export const SIGN_IN = gql`
-  mutation signIn(
-      $email: Email!
-      $pw:String!
-    ) {
-      SignIn(
-        email:$email
-        pw:$pw
-      ) {
-      ok
-      error 
-      data {
-          email
-      }
-    }
-  }
-`;
-
 
 export const SIGN_IN_GOOGLE = gql`
   mutation signInGoogle(

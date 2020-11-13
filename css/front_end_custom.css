@@ -138,3 +138,22 @@ ul[contenteditable="true"] li {
     flex: 1 1;
     min-width: 33.3%;
 }
+
+.deps_nav {
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+    max-height: 0px;
+    overflow: hidden;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.deps {
+    padding-bottom: 15px;
+}
+.deps:hover .deps_nav {
+    padding-top: 15px!important;
+    padding-bottom: 15px!important;
+    max-height: 100px;
+    opacity: 1;
+}

@@ -4,10 +4,16 @@ import cache from "./cache";
 import { onError } from "@apollo/client/link/error";
 import { createUploadLink } from "apollo-upload-client";
 
-const headers = {
-  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluQG5hdmVyLmNvbSIsImlhdCI6MTYwNDkwMjIzMX0.Akxsuj1uVGgqqiSjC8O8WOQ5gOATTSyssIa6VSiqei0"
-}
 
+const getToken = () => {
+  if (typeof window === "undefined") {
+    return ""
+  } else
+    return window.localStorage.getItem("jwt")
+}
+const headers = {
+  "Authorization": getToken()
+}
 
 // const errorLink = onError(({ graphQLErrors, networkError }) => {
 //   if (graphQLErrors) {
@@ -21,13 +27,11 @@ const headers = {
 //   }
 // });
 
-
 const fileUploadLink = createUploadLink({
   uri,
   headers,
   credentials: "include",
 });
-
 
 export const PinkClient = new ApolloClient({
   link: from([fileUploadLink]),

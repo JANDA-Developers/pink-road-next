@@ -48,8 +48,6 @@ interface IProps {
 
 export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, WriteInjection, onCancel, onCreate, onDelete, onEdit, onLoad, onSave }) => {
     const isCreateMode = mode === "create";
-    console.log('defaults.summary');
-    console.log(defaults.summary);
     const { signleUpload } = useUpload();
     const [isOpen, setIsOpen] = useState<boolean>(defaults.isOpen);
     const [title, setTitle] = useState<string>(defaults.title)
@@ -61,7 +59,6 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
     const [content, setContent] = useState<OutputData>(defaults.content)
     const { categoryList, author } = defaults;
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
-
 
     const data: Partial<IBoard> = {
         categoryId: category,
