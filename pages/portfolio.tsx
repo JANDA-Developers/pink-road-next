@@ -107,9 +107,8 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                             </Link>
                         )}
                     </ul>
-                    {role === UserRole.admin || UserRole.manager && 
-                        <Link href={`/portfolio/write`} ><li className="add"><i className="flaticon-add"></i>추가</li></Link>
-                    }
+
+                   
                     <div className="boardNavigation">
                         <div className="center">
                             <div className="pagenate_mini">
@@ -117,6 +116,16 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                                 <div className="count"><strong>{pageInfo.page}</strong> / {pageInfo.totalPageSize}</div>
                                 <div onClick={handleNext} className={`${pageInfo.page === pageInfo.totalPageSize && 'disabled-btn'} page_btn end`}><i className="jandaicon-arr4-right"></i></div>
                             </div>
+                        </div>
+                    </div>
+                    <div className="boardNavigation">
+                        <div className="float_left">
+                        </div>
+                        <div class="float_right">
+                            {role === UserRole.admin || UserRole.manager &&
+                                <Link href={`/portfolio/write`} ><button type="submit" className="btn medium pointcolor">포트폴리오 등록</button></Link>
+                            }
+                            <button type="button" className="btn medium impact betatest">취소</button>
                         </div>
                     </div>
                 </div>

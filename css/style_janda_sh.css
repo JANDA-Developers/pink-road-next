@@ -9755,7 +9755,14 @@ i.calendar {
         padding: 0 12px;
         cursor: pointer;
         display: inline-block;
+   
+        margin-bottom:0;
     }
+        .login_wrap .sign_in_form span a {
+            border: 0;
+            padding: 0;
+            line-height: 170%;
+        }
         .login_wrap .sign_in_form span:after {
             height: 10px;
             width: 1px;
