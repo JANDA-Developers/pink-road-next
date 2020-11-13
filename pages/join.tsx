@@ -1,10 +1,14 @@
 import React, { createContext, useState } from 'react';
+import {gql, useMutation} from "@apollo/client";
+import { GoogleLogin } from 'react-google-login';
+import KakaoLogin from 'react-kakao-login';
+import axios from "axios";
 import FormPartnerCor from 'components/join/FormPartnerCor';
 import FormPartnerNormal from 'components/join/FormPartnerNormal';
 import PolicyPopup from 'components/policyPopup/PolicyPopup';
 import FormNormal from 'components/join/FormNormal';
 import SubTopNav from 'layout/components/SubTop';
-
+import {SIGNINGOOGLE,SIGNINKAKAO} from "apollo/mutations"
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -20,7 +24,6 @@ export const ContextPolicyChk = createContext<IchkPolocy | null>(null);
 
 export type TForm = {
     openPopup: (element: string | null) => void;
-
     handleJoinProcess: (processTarget: string) => void;
 }
 
@@ -42,6 +45,7 @@ const closePopup = (element: string | null) => {
     popupElement!.style.display = 'none';
     document!.getElementById('fade')!.style.display = 'none';
 }
+
 
 const Join = () => {
 
@@ -93,26 +97,26 @@ const Join = () => {
     }
 
 
-    const handleVerifyGoogle = async () => {
-        alert('Google Vertify');
-        let googleverify = false;
-        googleverify = true;
-        if (googleverify) {
+    const handleVerifyGoogle = async (veriState:boolean) => {
+
+        if(veriState){
+            alert('구글 인증에 성공하였습니다');
             handleJoinProcess('verification');
-        } else {
-            alert('안증에 실패하였습니다')
+        }else {
+            alert('구글 인증에 실패하였습니다');
         }
+        
     }
 
-    const handleVerifyKakao = async () => {
-        alert('KaKao Vertify');
-        let kakaoverify = false;
-        kakaoverify = true;
-        if (kakaoverify) {
+    const handleVerifyKakao = async (veriState:boolean) => {
+
+        if(veriState){
+            alert('카카오 인증에 성공하였습니다');
             handleJoinProcess('verification');
-        } else {
-            alert('안증에 실패하였습니다')
+        }else {
+            alert('카카오 인증에 실패하였습니다');
         }
+
     }
 
 
@@ -136,8 +140,6 @@ const Join = () => {
     const handleValidate = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
     }
-
-
 
     return (
         <div>
@@ -231,11 +233,98 @@ const JoinResult = () => {
 
 
 interface IProps {
-    handleVerifyGoogle: () => void;
-    handleVerifyKakao: () => void;
+    handleVerifyGoogle: (veriState:boolean) => void;
+    handleVerifyKakao: (veriState:boolean) => void;
 }
 
 const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao }) => {
+
+    /* ::::: GraphQL ::::: */
+    
+    const [signInGoogleMutation] = useMutation(SIGNINGOOGLE)
+    const [signInKakaoMutation] = useMutation(SIGNINKAKAO)
+
+    const [googlelLoginMu] = useMutation(SIGNINGOOGLE, {
+        onCompleted: () => {}
+    });
+
+    const [kakaoLoginMu] = useMutation(SIGNINKAKAO, {
+        onCompleted: () => {}
+    });
+
+    
+    const loginTokenSend = (type:string, email:string, token:string) => {
+
+        if(type == "google") {
+
+            googlelLoginMu({
+                variables: {
+                  data: {
+                    email: email,
+                    token: token,
+                  }
+                }
+            })
+            
+        }
+        else {
+            
+            kakaoLoginMu({
+                variables: {
+                  data: {
+                    email: email,
+                    token: token,
+                  }
+                }
+            })
+
+        }
+        
+    }
+
+
+    const responseGoogle = async (response) => {
+        
+        console.log(response);
+        console.log("access token : " + response.code);
+        console.log("access code : " + response.code);
+        
+        const {data} = await signInGoogleMutation({ variables: { code : new String(response.code) } });
+        console.log(data);
+        if(data.SignInGoogle.ok) {
+            handleVerifyGoogle(true);
+            loginTokenSend('google','gemail@naver.com', '12312321332dbdbd');
+            
+        }else{
+            handleVerifyGoogle(false);
+        }
+    }
+
+    const responseKakao= async (response) => {
+        const {data} = await signInKakaoMutation({ variables: { code : "3_sVvZcXcOlZNHEjKH763miBWOF-tmP8RDQZQuzhHDecY6apMee0yNQZWqj3EpRkq1R8rAo9cxgAAAF1hDr4yg" } });
+        console.log('kakao');
+        console.log(data);
+        if(data.SignInKakao.ok) {
+            handleVerifyKakao(true);
+            loginTokenSend('kakao','kakao@navercom','bbdgdfgdf123123');
+        }else {
+            console.log(data);
+            handleVerifyKakao(false);
+        }
+    }
+
+        
+    const REST_API_KEY = "f1a52f415e4f545780749d7ea195c398"
+    const REDIRECT_URI = "http://localhost:3000"
+
+    const kako_auth_link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        window.open(kako_auth_link, "myWindow", "width=800, height=800")
+        return false;
+    }
+    
     return (
         <div className="certified" id="con01">
             <h5>본인인증을 해주세요.</h5>
@@ -248,17 +337,34 @@ const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao 
                 본인확인을 받으시기 바랍니다.
             </p>
             <ul>
-                <li onClick={() => { handleVerifyGoogle() }}>
+                <li className="socialVerify">
                     <i className="jandaicon-google1" />
                     구글 인증
+                    <GoogleLogin
+                       clientId="618452450177-q88svpla9jpeg4ar1hr0eluvjmrob079.apps.googleusercontent.com"
+                       buttonText="Login"
+                       responseType="code"
+                       scope="https://www.googleapis.com/auth/userinfo.profile"
+                       onSuccess={responseGoogle}
+                       onFailure={responseGoogle}
+                       cookiePolicy={'single_host_origin'}
+                       icon={false}
+                    />
                 </li>
-                <li onClick={() => { handleVerifyKakao() }}>
+                <li className="socialVerify">
                     <i className="jandaicon-kakaotalk" />
                     카카오톡 인증
+                    <KakaoLogin
+                        token={"6917a7c01132d43ab44046a7806f1ddc"}
+                        onSuccess={responseKakao}
+                        onFail={console.error}
+                        onLogout={console.info}
+                    />
+
                 </li>
             </ul>
             <p className="bt_txt">
-                ※ 본인인증 시 제공되는 정보로 회원가입시 필요한 정보를 연동합니다.
+                ※ 본인인증 시 제공되는 정보로 회원가입시 필요한 정보를 연동합니다. 2
             </p>
         </div>
     )
