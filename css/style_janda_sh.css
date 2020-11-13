@@ -3136,7 +3136,6 @@ ul.rank_ul {
         z-index: 5;
         width: 100%;
         text-align: center;
-        text-shadow: 1px 1px 2px #000000db;
     }
 
         .siteInfo_in .con07 h4 strong {
@@ -3145,7 +3144,6 @@ ul.rank_ul {
             display: block;
             font-weight: 600;
             color: #fff;
-            text-shadow: 1px 1px 3px #0000008a;
         }
 
     .siteInfo_in .con07 span {
@@ -3157,8 +3155,6 @@ ul.rank_ul {
         margin-top: 15px;
         cursor: pointer;
         color: #fff;
-        -webkit-box-shadow: 1px 1px 2px #00000054;
-        box-shadow: 1px 1px 2px #00000054;
         display: inline-block;
         z-index: 5;
         border: 1px #fff solid;
@@ -9551,7 +9547,7 @@ i.calendar {
                 font-size: 44px;
             }
     .siteInfo_in .con02 {
-        padding: 86px 0;
+        padding: 22px 0;
     }
         .siteInfo_in .con02 .top_txt {
             padding: 150px 0 0;
@@ -9572,8 +9568,8 @@ i.calendar {
         }
     .siteInfo_in .con03 {
         padding: 182px 0 0;
-        min-height: 1053px;
-        background-position: center bottom;
+        min-height: 703px;
+        background-position: center 62%;
         background-size: 150%;
     }
   
@@ -9944,9 +9940,9 @@ i.calendar {
         font-size: 17px;
     }
     .siteInfo_in .top_bg {
-        height: 890px;
+        height: 692px;
         padding: 209px 0 0;
-        background-position: center bottom;
+        background-position: center 68%;
         background-size: 105%;
     }
 
