@@ -1518,7 +1518,7 @@ div.board_list_mini {
                 box-sizing: border-box;
                 border-radius: 5px;
                 color: #a7a7a7;
-                font-weight: 500;
+                font-weight: 600;
                 font-size: 14px;
                 line-height: 24px;
                 cursor: pointer;
@@ -1612,11 +1612,14 @@ div.board_list_mini {
         }
 
     .board_write .RangeExample {
-        padding:3%;
-        box-sizing:border-box;
-        background-color:#f4f4f4;
-        margin-bottom:10px;
-        position:relative;
+        padding: 3%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        background-color: #f8fbfe;
+        margin-bottom: 10px;
+        position: relative;
+        border: 1px #d8e0e7 solid;
+        border-radius: 3px;
     }
         .board_write .RangeExample .info_txt {
             position: absolute;

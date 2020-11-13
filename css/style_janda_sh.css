@@ -9596,15 +9596,25 @@ i.calendar {
             text-align:right;
         }
             .siteInfo_in .con04 .infopp li {
-                width: 22%;
+                width: 30%;
                 display: inline-block;
                 margin: 1%;
                 padding: 0;
                 font-size: 15px;
                 overflow: unset;
-                padding: 36px 43px 40px;
+                padding: 36px 16px 40px;
                 background-color: #ffffffed;
             }
+                .siteInfo_in .con04 .infopp li:before {
+                    display: inline-block;
+                    content: '';
+                    width: 4px;
+                    height: 67%;
+                    position: absolute;
+                    left: 29px;
+                    background-color: #979797;
+                    top: 57px;
+                }
         .siteInfo_in .con04 .infoimg {
             padding: 170px 0 130px;
         }
@@ -9788,16 +9798,7 @@ i.calendar {
             top: 16px;
             width: 79px;
         }
-    .siteInfo_in .con04 .infopp li:before {
-        display: inline-block;
-        content: '';
-        width: 4px;
-        height: 93%;
-        position: absolute;
-        left: 13px;
-        background-color: #979797;
-        top: 22px;
-    }
+
     .main_con_box5 .main_bg_img {
         background-size: 130%;
     }
