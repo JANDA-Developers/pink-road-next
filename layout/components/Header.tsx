@@ -42,7 +42,7 @@ export const Header: React.FC<IProp> = () => {
     }
 
     const handleAllMenu = () => {
-        $('.all_menu').animate({
+        $('#all_menu').animate({
             'top': '0'
         });
         $('.m_bg').css({
@@ -60,7 +60,7 @@ export const Header: React.FC<IProp> = () => {
         $('.m_bg').css({
             'display': 'none'
         });
-        $('.all_menu').animate({
+        $('#all_menu').animate({
             'top': '-2600px'
         });
     }
