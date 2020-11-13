@@ -8,6 +8,7 @@ const headers = {
   "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluQG5hdmVyLmNvbSIsImlhdCI6MTYwNDkwMjIzMX0.Akxsuj1uVGgqqiSjC8O8WOQ5gOATTSyssIa6VSiqei0"
 }
 
+
 // const errorLink = onError(({ graphQLErrors, networkError }) => {
 //   if (graphQLErrors) {
 //     graphQLErrors.map(({ message, locations, path }) => {
@@ -19,6 +20,7 @@ const headers = {
 //     console.error("서버가 응답하지 않습니다.");
 //   }
 // });
+
 
 const fileUploadLink = createUploadLink({
   uri,
