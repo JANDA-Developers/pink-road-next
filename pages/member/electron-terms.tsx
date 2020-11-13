@@ -10,7 +10,7 @@ export const ElectronTerms: React.FC<IProp> = () => {
                 style={{ backgroundImage: `url(/img/work_top_bg2.jpg)` }}
             >
                 <div className="w1200">
-                    <h2 className="title">Member</h2>
+                    <h2 className="title">전자상거래이용약관</h2>
                     <p className="text">지금 여행을 떠나세요~!~~!!!!!</p>
                 </div>
             </div>

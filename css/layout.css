@@ -54,7 +54,7 @@
     transform-origin: center center;
     transition: 1s;
     transition-timing-function: ease-in-out;
-    opacity: 1;
+    opacity: 80;
     border: 1px solid #ccc;
     border-right: 0;
     width: 25px;
@@ -145,12 +145,13 @@
 .subtop_nav {
     position: absolute;
     top: -117px;
+    left:0;
     width: 94%;
     display: block;
     text-align: center;
     line-height: 27px;
     border-radius: 0;
-    padding: 5px;
+    padding: 5px 3% 0;
     margin: 0 auto;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -188,7 +189,6 @@
     display: -webkit-flex;
     display: flex;
     height: 80px;
-    padding: 12px 15px;
     box-sizing: border-box;
     background-color: #fff;
     z-index: 50;
@@ -205,6 +205,10 @@
         position: absolute;
         bottom: 0;
         left: 0;
+    }
+    .header > .w1200 {
+        box-sizing: border-box;
+        padding: 12px 15px;
     }
 
     .header .hd_left {
@@ -336,10 +340,12 @@ rect.allmenu_svg {
     width: auto;
     display: inline-block;
     position: absolute;
-    right: 29px;
+    right: 22px;
     top: 20px;
     text-align: right;
 }
+
+
 
     .header .hd_right .mypage {
         display: inline-block;
@@ -514,6 +520,7 @@ rect.allmenu_svg {
     box-shadow: 4px 4px 7px #00000038, inset 4px 4px 4px #00000024;
 }
 .header .hidden {
+    display:none;
     overflow: hidden;
     width: 100%;
     height: 77px;
@@ -618,6 +625,7 @@ rect.allmenu_svg {
         vertical-align: middle;
         padding-left: 13px;
         cursor: pointer;
+
     }
 
         .header .all_menu_btn object {
@@ -753,18 +761,17 @@ rect.allmenu_svg {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #e41773;
-    opacity:1;
+    background-color: #333;
+    opacity: 1;
 }
 
-header .all_menu {
+#all_menu {
     position: absolute;
     display: inline-table;
-    background: #e41773;
-    background: -moz-linear-gradient(-45deg, #e41773 0%, #e41773 58%);
-    background: -webkit-linear-gradient(-45deg, #e41773 0%, #e41773 58%);
-    background: linear-gradient(135deg, #e41773 0%, #e41773 58%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e41773', endColorstr='#e41773', GradientType=1);
+    background: #333;
+    background-image: url(/img/siteinfo_bg05.jpg);
+    background-position: center;
+    background-size: 100%;
     color: #ffffff;
     min-width: 100%;
     width: 100%;
@@ -777,7 +784,7 @@ header .all_menu {
     z-index: 999;
 }
 
-    header .all_menu .btn_all_close {
+    #all_menu .btn_all_close {
         width: 40px;
         height: 40px;
         position: absolute;
@@ -788,19 +795,19 @@ header .all_menu {
         cursor: pointer;
     }
 
-        header .all_menu .btn_all_close svg {
+        #all_menu .btn_all_close svg {
             width: 25px;
             fill: #ffffff;
         }
 
-    header .all_menu strong {
+    #all_menu strong {
         font-size: 22px;
         position: absolute;
         top: 37px;
         left: 5%;
     }
 
-    header .all_menu ul {
+    #all_menu ul {
         text-align: left;
         width: 100%;
         font-size: 0;
@@ -810,7 +817,7 @@ header .all_menu {
         justify-content: center;
     }
 
-        header .all_menu ul .a_menu_tit {
+        #all_menu ul .a_menu_tit {
             display: inline-block;
             padding-right: 0;
             min-width: 270px;
@@ -822,7 +829,7 @@ header .all_menu {
             border-top: 1px solid #ffffff3b;
         }
 
-            header .all_menu ul .a_menu_tit .depth1 {
+            #all_menu ul .a_menu_tit .depth1 {
                 display: block;
                 margin: 0px;
                 padding-left: 7px;
@@ -830,12 +837,12 @@ header .all_menu {
                 text-align:left;
             }
 
-                header .all_menu ul .a_menu_tit .depth1 li {
+                #all_menu ul .a_menu_tit .depth1 li {
                     width: 48%;
                     display:inline-block;
                 }
 
-                    header .all_menu ul .a_menu_tit .depth1 li a {
+                    #all_menu ul .a_menu_tit .depth1 li a {
                         border-bottom: none;
                         font-size: 16px;
                         font-weight: normal;
@@ -845,11 +852,11 @@ header .all_menu {
                         padding-bottom: 14px;
                     }
 
-                        header .all_menu ul .a_menu_tit .depth1 li a:hover {
+                        #all_menu ul .a_menu_tit .depth1 li a:hover {
                             opacity: 1;
                         }
 
-            header .all_menu ul .a_menu_tit a {
+            #all_menu ul .a_menu_tit a {
                 font-size: 22px;
                 font-weight: 600;
                 display: block;
@@ -857,12 +864,12 @@ header .all_menu {
                 padding-bottom: 3px;
                 border-bottom: 0;
             }    
-            header .all_menu ul .a_menu_tit a i {
+            #all_menu ul .a_menu_tit a i {
                 font-size:10px;
                 display:inline-block;
                 margin-left:5px;
             }
-    header .all_menu .m_all_menu_in {
+    #all_menu .m_all_menu_in {
         position: relative;
         display: block;
         width: 90%;
@@ -874,12 +881,12 @@ header .all_menu {
         border-radius: 3px;
         box-sizing: border-box;
     }
-        header .all_menu .m_all_menu_in span {
+        #all_menu .m_all_menu_in span {
             display: inline-block;
             margin-right: 20px;
             position: relative;
         }
-            header .all_menu .m_all_menu_in span:after {
+            #all_menu .m_all_menu_in span:after {
                 display: inline-block;
                 content: '';
                 position: absolute;
@@ -889,15 +896,15 @@ header .all_menu {
                 height: 5px;
                 background-color: #fff;
             }  
-            header .all_menu .m_all_menu_in span:last-child:after {
+            #all_menu .m_all_menu_in span:last-child:after {
                 display:none;
             }  
-    header .all_menu .m_all_menu_in a{
+    #all_menu .m_all_menu_in a{
         color:#fff;
         font-weight:600;
         font-size:0.8em;
     }
-    header .all_menu .m_member {
+    #all_menu .m_member {
         position: relative;
         display: block;
         width: 90%;
@@ -907,13 +914,13 @@ header .all_menu {
         text-align: left;
         box-sizing: border-box;
     }
-        header .all_menu .m_member .profile {
+        #all_menu .m_member .profile {
             display: inline-block;
             width: 20%;
             margin-right:8px;
             vertical-align:middle;
         }  
-        header .all_menu .m_member .profile .photo{
+        #all_menu .m_member .profile .photo{
             display: inline-block;
             width: 80px;
             height:80px;
@@ -921,16 +928,16 @@ header .all_menu {
             background-color:rgba(255, 255, 255, 0.55);
             border:1px solid #fff;
         }
-        header .all_menu .m_member .profile_txt {
+        #all_menu .m_member .profile_txt {
             display: inline-block;
             width: 70%;
             vertical-align: middle;
         }
-            header .all_menu .m_member .profile_txt span {
+            #all_menu .m_member .profile_txt span {
                 display: block;
                 text-align:left;
             }
-            header .all_menu .m_member .profile_txt .text02 {
+            #all_menu .m_member .profile_txt .text02 {
                 font-weight:600;
                 font-size:30px;
             }
@@ -939,7 +946,7 @@ header .all_menu {
 
 .header_nav {
     position: absolute;
-    display: inline-block;
+    display: none;
     height: 50px;
     width: 100%;
     bottom: 67px;
@@ -2078,16 +2085,38 @@ i.icon_plus {
     .header .hd_right .mypage {
         display: none;
     }
-   
+    .subtop_nav {
+        width: 100%;
+        padding: 0 15px;
+        line-height: 53px;
+    }
+    .top_visual {
+        height: 283px;
+    }
+        .top_visual .sub_header {
+            padding: 81px 0 0;
+        }
+        .top_visual .sub_header .title {
+            font-size: 2.6em;
+        }
+        .top_visual .sub_header .text {
+            font-size: 1.2em;
+        }
+    
 }
 
 @media (min-width:1000px) {
+    .header_nav {
+        display:inline-block;
+    }
     .header {
         height: 113px;
-        padding: 28px 42px;
         margin-bottom: 0;
         z-index: 100;
     }
+        .header > .w1200 {
+            padding: 28px 42px;
+        }
         .header .hidden {
             width: 100%;
             height: 77px;
@@ -2119,52 +2148,53 @@ i.icon_plus {
             }
         .header .hd_right {
             width: auto;
-            right: 42px;
-            top: 12px;
-       
+            right: 41px;
+            top: 37px;
         }
-    header .all_menu {
+    #all_menu {
         position: fixed;
         min-height: 600px;
         top:-2400px;
     }
-        header .all_menu .m_all_menu_in {
+        #all_menu .m_all_menu_in {
           
             display: none;
         }
-        header .all_menu .m_member {
+        #all_menu .m_member {
             display: none;
         }
-        header .all_menu ul {
+        #all_menu ul {
             padding: 3% 8%;
+            text-align:center;
         }
-            header .all_menu ul .a_menu_tit {
+            #all_menu ul .a_menu_tit {
                 border-top: 0;
                 padding: 0;
                 padding-right: 2%;
                 width: 33.1%;
                 margin-bottom: 0;
             }
-                header .all_menu ul .a_menu_tit a {
+                #all_menu ul .a_menu_tit a {
                     font-size: 19px;
                     font-weight: 500;
                     display: block;
                     color: #ffffff;
                     padding-bottom: 3px;
+                    text-align:left;
                     border-bottom: 2px solid #ffffff;
                 }
 
-                    header .all_menu ul .a_menu_tit a i {
+                    #all_menu ul .a_menu_tit a i {
                         display: none;
                     }
-    header .all_menu ul .a_menu_tit .depth1 {
+    #all_menu ul .a_menu_tit .depth1 {
         padding: 5%;
     }
-        header .all_menu ul .a_menu_tit .depth1 li {
+        #all_menu ul .a_menu_tit .depth1 li {
             width: 100%;
         }
           
-        header .all_menu ul .a_menu_tit .depth1 li a {
+        #all_menu ul .a_menu_tit .depth1 li a {
             border-bottom: none;
             font-size: 13px;
             font-weight: normal;
@@ -2174,13 +2204,13 @@ i.icon_plus {
         }
   
        
-    header .all_menu strong {
+    #all_menu strong {
         font-size: 30px;
         position: relative;
         top: 0;
         left: 0;
     }
-        header .all_menu .btn_all_close {
+        #all_menu .btn_all_close {
            
             right: 30px;
         }
@@ -2272,8 +2302,11 @@ i.icon_plus {
     }
     .top_visual .sub_bg {
         background-size: 120%;
+        padding: 120px 0 0;
     }
-
+    .top_visual {
+        height: 390px;
+    }
 
 }
 
@@ -2314,7 +2347,7 @@ i.icon_plus {
         }
     .header .hd_right {
         right: 0;
-        top: 12px;
+        top: 37px;
     }
     .header .hd_right .login,
     .header .hd_right .mypage {
@@ -2327,16 +2360,19 @@ i.icon_plus {
         right: -70%;
         padding: 15px;
     }
-    header .all_menu {
+    #all_menu {
         min-width: 1100px;
+        padding: 223px 0 0;
     }
 
-        header .all_menu ul .a_menu_tit {
-            width: 20%;
-            min-width: 196px;
+        #all_menu ul .a_menu_tit {
+            /*width: 20%;
+            min-width: 196px;*/ 
+            width: 11%;
+            min-width: 179px;
         }
 
-            header .all_menu ul .a_menu_tit .depth1 {
+            #all_menu ul .a_menu_tit .depth1 {
                 margin: 0px 0 40px;
             }
     .top_visual .sub_bg {
@@ -2347,31 +2383,28 @@ i.icon_plus {
     }
 
         .top_visual .sub_header .title {
-            font-size: 65px;
+            font-size: 3em;
             text-align: left;
         }
 
         .top_visual .sub_header .text {
-            font-size: 16px;
+            font-size: 1.3em;
             text-align: left;
         }
-    .subtop_nav {
-        width: 100%;
-        padding: 0 15px;
-        line-height: 53px;
-    }
     .footer_in .f_detail_wrap {
         width: 1200px;
     }
+ 
 
 }
 
 @media (min-width:1550px) {
-    header .all_menu {
+    #all_menu {
         padding: 110px 0;
+
     }
 
-        header .all_menu ul {
+        #all_menu ul {
             display: block;
         }
 
@@ -2448,6 +2481,58 @@ i.icon_plus {
         .footer_in .bottom_bn img {
             width: 100%;
         }
+    #all_menu {
+        padding: 110px 0;
+        background-image: none;
+    }
+    .subtop_nav {
+        top: -98px;
+        width: 100%;
+    }
+    .header_nav ul {
+       display:none;
+    }
+        .subtop_nav li a {
+            padding: 5px 5px;
+            font-size: 12px;
+        }
+    .top_visual {
+        height: 208px;
+    }
+        .top_visual .sub_header .title {
+            font-size: 1.9em;
+        }
+        .top_visual .sub_header .text {
+            font-size: 1em;
+        }
+        .top_visual .sub_bg {
+            padding: 57px 0 0;
+        }
+    footer .footer_in {
+        padding: 0 0 10px;
+    }
+    .footer_in .copyright .bottom_bn {
+        width: 100%;
+        padding-left: 0;
+        margin-top: 35px;
+    }
+    .footer_in .bottom_bn span {
+        width: 26%;
+    }
+    .top_visual .sub_bg {
+        background-position: center 90%;
+        background-size: 166%;
+    }
+    #all_menu ul .a_menu_tit .depth1 {
+        padding: 0;
+    }
+        #all_menu ul .a_menu_tit .depth1 li:first-child {
+            margin-top:15px;
+        }
+    #all_menu .m_member .profile {
+        width:80px;
+        margin-right:15px;
+    }
 }
 
 @media (max-width:360px) {
@@ -2464,5 +2549,20 @@ i.icon_plus {
         width: 31%;
         margin-right: 22px;
         margin-bottom: 16px;
+    }
+    .top_visual .sub_bg {
+        background-position: left top;
+        background-size: 256%;
+    }
+    #all_menu .m_member .profile {
+        width: 30%;
+    }
+
+    #all_menu .m_member .profile_txt {
+        width: 60%;
+    }
+
+    #all_menu ul .a_menu_tit .depth1 li a {
+        font-size: 14px;
     }
 }
