@@ -19,8 +19,6 @@ export const TourList: React.FC<IProp> = ({ context }) => {
         router.push("/tour/write")
     }
 
-    // const { setSort, setFilter, setViewCount, } = context;
-
     return <BoardList onWrite={handleWrite} FilterSort={
     <div>
         <SortSelect />

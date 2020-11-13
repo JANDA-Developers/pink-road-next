@@ -4,12 +4,41 @@ import SubTopNav from 'layout/components/SubTop';
 import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/router'
-interface IProp { }
+import { IUseProductList, useProductPostList } from 'hook/useProductPostList';
+import { productPostList_ProductPostList_data_category } from 'types/api';
+interface IProp { 
+    context: ITourMianWrapContext
+}
 
-export const TourMain: React.FC<IProp> = () => {
+type TSortedData = {
+    category: productPostList_ProductPostList_data_category,
+    items: any[]
+}
+
+export const TourMain: React.FC<IProp> = ({context}) => {
+    const {items}  = context;
     const router = useRouter();
     const { exp } = router.query;
     const isExp = exp!!;
+
+
+    const sortedData:TSortedData[] = [];
+    
+    items.forEach(item => {
+        //카테고리가 삽입 되어있는지 검사
+        const target = sortedData.find(d => d.category._id === item?.category?._id);
+        if(!target) {
+            sortedData.push({
+                category: item.category,
+                items: [item]
+            })
+        } else {
+            target.items.push(item);
+        }
+    })
+
+    
+    
 
 
     return <div >
@@ -108,5 +137,21 @@ export const TourMain: React.FC<IProp> = () => {
         </div>
     </div >;
 };
+
+
+interface ITourMianWrapContext extends IUseProductList {
+}
+
+export const TourMainWrap = () => {
+
+    const productPostList = useProductPostList();
+
+    const context:ITourMianWrapContext = {
+        ...productPostList 
+    }
+
+
+    return <TourMain context={context} />
+}
 
 export default TourMain;
