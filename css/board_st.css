@@ -467,12 +467,13 @@ ul.list_ul li .cash {
     display: block;
     text-align: left;
     font-size: 16px;
-    color: #ed297b;
+
     line-height: 28px;
 }
 
     ul.list_ul li .cash strong {
         font-size: 20px;
+        color: #ed297b;
     }
 
 /* board style ul */

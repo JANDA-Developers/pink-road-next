@@ -166,6 +166,13 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     </div>
                     <div className="li05">지역경제활성화</div>
                 </div>
+                <div className="wave_animation_wrap">
+                    <div className="figure_wrap">
+                        <div className="wave1 item"><span style={{ backgroundImage: 'url(/img/foot_wave01.png)' }}></span></div>
+                        <div className="wave2 item"><span style={{ backgroundImage: 'url(/img/foot_wave02.png)' }}></span></div>
+                        <div className="wave3 item" > <span style={{ backgroundImage: 'url(/img/foot_wave03.png)' }}></span></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div className="w100 con05 con_block">

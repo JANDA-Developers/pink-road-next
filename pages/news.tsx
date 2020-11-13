@@ -29,8 +29,8 @@ export const News: React.FC<IProp> = ({ type, search, setSearch }) => {
             <li className="homedeps1"><a href="../sub/experience_main.html">Experience</a></li>
             <li className="homedeps2"><a href="../sub/experience_list.html">상품리스트</a></li>
         </SubTopNav>
-        <div className="board_box tourstory_box">
-            <div className="w1200">
+        <div className="w1200 board_box news_box">
+            <div>
                 <div id="sub_tap_nav" className="subtop_nav">
                     <ul>
                         <li className={type === NewsTypes.tour ? "on" : undefined}><a href={"/tourstory"}>여행이야기</a></li>
