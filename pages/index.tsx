@@ -12,6 +12,7 @@ import { usePageInfo } from 'hook/usePageInfo';
 import dynamic from 'next/dynamic';
 import { IUseProductList, useProductPostList } from 'hook/useProductPostList';
 import { useRouter } from 'next/router';
+import $ from "jquery";
 // const EditorJs = dynamic(() => import('components/editor2/Ediotr2'), { ssr: false })
 
 const DummyPhoto = [{
@@ -61,11 +62,11 @@ const DummyPhoto = [{
 }];
 
 
-interface IProps { 
+interface IProps {
   context: IMainWrapContext
 }
 export const Main: React.FC<IProps> = ({ context }) => {
-  const {items, sitePageInfo} = context;
+  const { items, sitePageInfo } = context;
   const { editMode } = useContext(AppContext);
   const original = sitePageInfo || pageInfoDefault;
   const [page, setPage] = useState(original);
@@ -74,7 +75,7 @@ export const Main: React.FC<IProps> = ({ context }) => {
   const router = useRouter()
 
 
-  const toProductBoard = (id:string) => {
+  const toProductBoard = (id: string) => {
     router.push(id);
   }
 
@@ -173,29 +174,29 @@ export const Main: React.FC<IProps> = ({ context }) => {
         <div className="photo_box">
           <ul className="photo_ul line3 main_photo_ul">
             <li className="top_txt">
-                <h2 {...edit("valuable_exp")} />
-                <span className="txt" {...edit("valuable_exp_sub")} />
-                <div className="btn_list">
-                    <span><Link href="/tour"><a>공정여행</a></Link></span>
-                    <span><Link href="/tour"><a>더많은체험</a></Link></span>
-                </div>
-                <i><svg><polygon points="69.22 12.71 0 12.71 0 10.71 64.33 10.71 54.87 1.43 56.27 0 69.22 12.71" /></svg></i>
+              <h2 {...edit("valuable_exp")} />
+              <span className="txt" {...edit("valuable_exp_sub")} />
+              <div className="btn_list">
+                <span><Link href="/tour"><a>공정여행</a></Link></span>
+                <span><Link href="/tour"><a>더많은체험</a></Link></span>
+              </div>
+              <i><svg><polygon points="69.22 12.71 0 12.71 0 10.71 64.33 10.71 54.87 1.43 56.27 0 69.22 12.71" /></svg></i>
             </li>
-            {items.map((item) => 
-                <Link href={`/tour/view/${item._id}`}>
-                    <li key={item._id} className="list_in">
-                        <div className="img" onClick={()=>{toProductBoard(item._id)}} style={{
-                            backgroundImage: `url(${item.images[0]?.uri})`
-                        }}></div>
-                        <div className="box">
-                            <div className="category"><span>{item.category?.label}</span></div>
-                            <div className="title">{item.title}</div>
-                            <div className="subTitle">             
-                                {item.subTitle}
-                            </div>
-                        </div>
-                    </li >
-                </Link>
+            {items.map((item) =>
+              <Link href={`/tour/view/${item._id}`}>
+                <li key={item._id} className="list_in">
+                  <div className="img" onClick={() => { toProductBoard(item._id) }} style={{
+                    backgroundImage: `url(${item.images[0]?.uri})`
+                  }}></div>
+                  <div className="box">
+                    <div className="category"><span>{item.category?.label}</span></div>
+                    <div className="title">{item.title}</div>
+                    <div className="subTitle">
+                      {item.subTitle}
+                    </div>
+                  </div>
+                </li >
+              </Link>
             )}
           </ul>
         </div>
@@ -217,7 +218,7 @@ export const Main: React.FC<IProps> = ({ context }) => {
 };
 
 
-interface IGetProps  {
+interface IGetProps {
   sitePageInfo: typeof pageInfoDefault | "",
 }
 export const getStaticProps: GetStaticProps<IGetProps> = async (context) => {
@@ -230,17 +231,17 @@ export const getStaticProps: GetStaticProps<IGetProps> = async (context) => {
   }
 }
 
-interface IMainWrapContext extends IUseProductList,IGetProps {
+interface IMainWrapContext extends IUseProductList, IGetProps {
 }
 
-const MainWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>>  = ({sitePageInfo}) => {
-  const productList = useProductPostList({initialPageIndex:1,initialViewCount:8});
-  const context:IMainWrapContext = {
+const MainWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ sitePageInfo }) => {
+  const productList = useProductPostList({ initialPageIndex: 1, initialViewCount: 8 });
+  const context: IMainWrapContext = {
     ...productList,
     sitePageInfo
   }
-  
-  return <Main  context={context} />
+
+  return <Main context={context} />
 }
 
 export default MainWrap;
