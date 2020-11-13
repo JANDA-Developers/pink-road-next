@@ -1376,8 +1376,11 @@ div.board_list_mini {
     display: block;
 }
 .board_write {
+   
+}.board_write .con_bottom {
     padding-bottom: 100px;
     padding-top: 50px;
+    box-sizing:border-box;
 }
 .board_write .write_box {
     position: relative;
@@ -1608,12 +1611,38 @@ div.board_list_mini {
             left: 0;
         }
 
-.board_write .write_con .texta {
-    border: 1px solid #ebebeb;
-    padding: 30px;
-    box-sizing: border-box;
-    padding-top: 5px;
-}
+    .board_write .RangeExample {
+        padding:3%;
+        box-sizing:border-box;
+        background-color:#f4f4f4;
+        margin-bottom:10px;
+        position:relative;
+    }
+        .board_write .RangeExample .info_txt {
+            position: absolute;
+            top: 44px;
+            right: 14px;
+            padding: 5px;
+            width: 540px;
+        }
+
+    .board_write .write_con .texta {
+        border: 1px solid #ebebeb;
+        padding: 30px;
+        box-sizing: border-box;
+        padding-top: 5px;
+    }
+    .board_write .write_con .day_tap .comment_btn {
+        position: relative;
+        top: -4px;
+        left: 91%;
+        background-color: #7c2929;
+        color: #fff;
+        padding: 5px 9px;
+        border-radius: 0 0 5px 5px;
+        border: 0;
+        font-size: 0.8em;
+    }
 
     .board_write .write_con .texta input[type=text] {
         display: inline-block;
@@ -1671,6 +1700,9 @@ div.board_list_mini {
     margin-top: 15px;
     padding: 0 5px;
     box-sizing: border-box;
+}
+.boardNavigation button {
+   margin: 0 2px;
 }
 
     .boardNavigation .btn {

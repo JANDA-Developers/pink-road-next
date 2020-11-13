@@ -134,7 +134,7 @@
         text-align: center;
         color: #ffffff;
         border-radius: 900px;
-        border: 5px #fff solid;
+        border: 2px #fff solid;
         box-sizing: border-box;
         vertical-align: top;
     }
@@ -155,7 +155,7 @@
         .main_con_box2 li strong {
             display: block;
             font-size: 15px;
-            margin-top: 14px;
+            margin-top: 5px;
             padding: 0 0 0 31%;
             text-align: left;
             box-sizing: border-box;
@@ -293,7 +293,8 @@
             font-weight: 500;
             font-size: 54px;
             line-height: 100%;
-        }
+        }        
+ 
 
         .main_con_box4 .top_txt .txt {
             font-size: 16px;
@@ -314,11 +315,13 @@
                 padding: 5px 15px;
                 border: 1px solid #fff;
                 color: #fff;
-                font-size:12px;
-                border-radius:100px;
+                font-size: 16px;
+                border-radius: 100px;
             }
         .main_con_box4 .top_txt i {
             width: 100%;
+            height:50px;
+            overflow:hidden;
             display: inline-block;
             margin-top: 49px;
         }
@@ -2176,7 +2179,7 @@ ul.rank_ul {
         background-color: #333;
         background-image: url(/img/siteinfo_bg_001.jpg);
         background-position: center;
-        background-size: 150%;
+        background-size: 420%;
     }
         .siteInfo_in .con02:before {
             top: 0;
@@ -2208,7 +2211,7 @@ ul.rank_ul {
         background-color: #ffffff;
         text-align: center;
         position: relative;
-        padding: 0px 0 0;
+        padding: 0px 0 0;overflow:hidden;
     }
 
     .siteInfo_in .con05 {
@@ -2648,19 +2651,17 @@ ul.rank_ul {
         z-index: 5;
         position: relative;
         text-align: center;
-        padding: 270px 0 90px;
-        background-position: -155px -140px;
-        background-size: 480%;
+        padding: 190px 0 90px;
     }
 
         .siteInfo_in .con04 .infopp .ovj {
             position: absolute;
-            left: -60px;
-            top: -120px;
-            font-size: 9.1em;
+            left: 4px;
+            top: -60px;
+            font-size: 4.1em;
             font-weight: 400;
             color: #ccc;
-            z-index:22;
+            z-index: 22;
         }    
         .siteInfo_in .con04 .infopp li {
             position:relative;
@@ -2670,7 +2671,7 @@ ul.rank_ul {
             min-height: unset;
             margin: 0 0 15px 0;
             box-sizing: border-box;
-            padding: 36px 43px 40px;
+            padding: 14px 43px 10px;
             vertical-align: top;
             text-align: left;
             font-size: 15px;
@@ -2678,12 +2679,12 @@ ul.rank_ul {
             .siteInfo_in .con04 .infopp li:before {
                 display: inline-block;
                 content: '';
-                width: 4px;
-                height: 93%;
+                width: 24%;
+                height: 2px;
                 position: absolute;
-                left: 13px;
+                left: -30px;
                 background-color: #979797;
-                top: 22px;
+                top: 36px;
             }
 
     .siteInfo_in .con04 .infoimg {
@@ -2758,7 +2759,7 @@ ul.rank_ul {
     font-size: 26px;
     font-weight: 600;
     position: relative;
-    margin-right: 15px;
+    /*margin-right: 15px;*/
     color: #5b5b5b;
     padding-top: 0;
     /* border: 7px solid #fff; */
@@ -2818,7 +2819,7 @@ ul.rank_ul {
     font-weight: 600;
     color: #555;
     margin-bottom: 4px;
-    margin-top: 65px;
+    margin-top: 28px;
 }
 
 .siteInfo_in .con04 .li03 i {
@@ -2865,15 +2866,16 @@ ul.rank_ul {
 
 .siteInfo_in .con04 .li05 {
     display: inline-block;
-    width: 80%;
-    height: 356px;
+    width: 86%;
+    height: 146px;
     line-height: 48px;
     font-size: 27px;
     font-weight: 600;
     position: relative;
-    padding-top: 230px;
+    padding-top: 53px;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    /*border: 7px double #fff;*/
+    /* border: 7px double #fff; */
     background-color: rgba(255, 255, 255, 0.75);
     border-radius: 36px;
     color: #555;
@@ -4157,8 +4159,9 @@ div.bn_box {
 .login_box {
     position: relative;
     padding-top: 50px;
-    padding-bottom: 50px;
-    min-height: 570px
+    padding-bottom: 150px;
+    min-height: 720px;
+    box-sizing: border-box;
 }
 
     .login_box .white_box {
@@ -5197,6 +5200,7 @@ i.important_icon {
 
                 .tour_details_in .boardReadBody .con_top_tap span a {
                     display: block;
+                    cursor:pointer;
                 }
 
                 .tour_details_in .boardReadBody .con_top_tap span:hover a {
@@ -5382,6 +5386,8 @@ i.important_icon {
         min-height: 35px;
         margin-bottom: 30px;
         *zoom: 1;
+    }    .tour_details_in .boardNavigation button {
+      margin:0 2px;
     }
 
     .tour_details_in .viewDocument {
@@ -5695,7 +5701,7 @@ i.important_icon {
         font-weight: 600;
     }
 
-    .option_tb .subTitle {
+    .option_tb .subtitle {
         display: block;
         text-align: left;
         font-size: 16px;
@@ -8118,6 +8124,9 @@ i.calendar {
     padding-bottom: 100px;
     box-sizing: border-box;
 }
+    .tourstory_box .subtop_nav {
+        top: -39px
+    }
 
 /* news */
 .news_box {
@@ -8125,14 +8134,18 @@ i.calendar {
     padding-bottom: 100px;
     box-sizing: border-box;
 }
-
+    .news_box .subtop_nav {
+        top: -39px
+    }
 /* culture */
 .culture_box {
     padding-top: 63px;
     padding-bottom: 100px;
     box-sizing: border-box;
 }
-
+    .culture_box .subtop_nav {
+        top: -39px
+    }
 /* rule */
 .rule_box {
     margin-top: 60px !important;
@@ -8519,7 +8532,7 @@ i.calendar {
 
         .portfolio_in .con02 ul li .img {
             display: inline-block;
-            width: 100px;
+            width: 170px;
             height: 100px;
             border-radius: 10px;
             background-position: center;
@@ -8582,9 +8595,9 @@ i.calendar {
 
 .portfolio_in .con04 {
     min-height: 590px;
-    padding: 0 50px 120px;
+    padding: 0 3% 120px;
     box-sizing: border-box;
-    top: -46px;
+    top: -39px;
 }
 
     .portfolio_in .con04 .photo_tap_div {
@@ -8605,21 +8618,22 @@ i.calendar {
             cursor: pointer;
         }
 
+   
         .portfolio_in .con04 .photo_tap_div .photo_tap {
             display: inline-block;
             line-height: 33px;
             height: 35px;
             margin: 3px;
-            padding: 0 14px;
+            padding: 0 3px;
+            -webkit-box-sizing: border-box;
             box-sizing: border-box;
             color: #8e8e8e;
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 600;
             border-radius: 200px;
             cursor: pointer;
             position: relative;
         }
-
             .portfolio_in .con04 .photo_tap_div .photo_tap:hover {
                 color: #fff;
             }
@@ -8681,9 +8695,9 @@ i.calendar {
 
         .portfolio_in .con04 .portfolio_box ul li {
             position: relative;
-            width: 23%;
-            height: 211px;
-            margin: 1%;
+            width: 100%;
+            height: 178px;
+            margin: 1% 0;
             display: inline-block;
             background-color: #000000;
             vertical-align: top;
@@ -9167,6 +9181,15 @@ i.calendar {
         margin: 1%;
         padding: 22px 16px 31px;
     }
+    .tourstory_box .subtop_nav {
+        top: -52px
+    }
+    .news_box .subtop_nav {
+        top: -52px
+    }
+    .culture_box .subtop_nav {
+        top: -52px
+    }
     .siteInfo_in .top_bg {
         height: 560px;
         padding: 130px 0 0;
@@ -9184,6 +9207,15 @@ i.calendar {
     }
     #viewControl .btn_box .link02 {
         width: 70.4%;
+    }
+    .siteInfo_in .con04 .infopp .ovj {
+        left: -60px;
+        top: -120px;
+        font-size: 9.1em;
+        font-weight: 400;
+    }
+    .siteInfo_in .con02 {
+        background-size: 150%;
     }
     .siteInfo_in .con02 li br {
         display: inline-block;
@@ -9296,13 +9328,14 @@ i.calendar {
         padding: 35px 3% 20px;
     }
 
-    .main_con_box2 li {
-        width: 28%;
-        height: 226px;
-        margin: 2%;
-        text-align: center;
-        padding: 10px;
-    }
+        .main_con_box2 li {
+            width: 28%;
+            height: 226px;
+            margin: 2%;
+            text-align: center;
+            padding: 10px;
+            border: 5px #fff solid;
+        }
         .main_con_box2 li i {
             position:relative;
             width: 110px;
@@ -9323,6 +9356,7 @@ i.calendar {
         .main_con_box2 li strong {
             padding: 0;
             text-align: center;
+            margin-top:14px;
         }
 
         .main_con_box2 li span {
@@ -9343,6 +9377,7 @@ i.calendar {
         }
     .siteInfo_in .con04 .infopp {
         background-size: 270%;
+        padding:270px 0 90px;
     }
     div.bn_box {
         display:flex;
@@ -9365,15 +9400,28 @@ i.calendar {
         background-size: 150%;
         background-position: center;
     }
+    .portfolio_in .top_bg {
+        background-size: 210%;
+    }
+    .portfolio_in .con04 .portfolio_box ul li {
+        width: 48%;
+        height: 211px;
+        margin: 1%;
+    }
 }
 @media (min-width: 1000px) {
     .main_con_box4 {
         padding: 160px 3%;
     }
+
+        .main_con_box4 .top_txt .btn_list a {
+            padding: 5px 15px;
+            font-size: 12px;
+        }
     .login_box {
         padding-top: 100px;
         padding-bottom: 200px;
-        min-height: 700px
+        min-height: 820px
     }
 
     .login_box .login_page {
@@ -9549,11 +9597,12 @@ i.calendar {
         }
             .siteInfo_in .con04 .infopp li {
                 width: 22%;
-                display:inline-block;
+                display: inline-block;
                 margin: 1%;
                 padding: 0;
                 font-size: 15px;
                 overflow: unset;
+                padding: 36px 43px 40px;
                 background-color: #ffffffed;
             }
         .siteInfo_in .con04 .infoimg {
@@ -9567,7 +9616,9 @@ i.calendar {
             display: block;
             padding-left:3px;
         }
-
+        .siteInfo_in .con04 .li01 {
+            margin-right: 15px;
+        }
         .siteInfo_in .con04 .li03 {
             display: inline-block;
             width: 20%;
@@ -9737,6 +9788,16 @@ i.calendar {
             top: 16px;
             width: 79px;
         }
+    .siteInfo_in .con04 .infopp li:before {
+        display: inline-block;
+        content: '';
+        width: 4px;
+        height: 93%;
+        position: absolute;
+        left: 13px;
+        background-color: #979797;
+        top: 22px;
+    }
     .main_con_box5 .main_bg_img {
         background-size: 130%;
     }
@@ -9772,6 +9833,24 @@ i.calendar {
             display: inline-block;
             position: absolute;
         }
+    .portfolio_in .con04 .photo_tap_div .photo_tap {
+        line-height: 33px;
+        height: 35px;
+        margin: 3px;
+        padding: 0 14px;
+        font-size: 14px;
+    }
+    .portfolio_in .con04 {
+        min-height: 590px;
+        padding: 0 50px 120px;
+        top: -46px;
+    }
+        .portfolio_in .con04 .portfolio_box ul li {
+          
+            width: 23%;
+            height: 211px;
+            margin: 1%;
+        }
 
 }
 @media (min-width: 1100px) {
@@ -9806,7 +9885,7 @@ i.calendar {
         padding: 100px 0 150px;
     }
     .main_con_box1 .main_top_images {
-        background-size: 120%;
+        background-size: 130%;
         min-height: 840px;
     }
     .main_con_box2 li {
@@ -9959,7 +10038,7 @@ i.calendar {
         width: 100%;
         background-image: url(/img/portfolio_top_bg.jpg);
         background-position: left bottom;
-        background-size: 147%;
+        background-size: 166%;
     }
         .portfolio_in .top_bg h3 {
             font-size: 94px;
@@ -10043,6 +10122,10 @@ i.calendar {
         background-position: center;
         background-size: 130%;
     }
+    .portfolio_in .top_bg {
+        height: 810px;
+        background-size: 187%;
+    }
 }
 @media (min-width: 1500px) {
     .main_con_box1 .main_top_images {
@@ -10067,10 +10150,10 @@ i.calendar {
 }
 @media (max-width: 767px) {
     .main_con_box4 .top_txt h2 {
-        font-size: 26px;
+        font-size: 66px;
     }
     .main_con_box4 .top_txt i {
-        margin-top: 6px;
+        margin-top: 26px;
     }
     #viewControl .btn_box .link02 {
         width: 69.9%;

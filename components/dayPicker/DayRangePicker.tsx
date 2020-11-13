@@ -57,6 +57,11 @@ export const DayRangePicker: React.FC<IProps> = ({ from, to, setState }) => {
   }
 `}</style>
             </Head>
+            {/*<ul className="info_txt">
+                <li>- 일정을 등록하기 위해 먼저 왼쪽 달력에서 해당 상품의 [시작날짜]와 [종료날짜]를 입력해 주세요.</li>
+                <li>- 선택된 날짜 수 만큼 아래에 폼이 생성이 됩니다.</li>
+                <li>- 아래의 폼에서 날짜는 고정 값입니다.</li>
+            </ul> 글자가 깨짐 ㅠㅠㅠ */}
         </div>
     );
 }

@@ -50,25 +50,25 @@
     position: fixed;
     bottom: 20%;
     right: 0;
-    z-index: 1;
+    z-index: 98;
     transform-origin: center center;
     transition: 1s;
     transition-timing-function: ease-in-out;
     opacity: 80;
     border: 1px solid #ccc;
     border-right: 0;
-    width: 25px;
+    width: 35px;
     background-color: rgb(255 255 255);
 }
     #gotop .top {
         display: inline-block;
         width: 100%;
-        height: 25px;
+        height: 35px;
         padding: 5px 0;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        font-size:14px;
-        line-height: 18px;
+        font-size: 14px;
+        line-height: 26px;
         text-align: center;
         color: #8b8b8b;
         border-bottom: 1px #e2e2e2 solid;
@@ -76,12 +76,12 @@
     #gotop .down {
         display: inline-block;
         width: 100%;
-        height: 25px;
+        height: 35px;
         padding: 5px 0;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         font-size: 14px;
-        line-height: 18px;
+        line-height: 26px;
         text-align: center;
         color: #8b8b8b;
     }
@@ -2107,6 +2107,20 @@ i.icon_plus {
 }
 
 @media (min-width:1000px) {
+    #gotop {
+       
+        width: 35px;
+    }
+
+        #gotop .top {
+            height: 35px;
+            font-size: 14px;
+        }
+
+        #gotop .down {
+            height: 35px;
+            font-size: 14px;
+        }
     .header_nav {
         display:inline-block;
     }

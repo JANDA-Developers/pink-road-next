@@ -111,7 +111,7 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
           </Link>
         </li>
       </>
-    } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/su_visual_bg.jpg'} />
+      } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/work_top_bg2.jpg'} />
     <div className="tour_details_in w1200">
 
 

@@ -26,11 +26,11 @@ const info:TStieInfo = {
     purposeSubTitle: {
         kr:`목표로 삼고 나아가는 가치있는 생각 3가지`
     },
-    purposeCircle1: {kr:`지속가능한<br className="no" />공간을 그리다`},
+    purposeCircle1: {kr:`지속 가능한 <br class="no" />공간을 그리다`},
     purposeCircle1_en: {kr:`sustainable space`},
-    purposeCircle2: {kr:`잊히지 않는<br className="no" />시대를 그리다`},
+    purposeCircle2: {kr:`잊히지 않는 <br class="no" />시대를 그리다`},
     purposeCircle2_en: {kr:`unforgettable period`},
-    purposeCircle3: {kr:`상생하는<br className="no" />사람을 그리다 `},
+    purposeCircle3: {kr:`상생하는 <br class="no" />사람을 그리다 `},
     purposeCircle3_en: {kr:`co-prosperity person`},
     busi_area_title: {kr:`Business Area`},
     busi_area1_title: {kr:`Brand Consulting`},
@@ -65,7 +65,7 @@ const info:TStieInfo = {
     직·간접적으로 기여하는 착한여행을
     만듭니다. 자연을 보전하며 커뮤니티를
     통해 사람과 지역 모두가 상생합니다.`},
-    valuable_exp: {kr:`Valuable<br />Experience`},
+    valuable_exp: { kr:`FAIR<br />TOUR`},
     valuable_exp_sub: {kr:`가치있는 체험`},
     bottom_title: {kr:`<strong>우리는</strong>새로운 변화속에서 <strong>사회적 가치</strong>를 지키며 서로 <strong>상생</strong>하는 일을 합니다.`},
     bottom_desc: {kr:`We keep our social values in new changes and work together`},

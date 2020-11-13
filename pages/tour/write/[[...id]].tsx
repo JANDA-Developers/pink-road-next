@@ -4,6 +4,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import { OutputData } from '@editorjs/editorjs';
 import "react-day-picker/lib/style.css";
+import SubTopNav from "layout/components/SubTop";
+import Link from "next/link";
 import { Ffile, ItineraryCreateInput, productPostCreate, ProductPostCreateInput, productPostCreateVariables, ProductPostStatus, ProductPostUpdateInput } from '../../../types/api';
 import { IProductDefaultData, TProductDataPart } from '../../../types/defaults/defaultProduct';
 import { EMPTY_EDITOR } from '../../../types/const';
@@ -221,7 +223,20 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     }, [])
 
     return <div key={d} className="mdeal_writing_in w100 board_write">
-        <div className="w1200">
+        <SubTopNav children={
+            <>
+                <li className="homedeps1">
+                    <Link href="/tour/">
+                        <a>Tour</a>
+                    </Link></li>
+                <li className="homedeps2">
+                    <Link href="/tour/write">
+                        <a >상품등록</a>
+                    </Link>
+                </li>
+            </>
+        } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/work_top_bg2.jpg'} />
+        <div className="w1200 con_bottom">
             <div className="write_box">
                 <div className="write_type">
                     <div className="title">카테고리</div>
@@ -354,7 +369,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                             <li id="thumb" onClick={handleUploadClick}>이미지추가<i className="flaticon-add icon_plus"></i></li>
                             <input onChange={handleChangeSumbNail} ref={hiddenFileInput} hidden type="file" />
                         </ul>
-                        <p className="input_form info_txt">- 썸네일 이미지사이즈 400px * 400px</p>
+                        <p className="input_form info_txt">- 썸네일 이미지사이즈 720px * 434px</p>
                     </div>
                 </div>
 
@@ -375,8 +390,9 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                             if (newItinerary)
                                 setitineries([...newItinerary]);
                         }} from={dayjs(itineries[0]?.date).toDate()} to={dayjs(itineries[itineries.length - 1]?.date).toDate()} />
-                        {(itineries || []).map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setitineries={setitineries} itinery={itinery} itineries={itineries} />)}
-                    </div>
+                    {(itineries || []).map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setitineries={setitineries} itinery={itinery} itineries={itineries} />)}
+                
+                </div>
                 }
 
                 <div style={{

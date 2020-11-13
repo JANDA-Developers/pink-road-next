@@ -158,69 +158,69 @@ export const Login: React.FC<IProp> = () => {
                             <b>매니저</b>
                         </label>
                         <div className={`login_wrap white_box`}>
-        <h3>
-            <strong>FAMILY</strong> LOGIN
-        </h3>
-        <div className="form-group">
-            <input
-                type="text"
-                name="user_id"
-                id="uid"
-                required
-                placeholder="아이디"
-                className="txt_id"
-                title="아이디"
-                onChange={(e)=>{handleId(e.target.value)}}
-            />
-        </div>
-        <div className="form-group">
-            <input
-                type="password"
-                name="password"
-                id="upw"
-                required
-                placeholder="비밀번호"
-                title="비밀번호"
-                className="form-txt_pw"
-                onChange={(e)=>{handlePw(e.target.value)}}
-            />
-        </div>
-        <div className="form-group">
-            <label htmlFor="keepid_opt" className="checkbox-inline">
-                <input
-                    type="checkbox"
-                    name="keep_signed"
-                    id="keepid_opt"
-                    defaultValue="Y"
-                    onClick={sessionSave}
-                />
-            로그인 유지
-        </label>
-            <label htmlFor="keepid_opt2" className="checkbox-inline">
-                <input type="checkbox" id="keepid_opt2" defaultValue="Y" />{" "}
-            아이디 기억
-        </label>
-        </div>
-        <button type="submit" className="sum" onClick={handleLogin}>
-            <span >로그인</span>
-        </button>
-        <div className="sign_in_form">
-            <span>
-                <Link href="/join">
-                    <a>회원가입</a>
-                </Link>
-            </span>
-            <span>
-            <Link href="/findmembers">
-                    <a>회원가입</a>
-                </Link>
-            </span>
-        </div>
-    </div>
-                    </div>
+                            <h3>
+                                <strong>FAMILY</strong> LOGIN
+                            </h3>
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    name="user_id"
+                                    id="uid"
+                                    required
+                                    placeholder="아이디"
+                                    className="txt_id"
+                                    title="아이디"
+                                    onChange={(e)=>{handleId(e.target.value)}}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="upw"
+                                    required
+                                    placeholder="비밀번호"
+                                    title="비밀번호"
+                                    className="form-txt_pw"
+                                    onChange={(e)=>{handlePw(e.target.value)}}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="keepid_opt" className="checkbox-inline">
+                                    <input
+                                        type="checkbox"
+                                        name="keep_signed"
+                                        id="keepid_opt"
+                                        defaultValue="Y"
+                                        onClick={sessionSave}
+                                    />
+                                    로그인 유지
+                                </label>
+                                <label htmlFor="keepid_opt2" className="checkbox-inline">
+                                    <input type="checkbox" id="keepid_opt2" defaultValue="Y" />{" "}
+                                아이디 기억
+                                </label>
+                                </div>
+                                <button type="submit" className="sum" onClick={handleLogin}>
+                                    <span >로그인</span>
+                                </button>
+                                <div className="sign_in_form">
+                                    <span>
+                                        <Link href="/join">
+                                            <a>회원가입</a>
+                                        </Link>
+                                    </span>
+                                    <span>
+                                    <Link href="/findmembers">
+                                            <a>아이디/비번찾기</a>
+                                        </Link>
+                                    </span>
+                                </div>
+                            </div>
+                      </div>
                 </div>
             </div>
-    </div>
+         </div>
     </div>
 };
 
