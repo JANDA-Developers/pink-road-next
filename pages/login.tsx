@@ -1,22 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { LocalManager, UserType, Storage, initStorage } from 'utils/Storage';
+import { useLazyQuery, useMutation } from '@apollo/client';
+import { SIGN_IN } from '../apollo/queries';
+import { LocalManager,  Storage, initStorage } from 'utils/Storage';
 import pageInfo from 'info/login.json'
 import { Upload } from 'components/common/Upload';
 import { getEditUtils } from 'utils/pageEdit';
 import { AppContext } from './_app';
 import { BG } from '../types/const';
+import { signIn, signInVariables, UserRole } from 'types/api';
+import { useRouter } from 'next/router';
+import clinet from "../apollo/client"
+interface IProp { 
 
-interface IProp { }
+}
 
 export const Login: React.FC<IProp> = () => {
     const { editMode } = useContext(AppContext)
     const [saveId, setSaveId] = useState(false);
     const [saveSession, setSaveSession] = useState(false);
-    const [id, setId] = useState("");
-    const [pw, setPw] = useState("");
-    const [tab, setTab] = useState<UserType>(UserType.individual)
+    const [userId, setId] = useState("");
+    const [userPw, setPw] = useState("");
+    const [userType, setUserType] = useState<UserRole>(UserRole.individual)
     const [page, setPage] = useState(pageInfo);
     const { edit, ulEdit, imgEdit } = getEditUtils(editMode, page, setPage);
+    const router = useRouter();
 
     const sessionSave = () => {
         const answer = confirm('브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.\n\n로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.')
@@ -37,6 +44,39 @@ export const Login: React.FC<IProp> = () => {
     useEffect(() => {
 
     }, [saveId, saveSession])
+
+    const handleUserType = (type:UserRole) => {
+        setUserType(type);
+    }
+       
+    const handleId = (id:string) => {
+        setId(id);
+        console.log(userId);
+    }
+
+    const handlePw = (pw:string) => {
+        setPw(pw);
+        console.log(userPw);
+    }
+
+    const [LoginQu, { loading: create_loading }] = useLazyQuery<signIn,signInVariables>(SIGN_IN, {
+        onCompleted: ({SignIn}) => {
+            localStorage.setItem("JWT", SignIn.data.token);
+            alert("환영합니다.")
+            location.href = "/"
+        },
+    })
+
+    const handleLogin = () => {
+        LoginQu({
+            variables: {
+                email : userId,
+                pw: userPw,
+            }
+        })
+    }
+
+
 
     return <div >
         <div className="top_visual">
@@ -71,7 +111,9 @@ export const Login: React.FC<IProp> = () => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-1"
+                            value="individual"
                             defaultChecked
+                            onClick={()=>{handleUserType(UserRole.individual)}}
                         />
                         <label htmlFor="tab-1" className="tab-label-1 login_tap tap_01 ">
                             <b>개인</b>
@@ -81,6 +123,8 @@ export const Login: React.FC<IProp> = () => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-2"
+                            value="partnerB"
+                            onClick={()=>{handleUserType(UserRole.partnerB)}}
                         />
                         <label htmlFor="tab-2" className="tab-label-2 login_tap tap_02">
                             <b>기업파트너</b>
@@ -90,6 +134,8 @@ export const Login: React.FC<IProp> = () => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-3"
+                            value="partner"
+                            onClick={()=>{handleUserType(UserRole.partner)}}
                         />
                         <label htmlFor="tab-3" className="tab-label-3 login_tap tap_03">
                             <b>개인파트너</b>
@@ -99,29 +145,33 @@ export const Login: React.FC<IProp> = () => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-4"
+                            value="manager"
+                            onClick={()=>{handleUserType(UserRole.manager)}}
                         />
                         <label htmlFor="tab-4" className="tab-label-4 login_tap tap_03">
                             <b>매니저</b>
                         </label>
-                        <Box index={1} />
-                        <Box index={2} />
-                        <Box index={3} />
-                        <Box index={4} />
+                        <Box index={1} handleId={handleId} handlePw={handlePw} handleLogin={handleLogin} />
+                        <Box index={2} handleId={handleId} handlePw={handlePw} handleLogin={handleLogin} />
+                        <Box index={3} handleId={handleId} handlePw={handlePw} handleLogin={handleLogin} />
+                        <Box index={4} handleId={handleId} handlePw={handlePw} handleLogin={handleLogin} />
                     </div>
                 </div>
             </div>
-        </div>
-
-    </div>;
-    ;
+    </div>
+    </div>
 };
 
 
 interface IBoxProp {
     index: number;
+    handleId:(id:string) => void;
+    handlePw:(pw:string) => void;
+    handleLogin:() => void;
 }
 
-const Box: React.FC<IBoxProp> = ({ index }) => {
+const Box: React.FC<IBoxProp> = ({ index, handleId, handlePw, handleLogin }) => {
+
     return <div className={`login_wrap white_box login_0${index}`} id={`login_0${index}`}>
         <h3>
             <strong>FAMILY</strong> LOGIN
@@ -135,6 +185,7 @@ const Box: React.FC<IBoxProp> = ({ index }) => {
                 placeholder="아이디"
                 className="txt_id"
                 title="아이디"
+                onChange={(e)=>{handleId(e.target.value)}}
             />
         </div>
         <div className="form-group">
@@ -146,6 +197,7 @@ const Box: React.FC<IBoxProp> = ({ index }) => {
                 placeholder="비밀번호"
                 title="비밀번호"
                 className="form-txt_pw"
+                onChange={(e)=>{handlePw(e.target.value)}}
             />
         </div>
         <div className="form-group">
@@ -166,7 +218,7 @@ const Box: React.FC<IBoxProp> = ({ index }) => {
             아이디 기억
         </label>
         </div>
-        <button type="submit" className="sum">
+        <button type="submit" className="sum" onClick={handleLogin}>
             <span >로그인</span>
         </button>
         <div className="sign_in_form">
@@ -177,7 +229,7 @@ const Box: React.FC<IBoxProp> = ({ index }) => {
                 <a href="../findmembers">ID/PW 찾기</a>
             </span>
         </div>
-    </div>;
+    </div>
 };
 
 export default Login

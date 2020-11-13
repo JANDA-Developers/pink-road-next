@@ -71,15 +71,6 @@ export const initStorage = () => {
     });
 }
 
-
-export enum UserType {
-    "individual" = "individual",
-    "anonymous" = "anonymous",
-    "partner" = "partner",
-    "partnerB" = "partnerB",
-    "master" = "master",
-}
-
 type TCount = {
     name: string;
     value: number

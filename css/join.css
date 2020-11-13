@@ -49,3 +49,16 @@
     color: #333333 !important;
     border: 1px solid #a0a0a0 !important;
 }
+
+
+.socialVerify {
+    position:relative;
+    overflow:hidden;
+}
+
+.socialVerify button {
+    position:absolute;
+    top:0; left:0;
+    width:100% !important; height:100% !important;
+    opacity:0 !important;
+}

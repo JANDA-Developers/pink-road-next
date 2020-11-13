@@ -1,27 +1,13 @@
 import React,{useState, useEffect} from 'react'
 import Bxlist from 'components/bxlist/Bxlist'
 import {autoComma} from 'utils/formatter'
-import Pagination from 'components/bxlist/Pagination';
 
 type TNaviInfo = {
     pageNum:number,
     pagiNaviNum:number
 }
 
-const listNumPerPage = 10; 
-const naviNumPerPage = 10;
-
 const bxlist = () => {
-
-    const [boardInfo, setBoardInfo] = useState({
-        postNum : 1000
-    });
-
-    const [pageNum, setPageNum] = useState<number>();
-    const [pagiNaviNum, setPagiNaviNum] = useState<number>();
-    const [spage, setSPage] = useState<number>(1);
-    const [epage, setEPage] = useState<number>();
-    const [currentPage, setCurrentPage] = useState<number>(1);
 
     const [infoList, setInfoList] = useState([
         {
@@ -51,19 +37,97 @@ const bxlist = () => {
             title:"10월의 여행일정 미리 공지",
             newPost:true,
             date:"2020.02.02 11:00"
+        },
+        {
+            id:1,
+            sort:"안내",
+            title:"10월의 여행일정 미리 공지",
+            newPost:true,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:2,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:3,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:1,
+            sort:"안내",
+            title:"10월의 여행일정 미리 공지",
+            newPost:true,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:2,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:3,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:1,
+            sort:"안내",
+            title:"10월의 여행일정 미리 공지",
+            newPost:true,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:2,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
+        },
+        {
+            id:3,
+            sort:"공지",
+            title:"10월의 여행일정 미리 공지",
+            newPost:false,
+            date:"2020.02.02 11:00"
         }
     ]);
+    
+    const [boardInfo, setBoardInfo] = useState({
+        listNumPerPage:10,
+        naviNumPerPage:10,
+        postNum : 1000,
+        listOrder:"recent"
+    });
+
+    const [pageNum, setPageNum] = useState<number>();
+
+    const [spage, setSPage] = useState<number>(1);
+    const [epage, setEPage] = useState<number>();
+    const [currentPage, setCurrentPage] = useState<number>(1);
+
+   
 
     useEffect(() => {
 
-        const current_pageNum = Math.ceil(boardInfo.postNum/listNumPerPage); 
-        const current_pagiNaviNum = Math.ceil(current_pageNum/naviNumPerPage); 
-        let current_ePage = spage + (naviNumPerPage-1);
+        const current_pageNum = Math.ceil(boardInfo.postNum/boardInfo.listNumPerPage); 
+  
+        let current_ePage = spage + (boardInfo.naviNumPerPage-1);
         if(current_ePage >= pageNum) {
             current_ePage = pageNum;
         }
         setPageNum(current_pageNum);
-        setPagiNaviNum(current_pagiNaviNum);
+   
         setEPage(current_ePage);
 
       },[spage]);
@@ -74,17 +138,31 @@ const bxlist = () => {
         let i = spage;
         for(i; i<= epage; i++){
             let pageVal = i;
-            naviList.push(<a href="#" className={currentPage == pageVal ? "on" : "off"} 
-            onClick={(e)=>{handleNavi(e,pageVal)}}>{i}</a>);
+            naviList.push(
+                <a href="#" className={currentPage == pageVal ? "on" : "off"} 
+                   onClick={(e)=>{handleNavi(e,pageVal)}}>{i}</a>);
         }
         return naviList;
-
     }
 
     const currentPageUpdate = (currentPage:number) =>{
         setCurrentPage(currentPage);
     }
 
+    const handeOrder = (e) => {
+        setBoardInfo({
+            ...boardInfo,
+            listOrder:e.target.value
+        })
+    }
+
+    const handleListNum = (e) => {
+        const newListNum = parseInt(e.target.value); 
+        setBoardInfo({
+            ...boardInfo,
+            listNumPerPage:newListNum
+        })
+    }
 
     const handleNavi = (e,naviTarget:number) => {
         e.preventDefault();
@@ -99,7 +177,7 @@ const bxlist = () => {
 
       const handleEnd = (e) => {
         e.preventDefault();
-        const sNumber = pageNum - (naviNumPerPage-1); 
+        const sNumber = pageNum - (boardInfo.naviNumPerPage-1); 
         setSPage(sNumber);
         currentPageUpdate(sNumber);
       }
@@ -107,7 +185,7 @@ const bxlist = () => {
       const handlePrev = (e) => {
         e.preventDefault();
         if(spage > 1) {
-            const prevPage = spage - naviNumPerPage;  
+            const prevPage = spage - boardInfo.naviNumPerPage;  
             setSPage(prevPage);
             currentPageUpdate(prevPage);
         }
@@ -120,7 +198,7 @@ const bxlist = () => {
             setSPage(nextPage);
             currentPageUpdate(nextPage);
         }else{
-            alert('마지막 페이지 입니다')
+            alert('마지막 페이지 입니다');
         }
       }
 
@@ -130,7 +208,7 @@ const bxlist = () => {
              <div className="w1200">
                 <div>
                     <span>
-                    [ 페이지 ] : {pageNum} 개 [ 블록 ] : {pagiNaviNum} 
+                    [ 페이지 ] : {pageNum} 개 [ 블록 ] : 
                     [ s-Pagi ] : {spage}  [ e-Pagi ] : {epage}
                     </span>
                 </div>
@@ -142,15 +220,15 @@ const bxlist = () => {
                    
                 </div>
                 <div className="right_div">
-                    <select className="sel01">
-                    <option>최신↑</option>
-                    <option>최신↓</option>
-                    <option>조회수</option>
+                    <select className="sel01" onChange={(e)=>{handeOrder(e)}}>
+                    <option value="recent">최신↑</option>
+                    <option value="old">최신↓</option>
+                    <option value="viewed">조회수</option>
                     </select>
-                    <select className="sel02">
-                    <option>10개 보기</option>
-                    <option>50개 보기</option>
-                    <option>100개 보기</option>
+                    <select className="sel02" onChange={(e)=>{handleListNum(e)}}>
+                        <option value="10">10개 보기</option>
+                        <option value="50">50개 보기</option>
+                        <option value="100">100개 보기</option>
                     </select>
                 </div>
                 </div>

@@ -1,11 +1,11 @@
-import { PRODUCT_POST_LIST } from "../apollo/queries";
+import { PRODUCT_FIND_BY_ID } from "../apollo/queries";
 import { productPostFindById, productPostFindByIdVariables } from "../types/api";
 import { IProductPostFindById } from "../types/interface";
 import { QueryHookOptions, useQuery } from "@apollo/client"
 
 
 export interface IUseProductFindById {
-    product?: IProductPostFindById;
+    productPost?: IProductPostFindById;
     loading: boolean;
 }
 export interface IuseProductFindByIdProp extends QueryHookOptions<productPostFindById,productPostFindByIdVariables> {
@@ -14,8 +14,9 @@ export interface IuseProductFindByIdProp extends QueryHookOptions<productPostFin
 export const useProductFindById = ({
     ...options
 }:IuseProductFindByIdProp):IUseProductFindById => {
-    const { data, loading } = useQuery<productPostFindById, productPostFindByIdVariables>(PRODUCT_POST_LIST, {
+    const { data, loading } = useQuery<productPostFindById, productPostFindByIdVariables>(PRODUCT_FIND_BY_ID, {
         ...options,
+        nextFetchPolicy: "cache-only",
         onCompleted: ({ProductPostFindById})=> {
             if(!ProductPostFindById.ok) {
                 console.error(data?.ProductPostFindById.error);
@@ -24,7 +25,7 @@ export const useProductFindById = ({
         }
     })
 
-    const product = data?.ProductPostFindById?.data || undefined
+    const productPost = data?.ProductPostFindById?.data || undefined
     
-    return { product, loading }
+    return { productPost, loading }
 }

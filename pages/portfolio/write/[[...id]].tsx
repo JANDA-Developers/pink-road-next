@@ -1,22 +1,22 @@
 
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import "react-day-picker/lib/style.css";
-import { portfolioCreate, portfolioCreateVariables, portfolioFindById, portfolioFindByIdVariables, PortfolioCreateInput, FileCreateInput, pcategoryList_pCategoryList_data, portfolioUpdate, portfolioUpdateVariables, PortfolioUpdateInput, portfolioDelete, portfolioDeleteVariables, UserRole } from '../../../types/api';
-import { useMutation, useQuery } from '@apollo/client';
+import { portfolioCreate, portfolioCreateVariables, PortfolioCreateInput, pcategoryList_pCategoryList_data, portfolioUpdate, portfolioUpdateVariables, PortfolioUpdateInput, portfolioDelete, portfolioDeleteVariables, UserRole } from '../../../types/api';
+import { useMutation,  } from '@apollo/client';
 import { useUpload } from "hook/useUpload";
 import { PORTFOLIO_CREATE, PORTFOLIO_DELETE, PORTFOLIO_UPDAET, } from "apollo/mutations";
-import { PORTFOLIO_FIND_BY_ID } from "apollo/queries";
+import { PORT_FOLIO_LIST } from "apollo/queries";
 import { getDefault } from "components/portfolio/helper";
 import { IPortfolio } from "types/interface";
 import { usePcategory } from "hook/usePcatList";
 import { usePcategoryDelete } from "hook/usePCategoryDelete";
 import { BoardWrite, IBoard } from "components/board/Write";
 import { usePCategoryCreate } from "hook/usePCategoryCreate";
-import { AppContext } from "pages/_app";
-import { roleCheck } from "utils/roleCheck";
-import Page404 from "pages/404";
+import { getOperationName } from "@apollo/client/utilities";
+import { Validater } from "utils/validate";
+import { usePortfolioFind } from "hook/usePortfolioFind";
 
 
 interface IProp {
@@ -25,12 +25,21 @@ interface IProp {
 
 export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
     const router = useRouter(); // => 넥스트에서는 변경
-    const { createFn, portfolio, mode, pcategories, updateFn, id, deleteFn } = context;
+    const { createFn, portfolio, mode, pcategories, updateFn, id, deleteFn } = context;;
     const defaults = getDefault(portfolio);
-    const { catDelete } = usePcategoryDelete();
+
+    const categoryList = pcategories.map(pt => ({
+        _id: pt._id,
+        label: pt.label
+    }))
+
+    const defaultCatId = categoryList[0]?._id
+
+    const { catDelete,loading } = usePcategoryDelete();
     const { signleUpload } = useUpload();
-    const [editCategory, setEditCategory] = useState<string>();
+    const [editCategory, setEditCategory] = useState<string>(defaultCatId || "");
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
+
 
     const [loadKey, setLoadKey] = useState(0);
     const [loadData, setLoadData] = useState<typeof defaults>();
@@ -53,7 +62,15 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
             pCategoryId: editCategory,
             subTitle,
             summary,
-            thumb,
+            thumb: thumb && {
+                uri: thumb.uri,
+                description: thumb.description,
+                extension: thumb.extension,
+                fileType: thumb.fileType,
+                isDelete: thumb.isDelete,
+                name: thumb.name,
+                owner: thumb.owner
+            },
             title,
         })
     }
@@ -63,10 +80,20 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
     }
 
     const handleCreate = (data: Partial<IBoard>) => {
-        if (!data.title) {
-            alert("타이틀을 입력 해주세요");
-            return;
-        }
+
+        const {validate} = new Validater([{
+            value: !!data.content,
+            failMsg: "콘텐츠 값은 필수 입니다.",
+            id: "content" 
+        },
+        {
+            value: !!data.title,
+            failMsg: "타이틀 값은 필수 입니다.",
+            id: "title" 
+        }])
+
+        const {thumb} = data;
+        if(validate()) 
         createFn({
             pCategoryId: data.categoryId,
             title: data.title,
@@ -74,7 +101,15 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
             isOpen: data.isOpen,
             subTitle: data.subTitle,
             summary: data.summary,
-            thumb: data.thumb
+            thumb:  thumb &&{
+                uri: thumb.uri,
+                description: thumb.description,
+                extension: thumb.extension,
+                fileType: thumb.fileType,
+                isDelete: thumb.isDelete,
+                name: thumb.name,
+                owner: thumb.owner
+            }
         })
     }
 
@@ -125,16 +160,22 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
         setEditCategory(nextCat)
     }
 
-    const categoryList = pcategories.map(pt => ({
-        _id: pt._id,
-        label: pt.label
-    }))
+    
 
 
     const data: Partial<IBoard> = loadData ? {
         author: "관리자",
         category: categoryList.find(ct => ct._id === loadData.pCategoryId) || categoryList[0],
-        ...loadData
+        ...loadData,
+        thumb: {
+            uri: loadData.thumb?.uri,
+            description: loadData.thumb?.description,
+            fileType: loadData.thumb?.fileType,
+            extension: loadData.thumb?.extension,
+            name: loadData.thumb?.name,
+            owner: loadData.thumb?.owner,
+            isDelete: loadData.thumb?.isDelete,
+        }
     } : {
             author: "관리자",
             category: categoryList[0],
@@ -173,17 +214,20 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
                         }} className="category r3">
                             <select onChange={handleCatChange} value={editCategory} name="category_srl">
                                 {categoryList.map(cat =>
-                                    <option key={cat._id}>
+                                    <option value={cat._id} key={cat._id}>
                                         {cat.label}
                                     </option>
                                 )}
+                                <option  value="">
+                                    선택없음
+                                </option>
                             </select>
                         </span>
-                        <button style={{ whiteSpace: "nowrap" }} className="btn medium" onClick={handleDeleteCategory}>카테고리삭제</button>
+                        {/* <button style={{ whiteSpace: "nowrap" }} className="btn medium" onClick={handleDeleteCategory}>카테고리삭제</button> */}
                     </div>
                 </div>
             </div>
-            <div className="write_type">
+            {/* <div className="write_type">
                 <div className="title">카테고리추가</div>
                 <div className="input_form">
                     <input style={{
@@ -194,7 +238,7 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
                     }} value={newCat} />
                     <button className="btn medium" onClick={handleAddCategory}>추가</button>
                 </div>
-            </div>
+            </div> */}
         </div>
         } defaults={data} />
 };
@@ -228,13 +272,17 @@ export const PortFolioWriteWrap: React.FC<IProp> = ({ isExperience }) => {
     const router = useRouter(); // => 넥스트에서는 변경
     const id = router.query.id?.[0] as string | undefined;
 
+    const refetchQueries = [getOperationName(PORT_FOLIO_LIST) || ""];
+
     const [portfoliotUpdateMu, { loading: updateLoading }] = useMutation<portfolioUpdate, portfolioUpdateVariables>(PORTFOLIO_UPDAET, {
         onCompleted: ({ PortfolioUpdate }) => {
             if (PortfolioUpdate.ok) {
                 const id = PortfolioUpdate.data._id;
                 router.push(`/portfolio/view/${id}`)
             }
-        }
+        },
+        refetchQueries,
+        awaitRefetchQueries: true
     })
 
     const [portfoliotCreateMu, { loading: createLoading }] = useMutation<portfolioCreate, portfolioCreateVariables>(PORTFOLIO_CREATE, {
@@ -243,25 +291,20 @@ export const PortFolioWriteWrap: React.FC<IProp> = ({ isExperience }) => {
                 const id = PortfolioCreate.data._id;
                 router.push(`/portfolio/view/${id}`)
             }
-        }
+        },
+        refetchQueries: [getOperationName(PORT_FOLIO_LIST) || ""],
+        awaitRefetchQueries: true
     })
 
     const [portfoliotDeleteMu, { loading: deleteLoading }] = useMutation<portfolioDelete, portfolioDeleteVariables>(PORTFOLIO_DELETE, {
         onCompleted: ({ PortfolioDelete }) => {
-            if (PortfolioDelete.ok) {
+            if (PortfolioDelete.ok) 
                 router.push(`/portfolio`)
-            }
-        }
-    })
-
-    const { data, loading: findLoading } = useQuery<portfolioFindById, portfolioFindByIdVariables>(PORTFOLIO_FIND_BY_ID, {
-        variables: {
-            id
         },
-        skip: !id
+        refetchQueries: [getOperationName(PORT_FOLIO_LIST) || ""],
     })
 
-    const portfolio = data?.PortfolioFindById?.data;
+    const { item:portfolio, loading: findLoading } = usePortfolioFind(id);
 
     const { pcategories, loading: pcategoryLoading } = usePcategory();
     const createFn: TCreateFn = (params: PortfolioCreateInput) => {
@@ -274,14 +317,13 @@ export const PortFolioWriteWrap: React.FC<IProp> = ({ isExperience }) => {
 
 
     const deleteFn: TDeleteFn = (id: string) => {
+        if(confirm("정말로 게시글을 삭제 하시겠습니까?"))
         portfoliotDeleteMu({
             variables: {
                 id
             }
         })
     }
-
-
 
     const updateFn = (id: string, params: PortfolioUpdateInput) => {
         portfoliotUpdateMu({

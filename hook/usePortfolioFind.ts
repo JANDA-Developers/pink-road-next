@@ -10,9 +10,11 @@ export interface IUsePortfolioFind {
 
 export const usePortfolioFind = (id:string):IUsePortfolioFind => {
     const { data, loading } = useQuery<portfolioFindById, portfolioFindByIdVariables>(PORTFOLIO_FIND_BY_ID,{
+        fetchPolicy: "network-only",
         variables: {
             id
-        }
+        },
+        skip: !id
     });
 
     const item = data?.PortfolioFindById?.data;

@@ -1,11 +1,14 @@
 import Link from "next/link"
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { EditBtn } from 'components/common/EditBtn';
 import $ from "jquery";
+import { AppContext } from "pages/_app";
 
 interface IProp { }
 
 export const Header: React.FC<IProp> = () => {
+
+    const {isLogin} = useContext(AppContext);
 
     const handleNav = () => {
         $('#header').attr("tabindex", -1);
@@ -65,6 +68,10 @@ export const Header: React.FC<IProp> = () => {
         });
     }
 
+    const handleLogOut = () => {
+        localStorage.removeItem("jwt");
+        location.reload();
+    }
 
     useEffect(() => {
         $('.nav_wrap ul li').on("hover", function () {
@@ -134,7 +141,7 @@ export const Header: React.FC<IProp> = () => {
             <div className="hd_right">
                 <div className="join">
                     <span>
-                        <Link href="../join">
+                        <Link href="/join">
                             <a>JOIN</a>
                         </Link>
                     </span>
@@ -142,9 +149,11 @@ export const Header: React.FC<IProp> = () => {
 
                 <div className="login">
                     <span>
-                        <Link href="../login">
-                            <a>LOGIN</a>
-                         </Link>
+                        {isLogin ? <a onClick={handleLogOut}>LOGOUT</a> 
+                         : <Link href="/login">
+                         <a>LOGIN</a>
+                     </Link> }
+                         
                     </span>
                 </div>
                 <div className="logout">
@@ -288,7 +297,7 @@ export const Header: React.FC<IProp> = () => {
                     <li className="a_menu_tit deps betatest">
                         <a href="../login">Member<i className="jandaicon-arr4-right"></i></a>
                         <ul className="depth1">
-                            <li><a href="/ligin">로그인</a></li>
+                            <li><a href="/login">로그인</a></li>
                             <li><a href="/join">회원가입</a></li>
                             <li><a href="/idpw_find">아이디/비번 찾기</a></li>
                             <li><a href="/member/search">통합검색</a></li>

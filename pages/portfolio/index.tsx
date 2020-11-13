@@ -1,244 +1,178 @@
-import React from 'react';
+import { usePageInfo } from 'hook/usePageInfo';
+import { usePortfolioList, IUsePortfolioList } from 'hook/usePortfolioList';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import Link from 'next/link';
+import React, { Fragment, useContext, useState } from 'react';
+import { pcategoryList_pCategoryList_data, UserRole } from 'types/api';
+import { getEditUtils } from 'utils/pageEdit';
+import { AppContext } from '../_app';
+import pageInfoDefault from "info/portfolio.json"
+import { TStieInfo } from 'types/interface';
+import { usePcategory } from 'hook/usePcatList';
+import { roleCheck } from 'utils/roleCheck';
 
-interface IProp { }
+interface IProp {
+    context: IPortfolioWrapContext
+}
 
-export const PortFolio: React.FC<IProp> = () => {
+export const PortFolio: React.FC<IProp> = ({ context }) => {
+    const { editMode, isAdmin,isManager } = useContext(AppContext);
+    const { items: portfolios = [], pageInfo, setPage, sitePageInfo, pcategories } = context;
+    const original = sitePageInfo || pageInfoDefault;
+    const [page, setPageInfo] = useState(original);
+    const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPageInfo)
+    const [viewCat, setViewCat] = useState("");
+
+    const catPortfolios = viewCat ? portfolios.filter(pt => pt.pCategory?._id === viewCat) : portfolios;
+    const filteredPortfolios = (isAdmin || isManager) ? catPortfolios :  catPortfolios.filter(catP => catP.isOpen);
+
+    const handlePrev = () =>
+        setPage(pageInfo.page - 1)
+
+    const handleNext = () =>{
+        setPage(pageInfo.page + 1)
+    }
+
+    const handleCatChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const nextCat = event.currentTarget.value;
+        setViewCat(nextCat);
+    }
+
     return <div className="portfolio_in">
         <div className="top_bg w100">
             <div className="w1200">
-                <h3>
-                    What we do
-                </h3>
-                <span>
-                    경험하고, 느끼고, 생각을 나누는
-                 </span>
+                <h3 {...edit("mainTitle")} />
+                <span {...edit("subTitle")} />
             </div>
         </div>
 
         <div className="con02 con_block">
             <div className="w1200">
-
                 <h4>
                     핑크로더는 사라져가는 가치 있는 것들을 되살리는 일을 하고 있습니다.<br />
                     사람과 상생할 수 있는 지역콘텐츠를 개발하며 여행/디자인/ 교육등의
                 다양한 방식으로 소통하는법을 <br className="no" />창출하고 더 나은 새로운 것을 제안합니다.
-            </h4>
+                </h4>
                 <ul>
                     <li className="img01">
                         <div className="img"></div>
-                        <h5>Brand Consulting</h5>
-                        <span>
-                            브랜드 컨설팅
-                    </span>
+                        <h5 {...edit("con2_img1_title")} />
+                        <span {...edit("con2_img1_title_kr")} />
                     </li>
                     <li className="img02">
                         <div className="img"></div>
-                        <h5>Content R&D</h5>
-                        <span>
-                            컨텐츠연구개발
-                    </span>
+                        <h5 {...edit("con2_img2_title")} />
+                        <span {...edit("con2_img2_title_kr")} />
                     </li>
                     <li className="img03">
                         <div className="img"></div>
-                        <h5>Co-prosperity</h5>
-                        <span>
-                            상생커뮤니티
-                    </span>
+                        <h5 {...edit("con2_img3_title")} />
+                        <span {...edit("con2_img3_title_kr")} />
                     </li>
                     <li className="img04">
                         <div className="img"></div>
-                        <h5>Social Design</h5>
-                        <span>
-                            소셜디자인
-                    </span>
+                        <h5 {...edit("con2_img4_title")}></h5>
+                        <span {...edit("con2_img4_title_kr")} />
                     </li>
                 </ul>
             </div>
         </div>
         <div className="w100 con03 con_block">
-            <h4>
-                Portfolio
-            </h4>
-            <span>
-                디테일한 스토리텔링을 통해 다양한 컨텐츠를 만들어 갑니다.
-            </span>
+            <h4 {...edit('con3_title')} />
+            <span {...edit('con3_subTitle')} />
         </div>
         <div className="w100 con04 con_block">
-            <div className="photo_tap_div">
-                <input id="tab-1" type="radio" name="radio-set" className="tab-selector-1" checked></input>
-                <label htmlFor="tab-1" className="tab-label-1 photo_tap">ALL</label>
-                <input id="tab-2" type="radio" name="radio-set" className="tab-selector-2"></input>
-                <label htmlFor="tab-2" className="tab-label-2 photo_tap">지역컨텐츠연구</label>
-                <input id="tab-3" type="radio" name="radio-set" className="tab-selector-3"></input>
-                <label htmlFor="tab-3" className="tab-label-3 photo_tap">테마프로그램</label>
-                <input id="tab-4" type="radio" name="radio-set" className="tab-selector-4"></input>
-                <label htmlFor="tab-4" className="tab-label-4 photo_tap">디자인</label>
-                <input id="tab-5" type="radio" name="radio-set" className="tab-selector-5"></input>
-                <label htmlFor="tab-5" className="tab-label-5 photo_tap">교육 및 강의</label>
-                <input id="tab-6" type="radio" name="radio-set" className="tab-selector-6"></input>
-                <label htmlFor="tab-6" className="tab-label-6 photo_tap">사회공헌</label>
+            <div id="list" className="photo_tap_div">
 
+                <input value="" onChange={handleCatChange} id="tab-00" type="radio" name="radio-set" className="tab-selector-1" checked={viewCat === ""}></input>
+                <label htmlFor="tab-00" className="tab-label-1 photo_tap">ALL</label>
+
+                {pcategories.map((pc, i) =>
+                    <Fragment key={pc._id}>
+                        <input value={pc._id} onChange={handleCatChange} id={`tab-${i}`} type="radio" name="radio-set" className="tab-selector-1" checked={pc._id === viewCat}></input>
+                        <label htmlFor={`tab-${i}`} className="tab-label-1 photo_tap">{pc.label}</label>
+                    </Fragment>
+                )}
                 <div className="tap_nav_bg"></div>
 
                 <div className="portfolio_box box01" id="portfolio_box_1">
                     <ul>
-                        <li>
-                            <div className="box">
-                                <i className="category">디자인</i>
-                                <strong className="title">제목제목</strong>
-                                <span className="txt">내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</span>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div className="box">
-                                <i className="category">디자인</i>
-                                <strong className="title">제목제목</strong>
-                                <span className="txt">내용내용내용</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="box">
-                                <i className="category">디자인</i>
-                                <strong className="title">제목제목</strong>
-                                <span className="txt">내용내용내용</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="box">
-                                <i className="category">디자인</i>
-                                <strong className="title">제목제목</strong>
-                                <span className="txt">내용내용내용</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="box">
-                                <i className="category">디자인</i>
-                                <strong className="title">제목제목</strong>
-                                <span className="txt">내용내용내용</span>
-                            </div>
-                        </li>
+                        {filteredPortfolios.map((portfolio) =>
+                            <Link key={portfolio._id} href={`/portfolio/view/${portfolio._id}`}>
+                                <li style={{ backgroundImage: `url(${portfolio.thumb?.uri})` }}>
+                                    <div className="box">
+                                        {portfolio?.pCategory && <i className="category">{portfolio.pCategory.label}</i>}
+                                        {portfolio?.isOpen || <i className="category">비공개</i>}
+                                        <strong className="title">{portfolio.title}</strong>
+                                        <span className="txt">{portfolio.summary}</span>
+                                    </div>
+                                </li>
+                            </Link>
+                        )}
                     </ul>
+                    {roleCheck([UserRole.admin, UserRole.manager]) && 
+                        <Link href={`/portfolio/write`} >
+                            <button  type="button" className="btn medium">추가</button>
+                        </Link>
+                    }
                     <div className="boardNavigation">
                         <div className="center">
                             <div className="pagenate_mini">
-                                <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
-                                <div className="count"><strong>1</strong> / 10</div>
-                                <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="portfolio_box box02" id="portfolio_box_2">
-                    <ul>
-                        <li>
-                            <div className="box">
-                                <i className="category">디자인</i>
-                                <strong className="title">제목제목</strong>
-                                <span className="txt">내용내용내용</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <div className="boardNavigation">
-                        <div className="center">
-                            <div className="pagenate_mini">
-                                <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
-                                <div className="count"><strong>1</strong> / 10</div>
-                                <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="portfolio_box box03" id="portfolio_box_3">
-                    <ul>
-                        <li>
-                            <div className="box">
-                                <i className="category">디자인</i>
-                                <strong className="title">제목제목</strong>
-                                <span className="txt">내용내용내용</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <div className="boardNavigation">
-                        <div className="center">
-                            <div className="pagenate_mini">
-                                <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
-                                <div className="count"><strong>1</strong> / 10</div>
-                                <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="portfolio_box box04" id="portfolio_box_4">
-                    <ul>
-                        <li>
-                            <div className="box">
-                                <i className="category">디자인</i>
-                                <strong className="title">제목제목</strong>
-                                <span className="txt">내용내용내용</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <div className="boardNavigation">
-                        <div className="center">
-                            <div className="pagenate_mini">
-                                <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
-                                <div className="count"><strong>1</strong> / 10</div>
-                                <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="portfolio_box box05" id="portfolio_box_5">
-                    <ul>
-                        <li>
-                            <div className="box">
-                                <i className="category">디자인</i>
-                                <strong className="title">제목제목</strong>
-                                <span className="txt">내용내용내용</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <div className="boardNavigation">
-                        <div className="center">
-                            <div className="pagenate_mini">
-                                <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
-                                <div className="count"><strong>1</strong> / 10</div>
-                                <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="portfolio_box box06" id="portfolio_box_6">
-                    <ul>
-                        <li>
-                            <div className="box">
-                                <i className="category">디자인</i>
-                                <strong className="title">제목제목</strong>
-                                <span className="txt">내용내용내용</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <div className="boardNavigation">
-                        <div className="center">
-                            <div className="pagenate_mini">
-                                <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
-                                <div className="count"><strong>1</strong> / 10</div>
-                                <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
+                                <div onClick={handlePrev} className={`${pageInfo.page === 1 && 'disabled-btn'} page_btn first`}><i className="jandaicon-arr4-left"></i></div>
+                                <div className="count"><strong>{pageInfo.page}</strong> / {pageInfo.totalPageSize}</div>
+                                <div onClick={handleNext} className={`${pageInfo.page === pageInfo.totalPageSize && 'disabled-btn'} page_btn end`}><i className="jandaicon-arr4-right"></i></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div className="w100 con05 con_block">
+            <div className="w1200">
+                <div className="txt">
+                    <h4>핑크로더 홈페이지는</h4>
+                    <span>사회적경제 혁신성장사업[비R&D] 사회적경제기업 경쟁력 강화 사업화지원 프로그램의 지원을 받아 제작 되었습니다.</span>
+                </div>
+                <Link href="/">
+                    <a className="link">회사소개서<br />다운로드</a>
+                </Link>
+            </div>
         </div>
     </div>;
     ;
 };
 
-export default PortFolio;
+interface IPortfolioWrapContext extends IUsePortfolioList {
+    sitePageInfo: TStieInfo | "",
+    pcategories: pcategoryList_pCategoryList_data[]
+}
+
+type TGetProps = {
+    pageInfo: typeof pageInfoDefault | "",
+}
+
+export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
+    const { data } = await usePageInfo("portfolio");
+    return {
+        props: {
+            pageInfo: data?.value || "",
+            revalidate: 8
+        }, // will be passed to the page component as props
+    }
+}
+
+const PortFolioWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+    const { pcategories } = usePcategory()
+    const portfolioList = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8 })
+
+    const context: IPortfolioWrapContext = {
+        ...portfolioList,
+        sitePageInfo: pageInfo,
+        pcategories
+    }
+
+
+    return <PortFolio context={context} />
+}
+
+export default PortFolioWrap;

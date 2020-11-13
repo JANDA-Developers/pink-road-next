@@ -42,7 +42,7 @@ export const detactRangeChange = (range:TRange):string[] =>  {
 }
 
 export const getDefault = (product?:IProductPostFindById) => {
-    const defaults: IProductDefaultData = product ? {...product, categoryId: product.category._id} : DEFAULT_PRODUCT_INPUT
+    const defaults: IProductDefaultData = product ? {...product, categoryId: product.category?._id} : DEFAULT_PRODUCT_INPUT
     const from = process.env.NODE_ENV === "development" ? new Date() : defaults.itinerary[0]?.date || undefined ;
     const to = process.env.NODE_ENV === "development" ? dayjs().add(2,"day").toDate() : defaults.itinerary[defaults.itinerary.length - 1]?.date || undefined;
 

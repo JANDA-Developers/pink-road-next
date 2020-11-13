@@ -27,17 +27,18 @@ type IuseProductListProp = {
     // initialSort?: _ProductSort[]
 }
 
-export const useProductList = ({
+export const useProductPostList = ({
     // initialSort = [],
     // initialFilter = {},
-    initialPageIndex = 0,
+    initialPageIndex = 1,
     initialViewCount = 20 
-}:IuseProductListProp):IUseProductList => {
+}:IuseProductListProp = {}):IUseProductList => {
     // const [filter, setFilter] = useState<_ProductFilter>({});
     // const [sort, setSort] = useState<_ProductSort[]>([]);
     const [viewCount, setViewCount] = useState(initialViewCount);
     const [page, setPage] = useState(initialPageIndex);
     const { data, loading } = useQuery<productPostList, productPostListVariables>(PRODUCT_POST_LIST, {
+        nextFetchPolicy: "network-only",
         variables: {
             pageInput: {
                 cntPerPage: viewCount,

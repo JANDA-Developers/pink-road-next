@@ -1,15 +1,21 @@
 import { Paginater } from 'components/common/Paginator';
 import { Product } from 'components/product/Product';
+import { IUseProductList, useProductPostList } from 'hook/useProductPostList';
 import React, { useState } from 'react';
+import BoardList from "components/board/List";
+import { useRouter } from 'next/router';
+import SortSelect from 'components/common/SortMethod';
 
 interface IProp {
-    context?: any;
+    context?: ITourListWrapContext;
 }
 
 export const TourList: React.FC<IProp> = ({ context }) => {
+    const {items} = context;
 
-    // const { setSort, setFilter, setViewCount, } = context;
+    const router = useRouter();
 
+<<<<<<< HEAD
     return <div>
         <div className="top_visual">
             <div
@@ -85,29 +91,54 @@ export const TourList: React.FC<IProp> = ({ context }) => {
                                 </li>
                             </div>
                         </ul>*/}
-                    </div>
-                </div>
-                <ul className="list_ul line4">
-                    <Product />
-                </ul>
-                <Paginater pageNumber={0} totalPageCount={0} />
-                <div className="tl list_bottom">
-                    <div className="btn_footer">
-                        <span className="xet_btn medium gray">상품 등록하기</span>
-                    </div>
-                    <div className="search_mini">
-                        <div className="in">
-                            <input type="text" placeholder="검색 내용을 입력해주세요." />
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.94 31.44">
-                                <path className="cls-5" d="M313.17,433.49l-4.86-5.31a14.48,14.48,0,0,0-1-19.41,14.55,14.55,0,0,0-10.24-4.21,14.47,14.47,0,0,0,0,28.94,14.17,14.17,0,0,0,1.72-.1,1.5,1.5,0,1,0-.35-3,11.47,11.47,0,1,1-1.38-22.86h0a11.48,11.48,0,0,1,8.14,19.56,1.49,1.49,0,0,0,0,2.12.91.91,0,0,0,.13.08,1.2,1.2,0,0,0,.15.24l5.45,5.95a1.46,1.46,0,0,0,1.1.49,1.53,1.53,0,0,0,1-.39A1.5,1.5,0,0,0,313.17,433.49Z" transform="translate(-282.62 -404.56)"></path>
-                            </svg>
-                        </div>
-                    </div>
+=======
+    const handleWrite = () => {
+        router.push("/tour/write")
+    }
 
+    return <BoardList onWrite={handleWrite} FilterSort={
+    <div>
+        <SortSelect />
+    </div>} >
+    <ul className="list_ul line4">
+        {items.map(item => (
+         <li key={item._id} className="list_in">
+            <div className="img" style={{
+                backgroundImage: `url(${item.images[0]?.uri})`
+            }}>상품이미지</div>
+            <div className="box">
+                <div className="category"><span>{"category?.label"}</span></div>
+                <div className="title">{item.title}</div>
+                <div className="bottom_txt">
+                    <div className="subTitle">
+                        {item.subTitle}
+>>>>>>> bb567029d64b9159343656a29336fdc4da7f8084
+                    </div>
+                    {item.keyWards?.map((tag, i) =>
+                        <span key={`${item._id}tag${i}`}>{tag}</span>
+                    )}
                 </div>
             </div>
-        </div>
-    </div>
+        </li >))}
+    </ul>
+    </BoardList>
 };
 
-export default TourList;
+
+
+interface ITourListWrapContext extends IUseProductList{
+
+}
+
+const TourListWrap:React.FC<IProp> = () => {
+
+    const productContext = useProductPostList();
+    
+    const context:ITourListWrapContext = {
+        ...productContext
+    }
+
+    return <TourList context={context}  />
+}
+
+export default TourListWrap;

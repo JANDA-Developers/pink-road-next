@@ -7,6 +7,7 @@ import { pcategoryDelete, pcategoryDeleteVariables } from "types/api"
 export const usePcategoryDelete = (options?: MutationHookOptions<pcategoryDelete, pcategoryDeleteVariables>) => {
     const [categoryDeleteMu, { loading }] = useMutation<pcategoryDelete, pcategoryDeleteVariables>(PCATEGORY_DELETE, {
         refetchQueries: [getOperationName(PCAT_LIST) || ""],
+        awaitRefetchQueries: true,
         ...options,
     })
 
@@ -18,6 +19,6 @@ export const usePcategoryDelete = (options?: MutationHookOptions<pcategoryDelete
         })
     }
 
-    return { catDelete }
+    return { catDelete,loading }
 }
 

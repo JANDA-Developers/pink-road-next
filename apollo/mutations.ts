@@ -3,10 +3,10 @@ import { F_ITINERARY, F_CATEGORY, F_PRODUCT_POST, F_FILE, F_PAGE_INFO } from "./
 
 export const CATEGORY_CREATE = gql`
   mutation categoryCreate(
-      $data: CategoryCreateInput!
+      $params: CategoryCreateInput!
     ) {
     CategoryCreate(
-        data:$data
+        params:$params
       ) {
       ok
       error 
@@ -75,11 +75,11 @@ export const PCATEGORY_DELETE = gql`
 
 export const PCATEGORY_UPDATE = gql`
   mutation pcategoryUpdate(
-    $data: pCategoryUpdateInput!
+    $params: pCategoryUpdateInput!
     $id: String!
   ) {
     pCategoryUpdate(
-      data: $data 
+      params: $params 
       id: $id
       ) {
         ok
@@ -153,15 +153,14 @@ export const PRODUCT_POST_CREATE = gql`
       ok
       error 
       data {
-          ...FproductPost
+        _id
       }
     }
   }
-  ${F_PRODUCT_POST}
 `;
 
 
-export const PRODUCT_UPDATE = gql`
+export const PRODUCT_POST_UPDATE = gql`
   mutation productPostUpdate(
         $params: ProductPostUpdateInput!
         $_id: String!
@@ -236,6 +235,8 @@ export const SIGN_UP = gql`
   ${F_FILE}
 `;
 
+
+
 export const SIGN_IN_GOOGLE = gql`
   mutation signInGoogle(
       $code: String!
@@ -267,6 +268,33 @@ export const PAGE_INFO_CREATE = gql`
       }
   }
 `;
+
+
+export const SIGNINGOOGLE = gql`
+    mutation SignInGoogle($code : String!){
+      SignInGoogle(code : $code){
+        ok
+        error
+        data{
+          token
+          email
+        }
+      }
+    }
+`
+
+export const SIGNINKAKAO= gql`
+    mutation SignInKakao($code : String!){
+      SignInKakao(code : $code){
+        ok
+        error
+        data{
+          token
+          email
+        }
+      }
+    }
+`
 
 export const PAGE_INFO_DELETE = gql`
   mutation pageInfoDelete(

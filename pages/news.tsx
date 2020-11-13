@@ -63,7 +63,7 @@ export const News: React.FC<IProp> = ({ type, search, setSearch }) => {
                     </div>
                 </div>}
                 <Paginater pageNumber={0} totalPageCount={10} />
-                <SearchMini value={search} onChange={setSearch} />
+                <SearchMini onSubmit={()=> {}} />
             </div>
         </div>
     </div>

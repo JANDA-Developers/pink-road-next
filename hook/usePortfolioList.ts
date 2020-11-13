@@ -31,7 +31,8 @@ export const usePortfolioList = ({
                 cntPerPage: viewCount,
                 page
             }
-        }
+        },
+        fetchPolicy: "network-only"
     });
 
     const items = data?.PortfolioList.data || [];

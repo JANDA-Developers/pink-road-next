@@ -7,6 +7,7 @@ import { CATEGORY_LIST, GET_CONTEXT, PAGE_INFO_READ } from 'apollo/queries';
 import PinkClient from "apollo/client"
 import { ISet } from 'types/interface';
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from 'apollo/mutations';
+import { roleCheck } from 'utils/roleCheck';
 
 export type TContext = {
   editMode: boolean;
@@ -14,7 +15,10 @@ export type TContext = {
   submitEdit?: (pageKey: string, data: any) => void;
   categories: categoryList_CategoryList_data[]
   role: UserRole
+  isAdmin: boolean,
+  isManager: boolean,
   myProfile?: IProfile
+  isLogin?: boolean;
 }
 
 const defaultContext: TContext = {
@@ -22,8 +26,11 @@ const defaultContext: TContext = {
   setEditMode: () => { },
   categories: [],
   role: UserRole.anonymous,
+  isAdmin: false,
+  isManager: false,
   submitEdit: undefined,
-  myProfile: undefined
+  myProfile: undefined,
+  isLogin: false
 }
 
 export const AppContext = React.createContext<TContext>(defaultContext);
@@ -70,6 +77,10 @@ function App({ Component, pageProps }) {
   const [editMode, setEditMode] = useState<boolean>(false);
   {/* <DaumPostcode autoResize autoClose onSearch={() => { }} onComplete={(asd) => { }} /> */ }
 
+
+  console.log("myProfile");
+  console.log(myProfile);
+
   return (
     <div className="App">
       <ApolloProvider client={PinkClient}>
@@ -79,7 +90,10 @@ function App({ Component, pageProps }) {
           submitEdit,
           categories: catList || [],
           role,
-          myProfile
+          myProfile,
+          isAdmin: role === UserRole.admin,
+          isManager: role === UserRole.manager,
+          isLogin: !!myProfile
         }}>
           <Layout>
             <Component {...pageProps} />
