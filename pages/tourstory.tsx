@@ -1,3 +1,8 @@
+import { Paginater } from 'components/common/Paginator';
+import SearchMini from 'components/common/SearchMini';
+import SortSelect from 'components/common/SortMethod';
+import { ViewCount } from 'components/common/ViewCount';
+import { PhotoView } from 'components/news/PhotoView';
 import SubTopNav from 'layout/components/SubTop';
 import React, { useState } from 'react';
 import { ISet } from 'types/interface';
@@ -14,6 +19,7 @@ interface IProp {
     search: string;
     setSearch: ISet<string>
 }
+
 export const TourStory: React.FC<IProp> = ({ type, search, setSearch }) => {
 
     const [view, setView] = useState<"line" | "gall">("line");
