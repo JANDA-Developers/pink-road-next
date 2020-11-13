@@ -50,10 +50,9 @@ export const TourMain: React.FC<IProp> = ({context}) => {
             <div className="w1200">
                 <div id="sub_tap_nav" className="subtop_nav">
                     <ul>
-<<<<<<< HEAD
                         <li className="on"><a href="/tour/list">전체</a></li>
                         <li><a href="/tour/list">문화·예술여행</a></li>
-=======
+
                         <li className="on">
                             <Link href="/tour/list">
                                 <a >전체</a>
@@ -64,7 +63,6 @@ export const TourMain: React.FC<IProp> = ({context}) => {
                                 <a >문화·예술여행</a>
                             </Link>
                         </li>
->>>>>>> bb567029d64b9159343656a29336fdc4da7f8084
                         <li><a href="/tour/list">교육·답사여행</a></li>
                         <li><a href="/tour/list">역사여행</a></li>
                         <li><a href="/tour/list">팸투어</a></li>

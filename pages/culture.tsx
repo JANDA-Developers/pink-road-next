@@ -48,7 +48,7 @@ export const Culture: React.FC<IProp> = ({ type, search, setSearch }) => {
             </div>
         </div>
 
-        <div className="culture_box w1200">
+        <div className="w1200 culture_box">
             <div id="sub_tap_nav" className="subtop_nav">
                 <ul>
                     <li className={type === NewsTypes.tour ? "on" : undefined}><a href={"/tourstory"}>여행이야기</a></li>
