@@ -112,11 +112,7 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                             </Link>
                         )}
                     </ul>
-                    {isManager && 
-                        <Link href={`/portfolio/write`} >
-                            <button  type="button" className="btn medium">추가</button>
-                        </Link>
-                    }
+              
                     <div className="boardNavigation">
                         <div className="center">
                             <div className="pagenate_mini">
@@ -126,7 +122,15 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                             </div>
                         </div>
                     </div>
-                    
+                    <div className="boardNavigation">
+                        <div className="float_left">
+                        </div>
+                        <div class="float_right">
+                            {isManager &&
+                                <Link href={`/portfolio/write`} ><button type="submit" className="btn medium pointcolor">포트폴리오 등록</button></Link>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

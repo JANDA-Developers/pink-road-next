@@ -22,7 +22,7 @@ export const TourList: React.FC<IProp> = ({ context }) => {
 
     return <div>
         <SubTopNav title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" />
-        <div className="mdeal_box">
+        <div className="tour_box">
             <div className="w1200">
                 <div className="deal_list">
                     <div className="search">

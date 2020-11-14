@@ -72,13 +72,19 @@ export const BoardView: React.FC<IProps> = (data) => {
   </div>*/}
                 </div>
                 <div className="in_box">
-                    <p>
-                        {summary && <>{summary}
-                            <br /><br />
-                        </>
-                        }
-                        {thumb && <img src={thumb.uri} alt={thumb.name} />}
-                    </p>
+                  
+                    {/*본문시작*/}
+                    {summary && <>{summary}
+                        <br /><br />
+                    </>
+                    }
+                    {/*thumb && <img src={thumb.uri} alt={thumb.name} /> 섬네일이미지 안보여줘도됨...*/}
+
+                    {content.blocks &&
+                        <EditorRendererProvider data={content} />
+                    }
+
+
                     {files &&
                         <div className="download_box">
                             <ul>
@@ -90,9 +96,7 @@ export const BoardView: React.FC<IProps> = (data) => {
                     }
                 </div>
                 {/* 댓글 */}
-                {content.blocks && 
-                <EditorRendererProvider data={content} />
-                }
+               
                 <div className="boardNavigation">
                     <div className="float_left">
                         {handleList && <button onClick={handleList} type="button" className="btn medium">목록</button>}
