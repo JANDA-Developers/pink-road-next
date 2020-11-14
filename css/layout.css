@@ -2302,12 +2302,14 @@ i.icon_plus {
         .footer_in .copyright .name {
             display: block;
         }
-
-    .footer_in .bottom_bn span {
-        width: 132px;
-        margin-right: 41px;
-        margin-bottom:15px;
-    }
+        .footer_in .copyright .bottom_bn {
+            padding-top:14px;
+        }
+        .footer_in .bottom_bn span {
+            width: 132px;
+            margin-right: 41px;
+            margin-bottom: 15px;
+        }
 
     .footer_in .f_detail_wrap .ft_left .logo_bottom {
         width: 194px;

@@ -222,7 +222,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         initStorage()
     }, [])
 
-    return <div key={d} className="mdeal_writing_in w100 board_write">
+    return <div key={d} className="tour_box w100 board_write">
         <SubTopNav children={
             <>
                 <li className="homedeps1">

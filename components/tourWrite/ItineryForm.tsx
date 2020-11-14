@@ -66,17 +66,23 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, itineries, setitineries,
         {itinery.contents.map((content, contentIndex) =>
             <div  key={`${contentIndex}${index}content`}>
                 <textarea onChange={handleOnChange(contentIndex)} key={"initeryFrom__content" + contentIndex} style={{ width: '100%', minHeight: '100px' }} value={content} />
-                <button style={{
-                    marginBottom: '0.4rem'
-                }} onClick={handleDeleteContent(contentIndex)} className="comment_btn mini">
-                    삭제
+
+                <button onClick={handleDeleteContent(contentIndex)} className="comment_btn mini elimination">
+                    일정삭제
                 </button>
+                <button onClick={handleAddContent} className="comment_btn mini add">일정추가</button>{/*마지막에만 출력이 되도록 가능한가요?*/}
             </div>
         )}
-        <input className="initrary__imgInput" ref={hiddenFileInput} multiple accept="image/png, image/jpeg" onChange={handleChange} type="file" />
-        <div onClick={handleAddContent} className="add_box_btn">
-            <span className="texta_add">일정 추가<i className="jandaicon-arr5-bottom"></i></span>
+        <div className="add_img_box">
+            <span>이미지 추가</span>
+            <div>
+                <input className="initrary__imgInput" ref={hiddenFileInput} multiple accept="image/png, image/jpeg" onChange={handleChange} type="file" />
+            </div>
+
+            
         </div>
+       
+    
     </div>;
 };
 

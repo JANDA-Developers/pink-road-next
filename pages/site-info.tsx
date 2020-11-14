@@ -40,6 +40,19 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
         setAddInfo({ ...addInfo, alt: value })
     }
 
+    const openPopup = (element: string | null) => {
+        let popupElement = document.getElementById(`${element}`) as HTMLElement;
+        popupElement!.style.display = 'block';
+        document!.getElementById('fade')!.style.display = 'block';
+    }
+
+    const closePopup = (element: string | null) => {
+        let popupElement = document.getElementById(`${element}`) as HTMLElement;
+        popupElement!.style.display = 'none';
+        document!.getElementById('fade')!.style.display = 'none';
+    }
+
+
     return <div className="siteInfo_in">
         <HiddenSubmitBtn setData={setPage} original={original} path="site-info" data={page} />
         <div style={{
@@ -245,6 +258,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                         }}><i className="flaticon-add"></i>추가</li>
                     }
                 </ul>
+               
             </div>
         </div>
         <div className="w100 con07 con_block">
@@ -278,6 +292,39 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             <input />
             <input onChange={() => { }} value={addInfo.link} />
         </div>}
+
+
+
+
+
+
+
+
+
+
+        {/* popup은 언제나 class fade와 함께 있어야 한다. */}
+        <div className="popup_bg_mini" style={{ display: 'none' }}>
+            <a className="close_icon"><i className="flaticon-multiply" /></a>
+            <div className="in_txt">
+                <h3>이미지 업로드</h3>
+                <div className="con">
+                    <div className="input_box">
+                        <input type="file" />
+                    </div>
+                    <div className="info">
+                        <p><i className="flaticon-flag-1" /> 사이즈는 가로사이즈 300px이 넘지 않아야 합니다. <br /> PNG파일을 권장드리나 gif, jpg도 업로드가능합니다.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div className="fade"></div>
+
+
+
+
+
+
     </div>;
 };
 
