@@ -124,6 +124,29 @@ ul[contenteditable="true"] li {
     margin-bottom: 5px;
 }
 
+.initrary__img  .icon_x {
+    color: #333;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+}
+.initrary__img {
+    position: relative;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 8px;
+    display: inline-block;
+}
+
+.initrary__img + .initrary__img {
+    margin-left: 0px;
+}
+
+.initrary__img:first-child {
+    margin-left: 0px;
+}
+
 .disabled-btn {
     pointer-events: none;
 }

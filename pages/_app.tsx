@@ -40,6 +40,8 @@ export const AppContext = React.createContext<TContext>(defaultContext);
 
 function App({ Component, pageProps }) {
 
+  console.log("uploaded");
+
   const [pageInfoCreateMu, { loading: pageInfoCreateLoading }] = useMutation<pageInfoCreate, pageInfoCreateVariables>(PAGE_INFO_CREATE, {
     client: PinkClient
   })

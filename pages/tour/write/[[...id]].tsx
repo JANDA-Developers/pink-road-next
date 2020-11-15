@@ -390,9 +390,9 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                             if (newItinerary)
                                 setitineries([...newItinerary]);
                         }} from={dayjs(itineries[0]?.date).toDate()} to={dayjs(itineries[itineries.length - 1]?.date).toDate()} />
-                    {(itineries || []).map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setitineries={setitineries} itinery={itinery} itineries={itineries} />)}
-                
-                </div>
+                        {(itineries || []).map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setitineries={setitineries} itinery={itinery} itineries={itineries} />)}
+
+                    </div>
                 }
 
                 <div style={{
@@ -468,8 +468,10 @@ interface ITourWriteWrapContext {
 
 //수정하고 나면 수정한 내용을 그대로 덮어버리면 안됨. 핑크로드의 승인이 필요함.
 export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
+    const { isManager } = useContext(AppContext);
     const router = useRouter(); // => 넥스트에서는 변경
     const { query } = router;
+
 
     const id = query.id?.[0] as string | undefined;
 
@@ -530,7 +532,9 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
 
     if (findLoading) return null;
     if (unexistId) return <Page404 />
-
+    if (!isManager) {
+        return <Page404 />
+    }
     const context: ITourWriteWrapContext = {
         createFn,
         updateFn,
@@ -540,6 +544,7 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
         createLoading,
         mode: !id ? "create" : "edit"
     }
+
 
     return <TourWrite context={context} />;
 };
