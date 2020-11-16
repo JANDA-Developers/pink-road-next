@@ -15,7 +15,7 @@ import DayPicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
 import { generateitinery, getDefault, TRange } from '../../../components/tourWrite/helper';
 import { useUpload } from "hook/useUpload";
-import { PRODUCT_POST_CREATE, PRODUCT_POST_UPDATE } from "apollo/mutations";
+import { PRODUCT_POST_CREATE } from "apollo/mutations";
 import { ItineryForm } from "components/tourWrite/ItineryForm";
 import { autoComma } from "utils/formatter";
 import dayjs from "dayjs";
@@ -42,7 +42,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     const { data: defaultData, defaults, contents: contentBlocks, images, itinerary, inOrNor } = getDefault(productPost);
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
     const [itineries, setitineries] = useState<ItineraryCreateInput[]>(itinerary);
-    const { signleUpload } = useUpload();
+    const { signleUpload, uploadLoading } = useUpload();
     const [data, setData] = useState<TProductDataPart>(defaultData)
     const [categoryId, setCategoryId] = useState("5fa9e366d8b271340229bbff");
     const [status, setStatus] = useState(defaults.status);
@@ -391,10 +391,8 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                                 setitineries([...newItinerary]);
                         }} from={dayjs(itineries[0]?.date).toDate()} to={dayjs(itineries[itineries.length - 1]?.date).toDate()} />
                         {(itineries || []).map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setitineries={setitineries} itinery={itinery} itineries={itineries} />)}
-
                     </div>
                 }
-
                 <div style={{
                     display: tab === 2 ? undefined : "none"
                 }} id="texta_02" className="texta">
@@ -535,6 +533,7 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
     if (!isManager) {
         return <Page404 />
     }
+
     const context: ITourWriteWrapContext = {
         createFn,
         updateFn,
