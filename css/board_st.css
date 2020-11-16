@@ -1714,9 +1714,6 @@ div.board_list_mini {
         display: flex;
     }
 
-    .board_write .add_img_box + .add_img_box  {
-        margin-left: 0px;
-    }
 
 
     .board_write .add_img_box__addBtn {

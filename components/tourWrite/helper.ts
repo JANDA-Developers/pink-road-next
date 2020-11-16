@@ -25,7 +25,7 @@ export const generateitinery = (range:TRange,itineries:ItineraryCreateInput[]):I
 
     // 인덱스 가 부족하다면 채워줌
     if (diff > itineries.length)
-        tempSch = [...tempSch, ...Array(diff - tempSch.length).fill({...DEFAULT_itinery, contents: []})]
+        tempSch = [...tempSch, ...Array(diff - tempSch.length).fill({...DEFAULT_itinery, contents: [""]})]
 
     // 전체를 리셋함.
     return tempSch.map((sch,i) => {
