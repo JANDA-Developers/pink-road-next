@@ -28,7 +28,6 @@ import Page404 from "pages/404";
 import { Validater } from "utils/validate";
 import { toNumber } from "utils/toNumber";
 const omitDeep = require("omit-deep-lodash");
-
 const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
 interface IProp {
     context: ITourWriteWrapContext;

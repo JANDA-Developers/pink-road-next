@@ -72,7 +72,7 @@ export const BoardView: React.FC<IProps> = (data) => {
   </div>*/}
                 </div>
                 <div className="in_box">
-                  
+
                     {/*본문시작*/}
                     {summary && <>{summary}
                         <br /><br />
@@ -96,7 +96,7 @@ export const BoardView: React.FC<IProps> = (data) => {
                     }
                 </div>
                 {/* 댓글 */}
-               
+
                 <div className="boardNavigation">
                     <div className="float_left">
                         {handleList && <button onClick={handleList} type="button" className="btn medium">목록</button>}

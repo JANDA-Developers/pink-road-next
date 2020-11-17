@@ -6,11 +6,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { IProductPostFindById } from "types/interface";
-import EditorRendererProvider from 'react-editorjs-renderer';
 import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
 import { useProductPostDelete } from "hook/useProductDelete";
+import EditorRendererProvider from 'react-editorjs-renderer';
 
 
 // <div class="top_visual">
@@ -111,7 +111,7 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
           </Link>
         </li>
       </>
-      } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/work_top_bg2.jpg'} />
+    } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/work_top_bg2.jpg'} />
     <div className="tour_details_in w1200">
 
 
