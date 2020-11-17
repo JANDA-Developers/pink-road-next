@@ -60,6 +60,8 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
     const { categoryList, author } = defaults;
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
 
+    console.log(contents);
+
     const data: Partial<IBoard> = {
         categoryId: category,
         contents,
@@ -88,7 +90,7 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
     }
 
     const handleCreate = () => {
-        
+
         onCreate(data)
     }
 

@@ -22,8 +22,8 @@ export const PorfolioDetail: React.FC<IProp> = ({ item }) => {
     const toList = () => {
         router.push(`/portfolio#list`)
     }
-   
-    
+
+
     const [portfoliotDeleteMu, { loading: deleteLoading }] = useMutation<portfolioDelete, portfolioDeleteVariables>(PORTFOLIO_DELETE, {
         onCompleted: ({ PortfolioDelete }) => {
             if (PortfolioDelete.ok) {
@@ -33,14 +33,25 @@ export const PorfolioDetail: React.FC<IProp> = ({ item }) => {
     })
 
     const handleDelete = () => {
-        if(confirm("정말로 게시글을 삭제 하시겠습니까?"))
-        portfoliotDeleteMu({
-            variables: {
-                id:_id
-            }
-        })
+        if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
+            portfoliotDeleteMu({
+                variables: {
+                    id: _id
+                }
+            })
     }
-    return <BoardView onList={toList} thumb={thumb} content={contents} writer={"관리자"} title={title} summary={summary} onDelete={handleDelete} onEdit={toDetail} createAt={createdAt} catName={pCategory?.label} />
+
+    return <BoardView
+        onList={toList}
+        thumb={thumb}
+        content={contents}
+        writer={"관리자"}
+        title={title}
+        summary={summary}
+        onDelete={handleDelete}
+        onEdit={toDetail}
+        createAt={createdAt}
+        catName={pCategory?.label} />
 };
 
 
@@ -50,7 +61,7 @@ export const PorfolioDetailWrap: React.FC<IProp> = () => {
     const { item, loading } = usePortfolioFind(id)
 
     if (loading) return null;
-    if (!item) return <Page404/>;
+    if (!item) return <Page404 />;
 
     return <PorfolioDetail item={item} />
 }
