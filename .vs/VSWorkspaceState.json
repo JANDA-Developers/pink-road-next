@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css",
     "\\layout",
     "\\pages",
     "\\pages\\experience",
     "\\pages\\portfolio",
     "\\pages\\tour",
+    "\\pages\\tour\\write",
     "\\public",
     "\\public\\img",
     "\\public\\img\\svg"
   ],
-  "SelectedNode": "\\pages\\qna.tsx",
+  "SelectedNode": "\\css\\board_st.css",
   "PreviewInSolutionExplorer": false
 }
