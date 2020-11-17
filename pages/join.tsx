@@ -176,9 +176,7 @@ const Join = () => {
                             </ul>
                         </div>
                         <div className="join_wrap2 w1200">
-                            <div className="w1200 " id="con02">
-                                {handleFormRender(joinForm)}
-                            </div>
+         
                             {/* 인증 공통사항 */}
                             {joinProcess.userType &&
                                 <UserType handleChange={handleChange} />
