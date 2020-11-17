@@ -26,51 +26,27 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                 </ul>
             </div>
         </div>
-        <div className="mypage_in w1200">
-            <div className="lnb">
-                <div className="profile_box">
-                    <span className="photo">
-                        <img src='/img/profile_p.png' alt="프로필이미지" />
-                    </span>
-                    <span className="nickname">새부산관광</span>
-                </div>
-                <h3>My page</h3>
-                <ul>
-                    <li className="on">
-                        <a href={"/mypage"}>회원정보</a>
-                    </li>
-                    {/* 개인 -*/}
-                    <li>
-                        <a href="/mypage/purchase">구매내역</a>
-                    </li>
-                    {/* 개인 -*/}
-                    <li>
-                        <a href="/mypage/basket">장바구니</a>
-                    </li>
-                    {/* 개인 -*/}
-                    <li>
-                        <a href="/mypage/basket">나의 게시글</a>
-                    </li>
-                    {/* 개인/기업파트너/개인파트너 -*/}
-                    <li>
-                        <a href="/mypage/reservation">예약관리</a>
-                    </li>
-                    {/* 기업파트너/개인파트너 -*/}
-                    <li>
-                        <a href="/mypage/goods">상품관리</a>
-                    </li>
-                    {/* 기업파트너 -*/}
-                    <li>
-                        <a href="/mypage/plainning">기획관리</a>
-                    </li>
-                    {/* 개인파트너 -*/}
-                    <li>
-                        <a href="/mypage/settlement">매출/정산관리</a>
-                    </li>
-                    {/* 기업파트너/개인파트너 -*/}
+        <div className="mypage_in w100">
+            <div className="w1200">
+                <ul className="subtop_nav">
+                    <li className="on"><a href="/mypage">회원정보</a></li>{/* 개인 -*/}
+                    <li><a href="/mypage/purchase">구매내역</a></li>{/* 개인 -*/}
+                    <li><a href="/mypage/basket">장바구니</a></li>{/* 개인 -*/}
+                    <li><a href="/mypage/basket">나의 게시글</a></li>{/* 개인/기업파트너/개인파트너 -*/}
+                    <li><a href="/mypage/reservation">예약관리</a></li>{/* 기업파트너/개인파트너 -*/}
+                    <li><a href="/mypage/goods">상품관리</a></li>{/* 기업파트너 -*/}
+                    <li><a href="/mypage/plainning">기획관리</a></li>{/* 개인파트너 -*/}
+                    <li><a href="/mypage/settlement">매출/정산관리</a></li>{/* 기업파트너/개인파트너 -*/}
                 </ul>
+                <div className="lnb">
+                    <div className="profile_box">
+                        <span className="nickname"><strong>새부산관광</strong>님 어서오세요.</span>
+
+                    </div>
+
+                </div>
+                {children}
             </div>
-            {children}
         </div>
     </div>
 };

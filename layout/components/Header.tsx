@@ -121,8 +121,8 @@ export const Header: React.FC<IProp> = () => {
                                 </Link>
                             </li>
                             <li className="deps">
-                                <Link href="/??">
-                                    <a>Design Goods</a>
+                                <Link href="https://smartstore.naver.com/pinkroader">
+                                    <a target="_blank">Design Goods</a>
                                 </Link>
                             </li>
                             <li className="deps">

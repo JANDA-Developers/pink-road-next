@@ -85,8 +85,9 @@
         text-align: center;
         color: #8b8b8b;
     }
-.footer-area-bottom {
+.footer-area-bottom {/*핑크로더는삭제요청*/
     background: #dedede;
+    display:none;
 }
 
     .footer-area-bottom .janda_txt p {
@@ -995,7 +996,7 @@ rect.allmenu_svg {
             .header_nav ul .home a {
                 display: block;
                 width: 38px;
-                height:49px;
+                height:50px;
                 text-align: center;
                 line-height: 60px;
                 overflow: hidden;
@@ -1630,7 +1631,7 @@ footer .footer_in_bottom {
         margin-right: 0px;
         margin-left: 0;
         box-sizing:border-box;
-        padding:0 10px;
+        padding:0 15px 0 0;
         font-size: 14px;
         position: relative;
     }
@@ -1833,6 +1834,7 @@ footer .footer_in_bottom {
         width: 89%;
         padding-left: 72px;
         box-sizing: border-box;
+        text-align:center;
     }
 
 .container,
@@ -2103,7 +2105,9 @@ i.icon_plus {
         .top_visual .sub_header .text {
             font-size: 1.2em;
         }
-    
+    .footer_in .copyright .bottom_bn {
+        margin-top: 35px;
+    }
 }
 
 @media (min-width:1000px) {
@@ -2257,6 +2261,7 @@ i.icon_plus {
             margin-top: 0;
             top: 11px;
             width: auto;
+            padding:0 0 0 10px;
         }
 
         .footer_in .bottom_nav ul {
@@ -2282,6 +2287,7 @@ i.icon_plus {
         margin-left: 0;
         padding: 5px 0 50px;
         display: flex;
+        margin-bottom: 0;
     }
 
         .footer_in .copyright ul {
@@ -2303,11 +2309,13 @@ i.icon_plus {
             display: block;
         }
         .footer_in .copyright .bottom_bn {
-            padding-top:14px;
+            padding-top: 14px;
+            text-align: right;
+            margin-top: 0;
         }
         .footer_in .bottom_bn span {
             width: 132px;
-            margin-right: 41px;
+            margin-left: 41px;
             margin-bottom: 15px;
         }
 
@@ -2347,6 +2355,9 @@ i.icon_plus {
     .m {
         display: none;
     }
+    .header > .w1200 {
+        padding: 28px 0;
+    }
     .header_nav {
         bottom: 80px;
     }
@@ -2382,8 +2393,10 @@ i.icon_plus {
         padding: 15px;
     }
     #all_menu {
-        min-width: 1100px;
-        padding: 223px 0 0;
+        min-width: 1200px;
+        padding: 190px 0 0;
+        background-position: center top;
+        background-size: 100%;
     }
 
         #all_menu ul .a_menu_tit {
@@ -2424,7 +2437,7 @@ i.icon_plus {
 
             #all_menu ul .a_menu_tit {
                 width: 10%;
-                min-width: 175px;
+                min-width: 120px;
             }
     .header .hd_center .nav_wrap .deps1 > li > a {
         font-size: 19px;

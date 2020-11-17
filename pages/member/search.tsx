@@ -92,7 +92,7 @@ export const Search: React.FC<IProp> = () => {
                 <div className="con_box">
                     <div className="alignment">
                         <div className="left_div">
-                            <h5>여행 상품<strong>334</strong></h5>
+                            <h5>여행상품<strong>334</strong></h5>
                         </div>
                         <div className="right_div">
                             <select className="sel01">
@@ -232,7 +232,7 @@ export const Search: React.FC<IProp> = () => {
                 <div className="con_box inf">
                     <div className="alignment">
                         <div className="left_div">
-                            <h5>체험 상품<strong>334</strong></h5>
+                            <h5>체험상품<strong>334</strong></h5>
                         </div>
                         <div className="right_div">
                             <select className="sel02 al_01">

@@ -349,7 +349,7 @@ ul.list_ul .list_in {
 }
 
     ul.list_ul .list_in:hover {
-        border: 2px solid #ed297b;
+        border: 2px solid #fff;
     }
 .selectViewList ul.list_ul .list_in {
     border: 0;
@@ -439,7 +439,10 @@ ul.list_ul li .tag2 {
     ul.list_ul li .tag2 span {
         display: inline-block;
         margin-right: 5px;
-        color: #999999;
+        color: #666666;
+        padding:1px 2px;
+        box-sizing:border-box;
+        background-color:#f5f5f5;
     }
 
 ul.list_ul li .title {
@@ -1862,6 +1865,9 @@ div.board_list_mini {
     .photo_ul.line3 li {
         width: 33%;
         height: 300px;
+    }
+    ul.list_ul .list_in:hover {
+        border: 2px solid #ed297b;
     }
 }
 
