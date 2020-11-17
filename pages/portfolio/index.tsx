@@ -16,7 +16,7 @@ interface IProp {
 }
 
 export const PortFolio: React.FC<IProp> = ({ context }) => {
-    const { editMode, isAdmin,isManager } = useContext(AppContext);
+    const { editMode, isAdmin, isManager } = useContext(AppContext);
     const { items: portfolios = [], pageInfo, setPage, sitePageInfo, pcategories } = context;
     const original = sitePageInfo || pageInfoDefault;
     const [page, setPageInfo] = useState(original);
@@ -26,12 +26,12 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
     console.log("isManager");
     console.log(isManager);
     const catPortfolios = viewCat ? portfolios.filter(pt => pt.pCategory?._id === viewCat) : portfolios;
-    const filteredPortfolios = (isAdmin || isManager) ? catPortfolios :  catPortfolios.filter(catP => catP.isOpen);
+    const filteredPortfolios = (isAdmin || isManager) ? catPortfolios : catPortfolios.filter(catP => catP.isOpen);
 
     const handlePrev = () =>
         setPage(pageInfo.page - 1)
 
-    const handleNext = () =>{
+    const handleNext = () => {
         setPage(pageInfo.page + 1)
     }
 
@@ -112,7 +112,7 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                             </Link>
                         )}
                     </ul>
-              
+
                     <div className="boardNavigation">
                         <div className="center">
                             <div className="pagenate_mini">
@@ -125,7 +125,7 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                     <div className="boardNavigation">
                         <div className="float_left">
                         </div>
-                        <div class="float_right">
+                        <div className="float_right">
                             {isManager &&
                                 <Link href={`/portfolio/write`} ><button type="submit" className="btn medium pointcolor">포트폴리오 등록</button></Link>
                             }

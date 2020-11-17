@@ -39,10 +39,10 @@ const defaultContext: TContext = {
 export const AppContext = React.createContext<TContext>(defaultContext);
 
 function App({ Component, pageProps }) {
-
   const [pageInfoCreateMu, { loading: pageInfoCreateLoading }] = useMutation<pageInfoCreate, pageInfoCreateVariables>(PAGE_INFO_CREATE, {
     client: PinkClient
   })
+
   const [pageInfoUpdateMu, { loading: pageInfoUpdateLoading }] = useMutation<pageInfoUpdate, pageInfoUpdateVariables>(PAGE_INFO_UPDATE, {
     client: PinkClient
   })
@@ -80,10 +80,6 @@ function App({ Component, pageProps }) {
 
   const [editMode, setEditMode] = useState<boolean>(false);
   {/* <DaumPostcode autoResize autoClose onSearch={() => { }} onComplete={(asd) => { }} /> */ }
-
-
-  console.log("myProfile");
-  console.log(myProfile);
 
   return (
     <div className="App">
