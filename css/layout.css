@@ -146,14 +146,14 @@
 .subtop_nav {
     position: absolute;
     top: -117px;
-    left:0;
-    width: 94%;
+    left: 0;
+    width: 100%;
     display: block;
     text-align: center;
     line-height: 27px;
     border-radius: 0;
     padding: 5px 3% 0;
-    margin: 0 auto;
+    margin-left:0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     background-color: #000000bf;
@@ -2088,7 +2088,6 @@ i.icon_plus {
         display: none;
     }
     .subtop_nav {
-        width: 100%;
         padding: 0 15px;
         line-height: 53px;
         top: -116px;
@@ -2426,7 +2425,11 @@ i.icon_plus {
     .footer_in .f_detail_wrap {
         width: 1200px;
     }
- 
+    .subtop_nav {
+        width: 1200px;
+        margin-left:-600px;
+        left:50%;
+    }
 
 }
 
@@ -2513,7 +2516,6 @@ i.icon_plus {
         }
     .subtop_nav {
         top: -98px;
-        width: 100%;
     }
     .header_nav ul {
        display:none;

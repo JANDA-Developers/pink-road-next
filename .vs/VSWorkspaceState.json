@@ -1,16 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\layout",
+    "\\info",
     "\\pages",
     "\\pages\\experience",
-    "\\pages\\portfolio",
+    "\\pages\\mypage",
     "\\pages\\tour",
     "\\pages\\tour\\write",
-    "\\public",
-    "\\public\\img",
-    "\\public\\img\\svg"
+    "\\public"
   ],
-  "SelectedNode": "\\css\\board_st.css",
+  "SelectedNode": "\\pages\\tour\\write\\[[...id]].tsx",
   "PreviewInSolutionExplorer": false
 }
