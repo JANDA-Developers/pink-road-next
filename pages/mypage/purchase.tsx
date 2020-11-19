@@ -41,21 +41,36 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                                         <span>1년</span>
                                     </li>
                                 </ul>
-                                <input type="text" className="day" />
-                                <CalendarIcon />
-                            ~
-                            <input type="text" className="day ml5" />
-                                <CalendarIcon />
+                                <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                                 ~
+                                 <div className="input_box">    
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="jul1">
+                            <div>
+                                <input type="text" placeholder="검색 내용을 입력해주세요." />
+                                <div className="svg_img">
+                                    <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                    <button />
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="con_bottom">
+                  
                     <div className="con_box">
                         <div className="alignment">
                             <div className="left_div">
                                 총 <strong>22,222</strong>개
-            </div>
+                            </div>
                             <div className="right_div">
                                 <select className="sel01">
                                     <option>추천수</option>

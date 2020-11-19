@@ -26,24 +26,28 @@ export const MyPageBasket: React.FC<IProp> = () => {
                     <div className="td">
                         <div className="t01"><input type="checkbox" /></div>
                         <div className="t02">
-                            <div className="img"></div>
+                            <div className="img" style={{ backgroundImage: 'url(/img/sample_01.gif)' }}></div>
                             <div className="right">
                                 <div className="ct">역사여행</div>
-                                <div className="title">거제도로 떠나요~~~!!!!</div>
+                                <div className="title"><a href="/">거제도로 떠나요~~~!!!!</a></div>
                                 <div className="subtitle">가족단위로 떠나는 주말 여행~~!!!!! 지금이 바로 좋은기회입니다.</div>
-
                             </div>
+                            <span className="del">
+                                <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
+                                <button />
+                            </span>
+
                         </div>
                         <div className="t03">
                             <div className="day">출발일 : <strong>11.20(금)</strong></div>
                             <div className="start_where">집합장소 : 부산시민공원 정문 앞</div>
                             <div className="tour_mode">여행방식 : 당일여행</div>
                             <div className="men">선택인원 : 성인1, 소인1, 유아1</div>
-                            <button className="btn">조건 추가/변경</button>
+                            <button className="btn option_btn">조건 추가/변경</button>
                         </div>
                         <div className="t04">
                             <div className="money"><strong>30,000 원</strong></div>
-                            <button className="btn">주문하기</button>
+                            <button className="btn hit">주문하기</button>
                         </div>
                         <div className="t05">
                             <div className="day_cunt">출발 D-6</div>
@@ -58,16 +62,20 @@ export const MyPageBasket: React.FC<IProp> = () => {
                             <div className="img"></div>
                             <div className="right">
                                 <div className="ct">역사여행</div>
-                                <div className="title">거제도로 떠나요~~~!!!!</div>
+                                <div className="title"><a href="/">거제도로 떠나요~~~!!!!</a></div>
                                 <div className="subtitle">가족단위로 떠나는 주말 여행~~!!!!! 지금이 바로 좋은기회입니다.</div>
                             </div>
+                            <span className="del">
+                                <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
+                                <button />
+                            </span>
                         </div>
                         <div className="t03">
                             <div className="day">출발일 : <strong>11.20(금)</strong></div>
                             <div className="start_where">집합장소 : 부산시민공원 정문 앞</div>
                             <div className="tour_mode">여행방식 : 당일여행</div>
                             <div className="men">선택인원 : 성인1</div>
-                            <button className="btn">조건 추가/변경</button>
+                            <button className="btn option_btn">조건 추가/변경</button>
                         </div>
                         <div className="t04">
                             <div className="money"><strong>30,000 원</strong></div>
@@ -99,7 +107,7 @@ export const MyPageBasket: React.FC<IProp> = () => {
                 <div className="baket_btn">
                     <div className="left">
                         <button className="btn">쇼핑계속하기</button>
-                        <button className="btn">주문하기</button>
+                        <button className="btn orders">주문하기</button>
                     </div>
 
                 </div>
@@ -107,6 +115,71 @@ export const MyPageBasket: React.FC<IProp> = () => {
 
             </div>
         </div>
+        {/* popup은 언제나 class fade와 함께 있어야 한다. */}
+        <div className="popup_bg_mini" style={{ display: 'block' }}>
+            <a className="close_icon"><i className="flaticon-multiply" /></a>
+            <div className="in_txt">
+                <h3>조건 추가/변경</h3>
+                <div className="con">
+                    <div className="box">
+                        <table className="option_tb">
+                            <tbody>
+                                <tr>
+                                    <th>대인</th>
+                                    <td>
+                                        <strong>10,000</strong>원
+                                            <div className="number_box">
+                                            <span className="left_btn"><i className="flaticon-substract"></i></span>
+                                            <span className="number">0</span>
+                                            <span className="right_btn"><i className="flaticon-add"></i></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>소인</th>
+                                    <td>
+                                        <strong>5,000</strong>원
+                                            <div className="number_box">
+                                            <span className="left_btn"><i className="flaticon-substract"></i></span>
+                                            <span className="number">0</span>
+                                            <span className="right_btn"><i className="flaticon-add"></i></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>유아</th>
+                                    <td>
+                                        <strong>3,000</strong>원
+                                            <div className="number_box">
+                                            <span className="left_btn"><i className="flaticon-substract"></i></span>
+                                            <span className="number">0</span>
+                                            <span className="right_btn"><i className="flaticon-add"></i></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div className="chash_box">
+                            <table className="chash_tb">
+                                <tbody>
+                                    <tr>
+                                        <th>총 금액</th>
+                                        <td>
+                                            <strong>10,000</strong>원
+
+                                            </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button className="btn w100">변경하기</button>
+                    </div>
+                  
+
+                </div>
+            </div>
+        </div>
+        <div className="fade"></div>
     </MypageLayout>
 };
 

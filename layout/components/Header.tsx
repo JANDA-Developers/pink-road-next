@@ -274,6 +274,7 @@ export const Header: React.FC<IProp> = () => {
                             <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
                             <ul className="depth1">
                                 <li><a href="../mypage">회원정보</a></li>
+                                <li><a href="../mypage/notification">알림</a></li>
                                 <li><a href="../mypage/purchase">구매내역</a></li>
                                 <li><a href="../mypage/basket">장바구니</a></li>
                                 <li><a href="../mypage/write">나의 게시글</a></li>
