@@ -3,50 +3,147 @@ import React from 'react';
 
 interface IProp { }
 
-export const MyPagePlanning: React.FC<IProp> = () => {
+export const MyPlanning: React.FC<IProp> = () => {
     return <MypageLayout>
-        <div className="in board_list mymdeal_div">
+        <div className="in myboard_box">
             <h4>기획관리</h4>
             <div className="paper_div">
-                <div className="in_box">
-                    <div className="list_lightbox">
-                        <div className="boardListForm">
-                            <ul className="list_ul">
-                                <li >
-                                    <div className="subj">20,000원</div>
-                                    <div className="date">2020.09.08</div>
-                                    <div className="info">
-                                        <span>정산중</span>
-                                    </div>
-                                </li>
-                                <li >
-                                    <div className="subj">20,000원</div>
-                                    <div className="date">2020.09.08</div>
-                                    <div className="info">
-                                        <span>정산중</span>
-                                    </div>
-                                </li>
-                                <li >
-                                    <div className="subj">20,000원</div>
-                                    <div className="date">2020.09.08</div>
-                                    <div className="info">
-                                        <span>정산중</span>
-                                    </div>
-                                </li>
-                                <li >
-                                    <div className="subj">20,000원</div>
-                                    <div className="date">2020.09.08</div>
-                                    <div className="info">
-                                        <span>정산중</span>
-                                    </div>
-                                </li>
-                            </ul>
+                <div className="con_top">
+                    <h6>상세검색</h6>
+                    <div className="search_box">
+                        <div className="jul2">
+                            <div className="title">범위</div>
+                            <div className="text">
+                                <span className="check on">제목</span>
+                                <span className="check">내용</span>
+                            </div>
+                        </div>
+                        <div className="jul4">
+                            <div className="title">날짜</div>
+                            <div className="text">
+                                <ul className="day_ul">
+                                    <li className="on">
+                                        <span>이번달</span>
+                                    </li>
+                                    <li className="on">
+                                        <span>저번달</span>
+                                    </li>
+                                    <li>
+                                        <span>6개월</span>
+                                    </li>
+                                    <li>
+                                        <span>1년</span>
+                                    </li>
+                                </ul>
+                                <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <span className="calendar">
+                                        <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
+                                        <button />
+                                    </span>
+                                </div>
+                                ~
+                                 <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <span className="calendar">
+                                        <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
+                                        <button />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="jul1">
+                            <div>
+                                <input type="text" placeholder="검색 내용을 입력해주세요." />
+                                <div className="svg_img">
+                                    <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                    <button />
+                                </div>
+
+                            </div>
                         </div>
                     </div>
+
+                    <div className="con_bottom">
+                        <div className="alignment">
+                            <div className="left_div">총 <strong>22,222</strong>개</div>
+                            <div className="right_div">
+                                <select className="sel01">
+                                    <option>추천수</option>
+                                    <option>예약수</option>
+                                    <option>조회수</option>
+                                </select>
+                                <select className="sel02">
+                                    <option>10개 보기</option>
+                                    <option>50개 보기</option>
+                                    <option>100개 보기</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div className="board_list_mini ln04">
+                            <div className="thead">
+                                <div className="th02">제목</div>
+                                <div className="th03">게시판</div>
+                                <div className="th04">날짜</div>
+                            </div>
+                            <div className="tbody">
+                                <ul>
+                                    <li>
+                                        <div className="th02"><a href="/">궁금한게 있어요 :) <i className="q_ok">답변완료</i></a></div>
+                                        <div className="th03">문의하기</div>
+                                        <div className="th04">2020.02.02 11:00</div>
+                                    </li>
+                                    <li>
+                                        <div className="th02"><a href="/">궁금한게 있어요 :)<i className="q_no">답변중</i></a></div>
+                                        <div className="th03">문의하기</div>
+                                        <div className="th04">2020.02.02 11:00</div>
+                                    </li>
+                                    <li>
+                                        <div className="th02"><a href="/">궁금한게 있어요 :) <i className="q_ok">답변완료</i></a></div>
+                                        <div className="th03">문의하기</div>
+                                        <div className="th04">2020.02.02 11:00</div>
+                                    </li>
+                                    <li>
+                                        <div className="th02"><a href="/">궁금한게 있어요 :)<i className="q_no">답변중</i></a></div>
+                                        <div className="th03">문의하기</div>
+                                        <div className="th04">2020.02.02 11:00</div>
+                                    </li>
+                                    <li className="no_data">
+                                        {/*게시글이 없을때*/}
+                                        <i className="jandaicon-info3" />
+                                        <span>게시글이 없습니다.</span>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div className="boardNavigation">
+                                <div className="float_left">
+                                    <div className="pagenate_mini">
+                                        <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
+                                        <div className="count"><strong>1</strong> / 10</div>
+                                        <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
                 </div>
+
             </div>
         </div>
+
     </MypageLayout>
 };
 
-export default MyPagePlanning;
+export default MyPlanning;

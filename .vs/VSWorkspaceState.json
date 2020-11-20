@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\layout",
+    "\\layout\\components",
     "\\pages",
-    "\\pages\\experience",
-    "\\pages\\member",
+    "\\pages\\master",
     "\\pages\\mypage",
     "\\pages\\portfolio",
     "\\pages\\tour",
     "\\public",
     "\\public\\img"
   ],
-  "SelectedNode": "\\pages\\mypage\\my-board.tsx",
+  "SelectedNode": "\\layout\\components\\Header.tsx",
   "PreviewInSolutionExplorer": false
 }

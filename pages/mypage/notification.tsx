@@ -27,7 +27,7 @@ export const Notification: React.FC<IProp> = () => {
                         </div>
                         <div className="right">
                             <div className="hang">
-                                <strong>[시스템알림]</strong>
+                                <strong className="blue">시스템알림</strong>
                                 <span>비밀번호가 변경이 완료 되었습니다. </span>
                                 <div className="time">2시간전</div>
                                 <span className="del">
@@ -36,7 +36,7 @@ export const Notification: React.FC<IProp> = () => {
                                 </span> 
                             </div>
                             <div className="hang">
-                                <strong>[시스템알림]</strong>
+                                <strong className="blue">시스템알림</strong>
                                 <span>오늘 출발하는 상품이 <i>[3건]</i>이 있습니다. </span>
                                 <div className="time">5시간전</div>
                                 <span className="del">
@@ -45,7 +45,7 @@ export const Notification: React.FC<IProp> = () => {
                                 </span> 
                             </div>
                             <div className="hang">
-                                <strong>[예약완료]</strong>
+                                <strong className="pink">예약완료</strong>
                                 <span><i>김하은</i>님이 <i>[떠나요~거제도~~!!!]</i> 상품에서 <i>2020.11.12</i>에 <i>성인 1명 / 소인 2명</i>이 예약완료가 되었습니다. </span>
                                 <div className="time">8시간전</div>
                                 <span className="del">
@@ -54,8 +54,8 @@ export const Notification: React.FC<IProp> = () => {
                                 </span> 
                             </div>
                             <div className="hang">
-                                <strong>[예약취소]</strong>
-                                <span><i>고봉봉</i>님이 <i>[떠나요~거제도~~!!!]</i> 예약상품을 취소하셨습니다. <i>[카드취소]</i></span>
+                                <strong className="red">예약취소</strong>
+                                <span><i>고봉봉</i>님이 <i>[떠나요~거제도~~!!!]</i> 예약상품을 취소하셨습니다. <i>(카드취소)</i></span>
                                 <div className="time">8시간전</div>
                                 <span className="del">
                                     <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
@@ -72,42 +72,23 @@ export const Notification: React.FC<IProp> = () => {
                         </div>
                         <div className="right">
                             <div className="hang">
-                                <strong>[시스템알림]</strong>
-                                <span>비밀번호가 변경이 완료 되었습니다. </span>
-                                <div className="time">2시간전</div>
-                                <span className="del">
-                                    <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
-                                    <button></button>
-                                </span> 
-                            </div>
-                            <div className="hang">
-                                <strong>[시스템알림]</strong>
-                                <span>오늘 출발하는 상품이 <i>[3건]</i>이 있습니다. </span>
+                                <strong className="green">Member</strong>
+                                <span><i>나라여행</i>님이 여행기획 <i>1건</i>을 결제요청 하셨습니다.</span>
                                 <div className="time">5시간전</div>
                                 <span className="del">
                                     <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
                                     <button></button>
-                                </span> 
+                                </span>
                             </div>
                             <div className="hang">
-                                <strong>[예약완료]</strong>
-                                <span><i>김하은</i>님이 <i>[떠나요~거제도~~!!!]</i> 상품에서 <i>2020.11.12</i>에 <i>성인 1명 / 소인 2명</i>이 예약완료가 되었습니다. </span>
-                                <div className="time">8시간전</div>
+                                <strong className="green">Member</strong>
+                                <span><i>홍나라</i>님이 회원가입(파트너-가이드)을 요청 하셨습니다. 가입승인 대기중입니다. 확인해주세요~!!</span>
+                                <div className="time">5시간전</div>
                                 <span className="del">
                                     <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
                                     <button></button>
-                                </span> 
+                                </span>
                             </div>
-                            <div className="hang">
-                                <strong>[예약취소]</strong>
-                                <span><i>고봉봉</i>님이 <i>[떠나요~거제도~~!!!]</i> 예약상품을 취소하셨습니다. <i>[카드취소]</i></span>
-                                <div className="time">8시간전</div>
-                                <span className="del">
-                                    <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
-                                    <button></button>
-                                </span> 
-                            </div>
-
                         </div>
                     </div>
 

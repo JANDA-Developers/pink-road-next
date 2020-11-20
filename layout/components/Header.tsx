@@ -286,13 +286,13 @@ export const Header: React.FC<IProp> = () => {
                         </li>
                         <li className="a_menu_tit deps betatest">
 
-                            <a href="../master">Master<i className="jandaicon-arr4-right"></i></a>
+                            <a href="/master">Master<i className="jandaicon-arr4-right"></i></a>
                             <ul className="depth1">
                                 <li><a href="/master/ms-member">회원관리</a></li>
-                                <li><a href="/">상품관리</a></li>
-                                <li><a href="/">예약관리</a></li>
-                                <li><a href="../m_design">디자인 설정</a></li>
-                                <li><a href="../m_homepage">홈페이지 설정</a></li>
+                                <li><a href="/master/ms-goods">상품관리</a></li>
+                                <li><a href="/master/ms-reservation">예약관리</a></li>
+                                <li><a href="/master/ms-design">디자인 설정</a></li>
+                                <li><a href="/master/ms-homepage">홈페이지 설정</a></li>
                             </ul>
 
                         </li>
@@ -307,7 +307,9 @@ export const Header: React.FC<IProp> = () => {
                                 <li><a href="/member/privacy-policy">개인정보처리방침</a></li>
                                 <li><a href="/member/electron-terms">전자상거래이용약관</a></li>
                                 <li><a href="/member/kr-terms">국내여행약관</a></li>
-
+                                <li><a href="/member/inquirylist">문의하기</a></li>
+                                <li><a href="/member/notice">공지사항</a></li>
+                                <li><a href="/member/qna">자주하는질문</a></li>
                             </ul>
                         </li>
                     </ul>
