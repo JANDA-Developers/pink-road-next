@@ -49,6 +49,9 @@ export const BoardView: React.FC<IProps> = (data) => {
         onDelete();
     }
 
+    console.log("content");
+    console.log(content);
+
     return <div className="board_box">
         <div className="w1200">
             <div className="xe_content">
@@ -83,7 +86,6 @@ export const BoardView: React.FC<IProps> = (data) => {
                     {content.blocks &&
                         <EditorRendererProvider data={content} />
                     }
-
 
                     {files &&
                         <div className="download_box">

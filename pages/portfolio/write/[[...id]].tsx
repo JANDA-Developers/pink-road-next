@@ -49,8 +49,6 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
         catCreate(newCat);
     }
 
-
-
     const handleUpdate = (params: Partial<IBoard>) => {
         const { contents, isOpen, subTitle, summary, title, thumb } = params;
         updateFn(id, {
@@ -107,7 +105,6 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
                 }
             })
     }
-
 
     const handleTempSave = (data: Partial<IBoard>) => {
         try {

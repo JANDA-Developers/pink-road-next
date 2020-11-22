@@ -177,8 +177,6 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         if (!savedData) alert("저장된 정보가 없습니다.")
         const { itinerary, title, address, adult_price, baby_price, categoryId, caution, contents, images, inOrNor, info, keyWards, kids_price, maxMember, minMember, productId, startPoint, status, subTitle, type } = savedData;
 
-        console.log("contents");
-        console.log(contents);
 
         setData({
             address,

@@ -278,7 +278,7 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
                 width: "auto",
                 height: "100px",
                 display: "inline-block"
-              }} src={img.uri} />)}
+              }} src={img?.uri} />)}
             </div>
           )}
           {tab === 2 && <>
