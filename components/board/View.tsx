@@ -1,8 +1,9 @@
 import { OutputData } from "@editorjs/editorjs";
 import dayjs from "dayjs";
+import dynamic from "next/dynamic";
 import React from "react";
 import { Ffile } from "types/api"
-import EditorRendererProvider from 'react-editorjs-renderer';
+const EditorJs = dynamic(() => import('components/editor/Editor'))
 
 interface IProps {
     catName: string;
@@ -81,7 +82,10 @@ export const BoardView: React.FC<IProps> = (data) => {
                     {/*thumb && <img src={thumb.uri} alt={thumb.name} /> 섬네일이미지 안보여줘도됨...*/}
 
                     {content.blocks &&
-                        <EditorRendererProvider data={content} />
+                        <EditorJs config={{
+                            data: content,
+                            readOnly: true
+                        }} />
                     }
 
 

@@ -35,6 +35,7 @@
     "axios": "^0.21.0",
     "dayjs": "^1.9.4",
     "editorjs-paragraph-with-alignment": "^1.1.0",
+    "editorjs-react-renderer": "^2.4.0",
     "font-awesome": "^4.7.0",
     "graphql-request": "^3.3.0",
     "jquery": "^3.5.1",

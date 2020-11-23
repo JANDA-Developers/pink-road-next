@@ -1,28 +1,49 @@
-import React, { useEffect, useRef, useState } from 'react';
-import EditorJs from 'react-editor-js';
-import { EditorJsProps } from 'react-editor-js/dist/EditorJs';
-
-interface IProp extends EditorJS.EditorConfig {
+import * as React from "react";
+import { EditorConfig } from "@editorjs/editorjs";
+import Render from "react-editorjs-renderer";
+interface EditorJsWrapperProps extends React.ComponentProps<"div"> {
+    config?: EditorConfig;
 }
 
-export const Editor: React.FC<IProp> = (props) => {
-    const [editorTools, setTools] = useState<any>(undefined);
+export default function EditorJsWrapper({
+    config = {},
+    ...restProps
+}: EditorJsWrapperProps): JSX.Element {
+    const elmtRef = React.useRef<HTMLDivElement>();
 
-    useEffect(() => {
-        const fetch = async () => {
-            const editorTools = (await import('components/editor/tools.js')).default;
-            setTools(editorTools);
+    React.useEffect(() => {
+        if (!elmtRef.current) {
+            return;
         }
 
-        fetch()
-    }, [])
+        let editorJs;
 
+        (async () => {
+            const { default: EditorJS } = await import("@editorjs/editorjs");
+            const { default: EditorJSTools } = await import("./tools.js");
 
-    if (!editorTools) {
-        return <div />
+            editorJs = new EditorJS({
+                ...config,
+                tools: EditorJSTools,
+                holder: elmtRef.current,
+            });
+        })().catch((error): void => console.error(error));
+
+        return (): void => {
+            editorJs.destroy();
+        };
+    }, [config]);
+
+    if (typeof window === "undefined" && config.readOnly) {
+        return <Render data={config.data} />
     }
 
-    return <EditorJs  {...props} tools={editorTools} />;
-};
-
-export default Editor;
+    return (
+        <div
+            {...restProps}
+            ref={(elmt): void => {
+                elmtRef.current = elmt;
+            }}
+        />
+    );
+}

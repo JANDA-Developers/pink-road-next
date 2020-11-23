@@ -3381,6 +3381,13 @@ editorjs-paragraph-with-alignment@^1.1.0:
   resolved "https://registry.npmjs.org/editorjs-paragraph-with-alignment/-/editorjs-paragraph-with-alignment-1.1.0.tgz#d803d3e7e2cf93675332888a9330444f85a8c812"
   integrity sha512-Jw/4K+EUK/f1c/ow1+4LzgJYW/TgGBaDWmL2G8vBpcPE+mfVzxcO7TRXO5f165hVRKMJ3LTk8CeT8ilttxRXsQ==
 
+editorjs-react-renderer@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.npmjs.org/editorjs-react-renderer/-/editorjs-react-renderer-2.4.0.tgz#eeb0712af0d3861bacf104377ec396f2070d0b58"
+  integrity sha512-Pe6DeAYYZkRa3GrWLPV5G/CB9L9L37erwKngS6HWbq7nvOUsV6cVvYivMh+WKVodOLr//s1289fLTxwMaQN5Tg==
+  dependencies:
+    react-html-parser "2.0.2"
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
@@ -5792,7 +5799,7 @@ react-google-login@^5.1.22:
     "@types/react" "*"
     prop-types "^15.6.0"
 
-react-html-parser@^2.0.2:
+react-html-parser@2.0.2, react-html-parser@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/react-html-parser/-/react-html-parser-2.0.2.tgz#6dbe1ddd2cebc1b34ca15215158021db5fc5685e"
   integrity sha512-XeerLwCVjTs3njZcgCOeDUqLgNIt/t+6Jgi5/qPsO/krUWl76kWKXMeVs2LhY2gwM6X378DkhLjur0zUQdpz0g==
