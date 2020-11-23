@@ -12,14 +12,15 @@
 .board_option {
     position: relative;
     display: inline-block;
-    background-color: #dadce8;
-    border-radius: 130px;
+    background-color: #ffffff;
+    border-radius: 5px;
     line-height: 10px;
     clear: both;
-    padding: 0 10px;
+    padding: 0 6px;
     box-sizing: border-box;
     vertical-align: bottom;
-    border: 1px solid #c0c5e0;
+    border: 1px solid #cfcfcf;
+    margin-right:8px;
 }
 
     .board_option li {
@@ -1809,6 +1810,170 @@ div.board_list_mini {
         .boardNavigation .impact:hover {
             background: #333 !important;
             color: #fff !important;
+        }
+.fuction_list_mini {
+    position: relative;
+    display: block;
+    width: 100%;
+    border-top: 3px #333 solid;
+}
+
+    .fuction_list_mini .thead {
+        position: relative;
+        display: flex;
+        width: 100%;
+        border-bottom: 2px solid #ccc;
+        background-color: #fff;
+    }
+
+    .fuction_list_mini input[type=checkbox] {
+        /*vertical-align: middle;
+        vertical-align: -webkit-baseline-middle;
+        display:inline-block;*/
+    }
+
+    .fuction_list_mini .thead > div {
+        display: inline-block;
+        width: 24.5%;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 50px;
+    }
+
+    .fuction_list_mini .tbody {
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+
+        .fuction_list_mini .tbody ul {
+            position: relative;
+            display: block;
+            width: 100%;
+        }
+
+        .fuction_list_mini .tbody li {
+            position: relative;
+            display: flex;
+            width: 100%;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+            .fuction_list_mini .tbody li > div {
+                display: inline-block;
+                width: 24.5%;
+                text-align: center;
+                font-size: 13px;
+                padding: 13px 10px 10px;
+                box-sizing: border-box;
+            }
+
+    .fuction_list_mini .q_ok {
+        font-style: unset;
+        display: inline-block;
+        padding: 4px 10px;
+        margin-left: 15px;
+        font-size: 10px;
+        color: #002faa;
+        border: 1px solid #768fd1;
+        background-color: #e2eaff;
+        line-height: 1;
+    }
+
+    .fuction_list_mini .q_no {
+        font-style: unset;
+        display: inline-block;
+        padding: 4px 10px;
+        margin-left: 15px;
+        font-size: 10px;
+        color: #3f65c9;
+        border: 1px solid #bccbf0;
+        background-color: #ffffff;
+        line-height: 1;
+    }
+div.sum_div {
+    position: relative;
+}
+
+    div.sum_div .first_ul {
+        margin-top: 12px;
+        position: relative;
+        background-color: #e8e8e8;
+        padding: 15px;
+        box-sizing: border-box;
+        text-align: left;
+        border-top: 2px solid #797979;
+    }
+
+    div.sum_div li {
+        display: inline-block;
+        width: 48.5%;
+        box-sizing: border-box;
+        position: relative;
+        text-align: right;
+        line-height: 38px;
+    }
+
+        div.sum_div li > div {
+            display: inline-block;
+            position: relative;
+            font-size: 14px;
+            color: #737689;
+        }
+
+        div.sum_div li .title {
+            width: 33%;
+            text-align: left;
+        }
+
+        div.sum_div li .body {
+            width: 65%;
+            text-align: right;
+        }
+
+    div.sum_div .body div {
+        display: inline-block;
+    }
+
+    div.sum_div li .function {
+        font-size: 10px;
+        padding-right: 0;
+    }
+
+        div.sum_div li .function i {
+            margin-right: 10px;
+        }
+
+    div.sum_div .first_ul li {
+        background-color: #ffffff;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    div.sum_div .last_ul {
+        text-align: right;
+        width: 100%;
+        font-size: 22px;
+        border-bottom: 0;
+        background-color: #797979;
+    }
+
+        div.sum_div .last_ul li {
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+            div.sum_div .last_ul li div {
+                font-size: 22px;
+                color: #ffffff;
+            }
+
+        div.sum_div .last_ul i {
+            margin-right: 20px;
+            font-size: 13px;
+            vertical-align: top;
         }
 @media (min-width:768px) {
 

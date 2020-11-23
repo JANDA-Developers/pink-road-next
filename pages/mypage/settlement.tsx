@@ -11,6 +11,29 @@ export const MySettlement: React.FC<IProp> = () => {
         <div className="in mypage_purchase">
             <h4>매출/정산관리</h4>
             <div className="paper_div">
+                <div className="statement_div">
+                    <div className="top_btn">
+                        <span>통계표 상세보기</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <strong>저번달 예약</strong>
+                            <div><strong>2</strong>건</div>
+                        </li>
+                        <li>
+                            <strong>이번달 예약</strong>
+                            <div><strong>232</strong>건</div>
+                        </li>
+                        <li>
+                            <strong>이번달 정산 예정금</strong>
+                            <div><strong>22,2222,222</strong>원</div>
+                        </li>
+                        <li>
+                            <strong>예약취소 환수금</strong>
+                            <div><strong>55,555</strong>원</div>
+                        </li>
+                    </ul>
+                </div>
                 <div className="con_top">
                     <h6>상세검색</h6>
                     <div className="search_box">
@@ -52,10 +75,18 @@ export const MySettlement: React.FC<IProp> = () => {
                         </div>
                         <div className="jul1">
                             <div>
-                                <input type="text" placeholder="검색 내용을 입력해주세요." />
-                                <div className="svg_img">
-                                    <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
-                                    <button />
+                                <select className="option">
+                                    <option>상품코드</option>
+                                    <option>상품명</option>
+                                    <option>예약자</option>
+                                </select>
+                                <div className="search_div">
+                                    <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
+                                    <div className="svg_img">
+                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                        <button />
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -82,21 +113,206 @@ export const MySettlement: React.FC<IProp> = () => {
                                 </select>
                             </div>
                         </div>
-                        {/*리스트로 보기*/}
-                        <div className="list selectViewList">
-                            <ul className="list_ul">
-                                <PurChasedItem />
-                                <PurChasedItem />
-                                <PurChasedItem />
-                                <PurChasedItem />
-                                <PurChasedItem />
-                            </ul>
+                        <div className="fuction_list_mini ln08">
+                            <div className="thead">
+                                <div className="th01"><input type="checkbox" /></div>
+                                <div className="th02">상품코드</div>
+                                <div className="th03">상품명</div>
+                                <div className="th04">예약자/연락처</div>
+                                <div className="th05">예약날짜</div>
+                                <div className="th06">예약금</div>
+                                <div className="th07">상태</div>
+                                <div className="th08">상세보기</div>
+                            </div>
+                            <div className="tbody">
+                                <ul>
+                                    <li>
+                                        <div className="th01"><input type="checkbox" /></div>
+                                        <div className="th02">GUIDE-01230</div>
+                                        <div className="th03">제주도로 떠나요~ </div>
+                                        <div className="th04">홍나리<br />010-0100-0000</div>
+                                        <div className="th05">2020.02.02</div>
+                                        <div className="th06">50,000</div>
+                                        <div className="th07"><strong className="ok">예약완료</strong></div>
+                                        <div className="th08"><i className="btn">상세보기</i></div>
+                                    </li>
+                                    <li>
+                                        <div className="th01"><input type="checkbox" /></div>
+                                        <div className="th02">GUIDE-01230</div>
+                                        <div className="th03">제주도로 떠나요~ </div>
+                                        <div className="th04">홍나리<br />010-0100-0000</div>
+                                        <div className="th05">2020.02.02</div>
+                                        <div className="th06">50,000</div>
+                                        <div className="th07"><strong className="no">예약취소</strong></div>
+                                        <div className="th08"><i className="btn">상세보기</i></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="boardNavigation">
+                                <div className="float_left">
+                                    <div className="pagenate_mini">
+                                        <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
+                                        <div className="count"><strong>1</strong> / 10</div>
+                                        <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
+                                    </div>
+                                </div>
+                                <div className="float_right">
+                                    <a href="" className="mini_btn small">예약관리시스템 바로가기</a>
+                                </div>
+                            </div>
                         </div>
-                        <Paginater pageNumber={10} totalPageCount={20} />
+
+                        <div className="in_fin">
+                            <div className="float_left">
+                                <button type="submit" className="btn strong">정산 계산하기</button>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div id="Popup01" className="popup_bg_full" style={{ display: 'block;' }}>
+            <a className="close_icon">
+                <i className="flaticon-multiply"></i>
+            </a>
+            <div className="in_txt statement_popup">
+                <h4>정산 계산</h4>
+                <div className="alignment">
+                    <div className="left_div"><span className="infotxt"><i>2020.10.1 ~ 2020.10.30 예약</i>이 총 <strong>5</strong>건</span></div>
+                </div>
+                <div className="fuction_list_mini">
+                    <div className="thead">
+                        <div className="th02">상품코드</div>
+                        <div className="th03">상품명</div>
+                        <div class="th04">예약자</div>
+                        <div className="th05">예약날짜</div>
+                        <div className="th06">예약금</div>
+                        <div className="th07">상태</div>
+                    </div>
+                    <div className="tbody">
+                        <ul>
+                            <li>
+                                <div className="th02">GUIDE-01230</div>
+                                <div className="th03">제주도로 떠나요~ </div>
+                                <div className="th04">홍나리</div>
+                                <div className="th05">2020.02.02</div>
+                                <div className="th06">50,000</div>
+                                <div className="th07"><strong className="ok">예약완료</strong></div>
+                            </li>
+                            <li>
+                                <div className="th02">GUIDE-01230</div>
+                                <div className="th03">제주도로 떠나요~ </div>
+                                <div className="th04">홍나리</div>
+                                <div className="th05">2020.02.02</div>
+                                <div className="th06">50,000</div>
+                                <div className="th07"><strong className="ok">예약완료</strong></div>
+                            </li>
+                            <li>
+                                <div className="th02">GUIDE-01230</div>
+                                <div className="th03">제주도로 떠나요~ </div>
+                                <div className="th04">홍나리</div>
+                                <div className="th05">2020.02.02</div>
+                                <div className="th06">50,000</div>
+                                <div className="th07"><strong className="ok">예약완료</strong></div>
+                            </li>
+                            <li>
+                                <div className="th02">GUIDE-01230</div>
+                                <div className="th03">제주도로 떠나요~ </div>
+                                <div className="th04">홍나리</div>
+                                <div className="th05">2020.02.02</div>
+                                <div className="th06">50,000</div>
+                                <div className="th07"><strong className="ok">예약완료</strong></div>
+                            </li>
+                            <li>
+                                <div className="th02">GUIDE-01230</div>
+                                <div className="th03">제주도로 떠나요~ </div>
+                                <div className="th04">홍나리</div>
+                                <div className="th05">2020.02.02</div>
+                                <div className="th06">50,000</div>
+                                <div className="th07"><strong className="ok">예약완료</strong></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="alignment ">
+                    <div className="left_div"><span className="infotxt"><i>예약취소 환수금</i>이 총 <strong>2</strong>건</span></div>
+                </div>
+                <div className="fuction_list_mini">
+                    <div className="thead">
+                        <div className="th02">상품코드</div>
+                        <div className="th03">상품명</div>
+                        <div className="th04">예약자</div>
+                        <div className="th05">예약날짜</div>
+                        <div className="th06">예약금</div>
+                        <div className="th07">상태</div>
+                    </div>
+                    <div className="tbody">
+                        <ul>
+                            <li>
+                                <div className="th02">GUIDE-01230</div>
+                                <div className="th03">제주도로 떠나요~ </div>
+                                <div className="th04">홍나리</div>
+                                <div className="th05">2020.02.02</div>
+                                <div className="th06">50,000</div>
+                                <div className="th07"><strong className="no">예약취소</strong></div>
+                            </li>
+                            <li>
+                                <div className="th02">GUIDE-01230</div>
+                                <div className="th03">제주도로 떠나요~ </div>
+                                <div className="th04">홍나리</div>
+                                <div className="th05">2020.02.02</div>
+                                <div className="th06">50,000</div>
+                                <div className="th07"><strong className="no">예약취소</strong></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="sum_div mt50">
+                    <ul className="first_ul">
+                        <li>
+                            <div className="title"><strong>실 판매금액</strong> : </div>
+                            <div className="body">
+                                <div>20,000,349원</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="title"><strong>수수료공제(5%)</strong> : </div>
+                            <div className="body">
+
+                                <div>(-) 1,000,017원</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="title"><strong>세금공제(3.3%)</strong> : </div>
+                            <div className="body">
+
+                                <div>(-) 660,011원</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="title"><strong>기타 공제금</strong> : </div>
+                            <div className="body">
+                                <div>(-) 0원</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="title"><strong>예약취소 환급금</strong> : </div>
+                            <div className="body">
+                                <div>(-) 20원</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul className="last_ul">
+                        <li>
+                            <div><i>=</i>총 정산 예상금 : <strong>18,340,321</strong>원</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="fade" className="fade" style={{ display: 'block;' }}></div>
+
     </MypageLayout>
 };
 

@@ -54,10 +54,17 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                         </div>
                         <div className="jul1">
                             <div>
-                                <input type="text" placeholder="검색 내용을 입력해주세요." />
-                                <div className="svg_img">
-                                    <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
-                                    <button />
+                                <select className="option">
+                                    <option>상품명</option>
+                                    <option>키워드</option>
+                                </select>
+                                <div className="search_div">
+                                    <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
+                                    <div className="svg_img">
+                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                        <button />
+                                    </div>
+
                                 </div>
 
                             </div>

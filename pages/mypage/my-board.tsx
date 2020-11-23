@@ -11,13 +11,6 @@ export const MyPageBoard: React.FC<IProp> = () => {
                 <div className="con_top">
                     <h6>상세검색</h6>
                     <div className="search_box">
-                        <div className="jul2">
-                            <div className="title">범위</div>
-                            <div className="text">
-                                <span className="check on">제목</span>
-                                <span className="check">내용</span>
-                            </div>
-                        </div>
                         <div className="jul4">
                             <div className="title">날짜</div>
                             <div className="text">
@@ -54,10 +47,17 @@ export const MyPageBoard: React.FC<IProp> = () => {
                         </div>
                         <div className="jul1">
                             <div>
-                                <input type="text" placeholder="검색 내용을 입력해주세요." />
-                                <div className="svg_img">
-                                    <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
-                                    <button />
+                                <select className="option">
+                                    <option>제목</option>
+                                    <option>게시판</option>
+                                </select>
+                                <div className="search_div">
+                                    <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
+                                    <div className="svg_img">
+                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                        <button />
+                                    </div>
+
                                 </div>
 
                             </div>

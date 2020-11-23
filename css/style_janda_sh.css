@@ -528,6 +528,88 @@ div.search_mini {
             div.search_mini input:focus ~ svg {
                 fill: #ed297b;
             }
+div.popup_bg_full {
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    z-index: 101;
+    padding: 60px 22px 30px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #fff;
+    border: 5px solid #ccc;
+}
+
+    div.popup_bg_full .in_txt {
+        height: 100%;
+        width: 100%;
+        overflow-y: scroll;
+        margin: 0 auto;
+        text-align: left;
+        font-size: 12px;
+    }
+
+    div.popup_bg_full .in_txt2 {
+        height: 418px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    div.popup_bg_full .close_icon {
+        position: absolute;
+        top: 29px;
+        right: 17px;
+        display: block;
+        width: 30px;
+        height: 30px;
+    }
+
+        div.popup_bg_full .close_icon i {
+            line-height: 19px;
+            color: #6a6a6a;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        div.popup_bg_full .close_icon:hover i {
+            color: #333;
+        }
+
+    div.popup_bg_full table {
+        border: 1px solid #eeeeee;
+        border-top: 2px solid #cccccc;
+        width: 100%;
+    }
+
+    div.popup_bg_full th {
+        text-align: center;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #f5f5f5;
+    }
+
+    div.popup_bg_full td {
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    div.popup_bg_full h4 {
+        font-size: 18px;
+        line-height: 40px;
+        font-weight: 600;
+        position: absolute;
+        top: 19px;
+    }
+
+    div.popup_bg_full h5 {
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+    }
 
 div.popup_bg_mini {
     position: fixed;
@@ -912,7 +994,15 @@ div.alignment {
             top: 0;
             right: 0;
         }
-
+    div.alignment .left_div .infotxt {
+        margin-top: 15px;
+        display: inline-block;
+    }
+    div.alignment .left_div i {
+        color: #6f6f6f;
+        font-weight: 600;
+        font-style: unset;
+    }
 div.search {
     width: 94%;
     margin: 0 auto;
@@ -6059,17 +6149,35 @@ i.important_icon {
         padding: 24px 0 0;
         text-align: center;
     }
+        .search_box .jul1 .option {
+            border-radius: 5px;
+            height: 40px;
+            width: 18%;
+            font-size: 11px;
+            padding: 0 10px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            border: 1px solid #d2d2d2;
+            display: inline-block;
+            margin-right: 10px;
+        }
 
+        .search_box .jul1 .search_div {
+            position:relative;
+            display:inline-block;
+            width: 80%;
+            box-sizing: border-box;
+        }
         .search_box .jul1 input {
-            border: 2px solid #ccc;
+            border: 1px solid #d2d2d2;
             box-shadow: 0 3px 0px #f5f5f5;
             background-color: #fff;
             width: 100%;
             margin: 0 auto;
             display: inline-block;
-            border-radius: 111px;
-            height: 50px;
-            padding: 15px 20px;
+            border-radius: 5px;
+            height: 40px;
+            padding: 0 15px;
             box-sizing: border-box;
         }
 
@@ -6082,8 +6190,9 @@ i.important_icon {
             height: 20px;
             opacity: 0.5;
             position: absolute;
-            top: 38px;
-            right: 30px;
+            top: 50%;
+            right: 13px;
+            margin-top: -10px;
         }
 
             .search_box .jul1 .svg_img button {
@@ -9002,7 +9111,8 @@ i.calendar {
             cursor: pointer;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 150%;
+            background-size: 101%;
+            box-shadow: 2px 2px 8px #0000001f;
         }
 
             .portfolio_in .con04 .portfolio_box ul li:before {
@@ -9019,13 +9129,13 @@ i.calendar {
             }
 
             .portfolio_in .con04 .portfolio_box ul li:hover:before {
-                opacity: 0.8 !important;
+                opacity: 0.6 !important;
             }
 
     .portfolio_in .con04 .portfolio_box .box {
         display: none;
         position: relative;
-        padding: 40px 20px 15px;
+        padding: 70px 20px 15px;
         box-sizing: border-box;
         width: 100%;
         height: 100%;
@@ -9923,10 +10033,116 @@ i.calendar {
                     border: 1px solid #1589e5;
                     color: #fff;
                     background-color: #1589e5;
-                }    
+                }
 
 
+.mypage_in .fuction_list_mini .tbody .ok {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 2px 6px;
+    background-color: #5f7bba;
+}
+.mypage_in .fuction_list_mini .tbody .no {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 2px 6px;
+    background-color: #b05555;
+}
 
+.mypage_in .statement_div {
+    position: relative;
+    display: block;
+    border: 5px solid #d7d7d7;
+    padding: 15px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+    .mypage_in .statement_div ul {
+        text-align: center;
+    }
+
+    .mypage_in .statement_div li {
+        display: inline-block;
+        width: auto;
+        padding: 0 32px;
+        margin-top: 22px;
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+        .mypage_in .statement_div li:after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -15px;
+            height: 30px;
+            width: 1px;
+            background-color: #eeeeee;
+        }
+
+        .mypage_in .statement_div li:last-child:after {
+            display: none;
+        }
+
+    .mypage_in .statement_div strong {
+        display: block;
+        text-align: left;
+        font-size: 11px;
+        color: #474747;
+    }
+
+    .mypage_in .statement_div div {
+        display: block;
+        text-align: left;
+        font-size: 15px;
+        font-weight: 400;
+        color: #616161;
+        letter-spacing: 0;
+    }
+
+        .mypage_in .statement_div div strong {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333;
+            display: inline-block;
+        }
+
+
+    .mypage_in .statement_div .top_btn {
+        display: block;
+        position: relative;
+        text-align: right;
+    }
+
+        .mypage_in .statement_div .top_btn span {
+            display: inline-block;
+            font-size: 12px;
+            border-radius: 100px;
+            line-height: 26px;
+            background-image: none;
+            background-repeat: unset;
+            filter: unset;
+            text-shadow: unset;
+            letter-spacing: -1px;
+            border-width: 1px;
+            border-style: solid;
+            border-image: none;
+            vertical-align: middle;
+            box-sizing: border-box;
+            padding: 0 15px;
+            border-color: #d0d0d0;
+            color: #a3a3a3;
+            cursor: pointer;
+            font-style: normal;
+            font-weight: 600;
+        }
 
 @media (min-width: 768px) {
     .footer_in .f_detail_wrap, #container .row1, #container .row3, #container .row5, #container .row2 .row_inner, #container .row4 .row_inner, .w1200, #content .xm {
@@ -11260,6 +11476,10 @@ i.calendar {
     .main_con_box1 .main_top_images {
         background-size: 150%;
         min-height: 800px;
+    }
+    .main_con_box1 .main_top_images strong {
+
+        margin-top: 240px;
     }
 
     .siteInfo_in .con03 {
