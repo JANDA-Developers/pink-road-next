@@ -28,7 +28,7 @@ export const EditorJs: React.FC<IProp> = ({ setData, ...props }) => {
     if (typeof window == "undefined")
         return <RER data={props.data} />
 
-    return <ReactEditorJs  {...props} holder="content" onChange={(_, data) => {
+    return <ReactEditorJs {...props} onChange={(_, data) => {
         setData?.(data || EMPTY_EDITOR)
     }} tools={tools} />;
 };

@@ -392,7 +392,8 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     display: tab === 3 ? undefined : "none"
                 }} id="texta_03" className="texta">
                     <h5>포함 / 불포함</h5>
-                    <EditorJs holder="include" data={inOrNor} setData={setInOrNor} />
+                    <EditorJs holder="inOrNor" data={inOrNor} setData={setInOrNor} />
+                    <div id="inOrNor" />
                 </div>
                 {tab === 4 &&
                     <div id="texta_04" className="texta">
