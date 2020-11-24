@@ -4,7 +4,8 @@ import { Ffile, FileCreateInput } from "types/api"
 import { TElements } from "types/interface";
 import React from "react";
 import { useUpload } from "hook/useUpload";
-import Editor from "components/editor/Editor";
+import EditorJs from "components/editorjs/EditorJs";
+import { OutputData } from "@editorjs/editorjs";
 export interface IBoard {
     categoryList: TCategory[]
     category: TCategory
@@ -13,7 +14,7 @@ export interface IBoard {
     title: string;
     isOpen: boolean;
     files: Ffile[]
-    contents: string;
+    contents: OutputData;
     subTitle: string;
     summary: string;
     thumb: FileCreateInput;
@@ -55,6 +56,8 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
     const [contents, setContents] = useState<OutputData>(defaults.contents)
     const { categoryList, author } = defaults;
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
+
+    console.log(contents);
 
     const data: Partial<IBoard> = {
         categoryId: category,
@@ -213,9 +216,10 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
                 }
                 {/* 내용 */}
                 <div className="write_con">
-                    <Editor
-                        setModel={setContents}
-                        model={contents}
+                    <EditorJs
+                        setData={setContents}
+                        data={contents}
+                        holder="content"
                     />
                     <div id="content" />
                 </div>

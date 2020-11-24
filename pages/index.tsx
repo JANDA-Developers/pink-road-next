@@ -103,18 +103,6 @@ export const Main: React.FC<IProps> = ({ context }) => {
         </div>
       </div>
     </div>
-    {/* <div dangerouslySetInnerHTML={model}/> */}
-    {/* <EditorJs onModelChange={setModel} model={model} config={{
-       fontFamily: {
-        "Roboto,sans-serif": 'Roboto',
-        "Oswald,sans-serif": 'Oswald',
-        "Montserrat,sans-serif": 'Montserrat',
-        "'Open Sans Condensed',sans-serif": 'Open Sans Condensed',
-        "montserrat": "기본글꼴"
-      },
-      fontFamilySelection: true,
-      language: 'ko'
-    }}/> */}
     <div className="main_con_box2">
       <div className="w1200">
         <div className="top_txt">

@@ -25,7 +25,9 @@ import { TDeleteFn } from "pages/portfolio/write/[[...id]]";
 import Page404 from "pages/404";
 import { Validater } from "utils/validate";
 import isEmpty from "utils/isEmpty";
-import Editor from "components/editor/Editor";
+import { OutputData } from "@editorjs/editorjs";
+import { EMPTY_EDITOR } from "types/const"
+const EditorJs = dynamic(() => import("components/editorjs/EditorJs"));
 interface IProp {
     context: ITourWriteWrapContext;
 }
@@ -44,8 +46,8 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     const [thumbs, setThumbs] = useState<Partial<Ffile>[]>(defaults.images)
     const [tab, setTab] = useState<number>(1);
     const [loadCount, setLoad] = useState(0);
-    const [contents, setContents] = useState<string>(defaults.contents);
-    const [inOrNor, setInOrNor] = useState<string>(defaults.inOrNor);
+    const [contents, setContents] = useState<OutputData>(defaults.contents);
+    const [inOrNor, setInOrNor] = useState<OutputData>(defaults.inOrNor);
     const isCreateMode = mode === "create";
 
     const handleChangeStatus = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -383,15 +385,14 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     display: tab === 2 ? undefined : "none"
                 }} id="texta_02" className="texta">
                     <h5>상품 안내문</h5>
-                    <Editor model={contents} setModel={setContents} />
-                    <div id="contentHolder" />
+                    <EditorJs holder="content" data={contents} setData={setContents} />
+                    <div id="content" />
                 </div>
                 <div style={{
                     display: tab === 3 ? undefined : "none"
                 }} id="texta_03" className="texta">
                     <h5>포함 / 불포함</h5>
-                    <Editor model={inOrNor} setModel={setInOrNor} />
-                    <div id="inOrNorHolder" />
+                    <EditorJs holder="include" data={inOrNor} setData={setInOrNor} />
                 </div>
                 {tab === 4 &&
                     <div id="texta_04" className="texta">
