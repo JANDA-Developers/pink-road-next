@@ -155,11 +155,11 @@ export const Login: React.FC<IProp> = () => {
                             onClick={() => { handleUserType(UserRole.manager) }}
                         />
                         <label htmlFor="tab-4" className="tab-label-4 login_tap tap_03">
-                            <b>매니저</b>
+                            <b>마스터</b>
                         </label>
                         <div className={`login_wrap white_box`}>
                             <h3>
-                                <strong>FAMILY</strong> LOGIN
+                                <strong>MEMBER</strong> LOGIN
                             </h3>
                             <div className="form-group">
                                 <input

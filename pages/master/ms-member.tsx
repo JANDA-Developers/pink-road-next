@@ -1,479 +1,127 @@
+import { MasterLayout } from 'layout/MasterLayout';
 import React from 'react';
 
 interface IProp { }
 
-export const ProfileBusi: React.FC<IProp> = () => {
-    return <div>
-        <div className="top_visual">
-            <div
-                className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/work_top_bg2.jpg)` }}
-            >
-                <div className="w1200">
-                    <h2 className="title">Master</h2>
-                    <p className="text">¡ˆ±› ø©«‡¿ª ∂∞≥™ººø‰~!~~!!!!!</p>
+export const MsMember: React.FC<IProp> = () => {
+    return <MasterLayout>
+        <div className="in basket_box">
+            <h4>ÌöåÏõêÍ¥ÄÎ¶¨</h4>
+            <div className="paper_div">
+                <div className="top_info">
+                    <ul>
+                        <li>Ïû•Î∞îÍµ¨Îãà ÏÉÅÌíàÏùÄ ÏµúÎåÄ 30ÏùºÍ∞Ñ Ï†ÄÏû•Îê©ÎãàÎã§.</li>
+                        <li>Í∞ÄÍ≤©, ÏòµÏÖò Îì± Ï†ïÎ≥¥Í∞Ä Î≥ÄÍ≤ΩÎêú Í≤ΩÏö∞ Ï£ºÎ¨∏Ïù¥ Î∂àÍ∞ÄÌï† Ïàò ÏûàÏäµÎãàÎã§.</li>
+                    </ul>
                 </div>
-            </div>
-            <div className="header_nav">
-                <ul>
-                    <li className="home">
-                        <a href="/index"></a>
-                    </li>
-                    <li className="homedeps1">Master</li>
-                    <li className="homedeps2">
-                        <a href="/">»∏ø¯¡§∫∏∞¸∏Æ</a>
-                    </li>
-                </ul>
+
+                <div className="basket_list">
+                    <div className="th">
+                        <div className="t01"><input type="checkbox" /></div>
+                        <div className="t02">ÏÉÅÌíàÏ†ïÎ≥¥</div>
+                        <div className="t03">ÏòµÏÖò</div>
+                        <div className="t04">ÏÉÅÌíàÍ∏àÏï°</div>
+                        <div className="t05">ÏÉÅÌÉú</div>
+                    </div>
+                    <div className="td">
+                        <div className="t01"><input type="checkbox" /></div>
+                        <div className="t02">
+                            <div className="img" style={{ backgroundImage: 'url(/img/sample_01.gif)' }}></div>
+                            <div className="right">
+                                <div className="ct">Ïó≠ÏÇ¨Ïó¨Ìñâ</div><div className="code">P-020341</div>
+                                <div className="title"><a href="/">Í±∞Ï†úÎèÑÎ°ú Îñ†ÎÇòÏöî~~~!!!!</a></div>
+                                <div className="subtitle">Í∞ÄÏ°±Îã®ÏúÑÎ°ú Îñ†ÎÇòÎäî Ï£ºÎßê Ïó¨Ìñâ~~!!!!! ÏßÄÍ∏àÏù¥ Î∞îÎ°ú Ï¢ãÏùÄÍ∏∞ÌöåÏûÖÎãàÎã§.</div>
+                            </div>
+                            <span className="del">
+                                <img src="/img/svg/del.svg" alt="ÏÇ≠Ï†ú" className="svg_del" />
+                                <button />
+                            </span>
+                        </div>
+                        <div className="t03">
+                            <div className="day">Ï∂úÎ∞úÏùº : <strong>11.20(Í∏à)</strong></div>
+                            <div className="start_where">Ï∂úÎ∞úÏû•ÏÜå : Î∂ÄÏÇ∞ÏãúÎØºÍ≥µÏõê Ï†ïÎ¨∏ Ïïû</div>
+                            <div className="tour_mode">Ïó¨ÌñâÎ∞©Ïãù : ÎãπÏùºÏó¨Ìñâ</div>
+                            <div className="men">ÏÑ†ÌÉùÏù∏Ïõê : <strong>Ï¥ù 2Î™Ö</strong> - ÏÑ±Ïù∏1, ÏÜåÏù∏1, Ïú†ÏïÑ0</div>
+                            <button className="btn option_btn">Ï°∞Í±¥ Ï∂îÍ∞Ä/Î≥ÄÍ≤Ω</button>
+                        </div>
+                        <div className="t04">
+                            <div className="money"><strong>30,000 Ïõê</strong></div>
+                            <button className="btn hit">Ï£ºÎ¨∏ÌïòÍ∏∞</button>
+                        </div>
+                        <div className="t05">
+                            <div className="day_cunt">Ï∂úÎ∞ú D-6</div>
+                            <div className="men_cunt">Î™®Ïßë Ïù∏Ïõê : <strong>11</strong> / 23</div>
+                            <div className="state onsale">ÌåêÎß§Ï§ë</div>
+                        </div>
+
+                    </div>
+                    <div className="td">
+                        <div className="t01"><input type="checkbox" /></div>
+                        <div className="t02">
+                            <div className="img"></div>
+                            <div className="right">
+                                <div className="ct">Ïó≠ÏÇ¨Ïó¨Ìñâ</div><div className="code">P-020341</div>
+                                <div className="title"><a href="/">Í±∞Ï†úÎèÑÎ°ú Îñ†ÎÇòÏöî~~~!!!!</a></div>
+                                <div className="subtitle">Í∞ÄÏ°±Îã®ÏúÑÎ°ú Îñ†ÎÇòÎäî Ï£ºÎßê Ïó¨Ìñâ~~!!!!! ÏßÄÍ∏àÏù¥ Î∞îÎ°ú Ï¢ãÏùÄÍ∏∞ÌöåÏûÖÎãàÎã§.</div>
+                            </div>
+                            <span className="del">
+                                <img src="/img/svg/del.svg" alt="ÏÇ≠Ï†ú" className="svg_del" />
+                                <button />
+                            </span>
+                        </div>
+                        <div className="t03">
+                            <div className="day">Ï∂úÎ∞úÏùº : <strong>11.20(Í∏à)</strong></div>
+                            <div className="start_where">Ï∂úÎ∞úÏû•ÏÜå : Î∂ÄÏÇ∞ÏãúÎØºÍ≥µÏõê Ï†ïÎ¨∏ Ïïû</div>
+                            <div className="tour_mode">Ïó¨ÌñâÎ∞©Ïãù : ÎãπÏùºÏó¨Ìñâ</div>
+                            <div className="men">ÏÑ†ÌÉùÏù∏Ïõê : <strong>Ï¥ù 3Î™Ö</strong> - ÏÑ±Ïù∏1, ÏÜåÏù∏1, Ïú†ÏïÑ1</div>
+                            <button className="btn option_btn">Ï°∞Í±¥ Ï∂îÍ∞Ä/Î≥ÄÍ≤Ω</button>
+                        </div>
+                        <div className="t04">
+                            <div className="money"><strong>30,000 Ïõê</strong></div>
+                            <button className="btn hit">Ï£ºÎ¨∏ÌïòÍ∏∞</button>
+                        </div>
+                        <div className="t05">
+                            <div className="day_cunt">Ï∂úÎ∞ú D-6</div>
+                            <div className="men_cunt">Î™®Ïßë Ïù∏Ïõê : <strong>11</strong> / 23</div>
+                            <div className="state soldout">ÏôÑÌåê</div>
+                        </div>
+
+                    </div>
+                    <div className="td">
+                        <div className="no_data">
+                            <i className="jandaicon-info3"></i><span>Ïû•Î∞îÍµ¨ÎãàÏóê ÏÉÅÌíàÏù¥ ÏóÜÏäµÎãàÎã§.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="baket_bottom">
+                    <div className="sum01"><strong>Ìï©Í≥ÑÍ∏àÏï°</strong></div>
+                    <div className="sum02">ÏÉÅÌíàÍ∏àÏï°<strong>0 Ïõê</strong></div>
+                    <div className="sum03">=</div>
+                    <div className="sum04"><strong>0 Ïõê</strong></div>
+                </div>
+
+                <div className="baket_check">
+                    <div className="left">
+                        <button className="btn"><input type="checkbox" />Ï†ÑÏ≤¥ÏÑ†ÌÉù</button>
+                        <button className="btn">ÏÑ†ÌÉùÏÇ≠Ï†ú</button>
+                        <button className="btn">Ï†ÑÏ≤¥ÏÇ≠Ï†ú</button>
+                    </div>
+
+                </div>
+                <div className="baket_btn">
+                    <div className="left">
+                        <button className="btn">ÏáºÌïë Í≥ÑÏÜçÌïòÍ∏∞</button>
+                        <button className="btn orders">Ï£ºÎ¨∏ÌïòÍ∏∞</button>
+                    </div>
+
+                </div>
+
+
             </div>
         </div>
+     
+    </MasterLayout>
+};
 
-
-        <div className="master_box">
-            <div className="w1200">
-                <ul className="subtop_nav">
-                    <li><a href="/m_member.html">»∏ø¯∞¸∏Æ</a></li>
-                    <li><a href="/m_goods.html">ªÛ«∞∞¸∏Æ</a></li>
-                    <li className="on"><a href="../sub/m_reservation.html">øπæ‡∞¸∏Æ</a></li>
-                    <li><a href="/m_design.html">µ¿⁄¿Œº≥¡§</a></li>
-                    <li><a href="/m_homepage.html">»®∆‰¿Ã¡ˆº≥¡§</a></li>
-                </ul>
-
-                <div className="in_content">{/* 
-                    <input id="tab-1" type="radio" name="radio-set" className="tab tab-selector-1" checked="checked">
-                    <label for="tab-1" className="tab-label-1 deps3"><b>∞≥¿Œ»∏ø¯</b></label>
-                    <input id="tab-2" type="radio" name="radio-set" className="tab tab-selector-2">
-                    <label for="tab-2" className="tab-label-2 deps3"><b>±‚æ˜∆ƒ∆Æ≥  »∏ø¯</b></label>
-                    <input id="tab-3" type="radio" name="radio-set" className="tab tab-selector-3">
-                    <label for="tab-3" className="tab-label-3 deps3"><b>∞≥¿Œ∆ƒ∆Æ≥  »∏ø¯</b></label>
-                    <input id="tab-4" type="radio" name="radio-set" className="tab tab-selector-4">
-                    <label for="tab-4" className="tab-label-4 deps3"><b>≈ª≈ »∏ø¯</b></label>
-                    <input id="tab-5" type="radio" name="radio-set" className="tab tab-selector-5">
-                    <label for="tab-5" className="tab-label-5 deps3"><b>»∏ø¯ æ‡∞¸ º≥¡§</b></label>
-                    <input id="tab-6" type="radio" name="radio-set" className="tab tab-selector-6">
-                    <label for="tab-6" className="tab-label-6 deps3"><b>∏ﬁ¥∫æÛ º≥¡§</b></label>*/}
-
-                                           
-                    <div className="con family" id="con01">
-                        <div className="con_box_top pb5">
-                            <h3>∞≥¿Œ»∏ø¯</h3>
-                            <div className="alignment">
-                                <div className="left_div"><span className="infotxt">√— <strong>22,222</strong>∏Ì</span></div>
-                                <div className="right_div">
-                                    <button type="button" className="btn_top check">∏µŒº±≈√</button>
-                                    <button type="button" className="btn_top excel">ø¢ºø</button>
-                                    <select className="sel01">
-                                        <option>√ﬂ√µºˆ</option>
-                                        <option>øπæ‡ºˆ</option>
-                                        <option>¡∂»∏ºˆ</option>
-                                    </select>
-                                    <select className="sel02">
-                                        <option>10∞≥ ∫∏±‚</option>
-                                        <option>50∞≥ ∫∏±‚</option>
-                                        <option>100∞≥ ∫∏±‚</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="con_box_body">
-                            <div className="list_head">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">¿Ã∏ß</span>
-                                <span className="td03">æ∆¿Ãµ</span>
-                                <span className="td04">º∫∫∞</span>
-                                <span className="td05">≥ª±π¿Œ/ø‹±π¿Œ</span>
-                                <span className="td06">∞°¿‘¿œ¿⁄</span>
-                                <span className="td07">√÷±Ÿ∑Œ±◊¿Œ±‚∑œ</span>
-                                <span className="td08">ªÛºº∫∏±‚</span>
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div className="con" id="con02">
-                        <div className="con_box_top pb5">
-                            <h3>±‚æ˜∆ƒ∆Æ≥  »∏ø¯</h3>
-                            <div className="alignment">
-                                <div className="left_div"><span className="infotxt">√— <strong>22,222</strong>∏Ì</span></div>
-                                <div className="right_div">
-                                    <button type="button" className="btn_top check">∏µŒº±≈√</button>
-                                    <button type="button" className="btn_top excel">ø¢ºø</button>
-                                    <select className="sel01">
-                                        <option>√ﬂ√µºˆ</option>
-                                        <option>øπæ‡ºˆ</option>
-                                        <option>¡∂»∏ºˆ</option>
-                                    </select>
-                                    <select className="sel02">
-                                        <option>10∞≥ ∫∏±‚</option>
-                                        <option>50∞≥ ∫∏±‚</option>
-                                        <option>100∞≥ ∫∏±‚</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="con_box_body">
-                            <div className="list_head">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">¿Ã∏ß</span>
-                                <span className="td03">æ∆¿Ãµ</span>
-                                <span className="td04">º∫∫∞</span>
-                                <span className="td05">≥ª±π¿Œ/ø‹±π¿Œ</span>
-                                <span className="td06">∞°¿‘¿œ¿⁄</span>
-                                <span className="td07">√÷±Ÿ∑Œ±◊¿Œ±‚∑œ</span>
-                                <span className="td08">ªÛºº∫∏±‚</span>
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-                    <div className="con" id="con03">
-                        <div className="con_box_top pb5">
-                            <h3>∞≥¿Œ∆ƒ∆Æ≥  »∏ø¯</h3>
-                            <div className="alignment">
-                                <div className="left_div"><span className="infotxt">√— <strong>22,222</strong>∏Ì</span></div>
-                                <div className="right_div">
-                                    <button type="button" className="btn_top check">∏µŒº±≈√</button>
-                                    <button type="button" className="btn_top excel">ø¢ºø</button>
-                                    <select className="sel01">
-                                        <option>√ﬂ√µºˆ</option>
-                                        <option>øπæ‡ºˆ</option>
-                                        <option>¡∂»∏ºˆ</option>
-                                    </select>
-                                    <select className="sel02">
-                                        <option>10∞≥ ∫∏±‚</option>
-                                        <option>50∞≥ ∫∏±‚</option>
-                                        <option>100∞≥ ∫∏±‚</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="con_box_body">
-                            <div className="list_head">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">¿Ã∏ß</span>
-                                <span className="td03">æ∆¿Ãµ</span>
-                                <span className="td04">º∫∫∞</span>
-                                <span className="td05">≥ª±π¿Œ/ø‹±π¿Œ</span>
-                                <span className="td06">∞°¿‘¿œ¿⁄</span>
-                                <span className="td07">√÷±Ÿ∑Œ±◊¿Œ±‚∑œ</span>
-                                <span className="td08">ªÛºº∫∏±‚</span>
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div className="con" id="con04">
-                        <div className="con_box_top pb5">
-                            <h3>≈ª≈ »∏ø¯</h3>
-                            <div className="alignment">
-                                <div className="left_div"><span className="infotxt">√— <strong>22,222</strong>∏Ì</span></div>
-                                <div className="right_div">
-                                    <button type="button" className="btn_top check">∏µŒº±≈√</button>
-                                    <button type="button" className="btn_top excel">ø¢ºø</button>
-                                    <select className="sel01">
-                                        <option>√ﬂ√µºˆ</option>
-                                        <option>øπæ‡ºˆ</option>
-                                        <option>¡∂»∏ºˆ</option>
-                                    </select>
-                                    <select className="sel02">
-                                        <option>10∞≥ ∫∏±‚</option>
-                                        <option>50∞≥ ∫∏±‚</option>
-                                        <option>100∞≥ ∫∏±‚</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="con_box_body">
-                            <div className="list_head">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">¿Ã∏ß</span>
-                                <span className="td03">æ∆¿Ãµ</span>
-                                <span className="td04">º∫∫∞</span>
-                                <span className="td05">≥ª±π¿Œ/ø‹±π¿Œ</span>
-                                <span className="td06">∞°¿‘¿œ¿⁄</span>
-                                <span className="td07">√÷±Ÿ∑Œ±◊¿Œ±‚∑œ</span>
-                                <span className="td08">ªÛºº∫∏±‚</span>
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="con" id="con05">
-
-                        <div className="con_box_top pb5">
-                            <h3>»∏ø¯ æ‡∞¸ º≥¡§</h3>
-                            <div className="alignment">
-                                <div className="left_div"><span className="infotxt">√— <strong>22,222</strong>∏Ì</span></div>
-                                <div className="right_div">
-                                    <button type="button" className="btn_top check">∏µŒº±≈√</button>
-                                    <button type="button" className="btn_top excel">ø¢ºø</button>
-                                    <select className="sel01">
-                                        <option>√ﬂ√µºˆ</option>
-                                        <option>øπæ‡ºˆ</option>
-                                        <option>¡∂»∏ºˆ</option>
-                                    </select>
-                                    <select className="sel02">
-                                        <option>10∞≥ ∫∏±‚</option>
-                                        <option>50∞≥ ∫∏±‚</option>
-                                        <option>100∞≥ ∫∏±‚</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="con_box_body">
-                            <div className="list_head">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">¿Ã∏ß</span>
-                                <span className="td03">æ∆¿Ãµ</span>
-                                <span className="td04">º∫∫∞</span>
-                                <span className="td05">≥ª±π¿Œ/ø‹±π¿Œ</span>
-                                <span className="td06">∞°¿‘¿œ¿⁄</span>
-                                <span className="td07">√÷±Ÿ∑Œ±◊¿Œ±‚∑œ</span>
-                                <span className="td08">ªÛºº∫∏±‚</span>
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="con" id="con06">
-
-                        <div className="con_box_top pb5">
-                            <h3>∏ﬁ¥∫æÛ º≥¡§</h3>
-                            <div className="alignment">
-                                <div className="left_div"><span className="infotxt">√— <strong>22,222</strong>∏Ì</span></div>
-                                <div className="right_div">
-                                    <button type="button" className="btn_top check">∏µŒº±≈√</button>
-                                    <button type="button" className="btn_top excel">ø¢ºø</button>
-                                    <select className="sel01">
-                                        <option>√ﬂ√µºˆ</option>
-                                        <option>øπæ‡ºˆ</option>
-                                        <option>¡∂»∏ºˆ</option>
-                                    </select>
-                                    <select className="sel02">
-                                        <option>10∞≥ ∫∏±‚</option>
-                                        <option>50∞≥ ∫∏±‚</option>
-                                        <option>100∞≥ ∫∏±‚</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="con_box_body">
-                            <div className="list_head">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">¿Ã∏ß</span>
-                                <span className="td03">æ∆¿Ãµ</span>
-                                <span className="td04">º∫∫∞</span>
-                                <span className="td05">≥ª±π¿Œ/ø‹±π¿Œ</span>
-                                <span className="td06">∞°¿‘¿œ¿⁄</span>
-                                <span className="td07">√÷±Ÿ∑Œ±◊¿Œ±‚∑œ</span>
-                                <span className="td08">ªÛºº∫∏±‚</span>
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                            <div className="list_line">
-                                <span className="td01"><input type="checkbox" /></span>
-                                <span className="td02">±Ëø¡¿⁄</span>
-                                <span className="td03">gogo@gamail.com</span>
-                                <span className="td04">ø©</span>
-                                <span className="td05">ø‹±π¿Œ</span>
-                                <span className="td06">2020.10.01</span>
-                                <span className="td07">2020.11.01 12:33</span>
-                                <span className="td08"><i className="btn">ªÛºº∫∏±‚</i></span>
-
-                            </div>
-                        </div>
-                    </div>
-               </div>
-          
-            </div>    
-    </div>
-</div>
-}
-
-export default ProfileBusi
+export default MsMember;

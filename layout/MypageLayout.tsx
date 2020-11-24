@@ -26,51 +26,47 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                 </ul>
             </div>
         </div>
-        <div className="mypage_in w1200">
-            <div className="lnb">
-                <div className="profile_box">
-                    <span className="photo">
-                        <img src='/img/profile_p.png' alt="프로필이미지" />
-                    </span>
-                    <span className="nickname">새부산관광</span>
+        <div className="mypage_in w100">
+            <ul className="subtop_nav">
+                <li className="on"><a href="/mypage">회원정보</a></li>{/* 개인 -*/}
+                <li><a href="/mypage/notification">알림</a></li>{/* 개인/기업파트너/개인파트너 -*/}
+                <li><a href="/mypage/purchase">구매내역</a></li>{/* 개인 -*/}
+                <li><a href="/mypage/basket">장바구니</a></li>{/* 개인 -*/}
+                <li><a href="/mypage/my-board">나의 게시글</a></li>{/* 개인/기업파트너/개인파트너 -*/}
+                <li><a href="/mypage/reservation">예약관리</a></li>{/* 기업파트너/개인파트너 -*/}
+                <li><a href="/mypage/goods">상품관리</a></li>{/* 기업파트너 -*/}
+                <li><a href="/mypage/plainning">기획관리</a></li>{/* 개인파트너 -*/}
+                <li><a href="/mypage/settlement">매출/정산관리</a></li>{/* 기업파트너/개인파트너 -*/}
+            </ul>
+            <div className="w1200">
+               
+                <div className="lnb">
+                    <div className="profile_box">
+                        <div className="welcome">
+                            <span className="img"><i className="jandaicon-setting"></i>프로필이미지</span>
+                            <span className="name1">
+                                <i className="ct_guide">Partner</i>{/* 개인파트너 -*/}
+                                <i className="ct_partner">Partner</i>{/* 기업파트너 -*/}
+                                <strong>새부산관광</strong>님 어서오세요 :)</span>{/*기업파트너/개인파트너*/}
+                            <span className="point"><i>포인트</i><strong>10,000,000</strong>원</span>{/*기업파트너/개인파트너*/}
+
+                            <span className="name2"><i className="ct_family">Family</i><strong>김부자</strong>님 어서오세요 :)</span>{/*개인*/}
+                            <span className="time"><i>최근접속시간</i> 2020.12.12  11:11</span>{/*개인*/}
+
+                            <ul>
+                                <li><a href="/">알림<i>99+</i></a></li>{/* 개인/기업파트너/개인파트너 -*/}
+                                <li><a href="/">구매<i>0</i></a></li>{/* 개인 -*/}
+                                <li><a href="/">장바구니<i>0</i></a></li>{/* 개인 -*/}
+                                <li><a href="/">예약<i>0</i></a></li>{/* 기업파트너/개인파트너 -*/}
+                                <li><a href="/">정산<i>0</i></a></li>{/* 기업파트너/개인파트너 -*/}
+                            </ul>
+                        </div>
+
+                    </div>
+
                 </div>
-                <h3>My page</h3>
-                <ul>
-                    <li className="on">
-                        <a href={"/mypage"}>회원정보</a>
-                    </li>
-                    {/* 개인 -*/}
-                    <li>
-                        <a href="/mypage/purchase">구매내역</a>
-                    </li>
-                    {/* 개인 -*/}
-                    <li>
-                        <a href="/mypage/basket">장바구니</a>
-                    </li>
-                    {/* 개인 -*/}
-                    <li>
-                        <a href="/mypage/basket">나의 게시글</a>
-                    </li>
-                    {/* 개인/기업파트너/개인파트너 -*/}
-                    <li>
-                        <a href="/mypage/reservation">예약관리</a>
-                    </li>
-                    {/* 기업파트너/개인파트너 -*/}
-                    <li>
-                        <a href="/mypage/goods">상품관리</a>
-                    </li>
-                    {/* 기업파트너 -*/}
-                    <li>
-                        <a href="/mypage/plainning">기획관리</a>
-                    </li>
-                    {/* 개인파트너 -*/}
-                    <li>
-                        <a href="/mypage/settlement">매출/정산관리</a>
-                    </li>
-                    {/* 기업파트너/개인파트너 -*/}
-                </ul>
+                {children}
             </div>
-            {children}
         </div>
     </div>
 };

@@ -30,13 +30,13 @@ export const Footer: React.FC<IProp> = () => {
                     <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
                     <li className="sns">
                         <div>
-                            <a className="link1" href="/"><i className="jandaicon-facebook"></i></a>
-                            <a className="link2" href="/"><i className="jandaicon-twitter"></i></a>
-                            <a className="link3" href="/"><i className="jandaicon-instagram2"></i></a>
-                            <a className="link4" href="/"><i>N</i></a>
+                            <Link href="https://www.facebook.com/PinkRoader"><a target="_blank"><i className="jandaicon-facebook"></i></a></Link>
+                            <Link href="https://twitter.com/PinkRoader"><a target="_blank"><i className="jandaicon-twitter"></i></a></Link>
+                            <Link href="https://www.instagram.com/pinkroader_"><a target="_blank"><i className="jandaicon-instagram2"></i></a></Link>
+                            <Link href="http://blog.naver.com/pinkroader"><a target="_blank"><i>N</i></a></Link>
                         </div>
                     </li>
-                    <li className="cs"> <a href="mailto:pinkroader@gmail.com">CONTACT</a></li>
+                    <li className="cs"> <Link href="mailto:pinkroader@gmail.com"><a>CONTACT</a></Link></li>
                 </ul>
             </div>
             <div className="f_detail_wrap">
@@ -63,19 +63,20 @@ export const Footer: React.FC<IProp> = () => {
                             <span>통신판매업신고번호</span>
                             <strong>제 2017-부산중구-0167호</strong>
                         </li>
-                    </ul>
-                    <ul className="footer_homepage_info">
                         <li>
                             <span>영업보증보험</span>
                             <strong>5천만원 가입</strong>
                         </li>
+                    </ul>
+                    <ul className="footer_homepage_info">
+                       
                         <li>
                             <span>이메일</span>
                             <strong>pinkroader@gmail.com</strong>
                         </li>
                         <li>
                             <span>전화번호</span>
-                            <strong>05-254-24220 Am 10:00 ~ pm 5:00</strong>
+                            <strong>051-254-24220 Am 10:00 ~ pm 5:00</strong>
                         </li>
 
                         <li>
@@ -84,7 +85,7 @@ export const Footer: React.FC<IProp> = () => {
                         </li>
                         <li>
                             <span>계좌번호</span>
-                            <strong>신한은행 100-031-819617 / 예금주 : 주식회사 핑크로더</strong>
+                            <strong>신한은행 100-031-819617/예금주:주식회사 핑크로더</strong>
                         </li>
                         <li className="bottom_txt">
                             Copyright © 2020 PINKROADER Co., Ltd. All rights reserved
@@ -111,7 +112,7 @@ export const Footer: React.FC<IProp> = () => {
                         <a href="https://stayjanda.com/" target="_blank" rel="noopener">
                             <i className="jandaicon-janda"></i>
                             대한민국 1등 온·오프라인 숙소운영 및 통합예약 솔루션
-                                                    </a>
+                        </a>
                     </p>
                 </div>
             </div>

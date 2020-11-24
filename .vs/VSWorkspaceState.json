@@ -3,14 +3,15 @@
     "",
     "\\css",
     "\\layout",
+    "\\layout\\components",
     "\\pages",
-    "\\pages\\experience",
+    "\\pages\\master",
+    "\\pages\\mypage",
     "\\pages\\portfolio",
     "\\pages\\tour",
     "\\public",
-    "\\public\\img",
-    "\\public\\img\\svg"
+    "\\public\\img"
   ],
-  "SelectedNode": "\\pages\\qna.tsx",
+  "SelectedNode": "\\pages\\mypage\\plainning.tsx",
   "PreviewInSolutionExplorer": false
 }

@@ -61,12 +61,18 @@ export const Search: React.FC<IProp> = () => {
                         <div className="in">
                             <div className="inf">
                                 <input type="text" className="day" />
-                                <i className="calendar"><svg><path d="M651.17,504.7h-4.55V503a.75.75,0,1,0-1.5,0v1.7h-8.45V503a.75.75,0,0,0-1.5,0v1.7h-4.79a.75.75,0,0,0-.75.75v3.91a.75.75,0,0,0,.75.75h20.79a.74.74,0,0,0,.75-.75v-3.91A.74.74,0,0,0,651.17,504.7Zm-.75,3.91H631.13V506.2h4v.61a.75.75,0,1,0,1.5,0v-.61h8.45v.61a.75.75,0,1,0,1.5,0v-.61h3.8Z" transform="translate(-629.63 -502.25)"></path><path d="M644.51,522.11H630.77a.74.74,0,0,1-.75-.75v-9.62a.75.75,0,0,1,1.5,0v8.87h13a.75.75,0,0,1,0,1.5Z" transform="translate(-629.63 -502.25)"></path><path d="M651,522.11h-3.48a.75.75,0,0,1,0-1.5h2.73v-8.87a.75.75,0,0,1,1.5,0v9.62A.75.75,0,0,1,651,522.11Z" transform="translate(-629.63 -502.25)"></path><rect x="4.36" y="10.75" width="1.93" height="1.93"></rect><rect x="8.32" y="10.75" width="1.93" height="1.93"></rect><rect x="12.35" y="10.75" width="1.93" height="1.93"></rect><rect x="16.38" y="10.75" width="1.93" height="1.93"></rect><rect x="4.36" y="14.7" width="1.93" height="1.93"></rect><rect x="8.32" y="14.7" width="1.93" height="1.93"></rect><rect x="12.35" y="14.7" width="1.93" height="1.93"></rect><rect x="16.38" y="14.7" width="1.93" height="1.93"></rect></svg></i>
+                                <span className="calendar">
+                                    <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
+                                    <button />
+                                </span>
                             </div>
                             <div className="ovj">~</div>
                             <div className="inf">
                                 <input type="text" className="day" />
-                                <i className="calendar"><svg><path d="M651.17,504.7h-4.55V503a.75.75,0,1,0-1.5,0v1.7h-8.45V503a.75.75,0,0,0-1.5,0v1.7h-4.79a.75.75,0,0,0-.75.75v3.91a.75.75,0,0,0,.75.75h20.79a.74.74,0,0,0,.75-.75v-3.91A.74.74,0,0,0,651.17,504.7Zm-.75,3.91H631.13V506.2h4v.61a.75.75,0,1,0,1.5,0v-.61h8.45v.61a.75.75,0,1,0,1.5,0v-.61h3.8Z" transform="translate(-629.63 -502.25)"></path><path d="M644.51,522.11H630.77a.74.74,0,0,1-.75-.75v-9.62a.75.75,0,0,1,1.5,0v8.87h13a.75.75,0,0,1,0,1.5Z" transform="translate(-629.63 -502.25)"></path><path d="M651,522.11h-3.48a.75.75,0,0,1,0-1.5h2.73v-8.87a.75.75,0,0,1,1.5,0v9.62A.75.75,0,0,1,651,522.11Z" transform="translate(-629.63 -502.25)"></path><rect x="4.36" y="10.75" width="1.93" height="1.93"></rect><rect x="8.32" y="10.75" width="1.93" height="1.93"></rect><rect x="12.35" y="10.75" width="1.93" height="1.93"></rect><rect x="16.38" y="10.75" width="1.93" height="1.93"></rect><rect x="4.36" y="14.7" width="1.93" height="1.93"></rect><rect x="8.32" y="14.7" width="1.93" height="1.93"></rect><rect x="12.35" y="14.7" width="1.93" height="1.93"></rect><rect x="16.38" y="14.7" width="1.93" height="1.93"></rect></svg></i>
+                                <span className="calendar">
+                                    <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
+                                    <button />
+                                </span>
                             </div>
                         </div>
                             
@@ -74,9 +80,10 @@ export const Search: React.FC<IProp> = () => {
                     <div className="jul1">
                         <div>
                             <input type="text" placeholder="검색 내용을 입력해주세요." />
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.94 31.44">
-                                <path className="cls-5" d="M313.17,433.49l-4.86-5.31a14.48,14.48,0,0,0-1-19.41,14.55,14.55,0,0,0-10.24-4.21,14.47,14.47,0,0,0,0,28.94,14.17,14.17,0,0,0,1.72-.1,1.5,1.5,0,1,0-.35-3,11.47,11.47,0,1,1-1.38-22.86h0a11.48,11.48,0,0,1,8.14,19.56,1.49,1.49,0,0,0,0,2.12.91.91,0,0,0,.13.08,1.2,1.2,0,0,0,.15.24l5.45,5.95a1.46,1.46,0,0,0,1.1.49,1.53,1.53,0,0,0,1-.39A1.5,1.5,0,0,0,313.17,433.49Z" transform="translate(-282.62 -404.56)"></path>
-                            </svg>
+                            <div className="svg_img">
+                                <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                <button />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,7 +99,7 @@ export const Search: React.FC<IProp> = () => {
                 <div className="con_box">
                     <div className="alignment">
                         <div className="left_div">
-                            <h5>여행 상품<strong>334</strong></h5>
+                            <h5>여행상품<strong>334</strong></h5>
                         </div>
                         <div className="right_div">
                             <select className="sel01">
@@ -232,7 +239,7 @@ export const Search: React.FC<IProp> = () => {
                 <div className="con_box inf">
                     <div className="alignment">
                         <div className="left_div">
-                            <h5>체험 상품<strong>334</strong></h5>
+                            <h5>체험상품<strong>334</strong></h5>
                         </div>
                         <div className="right_div">
                             <select className="sel02 al_01">
