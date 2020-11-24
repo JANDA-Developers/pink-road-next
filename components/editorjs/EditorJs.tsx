@@ -28,9 +28,11 @@ export const EditorJs: React.FC<IProp> = ({ setData, ...props }) => {
     if (typeof window == "undefined")
         return <RER data={props.data} />
 
-    return <ReactEditorJs {...props} onChange={(_, data) => {
-        setData?.(data || EMPTY_EDITOR)
-    }} tools={tools} />;
+    return <ReactEditorJs {...props}
+        // @ts-ignore
+        onChange={(_, data) => {
+            setData?.(data || EMPTY_EDITOR)
+        }} tools={tools} />;
 };
 
 export default EditorJs;

@@ -1,3 +1,4 @@
+import { OutputData } from "@editorjs/editorjs";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic";
 import React from "react";

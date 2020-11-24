@@ -25,3 +25,4 @@
 
 //     res.end(JSON.stringify(s3Hash))
 // }
+export default ""

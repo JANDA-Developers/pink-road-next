@@ -185,7 +185,7 @@ export const MySettlement: React.FC<IProp> = () => {
                     <div className="thead">
                         <div className="th02">상품코드</div>
                         <div className="th03">상품명</div>
-                        <div class="th04">예약자</div>
+                        <div className="th04">예약자</div>
                         <div className="th05">예약날짜</div>
                         <div className="th06">예약금</div>
                         <div className="th07">상태</div>
