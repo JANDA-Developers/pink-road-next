@@ -12,6 +12,7 @@
   "dependencies": {
     "@apollo/client": "^3.2.5",
     "@editorjs/delimiter": "^1.2.0",
+    "@editorjs/editorjs": "^2.19.0",
     "@editorjs/embed": "^2.4.0",
     "@editorjs/header": "^2.6.1",
     "@editorjs/image": "^2.6.0",
@@ -38,6 +39,7 @@
     "react-day-picker": "^7.4.8",
     "react-dom": "16.14.0",
     "react-editor-js": "^1.6.2",
+    "react-editorjs-renderer": "^2.4.1",
     "react-froala-wysiwyg": "^3.2.3",
     "react-google-login": "^5.1.22",
     "react-kakao-login": "^2.0.2",
