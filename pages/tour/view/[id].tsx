@@ -97,7 +97,7 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
   }
 
 
-  return <div>
+  return <div className="edtiorView">
     <SubTopNav children={
       <>
         <li className="homedeps1">

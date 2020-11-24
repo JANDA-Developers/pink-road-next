@@ -50,7 +50,7 @@ export const BoardView: React.FC<IProps> = (data) => {
         onDelete();
     }
 
-    return <div className="board_box boardView">
+    return <div className="board_box edtiorView">
         <div className="w1200">
             <div className="xe_content">
                 <div className="xe_top">

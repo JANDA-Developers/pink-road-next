@@ -182,11 +182,15 @@ ul[contenteditable="true"] li {
 }
 
 
-.boardView .codex-editor {
+.edtiorView .codex-editor {
     border: 0px!important;
     padding: 0px!important;    
 }
 
 .codex-editor__redactor {
     padding-bottom: 0px!important;
+}
+
+.edtiorView .ce-block--selected .ce-block__content {
+    background-color: transparent;
 }
