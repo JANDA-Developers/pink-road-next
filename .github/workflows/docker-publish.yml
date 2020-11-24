@@ -16,14 +16,3 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: colton159/docker-nextjs
           tag_with_ref: true
-  pull_in_ec2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: docker pull colton159/docker-nextjs:latest && docker stop pink && docker rm pink && docker run -d -p 80:3000 --name pink colton159/docker-nextjs:latest  
