@@ -215,7 +215,7 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
                     </div>
                 </div>
             </div>
-            {/* <div className="write_type">
+            <div className="write_type">
                 <div className="title">카테고리추가</div>
                 <div className="input_form">
                     <input style={{
@@ -226,7 +226,7 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
                     }} value={newCat} />
                     <button className="btn medium" onClick={handleAddCategory}>추가</button>
                 </div>
-            </div> */}
+            </div>
         </div>
         } defaults={data} />
 };

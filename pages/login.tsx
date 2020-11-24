@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { SIGN_IN } from '../apollo/queries';
-import { LocalManager,  Storage, initStorage } from 'utils/Storage';
+import { LocalManager, Storage, initStorage } from 'utils/Storage';
 import pageInfo from 'info/login.json'
 import { Upload } from 'components/common/Upload';
 import { getEditUtils } from 'utils/pageEdit';
@@ -11,7 +11,7 @@ import { signIn, signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';
 import clinet from "../apollo/client"
 import Link from 'next/link';
-interface IProp { 
+interface IProp {
 
 }
 
@@ -43,29 +43,29 @@ export const Login: React.FC<IProp> = () => {
 
 
     useEffect(() => {
-        Storage.saveLocal("saveid",saveId)
-        Storage.saveLocal("saveSession?",saveSession)
+        Storage.saveLocal("saveid", saveId)
+        Storage.saveLocal("saveSession?", saveSession)
 
     }, [saveId, saveSession])
 
-    const handleUserType = (type:UserRole) => {
+    const handleUserType = (type: UserRole) => {
         setUserType(type);
     }
-       
-    const handleId = (id:string) => {
+
+    const handleId = (id: string) => {
         setId(id);
         console.log(userId);
     }
 
-    const handlePw = (pw:string) => {
+    const handlePw = (pw: string) => {
         setPw(pw);
         console.log(userPw);
     }
 
-    const [LoginQu, { loading: create_loading }] = useLazyQuery<signIn,signInVariables>(SIGN_IN, {
+    const [LoginQu, { loading: create_loading }] = useLazyQuery<signIn, signInVariables>(SIGN_IN, {
         fetchPolicy: "network-only",
-        onCompleted: ({SignIn}) => {
-            if(SignIn.ok) {
+        onCompleted: ({ SignIn }) => {
+            if (SignIn.ok) {
                 Storage.saveLocal("jwt", SignIn.data.token);
                 alert("환영합니다.")
                 location.href = "/"
@@ -78,7 +78,7 @@ export const Login: React.FC<IProp> = () => {
     const handleLogin = () => {
         LoginQu({
             variables: {
-                email : userId,
+                email: userId,
                 pw: userPw,
             }
         })
@@ -119,7 +119,7 @@ export const Login: React.FC<IProp> = () => {
                             className="tab-selector-1"
                             value="individual"
                             defaultChecked
-                            onClick={()=>{handleUserType(UserRole.individual)}}
+                            onClick={() => { handleUserType(UserRole.individual) }}
                         />
                         <label htmlFor="tab-1" className="tab-label-1 login_tap tap_01 ">
                             <b>개인</b>
@@ -130,7 +130,7 @@ export const Login: React.FC<IProp> = () => {
                             name="radio-set"
                             className="tab-selector-2"
                             value="partnerB"
-                            onClick={()=>{handleUserType(UserRole.partnerB)}}
+                            onClick={() => { handleUserType(UserRole.partnerB) }}
                         />
                         <label htmlFor="tab-2" className="tab-label-2 login_tap tap_02">
                             <b>기업파트너</b>
@@ -141,7 +141,7 @@ export const Login: React.FC<IProp> = () => {
                             name="radio-set"
                             className="tab-selector-3"
                             value="partner"
-                            onClick={()=>{handleUserType(UserRole.partner)}}
+                            onClick={() => { handleUserType(UserRole.partner) }}
                         />
                         <label htmlFor="tab-3" className="tab-label-3 login_tap tap_03">
                             <b>개인파트너</b>
@@ -152,14 +152,14 @@ export const Login: React.FC<IProp> = () => {
                             name="radio-set"
                             className="tab-selector-4"
                             value="manager"
-                            onClick={()=>{handleUserType(UserRole.manager)}}
+                            onClick={() => { handleUserType(UserRole.manager) }}
                         />
                         <label htmlFor="tab-4" className="tab-label-4 login_tap tap_03">
-                            <b>매니저</b>
+                            <b>마스터</b>
                         </label>
                         <div className={`login_wrap white_box`}>
                             <h3>
-                                <strong>FAMILY</strong> LOGIN
+                                <strong>MEMBER</strong> LOGIN
                             </h3>
                             <div className="form-group">
                                 <input
@@ -170,7 +170,7 @@ export const Login: React.FC<IProp> = () => {
                                     placeholder="아이디"
                                     className="txt_id"
                                     title="아이디"
-                                    onChange={(e)=>{handleId(e.target.value)}}
+                                    onChange={(e) => { handleId(e.target.value) }}
                                 />
                             </div>
                             <div className="form-group">
@@ -182,7 +182,7 @@ export const Login: React.FC<IProp> = () => {
                                     placeholder="비밀번호"
                                     title="비밀번호"
                                     className="form-txt_pw"
-                                    onChange={(e)=>{handlePw(e.target.value)}}
+                                    onChange={(e) => { handlePw(e.target.value) }}
                                 />
                             </div>
                             <div className="form-group">
@@ -200,27 +200,27 @@ export const Login: React.FC<IProp> = () => {
                                     <input type="checkbox" id="keepid_opt2" defaultValue="Y" />{" "}
                                 아이디 기억
                                 </label>
-                                </div>
-                                <button type="submit" className="sum" onClick={handleLogin}>
-                                    <span >로그인</span>
-                                </button>
-                                <div className="sign_in_form">
-                                    <span>
-                                        <Link href="/join">
-                                            <a>회원가입</a>
-                                        </Link>
-                                    </span>
-                                    <span>
-                                    <Link href="/findmembers">
-                                            <a>아이디/비번찾기</a>
-                                        </Link>
-                                    </span>
-                                </div>
                             </div>
-                      </div>
+                            <button type="submit" className="sum" onClick={handleLogin}>
+                                <span >로그인</span>
+                            </button>
+                            <div className="sign_in_form">
+                                <span>
+                                    <Link href="/join">
+                                        <a>회원가입</a>
+                                    </Link>
+                                </span>
+                                <span>
+                                    <Link href="/findmembers">
+                                        <a>아이디/비번찾기</a>
+                                    </Link>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-         </div>
+        </div>
     </div>
 };
 

@@ -2,18 +2,16 @@
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
-import { OutputData } from '@editorjs/editorjs';
 import "react-day-picker/lib/style.css";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { Ffile, ItineraryCreateInput, productPostCreate, ProductPostCreateInput, productPostCreateVariables, ProductPostStatus, ProductPostUpdateInput } from '../../../types/api';
 import { IProductDefaultData, TProductDataPart } from '../../../types/defaults/defaultProduct';
-import { EMPTY_EDITOR } from '../../../types/const';
 import { useMutation } from '@apollo/client';
 import { useProductFindById } from '../../../hook/useProductFindById';
 import DayPicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
-import { generateitinery, getDefault, TRange } from '../../../components/tourWrite/helper';
+import { generateitinery, getDefault, getNextData, TRange } from '../../../components/tourWrite/helper';
 import { useUpload } from "hook/useUpload";
 import { PRODUCT_POST_CREATE } from "apollo/mutations";
 import { ItineryForm } from "components/tourWrite/ItineryForm";
@@ -26,33 +24,30 @@ import { useProductPostDelete } from "hook/useProductDelete";
 import { TDeleteFn } from "pages/portfolio/write/[[...id]]";
 import Page404 from "pages/404";
 import { Validater } from "utils/validate";
-import { toNumber } from "utils/toNumber";
-const omitDeep = require("omit-deep-lodash");
-const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
+import isEmpty from "utils/isEmpty";
+import { OutputData } from "@editorjs/editorjs";
+import { EMPTY_EDITOR } from "types/const"
+const EditorJs = dynamic(() => import("components/editorjs/EditorJs"));
 interface IProp {
     context: ITourWriteWrapContext;
 }
 
 export const TourWrite: React.FC<IProp> = ({ context }) => {
-
     const router = useRouter();
     const { categories } = useContext(AppContext);
     const { createFn, updateFn, deleteFn, productPost, mode } = context;
-    const { data: defaultData, defaults, contents: contentBlocks, images, itinerary, inOrNor } = getDefault(productPost);
+    const defaults = getDefault(productPost);
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
-    const [itineries, setitineries] = useState<ItineraryCreateInput[]>(itinerary);
-    const { signleUpload, uploadLoading } = useUpload();
-    const [data, setData] = useState<TProductDataPart>(defaultData)
-    const [categoryId, setCategoryId] = useState("5fa9e366d8b271340229bbff");
+    const [its, setits] = useState<ItineraryCreateInput[]>(defaults.itinerary);
+    const { signleUpload } = useUpload();
+    const [data, setData] = useState<TProductDataPart>(defaults.data)
+    const [categoryId, setCategoryId] = useState(defaults.categoryId);
     const [status, setStatus] = useState(defaults.status);
-    const [thumbs, setThumbs] = useState<Partial<Ffile>[]>(images)
+    const [thumbs, setThumbs] = useState<Partial<Ffile>[]>(defaults.images)
     const [tab, setTab] = useState<number>(1);
-    const [d, setD] = useState(0);
-
-    const [contents, setContents] = useState<OutputData>(contentBlocks);
-
-    const [include, setInclude] = useState<OutputData>(inOrNor);
-
+    const [loadCount, setLoad] = useState(0);
+    const [contents, setContents] = useState<OutputData>(defaults.contents);
+    const [inOrNor, setInOrNor] = useState<OutputData>(defaults.inOrNor);
     const isCreateMode = mode === "create";
 
     const handleChangeStatus = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +61,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     const handleChangeSumbNail = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!event.target.files) return;
         const fileUploaded = event.target.files;
-        const onUpload = (url, data) => {
+        const onUpload = (_, data) => {
             thumbs.push(data);
             setThumbs([...thumbs])
         }
@@ -85,7 +80,8 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         setTab(index)
     }
 
-    const { address,
+    const {
+        address,
         keyWards,
         adult_price,
         baby_price,
@@ -99,33 +95,31 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         title,
     } = data;
 
+    const nextData = getNextData({
+        address,
+        adult_price,
+        baby_price,
+        categoryId,
+        caution,
+        contents,
+        inOrNor,
+        info,
+        its,
+        keyWards,
+        kids_price,
+        maxMember,
+        minMember,
+        startPoint,
+        status,
+        subTitle,
+        thumbs,
+        title
+    })
+
     function set<T extends keyof TProductDataPart>(key: T, value: any) {
         setData({ ...data, [key]: value })
     }
 
-    const nextData: ProductPostCreateInput = {
-        itinerary: itineries,
-        title,
-        address,
-        adult_price: toNumber(adult_price),
-        baby_price: toNumber(baby_price),
-        caution,
-        contents,
-        images: thumbs.map(thumb => ({
-            ...thumb,
-            uri: thumb?.uri!
-        })),
-        inOrNor: include,
-        info,
-        keyWards,
-        kids_price: toNumber(kids_price),
-        maxMember: toNumber(maxMember),
-        minMember: toNumber(minMember),
-        startPoint,
-        status,
-        subTitle,
-        categoryId
-    }
 
     const { validate } = new Validater([{
         value: !!thumbs?.[0]?.uri,
@@ -136,7 +130,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         failMsg: "제목값은 필수 입니다.",
         id: "title"
     }, {
-        value: !!contents,
+        value: !isEmpty(contents),
         failMsg: "안내 및값은 필수 입니다.",
         id: "content"
     }, {
@@ -144,39 +138,36 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         failMsg: "카테고리 값은 필수 입니다.",
         id: "category"
     }, {
-        value: !!itineries?.[0],
+        value: !isEmpty(its),
         failMsg: "여행일정은 필수 입니다.",
         id: "itinerary"
     }, {
-        value: !!keyWards?.[0],
+        value: !isEmpty(its),
         failMsg: "키워드 값은 필수 입니다.",
         id: "keywards"
     }]);
 
-    const handleCreate = () => {
+
+    const handleCreate = async () => {
         if (validate())
-            createFn(nextData)
+            createFn(await nextData)
     }
-    const handleEdit = () => {
+    const handleEdit = async () => {
         if (!productPost) return;
         if (validate()) {
             // @ts-ignore
-            updateFn(productPost._id, nextData)
+            updateFn(productPost._id, await nextData)
         }
     }
 
-    const handleTempSave = () => {
-        const data: IProductDefaultData = {
-            ...nextData
-        }
-        Storage.saveLocal("write", data);
+    const handleTempSave = async () => {
+        Storage.saveLocal("write", await nextData);
     }
 
     const handleLoad = () => {
         const savedData: IProductDefaultData = Storage.getLocalObj("write", undefined);
         if (!savedData) alert("저장된 정보가 없습니다.")
         const { itinerary, title, address, adult_price, baby_price, categoryId, caution, contents, images, inOrNor, info, keyWards, kids_price, maxMember, minMember, productId, startPoint, status, subTitle, type } = savedData;
-
 
         setData({
             address,
@@ -193,10 +184,10 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
             title
         })
         setThumbs(images)
-        setInclude(inOrNor)
-        setContents(contents)
-        setitineries(itinerary)
-        setD(d + 1);
+        setContents(contents);
+        setInOrNor(inOrNor);
+        setits(itinerary);
+        setLoad(loadCount + 1);
     }
 
 
@@ -219,7 +210,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         initStorage()
     }, [])
 
-    return <div key={d} className="tour_box w100 board_write">
+    return <div key={loadCount} className="tour_box w100 board_write">
         <SubTopNav children={
             <>
                 <li className="homedeps1">
@@ -383,30 +374,26 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     <div id="texta_01" className="texta">
                         <h5 id="itinerary">여행일정</h5>
                         <DayPicker setState={({ from, to }: TRange) => {
-                            const newItinerary = generateitinery({ from, to }, itineries);
+                            const newItinerary = generateitinery({ from, to }, its);
                             if (newItinerary)
-                                setitineries([...newItinerary]);
-                        }} from={dayjs(itineries[0]?.date).toDate()} to={dayjs(itineries[itineries.length - 1]?.date).toDate()} />
-                        {(itineries || []).map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setitineries={setitineries} itinery={itinery} itineries={itineries} />)}
+                                setits([...newItinerary]);
+                        }} from={dayjs(its[0]?.date).toDate()} to={dayjs(its[its.length - 1]?.date).toDate()} />
+                        {(its || []).map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setits={setits} itinery={itinery} its={its} />)}
                     </div>
                 }
                 <div style={{
                     display: tab === 2 ? undefined : "none"
                 }} id="texta_02" className="texta">
                     <h5>상품 안내문</h5>
-                    <EditorJs holder="content" data={contents} onChange={(api: any, data?: OutputData) => {
-                        setContents(data || EMPTY_EDITOR);
-                    }} />
+                    <EditorJs holder="content" data={contents} setData={setContents} />
                     <div id="content" />
                 </div>
                 <div style={{
                     display: tab === 3 ? undefined : "none"
                 }} id="texta_03" className="texta">
                     <h5>포함 / 불포함</h5>
-                    <EditorJs holder="include" data={include} onChange={(api: any, data?: OutputData) => {
-                        setInclude(data || EMPTY_EDITOR);
-                    }} />
-                    <div id="include" />
+                    <EditorJs holder="inOrNor" data={inOrNor} setData={setInOrNor} />
+                    <div id="inOrNor" />
                 </div>
                 {tab === 4 &&
                     <div id="texta_04" className="texta">
@@ -508,11 +495,10 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
     }
 
     const updateFn: TUpdateFn = (_id, params) => {
-        const ommited = omitDeep(params, "createdAt", "updatedAt", "__typename", "isDelete", "_id", "productPostId")
         productPostUpdate({
             _id,
             params: {
-                ...ommited,
+                ...params,
             }
         })
     }

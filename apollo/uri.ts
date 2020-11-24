@@ -1,5 +1,4 @@
-export const SERVER_URI =
-  "http://13.209.234.84:4000/graphql"
+export const SERVER_URI = process.env.NEXT_PUBLIC_SERVER_URI
 
 export default (() => {
   return SERVER_URI;

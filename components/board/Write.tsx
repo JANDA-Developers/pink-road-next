@@ -1,14 +1,11 @@
-import { OutputData } from "@editorjs/editorjs";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
-import { Ffile, FileCreateInput, PortfolioCreateInput } from "types/api"
-import { EMPTY_EDITOR } from "types/const";
+import { useState } from "react";
+import { Ffile, FileCreateInput } from "types/api"
 import { TElements } from "types/interface";
 import React from "react";
 import { useUpload } from "hook/useUpload";
-
-const EditorJs = dynamic(() => import('components/editor/Editor'), { ssr: false })
-
+import EditorJs from "components/editorjs/EditorJs";
+import { OutputData } from "@editorjs/editorjs";
 export interface IBoard {
     categoryList: TCategory[]
     category: TCategory
@@ -64,8 +61,8 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
 
     const data: Partial<IBoard> = {
         categoryId: category,
-        contents,
         // files,
+        contents,
         isOpen,
         subTitle,
         summary,
@@ -89,8 +86,7 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
         onCancel()
     }
 
-    const handleCreate = () => {
-
+    const handleCreate = async () => {
         onCreate(data)
     }
 
@@ -98,14 +94,14 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
         onDelete()
     }
 
-    const handleSave = () => {
+    const handleSave = async () => {
         onSave(data)
     }
 
     const handleLoad = () => {
         onLoad()
     }
-    const handleEdit = () => {
+    const handleEdit = async () => {
         onEdit(data)
     }
 
@@ -220,9 +216,11 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
                 }
                 {/* 내용 */}
                 <div className="write_con">
-                    <EditorJs holder="content" data={contents} onChange={(api: any, data?: OutputData) => {
-                        setContents(data || EMPTY_EDITOR);
-                    }} />
+                    <EditorJs
+                        setData={setContents}
+                        data={contents}
+                        holder="content"
+                    />
                     <div id="content" />
                 </div>
                 {/* 하단메뉴 */}

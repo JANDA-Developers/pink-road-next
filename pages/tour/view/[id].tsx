@@ -10,8 +10,7 @@ import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
 import { useProductPostDelete } from "hook/useProductDelete";
-import EditorRendererProvider from 'react-editorjs-renderer';
-
+import EditorJs from 'components/editorjs/EditorJs';
 
 // <div class="top_visual">
 // <div class="sub_header sub_bg" style="background-image:url(../img/su_visual_bg.jpg);">
@@ -285,7 +284,7 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
             <div className="in_box" id="tap__02">
               <h4>안내 및 참고</h4>
               <p className="text">
-                <EditorRendererProvider data={contents} />
+                <EditorJs readOnly data={contents} />
               </p>
             </div>
           </>
@@ -295,7 +294,7 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
             <div className="in_box" id="tap__03">
               <h4>안내 및 참고</h4>
               <p className="text">
-                <EditorRendererProvider data={inOrNor} />
+                <EditorJs readOnly data={inOrNor} />
               </p>
             </div>
           </>

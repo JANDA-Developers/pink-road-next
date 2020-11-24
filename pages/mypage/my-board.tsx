@@ -1,23 +1,16 @@
-import { MypageLayout } from 'layout/MypageLayout';
 import React from 'react';
+import { MypageLayout } from '../../layout/MypageLayout';
 
 interface IProp { }
 
-export const MyPlanning: React.FC<IProp> = () => {
+export const MyPageBoard: React.FC<IProp> = () => {
     return <MypageLayout>
         <div className="in myboard_box">
-            <h4>기획관리</h4>
+            <h4>나의 게시글</h4>
             <div className="paper_div">
                 <div className="con_top">
                     <h6>상세검색</h6>
                     <div className="search_box">
-                        <div className="jul2">
-                            <div className="title">범위</div>
-                            <div className="text">
-                                <span className="check on">제목</span>
-                                <span className="check">내용</span>
-                            </div>
-                        </div>
                         <div className="jul4">
                             <div className="title">날짜</div>
                             <div className="text">
@@ -55,9 +48,8 @@ export const MyPlanning: React.FC<IProp> = () => {
                         <div className="jul1">
                             <div>
                                 <select className="option">
-                                    <option>상품코드</option>
-                                    <option>상품명</option>
-                                    <option>예약자</option>
+                                    <option>제목</option>
+                                    <option>게시판</option>
                                 </select>
                                 <div className="search_div">
                                     <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
@@ -88,7 +80,7 @@ export const MyPlanning: React.FC<IProp> = () => {
                                 </select>
                             </div>
                         </div>
-
+                        
 
                         <div className="board_list_mini ln04">
                             <div className="thead">
@@ -150,8 +142,8 @@ export const MyPlanning: React.FC<IProp> = () => {
 
             </div>
         </div>
-
+        
     </MypageLayout>
 };
 
-export default MyPlanning;
+export default MyPageBoard;

@@ -33,6 +33,10 @@ export const PurChasedItem: React.FC<IProp> = () => {
         <div className="txt2">
             <span>결제일 : 2020.01.16</span>
             <span>예약일 : 2020.01.16</span>
+            <span>집합장소 : 부산시민공원 정문 앞</span>
+            <span>여행방식 : 당일여행</span>
+            <span>선택인원 : 성인1, 소인1, 유아1</span>
+
             <span
                 className="btn"
                 onClick={() => {

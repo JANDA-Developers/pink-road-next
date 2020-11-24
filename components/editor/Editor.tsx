@@ -1,28 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
-import EditorJs from 'react-editor-js';
-import { EditorJsProps } from 'react-editor-js/dist/EditorJs';
-
-interface IProp extends EditorJS.EditorConfig {
+import React from 'react';
+import { IEditorProps } from "./EditorWrite";
+import dynamic from 'next/dynamic';
+const EditorWrite = dynamic(() => import("./EditorWrite"), { ssr: false });
+const FroalaEditorView = dynamic(() => import('react-froala-wysiwyg/FroalaEditorView'), { ssr: false });
+interface IProp extends IEditorProps {
+    readOnly?: boolean;
 }
 
-export const Editor: React.FC<IProp> = (props) => {
-    const [editorTools, setTools] = useState<any>(undefined);
+export const Editor: React.FC<IProp> = ({ model, readOnly, ...props }) => {
+    if (readOnly) {
+        if (typeof window === undefined) return <div dangerouslySetInnerHTML={{ __html: model }} />
+        return <FroalaEditorView model={model} />;
+    };
 
-    useEffect(() => {
-        const fetch = async () => {
-            const editorTools = (await import('components/editor/tools.js')).default;
-            setTools(editorTools);
-        }
-
-        fetch()
-    }, [])
-
-
-    if (!editorTools) {
-        return <div />
-    }
-
-    return <EditorJs  {...props} tools={editorTools} />;
+    return <EditorWrite model={model} {...props} />;
 };
 
 export default Editor;
