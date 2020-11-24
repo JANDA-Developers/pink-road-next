@@ -14,13 +14,13 @@ export const DEFAULT_itinery: ItineraryCreateInput = {
 
 
 interface IProp {
-    itineries: ItineraryCreateInput[];
+    its: ItineraryCreateInput[];
     itinery: ItineraryCreateInput;
-    setitineries: ISet<any[]>
+    setits: ISet<any[]>
     index: number;
 }
 
-export const ItineryForm: React.FC<IProp> = ({ itinery, itineries, setitineries, index }) => {
+export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) => {
     const hiddenFileInput = useRef<HTMLInputElement>(null);
     const { signleUpload, uploadLoading } = useUpload();
 
@@ -28,7 +28,7 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, itineries, setitineries,
 
     const handleAddContent = () => {
         itinery.contents = [...itinery.contents, ""]
-        setitineries([...itineries])
+        setits([...its])
     }
 
     const handleAddImg = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,31 +37,31 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, itineries, setitineries,
 
         signleUpload(files, (url, file) => {
             itinery.images = [...(itinery.images || []), file]
-            console.log("upload:success:itineries");
-            console.log(itineries);
-            setitineries([...itineries])
+            console.log("upload:success:its");
+            console.log(its);
+            setits([...its])
         })
     };
 
     const handleDeleteImg = (index: number) => () => {
         itinery.images.splice(index, 1);
-        setitineries([...itineries])
+        setits([...its])
     }
 
     const handleDeleteContent = (index: number) => () => {
         itinery.contents.splice(index, 1);
-        setitineries([...itineries]);
+        setits([...its]);
     }
 
     const handleOnChange = (i: number) => (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const value = e.currentTarget.value;
         itinery.contents[i] = value;
-        setitineries([...itineries])
+        setits([...its])
     }
 
     const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
         itinery.title = e.currentTarget.value;
-        setitineries([...itineries])
+        setits([...its])
     }
 
     const lastOrSingle = (index: number) => {

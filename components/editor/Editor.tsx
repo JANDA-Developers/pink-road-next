@@ -1,49 +1,19 @@
-import * as React from "react";
-import { EditorConfig } from "@editorjs/editorjs";
-import Render from "react-editorjs-renderer";
-interface EditorJsWrapperProps extends React.ComponentProps<"div"> {
-    config?: EditorConfig;
+import React from 'react';
+import { IEditorProps } from "./EditorWrite";
+import dynamic from 'next/dynamic';
+const EditorWrite = dynamic(() => import("./EditorWrite"), { ssr: false });
+const FroalaEditorView = dynamic(() => import('react-froala-wysiwyg/FroalaEditorView'), { ssr: false });
+interface IProp extends IEditorProps {
+    readOnly?: boolean;
 }
 
-export default function EditorJsWrapper({
-    config = {},
-    ...restProps
-}: EditorJsWrapperProps): JSX.Element {
-    const elmtRef = React.useRef<HTMLDivElement>();
+export const Editor: React.FC<IProp> = ({ model, readOnly, ...props }) => {
+    if (readOnly) {
+        if (typeof window === undefined) return <div dangerouslySetInnerHTML={{ __html: model }} />
+        return <FroalaEditorView model={model} />;
+    };
 
-    React.useEffect(() => {
-        if (!elmtRef.current) {
-            return;
-        }
+    return <EditorWrite model={model} {...props} />;
+};
 
-        let editorJs;
-
-        (async () => {
-            const { default: EditorJS } = await import("@editorjs/editorjs");
-            const { default: EditorJSTools } = await import("./tools.js");
-
-            editorJs = new EditorJS({
-                ...config,
-                tools: EditorJSTools,
-                holder: elmtRef.current,
-            });
-        })().catch((error): void => console.error(error));
-
-        return (): void => {
-            editorJs.destroy();
-        };
-    }, [config]);
-
-    if (typeof window === "undefined" && config.readOnly) {
-        return <Render data={config.data} />
-    }
-
-    return (
-        <div
-            {...restProps}
-            ref={(elmt): void => {
-                elmtRef.current = elmt;
-            }}
-        />
-    );
-}
+export default Editor;

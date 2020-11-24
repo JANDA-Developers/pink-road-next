@@ -1,9 +1,8 @@
-import { OutputData } from "@editorjs/editorjs";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic";
 import React from "react";
 import { Ffile } from "types/api"
-const EditorJs = dynamic(() => import('components/editor/Editor'))
+const Editor = dynamic(() => import('components/editor/Editor'))
 
 interface IProps {
     catName: string;
@@ -50,7 +49,7 @@ export const BoardView: React.FC<IProps> = (data) => {
         onDelete();
     }
 
-    return <div className="board_box">
+    return <div className="board_box boardView">
         <div className="w1200">
             <div className="xe_content">
                 <div className="xe_top">
@@ -82,13 +81,8 @@ export const BoardView: React.FC<IProps> = (data) => {
                     {/*thumb && <img src={thumb.uri} alt={thumb.name} /> 섬네일이미지 안보여줘도됨...*/}
 
                     {content.blocks &&
-                        <EditorJs config={{
-                            data: content,
-                            readOnly: true
-                        }} />
+                        <Editor readOnly model={content} />
                     }
-
-
                     {files &&
                         <div className="download_box">
                             <ul>

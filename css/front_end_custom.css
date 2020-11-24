@@ -180,3 +180,13 @@ ul[contenteditable="true"] li {
     max-height: 100px;
     opacity: 1;
 }
+
+
+.boardView .codex-editor {
+    border: 0px!important;
+    padding: 0px!important;    
+}
+
+.codex-editor__redactor {
+    padding-bottom: 0px!important;
+}

@@ -8793,7 +8793,7 @@ i.calendar {
             cursor: pointer;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: 150%;
+            background-size: 101%;
         }
 
             .portfolio_in .con04 .portfolio_box ul li:before {
@@ -8810,7 +8810,7 @@ i.calendar {
             }
 
             .portfolio_in .con04 .portfolio_box ul li:hover:before {
-                opacity: 0.8 !important;
+                opacity: 0.6 !important;
             }
 
     .portfolio_in .con04 .portfolio_box .box {
