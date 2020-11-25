@@ -11,7 +11,7 @@ import Marker from "@editorjs/marker";
 import Delimiter from "@editorjs/delimiter";
 import InlineCode from "@editorjs/inline-code";
 import SimpleImage from "@editorjs/simple-image";
-const uploadUrl = 'ec2-54-180-32-135.ap-northeast-2.compute.amazonaws.com:3000/upload';
+const uploadUrl = 'http://ec2-54-180-32-135.ap-northeast-2.compute.amazonaws.com:3000/upload';
 
 const fileAction = uploadUrl;
 const fetchAction = ""
