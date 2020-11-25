@@ -5708,9 +5708,9 @@ react-color@^2.14.1:
     reactcss "^1.2.0"
     tinycolor2 "^1.4.1"
 
-react-daum-postcode@^2.0.1:
+react-daum-postcode@^2.0.2:
   version "2.0.2"
-  resolved "https://registry.npmjs.org/react-daum-postcode/-/react-daum-postcode-2.0.2.tgz#7adc21173f9567f86d1ea0aafd3b5b1c63e9ec66"
+  resolved "https://registry.yarnpkg.com/react-daum-postcode/-/react-daum-postcode-2.0.2.tgz#7adc21173f9567f86d1ea0aafd3b5b1c63e9ec66"
   integrity sha512-K1ScGNJeIk8lUqGf3mSn3flD1zJ+PmH1G54FplHxywlyKp8uG/+xrP1VEgDHKYBFJtpuiHvIUaJDFAh8m8zX9g==
   dependencies:
     prop-types "^15.6.2"

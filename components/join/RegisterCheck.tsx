@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { policyChkWarning } from './helper';
+import { registerChkWarning, policyChkWarning, emptyAllow } from './helper';
 import { useMutation } from '@apollo/client';
 import { SIGN_UP } from '../../apollo/mutations';
 import { signUp, signUpVariables, UserRole } from '../../types/api';
-import { isEmail, isPhone } from 'utils/validation';
+import { isEmail, isPhone, isPassword } from 'utils/validation';
 import { TFormNormal } from "./FormNormal";
 import { TFormPartnetCor } from "./FormPartnerCor";
 import { TFormPartnerNormal } from "./FormPartnerNormal";
@@ -36,8 +36,8 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
   const [productCreateMu, { loading: create_loading }] = useMutation<signUp, signUpVariables>(SIGN_UP, {
     onCompleted: () => {
       console.log('result');
-       /* 최종 Post Values */
-       handleJoinProcess('registered');
+      /* 최종 Post Values */
+      handleJoinProcess('registered');
     }
   });
 
@@ -108,13 +108,18 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
 
   }
 
-
+  const removeSpace = (trimTarget) => {
+    return trimTarget.replace(/\s/g, '');
+  }
+  
+  const regExpPhone = (testTarget) => {
+    const regPhone = new RegExp(/^[0-9]+$/g);
+    return regPhone.test(removeSpace(testTarget));
+  }
+  
   const validateCommon = () => {
 
-    const regName = new RegExp(/^[가-힣]+$/);
     const regPhone = new RegExp(/^[0-9]+$/g);
-
-    const nameTest = regName.test(registerInfo.name);
     const phoneTest = regPhone.test(registerInfo.contact);
 
     if (registerInfo.password != registerInfo.passwordChk) {
@@ -127,10 +132,16 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
       return false;
     }
 
-    if (!phoneTest) {
-      alert('연락처란에는 숫자만 기입해 주십시요');
+    if(!isPassword(registerInfo.password)) {
+      alert('비밀번호는 특수문자 1개이상 및 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다');
       return false;
     }
+
+    if(!regExpPhone(registerInfo.contact)) {
+      alert('연락처란에는 숫자만 기입해 주십시요'); 
+      return false;
+    }
+
 
     return true;
 
@@ -141,8 +152,16 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
 
     if (validateCommon()) {
 
-      if (!registerInfo.name) {
+      const regName = new RegExp(/^[가-힣 ]+$/);
+      const nameTest = regName.test(registerInfo.name);
+
+      if (!nameTest) {
         alert('이름은 한글로 입력해 주십시요');
+        return false;
+      }
+
+      if(registerInfo.name.length < registerInfo.nameLeng) {
+        alert(`이름은 ${registerInfo.nameLeng} 글자 이상이여야 합니다`);
         return false;
       }
 
@@ -160,6 +179,11 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
   const validatePartnerCor = () => {
 
     if (validateCommon()) {
+
+      if(!regExpPhone(registerInfo.incharge_number)) {
+        alert('담당자 연락처에는 숫자만 기입해 주십시요'); 
+        return false;
+      }
 
       handleRegister();
 
@@ -184,22 +208,20 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
 
     for (registerData in registerInfo) {
 
-      // console.log(`${registerData} : ${registerInfo[registerData]}`);
-
       let chkEmpty = registerInfo[registerData];
 
       if (typeof chkEmpty != "boolean") {
 
-        // if (emptyAllow[registerData] === undefined) {
+        if (emptyAllow[registerData] === undefined) {
 
-        //   chkEmpty.trim();
-        //   if (chkEmpty.length <= 0) {
-        //     alert(`${registerChkWarning[registerData]}란에 정보를 입력해주세요.`);
-        //     document.getElementsByName(registerData)[0].focus();
-        //     return false;
-        //   }
+          chkEmpty.trim();
+          if (chkEmpty.length <= 0) {
+            alert(`${registerChkWarning[registerData]}란에 정보를 입력해주세요.`);
+            document.getElementsByName(registerData)[0].focus();
+            return false;
+          }
 
-        // }
+        }
 
       }
 
@@ -249,39 +271,41 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
 
       alert('Validation end');
 
-      const { address,
-        address_detail,
-        birthday,
-        contact,
-        email,
-        gender,
-        isKorean,
-        name,
-        password,
-        register_sort
-      } = registerInfo;
+      console.log(registerInfo);
 
-      productCreateMu({
-        variables: {
-          data: {
-            email,
-            pw: password,
-            is_froreginer: isKorean,
-            role: UserRole.anonymous,
-            bank_name: "",
-            account_number: "",
-            address: address,
-            brith_date: birthday,
-            bsui_address: address,
-            busi_contact: contact,
-            busi_name: name,
-            busi_num: "",
-            gender,
-            is_priv_corper: isKorean,
+      // const { address,
+      //   address_detail,
+      //   birthday,
+      //   contact,
+      //   email,
+      //   gender,
+      //   isKorean,
+      //   name,
+      //   password,
+      //   register_sort
+      // } = registerInfo;
 
-          }
-        }
-      })
+      // productCreateMu({
+      //   variables: {
+      //     data: {
+      //       email,
+      //       pw: password,
+      //       is_froreginer: isKorean,
+      //       role: UserRole.anonymous,
+      //       bank_name: "",
+      //       account_number: "",
+      //       address: address,
+      //       brith_date: birthday,
+      //       bsui_address: address,
+      //       busi_contact: contact,
+      //       busi_name: name,
+      //       busi_num: "",
+      //       gender,
+      //       is_priv_corper: isKorean,
+
+      //     }
+      //   }
+      // })
 
     }
 
