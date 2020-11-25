@@ -4,9 +4,6 @@ export default (() => {
   return SERVER_URI;
 })();
 
-
-
-
 // import { gql, ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 // import fetch from 'isomorphic-unfetch';
 // import { GetServerSideProps } from 'next';
