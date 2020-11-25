@@ -8565,6 +8565,18 @@ i.calendar {
     box-sizing: border-box;
     padding: 0 3%;
 }
+.privacy_box ul.txtul {
+    position:relative;
+    margin-left:10px;
+}
+    .privacy_box ul.txtul li {
+        margin-bottom: 5px;
+        font-size: 0.9em;
+    }
+    .privacy_box p {
+        line-height: 130%;
+        margin-bottom: 5px;
+    }
 
 /*krterms */
 .krterms_box {
@@ -9600,8 +9612,6 @@ i.calendar {
     }
 
 
-
-
     /* basket_box */
     .basket_box {
         position: relative;
@@ -10230,6 +10240,12 @@ i.calendar {
 }
 
 @media (min-width: 768px) {
+    .privacy_box .subtop_nav {
+        top: -117px !important;
+    }
+    .rule_box .subtop_nav {
+        top: -117px !important;
+    }
     .footer_in .f_detail_wrap,
     #container .row1, 
     #container .row3, 
