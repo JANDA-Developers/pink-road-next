@@ -5,7 +5,7 @@ interface IProp { }
 
 export const MyPlanning: React.FC<IProp> = () => {
     return <MypageLayout>
-        <div className="in myboard_box">
+        <div className="in myplanning_box">
             <h4>기획관리</h4>
             <div className="paper_div">
                 <div className="con_top">
@@ -73,84 +73,95 @@ export const MyPlanning: React.FC<IProp> = () => {
                     </div>
 
                     <div className="con_bottom">
-                        <div className="alignment">
-                            <div className="left_div">총 <strong>22,222</strong>개</div>
-                            <div className="right_div">
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
+                        <div className="con_box">
+                            <div className="alignment">
+                                <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>건</span></div>
+                                <div className="right_div">
+                                    <ul className="board_option">
+                                        <li><a href="/">모두선택</a></li>
+                                        <li><a href="/">모두선택 해제</a></li>
+                                        <li><a href="/">엑셀파일</a></li>
+                                    </ul>
+                                    <select className="sel01">
+                                        <option>최신↑</option>
+                                        <option>최신↓</option>
+                                        <option>조회수</option>
+                                    </select>
+                                    <select className="sel02">
+                                        <option>10개 보기</option>
+                                        <option>50개 보기</option>
+                                        <option>100개 보기</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-
-
-                        <div className="board_list_mini ln04">
-                            <div className="thead">
-                                <div className="th02">제목</div>
-                                <div className="th03">게시판</div>
-                                <div className="th04">날짜</div>
-                            </div>
-                            <div className="tbody">
-                                <ul>
-                                    <li>
-                                        <div className="th02"><a href="/">궁금한게 있어요 :) <i className="q_ok">답변완료</i></a></div>
-                                        <div className="th03">문의하기</div>
-                                        <div className="th04">2020.02.02 11:00</div>
-                                    </li>
-                                    <li>
-                                        <div className="th02"><a href="/">궁금한게 있어요 :)<i className="q_no">답변중</i></a></div>
-                                        <div className="th03">문의하기</div>
-                                        <div className="th04">2020.02.02 11:00</div>
-                                    </li>
-                                    <li>
-                                        <div className="th02"><a href="/">궁금한게 있어요 :) <i className="q_ok">답변완료</i></a></div>
-                                        <div className="th03">문의하기</div>
-                                        <div className="th04">2020.02.02 11:00</div>
-                                    </li>
-                                    <li>
-                                        <div className="th02"><a href="/">궁금한게 있어요 :)<i className="q_no">답변중</i></a></div>
-                                        <div className="th03">문의하기</div>
-                                        <div className="th04">2020.02.02 11:00</div>
-                                    </li>
-                                    <li className="no_data">
-                                        {/*게시글이 없을때*/}
-                                        <i className="jandaicon-info3" />
-                                        <span>게시글이 없습니다.</span>
-                                    </li>
-                                </ul>
-
-                            </div>
-                            <div className="boardNavigation">
-                                <div className="float_left">
-                                    <div className="pagenate_mini">
-                                        <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
-                                        <div className="count"><strong>1</strong> / 10</div>
-                                        <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
+                            <div className="fuction_list_mini ln08">
+                                <div className="thead">
+                                    <div className="th01">
+                                        <span className="checkbox">
+                                            <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                            <label htmlFor="agree0" />
+                                        </span>
+                                    </div>
+                                    <div className="th02">상품코드</div>
+                                    <div className="th03">상품명</div>
+                                    <div className="th04">예약자/연락처</div>
+                                    <div className="th05">예약날짜</div>
+                                    <div className="th06">예약금</div>
+                                    <div className="th07">상태</div>
+                                    <div className="th08">상세보기</div>
+                                </div>
+                                <div className="tbody">
+                                    <ul>
+                                        <li>
+                                            <div className="th01">
+                                                <span className="checkbox">
+                                                    <input type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                                    <label htmlFor="agree1" />
+                                                </span>
+                                            </div>
+                                            <div className="th02">GUIDE-01230</div>
+                                            <div className="th03">제주도로 떠나요~ </div>
+                                            <div className="th04">홍나리<br />010-0100-0000</div>
+                                            <div className="th05">2020.02.02</div>
+                                            <div className="th06">50,000</div>
+                                            <div className="th07"><strong className="ok">예약완료</strong></div>
+                                            <div className="th08"><i className="btn">상세보기</i></div>
+                                        </li>
+                                        <li>
+                                            <div className="th01">
+                                                <span className="checkbox">
+                                                    <input type="checkbox" name="agree" id="agree2" title="개별선택" />
+                                                    <label htmlFor="agree2" />
+                                                </span>
+                                            </div>
+                                            <div className="th02">GUIDE-01230</div>
+                                            <div className="th03">제주도로 떠나요~ </div>
+                                            <div className="th04">홍나리<br />010-0100-0000</div>
+                                            <div className="th05">2020.02.02</div>
+                                            <div className="th06">50,000</div>
+                                            <div className="th07"><strong className="no">예약취소</strong></div>
+                                            <div className="th08"><i className="btn">상세보기</i></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="boardNavigation">
+                                    <div className="float_left">
+                                        <div className="pagenate_mini">
+                                            <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
+                                            <div className="count"><strong>1</strong> / 10</div>
+                                            <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
+                                        </div>
+                                    </div>
+                                    <div className="float_right">
+                                        <a href="" className="mini_btn small">예약관리시스템 바로가기</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-
-
-
-
-
-
-
                 </div>
-
             </div>
         </div>
-
     </MypageLayout>
 };
 

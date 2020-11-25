@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css",
     "\\layout",
     "\\layout\\components",
     "\\pages",
@@ -12,6 +11,6 @@
     "\\public",
     "\\public\\img"
   ],
-  "SelectedNode": "\\pages\\mypage\\plainning.tsx",
+  "SelectedNode": "\\pages\\mypage\\basket.tsx",
   "PreviewInSolutionExplorer": false
 }

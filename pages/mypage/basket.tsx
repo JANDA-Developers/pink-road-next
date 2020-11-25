@@ -17,14 +17,24 @@ export const MyPageBasket: React.FC<IProp> = () => {
 
                 <div className="basket_list">
                     <div className="th">
-                        <div className="t01"><input type="checkbox" /></div>
+                        <div className="t01">
+                            <span className="checkbox">
+                                <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                <label htmlFor="agree0" />
+                            </span>
+                        </div>
                         <div className="t02">상품정보</div>
                         <div className="t03">옵션</div>
                         <div className="t04">상품금액</div>
                         <div className="t05">상태</div>
                     </div>
                     <div className="td">
-                        <div className="t01"><input type="checkbox" /></div>
+                        <div className="t01">
+                            <span className="checkbox">
+                                <input type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                <label htmlFor="agree1" />
+                            </span>
+                        </div>
                         <div className="t02">
                             <div className="img" style={{ backgroundImage: 'url(/img/sample_01.gif)' }}></div>
                             <div className="right">
@@ -56,7 +66,12 @@ export const MyPageBasket: React.FC<IProp> = () => {
 
                     </div>
                     <div className="td">
-                        <div className="t01"><input type="checkbox" /></div>
+                        <div className="t01">
+                            <span className="checkbox">
+                                <input type="checkbox" name="agree" id="agree2" title="개별선택" />
+                                <label htmlFor="agree2" />
+                            </span>
+                        </div>
                         <div className="t02">
                             <div className="img"></div>
                             <div className="right">

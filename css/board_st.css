@@ -280,6 +280,11 @@
     .board_list_mini.ln04 .th01 {
         width: 15%;
     }
+    .board_list_mini.ln04 .thead .th01 .checkbox {
+        top:10px;
+    }    .board_list_mini.ln04 .tbody .th01 .checkbox {
+        top:10px;
+    }
 
     .board_list_mini.ln04 .th02 {
         text-align: left;
@@ -1975,9 +1980,11 @@ div.sum_div {
             font-size: 13px;
             vertical-align: top;
         }
-@media (min-width:768px) {
 
-    ul.list_ul.line3 li {
+
+
+@media (min-width:768px) {
+    ul .list_ul.line3 li {
         width: 31.7%;
     }
 
