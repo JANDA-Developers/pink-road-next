@@ -7,7 +7,7 @@ export const Search: React.FC<IProp> = () => {
         <div className="top_visual">
             <div
                 className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/work_top_bg2.jpg)` }}
+                style={{ backgroundImage: `url(/img/pr_img_05.jpg)` }}
             >
                 <div className="w1200">
                     <h2 className="title">통합검색</h2>

@@ -2884,12 +2884,14 @@ ul.rank_ul {
 
         .siteInfo_in .con04 .infopp .ovj {
             position: absolute;
-            left: 4px;
+            left: 0;
             top: -60px;
             font-size: 4.1em;
             font-weight: 400;
             color: #ccc;
             z-index: 22;
+            width: 100%;
+            text-align: center;
         }
 
         .siteInfo_in .con04 .infopp li {
@@ -3402,6 +3404,8 @@ ul.rank_ul {
     display: inline-block;
     z-index: 5;
     border: 1px #fff solid;
+}.siteInfo_in .con07 span a {
+    color: #fff;
 }
 
     .siteInfo_in .con07 span:hover {
@@ -10315,7 +10319,7 @@ i.calendar {
     }
 
     .siteInfo_in .con04 .infopp .ovj {
-        left: -60px;
+        left: 0;
         top: -120px;
         font-size: 9.1em;
         font-weight: 400;
@@ -11593,7 +11597,7 @@ i.calendar {
     }
 
     .siteInfo_in .con03 {
-        padding: 194px 0 0;
+        padding: 334px 0 0;
         min-height: 773px;
         background-position: center top;
         background-size: 110%;

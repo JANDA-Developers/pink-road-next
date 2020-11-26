@@ -6,7 +6,7 @@ const TermsOfUse = () => {
             <div className="top_visual">
                 <div
                     className="sub_header sub_bg"
-                    style={{ backgroundImage: `url(/img/su_visual_bg.jpg)` }}
+                    style={{ backgroundImage: `url(/img/pr_img_20.jpg)` }}
                 >
                     <div className="w1200">
                         <h2 className="title">이용약관</h2>

@@ -116,7 +116,7 @@ export const Header: React.FC<IProp> = () => {
                                 </Link>
                             </li>
                             <li className="deps">
-                                <Link href="/tour?type=exp">
+                                <Link href="/experience">
                                     <a>Experience</a>
                                 </Link>
                             </li>

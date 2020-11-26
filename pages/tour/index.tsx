@@ -48,7 +48,7 @@ export const TourMain: React.FC<IProp> = ({ context }) => {
         </SubTopNav>
         <div className="goods_box">
             <div className="w1200">
-                <div id="sub_tap_nav" className="subtop_nav">
+                <div id="sub_tap_nav" className="subtop_nav betatest">
                     <ul>
                         <li className="on"><a href="/tour/list">전체</a></li>
                         <li><a href="/tour/list">문화·예술여행</a></li>
@@ -69,8 +69,8 @@ export const TourMain: React.FC<IProp> = ({ context }) => {
                     </ul>
                 </div>
                 <div className="bn_box line2">
-                    <a href="/"><img src={'/img/bn_01.jpg'} alt="여행할인이벤트" /></a>
-                    <a href="/"><img src={'/img/bn_01.jpg'} alt="여행할인이벤트" /></a>
+                    <a href="/"><img src={'/img/bn_02.png'} alt="여행할인이벤트" /></a>
+                    <a href="/"><img src={'/img/bn_02.png'} alt="여행할인이벤트" /></a>
                 </div>
                 {sortedData.map(data =>
                     <div key={data?.category?._id} className="deal_list">

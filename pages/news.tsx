@@ -45,14 +45,15 @@ export const News: React.FC<IProp> = ({ type, search, setSearch }) => {
                         <ViewCount value={10} onChange={() => { }} />
                     </div>
                 </div>
-                {view === "gall" && <div className="tourstory_box">
+                준비중입니다.
+                {view === "gall" && <div className="tourstory_box  betatest">
                     <div className="board_list st02">
                         <ul className="boardlist_ul line3">
                             <PhotoView onClickImg={() => { }} />
                         </ul>
                     </div>
                 </div>}
-                {view === "line" && <div className="board_list st03">
+                {view === "line" && <div className="board_list st03   betatest">
                     <div className="tbody">
                         <ul>
                             <LineView />
