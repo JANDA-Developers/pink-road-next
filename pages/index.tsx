@@ -85,7 +85,11 @@ export const Main: React.FC<IProps> = ({ context }) => {
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
     <div className="main_con_box1">
+<<<<<<< Updated upstream
       {/* <EditorJs /> */}
+=======
+      <EditorJs />
+>>>>>>> Stashed changes
       <div
         className="main_top_images"
         style={{ ...bg("mainBg") }}
