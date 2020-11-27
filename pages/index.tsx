@@ -13,7 +13,9 @@ import dynamic from 'next/dynamic';
 import { IUseProductList, useProductPostList } from 'hook/useProductPostList';
 import { useRouter } from 'next/router';
 import $ from "jquery";
-// const EditorJs = dynamic(() => import('components/editor2/Ediotr2'), { ssr: false })
+
+
+const EditorJs = dynamic(() => import('components/edit/CKE'), { ssr: false })
 
 const DummyPhoto = [{
   category: "문화/예술",
@@ -83,6 +85,7 @@ export const Main: React.FC<IProps> = ({ context }) => {
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
     <div className="main_con_box1">
+      <EditorJs />
       <div
         className="main_top_images"
         style={{ ...bg("mainBg") }}

@@ -4,13 +4,16 @@ import { useProductFindById } from "hook/useProductFindById";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IProductPostFindById } from "types/interface";
 import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
 import { useProductPostDelete } from "hook/useProductDelete";
 import EditorJs from 'components/editorjs/EditorJs';
+import NiceElement from "components/nice/NiceElement";
+import { NICE_GET_KEY } from "../../../types/const";
+
 
 // <div class="top_visual">
 // <div class="sub_header sub_bg" style="background-image:url(../img/su_visual_bg.jpg);">
@@ -62,6 +65,25 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
     updatedAt
   } = productPost;
 
+  const [authData, setAuthData] = useState();
+
+  const getAuth = () => {
+    fetch(NICE_GET_KEY, {
+      method: "post",
+      mode: "cors",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        amt: 1000
+      }),
+      referrerPolicy: 'no-referrer'
+    }).then((info) => {
+      console.log(info);
+    })
+  }
+
+
   const [mainImg, setMain] = useState(images?.[0])
   const [tab, setTab] = useState<number>(1);
 
@@ -97,7 +119,12 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
   }
 
 
+<<<<<<< Updated upstream
   return <div>
+=======
+  return <div className="edtiorView">
+    <button onClick={getAuth}>AUTH</button>
+>>>>>>> Stashed changes
     <SubTopNav children={
       <>
         <li className="homedeps1">
@@ -112,7 +139,6 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
       </>
     } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/work_top_bg2.jpg'} />
     <div className="tour_details_in w1200">
-
 
       <div className="Document">
         <div className="Read_box">
