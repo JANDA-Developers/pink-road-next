@@ -1,17 +1,17 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css",
     "\\layout",
     "\\layout\\components",
     "\\pages",
     "\\pages\\master",
+    "\\pages\\member",
     "\\pages\\mypage",
     "\\pages\\portfolio",
     "\\pages\\tour",
     "\\public",
     "\\public\\img"
   ],
-  "SelectedNode": "\\pages\\mypage\\plainning.tsx",
+  "SelectedNode": "\\pages\\member\\rule.tsx",
   "PreviewInSolutionExplorer": false
 }

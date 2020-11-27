@@ -94,7 +94,12 @@ export const MyReservation: React.FC<IProp> = () => {
                         </div>
                         <div className="fuction_list_mini ln08">
                             <div className="thead">
-                                <div className="th01"><input type="checkbox" /></div>
+                                <div className="th01">
+                                    <span className="checkbox check2">
+                                        <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                        <label htmlFor="agree0" />
+                                    </span>
+                                </div>
                                     <div className="th02">상품코드</div>
                                     <div className="th03">상품명</div>
                                     <div className="th04">예약자/연락처</div>
@@ -106,7 +111,12 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <div className="tbody">
                                     <ul>
                                         <li>
-                                            <div className="th01"><input type="checkbox" /></div>
+                                            <div className="th01">
+                                                <span className="checkbox check2">
+                                                    <input type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                                    <label htmlFor="agree1" />
+                                                </span>
+                                            </div>
                                             <div className="th02">GUIDE-01230</div>
                                             <div className="th03">제주도로 떠나요~ </div>
                                             <div className="th04">홍나리<br />010-0100-0000</div>
@@ -116,7 +126,12 @@ export const MyReservation: React.FC<IProp> = () => {
                                             <div className="th08"><i className="btn">상세보기</i></div>
                                         </li>
                                         <li>
-                                            <div className="th01"><input type="checkbox" /></div>
+                                            <div className="th01">
+                                                <span className="checkbox check2">
+                                                    <input type="checkbox" name="agree" id="agree2" title="개별선택" />
+                                                    <label htmlFor="agree2" />
+                                                </span>
+                                            </div>
                                             <div className="th02">GUIDE-01230</div>
                                             <div className="th03">제주도로 떠나요~ </div>
                                             <div className="th04">홍나리<br />010-0100-0000</div>

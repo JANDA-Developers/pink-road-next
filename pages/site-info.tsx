@@ -267,7 +267,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <strong>우리는 쉬운 길보다 옳은 길을 만들고 걸어갑니다.</strong>
                     We walk the right path rather than the easy one
                 </h4>
-                <span>제휴문의</span>
+                <span><a href="mailto:pinkroader@gmail.com">제휴문의</a></span>
 
             </div>
             <div className="ovj"></div>

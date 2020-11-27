@@ -23,6 +23,9 @@ html, body, form, div, p, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, pre, i
 }
 button {
     cursor: pointer;
+    border: none;
+    background: none;
+    -webkit-appearance: none;
 }
 ol, ul, dl {
     list-style: none;
@@ -122,7 +125,7 @@ select:focus {
     line-height: 0;
 }
 .betatest {/* 핑크로더는 볼수 없게 none */
-    display:inline-block !important;
+    display:none !important;
 }
 .btn {
     box-shadow: none;

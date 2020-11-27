@@ -28,7 +28,7 @@ export const Culture: React.FC<IProp> = ({ type, search, setSearch }) => {
         <div className="top_visual">
             <div
                 className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/work_top_bg2.jpg)` }}
+                style={{ backgroundImage: `url(/img/pr_img_02.jpg)` }}
             >
                 <div className="w1200">
                     <h2 className="title">문화이야기</h2>

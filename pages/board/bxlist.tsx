@@ -204,8 +204,9 @@ const bxlist = () => {
 
     return (
         <>
-           <div className="board_box">
-             <div className="w1200">
+            <div className="board_box">
+                준비중입니다.
+                <div className="w1200 betatest">
                 <div>
                     <span>
                     [ 페이지 ] : {pageNum} 개 [ 블록 ] : 

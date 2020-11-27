@@ -2884,12 +2884,14 @@ ul.rank_ul {
 
         .siteInfo_in .con04 .infopp .ovj {
             position: absolute;
-            left: 4px;
+            left: 0;
             top: -60px;
             font-size: 4.1em;
             font-weight: 400;
             color: #ccc;
             z-index: 22;
+            width: 100%;
+            text-align: center;
         }
 
         .siteInfo_in .con04 .infopp li {
@@ -3402,6 +3404,8 @@ ul.rank_ul {
     display: inline-block;
     z-index: 5;
     border: 1px #fff solid;
+}.siteInfo_in .con07 span a {
+    color: #fff;
 }
 
     .siteInfo_in .con07 span:hover {
@@ -8565,6 +8569,18 @@ i.calendar {
     box-sizing: border-box;
     padding: 0 3%;
 }
+.privacy_box ul.txtul {
+    position:relative;
+    margin-left:10px;
+}
+    .privacy_box ul.txtul li {
+        margin-bottom: 5px;
+        font-size: 0.9em;
+    }
+    .privacy_box p {
+        line-height: 130%;
+        margin-bottom: 5px;
+    }
 
 /*krterms */
 .krterms_box {
@@ -9600,12 +9616,17 @@ i.calendar {
     }
 
 
-
-
     /* basket_box */
     .basket_box {
         position: relative;
     }
+        .basket_box .basket_list .th .t01 .checkbox {
+            top:8px;
+        }
+        .basket_box .basket_list .td .t01 .checkbox {
+            top:50%;
+            margin-top:-8px;
+        }
 
     .basket_box .paper_div {
         position: relative;
@@ -10144,8 +10165,98 @@ i.calendar {
             font-weight: 600;
         }
 
+        /* 체크박스 디자인 */
+.checkbox {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+
+    .checkbox input {
+        width: 1px;
+        height: 1px;
+        border: 0;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+    }
+
+        .checkbox input + label {
+            position: relative;
+            font-size: 0.6875rem;
+            color: #a1a1a1;
+            vertical-align: top;
+            display: inline-block;
+            cursor: pointer;
+            padding: .1rem 0.5rem 0.9rem;
+        }
+
+    .checkbox input + label:before {
+        content: '';
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        display: inline-block;
+        position: absolute;
+        width: 1.1rem;
+        height: 1.1rem;
+        left: 0;
+        top: -1px;
+        background-image: url(/img/checkbox_check2.png);
+    }
+
+            .checkbox input + label:active:before,
+            .checkbox input:checked + label:active:before,
+            .checkbox input:checked + label:before {
+                background-image: url(/img/checkbox_check2_on.png);
+            }
+    .checkbox button {
+        position: relative;
+        vertical-align: top;
+        padding-bottom: 3px;
+        color: #666;
+        font-size: 13px;
+        font-weight: 700;
+        text-align: left;
+    }
+
+        .checkbox button:after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: #ccc;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+/* myplanning_box */
+.myplanning_box .fuction_list_mini .th01 {
+    width:5%;
+}
+    .myplanning_box .fuction_list_mini .thead .th01 .checkbox {
+        top:15px;
+    }
+.myplanning_box .fuction_list_mini .tbody .th01 .checkbox {
+    top: 50%;
+    margin-top: -8px;
+}
+
 @media (min-width: 768px) {
-    .footer_in .f_detail_wrap, #container .row1, #container .row3, #container .row5, #container .row2 .row_inner, #container .row4 .row_inner, .w1200, #content .xm {
+    .privacy_box .subtop_nav {
+        top: -117px !important;
+    }
+    .rule_box .subtop_nav {
+        top: -117px !important;
+    }
+    .footer_in .f_detail_wrap,
+    #container .row1, 
+    #container .row3, 
+    #container .row5, 
+    #container .row2 .row_inner, 
+    #container .row4 .row_inner, 
+    .w1200, #content .xm {
         width: 100%;
     }
 
@@ -10208,7 +10319,7 @@ i.calendar {
     }
 
     .siteInfo_in .con04 .infopp .ovj {
-        left: -60px;
+        left: 0;
         top: -120px;
         font-size: 9.1em;
         font-weight: 400;
@@ -11473,6 +11584,9 @@ i.calendar {
 }
 
 @media (min-width: 1500px) {
+    .portfolio_in .top_bg h3 {
+        padding-top: 312px;
+    }
     .main_con_box1 .main_top_images {
         background-size: 150%;
         min-height: 800px;
@@ -11483,7 +11597,7 @@ i.calendar {
     }
 
     .siteInfo_in .con03 {
-        padding: 194px 0 0;
+        padding: 334px 0 0;
         min-height: 773px;
         background-position: center top;
         background-size: 110%;
