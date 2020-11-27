@@ -245,25 +245,11 @@ const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao 
     const [signInGoogleMutation] = useMutation(SIGNINGOOGLE)
     const [signInKakaoMutation] = useMutation(SIGNINKAKAO)
 
-    const [googlelLoginMu] = useMutation(SIGNINGOOGLE, {
-        onCompleted: () => {}
-    });
-
-    const [kakaoLoginMu] = useMutation(SIGNINKAKAO, {
-        onCompleted: () => {}
-    });
-
     const setGoogleToken = (token) => {
         localStorage.setItem('token', token);
-        console.log(`Token : ${localStorage.getItem('token')}`);
     }
 
-
-
-
     const responseGoogle = async (response) => {
-        
-        console.log("access token : " + response.code);
 
         const {data} = await signInGoogleMutation({ variables: { code : new String(response.code) } });
         const token = data.SignInGoogle.data.token;
