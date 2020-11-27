@@ -20,6 +20,7 @@ export interface IBoard {
     thumb: FileCreateInput;
 }
 
+
 interface IOpen {
     title: boolean
     subTitle: boolean;

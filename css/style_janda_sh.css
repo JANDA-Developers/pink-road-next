@@ -11822,3 +11822,9 @@ i.calendar {
             height: 90% !important;
         }
 }
+
+.cdx-input.image-tool__caption {
+    display: none; 
+}
+
+.betatest  { display:none }
