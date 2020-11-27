@@ -60,6 +60,7 @@ const NiceElments: React.FC<INiceElementProp> = ({
     BuyerName,
     BuyerTel,
     GoodsName,
+    MID,
     // jdReturnUrl,
     hex,
     logo,
@@ -67,7 +68,6 @@ const NiceElments: React.FC<INiceElementProp> = ({
     PayMethod,
     ReturnURL,
     VbankExpDate,
-    merchantID,
     WapUrl,
     IspCancelUrl,
     sid,
@@ -133,7 +133,7 @@ const NiceElments: React.FC<INiceElementProp> = ({
                 <span>상품 주문번호</span>
                 <input type="text" name="Moid" onChange={() => { }} value={Moid} />
                 <span>상점 아이디</span>
-                <input type="text" name="MID" onChange={() => { }} value={merchantID} />
+                <input type="text" name="MID" onChange={() => { }} value={MID} />
                 <input
                     type="hidden"
                     name="CharSet"

@@ -119,12 +119,8 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
   }
 
 
-<<<<<<< Updated upstream
-  return <div>
-=======
   return <div className="edtiorView">
     <button onClick={getAuth}>AUTH</button>
->>>>>>> Stashed changes
     <SubTopNav children={
       <>
         <li className="homedeps1">
