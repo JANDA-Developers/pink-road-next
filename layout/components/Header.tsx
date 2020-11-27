@@ -101,38 +101,52 @@ export const Header: React.FC<IProp> = () => {
                     <div className="nav_wrap">
                         <ul className="deps1">
                             <li className="deps">
+                                {/*
                                 <Link href="/site-info">
                                     <a>PinkRoader</a>
-                                </Link>
+                                </Link>*/}
+                                <a href="/site-info">PinkRoader</a>
                             </li>
                             <li className="deps">
-                                <Link href="/portfolio">
+                                {/*<Link href="/portfolio">
                                     <a>Work</a>
-                                </Link>
+                                </Link>*/}
+                                <a href="/portfolio">Work</a>
                             </li>
                             <li className="deps">
-                                <Link href="/tour">
+                                {/* <Link href="/tour/list">
                                     <a>Tour</a>
-                                </Link>
+                                </Link>*/}
+                                <a href="/tour/list">Tour</a>
                             </li>
                             <li className="deps">
-                                <Link href="/experience">
+                                {/*<Link href="/experience">
                                     <a>Experience</a>
-                                </Link>
+                                </Link>*/}
+                                <a href="/experience">Experience</a>
                             </li>
                             <li className="deps">
-                                <Link href="https://smartstore.naver.com/pinkroader">
+                                {/*<Link href="https://smartstore.naver.com/pinkroader">
                                     <a target="_blank">Design Goods</a>
-                                </Link>
+                                </Link>*/}
+                                <a href="https://smartstore.naver.com/pinkroader" target="_blank">Design Goods</a>
                             </li>
                             <li className="deps">
-                                <Link href="/news">
+                                {/* <Link href="/news">
                                     <a>News</a>
                                 </Link>
+
                                 <ul className="deps_nav">
                                     <li><Link href="../tourstory"><a>여행이야기</a></Link></li>
                                     <li><Link href="../culture"><a>문화이야기</a></Link></li>
                                     <li><Link href="../news"><a>언론보도</a></Link></li>
+                                </ul>*/}
+
+                                <a href="/news">News</a>
+                                <ul className="deps_nav">
+                                    <li><a href="/tourstory">여행이야기</a></li>
+                                    <li><a href="/culture">문화이야기</a></li>
+                                    <li><a href="/news">언론보도</a></li>
                                 </ul>
                             </li>
                         </ul>
