@@ -253,64 +253,36 @@ const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao 
         onCompleted: () => {}
     });
 
-    
-    const loginTokenSend = (type:string, email:string, token:string) => {
-
-        if(type == "google") {
-
-            googlelLoginMu({
-                variables: {
-                  data: {
-                    email: email,
-                    token: token,
-                  }
-                }
-            })
-            
-        }
-        else {
-            
-            kakaoLoginMu({
-                variables: {
-                  data: {
-                    email: email,
-                    token: token,
-                  }
-                }
-            })
-
-        }
-        
+    const setGoogleToken = (token) => {
+        localStorage.setItem('token', token);
+        console.log(`Token : ${localStorage.getItem('token')}`);
     }
+
+
 
 
     const responseGoogle = async (response) => {
         
-        console.log(response);
         console.log("access token : " + response.code);
-        console.log("access code : " + response.code);
-        
+
         const {data} = await signInGoogleMutation({ variables: { code : new String(response.code) } });
-        console.log(data);
-        
+        const token = data.SignInGoogle.data.token;
+
         if(data.SignInGoogle.ok) {
             handleVerifyGoogle(true);
-            loginTokenSend('google','gemail@naver.com', '12312321332dbdbd');
-            
+            setGoogleToken(token);
         }else{
             handleVerifyGoogle(false);
         }
+
     }
 
-    const responseKakao= async (response) => {
+    const responseKakao = async (response) => {
         const {data} = await signInKakaoMutation({ variables: { code : "3_sVvZcXcOlZNHEjKH763miBWOF-tmP8RDQZQuzhHDecY6apMee0yNQZWqj3EpRkq1R8rAo9cxgAAAF1hDr4yg" } });
         console.log('kakao');
-        console.log(data);
         if(data.SignInKakao.ok) {
             handleVerifyKakao(true);
-            loginTokenSend('kakao','kakao@navercom','bbdgdfgdf123123');
         }else {
-            console.log(data);
             handleVerifyKakao(false);
         }
     }
@@ -415,10 +387,3 @@ const UserType: React.FC<IUserTypeProps> = ({ handleChange }) => {
 
 export default Join
 
-
-/*
-
-"{"response":{"config":{"method":"POST","url":"https://oauth2.googleapis.com/token","data":"code=4%2F0AY0e-g438J4piUfWOWY1QgwPM2bmR34bqNXOL1gjbJ57DJTh57njYSCJE_cXMS7BaadfeA&client_id=618452450177-q88svpla9jpeg4ar1hr0eluvjmrob079.apps.googleusercontent.com&client_secret=dP_6WIqTzX9tWzEO0yN-uPo6&redirect_uri=http%3A%2F%2Flocalhost&grant_type=authorization_code&code_verifier=","headers":{"Content-Type":"application/x-www-form-urlencoded","User-Agent":"google-api-nodejs-client/6.1.3","x-goog-api-client":"gl-node/10.19.0 auth/6.1.3","Accept":"application/json"},"body":"code=4%2F0AY0e-g438J4piUfWOWY1QgwPM2bmR34bqNXOL1gjbJ57DJTh57njYSCJE_cXMS7BaadfeA&client_id=618452450177-q88svpla9jpeg4ar1hr0eluvjmrob079.apps.googleusercontent.com&client_secret=dP_6WIqTzX9tWzEO0yN-uPo6&redirect_uri=http%3A%2F%2Flocalhost&grant_type=authorization_code&code_verifier=","responseType":"json"},"data":{"error":"redirect_uri_mismatch","error_description":"Bad Request"},"headers":{"alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","cache-control":"no-cache, no-store, max-age=0, must-revalidate","connection":"close","content-encoding":"gzip","content-type":"application/json; charset=utf-8","date":"Wed, 25 Nov 2020 06:42:25 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","server":"scaffolding on HTTPServer2","transfer-encoding":"chunked","vary":"Origin, X-Origin, Referer","x-content-type-options":"nosniff","x-frame-options":"SAMEORIGIN","x-xss-protection":"0"},"status":400,"statusText":"Bad Request","request":{"responseURL":"https://oauth2.googleapis.com/token"}},"config":{"method":"POST","url":"https://oauth2.googleapis.com/token","data":"code=4%2F0AY0e-g438J4piUfWOWY1QgwPM2bmR34bqNXOL1gjbJ57DJTh57njYSCJE_cXMS7BaadfeA&client_id=618452450177-q88svpla9jpeg4ar1hr0eluvjmrob079.apps.googleusercontent.com&client_secret=dP_6WIqTzX9tWzEO0yN-uPo6&redirect_uri=http%3A%2F%2Flocalhost&grant_type=authorization_code&code_verifier=","headers":{"Content-Type":"application/x-www-form-urlencoded","User-Agent":"google-api-nodejs-client/6.1.3","x-goog-api-client":"gl-node/10.19.0 auth/6.1.3","Accept":"application/json"},"body":"code=4%2F0AY0e-g438J4piUfWOWY1QgwPM2bmR34bqNXOL1gjbJ57DJTh57njYSCJE_cXMS7BaadfeA&client_id=618452450177-q88svpla9jpeg4ar1hr0eluvjmrob079.apps.googleusercontent.com&client_secret=dP_6WIqTzX9tWzEO0yN-uPo6&redirect_uri=http%3A%2F%2Flocalhost&grant_type=authorization_code&code_verifier=","responseType":"json"},"code":"400"}"
-
-
-*/

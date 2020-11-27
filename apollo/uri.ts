@@ -1,5 +1,5 @@
 export const SERVER_URI =
-  "http://13.209.234.84:4000/graphql"
+  "http://10.159.6.11:4000/graphql"
 
 export default (() => {
   return SERVER_URI;
