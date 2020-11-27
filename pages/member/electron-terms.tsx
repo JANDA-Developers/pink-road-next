@@ -7,11 +7,11 @@ export const ElectronTerms: React.FC<IProp> = () => {
         <div className="top_visual">
             <div
                 className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/work_top_bg2.jpg)` }}
+                style={{ backgroundImage: `url(/img/pr_img_31.jpg)` }}
             >
                 <div className="w1200">
                     <h2 className="title">전자상거래이용약관</h2>
-                    <p className="text">지금 여행을 떠나세요~!~~!!!!!</p>
+                    {/*<p className="text">지금 여행을 떠나세요~!~~!!!!!</p>*/}
                 </div>
             </div>
             <div className="header_nav">

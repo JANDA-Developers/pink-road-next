@@ -280,6 +280,11 @@
     .board_list_mini.ln04 .th01 {
         width: 15%;
     }
+    .board_list_mini.ln04 .thead .th01 .checkbox {
+        top:10px;
+    }    .board_list_mini.ln04 .tbody .th01 .checkbox {
+        top:10px;
+    }
 
     .board_list_mini.ln04 .th02 {
         text-align: left;
@@ -1975,9 +1980,42 @@ div.sum_div {
             font-size: 13px;
             vertical-align: top;
         }
-@media (min-width:768px) {
 
-    ul.list_ul.line3 li {
+
+.tb_st__01 {
+    width: 100%;
+    border-top: 2px solid #321906;
+    table-layout: fixed;
+    min-width: 640px;
+    width: 100%;
+    border-top: 2px solid #666;
+    text-align: center;
+    border-spacing: 0
+    ;
+    margin-bottom:5px;
+    margin-top:5px;
+}
+
+    .tb_st__01 th {
+        line-height: 23px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        background: #eee;
+        padding: 10px;
+        border-bottom: 1px solid #dadada
+    }
+
+    .tb_st__01 td {
+        line-height: 23px;
+        text-align: center;
+        font-size: 13px;
+        padding: 10px;
+        border-bottom: 1px solid #dadada
+    }
+
+@media (min-width:768px) {
+    ul .list_ul.line3 li {
         width: 31.7%;
     }
 

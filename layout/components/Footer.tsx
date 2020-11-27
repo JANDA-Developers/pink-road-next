@@ -26,7 +26,6 @@ export const Footer: React.FC<IProp> = () => {
                     <li><Link href="/site-info"><a>회사소개</a></Link></li>
                     <li><Link href="/member/rule"><a>이용약관</a></Link></li>
                     <li><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
-                    <li><Link href="/member/electron-terms"><a>전자상거래이용약관</a></Link></li>
                     <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
                     <li className="sns">
                         <div>
@@ -93,11 +92,11 @@ export const Footer: React.FC<IProp> = () => {
                     </ul>
                     <div className="bottom_bn">
                         <div className="partner">
-                            <span className="link"><img src="/img/partners7.png" alt="사회적기업" /></span>
-                            <span className="link"><img src="/img/partners7.png" alt="공유경제부산" /></span>
-                            <span className="link"><img src="/img/partners7.png" alt="여성기업" /></span>
-                            <span className="link"><img src="/img/partners7.png" alt="벤처기업" /></span>
-                            <span className="link"><img src="/img/partners7.png" alt="도시재생전문기업" /></span>
+                            <span className="link"><img src="/img/pt_logo_01.png" alt="중송벤처기업" /></span>
+                            <span className="link"><img src="/img/pt_logo_02.png" alt="여성기업" /></span>
+                            <span className="link"><img src="/img/pt_logo_03.png" alt="사회적기업" /></span>
+                            <span className="link"><img src="/img/pt_logo_04.png" alt="공유경제부산" /></span>
+                            <span className="link"><img src="/img/pt_logo_05.png" alt="벤처기업인증" /></span>
                         </div>
                     </div>
                 </div>

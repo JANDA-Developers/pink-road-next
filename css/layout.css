@@ -1599,6 +1599,8 @@ footer .footer_in_bottom {
 
     .footer_in .bottom_bn img {
         width: 77%;
+        filter: Gray;
+        -webkit-filter: grayscale(100%);
     }
 
     .footer_in .bottom_bn span {
@@ -2313,8 +2315,8 @@ i.icon_plus {
             margin-top: 0;
         }
         .footer_in .bottom_bn span {
-            width: 132px;
-            margin-left: 41px;
+            width: 108px;
+            margin-left: 24px;
             margin-bottom: 15px;
         }
 
@@ -2440,7 +2442,7 @@ i.icon_plus {
 
             #all_menu ul .a_menu_tit {
                 width: 10%;
-                min-width: 120px;
+                min-width: 180px;
             }
     .header .hd_center .nav_wrap .deps1 > li > a {
         font-size: 19px;
