@@ -11,11 +11,10 @@ import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
 import { useProductPostDelete } from "hook/useProductDelete";
 import EditorJs from 'components/editorjs/EditorJs';
-import NiceElement from "components/nice/NiceElement";
-<<<<<<< Updated upstream
-=======
-import { NICE_GET_KEY } from "../../../types/const";
->>>>>>> Stashed changes
+import { IAuthInfo } from "../../../components/nice/type";
+import { getAuth } from "../../../components/nice/getAuth";
+import NiceElments from "../../../components/nice/NiceElement";
+import { getNiceElementForTest } from "../../../components/nice/niceUtils";
 
 
 // <div class="top_visual">
@@ -68,42 +67,7 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
     updatedAt
   } = productPost;
 
-  const [authData, setAuthData] = useState();
-
-<<<<<<< Updated upstream
-  // const getAuth = () => {
-  //   fetch(NICE_GET_KEY, {
-  //     method: "post",
-  //     mode: "cors",
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       amt: 1000
-  //     }),
-  //     referrerPolicy: 'no-referrer'
-  //   }).then((info) => {
-  //     console.log(info);
-  //   })
-  // }
-=======
-  const getAuth = () => {
-    fetch(NICE_GET_KEY, {
-      method: "post",
-      mode: "cors",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        amt: 1000
-      }),
-      referrerPolicy: 'no-referrer'
-    }).then((info) => {
-      console.log(info);
-    })
-  }
->>>>>>> Stashed changes
-
+  const [authData, setAuthData] = useState<IAuthInfo>();
 
   const [mainImg, setMain] = useState(images?.[0])
   const [tab, setTab] = useState<number>(1);
@@ -139,13 +103,23 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
     })
   }
 
+  const handleAuth = async () => {
+    const authInfo = await getAuth(1000);
+    setAuthData(authInfo);
+  }
+
+  const handlePay = () => {
+    window.jdPayStart();
+  }
 
   return <div className="edtiorView">
-<<<<<<< Updated upstream
-    {/* <button onClick={getAuth}>AUTH</button> */}
-=======
-    <button onClick={getAuth}>AUTH</button>
->>>>>>> Stashed changes
+    <button onClick={handleAuth}>AUTH</button>
+    {authData && <NiceElments {...getNiceElementForTest({
+      EdiDate: authData.ediDate,
+      MID: authData.mid,
+      hex: authData.hashString,
+    })} />}
+    {authData && <button onClick={handlePay}>COM</button>}
     <SubTopNav children={
       <>
         <li className="homedeps1">

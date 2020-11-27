@@ -153,8 +153,3 @@ export const SAMPLE_EDIOR = [
 ]
 
 
-const TEMP = "http://10.159.22.63:3000"
-const END = process.env.NEXT_PUBLIC_SERVER_URI;
-export const NICE_GET_KEY = TEMP + "/payment"
-export const NICE_MOBILE_AFTER_PAY = process.env.NEXT_PUBLIC_SERVER_URI + "/authReq"
-export const NICE_CANCLE = process.env.NEXT_PUBLIC_SERVER_URI + "/authReq"

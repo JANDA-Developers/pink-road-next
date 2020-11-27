@@ -54,6 +54,7 @@ export function checkPlatform(ua: any) {
   return userPlatform;
 }
 
+
 function jdPayCallBackSucess() {}
 //[PC Only]
 export function PCnicepaySubmit() {
@@ -90,7 +91,7 @@ declare global {
     checkPlatform: (ua: any) => any;
     jdPayStart: () => any;
     nicepayClose: () => any;
-    goPay: (foo: any) => any;
+    goPay: (foo?: any) => any;
   }
 }
 
