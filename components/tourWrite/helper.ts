@@ -1,11 +1,12 @@
-import { DEFAULT_itinery } from "components/tourWrite/ItineryForm";
 import { EPROTO } from "constants";
 import dayjs from "dayjs";
-import { Ffile, ItineraryCreateInput, ProductPostCreateInput, ProductPostStatus } from "types/api";
-import { DEFAULT_PRODUCT_INPUT, IProductDefaultData, TProductDataPart } from "types/defaults/defaultProduct";
-import { IProductPostFindById } from "types/interface";
+import { Ffile, ItineraryCreateInput } from "types/api";
+import { DEFAULT_PRODUCT_INPUT, IProductDefaultData, TSimpleTypePart } from "types/defaults/defaultProduct";
+import { IproductFindById } from "types/interface";
 import { toNumber } from "utils/toNumber";
 import EditorJS, { OutputData } from '@editorjs/editorjs';
+import { DEFAULT_IT } from "../../types/const";
+import { getEditorData } from "../edit/CKE";
 const omitDeep = require("omit-deep-lodash");
 
 export type TRange = {
@@ -28,7 +29,7 @@ export const generateitinery = (range:TRange,its:ItineraryCreateInput[]):Itinera
 
     // 인덱스 가 부족하다면 채워줌
     if (diff > its.length)
-        tempSch = [...tempSch, ...Array(diff - tempSch.length).fill({...DEFAULT_itinery, contents: [""]})]
+        tempSch = [...tempSch, ...Array(diff - tempSch.length).fill({...DEFAULT_IT, contents: [""]})]
 
     // 전체를 리셋함.
     return tempSch.map((sch,i) => {
@@ -44,12 +45,14 @@ export const detactRangeChange = (range:TRange):string[] =>  {
     return [dayjs(range.from || new Date())?.format("MMDD"), dayjs(range.to || new Date())?.format("MMDD")]
 }
 
-export const getDefault = (product?:IProductPostFindById) => {
-    const defaults: IProductDefaultData = product ? {...product, categoryId: product.category?._id} : DEFAULT_PRODUCT_INPUT
-    const from = process.env.NODE_ENV === "development" ? new Date() : defaults.itinerary[0]?.date || undefined ;
-    const to = process.env.NODE_ENV === "development" ? dayjs().add(2,"day").toDate() : defaults.itinerary[defaults.itinerary.length - 1]?.date || undefined;
+export const getDefault = (product?:IproductFindById) => {
 
-    const data:TProductDataPart = {
+    const defaults: IProductDefaultData = product ? {...product, categoryId: product.category?._id, itinerary: product.itinerary.map(it => ({
+        ...it,
+        contents: [...it.contents]
+    }))} : DEFAULT_PRODUCT_INPUT
+
+    const data:TSimpleTypePart = {
         address: defaults.address || "",
         adult_price: defaults.adult_price || null,
         baby_price: defaults.baby_price || null,
@@ -62,6 +65,8 @@ export const getDefault = (product?:IProductPostFindById) => {
         title: defaults.title,
         caution: defaults.caution || "",
         keyWards: defaults.keyWards || [],
+        contents: defaults.contents || "",
+        inOrNor: defaults.inOrNor || ""
     }
 
     const {itinerary,images, contents,inOrNor,status,categoryId} = defaults
@@ -89,12 +94,12 @@ type IGetNextDataProp = {
     info: string;
     keyWards: string[]
     startPoint: string;
-    status: ProductPostStatus   
+    status: ProductStatus   
     subTitle: string;
     categoryId: string;
 }
 
-export const getNextData = async ({
+export const getNextData = ({
     address,
     adult_price,
     baby_price,
@@ -113,10 +118,10 @@ export const getNextData = async ({
     startPoint,
     status,
     subTitle
-}:IGetNextDataProp) => {
+}:IGetNextDataProp):productCreateInput => {
 
 
-    let nextData: ProductPostCreateInput = {
+    let nextData: productCreateInput = {
         itinerary: its,
         title,
         address,
@@ -125,14 +130,14 @@ export const getNextData = async ({
         kids_price: toNumber(kids_price),
         maxMember: toNumber(maxMember),
         minMember: toNumber(minMember),
-        caution,
-        contents,
-        inOrNor,
+        caution: getEditorData("caution"),
+        contents: getEditorData("contents"),
+        inOrNor: getEditorData("inOrNor"),
+        info: getEditorData("info"),
         images: thumbs.map(thumb => ({
             ...thumb,
             uri: thumb?.uri!
         })),
-        info,
         keyWards,
         startPoint,
         status,
@@ -141,7 +146,7 @@ export const getNextData = async ({
     }
 
 
-    nextData = omitDeep(nextData, "createdAt", "updatedAt", "__typename", "isDelete", "_id", "productPostId")
+    nextData = omitDeep(nextData, "createdAt", "updatedAt", "__typename", "isDelete", "_id", "productId")
 
     return nextData;
 }

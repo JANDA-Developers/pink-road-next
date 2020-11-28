@@ -3,19 +3,13 @@ import pageInfoDefault from 'info/main.json';
 import { getEditUtils } from 'utils/pageEdit';
 import { AppContext } from './_app'
 import { Meta } from 'components/common/meta/Meta';
-import { PhotoLi } from 'components/main/PhotoLi';
 import { Upload } from 'components/common/Upload';
 import Link from 'next/link';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
-import dynamic from 'next/dynamic';
-import { IUseProductList, useProductPostList } from 'hook/useProductPostList';
+import { IUseProductList, useproductList } from 'hook/useProductList';
 import { useRouter } from 'next/router';
-import $ from "jquery";
-
-
-const EditorJs = dynamic(() => import('components/edit/CKE'), { ssr: false })
 
 const DummyPhoto = [{
   category: "문화/예술",
@@ -86,11 +80,7 @@ export const Main: React.FC<IProps> = ({ context }) => {
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
     <div className="main_con_box1">
-<<<<<<< Updated upstream
-      {/* <EditorJs /> */}
-=======
-      <EditorJs />
->>>>>>> Stashed changes
+
       <div
         className="main_top_images"
         style={{ ...bg("mainBg") }}
@@ -231,7 +221,7 @@ interface IMainWrapContext extends IUseProductList, IGetProps {
 }
 
 const MainWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ sitePageInfo }) => {
-  const productList = useProductPostList({ initialPageIndex: 1, initialViewCount: 8 });
+  const productList = useproductList({ initialPageIndex: 1, initialViewCount: 8 });
   const context: IMainWrapContext = {
     ...productList,
     sitePageInfo

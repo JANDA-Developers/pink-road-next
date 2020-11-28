@@ -1,23 +1,11 @@
 import dayjs from "dayjs"
 import { SAMPLE_EDIOR, SAMPLE_FILE } from "types/const"
-import {  ProductPostCreateInput, ProductPostStatus } from "../api"
+import {  productCreateInput, ProductStatus } from "../api"
 
-export type TProductDataPart = {
-    title: string,
-    address: string,
-    adult_price: number,
-    baby_price: number,
-    kids_price: number,
-    startPoint: string,
-    maxMember: number,
-    minMember: number,
-    subTitle: string
-    caution: string
-    info: string
-    keyWards: string[]
-}
+type SimpleTypePart = "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "keyWards" | "contents" | "inOrNor" 
+export type TSimpleTypePart = Pick<productCreateInput,SimpleTypePart> 
 
-const DEFAULT_PRODUCT_PART: TProductDataPart = process.env.NODE_ENV === "development" ? {
+const DEFAULT_PRODUCT_PART: TSimpleTypePart = process.env.NODE_ENV === "development" ? {
     title: "테스트 상품",
     address: "테스트 상품 주소",
     adult_price: 2000,
@@ -29,7 +17,9 @@ const DEFAULT_PRODUCT_PART: TProductDataPart = process.env.NODE_ENV === "develop
     minMember: 8,
     startPoint: "시작주소 개발",
     subTitle: "시작 서브 타이틀 개발",
-    keyWards: ["키워드1","키워드2","키워드3"]
+    keyWards: ["키워드1","키워드2","키워드3"],
+    contents: "",
+    inOrNor: ""
 } : {
         title: "",
         address: "",
@@ -42,14 +32,16 @@ const DEFAULT_PRODUCT_PART: TProductDataPart = process.env.NODE_ENV === "develop
         minMember: 0,
         startPoint: "As",
         subTitle: "As",
-        keyWards: []
+        keyWards: [],
+        contents: "",
+        inOrNor: ""
     }
 
-export interface IProductDefaultData extends ProductPostCreateInput {
+export interface IProductDefaultData extends productCreateInput {
 }
 
 export const DEFAULT_PRODUCT_INPUT: IProductDefaultData = process.env.NODE_ENV === "development" ? {
-    status: ProductPostStatus.CLOSE,
+    status: ProductStatus.CLOSE,
     images: [SAMPLE_FILE,SAMPLE_FILE],
     contents: {},
     inOrNor: {},
@@ -76,10 +68,10 @@ export const DEFAULT_PRODUCT_INPUT: IProductDefaultData = process.env.NODE_ENV =
     ...DEFAULT_PRODUCT_PART
 } : {
     categoryId: "",
-    status: ProductPostStatus.CLOSE,
+    status: ProductStatus.CLOSE,
     images: [],
-    inOrNor: {blocks:[]},
-    contents: {blocks:[]},
+    inOrNor: "",
+    contents: "",
     itinerary: [],
     ...DEFAULT_PRODUCT_PART
 } 

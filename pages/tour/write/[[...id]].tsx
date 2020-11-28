@@ -5,8 +5,8 @@ import { initStorage, Storage } from '../../../utils/Storage';
 import "react-day-picker/lib/style.css";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
-import { Ffile, ItineraryCreateInput, productPostCreate, ProductPostCreateInput, productPostCreateVariables, ProductPostStatus, ProductPostUpdateInput } from '../../../types/api';
-import { IProductDefaultData, TProductDataPart } from '../../../types/defaults/defaultProduct';
+import { Ffile, ItineraryCreateInput, productCreate, productCreateInput, productCreateVariables, ProductStatus, productUpdateInput } from '../../../types/api';
+import { IProductDefaultData, TSimpleTypePart } from '../../../types/defaults/defaultProduct';
 import { useMutation } from '@apollo/client';
 import { useProductFindById } from '../../../hook/useProductFindById';
 import DayPicker from "components/dayPicker/DayRangePicker"
@@ -17,17 +17,19 @@ import { PRODUCT_POST_CREATE } from "apollo/mutations";
 import { ItineryForm } from "components/tourWrite/ItineryForm";
 import { autoComma } from "utils/formatter";
 import dayjs from "dayjs";
-import { IProductPostFindById } from "types/interface";
+import { IproductFindById } from "types/interface";
 import { AppContext } from "pages/_app";
-import { useProductPostUpdate } from "hook/useProductPostUpdate";
-import { useProductPostDelete } from "hook/useProductDelete";
+import { useproductDelete } from "hook/useProductDelete";
 import { TDeleteFn } from "pages/portfolio/write/[[...id]]";
 import Page404 from "pages/404";
 import { Validater } from "utils/validate";
 import isEmpty from "utils/isEmpty";
-import { OutputData } from "@editorjs/editorjs";
-import { EMPTY_EDITOR } from "types/const"
-const EditorJs = dynamic(() => import("components/editorjs/EditorJs"));
+import { tapCheck } from "../../../utils/style";
+import Head from "next/head";
+import { getEditorData } from "../../../components/edit/CKE";
+import { useproductUpdate } from "../../../hook/useProductUpdate";
+
+const Editor = dynamic(() => import("components/edit/CKE"));
 interface IProp {
     context: ITourWriteWrapContext;
 }
@@ -35,23 +37,21 @@ interface IProp {
 export const TourWrite: React.FC<IProp> = ({ context }) => {
     const router = useRouter();
     const { categories } = useContext(AppContext);
-    const { createFn, updateFn, deleteFn, productPost, mode } = context;
-    const defaults = getDefault(productPost);
+    const { createFn, updateFn, deleteFn, product, mode } = context;
+    const defaults = getDefault(product);
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
     const [its, setits] = useState<ItineraryCreateInput[]>(defaults.itinerary);
     const { signleUpload } = useUpload();
-    const [data, setData] = useState<TProductDataPart>(defaults.data)
+    const [data, setData] = useState<TSimpleTypePart>(defaults.data)
     const [categoryId, setCategoryId] = useState(defaults.categoryId);
     const [status, setStatus] = useState(defaults.status);
     const [thumbs, setThumbs] = useState<Partial<Ffile>[]>(defaults.images)
     const [tab, setTab] = useState<number>(1);
     const [loadCount, setLoad] = useState(0);
-    const [contents, setContents] = useState<OutputData>(defaults.contents);
-    const [inOrNor, setInOrNor] = useState<OutputData>(defaults.inOrNor);
     const isCreateMode = mode === "create";
 
     const handleChangeStatus = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setStatus(e.currentTarget.value as ProductPostStatus)
+        setStatus(e.currentTarget.value as ProductStatus)
     }
 
     const handleUploadClick = () => {
@@ -93,30 +93,19 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         startPoint,
         subTitle,
         title,
+        contents,
+        inOrNor
     } = data;
 
-    const nextData = getNextData({
-        address,
-        adult_price,
-        baby_price,
+    const getSubmitData = getNextData.bind(getNextData, {
         categoryId,
-        caution,
-        contents,
-        inOrNor,
-        info,
         its,
-        keyWards,
-        kids_price,
-        maxMember,
-        minMember,
-        startPoint,
         status,
-        subTitle,
         thumbs,
-        title
+        ...data
     })
 
-    function set<T extends keyof TProductDataPart>(key: T, value: any) {
+    function set<T extends keyof TSimpleTypePart>(key: T, value: any) {
         setData({ ...data, [key]: value })
     }
 
@@ -130,9 +119,14 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         failMsg: "제목값은 필수 입니다.",
         id: "title"
     }, {
-        value: !isEmpty(contents),
+        value: !isEmpty(getEditorData("contents")),
         failMsg: "안내 및값은 필수 입니다.",
         id: "content"
+    },
+    {
+        value: !isEmpty(getEditorData("inOrNor")),
+        failMsg: "포함 미포함 값은 필수 입니다.",
+        id: "inOrNor"
     }, {
         value: !!categoryId,
         failMsg: "카테고리 값은 필수 입니다.",
@@ -149,43 +143,31 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
 
 
     const handleCreate = async () => {
-        if (validate())
-            createFn(await nextData)
+        if (validate()) {
+            const nextData = getSubmitData()
+            createFn(nextData)
+        }
     }
     const handleEdit = async () => {
-        if (!productPost) return;
+        if (!product) return;
         if (validate()) {
-            // @ts-ignore
-            updateFn(productPost._id, await nextData)
+            const nextData = getSubmitData()
+            updateFn(product._id, nextData)
         }
     }
 
     const handleTempSave = async () => {
-        Storage.saveLocal("write", await nextData);
+        const nextData = getSubmitData()
+        Storage.saveLocal("write", nextData);
     }
 
     const handleLoad = () => {
         const savedData: IProductDefaultData = Storage.getLocalObj("write", undefined);
         if (!savedData) alert("저장된 정보가 없습니다.")
-        const { itinerary, title, address, adult_price, baby_price, categoryId, caution, contents, images, inOrNor, info, keyWards, kids_price, maxMember, minMember, productId, startPoint, status, subTitle, type } = savedData;
-
-        setData({
-            address,
-            adult_price,
-            baby_price,
-            caution,
-            info,
-            keyWards,
-            kids_price,
-            maxMember,
-            minMember,
-            startPoint,
-            subTitle,
-            title
-        })
+        const { itinerary, categoryId, images, maxMember, minMember, ...simpleData } = savedData;
+        setData({ ...simpleData })
+        setCategoryId(categoryId)
         setThumbs(images)
-        setContents(contents);
-        setInOrNor(inOrNor);
         setits(itinerary);
         setLoad(loadCount + 1);
     }
@@ -193,7 +175,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
 
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
-            deleteFn(productPost._id)
+            deleteFn(product._id)
     }
 
     const handleCancel = () => {
@@ -206,11 +188,25 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         setCategoryId(nextCat)
     }
 
+    const tapDisplay = tapCheck.bind(tapCheck, tab);
+
+    const handleDateState = ({ from, to }: TRange) => {
+        const newItinerary = generateitinery({ from, to }, its);
+        if (newItinerary)
+            setits([...newItinerary]);
+    }
+
+    const itFirstDate = dayjs(its[0]?.date).toDate();
+    const itLastDate = dayjs(its[its.length - 1]?.date).toDate();
+
     useEffect(() => {
         initStorage()
     }, [])
 
     return <div key={loadCount} className="tour_box w100 board_write">
+        <Head>
+            <script src="/build/ckeditor.js"></script>
+        </Head>
         <SubTopNav children={
             <>
                 <li className="homedeps1">
@@ -324,12 +320,12 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     <div className="title">판매여부</div>
                     <div className="input_form">
                         <ul>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-open" value={ProductPostStatus.OPEN} checked={status === ProductPostStatus.OPEN} className="radio" /><label htmlFor="status-open">판매중</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sold" value={ProductPostStatus.SOLD} checked={status === ProductPostStatus.SOLD} className="radio" /><label htmlFor="status-sold">완판</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-close" value={ProductPostStatus.CLOSE} checked={status === ProductPostStatus.CLOSE} className="radio" /><label htmlFor="status-close">판매종료</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductPostStatus.REFUSED} checked={status === ProductPostStatus.REFUSED} className="radio" /><label htmlFor="status-refused">거절됨</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductPostStatus.HIDE} checked={status === ProductPostStatus.HIDE} className="radio" /><label htmlFor="status-hide">숨겨짐</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-ready" value={ProductPostStatus.READY} checked={status === ProductPostStatus.READY} className="radio" /><label htmlFor="status-ready">준비중</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-open" value={ProductStatus.OPEN} checked={status === ProductStatus.OPEN} className="radio" /><label htmlFor="status-open">판매중</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sold" value={ProductStatus.SOLD} checked={status === ProductStatus.SOLD} className="radio" /><label htmlFor="status-sold">완판</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-close" value={ProductStatus.CLOSE} checked={status === ProductStatus.CLOSE} className="radio" /><label htmlFor="status-close">판매종료</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-refused">거절됨</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.HIDE} checked={status === ProductStatus.HIDE} className="radio" /><label htmlFor="status-hide">숨겨짐</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-ready" value={ProductStatus.READY} checked={status === ProductStatus.READY} className="radio" /><label htmlFor="status-ready">준비중</label></li>
                         </ul>
                     </div>
                 </div>
@@ -370,49 +366,27 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     <li onClick={() => { handleTab(3) }} className={tabOnCheck(3)}><span><i>03.</i>포함 및 불포함</span></li>
                     <li onClick={() => { handleTab(4) }} className={tabOnCheck(4)}><span><i>04.</i>기타 설정</span></li>
                 </ul>
-                {tab === 1 &&
-                    <div id="texta_01" className="texta">
-                        <h5 id="itinerary">여행일정</h5>
-                        <DayPicker setState={({ from, to }: TRange) => {
-                            const newItinerary = generateitinery({ from, to }, its);
-                            if (newItinerary)
-                                setits([...newItinerary]);
-                        }} from={dayjs(its[0]?.date).toDate()} to={dayjs(its[its.length - 1]?.date).toDate()} />
-                        {(its || []).map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setits={setits} itinery={itinery} its={its} />)}
-                    </div>
-                }
-                <div style={{
-                    display: tab === 2 ? undefined : "none"
-                }} id="texta_02" className="texta">
+                <div {...tapDisplay(1)} id="texta_01" className="texta">
+                    <h5 id="itinerary">여행일정</h5>
+                    <DayPicker setState={handleDateState} from={itFirstDate} to={itLastDate} />
+                    {(its || []).map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setits={setits} itinery={itinery} its={its} />)}
+                </div>
+                <div {...tapDisplay(2)} id="texta_02" className="texta">
                     <h5>상품 안내문</h5>
-                    <EditorJs holder="content" data={contents} setData={setContents} />
+                    <Editor defaultData={contents} globalKey="contents" />
                     <div id="content" />
                 </div>
-                <div style={{
-                    display: tab === 3 ? undefined : "none"
-                }} id="texta_03" className="texta">
+                <div {...tapDisplay(3)} id="texta_03" className="texta">
                     <h5>포함 / 불포함</h5>
-                    <EditorJs holder="inOrNor" data={inOrNor} setData={setInOrNor} />
+                    <Editor defaultData={inOrNor} globalKey="inOrNor" />
                     <div id="inOrNor" />
                 </div>
-                {tab === 4 &&
-                    <div id="texta_04" className="texta">
-                        <h5>커리큐럼 유의사항</h5>
-                        <textarea onChange={(e) => {
-                            set("caution", e.currentTarget.value)
-                        }} value={caution} id="warrant" style={{
-                            width: "100%",
-                            minHeight: "200px"
-                        }} />
-                        <h5>간략한 안내문</h5>
-                        <textarea onChange={(e) => {
-                            set("info", e.currentTarget.value)
-                        }} value={info} id="warrant" style={{
-                            width: "100%",
-                            minHeight: "200px"
-                        }} />
-                    </div>
-                }
+                <div {...tapDisplay(4)} id="texta_04" className="texta">
+                    <h5>커리큐럼 유의사항</h5>
+                    <Editor defaultData={caution} globalKey="caution" />
+                    <h5>간략한 안내문</h5>
+                    <Editor defaultData={info} globalKey="info" />
+                </div>
             </div>
             <div className="boardNavigation">
                 <div className="float_left">
@@ -431,8 +405,8 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
 };
 
 
-type TCreateFn = (params: ProductPostCreateInput) => void;
-type TUpdateFn = (_id: string, params: ProductPostUpdateInput) => void;
+type TCreateFn = (params: productCreateInput) => void;
+type TUpdateFn = (_id: string, params: productUpdateInput) => void;
 interface IProp {
     isExperience?: boolean;
     mode?: "edit" | "create"
@@ -442,7 +416,7 @@ interface ITourWriteWrapContext {
     createFn: TCreateFn;
     updateFn: TUpdateFn;
     deleteFn: TDeleteFn;
-    productPost: IProductPostFindById;
+    product: IproductFindById;
     findLoading: boolean;
     createLoading: boolean;
     mode: "create" | "edit"
@@ -457,36 +431,36 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
 
     const id = query.id?.[0] as string | undefined;
 
-    const { productPostDelete, deleteLoading } = useProductPostDelete({
+    const { productDelete, deleteLoading } = useproductDelete({
         onCompleted: ({
-            ProductPostDelete
+            productDelete
         }) => {
-            if (ProductPostDelete.ok)
+            if (productDelete.ok)
                 router.push("/tour/list")
 
         }
     })
-    const { productPostUpdate, updateLoading } = useProductPostUpdate({
-        onCompleted: ({ ProductPostUpdate }) => {
-            router.push(`/tour/view/${ProductPostUpdate?.data?._id}`)
+    const { productUpdate, updateLoading } = useproductUpdate({
+        onCompleted: ({ productUpdate }) => {
+            router.push(`/tour/view/${productUpdate?.data?._id}`)
         }
     })
 
-    const [productCreateMu, { loading: createLoading }] = useMutation<productPostCreate, productPostCreateVariables>(PRODUCT_POST_CREATE, {
-        onCompleted: ({ ProductPostCreate }) => {
-            if (ProductPostCreate.ok)
-                router.push(`/tour/view/${ProductPostCreate.data._id}`)
+    const [productCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCT_POST_CREATE, {
+        onCompleted: ({ productCreate }) => {
+            if (productCreate.ok)
+                router.push(`/tour/view/${productCreate.data._id}`)
         }
     })
 
-    const { productPost, loading: findLoading } = useProductFindById({
+    const { product, loading: findLoading } = useProductFindById({
         variables: {
             _id: id!
         },
         skip: !id
     })
 
-    const createFn: TCreateFn = (params: ProductPostCreateInput) => {
+    const createFn: TCreateFn = (params: productCreateInput) => {
         productCreateMu({
             variables: {
                 params
@@ -495,7 +469,7 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
     }
 
     const updateFn: TUpdateFn = (_id, params) => {
-        productPostUpdate({
+        productUpdate({
             _id,
             params: {
                 ...params,
@@ -504,12 +478,12 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
     }
 
     const deleteFn: TDeleteFn = (id) => {
-        productPostDelete({
+        productDelete({
             id
         })
     }
 
-    const unexistId = !findLoading && id && !productPost;
+    const unexistId = !findLoading && id && !product;
 
     if (findLoading) return null;
     if (unexistId) return <Page404 />
@@ -521,7 +495,7 @@ export const TourWriteWrap: React.FC<IProp> = ({ isExperience }) => {
         createFn,
         updateFn,
         deleteFn,
-        productPost,
+        product,
         findLoading,
         createLoading,
         mode: !id ? "create" : "edit"

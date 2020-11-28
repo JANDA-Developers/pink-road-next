@@ -1,5 +1,5 @@
 import { IPageInfo } from "./interface"
-import { ProductPostStatus, } from "./api";
+import { ItineraryCreateInput, ProductStatus, } from "./api";
 
 export const DEFAULTS = {
     logo: "src/img/logo_1.png",
@@ -8,13 +8,13 @@ export const DEFAULTS = {
 
 export const BG = (url: string) => ({ backgroundImage: `url(${url})` })
 
-export const Econvert = (status: ProductPostStatus) => {
+export const Econvert = (status: ProductStatus) => {
 
-    if (status === ProductPostStatus.OPEN) {
+    if (status === ProductStatus.OPEN) {
         return "해결완료"
     }
 
-    if (status === ProductPostStatus.READY) {
+    if (status === ProductStatus.READY) {
         return "해결중"
     }
 }
@@ -152,4 +152,10 @@ export const SAMPLE_EDIOR = [
     }
 ]
 
+export const DEFAULT_IT: ItineraryCreateInput = {
+    contents: ["asd"],
+    images: [],
+    date: new Date(),
+    title: "",
+}
 

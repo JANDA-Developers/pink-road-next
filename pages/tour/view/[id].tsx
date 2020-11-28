@@ -5,11 +5,11 @@ import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
-import { IProductPostFindById } from "types/interface";
+import { IproductFindById } from "types/interface";
 import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
-import { useProductPostDelete } from "hook/useProductDelete";
+import { useproductDelete } from "hook/useProductDelete";
 import EditorJs from 'components/editorjs/EditorJs';
 import { IAuthInfo } from "../../../components/nice/type";
 import { getAuth } from "../../../components/nice/getAuth";
@@ -36,10 +36,10 @@ import { getNiceElementForTest } from "../../../components/nice/niceUtils";
 // </div>
 
 interface IProps {
-  productPost: IProductPostFindById;
+  product: IproductFindById;
 }
 
-const TourDetail: React.FC<IProps> = ({ productPost }) => {
+const TourDetail: React.FC<IProps> = ({ product }) => {
   const { isManager, isAdmin } = useContext(AppContext);
   const {
     _id,
@@ -65,7 +65,7 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
     subTitle,
     title,
     updatedAt
-  } = productPost;
+  } = product;
 
   const [authData, setAuthData] = useState<IAuthInfo>();
 
@@ -74,11 +74,11 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
 
   const router = useRouter();
 
-  const { productPostDelete, deleteLoading } = useProductPostDelete({
+  const { productDelete, deleteLoading } = useproductDelete({
     onCompleted: ({
-      ProductPostDelete
+      productDelete
     }) => {
-      if (ProductPostDelete.ok) {
+      if (productDelete.ok) {
         alert("삭제완료");
         router.push("/")
       }
@@ -98,7 +98,7 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
   }
 
   const handleDelete = () => {
-    productPostDelete({
+    productDelete({
       id: _id
     })
   }
@@ -447,7 +447,7 @@ const TourDetail: React.FC<IProps> = ({ productPost }) => {
 const TourDetailWrap = () => {
   const { query } = useRouter();
   const id = query.id as string;
-  const { loading, productPost } = useProductFindById({
+  const { loading, product } = useProductFindById({
     variables: {
       _id: id
     },
@@ -455,9 +455,9 @@ const TourDetailWrap = () => {
   });
 
   if (loading) return null
-  if (!productPost) return <Page404 />
+  if (!product) return <Page404 />
 
-  return <TourDetail productPost={productPost} />
+  return <TourDetail product={product} />
 }
 
 export default TourDetailWrap;

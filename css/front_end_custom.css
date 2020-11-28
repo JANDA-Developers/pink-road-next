@@ -19,7 +19,7 @@ h1[contenteditable="true"]
     width: 100%;
 }
 
-.codex-editor *[contenteditable="true"]{
+.ck *[contenteditable="true"],.quill *[contenteditable="true"]{
     outline: none;
 }
 

@@ -109,7 +109,7 @@ export const F_ITINERARY = gql`
 `
 
 export const F_PRODUCT_POST = gql`
-    fragment FproductPost on ProductPost {
+    fragment Fproduct on Product {
         _id
         createdAt
         updatedAt
