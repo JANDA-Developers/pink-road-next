@@ -7,7 +7,7 @@ const info:TStieInfo = {
     secondTitle: {
         kr:"We are making a path of pink hope"
     },
-    mainBg:{kr: '/img/siteinfo_bg_006.jpg'},
+    mainBg: { kr: '/img/pr_img_16.jpg'},
     pinkVision: {kr:`<strong>핑크로더(PinkRoader)</strong>는 <br> ‘핑크빛 희망의 길을 만들어가는
     사람들’이라는 뜻을 가지고 사람-시간-공간의 상생을
     
@@ -84,19 +84,27 @@ const info:TStieInfo = {
     info_img4_desc: {kr:`지역 예술가 발굴<br />지역브랜딩`},
     partners: {kr:[{
         alt: "파트너사",
-        img: "/src/img/partners7.png",
+        img: "/img/pt_logo_01.png",
         link: "협력사1",
     }, {
         alt: "파트너사",
-        img: "/src/img/partners7.png",
+            img: "/img/pt_logo_02.png",
         link: "협력사1"
     }, {
         alt: "파트너사",
-        img: "/src/img/partners7.png",
+            img: "/img/pt_logo_03.png",
         link: "협력사1"
-    }, {
+        }, {
+            alt: "파트너사",
+            img: "/img/pt_logo_04.png",
+            link: "협력사1"
+        }, {
+            alt: "파트너사",
+            img: "/img/pt_logo_05.png",
+            link: "협력사1"
+        }, {
         alt: "파트너사",
-        img: "/src/img/partners7.png",
+            img: "/img/pt_logo_06.png",
         link: "협력사1"
     }]},
     history2020: {kr:`<li>벤처기업인증</li>

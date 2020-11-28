@@ -1843,7 +1843,9 @@ div.board_list_mini {
         text-align: center;
         font-size: 12px;
         font-weight: 600;
-        line-height: 50px;
+        line-height: 120%;
+        padding: 13px 10px 10px;
+        box-sizing: border-box;
     }
 
     .fuction_list_mini .tbody {
@@ -1872,6 +1874,7 @@ div.board_list_mini {
                 font-size: 13px;
                 padding: 13px 10px 10px;
                 box-sizing: border-box;
+                position:relative;
             }
 
     .fuction_list_mini .q_ok {
@@ -1980,7 +1983,50 @@ div.sum_div {
             font-size: 13px;
             vertical-align: top;
         }
+.reservation_list {
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+    display: block;
+    border-top: 2px solid #555;
+}
 
+    .reservation_list .th {
+        position: relative;
+        width: 100%;
+        display: flex;
+        border-bottom: 1px solid #999;
+        line-height: 30px;
+        box-sizing: border-box;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .reservation_list .td {
+        position: relative;
+        width: 100%;
+        display: flex;
+        border-bottom: 1px solid #c4c4c4;
+        line-height: 22px;
+    }
+
+    .reservation_list .th div[class*=t0] {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+        text-align: center;
+        font-weight: 600;
+        border-left: 0 !important;
+    }
+
+    .reservation_list .td div[class*=t0] {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+        text-align: center;
+        box-sizing: border-box;
+        position: relative;
+    }
 
 .tb_st__01 {
     width: 100%;

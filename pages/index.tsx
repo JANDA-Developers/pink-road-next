@@ -86,6 +86,7 @@ export const Main: React.FC<IProps> = ({ context }) => {
         style={{ ...bg("mainBg") }}
       >
         <Upload onUpload={imgEdit("mainBg")} />
+        <div className="ovj"></div>
         <div className="w1200">
           <strong {...edit("title")} />
           <span {...edit('subtitle')}>
@@ -98,7 +99,8 @@ export const Main: React.FC<IProps> = ({ context }) => {
               <a  {...edit("mainLink2")} />
             </Link>
           </div>
-        </div>
+          </div>
+        
       </div>
     </div>
     <div className="main_con_box2">

@@ -50,45 +50,45 @@ export const Footer: React.FC<IProp> = () => {
                             <strong className="name">주식회사 핑크로더</strong>
                         </li>
                         <li>
-                            <span>대표</span>
-                            <strong>양화니</strong>
+                            <strong>대표</strong>
+                            <span>양화니</span>
                         </li>
 
                         <li>
-                            <span>사업자등록번호</span>
-                            <strong>603-81-87668<Link href="http://www.ftc.go.kr/www/bizCommList.do?key=232"><a>사업자정보확인</a></Link></strong>
+                            <strong>사업자등록번호</strong>
+                            <span>603-81-87668<a href="http://www.ftc.go.kr/www/bizCommList.do?key=232" className="url" target="_blank" title="사업자정보확인확인 새창띄우기">사업자정보확인</a></span>
                         </li>
                         <li>
-                            <span>통신판매업신고번호</span>
-                            <strong>제 2017-부산중구-0167호</strong>
+                            <strong>통신판매업신고번호</strong>
+                            <span>제 2017-부산중구-0167호</span>
                         </li>
                         <li>
-                            <span>영업보증보험</span>
-                            <strong>5천만원 가입</strong>
-                        </li>
-                    </ul>
-                    <ul className="footer_homepage_info">
-                       
-                        <li>
-                            <span>이메일</span>
-                            <strong>pinkroader@gmail.com</strong>
-                        </li>
-                        <li>
-                            <span>전화번호</span>
-                            <strong>051-254-24220 Am 10:00 ~ pm 5:00</strong>
-                        </li>
-
-                        <li>
-                            <span>주소</span>
-                            <strong>부산광역시 중구 40계단길 10, 3F<i className="flaticon-placeholder-3"></i></strong>
-                        </li>
-                        <li>
-                            <span>계좌번호</span>
-                            <strong>신한은행 100-031-819617/예금주:주식회사 핑크로더</strong>
+                            <strong>영업보증보험</strong>
+                            <span>5천만원 가입</span>
                         </li>
                         <li className="bottom_txt">
                             Copyright © 2020 PINKROADER Co., Ltd. All rights reserved
-                    </li>
+                         </li>
+                    </ul>
+                    <ul className="footer_homepage_info mt">
+                        <li>
+                            <strong>이메일</strong>
+                            <span>pinkroader@gmail.com</span>
+                        </li>
+                        <li>
+                            <strong>전화번호</strong>
+                            <span>051-254-2420 Am 10:00 ~ pm 5:00</span>
+                        </li>
+
+                        <li>
+                            <strong>주소</strong>
+                            <span>부산광역시 중구 40계단길 10, 3F<a target="_blank" href="https://map.naver.com/v5/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010/address/14364152.250451025,4178003.4322139453,%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010,new?c=14364121.5911725,4178009.4229934,19,0,0,0,dh" className="icon" title="지도로 새창띄우기"><object type="image/svg+xml" data="/img/svg/map.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object><button /></a></span>
+                        </li>
+                        <li>
+                            <strong>계좌번호</strong>
+                            <span>신한은행 100-031-819617/예금주:주식회사 핑크로더</span>
+                        </li>
+                        
                     </ul>
                     <div className="bottom_bn">
                         <div className="partner">
