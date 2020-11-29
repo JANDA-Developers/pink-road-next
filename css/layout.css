@@ -73,6 +73,35 @@
         color: #8b8b8b;
         border-bottom: 1px #e2e2e2 solid;
     }
+    #gotop .basket {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        height: 35px;
+        padding: 5px 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 14px;
+        line-height: 32px;
+        text-align: center;
+        color: #8b8b8b;
+        border-bottom: 1px #e2e2e2 solid;
+    }
+        #gotop .basket object {
+            width:55%;
+            opacity:0.8;
+        }   
+        #gotop .basket:hover object {
+            opacity:1;
+        }        
+        #gotop .basket button {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
     #gotop .down {
         display: inline-block;
         width: 100%;
