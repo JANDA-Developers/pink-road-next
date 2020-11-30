@@ -5,4 +5,5 @@ const info = {
     top_bg: '/img/work_top_bg2.jpg',
 }
 
+
 export default info;
