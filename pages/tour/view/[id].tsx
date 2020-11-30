@@ -5,7 +5,7 @@ import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useRef, useState } from "react";
-import { IproductFindById } from "types/interface";
+import { IHumanCount, IproductFindById } from "types/interface";
 import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
@@ -60,6 +60,11 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
   } = product;
 
   const sliderRef = useRef<SLIDER>(null);
+  const [count, setCount] = useState<IHumanCount>({
+    adult: 0,
+    baby: 0,
+    kids: 0
+  })
   const [authData, setAuthData] = useState<IAuthInfo>();
   const [tab, setTab] = useState<number>(1);
   const [sliderIndex, setSlideIndex] = useState(0);
@@ -111,6 +116,12 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
 
   const checkImgOn = (index: number): string => {
     return index === sliderIndex ? "on" : ""
+  }
+
+  const handleAddBracket = () => {
+    addItem({
+
+    })
   }
 
   return <div className="edtiorView">
@@ -259,7 +270,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
             {/* btn */}
             <div className="btn_box">
               <div className="links_wrap">
-                <div className="link05">
+                <div onClick={handleAddBracket} className="link05">
                   <a href="/">
                     장바구니 담기
                   </a>

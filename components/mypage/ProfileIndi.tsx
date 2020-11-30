@@ -1,4 +1,5 @@
 import React from 'react';
+import { getBracket, Local } from '../../utils/Storage';
 
 interface IProp { }
 
@@ -29,7 +30,7 @@ export const ProfileIndi: React.FC<IProp> = () => {
                             </p>
                         </li>
                         <li className="ct">
-                            <span>0</span>
+                            <span>{getBracket()?.length}</span>
                             <p>
                                 장바구니
                             </p>
@@ -157,7 +158,7 @@ export const ProfileIndi: React.FC<IProp> = () => {
                         수정
     </button>
                 </div>
-                </div>
+            </div>
         </div>
     </div>;
 };

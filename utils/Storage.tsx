@@ -6,9 +6,10 @@ export type LocalManagerConfig = {
 
 
 export class LocalManager<T extends string> {
-    readonly storage = localStorage;
+    storage
 
     constructor(config: LocalManagerConfig) {
+        if (typeof window === "undefined") return;
         if (config.storage === 'sessionStorage')
             this.storage = sessionStorage;
         else this.storage = localStorage;
@@ -70,17 +71,21 @@ export const initStorage = () => {
         storage: "localStorage"
     });
 }
+Storage = new LocalManager<TStoreKeys>({
+    storage: "localStorage"
+});
 
 type TCount = {
-    name: string;
+    key: "adult" | "kid" | "baby"
+    label: string;
     value: number
 }
 
 type TItem = {
-    id: string;
+    productId: string;
     name: string;
     price: number;
-    count: TCount[]
+    counts: TCount[]
 }
 
 
@@ -95,9 +100,9 @@ export const haveItem = (_id: string): boolean => {
 }
 
 export const humanCountToCount = (count: IHumanCount): TCount[] => {
-    return [{ name: "성인", value: count.adult },
-    { name: "소아", value: count.kids },
-    { name: "유아", value: count.baby }]
+    return [{ key: "kid", label: "성인", value: count.adult },
+    { key: "kid", label: "소아", value: count.kids },
+    { key: "baby", label: "유아", value: count.baby }]
 }
 
 
