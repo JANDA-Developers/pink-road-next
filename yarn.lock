@@ -2757,9 +2757,6 @@ ckeditor5-custom-build-with-balloon-editor@^0.0.7:
   resolved "https://registry.npmjs.org/ckeditor5-custom-build-with-balloon-editor/-/ckeditor5-custom-build-with-balloon-editor-0.0.7.tgz#ac2e9e7e574e5648e99f7e1273ede220676940ab"
   integrity sha512-kc3gLzPt/fYhQORiIglFm2HHfNpHNmTXD/mrnyjziVzp5RQMSB6f8MKMGq6mesv/oJJPXOI9E6BXpu5OJz1Nvw==
 
-ckeditor5-custom-build@./ckeditor5:
-  version "0.0.1"
-
 class-utils@^0.3.5:
   version "0.3.6"
   resolved "https://registry.npmjs.org/class-utils/-/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"
@@ -5450,6 +5447,11 @@ pify@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
+
+pinkloader-ckeditor5-custom-build@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/pinkloader-ckeditor5-custom-build/-/pinkloader-ckeditor5-custom-build-0.0.1.tgz#c5f221fec906a999137316091390c2b64ece4c53"
+  integrity sha512-kWfNNpHlKBcRQ0kg0nfGPY3kM3C22u/+w6xe1hmHFhYtbdr58AokuFu7+zLJDhUgozHrlK8L80GJyoSgTPfKbw==
 
 pkg-dir@^3.0.0:
   version "3.0.0"
