@@ -39,6 +39,7 @@ const defaultContext: TContext = {
 
 export const AppContext = React.createContext<TContext>(defaultContext);
 
+// @ts-ignore
 function App({ Component, pageProps }) {
   const [pageInfoCreateMu, { loading: pageInfoCreateLoading }] = useMutation<pageInfoCreate, pageInfoCreateVariables>(PAGE_INFO_CREATE, {
     client: PinkClient

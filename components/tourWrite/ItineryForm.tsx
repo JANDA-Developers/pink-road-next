@@ -19,7 +19,7 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) =>
     const { signleUpload, uploadLoading } = useUpload();
 
     const handleAddContent = () => {
-        itinery.contents = [...itinery.contents, ""]
+        itinery.contents = [...(itinery.contents || []), ""]
         setits([...its])
     }
 
@@ -38,16 +38,17 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) =>
     }
 
     const handleDeleteImg = (index: number) => () => {
-        itinery.images.splice(index, 1);
+        itinery.images?.splice(index, 1);
         setits([...its])
     }
 
     const handleDeleteContent = (index: number) => () => {
-        itinery.contents.splice(index, 1);
+        itinery.contents?.splice(index, 1);
         setits([...its]);
     }
 
     const handleOnChange = (i: number) => (value: string) => {
+        if (!itinery.contents?.[i]) return;
         itinery.contents[i] = value;
         setits([...its])
     }
@@ -58,6 +59,7 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) =>
     }
 
     const lastOrSingle = (index: number) => {
+        if (!itinery.contents) return;
         return index === (itinery.contents.length - 1) || itinery.contents.length === 1;
     }
 

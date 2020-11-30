@@ -30,45 +30,43 @@ export const MyPageBasket: React.FC<IProp> = () => {
                         <div className="t04">상품금액</div>
                         <div className="t05">상태</div>
                     </div>
-                    {items.map((item) =>
-                        <div key={item.productId} className="td">
-                            <div className="t01">
-                                <span className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                    <label htmlFor="agree1" />
-                                </span>
-                            </div>
-                            <div className="t02">
-                                <div className="img" style={{ backgroundImage: 'url(/img/sample_01.gif)' }}></div>
-                                <div className="right">
-                                    <div className="ct">역사여행</div><div className="code">P-020341</div>
-                                    <div className="title"><a href="/">거제도로 떠나요~~~!!!!</a></div>
-                                    <div className="subtitle">가족단위로 떠나는 주말 여행~~!!!!! 지금이 바로 좋은기회입니다.</div>
-                                </div>
-                                <span className="del">
-                                    <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
-                                    <button />
-                                </span>
-                            </div>
-                            <div className="t03">
-                                <div className="day">출발일 : <strong>11.20(금)</strong></div>
-                                <div className="start_where">출발장소 : 부산시민공원 정문 앞</div>
-                                <div className="tour_mode">여행방식 : 당일여행</div>
-                                <div className="men">선택인원 : <strong>총 2명</strong> - 성인1, 소인1, 유아0</div>
-                                <button className="btn option_btn">조건 추가/변경</button>
-                            </div>
-                            <div className="t04">
-                                <div className="money"><strong>30,000 원</strong></div>
-                                <button className="btn hit">주문하기</button>
-                            </div>
-                            <div className="t05">
-                                <div className="day_cunt">출발 D-6</div>
-                                <div className="men_cunt">모집 인원 : <strong>11</strong> / 23</div>
-                                <div className="state onsale">판매중</div>
-                            </div>
-
+                    <div className="td">
+                        <div className="t01">
+                            <span className="checkbox">
+                                <input type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                <label htmlFor="agree1" />
+                            </span>
                         </div>
-                    )}
+                        <div className="t02">
+                            <div className="img" style={{ backgroundImage: 'url(/img/sample_01.gif)' }}></div>
+                            <div className="right">
+                                <div className="ct">역사여행</div><div className="code">P-020341</div>
+                                <div className="title"><a href="/">거제도로 떠나요~~~!!!!</a></div>
+                                <div className="subtitle">가족단위로 떠나는 주말 여행~~!!!!! 지금이 바로 좋은기회입니다.</div>
+                            </div>
+                            <span className="del">
+                                <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
+                                <button />
+                            </span>
+                        </div>
+                        <div className="t03">
+                            <div className="day">출발일 : <strong>11.20(금)</strong></div>
+                            <div className="start_where">출발장소 : 부산시민공원 정문 앞</div>
+                            <div className="tour_mode">여행방식 : 당일여행</div>
+                            <div className="men">선택인원 : <strong>총 2명</strong> - 성인1, 소인1, 유아0</div>
+                            <button className="btn option_btn">조건 추가/변경</button>
+                        </div>
+                        <div className="t04">
+                            <div className="money"><strong>30,000 원</strong></div>
+                            <button className="btn hit">주문하기</button>
+                        </div>
+                        <div className="t05">
+                            <div className="day_cunt">출발 D-6</div>
+                            <div className="men_cunt">모집 인원 : <strong>11</strong> / 23</div>
+                            <div className="state onsale">판매중</div>
+                        </div>
+
+                    </div>
 
                     <div className="baket_bottom">
                         <div className="sum01"><strong>합계금액</strong></div>
@@ -155,12 +153,11 @@ export const MyPageBasket: React.FC<IProp> = () => {
                             </div>
                             <button className="btn w100">변경하기</button>
                         </div>
-
-
                     </div>
                 </div>
             </div>
             <div className="fade"></div>
+        </div>
     </MypageLayout>
 };
 

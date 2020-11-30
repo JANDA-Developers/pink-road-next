@@ -26,23 +26,23 @@ export class LocalManager<T extends string> {
             try {
                 _value = JSON.stringify(value);
             } catch (e) {
-                this.storage.removeItem(key);
+                this.storage?.removeItem(key);
                 console.error('LocalManager::saveLocal:stringFyFailed');
                 console.error(e);
             }
         }
 
-        if (typeof _value === 'string') this.storage.setItem(key, _value);
+        if (typeof _value === 'string') this.storage?.setItem(key, _value);
     }
 
     getLocalObj<O>(key: T, or?: O): O | undefined {
-        const value = this.storage.getItem(key) || '';
+        const value = this.storage?.getItem(key) || '';
         let result = or;
 
         try {
             result = JSON.parse(value);
         } catch (e) {
-            this.storage.removeItem(key);
+            this.storage?.removeItem(key);
             console.error('LocalManager::getLocalOj:parseFailed');
             console.error(e);
         }
@@ -51,12 +51,12 @@ export class LocalManager<T extends string> {
     }
 
     getLocal(key: T, or: string): string {
-        const item = this.storage.getItem(key) || '';
+        const item = this.storage?.getItem(key) || '';
         return item || or;
     }
 
     getLocalNum(key: T, or: number): number {
-        const item = this.storage.getItem(key) || '';
+        const item = this.storage?.getItem(key) || '';
         return parseInt(item) || or;
     }
 }
@@ -96,7 +96,7 @@ export const getBracket = () => {
 
 export const haveItem = (_id: string): boolean => {
     const products = getBracket() || []
-    return !!products.find(prod => prod.id === _id)
+    return !!products.find(prod => prod.productId === _id)
 }
 
 export const humanCountToCount = (count: IHumanCount): TCount[] => {
@@ -117,7 +117,7 @@ export const countToHumanCount = (count: TCount[]): IHumanCount => {
 
 export const overrideItem = (_id: string, product: Partial<TItem>) => {
     const products = getBracket() || []
-    const targetIndex = products.findIndex(prod => prod.id === _id);
+    const targetIndex = products.findIndex(prod => prod.productId === _id);
     if (targetIndex === -1) throw Error(`these is no item ${_id} in bracket`);
     products[targetIndex] = {
         ...products[targetIndex],
@@ -129,7 +129,7 @@ export const overrideItem = (_id: string, product: Partial<TItem>) => {
 
 export const removeItem = (_id: string) => {
     const products = getBracket() || []
-    const targetIndex = products.findIndex(prod => prod.id === _id);
+    const targetIndex = products.findIndex(prod => prod.productId === _id);
     products.splice(targetIndex, 1);
     saveBracket(products);
 }
@@ -143,7 +143,7 @@ export const addItem = (product: TItem) => {
 export const getItem = (_id: string) => {
     const products = getBracket() || []
     if (!haveItem(_id)) throw Error(`these is no item ${_id} in bracket`);
-    return products.find((prod) => prod.id === _id)!;
+    return products.find((prod) => prod.productId === _id)!;
 }
 
 export const saveBracket = (products: TItem[]) => {

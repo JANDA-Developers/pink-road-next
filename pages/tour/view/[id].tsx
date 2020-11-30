@@ -119,9 +119,9 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
   }
 
   const handleAddBracket = () => {
-    addItem({
+    // addItem({
 
-    })
+    // })
   }
 
   return <div className="edtiorView">

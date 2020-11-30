@@ -14,7 +14,7 @@ export const useproductDelete = (options?: MutationHookOptions<productDelete,pro
         productUpdateMu({
             variables
         }).then((data) => {
-            if (data.data?.productDelete.ok) {
+            if (data.data?.ProductDelete.ok) {
                 onSucess?.()
             }
         })

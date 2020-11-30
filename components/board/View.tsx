@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import dynamic from "next/dynamic";
 import React from "react";
 import { Ffile } from "types/api"
+import { ContentViewer } from "../contentViewer/ContentViewer";
 
 interface IProps {
     catName?: string;
@@ -25,7 +26,7 @@ interface IProps {
 
 
 export const BoardView: React.FC<IProps> = (data) => {
-    const { catName, createAt, title = "", writer, comments, files, summary, viewCount, thumb, content ="", onEdit, onList, onNext, onPrev, onDelete } = data;
+    const { catName, createAt, title = "", writer, comments, files, summary, viewCount, thumb, content = "", onEdit, onList, onNext, onPrev, onDelete } = data;
 
 
     const handlePrev = () => {
@@ -62,13 +63,6 @@ export const BoardView: React.FC<IProps> = (data) => {
                         {comments?.count && <span>댓글 <strong>0</strong>건</span>}{/* 댓글기능 열렷을 때 */}
                         {viewCount && <span>조회수 <strong>3423</strong>회</span>}
                     </div>
-                    {/*<div class="menu">
-      <span><i class="flaticon-more-1"></i></span>
-      <ul class="option_box">
-          <li><span onclick="location.href = '';">공유하기</span></li>
-          <li><span onclick="location.href = '';">비공개 전환하기</span></li>
-      </ul>
-  </div>*/}
                 </div>
                 <div className="in_box">
 
@@ -78,9 +72,7 @@ export const BoardView: React.FC<IProps> = (data) => {
                     </>
                     }
                     {/*thumb && <img src={thumb.uri} alt={thumb.name} /> 섬네일이미지 안보여줘도됨...*/}
-                    <div dangerouslySetInnerHTML={{
-                        __html: content
-                    }} />
+                    <ContentViewer data={content} />
                     {files &&
                         <div className="download_box">
                             <ul>
