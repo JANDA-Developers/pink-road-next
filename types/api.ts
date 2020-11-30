@@ -312,12 +312,7 @@ export interface productDelete_ProductDelete_data_category {
 
 export interface productDelete_ProductDelete_data_itinerary_images {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -336,12 +331,7 @@ export interface productDelete_ProductDelete_data_itinerary {
 
 export interface productDelete_ProductDelete_data_images {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -371,6 +361,8 @@ export interface productDelete_ProductDelete_data {
   adult_price: number;
   kids_price: number;
   baby_price: number;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
 }
 
 export interface productDelete_ProductDelete {
@@ -400,9 +392,6 @@ export interface productDeleteVariables {
 export interface multiUpload_MultiUpload_data {
   __typename: "File";
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -691,12 +680,7 @@ export interface portfolioFindById_PortfolioFindById_data_author {
 
 export interface portfolioFindById_PortfolioFindById_data_thumb {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -810,12 +794,7 @@ export interface portfolioList_PortfolioList_data_author {
 
 export interface portfolioList_PortfolioList_data_thumb {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -936,12 +915,7 @@ export interface productList_ProductList_data_category {
 
 export interface productList_ProductList_data_itinerary_images {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -960,12 +934,7 @@ export interface productList_ProductList_data_itinerary {
 
 export interface productList_ProductList_data_images {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -995,6 +964,8 @@ export interface productList_ProductList_data {
   adult_price: number;
   kids_price: number;
   baby_price: number;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
 }
 
 export interface productList_ProductList {
@@ -1083,12 +1054,7 @@ export interface productFindById_ProductFindById_data_category {
 
 export interface productFindById_ProductFindById_data_itinerary_images {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -1107,12 +1073,7 @@ export interface productFindById_ProductFindById_data_itinerary {
 
 export interface productFindById_ProductFindById_data_images {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -1142,6 +1103,8 @@ export interface productFindById_ProductFindById_data {
   adult_price: number;
   kids_price: number;
   baby_price: number;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
 }
 
 export interface productFindById_ProductFindById {
@@ -1337,12 +1300,7 @@ export interface Fcategory {
 
 export interface Ffile {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -1407,12 +1365,7 @@ export interface Fportfolio_author {
 
 export interface Fportfolio_thumb {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -1511,12 +1464,7 @@ export interface Fpage {
 
 export interface Fitinerary_images {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -1570,12 +1518,7 @@ export interface Fproduct_category {
 
 export interface Fproduct_itinerary_images {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -1594,12 +1537,7 @@ export interface Fproduct_itinerary {
 
 export interface Fproduct_images {
   __typename: "File";
-  createdAt: any;
-  updatedAt: any;
   name: string;
-  description: string | null;
-  extension: string | null;
-  fileType: string | null;
   uri: string;
   owner: string;
 }
@@ -1629,6 +1567,8 @@ export interface Fproduct {
   adult_price: number;
   kids_price: number;
   baby_price: number;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
 }
 
 /* tslint:disable */
@@ -1722,7 +1662,6 @@ export interface FileUpdateInput {
 export interface ItineraryCreateInput {
   title: string;
   contents?: string[] | null;
-  isOpen: boolean;
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;

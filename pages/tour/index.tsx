@@ -4,14 +4,14 @@ import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/router'
 import { IUseProductList, useproductList } from 'hook/useProductList';
-import { productList_productList_data_category } from 'types/api';
+import { productList_ProductList_data_category } from 'types/api';
 import { IProduct } from 'types/interface';
 interface IProp {
     context: ITourMianWrapContext
 }
 
 type TSortedData = {
-    category: productList_productList_data_category,
+    category: productList_ProductList_data_category,
     items: IProduct[]
 }
 

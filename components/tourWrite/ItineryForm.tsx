@@ -66,7 +66,7 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) =>
             <input type="text" className="input_01" onChange={handleTitle} value={itinery.title} placeholder={`${index}일차`} />
             <input readOnly type="text" className="input_02" value={dayjs(itinery.date).format("YYYY.MM.DD (ddd)")} />
         </div>
-        {itinery.contents.map((content, contentIndex) =>
+        {itinery.contents?.map((content, contentIndex) =>
             <div key={`${contentIndex}${index}content`}>
                 <Quill onChange={handleOnChange(contentIndex)} key={"initeryFrom__content" + contentIndex} value={content} />
                 <button onClick={handleDeleteContent(contentIndex)} className="comment_btn mini elimination">

@@ -10,7 +10,6 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
 import { IUseProductList, useproductList } from 'hook/useProductList';
 import { useRouter } from 'next/router';
-
 const DummyPhoto = [{
   category: "문화/예술",
   subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
@@ -80,7 +79,6 @@ export const Main: React.FC<IProps> = ({ context }) => {
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
     <div className="main_con_box1">
-
       <div
         className="main_top_images"
         style={{ ...bg("mainBg") }}
@@ -99,8 +97,8 @@ export const Main: React.FC<IProps> = ({ context }) => {
               <a  {...edit("mainLink2")} />
             </Link>
           </div>
-          </div>
-        
+        </div>
+
       </div>
     </div>
     <div className="main_con_box2">
@@ -171,8 +169,8 @@ export const Main: React.FC<IProps> = ({ context }) => {
               <i><svg><polygon points="69.22 12.71 0 12.71 0 10.71 64.33 10.71 54.87 1.43 56.27 0 69.22 12.71" /></svg></i>
             </li>
             {items.map((item) =>
-              <Link href={`/tour/view/${item._id}`}>
-                <li key={item._id} className="list_in">
+              <Link key={item._id} href={`/tour/view/${item._id}`}>
+                <li className="list_in">
                   <div className="img" onClick={() => { toProductBoard(item._id) }} style={{
                     backgroundImage: `url(${item.images[0]?.uri})`
                   }}></div>

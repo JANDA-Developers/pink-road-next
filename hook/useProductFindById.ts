@@ -17,15 +17,15 @@ export const useProductFindById = ({
     const { data, loading } = useQuery<productFindById, productFindByIdVariables>(PRODUCT_FIND_BY_ID, {
         ...options,
         nextFetchPolicy: "cache-only",
-        onCompleted: ({productFindById})=> {
-            if(!productFindById.ok) {
-                console.error(data?.productFindById.error);
+        onCompleted: ({ProductFindById})=> {
+            if(!ProductFindById.ok) {
+                console.error(data?.ProductFindById.error);
                 alert("잘못된 접근 입니다.");
             }
         }
     })
 
-    const product = data?.productFindById?.data || undefined
+    const product = data?.ProductFindById?.data || undefined
     
     return { product, loading }
 }

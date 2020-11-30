@@ -206,15 +206,11 @@ export const MULTI_UPLOAD = gql`
       ok
       error 
       data {
-        name
-        description
-        extension
-        fileType
-        uri
-        owner
+        ...Ffile
       }
     }
   }
+  ${F_FILE}
 `;
 
 export const SIGN_UP = gql`

@@ -8,5 +8,8 @@
     export const STYLE = {
         hide: {
             display: "none"
+        },
+        inlineblock: {
+            display: "inline-block"
         }
     }

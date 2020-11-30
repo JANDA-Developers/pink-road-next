@@ -5594,7 +5594,7 @@ i.important_icon {
                 height: 95%;
             }
 
-            .tour_details_in .boardReadBody .tour_list p {
+            .tour_details_in .boardReadBody .tour_list div {
                 position: relative;
                 box-sizing: border-box;
                 padding: 10px 10px 30px 15px;
@@ -5602,7 +5602,7 @@ i.important_icon {
                 color: #555;
             }
 
-                .tour_details_in .boardReadBody .tour_list p:after {
+                .tour_details_in .boardReadBody .tour_list div:after {
                     content: '';
                     position: absolute;
                     left: -9px;
@@ -5613,7 +5613,7 @@ i.important_icon {
                     border-radius: 50px;
                 }
 
-                .tour_details_in .boardReadBody .tour_list p:before {
+                .tour_details_in .boardReadBody .tour_list div:before {
                     content: '';
                     position: absolute;
                     left: -13px;
@@ -5654,8 +5654,6 @@ i.important_icon {
 
         .tour_details_in .boardReadBody .in_box .text {
             display: block;
-            font-size: 16px;
-            line-height: 28px;
             padding-left: 5px;
             padding-bottom: 50px;
             color: #555;

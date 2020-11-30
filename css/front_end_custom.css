@@ -28,6 +28,10 @@ ul[contenteditable="true"] li {
     display: block!important;
     width: revert!important;
 }
+td {
+    display: table-cell!important;
+    vertical-align: inherit;
+}
 
 .JDicon {
     width: 1em!important;
@@ -193,4 +197,57 @@ ul[contenteditable="true"] li {
 
 .edtiorView .ce-block--selected .ce-block__content {
     background-color: transparent;
+}
+
+
+.ck {
+    box-sizing: border-box;
+}
+
+.JDfocused {
+    outline: 1px solid black;
+}
+
+.ck-content {
+    min-height: 250px;
+}
+
+.JDtagInput__tag {
+    display: inline-block;
+    padding: 2px 19px;
+    font-size: 14px;
+    color: #696969;
+    font-weight: 600;
+    border: 1px solid #909090;
+    border-radius: 100px;
+    line-height: initial;
+    background-color: #fff;
+    margin-right: 8px;
+    vertical-align: bottom;
+    position: relative;
+}
+
+.JDtagInput {
+    display: flex;;
+}
+.JDtagInput__input {
+    display: flex;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    color: #777;
+    background: #fff;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 3px;
+    border: 1px #e7e7e7 solid;
+}
+
+.JDtagInput__close {
+    margin-right:-8px;
+    margin-left: 4px;
+    right: 8px;
+    cursor: pointer;
 }

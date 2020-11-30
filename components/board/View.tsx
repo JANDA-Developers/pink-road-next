@@ -1,15 +1,13 @@
-import { OutputData } from "@editorjs/editorjs";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic";
 import React from "react";
 import { Ffile } from "types/api"
-const EditorJs = dynamic(() => import('components/editorjs/EditorJs'))
 
 interface IProps {
-    catName: string;
+    catName?: string;
     title: string;
     writer: string;
-    thumb?: Ffile;
+    thumb?: Ffile | null;
     createAt: string;
     comments?: {
         count: 0,
@@ -22,32 +20,32 @@ interface IProps {
     onList?: () => void;
     onEdit?: () => void;
     onDelete?: () => void;
-    content?: OutputData;
+    content?: string;
 }
 
 
 export const BoardView: React.FC<IProps> = (data) => {
-    const { catName, createAt, title, writer, comments, files, summary, viewCount, thumb, content, onEdit, onList, onNext, onPrev, onDelete } = data;
+    const { catName, createAt, title = "", writer, comments, files, summary, viewCount, thumb, content ="", onEdit, onList, onNext, onPrev, onDelete } = data;
 
 
     const handlePrev = () => {
-        onPrev();
+        onPrev?.();
     }
 
     const handleList = () => {
-        onList();
+        onList?.();
     }
 
     const handleEdit = () => {
-        onEdit();
+        onEdit?.();
     }
 
     const handleNext = () => {
-        onNext();
+        onNext?.();
     }
 
     const handleDelete = () => {
-        onDelete();
+        onDelete?.();
     }
 
     return <div className="board_box edtiorView">
@@ -80,13 +78,9 @@ export const BoardView: React.FC<IProps> = (data) => {
                     </>
                     }
                     {/*thumb && <img src={thumb.uri} alt={thumb.name} /> 섬네일이미지 안보여줘도됨...*/}
-
-                    {content.blocks &&
-                        <div>
-                            <EditorJs holder="content" readOnly data={content} />
-                            <div id="content" />
-                        </div>
-                    }
+                    <div dangerouslySetInnerHTML={{
+                        __html: content
+                    }} />
                     {files &&
                         <div className="download_box">
                             <ul>

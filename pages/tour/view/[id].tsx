@@ -4,18 +4,18 @@ import { useProductFindById } from "hook/useProductFindById";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { IproductFindById } from "types/interface";
 import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
 import { useproductDelete } from "hook/useProductDelete";
-import EditorJs from 'components/editorjs/EditorJs';
 import { IAuthInfo } from "../../../components/nice/type";
 import { getAuth } from "../../../components/nice/getAuth";
 import NiceElments from "../../../components/nice/NiceElement";
 import { getNiceElementForTest } from "../../../components/nice/niceUtils";
-
+import Slider, { Slide } from "../../../components/slider/Slider";
+import SLIDER from "react-slick";
 
 // <div class="top_visual">
 // <div class="sub_header sub_bg" style="background-image:url(../img/su_visual_bg.jpg);">
@@ -43,42 +43,34 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
   const { isManager, isAdmin } = useContext(AppContext);
   const {
     _id,
-    address,
     adult_price,
-    author,
     baby_price,
-    category,
     caution,
     contents,
-    createdAt,
     images,
     inOrNor,
-    info,
-    isDelete,
     itinerary,
     keyWards,
     kids_price,
     maxMember,
     minMember,
     startPoint,
-    status,
     subTitle,
     title,
-    updatedAt
   } = product;
 
+  const sliderRef = useRef<SLIDER>(null);
   const [authData, setAuthData] = useState<IAuthInfo>();
-
-  const [mainImg, setMain] = useState(images?.[0])
   const [tab, setTab] = useState<number>(1);
+  const [sliderIndex, setSlideIndex] = useState(0);
 
   const router = useRouter();
 
   const { productDelete, deleteLoading } = useproductDelete({
     onCompleted: ({
-      productDelete
+      ProductDelete
     }) => {
-      if (productDelete.ok) {
+      if (ProductDelete.ok) {
         alert("삭제완료");
         router.push("/")
       }
@@ -87,7 +79,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
 
   const tabOnCheck = (index: number) => tab === index ? "on" : undefined;
 
-  const handleTab = (index: number) => {
+  const handleTab = (index: number) => () => {
     setTab(index)
   }
 
@@ -110,6 +102,15 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
 
   const handlePay = () => {
     window.jdPayStart();
+  }
+
+  const handleSliderMove = (index: number) => () => {
+    sliderRef.current?.slickGoTo(index)
+    setSlideIndex(index);
+  }
+
+  const checkImgOn = (index: number): string => {
+    return index === sliderIndex ? "on" : ""
   }
 
   return <div className="edtiorView">
@@ -139,19 +140,22 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
         <div className="Read_box">
           <div className="details_photo">
             <div className="main_photo">
-              {mainImg &&
-                <img src={`${mainImg?.uri}`} alt="선택된 썸네일 이미지" />
-              }
+              <Slider ref={sliderRef} >
+                {images?.map((img, i) =>
+                  <Slide key={i + "sliderImg"} >
+                    <img src={img?.uri} alt={img.name} />
+                  </Slide>
+                )}
+              </Slider>
             </div>
             <ul className="photo_list">
-              {images?.map(img =>
-                <li onClick={() => {
-                  setMain(img);
-                }} className="on"><span><img src={img?.uri} alt={img.name} /></span></li>
+              {images?.map((img, i) =>
+                <li className={checkImgOn(i)} onClick={handleSliderMove(i)} key={i + "sliderImgSub"}><span><img src={img?.uri} alt={img.name} /></span></li>
               )}
             </ul>
             <div className="details_info_txt">
-              <i className="flaticon-flag-1" /> {info}
+              <i className="flaticon-flag-1" />
+              <div dangerouslySetInnerHTML={{ __html: caution }} />
             </div>
           </div>
         </div>
@@ -176,7 +180,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                     <td colSpan={2} className="tag bt_line">
                       <div className="tt">키워드</div>
                       <ul>
-                        {keyWards.map((keyward, i) =>
+                        {keyWards?.map((keyward, i) =>
                           <li key={i + "keyward"}>#{keyward}</li>
                         )}
                       </ul>
@@ -258,12 +262,12 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                 <div className="link05">
                   <a href="/">
                     장바구니 담기
-              </a>
+                  </a>
                 </div>
                 <div className="link02">
                   <a href="/">
                     결제하기
-              </a>
+                  </a>
                 </div>
               </div>
             </div>
@@ -274,15 +278,15 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
       <div className="boardReadBody">
         <div className="xe_content">
           <div className="con_top_tap">
-            <span onClick={() => { handleTab(1) }} className={tabOnCheck(1)}><a>여행상세설명</a></span>
-            <span onClick={() => { handleTab(2) }} className={tabOnCheck(2)}><a>안내 및 참고</a></span>
-            <span onClick={() => { handleTab(3) }} className={tabOnCheck(3)}><a >포함 및 불포함</a></span>
-            <span onClick={() => { handleTab(4) }} className={tabOnCheck(4)}><a >문의하기</a></span>
+            <span onClick={handleTab(1)} className={tabOnCheck(1)}><a>여행상세설명</a></span>
+            <span onClick={handleTab(2)} className={tabOnCheck(2)}><a>안내 및 참고</a></span>
+            <span onClick={handleTab(3)} className={tabOnCheck(3)}><a >포함 및 불포함</a></span>
+            <span onClick={handleTab(4)} className={tabOnCheck(4)}><a >문의하기</a></span>
           </div>
           {/* 여행상세설명 */}
-          {tab === 1 && itinerary.map((it) =>
-            <div key={it._id + "itnerary"} className="in_box" id="tap__01">
-              <h4>여행일정</h4>
+          {tab === 1 && <div className="in_box" id="tap__01">
+            <h4>여행일정</h4>
+            {itinerary.map((it) => <div key={it._id} >
               <div className="hang">
                 <div className="top_day">
                   <h5>{it.title}</h5>
@@ -290,33 +294,34 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                 </div>
                 <div className="tour_list">
                   {it.contents.map((con, index) =>
-                    <p key={index + "con" + it._id}>{con}</p>
+                    <div key={index + "con" + it._id} dangerouslySetInnerHTML={{ __html: con }} />
                   )}
                 </div>
+                {it.images.map((img, index) => <img key={index} style={{
+                  width: "auto",
+                  height: "100px",
+                  display: "inline-block"
+                }} src={img?.uri} />)}
               </div>
-              {it.images.map((img, index) => <img key={index} style={{
-                width: "auto",
-                height: "100px",
-                display: "inline-block"
-              }} src={img?.uri} />)}
             </div>
-          )}
+            )}
+          </div>}
           {tab === 2 && <>
             <div className="in_box" id="tap__02">
               <h4>안내 및 참고</h4>
-              <p className="text">
-                <EditorJs readOnly data={contents} />
-              </p>
+              <div dangerouslySetInnerHTML={{
+                __html: contents
+              }} className="text" />
             </div>
           </>
           }
           {tab === 3 && <>
             {/* 포함 및 불포함 */}
             <div className="in_box" id="tap__03">
-              <h4>안내 및 참고</h4>
-              <p className="text">
-                <EditorJs readOnly data={inOrNor} />
-              </p>
+              <h4>포함 및 불포함 </h4>
+              <div dangerouslySetInnerHTML={{
+                __html: inOrNor
+              }} className="text" />
             </div>
           </>
           }
@@ -387,7 +392,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
           <h4>핑크로더 추천여행</h4>{/* 랜덤노출 */}
           <ul className="list_ul line3">
             <li className="list_in">
-              <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(../img/sample_01.gif)' }}>상품이미지</div>
+              <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(/img/sample_01.gif)' }}>상품이미지</div>
               <div className="box">
                 <div className="category"><span>문화/예술</span></div>
                 <div className="title">더운날 수목원으로 오세요~!!</div>
@@ -404,7 +409,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
               </div>
             </li>
             <li className="list_in">
-              <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(../img/sample_01.gif)' }}>상품이미지</div>
+              <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(/img/sample_01.gif)' }}>상품이미지</div>
               <div className="box">
                 <div className="category"><span>문화/예술</span></div>
                 <div className="title">더운날 수목원으로 오세요~!!</div>
@@ -421,7 +426,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
               </div>
             </li>
             <li className="list_in">
-              <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(../img/sample_01.gif)' }}>상품이미지</div>
+              <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(/img/sample_01.gif)' }}>상품이미지</div>
               <div className="box">
                 <div className="category"><span>문화/예술</span></div>
                 <div className="title">더운날 수목원으로 오세요~!!</div>
@@ -441,7 +446,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
         </div>
       </div>
     </div>
-  </div>
+  </div >
 }
 
 const TourDetailWrap = () => {

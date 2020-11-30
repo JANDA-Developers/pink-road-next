@@ -34,7 +34,7 @@ export class LocalManager<T extends string> {
         if (typeof _value === 'string') this.storage.setItem(key, _value);
     }
 
-    getLocalObj<O>(key: T, or: O): O {
+    getLocalObj<O>(key: T, or?: O): O | undefined {
         const value = this.storage.getItem(key) || '';
         let result = or;
 
@@ -86,11 +86,11 @@ type TItem = {
 
 
 export const getBracket = () => {
-    return Storage.getLocalObj<TItem[]>("bracket", []);
+    return Storage?.getLocalObj<TItem[]>("bracket", []);
 }
 
 export const haveItem = (_id: string): boolean => {
-    const products = getBracket()
+    const products = getBracket() || []
     return !!products.find(prod => prod.id === _id)
 }
 
@@ -111,7 +111,7 @@ export const countToHumanCount = (count: TCount[]): IHumanCount => {
 
 
 export const overrideItem = (_id: string, product: Partial<TItem>) => {
-    const products = getBracket()
+    const products = getBracket() || []
     const targetIndex = products.findIndex(prod => prod.id === _id);
     if (targetIndex === -1) throw Error(`these is no item ${_id} in bracket`);
     products[targetIndex] = {
@@ -123,26 +123,26 @@ export const overrideItem = (_id: string, product: Partial<TItem>) => {
 }
 
 export const removeItem = (_id: string) => {
-    const products = getBracket()
+    const products = getBracket() || []
     const targetIndex = products.findIndex(prod => prod.id === _id);
     products.splice(targetIndex, 1);
     saveBracket(products);
 }
 
 export const addItem = (product: TItem) => {
-    const products = getBracket()
+    const products = getBracket() || []
     const updateProducts: TItem[] = [product, ...products];
     saveBracket(updateProducts);
 }
 
 export const getItem = (_id: string) => {
-    const products = getBracket()
+    const products = getBracket() || []
     if (!haveItem(_id)) throw Error(`these is no item ${_id} in bracket`);
     return products.find((prod) => prod.id === _id)!;
 }
 
 export const saveBracket = (products: TItem[]) => {
-    Storage.saveLocal("bracket", products)
+    Storage?.saveLocal("bracket", products)
 }
 
 
