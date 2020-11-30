@@ -3,15 +3,15 @@ import SubTopNav from 'layout/components/SubTop';
 import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/router'
-import { IUseProductList, useProductPostList } from 'hook/useProductPostList';
-import { productPostList_ProductPostList_data_category } from 'types/api';
+import { IUseProductList, useproductList } from 'hook/useProductList';
+import { productList_ProductList_data_category } from 'types/api';
 import { IProduct } from 'types/interface';
 interface IProp {
     context: ITourMianWrapContext
 }
 
 type TSortedData = {
-    category: productPostList_ProductPostList_data_category,
+    category: productList_ProductList_data_category,
     items: IProduct[]
 }
 
@@ -117,13 +117,13 @@ interface ITourMianWrapContext extends IUseProductList {
 
 export const TourMainWrap = () => {
 
-    const productPostList = useProductPostList();
+    const productList = useproductList();
 
     const context: ITourMianWrapContext = {
-        ...productPostList
+        ...productList
     }
 
-    if (productPostList.loading) return null;
+    if (productList.loading) return null;
 
     return <TourMain context={context} />
 }

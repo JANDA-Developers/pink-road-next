@@ -1,3 +1,6 @@
+
+const omitDeep = require("omit-deep-lodash");
+
 export const getScrollParent = (target: HTMLElement): HTMLElement => {
     let t = target;
   
@@ -52,7 +55,7 @@ export const foucsById = (id:string) => {
 }
 
 type Tnode = {
-    value: boolean,
+    value: any,
     failMsg?: string,
     id?: string;
 }
@@ -68,7 +71,9 @@ const validate = (nodes:Tnode[]):boolean => {
         return true;
     })
 }
-
+function isFunction(functionToCheck:any) {
+  return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+ }
 
 export class Validater {
     nodes:Tnode[]
@@ -78,7 +83,11 @@ export class Validater {
         let nodes = targetNodes || this.nodes
         
         return nodes.every((node)=> {
-            if(!node.value) {
+            let value = node.value;
+            if(isFunction(node.value)) {
+              value = node.value();
+            }
+            if(!value) {
                 if(node.failMsg) alert(node.failMsg);
                 if(node.id) foucsById(node.id);
                 return false;

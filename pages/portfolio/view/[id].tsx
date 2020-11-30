@@ -47,7 +47,7 @@ export const PorfolioDetail: React.FC<IProp> = ({ item }) => {
         content={contents}
         writer={"관리자"}
         title={title}
-        summary={summary}
+        summary={summary || ""}
         onDelete={handleDelete}
         onEdit={toDetail}
         createAt={createdAt}

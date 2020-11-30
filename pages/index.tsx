@@ -3,20 +3,13 @@ import pageInfoDefault from 'info/main.json';
 import { getEditUtils } from 'utils/pageEdit';
 import { AppContext } from './_app'
 import { Meta } from 'components/common/meta/Meta';
-import { PhotoLi } from 'components/main/PhotoLi';
 import { Upload } from 'components/common/Upload';
 import Link from 'next/link';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
-import dynamic from 'next/dynamic';
-import { IUseProductList, useProductPostList } from 'hook/useProductPostList';
+import { IUseProductList, useproductList } from 'hook/useProductList';
 import { useRouter } from 'next/router';
-import $ from "jquery";
-
-
-const EditorJs = dynamic(() => import('components/edit/CKE'), { ssr: false })
-
 const DummyPhoto = [{
   category: "문화/예술",
   subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
@@ -86,12 +79,12 @@ export const Main: React.FC<IProps> = ({ context }) => {
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
     <div className="main_con_box1">
-      {/* <EditorJs /> */}
       <div
         className="main_top_images"
         style={{ ...bg("mainBg") }}
       >
         <Upload onUpload={imgEdit("mainBg")} />
+        <div className="ovj"></div>
         <div className="w1200">
           <strong {...edit("title")} />
           <span {...edit('subtitle')}>
@@ -105,6 +98,7 @@ export const Main: React.FC<IProps> = ({ context }) => {
             </Link>
           </div>
         </div>
+
       </div>
     </div>
     <div className="main_con_box2">
@@ -175,8 +169,8 @@ export const Main: React.FC<IProps> = ({ context }) => {
               <i><svg><polygon points="69.22 12.71 0 12.71 0 10.71 64.33 10.71 54.87 1.43 56.27 0 69.22 12.71" /></svg></i>
             </li>
             {items.map((item) =>
-              <Link href={`/tour/view/${item._id}`}>
-                <li key={item._id} className="list_in">
+              <Link key={item._id} href={`/tour/view/${item._id}`}>
+                <li className="list_in">
                   <div className="img" onClick={() => { toProductBoard(item._id) }} style={{
                     backgroundImage: `url(${item.images[0]?.uri})`
                   }}></div>
@@ -227,7 +221,7 @@ interface IMainWrapContext extends IUseProductList, IGetProps {
 }
 
 const MainWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ sitePageInfo }) => {
-  const productList = useProductPostList({ initialPageIndex: 1, initialViewCount: 8 });
+  const productList = useproductList({ initialPageIndex: 1, initialViewCount: 8 });
   const context: IMainWrapContext = {
     ...productList,
     sitePageInfo

@@ -4,14 +4,13 @@
     "\\layout",
     "\\layout\\components",
     "\\pages",
-    "\\pages\\master",
-    "\\pages\\member",
     "\\pages\\mypage",
     "\\pages\\portfolio",
-    "\\pages\\tour",
+    "\\pages\\portfolio\\view",
+    "\\pages\\portfolio\\write",
     "\\public",
     "\\public\\img"
   ],
-  "SelectedNode": "\\pages\\member\\rule.tsx",
+  "SelectedNode": "\\pages\\mypage\\index.tsx",
   "PreviewInSolutionExplorer": false
 }

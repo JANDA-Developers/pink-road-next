@@ -4,27 +4,29 @@ import RCDayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { ISet } from 'types/interface';
 
+type Range = {
+    from?: Date,
+    to?: Date
+}
+type ThandleSate = (range: Range) => void;
 interface IProps {
     from?: Date,
     to?: Date,
-    setState: ISet<{
-        from?: Date,
-        to?: Date
-    }>
+    onRangeChange: ThandleSate
 }
 
-export const DayRangePicker: React.FC<IProps> = ({ from, to, setState }) => {
+export const DayRangePicker: React.FC<IProps> = ({ from = new Date(), to = new Date(), onRangeChange }) => {
     const defaultProps = {
         numberOfMonths: 2,
     };
 
-    function handleDayClick(day) {
+    function handleDayClick(day: any) {
         const range = DateUtils.addDayToRange(day, { from, to });
-        setState(range);
+        onRangeChange(range);
     }
 
     function handleResetClick() {
-        setState({ from: undefined, to: undefined });
+        onRangeChange({ from: undefined, to: undefined });
     }
 
     const modifiers = { start: from, end: to };
@@ -58,10 +60,10 @@ export const DayRangePicker: React.FC<IProps> = ({ from, to, setState }) => {
 `}</style>
             </Head>
             {/*<ul className="info_txt">
-                <li>- ÀÏÁ¤À» µî·ÏÇÏ±â À§ÇØ ¸ÕÀú ¿ÞÂÊ ´Þ·Â¿¡¼­ ÇØ´ç »óÇ°ÀÇ [½ÃÀÛ³¯Â¥]¿Í [Á¾·á³¯Â¥]¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.</li>
-                <li>- ¼±ÅÃµÈ ³¯Â¥ ¼ö ¸¸Å­ ¾Æ·¡¿¡ ÆûÀÌ »ý¼ºÀÌ µË´Ï´Ù.</li>
-                <li>- ¾Æ·¡ÀÇ Æû¿¡¼­ ³¯Â¥´Â °íÁ¤ °ªÀÔ´Ï´Ù.</li>
-            </ul> ±ÛÀÚ°¡ ±úÁü ¤Ð¤Ð¤Ð */}
+                <li>- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ·Â¿ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ [ï¿½ï¿½ï¿½Û³ï¿½Â¥]ï¿½ï¿½ [ï¿½ï¿½ï¿½á³¯Â¥]ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.</li>
+                <li>- ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Â¥ ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë´Ï´ï¿½.</li>
+                <li>- ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.</li>
+            </ul> ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¤Ð¤ï¿½ */}
         </div>
     );
 }

@@ -11,12 +11,7 @@ export const F_CATEGORY = gql`
 `
 export const F_FILE = gql`
     fragment Ffile on File {
-        createdAt
-        updatedAt
         name
-        description
-        extension
-        fileType
         uri
         owner
     }
@@ -109,7 +104,7 @@ export const F_ITINERARY = gql`
 `
 
 export const F_PRODUCT_POST = gql`
-    fragment FproductPost on ProductPost {
+    fragment Fproduct on Product {
         _id
         createdAt
         updatedAt
@@ -142,6 +137,8 @@ export const F_PRODUCT_POST = gql`
         adult_price
         kids_price
         baby_price
+        isNotice
+        isOpen
     }
     ${F_FILE}
     ${F_USER}

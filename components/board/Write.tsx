@@ -1,26 +1,12 @@
 import dynamic from "next/dynamic";
-import { useState } from "react";
-import { Ffile, FileCreateInput } from "types/api"
+import { useContext } from "react";
+import { Ffile } from "types/api"
 import { TElements } from "types/interface";
 import React from "react";
 import { useUpload } from "hook/useUpload";
-import EditorJs from "components/editorjs/EditorJs";
-import { OutputData } from "@editorjs/editorjs";
-export interface IBoard {
-    categoryList: TCategory[]
-    category: TCategory
-    categoryId: string;
-    author: string;
-    title: string;
-    isOpen: boolean;
-    files: Ffile[]
-    contents: OutputData;
-    subTitle: string;
-    summary: string;
-    thumb: FileCreateInput;
-}
-
-
+import { IUseBoard } from "hook/useBoard";
+import { AppContext } from "../../pages/_app";
+const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 interface IOpen {
     title: boolean
     subTitle: boolean;
@@ -32,48 +18,45 @@ interface IOpen {
 
 type TCategory = { _id: string, label: string };
 interface IProps {
-    WriteInjection: TElements;
-    defaults?: Partial<IBoard>;
+    boardHook: IUseBoard
+    categoryList?: TCategory[]
+    WriteInjection?: TElements;
     mode: "create" | "edit"
-    onSave?: (data: Partial<IBoard>) => void;
+    onSave?: () => void;
     onDelete?: () => void;
-    onEdit?: (data: Partial<IBoard>) => void;
-    onCreate?: (data: Partial<IBoard>) => void;
+    onEdit?: () => void;
+    onCreate?: () => void;
     onLoad?: () => void;
     onCancel?: () => void;
     opens: IOpen
 }
 
-export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, WriteInjection, onCancel, onCreate, onDelete, onEdit, onLoad, onSave }) => {
+export const BoardWrite: React.FC<IProps> = ({
+    boardHook,
+    categoryList,
+    opens,
+    mode,
+    WriteInjection,
+    onCancel: handleCancel,
+    onCreate: handleCreate,
+    onDelete: handleDelete,
+    onEdit: handleEdit,
+    onLoad: handleLoad,
+    onSave: handleSave
+}) => {
+    const { myProfile } = useContext(AppContext);
+    const email = myProfile?.email || "";
     const isCreateMode = mode === "create";
     const { signleUpload } = useUpload();
-    const [isOpen, setIsOpen] = useState<boolean>(defaults.isOpen);
-    const [title, setTitle] = useState<string>(defaults.title)
-    const [category, setCategory] = useState<string>(defaults.category?._id);
-    const [subTitle, setSubTitle] = useState<string>(defaults.subTitle);
-    const [summary, setSummary] = useState<string>(defaults.summary);
-    const [files, setFiles] = useState<Ffile[]>([]);
-    const [thumb, setThumb] = useState<FileCreateInput>(defaults.thumb)
-    const [contents, setContents] = useState<OutputData>(defaults.contents)
-    const { categoryList, author } = defaults;
+    const { boardData, boardSets } = boardHook;
+    const { categoryId, isOpen, subTitle, summary, thumb, title, contents } = boardData;
+    const { setCategoryId, setContents, setIsOpen, setSummary, setThumb, setTitle, setSubTitle } = boardSets;
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
 
-    console.log(contents);
-
-    const data: Partial<IBoard> = {
-        categoryId: category,
-        // files,
-        contents,
-        isOpen,
-        subTitle,
-        summary,
-        title,
-        thumb,
-    }
 
     const handleCatChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const nextCat = e.currentTarget.value
-        setCategory(nextCat)
+        setCategoryId(nextCat)
     }
 
     const handleChangeOpen = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,43 +66,22 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
     const handleAddFile = () => {
     }
 
-    const handleCancel = () => {
-        onCancel()
-    }
-
-    const handleCreate = async () => {
-        onCreate(data)
-    }
-
-    const handleDelete = () => {
-        onDelete()
-    }
-
-    const handleSave = async () => {
-        onSave(data)
-    }
-
-    const handleLoad = () => {
-        onLoad()
-    }
-    const handleEdit = async () => {
-        onEdit(data)
-    }
-
     const handleUploadClick = () => {
-        hiddenFileInput.current.click();
+        hiddenFileInput.current?.click();
     }
 
     const handleChangeSumbNail = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!event.target.files) return;
         const fileUploaded = event.target.files;
-        const onUpload = (url, data: Ffile) => {
+        const onUpload = (_: string, data: Ffile) => {
             setThumb(data)
         }
 
         signleUpload(fileUploaded, onUpload);
         // data.images[FILE_SELECT_INDEX] = fileUploaded;
     };
+
+
 
 
     return (
@@ -129,10 +91,13 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
                     {opens.category && <div className="write_type">
                         <div className="title">카테고리</div>
                         <div className="input_form">
-                            <span className="category r3">
-                                <select onChange={handleCatChange} value={category} name="category_srl">
-                                    {categoryList.map(cat =>
-                                        <option key={cat._id}>
+                            <span id="category" className="category r3">
+                                <select onChange={handleCatChange} value={categoryId} name="category_srl">
+                                    <option value={""} >
+                                        선택없음
+                                    </option>
+                                    {categoryList?.map(cat =>
+                                        <option value={cat._id} key={cat._id}>
                                             {cat.label}
                                         </option>
                                     )}
@@ -144,7 +109,7 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
                     <div className="write_type">
                         <div className="title">작성자</div>
                         <div className="input_form">
-                            <input readOnly value={author} type="text" name="title" className="inputText w50 fix" />{/* 자동출력 고정 */}
+                            <input readOnly value={email} type="text" name="title" className="inputText w50 fix" />{/* 자동출력 고정 */}
                         </div>
                     </div>
                     <div className="write_type">
@@ -217,13 +182,11 @@ export const BoardWrite: React.FC<IProps> = ({ defaults = {}, opens, mode, Write
                 }
                 {/* 내용 */}
                 <div className="write_con">
-                    <EditorJs
-                        setData={setContents}
-                        data={contents}
-                        holder="content"
-                    />
-                    <div id="content" />
+                    <Editor onChange={(data: any) => {
+                        setContents(data);
+                    }} data={contents} />
                 </div>
+
                 {/* 하단메뉴 */}
                 <div className="boardNavigation">
                     <div className="float_left">

@@ -1,3 +1,4 @@
+
 import Embed from "@editorjs/embed";
 import Table from "@editorjs/table";
 import List from "@editorjs/list";
@@ -42,3 +43,4 @@ export const EDITOR_JS_TOOLS = {
 };
 
 export default EDITOR_JS_TOOLS;
+

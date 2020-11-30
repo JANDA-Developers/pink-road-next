@@ -1,32 +1,6 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import React, { useEffect, useLayoutEffect } from "react";
-import "../../shared/pages/reservation/lib/niceGlobal";
-
-
-type Dummy = "Amt" | "BuyerEmail" | "BuyerName" | "BuyerTel" | "GoodsName" | "PayMethod" | "isAuth"
-
-export const getNiceElementForTest = (requirePorp: Omit<INiceElementProp, Dummy>): INiceElementProp => {
-    const params = {
-        ...requirePorp,
-        ...NiceEelementTestFill
-    }
-
-    console.log("params");
-    console.log(params);
-
-    return params
-
-}
-export const NiceEelementTestFill: Pick<INiceElementProp, Dummy> = {
-    Amt: "1000",
-    BuyerEmail: "crawl123@naver.com",
-    BuyerName: "김민재",
-    BuyerTel: "01052374492",
-    GoodsName: "상품명",
-    PayMethod: "CARD",
-    isAuth: true,
-}
 
 export interface INiceElementProp {
     PayMethod: "CARD" | "BANK" | "VBANK" | "CELLPHONE";
@@ -38,12 +12,12 @@ export interface INiceElementProp {
     BuyerName: string;
     BuyerEmail: string;
     BuyerTel: string;
-    // ReturnURL [Mobile only] 백엔드님이 설정해줄값
+    // 
     ReturnURL: string;
     // yyyymmdd
-    VbankExpDate: string;
+    VbankExpDate?: string;
     // 이것도 백엔드님한테서 받아야할듯 아니면 뭐 내가해도되고
-    IspCancelUrl: string;
+    IspCancelUrl?: string;
     WapUrl: string;
     sid?: string;
     // jdReturnUrl: string;

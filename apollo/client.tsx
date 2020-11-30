@@ -1,7 +1,6 @@
 import { ApolloClient, from } from "@apollo/client";
 import uri from "./uri";
 import cache from "./cache";
-import { onError } from "@apollo/client/link/error";
 import { createUploadLink } from "apollo-upload-client";
 
 
@@ -35,10 +34,7 @@ const fileUploadLink = createUploadLink({
 
 export const PinkClient = new ApolloClient({
   link: from([fileUploadLink]),
-  uri,
   cache,
-  headers,
-  credentials: "include"
 });
 
 export default PinkClient;
