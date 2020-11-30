@@ -835,6 +835,8 @@ export interface portfolioList {
 }
 
 export interface portfolioListVariables {
+  sort?: _PortfolioSort[] | null;
+  filter?: _PortfolioFilter | null;
   pageInput: pageInput;
 }
 
@@ -1370,6 +1372,12 @@ export interface Fportfolio_thumb {
   owner: string;
 }
 
+export interface Fportfolio_pCategory {
+  __typename: "pCategory";
+  _id: string;
+  label: string;
+}
+
 export interface Fportfolio {
   __typename: "Portfolio";
   _id: string;
@@ -1384,6 +1392,7 @@ export interface Fportfolio {
   contents: string;
   author: Fportfolio_author | null;
   thumb: Fportfolio_thumb | null;
+  pCategory: Fportfolio_pCategory | null;
 }
 
 /* tslint:disable */
@@ -1620,6 +1629,18 @@ export enum UserRole {
   partnerB = "partnerB",
 }
 
+/**
+ * Auto generated sort type
+ */
+export enum _PortfolioSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  subTitle_asc = "subTitle_asc",
+  subTitle_desc = "subTitle_desc",
+  title_asc = "title_asc",
+  title_desc = "title_desc",
+}
+
 export interface AddUserInput {
   email: any;
   pw?: string | null;
@@ -1773,6 +1794,32 @@ export interface ProductUpdateInput {
   kids_price?: number | null;
   baby_price?: number | null;
   type?: ProductType | null;
+}
+
+export interface _PortfolioFilter {
+  AND?: _PortfolioFilter[] | null;
+  OR?: _PortfolioFilter[] | null;
+  pCategoryId_eq?: string | null;
+  pCategoryId_not_eq?: string | null;
+  pCategoryId_in?: string[] | null;
+  title_eq?: string | null;
+  title_not_eq?: string | null;
+  title_contains?: string | null;
+  title_not_contains?: string | null;
+  title_in?: string[] | null;
+  title_not_in?: string[] | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
+  createdAt_eq?: string | null;
+  createdAt_not_eq?: string | null;
+  createdAt_contains?: string | null;
+  createdAt_not_contains?: string | null;
+  createdAt_in?: string[] | null;
+  createdAt_not_in?: string[] | null;
 }
 
 export interface pCategoryCreateInput {

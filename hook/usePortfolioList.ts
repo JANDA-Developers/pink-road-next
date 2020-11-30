@@ -1,42 +1,43 @@
-import { useQuery } from "@apollo/client"
-import { useState } from "react";
-import { IPageInfo, IPortfolio, ISet } from "types/interface";
+import { QueryHookOptions, useQuery } from "@apollo/client";
 import { PORT_FOLIO_LIST } from "../apollo/queries";
-import { portfolioList, portfolioListVariables } from "../types/api";
+import { Fpage,  Fportfolio, portfolioList, portfolioListVariables, _PortfolioFilter, _PortfolioSort } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
-
-export interface IUsePortfolioList {
-    setPage: ISet<number>;
-    setViewCount: ISet<number>;
-    items: IPortfolio[];
-    pageInfo: IPageInfo;
-    loading: boolean;
-    viewCount: number;
+import { useListQuery, ListInitOptions, IListHook } from "./useListQuery";
+interface IuseItemListProp extends Partial<ListInitOptions<_PortfolioFilter, _PortfolioSort>> {
+    options?: QueryHookOptions<portfolioList, portfolioListVariables>
 }
-
-type IuseProductListProp = {
-    initialPageIndex?:number,
-    initialViewCount?:number
+export interface IusePortfolioList extends IListHook<_PortfolioFilter, _PortfolioSort> {
+    items: Fportfolio[];
+    getLoading: boolean;
+    pageInfo: Fpage;
 }
 
 export const usePortfolioList = ({
-    initialPageIndex = 1,
-    initialViewCount = 20 
-}:IuseProductListProp):IUsePortfolioList => {
-    const [viewCount, setViewCount] = useState(initialViewCount);
-    const [page, setPage] = useState(initialPageIndex);
-    const { data,loading } = useQuery<portfolioList, portfolioListVariables>(PORT_FOLIO_LIST, {
-        variables: {
-            pageInput: {
-                cntPerPage: viewCount,
-                page
-            }
-        },
-        fetchPolicy: "network-only"
-    });
+    initialPageIndex = 0,
+    initialSort = [],
+    initialFilter = {},
+    initialViewCount = 20,
+    options = {}
+}: IuseItemListProp = {}): IusePortfolioList => {
+    const { variables: overrideVariables, ...ops } = options;
+    const { filter, setPage, setFilter, setSort, setViewCount, sort, viewCount, integratedVariable } = useListQuery({
+        initialFilter,
+        initialPageIndex,
+        initialSort,
+        initialViewCount
+    })
 
-    const items = data?.PortfolioList.data || [];
-    const pageInfo = data?.PortfolioList.page || DEFAULT_PAGE;
-    
-    return { items, loading, pageInfo, setPage, setViewCount, viewCount }
+    const { data, loading: getLoading } = useQuery<portfolioList,portfolioListVariables>(PORT_FOLIO_LIST,{
+        fetchPolicy: "cache-and-network",
+        variables: {
+            ...integratedVariable,
+            ...overrideVariables
+        },
+        ...ops
+    })
+
+    const items: Fportfolio[] = data?.PortfolioList.data || [];
+    const pageInfo: Fpage = data?.PortfolioList.page || DEFAULT_PAGE;
+
+    return { pageInfo, filter, setPage, getLoading, setFilter, setSort, setViewCount, sort, viewCount, items }
 }

@@ -34,10 +34,7 @@ export const PORTFOLIO_FIND_BY_ID = gql`
     error 
     data {
       ...Fportfolio
-      pCategory {
-        _id
-        label
-      }
+
     }
   }
 }
@@ -45,10 +42,14 @@ ${F_PORTFOLIO}
 `
 export const PORT_FOLIO_LIST = gql`
 query portfolioList(
-  $pageInput:pageInput!
+  $sort: [_PortfolioSort!]
+  $filter: _PortfolioFilter
+  $pageInput: pageInput!
 ) {
   PortfolioList(
+  sort: $sort
   pageInput: $pageInput
+  filter: $filter
   ) {
     ok
     error

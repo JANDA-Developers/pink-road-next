@@ -55,6 +55,10 @@ export const F_PORTFOLIO = gql`
         thumb {
             ...Ffile
         }
+        pCategory {
+            _id
+            label
+        }
     }
     ${F_FILE}
     ${F_USER}

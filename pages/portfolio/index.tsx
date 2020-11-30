@@ -1,9 +1,9 @@
 import { usePageInfo } from 'hook/usePageInfo';
-import { usePortfolioList, IUsePortfolioList } from 'hook/usePortfolioList';
+import { usePortfolioList, IusePortfolioList } from 'hook/usePortfolioList';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
 import React, { Fragment, useContext, useState } from 'react';
-import { pcategoryList_pCategoryList_data, UserRole } from 'types/api';
+import { FpageInfo, pcategoryList_pCategoryList_data, UserRole } from 'types/api';
 import { getEditUtils } from 'utils/pageEdit';
 import { AppContext } from '../_app';
 import pageInfoDefault from "info/portfolio.json"
@@ -17,28 +17,33 @@ interface IProp {
 
 export const PortFolio: React.FC<IProp> = ({ context }) => {
     const { editMode, isAdmin, isManager } = useContext(AppContext);
-    const { items: portfolios = [], pageInfo, setPage, sitePageInfo, pcategories } = context;
+    const { items: portfolios = [], sitePageInfo, pcategories, setPage: setPFpage, pageInfo, setFilter, filter } = context;
     const original = sitePageInfo || pageInfoDefault;
-    const [page, setPageInfo] = useState(original);
-    const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPageInfo)
-    const [viewCat, setViewCat] = useState("");
+    const [page, setPage] = useState(original);
+    const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPage)
+    const filteredPortfolios = portfolios.filter(p => p.isOpen);
 
-    console.log("isManager");
-    console.log(isManager);
-    const catPortfolios = viewCat ? portfolios.filter(pt => pt.pCategory?._id === viewCat) : portfolios;
-    const filteredPortfolios = (isAdmin || isManager) ? catPortfolios : catPortfolios.filter(catP => catP.isOpen);
 
     const handlePrev = () =>
-        setPage(pageInfo.page - 1)
+        setPFpage(pageInfo.page - 1)
 
     const handleNext = () => {
-        setPage(pageInfo.page + 1)
+        setPFpage(pageInfo.page + 1)
     }
 
     const handleCatChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const nextCat = event.currentTarget.value;
-        setViewCat(nextCat);
+        const pCategoryId_eq = event.currentTarget.value;
+        setFilter({
+            pCategoryId_eq
+        });
     }
+
+    const handleAllCat = () => {
+        setFilter({});
+    }
+    const viewCat = filter.pCategoryId_eq || "";
+
+    console.log(filteredPortfolios);
 
     return <div className="portfolio_in">
         <div className="top_bg w100">
@@ -86,7 +91,7 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
         <div className="w100 con04 con_block">
             <div id="list" className="photo_tap_div">
 
-                <input value="" onChange={handleCatChange} id="tab-00" type="radio" name="radio-set" className="tab-selector-1" checked={viewCat === ""}></input>
+                <input value="" onChange={handleAllCat} id="tab-00" type="radio" name="radio-set" className="tab-selector-1" checked={viewCat === ""}></input>
                 <label htmlFor="tab-00" className="tab-label-1 photo_tap">ALL</label>
 
                 {pcategories.map((pc, i) =>
@@ -147,13 +152,13 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
     ;
 };
 
-interface IPortfolioWrapContext extends IUsePortfolioList {
+interface IPortfolioWrapContext extends IusePortfolioList {
     sitePageInfo: TStieInfo | "",
     pcategories: pcategoryList_pCategoryList_data[]
 }
 
 type TGetProps = {
-    pageInfo: typeof pageInfoDefault | "",
+    pageInfo: TStieInfo,
 }
 
 export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
