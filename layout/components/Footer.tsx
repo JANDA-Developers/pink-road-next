@@ -16,6 +16,9 @@ export const Footer: React.FC<IProp> = () => {
             <Link href="#header">
                 <a className="top"><i className="jandaicon-arr4-top" /></a>
             </Link>
+            <Link href="/">
+                <a className="basket"><object type="image/svg+xml" data="/img/svg/basket.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object><button /></a>
+            </Link>
             <Link href="#footer">
                 <a className="down"><i className="jandaicon-arr4-bottom" /></a>
             </Link>
@@ -93,10 +96,10 @@ export const Footer: React.FC<IProp> = () => {
                     <div className="bottom_bn">
                         <div className="partner">
                             <span className="link"><img src="/img/pt_logo_01.png" alt="중송벤처기업" /></span>
-                            <span className="link"><img src="/img/pt_logo_02.png" alt="여성기업" /></span>
-                            <span className="link"><img src="/img/pt_logo_03.png" alt="사회적기업" /></span>
+                            <span className="link" style={{ width: "90px" }}><img src="/img/pt_logo_02.png" alt="여성기업" /></span>
+                            <span className="link" style={{ width: "90px" }}><img src="/img/pt_logo_03.png" alt="사회적기업" /></span>
                             <span className="link"><img src="/img/pt_logo_04.png" alt="공유경제부산" /></span>
-                            <span className="link"><img src="/img/pt_logo_05.png" alt="벤처기업인증" /></span>
+                            <span className="link" style={{ width: "88px" }}><img src="/img/pt_logo_05.png" alt="벤처기업인증" /></span>
                         </div>
                     </div>
                 </div>

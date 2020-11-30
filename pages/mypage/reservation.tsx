@@ -238,7 +238,6 @@ export const MyReservation: React.FC<IProp> = () => {
                                             <span className="where">출발장소: 부산대학교 앞</span>
                                             <span className="g-number">상품번호: PK-034982</span>
                                             <span className="r-day">예약일: 2020.08.26</span>
-                                            
                                             <span className="goods-state1">확정여부: 출발미정(6/10)</span>
                                             <span className="goods-state2">상품상태: 예약진행중</span>
 
@@ -278,139 +277,196 @@ export const MyReservation: React.FC<IProp> = () => {
             <a className="close_icon">
                 <i className="flaticon-multiply"></i>
             </a>
-            <div className="in_txt statement_popup">
+            <div className="in_txt reservation_popup">
                 <h4>예약 상세정보</h4>
-                <div className="alignment">
-                    <div className="left_div"><span className="infotxt"><i>2020.10.1 ~ 2020.10.30 예약</i>이 총 <strong>5</strong>건</span></div>
+                <div className="info_txt">
+                    <span className="r-number">주문번호: <i>R-34252</i></span>
+                    <span className="r-day">예약일: 2020.08.26</span>
+                    <span className="pay-day">결제일: 2020.08.26</span>
+                    <button className="btn"><i className="flaticon-print mr5"></i>프린터</button>
+                    <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
                 </div>
-                <div className="fuction_list_mini">
-                    <div className="thead">
-                        <div className="th02">상품코드</div>
-                        <div className="th03">상품명</div>
-                        <div class="th04">예약자</div>
-                        <div className="th05">예약날짜</div>
-                        <div className="th06">예약금</div>
-                        <div className="th07">상태</div>
-                    </div>
-                    <div className="tbody">
-                        <ul>
-                            <li>
-                                <div className="th02">GUIDE-01230</div>
-                                <div className="th03">제주도로 떠나요~ </div>
-                                <div className="th04">홍나리</div>
-                                <div className="th05">2020.02.02</div>
-                                <div className="th06">50,000</div>
-                                <div className="th07"><strong className="ok">예약완료</strong></div>
-                            </li>
-                            <li>
-                                <div className="th02">GUIDE-01230</div>
-                                <div className="th03">제주도로 떠나요~ </div>
-                                <div className="th04">홍나리</div>
-                                <div className="th05">2020.02.02</div>
-                                <div className="th06">50,000</div>
-                                <div className="th07"><strong className="ok">예약완료</strong></div>
-                            </li>
-                            <li>
-                                <div className="th02">GUIDE-01230</div>
-                                <div className="th03">제주도로 떠나요~ </div>
-                                <div className="th04">홍나리</div>
-                                <div className="th05">2020.02.02</div>
-                                <div className="th06">50,000</div>
-                                <div className="th07"><strong className="ok">예약완료</strong></div>
-                            </li>
-                            <li>
-                                <div className="th02">GUIDE-01230</div>
-                                <div className="th03">제주도로 떠나요~ </div>
-                                <div className="th04">홍나리</div>
-                                <div className="th05">2020.02.02</div>
-                                <div className="th06">50,000</div>
-                                <div className="th07"><strong className="ok">예약완료</strong></div>
-                            </li>
-                            <li>
-                                <div className="th02">GUIDE-01230</div>
-                                <div className="th03">제주도로 떠나요~ </div>
-                                <div className="th04">홍나리</div>
-                                <div className="th05">2020.02.02</div>
-                                <div className="th06">50,000</div>
-                                <div className="th07"><strong className="ok">예약완료</strong></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="alignment ">
-                    <div className="left_div"><span className="infotxt"><i>예약취소 환수금</i>이 총 <strong>2</strong>건</span></div>
-                </div>
-                <div className="fuction_list_mini">
-                    <div className="thead">
-                        <div className="th02">상품코드</div>
-                        <div className="th03">상품명</div>
-                        <div className="th04">예약자</div>
-                        <div className="th05">예약날짜</div>
-                        <div className="th06">예약금</div>
-                        <div className="th07">상태</div>
-                    </div>
-                    <div className="tbody">
-                        <ul>
-                            <li>
-                                <div className="th02">GUIDE-01230</div>
-                                <div className="th03">제주도로 떠나요~ </div>
-                                <div className="th04">홍나리</div>
-                                <div className="th05">2020.02.02</div>
-                                <div className="th06">50,000</div>
-                                <div className="th07"><strong className="no">예약취소</strong></div>
-                            </li>
-                            <li>
-                                <div className="th02">GUIDE-01230</div>
-                                <div className="th03">제주도로 떠나요~ </div>
-                                <div className="th04">홍나리</div>
-                                <div className="th05">2020.02.02</div>
-                                <div className="th06">50,000</div>
-                                <div className="th07"><strong className="no">예약취소</strong></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="sum_div mt50">
-                    <ul className="first_ul">
-                        <li>
-                            <div className="title"><strong>실 판매금액</strong> : </div>
-                            <div className="body">
-                                <div>20,000,349원</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="title"><strong>수수료공제(5%)</strong> : </div>
-                            <div className="body">
 
-                                <div>(-) 1,000,017원</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="title"><strong>세금공제(3.3%)</strong> : </div>
-                            <div className="body">
+                <div className="info_table">
+                    <div className="tr">
+                        <div className="top01">
+                            <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
+                            <div className="info">
+                                <span className="ct">문화</span><span className="g-number">상품번호: PK-034982</span>
+                                <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
+                                <div className="txt">
+                                    <span className="goods-state1">확정여부: 출발미정(6/10)</span>
+                                    <span className="goods-state2">상품상태: 예약진행중</span>
 
-                                <div>(-) 660,011원</div>
+                                </div>
                             </div>
-                        </li>
-                        <li>
-                            <div className="title"><strong>기타 공제금</strong> : </div>
-                            <div className="body">
-                                <div>(-) 0원</div>
+                        </div>
+                        <div className="top02">
+                            <div className="align">
+                                <span className="s-day">출발일: 2020.9.9</span>
+                                <span className="where">출발장소: 부산대학교 앞</span>
                             </div>
-                        </li>
-                        <li>
-                            <div className="title"><strong>예약취소 환급금</strong> : </div>
-                            <div className="body">
-                                <div>(-) 20원</div>
+                        </div>
+                        <div className="top03">
+                            <div className="align">
+                                <i className="state re-stay">예약대기</i>
                             </div>
-                        </li>
-                    </ul>
-                    <ul className="last_ul">
-                        <li>
-                            <div><i>=</i>총 정산 예상금 : <strong>18,340,321</strong>원</div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
+
+                <div className="info_page">
+                    <div className="left_div">
+                        <h4>결제 정보</h4>
+                        <div className="info_table w50">
+                            <div className="tr">
+                                <div className="th01">
+                                    결제금액
+                                </div>
+                                <div className="td01">
+                                    <span>50,000</span>
+                                </div>
+                                <div className="th02">
+                                    결제방법
+                                </div>
+                                <div className="td02">
+                                    <span>카드</span>
+                                </div>
+                            </div>
+                            <div className="tr">
+                                <div className="th01">
+                                    환불정보-예금주
+                                </div>
+                                <div className="td01">
+                                    <span>홍언니</span>
+                                </div>
+                                <div className="th02">
+                                    환불정보-계좌
+                                </div>
+                                <div className="td02">
+                                    <span>(부산은행)000-000-00000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="right_div">
+                        <h4>예약자 정보</h4>
+                        <div className="info_table w50">
+                            <div className="tr">
+                                <div className="th01">
+                                    예약자명
+                                </div>
+                                <div className="td01">
+                                    <span>홍언니</span>
+                                </div>
+                                <div className="th02">
+                                   연락처
+                                </div>
+                                <div className="td02">
+                                    <a href="tel:010-0000-0000">010-0000-0000</a>
+                                </div>
+                            </div>
+                            <div className="tr">
+                                <div className="th01">
+                                    이메일
+                                </div>
+                                <div className="td01">
+                                    <a href="mailto:zocbdjf@naver.com">zocbdjf@naver.com</a>
+                                </div>
+                                <div className="th02">
+                                     
+                                </div>
+                                <div className="td02">
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div className="tr">
+                                <div className="th01">
+                                    예약자 성별
+                                </div>
+                                <div className="td01">
+                                    <span>여</span>
+                                </div>
+                                <div className="th02">
+                                    예약인원
+                                </div>
+                                <div className="td02">
+                                    <span>총 4명 ( 성인2 / 소아2 / 유아0 )</span>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+
+
+
+                <div className="info_page">
+                    <div className="left_div">
+                        <h4>환불 정보</h4>
+                        <div className="info_table w50">
+                            <div className="tr">
+                                <div className="th01">
+                                    취소신청일
+                                </div>
+                                <div className="td01">
+                                    <span>2020.12.12</span>
+                                </div>
+                                <div className="th02">
+                                    환불예정일
+                                </div>
+                                <div className="td02">
+                                    <span>2020.12.13</span>
+                                </div>
+                            </div>
+                            <div className="tr">
+                                <div className="th01">
+                                    환불형태
+                                </div>
+                                <div className="td01">
+                                    <span>부분취소</span>
+                                </div>
+                                <div className="th02">
+                                    환불금액
+                                </div>
+                                <div className="td02">
+                                    <span>43,000원</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div className="info_page">
+                    <h4>메모</h4>
+                    <div className="write_comment">
+                        <div className="comment_layout">
+                            <ul className="text_box">
+                                <li>
+                                    <div className="txta w100">
+                                        <textarea style={{ height: "100px;" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
+                                    </div>
+                                </li>
+                                <li className="tr count">0/3000</li>
+                            </ul>
+                            <div className="text_box_bottom">
+                                <div className="btn_send float_right"><button className="comment_btn">저장</button> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    
+                <div className="fin">
+                    <div className="float_left">
+                        <button type="submit" className="btn medium">
+                            예약취소 요청하기
+                        </button>
+                    </div>
+                </div>
+
+
+               
             </div>
         </div>
         <div id="fade" className="fade" style={{ display: 'block;' }}></div>

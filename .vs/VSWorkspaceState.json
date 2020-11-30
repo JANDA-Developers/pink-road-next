@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css",
-    "\\hook",
-    "\\info",
+    "\\layout",
+    "\\layout\\components",
     "\\pages",
-    "\\pages\\board",
-    "\\pages\\experience",
+    "\\pages\\mypage",
     "\\pages\\portfolio",
     "\\pages\\portfolio\\view",
-    "\\pages\\portfolio\\write"
+    "\\pages\\portfolio\\write",
+    "\\public",
+    "\\public\\img"
   ],
-  "SelectedNode": "\\pages\\mypage\\reservation.tsx",
+  "SelectedNode": "\\pages\\mypage\\index.tsx",
   "PreviewInSolutionExplorer": false
 }

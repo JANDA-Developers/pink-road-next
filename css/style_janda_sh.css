@@ -564,6 +564,8 @@ div.popup_bg_full {
         margin: 0 auto;
         text-align: left;
         font-size: 12px;
+        padding: 10px;
+        box-sizing: border-box;
     }
 
     div.popup_bg_full .in_txt2 {
@@ -8342,6 +8344,350 @@ div.gallery_lightbox .thumbList {
         .reservation_div .state.re-refund {
             border: 1px solid #cf3932 !important;
             color: #cf3932 !important;
+        }
+.reservation_popup .info_txt {
+    position:relative;
+    border:5px solid #ccc;
+    padding:15px;
+    box-sizing:border-box;
+    margin-bottom:20px;
+    text-align:left;
+}
+
+.reservation_popup .info_page {
+    position: relative;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: left;
+}.reservation_popup .info_page h4 {
+    position: relative;
+    top:0;
+    width:100%;
+    display:block;
+}
+    .reservation_popup .info_txt span {
+        margin-right: 20px;
+        font-size: 1.7em;
+        font-weight: 600;
+        color: #666;
+        display:inline-block;
+
+    }
+    .reservation_popup .info_txt button {
+        float: right;
+        font-size: 12px;
+        line-height: 27px;
+        padding: 0 13px;
+    }
+.reservation_popup .info_txt i {
+    color:#333;
+    font-style:normal;
+}
+.reservation_popup .info_table {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom:30px;
+    border-top: 3px #333 solid;
+}
+    .reservation_popup .info_table .tr {
+        position: relative;
+        width: 100%;
+        
+        box-sizing: border-box;
+        display: flex;
+        border-bottom: 1px solid #c4c4c4;
+        line-height: 22px;
+        text-align: left;
+    }
+.reservation_popup .info_table .img {
+    display: inline-block !important;
+    width: 150px !important;
+    height: 90px;
+    background-position: center;
+    background-size: 100%;
+    position: absolute !important;
+    left: 10px;
+    top: 10px;
+}
+
+.reservation_popup .men {
+    width: auto !important;
+    display: inline-block !important;
+    text-align: center !important;
+    line-height: 130%;
+    font-size: 0.9em;
+    color: #2196F3 !important;
+    padding-top: 0px !important;
+    vertical-align: middle;
+}
+.reservation_popup .s-day {
+    width:100%!important;
+    display: block !important;
+    text-align: center !important;
+    line-height: 180%;
+    font-size: 1em;
+    color: #333;
+    padding-top: 0px !important;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.reservation_popup .where {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    line-height: 180%;
+    font-size: 1em;
+    color: #333;
+    padding-top: 0px !important;
+    vertical-align: middle;
+}
+    .reservation_popup .info_table .title {
+        width: 100% !important;
+        display: block;
+        line-height: 120%;
+        font-size: 1.3em;
+        color: #333;
+        padding-top: 5px !important;
+        padding-bottom: 3px;
+        margin-bottom: 5px;
+        border-bottom: 1px dotted #ccc;
+    }
+    .reservation_popup .info_table .ct {
+        width: auto !important;
+        display: inline-block;
+        line-height: 100%;
+        border: 1px solid #ccc;
+        padding: 4px 5px 3px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 10px;
+        color: #555;
+    }
+    .reservation_popup .info_table .txt {
+        display: block;
+        text-align: left;
+        width: 100%;
+        vertical-align: top;
+        position: relative;
+    }
+    .reservation_popup .info_table .info {
+        display: block !important;
+        width: 100% !important;
+        vertical-align: top;
+        text-align: left;
+        position: relative;
+        padding-left: 170px;
+        padding-right: 10px;
+        padding-bottom: 15px;
+        box-sizing: border-box;
+    }
+.reservation_popup div[class*=top0] {
+  display: inline-block;
+    width: 22%;
+    vertical-align: top;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+}
+.reservation_popup .top01 {
+    width: 50% !important;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+.reservation_popup .top02 {
+    width: 20% !important;
+    border-left: 1px #eee solid;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+.reservation_popup .top03 {
+    width: 10% !important;
+    border-left: 1px #eee solid;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+.reservation_popup .top04 {
+    width: 10% !important;
+    border-left: 1px #eee solid;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+.reservation_popup .memo {
+    width: 100% !important;
+    display: block;
+    line-height: 100%;
+    padding: 10px 10px 15px !important;
+    box-sizing: border-box;
+    font-size: 12px;
+    color: #555;
+    margin-top: 15px;
+    text-align: left;
+    background-color: #f5f5f5;
+}
+
+    .reservation_popup .memo i {
+        margin-right: 5px;
+        font-size: 10px;
+    }
+.reservation_popup .state {
+    width: auto !important;
+    display: inline-block;
+    line-height: 122%;
+    border: 1px solid #ccc;
+    padding: 3px 15px !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    color: #555;
+    font-weight: 600;
+    border-radius: 100px;
+    font-style: unset;
+}
+.reservation_popup .goods-state1 {
+    width: auto !important;
+    display: inline-block !important;
+    text-align: left !important;
+    line-height: 180%;
+    font-size: 1em;
+    color: #333;
+    font-weight: 500;
+    padding-top: 0px !important;
+    vertical-align: middle;
+    font-family: '돋음';
+    margin-right: 10px;
+}
+
+.reservation_popup .goods-state2 {
+    width: auto !important;
+    display: inline-block !important;
+    text-align: left !important;
+    line-height: 180%;
+    font-size: 1em;
+    color: #333;
+    font-weight: 500;
+    padding-top: 0px !important;
+    vertical-align: middle;
+    margin-right: 10px;
+    font-family: '돋음';
+}
+
+.reservation_popup .money {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    line-height: 127%;
+    font-size: 1.3em;
+    color: #ed297b;
+    vertical-align: middle;
+}
+    .reservation_popup .state.re-ok {
+        border: 1px solid #2196F3 !important;
+        color: #2196F3 !important;
+    }
+
+    .reservation_popup .state.re-stay {
+        border: 1px solid #616161 !important;
+        color: #616161 !important;
+    }
+
+    .reservation_popup .state.re-refund {
+        border: 1px solid #cf3932 !important;
+        color: #cf3932 !important;
+    }
+.reservation_popup .info_table .txt {
+    display: block;
+    text-align: left;
+    width: 100%;
+    vertical-align: top;
+    position: relative;
+}
+.reservation_popup .info_page .left_div {
+    position: relative;
+    width: 50%;
+}
+    .reservation_popup .info_page .info_table .tr {
+        display: block;
+        text-align: left;
+        width: 100%;
+        position: relative;
+    } 
+    .reservation_popup .info_page .info_table .tr > div {
+        display: inline-block;
+        width: 25%;
+        vertical-align: top;
+        text-align: center;
+        font-weight: 600;
+        padding:10px 0;
+        box-sizing:border-box;
+    }
+
+.reservation_popup .info_page .right_div {
+    position: absolute;
+    top: 0;
+    width: 48%;
+    height: 100%;
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: 52%;
+}
+.reservation_popup .info_page .th01,
+.reservation_popup .info_page .th02 {
+    text-align: left !important;
+    padding-left: 10px !important;
+    width:18% !important;
+}
+.reservation_popup .info_page .td01,
+.reservation_popup .info_page .td02 {
+    text-align: left !important;
+    font-weight: 500 !important;
+    width: 32% !important;
+    font-family: '돋음';
+}
+div.reservation_popup .write_comment {
+    position: relative;
+    display: block;
+    border: 1px solid #b2b2b2;
+    background-color: #fff;
+}
+    div.reservation_popup .write_comment .text_box {
+        padding: 30px;
+        box-sizing: border-box;
+    }
+
+        div.reservation_popup .write_comment .text_box textarea {
+            padding: 20px 4px;
+            box-sizing: border-box;
+            border: 0;
+            width: 100%;
+            display: block;
+        }
+
+        div.reservation_popup .write_comment .text_box .count {
+            color: #959595;
+            line-height: 35px;
+        }
+
+    div.reservation_popup .write_comment .text_box_bottom {
+        display: block;
+        position: relative;
+        height: 59px;
+        text-align: left;
+        margin-top: 5px;
+        border-top: 1px solid #ccc;
+    }
+        div.reservation_popup .write_comment .text_box_bottom button {
+            margin-right: 0;
+            font-size: 14px;
+            padding: 20px 30px;
+            box-sizing: border-box;
+            border: 0;
+            color: #333;
+            font-weight: 600;
+            border-left: 1px solid #ccc;
+            background-color: #ffffff;
         }
 
 /* membership Withdrawal */
