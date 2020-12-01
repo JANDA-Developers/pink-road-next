@@ -45,7 +45,7 @@ export const SAMPLE_FILE = {
 }
 
 export const DEFAULT_IT: ItineraryCreateInput = {
-    contents: ["asd"],
+    contents: [""],
     images: [],
     date: new Date(),
     title: ""

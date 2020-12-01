@@ -8,9 +8,9 @@ export type TRange = {
 }
 
 export const generateitinery = (range:TRange,its:ItineraryCreateInput[]):ItineraryCreateInput[] => {
-    const {from,to} = range;
-    if (!to) return [];
+    let {from,to} = range;
     if (!from) return [];
+    if (!to) to = from
 
     let tempSch = its;
 

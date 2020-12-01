@@ -1,63 +1,16 @@
 
-const omitDeep = require("omit-deep-lodash");
-
-export const getScrollParent = (target: HTMLElement): HTMLElement => {
-    let t = target;
-  
-    const check = () => t.scrollHeight > t.clientHeight + 100;
-    let hasVerticalScrollbar = check();
-  
-    while (!hasVerticalScrollbar) {
-      if (!t.parentElement) break;
-      t = t.parentElement;
-      hasVerticalScrollbar = check();
-    }
-  
-    return t;
-  };
-  
-  export const parentScrollMove = (
-    target: HTMLElement,
-    option: ScrollToOptions
-  ) => {
-    const parentTarget = getScrollParent(target);
-    parentTarget.scrollTo(option);
-  };
-  
-  export const parentScrollMoveToElement = (
-    target: HTMLElement,
-    option: ScrollToOptions = {
-      left: 0,
-      top: 0,
-    }
-  ) => {
-    parentScrollMove(target, {
-      top: target.offsetTop + (option.top || 0),
-    });
-  };
-  
-  export const focusWithScroll = (target?: HTMLElement | null) => {
-    if (!target) return;
-    target.focus();
-    parentScrollMoveToElement(target);
-  };
-  
-  
-  export const foucs = (id:string) => {
-      const ele = document.getElementById(id);
-      focusWithScroll(ele);
-  }
-  
 
 export const foucsById = (id:string) => {
     const ele = document.getElementById(id);
-    focusWithScroll(ele);
+    ele?.focus();
+    ele?.scrollIntoView();
 }
 
 type Tnode = {
     value: any,
     failMsg?: string,
     id?: string;
+    failFn?: () => void;
 }
 
 const validate = (nodes:Tnode[]):boolean => {
@@ -90,6 +43,7 @@ export class Validater {
             if(!value) {
                 if(node.failMsg) alert(node.failMsg);
                 if(node.id) foucsById(node.id);
+                if(node.failFn) node.failFn();
                 return false;
             }
     

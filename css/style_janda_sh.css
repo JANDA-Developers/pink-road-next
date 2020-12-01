@@ -5463,7 +5463,9 @@ i.important_icon {
         }
 
         .tour_details_in .boardReadBody .con_top_tap {
-            position: relative;
+            position: sticky;
+            top: -1px;
+            background-color: white;
             display: flex;
             text-align: left;
             border-bottom: 1px solid #ccc;
@@ -5472,6 +5474,7 @@ i.important_icon {
             border-right: 1px solid #ccc;
             margin-bottom: -2px;
             box-sizing: border-box;
+            z-index: 90;
         }
 
             .tour_details_in .boardReadBody .con_top_tap span {
@@ -12710,3 +12713,8 @@ i.calendar {
 }
 
 .betatest  { display:none }
+
+
+.tour_content_img_list {
+    margin-top: 2rem;
+}

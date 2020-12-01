@@ -28,7 +28,7 @@ export const usePortfolioList = ({
     })
 
     const { data, loading: getLoading } = useQuery<portfolioList,portfolioListVariables>(PORT_FOLIO_LIST,{
-        fetchPolicy: "cache-and-network",
+        fetchPolicy: "network-only",
         variables: {
             ...integratedVariable,
             ...overrideVariables

@@ -1639,6 +1639,8 @@ export enum _PortfolioSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  viewCount_asc = "viewCount_asc",
+  viewCount_desc = "viewCount_desc",
 }
 
 export interface AddUserInput {
@@ -1808,12 +1810,22 @@ export interface _PortfolioFilter {
   title_not_contains?: string | null;
   title_in?: string[] | null;
   title_not_in?: string[] | null;
+  authorId_eq?: string | null;
+  authorId_not_eq?: string | null;
+  authorId_in?: string[] | null;
+  isNotice_eq?: boolean | null;
+  isNotice_not_eq?: boolean | null;
+  isOpen_eq?: boolean | null;
+  isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
   subTitle_not_eq?: string | null;
   subTitle_contains?: string | null;
   subTitle_not_contains?: string | null;
   subTitle_in?: string[] | null;
   subTitle_not_in?: string[] | null;
+  keyWards_eq?: string | null;
+  keyWards_not_eq?: string | null;
+  keyWards_in?: string[] | null;
   createdAt_eq?: string | null;
   createdAt_not_eq?: string | null;
   createdAt_contains?: string | null;

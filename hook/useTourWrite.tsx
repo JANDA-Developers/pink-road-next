@@ -9,8 +9,7 @@ import { Storage } from "../utils/Storage";
 import { toNumber } from "../utils/toNumber";
 import { Validater } from "../utils/validate";
 import { useUpload } from "./useUpload";
-import $ from "jquery";
-import { deepCopy } from "../utils/formatter";
+import { autoComma, deepCopy } from "../utils/formatter";
 
 type SimpleTypePart = "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "contents" | "inOrNor" | "isNotice"
 export type TSimpleTypePart = Pick<Required<ProductCreateInput>, SimpleTypePart>
@@ -85,6 +84,7 @@ export interface IUseTour {
         handleCatChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
         handleChangeStatus: (e: React.ChangeEvent<HTMLInputElement>) => void
         handleInputChange<T extends SimpleTypePart>(key: T): (e: React.ChangeEvent<HTMLInputElement>) => void
+        handleInputCommaChange<T extends SimpleTypePart>(key: T): (e: React.ChangeEvent<HTMLInputElement>) => void
         handleLoad: () => void
     }
 }
@@ -113,7 +113,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     }, {
         value: simpleData.contents,
         failMsg: "안내 및값은 필수 입니다.",
-        id: "content"
+        id: "content",
     },
     {
         value: simpleData.inOrNor,
@@ -240,7 +240,6 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
 
     const handleCatChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const nextCat = e.currentTarget.value
-        alert(nextCat);
         setCategoryId(nextCat)
     }
 
@@ -252,6 +251,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
 
     const handleTempSave = async () => {
         Storage!.saveLocal("write", tourData);
+        alert("저장완료");
     }
 
     const handleLoad = () => {
@@ -261,6 +261,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             return;
         }
         setTourData(savedData);
+        alert("로드완료");
     }
 
 
@@ -282,12 +283,20 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         }
     }
 
+    function handleInputCommaChange<T extends keyof TSimpleTypePart>(key: T) {
+        return (e: React.ChangeEvent<HTMLInputElement>) => {
+            set(key, autoComma(e.currentTarget.value))
+        }
+    }
+
     const handleTextData = (key: keyof TSimpleTypePart) => (data: string) => {
         set(key, data)
     }
 
-    const firstDate = dayjs(its[0]?.date).toDate();
-    const lastDate = dayjs(its[its.length - 1]?.date).toDate();
+    const fistItDate = its[0]?.date;
+    const firstDate = fistItDate ? dayjs(fistItDate).toDate() : undefined;
+    const lastItDate = its[its.length - 1]?.date;
+    const lastDate = lastItDate ? dayjs(lastItDate).toDate() : undefined;
 
 
     return {
@@ -312,7 +321,8 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             handleUploadClick,
             handleChangeSumbNail,
             handleClearThumb,
-            handleDateState
+            handleDateState,
+            handleInputCommaChange
         }
     }
 }

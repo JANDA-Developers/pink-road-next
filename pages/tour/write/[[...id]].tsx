@@ -65,6 +65,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         handleClearThumb,
         handleDateState,
         handleInputChange,
+        handleInputCommaChange,
         handleLoad,
         handleTempSave,
         handleUploadClick
@@ -162,11 +163,11 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     <div className="input_form">
                         <div>
                             <span className="mr5">성인</span>
-                            <input onChange={handleInputChange("adult_price")} value={adult_price} type="text" className="text w20 mr15" />
+                            <input onChange={handleInputCommaChange("adult_price")} value={adult_price} type="text" className="text w20 mr15" />
                             <span className="mr5">소인</span>
-                            <input onChange={handleInputChange("kids_price")} value={kids_price} type="text" className="text w20 mr15" />
+                            <input onChange={handleInputCommaChange("kids_price")} value={kids_price} type="text" className="text w20 mr15" />
                             <span className="mr5">유아</span>
-                            <input onChange={handleInputChange("baby_price")} value={baby_price} type="text" className="text w20" />
+                            <input onChange={handleInputCommaChange("baby_price")} value={baby_price} type="text" className="text w20" />
                         </div>
                         <p className="info_txt">- 원을 빼고 ','를 넣어서 구분해서 입력해주세요. ex) 50,000</p>
                     </div>

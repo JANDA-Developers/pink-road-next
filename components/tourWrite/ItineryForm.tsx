@@ -48,7 +48,7 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) =>
     }
 
     const handleOnChange = (i: number) => (value: string) => {
-        if (!itinery.contents?.[i]) return;
+        if (typeof itinery.contents[index] === undefined) return;
         itinery.contents[i] = value;
         setits([...its])
     }
@@ -79,8 +79,8 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) =>
         )}
         <div>
             {itinery?.images?.map((img, i) =>
-                <div className="initrary__img">
-                    <img key={i + "img" + index} style={{
+                <div key={i + "img" + index} className="initrary__img">
+                    <img style={{
                         height: "100px"
                     }} src={img.uri} />
                     <i onClick={handleDeleteImg(i)} className="flaticon-multiply icon_x"></i>

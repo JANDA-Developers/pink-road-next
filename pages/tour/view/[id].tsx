@@ -1,10 +1,9 @@
-import { Itinery } from "components/tourView/Itinery";
 import dayjs from "dayjs";
 import { useProductFindById } from "hook/useProductFindById";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { IHumanCount, IproductFindById } from "types/interface";
 import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
@@ -16,6 +15,8 @@ import NiceElments from "../../../components/nice/NiceElement";
 import { getNiceElementForTest } from "../../../components/nice/niceUtils";
 import Slider, { Slide } from "../../../components/slider/Slider";
 import SLIDER from "react-slick";
+import { useScroll } from "../../../hook/useScroll";
+import { handleTab, getTab, tabCheck } from "../../../components/tourView/tabUtils";
 
 // <div class="top_visual">
 // <div class="sub_header sub_bg" style="background-image:url(../img/su_visual_bg.jpg);">
@@ -64,14 +65,16 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
     adult: 0,
     baby: 0,
     kids: 0
-  })
+  });
+  const [price, setPrice] = useState(0);
   const [authData, setAuthData] = useState<IAuthInfo>();
-  const [tab, setTab] = useState<number>(1);
   const [sliderIndex, setSlideIndex] = useState(0);
+  const { scrollY } = useScroll();
+  const tabOnCheck = tabCheck.bind(tabCheck, scrollY);
 
   const router = useRouter();
 
-  const { productDelete, deleteLoading } = useproductDelete({
+  const { productDelete } = useproductDelete({
     onCompleted: ({
       ProductDelete
     }) => {
@@ -81,12 +84,6 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
       }
     }
   })
-
-  const tabOnCheck = (index: number) => tab === index ? "on" : undefined;
-
-  const handleTab = (index: number) => () => {
-    setTab(index)
-  }
 
   const toWrite = () => router.push(`/tour/write/${_id}`)
 
@@ -119,19 +116,35 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
   }
 
   const handleAddBracket = () => {
-    // addItem({
-
-    // })
   }
 
+  const handleCount = (key: keyof IHumanCount, isUp: boolean) => () => {
+    let val = count[key];
+    val = val + (isUp ? 1 : -1);
+    if (val < 0) val = 0;
+    count[key] = val;
+
+    setCount({ ...count })
+  }
+
+  useEffect(() => {
+    const price =
+      (count.adult * adult_price) +
+      (count.baby * baby_price) +
+      (count.kids * kids_price);
+    setPrice(price)
+  }, [count])
+
   return <div className="edtiorView">
-    <button onClick={handleAuth}>AUTH</button>
-    {authData && <NiceElments {...getNiceElementForTest({
-      EdiDate: authData.ediDate,
-      MID: authData.mid,
-      hex: authData.hashString,
-    })} />}
-    {authData && <button onClick={handlePay}>COM</button>}
+    <div style={{ display: "none" }}>
+      <button onClick={handleAuth}>AUTH</button>
+      {authData && <NiceElments {...getNiceElementForTest({
+        EdiDate: authData.ediDate,
+        MID: authData.mid,
+        hex: authData.hashString,
+      })} />}
+      {authData && <button onClick={handlePay}>COM</button>}
+    </div>
     <SubTopNav children={
       <>
         <li className="homedeps1">
@@ -178,7 +191,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                   <tr>
                     <td colSpan={2} className="category bt_no">
                       <span className="pnt">문화/예술</span>
-                      <span className="code">상품코드:PINK-0001</span>
+                      <span className="code">상품코드 PINK-0001</span>
                     </td>
                   </tr>
                   <tr>
@@ -224,9 +237,9 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                     <td>
                       <strong>{autoComma(adult_price)}</strong>원
                   <div className="number_box">
-                        <span className="left_btn"><i className="flaticon-substract" /></span>
-                        <span className="number">0</span>
-                        <span className="right_btn"><i className="flaticon-add" /></span>
+                        <span onClick={handleCount("adult", false)} className="left_btn"><i className="flaticon-substract" /></span>
+                        <span className="number">{count.adult}</span>
+                        <span onClick={handleCount("adult", true)} className="right_btn"><i className="flaticon-add" /></span>
                       </div>
                     </td>
                   </tr>
@@ -235,9 +248,9 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                     <td>
                       <strong>{autoComma(kids_price)}</strong>원
                   <div className="number_box">
-                        <span className="left_btn"><i className="flaticon-substract" /></span>
-                        <span className="number">0</span>
-                        <span className="right_btn"><i className="flaticon-add" /></span>
+                        <span onClick={handleCount("kids", false)} className="left_btn"><i className="flaticon-substract" /></span>
+                        <span className="number">{count.kids}</span>
+                        <span onClick={handleCount("kids", true)} className="right_btn"><i className="flaticon-add" /></span>
                       </div>
                     </td>
                   </tr>
@@ -246,9 +259,9 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                     <td>
                       <strong>{autoComma(baby_price)}</strong>원
                   <div className="number_box">
-                        <span className="left_btn"><i className="flaticon-substract" /></span>
-                        <span className="number">0</span>
-                        <span className="right_btn"><i className="flaticon-add" /></span>
+                        <span onClick={handleCount("baby", false)} className="left_btn"><i className="flaticon-substract" /></span>
+                        <span className="number">{count.baby}</span>
+                        <span onClick={handleCount("baby", true)} className="right_btn"><i className="flaticon-add" /></span>
                       </div>
                     </td>
                   </tr>
@@ -260,7 +273,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                     <tr>
                       <th>총 금액</th>
                       <td>
-                        <strong>10,000</strong>원
+                        <strong>{autoComma(price)}</strong>원
                   </td>
                     </tr>
                   </tbody>
@@ -277,7 +290,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                 </div>
                 <div className="link02">
                   <a href="/">
-                    결제하기
+                    예약하기
                   </a>
                 </div>
               </div>
@@ -295,7 +308,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
             <span onClick={handleTab(4)} className={tabOnCheck(4)}><a >문의하기</a></span>
           </div>
           {/* 여행상세설명 */}
-          {tab === 1 && <div className="in_box" id="tap__01">
+          <div className="in_box" id="tap__01">
             <h4>여행일정</h4>
             {itinerary.map((it) => <div key={it._id} >
               <div className="hang">
@@ -308,88 +321,85 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                     <div key={index + "con" + it._id} dangerouslySetInnerHTML={{ __html: con }} />
                   )}
                 </div>
-                {it.images.map((img, index) => <img key={index} style={{
-                  width: "auto",
-                  height: "100px",
-                  display: "inline-block"
-                }} src={img?.uri} />)}
+                <div className="tour_content_img_list">
+                  {it.images.map((img, index) => <img key={index} style={{
+                    width: "auto",
+                    height: "100px",
+                    display: "inline-block"
+                  }} src={img?.uri} />)}
+                </div>
               </div>
             </div>
             )}
-          </div>}
-          {tab === 2 && <>
-            <div className="in_box" id="tap__02">
-              <h4>안내 및 참고</h4>
-              <div dangerouslySetInnerHTML={{
-                __html: contents
-              }} className="text" />
-            </div>
-          </>
-          }
-          {tab === 3 && <>
-            {/* 포함 및 불포함 */}
-            <div className="in_box" id="tap__03">
-              <h4>포함 및 불포함 </h4>
-              <div dangerouslySetInnerHTML={{
-                __html: inOrNor
-              }} className="text" />
-            </div>
-          </>
-          }
-
-          {tab === 4 &&
-            <div className="in_box" id="tap__04">
-              <h4>문의하기</h4>
-              <div className="board_list_mini ln04">
-                <div className="thead">
-                  <div className="th01">No.</div>
-                  <div className="th02">제목</div>
-                  <div className="th03">글쓴이</div>
-                  <div className="th04">날짜</div>
-                </div>
-                <div className="tbody">
-                  <ul>
-                    <li>
-                      <div className="th01">221</div>
-                      <div className="th02">궁금한게 있어요 :) <i className="q_ok">답변완료</i></div>
-                      <div className="th03">뀨이뀨이</div>
-                      <div className="th04">2020.02.02 11:00</div>
-                    </li>
-                    <li>
-                      <div className="th01">221</div>
-                      <div className="th02">궁금한게 있어요 :)<i className="q_no">답변중</i></div>
-                      <div className="th03">뀨이뀨이</div>
-                      <div className="th04">2020.02.02 11:00</div>
-                    </li>
-                    <li>
-                      <div className="th01">221</div>
-                      <div className="th02">궁금한게 있어요 :)<i className="q_ok">답변완료</i></div>
-                      <div className="th03">뀨이뀨이</div>
-                      <div className="th04">2020.02.02 11:00</div>
-                    </li>
-                    <li>
-                      <div className="th01">221</div>
-                      <div className="th02">궁금한게 있어요 :)<i className="q_ok">답변완료</i></div>
-                      <div className="th03">뀨이뀨이</div>
-                      <div className="th04">2020.02.02 11:00</div>
-                    </li>
-                  </ul>
-                </div>
-                <div className="boardNavigation">
-                  <div className="float_left">
-                    <div className="pagenate_mini">
-                      <div className="page_btn first"><i className="jandaicon-arr4-left" /></div>
-                      <div className="count"><strong>1</strong> / 10</div>
-                      <div className="page_btn end"><i className="jandaicon-arr4-right" /></div>
-                    </div>
+          </div>
+          <div className="in_box" id="tap__02">
+            <h4>안내 및 참고</h4>
+            <div dangerouslySetInnerHTML={{
+              __html: contents
+            }} className="text" />
+          </div>
+          {/* 포함 및 불포함 */}
+          <div className="in_box" id="tap__03">
+            <h4>포함 및 불포함 </h4>
+            <div dangerouslySetInnerHTML={{
+              __html: inOrNor
+            }} className="text" />
+          </div>
+          <div className="in_box" id="tap__04" >
+            <h4>주의사항</h4>
+            <div dangerouslySetInnerHTML={{ __html: caution }} className="text" />
+          </div>
+          <div className="in_box" id="tap__04">
+            <h4>문의하기</h4>
+            <div className="board_list_mini ln04">
+              <div className="thead">
+                <div className="th01">No.</div>
+                <div className="th02">제목</div>
+                <div className="th03">글쓴이</div>
+                <div className="th04">날짜</div>
+              </div>
+              <div className="tbody">
+                <ul>
+                  <li>
+                    <div className="th01">221</div>
+                    <div className="th02">궁금한게 있어요 :) <i className="q_ok">답변완료</i></div>
+                    <div className="th03">뀨이뀨이</div>
+                    <div className="th04">2020.02.02 11:00</div>
+                  </li>
+                  <li>
+                    <div className="th01">221</div>
+                    <div className="th02">궁금한게 있어요 :)<i className="q_no">답변중</i></div>
+                    <div className="th03">뀨이뀨이</div>
+                    <div className="th04">2020.02.02 11:00</div>
+                  </li>
+                  <li>
+                    <div className="th01">221</div>
+                    <div className="th02">궁금한게 있어요 :)<i className="q_ok">답변완료</i></div>
+                    <div className="th03">뀨이뀨이</div>
+                    <div className="th04">2020.02.02 11:00</div>
+                  </li>
+                  <li>
+                    <div className="th01">221</div>
+                    <div className="th02">궁금한게 있어요 :)<i className="q_ok">답변완료</i></div>
+                    <div className="th03">뀨이뀨이</div>
+                    <div className="th04">2020.02.02 11:00</div>
+                  </li>
+                </ul>
+              </div>
+              <div className="boardNavigation">
+                <div className="float_left">
+                  <div className="pagenate_mini">
+                    <div className="page_btn first"><i className="jandaicon-arr4-left" /></div>
+                    <div className="count"><strong>1</strong> / 10</div>
+                    <div className="page_btn end"><i className="jandaicon-arr4-right" /></div>
                   </div>
-                  <div className="float_right">
-                    <a href="" className="mini_btn small">고객센터 문의하기</a>
-                  </div>
+                </div>
+                <div className="float_right">
+                  <a href="" className="mini_btn small">고객센터 문의하기</a>
                 </div>
               </div>
             </div>
-          }
+          </div>
         </div>
         <div className="boardNavigation">
           <div className="float_left">
