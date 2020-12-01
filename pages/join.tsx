@@ -100,10 +100,10 @@ const Join = () => {
     const handleVerifyGoogle = async (veriState:boolean) => {
 
         if(veriState){
-            alert('구글 인증에 성공하였습니다');
+            alert('구글 인증에 성공하였습니다.');
             handleJoinProcess('verification');
         }else {
-            alert('구글 인증에 실패하였습니다');
+            alert('구글 인증에 실패하였습니다.');
         }
         
     }
