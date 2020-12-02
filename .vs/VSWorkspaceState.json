@@ -4,13 +4,14 @@
     "\\components",
     "\\components\\board",
     "\\css",
-    "\\info",
+    "\\layout",
+    "\\layout\\components",
     "\\pages",
     "\\pages\\portfolio",
     "\\public",
     "\\public\\img",
     "\\public\\img\\svg"
   ],
-  "SelectedNode": "\\pages\\login.tsx",
+  "SelectedNode": "\\layout\\components\\Header.tsx",
   "PreviewInSolutionExplorer": false
 }

@@ -11,8 +11,10 @@ export const Footer: React.FC<IProp> = () => {
         $('fade1').css("display", 'none');
     }
 
+       
+
     return <footer className="footer" id="footer">
-        <div id="gotop">
+        <div id="gotop" className="animationHide">
             <Link href="#header">
                 <a className="top"><i className="jandaicon-arr4-top" /></a>
             </Link>

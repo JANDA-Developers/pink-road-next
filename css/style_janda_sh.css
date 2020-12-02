@@ -3136,28 +3136,58 @@ ul.rank_ul {
     padding-top: 53px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    /* border: 7px double #fff; */
     background-color: rgba(255, 255, 255, 0.75);
     border-radius: 36px;
     color: #555;
     vertical-align: middle;
     z-index: 22;
 }
+    .siteInfo_in .con04 .li05::after {
+        content: '';
+        position: absolute;
+        width: calc(100% + 12px);
+        height: calc(100% + 12px);
+        left: -10px;
+        top: -10px;
+        border: dashed 4px #e2e2e2;
+        border-radius: 50%;
+        animation: spin 50s linear infinite;
+        -webkit-animation: spin 50s linear infinite;
+        -ms-animation: spin 50s linear infinite;
+        z-index: 0;
+    }
+    .siteInfo_in .con04 .li05.active::after {
+        transition: all .10s ease;
+    }
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
 
-/*.siteInfo_in .con04 .li05::after {
-            display: inline-block;
-            content: '';
-            width: 260px;
-            height: 250px;
-            background-image: url(/img/svg/siteinfo_svg_04.svg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 173px;
-            position: absolute;
-            top: 0px;
-            left: 50%;
-            margin-left: -130px;
-        }*/
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 .siteInfo_in .con05 > div {
     position: relative;
@@ -4783,7 +4813,7 @@ div.bn_box {
         .join_wrap2 .choice_box p {
             position: relative;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 300;
             line-height: 35px;
             color: #757575;
         }
@@ -4896,7 +4926,7 @@ div.bn_box {
         .join_wrap2 .certified p {
             position: relative;
             font-size: 14px;
-            font-weight: 600;
+            font-weight:300;
             line-height: 21px;
             color: #757575;
         }

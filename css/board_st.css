@@ -1009,13 +1009,16 @@ ul.photo_ul li .category {
 
             .board_box .xe_content .xe_top .footer_txt span {
                 display: inline-block;
-                font-weight: 600;
+                font-weight: 400;
                 font-size: 14px;
                 color: #999;
                 margin-right: 15px;
                 margin-left: 5px;
                 position: relative;
             }
+                .board_box .xe_content .xe_top .footer_txt span strong{
+                    margin-left:5px;
+                }
 
                 .board_box .xe_content .xe_top .footer_txt span:after {
                     display: inline-block;
