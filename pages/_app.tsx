@@ -50,7 +50,7 @@ function App({ Component, pageProps }) {
   })
   const { data } = useQuery<getContext>(GET_CONTEXT, {
     client: PinkClient,
-    nextFetchPolicy: "network-only"
+    nextFetchPolicy: "cache-and-network"
   })
 
   const catList = data?.CategoryList?.data || []

@@ -1,16 +1,17 @@
 {
   "ExpandedNodes": [
     "",
+    "\\components",
+    "\\components\\board",
+    "\\css",
     "\\layout",
     "\\layout\\components",
     "\\pages",
-    "\\pages\\mypage",
     "\\pages\\portfolio",
-    "\\pages\\portfolio\\view",
-    "\\pages\\portfolio\\write",
     "\\public",
-    "\\public\\img"
+    "\\public\\img",
+    "\\public\\img\\svg"
   ],
-  "SelectedNode": "\\pages\\mypage\\index.tsx",
+  "SelectedNode": "\\layout\\components\\Header.tsx",
   "PreviewInSolutionExplorer": false
 }

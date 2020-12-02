@@ -134,6 +134,8 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
     setCount({ ...count })
   }
 
+  const fistDate = itinerary[0]?.date;
+
   useEffect(() => {
     const price =
       (count.adult * adult_price) +
@@ -185,7 +187,6 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
               )}
             </ul>
             <div className="details_info_txt">
-              <i className="flaticon-flag-1" />
               <div dangerouslySetInnerHTML={{ __html: caution }} />
             </div>
           </div>
@@ -216,6 +217,10 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                         )}
                       </ul>
                     </td>
+                  </tr>
+                  <tr>
+                    <th className="smtitle bt_line">출발일</th>
+                    <td className="smtxt bt_line">{dayjs(fistDate).format("YYYY.MM.DD")}일</td>
                   </tr>
                   <tr>
                     <th className="smtitle bt_line">여행기간</th>
@@ -291,9 +296,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
             <div className="btn_box">
               <div className="links_wrap">
                 <div onClick={handleAddBracket} className="link05">
-                  <a href="/">
-                    장바구니 담기
-                  </a>
+                  장바구니 담기
                 </div>
                 <div className="link02">
                   <a href="/">
