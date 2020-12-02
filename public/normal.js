@@ -4,10 +4,7 @@ $(window).scroll(function (e) {
     var scrollHeight = $(this).scrollTop();
     console.log(scrollHeight);
     if (scrollHeight < 670) {
-<<<<<<< Updated upstream
-        console.log("670 юлго");
-=======
->>>>>>> Stashed changes
+        console.log("670 О©╫О©╫О©╫О©╫");
         $("#gotop").addClass("animationHide");
     } else {
         $("#gotop").removeClass("animationHide");

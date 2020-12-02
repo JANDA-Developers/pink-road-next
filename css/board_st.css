@@ -1682,14 +1682,11 @@ div.board_list_mini {
         border-radius: 3px;
         border: 1px solid #ccc;
     }
-/*.board_write .write_con .texta input::placeholder {
-        color: #d4d4d4;
-    }*/
 
-.board_write .write_con .texta_title {
-    position: relative;
-    margin-bottom: 5px;
-}
+    .board_write .write_con .texta_title {
+        position: relative;
+        margin-bottom: 5px;
+    }
 
     .board_write .write_con .texta_title .day_add {
         line-height: 40px;

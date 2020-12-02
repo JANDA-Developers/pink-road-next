@@ -99,7 +99,7 @@ export const Header: React.FC<IProp> = () => {
                                 <a>LOGIN</a>
                             </Link>}
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
@@ -176,7 +176,7 @@ export const Header: React.FC<IProp> = () => {
                     </div>
                     <div className="nav_bg"></div>
                     <div className="hd_right">
-                       
+
                         <div className="profile">
                             <span className="photo">프로필 사진</span>
                             <ul>
