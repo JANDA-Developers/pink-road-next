@@ -265,9 +265,9 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     <Editor data={inOrNor} onChange={handleTextData("inOrNor")} />
                 </div>
                 <div {...tapDisplay(4)} id="texta_04" className="texta">
-                    <h5>커리큐럼 유의사항</h5>
+                    <h5>커리큐럼 유의사항<span><i className="jandaicon-info2"></i>텍스트만 입력해 주세요.</span></h5>
                     <Editor data={caution} onChange={handleTextData("caution")} />
-                    <h5>간략한 안내문</h5>
+                    <h5>간략한 안내문<span><i className="jandaicon-info2"></i>텍스트만 입력해 주세요.</span></h5>
                     <Editor data={info} onChange={handleTextData("info")} />
                 </div>
             </div>

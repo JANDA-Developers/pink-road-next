@@ -1640,9 +1640,26 @@ div.board_list_mini {
             padding: 5px;
             width: 540px;
         }
-
+        .board_write .RangeExample .info_txt h4 {
+            font-size: 1em;
+            color: rgb(121, 125, 131);
+            margin-bottom: 5px;
+        }  
+        .board_write .RangeExample .info_txt h4 i {
+            font-size: 0.9em;
+            font-weight: 100;
+            margin-right: 5px;
+        }
+        .board_write .RangeExample .info_txt li {
+            font-size: 0.8em;
+            color: rgb(112, 112, 112);
+            margin-bottom: 5px;
+        }
+        .board_write .RangeExample .info_txt a {
+            color: rgb(76, 78, 207);
+        }
     .board_write .write_con .texta {
-        border: 1px solid #ebebeb;
+        border: 1px solid #efefef;
         padding: 30px;
         box-sizing: border-box;
         padding-top: 5px;
@@ -1682,9 +1699,6 @@ div.board_list_mini {
         border-radius: 3px;
         border: 1px solid #ccc;
     }
-/*.board_write .write_con .texta input::placeholder {
-        color: #d4d4d4;
-    }*/
 
 .board_write .write_con .texta_title {
     position: relative;
@@ -1708,14 +1722,25 @@ div.board_list_mini {
             margin-left: 5px;
             font-size: 11px;
         }
-
-.board_write .write_con h5 {
-    font-size: 18px;
-    padding-top: 20px;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-    .board_write .add_img_box  {
+        
+        .board_write .write_con h5 {
+            font-size: 18px;
+            padding-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .board_write .write_con h5 span {
+            font-size: 12px;
+            font-weight: 300;
+            color: #999999;
+            margin-left: 10px;
+        }
+        .board_write .write_con h5 span i {
+        
+            margin-right: 3px;
+        }
+        .board_write .add_img_box  {
         height: 40px;
         position:relative;
         display:block;

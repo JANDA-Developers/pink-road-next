@@ -99,7 +99,7 @@ export const Header: React.FC<IProp> = () => {
                                 <a>LOGIN</a>
                             </Link>}
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
@@ -176,7 +176,7 @@ export const Header: React.FC<IProp> = () => {
                     </div>
                     <div className="nav_bg"></div>
                     <div className="hd_right">
-                       
+
                         <div className="profile">
                             <span className="photo">프로필 사진</span>
                             <ul>
@@ -214,20 +214,22 @@ export const Header: React.FC<IProp> = () => {
                             </div>
                             <div onClick={handSearchClose} className="search_bg"></div>
                         </div>
-
-                        <div className="inform_top">
-                            <div className="inform_icon">
-                                <object type="image/svg+xml" data={'/img/svg/inform_icon4.svg'}>
-                                    현재 브라우저는 iframe을 지원하지 않습니다.
+                        {isLogin ?
+                            <div className="inform_top">
+                                <div className="inform_icon">
+                                    <object type="image/svg+xml" data={'/img/svg/inform_icon4.svg'}>
+                                        현재 브라우저는 iframe을 지원하지 않습니다.
                             </object>
-                                <button />
-                                <span className="number">99+</span>
+                                    <button />
+                                    <span className="number">99+</span>
+                                </div>
                             </div>
-                        </div>
+                            : <i />}
                         <div onClick={handleAllMenu} className="all_menu_btn">
                             <object type="image/svg+xml" data={'/img/svg/allmenu_icon.svg'}>현재 브라우저는 iframe을 지원하지 않습니다.</object>
                             <button />
                         </div>
+
                     </div>
                     <div id="all_menu">
                         <strong>전체메뉴</strong>
