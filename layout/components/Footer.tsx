@@ -11,15 +11,16 @@ export const Footer: React.FC<IProp> = () => {
         $('fade1').css("display", 'none');
     }
 
-       
+
 
     return <footer className="footer" id="footer">
-        <div data-tip="안녕" data-for="tooltip">
+        <span data-tip="안녕" >
             안녕
-            </div>
-        <div data-tip="잘가" data-for="tooltip">
+            </span>
+        <span data-tip="잘가" >
             잘가
-            </div>
+            </span>
+        <span>Hello From other Side</span>
         <div id="gotop" className="">
             <Link href="#header">
                 <a className="top"><i className="jandaicon-arr4-top" /></a>
@@ -99,7 +100,7 @@ export const Footer: React.FC<IProp> = () => {
                             <strong>계좌번호</strong>
                             <span>신한은행 100-031-819617/예금주:주식회사 핑크로더</span>
                         </li>
-                        
+
                     </ul>
                     <div className="bottom_bn">
                         <div className="partner">
@@ -111,7 +112,7 @@ export const Footer: React.FC<IProp> = () => {
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
         <div id="fade1" onClick={handleFadeClick} />

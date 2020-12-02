@@ -10,6 +10,8 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
 import { IUseProductList, useproductList } from 'hook/useProductList';
 import { useRouter } from 'next/router';
+import ReactTooltip from 'react-tooltip';
+
 const DummyPhoto = [{
   category: "문화/예술",
   subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",

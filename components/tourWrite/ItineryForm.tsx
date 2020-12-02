@@ -6,7 +6,8 @@ import { ISet } from 'types/interface';
 import { useUpload } from 'hook/useUpload';
 import { Quill } from '../edit/Quill';
 import { STYLE } from '../../utils/style';
-
+import dynamic from 'next/dynamic';
+const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 interface IProp {
     its: ItineraryCreateInput[];
     itinery: ItineraryCreateInput;
@@ -15,26 +16,10 @@ interface IProp {
 }
 
 export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) => {
-    const hiddenFileInput = useRef<HTMLInputElement>(null);
-    const { signleUpload, uploadLoading } = useUpload();
 
     const handleAddContent = () => {
         itinery.contents = [...(itinery.contents || []), ""]
         setits([...its])
-    }
-
-    const handleAddImg = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-        if (!files) return;
-
-        signleUpload(files, (url, file) => {
-            itinery.images = [...(itinery.images || []), file]
-            setits([...its])
-        })
-    };
-
-    const handleAddImgBtn = () => {
-        hiddenFileInput?.current?.click()
     }
 
     const handleDeleteImg = (index: number) => () => {
@@ -70,7 +55,7 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) =>
         </div>
         {itinery.contents?.map((content, contentIndex) =>
             <div key={`${contentIndex}${index}content`}>
-                <Quill onChange={handleOnChange(contentIndex)} key={"initeryFrom__content" + contentIndex} value={content} />
+                <Editor onChange={handleOnChange(contentIndex)} key={"initeryFrom__content" + contentIndex} data={content} />
                 <button onClick={handleDeleteContent(contentIndex)} className="comment_btn mini elimination">
                     일정삭제
                 </button>
@@ -86,11 +71,6 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) =>
                     <i onClick={handleDeleteImg(i)} className="flaticon-multiply icon_x"></i>
                 </div>
             )}
-        </div>
-        <div className="add_img_box">
-            <span className="add_img_box__addBtn" onClick={handleAddImgBtn}>이미지 추가</span>
-            <span className="add_img_box__loading">{uploadLoading && "...Loading"}</span>
-            <input style={STYLE.hide} className="initrary__imgInput" ref={hiddenFileInput} accept="image/png, image/jpeg" onChange={handleAddImg} type="file" />
         </div>
     </div>;
 };
