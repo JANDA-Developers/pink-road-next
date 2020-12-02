@@ -2,7 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
-
+import ReactTooltip from "react-tooltip";
 interface IProp { }
 
 export const Layout: React.FC<IProp> = ({ children }) => {
@@ -13,6 +13,7 @@ export const Layout: React.FC<IProp> = ({ children }) => {
         <Header />
         {children}
         <Footer />
+        <ReactTooltip  id=" tooltip" />
     </div>;
 };
 
