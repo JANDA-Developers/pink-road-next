@@ -192,7 +192,7 @@ export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
 const PortFolioWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
     const { isManager } = useContext(AppContext);
     const { pcategories } = usePcategory()
-    const portfolioList = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8, initialFilter: { isOpen_eq: !isManager } })
+    const portfolioList = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8, initialFilter: { isOpen_eq: isManager ? undefined : true } })
 
     const context: IPortfolioWrapContext = {
         ...portfolioList,

@@ -88,9 +88,39 @@ const editorConfiguration = {
             'strikethrough'
         ]
     },
+    resizeOptions: [
+        {
+            name: 'imageResize:original',
+            label: 'Original',
+            value: null
+        },
+        {
+            name: 'imageResize:50',
+            label: '50%',
+            value: '50'
+        },
+        {
+            name: 'imageResize:75',
+            label: '75%',
+            value: '75'
+        },
+        {
+            name: 'imageResize:100',
+            label: '100%',
+            value: '100'
+        }
+    ],
     language: 'ko',
     image: {
+        styles: [
+            'full',
+            'side',
+            'alignLeft', 'alignCenter', 'alignRight'
+        ],
         toolbar: [
+            'imageStyle:alignLeft', 
+            'imageStyle:alignCenter', 
+            'imageStyle:alignRight',
             'imageTextAlternative',
             'imageStyle:full',
             'imageStyle:side'

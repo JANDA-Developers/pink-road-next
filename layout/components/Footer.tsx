@@ -14,13 +14,6 @@ export const Footer: React.FC<IProp> = () => {
 
 
     return <footer className="footer" id="footer">
-        <span data-tip="안녕" >
-            안녕
-            </span>
-        <span data-tip="잘가" >
-            잘가
-            </span>
-        <span>Hello From other Side</span>
         <div id="gotop" className="">
             <Link href="#header">
                 <a className="top"><i className="jandaicon-arr4-top" /></a>
