@@ -9,7 +9,7 @@ import { AppContext } from './_app';
 import { BG } from '../types/const';
 import { signIn, signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';
-import clinet from "../apollo/client"
+import { toast } from 'react-toastify';
 import Link from 'next/link';
 interface IProp {
 
@@ -67,7 +67,7 @@ export const Login: React.FC<IProp> = () => {
         onCompleted: ({ SignIn }) => {
             if (SignIn.ok) {
                 Storage.saveLocal("jwt", SignIn.data.token);
-                alert("환영합니다.")
+                toast("환영합니다.");
                 location.href = "/"
             } else {
                 alert(SignIn.error)

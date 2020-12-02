@@ -75,17 +75,13 @@ Storage = new LocalManager<TStoreKeys>({
     storage: "localStorage"
 });
 
-type TCount = {
-    key: "adult" | "kid" | "baby"
-    label: string;
-    value: number
-}
+
 
 type TItem = {
     productId: string;
     name: string;
     price: number;
-    counts: TCount[]
+    count: IHumanCount[]
 }
 
 
@@ -134,7 +130,7 @@ export const removeItem = (_id: string) => {
     saveBracket(products);
 }
 
-export const addItem = (product: TItem) => {
+export const addItem = (product) => {
     const products = getBracket() || []
     const updateProducts: TItem[] = [product, ...products];
     saveBracket(updateProducts);

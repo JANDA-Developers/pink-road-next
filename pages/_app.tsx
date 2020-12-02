@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import 'css/all.css';
 import Layout from '../layout/Layout';
 import { ApolloProvider, useMutation, useQuery } from '@apollo/client';
-import { categoryList, getContext_GetProfile_data as IProfile, categoryList_CategoryList_data, pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables, getContext, UserRole } from 'types/api';
-import { CATEGORY_LIST, GET_CONTEXT, PAGE_INFO_READ } from 'apollo/queries';
+import { getContext_GetProfile_data as IProfile, categoryList_CategoryList_data, pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables, getContext, UserRole } from 'types/api';
+import { GET_CONTEXT } from 'apollo/queries';
 import PinkClient from "apollo/client"
 import { ISet } from 'types/interface';
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from 'apollo/mutations';
-import { roleCheck } from 'utils/roleCheck';
 import "dayjs/locale/ko"
 import dayjs from 'dayjs';
 import { ADMINS } from '../types/const';
+import Toast from '../components/toast/Toast';
 dayjs.locale('ko')
 
 export type TContext = {
@@ -102,6 +102,7 @@ function App({ Component, pageProps }) {
           </Layout>
         </AppContext.Provider>
       </ApolloProvider>
+      <Toast />
     </div>
   );
 }

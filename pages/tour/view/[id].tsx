@@ -17,6 +17,8 @@ import Slider, { Slide } from "../../../components/slider/Slider";
 import SLIDER from "react-slick";
 import { useScroll } from "../../../hook/useScroll";
 import { handleTab, getTab, tabCheck } from "../../../components/tourView/tabUtils";
+import { toast } from "react-toastify";
+import { addItem } from "../../../utils/Storage";
 
 // <div class="top_visual">
 // <div class="sub_header sub_bg" style="background-image:url(../img/su_visual_bg.jpg);">
@@ -116,6 +118,13 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
   }
 
   const handleAddBracket = () => {
+    addItem({
+      count,
+      name,
+      price,
+      productId: _id
+    })
+    toast("장바구니 저장 되었습니다.")
   }
 
   const handleCount = (key: keyof IHumanCount, isUp: boolean) => () => {
@@ -289,7 +298,9 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
             <div className="btn_box">
               <div className="links_wrap">
                 <div onClick={handleAddBracket} className="link05">
-                  장바구니 담기
+                  <a>
+                    장바구니 담기
+                  </a>
                 </div>
                 <div className="link02">
                   <a href="/">
