@@ -60,6 +60,10 @@
     width: 35px;
     background-color: rgb(255 255 255);
 }
+    #gotop.animationHide {
+        opacity: 0;
+        transform: scale(0);
+    }
     #gotop .top {
         display: inline-block;
         width: 100%;
@@ -217,30 +221,75 @@
 .header {
     position: relative;
     display: -webkit-flex;
-    display: flex;
+    display: block;
     height: 80px;
     box-sizing: border-box;
     background-color: #fff;
     z-index: 50;
     margin-bottom: 0;
     z-index: 100;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 0.1);
 }
 
-    .header::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(to right, #e41773 60%, #e41773);
-        position: absolute;
-        bottom: 0;
-        left: 0;
-    }
-    .header > .w1200 {
+    .header .main_menu {
+        position:relative;
+        width:100%;
+    }    
+    .header .main_menu > .w1200 {
         box-sizing: border-box;
         padding: 12px 15px;
+    } 
+    .header .top-menu {
+        display: block;
+        width:100%;
+        position:relative;
+        line-height:30px;
+        border-bottom:1px solid #eee;
+        text-align:right;
     }
-
+        .header .top-menu p {
+            display: inline-block;
+            width: auto;
+            margin-right: 15px;
+            font-size: 11px;
+            color: #aaa;
+        } 
+        .header .top-menu p strong {
+           
+            color: #888;
+        }   
+    .header .top-menu ul {
+        display: inline-block;
+        text-align:right;
+    }    
+    .header .top-menu ul li {
+        display: inline-block;
+        box-sizing:border-box;
+        padding:0 0 0 20px; 
+        position:relative;
+    }
+        .header .top-menu a {
+            font-weight: 100;
+            color: #aaa;
+            font-size: 11px;
+            cursor:pointer;
+        }
+        .header .top-menu a:hover {
+            color: #333;
+        }
+        .header .top-menu ul a::after {
+            display: inline-block;
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 12px;
+            background-color: #b3b3b3;
+            width: 1px;
+            height: 7px;
+        }
+        .header .top-menu ul li:last-child a:after {
+            display: none;
+        } 
     .header .hd_left {
         display: inline-block;
     }
@@ -285,7 +334,7 @@
 
                     .header .hd_center .nav_wrap .deps1 > li > a {
                         font-size: 18px;
-                        font-weight: 600;
+                        font-weight: 400;
                         color: #333333;
                         width: auto;
                         margin-right: 23px;
@@ -2432,12 +2481,12 @@ i.icon_plus {
         display: flex;
     }
         .header .hd_center .nav_wrap .deps1 > li > a {
-            font-size: 20px;
+            font-size: 16px;
             margin-right: 23px;
         }
     .header .hd_right {
         right: 0;
-        top: 37px;
+        top: 23px;
     }
     .header .hd_right .login,
     .header .hd_right .mypage {

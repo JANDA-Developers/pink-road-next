@@ -90,11 +90,11 @@ export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange }) =>
   }
 `}</style>
             </Head>
-            {/*<ul className="info_txt">
-                <li>- ������ ����ϱ� ���� ���� ���� �޷¿��� �ش� ��ǰ�� [���۳�¥]�� [���ᳯ¥]�� �Է��� �ּ���.</li>
-                <li>- ���õ� ��¥ �� ��ŭ �Ʒ��� ���� ������ �˴ϴ�.</li>
-                <li>- �Ʒ��� ������ ��¥�� ���� ���Դϴ�.</li>
-            </ul> ���ڰ� ���� �ФФ� */}
+            <ul className="info_txt">
+                <li>- zxzxz.</li>
+                <li>- ㅁㄴㅇㅁㄴㅇㅋㅌㅊㅋㅌ.</li>
+                <li>- ㅁㄴㅇ.</li>
+            </ul> 
         </div>
     );
 }

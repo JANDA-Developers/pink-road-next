@@ -125,7 +125,7 @@ select:focus {
     line-height: 0;
 }
 .betatest {/* 핑크로더는 볼수 없게 none */
-    display:none !important;
+    display:inline-block !important;
 }
 .btn {
     box-shadow: none;
