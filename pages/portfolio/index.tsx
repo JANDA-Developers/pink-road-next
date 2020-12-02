@@ -1,5 +1,5 @@
 import { usePageInfo } from 'hook/usePageInfo';
-import { usePortfolioList, IUsePortfolioList } from 'hook/usePortfolioList';
+import { usePortfolioList, IusePortfolioList } from 'hook/usePortfolioList';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
 import React, { Fragment, useContext, useState } from 'react';
@@ -9,7 +9,6 @@ import { AppContext } from '../_app';
 import pageInfoDefault from "info/portfolio.json"
 import { TStieInfo } from 'types/interface';
 import { usePcategory } from 'hook/usePcatList';
-import { roleCheck } from 'utils/roleCheck';
 
 interface IProp {
     context: IPortfolioWrapContext
@@ -17,28 +16,39 @@ interface IProp {
 
 export const PortFolio: React.FC<IProp> = ({ context }) => {
     const { editMode, isAdmin, isManager } = useContext(AppContext);
-    const { items: portfolios = [], pageInfo, setPage, sitePageInfo, pcategories } = context;
+    const { items: portfolios = [], sitePageInfo, pcategories, setPage: setPFpage, pageInfo, setFilter, filter, getLoading } = context;
     const original = sitePageInfo || pageInfoDefault;
-    const [page, setPageInfo] = useState(original);
-    const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPageInfo)
-    const [viewCat, setViewCat] = useState("");
+    const [page, setPage] = useState(original);
+    const { edit } = getEditUtils(editMode, page, setPage)
 
-    console.log("isManager");
-    console.log(isManager);
-    const catPortfolios = viewCat ? portfolios.filter(pt => pt.pCategory?._id === viewCat) : portfolios;
-    const filteredPortfolios = (isAdmin || isManager) ? catPortfolios : catPortfolios.filter(catP => catP.isOpen);
 
     const handlePrev = () =>
-        setPage(pageInfo.page - 1)
+        setPFpage(pageInfo.page - 1)
 
     const handleNext = () => {
-        setPage(pageInfo.page + 1)
+        setPFpage(pageInfo.page + 1)
     }
 
     const handleCatChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const nextCat = event.currentTarget.value;
-        setViewCat(nextCat);
+        const pCategoryId_eq = event.currentTarget.value;
+        setPFpage(1);
+        setFilter({
+            ...filter,
+            pCategoryId_eq,
+        });
     }
+
+    console.log("portfolios.length");
+    console.log(portfolios.length);
+
+    const handleAllCat = () => {
+        setPFpage(1);
+        setFilter({
+            ...filter,
+            pCategoryId_eq: undefined
+        });
+    }
+    const viewCat = filter.pCategoryId_eq || "";
 
     return <div className="portfolio_in">
         <div className="top_bg w100">
@@ -86,7 +96,7 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
         <div className="w100 con04 con_block">
             <div id="list" className="photo_tap_div">
 
-                <input value="" onChange={handleCatChange} id="tab-00" type="radio" name="radio-set" className="tab-selector-1" checked={viewCat === ""}></input>
+                <input value="" onChange={handleAllCat} id="tab-00" type="radio" name="radio-set" className="tab-selector-1" checked={viewCat === ""}></input>
                 <label htmlFor="tab-00" className="tab-label-1 photo_tap">ALL</label>
 
                 {pcategories.map((pc, i) =>
@@ -98,20 +108,33 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                 <div className="tap_nav_bg"></div>
 
                 <div className="portfolio_box box01" id="portfolio_box_1">
-                    <ul>
-                        {filteredPortfolios.map((portfolio) =>
-                            <Link key={portfolio._id} href={`/portfolio/view/${portfolio._id}`}>
-                                <li style={{ backgroundImage: `url(${portfolio.thumb?.uri})` }}>
-                                    <div className="box">
-                                        {portfolio?.pCategory && <i className="category">{portfolio.pCategory.label}</i>}
-                                        {portfolio?.isOpen || <i className="category">비공개</i>}
-                                        <strong className="title">{portfolio.title}</strong>
-                                        <span className="txt">{portfolio.summary}</span>
-                                    </div>
-                                </li>
-                            </Link>
-                        )}
-                    </ul>
+                    {getLoading ? (
+                        <ul>
+                            <li />
+                            <li />
+                            <li />
+                            <li />
+                            <li />
+                            <li />
+                            <li />
+                            <li />
+                        </ul>
+                    ) :
+                        <ul>
+                            {portfolios.map((portfolio) =>
+                                <Link key={portfolio._id} href={`/portfolio/view/${portfolio._id}`}>
+                                    <li style={{ backgroundImage: `url(${portfolio.thumb?.uri})` }}>
+                                        <div className="box">
+                                            {portfolio?.pCategory && <i className="category">{portfolio.pCategory.label}</i>}
+                                            {portfolio?.isOpen || <i className="category">비공개</i>}
+                                            <strong className="title">{portfolio.title}</strong>
+                                            <span className="txt">{portfolio.summary}</span>
+                                        </div>
+                                    </li>
+                                </Link>
+                            )}
+                        </ul>
+                    }
 
                     <div className="boardNavigation">
                         <div className="center">
@@ -147,13 +170,13 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
     ;
 };
 
-interface IPortfolioWrapContext extends IUsePortfolioList {
+interface IPortfolioWrapContext extends IusePortfolioList {
     sitePageInfo: TStieInfo | "",
     pcategories: pcategoryList_pCategoryList_data[]
 }
 
 type TGetProps = {
-    pageInfo: typeof pageInfoDefault | "",
+    pageInfo: TStieInfo,
 }
 
 export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
@@ -167,8 +190,9 @@ export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
 }
 
 const PortFolioWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+    const { isManager } = useContext(AppContext);
     const { pcategories } = usePcategory()
-    const portfolioList = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8 })
+    const portfolioList = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8, initialFilter: { isOpen_eq: !isManager } })
 
     const context: IPortfolioWrapContext = {
         ...portfolioList,

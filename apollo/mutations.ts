@@ -144,10 +144,10 @@ export const CATEGORY_DELETE = gql`
 
 
 export const PRODUCT_POST_CREATE = gql`
-  mutation productPostCreate(
-        $params: ProductPostCreateInput!
+  mutation productCreate(
+        $params: ProductCreateInput!
     ) {
-    ProductPostCreate(
+    ProductCreate(
         params: $params  
       ) {
       ok
@@ -161,11 +161,11 @@ export const PRODUCT_POST_CREATE = gql`
 
 
 export const PRODUCT_POST_UPDATE = gql`
-  mutation productPostUpdate(
-        $params: ProductPostUpdateInput!
+  mutation productUpdate(
+        $params: ProductUpdateInput!
         $_id: String!
     ) {
-    ProductPostUpdate(
+    ProductUpdate(
         params:$params,
         _id: $_id 
       ) {
@@ -180,16 +180,16 @@ export const PRODUCT_POST_UPDATE = gql`
 
 
 export const PRODUCT_POST_DELETE = gql`
-  mutation productPostDelete(
+  mutation productDelete(
       $id: String!
     ) {
-    ProductPostDelete(
+    ProductDelete(
         id:$id
       ) {
       ok
       error 
       data {
-          ...FproductPost
+          ...Fproduct
       }
     }
   }
@@ -206,15 +206,11 @@ export const MULTI_UPLOAD = gql`
       ok
       error 
       data {
-        name
-        description
-        extension
-        fileType
-        uri
-        owner
+        ...Ffile
       }
     }
   }
+  ${F_FILE}
 `;
 
 export const SIGN_UP = gql`

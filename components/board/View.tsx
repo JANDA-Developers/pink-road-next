@@ -1,14 +1,14 @@
-import { OutputData } from "@editorjs/editorjs";
 import dayjs from "dayjs";
+import dynamic from "next/dynamic";
 import React from "react";
 import { Ffile } from "types/api"
-import EditorRendererProvider from 'react-editorjs-renderer';
+import { ContentViewer } from "../contentViewer/ContentViewer";
 
 interface IProps {
-    catName: string;
+    catName?: string;
     title: string;
     writer: string;
-    thumb?: Ffile;
+    thumb?: Ffile | null;
     createAt: string;
     comments?: {
         count: 0,
@@ -21,35 +21,35 @@ interface IProps {
     onList?: () => void;
     onEdit?: () => void;
     onDelete?: () => void;
-    content?: OutputData;
+    content?: string;
 }
 
 
 export const BoardView: React.FC<IProps> = (data) => {
-    const { catName, createAt, title, writer, comments, files, summary, viewCount, thumb, content, onEdit, onList, onNext, onPrev, onDelete } = data;
+    const { catName, createAt, title = "", writer, comments, files, summary, viewCount, thumb, content = "", onEdit, onList, onNext, onPrev, onDelete } = data;
 
 
     const handlePrev = () => {
-        onPrev();
+        onPrev?.();
     }
 
     const handleList = () => {
-        onList();
+        onList?.();
     }
 
     const handleEdit = () => {
-        onEdit();
+        onEdit?.();
     }
 
     const handleNext = () => {
-        onNext();
+        onNext?.();
     }
 
     const handleDelete = () => {
-        onDelete();
+        onDelete?.();
     }
 
-    return <div className="board_box">
+    return <div className="board_box edtiorView">
         <div className="w1200">
             <div className="xe_content">
                 <div className="xe_top">
@@ -63,28 +63,16 @@ export const BoardView: React.FC<IProps> = (data) => {
                         {comments?.count && <span>댓글 <strong>0</strong>건</span>}{/* 댓글기능 열렷을 때 */}
                         {viewCount && <span>조회수 <strong>3423</strong>회</span>}
                     </div>
-                    {/*<div class="menu">
-      <span><i class="flaticon-more-1"></i></span>
-      <ul class="option_box">
-          <li><span onclick="location.href = '';">공유하기</span></li>
-          <li><span onclick="location.href = '';">비공개 전환하기</span></li>
-      </ul>
-  </div>*/}
                 </div>
                 <div className="in_box">
-                  
+
                     {/*본문시작*/}
                     {summary && <>{summary}
                         <br /><br />
                     </>
                     }
                     {/*thumb && <img src={thumb.uri} alt={thumb.name} /> 섬네일이미지 안보여줘도됨...*/}
-
-                    {content.blocks &&
-                        <EditorRendererProvider data={content} />
-                    }
-
-
+                    <ContentViewer data={content} />
                     {files &&
                         <div className="download_box">
                             <ul>
@@ -96,7 +84,7 @@ export const BoardView: React.FC<IProps> = (data) => {
                     }
                 </div>
                 {/* 댓글 */}
-               
+
                 <div className="boardNavigation">
                     <div className="float_left">
                         {handleList && <button onClick={handleList} type="button" className="btn medium">목록</button>}

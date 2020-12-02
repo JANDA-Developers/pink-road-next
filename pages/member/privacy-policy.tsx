@@ -91,7 +91,7 @@ const PrivacyPolicy = () => {
                             <td>필수정보</td>
                             <td>아이디(E-Mail), 비밀번호, 내외국인 정보, 이름(실명), 생년월일, 성별, 휴대폰번호, 주소, CI(암호화된 동일인 식별정보)</td>
                             <td>회원 서비스 제공 및 본인 인증</td>
-                            <td rowSpan="2">
+                            <td rowSpan={2}>
                                 회원탈퇴시까지<br />
                                 (단, 관계법령에 따름)
                             </td>
@@ -122,7 +122,7 @@ const PrivacyPolicy = () => {
                                 여행자 : 이름, 생년월일, 성별, 휴대폰번호, 내외국인정보
                             </td>
                             <td>여행상품 예약 및 상담 / 경품배송</td>
-                            <td rowSpan="7">회원탈퇴시까지<br />(단, 관계법령에 따름)</td>
+                            <td rowSpan={7}>회원탈퇴시까지<br />(단, 관계법령에 따름)</td>
                         </tr>
                         <tr>
                             <td>
@@ -237,7 +237,7 @@ const PrivacyPolicy = () => {
                                 여행자 이름, 생년월일, 성별, 이메일, 휴대폰번호
 
                             </td>
-                            <td rowSpan="4">
+                            <td rowSpan={4}>
                                 회원탈퇴 시 혹은 계약 종료시<br />
                                 (단, 관계법령에 따름)
  
@@ -299,7 +299,7 @@ const PrivacyPolicy = () => {
                             </td>
                         </tr>
                         <tr>
-                            <td rowSpan="3">
+                            <td rowSpan={3}>
                                 결제처리
 
                             </td>
@@ -321,7 +321,7 @@ const PrivacyPolicy = () => {
                             </td>
                         </tr>
                         <tr>
-                            <td rowSpan="2">
+                            <td rowSpan={2}>
                                 본인확인
                             </td>
                             <td>서울신용평가정보</td>

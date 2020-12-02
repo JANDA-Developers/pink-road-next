@@ -10,6 +10,7 @@ import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from 'apollo/mutations';
 import { roleCheck } from 'utils/roleCheck';
 import "dayjs/locale/ko"
 import dayjs from 'dayjs';
+import { ADMINS } from '../types/const';
 dayjs.locale('ko')
 
 export type TContext = {
@@ -38,6 +39,7 @@ const defaultContext: TContext = {
 
 export const AppContext = React.createContext<TContext>(defaultContext);
 
+// @ts-ignore
 function App({ Component, pageProps }) {
   const [pageInfoCreateMu, { loading: pageInfoCreateLoading }] = useMutation<pageInfoCreate, pageInfoCreateVariables>(PAGE_INFO_CREATE, {
     client: PinkClient
@@ -92,7 +94,7 @@ function App({ Component, pageProps }) {
           role,
           myProfile,
           isAdmin: role === UserRole.admin,
-          isManager: role === UserRole.manager,
+          isManager: ADMINS.includes(role),
           isLogin: !!myProfile
         }}>
           <Layout>

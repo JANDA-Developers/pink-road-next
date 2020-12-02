@@ -34,10 +34,7 @@ export const PORTFOLIO_FIND_BY_ID = gql`
     error 
     data {
       ...Fportfolio
-      pCategory {
-        _id
-        label
-      }
+
     }
   }
 }
@@ -45,10 +42,14 @@ ${F_PORTFOLIO}
 `
 export const PORT_FOLIO_LIST = gql`
 query portfolioList(
-  $pageInput:pageInput!
+  $sort: [_PortfolioSort!]
+  $filter: _PortfolioFilter
+  $pageInput: pageInput!
 ) {
   PortfolioList(
+  sort: $sort
   pageInput: $pageInput
+  filter: $filter
   ) {
     ok
     error
@@ -69,10 +70,10 @@ ${F_PORTFOLIO}
 `
 
 export const PRODUCT_POST_LIST = gql`
-query productPostList(
+query productList(
   $pageInput:pageInput!
 ) {
-  ProductPostList(
+  ProductList(
   pageInput: $pageInput
   ) {
     ok
@@ -81,7 +82,7 @@ query productPostList(
       ...Fpage
     }
     data  {
-      ...FproductPost
+      ...Fproduct
     }
   }
 }
@@ -107,16 +108,16 @@ export const CATEGORY_FIND_BY_ID = gql`
 `;
 
 export const PRODUCT_FIND_BY_ID = gql`
-  query productPostFindById(
+  query productFindById(
       $_id:String!
     ) {
-      ProductPostFindById(
+      ProductFindById(
         _id: $_id
       ) {
       ok
       error
       data {
-        ...FproductPost
+        ...Fproduct
       }
     }
   }

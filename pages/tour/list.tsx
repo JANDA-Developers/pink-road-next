@@ -1,4 +1,4 @@
-import { IUseProductList, useProductPostList } from 'hook/useProductPostList';
+import { IUseProductList, useproductList } from 'hook/useProductList';
 import React from 'react';
 import BoardList from "components/board/List";
 import { useRouter } from 'next/router';
@@ -149,7 +149,7 @@ interface ITourListWrapContext extends IUseProductList {
 
 const TourListWrap: React.FC<IProp> = () => {
 
-    const productContext = useProductPostList();
+    const productContext = useproductList();
 
     const context: ITourListWrapContext = {
         ...productContext

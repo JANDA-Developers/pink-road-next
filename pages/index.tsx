@@ -3,18 +3,13 @@ import pageInfoDefault from 'info/main.json';
 import { getEditUtils } from 'utils/pageEdit';
 import { AppContext } from './_app'
 import { Meta } from 'components/common/meta/Meta';
-import { PhotoLi } from 'components/main/PhotoLi';
 import { Upload } from 'components/common/Upload';
 import Link from 'next/link';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
-import dynamic from 'next/dynamic';
-import { IUseProductList, useProductPostList } from 'hook/useProductPostList';
+import { IUseProductList, useproductList } from 'hook/useProductList';
 import { useRouter } from 'next/router';
-import $ from "jquery";
-// const EditorJs = dynamic(() => import('components/editor2/Ediotr2'), { ssr: false })
-
 const DummyPhoto = [{
   category: "문화/예술",
   subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
@@ -66,6 +61,7 @@ interface IProps {
   context: IMainWrapContext
 }
 export const Main: React.FC<IProps> = ({ context }) => {
+  console.log("AWESOME")
   const { items, sitePageInfo } = context;
   const { editMode } = useContext(AppContext);
   const original = sitePageInfo || pageInfoDefault;
@@ -101,22 +97,10 @@ export const Main: React.FC<IProps> = ({ context }) => {
               <a  {...edit("mainLink2")} />
             </Link>
           </div>
-          </div>
-        
+        </div>
+
       </div>
     </div>
-    {/* <div dangerouslySetInnerHTML={model}/> */}
-    {/* <EditorJs onModelChange={setModel} model={model} config={{
-       fontFamily: {
-        "Roboto,sans-serif": 'Roboto',
-        "Oswald,sans-serif": 'Oswald',
-        "Montserrat,sans-serif": 'Montserrat',
-        "'Open Sans Condensed',sans-serif": 'Open Sans Condensed',
-        "montserrat": "기본글꼴"
-      },
-      fontFamilySelection: true,
-      language: 'ko'
-    }}/> */}
     <div className="main_con_box2">
       <div className="w1200">
         <div className="top_txt">
@@ -185,8 +169,8 @@ export const Main: React.FC<IProps> = ({ context }) => {
               <i><svg><polygon points="69.22 12.71 0 12.71 0 10.71 64.33 10.71 54.87 1.43 56.27 0 69.22 12.71" /></svg></i>
             </li>
             {items.map((item) =>
-              <Link href={`/tour/view/${item._id}`}>
-                <li key={item._id} className="list_in">
+              <Link key={item._id} href={`/tour/view/${item._id}`}>
+                <li className="list_in">
                   <div className="img" onClick={() => { toProductBoard(item._id) }} style={{
                     backgroundImage: `url(${item.images[0]?.uri})`
                   }}></div>
@@ -237,7 +221,7 @@ interface IMainWrapContext extends IUseProductList, IGetProps {
 }
 
 const MainWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ sitePageInfo }) => {
-  const productList = useProductPostList({ initialPageIndex: 1, initialViewCount: 8 });
+  const productList = useproductList({ initialPageIndex: 1, initialViewCount: 8 });
   const context: IMainWrapContext = {
     ...productList,
     sitePageInfo

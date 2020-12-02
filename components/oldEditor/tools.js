@@ -1,7 +1,7 @@
+
 import Embed from "@editorjs/embed";
 import Table from "@editorjs/table";
 import List from "@editorjs/list";
-import Code from "@editorjs/code";
 import LinkTool from "@editorjs/link";
 import Image from "@editorjs/image";
 import Raw from "@editorjs/raw";
@@ -12,9 +12,7 @@ import Marker from "@editorjs/marker";
 import Delimiter from "@editorjs/delimiter";
 import InlineCode from "@editorjs/inline-code";
 import SimpleImage from "@editorjs/simple-image";
-// import Paragraph from 'editorjs-paragraph-with-alignment';
-
-const uploadUrl = 'https://kbsjl5pnsi.execute-api.ap-northeast-2.amazonaws.com/dev/upload';
+const uploadUrl = 'http://ec2-54-180-32-135.ap-northeast-2.compute.amazonaws.com:3000/upload';
 
 const fileAction = uploadUrl;
 const fetchAction = ""
@@ -35,10 +33,6 @@ export const EDITOR_JS_TOOLS = {
         }
     }
   },
-  // paragraph: {
-  //   class: Paragraph,
-  //   inlineToolbar: true,
-  // },
   raw: Raw,
   header: Header,
   // quote: Quote,
@@ -49,3 +43,4 @@ export const EDITOR_JS_TOOLS = {
 };
 
 export default EDITOR_JS_TOOLS;
+
