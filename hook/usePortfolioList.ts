@@ -14,7 +14,7 @@ export interface IusePortfolioList extends IListHook<_PortfolioFilter, _Portfoli
 
 export const usePortfolioList = ({
     initialPageIndex = 0,
-    initialSort = [],
+    initialSort = [_PortfolioSort.createdAt_desc],
     initialFilter = {},
     initialViewCount = 20,
     options = {}
