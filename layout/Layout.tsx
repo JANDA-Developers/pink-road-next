@@ -7,9 +7,9 @@ interface IProp { }
 
 export const Layout: React.FC<IProp> = ({ children }) => {
     return <div className="container">
-        {/* <Head>
-            <script src="/build/ckeditor.js"></script>
-        </Head> */}
+        <Head>
+            <script src="/normal.js"></script>
+        </Head>
         <Header />
         {children}
         <Footer />

@@ -20,7 +20,7 @@ export const Footer: React.FC<IProp> = () => {
         <div data-tip="잘가" data-for="tooltip">
             잘가
             </div>
-        <div id="gotop" className="animationHide">
+        <div id="gotop" className="">
             <Link href="#header">
                 <a className="top"><i className="jandaicon-arr4-top" /></a>
             </Link>
