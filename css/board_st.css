@@ -38,7 +38,7 @@
             margin-top: -5px;
             height: 10px;
             width: 1px;
-            background-color: #9d9fad;
+            background-color: #d8d8d8;
         }
 
         .board_option li:last-child:after {
@@ -49,12 +49,19 @@
         display: block;
         padding: 10px 12px;
         box-sizing: border-box;
-        color: #737689;
+        color: #999999;
         font-weight: 600;
         font-size: 11px;
     }
+    .board_option a strong {
+        font-weight: 400;
+    }
 
         .board_option a:hover {
+            color: #333;
+        }
+        .board_option li.on a {
+            font-weight: 600;
             color: #333;
         }
 .board_title {
@@ -273,7 +280,7 @@
                 width: 24.5%;
                 text-align: center;
                 font-size: 12px;
-                padding: 13px 10px 10px;
+                padding: 10px 10px 10px;
                 box-sizing: border-box;
             }
 
@@ -1343,6 +1350,14 @@ div.board_list_mini {
         div.board_list_mini li:hover {
             background-color: #fbfbfb;
         }
+        div.board_list_mini .no_data:hover {
+            background-color: #ffffff;
+            cursor: unset;
+        }
+        div.board_list_mini .no_data {
+            display: block;
+            text-align: center;
+        }
 
     div.board_list_mini span {
         position: relative;
@@ -1746,7 +1761,6 @@ div.board_list_mini {
         display:block;
         width:100%;
         background:#f5f5f5;
-        /*border:1px solid #ccc;*/
         box-sizing:border-box;
         display: flex;
     }
