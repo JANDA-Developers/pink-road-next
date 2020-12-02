@@ -23,7 +23,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "components/edit/CKE2.jsx"
+    "**/*.tsx", "components/edit/CKE2.jsx", "components/edit/UploadAdapter.js"
   ],
   "exclude": [
     "node_modules"
