@@ -18,33 +18,6 @@ export const CATEGORY_CREATE = gql`
   ${F_CATEGORY}
 `;
 
-export const PORTFOLIO_CREATE = gql`
-  mutation portfolioCreate(
-    $params: PortfolioCreateInput!
-  ) {
-    PortfolioCreate(
-      params:$params
-    ) {
-    ok
-    error
-    data {
-      _id
-    }
-  }
-}
-`
-export const PORTFOLIO_DELETE = gql`
-  mutation portfolioDelete(
-    $id: String!
-  ) {
-    PortfolioDelete(
-      id:$id
-    ) {
-    ok
-    error 
-  }
-}
-`
   
 export const PCATEGORY_CREATAE = gql`
   mutation pcategoryCreate(
@@ -88,23 +61,7 @@ export const PCATEGORY_UPDATE = gql`
 }
 `
 
-export const PORTFOLIO_UPDAET = gql`
-  mutation portfolioUpdate(
-    $params: PortfolioUpdateInput!
-    $id: String!
-  ) {
-  PortfolioUpdate(
-      params:$params
-      id: $id
-    ) {
-    ok
-    error 
-    data {
-      _id
-    }
-  }
-}
-`
+
 
 export const CATEGORY_DELETE = gql`
   mutation categoryDelete(

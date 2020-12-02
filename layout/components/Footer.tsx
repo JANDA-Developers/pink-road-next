@@ -11,14 +11,16 @@ export const Footer: React.FC<IProp> = () => {
         $('fade1').css("display", 'none');
     }
 
+    const handleBracket = () => {
+
+    }
+
     return <footer className="footer" id="footer">
         <div id="gotop">
             <Link href="#header">
                 <a className="top"><i className="jandaicon-arr4-top" /></a>
             </Link>
-            <Link href="/">
-                <a className="basket"><object type="image/svg+xml" data="/img/svg/basket.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object><button /></a>
-            </Link>
+            <a onClick={ } className="basket"><object type="image/svg+xml" data="/img/svg/basket.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object><button /></a>
             <Link href="#footer">
                 <a className="down"><i className="jandaicon-arr4-bottom" /></a>
             </Link>
@@ -91,7 +93,7 @@ export const Footer: React.FC<IProp> = () => {
                             <strong>계좌번호</strong>
                             <span>신한은행 100-031-819617/예금주:주식회사 핑크로더</span>
                         </li>
-                        
+
                     </ul>
                     <div className="bottom_bn">
                         <div className="partner">
@@ -103,7 +105,7 @@ export const Footer: React.FC<IProp> = () => {
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
         <div id="fade1" onClick={handleFadeClick} />
@@ -118,6 +120,8 @@ export const Footer: React.FC<IProp> = () => {
                     </p>
                 </div>
             </div>
+        </div>
+        <div>
         </div>
     </footer>;
 };

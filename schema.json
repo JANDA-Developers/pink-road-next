@@ -39,7 +39,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -55,7 +55,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -96,8 +96,8 @@
       },
       {
         "kind": "SCALAR",
-        "name": "Timestamp",
-        "description": "The javascript `Date` as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.",
+        "name": "DateTime",
+        "description": "The javascript `Date` as string. Type represents date and time as the ISO Date string.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -144,7 +144,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -160,7 +160,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -491,7 +491,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -507,7 +507,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -650,7 +650,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -666,7 +666,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -895,7 +895,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -911,7 +911,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -986,7 +986,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -1002,7 +1002,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -1098,7 +1098,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -1141,7 +1141,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -1157,7 +1157,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -1457,7 +1457,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -1473,7 +1473,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -1654,6 +1654,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "code",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -2098,7 +2114,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -2114,7 +2130,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -3109,69 +3125,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "FileUploadsResponse",
-        "description": null,
-        "fields": [
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "data",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "File",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "FileInput",
         "description": null,
         "fields": [
@@ -3231,7 +3184,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "FileUploadResponse",
+        "name": "FileUploadsResponse",
         "description": null,
         "fields": [
           {
@@ -3267,9 +3220,21 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "File",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "File",
+                    "ofType": null
+                  }
+                }
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -3465,7 +3430,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -3481,7 +3446,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -4130,7 +4095,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -4146,7 +4111,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -4451,7 +4416,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -4467,7 +4432,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -4809,7 +4774,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -4825,7 +4790,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Timestamp",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -6979,7 +6944,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Timestamp",
+              "name": "DateTime",
               "ofType": null
             },
             "defaultValue": null
@@ -8074,7 +8039,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Timestamp",
+              "name": "DateTime",
               "ofType": null
             },
             "defaultValue": null
@@ -9367,6 +9332,82 @@
                 "ofType": {
                   "kind": "INPUT_OBJECT",
                   "name": "_ProductFilter",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "code_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "code_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "code_contains",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "code_not_contains",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "code_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "code_not_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
                   "ofType": null
                 }
               }
@@ -11942,37 +11983,6 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "FileUploadsResponse",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SingleUpload",
-            "description": null,
-            "args": [
-              {
-                "name": "file",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Upload",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "FileUploadResponse",
                 "ofType": null
               }
             },

@@ -37,58 +37,6 @@ export interface categoryCreateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: portfolioCreate
-// ====================================================
-
-export interface portfolioCreate_PortfolioCreate_data {
-  __typename: "Portfolio";
-  _id: string;
-}
-
-export interface portfolioCreate_PortfolioCreate {
-  __typename: "PortfolioCreateResponse";
-  ok: boolean;
-  error: string | null;
-  data: portfolioCreate_PortfolioCreate_data | null;
-}
-
-export interface portfolioCreate {
-  PortfolioCreate: portfolioCreate_PortfolioCreate;
-}
-
-export interface portfolioCreateVariables {
-  params: PortfolioCreateInput;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: portfolioDelete
-// ====================================================
-
-export interface portfolioDelete_PortfolioDelete {
-  __typename: "PortfolioDeleteResponse";
-  ok: boolean;
-  error: string | null;
-}
-
-export interface portfolioDelete {
-  PortfolioDelete: portfolioDelete_PortfolioDelete;
-}
-
-export interface portfolioDeleteVariables {
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: pcategoryCreate
 // ====================================================
 
@@ -150,36 +98,6 @@ export interface pcategoryUpdate {
 
 export interface pcategoryUpdateVariables {
   params: pCategoryUpdateInput;
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: portfolioUpdate
-// ====================================================
-
-export interface portfolioUpdate_PortfolioUpdate_data {
-  __typename: "Portfolio";
-  _id: string;
-}
-
-export interface portfolioUpdate_PortfolioUpdate {
-  __typename: "PortfolioUpdateResponse";
-  ok: boolean;
-  error: string | null;
-  data: portfolioUpdate_PortfolioUpdate_data | null;
-}
-
-export interface portfolioUpdate {
-  PortfolioUpdate: portfolioUpdate_PortfolioUpdate;
-}
-
-export interface portfolioUpdateVariables {
-  params: PortfolioUpdateInput;
   id: string;
 }
 
@@ -626,27 +544,279 @@ export interface pageInfoUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: pcategoryList
+// GraphQL query operation: newsFindById
 // ====================================================
 
-export interface pcategoryList_pCategoryList_data {
-  __typename: "pCategory";
+export interface newsFindById_NewsFindById_data_author {
+  __typename: "User";
   _id: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  label: string;
+  email: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
 }
 
-export interface pcategoryList_pCategoryList {
-  __typename: "pCategoryListResponse";
+export interface newsFindById_NewsFindById_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface newsFindById_NewsFindById_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface newsFindById_NewsFindById_data {
+  __typename: "News";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: newsFindById_NewsFindById_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: newsFindById_NewsFindById_data_attachFiles[] | null;
+  thumb: newsFindById_NewsFindById_data_thumb | null;
+  viewCount: number;
+  type: NEWS_TYPE;
+}
+
+export interface newsFindById_NewsFindById {
+  __typename: "NewsFindByIdResponse";
   ok: boolean;
   error: string | null;
-  data: pcategoryList_pCategoryList_data[];
+  data: newsFindById_NewsFindById_data | null;
 }
 
-export interface pcategoryList {
-  pCategoryList: pcategoryList_pCategoryList;
+export interface newsFindById {
+  NewsFindById: newsFindById_NewsFindById;
+}
+
+export interface newsFindByIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: newsList
+// ====================================================
+
+export interface newsList_NewsList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+}
+
+export interface newsList_NewsList_data_author {
+  __typename: "User";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
+}
+
+export interface newsList_NewsList_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface newsList_NewsList_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface newsList_NewsList_data {
+  __typename: "News";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: newsList_NewsList_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: newsList_NewsList_data_attachFiles[] | null;
+  thumb: newsList_NewsList_data_thumb | null;
+  viewCount: number;
+  type: NEWS_TYPE;
+}
+
+export interface newsList_NewsList {
+  __typename: "NewsListResponse";
+  ok: boolean;
+  error: string | null;
+  page: newsList_NewsList_page;
+  data: newsList_NewsList_data[];
+}
+
+export interface newsList {
+  NewsList: newsList_NewsList;
+}
+
+export interface newsListVariables {
+  sort?: _NewsSort[] | null;
+  filter?: _NewsFilter | null;
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: newsCreate
+// ====================================================
+
+export interface newsCreate_NewsCreate_data {
+  __typename: "News";
+  _id: string;
+}
+
+export interface newsCreate_NewsCreate {
+  __typename: "NewsCreateResponse";
+  ok: boolean;
+  error: string | null;
+  data: newsCreate_NewsCreate_data | null;
+}
+
+export interface newsCreate {
+  NewsCreate: newsCreate_NewsCreate;
+}
+
+export interface newsCreateVariables {
+  params: NewsCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: newsDelete
+// ====================================================
+
+export interface newsDelete_NewsDelete {
+  __typename: "NewsDeleteResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface newsDelete {
+  NewsDelete: newsDelete_NewsDelete;
+}
+
+export interface newsDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: newsUpdate
+// ====================================================
+
+export interface newsUpdate_NewsUpdate_data {
+  __typename: "News";
+  _id: string;
+}
+
+export interface newsUpdate_NewsUpdate {
+  __typename: "NewsUpdateResponse";
+  ok: boolean;
+  error: string | null;
+  data: newsUpdate_NewsUpdate_data | null;
+}
+
+export interface newsUpdate {
+  NewsUpdate: newsUpdate_NewsUpdate;
+}
+
+export interface newsUpdateVariables {
+  params: NewsUpdateInput;
+  id: string;
 }
 
 /* tslint:disable */
@@ -838,6 +1008,117 @@ export interface portfolioListVariables {
   sort?: _PortfolioSort[] | null;
   filter?: _PortfolioFilter | null;
   pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: portfolioCreate
+// ====================================================
+
+export interface portfolioCreate_PortfolioCreate_data {
+  __typename: "Portfolio";
+  _id: string;
+}
+
+export interface portfolioCreate_PortfolioCreate {
+  __typename: "PortfolioCreateResponse";
+  ok: boolean;
+  error: string | null;
+  data: portfolioCreate_PortfolioCreate_data | null;
+}
+
+export interface portfolioCreate {
+  PortfolioCreate: portfolioCreate_PortfolioCreate;
+}
+
+export interface portfolioCreateVariables {
+  params: PortfolioCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: portfolioDelete
+// ====================================================
+
+export interface portfolioDelete_PortfolioDelete {
+  __typename: "PortfolioDeleteResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface portfolioDelete {
+  PortfolioDelete: portfolioDelete_PortfolioDelete;
+}
+
+export interface portfolioDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: portfolioUpdate
+// ====================================================
+
+export interface portfolioUpdate_PortfolioUpdate_data {
+  __typename: "Portfolio";
+  _id: string;
+}
+
+export interface portfolioUpdate_PortfolioUpdate {
+  __typename: "PortfolioUpdateResponse";
+  ok: boolean;
+  error: string | null;
+  data: portfolioUpdate_PortfolioUpdate_data | null;
+}
+
+export interface portfolioUpdate {
+  PortfolioUpdate: portfolioUpdate_PortfolioUpdate;
+}
+
+export interface portfolioUpdateVariables {
+  params: PortfolioUpdateInput;
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: pcategoryList
+// ====================================================
+
+export interface pcategoryList_pCategoryList_data {
+  __typename: "pCategory";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  label: string;
+}
+
+export interface pcategoryList_pCategoryList {
+  __typename: "pCategoryListResponse";
+  ok: boolean;
+  error: string | null;
+  data: pcategoryList_pCategoryList_data[];
+}
+
+export interface pcategoryList {
+  pCategoryList: pcategoryList_pCategoryList;
 }
 
 /* tslint:disable */
@@ -1585,6 +1866,69 @@ export interface Fproduct {
 // @generated
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL fragment: Fnews
+// ====================================================
+
+export interface Fnews_author {
+  __typename: "User";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
+}
+
+export interface Fnews_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fnews_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fnews {
+  __typename: "News";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: Fnews_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: Fnews_attachFiles[] | null;
+  thumb: Fnews_thumb | null;
+  viewCount: number;
+  type: NEWS_TYPE;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
@@ -1595,6 +1939,15 @@ export interface Fproduct {
 export enum GENDER {
   FEMALE = "FEMALE",
   MAIL = "MAIL",
+}
+
+/**
+ * 뉴스 타입
+ */
+export enum NEWS_TYPE {
+  COMPLETE = "COMPLETE",
+  MEDIA = "MEDIA",
+  TRAVEL = "TRAVEL",
 }
 
 /**
@@ -1627,6 +1980,20 @@ export enum UserRole {
   manager = "manager",
   partner = "partner",
   partnerB = "partnerB",
+}
+
+/**
+ * Auto generated sort type
+ */
+export enum _NewsSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  subTitle_asc = "subTitle_asc",
+  subTitle_desc = "subTitle_desc",
+  title_asc = "title_asc",
+  title_desc = "title_desc",
+  viewCount_asc = "viewCount_asc",
+  viewCount_desc = "viewCount_desc",
 }
 
 /**
@@ -1705,6 +2072,32 @@ export interface ItineraryUpdateInput {
   thumb?: FileUpdateInput | null;
   images?: FileUpdateInput[] | null;
   date?: any | null;
+}
+
+export interface NewsCreateInput {
+  title: string;
+  content: string;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileCreateInput[] | null;
+  thumb?: FileCreateInput | null;
+  type: NEWS_TYPE;
+}
+
+export interface NewsUpdateInput {
+  title?: string | null;
+  contents: string;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileUpdateInput[] | null;
+  thumb?: FileUpdateInput | null;
+  type: NEWS_TYPE;
 }
 
 export interface PageInfoCreateInput {
@@ -1796,6 +2189,39 @@ export interface ProductUpdateInput {
   kids_price?: number | null;
   baby_price?: number | null;
   type?: ProductType | null;
+}
+
+export interface _NewsFilter {
+  AND?: _NewsFilter[] | null;
+  OR?: _NewsFilter[] | null;
+  title_eq?: string | null;
+  title_not_eq?: string | null;
+  title_contains?: string | null;
+  title_not_contains?: string | null;
+  title_in?: string[] | null;
+  title_not_in?: string[] | null;
+  authorId_eq?: string | null;
+  authorId_not_eq?: string | null;
+  authorId_in?: string[] | null;
+  isNotice_eq?: boolean | null;
+  isNotice_not_eq?: boolean | null;
+  isOpen_eq?: boolean | null;
+  isOpen_not_eq?: boolean | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
+  keyWards_eq?: string | null;
+  keyWards_not_eq?: string | null;
+  keyWards_in?: string[] | null;
+  createdAt_eq?: string | null;
+  createdAt_not_eq?: string | null;
+  createdAt_contains?: string | null;
+  createdAt_not_contains?: string | null;
+  createdAt_in?: string[] | null;
+  createdAt_not_in?: string[] | null;
 }
 
 export interface _PortfolioFilter {

@@ -10,7 +10,6 @@ import { useMutation } from '@apollo/client';
 import { useProductFindById } from '../../../hook/useProductFindById';
 import DayPicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
-import { PRODUCT_POST_CREATE } from "apollo/mutations";
 import { ItineryForm } from "components/tourWrite/ItineryForm";
 import { IproductFindById } from "types/interface";
 import { AppContext } from "pages/_app";
@@ -21,6 +20,7 @@ import { tapCheck } from "../../../utils/style";
 import { useproductUpdate } from "../../../hook/useProductUpdate";
 import TagInput from "../../../components/tagInput/TagInput";
 import { getDefault, useTourWrite } from "../../../hook/useTourWrite";
+import { PRODUCT_POST_CREATE } from "../../../apollo/gql/mutations";
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 interface IProp {
     context: ITourWriteWrapContext;

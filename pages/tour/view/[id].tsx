@@ -16,7 +16,8 @@ import { getNiceElementForTest } from "../../../components/nice/niceUtils";
 import Slider, { Slide } from "../../../components/slider/Slider";
 import SLIDER from "react-slick";
 import { useScroll } from "../../../hook/useScroll";
-import { handleTab, getTab, tabCheck } from "../../../components/tourView/tabUtils";
+import { handleTab, tabCheck } from "../../../components/tourView/tabUtils";
+import { addItem } from "../../../utils/Storage";
 
 // <div class="top_visual">
 // <div class="sub_header sub_bg" style="background-image:url(../img/su_visual_bg.jpg);">
@@ -116,6 +117,12 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
   }
 
   const handleAddBracket = () => {
+    addItem({
+      name,
+      price,
+      productId: _id,
+      count
+    })
   }
 
   const handleCount = (key: keyof IHumanCount, isUp: boolean) => () => {
