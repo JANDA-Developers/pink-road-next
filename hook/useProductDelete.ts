@@ -1,7 +1,7 @@
 import { MutationHookOptions, useMutation } from "@apollo/client";
 import { getOperationName } from "@apollo/client/utilities";
-import { PRODUCT_POST_DELETE, PRODUCT_POST_UPDATE } from "apollo/mutations";
-import { PRODUCT_POST_LIST } from "../apollo/queries";
+import { PRODUCT_POST_DELETE } from "../apollo/gql/mutations";
+import { PRODUCT_POST_LIST } from "../apollo/gql/queries";
 import { productDelete, productDeleteVariables } from "../types/api";
 
 export const useproductDelete = (options?: MutationHookOptions<productDelete,productDeleteVariables>) => {

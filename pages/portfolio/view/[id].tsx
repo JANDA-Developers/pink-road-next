@@ -5,8 +5,8 @@ import { IPortfolio } from 'types/interface';
 import { BoardView } from "components/board/View";
 import { useMutation } from '@apollo/client';
 import { portfolioDelete, portfolioDeleteVariables } from 'types/api';
-import { PORTFOLIO_DELETE } from 'apollo/mutations';
 import Page404 from 'pages/404';
+import { PORTFOLIO_DELETE } from '../../../apollo/gql/portfolio';
 
 interface IProp {
     item: IPortfolio

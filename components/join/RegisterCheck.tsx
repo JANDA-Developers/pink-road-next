@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { policyChkWarning } from './helper';
 import { useMutation } from '@apollo/client';
-import { SIGN_UP } from '../../apollo/mutations';
 import { signUp, signUpVariables, UserRole } from '../../types/api';
 import { isEmail, isPhone } from 'utils/validation';
 import { TFormNormal } from "./FormNormal";
 import { TFormPartnetCor } from "./FormPartnerCor";
 import { TFormPartnerNormal } from "./FormPartnerNormal";
+import { SIGN_UP } from '../../apollo/gql/mutations';
 
 type TSMS = {
   sns: true,
@@ -36,8 +36,8 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
   const [productCreateMu, { loading: create_loading }] = useMutation<signUp, signUpVariables>(SIGN_UP, {
     onCompleted: () => {
       console.log('result');
-       /* 최종 Post Values */
-       handleJoinProcess('registered');
+      /* 최종 Post Values */
+      handleJoinProcess('registered');
     }
   });
 

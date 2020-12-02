@@ -75,11 +75,12 @@ Storage = new LocalManager<TStoreKeys>({
     storage: "localStorage"
 });
 
+
 type TItem = {
     productId: string;
     name: string;
     price: number;
-    count: IHumanCount
+    count: IHumanCount[]
 }
 
 
@@ -128,7 +129,7 @@ export const removeItem = (_id: string) => {
     saveBracket(products);
 }
 
-export const addItem = (product: TItem) => {
+export const addItem = (product) => {
     const products = getBracket() || []
     const duplicated = products.findIndex(p => p.productId === product.productId);
     let updateProducts: TItem[] = [];

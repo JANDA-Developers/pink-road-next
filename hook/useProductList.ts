@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client"
 import { useState } from "react";
-import { PRODUCT_POST_LIST } from "../apollo/queries";
+import { PRODUCT_POST_LIST } from "../apollo/gql/queries";
 import { productList, productListVariables } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
 import { IPageInfo, IProduct, ISet } from "../types/interface";

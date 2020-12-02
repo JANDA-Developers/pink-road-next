@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client"
-import { PAGE_INFO_READ } from "apollo/queries"
 import { pageInfoRead, pageInfoReadVariables, pageInfoRead_PageInfoRead_data } from "types/api"
 import { TPageKeys } from "types/interface"
 import { GraphQLClient, request } from 'graphql-request';
 import { SERVER_URI } from "apollo/uri";
+import { PAGE_INFO_READ } from "../apollo/gql/queries";
 
 
 // export const usePageInfo = async (key: TPageKeys) => {

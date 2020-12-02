@@ -1,7 +1,7 @@
-import { PRODUCT_FIND_BY_ID } from "../apollo/queries";
 import { productFindById, productFindByIdVariables } from "../types/api";
 import { IproductFindById } from "../types/interface";
 import { QueryHookOptions, useQuery } from "@apollo/client"
+import { PRODUCT_FIND_BY_ID } from "../apollo/gql/queries";
 
 
 export interface IUseProductFindById {
