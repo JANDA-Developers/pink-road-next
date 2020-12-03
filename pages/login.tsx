@@ -67,7 +67,7 @@ export const Login: React.FC<IProp> = () => {
         onCompleted: ({ SignIn }) => {
             if (SignIn.ok) {
                 Storage.saveLocal("jwt", SignIn.data.token);
-                toast("환영합니다.");
+                toast.info("환영합니다.");
                 location.href = "/"
             } else {
                 alert(SignIn.error)

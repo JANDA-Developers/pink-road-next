@@ -114,6 +114,7 @@ export const F_PRODUCT_POST = gql`
         updatedAt
         isDelete
         title
+        code
         contents
         author {
             ...Fuser
@@ -143,6 +144,8 @@ export const F_PRODUCT_POST = gql`
         baby_price
         isNotice
         isOpen
+        startDate
+        Dday
     }
     ${F_FILE}
     ${F_USER}

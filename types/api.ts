@@ -140,170 +140,6 @@ export interface categoryDeleteVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: productCreate
-// ====================================================
-
-export interface productCreate_ProductCreate_data {
-  __typename: "Product";
-  _id: string;
-}
-
-export interface productCreate_ProductCreate {
-  __typename: "ProductCreateResponse";
-  ok: boolean;
-  error: string | null;
-  data: productCreate_ProductCreate_data | null;
-}
-
-export interface productCreate {
-  ProductCreate: productCreate_ProductCreate;
-}
-
-export interface productCreateVariables {
-  params: ProductCreateInput;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: productUpdate
-// ====================================================
-
-export interface productUpdate_ProductUpdate_data {
-  __typename: "Product";
-  _id: string;
-}
-
-export interface productUpdate_ProductUpdate {
-  __typename: "ProductUpdateResponse";
-  ok: boolean;
-  error: string | null;
-  data: productUpdate_ProductUpdate_data | null;
-}
-
-export interface productUpdate {
-  ProductUpdate: productUpdate_ProductUpdate;
-}
-
-export interface productUpdateVariables {
-  params: ProductUpdateInput;
-  _id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: productDelete
-// ====================================================
-
-export interface productDelete_ProductDelete_data_author {
-  __typename: "User";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  role: UserRole;
-  brith_date: string;
-  address: string;
-  is_froreginer: boolean;
-  gender: GENDER;
-  busi_num: string;
-  is_priv_corper: boolean;
-  busi_name: string;
-  bsui_address: string;
-  account_number: string;
-  bank_name: string;
-}
-
-export interface productDelete_ProductDelete_data_category {
-  __typename: "Category";
-  _id: string;
-  label: string;
-}
-
-export interface productDelete_ProductDelete_data_itinerary_images {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
-}
-
-export interface productDelete_ProductDelete_data_itinerary {
-  __typename: "Itinerary";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  title: string;
-  contents: string[];
-  images: productDelete_ProductDelete_data_itinerary_images[];
-  date: any;
-}
-
-export interface productDelete_ProductDelete_data_images {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
-}
-
-export interface productDelete_ProductDelete_data {
-  __typename: "Product";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  title: string;
-  contents: string;
-  author: productDelete_ProductDelete_data_author | null;
-  category: productDelete_ProductDelete_data_category | null;
-  status: ProductStatus;
-  itinerary: productDelete_ProductDelete_data_itinerary[];
-  inOrNor: string;
-  info: string;
-  caution: string;
-  images: productDelete_ProductDelete_data_images[];
-  keyWards: string[] | null;
-  address: string;
-  startPoint: string;
-  maxMember: number;
-  minMember: number;
-  subTitle: string;
-  adult_price: number;
-  kids_price: number;
-  baby_price: number;
-  isNotice: boolean | null;
-  isOpen: boolean | null;
-}
-
-export interface productDelete_ProductDelete {
-  __typename: "ProductDeleteResponse";
-  ok: boolean;
-  error: string | null;
-  data: productDelete_ProductDelete_data | null;
-}
-
-export interface productDelete {
-  ProductDelete: productDelete_ProductDelete;
-}
-
-export interface productDeleteVariables {
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: multiUpload
 // ====================================================
 
@@ -1098,27 +934,165 @@ export interface portfolioUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: pcategoryList
+// GraphQL mutation operation: productCreate
 // ====================================================
 
-export interface pcategoryList_pCategoryList_data {
-  __typename: "pCategory";
+export interface productCreate_ProductCreate_data {
+  __typename: "Product";
+  _id: string;
+}
+
+export interface productCreate_ProductCreate {
+  __typename: "ProductCreateResponse";
+  ok: boolean;
+  error: string | null;
+  data: productCreate_ProductCreate_data | null;
+}
+
+export interface productCreate {
+  ProductCreate: productCreate_ProductCreate;
+}
+
+export interface productCreateVariables {
+  params: ProductCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: productUpdate
+// ====================================================
+
+export interface productUpdate_ProductUpdate_data {
+  __typename: "Product";
+  _id: string;
+}
+
+export interface productUpdate_ProductUpdate {
+  __typename: "ProductUpdateResponse";
+  ok: boolean;
+  error: string | null;
+  data: productUpdate_ProductUpdate_data | null;
+}
+
+export interface productUpdate {
+  ProductUpdate: productUpdate_ProductUpdate;
+}
+
+export interface productUpdateVariables {
+  params: ProductUpdateInput;
+  _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: productDelete
+// ====================================================
+
+export interface productDelete_ProductDelete_data_author {
+  __typename: "User";
   _id: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  email: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  is_froreginer: boolean;
+  gender: GENDER;
+  busi_num: string;
+  is_priv_corper: boolean;
+  busi_name: string;
+  bsui_address: string;
+  account_number: string;
+  bank_name: string;
+}
+
+export interface productDelete_ProductDelete_data_category {
+  __typename: "Category";
+  _id: string;
   label: string;
 }
 
-export interface pcategoryList_pCategoryList {
-  __typename: "pCategoryListResponse";
-  ok: boolean;
-  error: string | null;
-  data: pcategoryList_pCategoryList_data[];
+export interface productDelete_ProductDelete_data_itinerary_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
 }
 
-export interface pcategoryList {
-  pCategoryList: pcategoryList_pCategoryList;
+export interface productDelete_ProductDelete_data_itinerary {
+  __typename: "Itinerary";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string[];
+  images: productDelete_ProductDelete_data_itinerary_images[];
+  date: any;
+}
+
+export interface productDelete_ProductDelete_data_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface productDelete_ProductDelete_data {
+  __typename: "Product";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  code: string;
+  contents: string;
+  author: productDelete_ProductDelete_data_author | null;
+  category: productDelete_ProductDelete_data_category | null;
+  status: ProductStatus;
+  itinerary: productDelete_ProductDelete_data_itinerary[];
+  inOrNor: string;
+  info: string;
+  caution: string;
+  images: productDelete_ProductDelete_data_images[];
+  keyWards: string[] | null;
+  address: string;
+  startPoint: string;
+  maxMember: number;
+  minMember: number;
+  subTitle: string;
+  adult_price: number;
+  kids_price: number;
+  baby_price: number;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  startDate: any;
+  Dday: number;
+}
+
+export interface productDelete_ProductDelete {
+  __typename: "ProductDeleteResponse";
+  ok: boolean;
+  error: string | null;
+  data: productDelete_ProductDelete_data | null;
+}
+
+export interface productDelete {
+  ProductDelete: productDelete_ProductDelete;
+}
+
+export interface productDeleteVariables {
+  id: string;
 }
 
 /* tslint:disable */
@@ -1229,6 +1203,7 @@ export interface productList_ProductList_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  code: string;
   contents: string;
   author: productList_ProductList_data_author | null;
   category: productList_ProductList_data_category | null;
@@ -1249,6 +1224,8 @@ export interface productList_ProductList_data {
   baby_price: number;
   isNotice: boolean | null;
   isOpen: boolean | null;
+  startDate: any;
+  Dday: number;
 }
 
 export interface productList_ProductList {
@@ -1264,40 +1241,9 @@ export interface productList {
 }
 
 export interface productListVariables {
+  sort?: _ProductSort[] | null;
+  filter?: _ProductFilter | null;
   pageInput: pageInput;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: categoryFindById
-// ====================================================
-
-export interface categoryFindById_CategoryFindById_data {
-  __typename: "Category";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  label: string;
-}
-
-export interface categoryFindById_CategoryFindById {
-  __typename: "CategoryFindByIdResponse";
-  ok: boolean;
-  error: string | null;
-  data: categoryFindById_CategoryFindById_data | null;
-}
-
-export interface categoryFindById {
-  CategoryFindById: categoryFindById_CategoryFindById;
-}
-
-export interface categoryFindByIdVariables {
-  id: string;
 }
 
 /* tslint:disable */
@@ -1368,6 +1314,7 @@ export interface productFindById_ProductFindById_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  code: string;
   contents: string;
   author: productFindById_ProductFindById_data_author | null;
   category: productFindById_ProductFindById_data_category | null;
@@ -1388,6 +1335,8 @@ export interface productFindById_ProductFindById_data {
   baby_price: number;
   isNotice: boolean | null;
   isOpen: boolean | null;
+  startDate: any;
+  Dday: number;
 }
 
 export interface productFindById_ProductFindById {
@@ -1403,6 +1352,68 @@ export interface productFindById {
 
 export interface productFindByIdVariables {
   _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: pcategoryList
+// ====================================================
+
+export interface pcategoryList_pCategoryList_data {
+  __typename: "pCategory";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  label: string;
+}
+
+export interface pcategoryList_pCategoryList {
+  __typename: "pCategoryListResponse";
+  ok: boolean;
+  error: string | null;
+  data: pcategoryList_pCategoryList_data[];
+}
+
+export interface pcategoryList {
+  pCategoryList: pcategoryList_pCategoryList;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: categoryFindById
+// ====================================================
+
+export interface categoryFindById_CategoryFindById_data {
+  __typename: "Category";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  label: string;
+}
+
+export interface categoryFindById_CategoryFindById {
+  __typename: "CategoryFindByIdResponse";
+  ok: boolean;
+  error: string | null;
+  data: categoryFindById_CategoryFindById_data | null;
+}
+
+export interface categoryFindById {
+  CategoryFindById: categoryFindById_CategoryFindById;
+}
+
+export interface categoryFindByIdVariables {
+  id: string;
 }
 
 /* tslint:disable */
@@ -1839,6 +1850,7 @@ export interface Fproduct {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  code: string;
   contents: string;
   author: Fproduct_author | null;
   category: Fproduct_category | null;
@@ -1859,6 +1871,8 @@ export interface Fproduct {
   baby_price: number;
   isNotice: boolean | null;
   isOpen: boolean | null;
+  startDate: any;
+  Dday: number;
 }
 
 /* tslint:disable */
@@ -2000,6 +2014,22 @@ export enum _NewsSort {
  * Auto generated sort type
  */
 export enum _PortfolioSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  subTitle_asc = "subTitle_asc",
+  subTitle_desc = "subTitle_desc",
+  title_asc = "title_asc",
+  title_desc = "title_desc",
+  viewCount_asc = "viewCount_asc",
+  viewCount_desc = "viewCount_desc",
+}
+
+/**
+ * Auto generated sort type
+ */
+export enum _ProductSort {
+  address_asc = "address_asc",
+  address_desc = "address_desc",
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
   subTitle_asc = "subTitle_asc",
@@ -2216,6 +2246,9 @@ export interface _NewsFilter {
   keyWards_eq?: string | null;
   keyWards_not_eq?: string | null;
   keyWards_in?: string[] | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
   createdAt_eq?: string | null;
   createdAt_not_eq?: string | null;
   createdAt_contains?: string | null;
@@ -2252,6 +2285,57 @@ export interface _PortfolioFilter {
   keyWards_eq?: string | null;
   keyWards_not_eq?: string | null;
   keyWards_in?: string[] | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: string | null;
+  createdAt_not_eq?: string | null;
+  createdAt_contains?: string | null;
+  createdAt_not_contains?: string | null;
+  createdAt_in?: string[] | null;
+  createdAt_not_in?: string[] | null;
+}
+
+export interface _ProductFilter {
+  AND?: _ProductFilter[] | null;
+  OR?: _ProductFilter[] | null;
+  code_eq?: string | null;
+  code_not_eq?: string | null;
+  code_contains?: string | null;
+  code_not_contains?: string | null;
+  code_in?: string[] | null;
+  code_not_in?: string[] | null;
+  address_eq?: string | null;
+  address_not_eq?: string | null;
+  address_contains?: string | null;
+  address_not_contains?: string | null;
+  address_in?: string[] | null;
+  address_not_in?: string[] | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
+  title_eq?: string | null;
+  title_not_eq?: string | null;
+  title_contains?: string | null;
+  title_not_contains?: string | null;
+  title_in?: string[] | null;
+  title_not_in?: string[] | null;
+  authorId_eq?: string | null;
+  authorId_not_eq?: string | null;
+  authorId_in?: string[] | null;
+  isNotice_eq?: boolean | null;
+  isNotice_not_eq?: boolean | null;
+  isOpen_eq?: boolean | null;
+  isOpen_not_eq?: boolean | null;
+  keyWards_eq?: string | null;
+  keyWards_not_eq?: string | null;
+  keyWards_in?: string[] | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
   createdAt_eq?: string | null;
   createdAt_not_eq?: string | null;
   createdAt_contains?: string | null;

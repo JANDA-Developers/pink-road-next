@@ -100,59 +100,6 @@ export const CATEGORY_DELETE = gql`
 // `;
 
 
-export const PRODUCT_POST_CREATE = gql`
-  mutation productCreate(
-        $params: ProductCreateInput!
-    ) {
-    ProductCreate(
-        params: $params  
-      ) {
-      ok
-      error 
-      data {
-        _id
-      }
-    }
-  }
-`;
-
-
-export const PRODUCT_POST_UPDATE = gql`
-  mutation productUpdate(
-        $params: ProductUpdateInput!
-        $_id: String!
-    ) {
-    ProductUpdate(
-        params:$params,
-        _id: $_id 
-      ) {
-      ok
-      error 
-      data {
-        _id
-      } 
-    }
-  }
-`;
-
-
-export const PRODUCT_POST_DELETE = gql`
-  mutation productDelete(
-      $id: String!
-    ) {
-    ProductDelete(
-        id:$id
-      ) {
-      ok
-      error 
-      data {
-          ...Fproduct
-      }
-    }
-  }
-  ${F_PRODUCT_POST}
-`;
-
 export const MULTI_UPLOAD = gql`
   mutation multiUpload(
       $file: Upload!

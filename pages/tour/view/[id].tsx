@@ -19,6 +19,8 @@ import { useScroll } from "../../../hook/useScroll";
 import { handleTab, getTab, tabCheck } from "../../../components/tourView/tabUtils";
 import { toast } from "react-toastify";
 import { addItem } from "../../../utils/Storage";
+import { useBasket } from "../../../hook/useBasket";
+import { useUpdate } from "../../../hook/useUpdater";
 
 // <div class="top_visual">
 // <div class="sub_header sub_bg" style="background-image:url(../img/su_visual_bg.jpg);">
@@ -60,18 +62,20 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
     startPoint,
     subTitle,
     title,
+    startDate
   } = product;
 
   const sliderRef = useRef<SLIDER>(null);
-  const [count, setCount] = useState<IHumanCount>({
-    adult: 0,
-    baby: 0,
-    kids: 0
+  const { count, handleCount, totalPrice } = useBasket({
+    adult_price,
+    baby_price,
+    kids_price
   });
-  const [price, setPrice] = useState(0);
   const [authData, setAuthData] = useState<IAuthInfo>();
   const [sliderIndex, setSlideIndex] = useState(0);
   const { scrollY } = useScroll();
+  const { upKey, updateComponent } = useUpdate()
+  const [updateKey, setupdateKey] = useState(0);
   const tabOnCheck = tabCheck.bind(tabCheck, scrollY);
 
   const router = useRouter();
@@ -120,31 +124,17 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
   const handleAddBracket = () => {
     addItem({
       count,
-      name,
-      price,
-      productId: _id
+      price: totalPrice,
+      name: title,
+      _id
     })
-    toast("장바구니 저장 되었습니다.")
+
+    if (count.adult + count.baby + count.kids === 0) {
+      toast.info("인원을 먼저 선택 해주세요.");
+    } else {
+      toast.info("장바구니에 저장 되었습니다.")
+    }
   }
-
-  const handleCount = (key: keyof IHumanCount, isUp: boolean) => () => {
-    let val = count[key];
-    val = val + (isUp ? 1 : -1);
-    if (val < 0) val = 0;
-    count[key] = val;
-
-    setCount({ ...count })
-  }
-
-  const fistDate = itinerary[0]?.date;
-
-  useEffect(() => {
-    const price =
-      (count.adult * adult_price) +
-      (count.baby * baby_price) +
-      (count.kids * kids_price);
-    setPrice(price)
-  }, [count])
 
   return <div className="edtiorView">
     <div style={{ display: "none" }}>
@@ -222,7 +212,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                   </tr>
                   <tr>
                     <th className="smtitle bt_line">출발일</th>
-                    <td className="smtxt bt_line">{dayjs(fistDate).format("YYYY.MM.DD")}일</td>
+                    <td className="smtxt bt_line">{dayjs(startDate).format("YYYY.MM.DD")}일</td>
                   </tr>
                   <tr>
                     <th className="smtitle bt_line">여행기간</th>
@@ -287,7 +277,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                     <tr>
                       <th>총 금액</th>
                       <td>
-                        <strong>{autoComma(price)}</strong>원
+                        <strong>{autoComma(totalPrice)}</strong>원
                   </td>
                     </tr>
                   </tbody>
@@ -335,13 +325,13 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                     <div key={index + "con" + it._id} dangerouslySetInnerHTML={{ __html: con }} />
                   )}
                 </div>
-                <div className="tour_content_img_list">
+                {/* <div className="tour_content_img_list">
                   {it.images.map((img, index) => <img key={index} style={{
                     width: "auto",
                     height: "100px",
                     display: "inline-block"
                   }} src={img?.uri} />)}
-                </div>
+                </div> */}
               </div>
             </div>
             )}

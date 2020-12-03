@@ -1,43 +1,44 @@
-import { useQuery } from "@apollo/client"
-import { useState } from "react";
-import { PRODUCT_POST_LIST } from "../apollo/gql/queries";
-import { productList, productListVariables } from "../types/api";
+import { QueryHookOptions, useQuery } from "@apollo/client"
+import { PRODUCT_POST_LIST } from "../apollo/gql/product";
+import { Fpage, Fproduct, productList, productListVariables, _PortfolioSort, _ProductFilter, _ProductSort } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
-import { IPageInfo, IProduct, ISet } from "../types/interface";
-
-
-export interface IUseProductList {
-    setPage: ISet<number>;
-    setViewCount: ISet<number>;
-    items: IProduct[];
-    pageInfo: IPageInfo;
-    loading: boolean;
-    viewCount: number;
+import { IListHook, ListInitOptions, useListQuery } from "./useListQuery";
+interface IuseItemListProp extends Partial<ListInitOptions<_ProductFilter, _ProductSort>> {
+    options?: QueryHookOptions<productList, productListVariables>
 }
 
-type IuseProductListProp = {
-    initialPageIndex?:number,
-    initialViewCount?:number
+export interface IUseProductList extends IListHook<_ProductFilter, _ProductSort> {
+    items: Fproduct[];
+    getLoading: boolean;
+    pageInfo: Fpage;
 }
+
 
 export const useproductList = ({
     initialPageIndex = 1,
-    initialViewCount = 20 
-}:IuseProductListProp = {}):IUseProductList => {
-    const [viewCount, setViewCount] = useState(initialViewCount);
-    const [page, setPage] = useState(initialPageIndex);
-    const { data, loading } = useQuery<productList, productListVariables>(PRODUCT_POST_LIST, {
+    initialSort = [_ProductSort.createdAt_desc],
+    initialFilter = {},
+    initialViewCount = 20,
+    options = {}
+}:IuseItemListProp = {}):IUseProductList => {
+    const { variables: overrideVariables, ...ops } = options;
+    const {filter,integratedVariable,setFilter,setPage,setSort,setViewCount,sort,viewCount} = useListQuery({
+        initialFilter,
+        initialPageIndex,
+        initialSort,
+        initialViewCount
+    });
+    const { data, loading:getLoading } = useQuery<productList, productListVariables>(PRODUCT_POST_LIST, {
         nextFetchPolicy: "network-only",
         variables: {
-            pageInput: {
-                cntPerPage: viewCount,
-                page: page
-            }
-        }
+            ...integratedVariable,
+            ...overrideVariables
+        },
+        ...ops
     })
     
     const items = data?.ProductList.data || [];
     const pageInfo = data?.ProductList.page || DEFAULT_PAGE;
     
-    return { items, loading, pageInfo, setPage, setViewCount, viewCount }
+    return { pageInfo, filter, setPage, getLoading, setFilter, setSort, setViewCount, sort, viewCount, items }
 }

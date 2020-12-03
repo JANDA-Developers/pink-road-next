@@ -24,27 +24,6 @@ export const PCAT_LIST = gql`
 `
 
 
-export const PRODUCT_POST_LIST = gql`
-query productList(
-  $pageInput:pageInput!
-) {
-  ProductList(
-  pageInput: $pageInput
-  ) {
-    ok
-    error
-    page {
-      ...Fpage
-    }
-    data  {
-      ...Fproduct
-    }
-  }
-}
-${F_PRODUCT_POST}
-${F_PAGE}
-`
-
 export const CATEGORY_FIND_BY_ID = gql`
   query categoryFindById(
       $id: String!
@@ -62,22 +41,6 @@ export const CATEGORY_FIND_BY_ID = gql`
   ${F_CATEGORY}
 `;
 
-export const PRODUCT_FIND_BY_ID = gql`
-  query productFindById(
-      $_id:String!
-    ) {
-      ProductFindById(
-        _id: $_id
-      ) {
-      ok
-      error
-      data {
-        ...Fproduct
-      }
-    }
-  }
-  ${F_PRODUCT_POST}
-`;
 
 export const CATEGORY_LIST = gql`
   query categoryList {
