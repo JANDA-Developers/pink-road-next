@@ -6,8 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+<<<<<<< HEAD
     "precodegen": "apollo schema:download --endpoint=http://localhost:4000/graphql",
     "codegen": "apollo codegen:generate types/api.ts   --includes=apollo/gql/* --queries=apollo/gql/*.ts --addTypename --localSchemaFile=schema.json --target=typescript --outputFlat"
+=======
+    "precodegen": "apollo schema:download --endpoint=http://10.159.6.11:4000/graphql",
+    "codegen": "apollo codegen:generate types/api.ts   --includes=apollo/* --queries=apollo/*.ts --addTypename --localSchemaFile=schema.json --target=typescript --outputFlat"
+>>>>>>> origin/feature/register_v2
   },
   "dependencies": {
     "@apollo/client": "^3.2.5",
@@ -48,7 +53,7 @@
     "omit-deep-lodash": "^1.1.5",
     "pinkloader-ckeditor5-custom-build": "^0.0.1",
     "react": "16.14.0",
-    "react-daum-postcode": "^2.0.1",
+    "react-daum-postcode": "^2.0.2",
     "react-day-picker": "^7.4.8",
     "react-dom": "16.14.0",
     "react-editor-js": "^1.6.2",

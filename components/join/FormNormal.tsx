@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import DaumPostcode from 'react-daum-postcode';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import dayjs from 'dayjs'
 import RegisterCheck, { TPolicyChk } from './RegisterCheck';
@@ -8,6 +9,7 @@ import { GENDER } from '../../types/api';
 import { TForm } from 'pages/join';
 
 export type TFormNormal = {
+    nameLeng:number,
     email: string,
     password: string,
     passwordChk: string,
@@ -34,6 +36,7 @@ type TFormError = {
 }
 
 const defaultInfo: TFormNormal = process.env.NODE_ENV === "development" ? {
+    nameLeng:3,
     email: "test@naver.com",
     password: "!238917",
     passwordChk: "!238917",
@@ -47,6 +50,7 @@ const defaultInfo: TFormNormal = process.env.NODE_ENV === "development" ? {
     register_sort: "individual",
     is_priv_corper: false
 } : {
+        nameLeng:3,
         email: "",
         password: "",
         passwordChk: "",
@@ -61,8 +65,48 @@ const defaultInfo: TFormNormal = process.env.NODE_ENV === "development" ? {
         is_priv_corper: false
     }
 
-const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
 
+    const currentYear = new Date().getFullYear();
+    const fromMonth = new Date(currentYear, 0);
+    const toMonth = new Date(currentYear + 0, 11);
+
+    function YearMonthForm({ date, localeUtils, onChange }) {
+
+        const months = localeUtils.getMonths();
+
+        const years = [];
+        for (let i = fromMonth.getFullYear()-70; i <= toMonth.getFullYear(); i += 1) {
+            years.push(i);
+        }
+
+        const handleChange = function handleChange(e) {
+            const { year, month } = e.target.form;
+            onChange(new Date(year.value, month.value));
+        };
+
+        return (
+            <form className="DayPicker-Caption">
+            <select name="month" onChange={handleChange} value={date.getMonth()}>
+                {months.map((month, i) => (
+                <option key={month} value={i}>
+                    {month}
+                </option>
+                ))}
+            </select>
+            <select name="year" onChange={handleChange} value={date.getFullYear()}>
+                {years.map(year => (
+                <option key={year} value={year}>
+                    {year}
+                </option>
+                ))}
+            </select>
+            </form>
+        );
+        
+    }
+
+
+const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
 
     const [formInfo, setFormInfo] = useState<TFormNormal>(defaultInfo)
 
@@ -77,8 +121,15 @@ const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
         address: false
     });
 
+    const [daumAddress, setDaumAddress] = useState(false);
 
     const [birthdayPicker, setBirthDayPicker] = useState(false);
+
+    const [dayPickerMonth, setDayPickerMonth] = useState(fromMonth);
+
+    const handleDayPickerMonth = (newVal) => {
+        setDayPickerMonth(newVal);
+    }
 
     const handleBirthPicker = () => {
 
@@ -94,6 +145,8 @@ const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             birthday: selectedDay
         })
         setBirthDayPicker(!birthdayPicker)
+
+        console.log(formInfo);
 
     }
 
@@ -137,8 +190,39 @@ const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
         })
     }
 
-    const handleRegister = () => {
+    const handleAddress = (address) => {
 
+        setDaumAddress(true); 
+   
+    }
+
+    const addressUpdate = (address) => {
+
+        setFormInfo({
+            ...formInfo,
+            address: address
+        })
+        
+    }
+
+    const handleComplete = (data) => {
+
+        let fullAddress = data.address;
+        let extraAddress = ''; 
+        
+        if (data.addressType === 'R') {
+          if (data.bname !== '') {
+            extraAddress += data.bname;
+          }
+          if (data.buildingName !== '') {
+            extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
+          }
+          fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+        }
+     
+        addressUpdate(fullAddress);
+        setDaumAddress(false);
+     
     }
 
     // console.log(` pikcer ${birthdayPicker}`); 
@@ -275,7 +359,21 @@ const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
                             <i className="calendar" onClick={handleBirthPicker}>
                                 <Calendar />
                             </i>
-                            <DayPicker className={`join_birthdayPick ${birthdayPicker && `on`}`} onDayClick={handleDayClick} />
+                            <DayPicker
+                                className={`join_birthdayPick ${birthdayPicker && `on`}`}
+                                month={dayPickerMonth}
+                                fromMonth={fromMonth}
+                                toMonth={toMonth}
+                                onDayClick={handleDayClick}
+                                canChangeMonth={false}
+                                captionElement={({ date, localeUtils }) => (
+                                    <YearMonthForm
+                                    date={date}
+                                    localeUtils={localeUtils}
+                                    onChange={handleDayPickerMonth}
+                                    />
+                                )}
+                            />
                         </div>
 
                     </div>
@@ -291,14 +389,14 @@ const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
                             </ul>
                         </div>
                     </div>
-                    <div className="ph_wrap">
+                    <div className="ph_wrap daum_addresss_wrap">
                         <label>주소</label>
                         <span className="er red_font">*주소가 정확하지 않습니다.</span>
                         <div className="w100">
                             <input type="text" className="w80" name="address"
                                 value={formInfo.address}
                                 onChange={(e) => { handleForm(e) }} />
-                            <button type="button" className="btn btn_mini">
+                            <button type="button" className="btn btn_mini" onClick={handleAddress}>
                                 찾기
                             </button>
                         </div>
@@ -306,6 +404,11 @@ const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
                             <input type="text" className="w100" name="address_detail" placeholder="상세주소"
                                 value={formInfo.address_detail}
                                 onChange={(e) => { handleForm(e) }} />
+                        </div>
+                        <div className={`daum_addresss ${daumAddress && 'on'}`}>
+                            <DaumPostcode
+                                onComplete={handleComplete}
+                            />
                         </div>
                     </div>
                 </div>

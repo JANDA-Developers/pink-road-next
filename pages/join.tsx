@@ -49,7 +49,7 @@ const closePopup = (element: string | null) => {
 
 const Join = () => {
 
-    const [joinForm, setJoinForm] = useState('normal');
+    const [joinForm, setJoinForm] = useState('partnerNormal');
 
     const [joinProcess, setJoinProcess] = useState<TJoinProcess>({
         userType: true,
@@ -100,10 +100,10 @@ const Join = () => {
     const handleVerifyGoogle = async (veriState:boolean) => {
 
         if(veriState){
-            alert('구글 인증에 성공하였습니다');
+            alert('구글 인증에 성공하였습니다.');
             handleJoinProcess('verification');
         }else {
-            alert('구글 인증에 실패하였습니다');
+            alert('구글 인증에 실패하였습니다.');
         }
         
     }
@@ -176,6 +176,7 @@ const Join = () => {
                             </ul>
                         </div>
                         <div className="join_wrap2 w1200">
+
                             {/* 인증 공통사항 */}
                             {joinProcess.userType &&
                                 <UserType handleChange={handleChange} />
@@ -244,71 +245,30 @@ const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao 
     const [signInGoogleMutation] = useMutation(SIGNINGOOGLE)
     const [signInKakaoMutation] = useMutation(SIGNINKAKAO)
 
-    const [googlelLoginMu] = useMutation(SIGNINGOOGLE, {
-        onCompleted: () => {}
-    });
-
-    const [kakaoLoginMu] = useMutation(SIGNINKAKAO, {
-        onCompleted: () => {}
-    });
-
-    
-    const loginTokenSend = (type:string, email:string, token:string) => {
-
-        if(type == "google") {
-
-            googlelLoginMu({
-                variables: {
-                  data: {
-                    email: email,
-                    token: token,
-                  }
-                }
-            })
-            
-        }
-        else {
-            
-            kakaoLoginMu({
-                variables: {
-                  data: {
-                    email: email,
-                    token: token,
-                  }
-                }
-            })
-
-        }
-        
+    const setGoogleToken = (token) => {
+        localStorage.setItem('token', token);
     }
 
-
     const responseGoogle = async (response) => {
-        
-        console.log(response);
-        console.log("access token : " + response.code);
-        console.log("access code : " + response.code);
-        
+
         const {data} = await signInGoogleMutation({ variables: { code : new String(response.code) } });
-        console.log(data);
+        const token = data.SignInGoogle.data.token;
+
         if(data.SignInGoogle.ok) {
             handleVerifyGoogle(true);
-            loginTokenSend('google','gemail@naver.com', '12312321332dbdbd');
-            
+            setGoogleToken(token);
         }else{
             handleVerifyGoogle(false);
         }
+
     }
 
-    const responseKakao= async (response) => {
+    const responseKakao = async (response) => {
         const {data} = await signInKakaoMutation({ variables: { code : "3_sVvZcXcOlZNHEjKH763miBWOF-tmP8RDQZQuzhHDecY6apMee0yNQZWqj3EpRkq1R8rAo9cxgAAAF1hDr4yg" } });
         console.log('kakao');
-        console.log(data);
         if(data.SignInKakao.ok) {
             handleVerifyKakao(true);
-            loginTokenSend('kakao','kakao@navercom','bbdgdfgdf123123');
         }else {
-            console.log(data);
             handleVerifyKakao(false);
         }
     }
@@ -412,3 +372,4 @@ const UserType: React.FC<IUserTypeProps> = ({ handleChange }) => {
 }
 
 export default Join
+
