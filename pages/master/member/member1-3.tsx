@@ -1,5 +1,6 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import { Paginater } from 'components/common/Paginator';
+import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
 
@@ -18,23 +19,67 @@ export const MsMemberC: React.FC<IProp> = () => {
                         <li className="on"><Link href="/master/member/member1-3"><a>개인파트너 회원</a></Link></li>
                         <li><Link href="/master/member/member1-4"><a>탈퇴회원</a></Link></li>
                         <li><Link href="/master/member/member1-5"><a>회원약관 설정</a></Link></li>
-                        <li><Link href="/master/member/member1-6"><a>메뉴얼 설정</a></Link></li>
                     </ul>
                 </div>
                 <div className="con guide">
                     <div className="con_box_top pb5">
+                        <div className="search_top">
+                            <div className="hang">
+                                <ul className="day_ul">
+                                    <li className="on">
+                                        <span>이번달</span>
+                                    </li>
+                                    <li className="on">
+                                        <span>저번달</span>
+                                    </li>
+                                    <li>
+                                        <span>6개월</span>
+                                    </li>
+                                    <li>
+                                        <span>1년</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="hang">
+                                <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                                    ~
+                                    <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                            </div>
+                            <div className="hang fr">
+                                <select className="option">
+                                    <option>가이드명</option>
+                                    <option>아이디</option>
+                                    <option>휴대폰</option>
+                                </select>
+                                <div className="search_div">
+                                    <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
+                                    <div className="svg_img">
+                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                        <button />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div className="alignment">
                             <div className="left_div">
                                 <ul className="board_option">
                                     <li className="on"><a href="/">전체<strong>46</strong></a></li>
-                                    <li><a href="/">내국인<strong>23</strong></a></li>
-                                    <li><a href="/">외국인<strong>23</strong></a></li>
+                                    <li><a href="/">대기<strong>23</strong></a></li>
+                                    <li><a href="/">승인<strong>23</strong></a></li>
+                                    <li><a href="/">미승인<strong>23</strong></a></li>
                                 </ul>
                             </div>
                             <div className="right_div">
                                 <ul className="board_option">
-                                    <li><a href="/">엑셀파일</a></li>
-                                    <li><a href="/">모두선택</a></li>
+                                    <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a></li>
+                                    <li><a href="/">전체선택</a></li>
+                                    <li><a href="/">신규회원등록</a></li>
                                 </ul>
                                 <select className="sel01">
                                     <option>가입일 &uarr;</option>
@@ -58,12 +103,12 @@ export const MsMemberC: React.FC<IProp> = () => {
                                 <input type="checkbox" name="agree" id="agree0" title="전체선택" />
                                 <label htmlFor="agree0" />
                             </span>
-                            <span className="td02">이름</span>
+                            <span className="td02">가이드명</span>
                             <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">국적</span>
+                            <span className="td04">휴대폰</span>
+                            <span className="td05">승인여부</span>
                             <span className="td06">가입일</span>
-                            <span className="td07">가입방법</span>
+                            <span className="td07">판매상품</span>
                             <span className="td08">상세보기</span>
                         </div>
                         <div className="list_line">
@@ -71,59 +116,50 @@ export const MsMemberC: React.FC<IProp> = () => {
                                 <input type="checkbox" name="agree" id="agree1" title="선택" />
                                 <label htmlFor="agree1" />
                             </span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">카카오연동</span>
-                            <span className="td08"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
-                        </div><div className="list_line">
-                            <span className="td01 checkbox">
-                                <input type="checkbox" name="agree" id="agree1" title="선택" />
-                                <label htmlFor="agree1" />
-                            </span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">카카오연동</span>
-                            <span className="td08"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
+                            <span className="td02">김홍이</span>
+                            <span className="td03"><a href="mailto:">gogo@gamail.com</a></span>
+                            <span className="td04"><a href="tel:">010-2222-2222</a></span>
+                            <span className="td05"><i className="approval stand">대기</i></span>
+                            <span className="td06">2020.11.22</span>
+                            <span className="td07"><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</span>
+                            <span className="td08"><button className="btn">상세보기</button></span>
                         </div>
+
                         <div className="list_line">
                             <span className="td01 checkbox">
                                 <input type="checkbox" name="agree" id="agree1" title="선택" />
                                 <label htmlFor="agree1" />
                             </span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">카카오연동</span>
-                            <span className="td08"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
+                            <span className="td02">김홍이</span>
+                            <span className="td03"><a href="mailto:">gogo@gamail.com</a></span>
+                            <span className="td04"><a href="tel:">010-2222-2222</a></span>
+                            <span className="td05"><i className="approval ok">승인</i></span>
+                            <span className="td06">2020.11.22</span>
+                            <span className="td07"><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</span>
+                            <span className="td08"><button className="btn">상세보기</button></span>
                         </div>
+
                         <div className="list_line">
                             <span className="td01 checkbox">
                                 <input type="checkbox" name="agree" id="agree1" title="선택" />
                                 <label htmlFor="agree1" />
                             </span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">카카오연동</span>
-                            <span className="td08"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
+                            <span className="td02">김홍이</span>
+                            <span className="td03"><a href="mailto:">gogo@gamail.com</a></span>
+                            <span className="td04"><a href="tel:">010-2222-2222</a></span>
+                            <span className="td05"><i className="approval no" data-tip="미승인사유 : ">미승인</i></span>
+                            <span className="td06">2020.11.22</span>
+                            <span className="td07"><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</span>
+                            <span className="td08"><button className="btn">상세보기</button></span>
                         </div>
+
                         <Paginater pageNumber={10} totalPageCount={20} />
                         <div className="fin">
                             <div className="float_left">
-                                <button type="submit" className="btn medium">모두선택</button>
+                                <button type="submit" className="btn medium">전체선택</button>
                             </div>
                             <div className="float_right">
-                                <button type="submit" className="btn medium mr5">탈퇴시키기</button>
+                                <button type="submit" className="btn medium mr5">탈퇴</button>
                                 <button type="submit" className="btn medium">활동정지</button>
                             </div>
                         </div>
@@ -131,90 +167,7 @@ export const MsMemberC: React.FC<IProp> = () => {
 
                 </div>
             </div>
-            {/* popup-작성한 게시글 보기 */}
-            <div id="Popup01" className="popup_bg_full" style={{ display: 'none;' }}>
-                <a className="close_icon">
-                    <i className="flaticon-multiply"></i>
-                </a>
-                <div className="in_txt master_popup">
-                    <h3><strong>김홍홍</strong>님이 작성한 글 </h3>
-                    {/* 작성한글 */}
-                    <div className="info_page">
-                        <div className="alignment">
-                            <div className="left_div">총 <strong>22,222</strong>개</div>
-                            <div className="right_div">
-                                <select className="sel01">
-                                    <option>작성일 &uarr;</option>
-                                    <option>작성일 &darr;</option>
-                                    <option>조회수 &uarr;</option>
-                                    <option>조회수 &darr;</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
 
-
-                        <div className="board_list_mini ln05">
-                            <div className="thead">
-                                <div className="tt01 checkbox">
-                                    <input type="checkbox" name="agree" id="agree-popup-0" title="모두선택" />
-                                    <label htmlFor="agree-popup-0" />
-                                </div>
-                                <div className="tt02">게시판</div>
-                                <div className="tt03">번호</div>
-                                <div className="tt04">제목</div>
-                                <div className="tt05">날짜</div>
-                            </div>
-                            <div className="tbody">
-                                <ul>
-                                    <li>
-                                        <div className="tt01 checkbox">
-                                            <input type="checkbox" name="agree" id="agree-popup-1" title="선택" />
-                                            <label htmlFor="agree-popup-1" />
-                                        </div>
-                                        <div className="tt02">문의하기</div>
-                                        <div className="tt03">23</div>
-                                        <div className="tt04"><a href="/">궁금한게 있어요 :) <i className="q_ok">답변완료</i></a></div>
-                                        <div className="tt05">2020.02.02 11:00</div>
-                                    </li>
-                                    <li>
-                                        <div className="tt01 checkbox">
-                                            <input type="checkbox" name="agree" id="agree-popup-2" title="선택" />
-                                            <label htmlFor="agree-popup-2" />
-                                        </div>
-                                        <div className="tt02">문의하기</div>
-                                        <div className="tt03">23</div>
-                                        <div className="tt04"><a href="/">궁금한게 있어요 :) <i className="q_no">답변중</i></a></div>
-                                        <div className="tt05">2020.02.02 11:00</div>
-                                    </li>
-                                    <li className="no_data">
-                                        {/*게시글이 없을때*/}
-                                        <i className="jandaicon-info3" />
-                                        <span>게시글이 없습니다.</span>
-                                    </li>
-                                </ul>
-
-                            </div>
-                            <Paginater pageNumber={10} totalPageCount={20} />
-                        </div>
-
-                        <div className="fin">
-                            <div className="float_left">
-                                <button type="submit" className="btn medium">모두선택</button>
-                            </div>
-                            <div className="float_right">
-                                <button type="submit" className="btn medium mr5">삭제</button>
-                                <button type="submit" className="btn medium mr5">비공개전환</button>
-                                <button type="submit" className="btn medium">공개전환</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             {/* popup-상세보기 */}
             <div id="Popup01" className="popup_bg_full" style={{ display: 'none;' }}>
                 <a className="close_icon">
@@ -229,47 +182,48 @@ export const MsMemberC: React.FC<IProp> = () => {
                         <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
                         <button className="btn mr5">작성한 게시글</button>
                     </div>
+                    {/* 가입 */}
+                    <div className="info_page">
+                        <div className="full_div">
+                            <h4>가입승인</h4>
+                            <div className="info_table line8 w50">
+                                <div className="tr">
+                                    <div className="th01">승인여부</div>
+                                    <div className="td01">
+                                        <select>
+                                            <option>승인</option>
+                                            <option>대기</option>
+                                            <option>미승인</option>
+                                        </select>
+                                    </div>
+                                    <div className="th02">사유</div>
+                                    <div className="td02"><input type="text" className="w100" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* 회원정보 */}
                     <div className="info_page">
                         <div className="full_div">
                             <h4>회원정보</h4>
                             <div className="info_table line8 w50">
                                 <div className="tr">
-                                    <div className="th01">이름</div>
-                                    <div className="td01"><span>김김김</span></div>
-                                    <div className="th02">이메일(ID)</div>
+                                    <div className="th01">가이드명</div>
+                                    <div className="td01"><span>김홍이</span></div>
+                                    <div className="th02">아이디</div>
                                     <div className="td02"><a href="mailto:gggg@naver.com">gggg@naver.com</a></div>
-                                    <div className="th03">생년월일</div>
+                                    <div className="th03">핸드폰</div>
                                     <div className="td03"><input type="text" className="w100" /></div>
-                                    <div className="th04">성별</div>
-                                    <div className="td04">
-                                        <select>
-                                            <option>여성</option>
-                                            <option>남성</option>
-                                        </select>
-                                    </div>
 
                                 </div>
                                 <div className="tr">
-                                    <div className="th01">주소</div>
-                                    <div className="td01"><input type="text" className="w100" /></div>
-                                    <div className="th02">가입방법</div>
-                                    <div className="td02">
-                                        <select>
-                                            <option>네이버연동</option>
-                                            <option>카카오톡연동</option>
-                                            <option>홈페이지</option>
-                                        </select>
-                                    </div>
-                                    <div className="th03">휴대폰</div>
-                                    <div className="td03"><input type="text" className="w100" /></div>
-                                    <div className="th04">국적</div>
-                                    <div className="td04">
-                                        <select>
-                                            <option>내국인</option>
-                                            <option>외국인</option>
-                                        </select>
-                                    </div>
+                                    <div className="th01">계좌번호</div>
+                                    <div className="td01"><input type="text" className="w20 mr5" /><input type="text" className="w70" /></div>
+                                    <div className="th02">통장사본</div>
+                                    <div className="td02"><input type="file" className="w100" /></div>
+                                    <div className="th03">사업자등록증</div>
+                                    <div className="td03"><input type="file" className="w100" /></div>
                                 </div>
                             </div>
                         </div>
@@ -303,10 +257,19 @@ export const MsMemberC: React.FC<IProp> = () => {
                         </div>
                     </div>
 
+
+                    {/* 사업자회원 주의사항 */}
+                    <div className="info_page">
+                        <div className="full_div">
+                            <h4>사업자회원 주의사항</h4>
+                            <textarea style={{ height: "100px;" }} placeholder=""></textarea>
+                        </div>
+                    </div>
+
                     {/* 예약 및 결제 */}
                     <div className="info_page">
                         <div className="full_div">
-                            <h4>예약 및 결제</h4>
+                            <h4>예약 및 결제<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i><span><strong>11월</strong> - 예약<strong> 23건</strong> / 실적<strong className="sky_font"> 2,000,000원</strong><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
                             <div className="info_table w50">
 
                                 <div className="tr">
@@ -370,13 +333,14 @@ export const MsMemberC: React.FC<IProp> = () => {
                                     </div>
                                 </div>
                             </div>
+                            <Paginater pageNumber={10} totalPageCount={20} />
                         </div>
                     </div>
 
                     {/* 취소 및 환불내역 */}
                     <div className="info_page">
                         <div className="full_div">
-                            <h4>취소 및 환불내역</h4>
+                            <h4>취소 및 환불내역<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i><span><strong>11월</strong> - 취소예약<strong> 23건</strong> / 환수<strong className="red_font"> -1,000,000원</strong><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
                             <div className="info_table w50">
                                 <div className="tr">
                                     <div className="re01">
@@ -409,8 +373,10 @@ export const MsMemberC: React.FC<IProp> = () => {
                                     </div>
                                 </div>
                             </div>
+                            <Paginater pageNumber={10} totalPageCount={20} />
                         </div>
                     </div>
+
 
                     {/* 메모 */}
                     <div className="info_page">
@@ -436,7 +402,6 @@ export const MsMemberC: React.FC<IProp> = () => {
                     </div>
                     <div className="fin">
                         <div className="float_left">
-                            <button type="submit" className="btn medium">탈퇴시키기</button>
                         </div>
                         <div className="float_right">
                             <button type="submit" className="btn medium mr5">수정하기</button>

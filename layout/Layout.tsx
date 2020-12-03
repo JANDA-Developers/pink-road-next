@@ -13,7 +13,7 @@ export const Layout: React.FC<IProp> = ({ children }) => {
         <Header />
         {children}
         <Footer />
-        <ReactTooltip  id=" tooltip" />
+        <ReactTooltip effect="solid" type="info" />
     </div>;
 };
 

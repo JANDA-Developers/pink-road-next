@@ -1,7 +1,9 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import { Paginater } from 'components/common/Paginator';
+import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
+import ReactTooltip from 'react-tooltip';
 
 interface IProp { }
 
@@ -10,7 +12,6 @@ export const MsMemberA: React.FC<IProp> = () => {
         <div className="in ">
             <h4>회원관리</h4>
             <div className="in_content">
-
                 <div className="tab-nav">
                     <ul>
                         <li className="on"><Link href="/master/member"><a>개인회원</a></Link></li>
@@ -18,11 +19,53 @@ export const MsMemberA: React.FC<IProp> = () => {
                         <li><Link href="/master/member/member1-3"><a>개인파트너 회원</a></Link></li>
                         <li><Link href="/master/member/member1-4"><a>탈퇴회원</a></Link></li>
                         <li><Link href="/master/member/member1-5"><a>회원약관 설정</a></Link></li>
-                        <li><Link href="/master/member/member1-6"><a>메뉴얼 설정</a></Link></li>
                     </ul>
                 </div>
                 <div className="con family">
                     <div className="con_box_top pb5">
+                        <div className="search_top">
+                            <div className="hang">
+                                <ul className="day_ul">
+                                    <li className="on">
+                                        <span>이번달</span>
+                                    </li>
+                                    <li className="on">
+                                        <span>저번달</span>
+                                    </li>
+                                    <li>
+                                        <span>6개월</span>
+                                    </li>
+                                    <li>
+                                        <span>1년</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="hang">
+                                <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                                    ~
+                                    <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                            </div>
+                            <div className="hang fr">
+                                <select className="option">
+                                    <option>이름</option>
+                                    <option>아이디</option>
+                                    <option>휴대폰</option>
+                                </select>
+                                <div className="search_div">
+                                    <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
+                                    <div className="svg_img">
+                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                        <button />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div className="alignment">
                             <div className="left_div">
                                 <ul className="board_option">
@@ -33,8 +76,9 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </div>
                             <div className="right_div">
                                 <ul className="board_option">
-                                    <li><a href="/">엑셀파일</a></li>
-                                    <li><a href="/">모두선택</a></li>
+                                    <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a></li>
+                                    <li><a href="/">전체선택</a></li>
+                                    <li><a href="/">신규회원등록</a></li>
                                 </ul>
                                 <select className="sel01">
                                     <option>가입일 &uarr;</option>
@@ -60,11 +104,12 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </span>
                             <span className="td02">이름</span>
                             <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">국적</span>
-                            <span className="td06">가입일</span>
-                            <span className="td07">가입방법</span>
-                            <span className="td08">상세보기</span>
+                            <span className="td04">휴대폰</span>
+                            <span className="td05">성별</span>
+                            <span className="td06">국적</span>
+                            <span className="td07">가입일</span>
+                            <span className="td08">가입방법</span>
+                            <span className="td09">상세보기</span>
                         </div>
                         <div className="list_line">
                             <span className="td01 checkbox">
@@ -73,23 +118,27 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </span>
                             <span className="td02">김옥자</span>
                             <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">카카오연동</span>
-                            <span className="td08"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
-                        </div><div className="list_line">
+                            <span className="td04"><a href="tel:">010-2222-2222</a></span>
+                            <span className="td05">여성</span>
+                            <span className="td06">외국인</span>
+                            <span className="td07">2020.10.01</span>
+                            <span className="td08">카카오연동</span>
+                            <span className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
+                        </div>
+
+                        <div className="list_line">
                             <span className="td01 checkbox">
                                 <input type="checkbox" name="agree" id="agree1" title="선택" />
                                 <label htmlFor="agree1" />
                             </span>
                             <span className="td02">김옥자</span>
                             <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">카카오연동</span>
-                            <span className="td08"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
+                            <span className="td04"><a href="tel:">010-2222-2222</a></span>
+                            <span className="td05">여성</span>
+                            <span className="td06">외국인</span>
+                            <span className="td07">2020.10.01</span>
+                            <span className="td08">카카오연동</span>
+                            <span className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
                         </div>
                         <div className="list_line">
                             <span className="td01 checkbox">
@@ -98,11 +147,12 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </span>
                             <span className="td02">김옥자</span>
                             <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">카카오연동</span>
-                            <span className="td08"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
+                            <span className="td04"><a href="tel:">010-2222-2222</a></span>
+                            <span className="td05">여성</span>
+                            <span className="td06">외국인</span>
+                            <span className="td07">2020.10.01</span>
+                            <span className="td08">카카오연동</span>
+                            <span className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
                         </div>
                         <div className="list_line">
                             <span className="td01 checkbox">
@@ -111,19 +161,20 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </span>
                             <span className="td02">김옥자</span>
                             <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">카카오연동</span>
-                            <span className="td08"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
+                            <span className="td04"><a href="tel:">010-2222-2222</a></span>
+                            <span className="td05">여성</span>
+                            <span className="td06">외국인</span>
+                            <span className="td07">2020.10.01</span>
+                            <span className="td08">카카오연동</span>
+                            <span className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
                         </div>
                         <Paginater pageNumber={10} totalPageCount={20} />
                         <div className="fin">
                             <div className="float_left">
-                                <button type="submit" className="btn medium">모두선택</button>
+                                <button type="submit" className="btn medium">전체선택</button>
                             </div>
                             <div className="float_right">
-                                <button type="submit" className="btn medium mr5">탈퇴시키기</button>
+                                <button type="submit" className="btn medium mr5">탈퇴</button>
                                 <button type="submit" className="btn medium">활동정지</button>
                             </div>
                         </div>
@@ -237,7 +288,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                                 <div className="tr">
                                     <div className="th01">이름</div>
                                     <div className="td01"><span>김김김</span></div>
-                                    <div className="th02">이메일(ID)</div>
+                                    <div className="th02">아이디</div>
                                     <div className="td02"><a href="mailto:gggg@naver.com">gggg@naver.com</a></div>
                                     <div className="th03">생년월일</div>
                                     <div className="td03"><input type="text" className="w100" /></div>

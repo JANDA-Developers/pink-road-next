@@ -10,7 +10,6 @@ export const MsMemberD: React.FC<IProp> = () => {
         <div className="in ">
             <h4>회원관리</h4>
             <div className="in_content">
-
                 <div className="tab-nav">
                     <ul>
                         <li><Link href="/master/member"><a>개인회원</a></Link></li>
@@ -18,7 +17,6 @@ export const MsMemberD: React.FC<IProp> = () => {
                         <li><Link href="/master/member/member1-3"><a>개인파트너 회원</a></Link></li>
                         <li className="on"><Link href="/master/member/member1-4"><a>탈퇴회원</a></Link></li>
                         <li><Link href="/master/member/member1-5"><a>회원약관 설정</a></Link></li>
-                        <li><Link href="/master/member/member1-6"><a>메뉴얼 설정</a></Link></li>
                     </ul>
                 </div>
                 <div className="con withdrawal">
@@ -123,7 +121,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                                 <button type="submit" className="btn medium">모두선택</button>
                             </div>
                             <div className="float_right">
-                                <button type="submit" className="btn medium mr5">탈퇴시키기</button>
+                                <button type="submit" className="btn medium mr5">탈퇴</button>
                                 <button type="submit" className="btn medium">활동정지</button>
                             </div>
                         </div>
