@@ -65,7 +65,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                     </div>
 
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -155,9 +155,9 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <div className="t07">
                                     <div className="align">
                                         <i className="state re-ok">예약완료</i>
-                                        </div>
+                                    </div>
                                 </div>
-                                 
+
                             </div>
                             <div className="td">
                                 <div className="t01">
@@ -185,9 +185,9 @@ export const MyReservation: React.FC<IProp> = () => {
 
                                             <span className="goods-state1">확정여부: 출발미정(6/10)</span>
                                             <span className="goods-state2">상품상태: 예약진행중</span>
-                                         
+
                                         </div>
-                                     
+
                                     </div>
                                     <div className="memo">
                                         <p><i className="flaticon-flag-2"></i>메모자리~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모~~~~~~~~~~~~~~~~~~~</p>
@@ -209,7 +209,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t07">
                                     <div className="align">
-                                         <i className="state re-refund">예약취소</i>
+                                        <i className="state re-refund">예약취소</i>
                                         <span className="refund-txt">(예약취소대기:부분취소)</span>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t02">
                                     <div className="align">
-                                         <span className="r-number">R-34252</span>
+                                        <span className="r-number">R-34252</span>
                                         <button className="btn">상세정보</button>
                                     </div>
                                 </div>
@@ -267,7 +267,7 @@ export const MyReservation: React.FC<IProp> = () => {
                             </div>
 
 
-                            <Paginater pageNumber={10} totalPageCount={20} />
+                            {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                         </div>
                     </div>
                 </div>
@@ -393,7 +393,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <span className="tt">선택된 예약 인원</span>
                                 <span>총 4명 ( 성인2 / 소아2 / 유아0 )</span>
                                 <span className="float_right"><i className="menok">예약자-포함</i><i className="menno">예약자-미포함</i></span> {/* 포함 미포함 둘중하나만 표시*/}
-                            </div> 
+                            </div>
                             <div className="tr">
                                 <div className="re01">
                                     예약자(본인)
@@ -462,11 +462,11 @@ export const MyReservation: React.FC<IProp> = () => {
                         </div>
 
                     </div>
-                    
+
 
                 </div>
 
-               
+
                 <div className="info_page">
                     <h4>메모</h4>
                     <div className="write_comment">
@@ -489,7 +489,7 @@ export const MyReservation: React.FC<IProp> = () => {
                     </div>
                 </div>
 
-    
+
                 <div className="fin">
                     <div className="float_left">
                         <button type="submit" className="btn medium">
@@ -507,7 +507,7 @@ export const MyReservation: React.FC<IProp> = () => {
                 </div>
 
 
-               
+
             </div>
         </div>
         <div id="fade" className="fade" style={{ display: 'block;' }}></div>

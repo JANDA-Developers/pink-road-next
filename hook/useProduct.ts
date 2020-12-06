@@ -15,7 +15,7 @@ import { productUpdate, productUpdateVariables } from "../types/api";
 
 export const useProductDelete = (options?: MutationHookOptions<productDelete,productDeleteVariables>) => {
     const [productUpdateMu, { loading: deleteLoading }] = useMutation<productDelete, productDeleteVariables>(PRODUCT_POST_DELETE, {
-        refetchQueries: [getOperationName(PRODUCT_POST_LIST) || ""],
+        refetchQueries: [getOperationName(PRODUCT_POST_LIST), getOperationName(PRODUCT_FIND_BY_ID) || ""],
         ...options
     });
     
@@ -46,7 +46,7 @@ export const useProductFindById = ({
 }:IuseProductFindByIdProp):IUseProductFindById => {
     const { data, loading } = useQuery<productFindById, productFindByIdVariables>(PRODUCT_FIND_BY_ID, {
         ...options,
-        nextFetchPolicy: "cache-only",
+        nextFetchPolicy: "network-only",
         onCompleted: ({ProductFindById})=> {
             if(!ProductFindById.ok) {
                 console.error(data?.ProductFindById.error);
@@ -86,7 +86,7 @@ export const useProductList = ({
         initialViewCount
     });
     const { data, loading:getLoading } = useQuery<productList, productListVariables>(PRODUCT_POST_LIST, {
-        nextFetchPolicy: "network-only",
+        nextFetchPolicy: "cache-and-network",
         variables: {
             ...integratedVariable,
             ...overrideVariables
@@ -103,7 +103,8 @@ export const useProductList = ({
 
 export const useProductUpdate = (options?: MutationHookOptions<productUpdate,productUpdateVariables>) => {
     const [productUpdateMu, { loading: updateLoading }] = useMutation<productUpdate, productUpdateVariables>(PRODUCT_POST_UPDATE, {
-        refetchQueries: [getOperationName(PRODUCT_POST_LIST) || ""],
+        refetchQueries: [getOperationName(PRODUCT_POST_LIST), getOperationName(PRODUCT_FIND_BY_ID)],
+        awaitRefetchQueries:true,
         ...options
     });
     

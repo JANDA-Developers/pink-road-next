@@ -9,7 +9,7 @@ interface IProp {
     index: number;
 }
 
-export const LineNewsView: React.FC<IProp> = ({ news }) => {
+export const LineNewsView: React.FC<IProp> = ({ news, index }) => {
     const { title, author, createdAt, viewCount, thumb } = news;
     return <li>
         <div className="td01">2323</div>

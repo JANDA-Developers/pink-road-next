@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import {gql, useMutation} from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import { GoogleLogin } from 'react-google-login';
 import KakaoLogin from 'react-kakao-login';
 import axios from "axios";
@@ -8,7 +8,7 @@ import FormPartnerNormal from 'components/join/FormPartnerNormal';
 import PolicyPopup from 'components/policyPopup/PolicyPopup';
 import FormNormal from 'components/join/FormNormal';
 import SubTopNav from 'layout/components/SubTop';
-import {SIGNINGOOGLE,SIGNINKAKAO} from "apollo/mutations"
+import { SIGNINGOOGLE, SIGNINKAKAO } from '../apollo/gql/mutations';
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -97,23 +97,23 @@ const Join = () => {
     }
 
 
-    const handleVerifyGoogle = async (veriState:boolean) => {
+    const handleVerifyGoogle = async (veriState: boolean) => {
 
-        if(veriState){
+        if (veriState) {
             alert('구글 인증에 성공하였습니다.');
             handleJoinProcess('verification');
-        }else {
+        } else {
             alert('구글 인증에 실패하였습니다.');
         }
-        
+
     }
 
-    const handleVerifyKakao = async (veriState:boolean) => {
+    const handleVerifyKakao = async (veriState: boolean) => {
 
-        if(veriState){
+        if (veriState) {
             alert('카카오 인증에 성공하였습니다');
             handleJoinProcess('verification');
-        }else {
+        } else {
             alert('카카오 인증에 실패하였습니다');
         }
 
@@ -234,14 +234,14 @@ const JoinResult = () => {
 
 
 interface IProps {
-    handleVerifyGoogle: (veriState:boolean) => void;
-    handleVerifyKakao: (veriState:boolean) => void;
+    handleVerifyGoogle: (veriState: boolean) => void;
+    handleVerifyKakao: (veriState: boolean) => void;
 }
 
 const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao }) => {
 
     /* ::::: GraphQL ::::: */
-    
+
     const [signInGoogleMutation] = useMutation(SIGNINGOOGLE)
     const [signInKakaoMutation] = useMutation(SIGNINKAKAO)
 
@@ -251,29 +251,29 @@ const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao 
 
     const responseGoogle = async (response) => {
 
-        const {data} = await signInGoogleMutation({ variables: { code : new String(response.code) } });
+        const { data } = await signInGoogleMutation({ variables: { code: new String(response.code) } });
         const token = data.SignInGoogle.data.token;
 
-        if(data.SignInGoogle.ok) {
+        if (data.SignInGoogle.ok) {
             handleVerifyGoogle(true);
             setGoogleToken(token);
-        }else{
+        } else {
             handleVerifyGoogle(false);
         }
 
     }
 
     const responseKakao = async (response) => {
-        const {data} = await signInKakaoMutation({ variables: { code : "3_sVvZcXcOlZNHEjKH763miBWOF-tmP8RDQZQuzhHDecY6apMee0yNQZWqj3EpRkq1R8rAo9cxgAAAF1hDr4yg" } });
+        const { data } = await signInKakaoMutation({ variables: { code: "3_sVvZcXcOlZNHEjKH763miBWOF-tmP8RDQZQuzhHDecY6apMee0yNQZWqj3EpRkq1R8rAo9cxgAAAF1hDr4yg" } });
         console.log('kakao');
-        if(data.SignInKakao.ok) {
+        if (data.SignInKakao.ok) {
             handleVerifyKakao(true);
-        }else {
+        } else {
             handleVerifyKakao(false);
         }
     }
 
-        
+
     const REST_API_KEY = "f1a52f415e4f545780749d7ea195c398"
     const REDIRECT_URI = "http://localhost:3000"
 
@@ -284,7 +284,7 @@ const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao 
         window.open(kako_auth_link, "myWindow", "width=800, height=800")
         return false;
     }
-    
+
     return (
         <div className="certified" id="con01">
             <h5>본인인증을 해주세요.</h5>
@@ -301,14 +301,14 @@ const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao 
                     <i className="jandaicon-google1" />
                     구글 인증
                     <GoogleLogin
-                       clientId="618452450177-q88svpla9jpeg4ar1hr0eluvjmrob079.apps.googleusercontent.com"
-                       buttonText="Login"
-                       responseType="code"
-                       scope="https://www.googleapis.com/auth/userinfo.profile"
-                       onSuccess={responseGoogle}
-                       onFailure={responseGoogle}
-                       cookiePolicy={'single_host_origin'}
-                       icon={false}
+                        clientId="618452450177-q88svpla9jpeg4ar1hr0eluvjmrob079.apps.googleusercontent.com"
+                        buttonText="Login"
+                        responseType="code"
+                        scope="https://www.googleapis.com/auth/userinfo.profile"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                        cookiePolicy={'single_host_origin'}
+                        icon={false}
                     />
                 </li>
                 <li className="socialVerify">

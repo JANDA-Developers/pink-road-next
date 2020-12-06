@@ -15,7 +15,6 @@ import { Modal } from '../../components/modal/Modal';
 import { openModal } from '../../utils/popUp';
 import { useVerification } from '../../hook/useVerification';
 import { toast } from 'react-toastify';
-import ProfileIndi from '../../components/mypage/ProfileIndi';
 import { GET_CONTEXT } from '../../apollo/gql/queries';
 import { getOperationName } from '@apollo/client/utilities';
 
@@ -43,6 +42,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const { setPw, setProfile } = setData;
     const {
         address,
+        name,
         address_detail,
         busi_num,
         acceptEamil,
@@ -288,7 +288,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <li>
                                     <div className="title">이름</div>
                                     <div className="txt">
-                                        <strong>{name}</strong>
+                                        <strong>{name || ""}</strong>
                                         <ul className="country_check">
                                             <li className={`c_in ${is_froreginer || "on"}`}>내국인</li>
                                             <li className={`c_out ${is_froreginer && "on"}`}>외국인</li>

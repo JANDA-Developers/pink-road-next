@@ -17,8 +17,8 @@ import Page404 from "pages/404";
 import { tapCheck } from "../../../utils/style";
 import TagInput from "../../../components/tagInput/TagInput";
 import { getDefault, useTourWrite } from "../../../hook/useTourWrite";
-import { PRODUCT_POST_CREATE } from "../../../apollo/gql/product";
-import { useProductDelete } from "../../../hook/useProduct";
+import { useProductDelete, useProductFindById, useProductUpdate } from "../../../hook/useProduct";
+import { PRODUCT_CREATE } from "../../../apollo/gql/product";
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 interface IProp {
     context: ITourWriteWrapContext;
@@ -325,7 +325,7 @@ export const TourWriteWrap: React.FC<IProp> = () => {
         }
     })
 
-    const [productCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCT_POST_CREATE, {
+    const [productCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCT_CREATE, {
         onCompleted: ({ ProductCreate }) => {
             if (ProductCreate.ok)
                 router.push(`/tour/view/${ProductCreate!.data!._id}`)

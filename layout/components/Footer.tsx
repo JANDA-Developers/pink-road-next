@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import $ from "jquery";
-import Link from "next/link"
+import Link from "next/link";
+
+import { AppContext } from "pages/_app";
 
 interface IProp { }
 
 export const Footer: React.FC<IProp> = () => {
+
+    const { isLogin } = useContext(AppContext);
 
     const handleFadeClick = () => {
         $('family_site_select').css("display", 'none');
@@ -17,9 +21,9 @@ export const Footer: React.FC<IProp> = () => {
             <Link href="#header">
                 <a className="top"><i className="jandaicon-arr4-top" /></a>
             </Link>
-            <Link href="/mypage/basket">
+            {isLogin && <Link href="/mypage/basket">
                 <a className="basket"><object type="image/svg+xml" data="/img/svg/basket.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object><button /></a>
-            </Link>
+            </Link>}
             <Link href="#footer">
                 <a className="down"><i className="jandaicon-arr4-bottom" /></a>
             </Link>

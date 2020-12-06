@@ -27,7 +27,7 @@ export const BoardList: React.FC<IProp> = ({ context, FilterSort, children, onWr
           {children}
         </div>
       </div>
-      {pageInfo && <Paginater pageNumber={pageInfo.page} totalPageCount={pageInfo.totalPageSize} />}
+      <Paginater pageInfo={pageInfo} />
       <div className="tl list_bottom">
         <div className="btn_footer">
           {onWrite && <button onClick={onWrite} type="submit" className="btn medium pointcolor">글쓰기</button>}

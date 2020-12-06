@@ -1,6 +1,5 @@
 import React from 'react';
 import OLDEDITOR from '../oldEditor/OldEditor';
-import "ckeditor5-image/theme/imagestyle.css"
 interface IProp {
     data: string
 }

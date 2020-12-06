@@ -21,7 +21,7 @@ export const Layout: React.FC<IProp> = ({ children }) => {
         <Header />
         {children}
         <Footer />
-        <ReactTooltip effect="solid" />
+        <ReactTooltip effect="solid" type="info" />
     </div>;
 };
 

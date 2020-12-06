@@ -1,5 +1,6 @@
 import React from 'react';
 import { MypageLayout } from '../../layout/MypageLayout';
+import { Paginater } from 'components/common/Paginator';
 
 interface IProp { }
 
@@ -69,9 +70,10 @@ export const MyPageBoard: React.FC<IProp> = () => {
                             <div className="left_div">총 <strong>22,222</strong>개</div>
                             <div className="right_div">
                                 <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
+                                    <option>작성일 &uarr;</option>
+                                    <option>작성일 &darr;</option>
+                                    <option>조회수 &uarr;</option>
+                                    <option>조회수 &darr;</option>
                                 </select>
                                 <select className="sel02">
                                     <option>10개 보기</option>
@@ -80,35 +82,28 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                 </select>
                             </div>
                         </div>
-                        
 
-                        <div className="board_list_mini ln04">
+
+                        <div className="board_list_mini ln05">
                             <div className="thead">
-                                <div className="th02">제목</div>
-                                <div className="th03">게시판</div>
-                                <div className="th04">날짜</div>
+                                <div className="th02">게시판</div>
+                                <div className="th03">번호</div>
+                                <div className="th04">제목</div>
+                                <div className="th05">날짜</div>
                             </div>
                             <div className="tbody">
                                 <ul>
                                     <li>
-                                        <div className="th02"><a href="/">궁금한게 있어요 :) <i className="q_ok">답변완료</i></a></div>
-                                        <div className="th03">문의하기</div>
-                                        <div className="th04">2020.02.02 11:00</div>
+                                        <div className="th02">문의하기</div>
+                                        <div className="th03">23</div>
+                                        <div className="th04"><a href="/">궁금한게 있어요 :) <i className="q_ok">답변완료</i></a></div>
+                                        <div className="th05">2020.02.02 11:00</div>
                                     </li>
                                     <li>
-                                        <div className="th02"><a href="/">궁금한게 있어요 :)<i className="q_no">답변중</i></a></div>
-                                        <div className="th03">문의하기</div>
-                                        <div className="th04">2020.02.02 11:00</div>
-                                    </li>
-                                    <li>
-                                        <div className="th02"><a href="/">궁금한게 있어요 :) <i className="q_ok">답변완료</i></a></div>
-                                        <div className="th03">문의하기</div>
-                                        <div className="th04">2020.02.02 11:00</div>
-                                    </li>
-                                    <li>
-                                        <div className="th02"><a href="/">궁금한게 있어요 :)<i className="q_no">답변중</i></a></div>
-                                        <div className="th03">문의하기</div>
-                                        <div className="th04">2020.02.02 11:00</div>
+                                        <div className="th02">문의하기</div>
+                                        <div className="th03">23</div>
+                                        <div className="th04"><a href="/">궁금한게 있어요 :) <i className="q_no">답변중</i></a></div>
+                                        <div className="th05">2020.02.02 11:00</div>
                                     </li>
                                     <li className="no_data">
                                         {/*게시글이 없을때*/}
@@ -118,31 +113,14 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                 </ul>
 
                             </div>
-                            <div className="boardNavigation">
-                                <div className="float_left">
-                                    <div className="pagenate_mini">
-                                        <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
-                                        <div className="count"><strong>1</strong> / 10</div>
-                                        <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
+                            {/* <Paginater pageInfo={pageInfo} /> */}
                         </div>
-
-
                     </div>
-
-
-
-
-
-
-
                 </div>
 
             </div>
         </div>
-        
+
     </MypageLayout>
 };
 

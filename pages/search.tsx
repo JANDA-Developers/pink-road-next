@@ -20,6 +20,7 @@ export const Search: React.FC<IProp> = ({ context }) => {
     const { items: products, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = context;
     const [view, setView] = useState<"line" | "gall">("line");
     const router = useRouter();
+    const { totalCount } = pageInfo;
 
     const onClickDistrict = (district?: string) => () => {
         setFilter({
@@ -131,14 +132,13 @@ export const Search: React.FC<IProp> = ({ context }) => {
             <div className="con_bottom">
                 {/*검색시에만 노출*/}
                 <div className="alignment2">
-                    <div className="left_div">총 <strong>22,222</strong>건의 검색결과가 있습니다.</div>
+                    <div className="left_div">총 <strong>{totalCount}</strong>건의 검색결과가 있습니다.</div>
                 </div>
-
 
                 <div className="con_box">
                     <div className="alignment">
                         <div className="left_div">
-                            <h5>여행상품<strong>334</strong></h5>
+                            <h5>여행상품<strong>{totalCount}</strong></h5>
                         </div>
                         <div className="right_div">
                             <SortSelect onChange={setSort} sort={sort} />

@@ -44,7 +44,7 @@ export const useNewsFindById = (id?:string, {
     const { data, loading } = useQuery<newsFindById, newsFindByIdVariables>(NEWS_FIND_BY_ID, {
         ...options,
         skip:!id,
-        nextFetchPolicy: "cache-only",
+        nextFetchPolicy: "cache-and-network",
         onCompleted: ({NewsFindById})=> {
             if(!NewsFindById.ok) {
                 console.error(data?.NewsFindById.error);

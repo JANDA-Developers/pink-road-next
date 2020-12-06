@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useProductFindById } from "hook/useProductFindById";
+import { useProductFindById } from "hook/useProduct";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -8,7 +8,7 @@ import { IHumanCount, IproductFindById } from "types/interface";
 import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
-import { useProductDelete } from "hook/useProductDelete";
+import { useProductDelete } from "hook/useProduct";
 import { IAuthInfo } from "../../../components/nice/type";
 import { getAuth } from "../../../components/nice/getAuth";
 import NiceElments from "../../../components/nice/NiceElement";
@@ -21,6 +21,7 @@ import { toast } from "react-toastify";
 import { addItem } from "../../../utils/Storage";
 import { useBasket } from "../../../hook/useBasket";
 import { useUpdate } from "../../../hook/useUpdater";
+import { getRangeString } from "../../../utils/product";
 
 // <div class="top_visual">
 // <div class="sub_header sub_bg" style="background-image:url(../img/su_visual_bg.jpg);">
@@ -179,7 +180,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
               )}
             </ul>
             <div className="details_info_txt">
-              <div dangerouslySetInnerHTML={{ __html: caution }} />
+              <div className="ck-content" dangerouslySetInnerHTML={{ __html: caution }} />
             </div>
           </div>
         </div>
@@ -212,11 +213,11 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                   </tr>
                   <tr>
                     <th className="smtitle bt_line">출발일</th>
-                    <td className="smtxt bt_line">{dayjs(startDate).format("YYYY.MM.DD")}일</td>
+                    <td className="smtxt bt_line">{dayjs(startDate).format("YYYY.MM.DD")}</td>
                   </tr>
                   <tr>
                     <th className="smtitle bt_line">여행기간</th>
-                    <td className="smtxt bt_line">{itinerary.length}박{itinerary.length + 1}일</td>
+                    <td className="smtxt bt_line">{getRangeString(product)}</td>
                   </tr>
                   <tr>
                     <th className="smtitle bt_line">최소인원</th>
@@ -322,7 +323,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                 </div>
                 <div className="tour_list">
                   {it.contents.map((con, index) =>
-                    <div key={index + "con" + it._id} dangerouslySetInnerHTML={{ __html: con }} />
+                    <div className="ck-content" key={index + "con" + it._id} dangerouslySetInnerHTML={{ __html: con }} />
                   )}
                 </div>
                 {/* <div className="tour_content_img_list">
@@ -340,14 +341,14 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
             <h4>안내 및 참고</h4>
             <div dangerouslySetInnerHTML={{
               __html: contents
-            }} className="text" />
+            }} className="text ck-content" />
           </div>
           {/* 포함 및 불포함 */}
           <div className="in_box" id="tap__03">
             <h4>포함 및 불포함 </h4>
             <div dangerouslySetInnerHTML={{
               __html: inOrNor
-            }} className="text" />
+            }} className="text ck-content" />
           </div>
           <div className="in_box" id="tap__04" >
             <h4>주의사항</h4>

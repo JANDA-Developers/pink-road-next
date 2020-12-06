@@ -214,20 +214,22 @@ export const Header: React.FC<IProp> = () => {
                             </div>
                             <div onClick={handSearchClose} className="search_bg"></div>
                         </div>
-
-                        <div className="inform_top">
-                            <div className="inform_icon">
-                                <object type="image/svg+xml" data={'/img/svg/inform_icon4.svg'}>
-                                    현재 브라우저는 iframe을 지원하지 않습니다.
+                        {isLogin ?
+                            <div className="inform_top">
+                                <div className="inform_icon">
+                                    <object type="image/svg+xml" data={'/img/svg/inform_icon4.svg'}>
+                                        현재 브라우저는 iframe을 지원하지 않습니다.
                             </object>
-                                <button />
-                                <span className="number">99+</span>
+                                    <button />
+                                    <span className="number">99+</span>
+                                </div>
                             </div>
-                        </div>
+                            : <i />}
                         <div onClick={handleAllMenu} className="all_menu_btn">
                             <object type="image/svg+xml" data={'/img/svg/allmenu_icon.svg'}>현재 브라우저는 iframe을 지원하지 않습니다.</object>
                             <button />
                         </div>
+
                     </div>
                     <div id="all_menu">
                         <strong>전체메뉴</strong>
@@ -286,26 +288,27 @@ export const Header: React.FC<IProp> = () => {
                             <li className="a_menu_tit deps betatest">
                                 <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
-                                    <li><a href="../mypage">회원정보</a></li>
-                                    <li><a href="../mypage/notification">알림</a></li>
-                                    <li><a href="../mypage/purchase">구매내역</a></li>
-                                    <li><a href="../mypage/basket">장바구니</a></li>
-                                    <li><a href="../mypage/write">나의 게시글</a></li>
-                                    <li><a href="../mypage/reservation">예약관리</a></li>
-                                    <li><a href="../mypage/goods">상품관리</a></li>
-                                    <li><a href="../mypage/plainning">기획관리</a></li>
-                                    <li><a href="../mypage/settlement">매출/정산관리</a></li>
+                                    <li><a href="/mypage">회원정보</a></li>
+                                    <li><a href="/mypage/notification">알림</a></li>
+                                    <li><a href="/mypage/purchase">구매내역</a></li>
+                                    <li><a href="/mypage/basket">장바구니</a></li>
+                                    <li><a href="/mypage/write">나의 게시글</a></li>
+                                    <li><a href="/mypage/reservation">예약관리</a></li>
+                                    <li><a href="/mypage/goods">상품관리</a></li>
+                                    <li><a href="/mypage/plainning">기획관리</a></li>
+                                    <li><a href="/mypage/settlement">매출/정산관리</a></li>
                                 </ul>
                             </li>
                             <li className="a_menu_tit deps betatest">
 
                                 <a href="/master">Master<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">
-                                    <li><a href="/master/ms-member">회원관리</a></li>
-                                    <li><a href="/master/ms-goods">상품관리</a></li>
-                                    <li><a href="/master/ms-reservation">예약관리</a></li>
-                                    <li><a href="/master/ms-design">디자인 설정</a></li>
-                                    <li><a href="/master/ms-homepage">홈페이지 설정</a></li>
+                                    <li><a href="/master/notification">알림</a></li>
+                                    <li><a href="/master/member">회원관리</a></li>
+                                    <li><a href="/master/goods">상품관리</a></li>
+                                    <li><a href="/master/reservation">예약관리</a></li>
+                                    <li><a href="/master/design">디자인 설정</a></li>
+                                    <li><a href="/master/homepage">홈페이지 설정</a></li>
                                 </ul>
 
                             </li>

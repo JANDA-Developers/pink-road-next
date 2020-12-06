@@ -1,4 +1,5 @@
-/* ê²Œì‹œíŒ ë””ìžì¸ */
+
+/* 게시판 */
 
 #content .x,
 #content #xet_board {
@@ -7,14 +8,19 @@
     padding-top: 70px;
     padding-bottom: 100px;
 }
-
-
-/* íšŒì› ë””ìžì¸ */
-
 #content .xm {
     position: relative;
 }
 
+i.tooltip{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    position: relative;
+    margin-left: 3px;
+    vertical-align: middle;
+    font-weight: 100;
+}
 
 /* 편집모드 활성화 아이콘 */
 

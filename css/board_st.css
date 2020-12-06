@@ -38,7 +38,7 @@
             margin-top: -5px;
             height: 10px;
             width: 1px;
-            background-color: #9d9fad;
+            background-color: #d8d8d8;
         }
 
         .board_option li:last-child:after {
@@ -49,12 +49,19 @@
         display: block;
         padding: 10px 12px;
         box-sizing: border-box;
-        color: #737689;
+        color: #999999;
         font-weight: 600;
         font-size: 11px;
     }
+    .board_option a strong {
+        font-weight: 400;
+    }
 
         .board_option a:hover {
+            color: #333;
+        }
+        .board_option li.on a {
+            font-weight: 600;
             color: #333;
         }
 .board_title {
@@ -273,7 +280,7 @@
                 width: 24.5%;
                 text-align: center;
                 font-size: 12px;
-                padding: 13px 10px 10px;
+                padding: 10px 10px 10px;
                 box-sizing: border-box;
             }
 
@@ -1343,6 +1350,14 @@ div.board_list_mini {
         div.board_list_mini li:hover {
             background-color: #fbfbfb;
         }
+        div.board_list_mini .no_data:hover {
+            background-color: #ffffff;
+            cursor: unset;
+        }
+        div.board_list_mini .no_data {
+            display: block;
+            text-align: center;
+        }
 
     div.board_list_mini span {
         position: relative;
@@ -1640,9 +1655,26 @@ div.board_list_mini {
             padding: 5px;
             width: 540px;
         }
-
+        .board_write .RangeExample .info_txt h4 {
+            font-size: 1em;
+            color: rgb(121, 125, 131);
+            margin-bottom: 5px;
+        }  
+        .board_write .RangeExample .info_txt h4 i {
+            font-size: 0.9em;
+            font-weight: 100;
+            margin-right: 5px;
+        }
+        .board_write .RangeExample .info_txt li {
+            font-size: 0.8em;
+            color: rgb(112, 112, 112);
+            margin-bottom: 5px;
+        }
+        .board_write .RangeExample .info_txt a {
+            color: rgb(76, 78, 207);
+        }
     .board_write .write_con .texta {
-        border: 1px solid #ebebeb;
+        border: 1px solid #efefef;
         padding: 30px;
         box-sizing: border-box;
         padding-top: 5px;
@@ -1705,20 +1737,30 @@ div.board_list_mini {
             margin-left: 5px;
             font-size: 11px;
         }
-
-.board_write .write_con h5 {
-    font-size: 18px;
-    padding-top: 20px;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-    .board_write .add_img_box  {
+        
+        .board_write .write_con h5 {
+            font-size: 18px;
+            padding-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .board_write .write_con h5 span {
+            font-size: 12px;
+            font-weight: 300;
+            color: #999999;
+            margin-left: 10px;
+        }
+        .board_write .write_con h5 span i {
+        
+            margin-right: 3px;
+        }
+        .board_write .add_img_box  {
         height: 40px;
         position:relative;
         display:block;
         width:100%;
         background:#f5f5f5;
-        /*border:1px solid #ccc;*/
         box-sizing:border-box;
         display: flex;
     }

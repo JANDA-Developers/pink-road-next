@@ -209,7 +209,7 @@ td {
 }
 
 .ck-content {
-    min-height: 250px;
+    /* min-height: 250px; */
 }
 
 .day_tap .ck-content {
