@@ -4077,13 +4077,6 @@ div.bn_box {
             padding-right: 10px;
             font-weight: 600;
         }
-
-        .iframe_box .top_info .con01 {
-        }
-
-        .iframe_box .top_info .con02 {
-        }
-
         .iframe_box .top_info .con03 {
             width: 25%;
             float: right;
@@ -7419,7 +7412,7 @@ div.gallery_lightbox .thumbList {
         .mypage_in .lnb ul {
             width: 100%;
             display: inline-block;
-            background-color: #ed297b;
+            background-color: #2196F3;
             position: relative;
             top: 11px;
             right: 0px;
@@ -7441,7 +7434,7 @@ div.gallery_lightbox .thumbList {
                 content: '';
                 width: 1px;
                 height: 20px;
-                background-color: #ff85ac;
+                background-color: #a7d7ff;
             }
 
             .mypage_in .lnb li:last-child:after {
@@ -10214,6 +10207,8 @@ i.calendar {
 /* notification_box */
 .notification_box {
     position: relative;
+    box-sizing: border-box;
+    padding: 0 3%;
 }
 
     .notification_box .paper_div {
@@ -10222,7 +10217,7 @@ i.calendar {
         background-color: #ffffff;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        padding: 50px;
+        padding: 20px;
         box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
     }
     .notification_box .del {
@@ -10293,7 +10288,7 @@ i.calendar {
         position: relative;
         width: 100%;
         box-sizing: border-box;
-        padding-left: 10%;
+        padding-left: 41px;
         margin: 0;
     }
         .notification_box .right .hang strong.red {
@@ -10342,30 +10337,30 @@ i.calendar {
        
             box-shadow: 2px 2px 10px #00000017;
         }
-            .notification_box .right .hang:before {
-                position: absolute;
-                content: '';
-                display: inline-block;
-                width: 5px;
-                height: 5px;
-                border: 5px solid #e3e3e3;
-                border-radius: 100px;
-                left: -98px;
-                top: 15px;
-                z-index: 2;
-                background-color: #fff;
-            }
-            .notification_box .right .hang:after {
-                position: absolute;
-                content: '';
-                display: inline-block;
-                width: 85px;
-                height: 1px;
-                border-bottom: 1px #e6e6e6 dotted;
-                border-radius: 100px;
-                left: -85px;
-                top: 22px;
-            }
+        .notification_box .right .hang:before {
+            position: absolute;
+            content: '';
+            display:inline-block;
+            width: 5px;
+            height: 5px;
+            border: 5px solid #e3e3e3;
+            border-radius: 100px;
+            left: -29px;
+            top: 15px;
+            z-index: 2;
+            background-color: #fff;
+        }
+        .notification_box .right .hang:after {
+            position: absolute;
+            content: '';
+            display: none;
+            width: 85px;
+            height: 1px;
+            border-bottom: 1px #e6e6e6 dotted;
+            border-radius: 100px;
+            left: -85px;
+            top: 22px;
+        }
         .notification_box .right .time {
             color:#999;
             font-size:0.8em;
@@ -11023,7 +11018,32 @@ i.calendar {
     margin-top: -8px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) {   
+    .notification_box .right {
+    padding-left: 110px;
+}
+    .notification_box .right .hang:before {
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        left: -98px;
+        top: 15px;
+    }
+    .notification_box .right .hang:after {
+        display: inline-block;
+        width: 85px;
+        height: 1px;
+        left: -85px;
+        top: 22px;
+    } 
+    .notification_box {
+        position: relative;
+        padding: 0;
+    }
+    .notification_box .paper_div {
+        
+        padding: 50px;
+    }
     .privacy_box .subtop_nav {
         top: -117px !important;
     }
@@ -12333,9 +12353,6 @@ i.calendar {
             padding-top: 232px;
         }
 
-    .portfolio_in .con02 {
-    }
-
         .portfolio_in .con02 ul li {
             width: 22%;
         }
@@ -12528,6 +12545,7 @@ i.calendar {
 }
 
 @media (max-width: 767px) {
+
     .mypage_in .subtop_nav {
         top: -39px;
     }

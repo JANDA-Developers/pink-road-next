@@ -28,6 +28,7 @@ export const MasterLayout: React.FC<IProp> = ({ children }) => {
         </div>
         <div className="master_box w100">
             <ul className="subtop_nav">
+                <li><a href="/master/notification">알림</a></li>
                 <li className="on"><a href="/master/member">회원관리</a></li>
                 <li><a href="/master/goods">상품관리</a></li>
                 <li><a href="/master/reservation">예약관리</a></li>

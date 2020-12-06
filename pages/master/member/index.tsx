@@ -76,8 +76,8 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </div>
                             <div className="right_div">
                                 <ul className="board_option">
-                                    <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a></li>
                                     <li><a href="/">전체선택</a></li>
+                                    <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a></li>
                                     <li><a href="/">신규회원등록</a></li>
                                 </ul>
                                 <select className="sel01">
@@ -98,75 +98,85 @@ export const MsMemberA: React.FC<IProp> = () => {
                     </div>
                     <div className="con_box_body">
                         <div className="list_head">
-                            <span className="td01 checkbox">
-                                <input type="checkbox" name="agree" id="agree0" title="전체선택" />
-                                <label htmlFor="agree0" />
-                            </span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">휴대폰</span>
-                            <span className="td05">성별</span>
-                            <span className="td06">국적</span>
-                            <span className="td07">가입일</span>
-                            <span className="td08">가입방법</span>
-                            <span className="td09">상세보기</span>
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02">이름</div>
+                            <div className="td03">아이디</div>
+                            <div className="td04">휴대폰</div>
+                            <div className="td05">성별</div>
+                            <div className="td06">국적</div>
+                            <div className="td07">가입일</div>
+                            <div className="td08">가입방법</div>
+                            <div className="td09">상세보기</div>
                         </div>
                         <div className="list_line">
-                            <span className="td01 checkbox">
-                                <input type="checkbox" name="agree" id="agree1" title="선택" />
-                                <label htmlFor="agree1" />
-                            </span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04"><a href="tel:">010-2222-2222</a></span>
-                            <span className="td05">여성</span>
-                            <span className="td06">외국인</span>
-                            <span className="td07">2020.10.01</span>
-                            <span className="td08">카카오연동</span>
-                            <span className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02">김옥자</div>
+                            <div className="td03">gogo@gamail.com</div>
+                            <div className="td04"><a href="tel:">010-2222-2222</a></div>
+                            <div className="td05">여성</div>
+                            <div className="td06">외국인</div>
+                            <div className="td07">2020.10.01</div>
+                            <div className="td08">카카오연동</div>
+                            <div className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></div>
                         </div>
 
                         <div className="list_line">
-                            <span className="td01 checkbox">
-                                <input type="checkbox" name="agree" id="agree1" title="선택" />
-                                <label htmlFor="agree1" />
-                            </span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04"><a href="tel:">010-2222-2222</a></span>
-                            <span className="td05">여성</span>
-                            <span className="td06">외국인</span>
-                            <span className="td07">2020.10.01</span>
-                            <span className="td08">카카오연동</span>
-                            <span className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02">김옥자</div>
+                            <div className="td03">gogo@gamail.com</div>
+                            <div className="td04"><a href="tel:">010-2222-2222</a></div>
+                            <div className="td05">여성</div>
+                            <div className="td06">외국인</div>
+                            <div className="td07">2020.10.01</div>
+                            <div className="td08">카카오연동</div>
+                            <div className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></div>
                         </div>
                         <div className="list_line">
-                            <span className="td01 checkbox">
-                                <input type="checkbox" name="agree" id="agree1" title="선택" />
-                                <label htmlFor="agree1" />
-                            </span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04"><a href="tel:">010-2222-2222</a></span>
-                            <span className="td05">여성</span>
-                            <span className="td06">외국인</span>
-                            <span className="td07">2020.10.01</span>
-                            <span className="td08">카카오연동</span>
-                            <span className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02">김옥자</div>
+                            <div className="td03">gogo@gamail.com</div>
+                            <div className="td04"><a href="tel:">010-2222-2222</a></div>
+                            <div className="td05">여성</div>
+                            <div className="td06">외국인</div>
+                            <div className="td07">2020.10.01</div>
+                            <div className="td08">카카오연동</div>
+                            <div className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></div>
                         </div>
                         <div className="list_line">
-                            <span className="td01 checkbox">
-                                <input type="checkbox" name="agree" id="agree1" title="선택" />
-                                <label htmlFor="agree1" />
-                            </span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04"><a href="tel:">010-2222-2222</a></span>
-                            <span className="td05">여성</span>
-                            <span className="td06">외국인</span>
-                            <span className="td07">2020.10.01</span>
-                            <span className="td08">카카오연동</span>
-                            <span className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></span>
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02">김옥자</div>
+                            <div className="td03">gogo@gamail.com</div>
+                            <div className="td04"><a href="tel:">010-2222-2222</a></div>
+                            <div className="td05">여성</div>
+                            <div className="td06">외국인</div>
+                            <div className="td07">2020.10.01</div>
+                            <div className="td08">카카오연동</div>
+                            <div className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></div>
                         </div>
                         <Paginater pageNumber={10} totalPageCount={20} />
                         <div className="fin">
@@ -494,7 +504,6 @@ export const MsMemberA: React.FC<IProp> = () => {
                             <button type="submit" className="btn medium">탈퇴시키기</button>
                         </div>
                         <div className="float_right">
-                            <button type="submit" className="btn medium mr5">수정하기</button>
                             <button type="submit" className="btn medium">저장하기</button>
                         </div>
                     </div>

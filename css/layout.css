@@ -246,7 +246,7 @@ i.tooltip{
         padding: 12px 15px;
     } 
     .header .top-menu {
-        display: block;
+        display: none;
         width:100%;
         position:relative;
         line-height:30px;
@@ -575,6 +575,10 @@ rect.allmenu_svg {
                 cursor: pointer;
                 display: inline-block;
                 vertical-align: middle;
+                opacity: 0.8;
+            }
+            .header .search_top .search_btn:hover object {
+                opacity: 1;
             }
 
             .header .search_top .search_btn button {
@@ -715,6 +719,10 @@ rect.allmenu_svg {
 
         .header .all_menu_btn object {
             width: 100%;
+            opacity: 0.8;
+        }
+        .header .all_menu_btn:hover object {
+            opacity:1;
         }
 
         .header .all_menu_btn button {
@@ -1080,7 +1088,7 @@ rect.allmenu_svg {
             .header_nav ul .home a {
                 display: block;
                 width: 38px;
-                height:50px;
+                height:49px;
                 text-align: center;
                 line-height: 60px;
                 overflow: hidden;
@@ -2203,6 +2211,7 @@ i.icon_plus {
         line-height: 53px;
         top: -116px;
     }
+ 
     .top_visual {
         height: 283px;
     }
@@ -2258,6 +2267,8 @@ i.icon_plus {
     .header .hd_center .nav_wrap .deps1 > li > a {
         font-size: 15px;
         margin-right: 15px;
+    }   .header .top-menu {
+        display: block;
     }
         .header .search_wrap {
             width: 30%;
@@ -2278,7 +2289,7 @@ i.icon_plus {
         .header .hd_right {
             width: auto;
             right: 41px;
-            top: 37px;
+            top:24px;
         }
     #all_menu {
         position:fixed;
@@ -2483,6 +2494,7 @@ i.icon_plus {
     .footer-area-bottom .janda_txt p {
         width: 1200px;
     }
+
     .header .hd_center .nav_wrap .deps1 {
         display: flex;
     }
@@ -2547,6 +2559,11 @@ i.icon_plus {
 
 }
 
+@media (min-width:1400px) {
+    .header_nav ul .home a {
+        height: 50px;
+    }
+}
 @media (min-width:1550px) {
         #all_menu ul {
             display: block;
