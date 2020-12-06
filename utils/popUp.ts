@@ -1,11 +1,11 @@
 import $ from "jquery";
 
-    export const closeModal = (className) => () => {
-        $(`.${className}`).css("display","none");
-        $(".fade").css("display","none");
+    export const closeModal = (selecter:string) => () => {
+        $(selecter).css("display","none");
+        $(selecter + " + .fade").css("display","none");
     }
 
-    export const openModal = (className) => ()=> {
-        $(`.${className}`).css("display","block");
-        $(".fade").css("display","block");
+    export const openModal = (selecter:string) => ()=> {
+        $(selecter).css("display","block");
+        $( selecter + " + .fade").css("display","block");
     }

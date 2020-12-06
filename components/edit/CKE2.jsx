@@ -88,6 +88,9 @@ const editorConfiguration = {
             'strikethrough'
         ]
     },
+    mediaEmbed: {
+        previewsInData: true
+    },
     resizeOptions: [
         {
             name: 'imageResize:original',

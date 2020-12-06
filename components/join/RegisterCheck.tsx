@@ -111,12 +111,12 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
   const removeSpace = (trimTarget) => {
     return trimTarget.replace(/\s/g, '');
   }
-  
+
   const regExpPhone = (testTarget) => {
     const regPhone = new RegExp(/^[0-9]+$/g);
     return regPhone.test(removeSpace(testTarget));
   }
-  
+
   const validateCommon = () => {
 
     const regPhone = new RegExp(/^[0-9]+$/g);
@@ -132,13 +132,13 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
       return false;
     }
 
-    if(!isPassword(registerInfo.password)) {
+    if (!isPassword(registerInfo.password)) {
       alert('비밀번호는 특수문자 1개이상 및 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다');
       return false;
     }
 
-    if(!regExpPhone(registerInfo.contact)) {
-      alert('연락처란에는 숫자만 기입해 주십시요'); 
+    if (!regExpPhone(registerInfo.contact)) {
+      alert('연락처란에는 숫자만 기입해 주십시요');
       return false;
     }
 
@@ -160,7 +160,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
         return false;
       }
 
-      if(registerInfo.name.length < registerInfo.nameLeng) {
+      if (registerInfo.name.length < registerInfo.nameLeng) {
         alert(`이름은 ${registerInfo.nameLeng} 글자 이상이여야 합니다`);
         return false;
       }
@@ -180,8 +180,8 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
 
     if (validateCommon()) {
 
-      if(!regExpPhone(registerInfo.incharge_number)) {
-        alert('담당자 연락처에는 숫자만 기입해 주십시요'); 
+      if (!regExpPhone(registerInfo.incharge_number)) {
+        alert('담당자 연락처에는 숫자만 기입해 주십시요');
         return false;
       }
 

@@ -31,8 +31,8 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
         updateComponent();
     }
 
-    return <div className="popup_bg_mini " style={{ display: 'block' }}>
-        <a onClick={closeModal("popup_bg_mini")} className="close_icon"><i className="flaticon-multiply" /></a>
+    return <div id="basketModal" className="popup_bg_mini " style={{ display: 'block' }}>
+        <a onClick={closeModal("#basketModal")} className="close_icon"><i className="flaticon-multiply" /></a>
         <div className="in_txt">
             <h3>조건 추가/변경</h3>
             <div className="con">

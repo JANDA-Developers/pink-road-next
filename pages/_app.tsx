@@ -7,11 +7,13 @@ import PinkClient from "apollo/client"
 import { ISet } from 'types/interface';
 import "dayjs/locale/ko"
 import dayjs from 'dayjs';
-import { ADMINS } from '../types/const';
+import { ADMINS, FULL_ACCESS } from '../types/const';
 import Toast from '../components/toast/Toast';
 import { GET_CONTEXT } from '../apollo/gql/queries';
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from '../apollo/gql/mutations';
 import { bracketVergionChange } from '../utils/Storage';
+import { AppProps } from 'next/dist/next-server/lib/router/router';
+import Page404 from './404';
 dayjs.locale('ko')
 
 export type TContext = {
@@ -21,9 +23,12 @@ export type TContext = {
   categories: categoryList_CategoryList_data[]
   role: UserRole
   isAdmin: boolean,
+  isSeller: boolean,
   isManager: boolean,
   myProfile?: IProfile
   isLogin?: boolean;
+  isParterB?: boolean;
+  isParterNonB?: boolean;
 }
 
 const defaultContext: TContext = {
@@ -33,15 +38,20 @@ const defaultContext: TContext = {
   role: UserRole.anonymous,
   isAdmin: false,
   isManager: false,
+  isSeller: false,
   submitEdit: undefined,
   myProfile: undefined,
-  isLogin: false
+  isLogin: false,
+  isParterB: false,
+  isParterNonB: false
 }
 
 export const AppContext = React.createContext<TContext>(defaultContext);
 
-// @ts-ignore
-function App({ Component, pageProps }) {
+function App({ Component, pageProps }: any) {
+  const ComponentLayout = Component.Layout ? Component.Layout : Layout;
+  console.log(Component.Auth);
+  const ComponentAuth = Component.Auth ? Component.Auth : FULL_ACCESS;
   const [pageInfoCreateMu, { loading: pageInfoCreateLoading }] = useMutation<pageInfoCreate, pageInfoCreateVariables>(PAGE_INFO_CREATE, {
     client: PinkClient
   })
@@ -81,10 +91,22 @@ function App({ Component, pageProps }) {
     })
   }
 
+  const isSeller = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
+  const isParterB = [UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
+  const isParterNonB = [UserRole.partner, UserRole.manager, UserRole.admin].includes(role);
   const [editMode, setEditMode] = useState<boolean>(false);
   {/* <DaumPostcode autoResize autoClose onSearch={() => { }} onComplete={(asd) => { }} /> */ }
 
   useEffect(() => { bracketVergionChange() }, [])
+
+
+  console.log("myProfile");
+  console.log(myProfile);
+
+  if (!ComponentAuth.includes(role || null)) {
+    console.log("Page404");
+    Component = Page404
+  }
 
   return (
     <div className="App">
@@ -96,13 +118,16 @@ function App({ Component, pageProps }) {
           categories: catList || [],
           role,
           myProfile,
+          isSeller,
+          isParterB,
           isAdmin: role === UserRole.admin,
           isManager: ADMINS.includes(role),
-          isLogin: !!myProfile
+          isLogin: !!myProfile,
+          isParterNonB
         }}>
-          <Layout>
+          <ComponentLayout>
             <Component {...pageProps} />
-          </Layout>
+          </ComponentLayout>
         </AppContext.Provider>
       </ApolloProvider>
       <Toast />

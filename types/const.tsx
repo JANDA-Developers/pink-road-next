@@ -53,3 +53,6 @@ export const DEFAULT_IT: ItineraryCreateInput = {
 
 
 export const ADMINS = [UserRole.admin, UserRole.manager];
+
+export const ONLY_LOGINED = [UserRole.admin, UserRole.individual, UserRole.manager, UserRole.partner, UserRole.partnerB];
+export const FULL_ACCESS = [...ONLY_LOGINED, UserRole.anonymous];

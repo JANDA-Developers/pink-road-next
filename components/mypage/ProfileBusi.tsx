@@ -4,7 +4,7 @@ interface IProp { }
 
 export const ProfileBusi: React.FC<IProp> = () => {
     return <div className="in">
-        <h4>회원정보</h4>
+        <h4>개인파트너</h4>
         <div className="mypage_page">
             <div className="box1">
                 <div className="top_info">
@@ -117,7 +117,7 @@ export const ProfileBusi: React.FC<IProp> = () => {
                                 <input type="text" className="form-control w70" />
                                 <button type="button" className="btn btn_mini">
                                     주소찾기
-    </button>
+                                </button>
                                 <input
                                     type="text"
                                     className="form-control w100"
@@ -200,8 +200,8 @@ export const ProfileBusi: React.FC<IProp> = () => {
                         수정
     </button>
                 </div>
-                </div>
-         </div>
+            </div>
+        </div>
     </div>;
 };
 

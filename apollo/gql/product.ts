@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_CATEGORY, F_PAGE, F_PRODUCT_POST } from "./fragments";
+import { F_CATEGORY, F_PAGE, F_PRODUCT } from "./fragments";
 
 export const PRODUCT_POST_CREATE = gql`
   mutation productCreate(
@@ -51,7 +51,7 @@ export const PRODUCT_POST_DELETE = gql`
       }
     }
   }
-  ${F_PRODUCT_POST}
+  ${F_PRODUCT}
 `;
 
 
@@ -76,7 +76,7 @@ query productList(
     }
   }
 }
-${F_PRODUCT_POST}
+${F_PRODUCT}
 ${F_PAGE}
 `
 
@@ -94,5 +94,5 @@ export const PRODUCT_FIND_BY_ID = gql`
       }
     }
   }
-  ${F_PRODUCT_POST}
+  ${F_PRODUCT}
 `;

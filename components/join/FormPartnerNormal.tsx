@@ -319,9 +319,7 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
               onChange={(e) => { handleForm(e) }} />
           </div>
           <div className={`daum_addresss ${daumAddress && 'on'}`}>
-              <DaumPostcode
-                  onComplete={handleComplete}
-              />
+
           </div>
         </div>
         <div className="ph_wrap">
@@ -366,6 +364,10 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
           </div>
         </div>
       </div>
+      
+      <DaumPostcode
+        onComplete={handleComplete}
+      />
       <RegisterCheck
         openPopup={openPopup}
         handleJoinProcess={handleJoinProcess}

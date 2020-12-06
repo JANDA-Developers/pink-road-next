@@ -37,11 +37,12 @@ export class LocalManager<T extends string> {
     }
 
     getLocalObj<O>(key: T, or?: O): O | undefined {
+        if (typeof window === "undefined") return undefined;
         const value = this.storage?.getItem(key) || '';
         let result = or;
 
         try {
-            result = JSON.parse(value);
+            result = value ? JSON.parse(value) : "";
         } catch (e) {
             this.storage?.removeItem(key);
             console.error('LocalManager::getLocalOj:parseFailed');
@@ -63,7 +64,7 @@ export class LocalManager<T extends string> {
 }
 
 
-type TStoreKeys = "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt";
+type TStoreKeys = "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin";
 
 export let Storage: LocalManager<TStoreKeys> | null = null;
 
@@ -167,4 +168,9 @@ export const bracketVergionChange = () => {
 
 export const getTotalCount = (count: IHumanCount): number => {
     return count.adult + count.baby + count.kids;
+}
+
+export const getItemCount = (): number => {
+    const brakcet = getBracket();
+    return brakcet?.length || 0
 }

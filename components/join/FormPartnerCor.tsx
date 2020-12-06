@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import RegisterCheck from './RegisterCheck';
 import { TForm } from 'pages/join';
-import Calendar from '../common/icon/CalendarIcon';
 
 export type TFormPartnetCor = {
   email: string,
@@ -95,37 +94,37 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
 
   const handleAddress = (address) => {
 
-      setDaumAddress(true); 
+    setDaumAddress(true);
 
   }
 
   const addressUpdate = (address) => {
 
-      setFormInfo({
-          ...formInfo,
-          address: address
-      })
-      
+    setFormInfo({
+      ...formInfo,
+      address: address
+    })
+
   }
 
   const handleComplete = (data) => {
 
-      let fullAddress = data.address;
-      let extraAddress = ''; 
-      
-      if (data.addressType === 'R') {
-        if (data.bname !== '') {
-          extraAddress += data.bname;
-        }
-        if (data.buildingName !== '') {
-          extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
-        }
-        fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
       }
-  
-      addressUpdate(fullAddress);
-      setDaumAddress(false);
-  
+      if (data.buildingName !== '') {
+        extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
+      }
+      fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+    }
+
+    addressUpdate(fullAddress);
+    setDaumAddress(false);
+
   }
 
 
@@ -313,7 +312,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
               value={formInfo.address}
               onChange={(e) => { handleForm(e) }} />
             <button type="button" className="btn btn_mini" onClick={handleAddress}>
-                찾기
+              찾기
             </button>
           </div>
           <div className="w100 mt5">
@@ -322,9 +321,9 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
               onChange={(e) => { handleForm(e) }} />
           </div>
           <div className={`daum_addresss ${daumAddress && 'on'}`}>
-              <DaumPostcode
-                  onComplete={handleComplete}
-              />
+            <DaumPostcode
+              onComplete={handleComplete}
+            />
           </div>
         </div>
         <div className="ph_wrap">

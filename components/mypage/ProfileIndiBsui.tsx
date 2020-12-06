@@ -5,7 +5,7 @@ interface IProp { }
 
 export const ProfileIndiBusi: React.FC<IProp> = () => {
     return <div className="in">
-        <h4>회원정보</h4>
+        <h4>기업파트너</h4>
         <div className="mypage_page">
             <div className="box1">
                 <div className="top_info">

@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client"
-import { PCAT_LIST, PORT_FOLIO_LIST } from "apollo/queries"
 import { portfolioList, portfolioListVariables, pcategoryList_pCategoryList_data, pcategoryList } from "types/api"
+import { PCAT_LIST } from "../apollo/gql/queries";
 
 
 interface IUsePcategory {

@@ -1,18 +1,17 @@
-import { IUseProductList, useproductList } from 'hook/useProductList';
+import { IuseProductList, useProductList } from 'hook/useProduct';
 import React from 'react';
-import BoardList from "components/board/List";
 import { useRouter } from 'next/router';
-import SortSelect from 'components/common/SortMethod';
-import dayjs from 'dayjs';
 import SubTopNav from 'layout/components/SubTop';
 import Link from 'next/link';
+import { ProductPhotoBlock } from '../../components/list/ProductPhoto';
+import { Paginater } from '../../components/common/Paginator';
 
 interface IProp {
-    context?: ITourListWrapContext;
+    context: ITourListWrapContext;
 }
 
 export const TourList: React.FC<IProp> = ({ context }) => {
-    const { items } = context;
+    const { items, pageInfo } = context;
 
     const router = useRouter();
 
@@ -55,46 +54,11 @@ export const TourList: React.FC<IProp> = ({ context }) => {
                     </div>
                     <ul className="list_ul line3">
                         {items.map(item =>
-                            <Link href={`/tour/view/${item._id}`}>
-                                <li key={item._id} className="list_in">
-                                    <div className="img" style={{ backgroundImage: `url(${item.images?.[0]?.uri})` }}>상품이미지</div>
-                                    <div className="box">
-                                        <div className="category"><span>{item.category?.label}</span></div>
-                                        <div className="title">{item.title}</div>
-                                        <div className="bottom_txt">
-                                            <div className="subtitle">
-                                                {item.subTitle}
-                                            </div>
-                                            <div className="tag2">
-                                                {item.keyWards.map((keyWard, index) =>
-                                                    <span key={index + "keyward"}>#{keyWard}</span>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </Link>
+                            <ProductPhotoBlock key={item._id} item={item} />
                         )}
                     </ul>
                     {/* 페이지넘버 */}
-                    <div className="pagenate">
-                        <div className="page">
-                            <a href="/kor/view.do?no=170" className="page_btn first">처음</a>
-                            <a href="/kor/view.do?no=170" className="page_btn prev">이전</a>
-                            <a href="#none" className="on">1</a>
-                            <a href="/kor/view.do?no=170" className="off">2</a>
-                            <a href="/kor/view.do?no=170" className="off">3</a>
-                            <a href="/kor/view.do?no=170" className="off">4</a>
-                            <a href="/kor/view.do?no=170" className="off">5</a>
-                            <a href="/kor/view.do?no=170" className="off">6</a>
-                            <a href="/kor/view.do?no=170" className="off">7</a>
-                            <a href="/kor/view.do?no=170" className="off">8</a>
-                            <a href="/kor/view.do?no=170" className="off">9</a>
-                            <a href="/kor/view.do?no=170" className="off">10</a>
-                            <a href="/kor/view.do?no=170" className="page_btn next">다음</a>
-                            <a href="/kor/view.do?no=170" className="page_btn end">마지막</a>
-                        </div>
-                    </div>
+                    <Paginater pageInfo={pageInfo} />
                     {/* // 페이지넘버 */}
                     <div className="tl list_bottom">
                         {/* member/상품 등록하기 */}
@@ -143,13 +107,14 @@ export const TourList: React.FC<IProp> = ({ context }) => {
 
 
 
-interface ITourListWrapContext extends IUseProductList {
+interface ITourListWrapContext extends IuseProductList {
 
 }
 
 const TourListWrap: React.FC<IProp> = () => {
 
-    const productContext = useproductList();
+    const productContext = useProductList();
+
 
     const context: ITourListWrapContext = {
         ...productContext

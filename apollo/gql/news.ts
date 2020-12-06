@@ -1,4 +1,4 @@
-import { gql } from "graphql-request"
+import { gql } from "@apollo/client"
 import { F_FILE, F_PAGE, F_USER } from "./fragments"
 
 export const F_NEWS = gql`
@@ -47,7 +47,7 @@ query newsFindById(
 }
 ${F_NEWS}
 `
-export const PORT_FOLIO_LIST = gql`
+export const NEWS_LIST = gql`
 query newsList(
 $sort: [_NewsSort!]
 $filter: _NewsFilter

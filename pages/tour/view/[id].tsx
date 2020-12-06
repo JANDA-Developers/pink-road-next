@@ -8,7 +8,7 @@ import { IHumanCount, IproductFindById } from "types/interface";
 import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
-import { useproductDelete } from "hook/useProductDelete";
+import { useProductDelete } from "hook/useProductDelete";
 import { IAuthInfo } from "../../../components/nice/type";
 import { getAuth } from "../../../components/nice/getAuth";
 import NiceElments from "../../../components/nice/NiceElement";
@@ -80,7 +80,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
 
   const router = useRouter();
 
-  const { productDelete } = useproductDelete({
+  const { productDelete } = useProductDelete({
     onCompleted: ({
       ProductDelete
     }) => {

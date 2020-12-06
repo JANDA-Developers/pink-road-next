@@ -3,9 +3,6 @@ import React, { useRef } from 'react';
 import dayjs from "dayjs";
 import { ItineraryCreateInput } from '../../types/api';
 import { ISet } from 'types/interface';
-import { useUpload } from 'hook/useUpload';
-import { Quill } from '../edit/Quill';
-import { STYLE } from '../../utils/style';
 import dynamic from 'next/dynamic';
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 interface IProp {

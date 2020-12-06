@@ -3,9 +3,10 @@ import SubTopNav from 'layout/components/SubTop';
 import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/router'
-import { IUseProductList, useproductList } from 'hook/useProductList';
+import { IuseProductList, useProductList } from 'hook/useProduct';
 import { productList_ProductList_data_category } from 'types/api';
 import { IProduct } from 'types/interface';
+import PageLoading from '../Loading';
 interface IProp {
     context: ITourMianWrapContext
 }
@@ -112,18 +113,18 @@ export const TourMain: React.FC<IProp> = ({ context }) => {
 };
 
 
-interface ITourMianWrapContext extends IUseProductList {
+interface ITourMianWrapContext extends IuseProductList {
 }
 
 export const TourMainWrap = () => {
 
-    const productList = useproductList();
+    const productList = useProductList();
 
     const context: ITourMianWrapContext = {
         ...productList
     }
 
-    if (productList.loading) return null;
+    if (productList.getLoading) return <PageLoading />;
 
     return <TourMain context={context} />
 }

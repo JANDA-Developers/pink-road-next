@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
 import { BasketModal } from '../../components/basketModal/BasketModal';
-import { useproductList } from '../../hook/useProductList';
+import { useProductList } from '../../hook/useProduct';
 import { useUpdate } from '../../hook/useUpdater';
 import { MypageLayout } from '../../layout/MypageLayout';
 import { Fproduct } from '../../types/api';
@@ -203,7 +203,7 @@ export const MyPageBasket: React.FC<IProp> = ({ getLoading, products }) => {
 export const MyPageBasketWrap = () => {
     const items = getBracket() || [];
     const ids = items.map(i => i._id).filter(item => item);
-    const { items: products, getLoading } = useproductList({
+    const { items: products, getLoading } = useProductList({
         initialFilter: {
             _id_in: ids
         }
