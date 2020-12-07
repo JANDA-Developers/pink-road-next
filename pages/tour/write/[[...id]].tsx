@@ -251,8 +251,21 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                 </ul>
                 <div {...tapDisplay(1)} id="texta_01" className="texta">
                     <h5 id="itinerary">여행일정</h5>
-                    <DayPicker onRangeChange={handleDateState} from={firstDate} to={lastDate} />
-                    {its.map((itinery, index) => <ItineryForm key={"itineryForm" + index} index={index} setits={setits} itinery={itinery} its={its} />)}
+                    <DayPicker onRangeChange={handleDateState} from={firstDate} to={lastDate} >
+                        <div className="info_txt">
+                            <h4><i className="jandaicon-info2"></i>여행일정 등록시 유의점</h4>
+                            <ul>
+                                <li>- 달력에서 여행기간을 선택해 주세요. 그래야 아래에 입력창이 생성됩니다.</li>
+                                <li>- 이미지를 첨부시에 이미지 내부에 이미지를 입력할 경우 텍스트를 크게 써주세요.<br />모바일 화면도 고려해야합니다.</li>
+                                <li>- 이미지를 꼭 한번 용량을 압축해서 올려주세요. 로딩시에 시간이 단축됩니다.<br /><a href="https://www.iloveimg.com/ko/compress-image" target="_blank">(추천사이트 이동)</a></li>
+                                <li>- 일정에 관련된 내용만 간략하게 써주세요.</li>
+                            </ul>
+                        </div>
+                    </DayPicker>
+                    {its.map((itinery, index) => <div key={"itineryForm" + index}>
+                        <ItineryForm index={index} setits={setits} itinery={itinery} its={its} />)
+                        </div>
+                    }
                 </div>
                 <div {...tapDisplay(2)} id="texta_02" className="texta">
                     <h5>상품 안내문</h5>
@@ -284,6 +297,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         </div>
     </div>
 };
+
 
 
 type TCreateFn = (params: ProductCreateInput) => void;

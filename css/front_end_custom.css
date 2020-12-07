@@ -284,9 +284,24 @@ figure {
     margin-left: 0px!important;
     margin-right: 0px!important;
 }
+figure:after {
+    content: "";
+    display:"block";
+    clear: both;
+}
 
 #addressFindModal {
     max-height: 100vh;
     height: 500px;
     margin-top: -250px;
+}
+
+#dayPickerModal {
+    max-height: 100vh;
+    width: auto;
+    height: auto;
+}
+
+.modal {
+    z-index: 100;
 }

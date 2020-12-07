@@ -2,28 +2,28 @@ import { gql } from "@apollo/client"
 import { F_PAGE, F_BOOKING } from "./fragments"
 
 export const BOOKING_LIST = gql`
-query bookingList(
-$sort: [_BookingSort!]
-$filter: _BookingFilter
-$pageInput: pageInput!
-) {
-BookingList(
-sort: $sort
-pageInput: $pageInput
-filter: $filter
-) {
-  ok
-  error
-  page {
-    ...Fpage
+  query bookingList(
+    $sort: [_BookingSort!]
+    $filter: _BookingFilter
+    $pageInput: pageInput!
+  ) {
+  BookingList(
+    sort: $sort
+    pageInput: $pageInput
+    filter: $filter
+  ) {
+    ok
+    error
+    page {
+      ...Fpage
+    }
+    data  {
+      ...Fbooking
+    }
   }
-  data  {
-    ...Fbooking
   }
-}
-}
-${F_PAGE}
-${F_BOOKING}
+  ${F_PAGE}
+  ${F_BOOKING}
 `
 
 

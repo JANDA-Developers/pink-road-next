@@ -24,37 +24,6 @@ export const PCAT_LIST = gql`
 `
 
 
-export const CATEGORY_FIND_BY_ID = gql`
-  query categoryFindById(
-      $id: String!
-    ) {
-      CategoryFindById(
-        id: $id
-      ) {
-      ok
-      error
-      data {
-        ...Fcategory
-      }
-    }
-  }
-  ${F_CATEGORY}
-`;
-
-
-export const CATEGORY_LIST = gql`
-  query categoryList {
-      CategoryList  {
-        ok
-        error
-        data {
-          ...Fcategory
-        }
-      }
-  }
-  ${F_CATEGORY}
-`;
-
 
 
 export const SIGN_IN = gql`

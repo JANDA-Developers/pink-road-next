@@ -20,24 +20,35 @@ import { getFromUrl } from "../../../utils/url";
 import Page404 from "../../404";
 
 interface IProp {
-    type: NEWS_TYPE;
+    // type: NEWS_TYPE;
     context: ITourWriteWrapContext;
 }
 
-export const NewsWrite: React.FC<IProp> = ({ context, type }) => {
+export const NewsWrite: React.FC<IProp> = ({ context }) => {
     const router = useRouter();
-    const { createFn, news, mode, pcategories, updateFn, id, deleteFn } = context;;
+    const { createFn, news, mode, updateFn, id, deleteFn } = context;;
     const boardHook = useBoard({
         ...news,
     });
     const { boardData, loadKey, loadKeyAdd, setBoardData, validater: { validate } } = boardHook
-    const categoryList = toOps(pcategories, "_id", "label");
+    const categoryOps = [{
+        label: "여행이야기",
+        _id: NEWS_TYPE.TRAVEL
+    },
+    {
+        label: "뉴스보도",
+        _id: NEWS_TYPE.MEDIA
+    },
+    {
+        label: "문화이야기",
+        _id: NEWS_TYPE.CULTURE
+    }]
 
     const handleUpdate = () => {
         if (validate())
             updateFn(id!, {
                 ...boardData,
-                type
+                type: boardData.categoryId as NEWS_TYPE
             })
     }
 
@@ -50,8 +61,8 @@ export const NewsWrite: React.FC<IProp> = ({ context, type }) => {
             const next = omits({
                 ...boardData,
                 content: boardData.contents,
-                type
-            }, ["content", "categoryId"])
+                type: boardData.categoryId as NEWS_TYPE
+            }, ["contents", "categoryId"])
             createFn(next)
         }
     }
@@ -81,13 +92,14 @@ export const NewsWrite: React.FC<IProp> = ({ context, type }) => {
         key={loadKey}
         mode={mode}
         onCancel={handleCancel}
-        categoryList={categoryList}
+        categoryList={categoryOps}
         onCreate={handleCreate}
         onDelete={handleDelete}
         onEdit={handleUpdate}
         onSave={handleTempSave}
         onLoad={handleLoad}
         opens={{
+            category: true,
             summary: true,
             thumb: true,
             title: true
@@ -121,10 +133,8 @@ interface ITourWriteWrapContext {
 export const NewsWriteWrap: React.FC<IProp> = () => {
     const router = useRouter(); // => 넥스트에서는 변경
     const id = router.query.id?.[0] as string | undefined;
-    const type = getFromUrl("type")?.toUpperCase();
-    if (!type) return <Page404 />
-
-
+    // const type = getFromUrl("type")?.toUpperCase();
+    // if (!type) return <Page404 />
     const { newsUpdate, updateLoading } = useNewsUpdate({
         onCompleted: ({ NewsUpdate }) => {
             if (NewsUpdate.ok) {
@@ -191,7 +201,8 @@ export const NewsWriteWrap: React.FC<IProp> = () => {
     }
 
     if (findLoading || pcategoryLoading) return null;
-    return <NewsWrite type={type as NEWS_TYPE} context={context} />;
+
+    return <NewsWrite context={context} />;
 };
 
 

@@ -1,12 +1,24 @@
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import { Paginater } from 'components/common/Paginator';
 import { PurChasedItem } from 'components/mypage/PurchasedItem';
+import dayjs from 'dayjs';
 import { MypageLayout } from 'layout/MypageLayout';
-import React from 'react';
+import React, { useContext } from 'react';
+import SortSelect from '../../components/common/SortMethod';
+import { ViewCount } from '../../components/common/ViewCount';
+import { IuseBookingList, useBookingList } from '../../hook/useBookingList';
+import { useProductList } from '../../hook/useProduct';
+import { autoHypenPhone } from '../../utils/formatter';
+import PageLoading from '../Loading';
+import { AppContext } from '../_app';
 
-interface IProp { }
+interface IProp {
+    context: IMySettlementWrapContext
+}
 
-export const MySettlement: React.FC<IProp> = () => {
+export const MySettlement: React.FC<IProp> = ({ context }) => {
+    const { items, filter, getLoading, pageInfo, setFilter, setPage, setSort, setViewCount, sort, viewCount } = context;
+
     return <MypageLayout>
         <div className="in mypage_purchase">
             <h4>매출/정산관리</h4>
@@ -101,16 +113,8 @@ export const MySettlement: React.FC<IProp> = () => {
                                 총 <strong>22,222</strong>개
                             </div>
                             <div className="right_div">
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
+                                <SortSelect onChange={setSort} sort={sort} />
+                                <ViewCount value={viewCount} onChange={setViewCount} />
                             </div>
                         </div>
                         <div className="fuction_list_mini ln08">
@@ -126,26 +130,18 @@ export const MySettlement: React.FC<IProp> = () => {
                             </div>
                             <div className="tbody">
                                 <ul>
-                                    <li>
-                                        <div className="th01"><input type="checkbox" /></div>
-                                        <div className="th02">GUIDE-01230</div>
-                                        <div className="th03">제주도로 떠나요~ </div>
-                                        <div className="th04">홍나리<br />010-0100-0000</div>
-                                        <div className="th05">2020.02.02</div>
-                                        <div className="th06">50,000</div>
-                                        <div className="th07"><strong className="ok">예약완료</strong></div>
-                                        <div className="th08"><i className="btn">상세보기</i></div>
-                                    </li>
-                                    <li>
-                                        <div className="th01"><input type="checkbox" /></div>
-                                        <div className="th02">GUIDE-01230</div>
-                                        <div className="th03">제주도로 떠나요~ </div>
-                                        <div className="th04">홍나리<br />010-0100-0000</div>
-                                        <div className="th05">2020.02.02</div>
-                                        <div className="th06">50,000</div>
-                                        <div className="th07"><strong className="no">예약취소</strong></div>
-                                        <div className="th08"><i className="btn">상세보기</i></div>
-                                    </li>
+                                    {items.map(item =>
+                                        <li>
+                                            <div className="th01"><input type="checkbox" /></div>
+                                            <div className="th02">{item.code}</div>
+                                            <div className="th03">{item.product.title}</div>
+                                            <div className="th04">{item.name}<br />{autoHypenPhone(item.phoneNumber)}</div>
+                                            <div className="th05">{dayjs(item.createdAt).format("YYYY.MM.DD")}</div>
+                                            <div className="th06">{item}</div>
+                                            <div className="th07"><strong className="ok">예약완료</strong></div>
+                                            <div className="th08"><i className="btn">상세보기</i></div>
+                                        </li>
+                                    )}
                                 </ul>
                             </div>
                             <div className="boardNavigation">
@@ -156,9 +152,7 @@ export const MySettlement: React.FC<IProp> = () => {
                                         <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
                                     </div>
                                 </div>
-                                <div className="float_right">
-                                    <a href="" className="mini_btn small">예약관리시스템 바로가기</a>
-                                </div>
+
                             </div>
                         </div>
 
@@ -172,7 +166,7 @@ export const MySettlement: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-        <div id="Popup01" className="popup_bg_full" style={{ display: 'block;' }}>
+        <div id="Popup01" className="popup_bg_full" style={{ display: 'none' }}>
             <a className="close_icon">
                 <i className="flaticon-multiply"></i>
             </a>
@@ -316,4 +310,22 @@ export const MySettlement: React.FC<IProp> = () => {
     </MypageLayout>
 };
 
-export default MySettlement;
+
+interface IMySettlementWrapContext extends IuseBookingList { }
+
+export const MySettlementWrap = () => {
+    const { myProfile } = useContext(AppContext);
+    const _id = myProfile?._id;
+    const bookingListHook = useBookingList({
+        initialFilter: {
+            seller_eq: _id
+        }
+    })
+
+    const context = bookingListHook;
+    if (context.getLoading) return <PageLoading />
+
+    return <MySettlement context={context} />
+}
+
+export default MySettlementWrap;

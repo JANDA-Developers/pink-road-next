@@ -662,13 +662,6 @@ div.popup_bg_full {
     }
 
 div.popup_bg_mini {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 440px;
-    height: 280px;
-    margin-top: -140px;
-    margin-left: -220px;
     z-index: 101;
     padding: 23px 0;
     box-sizing: border-box;
@@ -676,6 +669,10 @@ div.popup_bg_mini {
     overflow: hidden;
     background-color: #fff;
     box-shadow: 2px 2px 2px #00000052;
+}
+
+.popup_bg_mini .fade {
+    display: block!important;
 }
 
     div.popup_bg_mini .in_txt {
@@ -792,7 +789,7 @@ div.popup_bg_mini {
     }
 
     div.popup_bg_mini .con .info i {
-        position: absolute;
+    position: absolute;
         left: 14px;
         top: 16px;
     }
@@ -10025,10 +10022,6 @@ i.calendar {
     box-sizing: border-box;
     padding: 0 0 100px;
 }
-
-    .tour_box .view_icon {
-        display: none !important;
-    }
 
     .tour_box .day_tap {
         box-sizing: border-box;

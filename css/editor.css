@@ -330,3 +330,7 @@
         display: none;
     }
 }
+
+.ck-editor__editable {
+    min-height: 250px;
+}

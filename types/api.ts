@@ -61,6 +61,11 @@ export interface bookingList_BookingList_data_product {
   title: string;
 }
 
+export interface bookingList_BookingList_data_payment {
+  __typename: "Payment";
+  Amt: string | null;
+}
+
 export interface bookingList_BookingList_data {
   __typename: "Booking";
   _id: string;
@@ -72,13 +77,15 @@ export interface bookingList_BookingList_data {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: string | null;
+  status: BookingStatus | null;
   memo: string | null;
   code: string;
   product: bookingList_BookingList_data_product;
+  payment: bookingList_BookingList_data_payment | null;
   name: string;
   email: string;
   phoneNumber: string;
+  isPaid: boolean | null;
 }
 
 export interface bookingList_BookingList {
@@ -217,6 +224,68 @@ export interface bookingUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: categoryFindById
+// ====================================================
+
+export interface categoryFindById_CategoryFindById_data {
+  __typename: "Category";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  label: string;
+}
+
+export interface categoryFindById_CategoryFindById {
+  __typename: "CategoryFindByIdResponse";
+  ok: boolean;
+  error: string | null;
+  data: categoryFindById_CategoryFindById_data | null;
+}
+
+export interface categoryFindById {
+  CategoryFindById: categoryFindById_CategoryFindById;
+}
+
+export interface categoryFindByIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: categoryList
+// ====================================================
+
+export interface categoryList_CategoryList_data {
+  __typename: "Category";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  label: string;
+}
+
+export interface categoryList_CategoryList {
+  __typename: "CategoryListResponse";
+  ok: boolean;
+  error: string | null;
+  data: categoryList_CategoryList_data[];
+}
+
+export interface categoryList {
+  CategoryList: categoryList_CategoryList;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: categoryCreate
 // ====================================================
 
@@ -242,6 +311,73 @@ export interface categoryCreate {
 
 export interface categoryCreateVariables {
   params: CategoryCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: categoryDelete
+// ====================================================
+
+export interface categoryDelete_CategoryDelete_data {
+  __typename: "Category";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  label: string;
+}
+
+export interface categoryDelete_CategoryDelete {
+  __typename: "CategoryDeleteResponse";
+  ok: boolean;
+  error: string | null;
+  data: categoryDelete_CategoryDelete_data | null;
+}
+
+export interface categoryDelete {
+  CategoryDelete: categoryDelete_CategoryDelete;
+}
+
+export interface categoryDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: categoryUpdate
+// ====================================================
+
+export interface categoryUpdate_CategoryUpdate_data {
+  __typename: "Category";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  label: string;
+}
+
+export interface categoryUpdate_CategoryUpdate {
+  __typename: "CategoryUpdateResponse";
+  ok: boolean;
+  error: string | null;
+  data: categoryUpdate_CategoryUpdate_data | null;
+}
+
+export interface categoryUpdate {
+  CategoryUpdate: categoryUpdate_CategoryUpdate;
+}
+
+export interface categoryUpdateVariables {
+  params: CategoryUpdateInput;
+  id: string;
 }
 
 /* tslint:disable */
@@ -311,39 +447,6 @@ export interface pcategoryUpdate {
 
 export interface pcategoryUpdateVariables {
   params: pCategoryUpdateInput;
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: categoryDelete
-// ====================================================
-
-export interface categoryDelete_CategoryDelete_data {
-  __typename: "Category";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  label: string;
-}
-
-export interface categoryDelete_CategoryDelete {
-  __typename: "CategoryDeleteResponse";
-  ok: boolean;
-  error: string | null;
-  data: categoryDelete_CategoryDelete_data | null;
-}
-
-export interface categoryDelete {
-  CategoryDelete: categoryDelete_CategoryDelete;
-}
-
-export interface categoryDeleteVariables {
   id: string;
 }
 
@@ -1482,7 +1585,7 @@ export interface productDelete_ProductDelete_data {
   isNotice: boolean | null;
   isOpen: boolean | null;
   type: ProductType;
-  startDate: any | null;
+  startDate: any;
   Dday: number;
 }
 
@@ -1675,7 +1778,7 @@ export interface productList_ProductList_data {
   isNotice: boolean | null;
   isOpen: boolean | null;
   type: ProductType;
-  startDate: any | null;
+  startDate: any;
   Dday: number;
 }
 
@@ -1823,7 +1926,7 @@ export interface productFindById_ProductFindById_data {
   isNotice: boolean | null;
   isOpen: boolean | null;
   type: ProductType;
-  startDate: any | null;
+  startDate: any;
   Dday: number;
 }
 
@@ -1869,68 +1972,6 @@ export interface pcategoryList_pCategoryList {
 
 export interface pcategoryList {
   pCategoryList: pcategoryList_pCategoryList;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: categoryFindById
-// ====================================================
-
-export interface categoryFindById_CategoryFindById_data {
-  __typename: "Category";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  label: string;
-}
-
-export interface categoryFindById_CategoryFindById {
-  __typename: "CategoryFindByIdResponse";
-  ok: boolean;
-  error: string | null;
-  data: categoryFindById_CategoryFindById_data | null;
-}
-
-export interface categoryFindById {
-  CategoryFindById: categoryFindById_CategoryFindById;
-}
-
-export interface categoryFindByIdVariables {
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: categoryList
-// ====================================================
-
-export interface categoryList_CategoryList_data {
-  __typename: "Category";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  label: string;
-}
-
-export interface categoryList_CategoryList {
-  __typename: "CategoryListResponse";
-  ok: boolean;
-  error: string | null;
-  data: categoryList_CategoryList_data[];
-}
-
-export interface categoryList {
-  CategoryList: categoryList_CategoryList;
 }
 
 /* tslint:disable */
@@ -2018,6 +2059,11 @@ export interface getContext_GetProfile_data_bookings_product {
   title: string;
 }
 
+export interface getContext_GetProfile_data_bookings_payment {
+  __typename: "Payment";
+  Amt: string | null;
+}
+
 export interface getContext_GetProfile_data_bookings_seller {
   __typename: "User";
   _id: string;
@@ -2035,13 +2081,15 @@ export interface getContext_GetProfile_data_bookings {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: string | null;
+  status: BookingStatus | null;
   memo: string | null;
   code: string;
   product: getContext_GetProfile_data_bookings_product;
+  payment: getContext_GetProfile_data_bookings_payment | null;
   name: string;
   email: string;
   phoneNumber: string;
+  isPaid: boolean | null;
   seller: getContext_GetProfile_data_bookings_seller;
 }
 
@@ -2168,7 +2216,7 @@ export interface getContext_GetProfile_data_products {
   isNotice: boolean | null;
   isOpen: boolean | null;
   type: ProductType;
-  startDate: any | null;
+  startDate: any;
   Dday: number;
   bookings: getContext_GetProfile_data_products_bookings[];
 }
@@ -2366,6 +2414,55 @@ export interface verificationCompleteVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: Fpayment
+// ====================================================
+
+export interface Fpayment {
+  __typename: "Payment";
+  ResultCode: string | null;
+  ResultMsg: string | null;
+  Amt: string | null;
+  MID: string | null;
+  Moid: string | null;
+  BuyerEmail: string | null;
+  BuyerTel: string | null;
+  BuyerName: string | null;
+  GoodsName: string | null;
+  TID: string | null;
+  AuthCode: string | null;
+  AuthDate: string | null;
+  PayMethod: string | null;
+  CartData: string | null;
+  Signature: string | null;
+  MallReserved: string | null;
+  CardCode: string | null;
+  CardName: string | null;
+  CardNo: string | null;
+  CardQuota: string | null;
+  CardInterest: string | null;
+  AcquCardCode: string | null;
+  AcquCardName: string | null;
+  CardCl: string | null;
+  CcPartCl: string | null;
+  CouponAmt: string | null;
+  CouponMinAmt: string | null;
+  PointAppAmt: string | null;
+  ClickpayCl: string | null;
+  MultiCl: string | null;
+  MultiCardAcquAmt: string | null;
+  MultiPointAmt: string | null;
+  MultiCouponAmt: string | null;
+  RcptType: string | null;
+  RcptTID: string | null;
+  RcptAuthCode: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fcategory
 // ====================================================
 
@@ -2409,6 +2506,11 @@ export interface Fbooking_product {
   title: string;
 }
 
+export interface Fbooking_payment {
+  __typename: "Payment";
+  Amt: string | null;
+}
+
 export interface Fbooking {
   __typename: "Booking";
   _id: string;
@@ -2420,13 +2522,15 @@ export interface Fbooking {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: string | null;
+  status: BookingStatus | null;
   memo: string | null;
   code: string;
   product: Fbooking_product;
+  payment: Fbooking_payment | null;
   name: string;
   email: string;
   phoneNumber: string;
+  isPaid: boolean | null;
 }
 
 /* tslint:disable */
@@ -2816,7 +2920,7 @@ export interface Fproduct {
   isNotice: boolean | null;
   isOpen: boolean | null;
   type: ProductType;
-  startDate: any | null;
+  startDate: any;
   Dday: number;
 }
 
@@ -2928,6 +3032,14 @@ export interface Fnews {
 //==============================================================
 
 /**
+ * 예약상태
+ */
+export enum BookingStatus {
+  CANCEL = "CANCEL",
+  COMPLETE = "COMPLETE",
+}
+
+/**
  * 성별
  */
 export enum GENDER {
@@ -3014,6 +3126,8 @@ export enum _BookingSort {
 export enum _NewsSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
+  isNotice_asc = "isNotice_asc",
+  isNotice_desc = "isNotice_desc",
   likeCount_asc = "likeCount_asc",
   likeCount_desc = "likeCount_desc",
   subTitle_asc = "subTitle_asc",
@@ -3030,6 +3144,8 @@ export enum _NewsSort {
 export enum _PortfolioSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
+  isNotice_asc = "isNotice_asc",
+  isNotice_desc = "isNotice_desc",
   likeCount_asc = "likeCount_asc",
   likeCount_desc = "likeCount_desc",
   subTitle_asc = "subTitle_asc",
@@ -3048,6 +3164,8 @@ export enum _ProductSort {
   address_desc = "address_desc",
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
+  isNotice_asc = "isNotice_asc",
+  isNotice_desc = "isNotice_desc",
   likeCount_asc = "likeCount_asc",
   likeCount_desc = "likeCount_desc",
   subTitle_asc = "subTitle_asc",
@@ -3104,6 +3222,10 @@ export interface BookingUpdateInput {
 
 export interface CategoryCreateInput {
   label: string;
+}
+
+export interface CategoryUpdateInput {
+  label?: string | null;
 }
 
 export interface FileCreateInput {
@@ -3342,6 +3464,7 @@ export interface _NewsFilter {
   keyWards_eq?: string | null;
   keyWards_not_eq?: string | null;
   keyWards_in?: string[] | null;
+  keyWards_contains?: string | null;
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
@@ -3381,6 +3504,7 @@ export interface _PortfolioFilter {
   keyWards_eq?: string | null;
   keyWards_not_eq?: string | null;
   keyWards_in?: string[] | null;
+  keyWards_contains?: string | null;
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
@@ -3401,6 +3525,9 @@ export interface _ProductFilter {
   code_not_contains?: string | null;
   code_in?: string[] | null;
   code_not_in?: string[] | null;
+  categoryId_eq?: string | null;
+  categoryId_not_eq?: string | null;
+  categoryId_in?: string[] | null;
   address_eq?: string | null;
   address_not_eq?: string | null;
   address_contains?: string | null;
@@ -3416,12 +3543,12 @@ export interface _ProductFilter {
   type_eq?: ProductType | null;
   type_not_eq?: ProductType | null;
   type_in?: ProductType[] | null;
-  startDate_eq?: string | null;
-  startDate_not_eq?: string | null;
-  startDate_lte?: string | null;
-  startDate_lt?: string | null;
-  startDate_gte?: string | null;
-  startDate_gt?: string | null;
+  startDate_eq?: any | null;
+  startDate_not_eq?: any | null;
+  startDate_lte?: any | null;
+  startDate_lt?: any | null;
+  startDate_gte?: any | null;
+  startDate_gt?: any | null;
   title_eq?: string | null;
   title_not_eq?: string | null;
   title_contains?: string | null;
@@ -3438,6 +3565,7 @@ export interface _ProductFilter {
   keyWards_eq?: string | null;
   keyWards_not_eq?: string | null;
   keyWards_in?: string[] | null;
+  keyWards_contains?: string | null;
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;

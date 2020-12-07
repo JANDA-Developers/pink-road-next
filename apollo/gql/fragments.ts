@@ -1,5 +1,46 @@
 import { gql } from "@apollo/client";
 
+export const F_PAYMENT = gql`
+    fragment Fpayment  on Payment  {
+        ResultCode
+        ResultMsg
+        Amt
+        MID
+        Moid
+        BuyerEmail
+        BuyerTel
+        BuyerName
+        GoodsName
+        TID
+        AuthCode
+        AuthDate
+        PayMethod
+        CartData
+        Signature
+        MallReserved
+        CardCode
+        CardName
+        CardNo
+        CardQuota
+        CardInterest
+        AcquCardCode
+        AcquCardName
+        CardCl
+        CcPartCl
+        CouponAmt
+        CouponMinAmt
+        PointAppAmt
+        ClickpayCl
+        MultiCl
+        MultiCardAcquAmt
+        MultiPointAmt
+        MultiCouponAmt
+        RcptType
+        RcptTID
+        RcptAuthCode
+    }
+`
+
 export const F_QUESTION = gql`
     fragment Fcategory on Question {
         _id
@@ -19,7 +60,6 @@ export const F_QUESTION = gql`
         viewCount
         likeCount
         ProductId
-        status
         no
     }
 `
@@ -59,9 +99,13 @@ export const F_BOOKING = gql`
             _id
             title
         }
+        payment {
+            Amt
+        }
         name
         email
         phoneNumber
+        isPaid
     }
 `
 

@@ -38,15 +38,15 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         </div>
         <div className="mypage_in w100">
             <ul className="subtop_nav">
-                {isSeller || <li className="on"><a href="/mypage">회원정보</a></li>}{/* 개인 -*/}
-                <li><a href="/mypage/notification">알림</a></li>{/* 개인/기업파트너/개인파트너 -*/}
-                {isSeller || <li><a href="/mypage/purchase">구매내역</a></li>}{/* 개인 -*/}
-                {isSeller || <li><a href="/mypage/basket">장바구니</a></li>}{/* 개인 -*/}
-                <li><a href="/mypage/my-board">나의 게시글</a></li>{/* 개인/기업파트너/개인파트너 -*/}
-                {isSeller && <li><a href="/mypage/reservation">예약관리</a></li>}{/* 기업파트너/개인파트너 -*/}
-                {isParterB && <li><a href="/mypage/goods">상품관리</a></li>}{/* 기업파트너 -*/}
-                {isSeller && !isParterB && <li><a href="/mypage/plainning">기획관리</a></li>}{/* 개인파트너 -*/}
-                {isSeller && <li><a href="/mypage/settlement">매출/정산관리</a></li>}{/* 기업파트너/개인파트너 -*/}
+                {isSeller || <li className="on"><Link href="/mypage"><a >회원정보</a></Link></li>}{/* 개인 -*/}
+                <li><Link href="/mypage/notification"><a >알림</a></Link></li>{/* 개인/기업파트너/개인파트너 -*/}
+                {isSeller || <li><Link href="/mypage/purchase"><a >구매내역</a></Link></li>}{/* 개인 -*/}
+                {isSeller || <li><Link href="/mypage/basket"><a >장바구니</a></Link></li>}{/* 개인 -*/}
+                <li><Link href="/mypage/my-board"><a >나의 게시글</a></Link></li>{/* 개인/기업파트너/개인파트너 -*/}
+                {isSeller && <li><Link href="/mypage/reservation"><a >예약관리</a></Link></li>}{/* 기업파트너/개인파트너 -*/}
+                {isParterB && <li><Link href="/mypage/goods"><a >상품관리</a></Link></li>}{/* 기업파트너 -*/}
+                {isSeller && !isParterB && <li><Link href="/mypage/plainning"><a >기획관리</a></Link></li>}{/* 개인파트너 -*/}
+                {isSeller && <li><Link href="/mypage/settlement"><a >매출/정산관리</a></Link></li>}{/* 기업파트너/개인파트너 -*/}
             </ul>
             <div className="w1200">
 

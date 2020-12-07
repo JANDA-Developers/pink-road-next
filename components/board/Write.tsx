@@ -45,7 +45,7 @@ export const BoardWrite: React.FC<IProps> = ({
     onSave: handleSave
 }) => {
     const { myProfile } = useContext(AppContext);
-    const email = myProfile?.email || "";
+    const name = myProfile?.name || "";
     const isCreateMode = mode === "create";
     const { signleUpload } = useUpload();
     const { boardData, boardSets } = boardHook;
@@ -106,7 +106,7 @@ export const BoardWrite: React.FC<IProps> = ({
                     <div className="write_type">
                         <div className="title">작성자</div>
                         <div className="input_form">
-                            <input readOnly value={email} type="text" name="title" className="inputText w50 fix" />{/* 자동출력 고정 */}
+                            <input readOnly value={name} type="text" name="title" className="inputText w50 fix" />{/* 자동출력 고정 */}
                         </div>
                     </div>
                     <div className="write_type">

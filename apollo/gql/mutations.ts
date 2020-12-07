@@ -1,23 +1,6 @@
 import { gql } from "@apollo/client";
 import { F_ITINERARY, F_CATEGORY, F_PRODUCT, F_FILE, F_PAGE_INFO } from "./fragments";
 
-export const CATEGORY_CREATE = gql`
-  mutation categoryCreate(
-      $params: CategoryCreateInput!
-    ) {
-    CategoryCreate(
-        params:$params
-      ) {
-      ok
-      error 
-      data {
-          ...Fcategory
-      }
-    }
-  }
-  ${F_CATEGORY}
-`;
-
   
 export const PCATEGORY_CREATAE = gql`
   mutation pcategoryCreate(
@@ -63,22 +46,6 @@ export const PCATEGORY_UPDATE = gql`
 
 
 
-export const CATEGORY_DELETE = gql`
-  mutation categoryDelete(
-      $id: String!
-    ) {
-    CategoryDelete(
-        _id:$id
-      ) {
-      ok
-      error 
-      data {
-          ...Fcategory
-      }
-    }
-  }
-  ${F_CATEGORY}
-`;
 
 // export const ITINERY_DELETE = gql`
 //   mutation categoryUpdate(

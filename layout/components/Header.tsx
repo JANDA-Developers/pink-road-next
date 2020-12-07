@@ -3,12 +3,13 @@ import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { EditBtn } from 'components/common/EditBtn';
 import $ from "jquery";
 import { AppContext } from "pages/_app";
+import { NEWS_TYPE } from "../../types/api";
 
 interface IProp { }
 
 export const Header: React.FC<IProp> = () => {
 
-    const { isLogin } = useContext(AppContext);
+    const { isLogin, myProfile } = useContext(AppContext);
 
     const handleNav = () => {
         $('#header').attr("tabindex", -1);
@@ -84,7 +85,7 @@ export const Header: React.FC<IProp> = () => {
     return <header className="header" id="header">
         <div className="top-menu">
             <div className="w1200">
-                {isLogin ? <p><strong>하나룽</strong>님 어서오세요~!!</p>
+                {isLogin ? <p><strong>{myProfile?.name}</strong>님 어서오세요~!!</p>
                     : <i />}
                 <ul>
                     <li className="join">
@@ -123,52 +124,38 @@ export const Header: React.FC<IProp> = () => {
                         <div className="nav_wrap">
                             <ul className="deps1">
                                 <li className="deps">
-                                    {/*
+
                                     <Link href="/site-info">
                                         <a>PinkRoader</a>
-                                    </Link>*/}
-                                    <a href="/site-info">PinkRoader</a>
+                                    </Link>
                                 </li>
                                 <li className="deps">
-                                    {/*<Link href="/portfolio">
+                                    <Link href="/portfolio">
                                         <a>Work</a>
-                                    </Link>*/}
-                                    <a href="/portfolio">Work</a>
+                                    </Link>
                                 </li>
                                 <li className="deps">
-                                    {/* <Link href="/tour/list">
+                                    <Link href="/tour/list">
                                         <a>Tour</a>
-                                    </Link>*/}
-                                    <a href="/tour/list">Tour</a>
+                                    </Link>
                                 </li>
                                 <li className="deps">
-                                    {/*<Link href="/experience">
+                                    <Link href="/experience">
                                         <a>Experience</a>
-                                    </Link>*/}
-                                    <a href="/experience">Experience</a>
+                                    </Link>
                                 </li>
                                 <li className="deps">
-                                    {/*<Link href="https://smartstore.naver.com/pinkroader">
-                                        <a target="_blank">Design Goods</a>
-                                    </Link>*/}
                                     <a href="https://smartstore.naver.com/pinkroader" target="_blank">Design Goods</a>
                                 </li>
                                 <li className="deps">
-                                    {/* <Link href="/news">
+                                    <Link href="/news">
                                         <a>News</a>
                                     </Link>
 
                                     <ul className="deps_nav">
-                                        <li><Link href="../tourstory"><a>여행이야기</a></Link></li>
-                                        <li><Link href="../culture"><a>문화이야기</a></Link></li>
-                                        <li><Link href="../news"><a>언론보도</a></Link></li>
-                                    </ul>*/}
-
-                                    <a href="/news">News</a>
-                                    <ul className="deps_nav">
-                                        <li><a href="/tourstory">여행이야기</a></li>
-                                        <li><a href="/culture">문화이야기</a></li>
-                                        <li><a href="/news">언론보도</a></li>
+                                        <li><Link href={`news?type=${NEWS_TYPE.TRAVEL}`}><a>여행이야기</a></Link></li>
+                                        <li><Link href={`news?type=${NEWS_TYPE.CULTURE}`}><a>문화이야기</a></Link></li>
+                                        <li><Link href={`news?type=${NEWS_TYPE.MEDIA}`}><a>언론보도</a></Link></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -243,9 +230,9 @@ export const Header: React.FC<IProp> = () => {
                             </div>
                         </div>
                         <div className="m_all_menu_in">
-                            <span><Link href="../login"><a>LOGIN</a></Link></span>
+                            <span><Link href="/login"><a>LOGIN</a></Link></span>
                             <span><Link href="/"><a>LOGOUT</a></Link></span>
-                            <span><Link href="../my-page"><a>MY PAGE</a></Link></span>
+                            <span><Link href="/my-page"><a>MY PAGE</a></Link></span>
                             <span><Link href="/"><a>알림</a></Link></span>
                             <span><Link href="https://booking-app.stayjanda.cloud/#/"><a>예약관리시스템</a></Link></span>
                         </div>
