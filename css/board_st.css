@@ -1917,6 +1917,7 @@ div.board_list_mini {
                 padding: 13px 10px 10px;
                 box-sizing: border-box;
                 position:relative;
+                font-weight: 100;
             }
 
     .fuction_list_mini .q_ok {

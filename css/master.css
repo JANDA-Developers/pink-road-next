@@ -454,7 +454,7 @@
                     font-size: 12px;
                     border-radius: 100px;
                     display:inline-block;
-                    line-height: 22px;
+                    line-height: 28px;
                     margin: 3px;
                 }
 
@@ -710,10 +710,10 @@
         
     }
     .master_box .search_top .day_ul {
-        display: inline-table;
+        display: flex;
         width: 100%;
         vertical-align: middle;
-        border: 1px solid #ccc;
+        border:0;
         border-radius: 100px;
         text-align: center;
         overflow: hidden;
@@ -726,10 +726,11 @@
         padding: 3px 10px;
         box-sizing: border-box;
         float: left;
-        border-right: 1px solid #ccc;
+        border-right: 1px solid #ccc;   
+         background-color: #eaeaea;
         cursor: pointer;
         font-size: 0.7em;
-        width: 24%;
+        width: 25%;
     }
     .master_box .search_top .day_ul li.on {
         background-color: #696969;
@@ -743,7 +744,7 @@
     }
     .master_box .search_top .day_ul span {
         display: block;
-        color: #898989;
+        color: #7b7b7b;
         font-size: 12px;
         font-weight: 600;
     }
@@ -1523,6 +1524,215 @@
         border-bottom: 1px solid #cccccc;
     }
 
+    /*goods*/
+    .master_box .goods .td01 {
+        width: auto !important;
+    }
+    .master_box .goods .td02 {
+        width: auto !important;
+    }
+    .master_box .goods .td03 {
+        width: auto !important;
+    }
+    .master_box .goods .td04 {
+        width: auto !important;
+    }
+    .master_box .goods .td05 {
+        width: auto !important;
+    }
+    .master_box .goods .td06 {
+        width: auto !important;
+    }
+    .master_box .goods .td07 {
+        width: auto !important;
+    }
+    .master_box .goods .td08 {
+        width: auto !important;
+    }
+    .master_box .goods .td09 {
+        width: auto !important;
+    }
+    .master_box .goods .list_line div[class*=td] {
+        line-height: 23px !important;
+        word-break: break-all;
+    }
+    .master_box .goods .list_line .tour-no {
+        font-weight: 600;
+        color: #f32121;
+    }
+    .master_box .goods .list_line .tour-ok {
+        font-weight: 600;
+        color: #2196F3;
+    }
+    .master_box .goods .list_line .tour-yes {
+        font-weight: 600;
+        color: #005394;
+    }
+    .master_box .goods .list_line .plainning-no {
+        font-weight: 600;
+        color: #f38721;
+    }
+    .master_box .goods .list_line .plainning-yes {
+        font-weight: 600;
+        color: #059600;
+    }
+    .master_box .goods2 {
+        display: block;
+        position: relative;
+        box-sizing: border-box;
+        padding: 30px 30px 30px !important;
+    }
+    .master_box .goods2 .table  {
+        display: block;
+        position: relative;
+    }
+    .master_box .goods2 .table .body-hang {
+        display: flex;
+        width: 100%;
+        position: relative;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: left;
+    }
+    .master_box .goods2 .table .option-check {
+        display: inline-block;
+        width: 5%;
+        position: relative;
+        box-sizing: border-box;
+        padding: 5px;
+        vertical-align: top;
+        text-align: center;
+        font-size: 1.5em;
+    }
+    .master_box .goods2 .table .option-A  {
+        display: inline-block;
+        width: 16%;
+        position: relative;
+        box-sizing: border-box;
+        padding: 5px;
+        vertical-align: top;
+        text-align: left;
+        font-size: 1.5em;
+        line-height: 35px;
+    }
+    .master_box .goods2 .table .option-B  {
+        display: inline-block;
+        width:69%;
+        position: relative;
+        box-sizing: border-box;
+        padding: 5px;
+        vertical-align: top;
+        
+    }
+    .master_box .goods2 .table .option-B ul {
+        display: block;
+        position: relative;
+    }
+    .master_box .goods2 .table .option-B li {
+       line-height: 36px;
+       border-bottom: 1px dotted #ccc;
+    }
+    .master_box .goods2 .table .option-B input {
+       padding: 5px;
+       width: 90%;
+       max-width: 557px;
+       box-sizing: border-box;
+       border: 1px solid rgb(226 226 226);
+       font-weight: 100;
+    }
+    .master_box .goods2 .table .option-B i {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        background-color: #aaaaaa;
+        color: #fff;
+        text-align: center;
+        font-style: unset;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 17px;
+        margin-right: 10px;
+        vertical-align: middle;
+        border-radius: 100px;
+    }
+    .master_box .goods2 .table .option-C  {
+        display: inline-block;
+        width: 28%;
+        position: relative;
+        box-sizing: border-box;
+        padding: 5px;
+        vertical-align: top;text-align: center;
+    }
+    .master_box .goods2 .table .option-D  {
+        display: inline-block;
+        width: 15%;
+        position: relative;
+        box-sizing: border-box;
+        padding: 5px;
+        vertical-align: top;text-align: center;
+    }
+    .master_box .goods2 .table .svg-save {
+        background-image: url('/img/svg/icon-save.svg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 63%;
+        width: 28px;
+        height: 28px;
+        vertical-align: sub;
+    }
+    .master_box .goods2 .btn_list  {
+        display: inline-block;
+        width: 60px;
+        margin-left: 15px;
+        text-align: left;
+    }
+    .master_box .goods2 .btn_list button  {
+        margin-left: 3px;
+    }
+    .master_box .goods2 .fin{
+        padding: 20px 0 !important;
+    }
+    .master_box .goods2 .point_box{
+        display: inline-block;
+        color: #e4e4e4;
+        font-size: 11px;
+        font-weight: 400;
+        background-color: rgb(161, 161, 161);
+        line-height: 24px;
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 5px;    
+        margin-top: 4px;
+    }
+    .master_box .goods2 .point{
+        display: inline-block;
+        padding: 2px 10px;
+    }
+    .master_box .goods2 .point.yes.on{
+        color: #ffffff;
+        background-color: #5f7bba;
+    }
+ 
+    .master_box .goods2 .point.no.on{
+        color: #ffffff;
+        background-color: #b05555;
+    }
+    button.btn_mini  {
+        display: inline-block;
+        padding: 5px;
+        color: rgb(150, 150, 150);
+        box-sizing: border-box;
+        border: 1px solid rgb(179, 179, 179);
+        font-size: 0.9em;   
+        font-weight: 100;
+        opacity: 0.8;
+     }
+    button.btn_mini:hover  {
+        opacity:1;
+     }
+
 @media (min-width: 768px) {
     .master_box .search_top .hang {
         width: auto;
@@ -1660,7 +1870,8 @@
         float: left;
     }
     .master_box .search_top .day_ul{
-        width: 290px;
+        width: 250px;
+        display: flex;
     }
  
 }
@@ -1689,7 +1900,9 @@
         height: 44px;
     }   
     .master_box .in_content .con_box_body .list_line div[class*=td] {
-        border-bottom: 1px solid #eee;    line-height: 48px;
+        border-bottom: 1px solid #eee;    
+        line-height: 48px;
+        overflow-wrap: anywhere;
     }
      .master_box .con.family .td01 { 
         width: 5% !important;
@@ -1748,6 +1961,38 @@
         width: 15% !important;
     }
     .master_box .con.guide .td08 { 
+        width: 10% !important;
+    }
+
+    .master_box .con.goods .td01 {
+        width: 5% !important;
+    }
+    .master_box .con.goods .td02 {
+        width: 7% !important;
+    }
+    .master_box .con.goods .td03 {
+        width: 7% !important;
+    }
+    .master_box .con.goods .td04 {
+        width: 36% !important;
+    }
+    .master_box .con.goods .list_line .td04 {
+        width: 36% !important;
+        text-align: left !important;
+    }
+    .master_box .con.goods .td05 {
+        width: 10% !important;
+    }
+    .master_box .con.goods .td06 {
+        width: 5% !important;
+    }
+    .master_box .con.goods .td07 {
+        width: 10% !important;
+    }
+    .master_box .con.goods .td08 {
+        width: 7% !important;
+    }
+    .master_box .con.goods .td09 {
         width: 10% !important;
     }
 }
