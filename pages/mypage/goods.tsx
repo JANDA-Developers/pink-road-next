@@ -55,7 +55,6 @@ export const MyGoods: React.FC<IProp> = () => {
                                 <select className="option">
                                     <option>상품코드</option>
                                     <option>상품명</option>
-                                    <option>예약자</option>
                                 </select>
                                 <div className="search_div">
                                     <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
@@ -79,9 +78,10 @@ export const MyGoods: React.FC<IProp> = () => {
                             </div>
                             <div className="right_div">
                                 <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
+                                    <option>출발일 &uarr;</option>
+                                    <option>출발일 &darr;</option>
+                                    <option>개시일 &uarr;</option>
+                                    <option>개시일 &darr;</option>
                                 </select>
                                 <select className="sel02">
                                     <option>10개 보기</option>
@@ -98,13 +98,13 @@ export const MyGoods: React.FC<IProp> = () => {
                                         <label htmlFor="agree0" />
                                     </span>
                                 </div>
-                                <div className="th02">상품코드</div>
-                                <div className="th03">상품명</div>
-                                <div className="th04">예약자/연락처</div>
-                                <div className="th05">예약날짜</div>
-                                <div className="th06">예약금</div>
+                                <div className="th02">유형</div>
+                                <div className="th03">개시일</div>
+                                <div className="th04">상품</div>
+                                <div className="th05">출발일</div>
+                                <div className="th06">누적</div>
                                 <div className="th07">상태</div>
-                                <div className="th08">상세보기</div>
+                                <div className="th08">관리</div>
                             </div>
                             <div className="tbody">
                                 <ul>
@@ -115,47 +115,83 @@ export const MyGoods: React.FC<IProp> = () => {
                                                 <label htmlFor="agree1" />
                                             </span>
                                         </div>
-                                        <div className="th02">GUIDE-01230</div>
-                                        <div className="th03">제주도로 떠나요~ </div>
-                                        <div className="th04">홍나리<br />010-0100-0000</div>
+                                        <div className="th02">여행</div>
+                                        <div className="th03">2020.03.03</div>
+                                        <div className="th04">
+                                            <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
+                                            <div className="info">
+                                                <span className="ct">문화</span><span className="g-number">상품번호: PK-034982</span>
+                                                <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
+                                            </div>
+                                        </div>
                                         <div className="th05">2020.02.02</div>
-                                        <div className="th06">50,000</div>
-                                        <div className="th07"><strong className="ok">예약완료</strong></div>
-                                        <div className="th08"><i className="btn">상세보기</i></div>
+                                        <div className="th06">
+                                            <span className="people">성인 0</span>
+                                            <span className="people">소아 0</span>
+                                            <span className="people">유아 0</span>
+                                        </div>
+                                        <div className="th07">
+                                            <span className="present">예약 0</span>
+                                            <span className="present">취소 0</span>
+                                            <span className="present">환불 0</span>
+                                        </div>
+                                        <div className="th08">
+                                            <i className="btn">상품수정</i>{/*글수정으로 가기 */}
+                                            <i className="btn">예약자명단</i>{/* POPUP */}
+                                            <i className="btn">예약등록</i>{/* POPUP */}
+                                            <i className="btn">정산신청</i>{/* POPUP */}
+                                        </div>
                                     </li>
                                     <li>
                                         <div className="th01">
                                             <span className="checkbox check2">
-                                                <input type="checkbox" name="agree" id="agree2" title="개별선택" />
-                                                <label htmlFor="agree2" />
+                                                <input type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                                <label htmlFor="agree1" />
                                             </span>
                                         </div>
-                                        <div className="th02">GUIDE-01230</div>
-                                        <div className="th03">제주도로 떠나요~ </div>
-                                        <div className="th04">홍나리<br />010-0100-0000</div>
+                                        <div className="th02">여행</div>
+                                        <div className="th03">2020.03.03</div>
+                                        <div className="th04">
+                                            <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
+                                            <div className="info">
+                                                <span className="ct">문화</span><span className="g-number">상품번호: PK-034982</span>
+                                                <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
+
+                                            </div>
+                                        </div>
                                         <div className="th05">2020.02.02</div>
-                                        <div className="th06">50,000</div>
-                                        <div className="th07"><strong className="no">예약취소</strong></div>
-                                        <div className="th08"><i className="btn">상세보기</i></div>
+                                        <div className="th06">
+                                            <span className="people">성인 0</span>
+                                            <span className="people">소아 0</span>
+                                            <span className="people">유아 0</span>
+                                        </div>
+                                        <div className="th07">
+                                            <span className="present">예약 0</span>
+                                            <span className="present">취소 0</span>
+                                            <span className="present">환불 0</span>
+                                        </div>
+                                        <div className="th08">
+                                            <i className="btn">상품수정</i>{/*글수정으로 가기 */}
+                                            <i className="btn">예약자명단</i>{/* POPUP */}
+                                            <i className="btn">예약등록</i>{/* POPUP */}
+                                            <i className="btn">정산신청</i>{/* POPUP */}
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
-                            <div className="boardNavigation">
-                                <div className="float_left">
-                                    <div className="pagenate_mini">
-                                        <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
-                                        <div className="count"><strong>1</strong> / 10</div>
-                                        <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
-                                    </div>
-                                </div>
-                                <div className="float_right">
-                                    <a href="" className="mini_btn small">예약관리시스템 바로가기</a>
-                                </div>
+                            <Paginater pageNumber={10} totalPageCount={20} />
+                        </div>
+                        <div className="boardNavigation">
+                            <div className="float_left">
+
+                            </div>
+                            <div className="float_right">
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </MypageLayout>
 };

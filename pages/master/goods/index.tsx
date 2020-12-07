@@ -1,41 +1,90 @@
 import { MasterLayout } from 'layout/MasterLayout';
+import { Paginater } from 'components/common/Paginator';
+import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
+import Link from "next/link";
+import ReactTooltip from 'react-tooltip';
 
 interface IProp { }
 
-export const MsMember: React.FC<IProp> = () => {
+export const MsGoodsMain: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
-            <h4>회원관리</h4>
+            <h4>상품관리</h4>
             <div className="in_content">
-                <input id="tab-1" type="radio" name="radio-set" className="tab tab-selector-1" checked={true} />
-                <label htmlFor="tab-1" className="tab-label-1 deps3"><b>개인회원</b></label>
-                <input id="tab-2" type="radio" name="radio-set" className="tab tab-selector-2" />
-                <label htmlFor="tab-2" className="tab-label-2 deps3"><b>기업파트너 회원</b></label>
-                <input id="tab-3" type="radio" name="radio-set" className="tab tab-selector-3" />
-                <label htmlFor="tab-3" className="tab-label-3 deps3"><b>개인파트너 회원</b></label>
-                <input id="tab-4" type="radio" name="radio-set" className="tab tab-selector-4" />
-                <label htmlFor="tab-4" className="tab-label-4 deps3"><b>탈퇴 회원</b></label>
-                <input id="tab-5" type="radio" name="radio-set" className="tab tab-selector-5" />
-                <label htmlFor="tab-5" className="tab-label-5 deps3"><b>회원 약관 설정</b></label>
-                <input id="tab-6" type="radio" name="radio-set" className="tab tab-selector-6" />
-                <label htmlFor="tab-6" className="tab-label-6 deps3"><b>메뉴얼 설정</b></label>
-
-                {/* <!-- 개인회원 --> */}
-                <div className="con family" id="con01">
+                <div className="tab-nav">
+                    <ul>
+                        <li className="on"><Link href="/master/goods"><a>상품관리</a></Link></li>
+                        <li><Link href="/master/goods/goods1-2"><a>카테고리설정</a></Link></li>
+                        <li><Link href="/master/goods/goods1-3"><a>약관관리</a></Link></li>
+                    </ul>
+                </div>
+                <div className="con goods">
                     <div className="con_box_top pb5">
-                        <h3>개인회원</h3>
+                        <div className="search_top">
+                            <div className="hang">
+                                <ul className="day_ul">
+                                    <li className="on">
+                                        <span>이번달</span>
+                                    </li>
+                                    <li className="on">
+                                        <span>저번달</span>
+                                    </li>
+                                    <li>
+                                        <span>6개월</span>
+                                    </li>
+                                    <li>
+                                        <span>1년</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="hang">
+                                <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                                    ~
+                                    <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                            </div>
+                            <div className="hang fr">
+                                <select className="option">
+                                    <option>상품명</option>
+                                    <option>상품번호</option>
+                                </select>
+                                <div className="search_div">
+                                    <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
+                                    <div className="svg_img">
+                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                        <button />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
+                            <div className="left_div">
+                                <ul className="board_option">
+                                    <li className="on"><a href="/">전체<strong>46</strong></a></li>
+                                    <li><a href="/">출발확정<strong>23</strong></a></li>
+                                    <li><a href="/">출발미확정<strong>23</strong></a></li>
+                                    <li><a href="/">여행취소<strong>23</strong></a></li>
+                                    <li><a href="/">기획요청<strong>23</strong></a></li>
+                                    <li><a href="/">기획반려<strong>23</strong></a></li>
+                                </ul>
+                            </div>
                             <div className="right_div">
                                 <ul className="board_option">
-                                    <li><a href="/">엑셀파일</a></li>
-                                    <li><a href="/">모두선택</a></li>
+                                    <li><a href="/">전체선택</a></li>
+                                    <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a></li>
+                                    <li><a href="/">신규여행작성</a></li>
                                 </ul>
                                 <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
+                                    <option>출발일 &uarr;</option>
+                                    <option>출발일 &darr;</option>
+                                    <option>등록일 &uarr;</option>
+                                    <option>등록일 &darr;</option>
                                 </select>
                                 <select className="sel02">
                                     <option>10개 보기</option>
@@ -47,408 +96,174 @@ export const MsMember: React.FC<IProp> = () => {
                     </div>
                     <div className="con_box_body">
                         <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02">카테고리</div>
+                            <div className="td03">상품번호</div>
+                            <div className="td04">상품명</div>
+                            <div className="td05">여행일</div>
+                            <div className="td06">인원</div>
+                            <div className="td07">형태</div>
+                            <div className="td08">상태</div>
+                            <div className="td09">상세보기</div>
                         </div>
                         <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02">문화/체험</div>
+                            <div className="td03">PK-34234</div>
+                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td05">2020.01.03</div>
+                            <div className="td06">10/22</div>
+                            <div className="td07">당일여행(1일)</div>
+                            <div className="td08"><span className="tour-ok">출발확정</span></div>
+                            <div className="td09"><Link href=""><a className="btn">상세보기</a></Link></div> {/* 해당상품 바로가기 링크 */}
                         </div>
                         <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02">문화/체험</div>
+                            <div className="td03">PK-34234</div>
+                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td05">2020.01.03</div>
+                            <div className="td06">10/22</div>
+                            <div className="td07">당일여행(3일4일)</div>
+                            <div className="td08"><span className="tour-yes">출발미확정</span></div>
+                            <div className="td09"><Link href=""><a className="btn">상세보기</a></Link></div> {/* 해당상품 바로가기 링크 */}
                         </div>
+
                         <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02">문화/체험</div>
+                            <div className="td03">PK-34234</div>
+                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!!~!!!~!!!!!!~~!!!!!~!!!~!!!!!!~~!!!!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td05">2020.01.03</div>
+                            <div className="td06">10/22</div>
+                            <div className="td07">당일여행(1일)</div>
+                            <div className="td08"><span data-tip="사유: 태풍이 옴" className="tour-no">여행취소</span></div>
+                            <div className="td09"><Link href=""><a className="btn">상세보기</a></Link></div> {/* 해당상품 바로가기 링크 */}
                         </div>
-                    </div>
 
-                </div>
-                {/* <!-- 기업파트너회원 --> */}
-                <div className="con" id="con02">
+                        <div className="list_line">
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02">문화/체험</div>
+                            <div className="td03">PK-34234</div>
+                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td05">2020.01.03</div>
+                            <div className="td06">10/22</div>
+                            <div className="td07">당일여행(1일)</div>
+                            <div className="td08"><span data-tip="사유: 사진이 깨짐" className="plainning-no">기획반려</span></div>
+                            <div className="td09"><Link href=""><a className="btn">상세보기</a></Link></div> {/* 해당상품 바로가기 링크 */}
+                        </div>
 
-                    <div className="con_box_top pb5">
-                        <h3>기업파트너 회원</h3>
-                        <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
-                            <div className="right_div">
-                                <button type="button" className="btn_top check">모두선택</button>
-                                <button type="button" className="btn_top excel">엑셀</button>
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
+                        <div className="list_line">
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02">문화/체험</div>
+                            <div className="td03">PK-34234</div>
+                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td05">2020.01.03</div>
+                            <div className="td06">10/22</div>
+                            <div className="td07">당일여행(1일)</div>
+                            <div className="td08"><span className="plainning-yes">기획요청</span></div>
+                            <div className="td09"><Link href=""><a className="btn">상세보기</a></Link></div> {/* 해당상품 바로가기 링크 */}
+                        </div>
+
+                        <Paginater pageNumber={10} totalPageCount={20} />
+
+                        <div className="fin">
+                            <div className="float_left">
+                                <button type="submit" className="btn medium">신규여행작성</button>
+                                <button type="submit" className="btn medium">여행복사하기</button>
+                            </div>
+                            <div className="float_right">
+                                <button type="submit" className="btn medium">기획반려</button>
+                                <button type="submit" className="btn medium">기획승인</button>
+                                <button type="submit" className="btn medium">여행취소</button>
+                                <button type="submit" className="btn medium">여행확정</button>
                             </div>
                         </div>
                     </div>
-                    <div className="con_box_body">
-                        <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
 
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                    </div>
                 </div>
-
-                {/* <!-- 개인파트너회원 --> */}
-                <div className="con" id="con03">
-
-                    <div className="con_box_top pb5">
-                        <h3>개인파트너 회원</h3>
-                        <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
-                            <div className="right_div">
-                                <button type="button" className="btn_top check">모두선택</button>
-                                <button type="button" className="btn_top excel">엑셀</button>
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="con_box_body">
-                        <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                    </div>
-                </div>
-
-                {/* <!-- 탈퇴 회원 --> */}
-                <div className="con" id="con04">
-
-                    <div className="con_box_top pb5">
-                        <h3>탈퇴 회원</h3>
-                        <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
-                            <div className="right_div">
-                                <button type="button" className="btn_top check">모두선택</button>
-                                <button type="button" className="btn_top excel">엑셀</button>
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="con_box_body">
-                        <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                    </div>
-                </div>
-
-                {/* <!-- 회원 약관 설정 --> */}
-                <div className="con" id="con05">
-                    <div className="con_box_top pb5">
-                        <h3>회원 약관 설정</h3>
-                        <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
-                            <div className="right_div">
-                                <button type="button" className="btn_top check">모두선택</button>
-                                <button type="button" className="btn_top excel">엑셀</button>
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="con_box_body">
-                        <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                    </div>
-                </div>
-
-                {/* <!-- 메뉴얼 설정 --> */}
-                <div className="con" id="con06">
-
-                    <div className="con_box_top pb5">
-                        <h3>메뉴얼 설정</h3>
-                        <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
-                            <div className="right_div">
-                                <button type="button" className="btn_top check">모두선택</button>
-                                <button type="button" className="btn_top excel">엑셀</button>
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="con_box_body">
-                        <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                    </div>
-                </div>
-
-
-
             </div>
 
+            {/* popup-여행취소 사유 */}
+            <div className="popup_bg_mini" style={{ display: 'block' }}>
+                <a className="close_icon"><i className="flaticon-multiply" /></a>
+                <div className="in_txt">
+                    <h3>여행취소 사유</h3>
+                    <div className="con">
+                        <div className="input_box">
+                            <textarea></textarea>
+                        </div>
+                        <div className="info">
+                            <p><i className="flaticon-flag-1" /> 한번 여행취소시 다시 되돌릴 수 없습니다. 취소는 신중하게 부탁드립니다.</p>
+                        </div>
+                        <div className="fin">
+                            <div className="float_left">
 
+                            </div>
+                            <div className="float_right">
+                                <button type="submit" className="btn medium">여행취소</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* popup-기획반려 사유 */}
+            <div className="popup_bg_mini" style={{ display: 'block' }}>
+                <a className="close_icon"><i className="flaticon-multiply" /></a>
+                <div className="in_txt">
+                    <h3>기획반려 사유</h3>
+                    <div className="con">
+                        <div className="input_box">
+                            <textarea></textarea>
+                        </div>
+                        <div className="info">
+                            <p><i className="flaticon-flag-1" /> 기획서의 어떤 부분을 보완하기를 원하는지 사유를 적어주세요.</p>
+                        </div>
+                        <div className="fin">
+                            <div className="float_left">
+
+                            </div>
+                            <div className="float_right">
+                                <button type="submit" className="btn medium">기획반려</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="fade"></div>
 
         </div>
     </MasterLayout >
 };
 
-export default MsMember;
+export default MsGoodsMain;
