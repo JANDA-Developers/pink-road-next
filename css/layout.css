@@ -57,7 +57,7 @@ i.tooltip{
     bottom: 20%;
     right: 0;
     z-index: 98;
-    transform-origin: center center;
+    transform-origin: center right;
     transition: 1s;
     transition-timing-function: ease-in-out;
     opacity: 80;
