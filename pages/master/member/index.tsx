@@ -1,5 +1,6 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import { Paginater } from 'components/common/Paginator';
+import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
@@ -53,6 +54,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </div>
                             <div className="hang fr">
                                 <select className="option">
+                                    <option>전체</option>
                                     <option>이름</option>
                                     <option>아이디</option>
                                     <option>휴대폰</option>
@@ -122,11 +124,11 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </div>
                             <div className="td02">김옥자</div>
                             <div className="td03">gogo@gamail.com</div>
-                            <div className="td04"><a href="tel:">010-2222-2222</a></div>
-                            <div className="td05">여성</div>
-                            <div className="td06">외국인</div>
-                            <div className="td07">2020.10.01</div>
-                            <div className="td08">카카오연동</div>
+                            <div className="td04"><i className="m_title">휴대폰:</i><a href="tel:">010-2222-2222</a></div>
+                            <div className="td05"><i className="m_title">성별:</i>여성</div>
+                            <div className="td06"><i className="m_title">국적:</i>외국인</div>
+                            <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
+                            <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
                             <div className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></div>
                         </div>
 
@@ -139,11 +141,11 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </div>
                             <div className="td02">김옥자</div>
                             <div className="td03">gogo@gamail.com</div>
-                            <div className="td04"><a href="tel:">010-2222-2222</a></div>
-                            <div className="td05">여성</div>
-                            <div className="td06">외국인</div>
-                            <div className="td07">2020.10.01</div>
-                            <div className="td08">카카오연동</div>
+                            <div className="td04"><i className="m_title">휴대폰:</i><a href="tel:">010-2222-2222</a></div>
+                            <div className="td05"><i className="m_title">성별:</i>여성</div>
+                            <div className="td06"><i className="m_title">국적:</i>외국인</div>
+                            <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
+                            <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
                             <div className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></div>
                         </div>
                         <div className="list_line">
@@ -155,11 +157,11 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </div>
                             <div className="td02">김옥자</div>
                             <div className="td03">gogo@gamail.com</div>
-                            <div className="td04"><a href="tel:">010-2222-2222</a></div>
-                            <div className="td05">여성</div>
-                            <div className="td06">외국인</div>
-                            <div className="td07">2020.10.01</div>
-                            <div className="td08">카카오연동</div>
+                            <div className="td04"><i className="m_title">휴대폰:</i><a href="tel:">010-2222-2222</a></div>
+                            <div className="td05"><i className="m_title">성별:</i>여성</div>
+                            <div className="td06"><i className="m_title">국적:</i>외국인</div>
+                            <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
+                            <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
                             <div className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></div>
                         </div>
                         <div className="list_line">
@@ -171,11 +173,11 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </div>
                             <div className="td02">김옥자</div>
                             <div className="td03">gogo@gamail.com</div>
-                            <div className="td04"><a href="tel:">010-2222-2222</a></div>
-                            <div className="td05">여성</div>
-                            <div className="td06">외국인</div>
-                            <div className="td07">2020.10.01</div>
-                            <div className="td08">카카오연동</div>
+                            <div className="td04"><i className="m_title">형태:</i><a href="tel:">010-2222-2222</a></div>
+                            <div className="td05"><i className="m_title">성별:</i>여성</div>
+                            <div className="td06"><i className="m_title">국적:</i>외국인</div>
+                            <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
+                            <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
                             <div className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></div>
                         </div>
                         <Paginater pageNumber={10} totalPageCount={20} />
@@ -189,9 +191,9 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+            <SearcfInfoBox />
             {/* popup-작성한 게시글 보기 */}
             <div id="Popup01" className="popup_bg_full" style={{ display: 'none;' }}>
                 <a className="close_icon">

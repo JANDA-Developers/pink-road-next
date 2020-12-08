@@ -4,22 +4,21 @@ import Link from "next/link";
 
 interface IProp { }
 
-export const MsDesignMain: React.FC<IProp> = () => {
+export const MsDesignA: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
             <h4>디자인 설정</h4>
             <div className="in_content">
                 <div className="tab-nav">
                     <ul>
-                        <li className="on"><Link href="/master/design"><a>기본설정</a></Link></li>
-                        <li><Link href="/master/design/design1-2"><a>배너관리</a></Link></li>
+                        <li><Link href="/master/design"><a>기본설정</a></Link></li>
+                        <li className="on"><Link href="/master/design/design1-2"><a>배너관리</a></Link></li>
                         <li><Link href="/master/design/design1-3"><a>팝업관리</a></Link></li>
                         <li><Link href="/master/design/design1-4"><a>노출상품관리</a></Link></li>
                     </ul>
                 </div>
                 <div className="con design">
                     <div className="design_table">
-                        <h5>사이트정보</h5>
                         <div className="tbody">
                             <div className="t01">
                                 <div className="title">사이트명</div>
@@ -123,7 +122,6 @@ export const MsDesignMain: React.FC<IProp> = () => {
                                 <div className="txt"><input className="w90" placeholder="Copyright © 2020 PINKROADER Co., Ltd. All rights reserved" type="text" /></div>
                             </div>
                         </div>
-                        <h5>하단정보</h5>
                         <div className="tbody">
                             <div className="t01">
                                 <div className="title">하단-정보01</div>
@@ -146,8 +144,18 @@ export const MsDesignMain: React.FC<IProp> = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">하단-정보03</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w30 mr5" placeholder="제목" type="text" />
+                                    <input className="w50" placeholder="내용" type="text" />
+                                </div>
+                            </div>
+                        </div>
 
-                        <h5>SNS설정</h5>
                         <div className="tbody">
                             <div className="t01">
                                 <div className="title">SNS-페이스북 연결</div>
@@ -189,7 +197,6 @@ export const MsDesignMain: React.FC<IProp> = () => {
                             </div>
                         </div>
 
-                        <h5>하단 바로가기 링크</h5>
                         <div className="tbody">
                             <div className="t01">
                                 <div className="title">하단바로가기-정보01</div>
@@ -256,4 +263,4 @@ export const MsDesignMain: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsDesignMain;
+export default MsDesignA;

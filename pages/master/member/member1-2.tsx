@@ -1,5 +1,6 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import { Paginater } from 'components/common/Paginator';
+import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
@@ -53,9 +54,13 @@ export const MsMemberB: React.FC<IProp> = () => {
                             </div>
                             <div className="hang fr">
                                 <select className="option">
+                                    <option>전체</option>
                                     <option>파트너명</option>
                                     <option>아이디</option>
+                                    <option>연락처</option>
+                                    <option>담당자</option>
                                     <option>휴대폰</option>
+                                    <option>승인상태</option>
                                 </select>
                                 <div className="search_div">
                                     <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
@@ -123,11 +128,11 @@ export const MsMemberB: React.FC<IProp> = () => {
                             </div>
                             <div className="td02">하나투어</div>
                             <div className="td03"><a href="mailto:">gogo@gamail.com</a></div>
-                            <div className="td04"><a href="tel:">051-555-5555</a></div>
-                            <div className="td05">김김김<br /><a href="tel:">(010-2222-2222)</a></div>
-                            <div className="td06"><i className="approval stand">대기</i></div>
-                            <div className="td07">2020.11.22</div>
-                            <div className="td08"><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
+                            <div className="td04"><i className="m_title">연락처:</i><a href="tel:">051-555-5555</a></div>
+                            <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
+                            <div className="td06"><i className="m_title">승인여부:</i><i className="approval stand">승인대기</i></div>
+                            <div className="td07"><i className="m_title">가입일:</i>2020.11.22</div>
+                            <div className="td08"><i className="m_title">판매상품:</i><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
                             <div className="td09"><button className="btn">상세보기</button></div>
                         </div>
 
@@ -140,11 +145,11 @@ export const MsMemberB: React.FC<IProp> = () => {
                             </div>
                             <div className="td02">하나투어</div>
                             <div className="td03"><a href="mailto:">gogo@gamail.com</a></div>
-                            <div className="td04"><a href="tel:">051-555-5555</a></div>
-                            <div className="td05">김김김<br /><a href="tel:">(010-2222-2222)</a></div>
-                            <div className="td06"><i className="approval ok">승인</i></div>
-                            <div className="td07">2020.11.22</div>
-                            <div className="td08"><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
+                            <div className="td04"><i className="m_title">연락처:</i><a href="tel:">051-555-5555</a></div>
+                            <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
+                            <div className="td06"><i className="m_title">승인여부:</i><i className="approval ok">승인</i></div>
+                            <div className="td07"><i className="m_title">가입일:</i>2020.11.22</div>
+                            <div className="td08"><i className="m_title">판매상품:</i><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
                             <div className="td09"><button className="btn">상세보기</button></div>
                         </div>
 
@@ -157,11 +162,11 @@ export const MsMemberB: React.FC<IProp> = () => {
                             </div>
                             <div className="td02">하나투어</div>
                             <div className="td03"><a href="mailto:">gogo@gamail.com</a></div>
-                            <div className="td04"><a href="tel:">051-555-5555</a></div>
-                            <div className="td05">김김김<br /><a href="tel:">(010-2222-2222)</a></div>
-                            <div className="td06"><i className="approval no" data-tip="미승인사유 : 서류보완">미승인</i></div>
-                            <div className="td07">2020.11.22</div>
-                            <div className="td08"><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
+                            <div className="td04"><i className="m_title">연락처:</i><a href="tel:">051-555-5555</a></div>
+                            <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
+                            <div className="td06"><i className="m_title">승인여부:</i><i className="approval no" data-tip="미승인사유 : 서류보완">미승인</i></div>
+                            <div className="td07"><i className="m_title">가입일:</i>2020.11.22</div>
+                            <div className="td08"><i className="m_title">판매상품:</i><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
                             <div className="td09"><button className="btn">상세보기</button></div>
                         </div>
                         <Paginater pageNumber={10} totalPageCount={20} />
@@ -175,9 +180,9 @@ export const MsMemberB: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+            <SearcfInfoBox />
 
             {/* popup-상세보기 */}
             <div id="Popup01" className="popup_bg_full" style={{ display: 'none;' }}>

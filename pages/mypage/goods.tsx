@@ -115,8 +115,8 @@ export const MyGoods: React.FC<IProp> = () => {
                                                 <label htmlFor="agree1" />
                                             </span>
                                         </div>
-                                        <div className="th02">여행</div>
-                                        <div className="th03">2020.03.03</div>
+                                        <div className="th02"><span className="m_title">유형: </span>여행</div>
+                                        <div className="th03"><span className="m_title">개시일: </span>2020.03.03</div>
                                         <div className="th04">
                                             <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
                                             <div className="info">
@@ -124,15 +124,23 @@ export const MyGoods: React.FC<IProp> = () => {
                                                 <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                             </div>
                                         </div>
-                                        <div className="th05">2020.02.02</div>
+                                        <div className="th05"><span className="m_title">출발일: </span>2020.02.02</div>
                                         <div className="th06">
-                                            <span className="people">성인 0</span>
+                                            {/* 단위 : 명 */}
+                                            <span className="m_title">누적: </span>
+                                            <span className="people">성인 2</span>
+                                            <span className="m_title"> / </span>
                                             <span className="people">소아 0</span>
-                                            <span className="people">유아 0</span>
+                                            <span className="m_title"> / </span>
+                                            <span className="people">유아 4</span>
                                         </div>
                                         <div className="th07">
+                                            {/* 단위 : 건 */}
+                                            <span className="m_title">상태: </span>
                                             <span className="present">예약 0</span>
+                                            <span className="m_title"> / </span>
                                             <span className="present">취소 0</span>
+                                            <span className="m_title"> / </span>
                                             <span className="present">환불 0</span>
                                         </div>
                                         <div className="th08">
@@ -149,25 +157,32 @@ export const MyGoods: React.FC<IProp> = () => {
                                                 <label htmlFor="agree1" />
                                             </span>
                                         </div>
-                                        <div className="th02">여행</div>
-                                        <div className="th03">2020.03.03</div>
+                                        <div className="th02"><span className="m_title">유형: </span>여행</div>
+                                        <div className="th03"><span className="m_title">개시일: </span>2020.03.03</div>
                                         <div className="th04">
                                             <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
                                             <div className="info">
                                                 <span className="ct">문화</span><span className="g-number">상품번호: PK-034982</span>
                                                 <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
-
                                             </div>
                                         </div>
-                                        <div className="th05">2020.02.02</div>
+                                        <div className="th05"><span className="m_title">출발일: </span>2020.02.02</div>
                                         <div className="th06">
-                                            <span className="people">성인 0</span>
+                                            {/* 단위 : 명 */}
+                                            <span className="m_title">누적: </span>
+                                            <span className="people">성인 2</span>
+                                            <span className="m_title"> / </span>
                                             <span className="people">소아 0</span>
-                                            <span className="people">유아 0</span>
+                                            <span className="m_title"> / </span>
+                                            <span className="people">유아 4</span>
                                         </div>
                                         <div className="th07">
+                                            {/* 단위 : 건 */}
+                                            <span className="m_title">상태: </span>
                                             <span className="present">예약 0</span>
+                                            <span className="m_title"> / </span>
                                             <span className="present">취소 0</span>
+                                            <span className="m_title"> / </span>
                                             <span className="present">환불 0</span>
                                         </div>
                                         <div className="th08">

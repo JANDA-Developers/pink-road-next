@@ -121,16 +121,19 @@ export const MyPlanning: React.FC<IProp> = () => {
                                                     <label htmlFor="agree1" />
                                                 </span>
                                             </div>
-                                            <div className="th02">PINK-01230</div>
+                                            <div className="th02"><span className="m_title">상품코드: </span>PINK-01230</div>
                                             <div className="th03">제주도로 떠나요~ 제주도로 떠나요~제주도로 떠나요~</div>
-                                            <div className="th04">2020.02.02</div>
+                                            <div className="th04"><span className="m_title">출발일: </span>2020.02.02</div>
                                             <div className="th05">
+                                                <span className="m_title">금액: </span>
                                                 <span className="people">성인 20,000</span>
+                                                <span className="m_title"> / </span>
                                                 <span className="people">소아 1,000,000</span>
+                                                <span className="m_title"> / </span>
                                                 <span className="people">유아 0</span>
                                             </div>
-                                            <div className="th06">22</div>
-                                            <div className="th07"><strong className="no">기획반려</strong></div>
+                                            <div className="th06"><span className="m_title">인원수: </span>22</div>
+                                            <div className="th07"><span className="m_title">상태: </span><strong className="no">기획반려</strong></div>
                                             <div className="th08"><i className="btn">수정하기</i></div>
                                         </li>
                                         <li>
@@ -140,16 +143,20 @@ export const MyPlanning: React.FC<IProp> = () => {
                                                     <label htmlFor="agree1" />
                                                 </span>
                                             </div>
-                                            <div className="th02">PINK-01230</div>
+                                            <div className="th02"><span className="m_title">상품코드: </span>PINK-01230</div>
                                             <div className="th03">제주도로 떠나요~ 제주도로 떠나요~제주도로 떠나요~</div>
-                                            <div className="th04">2020.02.02</div>
+                                            <div className="th04"><span className="m_title">출발일: </span>2020.02.02</div>
                                             <div className="th05">
+                                                {/* 단위 : 원 */}
+                                                <span className="m_title">금액: </span>
                                                 <span className="people">성인 20,000</span>
+                                                <span className="m_title"> / </span>
                                                 <span className="people">소아 1,000,000</span>
+                                                <span className="m_title"> / </span>
                                                 <span className="people">유아 0</span>
                                             </div>
-                                            <div className="th06">22</div>
-                                            <div className="th07"><strong className="ok">기획요청</strong></div>
+                                            <div className="th06"><span className="m_title">인원수: </span>22</div>
+                                            <div className="th07"><span className="m_title">상태: </span><strong className="ok">기획요청</strong></div>
                                             <div className="th08"><i className="btn">수정하기</i></div>
                                         </li>
                                     </ul>

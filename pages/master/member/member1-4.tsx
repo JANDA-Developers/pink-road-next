@@ -1,5 +1,6 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import { Paginater } from 'components/common/Paginator';
+import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
@@ -52,9 +53,11 @@ export const MsMemberD: React.FC<IProp> = () => {
                             </div>
                             <div className="hang fr">
                                 <select className="option">
-                                    <option>가이드명</option>
+                                    <option>전체</option>
+                                    <option>이름</option>
+                                    <option>파트너명</option>
                                     <option>아이디</option>
-                                    <option>휴대폰</option>
+                                    <option>연락처</option>
                                 </select>
                                 <div className="search_div">
                                     <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
@@ -82,8 +85,8 @@ export const MsMemberD: React.FC<IProp> = () => {
                                 <select className="sel01">
                                     <option>탈퇴일 &uarr;</option>
                                     <option>탈퇴일 &darr;</option>
-                                    <option>이름 오름순</option>
-                                    <option>이름 내림순</option>
+                                    <option>이름 &uarr;</option>
+                                    <option>이름 &darr;</option>
                                 </select>
                                 <select className="sel02">
                                     <option>10개 보기</option>
@@ -116,13 +119,13 @@ export const MsMemberD: React.FC<IProp> = () => {
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
-                            <div className="td02">개인</div>
+                            <div className="td02"><i className="m_title">유형:</i>개인</div>
                             <div className="td03">김하나</div>
                             <div className="td04"><a href="mailto:">gogo@gamail.com</a></div>
-                            <div className="td05">-</div>
-                            <div className="td06">2020.11.22</div>
-                            <div className="td07">홈페이지</div>
-                            <div className="td08"><button className="btn">보기</button></div>
+                            <div className="td05"><i className="m_title">담당자:</i>-</div>
+                            <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
+                            <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
+                            <div className="td08"><button className="btn">상세보기</button></div>
                         </div>
 
                         <div className="list_line">
@@ -132,13 +135,13 @@ export const MsMemberD: React.FC<IProp> = () => {
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
-                            <div className="td02">개인파트너</div>
-                            <div className="td03">정하나</div>
+                            <div className="td02"><i className="m_title">유형:</i>기업파트너</div>
+                            <div className="td03">(주)투어</div>
                             <div className="td04"><a href="mailto:">gogo@gamail.com</a></div>
-                            <div className="td05">김김김<br /><a href="tel:">(010-2222-2222)</a></div>
-                            <div className="td06">2020.11.22</div>
-                            <div className="td07">카카오톡연동</div>
-                            <div className="td08"><button className="btn">보기</button></div>
+                            <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
+                            <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
+                            <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
+                            <div className="td08"><button className="btn">상세보기</button></div>
                         </div>
                         <div className="list_line">
                         <div className="td01">
@@ -147,19 +150,20 @@ export const MsMemberD: React.FC<IProp> = () => {
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
-                            <div className="td02">기업파트너</div>
+                            <div className="td02"><i className="m_title">유형:</i>기업파트너</div>
                             <div className="td03">(주)투어</div>
                             <div className="td04"><a href="mailto:">gogo@gamail.com</a></div>
-                            <div className="td05">김김김<br /><a href="tel:">(010-2222-2222)</a></div>
-                            <div className="td06">2020.11.22</div>
-                            <div className="td07">카카오톡연동</div>
-                            <div className="td08"><button className="btn">보기</button></div>
+                            <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
+                            <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
+                            <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
+                            <div className="td08"><button className="btn">상세보기</button></div>
                         </div>
 
                         <Paginater pageNumber={10} totalPageCount={20} />
                     </div>
                 </div>
             </div>
+                    <SearcfInfoBox />
 
             {/* popup-상세보기--------------- 탈퇴에서는 회원정보를 수정할 수없음. input박스제거 */}
             <div id="Popup01" className="popup_bg_full" style={{ display: 'none;' }}>

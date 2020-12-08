@@ -1,5 +1,6 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import { Paginater } from 'components/common/Paginator';
+import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
@@ -12,6 +13,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
         <div className="in ">
             <h4>상품관리</h4>
             <div className="in_content">
+
                 <div className="tab-nav">
                     <ul>
                         <li className="on"><Link href="/master/goods"><a>상품관리</a></Link></li>
@@ -21,6 +23,26 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                 </div>
                 <div className="con goods">
                     <div className="con_box_top pb5">
+                        <div className="top_info_number">
+                            <ul className="ln4">
+                                <li>
+                                    <strong>234</strong>
+                                    <span>전체</span>
+                                </li>
+                                <li>
+                                    <strong>234</strong>
+                                    <span>판매중</span>
+                                </li>
+                                <li>
+                                    <strong>234</strong>
+                                    <span>판매중지</span>
+                                </li>
+                                <li>
+                                    <strong>234</strong>
+                                    <span>판매완료</span>
+                                </li>
+                            </ul>
+                        </div>
                         <div className="search_top">
                             <div className="hang">
                                 <ul className="day_ul">
@@ -118,12 +140,12 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
-                            <div className="td02">문화/체험</div>
-                            <div className="td03">PK-34234</div>
+                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
+                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
                             <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
-                            <div className="td05">2020.01.03</div>
-                            <div className="td06">10/22</div>
-                            <div className="td07">당일여행(1일)</div>
+                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
+                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
+                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
                             <div className="td08"><span className="tour-ok">출발확정</span></div>
                             <div className="td09"><Link href=""><a className="btn">상세보기</a></Link></div> {/* 해당상품 바로가기 링크 */}
                         </div>
@@ -134,12 +156,12 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
-                            <div className="td02">문화/체험</div>
-                            <div className="td03">PK-34234</div>
+                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
+                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
                             <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
-                            <div className="td05">2020.01.03</div>
-                            <div className="td06">10/22</div>
-                            <div className="td07">당일여행(3일4일)</div>
+                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
+                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
+                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
                             <div className="td08"><span className="tour-yes">출발미확정</span></div>
                             <div className="td09"><Link href=""><a className="btn">상세보기</a></Link></div> {/* 해당상품 바로가기 링크 */}
                         </div>
@@ -151,12 +173,12 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
-                            <div className="td02">문화/체험</div>
-                            <div className="td03">PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!!~!!!~!!!!!!~~!!!!!~!!!~!!!!!!~~!!!!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
-                            <div className="td05">2020.01.03</div>
-                            <div className="td06">10/22</div>
-                            <div className="td07">당일여행(1일)</div>
+                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
+                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
+                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
+                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
+                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
                             <div className="td08"><span data-tip="사유: 태풍이 옴" className="tour-no">여행취소</span></div>
                             <div className="td09"><Link href=""><a className="btn">상세보기</a></Link></div> {/* 해당상품 바로가기 링크 */}
                         </div>
@@ -168,12 +190,12 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
-                            <div className="td02">문화/체험</div>
-                            <div className="td03">PK-34234</div>
+                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
+                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
                             <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
-                            <div className="td05">2020.01.03</div>
-                            <div className="td06">10/22</div>
-                            <div className="td07">당일여행(1일)</div>
+                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
+                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
+                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
                             <div className="td08"><span data-tip="사유: 사진이 깨짐" className="plainning-no">기획반려</span></div>
                             <div className="td09"><Link href=""><a className="btn">상세보기</a></Link></div> {/* 해당상품 바로가기 링크 */}
                         </div>
@@ -185,12 +207,12 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
-                            <div className="td02">문화/체험</div>
-                            <div className="td03">PK-34234</div>
+                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
+                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
                             <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
-                            <div className="td05">2020.01.03</div>
-                            <div className="td06">10/22</div>
-                            <div className="td07">당일여행(1일)</div>
+                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
+                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
+                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
                             <div className="td08"><span className="plainning-yes">기획요청</span></div>
                             <div className="td09"><Link href=""><a className="btn">상세보기</a></Link></div> {/* 해당상품 바로가기 링크 */}
                         </div>
@@ -210,9 +232,9 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+            <SearcfInfoBox />
 
             {/* popup-여행취소 사유 */}
             <div className="popup_bg_mini" style={{ display: 'block' }}>

@@ -3,7 +3,9 @@
     width: 30px;
     fill: #ccc;
 }
-
+.jandaicon-info2.tooltip{
+    line-height: 10px;
+}
 /* main */
 #main.main {
     position: relative;
@@ -544,17 +546,17 @@ div.search_mini {
             }
 div.popup_bg_full {
     position: fixed;
-    top: 5%;
-    left: 5%;
-    width: 90%;
-    height: 90%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 101;
-    padding: 60px 22px 30px;
+    padding: 60px 3% 30px;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 0px;
     overflow: hidden;
     background-color: #fff;
-    border: 5px solid #ccc;
+    border: 0;
 }
 
     div.popup_bg_full .in_txt {
@@ -564,7 +566,7 @@ div.popup_bg_full {
         margin: 0 auto;
         text-align: left;
         font-size: 12px;
-        padding: 10px;
+        padding: 10px 10px 10px 0;
         box-sizing: border-box;
     }
 
@@ -576,8 +578,8 @@ div.popup_bg_full {
 
     div.popup_bg_full .close_icon {
         position: absolute;
-        top: 29px;
-        right: 17px;
+        top: 23px;
+        right: 3px;
         display: block;
         width: 30px;
         height: 30px;
@@ -646,9 +648,10 @@ div.popup_bg_full {
         right: 0;
     }
     div.popup_bg_full h4 .btn {
-        padding: 5px 15px;
+        padding: 0px 10px;
         margin-left: 5px;
         font-size: 0.9em;
+        border-radius: 0;
     }
     div.popup_bg_full h4 span strong {
       
@@ -906,18 +909,18 @@ div.fade {
 }
 
 div.alignment {
-    width: 94%;
+    width: 100%;
     margin: 0 auto;
-    display: flex;
+    display: block;
     position: relative;
-    padding: 30px 5px 5px;
-    height: 68px;
+    padding: 30px 0 15px;
+    height: auto;
     box-sizing: border-box;
 }
 
     div.alignment .left_div {
         display: inline-block;
-        width: 50%;
+        width: 100%;
         text-align: left;
         font-size: 14px;
         line-height: 22px;
@@ -935,8 +938,8 @@ div.alignment {
 
     div.alignment .right_div {
         display: inline-block;
-        width: 50%;
-        text-align: right;
+        width: 100%;
+        text-align: left;
         font-size: 14px;
     }
 
@@ -1015,8 +1018,10 @@ div.alignment {
     div.alignment select {
         border-radius: 5px;
         height: 32px;
+        width: 49%;
         font-size: 12px;
         padding: 0 10px;
+        margin-top: 5px;
         font-weight: 100;
         box-sizing: border-box;
         border: 1px solid #d2d2d2;
@@ -6206,24 +6211,24 @@ i.important_icon {
     }
 
     .search_box .title {
-        display: inline-block;
-        width: 8%;
+        display:block;
+        width: 100%;
         font-size: 14px;
         font-weight: 600;
         vertical-align: top;
         line-height: 31px;
-        padding: 0 5px;
+        padding: 0;
     }
 
     .search_box .text {
-        display: inline-block;
-        width: 90%;
+        display: block;
+        width: 100%;
         vertical-align: top;
     }
 
         .search_box .text input[type*=text] {
             border-radius: 5px;
-            height: 32px;
+            height: 40px;
             padding-left: 10px;
             box-sizing: border-box;
             border: 1px solid #d2d2d2;
@@ -6244,20 +6249,21 @@ i.important_icon {
         .search_box .jul1 .option {
             border-radius: 5px;
             height: 40px;
-            width: 18%;
-            font-size: 11px;
+            width: 100%;
+            font-size: 13px;
             padding: 0 10px;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
             border: 1px solid #d2d2d2;
             display: inline-block;
             margin-right: 10px;
+            margin-bottom: 7px;
         }
 
         .search_box .jul1 .search_div {
             position:relative;
             display:inline-block;
-            width: 80%;
+            width: 100%;
             box-sizing: border-box;
         }
         .search_box .jul1 input {
@@ -6307,7 +6313,7 @@ i.important_icon {
     .search_box .jul2 {
         padding: 10px 0 10px;
         width: 100%;
-        display: flex;
+        display: block;
         border-bottom: 1px dotted #dbdbdb;
         border-top: 1px dotted #dbdbdb;
     }
@@ -6322,7 +6328,7 @@ i.important_icon {
     .search_box .jul4 {
         padding: 10px 0 10px;
         width: 100%;
-        display: flex;
+        display: block;
         border-bottom: 1px dotted #dbdbdb;
     }
 
@@ -6362,7 +6368,7 @@ i.important_icon {
         border-radius: 100px;
         overflow: hidden;
         cursor: pointer;
-        background: #ed297b;
+        background: #2196F3;
         background: -moz-linear-gradient(-45deg, #ed297b 0%, #ed297b 58%);
         background: -webkit-linear-gradient(-45deg, #ed297b 0%, #ed297b 58%);
         background: linear-gradient(135deg, #ed297b 0%, #ed297b 58%);
@@ -6401,10 +6407,10 @@ i.important_icon {
         }
 
     .search_box .day_ul {
-        display: inline-table;
+        width: 100%;
+        display: flex;
         vertical-align: middle;
-        border: 1px solid #ccc;
-        border-radius: 100px;
+        border-radius: 5px;
         text-align: center;
         overflow: hidden;
         box-sizing: border-box;
@@ -6413,10 +6419,12 @@ i.important_icon {
 
         .search_box .day_ul li {
             display: inline-block;
-            padding: 7px 10px;
+            padding:12px 10px;
             float: left;
+            width: 25%;
             border-right: 1px solid #ccc;
             cursor: pointer;
+            background-color: #e7e7e7;
         }
 
             .search_box .day_ul li:first-child {
@@ -6431,12 +6439,12 @@ i.important_icon {
         .search_box .day_ul span {
             display: block;
             color: #898989;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
         }
 
         .search_box .day_ul li.on {
-            background-color: #ed297b;
+            background-color: #2196F3;
         }
 
             .search_box .day_ul li.on span {
@@ -6444,7 +6452,7 @@ i.important_icon {
             }
 
         .search_box .day_ul li:hover span {
-            color: #ed297b;
+            color: #2196F3;
         }
 
         .search_box .day_ul .on:hover span {
@@ -6455,8 +6463,9 @@ i.important_icon {
         display: inline-block;
         vertical-align: middle;
         position: relative;
-        width: 200px;
+        width: 100%;
         margin-right: 5px;
+        margin-top: 10px;
     }
 
     .search_box .calendar {
@@ -6470,7 +6479,7 @@ i.important_icon {
         margin-right: 2px;
         position: absolute;
         right: 5px;
-        top: 5px;
+        top: 9px;
     }
 
         .search_box .calendar button {
@@ -6498,16 +6507,16 @@ i.important_icon {
     .search_box .check {
         position: relative;
         display: inline-block;
-        height: 30px;
+        height: 40px;
         color: #777;
-        float: left;
+        float: none;
         font-size: 14px;
         font-weight: 600;
-        line-height: 32px;
+        line-height: 40px;
         letter-spacing: -1px;
         text-transform: uppercase;
         text-align: center;
-        border-radius: 100px;
+        border-radius: 5px;
         cursor: pointer;
         margin-right: 5px;
         padding: 0px 21px;
@@ -6516,20 +6525,20 @@ i.important_icon {
     }
 
         .search_box .check.on {
-            background: #ed297b;
+            background: #2196F3;
             z-index: 6;
             color: #fff;
-            border: 1px solid #ed297b;
+            border: 1px solid #2196F3;
         }
 
         .search_box .check:hover {
-            color: #ed297b;
-            border: 1px solid #ed297b;
+            color:#2196F3;
+            border: 1px solid #2196F3;
         }
 
         .search_box .check.on:hover {
             color: #fff;
-            border: 1px solid #ed297b;
+            border: 1px solid #2196F3;
         }
 
 .search_in {
@@ -9392,6 +9401,28 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+    div.popup_bg_full {
+        top: 2%;
+        left: 2%;
+        width: 96%;
+        height: 96%;
+        padding: 60px 22px 30px;
+        border-radius: 20px;
+        border: 5px solid #ccc;
+    }
+    
+        div.popup_bg_full .in_txt {
+            padding: 10px;
+        }
+    
+    div.popup_bg_full .close_icon {
+            position: absolute;
+            top: 29px;
+            right: 17px;
+            display: block;
+            width: 30px;
+            height: 30px;
+        }
     .main_con_box4 {
         padding: 160px 3%;
     }
@@ -9401,6 +9432,10 @@ i.calendar {
             font-size: 12px;
         }
 
+        div.alignment {
+            width: 100%;
+            padding: 30px 5px 5px;
+        }
     .selectViewList ul.list_ul .list_in .txt2 {
         position: absolute;
         right: 0;
@@ -9901,6 +9936,190 @@ i.calendar {
         width: 672px;
         height: 420px;
     }
+    .search_box .jul2 {
+        padding: 10px 0 10px;
+        width: 100%;
+        display: flex;
+        border-bottom: 1px dotted #dbdbdb;
+        border-top: 1px dotted #dbdbdb;
+    }
+
+.search_box .jul4 {
+        padding: 10px 0 10px;
+        width: 100%;
+        display: flex;
+        border-bottom: 1px dotted #dbdbdb;
+    }
+
+.search_box .title {
+        display: inline-block;
+        width: 8%;
+        font-size: 14px;
+        font-weight: 600;
+        vertical-align: top;
+        line-height: 31px;
+        padding: 0 5px;
+    }
+
+.search_box .text {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+    }
+
+.search_box .check {
+        position: relative;
+        display: inline-block;
+        height: 30px;
+        color: #777;
+        float: left;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 32px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        text-align: center;
+        border-radius: 100px;
+        cursor: pointer;
+        margin-right: 5px;
+        padding: 0px 21px;
+        background: #ffffff;
+        border: 1px solid #ccc;
+    }
+
+.search_box .input_box {
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        width: 200px;
+        margin-right: 5px;
+margin-top:0;
+    }
+
+.search_box .jul1 .option {
+            border-radius: 5px;
+            height: 40px;
+            width: 18%;
+            font-size: 13px;
+            padding: 0 10px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            border: 1px solid #d2d2d2;
+            display: inline-block;
+            margin-right: 10px;
+margin-bottom:0;
+        }
+
+.search_box .jul1 .search_div {
+            position:relative;
+            display:inline-block;
+            width: 80%;
+            box-sizing: border-box;
+        }
+
+.search_box .text input[type*=text] {
+    border-radius: 5px;
+    height: 32px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border: 1px solid #d2d2d2;
+}
+
+.search_box .calendar {
+        width: 26px;
+        height: 26px;
+        vertical-align: middle;
+        display: inline-block;
+        overflow: hidden;
+        cursor: pointer;
+        margin-left: 3px;
+        margin-right: 2px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+
+.search_box .day_ul {
+        display: inline-table;
+        width: auto;
+        vertical-align: middle;
+        border-radius: 100px;
+        text-align: center;
+        overflow: hidden;
+        box-sizing: border-box;
+        margin-right: 10px;
+    }
+
+.search_box .day_ul li {
+            display: inline-block;
+            padding: 7px 10px;
+            float: left;
+            width: auto;
+            border-right: 1px solid #ccc;
+            cursor: pointer;
+        }
+.search_box .day_ul span {
+            display: block;
+            color: #898989;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+.search_box .check {
+        position: relative;
+        display: inline-block;
+        height: 30px;
+        color: #777;
+        float: none;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 32px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        text-align: center;
+        border-radius: 100px;
+        cursor: pointer;
+        margin-right: 5px;
+        padding: 0px 21px;
+        background: #ffffff;
+        border: 1px solid #ccc;
+    }
+
+div.alignment {
+    width: 94%;
+    margin: 0 auto;
+    display: flex;
+    position: relative;
+    padding: 30px 5px 5px;
+    height: 68px;
+    box-sizing: border-box;
+}
+div.alignment .left_div {
+        display: inline-block;
+        width: 50%;
+        text-align: left;
+        font-size: 14px;
+        line-height: 22px;
+        color: #999;
+    }
+div.alignment .right_div {
+        display: inline-block;
+        width: 50%;
+        text-align: right;
+        font-size: 14px;
+    }
+
+div.alignment select {
+        border-radius: 5px;
+        height: 32px;
+width:auto;
+margin-top:0;
+        font-size: 12px;
+        padding: 0 10px;
+        font-weight: 100;
+        box-sizing: border-box;
+        border: 1px solid #d2d2d2;
+    }
 }
 
 @media (min-width: 1100px) {
@@ -9974,6 +10193,19 @@ i.calendar {
 }
 
 @media (min-width: 1200px) {
+    div.popup_bg_full {
+        top: 5%;
+        left: 5%;
+        width: 90%;
+        height: 90%;
+        padding: 60px 22px 30px;
+        border-radius: 20px;
+        border: 5px solid #ccc;
+    }
+    
+        div.popup_bg_full .in_txt {
+            padding: 10px;
+        }
     .main_con_box1 .ovj {
         width: 1200px;
         margin: 0 auto;

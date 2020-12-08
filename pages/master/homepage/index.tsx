@@ -1,454 +1,259 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import React from 'react';
+import Link from "next/link";
 
 interface IProp { }
 
-export const MsMember: React.FC<IProp> = () => {
+export const MsDesignMain: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
-            <h4>회원관리</h4>
+            <h4>디자인 설정</h4>
             <div className="in_content">
-                <input id="tab-1" type="radio" name="radio-set" className="tab tab-selector-1" checked={true} />
-                <label htmlFor="tab-1" className="tab-label-1 deps3"><b>개인회원</b></label>
-                <input id="tab-2" type="radio" name="radio-set" className="tab tab-selector-2" />
-                <label htmlFor="tab-2" className="tab-label-2 deps3"><b>기업파트너 회원</b></label>
-                <input id="tab-3" type="radio" name="radio-set" className="tab tab-selector-3" />
-                <label htmlFor="tab-3" className="tab-label-3 deps3"><b>개인파트너 회원</b></label>
-                <input id="tab-4" type="radio" name="radio-set" className="tab tab-selector-4" />
-                <label htmlFor="tab-4" className="tab-label-4 deps3"><b>탈퇴 회원</b></label>
-                <input id="tab-5" type="radio" name="radio-set" className="tab tab-selector-5" />
-                <label htmlFor="tab-5" className="tab-label-5 deps3"><b>회원 약관 설정</b></label>
-                <input id="tab-6" type="radio" name="radio-set" className="tab tab-selector-6" />
-                <label htmlFor="tab-6" className="tab-label-6 deps3"><b>메뉴얼 설정</b></label>
+                <div className="tab-nav">
+                    <ul>
+                        <li className="on"><Link href="/master/design"><a>기본설정</a></Link></li>
+                        <li><Link href="/master/design/design1-2"><a>배너관리</a></Link></li>
+                        <li><Link href="/master/design/design1-3"><a>팝업관리</a></Link></li>
+                        <li><Link href="/master/design/design1-4"><a>노출상품관리</a></Link></li>
+                    </ul>
+                </div>
+                <div className="con design">
+                    <div className="design_table">
+                        <h5>사이트정보</h5>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">사이트명</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">사이트로고</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt"><input className="w50" type="file" /></div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">사이트로고(하단)</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt"><input className="w50" type="file" /></div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">대표자</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">사업자등록번호</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">통신판매신고번호</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">주소</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w50 mr5" placeholder="주소" type="text" />
+                                    <input className="w40" placeholder="지도바로가기 URL" type=" text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">계좌번호</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w10 mr5" placeholder="은행" type="text" />
+                                    <input className="w50 mr5" placeholder="계좌번호" type="text" />
+                                    <input className="w20" placeholder="예금주" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">이메일</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">연락처</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">영업시간(콜센터)</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">카피라이터</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt"><input className="w90" placeholder="Copyright © 2020 PINKROADER Co., Ltd. All rights reserved" type="text" /></div>
+                            </div>
+                        </div>
+                        <h5>하단정보</h5>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">하단-정보01</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w30 mr5" placeholder="제목" type="text" />
+                                    <input className="w50" placeholder="내용" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">하단-정보02</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w30 mr5" placeholder="제목" type="text" />
+                                    <input className="w50" placeholder="내용" type="text" />
+                                </div>
+                            </div>
+                        </div>
 
-                {/* <!-- 개인회원 --> */}
-                <div className="con family" id="con01">
-                    <div className="con_box_top pb5">
-                        <h3>개인회원</h3>
-                        <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
-                            <div className="right_div">
-                                <ul className="board_option">
-                                    <li><a href="/">엑셀파일</a></li>
-                                    <li><a href="/">모두선택</a></li>
-                                </ul>
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
+                        <h5>SNS설정</h5>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">SNS-페이스북 연결</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w80" placeholder="주소" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">SNS-트위터 연결</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w80" placeholder="주소" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">SNS-인스타 연결</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w80" placeholder="주소" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">SNS-네이버블로그 연결</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w80" placeholder="주소" type="text" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5>하단 바로가기 링크</h5>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">하단바로가기-정보01</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w30 mr5" placeholder="바로가기 이름" type="text" />
+                                    <input className="w50" placeholder="연결주소" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">하단바로가기-정보02</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w30 mr5" placeholder="바로가기 이름" type="text" />
+                                    <input className="w50" placeholder="연결주소" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">하단바로가기-정보03</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w30 mr5" placeholder="바로가기 이름" type="text" />
+                                    <input className="w50" placeholder="연결주소" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">하단바로가기-정보04</div>
+                            </div>
+                            <div className="t02">
+                                <div className="txt">
+                                    <input className="w30 mr5" placeholder="바로가기 이름" type="text" />
+                                    <input className="w50" placeholder="연결주소" type="text" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div className="fin">
+                            <div className="float_left">
+                            </div>
+                            <div className="float_right">
+                                <button type="submit" className="btn medium">저장하기</button>
                             </div>
                         </div>
                     </div>
-                    <div className="con_box_body">
-                        <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
 
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
 
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                    </div>
 
                 </div>
-                {/* <!-- 기업파트너회원 --> */}
-                <div className="con" id="con02">
-
-                    <div className="con_box_top pb5">
-                        <h3>기업파트너 회원</h3>
-                        <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
-                            <div className="right_div">
-                                <button type="button" className="btn_top check">모두선택</button>
-                                <button type="button" className="btn_top excel">엑셀</button>
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="con_box_body">
-                        <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                    </div>
-                </div>
-
-                {/* <!-- 개인파트너회원 --> */}
-                <div className="con" id="con03">
-
-                    <div className="con_box_top pb5">
-                        <h3>개인파트너 회원</h3>
-                        <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
-                            <div className="right_div">
-                                <button type="button" className="btn_top check">모두선택</button>
-                                <button type="button" className="btn_top excel">엑셀</button>
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="con_box_body">
-                        <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                    </div>
-                </div>
-
-                {/* <!-- 탈퇴 회원 --> */}
-                <div className="con" id="con04">
-
-                    <div className="con_box_top pb5">
-                        <h3>탈퇴 회원</h3>
-                        <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
-                            <div className="right_div">
-                                <button type="button" className="btn_top check">모두선택</button>
-                                <button type="button" className="btn_top excel">엑셀</button>
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="con_box_body">
-                        <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                    </div>
-                </div>
-
-                {/* <!-- 회원 약관 설정 --> */}
-                <div className="con" id="con05">
-                    <div className="con_box_top pb5">
-                        <h3>회원 약관 설정</h3>
-                        <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
-                            <div className="right_div">
-                                <button type="button" className="btn_top check">모두선택</button>
-                                <button type="button" className="btn_top excel">엑셀</button>
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="con_box_body">
-                        <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                    </div>
-                </div>
-
-                {/* <!-- 메뉴얼 설정 --> */}
-                <div className="con" id="con06">
-
-                    <div className="con_box_top pb5">
-                        <h3>메뉴얼 설정</h3>
-                        <div className="alignment">
-                            <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>명</span></div>
-                            <div className="right_div">
-                                <button type="button" className="btn_top check">모두선택</button>
-                                <button type="button" className="btn_top excel">엑셀</button>
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="con_box_body">
-                        <div className="list_head">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">이름</span>
-                            <span className="td03">아이디</span>
-                            <span className="td04">성별</span>
-                            <span className="td05">내국인/외국인</span>
-                            <span className="td06">가입일자</span>
-                            <span className="td07">최근로그인기록</span>
-                            <span className="td08">상세보기</span>
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                        <div className="list_line">
-                            <span className="td01"><input type="checkbox" /></span>
-                            <span className="td02">김옥자</span>
-                            <span className="td03">gogo@gamail.com</span>
-                            <span className="td04">여</span>
-                            <span className="td05">외국인</span>
-                            <span className="td06">2020.10.01</span>
-                            <span className="td07">2020.11.01 12:33</span>
-                            <span className="td08"><i className="btn">상세보기</i></span>
-
-                        </div>
-                    </div>
-                </div>
-
-
+                <div className="fade"></div>
 
             </div>
-
-
-
         </div>
     </MasterLayout >
 };
 
-export default MsMember;
+export default MsDesignMain;

@@ -285,7 +285,7 @@ export const Header: React.FC<IProp> = () => {
                                     <li onClick={handleAllClose}><Link href="/news"><a>언론보도</a></Link></li>
                                 </ul>
                             </li>
-                            <li className="a_menu_tit deps betatest">
+                            <li className="a_menu_tit deps hiddennav betatest">
                                 <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
                                     <li><a href="/mypage">회원정보</a></li>
@@ -299,7 +299,7 @@ export const Header: React.FC<IProp> = () => {
                                     <li><a href="/mypage/settlement">매출/정산관리</a></li>
                                 </ul>
                             </li>
-                            <li className="a_menu_tit deps betatest">
+                            <li className="a_menu_tit deps hiddennav betatest">
 
                                 <a href="/master">Master<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">
@@ -312,7 +312,7 @@ export const Header: React.FC<IProp> = () => {
                                 </ul>
 
                             </li>
-                            <li className="a_menu_tit deps betatest">
+                            <li className="a_menu_tit deps hiddennav betatest">
                                 <a href="../login">Member<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">
                                     <li><a href="/login">로그인</a></li>
@@ -323,7 +323,7 @@ export const Header: React.FC<IProp> = () => {
                                     <li><a href="/member/privacy-policy">개인정보처리방침</a></li>
                                     <li><a href="/member/electron-terms">전자상거래이용약관</a></li>
                                     <li><a href="/member/kr-terms">국내여행약관</a></li>
-                                    <li><a href="/member/inquirylist">문의하기</a></li>
+                                    <li><a href="/member/inquirylist">고객문의</a></li>
                                     <li><a href="/member/notice">공지사항</a></li>
                                     <li><a href="/member/qna">자주하는질문</a></li>
                                 </ul>
