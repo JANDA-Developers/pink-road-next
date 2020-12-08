@@ -63,7 +63,8 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
     startPoint,
     subTitle,
     title,
-    startDate
+    startDate,
+    info
   } = product;
 
   const sliderRef = useRef<SLIDER>(null);
@@ -180,7 +181,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
               )}
             </ul>
             <div className="details_info_txt">
-              <div className="ck-content" dangerouslySetInnerHTML={{ __html: caution }} />
+              <div className="ck-content" dangerouslySetInnerHTML={{ __html: info }} />
             </div>
           </div>
         </div>
@@ -322,8 +323,9 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                   <span>{dayjs(it.date).format('YYYY.MM.DD (dd)')}</span>
                 </div>
                 <div className="tour_list">
-                  {it.contents.map((con, index) =>
-                    <div className="ck-content" key={index + "con" + it._id} dangerouslySetInnerHTML={{ __html: con }} />
+                  {it.contents.map((con, index) => <div key={index + "con" + it._id}>
+                    <div className="ck-content" dangerouslySetInnerHTML={{ __html: con }} />
+                  </div>
                   )}
                 </div>
                 {/* <div className="tour_content_img_list">
