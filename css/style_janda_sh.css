@@ -5662,7 +5662,7 @@ i.important_icon {
                 color: #555;
             }
 
-                .tour_details_in .boardReadBody .tour_list div:after {
+                .tour_details_in .boardReadBody .tour_list > div:after {
                     content: '';
                     position: absolute;
                     left: -9px;
@@ -5673,7 +5673,7 @@ i.important_icon {
                     border-radius: 50px;
                 }
 
-                .tour_details_in .boardReadBody .tour_list div:before {
+                .tour_details_in .boardReadBody .tour_list > div:before {
                     content: '';
                     position: absolute;
                     left: -13px;

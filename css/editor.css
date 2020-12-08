@@ -334,3 +334,8 @@
 .ck-editor__editable {
     min-height: 250px;
 }
+.ck-content:after {
+    content: "";
+    clear: both;
+    display: block;
+}
