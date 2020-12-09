@@ -17,232 +17,95 @@ export const MsDesignA: React.FC<IProp> = () => {
                         <li><Link href="/master/design/design1-4"><a>노출상품관리</a></Link></li>
                     </ul>
                 </div>
-                <div className="con design">
-                    <div className="design_table">
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">사이트명</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">사이트로고</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt"><input className="w50" type="file" /></div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">사이트로고(하단)</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt"><input className="w50" type="file" /></div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">대표자</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">사업자등록번호</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">통신판매신고번호</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">주소</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w50 mr5" placeholder="주소" type="text" />
-                                    <input className="w40" placeholder="지도바로가기 URL" type=" text" />
+                <div className="con design popup_setting">
+                    <div className="popupst_box">
+                        <div className="hang_left">
+                            <div className="view_box">
+                                <div className="head">
+                                    <ul className="top">
+                                        <li><i className="flaticon-multiply"></i></li>
+                                    </ul>
+                                    <div className="bottomnav">
+                                        <div className="tap"></div>
+                                        <div className="input">
+                                            <i className="flaticon-menu"></i>
+                                            <i className="flaticon-menu-1"></i>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="popup_view">
+                                    <span><strong>popup01</strong><br />200px * 100px</span>
                                 </div>
                             </div>
                         </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">계좌번호</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w10 mr5" placeholder="은행" type="text" />
-                                    <input className="w50 mr5" placeholder="계좌번호" type="text" />
-                                    <input className="w20" placeholder="예금주" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">이메일</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">연락처</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">영업시간(콜센터)</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt"><input className="w50" placeholder="" type="text" /></div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">카피라이터</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt"><input className="w90" placeholder="Copyright © 2020 PINKROADER Co., Ltd. All rights reserved" type="text" /></div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">하단-정보01</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w30 mr5" placeholder="제목" type="text" />
-                                    <input className="w50" placeholder="내용" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">하단-정보02</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w30 mr5" placeholder="제목" type="text" />
-                                    <input className="w50" placeholder="내용" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">하단-정보03</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w30 mr5" placeholder="제목" type="text" />
-                                    <input className="w50" placeholder="내용" type="text" />
-                                </div>
-                            </div>
-                        </div>
+                        <div className="hang_right">
+                            <ul className="list_setting">
+                                <li className="con_toggle">
+                                    <div className="title">
+                                        <h5>
+                                            팝업스타일
+                                            <div className="switch">
+                                                <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
+                                                <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
+                                            </div>
 
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">SNS-페이스북 연결</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w80" placeholder="주소" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">SNS-트위터 연결</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w80" placeholder="주소" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">SNS-인스타 연결</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w80" placeholder="주소" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">SNS-네이버블로그 연결</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w80" placeholder="주소" type="text" />
-                                </div>
-                            </div>
-                        </div>
+                                        </h5>
+                                        <span className="control">
+                                            <i className="flaticon-megaphone-1"></i>
+                                        </span>
+                                    </div>
+                                    <div className="content">
+                                        <div className="line">
+                                            <h6>노출순서</h6>
+                                            <div className="txt">
+                                                <select className="w50">
+                                                    <option>0</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">하단바로가기-정보01</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w30 mr5" placeholder="바로가기 이름" type="text" />
-                                    <input className="w50" placeholder="연결주소" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">하단바로가기-정보02</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w30 mr5" placeholder="바로가기 이름" type="text" />
-                                    <input className="w50" placeholder="연결주소" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">하단바로가기-정보03</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w30 mr5" placeholder="바로가기 이름" type="text" />
-                                    <input className="w50" placeholder="연결주소" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="tbody">
-                            <div className="t01">
-                                <div className="title">하단바로가기-정보04</div>
-                            </div>
-                            <div className="t02">
-                                <div className="txt">
-                                    <input className="w30 mr5" placeholder="바로가기 이름" type="text" />
-                                    <input className="w50" placeholder="연결주소" type="text" />
-                                </div>
-                            </div>
-                        </div>
+                                        <div className="line">
+                                            <h6>노출기간</h6>
+                                            <div className="txt">
+                                                <input type="text" className="w100" placeholder="https://" />
+                                                <select className="w10">
+                                                    <option>새창으로</option>
+                                                    <option>현제창에서</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div className="line">
+                                            <h6>링크연결</h6>
+                                            <div className="txt">
+                                                <input type="text" className="w100" placeholder="https://" />
+                                                <select className="w10">
+                                                    <option>새창으로</option>
+                                                    <option>현제창에서</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
 
+
+
+                                    </div>
+                                </li>
+                                <li className="add_popup">
+                                    <button><i className=""></i> 팝업생성</button>
+                                </li>
+                            </ul>
+
+                            <div className="">
+
+                            </div>
+                        </div>
 
                         <div className="fin">
                             <div className="float_left">
@@ -252,8 +115,6 @@ export const MsDesignA: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-
-
 
                 </div>
                 <div className="fade"></div>

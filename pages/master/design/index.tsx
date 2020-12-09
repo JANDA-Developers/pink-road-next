@@ -235,23 +235,37 @@ export const MsDesignMain: React.FC<IProp> = () => {
                             </div>
                         </div>
 
-
-
-                        <div className="fin">
-                            <div className="float_left">
+                        <h5>커스텀 디자인 설정</h5>
+                        <div className="tbody">
+                            <div className="t01">
+                                <div className="title">커스텀 디자인 잠금</div>
                             </div>
-                            <div className="float_right">
-                                <button type="submit" className="btn medium">저장하기</button>
+                            <div className="t02">
+                                <div className="txt">
+                                    <div className="switch">
+                                        <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
+                                        <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
+                                    </div>
+                                    <p className="infotxt_gray">해당 옵션을 OFF시 커스텀디자인을 실수로 수정할 일이 없어요~!!</p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-
-
+                    <div className="fin">
+                        <div className="float_left">
+                        </div>
+                        <div className="float_right">
+                            <button type="submit" className="btn medium">저장하기</button>
+                        </div>
+                    </div>
                 </div>
-                <div className="fade"></div>
+
+
 
             </div>
+            <div className="fade"></div>
+
         </div>
     </MasterLayout >
 };
