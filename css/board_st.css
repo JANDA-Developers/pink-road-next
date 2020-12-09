@@ -3,6 +3,13 @@
     D.seun hwa board style 2020
 ******************************************/
 
+.m_title{
+    display: inline-block !important;
+    margin-right: 3px;
+    font-style: normal;
+}
+
+
 /* notice */
 .notice_in {
     position: relative;
@@ -1907,16 +1914,19 @@ div.board_list_mini {
             display: flex;
             width: 100%;
             border-bottom: 1px solid #eeeeee;
+            box-sizing: border-box;
+            padding: 22px 0;
         }
 
             .fuction_list_mini .tbody li > div {
                 display: inline-block;
-                width: 24.5%;
+                width: auto;
                 text-align: center;
-                font-size: 13px;
-                padding: 13px 10px 10px;
+                font-size: 12px;
+                padding: 0;
                 box-sizing: border-box;
                 position:relative;
+                font-weight: 100;
             }
 
     .fuction_list_mini .q_ok {
@@ -2028,7 +2038,7 @@ div.sum_div {
 .reservation_list {
     position: relative;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 0;
     display: block;
     border-top: 2px solid #555;
 }
@@ -2068,6 +2078,7 @@ div.sum_div {
         text-align: center;
         box-sizing: border-box;
         position: relative;
+        font-weight: 100;
     }
 
 .tb_st__01 {
@@ -2122,6 +2133,10 @@ div.sum_div {
     }
 }
 @media (min-width:1000px) {
+    
+    .m_title{
+        display: none !important;
+    }
     .board_list.st03 .tbody li > div {
         line-height: 80px;
     }
@@ -2129,6 +2144,7 @@ div.sum_div {
         display: flex;
         
     }
+    
     .board_list.st03 .tbody .td01 {
         width: 10%;
     }
@@ -2159,6 +2175,16 @@ div.sum_div {
     }
     ul.list_ul .list_in:hover {
         border: 2px solid #ed297b;
+    }
+    .fuction_list_mini .tbody li{
+        padding: 0;
+    }
+    .fuction_list_mini .tbody li > div {
+        display: inline-block;
+        width: 24.5%;
+        text-align: center;
+        font-size: 12px;
+        padding: 13px 10px 10px;
     }
 }
 

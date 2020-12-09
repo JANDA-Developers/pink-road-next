@@ -8,20 +8,20 @@ import ReactTooltip from 'react-tooltip';
 
 interface IProp { }
 
-export const MsReservationMain: React.FC<IProp> = () => {
+export const MsReservationB: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
             <h4>예약관리</h4>
             <div className="in_content">
                 <div className="tab-nav">
                     <ul>
-                        <li className="on"><Link href="/master/reservation"><a>예약·결제관리</a></Link></li>
+                        <li><Link href="/master/reservation"><a>예약·결제관리</a></Link></li>
                         <li><Link href="/master/reservation/reservation1-2"><a>취소·환불관리</a></Link></li>
-                        <li><Link href="/master/reservation/reservation1-3"><a>매출·정산관리</a></Link></li>
+                        <li className="on"><Link href="/master/reservation/reservation1-3"><a>매출·정산관리</a></Link></li>
                         <li><Link href="/master/reservation/reservation1-4"><a>예약수기등록관리</a></Link></li>
                     </ul>
                 </div>
-                <div className="con reservation">
+                <div className="con reservation calculate">
                     <div className="con_box_top pb5">
                         <div className="top_info_number">
                             <ul className="ln3">
@@ -31,11 +31,11 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                 </li>
                                 <li>
                                     <strong>234</strong>
-                                    <span>예약대기</span>
+                                    <span>환불요청</span>
                                 </li>
                                 <li>
                                     <strong>234</strong>
-                                    <span>예약완료</span>
+                                    <span>환불완료</span>
                                 </li>
                             </ul>
                         </div>
@@ -72,13 +72,8 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                     <option>전체</option>
                                     <option>상품명</option>
                                     <option>상품번호</option>
-                                    <option>예약번호</option>
-                                    <option>예약자명</option>
-                                    <option>실여행자명</option>
-                                    <option>휴대번호</option>
                                     <option>파트너명</option>
-                                    <option>상품상태</option>
-                                    <option>진행여부</option>
+                                    <option>정산상태</option>
                                 </select>
                                 <div className="search_div">
                                     <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
@@ -100,14 +95,12 @@ export const MsReservationMain: React.FC<IProp> = () => {
                             <div className="right_div">
                                 <ul className="board_option">
                                     <li><a href="/">전체선택</a></li>
-                                    <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a></li>
+                                    <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." /></a></li>
 
                                 </ul>
                                 <select className="sel01">
-                                    <option>출발일 &uarr;</option>
-                                    <option>출발일 &darr;</option>
-                                    <option>등록일 &uarr;</option>
-                                    <option>등록일 &darr;</option>
+                                    <option>정산요청일 &uarr;</option>
+                                    <option>정산요청일 &darr;</option>
                                 </select>
                                 <select className="sel02">
                                     <option>10개 보기</option>
@@ -125,12 +118,13 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                     <label htmlFor="agree0" />
                                 </span>
                             </div>
-                            <div className="t02">예약번호/결제일/유형</div>
-                            <div className="t03">상품정보</div>
-                            <div className="t04">예약자/파트너명</div>
-                            <div className="t05">상태</div>
+                            <div className="t02">유형</div>
+                            <div className="t03">정산계좌</div>
+                            <div className="t04">상품</div>
+                            <div className="t05">인원</div>
                             <div className="t06">금액</div>
-                            <div className="t07">관리</div>
+                            <div className="t07">정산</div>
+                            <div className="t08">관리</div>
                         </div>
                         <div className="tbody">
                             <div className="t01">
@@ -141,12 +135,15 @@ export const MsReservationMain: React.FC<IProp> = () => {
                             </div>
                             <div className="t02">
                                 <div className="align">
-                                    <strong className="r-number"><i className="m_title">예약번호:</i>R-34252</strong>
-                                    <span className="pay-day"><i className="m_title">결제일:</i>2020.02.03</span>
                                     <span className="goods-ct"><i className="m_title">유형:</i>여행</span>
                                 </div>
                             </div>
                             <div className="t03">
+                                <div className="align">
+                                    <span className="bank">(부산은행)<br /><i className="m_title"> / </i>203-2323-2324<br /><i className="m_title"> / </i>예금주:김김김</span>
+                                </div>
+                            </div>
+                            <div className="t04">
                                 <div className="info">
                                     <span className="ct">문화</span>
                                     <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
@@ -154,33 +151,35 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                         <span className="s-day">출발일: 2020.9.9</span>
                                         <span className="where">출발장소: 부산대학교 앞</span>
                                         <span className="g-number">상품번호: PINK-034982</span>
-                                        <span className="men">인원: 총 10명 (성인:3/소아:3/유아:4)</span>
+                                        <span className="men">가격: 성인:25,000/소아10,000/유아:5,000</span>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="t04">
-                                <div className="align">
-                                    <strong className="name"><i className="m_title">예약자명:</i>홍언니</strong>
-                                    <span className="patner-name"><i className="m_title">파트너명:</i>( (주)하나하나 )</span>
                                 </div>
                             </div>
                             <div className="t05">
                                 <div className="align">
-                                    <strong><i className="m_title">상품상태:</i>진행중</strong>
-                                    <span className="member"><i className="m_title">진행여부:</i>출발미확정<br />(인원 : 10/10 )</span>
+                                    <strong className="total_men"><i className="m_title">인원:</i>40명</strong>
+                                    <span className="all_men">(성인20/소아20/유아0)</span>
                                 </div>
                             </div>
                             <div className="t06">
                                 <div className="align">
-                                    <strong className="money"><i className="m_title">금액:</i>40,000원</strong>
-                                    <span className="pay-option"><i className="m_title">결제종류:</i>신용카드</span>
-                                    <span className="r-btn stand"><i className="m_title">예약상태:</i>예약대기</span>
+                                    <strong className="money"><i className="m_title">합계금액:</i>920,000원</strong>
+                                    <span className="sum01">매출금액(+) 400,000원</span>
+                                    <span className="sum02">매입금액(-) 400,000원</span>
+                                    <span className="sum03">정산(=) 100,000원</span>
                                 </div>
                             </div>
                             <div className="t07">
                                 <div className="align">
+                                    <strong><span className="sel no">지급보류</span></strong>
+                                </div>
+                            </div>
+                            <div className="t08">
+                                <div className="align">
                                     <button className="btn">상세보기</button>
-                                    <button className="btn">예약취소</button>
+                                    <button className="btn">정산완료</button>
+                                    <button className="btn off">지급보류</button>
+                                    <button className="btn off">정산대기</button>
                                 </div>
                             </div>
                         </div>
@@ -194,12 +193,15 @@ export const MsReservationMain: React.FC<IProp> = () => {
                             </div>
                             <div className="t02">
                                 <div className="align">
-                                    <strong className="r-number"><i className="m_title">예약번호:</i>R-34252</strong>
-                                    <span className="pay-day"><i className="m_title">결제일:</i>2020.02.03</span>
                                     <span className="goods-ct"><i className="m_title">유형:</i>여행</span>
                                 </div>
                             </div>
                             <div className="t03">
+                                <div className="align">
+                                    <span className="bank">(부산은행)<br /><i className="m_title"> / </i>203-2323-2324<br /><i className="m_title"> / </i>예금주:김김김</span>
+                                </div>
+                            </div>
+                            <div className="t04">
                                 <div className="info">
                                     <span className="ct">문화</span>
                                     <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
@@ -207,37 +209,95 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                         <span className="s-day">출발일: 2020.9.9</span>
                                         <span className="where">출발장소: 부산대학교 앞</span>
                                         <span className="g-number">상품번호: PINK-034982</span>
-                                        <span className="men">인원: 총 10명 (성인:3/소아:3/유아:4)</span>
+                                        <span className="men">가격: 성인:25,000/소아10,000/유아:5,000</span>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="t04">
-                                <div className="align">
-                                    <strong className="name"><i className="m_title">예약자명:</i>홍언니</strong>
-                                    <span className="patner-name"><i className="m_title">파트너명:</i>( (주)하나하나 )</span>
                                 </div>
                             </div>
                             <div className="t05">
                                 <div className="align">
-                                    <strong><i className="m_title">상품상태:</i>진행중</strong>
-                                    <span className="member"><i className="m_title">진행여부:</i>출발미확정<br />(인원 : 10/10 )</span>
+                                    <strong className="total_men"><i className="m_title">인원:</i>40명</strong>
+                                    <span className="all_men">(성인20/소아20/유아0)</span>
                                 </div>
                             </div>
                             <div className="t06">
                                 <div className="align">
-                                    <strong className="money"><i className="m_title">금액:</i>40,000원</strong>
-                                    <span className="pay-option"><i className="m_title">결제종류:</i>신용카드</span>
-                                    <span className="r-btn yes"><i className="m_title">예약상태:</i>예약완료</span>
+                                    <strong className="money"><i className="m_title">합계금액:</i>920,000원</strong>
+                                    <span className="sum01">매출금액(+) 400,000원</span>
+                                    <span className="sum02">매입금액(-) 400,000원</span>
+                                    <span className="sum03">정산(=) 100,000원</span>
                                 </div>
                             </div>
                             <div className="t07">
                                 <div className="align">
+                                    <strong><span className="sel stand">정산대기</span></strong>
+                                </div>
+                            </div>
+                            <div className="t08">
+                                <div className="align">
                                     <button className="btn">상세보기</button>
-                                    <button className="btn">예약취소</button>
+                                    <button className="btn">정산완료</button>
+                                    <button className="btn off">지급보류</button>
+                                    <button className="btn off">정산대기</button>
                                 </div>
                             </div>
                         </div>
-
+                        <div className="tbody">
+                            <div className="t01">
+                                <span className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                    <label htmlFor="agree1" />
+                                </span>
+                            </div>
+                            <div className="t02">
+                                <div className="align">
+                                    <span className="goods-ct"><i className="m_title">유형:</i>여행</span>
+                                </div>
+                            </div>
+                            <div className="t03">
+                                <div className="align">
+                                    <span className="bank">(부산은행)<br /><i className="m_title"> / </i>203-2323-2324<br /><i className="m_title"> / </i>예금주:김김김</span>
+                                </div>
+                            </div>
+                            <div className="t04">
+                                <div className="info">
+                                    <span className="ct">문화</span>
+                                    <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
+                                    <div className="txt">
+                                        <span className="s-day">출발일: 2020.9.9</span>
+                                        <span className="where">출발장소: 부산대학교 앞</span>
+                                        <span className="g-number">상품번호: PINK-034982</span>
+                                        <span className="men">가격: 성인:25,000/소아10,000/유아:5,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="t05">
+                                <div className="align">
+                                    <strong className="total_men"><i className="m_title">인원:</i>40명</strong>
+                                    <span className="all_men">(성인20/소아20/유아0)</span>
+                                </div>
+                            </div>
+                            <div className="t06">
+                                <div className="align">
+                                    <strong className="money"><i className="m_title">합계금액:</i>920,000원</strong>
+                                    <span className="sum01">매출금액(+) 400,000원</span>
+                                    <span className="sum02">매입금액(-) 400,000원</span>
+                                    <span className="sum03">정산(=) 100,000원</span>
+                                </div>
+                            </div>
+                            <div className="t07">
+                                <div className="align">
+                                    <strong><span className="sel ok">정산완료</span></strong>
+                                </div>
+                            </div>
+                            <div className="t08">
+                                <div className="align">
+                                    <button className="btn">상세보기</button>
+                                    <button className="btn">정산완료</button>
+                                    <button className="btn">지급보류</button>
+                                    <button className="btn">정산대기</button>
+                                </div>
+                            </div>
+                        </div>
                         <Paginater pageNumber={10} totalPageCount={20} />
 
                         <div className="fin">
@@ -245,7 +305,9 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                 <button type="submit" className="btn medium">전체선택</button>
                             </div>
                             <div className="float_right">
-                                <button type="submit" className="btn medium">선택 예약취소</button>
+                                <button type="submit" className="btn medium">정산완료</button>
+                                <button type="submit" className="btn medium">정산대기</button>
+                                <button type="submit" className="btn medium">지급보류</button>
                             </div>
                         </div>
                     </div>
@@ -257,8 +319,8 @@ export const MsReservationMain: React.FC<IProp> = () => {
             <SearcfInfoBox />
             <div className="fade"></div>
 
-        </div>
+        </div >
     </MasterLayout >
 };
 
-export default MsReservationMain;
+export default MsReservationB;

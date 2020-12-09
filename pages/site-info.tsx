@@ -262,7 +262,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                         const { alt, img, link } = partner;
                         return <li key={index + "partner"}>
                             <a href={link}>
-                                <img src='/img/pt_logo_01.png' alt={alt} />
+                                <img src='/img/pt_logo_05.png' alt={alt} />
                                 <span className="del" onClick={() => {
                                     removeArray("partners", index);
                                 }}><i className="flaticon-multiply"></i></span>
@@ -272,13 +272,13 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                             </a>
                         </li>
                     })}
-                    {role === UserRole.admin || UserRole.manager && 
+                    {role === UserRole.admin || UserRole.manager &&
                         <li className="add" onClick={() => {
                             addArray("partners", {})
                         }}><i className="flaticon-add"></i>추가</li>
                     }
                 </ul>
-               
+
             </div>
         </div>
         <div className="w100 con07 con_block">
