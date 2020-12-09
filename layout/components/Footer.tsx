@@ -100,7 +100,7 @@ export const Footer: React.FC<IProp> = () => {
                     </ul>
                     <div className="bottom_bn">
                         <div className="partner">
-                            <span className="link"><img src="/img/pt_logo_01.png" alt="중송벤처기업" /></span>
+
                             <span className="link" style={{ width: "90px" }}><img src="/img/pt_logo_02.png" alt="여성기업" /></span>
                             <span className="link" style={{ width: "90px" }}><img src="/img/pt_logo_03.png" alt="사회적기업" /></span>
                             <span className="link"><img src="/img/pt_logo_04.png" alt="공유경제부산" /></span>

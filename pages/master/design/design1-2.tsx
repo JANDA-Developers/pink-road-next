@@ -44,7 +44,7 @@ export const MsDesignA: React.FC<IProp> = () => {
                                 <li className="con_toggle">
                                     <div className="title">
                                         <h5>
-                                            팝업스타일
+                                            <span>Popup 01</span>
                                             <div className="switch">
                                                 <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
                                                 <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
