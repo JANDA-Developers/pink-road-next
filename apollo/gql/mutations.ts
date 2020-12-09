@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_ITINERARY, F_CATEGORY, F_PRODUCT_POST, F_FILE, F_PAGE_INFO } from "./fragments";
+import { F_ITINERARY, F_CATEGORY, F_PRODUCT, F_FILE, F_PAGE_INFO } from "./fragments";
 
 export const CATEGORY_CREATE = gql`
   mutation categoryCreate(
@@ -18,33 +18,6 @@ export const CATEGORY_CREATE = gql`
   ${F_CATEGORY}
 `;
 
-export const PORTFOLIO_CREATE = gql`
-  mutation portfolioCreate(
-    $params: PortfolioCreateInput!
-  ) {
-    PortfolioCreate(
-      params:$params
-    ) {
-    ok
-    error
-    data {
-      _id
-    }
-  }
-}
-`
-export const PORTFOLIO_DELETE = gql`
-  mutation portfolioDelete(
-    $id: String!
-  ) {
-    PortfolioDelete(
-      id:$id
-    ) {
-    ok
-    error 
-  }
-}
-`
   
 export const PCATEGORY_CREATAE = gql`
   mutation pcategoryCreate(
@@ -88,23 +61,7 @@ export const PCATEGORY_UPDATE = gql`
 }
 `
 
-export const PORTFOLIO_UPDAET = gql`
-  mutation portfolioUpdate(
-    $params: PortfolioUpdateInput!
-    $id: String!
-  ) {
-  PortfolioUpdate(
-      params:$params
-      id: $id
-    ) {
-    ok
-    error 
-    data {
-      _id
-    }
-  }
-}
-`
+
 
 export const CATEGORY_DELETE = gql`
   mutation categoryDelete(
@@ -142,59 +99,6 @@ export const CATEGORY_DELETE = gql`
 //   ${F_ITINERY}
 // `;
 
-
-export const PRODUCT_POST_CREATE = gql`
-  mutation productCreate(
-        $params: ProductCreateInput!
-    ) {
-    ProductCreate(
-        params: $params  
-      ) {
-      ok
-      error 
-      data {
-        _id
-      }
-    }
-  }
-`;
-
-
-export const PRODUCT_POST_UPDATE = gql`
-  mutation productUpdate(
-        $params: ProductUpdateInput!
-        $_id: String!
-    ) {
-    ProductUpdate(
-        params:$params,
-        _id: $_id 
-      ) {
-      ok
-      error 
-      data {
-        _id
-      } 
-    }
-  }
-`;
-
-
-export const PRODUCT_POST_DELETE = gql`
-  mutation productDelete(
-      $id: String!
-    ) {
-    ProductDelete(
-        id:$id
-      ) {
-      ok
-      error 
-      data {
-          ...Fproduct
-      }
-    }
-  }
-  ${F_PRODUCT_POST}
-`;
 
 export const MULTI_UPLOAD = gql`
   mutation multiUpload(

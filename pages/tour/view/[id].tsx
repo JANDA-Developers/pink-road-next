@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useProductFindById } from "hook/useProductFindById";
+import { useProductFindById } from "hook/useProduct";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -8,7 +8,7 @@ import { IHumanCount, IproductFindById } from "types/interface";
 import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
-import { useproductDelete } from "hook/useProductDelete";
+import { useProductDelete } from "hook/useProduct";
 import { IAuthInfo } from "../../../components/nice/type";
 import { getAuth } from "../../../components/nice/getAuth";
 import NiceElments from "../../../components/nice/NiceElement";
@@ -17,6 +17,11 @@ import Slider, { Slide } from "../../../components/slider/Slider";
 import SLIDER from "react-slick";
 import { useScroll } from "../../../hook/useScroll";
 import { handleTab, getTab, tabCheck } from "../../../components/tourView/tabUtils";
+import { toast } from "react-toastify";
+import { addItem } from "../../../utils/Storage";
+import { useBasket } from "../../../hook/useBasket";
+import { useUpdate } from "../../../hook/useUpdater";
+import { getRangeString } from "../../../utils/product";
 
 // <div class="top_visual">
 // <div class="sub_header sub_bg" style="background-image:url(../img/su_visual_bg.jpg);">
@@ -58,23 +63,25 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
     startPoint,
     subTitle,
     title,
+    startDate
   } = product;
 
   const sliderRef = useRef<SLIDER>(null);
-  const [count, setCount] = useState<IHumanCount>({
-    adult: 0,
-    baby: 0,
-    kids: 0
+  const { count, handleCount, totalPrice } = useBasket({
+    adult_price,
+    baby_price,
+    kids_price
   });
-  const [price, setPrice] = useState(0);
   const [authData, setAuthData] = useState<IAuthInfo>();
   const [sliderIndex, setSlideIndex] = useState(0);
   const { scrollY } = useScroll();
+  const { upKey, updateComponent } = useUpdate()
+  const [updateKey, setupdateKey] = useState(0);
   const tabOnCheck = tabCheck.bind(tabCheck, scrollY);
 
   const router = useRouter();
 
-  const { productDelete } = useproductDelete({
+  const { productDelete } = useProductDelete({
     onCompleted: ({
       ProductDelete
     }) => {
@@ -116,24 +123,19 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
   }
 
   const handleAddBracket = () => {
+    addItem({
+      count,
+      price: totalPrice,
+      name: title,
+      _id
+    })
+
+    if (count.adult + count.baby + count.kids === 0) {
+      toast.info("인원을 먼저 선택 해주세요.");
+    } else {
+      toast.info("장바구니에 저장 되었습니다.")
+    }
   }
-
-  const handleCount = (key: keyof IHumanCount, isUp: boolean) => () => {
-    let val = count[key];
-    val = val + (isUp ? 1 : -1);
-    if (val < 0) val = 0;
-    count[key] = val;
-
-    setCount({ ...count })
-  }
-
-  useEffect(() => {
-    const price =
-      (count.adult * adult_price) +
-      (count.baby * baby_price) +
-      (count.kids * kids_price);
-    setPrice(price)
-  }, [count])
 
   return <div className="edtiorView">
     <div style={{ display: "none" }}>
@@ -178,8 +180,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
               )}
             </ul>
             <div className="details_info_txt">
-              <i className="flaticon-flag-1" />
-              <div dangerouslySetInnerHTML={{ __html: caution }} />
+              <div className="ck-content" dangerouslySetInnerHTML={{ __html: caution }} />
             </div>
           </div>
         </div>
@@ -211,8 +212,12 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                     </td>
                   </tr>
                   <tr>
+                    <th className="smtitle bt_line">출발일</th>
+                    <td className="smtxt bt_line">{dayjs(startDate).format("YYYY.MM.DD")}</td>
+                  </tr>
+                  <tr>
                     <th className="smtitle bt_line">여행기간</th>
-                    <td className="smtxt bt_line">{itinerary.length}박{itinerary.length + 1}일</td>
+                    <td className="smtxt bt_line">{getRangeString(product)}</td>
                   </tr>
                   <tr>
                     <th className="smtitle bt_line">최소인원</th>
@@ -273,7 +278,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                     <tr>
                       <th>총 금액</th>
                       <td>
-                        <strong>{autoComma(price)}</strong>원
+                        <strong>{autoComma(totalPrice)}</strong>원
                   </td>
                     </tr>
                   </tbody>
@@ -284,7 +289,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
             <div className="btn_box">
               <div className="links_wrap">
                 <div onClick={handleAddBracket} className="link05">
-                  <a href="/">
+                  <a>
                     장바구니 담기
                   </a>
                 </div>
@@ -318,16 +323,16 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                 </div>
                 <div className="tour_list">
                   {it.contents.map((con, index) =>
-                    <div key={index + "con" + it._id} dangerouslySetInnerHTML={{ __html: con }} />
+                    <div className="ck-content" key={index + "con" + it._id} dangerouslySetInnerHTML={{ __html: con }} />
                   )}
                 </div>
-                <div className="tour_content_img_list">
+                {/* <div className="tour_content_img_list">
                   {it.images.map((img, index) => <img key={index} style={{
                     width: "auto",
                     height: "100px",
                     display: "inline-block"
                   }} src={img?.uri} />)}
-                </div>
+                </div> */}
               </div>
             </div>
             )}
@@ -336,14 +341,14 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
             <h4>안내 및 참고</h4>
             <div dangerouslySetInnerHTML={{
               __html: contents
-            }} className="text" />
+            }} className="text ck-content" />
           </div>
           {/* 포함 및 불포함 */}
           <div className="in_box" id="tap__03">
             <h4>포함 및 불포함 </h4>
             <div dangerouslySetInnerHTML={{
               __html: inOrNor
-            }} className="text" />
+            }} className="text ck-content" />
           </div>
           <div className="in_box" id="tap__04" >
             <h4>주의사항</h4>

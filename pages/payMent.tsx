@@ -5,7 +5,7 @@ import PaymentLayout from "../layout/PaymentLayout";
 export const Payment: React.FC<IProp> = () => {
 
     return <PaymentLayout>
-      
+
         <div className="w1200">
             <div className="payment_top">
                 <span className="logo">
@@ -17,7 +17,7 @@ export const Payment: React.FC<IProp> = () => {
             {/* 1.실시간예약디자인 */}
             <div className="payment_box">
                 <div className="head">
-                    <iframe src="http://www.gwanganli.co.kr/landing/reservation-yacht.html" allowfullscreen="true" allowpaymentrequest="ture" scrolling="no" />
+                    <iframe src="http://www.gwanganli.co.kr/landing/reservation-yacht.html" allowFullScreen={true} scrolling="no" />
                 </div>
 
             </div>
@@ -51,9 +51,9 @@ export const Payment: React.FC<IProp> = () => {
                             결제정보
                         </div>
                         <div className="td">
-                            <span>카드결제</span> 
+                            <span>카드결제</span>
                             <span>국민(3243-****-****-****)</span>
-                            <span>일시불</span> 
+                            <span>일시불</span>
                             <span>승인일시:2020.09.09 08:32</span>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ export const Payment: React.FC<IProp> = () => {
             Copyright © JANDA
             </div>
 
-      </PaymentLayout>
+    </PaymentLayout>
 };
 
 export default Payment

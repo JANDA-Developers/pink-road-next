@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface IProp {
-    value: 10 | 50 | 100;
+    value: 10 | 50 | 100 | number;
     onChange: (value: number) => void;
 }
 

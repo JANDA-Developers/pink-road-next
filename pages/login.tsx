@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { SIGN_IN } from '../apollo/queries';
 import { LocalManager, Storage, initStorage } from 'utils/Storage';
 import pageInfo from 'info/login.json'
 import { Upload } from 'components/common/Upload';
@@ -9,8 +8,9 @@ import { AppContext } from './_app';
 import { BG } from '../types/const';
 import { signIn, signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';
-import clinet from "../apollo/client"
+import { toast } from 'react-toastify';
 import Link from 'next/link';
+import { SIGN_IN } from '../apollo/gql/queries';
 interface IProp {
 
 }
@@ -67,7 +67,7 @@ export const Login: React.FC<IProp> = () => {
         onCompleted: ({ SignIn }) => {
             if (SignIn.ok) {
                 Storage.saveLocal("jwt", SignIn.data.token);
-                alert("환영합니다.")
+                toast.info("환영합니다.");
                 location.href = "/"
             } else {
                 alert(SignIn.error)

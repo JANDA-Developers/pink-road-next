@@ -1,8 +1,8 @@
 import React from 'react';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
-import { Paginater } from 'components/common/Paginator';
-import { PurChasedItem } from 'components/mypage/PurchasedItem';
 import { MypageLayout } from 'layout/MypageLayout';
+import { auth } from "../../utils/with";
+import { ONLY_LOGINED } from '../../types/const';
 
 interface IProp { }
 
@@ -211,4 +211,4 @@ export const MyGoods: React.FC<IProp> = () => {
     </MypageLayout>
 };
 
-export default MyGoods;
+export default auth(MyGoods)(ONLY_LOGINED);

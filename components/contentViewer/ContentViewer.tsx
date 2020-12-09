@@ -1,7 +1,5 @@
-import EditorJS from '@editorjs/editorjs';
 import React from 'react';
 import OLDEDITOR from '../oldEditor/OldEditor';
-
 interface IProp {
     data: string
 }

@@ -51,3 +51,5 @@ export type TStieInfo = {
     [key:string]:TInfoCell
 }
 
+
+export type E_INPUT = React.ChangeEvent<HTMLInputElement>;

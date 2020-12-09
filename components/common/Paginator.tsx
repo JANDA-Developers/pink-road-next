@@ -1,11 +1,14 @@
 import React from 'react';
+import { Fpage } from '../../types/api';
 
 interface IProp {
-    pageNumber: number;
-    totalPageCount: number;
+    pageInfo: Fpage
 }
 
-export const Paginater: React.FC<IProp> = ({ pageNumber, totalPageCount }) => {
+export const Paginater: React.FC<IProp> = ({ pageInfo: {
+    totalPageSize: totalPageCount,
+    page: pageNumber
+} }) => {
 
     const pageLength = totalPageCount;
     const pageStart = totalPageCount - 5;

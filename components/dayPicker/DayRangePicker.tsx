@@ -21,6 +21,7 @@ export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange }) =>
     };
 
     function handleDayClick(day: any) {
+        // @ts-ignore
         const range = DateUtils.addDayToRange(day, { from, to });
 
         // From을 SET 할지 TO를 SET 할지 물어봄
@@ -64,6 +65,7 @@ export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange }) =>
 
     return (
         <div className="RangeExample">
+            {/* @ts-ignore */}
             <RCDayPicker
                 className="Selectable"
                 selectedDays={[from, { from, to }]}

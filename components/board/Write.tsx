@@ -28,7 +28,7 @@ interface IProps {
     onCreate?: () => void;
     onLoad?: () => void;
     onCancel?: () => void;
-    opens: IOpen
+    opens: Partial<IOpen>
 }
 
 export const BoardWrite: React.FC<IProps> = ({
@@ -80,9 +80,6 @@ export const BoardWrite: React.FC<IProps> = ({
         signleUpload(fileUploaded, onUpload);
         // data.images[FILE_SELECT_INDEX] = fileUploaded;
     };
-
-
-
 
     return (
         <div className="writing_in w100 board_write">

@@ -1,5 +1,5 @@
 import { MutationHookOptions, useMutation } from "@apollo/client";
-import { MULTI_UPLOAD} from "../apollo/mutations";
+import { MULTI_UPLOAD } from "../apollo/gql/mutations";
 import { Ffile, multiUpload, multiUploadVariables} from "../types/api";
 
 export const useUpload = (options?: MutationHookOptions<multiUpload, multiUploadVariables>) => {

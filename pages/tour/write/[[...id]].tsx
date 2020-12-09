@@ -7,20 +7,18 @@ import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { productCreate, ProductCreateInput, productCreateVariables, ProductStatus, ProductUpdateInput, } from '../../../types/api';
 import { useMutation } from '@apollo/client';
-import { useProductFindById } from '../../../hook/useProductFindById';
 import DayPicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
-import { PRODUCT_POST_CREATE } from "apollo/mutations";
 import { ItineryForm } from "components/tourWrite/ItineryForm";
 import { IproductFindById } from "types/interface";
 import { AppContext } from "pages/_app";
-import { useproductDelete } from "hook/useProductDelete";
 import { TDeleteFn } from "pages/portfolio/write/[[...id]]";
 import Page404 from "pages/404";
 import { tapCheck } from "../../../utils/style";
-import { useproductUpdate } from "../../../hook/useProductUpdate";
 import TagInput from "../../../components/tagInput/TagInput";
 import { getDefault, useTourWrite } from "../../../hook/useTourWrite";
+import { useProductDelete, useProductFindById, useProductUpdate } from "../../../hook/useProduct";
+import { PRODUCT_CREATE } from "../../../apollo/gql/product";
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 interface IProp {
     context: ITourWriteWrapContext;
@@ -265,9 +263,9 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     <Editor data={inOrNor} onChange={handleTextData("inOrNor")} />
                 </div>
                 <div {...tapDisplay(4)} id="texta_04" className="texta">
-                    <h5>커리큐럼 유의사항<span><i className="jandaicon-info2"></i>텍스트만 입력해 주세요.</span></h5>
+                    <h5>커리큐럼 유의사항</h5>
                     <Editor data={caution} onChange={handleTextData("caution")} />
-                    <h5>간략한 안내문<span><i className="jandaicon-info2"></i>텍스트만 입력해 주세요.</span></h5>
+                    <h5>간략한 안내문</h5>
                     <Editor data={info} onChange={handleTextData("info")} />
                 </div>
             </div>
@@ -312,7 +310,7 @@ export const TourWriteWrap: React.FC<IProp> = () => {
     const { query } = router;
 
     const id = query.id?.[0] as string | undefined;
-    const { productDelete, deleteLoading } = useproductDelete({
+    const { productDelete, deleteLoading } = useProductDelete({
         onCompleted: ({
             ProductDelete
         }) => {
@@ -321,13 +319,13 @@ export const TourWriteWrap: React.FC<IProp> = () => {
 
         }
     })
-    const { productUpdate, updateLoading } = useproductUpdate({
+    const { productUpdate, updateLoading } = useProductUpdate({
         onCompleted: ({ ProductUpdate }) => {
             router.push(`/tour/view/${ProductUpdate?.data?._id}`)
         }
     })
 
-    const [productCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCT_POST_CREATE, {
+    const [productCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCT_CREATE, {
         onCompleted: ({ ProductCreate }) => {
             if (ProductCreate.ok)
                 router.push(`/tour/view/${ProductCreate!.data!._id}`)

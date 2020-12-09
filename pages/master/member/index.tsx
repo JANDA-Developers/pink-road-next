@@ -180,7 +180,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                             <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
                             <div className="td09"><i className="btn">상세보기</i><i className="btn">작성한 게시글</i></div>
                         </div>
-                        <Paginater pageNumber={10} totalPageCount={20} />
+                        {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                         <div className="fin">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">전체선택</button>
@@ -262,7 +262,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                                 </ul>
 
                             </div>
-                            <Paginater pageNumber={10} totalPageCount={20} />
+                            {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                         </div>
 
                         <div className="fin">

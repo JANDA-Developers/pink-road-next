@@ -1,5 +1,5 @@
 import { QueryHookOptions, useQuery } from "@apollo/client";
-import { PORT_FOLIO_LIST } from "../apollo/queries";
+import { PORT_FOLIO_LIST } from "../apollo/gql/portfolio";
 import { Fpage,  Fportfolio, portfolioList, portfolioListVariables, _PortfolioFilter, _PortfolioSort } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
 import { useListQuery, ListInitOptions, IListHook } from "./useListQuery";
@@ -14,7 +14,7 @@ export interface IusePortfolioList extends IListHook<_PortfolioFilter, _Portfoli
 
 export const usePortfolioList = ({
     initialPageIndex = 0,
-    initialSort = [],
+    initialSort = [_PortfolioSort.createdAt_desc],
     initialFilter = {},
     initialViewCount = 20,
     options = {}

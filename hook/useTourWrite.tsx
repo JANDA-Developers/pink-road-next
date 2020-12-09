@@ -131,6 +131,15 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         value: !isEmpty(keyWards),
         failMsg: "키워드 값은 필수 입니다.",
         id: "keywards"
+    },
+    {
+        value: !its.find(it => Boolean(it.title) === false),
+        failMsg: "일정 타이틀 값은 필수 입니다.",
+        failFn: () => {
+            $('.texta_title .input_01').filter(function () {
+                return !(this as HTMLInputElement).value;
+            }).focus()
+        }
     }]);
 
 

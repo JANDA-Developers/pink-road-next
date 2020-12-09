@@ -1,8 +1,8 @@
 import { MutationHookOptions, useMutation } from "@apollo/client"
 import { getOperationName } from "@apollo/client/utilities"
-import { PCATEGORY_CREATAE, PCATEGORY_DELETE } from "apollo/mutations"
-import { PCAT_LIST } from "apollo/queries"
 import { pcategoryDelete, pcategoryDeleteVariables } from "types/api"
+import { PCATEGORY_DELETE } from "../apollo/gql/mutations"
+import { PCAT_LIST } from "../apollo/gql/queries"
 
 export const usePcategoryDelete = (options?: MutationHookOptions<pcategoryDelete, pcategoryDeleteVariables>) => {
     const [categoryDeleteMu, { loading }] = useMutation<pcategoryDelete, pcategoryDeleteVariables>(PCATEGORY_DELETE, {
@@ -19,6 +19,6 @@ export const usePcategoryDelete = (options?: MutationHookOptions<pcategoryDelete
         })
     }
 
-    return { catDelete,loading }
+    return { catDelete, loading }
 }
 

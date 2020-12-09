@@ -29,7 +29,9 @@ export const DEFAULT_PAGE: IPageInfo = {
     page: 1,
     prev_page_num: 0,
     start_page_num: 0,
-    totalPageSize: 0
+    totalPageSize: 0,
+    remainder: 0,
+    totalCount: 0
 }
 
 export const EMPTY_EDITOR = { blocks: [] }
@@ -53,3 +55,6 @@ export const DEFAULT_IT: ItineraryCreateInput = {
 
 
 export const ADMINS = [UserRole.admin, UserRole.manager];
+
+export const ONLY_LOGINED = [UserRole.admin, UserRole.individual, UserRole.manager, UserRole.partner, UserRole.partnerB];
+export const FULL_ACCESS = [...ONLY_LOGINED, UserRole.anonymous];

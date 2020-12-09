@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client"
 import { IPageInfo, IPortfolio, ISet } from "types/interface";
-import { PORTFOLIO_FIND_BY_ID} from "../apollo/queries";
+import { PORTFOLIO_FIND_BY_ID } from "../apollo/gql/portfolio";
 import { portfolioFindById, portfolioFindByIdVariables } from "../types/api";
 
 export interface IUsePortfolioFind {

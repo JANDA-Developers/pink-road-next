@@ -8,8 +8,9 @@ import Link from 'next/link';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
-import { IUseProductList, useproductList } from 'hook/useProductList';
+import { IuseProductList, useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
+
 const DummyPhoto = [{
   category: "문화/예술",
   subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
@@ -217,11 +218,11 @@ export const getStaticProps: GetStaticProps<IGetProps> = async (context) => {
   }
 }
 
-interface IMainWrapContext extends IUseProductList, IGetProps {
+interface IMainWrapContext extends IuseProductList, IGetProps {
 }
 
 const MainWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ sitePageInfo }) => {
-  const productList = useproductList({ initialPageIndex: 1, initialViewCount: 8 });
+  const productList = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
   const context: IMainWrapContext = {
     ...productList,
     sitePageInfo

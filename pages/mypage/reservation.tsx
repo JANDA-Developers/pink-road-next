@@ -268,7 +268,7 @@ export const MyReservation: React.FC<IProp> = () => {
                             </div>
 
 
-                            <Paginater pageNumber={10} totalPageCount={20} />
+                            {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                         </div>
                     </div>
                 </div>

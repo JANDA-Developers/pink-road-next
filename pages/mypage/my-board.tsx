@@ -113,7 +113,7 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                 </ul>
 
                             </div>
-                            <Paginater pageNumber={10} totalPageCount={20} />
+                            {/* <Paginater pageInfo={pageInfo} /> */}
                         </div>
                     </div>
                 </div>

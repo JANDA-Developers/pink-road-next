@@ -73,7 +73,7 @@ export const useBoard = ({ ...defaults }: IUseBoardProps): IUseBoard => {
         id: "content"
     }, {
         value: categoryId,
-        failMsg: "카테고리 값은 필수 입니다???.",
+        failMsg: "카테고리 값은 필수 입니다.",
         id: "category"
     }])
 

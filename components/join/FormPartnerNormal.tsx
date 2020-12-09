@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DaumPostcode from 'react-daum-postcode';
 import RegisterCheck from './RegisterCheck';
 import { TForm } from 'pages/join';
 
@@ -78,6 +79,37 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
     is_priv_corper: false
   });
 
+  const [daumAddress, setDaumAddress] = useState(false);
+
+  const handleAddress = (address) => {
+      setDaumAddress(true); 
+  }
+
+  const addressUpdate = (address) => {
+      setFormInfo({
+          ...formInfo,
+          address: address
+      })
+  }
+
+  const handleComplete = (data) => {
+
+      let fullAddress = data.address;
+      let extraAddress = ''; 
+      
+      if (data.addressType === 'R') {
+        if (data.bname !== '') {
+          extraAddress += data.bname;
+        }
+        if (data.buildingName !== '') {
+          extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
+        }
+        fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+      }
+      addressUpdate(fullAddress);
+      setDaumAddress(false);
+  }
+
 
   const handleForm = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -124,11 +156,18 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
   const handlePartnerFile = (e: React.ChangeEvent<HTMLInputElement>) => {
 
     if (e.target.files) {
+      const fileTypeChk = ['image/jpg', 'image/jpeg', 'image/png'];
       const fileType = e.target.files[0].type;
-      if (fileType != 'image/png' && fileType != 'image/jepg') {
-        alert('jpg 혹은 png 파일만 업로드 가능합니다');
+      
+      console.log(e.target.files[0]);
+
+      console.log(fileType);
+
+      if(!fileTypeChk.includes(fileType))  {
+        // alert('jpg 혹은 png 파일만 업로드 가능합니다');
         return false;
       }
+
       setFormInfo({
         ...formInfo,
         partner_file: e.target.files[0].name
@@ -195,7 +234,7 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
             className="w100"
             name="passwordChk"
             placeholder="비밀번호 확인"
-            value={formInfo.password}
+            value={formInfo.passwordChk}
             onChange={(e) => { handleForm(e) }}
           />
         </div>
@@ -209,6 +248,7 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
             type="text"
             className="w100"
             name="name"
+            value={formInfo.name}
             placeholder="업체명을 입력해주세요"
             onChange={(e) => { handleForm(e) }}
           />
@@ -262,21 +302,24 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
             />
           </div>
         </div>
-        <div className="ph_wrap">
+        <div className="ph_wrap daum_addresss_wrap">
           <label>주소</label>
           <span className="er red_font">*주소가 정확하지 않습니다.</span>
           <div className="w100">
             <input type="text" className="w80" name="address"
               value={formInfo.address}
               onChange={(e) => { handleForm(e) }} />
-            <button type="button" className="btn btn_mini">
+            <button type="button" className="btn btn_mini" onClick={handleAddress}>
               찾기
-                </button>
+            </button>
           </div>
           <div className="w100 mt5">
             <input type="text" className="w100" placeholder="상세주소" name="address_detail"
               value={formInfo.address_detail}
               onChange={(e) => { handleForm(e) }} />
+          </div>
+          <div className={`daum_addresss ${daumAddress && 'on'}`}>
+
           </div>
         </div>
         <div className="ph_wrap">
@@ -321,6 +364,10 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
           </div>
         </div>
       </div>
+      
+      <DaumPostcode
+        onComplete={handleComplete}
+      />
       <RegisterCheck
         openPopup={openPopup}
         handleJoinProcess={handleJoinProcess}

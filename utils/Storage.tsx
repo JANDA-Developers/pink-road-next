@@ -1,4 +1,5 @@
-import { IHumanCount, IProduct } from "types/interface";
+import { IHumanCount, IProduct, TCount } from "types/interface";
+import { Fproduct } from "../types/api";
 
 export type LocalManagerConfig = {
     readonly storage: 'localStorage' | 'sessionStorage';
@@ -36,11 +37,12 @@ export class LocalManager<T extends string> {
     }
 
     getLocalObj<O>(key: T, or?: O): O | undefined {
+        if (typeof window === "undefined") return undefined;
         const value = this.storage?.getItem(key) || '';
         let result = or;
 
         try {
-            result = JSON.parse(value);
+            result = value ? JSON.parse(value) : "";
         } catch (e) {
             this.storage?.removeItem(key);
             console.error('LocalManager::getLocalOj:parseFailed');
@@ -62,7 +64,7 @@ export class LocalManager<T extends string> {
 }
 
 
-type TStoreKeys = "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt";
+type TStoreKeys = "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin";
 
 export let Storage: LocalManager<TStoreKeys> | null = null;
 
@@ -75,31 +77,30 @@ Storage = new LocalManager<TStoreKeys>({
     storage: "localStorage"
 });
 
-type TCount = {
-    key: "adult" | "kid" | "baby"
-    label: string;
-    value: number
-}
 
-type TItem = {
-    productId: string;
+export interface IBasketItem extends Partial<Fproduct> {
+    _id: string;
     name: string;
     price: number;
-    counts: TCount[]
+    count: IHumanCount
+    version?: number;
 }
 
 
+export const removeBracket = () => {
+    return localStorage.removeItem("bracket");
+}
 
 export const getBracket = () => {
-    return Storage?.getLocalObj<TItem[]>("bracket", []);
+    return Storage?.getLocalObj<IBasketItem[]>("bracket", []);
 }
 
 export const haveItem = (_id: string): boolean => {
     const products = getBracket() || []
-    return !!products.find(prod => prod.productId === _id)
+    return !!products.find(prod => prod._id === _id)
 }
 
-export const humanCountToCount = (count: IHumanCount): TCount[] => {
+export const humanCountToCount = (count: IHumanCount) => {
     return [{ key: "kid", label: "성인", value: count.adult },
     { key: "kid", label: "소아", value: count.kids },
     { key: "baby", label: "유아", value: count.baby }]
@@ -115,9 +116,9 @@ export const countToHumanCount = (count: TCount[]): IHumanCount => {
 }
 
 
-export const overrideItem = (_id: string, product: Partial<TItem>) => {
+export const overrideItem = (_id: string, product: Partial<IBasketItem>) => {
     const products = getBracket() || []
-    const targetIndex = products.findIndex(prod => prod.productId === _id);
+    const targetIndex = products.findIndex(prod => prod._id === _id);
     if (targetIndex === -1) throw Error(`these is no item ${_id} in bracket`);
     products[targetIndex] = {
         ...products[targetIndex],
@@ -129,27 +130,47 @@ export const overrideItem = (_id: string, product: Partial<TItem>) => {
 
 export const removeItem = (_id: string) => {
     const products = getBracket() || []
-    const targetIndex = products.findIndex(prod => prod.productId === _id);
+    const targetIndex = products.findIndex(prod => prod._id === _id);
     products.splice(targetIndex, 1);
     saveBracket(products);
 }
 
-export const addItem = (product: TItem) => {
+export const addItem = (product: IBasketItem) => {
     const products = getBracket() || []
-    const updateProducts: TItem[] = [product, ...products];
+    const duplicated = products.findIndex(p => p._id === product._id);
+    let updateProducts: IBasketItem[] = [];
+    if (duplicated !== -1)
+        updateProducts = products.splice(duplicated, 1, product);
+    else
+        updateProducts = [product, ...products];
     saveBracket(updateProducts);
 }
 
 export const getItem = (_id: string) => {
     const products = getBracket() || []
     if (!haveItem(_id)) throw Error(`these is no item ${_id} in bracket`);
-    return products.find((prod) => prod.productId === _id)!;
+    return products.find((prod) => prod._id === _id)!;
 }
 
-export const saveBracket = (products: TItem[]) => {
+const version = 1;
+export const saveBracket = (products: IBasketItem[]) => {
+    products.forEach(p => { p.version = version });
     Storage?.saveLocal("bracket", products)
 }
 
 
+export const bracketVergionChange = () => {
+    const products = getBracket();
+    if (products && products.find(prod => prod.version !== version)) {
+        removeBracket();
+    }
+}
 
+export const getTotalCount = (count: IHumanCount): number => {
+    return count.adult + count.baby + count.kids;
+}
 
+export const getItemCount = (): number => {
+    const brakcet = getBracket();
+    return brakcet?.length || 0
+}

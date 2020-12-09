@@ -166,7 +166,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                             <div className="td08"><button className="btn">상세보기</button></div>
                         </div>
 
-                        <Paginater pageNumber={10} totalPageCount={20} />
+                        {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                         <div className="fin">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">전체선택</button>
@@ -355,7 +355,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                                     </div>
                                 </div>
                             </div>
-                            <Paginater pageNumber={10} totalPageCount={20} />
+                            {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                         </div>
                     </div>
 
@@ -395,7 +395,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                                     </div>
                                 </div>
                             </div>
-                            <Paginater pageNumber={10} totalPageCount={20} />
+                            {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                         </div>
                     </div>
 

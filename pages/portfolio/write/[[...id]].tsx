@@ -5,8 +5,6 @@ import { initStorage, Storage } from '../../../utils/Storage';
 import "react-day-picker/lib/style.css";
 import { portfolioCreate, portfolioCreateVariables, PortfolioCreateInput, pcategoryList_pCategoryList_data, portfolioUpdate, portfolioUpdateVariables, PortfolioUpdateInput, portfolioDelete, portfolioDeleteVariables, UserRole } from '../../../types/api';
 import { useMutation, } from '@apollo/client';
-import { PORTFOLIO_CREATE, PORTFOLIO_DELETE, PORTFOLIO_UPDAET, } from "apollo/mutations";
-import { PORT_FOLIO_LIST } from "apollo/queries";
 import { IPortfolio } from "types/interface";
 import { usePcategory } from "hook/usePcatList";
 import { BoardWrite } from "components/board/Write";
@@ -15,6 +13,7 @@ import { usePortfolioFind } from "hook/usePortfolioFind";
 import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
 import { toOps } from "../../../utils/formatter";
 import { omits } from "../../../utils/omit";
+import { PORTFOLIO_CREATE, PORTFOLIO_DELETE, PORTFOLIO_UPDAET, PORT_FOLIO_LIST } from "../../../apollo/gql/portfolio";
 
 interface IProp {
     context: ITourWriteWrapContext;

@@ -46,7 +46,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                                     <CalendarIcon />
                                 </div>
                                  ~
-                                 <div className="input_box">    
+                                 <div className="input_box">
                                     <input type="text" className="day w100" />
                                     <CalendarIcon />
                                 </div>
@@ -72,7 +72,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                     </div>
                 </div>
                 <div className="con_bottom">
-                  
+
                     <div className="con_box">
                         <div className="alignment">
                             <div className="left_div">
@@ -101,7 +101,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                                 <PurChasedItem />
                             </ul>
                         </div>
-                        <Paginater pageNumber={10} totalPageCount={20} />
+                        {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                     </div>
                 </div>
             </div>
