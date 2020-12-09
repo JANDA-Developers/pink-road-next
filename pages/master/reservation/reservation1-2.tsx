@@ -234,7 +234,7 @@ export const MsReservationA: React.FC<IProp> = () => {
                             </div>
                         </div>
 
-                        <Paginater pageNumber={10} totalPageCount={20} />
+                        {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
 
                         <div className="fin">
                             <div className="float_left">
