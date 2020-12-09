@@ -194,6 +194,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                 </div>
             </div>
             <SearcfInfoBox />
+
             {/* popup-작성한 게시글 보기 */}
             <div id="Popup01" className="popup_bg_full" style={{ display: 'none;' }}>
                 <a className="close_icon">

@@ -217,7 +217,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             <div className="td09"><Link href=""><a className="btn">상세보기</a></Link></div> {/* 해당상품 바로가기 링크 */}
                         </div>
 
-                        <Paginater pageNumber={10} totalPageCount={20} />
+                        {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
 
                         <div className="fin">
                             <div className="float_left">
