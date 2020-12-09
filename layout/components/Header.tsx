@@ -1,13 +1,17 @@
 import Link from "next/link"
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { EditBtn } from 'components/common/EditBtn';
 import $ from "jquery";
 import { AppContext } from "pages/_app";
 import { NEWS_TYPE } from "../../types/api";
+import { setVal, whenEnter } from "../../utils/eventValueExtracter";
+import { useRouter } from "next/router";
 
 interface IProp { }
 
 export const Header: React.FC<IProp> = () => {
+    const [search, setSearch] = useState("");
+    const rotuer = useRouter()
 
     const { isLogin, myProfile } = useContext(AppContext);
 
@@ -72,6 +76,10 @@ export const Header: React.FC<IProp> = () => {
     const handleLogOut = () => {
         localStorage.removeItem("jwt");
         location.reload();
+    }
+
+    const goToSearchPage = () => {
+        rotuer.push(`/search?search=${search}#ProductViewer`)
     }
 
     useEffect(() => {
@@ -140,7 +148,7 @@ export const Header: React.FC<IProp> = () => {
                                     </Link>
                                 </li>
                                 <li className="deps">
-                                    <Link href="/experience">
+                                    <Link href="/tour?exp=true">
                                         <a>Experience</a>
                                     </Link>
                                 </li>
@@ -187,7 +195,7 @@ export const Header: React.FC<IProp> = () => {
                                 <div className="w1200">
                                     <div className="search_wrap">
 
-                                        <input type="text" placeholder="검색어를 입력해주세요" />
+                                        <input onKeyPress={whenEnter(goToSearchPage)} value={search} onChange={setVal(setSearch)} type="text" placeholder="검색어를 입력해주세요" />
                                         <div className="search_btn">
                                             <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>현재 브라우저는 iframe을 지원하지 않습니다.</object>
                                             <button className="btt1" />
@@ -195,6 +203,10 @@ export const Header: React.FC<IProp> = () => {
                                         <div className="close_btn" onClick={handSearchClose}>
                                             <i className="flaticon-multiply"></i>
                                             <button className="btt2" />
+                                        </div>
+
+                                        <div>
+
                                         </div>
                                     </div>
                                 </div>

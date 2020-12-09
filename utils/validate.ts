@@ -11,6 +11,7 @@ type Tnode = {
     failMsg?: string,
     id?: string;
     failFn?: () => void;
+    skip?: boolean 
 }
 
 const validate = (nodes:Tnode[]):boolean => {
@@ -36,6 +37,7 @@ export class Validater {
         let nodes = targetNodes || this.nodes
         
         return nodes.every((node)=> {
+            if(node.skip) return true;
             let value = node.value;
             if(isFunction(node.value)) {
               value = node.value();

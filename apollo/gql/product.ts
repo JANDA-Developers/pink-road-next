@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_CATEGORY, F_PAGE, F_PRODUCT } from "./fragments";
+import { F_CATEGORY, F_PAGE, F_PRODUCT, F_QUESTION } from "./fragments";
 
 export const PRODUCT_CREATE = gql`
   mutation productCreate(
@@ -91,8 +91,12 @@ export const PRODUCT_FIND_BY_ID = gql`
       error
       data {
         ...Fproduct
+        questions {
+          ...Fquestion
+        }
       }
     }
   }
+  ${F_QUESTION}
   ${F_PRODUCT}
 `;

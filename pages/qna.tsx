@@ -1,10 +1,14 @@
 import React from 'react';
 import { QStatus } from '../types/interface';
 import { QnaLi } from '../components/qna/QnaLi';
+import { IUseQuestionList, useQuestionList } from '../hook/useQuestion';
 
-interface IProp { }
+interface IProp {
+    context: IQnaWrapContext
+}
 
-export const QnaTable: React.FC<IProp> = () => {
+export const QnaTable: React.FC<IProp> = ({ context }) => {
+    const { items } = context;
     return <div className="board_list_mini ln04">
         <div className="thead">
             <div className="th01">No.</div>
@@ -14,7 +18,9 @@ export const QnaTable: React.FC<IProp> = () => {
         </div>
         <div className="tbody">
             <ul>
-                <QnaLi createAt={new Date()} number={3} status={QStatus.DONE} title="asad" userName="hi" />
+                {items.map(qs =>
+                    <QnaLi key={qs._id} question={qs} />
+                )}
             </ul>
         </div>
         <div className="boardNavigation">
@@ -39,5 +45,15 @@ export const QnaTable: React.FC<IProp> = () => {
         </div>
     </div>;
 };
+
+
+interface IQnaWrapContext extends IUseQuestionList {
+}
+
+export const QnaTableWrap = () => {
+    const questionListHook = useQuestionList();
+    const context = questionListHook;
+    return <QnaTable context={context} />
+}
 
 export default QnaTable;

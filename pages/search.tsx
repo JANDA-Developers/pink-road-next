@@ -14,15 +14,19 @@ import SortSelect from '../components/common/SortMethod';
 import { closeModal, openModal } from '../utils/popUp';
 import SubTopNav from '../layout/components/SubTop';
 import { ViewSelect } from '../components/common/ViewSelect';
+import { getFromUrl } from '../utils/url';
+import { integratedProductSearch } from '../utils/genFilter';
+import { whenEnter } from '../utils/eventValueExtracter';
 
 interface IProp {
     context: ISearchContext
+    defaultSearch: string
 }
 
-export const Search: React.FC<IProp> = ({ context }) => {
-    const { items: products, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = context;
+export const Search: React.FC<IProp> = ({ context, defaultSearch }) => {
+    const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = context;
     const [view, setView] = useState<"line" | "gal">("line");
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState(defaultSearch);
     const { totalCount } = pageInfo;
 
     const onClickDistrict = (district?: string) => () => {
@@ -54,18 +58,10 @@ export const Search: React.FC<IProp> = ({ context }) => {
         openModal("#dayPickerModal")()
     }
 
-    const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') {
-            setFilter({
-                ...filter,
-                OR: search ? [{
-                    title_contains: search,
-                }, {
-                    subTitle_contains: search,
-                }] : undefined
-            })
-        }
+    const doSearch = () => {
+        setFilter(integratedProductSearch(search, filter))
     }
+
 
     const filterStart = filter.startDate_gte ? dayjs(filter.startDate_gte).format("YYYY.MM.DD") : "";
     const filterEnd = filter.startDate_lte ? dayjs(filter.startDate_lte).format("YYYY.MM.DD") : "";
@@ -92,14 +88,13 @@ export const Search: React.FC<IProp> = ({ context }) => {
                         <div className="in">
                             <span className={`check ${typeOn()}`}>ALL</span>
                             <span onClick={handleTypeFilter(ProductType.TOUR)} className={`check ${typeOn(ProductType.TOUR)}`}>여행</span>
-                            <span onClick={handleTypeFilter(ProductType.EXPERIENCE)} className={`check ${typeOn(ProductType.TOUR)}`}>체험</span>
+                            <span onClick={handleTypeFilter(ProductType.EXPERIENCE)} className={`check ${typeOn(ProductType.EXPERIENCE)}`}>체험</span>
                         </div>
                     </div>
                     <div className="jul3">
                         <div className="title">지역</div>
                         <div className="in">
                             <span onClick={onClickDistrict()} className={`check ${districtOn()}`}>전국</span>
-                            <span onClick={onClickDistrict('서울')} className={`check ${districtOn('서울')}`}>서울</span>
                             <span onClick={onClickDistrict('부산')} className={`check ${districtOn('부산')}`}>부산</span>
                             <span onClick={onClickDistrict('제주')} className={`check ${districtOn('제주')}`}>제주</span>
                             <span onClick={onClickDistrict('경기')} className={`check ${districtOn('경기')}`}>경기도</span>
@@ -131,10 +126,10 @@ export const Search: React.FC<IProp> = ({ context }) => {
                     </div>
                     <div className="jul1">
                         <div>
-                            <input onKeyPress={handleSearch} onChange={(e) => {
+                            <input onKeyPress={whenEnter(doSearch)} onChange={(e) => {
                                 setSearch(e.currentTarget.value);
                             }} value={search} type="text" placeholder="검색 내용을 입력해주세요." />
-                            <div onClick={handleSearch} className="svg_img">
+                            <div onClick={doSearch} className="svg_img">
                                 <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
                                 <button />
                             </div>
@@ -150,7 +145,7 @@ export const Search: React.FC<IProp> = ({ context }) => {
                     </div>
                 }
 
-                <div className="con_box">
+                <div id="ProductViewer" className="con_box">
                     <div className="alignment">
                         <div className="left_div">
                             <h5>여행상품<strong>{totalCount}</strong></h5>
@@ -186,7 +181,7 @@ export const Search: React.FC<IProp> = ({ context }) => {
                                 )}
                             </ul>
                         </div>}
-                    <Paginater pageInfo={pageInfo} />
+                    <Paginater setPage={setPage} pageInfo={pageInfo} />
                 </div>
             </div>
         </div>
@@ -205,9 +200,12 @@ export const Search: React.FC<IProp> = ({ context }) => {
 interface ISearchContext extends IuseProductList { }
 
 const SearchWrap = () => {
-    const productListHook = useProductList()
+    const defaultSearch = getFromUrl("search") || "";
+    const productListHook = useProductList({
+        initialFilter: integratedProductSearch(defaultSearch)
+    })
 
-    return <Search context={productListHook} />
+    return <Search defaultSearch={defaultSearch} context={productListHook} />
 }
 
 

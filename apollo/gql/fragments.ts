@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+
 export const F_PAYMENT = gql`
     fragment Fpayment  on Payment  {
         ResultCode
@@ -41,28 +42,6 @@ export const F_PAYMENT = gql`
     }
 `
 
-export const F_QUESTION = gql`
-    fragment Fcategory on Question {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        title
-        contents
-        author
-        isNotice
-        isOpen
-        summary
-        subTitle
-        keyWards
-        attachFiles
-        thumb
-        viewCount
-        likeCount
-        ProductId
-        no
-    }
-`
 
 export const F_CATEGORY = gql`
     fragment Fcategory on Category {
@@ -98,6 +77,7 @@ export const F_BOOKING = gql`
         product {
             _id
             title
+            code
         }
         payment {
             Amt
@@ -108,6 +88,8 @@ export const F_BOOKING = gql`
         isPaid
     }
 `
+
+
 
 export const F_USER = gql`
     fragment Fuser  on User  {
@@ -139,6 +121,9 @@ export const F_USER = gql`
         name
         bank_name
         phoneNumber
+        profileImg {
+            uri
+        }
     }
     ${F_FILE}
 `
@@ -261,4 +246,41 @@ export const F_PRODUCT = gql`
     ${F_FILE}
     ${F_USER}
     ${F_ITINERARY}
+`
+
+
+export const F_QUESTION = gql`
+    fragment Fquestion  on Question {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        title
+        contents
+        author {
+            _id
+            nickName
+            email
+        }
+        isNotice
+        isOpen
+        summary
+        subTitle
+        keyWards
+        attachFiles {
+            ...Ffile
+        }
+        thumb {
+            ...Ffile
+        }
+        viewCount
+        likeCount
+        # product {
+        #     _id
+        #     title
+        # }
+        status
+        no
+    }
+    ${F_FILE}
 `

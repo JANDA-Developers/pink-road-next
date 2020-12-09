@@ -14,7 +14,7 @@ import { getRefetch } from "../utils/api";
 
 export const useCategoryDelete = (options?: MutationHookOptions<categoryDelete,categoryDeleteVariables>) => {
     const [categoryUpdateMu, { loading: deleteLoading }] = useMutation<categoryDelete, categoryDeleteVariables>(CATEGORY_DELETE, {
-        refetchQueries: [getRefetch(CATEGORY_LIST), getRefetch(CATEGORY_FIND_BY_ID)],
+        ...getRefetch(CATEGORY_LIST,CATEGORY_FIND_BY_ID),
         ...options
     });
     
@@ -85,7 +85,7 @@ export const useCategoryList = ({
 
 export const useCategoryUpdate = (options?: MutationHookOptions<categoryUpdate,categoryUpdateVariables>) => {
     const [categoryUpdateMu, { loading: updateLoading }] = useMutation<categoryUpdate, categoryUpdateVariables>(CATEGORY_UPDATE, {
-        refetchQueries: [getRefetch(CATEGORY_LIST), getRefetch(CATEGORY_FIND_BY_ID)],
+        ...getRefetch(CATEGORY_LIST,CATEGORY_FIND_BY_ID),
         awaitRefetchQueries:true,
         ...options
     });

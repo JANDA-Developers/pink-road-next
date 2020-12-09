@@ -6,9 +6,16 @@ import { MypageLayout } from 'layout/MypageLayout';
 import React, { useContext } from 'react';
 import SortSelect from '../../components/common/SortMethod';
 import { ViewCount } from '../../components/common/ViewCount';
+import { LastMonthBooking } from '../../components/static/LastMonthBooking';
+import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
+import { ThisMonthPayAmt } from '../../components/static/ThisMonthPayAmt';
 import { IuseBookingList, useBookingList } from '../../hook/useBookingList';
+import { usePaymentList } from '../../hook/usePayment';
 import { useProductList } from '../../hook/useProduct';
+import { UserRole } from '../../types/api';
+import { ALLOW_SELLERS } from '../../types/const';
 import { autoHypenPhone } from '../../utils/formatter';
+import { auth } from '../../utils/with';
 import PageLoading from '../Loading';
 import { AppContext } from '../_app';
 
@@ -30,18 +37,18 @@ export const MySettlement: React.FC<IProp> = ({ context }) => {
                     <ul>
                         <li>
                             <strong>저번달 예약</strong>
-                            <div><strong>2</strong>건</div>
+                            <div><strong><LastMonthBooking /></strong>건</div>
                         </li>
                         <li>
                             <strong>이번달 예약</strong>
-                            <div><strong>232</strong>건</div>
+                            <div><strong><ThisMonthBooking /></strong>건</div>
                         </li>
                         <li>
                             <strong>이번달 정산 예정금</strong>
-                            <div><strong>22,2222,222</strong>원</div>
+                            <div><strong><ThisMonthPayAmt /></strong>원</div>
                         </li>
                         <li>
-                            <strong>예약취소 환수금</strong>
+                            <strong>이번달 취소 환수금</strong>
                             <div><strong>55,555</strong>원</div>
                         </li>
                     </ul>
@@ -54,7 +61,7 @@ export const MySettlement: React.FC<IProp> = ({ context }) => {
                             <div className="text">
                                 <span className="check on">전체</span>
                                 <span className="check">예약완료</span>
-                                <span className="check">사용완료</span>
+                                <span className="check">예약취소</span>
                             </div>
                         </div>
                         <div className="jul4">
@@ -311,11 +318,14 @@ export const MySettlement: React.FC<IProp> = ({ context }) => {
 };
 
 
-interface IMySettlementWrapContext extends IuseBookingList { }
+interface IMySettlementWrapContext extends IuseBookingList {
+    // paymentListHook: IusePaymentList
+}
 
 export const MySettlementWrap = () => {
     const { myProfile } = useContext(AppContext);
     const _id = myProfile?._id;
+    const paymentListHook = usePaymentList();
     const bookingListHook = useBookingList({
         initialFilter: {
             seller_eq: _id
@@ -328,4 +338,4 @@ export const MySettlementWrap = () => {
     return <MySettlement context={context} />
 }
 
-export default MySettlementWrap;
+export default auth(MySettlementWrap)(ALLOW_SELLERS);

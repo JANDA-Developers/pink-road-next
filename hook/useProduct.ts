@@ -11,11 +11,12 @@ import { DEFAULT_PAGE } from "../types/const";
 import { IListHook, ListInitOptions, useListQuery } from "./useListQuery";
 import { PRODUCT_POST_UPDATE } from "../apollo/gql/product";
 import { productUpdate, productUpdateVariables } from "../types/api";
+import { getRefetch } from "../utils/api";
 
 
 export const useProductDelete = (options?: MutationHookOptions<productDelete,productDeleteVariables>) => {
     const [productUpdateMu, { loading: deleteLoading }] = useMutation<productDelete, productDeleteVariables>(PRODUCT_POST_DELETE, {
-        refetchQueries: [getOperationName(PRODUCT_POST_LIST), getOperationName(PRODUCT_FIND_BY_ID) || ""],
+        ...getRefetch(PRODUCT_POST_LIST, PRODUCT_FIND_BY_ID),
         ...options
     });
     
@@ -103,8 +104,8 @@ export const useProductList = ({
 
 export const useProductUpdate = (options?: MutationHookOptions<productUpdate,productUpdateVariables>) => {
     const [productUpdateMu, { loading: updateLoading }] = useMutation<productUpdate, productUpdateVariables>(PRODUCT_POST_UPDATE, {
-        refetchQueries: [getOperationName(PRODUCT_POST_LIST), getOperationName(PRODUCT_FIND_BY_ID)],
         awaitRefetchQueries:true,
+        ...getRefetch(PRODUCT_POST_LIST,PRODUCT_FIND_BY_ID),
         ...options
     });
     

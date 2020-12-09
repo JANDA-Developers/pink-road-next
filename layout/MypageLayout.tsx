@@ -1,19 +1,46 @@
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import { userInfo } from 'os';
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
+import { useUpload } from '../hook/useUpload';
+import { useUserUpdate } from '../hook/useUser';
 import { AppContext } from '../pages/_app';
-import { ProductStatus } from '../types/api';
+import { Ffile, ProductStatus } from '../types/api';
+import { BG } from '../types/const';
+import { omits } from '../utils/omit';
 import { getItemCount, Storage } from '../utils/Storage';
 
 interface IProp { }
 
 export const MypageLayout: React.FC<IProp> = ({ children }) => {
+    const { userUpdate } = useUserUpdate()
+    const { signleUpload } = useUpload();
     const { isSeller, isParterB, isParterNonB, myProfile } = useContext(AppContext);
+    const hiddenFileInput = useRef<HTMLInputElement>(null);
+
+    const changeProfile = (file: Ffile) => {
+        userUpdate({
+            _id: myProfile!._id,
+            params: {
+                profileImg: omits(file)
+            }
+        })
+    }
+
+    const handleChangeProfile = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (!event.target.files) return;
+        const fileUploaded = event.target.files;
+        const onUpload = (_: string, data: Ffile) => {
+            changeProfile(data)
+        }
+        signleUpload(fileUploaded, onUpload);
+    };
+
 
     return <div>
         <div className="top_visual">
             <div
+
                 className="sub_header sub_bg"
                 style={{ backgroundImage: `url(/img/pr_img_37.jpg)` }}
             >
@@ -53,7 +80,10 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                 <div className="lnb">
                     <div className="profile_box">
                         <div className="welcome">
-                            <span className="img"><i className="jandaicon-setting"></i>프로필이미지</span>
+                            <span style={BG(myProfile?.profileImg?.uri || "")} onClick={() => {
+                                hiddenFileInput.current?.click()
+                            }} className="img"><i className="jandaicon-setting"></i>프로필이미지</span>
+                            <input onChange={handleChangeProfile} ref={hiddenFileInput} hidden type="file" />
                             <span className="name1">
                                 {isParterNonB && <i className="ct_guide">Partner</i>}{/* 개인파트너 -*/}
                                 {isParterB && <i className="ct_partner">Partner</i>}{/* 기업파트너 -*/}

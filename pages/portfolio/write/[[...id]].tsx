@@ -83,8 +83,7 @@ export const PortFolioWrite: React.FC<IProp> = ({ context }) => {
         opens={{
             category: true,
             files: false,
-            subTitle: false,
-            summary: true,
+            subTitle: true,
             thumb: true,
             title: true
         }}

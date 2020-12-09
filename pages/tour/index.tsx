@@ -1,14 +1,21 @@
 import { Meta } from 'components/common/meta/Meta';
 import SubTopNav from 'layout/components/SubTop';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import pageInfoDefault from "info/tourMain.json";
 import { useRouter } from 'next/router'
-import { IuseProductList, useProductList } from 'hook/useProduct';
+import { IuseProductList } from 'hook/useProduct';
 import { productList_ProductList_data_category } from 'types/api';
 import { IProduct } from 'types/interface';
-import PageLoading from '../Loading';
-interface IProp {
-    context: ITourMianWrapContext
+import { BG } from '../../types/const';
+import { ITourListWrapContext, TourListWrap } from '../../components/hoc/TourListWrap';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { usePageInfo } from '../../hook/usePageInfo';
+import { getEditUtils } from '../../utils/pageEdit';
+import { AppContext } from '../_app';
+
+interface IProp extends InferGetStaticPropsType<typeof getStaticProps> {
+    context: ITourListWrapContext
 }
 
 type TSortedData = {
@@ -16,11 +23,14 @@ type TSortedData = {
     items: IProduct[]
 }
 
-export const TourMain: React.FC<IProp> = ({ context }) => {
-    const { items } = context;
+export const TourMain: React.FC<IProp> = ({ sitePageInfo, context }) => {
+    const original = sitePageInfo || pageInfoDefault;
+    const { editMode } = useContext(AppContext);
+    const [pageInfo, setPageInfo] = useState(original);
+    const { edit, imgEdit, bg } = getEditUtils(editMode, pageInfo, setPageInfo)
+
+    const { items, isExp, setFilter, filter, cats, pageInfo: paging, setPage } = context;
     const router = useRouter();
-    const { exp } = router.query;
-    const isExp = exp!!;
 
     const sortedData: TSortedData[] = [];
 
@@ -38,35 +48,34 @@ export const TourMain: React.FC<IProp> = ({ context }) => {
         }
     })
 
+    const handleCatFilter = (catId: string) => () => {
+        setFilter({
+            ...filter,
+            categoryId_eq: catId
+        })
+    }
+
     return <div >
         <Meta />
         <SubTopNav title="temp" desc="temp" >
             <li className="homedeps1">
-                <Link href="/tour/main?exp=true">
-                    <a>Tour</a>
-                </Link>
+                {isExp ?
+                    <Link href="/tour">
+                        <a>Tour</a>
+                    </Link> :
+                    <Link href="/tour?exp=true">
+                        <a>Experience</a>
+                    </Link>
+                }
             </li>
         </SubTopNav>
         <div className="goods_box">
             <div className="w1200">
                 <div id="sub_tap_nav" className="subtop_nav betatest">
                     <ul>
-                        <li className="on"><a href="/tour/list">전체</a></li>
-                        <li><a href="/tour/list">문화·예술여행</a></li>
-
-                        <li className="on">
-                            <Link href="/tour/list">
-                                <a >전체</a>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/tour/list">
-                                <a >문화·예술여행</a>
-                            </Link>
-                        </li>
-                        <li><a href="/tour/list">교육·답사여행</a></li>
-                        <li><a href="/tour/list">역사여행</a></li>
-                        <li><a href="/tour/list">팸투어</a></li>
+                        {cats.map(cat =>
+                            <li key={cat._id} onClick={handleCatFilter(cat._id)} className={cat._id === filter.categoryId_eq ? "on" : ""}><a>{cat.label}</a></li>
+                        )}
                     </ul>
                 </div>
                 <div className="bn_box line2">
@@ -78,17 +87,19 @@ export const TourMain: React.FC<IProp> = ({ context }) => {
                         <div className="alignment">
                             {data.category && <div className="left_div"><h4>{data?.category?.label}</h4></div>}
                             <div className="right_div">
-                                <span className="move-left"><i className="jandaicon-arr4-left" /><button></button></span>
-                                <span className="move-right"><i className="jandaicon-arr4-right" /><button></button></span>
+                                <span onClick={() => {
+                                    setPage(paging.prev_page_num)
+                                }} className="move-left"><i className="jandaicon-arr4-left" /><button></button></span>
+                                <span onClick={() => {
+                                    setPage(paging.next_page_num)
+                                }} className="move-right"><i className="jandaicon-arr4-right" /><button></button></span>
                             </div>
                         </div>
                         <ul className="list_ul line3">
                             {data.items.map(data =>
                                 <Link href={`/tour/view/${data._id}`}>
                                     <li key={data._id} className="list_in" >
-                                        <div className="img" style={data.images ? {
-                                            backgroundImage: `url(${data.images[0]?.uri})`
-                                        } : undefined}>상품이미지</div>
+                                        <div className="img" style={BG(data.images[0].uri)}>상품이미지</div>
                                         <div className="box">
                                             <div className="category"><span>{data.category?.label}</span></div>
                                             <div className="title">{data.title}</div>
@@ -113,20 +124,19 @@ export const TourMain: React.FC<IProp> = ({ context }) => {
 };
 
 
-interface ITourMianWrapContext extends IuseProductList {
+interface IGetProps {
+    sitePageInfo: typeof pageInfoDefault | "",
 }
 
-export const TourMainWrap = () => {
+export const getStaticProps: GetStaticProps<IGetProps> = async (context) => {
+    const { data } = await usePageInfo("tourMain");
 
-    const productList = useProductList();
-
-    const context: ITourMianWrapContext = {
-        ...productList
+    return {
+        props: {
+            sitePageInfo: data?.value || "",
+            revalidate: 10
+        }, // will be passed to the page component as props
     }
-
-    if (productList.getLoading) return <PageLoading />;
-
-    return <TourMain context={context} />
 }
 
-export default TourMainWrap;
+export default TourListWrap(TourMain);

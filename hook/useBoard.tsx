@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { IBoardOpen } from "../components/board/Write";
 import { Ffile } from "../types/api";
 import { ISet } from "../types/interface";
 import { Validater } from "../utils/validate";
@@ -52,7 +53,7 @@ export interface IUseBoard {
 interface IUseBoardProps extends Partial<IUseBoardDefaultData> {
 }
 
-export const useBoard = ({ ...defaults }: IUseBoardProps): IUseBoard => {
+export const useBoard = ({ ...defaults }: IUseBoardProps, opens?: Partial<IBoardOpen>): IUseBoard => {
     const [isOpen, setIsOpen] = useState<boolean>(defaults.isOpen || false);
     const [title, setTitle] = useState<string>(defaults.title || "")
     const [categoryId, setCategoryId] = useState<string>(defaults.categoryId || "");
@@ -74,7 +75,8 @@ export const useBoard = ({ ...defaults }: IUseBoardProps): IUseBoard => {
     }, {
         value: categoryId,
         failMsg: "카테고리 값은 필수 입니다.",
-        id: "category"
+        id: "category",
+        skip: opens?.category !== true
     }])
 
     const boardData: IUseBoardData = {

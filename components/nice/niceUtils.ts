@@ -1,16 +1,19 @@
 import { INiceElementProp } from "./NiceElement";
-
-const TEMP = "http://10.159.22.63:4000"
+const TEMP = "http://10.159.6.11:4000"
 export const NICE_GET_KEY = TEMP + "/payment"
 export const NICE_MOBILE_AFTER_PAY = TEMP + "/authReq"
 export const NICE_CANCLE = TEMP + "/authReq"
 
 type AUTH = "MID" | "hex" | "EdiDate"
-export const getNiceElementForTest = (requirePorp: Record<AUTH, string>): INiceElementProp => {
+export const getNiceElementForTest = (requirePorp: Record<AUTH, string> & Partial<INiceElementProp>): INiceElementProp => {
+
     const params = {
-        ...requirePorp,
-        ...NiceEelementTestData
+        ...NiceEelementTestData,
+        ...requirePorp
     }
+
+    console.log("requirePorp");
+    console.log(requirePorp);
 
     return params
 

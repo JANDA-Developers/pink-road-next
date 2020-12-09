@@ -305,3 +305,6 @@ figure:after {
 .modal {
     z-index: 100;
 }
+#basketModal .popup_bg_mini { 
+    max-width: 400px;
+}

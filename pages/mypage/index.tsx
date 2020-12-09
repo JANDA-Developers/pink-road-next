@@ -17,6 +17,8 @@ import { useVerification } from '../../hook/useVerification';
 import { toast } from 'react-toastify';
 import { GET_CONTEXT } from '../../apollo/gql/queries';
 import { getOperationName } from '@apollo/client/utilities';
+import { LastMonthBooking } from '../../components/static/LastMonthBooking';
+import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
 
 let SEND_LIMIT = 3;
 interface IProp { }
@@ -62,11 +64,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
         isVerifiedPhoneNumber,
         busi_name,
         is_priv_corper } = defaultProfile!;
-
-    useEffect(() => {
-        setLastMonthCount("SellCountPrev", _id)
-        setThisMonthCount("SellCount", _id)
-    }, [])
 
     const productsCount = products.length;
     const sellCounts = arraySum(products.map(p => p.bookings.length));
@@ -169,7 +166,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                         <ul className={`line${isSeller ? "5" : "4"}`}>
                             {isSeller && <>
                                 <li className="ct">
-                                    <span id="SellCountPrev">0</span>
+                                    <LastMonthBooking />
                                     <p>저번달 총 매량</p>
                                 </li>
                                 <li className="ct">
@@ -177,7 +174,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     <p>정산 신청건</p>
                                 </li>
                                 <li className="ct">
-                                    <span id="SellCount">234</span>
+                                    <ThisMonthBooking />
                                     <p>이번달 총 매량</p>
                                 </li>
                                 <li className="ct">

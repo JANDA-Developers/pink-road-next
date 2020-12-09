@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client"
-import { F_PAYMENT } from "./fragments"
+import { F_PAGE, F_PAYMENT } from "./fragments"
 
 export const PAYMENT_LIST = gql`
   query paymentList(
@@ -22,5 +22,17 @@ export const PAYMENT_LIST = gql`
     }
   }
   }
+  ${F_PAGE}
   ${F_PAYMENT}
+`
+
+
+export const SETTLEMENT_CAL = gql`
+  query settlementCal($filter:_PaymentFilter!) {
+    SettlementCal(filter:$filter) {
+      ok
+      error
+      amt
+    } 
+  }
 `

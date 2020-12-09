@@ -21,9 +21,10 @@ interface IProp extends IDiv {
   sort: any
   setView: any
   setViewCount: any
+  setPage: any;
 }
 
-export const BoardList: React.FC<IProp> = ({ setViewCount, children, Categories, onWrite: handleWrite, onSearch: handleSearch, pageInfo, totalCount, addBtnLabel, setSort, setView, sort, view, viewCount, ...props }) => {
+export const BoardList: React.FC<IProp> = ({ setPage, setViewCount, children, Categories, onWrite: handleWrite, onSearch: handleSearch, pageInfo, totalCount, addBtnLabel, setSort, setView, sort, view, viewCount, ...props }) => {
   return <div {...props} className={`w1200 board_box ${props.className}`} >
     <div>
       {Categories}
@@ -36,7 +37,7 @@ export const BoardList: React.FC<IProp> = ({ setViewCount, children, Categories,
         </div>
       </div>
       {children}
-      {pageInfo && <Paginater pageInfo={pageInfo} />}
+      {pageInfo && <Paginater setPage={setPage} pageInfo={pageInfo} />}
       <div className="tl list_bottom">
         {/* member/상품 등록하기 */}
         <div className="btn_footer">

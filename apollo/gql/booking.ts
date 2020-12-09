@@ -1,5 +1,20 @@
 import { gql } from "@apollo/client"
-import { F_PAGE, F_BOOKING } from "./fragments"
+import { F_PAGE, F_BOOKING, F_PAYMENT, F_PRODUCT } from "./fragments"
+
+export const F_BOOKING_BY_CODE  = gql`
+    fragment FbookingByCode on Booking {
+        ...Fbooking
+        payment {
+          ...Fpayment
+        }
+        product {
+          ...Fproduct
+        }
+    }
+    ${F_BOOKING}
+    ${F_PAYMENT}
+    ${F_PRODUCT}
+`
 
 export const BOOKING_LIST = gql`
   query bookingList(
@@ -94,4 +109,20 @@ export const BOOKING_UPDAET = gql`
     }
   }
 }
+`
+export const BOOKING_FIND_BY_CODE = gql`
+  query bookingFindByCode(
+    $code: String!
+  ) {
+    BookingFindByCode(
+      code: $code
+    ) {
+    ok
+    error 
+    data {
+      ...Fbooking
+    }
+  }
+}
+${F_BOOKING}
 `

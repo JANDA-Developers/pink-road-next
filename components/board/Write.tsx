@@ -7,7 +7,7 @@ import { useUpload } from "hook/useUpload";
 import { IUseBoard } from "hook/useBoard";
 import { AppContext } from "../../pages/_app";
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
-interface IOpen {
+export interface IBoardOpen {
     title: boolean
     subTitle: boolean;
     category: boolean;
@@ -28,7 +28,7 @@ interface IProps {
     onCreate?: () => void;
     onLoad?: () => void;
     onCancel?: () => void;
-    opens: Partial<IOpen>
+    opens: Partial<IBoardOpen>
 }
 
 export const BoardWrite: React.FC<IProps> = ({
@@ -45,7 +45,7 @@ export const BoardWrite: React.FC<IProps> = ({
     onSave: handleSave
 }) => {
     const { myProfile } = useContext(AppContext);
-    const name = myProfile?.name || "";
+    const name = myProfile?.nickName || "";
     const isCreateMode = mode === "create";
     const { signleUpload } = useUpload();
     const { boardData, boardSets } = boardHook;

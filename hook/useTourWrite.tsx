@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { RefObject, useRef, useState } from "react";
 import { generateitinery, TRange } from "../components/tourWrite/helper";
-import { Ffile, ItineraryCreateInput, ProductCreateInput, ProductStatus, ProductUpdateInput } from "../types/api";
+import { Ffile, ItineraryCreateInput, ProductCreateInput, ProductStatus, ProductType, ProductUpdateInput } from "../types/api";
 import { IproductFindById, ISet } from "../types/interface";
 import isEmpty from "../utils/isEmpty";
 import { omits } from "../utils/omit";
@@ -38,6 +38,7 @@ export interface IUseTourData {
     status: ProductStatus;
     keyWards: string[];
     thumbs: Ffile[];
+    type: ProductType;
 }
 
 interface IUseTourDefaultData {
@@ -49,6 +50,7 @@ interface IUseTourDefaultData {
     status: ProductStatus;
     its: ItineraryCreateInput[];
     keyWards: string[];
+    type: ProductType;
 }
 
 
@@ -60,6 +62,7 @@ interface ITourDataSet {
     setThumbs: ISet<Ffile[]>
     setkeyWards: ISet<string[]>;
     setLoadKey: ISet<number>;
+    setType: ISet<ProductType>
 }
 
 export interface IUseTour {
@@ -69,8 +72,8 @@ export interface IUseTour {
     validater: Validater;
     setTourData: (data: Partial<IUseTourData>) => void;
     loadKey: number;
-    firstDate: Date;
-    lastDate: Date;
+    firstDate?: Date;
+    lastDate?: Date;
     getCreateInput: () => ProductCreateInput;
     getUpdateInput: () => ProductUpdateInput;
     hiddenFileInput: RefObject<HTMLInputElement>
@@ -92,6 +95,7 @@ export interface IUseTour {
 interface IUseTourProps extends Partial<IUseTourDefaultData> {
 }
 export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
+    const [type, setType] = useState<ProductType>(defaults.type || ProductType.TOUR)
     const [its, setits] = useState<ItineraryCreateInput[]>(deepCopy(defaults.its || []));
     const [simpleData, setSimpleData] = useState<TSimpleTypePart>(defaults.simpleData || DEFAULT_SIMPLE_TOUR_DATA)
     const [categoryId, setCategoryId] = useState<string>(defaults.categoryId || "");
@@ -133,6 +137,11 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         id: "keywards"
     },
     {
+        value: !isEmpty(type),
+        failMsg: "상품타입 값은 필수 입니다.",
+        id: "type"
+    },
+    {
         value: !its.find(it => Boolean(it.title) === false),
         failMsg: "일정 타이틀 값은 필수 입니다.",
         failFn: () => {
@@ -165,7 +174,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         minMember,
         startPoint,
         subTitle,
-        title
+        title,
     } = simpleData;
 
     const tourSets: ITourDataSet = {
@@ -175,7 +184,8 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         setSimpleData,
         setStatus,
         setThumbs,
-        setits
+        setits,
+        setType
     }
 
     const getCreateInput = (): ProductCreateInput => {
@@ -200,6 +210,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             isNotice,
             isOpen: true,
             subTitle,
+            type
         }
         return omits(createData);
     }
@@ -244,6 +255,8 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             setStatus(data.status)
         if (data.thumbs)
             setThumbs(data.thumbs)
+        if (data.type)
+            setType(data.type)
     }
 
 

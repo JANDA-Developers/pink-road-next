@@ -14,7 +14,7 @@ interface IProps {
         count: 0,
     }
     viewCount?: number
-    summary?: string;
+    subTitle?: string | null;
     files?: Ffile[]
     onNext?: () => void;
     onPrev?: () => void;
@@ -26,7 +26,7 @@ interface IProps {
 
 
 export const BoardView: React.FC<IProps> = (data) => {
-    const { catName, createAt, title = "", writer, comments, files, summary, viewCount, thumb, content = "", onEdit, onList, onNext, onPrev, onDelete } = data;
+    const { catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, onNext, onPrev, onDelete, subTitle } = data;
 
 
     const handlePrev = () => {
@@ -67,10 +67,8 @@ export const BoardView: React.FC<IProps> = (data) => {
                 <div className="in_box">
 
                     {/*본문시작*/}
-                    {summary && <>{summary}
-                        <br /><br />
-                    </>
-                    }
+                    {subTitle && subTitle}
+                    <br /><br />
                     {/*thumb && <img src={thumb.uri} alt={thumb.name} /> 섬네일이미지 안보여줘도됨...*/}
                     <ContentViewer data={content} />
                     {files &&

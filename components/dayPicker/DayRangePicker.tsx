@@ -12,29 +12,19 @@ type ThandleSate = (range: Range) => void;
 interface IProps {
     from?: Date,
     to?: Date,
+    isRange?: boolean
     onRangeChange: ThandleSate
 }
 
-export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange, children }) => {
+export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange, isRange = true, children }) => {
     const defaultProps = {
         numberOfMonths: 2,
     };
 
     function handleDayClick(day: any) {
-        // @ts-ignore
-        const range = DateUtils.addDayToRange(day, { from, to });
-
-        // From을 SET 할지 TO를 SET 할지 물어봄
-        const isFromSelect = (inFrom: any, inTo: any, day: any) => {
-            // From 이전의 날자를 선택했다면
-            const isBeforeFirstDay =
-                inFrom && DateUtils.isDayBefore(day, inFrom);
-            // From과 To 가 ⭐️이미️️️⭐️ 존재하는가?
-            const isRangeSelected = inFrom && inTo;
-            return !inFrom || isBeforeFirstDay || isRangeSelected;
-        };
-
-
+        if (!isRange) {
+            onRangeChange({ from: day, to: day });
+        }
 
         // 선택한 날자 뒤를 누른경우에
         if (from && day <= from) {

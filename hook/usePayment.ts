@@ -1,6 +1,7 @@
-import { QueryHookOptions, useQuery } from "@apollo/client";
-import { PAYMENT_LIST } from "../apollo/gql/payment";
-import { Fpage,  Fpayment, paymentList, paymentListVariables, _PaymentFilter, _PaymentSort } from "../types/api";
+import { QueryHookOptions, useMutation, useQuery } from "@apollo/client";
+import { useState } from "react";
+import { PAYMENT_LIST, SETTLEMENT_CAL } from "../apollo/gql/payment";
+import { Fpage,  Fpayment, paymentList, paymentListVariables, settlementCal, settlementCalVariables, _PaymentFilter, _PaymentSort } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
 import { useListQuery, ListInitOptions, IListHook } from "./useListQuery";
 
@@ -41,4 +42,20 @@ export const usePaymentList = ({
     const pageInfo: Fpage = data?.PaymentList.page || DEFAULT_PAGE;
 
     return { pageInfo, filter, setPage, getLoading, setFilter, setSort, setViewCount, sort, viewCount, items }
+}
+
+export const useSettlementCal = ({
+    initialFilter
+}: {
+    initialFilter?:_PaymentFilter
+}) => {
+    const [filter, setFilter] = useState<_PaymentFilter>(initialFilter || {});
+    const {data} = useQuery<settlementCal,settlementCalVariables>(SETTLEMENT_CAL,{
+        variables: {
+            filter
+        }
+    });
+    const amt = data?.SettlementCal.amt || 0;
+
+    return {setFilter,amt}
 }

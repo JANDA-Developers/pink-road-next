@@ -669,6 +669,7 @@ div.popup_bg_mini {
     overflow: hidden;
     background-color: #fff;
     box-shadow: 2px 2px 2px #00000052;
+    position: relative;
 }
 
 .popup_bg_mini .fade {
@@ -10387,9 +10388,9 @@ i.calendar {
     .basket_box {
         position: relative;
     }
-        .basket_box .basket_list .th .t01 .checkbox {
+        /* .basket_box .basket_list .th .t01 .checkbox {
             top:8px;
-        }
+        } */
         .basket_box .basket_list .td .t01 .checkbox {
             top:50%;
             margin-top:-8px;

@@ -5,9 +5,9 @@ import { initStorage } from '../../../utils/Storage';
 import "react-day-picker/lib/style.css";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
-import { productCreate, ProductCreateInput, productCreateVariables, ProductStatus, ProductUpdateInput, } from '../../../types/api';
+import { productCreate, ProductCreateInput, productCreateVariables, ProductStatus, ProductType, ProductUpdateInput, } from '../../../types/api';
 import { useMutation } from '@apollo/client';
-import DayPicker from "components/dayPicker/DayRangePicker"
+import DayRangePicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
 import { ItineryForm } from "components/tourWrite/ItineryForm";
 import { IproductFindById } from "types/interface";
@@ -19,6 +19,7 @@ import TagInput from "../../../components/tagInput/TagInput";
 import { getDefault, useTourWrite } from "../../../hook/useTourWrite";
 import { useProductDelete, useProductFindById, useProductUpdate } from "../../../hook/useProduct";
 import { PRODUCT_CREATE } from "../../../apollo/gql/product";
+import { changeVal } from "../../../utils/eventValueExtracter";
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 interface IProp {
     context: ITourWriteWrapContext;
@@ -35,10 +36,11 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         getCreateInput, getUpdateInput,
         hiddenFileInput, lastDate,
     } = useTourWrite(getDefault(product));
-    const { categoryId, its, simpleData, status, thumbs, keyWards } = tourData;
+    const { categoryId, its, simpleData, status, thumbs, keyWards, type } = tourData;
     const {
         setkeyWards,
-        setits
+        setits,
+        setType
     } = tourSets;
     const {
         address,
@@ -104,7 +106,6 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
 
     const tapDisplay = tapCheck.bind(tapCheck, tab);
 
-
     useEffect(() => {
         initStorage()
     }, [])
@@ -125,6 +126,24 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/work_top_bg2.jpg'} />
         <div className="w1200 con_bottom">
             <div className="write_box">
+                <div className="write_type">
+                    <div className="title">상품타입</div>
+                    <div className="input_form">
+                        <span className="category r3">
+                            <select onChange={changeVal(setType)} value={type} name="type">
+                                <option value={ProductType.TOUR}>
+                                    투어(연일)
+                                </option>
+                                <option value={ProductType.EXPERIENCE}>
+                                    체험(당일)
+                                </option>
+                                <option value="">
+                                    선택없음
+                                </option>
+                            </select>
+                        </span>
+                    </div>
+                </div>
                 <div className="write_type">
                     <div className="title">카테고리</div>
                     <div className="input_form">
@@ -251,7 +270,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                 </ul>
                 <div {...tapDisplay(1)} id="texta_01" className="texta">
                     <h5 id="itinerary">여행일정</h5>
-                    <DayPicker onRangeChange={handleDateState} from={firstDate} to={lastDate} >
+                    <DayRangePicker isRange={type === ProductType.TOUR} onRangeChange={handleDateState} from={firstDate} to={lastDate} >
                         <div className="info_txt">
                             <h4><i className="jandaicon-info2"></i>여행일정 등록시 유의점</h4>
                             <ul>
@@ -261,11 +280,10 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                                 <li>- 일정에 관련된 내용만 간략하게 써주세요.</li>
                             </ul>
                         </div>
-                    </DayPicker>
+                    </DayRangePicker>
                     {its.map((itinery, index) => <div key={"itineryForm" + index}>
-                        <ItineryForm index={index} setits={setits} itinery={itinery} its={its} />)
-                        </div>
-                    }
+                        <ItineryForm index={index} setits={setits} itinery={itinery} its={its} />
+                    </div>)}
                 </div>
                 <div {...tapDisplay(2)} id="texta_02" className="texta">
                     <h5>상품 안내문</h5>

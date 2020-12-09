@@ -49,6 +49,7 @@ const NiceElments: React.FC<INiceElementProp> = ({
     endPoint,
 }) => {
 
+    alert(MID);
     useEffect(() => {
         import("./niceGlobal")
     }, [])
@@ -149,7 +150,6 @@ const NiceElments: React.FC<INiceElementProp> = ({
                 <input
                     id="ReqReserved"
                     name="ReqReserved"
-                    onChange={() => { }}
                     value=""
                 />{" "}
                 <input name="ReturnURL" onChange={() => { }} value={ReturnURL} />

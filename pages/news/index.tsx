@@ -1,7 +1,3 @@
-import { Paginater } from 'components/common/Paginator';
-import SearchMini from 'components/common/SearchMini';
-import SortSelect from 'components/common/SortMethod';
-import { ViewCount } from 'components/common/ViewCount';
 import { PhotoNewsView } from 'components/news/PhotoView';
 import SubTopNav from 'layout/components/SubTop';
 import React, { useEffect, useState } from 'react';
@@ -9,9 +5,7 @@ import { LineNewsView } from '../../components/news/LineView';
 import { useNewsList, IUseNewsList } from "hook/useNews"
 import { getFromUrl } from '../../utils/url';
 import { NEWS_TYPE } from '../../types/api';
-import { autoComma } from '../../utils/formatter';
 import { getQueryIndex } from '../../utils/page';
-import { ViewSelect } from '../../components/common/ViewSelect';
 import BoardList from '../../components/board/List';
 import { useRouter } from 'next/router';
 
