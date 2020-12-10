@@ -182,9 +182,9 @@ type TGetProps = {
 export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
     const { data } = await usePageInfo("portfolio");
     return {
+        revalidate: 1,
         props: {
             pageInfo: data?.value || "",
-            revalidate: 8
         }, // will be passed to the page component as props
     }
 }

@@ -14,9 +14,9 @@ type TGetProps = {
 export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
     const { data } = await usePageInfo("site-info");
     return {
+        revalidate: 1,
         props: {
             pageInfo: data?.value || "",
-            revalidate: 10
         }, // will be passed to the page component as props
     }
 }
@@ -240,37 +240,27 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                 <ul>
                     <li>
                         <a href="">
-                            <img src='/img/ptn_01.jpg' alt="" />
+                            <img src='/img/pt_logo_02.png' alt="" />
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src='/img/ptn_02.jpg' alt="" />
+                            <img src='/img/pt_logo_03.png' alt="" />
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src='/img/ptn_03.png' alt="" />
+                            <img src='/img/pt_logo_04.png' alt="" />
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src='/img/ptn_04.png' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/ptn_05.jpg' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/ptn_06.jpg' alt="" />
+                            <img src='/img/pt_logo_05.png' alt="" />
                         </a>
                     </li>
                     {partners.kr.map((partner, index) => {
                         const { alt, img, link } = partner;
-                        return <li key={index + "partner"} className="betatest">
+                        return <li key={index + "partner"}>
                             <a href={link}>
                                 <img src='/img/pt_logo_05.png' alt={alt} />
                                 <span className="del" onClick={() => {
