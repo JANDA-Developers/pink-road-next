@@ -243,7 +243,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                         return <li key={index + "partner"}>
                             <a href={editMode ? undefined : link}>
                                 <img src={img} alt={alt} />
-                                {editMode ||
+                                {editMode &&
                                     <span className="del" onClick={() => {
                                         removeArray("partners", index);
                                     }}><i className="flaticon-multiply"></i></span>
@@ -254,7 +254,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                             </a>
                         </li>
                     })}
-                    {editMode ||
+                    {editMode &&
                         <li className="add" onClick={() => {
                             addArray("partners", {})
                         }}><i className="flaticon-add"></i>추가</li>
