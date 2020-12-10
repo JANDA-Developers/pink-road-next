@@ -3441,7 +3441,6 @@ ul.rank_ul {
         padding: 5px;
         box-sizing: border-box;
     }
-
     .siteInfo_in .con06 li.add {
         display: inline-block;
         width: 150px;
@@ -3453,24 +3452,20 @@ ul.rank_ul {
         color: #2196F3;
         font-weight: 600;
     }
-
         .siteInfo_in .con06 li.add i {
             font-size: 12px;
             margin-right: 10px;
         }
-
     .siteInfo_in .con06 li a {
         display: inline-block;
         padding: 25.1px;
         box-sizing: border-box;
     }
-
     .siteInfo_in .con06 li img {
-        width: 100%;
+        width: auto;
         max-height: 40px;
+        max-width: 100%;
     }
-
-
 .siteInfo_in .con07 h4 {
     display: block;
     position: relative;

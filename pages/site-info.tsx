@@ -240,27 +240,37 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                 <ul>
                     <li>
                         <a href="">
-                            <img src='/img/pt_logo_02.png' alt="" />
+                            <img src='/img/ptn_01.jpg' alt="" />
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src='/img/pt_logo_03.png' alt="" />
+                            <img src='/img/ptn_02.jpg' alt="" />
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src='/img/pt_logo_04.png' alt="" />
+                            <img src='/img/ptn_03.png' alt="" />
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <img src='/img/pt_logo_05.png' alt="" />
+                            <img src='/img/ptn_04.png' alt="" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src='/img/ptn_05.jpg' alt="" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img src='/img/ptn_06.jpg' alt="" />
                         </a>
                     </li>
                     {partners.kr.map((partner, index) => {
                         const { alt, img, link } = partner;
-                        return <li key={index + "partner"}>
+                        return <li key={index + "partner"} className="betatest">
                             <a href={link}>
                                 <img src='/img/pt_logo_05.png' alt={alt} />
                                 <span className="del" onClick={() => {

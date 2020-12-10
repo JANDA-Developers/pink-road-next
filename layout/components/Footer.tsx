@@ -96,11 +96,11 @@ export const Footer: React.FC<IProp> = () => {
                             <strong>계좌번호</strong>
                             <span>신한은행 100-031-819617/예금주:주식회사 핑크로더</span>
                         </li>
-
                     </ul>
                     <div className="bottom_bn">
                         <div className="partner">
 
+                            <span className="link" style={{ width: "114px" }}><img src="/img/pt_logo_01.png" alt="중소벤처기업로고" /></span>
                             <span className="link" style={{ width: "90px" }}><img src="/img/pt_logo_02.png" alt="여성기업" /></span>
                             <span className="link" style={{ width: "90px" }}><img src="/img/pt_logo_03.png" alt="사회적기업" /></span>
                             <span className="link"><img src="/img/pt_logo_04.png" alt="공유경제부산" /></span>
