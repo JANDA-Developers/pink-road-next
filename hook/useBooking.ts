@@ -1,18 +1,18 @@
 import { MutationHookOptions, QueryHookOptions, useMutation, useQuery } from "@apollo/client";
 import { getOperationName } from "@apollo/client/utilities";
-import { BOOKING_FIND_BY_CODE, BOOKING_LIST, BOOKING_UPDAET } from "../apollo/gql/booking";
+import { BOOKINGS_CREATE, BOOKING_FIND_BY_CODE, BOOKING_LIST, BOOKING_UPDAET } from "../apollo/gql/booking";
 import {  bookingDelete, bookingDeleteVariables, bookingFindByCode, bookingFindByCodeVariables, bookingList, bookingListVariables, bookingsCreate_BookingsCreate_data, bookingUpdate, bookingUpdateVariables, Fbooking, FbookingByCode, Fpage, _BookingFilter, _BookingSort } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
 import { useListQuery, ListInitOptions, IListHook } from "./useListQuery";
 import {  bookingsCreate, bookingsCreateVariables } from "../types/api";
 
 export const useBookingsCreate = (options?: MutationHookOptions<bookingsCreate,bookingsCreateVariables>) => {
-    const [bookingsCreateMu, { loading: createLoading }] = useMutation<bookingsCreate, bookingsCreateVariables>(BOOKING_UPDAET, {
+    const [bookingsCreateMu, { loading: createLoading }] = useMutation<bookingsCreate, bookingsCreateVariables>(BOOKINGS_CREATE, {
         refetchQueries: [getOperationName(BOOKING_LIST) || ""],
         ...options
     });
     
-    const bookingsCreate = (variables: bookingsCreateVariables, onSucess?: (data:bookingsCreate_BookingsCreate_data[]) => void) => {
+    const bookingsCreate = (variables: bookingsCreateVariables, onSucess?: (data:Fbooking[]) => void) => {
         bookingsCreateMu({
             variables
         }).then((data) => {

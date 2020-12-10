@@ -1,19 +1,9 @@
-import dayjs from 'dayjs';
 import React, { useState } from 'react';
 import { Basket } from '../../components/basket/Basket';
-import { BasketModal } from '../../components/basketModal/BasketModal';
 import { IUseBasket, useBasket } from '../../hook/useBasket';
-import { useProductList } from '../../hook/useProduct';
-import { useUpdate } from '../../hook/useUpdater';
 import { MypageLayout } from '../../layout/MypageLayout';
 import { Fproduct } from '../../types/api';
-import { BG } from '../../types/const';
-import { autoComma } from '../../utils/formatter';
-import isEmpty from '../../utils/isEmpty';
-import { arraySum } from '../../utils/math';
-import { openModal } from '../../utils/popUp';
-import { getTypeTextOfProduct } from '../../utils/product';
-import { getBracket, getTotalCount, IBasketItem, removeBracket, removeItem } from '../../utils/Storage';
+import { IBasketItem } from '../../utils/Storage';
 
 interface IProp {
     context: IUseBasket

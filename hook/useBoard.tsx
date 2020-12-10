@@ -76,7 +76,7 @@ export const useBoard = ({ ...defaults }: IUseBoardProps, opens?: Partial<IBoard
         value: categoryId,
         failMsg: "카테고리 값은 필수 입니다.",
         id: "category",
-        skip: opens?.category !== true
+        skip: opens?.category === false
     }])
 
     const boardData: IUseBoardData = {

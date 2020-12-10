@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import Head from "next/head";
 import React, { useEffect, useLayoutEffect } from "react";
 
@@ -41,6 +40,7 @@ const NiceElments: React.FC<INiceElementProp> = ({
     logo,
     Moid,
     PayMethod,
+    isAuth,
     ReturnURL,
     VbankExpDate,
     WapUrl,
@@ -56,10 +56,23 @@ const NiceElments: React.FC<INiceElementProp> = ({
         import("./niceGlobal")
     }, [])
 
+    const openNCmodal = () => {
+        window.jdPayStart();
+    }
+
+    useLayoutEffect(() => {
+        if (isAuth)
+            openNCmodal();
+    }, [isAuth, EdiDate])
+
     return (
         <div
             style={{
                 display: "none",
+            }}
+            onSubmit={(e) => {
+                console.log(e.currentTarget)
+                alert(e.currentTarget)
             }}
         >
             <Head>

@@ -3,12 +3,10 @@ import React, { useEffect } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import {
     NewsCreateInput,
-    pcategoryList_pCategoryList_data,
     NewsUpdateInput,
     NEWS_TYPE,
     Fnews
 } from '../../../types/api';
-import { usePcategory } from "hook/usePcatList";
 import { BoardWrite } from "components/board/Write";
 import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
 import { omits } from "../../../utils/omit";
@@ -16,6 +14,18 @@ import { useNewsCreate, useNewsDelete, useNewsUpdate, useNewsFindById } from "..
 import { auth } from "../../../utils/with";
 import { ONLY_LOGINED } from "../../../types/const";
 
+const categoryOps = [{
+    label: "여행이야기",
+    _id: NEWS_TYPE.TRAVEL
+},
+{
+    label: "뉴스보도",
+    _id: NEWS_TYPE.MEDIA
+},
+{
+    label: "문화이야기",
+    _id: NEWS_TYPE.CULTURE
+}]
 interface IProp {
     // type: NEWS_TYPE;
     context: ITourWriteWrapContext;
@@ -26,20 +36,10 @@ export const NewsWrite: React.FC<IProp> = ({ context }) => {
     const { createFn, news, mode, updateFn, id, deleteFn } = context;;
     const boardHook = useBoard({
         ...news,
+        categoryId: news.type
     });
     const { boardData, loadKey, loadKeyAdd, setBoardData, validater: { validate } } = boardHook
-    const categoryOps = [{
-        label: "여행이야기",
-        _id: NEWS_TYPE.TRAVEL
-    },
-    {
-        label: "뉴스보도",
-        _id: NEWS_TYPE.MEDIA
-    },
-    {
-        label: "문화이야기",
-        _id: NEWS_TYPE.CULTURE
-    }]
+
 
     const handleUpdate = () => {
         if (validate())
@@ -118,7 +118,6 @@ interface ITourWriteWrapContext {
     updateFn: TUpdateFn;
     deleteFn: TDeleteFn;
     news?: Fnews;
-    pcategories: pcategoryList_pCategoryList_data[];
     findLoading: boolean;
     createLoading: boolean;
     mode: "create" | "edit"
@@ -161,8 +160,6 @@ export const NewsWriteWrap: React.FC<IProp> = () => {
 
     const { news, loading: findLoading } = useNewsFindById(id);
 
-    const { pcategories, loading: pcategoryLoading } = usePcategory();
-
     const createFn: TCreateFn = (params: NewsCreateInput) => {
         newsCreate({
             params: omits(params, ["categoryId", "files"])
@@ -192,12 +189,11 @@ export const NewsWriteWrap: React.FC<IProp> = () => {
         news,
         findLoading,
         createLoading,
-        pcategories,
         mode: !id ? "create" : "edit",
         id
     }
 
-    if (findLoading || pcategoryLoading) return null;
+    if (findLoading) return null;
 
     return <NewsWrite context={context} />;
 };

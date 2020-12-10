@@ -67,20 +67,18 @@ export const BOOKING_COUNT = gql`
 export const BOOKINGS_CREATE = gql`
   mutation bookingsCreate(
     $params: [BookingsCreateInput!]!
-    $productIds: [String!]!
   ) {
     BookingsCreate(
       params:$params
-      productIds: $productIds
     ) {
     ok
     error
     data {
-      code
-      _id
+      ...Fbooking
     }
   }
 }
+${F_BOOKING}
 `
 export const BOOKING_DELETE = gql`
   mutation bookingDelete(

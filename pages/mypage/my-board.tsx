@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { MypageLayout } from '../../layout/MypageLayout';
-import { ONLY_LOGINED } from '../../types/const';
+import { lastMonthFirstDate, lastMonthLastDate, ONLY_LOGINED, thisMonthFirstDate, thisMonthLastDate } from '../../types/const';
 import { AppContext } from '../_app';
 import { auth } from '../../utils/with';
 import { boardFindByEmail_BoardFindByEmail_data } from '../../types/api';
@@ -18,16 +18,22 @@ interface IProp {
 }
 
 export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
-    const { boards, loading, setFilter, setSort } = boardWrapContext;
+    const { boards, loading, setFilter, setSort, sort, filter } = boardWrapContext;
     const [view, setView] = useState(4);
     const paging = generateClientPaging(boards || [], view);
 
     const handleThisMonth = () => {
-
+        setFilter({
+            createdAt_gte: thisMonthFirstDate,
+            createdAt_lte: thisMonthLastDate
+        })
     }
 
     const handleLastMonth = () => {
-
+        setFilter({
+            createdAt_gte: lastMonthFirstDate,
+            createdAt_lte: lastMonthLastDate
+        })
     }
 
     const handleHalfYesr = () => {
@@ -106,7 +112,7 @@ export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
                         <div className="alignment">
                             <div className="left_div">총 <strong>{autoComma(boards.length)}</strong>개</div>
                             <div className="right_div">
-                                <SortSelect onChange={handleSortChange} sort={ } />
+                                <SortSelect onChange={handleSortChange} sort={sort} />
                                 <ViewCount value={view} onChange={setView} />
                             </div>
                         </div>

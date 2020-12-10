@@ -122,9 +122,9 @@ export const F_USER = gql`
         name
         bank_name
         phoneNumber
-        profileImg {
-            uri
-        }
+        # profileImg {
+        #     uri
+        # }
     }
     ${F_FILE}
 `

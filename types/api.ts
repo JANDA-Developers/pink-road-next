@@ -133,6 +133,7 @@ export interface bookingList_BookingList_data {
   status: string | null;
   memo: string | null;
   code: string;
+  groupCode: string;
   product: bookingList_BookingList_data_product;
   payment: bookingList_BookingList_data_payment | null;
   name: string;
@@ -197,9 +198,39 @@ export interface bookingCountVariables {
 // GraphQL mutation operation: bookingsCreate
 // ====================================================
 
+export interface bookingsCreate_BookingsCreate_data_product {
+  __typename: "Product";
+  _id: string;
+  title: string;
+  code: string;
+}
+
+export interface bookingsCreate_BookingsCreate_data_payment {
+  __typename: "Payment";
+  Amt: number | null;
+}
+
 export interface bookingsCreate_BookingsCreate_data {
   __typename: "Booking";
   _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  adultCount: number;
+  kidCount: number;
+  babyCount: number;
+  totalCount: number;
+  message: string | null;
+  status: string | null;
+  memo: string | null;
+  code: string;
+  groupCode: string;
+  product: bookingsCreate_BookingsCreate_data_product;
+  payment: bookingsCreate_BookingsCreate_data_payment | null;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  isPaid: boolean | null;
 }
 
 export interface bookingsCreate_BookingsCreate {
@@ -215,7 +246,6 @@ export interface bookingsCreate {
 
 export interface bookingsCreateVariables {
   params: BookingsCreateInput[];
-  productIds: string[];
 }
 
 /* tslint:disable */
@@ -306,6 +336,7 @@ export interface bookingFindByCode_BookingFindByCode_data {
   status: string | null;
   memo: string | null;
   code: string;
+  groupCode: string;
   product: bookingFindByCode_BookingFindByCode_data_product;
   payment: bookingFindByCode_BookingFindByCode_data_payment | null;
   name: string;
@@ -2363,6 +2394,7 @@ export interface getContext_GetProfile_data_bookings {
   status: string | null;
   memo: string | null;
   code: string;
+  groupCode: string;
   product: getContext_GetProfile_data_bookings_product;
   payment: getContext_GetProfile_data_bookings_payment | null;
   name: string;
@@ -3507,6 +3539,7 @@ export interface FbookingByCode {
   status: string | null;
   memo: string | null;
   code: string;
+  groupCode: string;
   product: FbookingByCode_product;
   payment: FbookingByCode_payment | null;
   name: string;
@@ -3633,6 +3666,7 @@ export interface Fbooking {
   status: string | null;
   memo: string | null;
   code: string;
+  groupCode: string;
   product: Fbooking_product;
   payment: Fbooking_payment | null;
   name: string;
@@ -4470,6 +4504,7 @@ export interface BookingUpdateInput {
 }
 
 export interface BookingsCreateInput {
+  product: string;
   message?: string | null;
   babyCount: number;
   kidCount: number;

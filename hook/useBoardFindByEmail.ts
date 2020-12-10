@@ -9,6 +9,8 @@ export interface IuseBoardFindByEmailProp extends QueryHookOptions<boardFindByEm
 export interface IuseBoardFindByEmail {
     boards: boardFindByEmail_BoardFindByEmail_data[] | undefined;
     loading: boolean;
+    sort: _BoardSort[];
+    filter: _BoardFilter;
     setSort: React.Dispatch<React.SetStateAction<_BoardSort[]>>;
     setFilter: React.Dispatch<_BoardFilter>;
 }
@@ -38,5 +40,5 @@ export const useBoardFindByEmail = (email:string,{
 
     const boards = data?.BoardFindByEmail?.data || undefined
     
-    return { boards, loading, setSort, setFilter }
+    return { sort, filter, boards, loading, setSort, setFilter }
 }

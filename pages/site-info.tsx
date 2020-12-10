@@ -22,6 +22,9 @@ export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
 }
 
 export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+    console.log("!!!pageInfo")
+    console.log("!!!pageInfo")
+    console.log(pageInfo)
     const original = pageInfo || pageInfoDefault;
     const { editMode, role } = useContext(AppContext)
     const [page, setPage] = useState<typeof pageInfoDefault>(original)

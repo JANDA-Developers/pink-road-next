@@ -1,12 +1,8 @@
-import dayjs from "dayjs";
+
 import {  useSettlementCal } from "../hook/usePayment";
 import { _BookingFilter, _PaymentFilter } from "../types/api";
+import { lastMonthFirstDate, monthFirstDate, thisMonthFirstDate, thisMonthLastDate } from "../types/const";
 import { getBookingCount } from "../utils/getBookingCount";
-
-const lastMonthFirstDate = dayjs().add(-1,"m").set("day",1).toDate(); 
-const monthFirstDate = dayjs().set("day",1).toDate(); 
-const thisMonthLastDate = dayjs().endOf("month").toDate();
-const thisMonthFirstDate = dayjs().set("day",1).toDate(); 
 
 export const getLastMonthCount = (filter:_BookingFilter) => {
 

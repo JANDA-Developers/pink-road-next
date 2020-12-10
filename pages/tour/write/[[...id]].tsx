@@ -40,7 +40,8 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     const {
         setkeyWards,
         setits,
-        setType
+        setType,
+        setSimpleData
     } = tourSets;
     const {
         address,
@@ -55,7 +56,8 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         contents,
         caution,
         inOrNor,
-        info
+        info,
+        isOpen,
     } = simpleData;
     const {
         handleTextData,
@@ -72,6 +74,14 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     } = handles;
     const [tab, setTab] = useState<number>(1);
     const isCreateMode = mode === "create";
+
+    const handleChangeOpen = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const bool = (e.currentTarget.value === "true")
+        setSimpleData({
+            ...simpleData,
+            isOpen: bool
+        })
+    }
 
     const tabOnCheck = (index: number) => tab === index ? "on" : undefined;
 
@@ -224,7 +234,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     <div className="title">판매여부</div>
                     <div className="input_form">
                         <ul>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-open" value={ProductStatus.OPEN} checked={status === ProductStatus.OPEN} className="radio" /><label htmlFor="status-open">판매중</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sale" value={ProductStatus.OPEN} checked={status === ProductStatus.OPEN} className="radio" /><label htmlFor="status-sale">판매중</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sold" value={ProductStatus.SOLD} checked={status === ProductStatus.SOLD} className="radio" /><label htmlFor="status-sold">완판</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-close" value={ProductStatus.CLOSE} checked={status === ProductStatus.CLOSE} className="radio" /><label htmlFor="status-close">판매종료</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-refused">거절됨</label></li>
@@ -239,6 +249,15 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     <div className="input_form">
                         <TagInput tags={keyWards} setTags={setkeyWards} />
                         <p className="input_form info_txt">- 'enter'로 구분시 자동으로 키워드가 생성됩니다.</p>
+                    </div>
+                </div>
+                <div className="write_type">
+                    <div className="title">공개/비공개</div>
+                    <div className="input_form">
+                        <ul>
+                            <li><input onChange={handleChangeOpen} type="radio" name="isOpen" id="status-open" value={"true"} checked={isOpen} className="radio" /><label htmlFor="status-open">공개</label></li>
+                            <li><input onChange={handleChangeOpen} type="radio" name="isOpen" id="status-sold" value={"false"} checked={!isOpen} className="radio" /><label htmlFor="status-sold">비공개</label></li>
+                        </ul>
                     </div>
                 </div>
             </div>

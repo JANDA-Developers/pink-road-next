@@ -28,13 +28,12 @@ const headers = {
 
 const fileUploadLink = createUploadLink({
   uri,
-  headers,
-  credentials: "include",
+  headers
 });
 
 export const PinkClient = new ApolloClient({
   link: from([fileUploadLink]),
-  cache,
+  cache
 });
 
 export default PinkClient;

@@ -11,7 +11,7 @@ import { Validater } from "../utils/validate";
 import { useUpload } from "./useUpload";
 import { autoComma, deepCopy } from "../utils/formatter";
 
-type SimpleTypePart = "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "contents" | "inOrNor" | "isNotice"
+type SimpleTypePart = "isOpen" | "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "contents" | "inOrNor" | "isNotice"
 export type TSimpleTypePart = Pick<Required<ProductCreateInput>, SimpleTypePart>
 
 export const DEFAULT_SIMPLE_TOUR_DATA: TSimpleTypePart = {
@@ -29,6 +29,7 @@ export const DEFAULT_SIMPLE_TOUR_DATA: TSimpleTypePart = {
     contents: "",
     inOrNor: "",
     isNotice: false,
+    isOpen: false
 }
 
 export interface IUseTourData {
@@ -175,6 +176,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         startPoint,
         subTitle,
         title,
+        isOpen,
     } = simpleData;
 
     const tourSets: ITourDataSet = {
@@ -208,7 +210,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             startPoint,
             title,
             isNotice,
-            isOpen: true,
+            isOpen,
             subTitle,
             type
         }

@@ -77,7 +77,7 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
         <div className="th">
             <div className="t01">
                 <span className="checkbox">
-                    <input onClick={handleTooggleAll} checked={isCheckedAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
+                    <input onChange={handleTooggleAll} checked={isCheckedAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
                     <label htmlFor="agree0" />
                 </span>
             </div>
