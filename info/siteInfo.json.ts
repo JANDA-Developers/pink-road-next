@@ -84,9 +84,9 @@ const info: TStieInfo = {
     info_img1_desc: { kr: `수익창출<br />지속가능한 경제` },
     info_img2_title: { kr: "학술" },
     info_img2_desc: { kr: `지역자부심<br />지역컨텐츠개발` },
-    info_img3_title: { kr: "투어" },
+    info_img3_title: { kr: "교육" },
     info_img3_desc: { kr: `개인역량강화<br />일자리연계` },
-    info_img4_title: { kr: "지역" },
+    info_img4_title: { kr: "디자인" },
     info_img4_desc: { kr: `지역 예술가 발굴<br />지역브랜딩` },
     partners: {
         kr: [{
