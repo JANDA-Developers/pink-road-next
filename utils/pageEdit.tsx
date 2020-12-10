@@ -59,8 +59,8 @@ export const onSingleBlur = (data: TStieInfo, set: ISet<TStieInfo>, e: React.Foc
     console.log("text");
     console.log(text);
     if (!key) throw Error("this Element dose not have name property")
-    if (!data[key]) throw Error(`the key ${key} dose not exisit on data`);
-    if (!data[key]["kr"]) throw Error(`the key ${key} ${"kr"} dose not exisit on data`);
+    if (data[key] === undefined) throw Error(`the key ${key} dose not exisit on data`);
+    if (data[key]["kr"] === undefined) throw Error(`the key ${key} ${"kr"} dose not exisit on data`);
 
     data[key]["kr"] = text || "";
     set({ ...data })
@@ -84,28 +84,29 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
     const singleBlur = onSingleBlur.bind(onSingleBlur, page, setPage);
 
     const editArray = (key: keyof T, index: number, value: any) => {
-        if (!page[key]) throw Error("this Element dose not have name property")
-        if (Array.isArray(!page[key])) throw Error(`the ${key} object is not array!!`)
-        if (!page[key][index]) throw Error(`the object key ${key} dose not  have index ${index}!!`)
-        page[key][index] = value
+        if (!page[key]['kr']) throw Error("this Element dose not have name property")
+        if (Array.isArray(!page[key]['kr'])) throw Error(`the ${key} object is not array!!`)
+        if (!page[key]['kr'][index]) throw Error(`the object key ${key} dose not  have index ${index}!!`)
+        page[key]['kr'][index] = value
         // @ts-ignore
         setPage({ ...page });
     }
 
     const addArray = (key: keyof T, value: any) => {
-        if (!page[key]) throw Error("this Element dose not have name property")
-        if (typeof !page[key] !== "object") throw Error(`the ${key} object is not array!!`)
+        if (!page[key]['kr']) throw Error("this Element dose not have name property")
+        if (!Array.isArray(page[key]['kr'])) throw Error(`the ${key} object is not array!!`)
+        const target = page[key]['kr'];
         // @ts-ignore
-        page[page.length] = value;
+        target[target.length] = value;
         // @ts-ignore
         setPage({ ...page });
     }
 
     const removeArray = (key: keyof T, index: number) => {
         if (!page[key]) throw Error("this Element dose not have name property")
-        if (typeof !page[key] !== "object") throw Error(`the ${key} object is not array!!`)
-        if (!page[key][index]) throw Error(`the object key ${key} dose not  have index ${index}!!`)
-        page[key].splice(index, 1)
+        if (!Array.isArray(page[key]['kr'])) throw Error(`the ${key} object is not array!!`)
+        if (page[key]['kr'][index] === undefined) throw Error(`the object key ${key} dose not  have index ${index}!!`)
+        page[key]['kr'].splice(index, 1)
         // @ts-ignore
         setPage({ ...page });
     }

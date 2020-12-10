@@ -238,31 +238,11 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <span {...edit("pink_supporter_sub")} />
                 </h4>
                 <ul>
-                    <li>
-                        <a href="">
-                            <img src='/img/pt_logo_02.png' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/pt_logo_03.png' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/pt_logo_04.png' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/pt_logo_05.png' alt="" />
-                        </a>
-                    </li>
                     {partners.kr.map((partner, index) => {
                         const { alt, img, link } = partner;
                         return <li key={index + "partner"}>
-                            <a href={link}>
-                                <img src='/img/pt_logo_05.png' alt={alt} />
+                            <a href={editMode ? undefined : link}>
+                                <img src={img} alt={alt} />
                                 <span className="del" onClick={() => {
                                     removeArray("partners", index);
                                 }}><i className="flaticon-multiply"></i></span>
