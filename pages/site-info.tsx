@@ -243,16 +243,18 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                         return <li key={index + "partner"}>
                             <a href={editMode ? undefined : link}>
                                 <img src={img} alt={alt} />
-                                <span className="del" onClick={() => {
-                                    removeArray("partners", index);
-                                }}><i className="flaticon-multiply"></i></span>
+                                {editMode &&
+                                    <span className="del" onClick={() => {
+                                        removeArray("partners", index);
+                                    }}><i className="flaticon-multiply"></i></span>
+                                }
                                 <Upload onUpload={(url) => {
                                     editArray("partners", index, { ...partner, img: url })
                                 }} />
                             </a>
                         </li>
                     })}
-                    {role === UserRole.admin || UserRole.manager &&
+                    {editMode &&
                         <li className="add" onClick={() => {
                             addArray("partners", {})
                         }}><i className="flaticon-add"></i>추가</li>
