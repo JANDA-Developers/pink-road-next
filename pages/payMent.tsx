@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Basket } from "../components/basket/Basket";
 import { getAuth } from "../components/nice/getAuth";
 import NiceElments from "../components/nice/NiceElement";
-import { getNiceElementForTest } from "../components/nice/niceUtils";
+import { generateNiceData, getNiceElementForTest } from "../components/nice/niceUtils";
 import { IAuthInfo } from "../components/nice/type";
 import { JDpaymentUI, TPaySubmitInfo } from "../components/payment/JDpaymentUI";
 import { IUseBasket, useBasket } from "../hook/useBasket";
@@ -14,7 +14,7 @@ import { getFromUrl } from "../utils/url";
 
 
 interface IcustomParams {
-    bookingIds: string[],
+    groupCode: string,
 }
 interface IProp {
     context: IUseBasket;
@@ -33,7 +33,6 @@ export const Payment: React.FC<IProp> = ({ context }) => {
     }
 
     const startPay = (datas: bookingsCreate_BookingsCreate_data[]) => {
-        const bookingIds = datas.map(d => d._id);
         const customParams: IcustomParams = {
             bookingIds
         }
@@ -53,12 +52,12 @@ export const Payment: React.FC<IProp> = ({ context }) => {
             email: param.buyerInfo.phone,
             name: param.buyerInfo.name,
             phoneNumber: param.buyerInfo.phone,
-            message: ""
+            message: "",
+            productId: item._id
         }))
 
         bookingsCreate({
             params,
-            productIds: 
         }, startPay)
     }
 
@@ -75,11 +74,20 @@ export const Payment: React.FC<IProp> = ({ context }) => {
     }
 
     return <PaymentLayout>
-        {authData && <NiceElments ReqReserved={JSON.stringify(customParams || {})} {...getNiceElementForTest({
-            EdiDate: authData.ediDate,
-            MID: authData.mid,
-            hex: authData.hashString,
-            Amt: `${totalPrice}`
+        {authData && <NiceElments ReqReserved={JSON.stringify(customParams || {})} {...generateNiceData({
+            auth: {
+                Amt,
+                EdiDate: authData.ediDate,
+                MID: authData.mid,
+                hex: authData.hashString
+            },
+            buy: {
+                BuyerEmail:,
+                BuyerName: ,
+                BuyerTel: ,
+                GoodsName: ,
+            },
+            groupCode: ""
         })} />}
         <JDpaymentUI onDoPay={handleBooking} booking={booking} Preview={
             <Basket updateComponent={updateComponent} items={items} />

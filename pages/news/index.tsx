@@ -1,10 +1,3 @@
-<<<<<<< Updated upstream
-=======
-import { Paginater } from 'components/common/Paginator';
-import SearchMini from 'components/common/SearchMini';
-import SortSelect from 'components/common/SortSelect';
-import { ViewCount } from 'components/common/ViewCount';
->>>>>>> Stashed changes
 import { PhotoNewsView } from 'components/news/PhotoView';
 import SubTopNav from 'layout/components/SubTop';
 import React, { useEffect, useState } from 'react';

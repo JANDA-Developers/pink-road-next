@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import {
     NewsCreateInput,
@@ -11,13 +11,10 @@ import {
 import { usePcategory } from "hook/usePcatList";
 import { BoardWrite } from "components/board/Write";
 import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
-import { toOps } from "../../../utils/formatter";
 import { omits } from "../../../utils/omit";
 import { useNewsCreate, useNewsDelete, useNewsUpdate, useNewsFindById } from "../../../hook/useNews";
 import { auth } from "../../../utils/with";
 import { ONLY_LOGINED } from "../../../types/const";
-import { getFromUrl } from "../../../utils/url";
-import Page404 from "../../404";
 
 interface IProp {
     // type: NEWS_TYPE;

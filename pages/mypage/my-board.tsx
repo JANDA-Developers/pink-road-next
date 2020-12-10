@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { MypageLayout } from '../../layout/MypageLayout';
-import { Paginater } from 'components/common/Paginator';
-import { useBoardFindByEmail } from '../../hook/useBoardFindByEmail';
 import { ONLY_LOGINED } from '../../types/const';
 import { AppContext } from '../_app';
 import { auth } from '../../utils/with';
@@ -13,18 +11,16 @@ import { SortSelect } from '../../components/common/SortSelect';
 import { autoComma } from '../../utils/formatter';
 import { changeVal } from '../../utils/eventValueExtracter';
 import { generateClientPaging } from '../../utils/generateClientPaging';
+import { IuseBoardFindByEmail, useBoardFindByEmail } from '../../hook/useBoardFindByEmail';
 
 interface IProp {
-    boardWrapContext: {
-        boards: boardFindByEmail_BoardFindByEmail_data[];
-        loading: boolean;
-    }
+    boardWrapContext: IuseBoardFindByEmail;
 }
 
 export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
-    const { boards, loading } = boardWrapContext;
+    const { boards, loading, setFilter, setSort } = boardWrapContext;
     const [view, setView] = useState(4);
-    const paging = generateClientPaging(boards, view);
+    const paging = generateClientPaging(boards || [], view);
 
     const handleThisMonth = () => {
 

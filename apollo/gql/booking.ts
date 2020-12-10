@@ -76,6 +76,7 @@ export const BOOKINGS_CREATE = gql`
     ok
     error
     data {
+      code
       _id
     }
   }
