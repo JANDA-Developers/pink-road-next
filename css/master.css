@@ -2363,8 +2363,6 @@
     .master_box .popupst_box{
         position: relative;
         display: block;
-        /* border: 1px solid #ccc;
-        background-color: #f5f5f5; */
     }
     .master_box .popupst_box .hang_left .editor_box{
        position: relative;
