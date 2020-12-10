@@ -11,5 +11,10 @@
 @import "./toast.css";
 @import "./extra_join.css";
 @import "./master.css";
+<<<<<<< HEAD
 @import  "./editor.css";
 @import "./productSearcher.css"
+=======
+@import "./mypage.css";
+@import  "./editor.css";
+>>>>>>> master

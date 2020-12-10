@@ -10,6 +10,58 @@
     min-height: 800px;
     vertical-align: top;
 }
+.master_box .top_info_number{
+    position: relative;
+    background-color: #f5f5f5;
+    padding: 20px 15px 15px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 28px;
+}
+.master_box .top_info_number li {
+    display: inline-block;
+    text-align: center;
+}
+.master_box .top_info_number .ln4 li {
+    width: 25%;
+}
+.master_box .top_info_number .ln3 li {
+    width: 33%;
+}
+.master_box .top_info_number li strong {
+    font-size:1.9em;
+    display: block;
+    line-height: 120%;
+}
+.master_box .top_info_number li span {
+    display: block;
+    line-height: 126%;
+}
+.master_box .search_info_box{
+    position: relative;
+    width: 100%;
+    display: block;
+    padding:50px;
+    box-sizing: border-box;
+    vertical-align: top;
+    background-color: #ffffff;
+    border: 1px solid #d0d0d0;
+    margin-top: 30px;
+}
+.master_box .search_info_box h3{
+
+    color: #adadad;
+}
+.master_box .search_info_box li{
+    line-height: 180%;
+    font-weight: 100;
+    color: #adadad;
+}
+.master_box .search_info_box li i{
+    line-height: 60%;
+    margin-right: 5px;
+}
 .master_box div.alignment{
     width: 100%;
     display: block;
@@ -47,7 +99,7 @@
     }
     .master_box h4 {
         line-height: 70px;
-        font-size: 1.3em;
+        font-size: 1.7em;
     }
     .master_box .in_content {
         position: relative;
@@ -454,7 +506,7 @@
                     font-size: 12px;
                     border-radius: 100px;
                     display:inline-block;
-                    line-height: 22px;
+                    line-height: 28px;
                     margin: 3px;
                 }
 
@@ -710,10 +762,10 @@
         
     }
     .master_box .search_top .day_ul {
-        display: inline-table;
+        display: flex;
         width: 100%;
         vertical-align: middle;
-        border: 1px solid #ccc;
+        border:0;
         border-radius: 100px;
         text-align: center;
         overflow: hidden;
@@ -726,10 +778,11 @@
         padding: 3px 10px;
         box-sizing: border-box;
         float: left;
-        border-right: 1px solid #ccc;
+        border-right: 1px solid #ccc;   
+         background-color: #eaeaea;
         cursor: pointer;
         font-size: 0.7em;
-        width: 24%;
+        width: 25%;
     }
     .master_box .search_top .day_ul li.on {
         background-color: #696969;
@@ -743,7 +796,7 @@
     }
     .master_box .search_top .day_ul span {
         display: block;
-        color: #898989;
+        color: #7b7b7b;
         font-size: 12px;
         font-weight: 600;
     }
@@ -1523,6 +1576,982 @@
         border-bottom: 1px solid #cccccc;
     }
 
+    /*goods*/
+    .master_box .goods .td01 {
+        width: auto !important;
+    }
+    .master_box .goods .td02 {
+        width: auto !important;
+    }
+    .master_box .goods .td03 {
+        width: auto !important;
+    }
+    .master_box .goods .td04 {
+        width: auto !important;
+    }
+    .master_box .goods .td05 {
+        width: auto !important;
+    }
+    .master_box .goods .td06 {
+        width: auto !important;
+    }
+    .master_box .goods .td07 {
+        width: auto !important;
+    }
+    .master_box .goods .td08 {
+        width: auto !important;
+    }
+    .master_box .goods .td09 {
+        width: auto !important;
+    }
+    .master_box .goods .list_line div[class*=td] {
+        word-break: break-all;
+    }
+    .master_box .goods .list_line .tour-no {
+        font-weight: 600;
+        color: #f32121;
+    }
+    .master_box .goods .list_line .tour-ok {
+        font-weight: 600;
+        color: #2196F3;
+    }
+    .master_box .goods .list_line .tour-yes {
+        font-weight: 600;
+        color: #005394;
+    }
+    .master_box .goods .list_line .plainning-no {
+        font-weight: 600;
+        color: #f38721;
+    }
+    .master_box .goods .list_line .plainning-yes {
+        font-weight: 600;
+        color: #059600;
+    }
+    .master_box .goods2 {
+        display: block;
+        position: relative;
+        box-sizing: border-box;
+        padding: 30px 30px 30px !important;
+    }
+    .master_box .goods2 .table  {
+        display: block;
+        position: relative;
+    }
+    .master_box .goods2 .table .body-hang {
+        display: flex;
+        width: 100%;
+        position: relative;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: left;
+    }
+    .master_box .goods2 .table .option-check {
+        display: inline-block;
+        width: 5%;
+        position: relative;
+        box-sizing: border-box;
+        padding: 5px;
+        vertical-align: top;
+        text-align: center;
+        font-size: 1.5em;
+    }
+    .master_box .goods2 .table .option-A  {
+        display: inline-block;
+        width: 16%;
+        position: relative;
+        box-sizing: border-box;
+        padding: 5px;
+        vertical-align: top;
+        text-align: left;
+        font-size: 1.5em;
+        line-height: 35px;
+    }
+    .master_box .goods2 .table .option-B  {
+        display: inline-block;
+        width:69%;
+        position: relative;
+        box-sizing: border-box;
+        padding: 5px;
+        vertical-align: top;
+        
+    }
+    .master_box .goods2 .table .option-B ul {
+        display: block;
+        position: relative;
+    }
+    .master_box .goods2 .table .option-B li {
+       line-height: 36px;
+       border-bottom: 1px dotted #ccc;
+    }
+    .master_box .goods2 .table .option-B input {
+       padding: 5px;
+       width: 90%;
+       max-width: 557px;
+       box-sizing: border-box;
+       border: 1px solid rgb(226 226 226);
+       font-weight: 100;
+    }
+    .master_box .goods2 .table .option-B i {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        background-color: #aaaaaa;
+        color: #fff;
+        text-align: center;
+        font-style: unset;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 17px;
+        margin-right: 10px;
+        vertical-align: middle;
+        border-radius: 100px;
+    }
+    .master_box .goods2 .table .option-C  {
+        display: inline-block;
+        width: 28%;
+        position: relative;
+        box-sizing: border-box;
+        padding: 5px;
+        vertical-align: top;text-align: center;
+    }
+    .master_box .goods2 .table .option-D  {
+        display: inline-block;
+        width: 15%;
+        position: relative;
+        box-sizing: border-box;
+        padding: 5px;
+        vertical-align: top;text-align: center;
+    }
+    .master_box .goods2 .table .svg-save {
+        background-image: url('/img/svg/icon-save.svg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 63%;
+        width: 28px;
+        height: 28px;
+        vertical-align: sub;
+    }
+    .master_box .goods2 .btn_list  {
+        display: inline-block;
+        width: 60px;
+        margin-left: 15px;
+        text-align: left;
+    }
+    .master_box .goods2 .btn_list button  {
+        margin-left: 3px;
+    }
+    .master_box .goods2 .fin{
+        padding: 20px 0 !important;
+    }
+    .master_box .goods2 .point_box{
+        display: inline-block;
+        color: #e4e4e4;
+        font-size: 11px;
+        font-weight: 400;
+        background-color: rgb(161, 161, 161);
+        line-height: 24px;
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 5px;    
+        margin-top: 4px;
+    }
+    .master_box .goods2 .point{
+        display: inline-block;
+        padding: 2px 10px;
+    }
+    .master_box .goods2 .point.yes.on{
+        color: #ffffff;
+        background-color: #5f7bba;
+    }
+ 
+    .master_box .goods2 .point.no.on{
+        color: #ffffff;
+        background-color: #b05555;
+    }
+    button.btn_mini  {
+        display: inline-block;
+        padding: 5px;
+        color: rgb(150, 150, 150);
+        box-sizing: border-box;
+        border: 1px solid rgb(179, 179, 179);
+        font-size: 0.9em;   
+        font-weight: 100;
+        opacity: 0.8;
+     }
+    button.btn_mini:hover  {
+        opacity:1;
+     }
+     .master_box .reservation_list .thead div[class*=t0] {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+        text-align: center;
+        font-weight: 600;
+        border-left: 0 !important;
+        padding: 0;
+    }
+    
+    .master_box .reservation_list .tbody div[class*=t0] {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+        text-align: center;
+        box-sizing: border-box;
+        position: relative;
+        font-weight: 100;
+        padding: 10px 0;
+        font-size: 12px;
+        line-height: 130%;
+    }  
+  
+    .master_box .reservation .reservation_list .t01 {
+        width:auto !important;
+        padding: 0;
+    }
+    .master_box .reservation .reservation_list .t02 {
+        width:auto !important;
+        padding: 0;
+        border-left:0;
+    }
+    .master_box .reservation .reservation_list .t03 {
+        width:auto !important;
+        padding: 0;
+        border-left:0;
+    }
+    .master_box .reservation .reservation_list .t04 {
+        width:auto !important;
+        padding: 0;
+        border-left:0;
+    }
+    .master_box .reservation .reservation_list .t05 {
+        width:auto !important;
+        padding: 0;
+        border-left:0;
+    }
+    .master_box .reservation .reservation_list .t06 {
+        width:auto !important;
+        padding: 0;
+        border-left:0;
+    }
+    .master_box .reservation .reservation_list .t07 {
+        width:auto !important;
+        padding: 0;
+        border-left:0;
+    }
+     .master_box .reservation_list .thead {
+        position: relative;
+        width: 100%;
+        display: none;
+        border-bottom: 1px solid #999;
+        line-height: 17px;
+        box-sizing: border-box;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #f5f5f5;
+    }
+
+    .master_box .reservation_list .tbody {
+        position: relative;
+        width: 100%;
+        display: block;
+        border-bottom: 1px solid #c4c4c4;
+        line-height: 22px;
+        padding: 20px 5px;
+        box-sizing: border-box;
+    }
+     .master_box .reservation_list .t01 .checkbox {
+        top: 50%;
+        margin-top: -8px;
+     }
+     .master_box .reservation_list .thead .t01 .checkbox {
+        margin-top: -10px;
+    }
+     .master_box .reservation .btn {
+        border: 1px solid #cfcfcf;
+        border-radius: 5px;
+    }  
+    .master_box .reservation .reservation_list .t05 strong {
+        width:auto !important;
+        display: inline-block !important;
+        
+    }
+ 
+    .master_box .reservation .info {
+        display: block !important;
+        width: 100% !important;
+        vertical-align: top;
+        text-align: left;
+        position: relative;
+        padding-right: 10px;
+        padding-left: 10px;
+        box-sizing: border-box;
+    }
+    .master_box .reservation .ct {
+        width: auto !important;
+        display: inline-block;
+        line-height: 100%;
+        border: 1px solid #ccc;
+        padding: 4px 5px 3px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 10px;
+        color: #555;
+    }
+    .master_box .reservation .pay-day {
+        width: auto !important;
+        display: inline-block;
+        line-height: 100%;
+        padding: 4px 5px 3px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 10px;
+        color: #555;
+    }
+    .master_box .reservation .title {
+        width: 100% !important;
+        display: block;
+        line-height: 120%;
+        font-size: 1.3em;
+        color: #333;
+        padding-top: 5px !important;
+        padding-bottom: 3px;
+        margin-bottom: 5px;
+        border-bottom: 1px dotted #ccc;
+    }   
+    .master_box .reservation .t04 .txt {
+        display: block;
+        text-align: left;
+        width: 100%;
+        vertical-align: top;
+        position: relative;
+    }
+    .master_box .reservation .s-day {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    .master_box .reservation .where {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+    .master_box .reservation .g-number {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    .master_box .reservation .pay-option {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+    .master_box .reservation .name {
+        width: 100% !important;
+        display: block !important;
+        line-height: 160%;
+        font-size: 1em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        font-weight: 600;
+    }
+    .master_box .reservation .patner-name {
+        width: 100% !important;
+        display: block !important;
+        line-height: 160%;
+        font-size: 0.8em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        font-weight: 100;
+    }
+    .master_box .reservation .member {
+        width: 100% !important;
+        display: block !important;
+        line-height: 160%;
+        font-size: 0.8em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        font-weight: 100;
+        
+    }
+    .master_box .reservation .money {
+        width: 100% !important;
+        display: block !important;
+        text-align: center !important;
+        line-height: 127%;
+        font-size: 1.1em;
+        color: #ed297b;
+        vertical-align: middle;
+    }
+
+    .master_box .reservation .pay {
+        width: 100% !important;
+        display: block !important;
+        line-height: 160%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+    .master_box .reservation .state {
+        width: auto !important;
+        display: inline-block;
+        line-height: 122%;
+        border: 1px solid #ccc;
+        padding: 3px 15px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 13px;
+        color: #555;
+        font-weight: 600;
+        border-radius: 100px;
+        font-style: unset;
+    }
+    .master_box .reservation .state.re-ok {
+        border: 1px solid #2196F3 !important;
+        color: #2196F3 !important;
+    }
+    .master_box .reservation .state.re-stay {
+        border: 1px solid #616161 !important;
+        color: #616161 !important;
+    }
+    .master_box .reservation .state.re-refund {
+        border: 1px solid #cf3932 !important;
+        color: #cf3932 !important;
+    }
+
+    .master_box .reservation .r-btn {
+        width: auto !important;
+        display: inline-block;
+        line-height: 122%;
+        border: 1px solid #ccc;
+        padding: 0px 15px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 12px;
+        color: #555;
+        font-weight: 600;
+        border-radius: 100px;
+        font-style: unset;
+    }
+    .master_box .reservation .r-btn.yes {
+        border: 1px solid #2196F3 !important;
+        color: #2196F3 !important;
+    }
+    .master_box .reservation .r-btn.spand {
+        border: 1px solid#616161 !important;
+        color:#616161 !important;
+    }
+    .master_box .reservation .r-btn.no {
+        border: 1px solid #cf3932 !important;
+        color: #cf3932 !important;
+    }
+    .master_box .reservation.calculate .reservation_list .t01 {
+        width:auto !important;
+        padding: 0;
+    }
+    .master_box .reservation.calculate .reservation_list .t02 {
+        width:auto !important;
+        padding: 0;
+    }
+    .master_box .reservation.calculate .reservation_list .t03 {
+        width:auto !important;
+        padding: 0;
+    }
+    .master_box .reservation.calculate .reservation_list .t04 {
+        width:auto !important;
+        padding: 0;
+    }
+    .master_box .reservation.calculate .reservation_list .t05 {
+        width:auto !important;
+        padding: 0;
+    }
+    .master_box .reservation.calculate .reservation_list .t06 {
+        width:auto !important;
+        padding: 0;
+    }
+    .master_box .reservation.calculate .reservation_list .t07 {
+        width:100% !important;
+        padding: 0;
+    }
+    .master_box .reservation.calculate .reservation_list .t08 {
+        width:100% !important;
+        padding: 0;
+        border-left: 0;
+    }
+    .master_box .reservation.calculate .all_men {
+        width:auto !important;
+        display: inline-block !important;
+    }
+    .master_box .reservation.calculate .men {
+        width:auto !important;
+        display: inline-block !important;
+    }
+    .master_box .reservation.calculate .money {
+        width:auto !important;
+        display: inline-block !important;
+        font-size: 1.3em;
+        box-sizing: border-box;
+    }
+    .master_box .reservation.calculate .sum01 {
+        width:auto !important;
+        display: inline-block !important;
+        box-sizing: border-box;
+    }
+    .master_box .reservation.calculate .sum02 {
+        width:auto !important;
+        display: inline-block !important;
+        box-sizing: border-box;
+    }
+    .master_box .reservation.calculate .sum03 {
+        width:auto !important;
+        display: inline-block !important;
+        box-sizing: border-box;
+    }
+    .master_box .reservation.calculate .btn {
+        border: 1px solid #cfcfcf;
+        border-radius: 5px;
+    }
+    .master_box .calculate .btn.off {
+        cursor: text;
+        opacity: 0.4;
+    }
+    .master_box .calculate .btn.off:hover {
+        border: 1px solid #cfcfcf;
+        color: #777;
+        opacity: 0.4;
+
+    }
+    .master_box .calculate .info {
+        display: block !important;
+        width: 100% !important;
+        vertical-align: top;
+        text-align: left;
+        position: relative;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-bottom: 0;
+        box-sizing: border-box;
+    }
+    .master_box .calculate .men {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 180%;
+        font-size: 0.9em;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+    .master_box .calculate .ct {
+        width: auto !important;
+        display: inline-block;
+        line-height: 100%;
+        border: 1px solid #ccc;
+        padding: 4px 5px 3px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 10px;
+        color: #555;
+    }
+    .master_box .calculate .pay-day {
+        width: auto !important;
+        display: inline-block;
+        line-height: 100%;
+        padding: 4px 5px 3px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 10px;
+        color: #555;
+    }
+    .master_box .calculate .title {
+        width: 100% !important;
+        display: block;
+        line-height: 120%;
+        font-size: 1.3em;
+        color: #333;
+        padding-top: 5px !important;
+        padding-bottom: 3px;
+        margin-bottom: 5px;
+        border-bottom: 1px dotted #ccc;
+    }   
+    .master_box .calculate .t04 .txt {
+        display: block;
+        text-align: left;
+        width: 100%;
+        vertical-align: top;
+        position: relative;
+    }
+    .master_box .calculate .s-day {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    .master_box .calculate .where {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+    .master_box .calculate .g-number {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    .master_box .calculate .total_men{
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 1.2em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    .master_box .calculate .sel {
+        width: auto !important;
+        display: inline-block;
+        line-height: 122%;
+        border: 1px solid #ccc;
+        padding: 3px 15px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 13px;
+        color: #555;
+        font-weight: 600;
+        border-radius: 100px;
+        font-style: unset;
+    }
+    .master_box .calculate .sel.ok {
+        border: 1px solid #2196F3 !important;
+        color: #2196F3 !important;
+    }
+    .master_box .calculate .sel.stand {
+        border: 1px solid #616161 !important;
+        color: #616161 !important;
+    }
+    .master_box .calculate .sel.no {
+        border: 1px solid #cf3932 !important;
+        color: #cf3932 !important;
+    }
+
+    .master_box .design .fin {
+        padding: 20px 0;
+        box-sizing: border-box;
+    }
+    .master_box .design {
+        position: relative;
+        display: block;
+        padding: 30px !important;
+        box-sizing: border-box;
+    }
+    .master_box .design h5 {
+        position: relative;
+        display: block;
+        width: 100%;
+        font-size: 1.3em;
+        margin-top: 30px;
+        border-bottom: 3px solid #333;
+    }
+    .master_box .design input[type*=text] {
+        border-radius: 5px;
+        height: 34px;
+        padding-left: 10px;
+        box-sizing: border-box;
+        border: 1px solid #d2d2d2;
+        font-weight: 100;
+    }
+    .master_box .design .design_table{
+        position: relative;
+        display: block;
+        width: 100%;
+       
+    }
+    .master_box .design .design_table .tbody{
+        position: relative;
+        display: flex;
+        width: 100%;
+        padding:0;
+        box-sizing: border-box;
+        border-bottom: 1px solid #ccc;
+        text-align: left;
+    }
+    .master_box .design .design_table .tbody .t01{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        padding:20px 10px;
+        box-sizing: border-box;
+        text-align: left;
+        font-weight: 600;
+        line-height: 160%;
+        margin-top: 10px;
+    }
+    .master_box .design .design_table .tbody .t02{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        padding:20px 10px;
+        box-sizing: border-box;
+        text-align: left;
+    }
+    .master_box .design .design_table .tbody .t01 > div,
+    .master_box .design .design_table .tbody .t02 > div{
+        vertical-align: top;
+        text-align: left;
+    }
+
+/* popup setting */
+    .master_box .design.popup_setting{
+        position: relative;
+        display: block;
+        padding: 30px;
+        box-sizing: border-box;
+    }
+    .master_box .popupst_box{
+        position: relative;
+        display: block;
+        /* border: 1px solid #ccc;
+        background-color: #f5f5f5; */
+    }
+    .master_box .popupst_box .hang_left{
+        position: absolute;
+        display: block;
+        left: 10px;
+        top: 10px;
+        width: 750px;
+        height: 400px;
+    }
+    .master_box .popupst_box .view_box{
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 5px #3333332e;
+        
+    }
+    .master_box .popupst_box .view_box .head{
+        position: relative;
+        display: block;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        font-size: 12px;
+        background-color: #6d6d7f;
+    }
+    .master_box .popupst_box .view_box .top{
+        position: absolute;
+        display: inline-block;
+        right: 15px;
+        top: 15px;
+        text-align: right;
+        color: #fff;
+        width: auto;
+        font-size: 12px;
+    }
+    .master_box .popupst_box .view_box .top li{
+        display: inline-block;
+        text-align: right;
+        color: rgb(206, 206, 206);
+        width: 10px;
+        height: 10px;
+        margin-left: 5px;
+        font-size: 11px;
+    }
+    .master_box .popupst_box .view_box .bottomnav{
+        position: relative;
+        display:block;
+        right: 0;
+        top: 30px;
+        text-align: left;
+        background-color: #eee;
+        width: 100%;
+        height: 30px;
+        font-size: 12px;
+
+    }
+    .master_box .popupst_box .view_box .bottomnav .tap{
+        position: absolute;
+        display: inline-block;
+        left: 12px;
+        top: -77px;
+        width: 100px;
+        height: 30px;
+        border: 30px solid transparent;
+        border-color: transparent transparent #eee transparent;
+    }
+    .master_box .popupst_box .view_box .bottomnav .input{
+        position: relative;
+        display:block;
+        left: 5px;
+        top: 4px;
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+    }
+    .master_box .popupst_box .view_box .bottomnav i{
+        color: #aaa;
+        width: 20px;
+        height: 22px;
+        display: inline-block;
+        text-align: center;
+        line-height: 25px;
+    }
+    .master_box .popupst_box .view_box .bottomnav span{
+       vertical-align: sub;
+        width: 673px;
+        border-radius: 100px;
+        height: 16px;
+        background-color: rgb(215 215 215);
+        display: inline-block;
+        margin-left: 15px;
+    }
+    .master_box .popupst_box .view_box .popup_view{
+        position: absolute;
+        display:inline-block;
+        left: 10%;
+        top: 30%;
+        border: rgb(149, 149, 149) dotted 2px;
+        background-color: #eee;
+        width: 200px;
+        height: 100px;
+        font-size: 12px;
+        padding: 30px;
+        text-align: center;
+        
+        box-sizing: border-box;
+
+    }
+    .master_box .popupst_box .view_box .popup_view span{
+        top:50%;
+        position: relative;
+        display:inline-block;
+        line-height: 180%;
+        margin-top: -25px;
+    }
+    .master_box .popupst_box .view_box .popup_view strong{
+        font-size: 1.3em;
+    }
+    .master_box .popupst_box .view_box .bottomnav{
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 30px;
+        background-color:#eee ;
+
+    }
+    .master_box .popupst_box .hang_right{
+        position: relative;
+        display: block;
+        margin-left: 800px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .master_box .popupst_box .hang_right .con_toggle{
+        position: relative;
+        display: block;
+        border: 1px solid #eee;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+    .master_box .popupst_box .hang_right .title{
+        position: relative;
+        display: block;
+        
+    }
+    .master_box .popupst_box .hang_right .switch{
+        vertical-align: sub;
+    }
+    .master_box .popupst_box .hang_right .switch .tgl + .tgl-btn{
+        height: 1.3em;
+        width:3.2em ;
+        margin-left: 5px;
+    }
+    .master_box .popupst_box .hang_right .switch .tgl-skewed + .tgl-btn:after, 
+    .master_box .popupst_box .hang_right .switch .tgl-skewed + .tgl-btn:before{
+        font-size: 0.8em;
+        line-height: 1.5em;
+        letter-spacing: 0px;
+    }
+    .master_box .popupst_box .hang_right h5{
+        position: relative;
+        display: inline-block;
+        border-bottom: 0;
+        margin-top: 0;
+    }
+    .master_box .popupst_box .hang_right .control{
+        position: absolute;
+        display: inline-block;
+        top: 5px;
+        right: 5px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (min-width: 768px) {
     .master_box .search_top .hang {
         width: auto;
@@ -1609,7 +2638,6 @@
     .master_box .main_paper_div .hang .table.typeC .td03{
         width: 25%;
     }
-
     .master_box .main_paper_div .hang .table.typeD .td01{
         width: 55%;
         text-align: left;
@@ -1632,13 +2660,12 @@
     }
     .master_box .subtop_nav {
         top: -55px;
-    }.master_box .search_top .option {
-      
+    }
+    .master_box .search_top .option {
         width: 100px;
         margin-right: 10px;
         margin-bottom: 0;
     }.master_box .search_top .search_div {
-      
         width: 80%;
     }
     div.tab-nav li a {
@@ -1660,7 +2687,8 @@
         float: left;
     }
     .master_box .search_top .day_ul{
-        width: 290px;
+        width: 250px;
+        display: flex;
     }
  
 }
@@ -1680,6 +2708,10 @@
     top: 50%;
     margin-top: -9px;   
 }
+.master_box .reservation_list .tbody {
+    padding: 0;
+    display: flex;
+}
     .master_box .search_top .input_box {
         margin-left: 0;
         width: 200px;
@@ -1689,7 +2721,9 @@
         height: 44px;
     }   
     .master_box .in_content .con_box_body .list_line div[class*=td] {
-        border-bottom: 1px solid #eee;    line-height: 48px;
+        border-bottom: 1px solid #eee;    
+        line-height: 48px;
+        overflow-wrap: anywhere;
     }
      .master_box .con.family .td01 { 
         width: 5% !important;
@@ -1749,6 +2783,242 @@
     }
     .master_box .con.guide .td08 { 
         width: 10% !important;
+    }
+
+    .master_box .con.goods .td01 {
+        width: 5% !important;
+    }
+    .master_box .con.goods .td02 {
+        width: 7% !important;
+    }
+    .master_box .con.goods .td03 {
+        width: 7% !important;
+    }
+    .master_box .con.goods .td04 {
+        width: 36% !important;
+    }
+    .master_box .con.goods .list_line .td04 {
+        width: 36% !important;
+        text-align: left !important;
+    }
+    .master_box .con.goods .td05 {
+        width: 10% !important;
+    }
+    .master_box .con.goods .td06 {
+        width: 5% !important;
+    }
+    .master_box .con.goods .td07 {
+        width: 10% !important;
+    }
+    .master_box .con.goods .td08 {
+        width: 7% !important;
+    }
+    .master_box .con.goods .td09 {
+        width: 10% !important;
+    }
+
+    .master_box .reservation_list .thead {
+        display: flex;
+    }
+    .master_box .reservation .reservation_list .t05 strong,
+    .master_box .reservation .reservation_list .t05 span {
+        width:100% !important;
+        display: block !important;
+    }
+    .master_box .reservation .reservation_list .t01 {
+        width: 5% !important;
+        padding: 10px 0;
+    }
+    .master_box .reservation .reservation_list .t02 {
+        width: 18% !important;
+        border-left: 1px #eee solid;
+    }
+    .master_box .reservation .reservation_list .t03 {
+        width: 50% !important;
+        border-left: 1px #eee solid;
+    }
+    .master_box .reservation.add .reservation_list .t03 {
+        width: 30% !important;
+    }
+    .master_box .reservation .reservation_list .t04 {
+        width:17% !important;
+        border-left: 1px #eee solid;
+    }
+    .master_box .reservation .reservation_list .t05 {
+        width: 13% !important;
+        border-left: 1px #eee solid;
+    }
+    .master_box .reservation .reservation_list .t06 {
+        width: 15% !important;
+        border-left: 1px #eee solid;
+    }
+    .master_box .reservation .reservation_list .t07 {
+        width: 13% !important;
+        border-left: 1px #eee solid;
+    }
+    .master_box .reservation.add .reservation_list .t07 {
+        width: 20% !important;
+        border-left: 1px #eee solid;
+    }
+    .master_box .reservation .pay-day {
+        width: 100% !important;
+        display: block;
+    }
+    .master_box .reservation .name {
+        width: 100% !important;
+        display: block;
+    }
+    .master_box .reservation .patner-name {
+        width: 100% !important;
+        display: block;
+    }
+    .master_box .reservation .member {
+        width: 100% !important;
+        display: block !important;
+        
+    }
+    .master_box .reservation .money {
+        width: 100% !important;
+        display: block;
+    }
+    .master_box .reservation .pay-option {
+        width: 100% !important;
+        display: block !important;
+        text-align: center !important;
+        line-height: 180%;
+    }
+
+    .master_box .reservation .pay {
+        width: 100% !important;
+        display: block;
+    }
+    .master_box .reservation .r-btn {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: center !important;
+        line-height: 180%;
+    }
+    .master_box .reservation .men {
+        width: 100% !important;
+        display:block !important;
+    }
+
+    .master_box .reservation.calculate .reservation_list .t01 {
+        width:5% !important;
+    }
+    .master_box .reservation.calculate .reservation_list .t02 {
+        width:5% !important;
+    }
+    .master_box .reservation.calculate .reservation_list .tbody .t02 {
+        padding-top: 50px !important;
+    }
+    .master_box .reservation.calculate .reservation_list .t03 {
+        width:10% !important;
+    }
+    .master_box .reservation.calculate .reservation_list .tbody .t03 {
+
+        padding-top: 35px !important;
+    }
+    .master_box .reservation.calculate .reservation_list .t04 {
+        width:25% !important;
+        text-align: left !important;
+        display: block !important;
+        padding: 10px 0;
+    }
+    .master_box .reservation.calculate .reservation_list .t05 {
+        width:13% !important;
+    }
+    .master_box .reservation.calculate .reservation_list .tbody .t05 {
+  
+        padding-top: 45px !important;
+    }
+    .master_box .reservation.calculate .reservation_list .t06 {
+        width:17% !important;
+    }
+    .master_box .reservation.calculate .reservation_list .tbody .t06 {
+    
+        padding-top: 10px !important;
+    }
+    .master_box .reservation.calculate .reservation_list .t07 {
+        width:10% !important;
+    }
+    .master_box .reservation.calculate .reservation_list .tbody .t07 {
+
+        padding-top: 45px !important;
+    }
+    .master_box .reservation.calculate .reservation_list .t08 {
+        width:15% !important;
+        
+    border-left: 1px #eee solid;
+    }
+    .master_box .reservation.calculate .reservation_list .tbody .t08 {
+ 
+        padding-top: 25px !important;
+    }
+    .master_box .reservation.calculate .all_men {
+        width:100% !important;
+        display:block !important;
+        text-align: center;
+    }
+    .master_box .reservation.calculate .men {
+        width:100% !important;
+        display:block !important;
+        text-align: center;
+    }
+    .master_box .reservation.calculate .money {
+        width:100% !important;
+        display:block !important;
+        text-align: left !important;
+        padding-left: 10px;
+        border-bottom: 1px dotted #eee;
+        line-height: 180%;
+    
+    }
+    .master_box .reservation.calculate .sum01 {
+        width:100% !important;
+        display:block !important;
+        text-align: left;
+        padding-left: 10px;
+        box-sizing: border-box;
+        border-bottom: 1px dotted #eee;
+        line-height: 180%;
+    }
+    .master_box .reservation.calculate .sum02 {
+        width:100% !important;
+        display:block !important;
+        text-align: left;
+        padding-left: 10px;
+        border-bottom: 1px dotted #eee;
+        line-height: 180%;
+    }
+    .master_box .reservation.calculate .sum03 {
+        width:100% !important;
+        display:block !important;
+        text-align: left;
+        padding-left: 10px;
+        border-bottom: 1px dotted #eee;
+        line-height: 180%;
+    }
+    .master_box .reservation.calculate .total_men{
+        width:100% !important;
+        display:block !important;
+        text-align: center !important;
+    }
+
+    .master_box .design .design_table .tbody .t01{
+       
+        display: inline-block;
+        width: 20%;
+        padding:20px 10px;
+        line-height: 260%;
+        margin-top: 0;
+    }
+    .master_box .design .design_table .tbody .t02{
+       
+        display: inline-block;
+        width: 80%;
+        padding:20px 10px;
+        margin-top: 0;
     }
 }
     

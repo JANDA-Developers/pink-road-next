@@ -2,21 +2,6 @@ import { gql } from "@apollo/client";
 import { F_PAGE, F_USER } from "./fragments";
 
 
-export const SIGN_UP = gql`
-  mutation signUp(
-      $params: AddUserInput!
-    ) {
-      SignUp(
-        params:$params
-      ) {
-      ok
-      error 
-      data {
-          email
-      }
-    }
-  }
-`;
 
 export const RESIGN = gql`
   mutation userResign(

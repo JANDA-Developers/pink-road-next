@@ -83,9 +83,10 @@ export const MyReservation: React.FC<IProp> = () => {
 
                                 </ul>
                                 <select className="sel01">
-                                    <option>최신↑</option>
-                                    <option>최신↓</option>
-                                    <option>조회수</option>
+                                    <option>출발일 &uarr;</option>
+                                    <option>출발일 &darr;</option>
+                                    <option>등록일 &uarr;</option>
+                                    <option>등록일 &darr;</option>
                                 </select>
                                 <select className="sel02">
                                     <option>10개 보기</option>

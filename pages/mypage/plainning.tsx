@@ -1,4 +1,5 @@
 import { MypageLayout } from 'layout/MypageLayout';
+import { Paginater } from 'components/common/Paginator';
 import React from 'react';
 
 interface IProp { }
@@ -83,9 +84,10 @@ export const MyPlanning: React.FC<IProp> = () => {
                                         <li><a href="/">엑셀파일</a></li>
                                     </ul>
                                     <select className="sel01">
-                                        <option>최신↑</option>
-                                        <option>최신↓</option>
-                                        <option>조회수</option>
+                                        <option>출발일 &uarr;</option>
+                                        <option>출발일 &darr;</option>
+                                        <option>등록일 &uarr;</option>
+                                        <option>등록일 &darr;</option>
                                     </select>
                                     <select className="sel02">
                                         <option>10개 보기</option>
@@ -104,9 +106,9 @@ export const MyPlanning: React.FC<IProp> = () => {
                                     </div>
                                     <div className="th02">상품코드</div>
                                     <div className="th03">상품명</div>
-                                    <div className="th04">예약자/연락처</div>
-                                    <div className="th05">예약날짜</div>
-                                    <div className="th06">예약금</div>
+                                    <div className="th04">출발일</div>
+                                    <div className="th05">금액</div>
+                                    <div className="th06">인원수</div>
                                     <div className="th07">상태</div>
                                     <div className="th08">상세보기</div>
                                 </div>
@@ -119,42 +121,57 @@ export const MyPlanning: React.FC<IProp> = () => {
                                                     <label htmlFor="agree1" />
                                                 </span>
                                             </div>
-                                            <div className="th02">GUIDE-01230</div>
-                                            <div className="th03">제주도로 떠나요~ </div>
-                                            <div className="th04">홍나리<br />010-0100-0000</div>
-                                            <div className="th05">2020.02.02</div>
-                                            <div className="th06">50,000</div>
-                                            <div className="th07"><strong className="ok">예약완료</strong></div>
-                                            <div className="th08"><i className="btn">상세보기</i></div>
+                                            <div className="th02"><span className="m_title">상품코드: </span>PINK-01230</div>
+                                            <div className="th03">제주도로 떠나요~ 제주도로 떠나요~제주도로 떠나요~</div>
+                                            <div className="th04"><span className="m_title">출발일: </span>2020.02.02</div>
+                                            <div className="th05">
+                                                <span className="m_title">금액: </span>
+                                                <span className="people">성인 20,000</span>
+                                                <span className="m_title"> / </span>
+                                                <span className="people">소아 1,000,000</span>
+                                                <span className="m_title"> / </span>
+                                                <span className="people">유아 0</span>
+                                            </div>
+                                            <div className="th06"><span className="m_title">인원수: </span>22</div>
+                                            <div className="th07"><span className="m_title">상태: </span><strong className="no">기획반려</strong></div>
+                                            <div className="th08"><i className="btn">수정하기</i></div>
                                         </li>
                                         <li>
                                             <div className="th01">
                                                 <span className="checkbox">
-                                                    <input type="checkbox" name="agree" id="agree2" title="개별선택" />
-                                                    <label htmlFor="agree2" />
+                                                    <input type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                                    <label htmlFor="agree1" />
                                                 </span>
                                             </div>
-                                            <div className="th02">GUIDE-01230</div>
-                                            <div className="th03">제주도로 떠나요~ </div>
-                                            <div className="th04">홍나리<br />010-0100-0000</div>
-                                            <div className="th05">2020.02.02</div>
-                                            <div className="th06">50,000</div>
-                                            <div className="th07"><strong className="no">예약취소</strong></div>
-                                            <div className="th08"><i className="btn">상세보기</i></div>
+                                            <div className="th02"><span className="m_title">상품코드: </span>PINK-01230</div>
+                                            <div className="th03">제주도로 떠나요~ 제주도로 떠나요~제주도로 떠나요~</div>
+                                            <div className="th04"><span className="m_title">출발일: </span>2020.02.02</div>
+                                            <div className="th05">
+                                                {/* 단위 : 원 */}
+                                                <span className="m_title">금액: </span>
+                                                <span className="people">성인 20,000</span>
+                                                <span className="m_title"> / </span>
+                                                <span className="people">소아 1,000,000</span>
+                                                <span className="m_title"> / </span>
+                                                <span className="people">유아 0</span>
+                                            </div>
+                                            <div className="th06"><span className="m_title">인원수: </span>22</div>
+                                            <div className="th07"><span className="m_title">상태: </span><strong className="ok">기획요청</strong></div>
+                                            <div className="th08"><i className="btn">수정하기</i></div>
                                         </li>
                                     </ul>
                                 </div>
-                                <div className="boardNavigation">
-                                    <div className="float_left">
-                                        <div className="pagenate_mini">
-                                            <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
-                                            <div className="count"><strong>1</strong> / 10</div>
-                                            <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
-                                        </div>
+                                {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
+                            </div>
+
+                            <div className="boardNavigation">
+                                <div className="float_left">
+                                    <div className="pagenate_mini">
+                                        <a href="" className="mini_btn small">기획서 작성하기</a>
                                     </div>
-                                    <div className="float_right">
-                                        <a href="" className="mini_btn small">예약관리시스템 바로가기</a>
-                                    </div>
+                                </div>
+                                <div className="float_right">
+                                    <a href="" className="btn">삭제하기</a>
                                 </div>
                             </div>
                         </div>

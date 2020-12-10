@@ -148,7 +148,8 @@ export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
 
 
 export const MypageBoardWrap = () => {
-    const { myProfile: { email } } = useContext(AppContext)
+    const { myProfile } = useContext(AppContext)
+    const { email } = myProfile!;
     const boardFindByEmailHook = useBoardFindByEmail(email);
     const mypageBoardWrapContext = boardFindByEmailHook;
 

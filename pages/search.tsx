@@ -1,26 +1,19 @@
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Paginater } from '../components/common/Paginator';
 import { DayPickerModal } from '../components/dayPickerModal/DayPickerModal';
 import { ProductPhotoBlock } from '../components/list/ProductPhoto';
 import { IuseProductList, useProductList } from '../hook/useProduct';
-import { ProductType } from '../types/api';
 import isEmpty from '../utils/isEmpty';
 import dayjs from "dayjs";
 import { filterToRange, rangeToFilter } from '../utils/filter';
 import { ProductListBlock } from '../components/list/ProductList';
 import { ViewCount } from '../components/common/ViewCount';
-<<<<<<< Updated upstream
-import SortSelect from '../components/common/SortMethod';
 import { closeModal, openModal } from '../utils/popUp';
-import SubTopNav from '../layout/components/SubTop';
 import { ViewSelect } from '../components/common/ViewSelect';
-import { getFromUrl } from '../utils/url';
+import SubTopNav from '../layout/components/SubTop';
 import { integratedProductSearch } from '../utils/genFilter';
-import { whenEnter } from '../utils/eventValueExtracter';
-=======
-import SortSelect from '../components/common/SortSelect';
->>>>>>> Stashed changes
+import SortSelect from '../components/common/SortMethod';
+import { ProductType } from '../types/api';
 
 interface IProp {
     context: ISearchContext

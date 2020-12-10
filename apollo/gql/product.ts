@@ -1,9 +1,5 @@
 import { gql } from "@apollo/client";
-<<<<<<< Updated upstream
-import { F_CATEGORY, F_PAGE, F_PRODUCT, F_QUESTION } from "./fragments";
-=======
 import {  F_PAGE, F_PRODUCT, F_QUESTION } from "./fragments";
->>>>>>> Stashed changes
 
 export const PRODUCT_CREATE = gql`
   mutation productCreate(

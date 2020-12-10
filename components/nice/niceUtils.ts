@@ -4,7 +4,7 @@ export const NICE_GET_KEY = TEMP + "/payment"
 export const NICE_MOBILE_AFTER_PAY = TEMP + "/authReq"
 export const NICE_CANCLE = TEMP + "/authReq"
 
-type AUTH = "MID" | "hex" | "EdiDate"
+type AUTH = "MID" | "hex" | "EdiDate" | "Amt"
 export const getNiceElementForTest = (requirePorp: Record<AUTH, string> & Partial<INiceElementProp>): INiceElementProp => {
 
     const params = {

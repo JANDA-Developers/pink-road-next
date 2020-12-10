@@ -23,9 +23,6 @@ export const PCAT_LIST = gql`
   }
 `
 
-
-
-
 export const SIGN_IN = gql`
   query signIn(
     $email: Email!

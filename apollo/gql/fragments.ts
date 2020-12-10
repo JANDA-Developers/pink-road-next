@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 
-<<<<<<< Updated upstream
 
 export const F_PAYMENT = gql`
     fragment Fpayment  on Payment  {
@@ -40,36 +39,6 @@ export const F_PAYMENT = gql`
         RcptType
         RcptTID
         RcptAuthCode
-=======
-export const F_QUESTION = gql`
-    fragment Fquestion on Question {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        title
-        contents
-        author {
-            _id
-            name
-        }
-        isNotice
-        isOpen
-        summary
-        subTitle
-        keyWards
-        thumb {
-            uri
-        }
-        viewCount
-        likeCount
-        product {
-            _id
-            title
-        }
-        status
-        no
->>>>>>> Stashed changes
     }
 `
 

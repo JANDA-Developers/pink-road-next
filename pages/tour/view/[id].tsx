@@ -21,24 +21,6 @@ import { generateClientPaging } from "../../../utils/generateClientPaging";
 import { Paginater } from "../../../components/common/Paginator";
 import { QnaLi } from "../../../components/qna/QnaLi";
 
-// <div class="top_visual">
-// <div class="sub_header sub_bg" style="background-image:url(../img/su_visual_bg.jpg);">
-//     <div class="w1200">
-//         <h2 class="title">Tour</h2><p class="text"></p>
-//     </div>
-// </div>
-// <div class="header_nav">
-//     <ul>
-//         <li class="home">
-//             <a href="../main/main.html">
-//             </a>
-//         </li>
-//         <li class="homedeps1"><a href="../sub/tour_main.html">Tour</a></li>
-//         <li class="homedeps2"><a href="../sub/tour_list.html">상품리스트</a></li>
-//     </ul>
-// </div>
-// </div>
-
 interface IProps {
   product: IproductFindById;
 }

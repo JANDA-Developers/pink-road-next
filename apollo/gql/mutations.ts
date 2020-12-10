@@ -98,8 +98,6 @@ export const MULTI_UPLOAD = gql`
   ${F_FILE}
 `;
 
-<<<<<<< Updated upstream
-=======
 export const SIGN_UP = gql`
   mutation signUp(
       $params: AddUserInput!
@@ -117,7 +115,6 @@ export const SIGN_UP = gql`
   ${F_FILE}
 `;
 
->>>>>>> Stashed changes
 
 
 export const PAGE_INFO_DELETE = gql`

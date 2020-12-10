@@ -8,7 +8,11 @@ import {
     Fquestion
 } from '../../../types/api';
 import { usePcategory } from "hook/usePcatList";
+<<<<<<< HEAD
 import { BoardWrite } from "components/board/Write";
+=======
+import { BoardWrite, IBoardOpen } from "components/board/Write";
+>>>>>>> master
 import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
 import { omits } from "../../../utils/omit";
 import { useQuestionCreate, useQuestionDelete, useQuestionUpdate, useQuestionFindById } from "../../../hook/useQuestion";
@@ -17,6 +21,10 @@ import { ONLY_LOGINED } from "../../../types/const";
 import { useProductList } from "../../../hook/useProduct";
 import ProductSearcherWrap from "../../../components/productSearcher/ProductSearcher";
 import { Validater } from "../../../utils/validate";
+<<<<<<< HEAD
+=======
+import { getFromUrl } from "../../../utils/url";
+>>>>>>> master
 
 interface IProp {
     // type: QUESTION_TYPE;
@@ -25,10 +33,19 @@ interface IProp {
 
 export const QuestionWrite: React.FC<IProp> = ({ context }) => {
     const router = useRouter();
+<<<<<<< HEAD
     const open = {
         thumb: true,
         title: true
     };
+=======
+    const open: IBoardOpen = {
+        thumb: true,
+        title: true
+    };
+
+    const productId = getFromUrl("pid");
+>>>>>>> master
     const { createFn, question, mode, updateFn, id, deleteFn } = context;;
     const boardHook = useBoard({
         ...question,
@@ -132,8 +149,11 @@ interface ITourWriteWrapContext {
 export const QuestionWriteWrap: React.FC<IProp> = () => {
     const router = useRouter(); // => 넥스트에서는 변경
     const id = router.query.id?.[0] as string | undefined;
+<<<<<<< HEAD
     const products = useProductList();
 
+=======
+>>>>>>> master
 
     const { questionUpdate, updateLoading } = useQuestionUpdate({
         onCompleted: ({ QuestionUpdate }) => {
@@ -202,6 +222,11 @@ export const QuestionWriteWrap: React.FC<IProp> = () => {
 
     if (findLoading || pcategoryLoading) return null;
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
     return <QuestionWrite context={context} />;
 };
 

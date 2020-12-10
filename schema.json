@@ -1052,19 +1052,13 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "product",
-=======
             "name": "slug",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-=======
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
@@ -1081,7 +1075,6 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
->>>>>>> Stashed changes
                 "kind": "OBJECT",
                 "name": "Product",
                 "ofType": null
@@ -1810,11 +1803,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "totalCount",
-=======
             "name": "bookingPrice",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -1830,7 +1819,22 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
+            "name": "totalCount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "message",
             "description": null,
             "args": [],
@@ -1838,46 +1842,23 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
-=======
-            "name": "totalCount",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "status",
             "description": null,
             "args": [],
             "type": {
-              "kind": "ENUM",
-              "name": "BookingStatus",
-=======
-            "name": "message",
-            "description": null,
-            "args": [],
-            "type": {
               "kind": "SCALAR",
               "name": "String",
->>>>>>> Stashed changes
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "memo",
             "description": null,
             "args": [],
@@ -1917,21 +1898,11 @@
                 "name": "Product",
                 "ofType": null
               }
-=======
-            "name": "status",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "seller",
             "description": null,
             "args": [],
@@ -1954,25 +1925,13 @@
             "type": {
               "kind": "OBJECT",
               "name": "User",
-=======
-            "name": "memo",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
->>>>>>> Stashed changes
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "name",
-=======
-            "name": "code",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -1988,24 +1947,15 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "email",
-=======
-            "name": "product",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
                 "kind": "SCALAR",
                 "name": "String",
-=======
-                "kind": "OBJECT",
-                "name": "Product",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -2013,30 +1963,20 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "phoneNumber",
-=======
-            "name": "seller",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
                 "kind": "SCALAR",
                 "name": "String",
-=======
-                "kind": "OBJECT",
-                "name": "User",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
-<<<<<<< Updated upstream
           },
           {
             "name": "isPaid",
@@ -2066,29 +2006,6 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "BookingStatus",
-        "description": "예약상태",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "CANCEL",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "COMPLETE",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
         "possibleTypes": null
       },
       {
@@ -2108,27 +2025,12 @@
                 "name": "ID",
                 "ofType": null
               }
-=======
-          },
-          {
-            "name": "booker",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "createdAt",
-=======
-            "name": "name",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2136,11 +2038,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
                 "name": "DateTime",
-=======
-                "name": "String",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -2148,11 +2046,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "updatedAt",
-=======
-            "name": "email",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2168,11 +2062,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "isDelete",
-=======
-            "name": "phoneNumber",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2188,52 +2078,37 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "title",
-=======
-            "name": "isPaid",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "contents",
-=======
-            "name": "payment",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "Payment",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
-<<<<<<< Updated upstream
           },
-=======
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Product",
-        "description": null,
-        "fields": [
->>>>>>> Stashed changes
           {
             "name": "author",
             "description": null,
@@ -2283,11 +2158,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "subTitle",
-=======
-            "name": "title",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2303,11 +2174,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "keyWards",
-=======
-            "name": "contents",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2327,7 +2194,6 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "attachFiles",
             "description": null,
             "args": [],
@@ -2343,54 +2209,23 @@
                   "ofType": null
                 }
               }
-=======
-            "name": "author",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "thumb",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
               "name": "File",
-=======
-            "name": "isNotice",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "isOpen",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
->>>>>>> Stashed changes
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
             "name": "viewCount",
             "description": null,
             "args": [],
@@ -2402,25 +2237,12 @@
                 "name": "Int",
                 "ofType": null
               }
-=======
-            "name": "summary",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "likeCount",
-=======
-            "name": "subTitle",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2428,194 +2250,30 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
-                "name": "Int",
-=======
-                "name": "String",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "code",
-=======
-            "name": "keyWards",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-=======
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
->>>>>>> Stashed changes
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "categoryId",
-=======
-            "name": "attachFiles",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-=======
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "File",
-                  "ofType": null
-                }
->>>>>>> Stashed changes
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "category",
-=======
-            "name": "thumb",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-<<<<<<< Updated upstream
-              "name": "Category",
-=======
-              "name": "File",
->>>>>>> Stashed changes
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "status",
-=======
-            "name": "viewCount",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "ENUM",
-                "name": "ProductStatus",
-=======
-                "kind": "SCALAR",
-                "name": "Int",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "images",
-=======
-            "name": "likeCount",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "File",
-                    "ofType": null
-                  }
-                }
-=======
-                "kind": "SCALAR",
                 "name": "Int",
                 "ofType": null
->>>>>>> Stashed changes
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "itinerary",
-=======
             "name": "slug",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Itinerary",
-                    "ofType": null
-                  }
-                }
-=======
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
->>>>>>> Stashed changes
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "inOrNor",
-=======
             "name": "code",
             "description": null,
             "args": [],
@@ -2633,7 +2291,6 @@
           },
           {
             "name": "categoryId",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2641,11 +2298,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
-                "name": "String",
-=======
                 "name": "ID",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -2653,19 +2306,6 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "info",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-=======
             "name": "category",
             "description": null,
             "args": [],
@@ -2673,17 +2313,12 @@
               "kind": "OBJECT",
               "name": "Category",
               "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "caution",
-=======
             "name": "status",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2699,11 +2334,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "address",
-=======
             "name": "images",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2727,11 +2358,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "startPoint",
-=======
             "name": "itinerary",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2755,11 +2382,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "maxMember",
-=======
             "name": "inOrNor",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2767,7 +2390,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -2775,11 +2398,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "minMember",
-=======
             "name": "info",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2787,7 +2406,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -2795,11 +2414,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "adult_price",
-=======
             "name": "caution",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2807,7 +2422,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -2815,11 +2430,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "kids_price",
-=======
             "name": "address",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2827,7 +2438,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -2835,11 +2446,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "baby_price",
-=======
             "name": "startPoint",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -2847,7 +2454,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -2855,24 +2462,15 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "type",
-=======
             "name": "maxMember",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "ENUM",
-                "name": "ProductType",
-=======
                 "kind": "SCALAR",
                 "name": "Float",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -2880,75 +2478,38 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "questionIds",
-=======
             "name": "minMember",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-=======
                 "kind": "SCALAR",
                 "name": "Float",
                 "ofType": null
->>>>>>> Stashed changes
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "questions",
-=======
             "name": "adult_price",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Question",
-                  "ofType": null
-                }
-=======
                 "kind": "SCALAR",
                 "name": "Float",
                 "ofType": null
->>>>>>> Stashed changes
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "updateTargetId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "ID",
-              "ofType": null
-=======
             "name": "kids_price",
             "description": null,
             "args": [],
@@ -2960,21 +2521,11 @@
                 "name": "Float",
                 "ofType": null
               }
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "updateTarget",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Product",
-              "ofType": null
-=======
             "name": "baby_price",
             "description": null,
             "args": [],
@@ -2986,30 +2537,20 @@
                 "name": "Float",
                 "ofType": null
               }
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "startDate",
-=======
             "name": "type",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "DateTime",
-=======
                 "kind": "ENUM",
                 "name": "ProductType",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -3017,22 +2558,13 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "Dday",
-=======
             "name": "questionIds",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "LIST",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-=======
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
@@ -3040,29 +2572,19 @@
                   "name": "ID",
                   "ofType": null
                 }
->>>>>>> Stashed changes
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "bookingCount",
-=======
             "name": "questions",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "LIST",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-=======
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
@@ -3070,34 +2592,12 @@
                   "name": "Question",
                   "ofType": null
                 }
->>>>>>> Stashed changes
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "bookings",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Booking",
-                    "ofType": null
-                  }
-                }
-              }
-=======
             "name": "updateTargetId",
             "description": null,
             "args": [],
@@ -3105,30 +2605,11 @@
               "kind": "SCALAR",
               "name": "ID",
               "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "ProductStatus",
-        "description": "성별",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
+          },
           {
-<<<<<<< Updated upstream
-            "name": "OPEN",
-            "description": null,
-=======
             "name": "updateTarget",
             "description": null,
             "args": [],
@@ -3137,15 +2618,10 @@
               "name": "Product",
               "ofType": null
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "CLOSE",
-            "description": null,
-=======
             "name": "startDate",
             "description": null,
             "args": [],
@@ -3158,15 +2634,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "READY",
-            "description": null,
-=======
             "name": "Dday",
             "description": null,
             "args": [],
@@ -3179,15 +2650,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "SOLD",
-            "description": null,
-=======
             "name": "bookingCount",
             "description": null,
             "args": [],
@@ -3200,15 +2666,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "REFUSED",
-            "description": null,
-=======
             "name": "bookings",
             "description": null,
             "args": [],
@@ -3229,7 +2690,6 @@
                 }
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -3254,39 +2714,18 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "HIDE",
-=======
             "name": "CLOSE",
->>>>>>> Stashed changes
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "ProductType",
-        "description": "상품 타입",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-<<<<<<< Updated upstream
-            "name": "TOUR",
-=======
-            "name": "READY",
->>>>>>> Stashed changes
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-=======
+            "name": "READY",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "SOLD",
             "description": null,
             "isDeprecated": false,
@@ -3322,7 +2761,6 @@
             "deprecationReason": null
           },
           {
->>>>>>> Stashed changes
             "name": "EXPERIENCE",
             "description": null,
             "isDeprecated": false,
@@ -4201,11 +3639,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-<<<<<<< Updated upstream
-          },
-          {
-            "name": "CardCl",
-=======
           },
           {
             "name": "CardCl",
@@ -4316,7 +3749,6 @@
         "fields": [
           {
             "name": "ResultCode",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -4332,11 +3764,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "CcPartCl",
-=======
             "name": "ResultMsg",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -4352,11 +3780,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "CouponAmt",
-=======
             "name": "CancelAmt",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -4364,11 +3788,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
-                "name": "String",
-=======
                 "name": "Float",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -4376,10 +3796,6 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "CouponMinAmt",
-            "description": null,
-=======
             "name": "MID",
             "description": null,
             "args": [],
@@ -4398,7 +3814,6 @@
           {
             "name": "Moid",
             "description": "주문 번호",
->>>>>>> Stashed changes
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -4413,11 +3828,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "PointAppAmt",
-=======
             "name": "PayMethod",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -4433,11 +3844,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "ClickpayCl",
-=======
             "name": "TID",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -4451,28 +3858,10 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-<<<<<<< Updated upstream
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "NicepayRefundResult",
-        "description": "나이스페이 결제 취소 결과",
-        "fields": [
-          {
-            "name": "ResultCode",
-            "description": null,
-=======
           },
           {
             "name": "CancelDate",
             "description": "yyyymmdd",
->>>>>>> Stashed changes
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -4487,11 +3876,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "ResultMsg",
-=======
             "name": "CancelTime",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -4507,11 +3892,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "CancelAmt",
-=======
             "name": "RemainAmt",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -4519,11 +3900,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
-                "name": "Float",
-=======
                 "name": "String",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -4542,11 +3919,7 @@
         "description": "action: PAYMENT, status: DONE 인 경우 Transaction의 결제상태를 DONE 으로 만드는 액션이 행해졌다는 의미임",
         "fields": [
           {
-<<<<<<< Updated upstream
-            "name": "MID",
-=======
             "name": "trxType",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -4562,25 +3935,15 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "Moid",
-            "description": "주문 번호",
-=======
             "name": "status",
             "description": null,
->>>>>>> Stashed changes
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "String",
-=======
                 "kind": "ENUM",
                 "name": "TransactionStatus",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -4588,11 +3951,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "PayMethod",
-=======
             "name": "amount",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -4600,11 +3959,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
-                "name": "String",
-=======
                 "name": "Float",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -4612,24 +3967,15 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "TID",
-=======
             "name": "currency",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "String",
-=======
                 "kind": "ENUM",
                 "name": "Currency",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -4637,41 +3983,27 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "CancelDate",
-            "description": "yyyymmdd",
-=======
             "name": "message",
             "description": null,
->>>>>>> Stashed changes
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "CancelTime",
-            "description": null,
-=======
             "name": "execDateTime",
             "description": "실행 일자",
->>>>>>> Stashed changes
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "DateTime",
                 "ofType": null
               }
             },
@@ -4679,24 +4011,15 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "RemainAmt",
-=======
             "name": "resultData",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "String",
-=======
                 "kind": "UNION",
                 "name": "NicepayResultData",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -4710,30 +4033,6 @@
         "possibleTypes": null
       },
       {
-<<<<<<< Updated upstream
-        "kind": "OBJECT",
-        "name": "TrxHistoryItem",
-        "description": "action: PAYMENT, status: DONE 인 경우 Transaction의 결제상태를 DONE 으로 만드는 액션이 행해졌다는 의미임",
-        "fields": [
-          {
-            "name": "trxType",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "TransactionType",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "status",
-=======
         "kind": "ENUM",
         "name": "TransactionType",
         "description": "Transaction에 무슨짓을 한거니",
@@ -4842,20 +4141,14 @@
         "fields": [
           {
             "name": "origin",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "ENUM",
-                "name": "TransactionStatus",
-=======
                 "kind": "SCALAR",
                 "name": "Float",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -4863,11 +4156,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "amount",
-=======
             "name": "paid",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -4883,21 +4172,13 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "currency",
-=======
             "name": "refunded",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "ENUM",
-                "name": "Currency",
-=======
                 "kind": "SCALAR",
                 "name": "Float",
                 "ofType": null
@@ -4927,7 +4208,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "ID",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -4935,24 +4215,8 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "message",
-=======
             "name": "createdAt",
->>>>>>> Stashed changes
             "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "execDateTime",
-            "description": "실행 일자",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -4967,72 +4231,20 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "resultData",
-=======
             "name": "updatedAt",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "UNION",
-                "name": "NicepayResultData",
-=======
                 "kind": "SCALAR",
                 "name": "DateTime",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
-<<<<<<< Updated upstream
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "TransactionType",
-        "description": "Transaction에 무슨짓을 한거니",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "PAYMENT",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "REFUND",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "TransactionStatus",
-        "description": "거래 상태",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "PENDING",
-            "description": null,
-=======
           },
           {
             "name": "isDelete",
@@ -5047,15 +4259,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "DONE",
-            "description": null,
-=======
             "name": "paymentStatus",
             "description": null,
             "args": [],
@@ -5068,32 +4275,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "CANCELED",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "Currency",
-        "description": "통화",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "KRW",
-            "description": null,
-=======
             "name": "refundStatus",
             "description": null,
             "args": [],
@@ -5118,15 +4303,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "USD",
-            "description": null,
-=======
             "name": "paymentType",
             "description": null,
             "args": [],
@@ -5139,59 +4319,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "JPY",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "UNION",
-        "name": "NicepayResultData",
-        "description": "나이스페이 결제 or 환불 결과 데이터",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "NicepayPayResult",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "NicepayRefundResult",
-            "ofType": null
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "AmountInfo",
-        "description": null,
-        "fields": [
-          {
-            "name": "origin",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
-=======
             "name": "paymentGateway",
             "description": null,
             "args": [],
@@ -5199,19 +4330,13 @@
               "kind": "ENUM",
               "name": "PaymentGateway",
               "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "paid",
-            "description": null,
-=======
             "name": "originPrice",
             "description": "결제하기로한 가격",
->>>>>>> Stashed changes
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5226,19 +4351,6 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "refunded",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
-=======
             "name": "paidAmount",
             "description": "지불 받은 금액.",
             "args": [],
@@ -5246,36 +4358,11 @@
               "kind": "SCALAR",
               "name": "Float",
               "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Transaction",
-        "description": null,
-        "fields": [
+          },
           {
-<<<<<<< Updated upstream
-            "name": "_id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-=======
             "name": "willRefundAmount",
             "description": "환불 예정 금액",
             "args": [],
@@ -5283,25 +4370,11 @@
               "kind": "SCALAR",
               "name": "Float",
               "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "createdAt",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              }
-=======
             "name": "refundedAmount",
             "description": "환불 완료된 금액.",
             "args": [],
@@ -5309,25 +4382,11 @@
               "kind": "SCALAR",
               "name": "Float",
               "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "updatedAt",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              }
-=======
             "name": "currency",
             "description": "통화. (default: KRW)",
             "args": [],
@@ -5335,17 +4394,12 @@
               "kind": "ENUM",
               "name": "Currency",
               "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "isDelete",
-=======
             "name": "isFullRefunded",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -5361,271 +4415,6 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "paymentStatus",
-            "description": null,
-=======
-            "name": "history",
-            "description": "히스토리... ",
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "ENUM",
-                "name": "TransactionStatus",
-                "ofType": null
-=======
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "TrxHistoryItem",
-                    "ofType": null
-                  }
-                }
->>>>>>> Stashed changes
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "refundStatus",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "ENUM",
-              "name": "TransactionStatus",
-              "ofType": null
-=======
-            "name": "provider",
-            "description": "공급자, 판매자",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "User",
-                "ofType": null
-              }
->>>>>>> Stashed changes
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "paymethod",
-            "description": null,
-=======
-            "name": "customer",
-            "description": "소비자, 구매자",
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "ENUM",
-                "name": "Paymethod",
-=======
-                "kind": "OBJECT",
-                "name": "User",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "paymentType",
-=======
-            "name": "itemInfo",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "ENUM",
-                "name": "PaymentType",
-=======
-                "kind": "OBJECT",
-                "name": "ItemInfo",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "Paymethod",
-        "description": "결제 수단.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-<<<<<<< Updated upstream
-            "name": "paymentGateway",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "ENUM",
-              "name": "PaymentGateway",
-              "ofType": null
-            },
-=======
-            "name": "CARD",
-            "description": null,
->>>>>>> Stashed changes
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "originPrice",
-            "description": "결제하기로한 가격",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
-            },
-=======
-            "name": "BANK_TRANSFER",
-            "description": null,
->>>>>>> Stashed changes
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "paidAmount",
-            "description": "지불 받은 금액.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-=======
-            "name": "VIRTUAL_BANK_ACCOUNT",
-            "description": null,
->>>>>>> Stashed changes
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "willRefundAmount",
-            "description": "환불 예정 금액",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-=======
-            "name": "CASH",
-            "description": null,
->>>>>>> Stashed changes
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "PaymentType",
-        "description": "결제 방식. 결제 수단과는 다름. 정기결제인지, 단발성 결제인지를 표시하는 enum임",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-<<<<<<< Updated upstream
-            "name": "refundedAmount",
-            "description": "환불 완료된 금액.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-=======
-            "name": "ONE_OFF",
-            "description": null,
->>>>>>> Stashed changes
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "currency",
-            "description": "통화. (default: KRW)",
-            "args": [],
-            "type": {
-              "kind": "ENUM",
-              "name": "Currency",
-              "ofType": null
-            },
-=======
-            "name": "BILLING",
-            "description": null,
->>>>>>> Stashed changes
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "PaymentGateway",
-        "description": "PG사...",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-<<<<<<< Updated upstream
-            "name": "isFullRefunded",
-=======
-            "name": "OTHER",
->>>>>>> Stashed changes
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
             "name": "history",
             "description": "히스토리... ",
             "args": [],
@@ -5646,15 +4435,10 @@
                 }
               }
             },
-=======
-            "name": "NICEPAY",
-            "description": null,
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "provider",
             "description": "공급자, 판매자",
             "args": [],
@@ -5667,15 +4451,10 @@
                 "ofType": null
               }
             },
-=======
-            "name": "INISYS",
-            "description": null,
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "customer",
             "description": "소비자, 구매자",
             "args": [],
@@ -5688,23 +4467,10 @@
                 "ofType": null
               }
             },
-=======
-            "name": "PAYPAL",
-            "description": null,
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "UserError",
-        "description": "Display error to client-side.",
-        "fields": [
+          },
           {
-<<<<<<< Updated upstream
             "name": "itemInfo",
             "description": null,
             "args": [],
@@ -5716,15 +4482,6 @@
                 "name": "ItemInfo",
                 "ofType": null
               }
-=======
-            "name": "code",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5750,53 +4507,18 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "BANK_TRANSFER",
-=======
-            "name": "message",
->>>>>>> Stashed changes
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "VIRTUAL_BANK_ACCOUNT",
             "description": null,
-=======
-            "name": "details",
-            "description": "다음과 같은 포멧으로 출력됨 => ${FIELD}: ${VALIDATION_FAIL_MESSAGE}",
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Verification",
-        "description": null,
-        "fields": [
+          },
           {
-<<<<<<< Updated upstream
             "name": "CASH",
             "description": null,
             "isDeprecated": false,
@@ -5876,29 +4598,12 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
-=======
-            "name": "_id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "message",
-=======
-            "name": "createdAt",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -5906,7 +4611,6 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
                 "name": "String",
                 "ofType": null
               }
@@ -5929,10 +4633,6 @@
                   "name": "String",
                   "ofType": null
                 }
-=======
-                "name": "DateTime",
-                "ofType": null
->>>>>>> Stashed changes
               }
             },
             "isDeprecated": false,
@@ -5950,11 +4650,7 @@
         "description": null,
         "fields": [
           {
-<<<<<<< Updated upstream
             "name": "_id",
-=======
-            "name": "updatedAt",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -5962,11 +4658,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
                 "name": "ID",
-=======
-                "name": "DateTime",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -5974,11 +4666,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "createdAt",
-=======
-            "name": "payload",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -5986,11 +4674,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
                 "name": "DateTime",
-=======
-                "name": "String",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -5998,24 +4682,15 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "updatedAt",
-=======
-            "name": "target",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
                 "kind": "SCALAR",
                 "name": "DateTime",
-=======
-                "kind": "ENUM",
-                "name": "VerificationTarget",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -6023,260 +4698,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "payload",
-=======
-            "name": "isVerified",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "target",
-            "description": null,
-=======
-            "name": "event",
-            "description": "어떤 액션을 위해 인증을 하는 것인지 표시 \n            \t - ex) UserVerifyPhone, UserVerifyEmail, UserFindPassword, UserFindEmail, UserUpdateInfo",
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-<<<<<<< Updated upstream
-                "name": "VerificationTarget",
-=======
-                "name": "VerificationEvent",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "isVerified",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-=======
-            "name": "storeCode",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
->>>>>>> Stashed changes
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "event",
-            "description": "어떤 액션을 위해 인증을 하는 것인지 표시 \n            \t - ex) UserVerifyPhone, UserVerifyEmail, UserFindPassword, UserFindEmail, UserUpdateInfo",
-=======
-            "name": "expiresAt",
-            "description": null,
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "ENUM",
-                "name": "VerificationEvent",
-=======
-                "kind": "SCALAR",
-                "name": "DateTime",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "storeCode",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "expiresAt",
-=======
-            "name": "isExpire",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "CollectionDataInterface",
-            "ofType": null
-          }
-        ],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "VerificationTarget",
-        "description": "인증 타겟 Enum",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "PHONE",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EMAIL",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "VerificationEvent",
-        "description": "인증 타겟 Enum",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "UserVerifyPhone",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UserVerifyEmail",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UserResetPassword",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UserFindEmail",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UserUpdateInfo",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SignInWithPhone",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SignInWithEmail",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "NotificationSenderAdd",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "NotificationSender",
-        "description": null,
-        "fields": [
-          {
-            "name": "type",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "DateTime",
-=======
-                "kind": "ENUM",
-                "name": "NotificationMethod",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "isExpire",
-=======
-            "name": "sender",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -6290,12 +4712,103 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "target",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "VerificationTarget",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isVerified",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "event",
+            "description": "어떤 액션을 위해 인증을 하는 것인지 표시 \n            \t - ex) UserVerifyPhone, UserVerifyEmail, UserFindPassword, UserFindEmail, UserUpdateInfo",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "VerificationEvent",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "storeCode",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "expiresAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isExpire",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
         "interfaces": [
           {
-<<<<<<< Updated upstream
             "kind": "INTERFACE",
             "name": "CollectionDataInterface",
             "ofType": null
@@ -6424,8 +4937,6 @@
             "deprecationReason": null
           },
           {
-=======
->>>>>>> Stashed changes
             "name": "isVerified",
             "description": null,
             "args": [],
@@ -6443,7 +4954,6 @@
           },
           {
             "name": "isRegisteredToAligo",
-<<<<<<< Updated upstream
             "description": null,
             "args": [],
             "type": {
@@ -6633,15 +5143,12 @@
           },
           {
             "name": "senders",
-=======
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
@@ -6741,18 +5248,12 @@
                     "ofType": null
                   }
                 }
-=======
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
->>>>>>> Stashed changes
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "lastCharged",
             "description": null,
             "args": [],
@@ -6770,16 +5271,12 @@
           },
           {
             "name": "templates",
-=======
-            "name": "verification",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
@@ -6791,11 +5288,6 @@
                     "ofType": null
                   }
                 }
-=======
-                "kind": "OBJECT",
-                "name": "Verification",
-                "ofType": null
->>>>>>> Stashed changes
               }
             },
             "isDeprecated": false,
@@ -6808,7 +5300,6 @@
         "possibleTypes": null
       },
       {
-<<<<<<< Updated upstream
         "kind": "OBJECT",
         "name": "User",
         "description": null,
@@ -6863,17 +5354,6 @@
           },
           {
             "name": "isDelete",
-=======
-        "kind": "ENUM",
-        "name": "NotificationMethod",
-        "description": "노티 수단...",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "SMS",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -6889,25 +5369,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "phoneNumber",
-=======
-            "name": "EMAIL",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "SMSPricingTable",
-        "description": null,
-        "fields": [
-          {
-            "name": "SMS",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -6915,11 +5377,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
                 "name": "String",
-=======
-                "name": "Float",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -6927,11 +5385,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "email",
-=======
-            "name": "LMS",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -6939,11 +5393,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
                 "name": "String",
-=======
-                "name": "Float",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
@@ -6951,11 +5401,7 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
             "name": "isVerifiedPhoneNumber",
-=======
-            "name": "MMS",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -6963,533 +5409,15 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-<<<<<<< Updated upstream
                 "name": "Boolean",
-=======
-                "name": "Float",
->>>>>>> Stashed changes
                 "ofType": null
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "NotificationManager",
-        "description": null,
-        "fields": [
+          },
           {
-<<<<<<< Updated upstream
             "name": "isVerifiedEmail",
-=======
-            "name": "_id",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-<<<<<<< Updated upstream
-                "name": "Boolean",
-=======
-                "name": "ID",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "zoneinfo",
-=======
-            "name": "createdAt",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "OBJECT",
-                "name": "Zoneinfo",
-=======
-                "kind": "SCALAR",
-                "name": "DateTime",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "notificationManager",
-=======
-            "name": "updatedAt",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "OBJECT",
-                "name": "NotificationManager",
-=======
-                "kind": "SCALAR",
-                "name": "DateTime",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "role",
-=======
-            "name": "isDelete",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "ENUM",
-                "name": "UserRole",
-=======
-                "kind": "SCALAR",
-                "name": "Boolean",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "brith_date",
-=======
-            "name": "senders",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-=======
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "NotificationSender",
-                    "ofType": null
-                  }
-                }
->>>>>>> Stashed changes
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "address",
-=======
-            "name": "smsPricingTable",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "String",
-=======
-                "kind": "OBJECT",
-                "name": "SMSPricingTable",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "address_detail",
-            "description": null,
-=======
-            "name": "emailPricing",
-            "description": "건당 비용. 단위는 KRW",
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-<<<<<<< Updated upstream
-                "name": "String",
-=======
-                "name": "Float",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "is_froreginer",
-=======
-            "name": "currency",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "Boolean",
-=======
-                "kind": "ENUM",
-                "name": "Currency",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "gender",
-            "description": null,
-=======
-            "name": "pointRemains",
-            "description": "Email, SMS 뭘로 보내든 포인트 차감",
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "ENUM",
-                "name": "GENDER",
-=======
-                "kind": "SCALAR",
-                "name": "Int",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "busi_contact",
-            "description": "기업 전화번호",
-=======
-            "name": "pointChargingHistory",
-            "description": null,
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-=======
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Transaction",
-                    "ofType": null
-                  }
-                }
->>>>>>> Stashed changes
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "busi_num",
-            "description": "",
-=======
-            "name": "lastCharged",
-            "description": null,
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "String",
-=======
-                "kind": "OBJECT",
-                "name": "Transaction",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "is_priv_corper",
-            "description": "개인법인인지 아닌지 체크함",
-=======
-            "name": "templates",
-            "description": null,
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-<<<<<<< Updated upstream
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-=======
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "SmsTemplate",
-                    "ofType": null
-                  }
-                }
->>>>>>> Stashed changes
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "User",
-        "description": null,
-        "fields": [
-          {
-<<<<<<< Updated upstream
-            "name": "nickName",
-            "description": "닉네임 유니크",
-=======
-            "name": "_id",
-            "description": null,
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-<<<<<<< Updated upstream
-                "name": "String",
-=======
-                "name": "ID",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "busi_name",
-            "description": "사업자명",
-=======
-            "name": "createdAt",
-            "description": null,
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-<<<<<<< Updated upstream
-                "name": "String",
-=======
-                "name": "DateTime",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "busi_department",
-            "description": "부서명",
-=======
-            "name": "updatedAt",
-            "description": null,
->>>>>>> Stashed changes
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-<<<<<<< Updated upstream
-                "name": "String",
-=======
-                "name": "DateTime",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "busi_address",
-=======
-            "name": "isDelete",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-<<<<<<< Updated upstream
-                "name": "String",
-=======
-                "name": "Boolean",
->>>>>>> Stashed changes
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "account_number",
-=======
-            "name": "phoneNumber",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-<<<<<<< Updated upstream
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "bank_name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-=======
->>>>>>> Stashed changes
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "name",
-=======
-            "name": "email",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "acceptSms",
-=======
-            "name": "isVerifiedPhoneNumber",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
@@ -7505,35 +5433,6 @@
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "acceptEamil",
-=======
-            "name": "isVerifiedEmail",
->>>>>>> Stashed changes
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-<<<<<<< Updated upstream
-            "name": "busiRegistration",
-            "description": "사업자 등록증",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "File",
-              "ofType": null
-=======
             "name": "zoneinfo",
             "description": null,
             "args": [],
@@ -7545,21 +5444,11 @@
                 "name": "Zoneinfo",
                 "ofType": null
               }
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "profileImg",
-            "description": "프로필 사진",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "File",
-              "ofType": null
-=======
             "name": "notificationManager",
             "description": null,
             "args": [],
@@ -7571,21 +5460,11 @@
                 "name": "NotificationManager",
                 "ofType": null
               }
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "deleteDay",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-=======
             "name": "role",
             "description": null,
             "args": [],
@@ -7597,98 +5476,43 @@
                 "name": "UserRole",
                 "ofType": null
               }
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "products",
-=======
             "name": "brith_date",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Product",
-                    "ofType": null
-                  }
-                }
-=======
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
->>>>>>> Stashed changes
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "bookings",
-=======
             "name": "address",
->>>>>>> Stashed changes
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-<<<<<<< Updated upstream
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Booking",
-                    "ofType": null
-                  }
-                }
-=======
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
->>>>>>> Stashed changes
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "UserRole",
-        "description": "유저 역할!",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
+          },
           {
-<<<<<<< Updated upstream
-            "name": "anonymous",
-            "description": null,
-=======
             "name": "address_detail",
             "description": null,
             "args": [],
@@ -7701,15 +5525,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "individual",
-            "description": null,
-=======
             "name": "is_froreginer",
             "description": null,
             "args": [],
@@ -7722,15 +5541,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "partner",
-            "description": null,
-=======
             "name": "gender",
             "description": null,
             "args": [],
@@ -7743,15 +5557,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "partnerB",
-            "description": null,
-=======
             "name": "busi_contact",
             "description": "기업 전화번호",
             "args": [],
@@ -7764,15 +5573,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "manager",
-            "description": null,
-=======
             "name": "busi_num",
             "description": "",
             "args": [],
@@ -7785,32 +5589,10 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "admin",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "GENDER",
-        "description": "성별",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "MAIL",
-            "description": null,
-=======
             "name": "is_priv_corper",
             "description": "개인법인인지 아닌지 체크함",
             "args": [],
@@ -7823,32 +5605,12 @@
                 "ofType": null
               }
             },
->>>>>>> Stashed changes
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "FEMALE",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Page",
-        "description": null,
-        "fields": [
-          {
-            "name": "page",
-            "description": "현재 페이지 번호",
-=======
             "name": "nickName",
             "description": "닉네임 유니크",
->>>>>>> Stashed changes
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -11243,156 +9005,7 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-<<<<<<< Updated upstream
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "PaymentListResponse",
-        "description": null,
-        "fields": [
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           },
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "page",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Page",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "data",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Payment",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "SettlementCalResponse",
-        "description": null,
-        "fields": [
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "amt",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "pCategory",
-        "description": null,
-        "fields": [
-=======
-          },
->>>>>>> Stashed changes
           {
             "name": "messageId",
             "description": null,
@@ -13385,11 +10998,7 @@
       },
       {
         "kind": "OBJECT",
-<<<<<<< Updated upstream
-        "name": "UserFindByIdResponse",
-=======
         "name": "ProductFindByIdResponse",
->>>>>>> Stashed changes
         "description": null,
         "fields": [
           {
@@ -13464,8 +11073,7 @@
       },
       {
         "kind": "OBJECT",
-<<<<<<< Updated upstream
-        "name": "UserListResponse",
+        "name": "ProductListResponse",
         "description": null,
         "fields": [
           {
@@ -13527,83 +11135,11 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "User",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "UserResignResponse",
-=======
-        "name": "ProductListResponse",
->>>>>>> Stashed changes
-        "description": null,
-        "fields": [
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "data",
-            "description": null,
-            "args": [],
-            "type": {
-<<<<<<< Updated upstream
-              "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
-=======
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
                     "name": "Product",
                     "ofType": null
                   }
                 }
               }
->>>>>>> Stashed changes
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -17954,230 +15490,6 @@
             "defaultValue": null
           },
           {
-<<<<<<< Updated upstream
-            "name": "key",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "JSONObject",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "_PaymentFilter",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "AND",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "_PaymentFilter",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "OR",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "_PaymentFilter",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "provider_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "provider_not_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "provider_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "customer_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "customer_not_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "customer_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_id_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_id_not_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_id_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "createdAt_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "createdAt_not_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "createdAt_lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "createdAt_lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-=======
->>>>>>> Stashed changes
             "name": "createdAt_gte",
             "description": null,
             "type": {
@@ -21264,164 +18576,6 @@
         "possibleTypes": null
       },
       {
-<<<<<<< Updated upstream
-        "kind": "SCALAR",
-        "name": "Email",
-        "description": "The Email scalar type represents E-Mail addresses compliant to RFC 822.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "_UserFilter",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "AND",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "_UserFilter",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "OR",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "_UserFilter",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_id_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_id_not_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_id_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "createdAt_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "createdAt_not_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "createdAt_lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "createdAt_lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "createdAt_gte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "createdAt_gt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-=======
->>>>>>> Stashed changes
         "kind": "INPUT_OBJECT",
         "name": "UserUpdateInput",
         "description": null,
@@ -22617,37 +19771,6 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "SiginResponse",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UserFindById",
-            "description": null,
-            "args": [
-              {
-                "name": "id",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "UserFindByIdResponse",
                 "ofType": null
               }
             },

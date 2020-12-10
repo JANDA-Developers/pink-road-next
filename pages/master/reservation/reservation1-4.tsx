@@ -8,20 +8,20 @@ import ReactTooltip from 'react-tooltip';
 
 interface IProp { }
 
-export const MsReservationMain: React.FC<IProp> = () => {
+export const MsReservationC: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
             <h4>예약관리</h4>
             <div className="in_content">
                 <div className="tab-nav">
                     <ul>
-                        <li className="on"><Link href="/master/reservation"><a>예약·결제관리</a></Link></li>
+                        <li><Link href="/master/reservation"><a>예약·결제관리</a></Link></li>
                         <li><Link href="/master/reservation/reservation1-2"><a>취소·환불관리</a></Link></li>
                         <li><Link href="/master/reservation/reservation1-3"><a>매출·정산관리</a></Link></li>
-                        <li><Link href="/master/reservation/reservation1-4"><a>예약수기등록관리</a></Link></li>
+                        <li className="on"><Link href="/master/reservation/reservation1-4"><a>예약수기등록관리</a></Link></li>
                     </ul>
                 </div>
-                <div className="con reservation">
+                <div className="con reservation add">
                     <div className="con_box_top pb5">
                         <div className="top_info_number">
                             <ul className="ln3">
@@ -78,7 +78,8 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                     <option>휴대번호</option>
                                     <option>파트너명</option>
                                     <option>상품상태</option>
-                                    <option>진행여부</option>
+                                    <option>결제상태</option>
+                                    <option>수기등록자</option>
                                 </select>
                                 <div className="search_div">
                                     <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
@@ -181,6 +182,7 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                 <div className="align">
                                     <button className="btn">상세보기</button>
                                     <button className="btn">예약취소</button>
+                                    <button className="btn">입금확인</button>
                                 </div>
                             </div>
                         </div>
@@ -234,6 +236,7 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                 <div className="align">
                                     <button className="btn">상세보기</button>
                                     <button className="btn">예약취소</button>
+                                    <button className="btn">입금확인</button>
                                 </div>
                             </div>
                         </div>
@@ -261,4 +264,4 @@ export const MsReservationMain: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsReservationMain;
+export default MsReservationC;

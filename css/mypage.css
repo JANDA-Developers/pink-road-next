@@ -1,0 +1,2815 @@
+﻿span.m_title{
+    display: inline-block !important;
+    margin-right: 3px;
+}
+
+
+/* my page */
+.mypage_in {
+    position: relative;
+    display: block;
+    padding: 59px 3% !important;
+    background-color: #fbfbfb;
+    box-sizing: border-box;
+}
+.mypage_in .btn {
+    box-sizing: border-box;
+    padding: 0 15px;
+    font-size: 12px;
+    border-radius: 100px;
+    display: inline-block;
+    line-height: 28px;
+    margin: 3px;
+    border: 1px solid #cfcfcf;
+    border-radius: 5px;
+    color: #999;
+}
+.mypage_in .fuction_list_mini .thead {
+    display: none;
+}
+.mypage_in .fuction_list_mini .tbody li{
+    display: block;
+}
+.mypage_in .search_box .jul1 input{
+   box-shadow: none;
+}
+
+    .mypage_in .subtop_nav {
+        top: -57px;
+    }
+
+    .mypage_in .lnb {
+        position: relative;
+        display: block;
+        width: 100%;
+        left: 0;
+        top: 0;
+        border: 0;
+        padding: 30px 3%;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+    }
+
+        .mypage_in .lnb .profile_box {
+            display: block;
+            position: relative;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+
+            .mypage_in .lnb .profile_box .welcome {
+                font-size: 1.2em;
+                line-height: 120%;
+                font-weight: 500;
+            }
+
+            .mypage_in .lnb .profile_box .time,
+            .mypage_in .lnb .profile_box .name1,
+            .mypage_in .lnb .profile_box .name2,
+            .mypage_in .lnb .profile_box .point {
+                box-sizing: border-box;
+                padding-left: 0;
+                display: block;
+                position: relative;
+            }
+
+            .mypage_in .lnb .profile_box .name1 {
+                width: 100%;
+                color: #848484;
+                margin-bottom: 10px;
+                font-size: 1em;
+                padding-top: 13px;
+                font-family: '돋음', 'NanumGothic';
+            }
+
+            .mypage_in .lnb .profile_box .name2 {
+                width: 100%;
+                color: #333;
+                margin-bottom: 5px;
+                font-size: 1.2em;
+                padding-top: 13px;
+                font-family: '돋음', 'NanumGothic';
+            }
+
+            .mypage_in .lnb .profile_box [class*="name"] i {
+                display: inline-block;
+                border-radius: 3px;
+                color: #fff;
+                box-sizing: border-box;
+                padding: 0 10px;
+                margin-right: 5px;
+                vertical-align: middle;
+            }
+
+                .mypage_in .lnb .profile_box [class*="name"] i.ct_family {
+                    background-color: #2196F3;
+                }
+
+                .mypage_in .lnb .profile_box [class*="name"] i.ct_guide {
+                    background-color: #00bc0b;
+                }
+
+                .mypage_in .lnb .profile_box [class*="name"] i.ct_partner {
+                    background-color: #e2a600;
+                }
+
+            .mypage_in .lnb .profile_box .point {
+                width: 100%;
+                color: #333;
+                font-size: 1em;
+                font-weight: 400;
+            }
+
+            .mypage_in .lnb .profile_box .time {
+                width: 100%;
+                color: #999;
+                font-size: 0.8em;
+                font-weight: 400;
+            }
+
+            .mypage_in .lnb .profile_box .img {
+                display: inline-block;
+                position: relative;
+                width: 79px;
+                height: 79px;
+                overflow: hidden;
+                font-size: 0;
+                text-indent: -999px;
+                background-color: #f5f5f5;
+                border: 1px solid #ccc;
+                border-radius: 300px;
+                cursor: pointer;
+                z-index: 50;
+            }
+
+                .mypage_in .lnb .profile_box .img i {
+                    display: none;
+                    font-size: 22px;
+                    color: #fff;
+                    text-indent: 0;
+                    text-align: center;
+                    line-height: 81px;
+                    height: 100%;
+                    width: 100%;
+                    background-color: #00000087;
+                }
+
+                .mypage_in .lnb .profile_box .img:hover i {
+                    display: block;
+                }
+
+            .mypage_in .lnb .profile_box .time i,
+            .mypage_in .lnb .profile_box .point i {
+                box-sizing: border-box;
+                display: inline-block;
+                padding: 1px 15px;
+                border: 1px solid #ccc;
+                border-radius: 100px;
+                vertical-align: top;
+                margin-right: 10px;
+            }
+
+            .mypage_in .lnb .profile_box .point strong {
+                font-size: 1.5em;
+                font-weight: 600;
+            }
+
+
+        .mypage_in .lnb h3 {
+            position: relative;
+            display: block;
+            width: 100%;
+            line-height: 50px;
+            font-size: 20px;
+        }
+
+        .mypage_in .lnb ul {
+            width: 100%;
+            display: inline-block;
+            background-color: #2196F3;
+            position: relative;
+            top: 11px;
+            right: 0px;
+            box-sizing: border-box;
+            padding: 0 18px;
+            border-radius: 100px;
+            text-align: center;
+        }
+
+        .mypage_in .lnb li {
+            display: inline-block;
+            position: relative;
+        }
+
+            .mypage_in .lnb li:after {
+                position: absolute;
+                right: 0;
+                top: 20px;
+                content: '';
+                width: 1px;
+                height: 20px;
+                background-color: #a7d7ff;
+            }
+
+            .mypage_in .lnb li:last-child:after {
+                display: none;
+            }
+
+        .mypage_in .lnb a {
+            display: block;
+            text-align: left;
+            font-size: 14px;
+            line-height: 40px;
+            padding: 0 10px;
+            color: #eee;
+            line-height: 130%;
+            text-align: center;
+            font-weight: 600;
+            vertical-align: top;
+            display: inline-block;
+            padding: 13px 15px 13px;
+        }
+
+        .mypage_in .lnb i {
+            font-style: unset;
+            text-decoration: none;
+            font-weight: 400;
+            display: block;
+            font-size: 11px;
+        }
+
+        .mypage_in .lnb a:hover {
+            color: #fff;
+        }
+
+        .mypage_in .lnb .on a {
+            font-weight: 600;
+        }
+
+    .mypage_in .in {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding-top: 48px;
+        margin-left: 0;
+        min-height: 500px;
+        margin-bottom: 100px;
+    }
+
+
+        .mypage_in .in .mypage_page {
+            position: relative;
+            display: block;
+            border-radius: 5px;
+            background-color: #ffffff;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+            box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+        }
+
+        .mypage_in .in .box1 {
+            padding: 50px;
+            position: relative;
+            box-sizing: border-box;
+            display: block;
+            text-align: left;
+            background: #f4f4f4;
+            border-bottom: 1px solid #e4e4e4;
+        }
+
+            .mypage_in .in .box1 .top_info {
+                display: inline-block;
+                width: 100%;
+                vertical-align: top;
+                text-align: left;
+            }
+
+                .mypage_in .in .box1 .top_info i[class*=janda] {
+                    font-size: 16px;
+                    color: rgba(103, 103, 103, 0.5);
+                    margin-left: 3px;
+                    cursor: pointer;
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-weight: 100;
+                }
+
+                    .mypage_in .in .box1 .top_info i[class*=janda]:hover {
+                        color: rgba(103, 103, 103, 0.9);
+                    }
+
+                .mypage_in .in .box1 .top_info ul {
+                    width: 100%;
+                    position: relative;
+                    display: flex
+                }
+
+                .mypage_in .in .box1 .top_info li {
+                    display: inline-block;
+                    text-align: center;
+                    color: #333;
+                    margin-left: 10px;
+                }
+
+                .mypage_in .in .box1 .top_info .line4 li {
+                    width: 25%;
+                }
+
+                .mypage_in .in .box1 .top_info .line5 li {
+                    width: 20%;
+                }
+
+                .mypage_in .in .box1 .top_info li.ct span {
+                    font-size: 39px;
+                    font-weight: 600;
+                }
+
+                .mypage_in .in .box1 .top_info li.ct p {
+                    font-size: 14px;
+                    color: #8b8b8b;
+                    font-weight: 600;
+                    letter-spacing: -1px;
+                }
+
+        .mypage_in .in .box2 {
+            position: relative;
+            top: -1px;
+            padding: 50px;
+            border-radius: 0;
+            box-sizing: border-box;
+            display: block;
+            text-align: left;
+        }
+
+        .mypage_in .in .box3 {
+            position: relative;
+            top: -2px;
+            padding: 50px;
+            box-sizing: border-box;
+            display: block;
+            text-align: left;
+        }
+
+        .mypage_in .in .fin {
+            position: relative;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+            .mypage_in .in .fin .btn {
+                color: #a7a7a7 !important;
+                background-color: #fff !important;
+                text-indent: -1px;
+                border: 1px solid #ccc !important;
+                padding: 5px 28px !important;
+                height: auto !important;
+            }
+
+                .mypage_in .in .fin .btn:hover {
+                    color: #333 !important;
+                    border-color: #555 !important;
+                }
+
+        .mypage_in .in .box_left {
+            position: absolute;
+            width: 20%;
+            left: 0;
+            top: 0;
+            padding: 54px 0 0 50px;
+        }
+
+        .mypage_in .in h4 {
+            font-size: 1.5em;
+            font-weight: 600;
+            display: block;
+            text-align: left;
+            line-height: 43px;
+        }
+
+        .mypage_in .in h5 {
+            font-size: 25px;
+            font-weight: 600;
+            display: block;
+            text-align: right;
+            color: #9c9c9c;
+        }
+
+        .mypage_in .in h7 {
+            font-size: 18px;
+            font-weight: 600;
+            display: block;
+            text-align: left;
+            line-height: 43px;
+        }
+
+        .mypage_in .in .box_right {
+            position: relative;
+            width: 75%;
+            margin-left: 24%;
+            box-sizing: border-box;
+            padding: 0px 30px 30px;
+        }
+
+        .mypage_in .in i.icon {
+            display: inline-block;
+            width: 17px;
+            height: 17px;
+            overflow: hidden;
+            vertical-align: sub;
+        }
+
+            .mypage_in .in i.icon svg {
+                width: 100%;
+                display: inline-block;
+            }
+
+        .mypage_in .in i[class*=janda] {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+
+    .mypage_in .box_right > ul {
+        width: 100%;
+        border-top: 1px solid #cccccc52;
+    }
+
+    .mypage_in .box_right li {
+        width: 100%;
+        line-height: 50px;
+        padding: 0 10px;
+        box-sizing: border-box;
+        border-bottom: 1px solid #cccccc52;
+        display: flex;
+    }
+
+    .mypage_in .box_right .title {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 60px;
+        display: inline-block;
+        color: #333;
+        width: 30%;
+    }
+
+    .mypage_in .box_right .txt {
+        font-size: 14px;
+        font-weight: 200;
+        line-height: 60px;
+        display: inline-block;
+        width: 70%;
+        color: #333;
+        letter-spacing: 0;
+    }
+
+        .mypage_in .box_right .txt.line2 {
+            padding: 14px 0;
+            line-height: 39px !important;
+        }
+
+    .mypage_in .box_right span.blue {
+        color: #2196F3;
+        font-weight: 600;
+    }
+
+    .mypage_in .box_right .txt .outlink {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 25px;
+        display: inline-block;
+        width: auto;
+        color: #808080;
+        padding: 0 10px;
+        margin: 16px 0;
+        letter-spacing: 0;
+        border-radius: 3px;
+        float: right;
+    }
+
+    .mypage_in .box_right input {
+        height: 33px;
+        padding-left: 10px;
+        box-sizing: border-box;
+        border: 0;
+        vertical-align: middle;
+        border-radius: 5px;
+    }
+
+        .mypage_in .box_right input[type=password] {
+            background-color: #f5f5f5;
+            border: #e3e3e3 1px solid;
+        }
+
+        .mypage_in .box_right input[type=text] {
+            background-color: #ffffff;
+            border: #e3e3e3 1px solid;
+        }
+
+        .mypage_in .box_right input[type=checkbox] {
+            width: 13px;
+            height: 13px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            vertical-align: inherit;
+            margin-right: 11px;
+        }
+
+    .mypage_in .box_right select {
+        height: 33px;
+        padding-left: 10px;
+        box-sizing: border-box;
+        vertical-align: middle;
+        border-radius: 5px;
+        background-color: #ffffff;
+        border: #e3e3e3 1px solid;
+        margin-right: 0px;
+    }
+
+    .mypage_in .box_right .upload_out_box {
+        line-height: 31px;
+        color: #999;
+        height: 33px;
+        padding-left: 10px;
+        box-sizing: border-box;
+        vertical-align: middle;
+        border-radius: 5px;
+        background-color: #fbfbfb;
+        border: #e3e3e3 1px solid;
+        margin-right: 3px;
+    }
+
+    .mypage_in .box_right .line_first {
+        padding: 10px 0 0;
+        line-height: 45px;
+    }
+
+    .mypage_in .box_right .line_end {
+        padding: 0 0 17px;
+        line-height: 35px;
+    }
+
+    .mypage_in .box_right .w70 {
+        width: 70%;
+        display: inline-block;
+    }
+
+    .mypage_in .box_right .w80 {
+        width: 80%;
+        display: inline-block;
+    }
+
+    .mypage_in .box_right .btn_mini {
+        height: auto !important;
+        padding: 8px 15px !important;
+        background-color: #c4c4c417 !important;
+        color: #7a7a7a !important;
+        border-color: #a5a5a552 !important;
+        font-size: 12px !important;
+        border-radius: 5px !important;
+        line-height: 16px;
+    }
+
+        .mypage_in .box_right .btn_mini:hover {
+            background-color: #e1e1e1 !important;
+            color: #333 !important;
+            border-color: #bbbbbb !important;
+        }
+
+    .mypage_in .in .title_box {
+        position: relative;
+        display: block;
+        font-weight: 600;
+        width: 100%;
+        border-bottom: 2px solid #fff;
+        margin-bottom: 20px;
+    }
+
+        .mypage_in .in .title_box h4 {
+            line-height: 50px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+    .mypage_in .right {
+        position: relative;
+        display: block;
+        width: 47%;
+        margin-left: 49%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+        .mypage_in .right li {
+            width: 100%;
+            line-height: 50px;
+            padding: 0 10px;
+            border-bottom: 1px solid #ffffff52;
+            display: flex;
+        }
+
+        .mypage_in .right .title {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 21px;
+            display: inline-block;
+            color: #fff;
+            width: 30%;
+        }
+
+        .mypage_in .right .txt {
+            font-size: 14px;
+            font-weight: 200;
+            line-height: 60px;
+            display: inline-block;
+            width: 70%;
+            color: #fff;
+        }
+
+        .mypage_in .right input {
+            width: 100%;
+            height: 33px;
+            padding-left: 10px;
+            box-sizing: border-box;
+            border: 0;
+            vertical-align: middle;
+            background-color: #f5f5f542;
+        }
+
+        .mypage_in .right .w70 {
+            width: 70%;
+            display: inline-block;
+        }
+
+        .mypage_in .right .btn_mini {
+            border-radius: 0 !important;
+            margin-left: 5px;
+            vertical-align: middle;
+            padding: 6px 10px !important;
+            background-color: #ffffff17 !important;
+            color: #fff !important;
+            border-color: #ffffff52 !important;
+        }
+
+    .mypage_in .in_box {
+        position: relative;
+        margin-top: -1px;
+        display: block;
+        padding: 30px;
+        text-align: left;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+    }
+
+    .mypage_in .paper_div {
+        border-radius: 10px 10px 0 0;
+        overflow: hidden;
+    }
+
+
+    .mypage_in .fuction_list_mini .tbody .ok {
+        display: inline-block;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 400;
+        padding: 2px 6px;
+        background-color: #5f7bba;
+    }
+    .mypage_in .fuction_list_mini .tbody .no {
+        display: inline-block;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 400;
+        padding: 2px 6px;
+        background-color: #b05555;
+    }
+    
+    .mypage_in .statement_div {
+        position: relative;
+        display: block;
+        border: 5px solid #d7d7d7;
+        padding: 15px;
+        box-sizing: border-box;
+        margin-bottom: 15px;
+    }
+    
+        .mypage_in .statement_div ul {
+            text-align: center;
+        }
+    
+        .mypage_in .statement_div li {
+            display: inline-block;
+            width: auto;
+            padding: 0 32px;
+            margin-top: 22px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+    
+            .mypage_in .statement_div li:after {
+                content: '';
+                display: inline-block;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                margin-top: -15px;
+                height: 30px;
+                width: 1px;
+                background-color: #eeeeee;
+            }
+    
+            .mypage_in .statement_div li:last-child:after {
+                display: none;
+            }
+    
+        .mypage_in .statement_div strong {
+            display: block;
+            text-align: left;
+            font-size: 11px;
+            color: #474747;
+        }
+    
+        .mypage_in .statement_div div {
+            display: block;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 400;
+            color: #616161;
+            letter-spacing: 0;
+        }
+    
+            .mypage_in .statement_div div strong {
+                font-size: 28px;
+                font-weight: 600;
+                color: #333;
+                display: inline-block;
+            }
+    
+    
+        .mypage_in .statement_div .top_btn {
+            display: block;
+            position: relative;
+            text-align: right;
+        }
+    
+            .mypage_in .statement_div .top_btn span {
+                display: inline-block;
+                font-size: 12px;
+                border-radius: 100px;
+                line-height: 26px;
+                background-image: none;
+                background-repeat: unset;
+                filter: unset;
+                text-shadow: unset;
+                letter-spacing: -1px;
+                border-width: 1px;
+                border-style: solid;
+                border-image: none;
+                vertical-align: middle;
+                box-sizing: border-box;
+                padding: 0 15px;
+                border-color: #d0d0d0;
+                color: #a3a3a3;
+                cursor: pointer;
+                font-style: normal;
+                font-weight: 600;
+            }
+
+/*goods_div */
+.goods_div {
+    position: relative;
+    display: block;
+}
+.goods_div .fuction_list_mini .th04 div.txt {
+    display: block;
+    text-align: left;
+    width: 100%;
+    vertical-align: top;
+    position: relative;
+}
+.goods_div span.s-day {
+    width: auto !important;
+    display: inline-block !important;
+    text-align: left !important;
+    line-height: 100%;
+    font-size: 0.9em;
+    color: #333;
+    padding-top: 0px !important;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.goods_div span.ct{
+    width: auto !important;
+    display: inline-block;
+    line-height: 100%;
+    border: 1px solid #ccc;
+    padding: 4px 5px 3px !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 10px;
+    color: #555;
+    margin-right: 5px;
+}
+.goods_div strong.title{
+    width: 100% !important;
+    display: block;
+    line-height: 120%;
+    font-size: 1.3em;
+    color: #333;
+    padding-top: 5px !important;
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+}
+.goods_div .fuction_list_mini .tbody li > div{
+    font-size: 12px;
+}
+    .goods_div .fuction_list_mini .th01 {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+    .goods_div .fuction_list_mini .th02 {
+        width: auto;
+        margin-right: 10px;
+    }
+    .goods_div .fuction_list_mini .th03 {
+        width: auto;
+    }
+    .goods_div .fuction_list_mini .th04 {
+        width: 100%;
+        text-align: left;
+        margin-top: 5px;
+    }
+    .goods_div .fuction_list_mini .th05 {
+        width: 100%;
+        text-align: left;
+        border-top: 1px dotted #eee;
+        line-height: 25px;
+    }
+    .goods_div .fuction_list_mini .th06 {
+        width: 100%;
+        text-align: left;
+        margin-top: 5px;
+        border-top: 1px dotted #eee;
+        line-height: 25px;
+    }
+    .goods_div .fuction_list_mini .th06 span {
+        width: auto !important;
+        display: inline-block !important;
+        margin-right: 5px;
+    }
+    .goods_div .fuction_list_mini .th06 span.m_title,
+    .goods_div .fuction_list_mini .th07 span.m_title {
+        display: inline-block !important;
+    }
+    .goods_div .fuction_list_mini .th07 {
+        width: 100%;
+        text-align: left;
+        margin-top: 5px;
+        border-top: 1px dotted #eee;
+        line-height: 25px;
+    }
+    .goods_div .fuction_list_mini .th07 span {
+        width: auto !important;
+        display: inline-block !important;
+        margin-right: 5px;
+    }
+    .goods_div .fuction_list_mini .th08 {
+        width: 100%;
+        text-align: left;
+        margin-top: 5px;
+    }
+    .goods_div .fuction_list_mini .th08 .btn {
+        width: 49%;
+        padding: 0 12px;
+        font-size: 12px;
+        line-height: 34px;
+        text-align: center;
+        margin: 1px;
+    }
+        .goods_div .fuction_list_mini .thead .th01 .checkbox {
+            top: 50%;
+            margin-top: -8px;
+        }
+
+        .goods_div .fuction_list_mini .tbody .th01 .checkbox {
+            top: 0;
+            margin-top: 0;
+        }
+        .goods_div .btn{
+            width: 39%;
+            padding: 0 12px;
+            font-size: 11px;
+            line-height: 19px;
+            margin: 1px;
+        }
+    .goods_div .paper_div {
+        border-radius: 5px !important;
+        background-color: #ffffff;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+        box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+        padding: 30px;
+    }
+
+        .goods_div .paper_div .con_top h6 {
+            font-size: 1.3em;
+        }
+
+    .goods_div .search_box {
+        position: relative;
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        padding: 50px 36px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        text-align: left;
+        z-index: 1;
+    }
+    .goods_div .fuction_list_mini .tbody li span.people {
+        position: relative;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .goods_div .present {
+        position: relative;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+/*reservation_div */
+.reservation_div {
+    position: relative;
+    display: block;
+}
+
+    .reservation_div .t01 {
+        width: 5% !important;
+        padding:10px 0;
+    }
+    .reservation_div .t02 {
+        width: 10% !important;
+        padding: 10px 0;
+        border-left: 1px #eee solid;
+    }
+    .reservation_div .t03 {
+        width: 13% !important;
+        padding: 10px 0;
+        border-left: 1px #eee solid;
+    }
+    .reservation_div .t04 {
+        width: 44% !important;
+        padding: 10px 0 0;
+        border-left: 1px #eee solid;
+    }
+    .reservation_div .t05 {
+        width: 13% !important;
+        padding: 10px 0;
+        border-left: 1px #eee solid;
+    }
+    .reservation_div .t06 {
+        width: 15% !important;
+        padding: 10px 0;
+        border-left: 1px #eee solid;
+    }
+    .reservation_div .t07 {
+        width: 13% !important;
+        padding: 10px 0;
+        border-left: 1px #eee solid;
+    } 
+        .reservation_div .th .t01 .checkbox {
+            top: 50%;
+            margin-top: -16px;
+        }
+    .reservation_div .td .t01 .checkbox {
+        top: 50%;
+        margin-top: -8px;
+    }
+    .reservation_div .align {
+        display: inline-block;
+        width: 100%;
+        vertical-align: middle;
+        position: relative;
+        top: 50%;
+        margin-top: -40px;
+    }    
+    .reservation_div .t02 .align {
+        top: 50%;
+        margin-top: -60px;
+    }  
+    .reservation_div .t06 .align {
+        top: 50%;
+        margin-top: -35px;
+    }   
+    .reservation_div .t07 .align {
+        top: 50%;
+        margin-top: -30px;
+    }
+    .reservation_div .paper_div {
+        border-radius: 5px !important;
+        background-color: #ffffff;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+        box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+        padding: 30px;
+    }
+        .reservation_div .paper_div .con_top h6 {
+            font-size: 1.3em;
+        }
+
+    .reservation_div .search_box {
+        position: relative;
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        padding: 50px 36px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        text-align: left;
+        z-index: 1;
+    }
+    .reservation_div .t02 .btn {
+        line-height: 25px;
+        font-size: 12px;
+        padding: 0 15px;
+        margin-top:5px;
+    }
+    .reservation_div .t04 .img {
+        display:inline-block !important;
+        width:150px !important;
+        height:90px;
+        background-position:center;
+        background-size:100%;
+        position:absolute !important;
+        left:10px;
+        top:10px;
+    }
+    .reservation_div .t04 .info {
+        display: block !important;
+        width: 100% !important;
+        vertical-align: top;
+        text-align: left;
+        position: relative;
+        padding-left: 170px;
+        padding-right: 10px;
+        padding-bottom:15px;
+        box-sizing: border-box;
+    }
+    .reservation_div .memo {
+        width: 100% !important;
+        display: block;
+        line-height: 100%;
+        padding: 10px 10px 15px !important;
+        box-sizing: border-box;
+        font-size: 12px;
+        color: #555;
+        margin-top: 15px;
+        text-align:left;
+        background-color: #f5f5f5;
+        
+    }  .reservation_div .memo i {
+       margin-right:5px;
+        font-size: 10px;
+        
+    }
+    .reservation_div .t04 .txt {
+        display: block;
+        text-align: left;
+        width: 100%;
+        vertical-align: top;
+        position: relative;
+    }
+
+        .reservation_div .t04 .info span {
+            color:#333;
+            display:inline-block;
+            text-align:left;
+        }
+    .reservation_div .pay {
+        width: 100% !important;
+        display: block !important;
+        line-height: 160%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    } .reservation_div .pay-day {
+        width: 100% !important;
+        display: block !important;
+        line-height: 160%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+    .reservation_div .name {
+        width: 100% !important;
+        display: block !important;
+        line-height: 160%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        font-weight: 600;
+    }  
+      .reservation_div .ph {
+        width: 100% !important;
+        display: block !important;
+        line-height: 160%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+    .reservation_div .ct {
+        width: auto !important;
+        display: inline-block;
+        line-height: 100%;
+        border: 1px solid #ccc;
+        padding: 4px 5px 3px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 10px;
+        color: #555;
+    }
+    .reservation_div .con_box .title {
+        width: 100% !important;
+        display: block;
+        line-height: 120%;
+        font-size: 1.3em;
+        color: #333;
+        padding-top: 5px !important;
+        padding-bottom:3px;
+        margin-bottom:5px;
+        border-bottom:1px dotted #ccc;
+    }
+    .reservation_div .s-day {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    .reservation_div .r-day {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+    .reservation_div .where {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+    .reservation_div .g-number {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    .reservation_div .r-number {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        margin-top: 30px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    .reservation_div .men {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: center !important;
+        line-height: 130%;
+        font-size: 0.9em;
+        color: #2196F3 !important;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+    .reservation_div .goods-state1 {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        font-weight: 600;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        margin-right: 10px;
+    }   
+    .reservation_div .goods-state2 {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        font-weight:600;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+    .reservation_div .money {
+        width: 100% !important;
+        display: block !important;
+        text-align: center !important;
+        line-height: 127%;
+        font-size: 1.3em;
+        color: #ed297b;
+        vertical-align: middle;
+    }
+    .reservation_div .refund-txt {
+        width: 100% !important;
+        display: block !important;
+        text-align: center !important;
+        line-height: 127%;
+        font-size: 0.8em;
+        color: #cf3932;
+        padding-top: 3px !important;
+        vertical-align: middle;
+    }
+    .reservation_div .state {
+        width: auto !important;
+        display: inline-block;
+        line-height: 122%;
+        border: 1px solid #ccc;
+        padding: 3px 15px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 13px;
+        color: #555;
+        font-weight: 600;
+        border-radius: 100px;
+        font-style:unset;
+    }
+
+        .reservation_div .state.re-ok {
+            border: 1px solid #2196F3 !important;
+            color: #2196F3 !important;
+        }
+        .reservation_div .state.re-stay {
+            border: 1px solid #616161 !important;
+            color: #616161 !important;
+        }
+        .reservation_div .state.re-refund {
+            border: 1px solid #cf3932 !important;
+            color: #cf3932 !important;
+        }
+.reservation_popup .info_txt {
+    position:relative;
+    border:5px solid #ccc;
+    padding:10px;
+    box-sizing:border-box;
+    margin-bottom:20px;
+    text-align:center;
+    line-height:28px;
+}
+
+
+.reservation_popup .info_page {
+    position: relative;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: left;
+}.reservation_popup .info_page h4 {
+    position: relative;
+    top:0;
+    width:100%;
+    display:block;
+}
+.reservation_popup .info_txt span {
+    margin-right: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    color: #666;
+    display: inline-block;
+    position: relative;
+}
+        .reservation_popup .info_txt span:after {
+            position: absolute;
+            content: '';
+            display: none;
+            width: 1px;
+            height: 10px;
+            right: -10px;
+            top:8px;
+            background-color: #ccc;
+        } 
+        .reservation_popup .info_txt .pay-day:after {
+            display: none;
+        } 
+    .reservation_popup .info_txt button {
+        float: none;
+        font-size: 12px;
+        line-height: 27px;
+        padding: 0 13px;
+        width: 46%;
+        display: none;
+    }
+.reservation_popup .info_txt i {
+    color:#333;
+    font-style:normal;
+}
+.reservation_popup .info_table {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom:30px;
+    border-top: 3px #333 solid;
+}
+    .reservation_popup .info_table .top_info {
+        position: relative;
+        width: 100%;
+        background-color:#f5f5f5;
+        box-sizing: border-box;
+        display: block;
+        border-bottom: 1px solid #c4c4c4;
+        line-height: 22px;
+        padding: 18px 10px;
+        text-align: left;
+    }    
+    .reservation_popup .info_table .top_info .float_right {
+        float: none;
+        line-height: 27px;
+    }    
+    .reservation_popup .info_table .tr {
+        position: relative;
+        width: 100%;
+        
+        box-sizing: border-box;
+        display: block;
+        border-bottom: 1px solid #c4c4c4;
+        line-height: 22px;
+        text-align: left;
+    }
+    .reservation_popup .info_table .th01,
+    .reservation_popup .info_table .td01 {
+        border-bottom: 1px solid #c4c4c4;
+    }
+
+.reservation_popup .info_table .img {
+    display: inline-block !important;
+    width: 100% !important;
+    height: 200px;
+    background-position: center;
+    background-size: 100%;
+    position: relative !important;
+    left: 0;
+    top: 0;
+}
+.reservation_popup .men {
+    width: auto !important;
+    display: inline-block !important;
+    text-align: center !important;
+    line-height: 130%;
+    font-size: 0.9em;
+    color: #2196F3 !important;
+    padding-top: 0px !important;
+    vertical-align: middle;
+}
+.reservation_popup .s-day {
+    width:auto !important;
+    display: inline-block !important;
+    text-align: center !important;
+    line-height: 180%;
+    font-size: 1em;
+    color: #333;
+    padding-top: 0px !important;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.reservation_popup .where {
+    width: auto !important;
+    display:inline-block !important;
+    text-align: center !important;
+    line-height: 180%;
+    font-size: 1em;
+    color: #333;
+    padding-top: 0px !important;
+    vertical-align: middle;
+}
+    .reservation_popup .info_table .title {
+        width: 100% !important;
+        display: block;
+        line-height: 120%;
+        font-size: 1.3em;
+        color: #333;
+        padding-top: 5px !important;
+        padding-bottom: 3px;
+        margin-bottom: 5px;
+        border-bottom: 1px dotted #ccc;
+    }
+    .reservation_popup .info_table .ct {
+        width: auto !important;
+        display: inline-block;
+        line-height: 100%;
+        border: 1px solid #ccc;
+        padding: 4px 5px 3px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 10px;
+        color: #555;
+        margin-right:8px;
+    }
+    .reservation_popup .info_table .info {
+        display: block !important;
+        width: 100% !important;
+        vertical-align: top;
+        text-align: center;
+        position: relative;
+        padding-left: 0;
+        padding-right: 10px;
+        padding-bottom: 0px;
+        box-sizing: border-box;
+        padding-top: 15px;
+    }
+.reservation_popup div[class*=top0] {
+  display: inline-block;
+    width: 22%;
+    vertical-align: top;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+}
+.reservation_popup .top01 {
+    width: 100% !important;
+    padding: 15px 0 0;
+    box-sizing: border-box;
+}
+.reservation_popup .top02 {
+    width: 100% !important;
+    border-top: 1px #eee solid;
+    border-left: 0;
+    padding: 5px 0;
+    box-sizing: border-box;
+}
+.reservation_popup .top03 {
+    width: 100% !important;
+    border-top: 1px #eee solid;
+    border-left: 0;
+    padding: 15px 15px;
+    box-sizing: border-box;
+    
+}
+.reservation_popup .top03 .align {
+    text-align:center;
+}
+.reservation_popup .top03 span {
+    display:block;
+    margin-top:5px;
+    line-height:150%;
+    letter-spacing:-1px;
+    color:#999;
+}.reservation_popup .top03 span i {
+    margin-right:4px;
+}
+.reservation_popup .top04 {
+    width: 10% !important;
+    border-left: 1px #eee solid;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+.reservation_popup .memo {
+    width: 100% !important;
+    display: block;
+    line-height: 100%;
+    padding: 10px 10px 15px !important;
+    box-sizing: border-box;
+    font-size: 12px;
+    color: #555;
+    margin-top: 15px;
+    text-align: left;
+    background-color: #f5f5f5;
+}
+
+    .reservation_popup .memo i {
+        margin-right: 5px;
+        font-size: 10px;
+    }
+
+.reservation_popup .goods-state1 {
+    width: auto !important;
+    display: inline-block !important;
+    text-align: left !important;
+    line-height: 180%;
+    font-size: 1em;
+    color: #333;
+    font-weight: 500;
+    padding-top: 0px !important;
+    vertical-align: middle;
+    font-family: '돋음';
+    margin-right: 10px;
+}
+
+.reservation_popup .goods-state2 {
+    width: auto !important;
+    display: inline-block !important;
+    text-align: left !important;
+    line-height: 180%;
+    font-size: 1em;
+    color: #333;
+    font-weight: 500;
+    padding-top: 0px !important;
+    vertical-align: middle;
+    margin-right: 10px;
+    font-family: '돋음';
+}
+
+.reservation_popup .money {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    line-height: 127%;
+    font-size: 1.3em;
+    color: #ed297b;
+    vertical-align: middle;
+}
+.reservation_popup .state {
+    width: auto !important;
+    display: inline-block;
+    line-height: 122%;
+    border: 1px solid #ccc;
+    padding: 3px 15px !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    color: #555;
+    font-weight: 600;
+    border-radius: 100px;
+    font-style: unset;
+}
+    .reservation_popup .state.re-ok {
+        border: 1px solid #2196F3 !important;
+        color: #2196F3 !important;
+    }
+
+    .reservation_popup .state.re-stay {
+        border: 1px solid #616161 !important;
+        color: #616161 !important;
+    }
+
+    .reservation_popup .state.re-refund {
+        border: 1px solid #cf3932 !important;
+        color: #cf3932 !important;
+    }
+.reservation_popup .top_info .tt {
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 20px;
+    padding-left:10px;
+}
+.reservation_popup .menno {
+    width: auto !important;
+    display: inline-block;
+    line-height: 122%;
+    padding: 3px 15px !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    font-style: unset;
+    border: 1px solid #616161 !important;
+    color: #616161 !important;
+    margin:0 10px;
+}
+.reservation_popup .menok {
+    margin: 0 10px;
+    width: auto !important;
+    display: inline-block;
+    line-height: 122%;
+    padding: 3px 15px !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+    font-style: unset;
+    border: 1px solid #2196F3 !important;
+    color: #2196F3 !important;
+}
+.reservation_popup .info_table .txt {
+    display: block;
+    text-align: center;
+    width: 100%;
+    vertical-align: top;
+    position: relative;
+}
+.reservation_popup .info_page .left_div {
+    position: relative;
+    width: 100%;
+}
+    .reservation_popup .info_page .info_table .tr {
+        display: block;
+        text-align: left;
+        width: 100%;
+        position: relative;
+    } 
+    .reservation_popup .info_page .info_table .tr > div {
+        display: inline-block;
+        width: 25%;
+        vertical-align: top;
+        text-align: center;
+        font-weight: 600;
+        padding:10px 0;
+        box-sizing:border-box;
+    }
+
+.reservation_popup .info_page .right_div {
+    position: relative;
+    top: 0;
+    width: 100;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+.reservation_popup .info_page .th01,
+.reservation_popup .info_page .th02 {
+    text-align: left !important;
+    padding-left: 10px !important;
+    width:30% !important;
+}
+.reservation_popup .info_page .td01,
+.reservation_popup .info_page .td02 {
+    text-align: left !important;
+    font-weight: 500 !important;
+    width: 70% !important;
+    font-family: '돋음';
+    font-size: 1.1em;
+}
+.reservation_popup .info_page .line8 .th01,
+.reservation_popup .info_page .line8 .th02,
+.reservation_popup .info_page .line8 .th03,
+.reservation_popup .info_page .line8 .th04 {
+    width:12% !important;
+    text-align: center !important;
+    padding-left: 10px !important;
+}
+.reservation_popup .info_page .line8 .td01,
+.reservation_popup .info_page .line8 .td02,
+.reservation_popup .info_page .line8 .td03,
+.reservation_popup .info_page .line8 .td04 {
+    width: 21% !important;
+    text-align: left !important;
+    font-weight: 500 !important;
+    font-family: '돋음';
+    font-size: 1em;
+}
+div.reservation_popup .write_comment {
+    position: relative;
+    display: block;
+    border: 1px solid #b2b2b2;
+    background-color: #fff;
+}
+    div.reservation_popup .write_comment .text_box {
+        padding: 30px;
+        box-sizing: border-box;
+    }
+
+        div.reservation_popup .write_comment .text_box textarea {
+            padding: 20px 4px;
+            box-sizing: border-box;
+            border: 0;
+            width: 100%;
+            display: block;
+            font-weight: 100;
+        }
+
+        div.reservation_popup .write_comment .text_box .count {
+            color: #959595;
+            line-height: 35px;
+        }
+
+    div.reservation_popup .write_comment .text_box_bottom {
+        display: block;
+        position: relative;
+        height: 59px;
+        text-align: left;
+        margin-top: 5px;
+        border-top: 1px solid #ccc;
+    }
+        div.reservation_popup .write_comment .text_box_bottom button {
+            margin-right: 0;
+            font-size: 14px;
+            padding: 20px 30px;
+            box-sizing: border-box;
+            border: 0;
+            color: #333;
+            font-weight: 600;
+            border-left: 1px solid #ccc;
+            background-color: #ffffff;
+        }
+        div.reservation_popup .write_comment .text_box_bottom .float_left {
+            display: block;
+            position: relative;
+            padding:10px 16px;
+            box-sizing: border-box;
+            width: 77%;
+        }
+        div.reservation_popup .write_comment .text_box_bottom span {
+            font-size: 12px;
+            color: #999;
+            font-weight: 500;
+            margin-right: 13px;
+            font-family:'돋음';
+            letter-spacing:-1px;
+        }
+        div.reservation_popup .write_comment .text_box_bottom i {
+            margin-right:5px;
+        }
+div.reservation_popup .tr .re01 {
+    width: 100% !important;
+    border-right: 0;
+    border-bottom: 1px #eee solid;
+    font-weight: 600;
+    padding-left: 15px;
+    background-color: #f4faff;
+}
+div.reservation_popup .cut_nev {
+    display:inline-block;
+    margin-left:10px;
+}
+    div.reservation_popup .cut_nev > i {
+        display: inline-block;
+        font-size: 6px;
+        border: 1px solid #999;
+        color: #999;
+        margin: 0 3px;
+        padding: 0 7px;
+        box-sizing: border-box;
+        transform: scale(0.9);
+        cursor: pointer;
+        opacity:0.8;
+    }
+        div.reservation_popup .cut_nev > i:hover {
+            opacity: 1;
+        }
+div.reservation_popup .tr .re02,
+div.reservation_popup .tr .re04,
+div.reservation_popup .tr .re06,
+div.reservation_popup .tr .re08 {
+    width: 30% !important;
+}
+div.reservation_popup .tr .re03,
+div.reservation_popup .tr .re05,
+div.reservation_popup .tr .re07,
+div.reservation_popup .tr .re09 {
+    width: 70% !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+    font-family: '돋음';
+    padding: 8px !important;
+}
+
+div.reservation_popup .tr input[type=text] {
+    border: 0;
+    background-color: #fff;
+    border:1px solid #eee;
+    box-sizing: border-box;
+    padding: 4px;
+    font-size:12px;
+}
+div.reservation_popup .tr .re09 input[type=text] {
+    width: 60% !important;
+   
+}
+div.reservation_popup .tr select {
+    width: 100%;
+    border: 0;
+    background-color: #fff;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    padding: 4px;
+    font-size: 12px;
+}
+
+/* membership Withdrawal */
+.membership_div {
+    position: relative;
+    display: block;
+}
+
+    .membership_div .paper_div {
+        border-radius: 5px !important;
+        border: 0;
+        padding: 30px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+    }
+
+    .membership_div .mainbox {
+        position: relative;
+        margin-top: -1px;
+        display: block;
+        padding: 150px 30px;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+        .membership_div .mainbox strong {
+            font-size: 30px;
+            line-height: 50px;
+        }
+
+        .membership_div .mainbox p {
+            font-size: 16px;
+            line-height: 35px;
+        }
+ /* basket_box */
+ .basket_box {
+    position: relative;
+}
+    .basket_box .basket_list .th .t01 .checkbox {
+        top:8px;
+    }
+    .basket_box .basket_list .td .t01 .checkbox {
+        top:50%;
+        margin-top:-8px;
+    }
+
+.basket_box .paper_div {
+    position: relative;
+    border-radius: 5px;
+    background-color: #ffffff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 50px;
+    box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+}
+
+.basket_box .top_info {
+    position: relative;
+    border: 1px solid #eee;
+    background-color: #f5f5f5;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+    .basket_box .top_info li {
+        line-height: 150%;
+        font-size: 13px;
+        box-sizing: border-box;
+        padding-left: 9px;
+        position: relative;
+    }
+
+        .basket_box .top_info li:before {
+            display: inline-block;
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 1px;
+            background-color: #333;
+            top: 50%;
+            left: 0;
+        }
+
+.basket_box .basket_list {
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+    display: block;
+    border-top: 2px solid #555;
+}
+
+    .basket_box .basket_list .th {
+        position: relative;
+        width: 100%;
+        display: flex;
+        border-bottom: 1px solid #999;
+        line-height: 30px;
+        text-align: left;
+        box-sizing: border-box;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+        .basket_box .basket_list .th div {
+            display: inline-block;
+            width: 50%;
+            vertical-align: top;
+            text-align: center;
+            font-weight: 600;
+        }
+
+    .basket_box .basket_list .td {
+        position: relative;
+        width: 100%;
+        display: flex;
+        border-bottom: 1px solid #c4c4c4;
+        line-height: 30px;
+        text-align: left;
+    }
+    .basket_box .basket_list .no_data {
+        font-size: 1em;
+        font-weight: 600;
+    }
+        .basket_box .basket_list .no_data i {
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+    .basket_box .basket_list input[type=checkbox] {
+        vertical-align: initial;
+    }
+
+    .basket_box .basket_list .td div {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+        text-align: left;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .basket_box .basket_list .t01 {
+        width: 5% !important;
+    }
+
+    .basket_box .basket_list .t02 {
+        width: 50% !important;
+    }
+
+    .basket_box .basket_list .t03 {
+        width:26% !important;
+    }
+
+    .basket_box .basket_list .t04 {
+        width: 16% !important;
+    }
+
+    .basket_box .basket_list .t05 {
+        width: 13% !important;
+    }
+
+    .basket_box .basket_list .td .t01 {
+ 
+        text-align: center !important;
+        padding: 15px 10px;
+    }
+
+    .basket_box .basket_list .td .t02 {
+
+        border-left: 1px #eee solid;
+        padding: 15px 10px;
+    }
+
+    .basket_box .basket_list .td .t03 {
+  
+        text-align: left !important;
+        border-left: 1px #eee solid;
+        padding: 15px 10px;
+    }
+
+    .basket_box .basket_list .td .t04 {
+  
+        text-align: center !important;
+        border-left: 1px #eee solid;
+        padding: 15px 10px;
+    }
+
+    .basket_box .basket_list .td .t05 {
+
+        text-align: center !important;
+        border-left: 1px #eee solid;
+        padding: 15px 10px;
+    }
+
+    .basket_box .basket_list .img {
+        position: absolute !important;
+        width: 130px !important;
+        height: 80px;
+        background-color: #f5f5f5;
+        border: 1px solid #eee;
+        display: inline-block;
+        background-size: 105%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .basket_box .basket_list .right {
+        position: relative;
+        width: 100% !important;
+        margin-left: 0;
+        padding: 0;
+        padding-left: 140px;
+    }
+
+    .basket_box .basket_list .ct {
+        width: auto !important;
+        display: inline-block;
+        line-height: 100%;
+        border: 1px solid #ccc;
+        padding: 7px 5px 5px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 10px;
+        color: #555;
+    }
+    .basket_box .basket_list .code {
+        width: auto !important;
+        display: inline-block;
+        line-height: 100%;
+        padding: 7px 5px 5px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 13px;
+        color: #999;
+        margin-left: 5px;
+    }
+
+    .basket_box .basket_list .title {
+        width: 100% !important;
+        display: block;
+        line-height: 120%;
+        font-size: 1.3em;
+        color: #333;
+        padding-top: 0px !important;
+    }
+
+    .basket_box .basket_list .del {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 15px;
+        height: 15px;
+        opacity: 0.5;
+    }
+
+        .basket_box .basket_list .del button {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+            border: 0;
+            background-color: initial;
+        }
+
+        .basket_box .basket_list .del:hover {
+            opacity: 1;
+        }
+
+    .basket_box .basket_list .subtitle {
+        width: 100% !important;
+        display: block;
+        line-height: 132%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+    }
+
+    .basket_box .basket_list .day {
+        width: 100% !important;
+        display: block !important;
+        text-align: left !important;
+        line-height: 160%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+        border-bottom: 1px dotted #e4e4e4;
+    }
+
+        .basket_box .basket_list .day strong {
+            color: #2196F3;
+        }
+
+    .basket_box .basket_list .start_where {
+        width: 100% !important;
+        display: block !important;
+        text-align: left !important;
+        line-height: 160%;
+        border-bottom: 1px dotted #e4e4e4;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+
+    .basket_box .basket_list .tour_mode {
+        width: 100% !important;
+        display: block !important;
+        text-align: left !important;
+        line-height: 160%;
+        border-bottom: 1px dotted #e4e4e4;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+
+    .basket_box .basket_list .men {
+        width: 100% !important;
+        display: block !important;
+        text-align: left !important;
+        line-height: 160%;
+        border-bottom: 1px dotted #e4e4e4;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+
+    .basket_box .basket_list .money {
+        width: 100% !important;
+        display: block !important;
+        text-align: center !important;
+        line-height: 127%;
+        font-size: 1.3em;
+        color: #ed297b;
+        padding-top: 22px !important;
+        vertical-align: middle;
+    }
+
+    .basket_box .basket_list .day_cunt {
+        width: 100% !important;
+        display: block !important;
+        text-align: center !important;
+        line-height: 130%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 23px !important;
+        vertical-align: middle;
+    }
+
+    .basket_box .basket_list .men_cunt {
+        width: 100% !important;
+        display: block !important;
+        text-align: center !important;
+        line-height: 130%;
+        font-size: 0.9em;
+        color: #333;
+        padding-top: 0px !important;
+        vertical-align: middle;
+    }
+
+    .basket_box .basket_list .state {
+        width: auto !important;
+        display: inline-block;
+        line-height: 122%;
+        border: 1px solid #ccc;
+        padding: 3px 15px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 13px;
+        color: #555;
+        font-weight: 600;
+        border-radius: 100px;
+        margin-top: 5px;
+    }
+
+        .basket_box .basket_list .state.soldout {
+            border: 1px solid #cccccc;
+            color: #cccccc;
+        }
+
+        .basket_box .basket_list .state.onsale {
+            border: 1px solid #2196F3;
+            color: #2196F3;
+        }
+
+    .basket_box .basket_list .option_btn {
+        padding: 2px 10px;
+        width: 100%;
+        line-height: 21px;
+        font-size: 12px;
+        border: 1px solid #b8b8b8;
+    }
+
+    .basket_box .basket_list .hit {
+        padding: 2px 20px;
+        line-height: 21px;
+        font-size: 12px;
+        border: 1px solid #2196F3;
+        background-color: #2196F3;
+        color: #fff;
+    }
+
+    .basket_box .baket_bottom {
+        position: relative;
+        padding: 20px;
+        box-sizing: border-box;
+        border-bottom: 1px solid #333333;
+        border-top: 1px solid #333333;
+        background-color: #fff;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .basket_box .baket_bottom > div {
+        display: inline-block;
+    }
+
+.basket_box .baket_check {
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    background-color: #f5f5f5;
+}
+
+    .basket_box .baket_check .btn {
+        border: 0;
+        background-color: initial;
+        line-height: 18px;
+        vertical-align: middle;
+        border-right: 0;
+    }
+
+    .basket_box .baket_check input {
+        margin-right: 5px;
+    }
+
+.basket_box .baket_btn {
+    margin-top: 50px;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+    .basket_box .baket_btn .btn {
+        line-height: 50px;
+        margin: 0 5px;
+        padding: 0 74px;
+    }
+
+        .basket_box .baket_btn .btn.orders {
+            border: 1px solid #2196F3;
+            color: #fff;
+            background-color: #2196F3;
+        }
+
+            .basket_box .baket_btn .btn:hover {
+                border: 1px solid #1589e5;
+                color: #fff;
+                background-color: #1589e5;
+            }
+
+            
+
+/* myplanning_box */
+.myplanning_box .paper_div {
+    border-radius: 5px !important;
+    background-color: #ffffff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+    box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+    padding: 30px 15px;
+}
+
+.myplanning_box .paper_div .con_top h6 {
+    font-size: 1.3em;
+}
+.myplanning_box i.btn {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    line-height: 33px !important;
+    position: relative;
+    padding: 0 15px;
+    color: #777;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+}
+.myplanning_box .fuction_list_mini .th01 {
+    width: auto;
+}
+.myplanning_box .fuction_list_mini .th02 {
+    width: 100%;
+    text-align: left;
+}
+.myplanning_box .fuction_list_mini .th03{
+    width: 100%;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.3em;
+}
+.myplanning_box .fuction_list_mini .th04 {
+    width: 100%;
+    text-align: left;
+    border-top: 1px dotted #eee;
+    line-height: 25px;
+}
+.myplanning_box .fuction_list_mini .th05 {
+    width: 100%;
+    text-align: left;
+    border-top: 1px dotted #eee;
+    border-bottom: 1px dotted #eee;
+    line-height: 25px;
+}
+.myplanning_box .fuction_list_mini .th05 span{
+    display: inline-block ;
+    width: auto;
+}
+.myplanning_box .fuction_list_mini .th06 {
+    width: auto;
+    line-height: 25px;
+    margin-top: 10px;
+}
+.myplanning_box .fuction_list_mini .th07 {
+    width: auto;
+    line-height: 25px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.myplanning_box .fuction_list_mini .th08 {
+    width: 100%;
+    margin-top: 10px;
+}
+.myplanning_box .fuction_list_mini .th08 .btn{
+    width: 100%;
+}
+
+.myplanning_box .fuction_list_mini .tbody li span.people {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+}
+.myplanning_box .fuction_list_mini .tbody .no {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0px 6px;
+    background-color: #f38721;
+}
+.myplanning_box .fuction_list_mini .tbody .ok {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0px 6px;
+    background-color: #059600;
+}
+        
+@media (min-width: 768px) {
+
+
+}
+
+    
+@media (min-width: 1000px) {  
+ 
+    .goods_div .fuction_list_mini .tbody .th01 .checkbox {
+        top: 50%;
+        margin-top: -8px;
+    } 
+    .mypage_in .fuction_list_mini .thead {
+        display: flex;
+    }
+    .mypage_in .fuction_list_mini .tbody li{
+        display: flex;
+    }
+    .myplanning_box .paper_div{
+        padding: 30px;
+    }
+    .portfolio_in .con04 .photo_tap_div .photo_tap {
+        line-height: 33px;
+        height: 35px;
+        margin: 3px;
+        padding: 0 14px;
+        font-size: 14px;
+    }
+  
+    .portfolio_in .con04 {
+        min-height: 590px;
+        padding: 0 50px 120px;
+        top: -46px;
+    }
+
+        .portfolio_in .con04 .portfolio_box ul li {
+            width: 23%;
+            height: 211px;
+            margin: 1%;
+        }
+
+    .mypage_in .lnb .profile_box {
+        text-align: left;
+    }
+
+        .mypage_in .lnb .profile_box .img {
+            display: block;
+            position: absolute;
+            width: 79px;
+            height: 79px;
+        }
+
+        .mypage_in .lnb .profile_box .time,
+        .mypage_in .lnb .profile_box .name1,
+        .mypage_in .lnb .profile_box .name2,
+        .mypage_in .lnb .profile_box .point {
+            padding-left: 100px;
+        }
+
+    .mypage_in .lnb ul {
+        width: auto;
+        position: absolute;
+    }
+    .goods_div .fuction_list_mini .th01 {
+        display: inline-block;
+        width: 5%;
+    }
+    .goods_div .fuction_list_mini .th02 {
+        display: inline-block;
+        width:5%;
+    }
+    .goods_div .fuction_list_mini .th03 {
+        display: inline-block;
+        width: 10%;
+    }
+    .goods_div .fuction_list_mini .th04 {
+        display: inline-block;
+        width: 37%;
+        text-align: center;
+    }
+    .goods_div .fuction_list_mini .th05 {
+        display: inline-block;
+        width: 10%;
+        border-top: 0;
+        line-height: inherit;
+        text-align: center;
+    }
+    .goods_div .fuction_list_mini .th06 {
+        display: inline-block;
+        width: 8%;
+        border-top: 0;
+        margin-top: 0;
+        line-height: inherit;
+        text-align: center;
+    }
+    .goods_div .fuction_list_mini .th07 {
+        display: inline-block;
+        width: 10%;
+        border-top: 0;  margin-top: 0;
+        line-height: inherit;
+        text-align: center;
+    }
+    .goods_div .fuction_list_mini .th08 {
+        display: inline-block;
+        width: 21%;
+        text-align: center;
+        margin-top: 0;
+    }
+    .goods_div .fuction_list_mini .tbody  .th02{
+        padding-top: 29px;
+    }
+    .goods_div .fuction_list_mini .tbody  .th03{
+        padding-top: 29px;
+    }
+    .goods_div .fuction_list_mini .tbody  .th04{
+        padding-top: 13px;
+    }
+    .goods_div .fuction_list_mini .tbody  .th05{
+        padding-top: 29px;
+    }
+    .goods_div .fuction_list_mini .tbody  .th06{
+        padding-top: 13px;
+    }
+    .goods_div .fuction_list_mini .tbody  .th07{
+        padding-top: 13px;
+    }
+    .goods_div .fuction_list_mini .tbody .th04 {
+        text-align: left !important;
+    }
+    .myplanning_box .fuction_list_mini .th01 {
+        display: inline-block;
+        width: 5%;
+    }
+    .myplanning_box .fuction_list_mini .th02 {
+        display: inline-block;
+        width: 10%;
+    }
+    .myplanning_box .fuction_list_mini .th03{
+        display: inline-block;
+        width: 35%;
+        font-size: 1em;
+    }
+    .myplanning_box .fuction_list_mini .th04 {
+        display: inline-block;
+        width: 5%;  
+         border-top: 0;
+        line-height: inherit;
+    }
+    .myplanning_box .fuction_list_mini .th05 {
+        display: inline-block;
+        width: 18%;
+        border-top: 0;
+        border-bottom:0;
+        line-height: inherit;
+    }
+    .myplanning_box .fuction_list_mini .th05 span,
+    .myplanning_box .fuction_list_mini .tbody li span.people{
+        display: block ;
+        width: 100%;
+    }
+    .myplanning_box .fuction_list_mini .th06 {
+        display: inline-block;
+        width: 5%;
+        border-top: 0;
+        margin-top: 0;
+        line-height: inherit;
+    }
+    .myplanning_box .fuction_list_mini .th07 {
+        display: inline-block;
+        width: 10%;
+        border-top: 0;
+        line-height: inherit;
+        margin-top: 0;
+        margin-left: 0;
+    }
+    .myplanning_box .fuction_list_mini .th08 {
+        display: inline-block;
+        width: 10%;
+        margin-top: 0;
+    }
+    .myplanning_box .fuction_list_mini .tbody .th02 {
+        padding-top: 30px;
+    }
+    .myplanning_box .fuction_list_mini .tbody .th04 {
+        padding-top: 28px;
+    }
+    .myplanning_box .fuction_list_mini .tbody .th06 {
+        padding-top: 28px;
+    }
+    .myplanning_box .fuction_list_mini .tbody .th07 {
+        padding-top: 25px;
+    }
+    .myplanning_box .fuction_list_mini .tbody .th08 {
+        padding-top: 20px;
+    }
+    .myplanning_box .fuction_list_mini .tbody .th03 {
+        padding-top: 28px;
+        font-weight: 600;
+    }
+    .myplanning_box .fuction_list_mini .tbody .th03{
+        text-align: left;
+    }
+    .myplanning_box i.btn {
+        font-size: 12px;
+        line-height: 24px !important;
+        padding: 0 15px ;
+        border-radius: 100px;
+    }
+    .myplanning_box .fuction_list_mini .tbody .no {
+        padding: 2px 6px;
+    }
+    .myplanning_box .fuction_list_mini .tbody .ok {
+        padding: 2px 6px;
+    }   
+    span.m_title{
+        display: none !important;
+    }
+    .goods_div .fuction_list_mini .th06 span.m_title,
+    .goods_div .fuction_list_mini .th07 span.m_title {
+        display: none !important;
+    }
+    .goods_div .fuction_list_mini .th07 span{
+        display: block !important;
+    }
+                .goods_div .fuction_list_mini .th08 .btn {
+                    width: 49%;
+                    padding: 0 12px;
+                    font-size: 11px;
+                    line-height: 22px;
+                    text-align: center;
+                    margin: 1px;
+                }
+    div.reservation_popup .write_comment .text_box_bottom .float_left {
+        display: block;
+        position: relative;
+        padding: 20px 30px;
+        box-sizing: border-box;
+        width: inherit;
+    }
+    .reservation_popup .info_table .tr {
+        display: flex;
+    }
+.reservation_popup .info_txt {
+    position:relative;
+    border:5px solid #ccc;
+    padding:15px;
+    box-sizing:border-box;
+    margin-bottom:20px;
+    text-align:left;
+    line-height:28px;
+}
+.reservation_popup .info_txt span {
+    margin-right: 20px;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #666;
+    display: inline-block;
+    position: relative;
+}
+.reservation_popup .info_txt span:after {
+            display: inline-block;
+        }
+.reservation_popup .info_txt button {
+    float: right;
+    font-size: 12px;
+    line-height: 27px;
+    padding: 0 13px;
+width: auto;
+}
+
+.reservation_popup .top01 {
+    width: 50% !important;
+    padding: 15px 0;
+}
+.reservation_popup .top02 {
+    width: 20% !important;
+border-top: 0;
+    border-left: 1px #eee solid;
+    padding: 15px 0;
+}
+.reservation_popup .top03 {
+    width: 30% !important;
+border-top: 0;
+    border-left: 1px #eee solid;
+    padding: 15px 15px;
+    
+}
+.reservation_popup .s-day {
+    width: 100%!important;
+    display: block !important;
+    text-align: center !important;
+    line-height: 180%;
+    font-size: 1em;
+    color: #333;
+    padding-top: 0px !important;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.reservation_popup .where {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    line-height: 180%;
+    font-size: 1em;
+    color: #333;
+    padding-top: 0px !important;
+    vertical-align: middle;
+}
+.reservation_popup .top03 .align {
+    text-align: left;
+}
+.reservation_popup .info_table .img {
+    display: inline-block !important;
+    width: 150px !important;
+    height: 90px;
+    background-position: center;
+    background-size: 100%;
+    position: absolute !important;
+    left: 10px;
+    top: 10px;
+}
+.reservation_popup .info_table .info {
+        display: block !important;
+        width: 100% !important;
+        vertical-align: top;
+        text-align: left;
+        position: relative;
+        padding-left: 170px;
+        padding-right: 10px;
+        padding-bottom: 15px;
+        box-sizing: border-box;
+    }
+.reservation_popup .info_table .txt {
+    display: block;
+    text-align: left;
+    width: 100%;
+    vertical-align: top;
+    position: relative;
+}
+.reservation_popup .info_page .left_div {
+    position: relative;
+    width: 50%;
+}
+.reservation_popup .info_page .right_div {
+    position: absolute;
+    top: 0;
+    width: 48%;
+    height: 100%;
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: 52%;
+}
+
+.reservation_popup .info_page .info_table .tr {
+    display: flex;
+    text-align: left;
+    width: 100%;
+}
+.reservation_popup .info_page .th01, 
+.reservation_popup .info_page .th02 {
+    text-align: left !important;
+    padding-left: 10px !important;
+    width: 18% !important;
+}
+.reservation_popup .info_page .td01, 
+.reservation_popup .info_page .td02 {
+    text-align: left !important;
+    font-weight: 500 !important;
+    width: 32% !important;
+    font-size: 1.1em;
+}
+.reservation_popup .info_table .th01, 
+.reservation_popup .info_table .td01 {
+    border-bottom: 0;
+}
+.reservation_popup .info_table .top_info {
+
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #c4c4c4;
+    line-height: 45px;
+    padding: 0 10px;
+    text-align: left;
+}
+.reservation_popup .info_table .top_info .float_right {
+        float: right;
+        line-height: 45px;
+    }
+    div.reservation_popup .tr .re01{
+        width: 15% !important;
+        border-right: 1px #eee solid;
+    border-bottom: 0;
+        padding-left: 15px;
+    }
+    div.reservation_popup .tr .re02,
+    div.reservation_popup .tr .re04,
+    div.reservation_popup .tr .re06,
+    div.reservation_popup .tr .re08 {
+        width: 8% !important;
+    }
+    div.reservation_popup .tr .re03,
+    div.reservation_popup .tr .re05,
+    div.reservation_popup .tr .re07,
+    div.reservation_popup .tr .re09 {
+        width: 13.5% !important;
+    }
+}
+    
+    
+@media (min-width: 1200px) {
+}
+    
+@media (min-width: 1500px) {
+
+
+}
+
+@media (max-width: 767px) {
+    .mypage_in .subtop_nav {
+        top: -39px;
+    }
+}
+
+
+@media (max-width:360px) {
+
+}

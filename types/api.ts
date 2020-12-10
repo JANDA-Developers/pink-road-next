@@ -4,56 +4,6 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: boardFindByEmail
-// ====================================================
-
-export interface boardFindByEmail_BoardFindByEmail_data_thumb {
-  __typename: "File";
-  uri: string;
-}
-
-export interface boardFindByEmail_BoardFindByEmail_data {
-  __typename: "IntegratedBoard";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  title: string;
-  contents: string;
-  isNotice: boolean | null;
-  isOpen: boolean | null;
-  summary: string | null;
-  subTitle: string | null;
-  keyWards: string[] | null;
-  thumb: boardFindByEmail_BoardFindByEmail_data_thumb | null;
-  viewCount: number;
-  likeCount: number;
-  slug: string;
-  questionStatus: string | null;
-  boardType: BoardType;
-}
-
-export interface boardFindByEmail_BoardFindByEmail {
-  __typename: "IntegratedBoardResponse";
-  ok: boolean;
-  error: string | null;
-  data: boardFindByEmail_BoardFindByEmail_data[] | null;
-}
-
-export interface boardFindByEmail {
-  BoardFindByEmail: boardFindByEmail_BoardFindByEmail;
-}
-
-export interface boardFindByEmailVariables {
-  email: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: bookingList
 // ====================================================
 
@@ -128,7 +78,7 @@ export interface bookingList_BookingList_data {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: BookingStatus | null;
+  status: string | null;
   memo: string | null;
   code: string;
   product: bookingList_BookingList_data_product;
@@ -301,7 +251,7 @@ export interface bookingFindByCode_BookingFindByCode_data {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: BookingStatus | null;
+  status: string | null;
   memo: string | null;
   code: string;
   product: bookingFindByCode_BookingFindByCode_data_product;
@@ -382,7 +332,7 @@ export interface categoryList_CategoryList {
   __typename: "CategoryListResponse";
   ok: boolean;
   error: string | null;
-  data: categoryList_CategoryList_data[];
+  data: categoryList_CategoryList_data[] | null;
 }
 
 export interface categoryList {
@@ -477,11 +427,7 @@ export interface categoryUpdate_CategoryUpdate {
   __typename: "CategoryUpdateResponse";
   ok: boolean;
   error: string | null;
-<<<<<<< Updated upstream
   data: categoryUpdate_CategoryUpdate_data | null;
-=======
-  data: multiUpload_MultiUpload_data[] | null;
->>>>>>> Stashed changes
 }
 
 export interface categoryUpdate {
@@ -512,13 +458,8 @@ export interface pcategoryCreate {
   pCategoryCreate: pcategoryCreate_pCategoryCreate;
 }
 
-<<<<<<< Updated upstream
 export interface pcategoryCreateVariables {
   params: pCategoryCreateInput;
-=======
-export interface signUpVariables {
-  params: AddUserInput;
->>>>>>> Stashed changes
 }
 
 /* tslint:disable */
@@ -611,7 +552,7 @@ export interface multiUpload_MultiUpload {
   __typename: "FileUploadsResponse";
   ok: boolean;
   error: string | null;
-  data: multiUpload_MultiUpload_data[];
+  data: multiUpload_MultiUpload_data[] | null;
 }
 
 export interface multiUpload {
@@ -620,6 +561,35 @@ export interface multiUpload {
 
 export interface multiUploadVariables {
   file: any;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: signUp
+// ====================================================
+
+export interface signUp_SignUp_data {
+  __typename: "SignUpResult";
+  email: string;
+}
+
+export interface signUp_SignUp {
+  __typename: "SignUpResponse";
+  ok: boolean;
+  error: string | null;
+  data: signUp_SignUp_data | null;
+}
+
+export interface signUp {
+  SignUp: signUp_SignUp;
+}
+
+export interface signUpVariables {
+  params: AddUserInput;
 }
 
 /* tslint:disable */
@@ -2103,7 +2073,6 @@ export interface productFindById_ProductFindById_data_images {
 export interface productFindById_ProductFindById_data_questions_author {
   __typename: "User";
   _id: string;
-<<<<<<< Updated upstream
   /**
    * 닉네임 유니크
    */
@@ -2116,26 +2085,13 @@ export interface productFindById_ProductFindById_data_questions_attachFiles {
   name: string;
   uri: string;
   owner: string;
-=======
-  name: string;
->>>>>>> Stashed changes
 }
 
 export interface productFindById_ProductFindById_data_questions_thumb {
   __typename: "File";
-<<<<<<< Updated upstream
   name: string;
   uri: string;
   owner: string;
-=======
-  uri: string;
->>>>>>> Stashed changes
-}
-
-export interface productFindById_ProductFindById_data_questions_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
 }
 
 export interface productFindById_ProductFindById_data_questions {
@@ -2152,14 +2108,10 @@ export interface productFindById_ProductFindById_data_questions {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-<<<<<<< Updated upstream
   attachFiles: productFindById_ProductFindById_data_questions_attachFiles[] | null;
-=======
->>>>>>> Stashed changes
   thumb: productFindById_ProductFindById_data_questions_thumb | null;
   viewCount: number;
   likeCount: number;
-  product: productFindById_ProductFindById_data_questions_product;
   status: QuestionStatus;
   no: number;
 }
@@ -2249,71 +2201,6 @@ export interface pcategoryList {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-<<<<<<< Updated upstream
-=======
-// GraphQL query operation: categoryFindById
-// ====================================================
-
-export interface categoryFindById_CategoryFindById_data {
-  __typename: "Category";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  label: string;
-}
-
-export interface categoryFindById_CategoryFindById {
-  __typename: "CategoryFindByIdResponse";
-  ok: boolean;
-  error: string | null;
-  data: categoryFindById_CategoryFindById_data | null;
-}
-
-export interface categoryFindById {
-  CategoryFindById: categoryFindById_CategoryFindById;
-}
-
-export interface categoryFindByIdVariables {
-  id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: categoryList
-// ====================================================
-
-export interface categoryList_CategoryList_data {
-  __typename: "Category";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  label: string;
-}
-
-export interface categoryList_CategoryList {
-  __typename: "CategoryListResponse";
-  ok: boolean;
-  error: string | null;
-  data: categoryList_CategoryList_data[] | null;
-}
-
-export interface categoryList {
-  CategoryList: categoryList_CategoryList;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
->>>>>>> Stashed changes
 // GraphQL query operation: signIn
 // ====================================================
 
@@ -2421,7 +2308,7 @@ export interface getContext_GetProfile_data_bookings {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: BookingStatus | null;
+  status: string | null;
   memo: string | null;
   code: string;
   product: getContext_GetProfile_data_bookings_product;
@@ -2733,12 +2620,6 @@ export interface questionList_QuestionList_data_thumb {
   owner: string;
 }
 
-export interface questionList_QuestionList_data_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-}
-
 export interface questionList_QuestionList_data {
   __typename: "Question";
   _id: string;
@@ -2757,7 +2638,6 @@ export interface questionList_QuestionList_data {
   thumb: questionList_QuestionList_data_thumb | null;
   viewCount: number;
   likeCount: number;
-  product: questionList_QuestionList_data_product;
   status: QuestionStatus;
   no: number;
 }
@@ -2895,12 +2775,6 @@ export interface questionFindById_QuestionFindById_data_thumb {
   owner: string;
 }
 
-export interface questionFindById_QuestionFindById_data_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-}
-
 export interface questionFindById_QuestionFindById_data {
   __typename: "Question";
   _id: string;
@@ -2919,7 +2793,6 @@ export interface questionFindById_QuestionFindById_data {
   thumb: questionFindById_QuestionFindById_data_thumb | null;
   viewCount: number;
   likeCount: number;
-  product: questionFindById_QuestionFindById_data_product;
   status: QuestionStatus;
   no: number;
 }
@@ -2937,35 +2810,6 @@ export interface questionFindById {
 
 export interface questionFindByIdVariables {
   id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: signUp
-// ====================================================
-
-export interface signUp_SignUp_data {
-  __typename: "SignUpResult";
-  email: string;
-}
-
-export interface signUp_SignUp {
-  __typename: "SignUpResponse";
-  ok: boolean;
-  error: string | null;
-  data: signUp_SignUp_data | null;
-}
-
-export interface signUp {
-  SignUp: signUp_SignUp;
-}
-
-export interface signUpVariables {
-  params: AddUserInput;
 }
 
 /* tslint:disable */
@@ -3608,7 +3452,7 @@ export interface FbookingByCode {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: BookingStatus | null;
+  status: string | null;
   memo: string | null;
   code: string;
   product: FbookingByCode_product;
@@ -3666,54 +3510,6 @@ export interface Fpayment {
   RcptType: string | null;
   RcptTID: string | null;
   RcptAuthCode: string | null;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: Fquestion
-// ====================================================
-
-export interface Fquestion_author {
-  __typename: "User";
-  _id: string;
-  name: string;
-}
-
-export interface Fquestion_thumb {
-  __typename: "File";
-  uri: string;
-}
-
-export interface Fquestion_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-}
-
-export interface Fquestion {
-  __typename: "Question";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  title: string;
-  contents: string;
-  author: Fquestion_author | null;
-  isNotice: boolean | null;
-  isOpen: boolean | null;
-  summary: string | null;
-  subTitle: string | null;
-  keyWards: string[] | null;
-  thumb: Fquestion_thumb | null;
-  viewCount: number;
-  likeCount: number;
-  product: Fquestion_product;
-  status: QuestionStatus;
-  no: number;
 }
 
 /* tslint:disable */
@@ -3782,7 +3578,7 @@ export interface Fbooking {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: BookingStatus | null;
+  status: string | null;
   memo: string | null;
   code: string;
   product: Fbooking_product;
@@ -4244,12 +4040,6 @@ export interface Fquestion_thumb {
   owner: string;
 }
 
-export interface Fquestion_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-}
-
 export interface Fquestion {
   __typename: "Question";
   _id: string;
@@ -4268,7 +4058,6 @@ export interface Fquestion {
   thumb: Fquestion_thumb | null;
   viewCount: number;
   likeCount: number;
-  product: Fquestion_product;
   status: QuestionStatus;
   no: number;
 }
@@ -4388,22 +4177,6 @@ export interface Fnews {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
-
-/**
-<<<<<<< Updated upstream
- * 예약상태
- */
-export enum BookingStatus {
-  CANCEL = "CANCEL",
-  COMPLETE = "COMPLETE",
-=======
- * 보드종류
- */
-export enum BoardType {
-  PRODUCT = "PRODUCT",
-  QUESTION = "QUESTION",
->>>>>>> Stashed changes
-}
 
 /**
  * 성별
@@ -4548,7 +4321,6 @@ export enum _ProductSort {
   createdAt_desc = "createdAt_desc",
   isNotice_asc = "isNotice_asc",
   isNotice_desc = "isNotice_desc",
-<<<<<<< Updated upstream
   likeCount_asc = "likeCount_asc",
   likeCount_desc = "likeCount_desc",
   subTitle_asc = "subTitle_asc",
@@ -4567,8 +4339,6 @@ export enum _QuestionSort {
   createdAt_desc = "createdAt_desc",
   isNotice_asc = "isNotice_asc",
   isNotice_desc = "isNotice_desc",
-=======
->>>>>>> Stashed changes
   likeCount_asc = "likeCount_asc",
   likeCount_desc = "likeCount_desc",
   subTitle_asc = "subTitle_asc",
@@ -4904,7 +4674,6 @@ export interface _NewsFilter {
   keyWards_not_eq?: string | null;
   keyWards_in?: string[] | null;
   keyWards_contains?: string | null;
-<<<<<<< Updated upstream
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
@@ -4925,8 +4694,6 @@ export interface _PaymentFilter {
   customer_eq?: string | null;
   customer_not_eq?: string | null;
   customer_in?: string[] | null;
-=======
->>>>>>> Stashed changes
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
@@ -5011,7 +4778,6 @@ export interface _ProductFilter {
   startDate_lt?: any | null;
   startDate_gte?: any | null;
   startDate_gt?: any | null;
-<<<<<<< Updated upstream
   title_eq?: string | null;
   title_not_eq?: string | null;
   title_contains?: string | null;
@@ -5043,8 +4809,6 @@ export interface _ProductFilter {
 export interface _QuestionFilter {
   AND?: _QuestionFilter[] | null;
   OR?: _QuestionFilter[] | null;
-=======
->>>>>>> Stashed changes
   title_eq?: string | null;
   title_not_eq?: string | null;
   title_contains?: string | null;
@@ -5068,7 +4832,6 @@ export interface _QuestionFilter {
   keyWards_not_eq?: string | null;
   keyWards_in?: string[] | null;
   keyWards_contains?: string | null;
-<<<<<<< Updated upstream
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
@@ -5083,8 +4846,6 @@ export interface _QuestionFilter {
 export interface _UserFilter {
   AND?: _UserFilter[] | null;
   OR?: _UserFilter[] | null;
-=======
->>>>>>> Stashed changes
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
