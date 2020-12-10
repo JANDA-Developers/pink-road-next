@@ -4,6 +4,58 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: boardFindByEmail
+// ====================================================
+
+export interface boardFindByEmail_BoardFindByEmail_data_thumb {
+  __typename: "File";
+  uri: string;
+}
+
+export interface boardFindByEmail_BoardFindByEmail_data {
+  __typename: "IntegratedBoard";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  thumb: boardFindByEmail_BoardFindByEmail_data_thumb | null;
+  viewCount: number;
+  likeCount: number;
+  slug: string;
+  questionStatus: string | null;
+  boardType: BoardType;
+}
+
+export interface boardFindByEmail_BoardFindByEmail {
+  __typename: "IntegratedBoardResponse";
+  ok: boolean;
+  error: string | null;
+  data: boardFindByEmail_BoardFindByEmail_data[] | null;
+}
+
+export interface boardFindByEmail {
+  BoardFindByEmail: boardFindByEmail_BoardFindByEmail;
+}
+
+export interface boardFindByEmailVariables {
+  email: string;
+  filter?: _BoardFilter | null;
+  sort?: _BoardSort[] | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: bookingList
 // ====================================================
 
@@ -142,28 +194,28 @@ export interface bookingCountVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: bookingCreate
+// GraphQL mutation operation: bookingsCreate
 // ====================================================
 
-export interface bookingCreate_BookingCreate_data {
+export interface bookingsCreate_BookingsCreate_data {
   __typename: "Booking";
   _id: string;
 }
 
-export interface bookingCreate_BookingCreate {
-  __typename: "BookingCreateResponse";
+export interface bookingsCreate_BookingsCreate {
+  __typename: "BookingsCreateResponse";
   ok: boolean;
   error: string | null;
-  data: bookingCreate_BookingCreate_data | null;
+  data: bookingsCreate_BookingsCreate_data[] | null;
 }
 
-export interface bookingCreate {
-  BookingCreate: bookingCreate_BookingCreate;
+export interface bookingsCreate {
+  BookingsCreate: bookingsCreate_BookingsCreate;
 }
 
-export interface bookingCreateVariables {
-  params: BookingCreateInput;
-  productId: string;
+export interface bookingsCreateVariables {
+  params: BookingsCreateInput[];
+  productIds: string[];
 }
 
 /* tslint:disable */
@@ -1553,26 +1605,26 @@ export interface portfolioUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: productCreate
+// GraphQL mutation operation: ProductCreate
 // ====================================================
 
-export interface productCreate_ProductCreate_data {
+export interface ProductCreate_ProductCreate_data {
   __typename: "Product";
   _id: string;
 }
 
-export interface productCreate_ProductCreate {
+export interface ProductCreate_ProductCreate {
   __typename: "ProductCreateResponse";
   ok: boolean;
   error: string | null;
-  data: productCreate_ProductCreate_data | null;
+  data: ProductCreate_ProductCreate_data | null;
 }
 
-export interface productCreate {
-  ProductCreate: productCreate_ProductCreate;
+export interface ProductCreate {
+  ProductCreate: ProductCreate_ProductCreate;
 }
 
-export interface productCreateVariables {
+export interface ProductCreateVariables {
   params: ProductCreateInput;
 }
 
@@ -4179,6 +4231,14 @@ export interface Fnews {
 //==============================================================
 
 /**
+ * 보드종류
+ */
+export enum BoardType {
+  PRODUCT = "PRODUCT",
+  QUESTION = "QUESTION",
+}
+
+/**
  * 성별
  */
 export enum GENDER {
@@ -4255,6 +4315,24 @@ export enum VerificationEvent {
 export enum VerificationTarget {
   EMAIL = "EMAIL",
   PHONE = "PHONE",
+}
+
+/**
+ * Auto generated sort type
+ */
+export enum _BoardSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  isNotice_asc = "isNotice_asc",
+  isNotice_desc = "isNotice_desc",
+  likeCount_asc = "likeCount_asc",
+  likeCount_desc = "likeCount_desc",
+  subTitle_asc = "subTitle_asc",
+  subTitle_desc = "subTitle_desc",
+  title_asc = "title_asc",
+  title_desc = "title_desc",
+  viewCount_asc = "viewCount_asc",
+  viewCount_desc = "viewCount_desc",
 }
 
 /**
@@ -4380,16 +4458,6 @@ export interface AddUserInput {
   bank_name?: string | null;
 }
 
-export interface BookingCreateInput {
-  message?: string | null;
-  babyCount: number;
-  kidCount: number;
-  adultCount: number;
-  name: string;
-  email: string;
-  phoneNumber: string;
-}
-
 export interface BookingUpdateInput {
   memo?: string | null;
   message?: string | null;
@@ -4399,6 +4467,16 @@ export interface BookingUpdateInput {
   name?: string | null;
   email?: string | null;
   phoneNumber?: string | null;
+}
+
+export interface BookingsCreateInput {
+  message?: string | null;
+  babyCount: number;
+  kidCount: number;
+  adultCount: number;
+  name: string;
+  email: string;
+  phoneNumber: string;
 }
 
 export interface CategoryCreateInput {
@@ -4620,6 +4698,43 @@ export interface UserUpdateInput {
   account_number?: string | null;
   bank_name?: string | null;
   profileImg?: FileCreateInput | null;
+}
+
+export interface _BoardFilter {
+  AND?: _BoardFilter[] | null;
+  OR?: _BoardFilter[] | null;
+  title_eq?: string | null;
+  title_not_eq?: string | null;
+  title_contains?: string | null;
+  title_not_contains?: string | null;
+  title_in?: string[] | null;
+  title_not_in?: string[] | null;
+  authorEmail_eq?: string | null;
+  authorEmail_not_eq?: string | null;
+  authorEmail_in?: string[] | null;
+  isNotice_eq?: boolean | null;
+  isNotice_not_eq?: boolean | null;
+  isOpen_eq?: boolean | null;
+  isOpen_not_eq?: boolean | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
+  keyWards_eq?: string | null;
+  keyWards_not_eq?: string | null;
+  keyWards_in?: string[] | null;
+  keyWards_contains?: string | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
 }
 
 export interface _BookingFilter {

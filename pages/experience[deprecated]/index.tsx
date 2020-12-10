@@ -4,10 +4,6 @@ import Link from 'next/link';
 import React from 'react';
 interface IProp { }
 export const ExperienceMain: React.FC<IProp> = () => {
-<<<<<<< HEAD
- 
-=======
->>>>>>> master
 
     return <div >
         <Meta />
@@ -40,11 +36,6 @@ export const ExperienceMain: React.FC<IProp> = () => {
                         <li><a href="/tour/list">팸투어</a></li>
                     </ul>
                 </div>
-<<<<<<< HEAD
-               
-=======
-
->>>>>>> master
             </div>
         </div>
     </div >;

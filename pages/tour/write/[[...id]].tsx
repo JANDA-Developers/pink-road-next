@@ -5,7 +5,7 @@ import { initStorage } from '../../../utils/Storage';
 import "react-day-picker/lib/style.css";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
-import { productCreate, ProductCreateInput, productCreateVariables, ProductStatus, ProductType, ProductUpdateInput, } from '../../../types/api';
+import { ProductCreate, ProductCreateInput, ProductCreateVariables, ProductStatus, ProductType, ProductUpdateInput, } from '../../../types/api';
 import { useMutation } from '@apollo/client';
 import DayRangePicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
@@ -18,7 +18,7 @@ import { tapCheck } from "../../../utils/style";
 import TagInput from "../../../components/tagInput/TagInput";
 import { getDefault, useTourWrite } from "../../../hook/useTourWrite";
 import { useProductDelete, useProductFindById, useProductUpdate } from "../../../hook/useProduct";
-import { PRODUCT_CREATE } from "../../../apollo/gql/product";
+import { PRODUCTS_CREATE } from "../../../apollo/gql/product";
 import { changeVal } from "../../../utils/eventValueExtracter";
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 interface IProp {
@@ -357,7 +357,7 @@ export const TourWriteWrap: React.FC<IProp> = () => {
         }
     })
 
-    const [productCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCT_CREATE, {
+    const [ProductCreateMu, { loading: createLoading }] = useMutation<ProductCreate, ProductCreateVariables>(PRODUCTS_CREATE, {
         onCompleted: ({ ProductCreate }) => {
             if (ProductCreate.ok)
                 router.push(`/tour/view/${ProductCreate!.data!._id}`)
@@ -372,7 +372,7 @@ export const TourWriteWrap: React.FC<IProp> = () => {
     })
 
     const createFn: TCreateFn = (params: ProductCreateInput) => {
-        productCreateMu({
+        ProductCreateMu({
             variables: {
                 params
             },

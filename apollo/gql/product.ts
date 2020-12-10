@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 import {  F_PAGE, F_PRODUCT, F_QUESTION } from "./fragments";
 
-export const PRODUCT_CREATE = gql`
-  mutation productCreate(
+export const PRODUCTS_CREATE = gql`
+  mutation ProductCreate(
         $params: ProductCreateInput!
     ) {
     ProductCreate(

@@ -64,14 +64,14 @@ export const BOOKING_COUNT = gql`
 
 
 
-export const BOOKING_CREATE = gql`
-  mutation bookingCreate(
-    $params: BookingCreateInput!
-    $productId: String!
+export const BOOKINGS_CREATE = gql`
+  mutation bookingsCreate(
+    $params: [BookingsCreateInput!]!
+    $productIds: [String!]!
   ) {
-    BookingCreate(
+    BookingsCreate(
       params:$params
-      productId: $productId
+      productIds: $productIds
     ) {
     ok
     error

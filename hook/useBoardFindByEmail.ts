@@ -1,17 +1,30 @@
 import { QueryHookOptions, useQuery } from "@apollo/client";
+import { useState } from "react";
 import { BOARD_FIND_BY_EMAIL } from "../apollo/gql/board";
-import { boardFindByEmail, boardFindByEmailVariables } from "../types/api";
+import { boardFindByEmail, boardFindByEmailVariables, boardFindByEmail_BoardFindByEmail_data, _BoardFilter, _BoardSort } from "../types/api";
 
-export interface IuseBoardFindByEmailProp extends QueryHookOptions<boardFindByEmail,boardFindByEmailVariables> {
+export interface IuseBoardFindByEmailProp extends QueryHookOptions<boardFindByEmail, boardFindByEmailVariables> {
+}
+
+export interface IuseBoardFindByEmail {
+    boards: boardFindByEmail_BoardFindByEmail_data[] | undefined;
+    loading: boolean;
+    setSort: React.Dispatch<React.SetStateAction<_BoardSort[]>>;
+    setFilter: React.Dispatch<_BoardFilter>;
 }
 
 export const useBoardFindByEmail = (email:string,{
     ...options
-}:IuseBoardFindByEmailProp = {}) => {
+}:IuseBoardFindByEmailProp = {}):IuseBoardFindByEmail => {
+    const [filter, setFilter] = useState<_BoardFilter>();
+    const [sort, setSort] = useState<_BoardSort[]>([]);
     const { data, loading } = useQuery<boardFindByEmail, boardFindByEmailVariables>(BOARD_FIND_BY_EMAIL, {
         ...options,
         variables: {
-            email
+            email,
+            filter,
+            sort,
+            ...options.variables,
         },
         skip: !email,
         nextFetchPolicy: "network-only",
@@ -25,5 +38,5 @@ export const useBoardFindByEmail = (email:string,{
 
     const boards = data?.BoardFindByEmail?.data || undefined
     
-    return { boards, loading }
+    return { boards, loading, setSort, setFilter }
 }

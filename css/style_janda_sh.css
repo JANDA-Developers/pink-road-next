@@ -8175,16 +8175,6 @@ i.calendar {
         background-size: 50px;
         background-image: url('/img/svg/work_icon_01.svg');
     }
-<<<<<<< HEAD
-        /* .basket_box .basket_list .th .t01 .checkbox {
-            top:8px;
-        } */
-        .basket_box .basket_list .td .t01 .checkbox {
-            top:50%;
-            margin-top:-8px;
-        }
-=======
->>>>>>> master
 
     .portfolio_in .con02 ul li h5 {
         font-size: 16px;

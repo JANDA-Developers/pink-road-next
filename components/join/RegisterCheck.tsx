@@ -33,7 +33,7 @@ interface IProps {
 
 const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registerInfo, registerSort }) => {
 
-  const [productCreateMu, { loading: create_loading }] = useMutation<signUp, signUpVariables>(SIGN_UP, {
+  const [ProductCreateMu, { loading: create_loading }] = useMutation<signUp, signUpVariables>(SIGN_UP, {
     onCompleted: () => {
       console.log('result');
       /* 최종 Post Values */
@@ -285,7 +285,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
       //   register_sort
       // } = registerInfo;
 
-      // productCreateMu({
+      // ProductCreateMu({
       //   variables: {
       //     data: {
       //       email,

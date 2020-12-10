@@ -12,11 +12,7 @@ export const whenEnter = (callBack:()=>void) => (e:React.KeyboardEvent<HTMLInput
     }
 }
 
-<<<<<<< HEAD
-export const changeVal = (callBack:(foo:string)=>void) => (e:React.ChangeEvent<HTMLSelectElement>) => {
-=======
 export const changeVal = (callBack:(foo:any)=>void) => (e:React.ChangeEvent<HTMLSelectElement>) => {
->>>>>>> master
     const val = e.currentTarget.value
     callBack(val);
 }

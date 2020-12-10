@@ -1,28 +1,28 @@
 import { MutationHookOptions, QueryHookOptions, useMutation, useQuery } from "@apollo/client";
 import { getOperationName } from "@apollo/client/utilities";
 import { BOOKING_FIND_BY_CODE, BOOKING_LIST, BOOKING_UPDAET } from "../apollo/gql/booking";
-import {  bookingDelete, bookingDeleteVariables, bookingFindByCode, bookingFindByCodeVariables, bookingList, bookingListVariables, bookingUpdate, bookingUpdateVariables, Fbooking, FbookingByCode, Fpage, _BookingFilter, _BookingSort } from "../types/api";
+import {  bookingDelete, bookingDeleteVariables, bookingFindByCode, bookingFindByCodeVariables, bookingList, bookingListVariables, bookingsCreate_BookingsCreate_data, bookingUpdate, bookingUpdateVariables, Fbooking, FbookingByCode, Fpage, _BookingFilter, _BookingSort } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
 import { useListQuery, ListInitOptions, IListHook } from "./useListQuery";
-import {  bookingCreate, bookingCreateVariables } from "../types/api";
+import {  bookingsCreate, bookingsCreateVariables } from "../types/api";
 
-export const useBookingCreate = (options?: MutationHookOptions<bookingCreate,bookingCreateVariables>) => {
-    const [bookingCreateMu, { loading: createLoading }] = useMutation<bookingCreate, bookingCreateVariables>(BOOKING_UPDAET, {
+export const useBookingsCreate = (options?: MutationHookOptions<bookingsCreate,bookingsCreateVariables>) => {
+    const [bookingsCreateMu, { loading: createLoading }] = useMutation<bookingsCreate, bookingsCreateVariables>(BOOKING_UPDAET, {
         refetchQueries: [getOperationName(BOOKING_LIST) || ""],
         ...options
     });
     
-    const bookingCreate = (variables: bookingCreateVariables, onSucess?: () => void) => {
-        bookingCreateMu({
+    const bookingsCreate = (variables: bookingsCreateVariables, onSucess?: (data:bookingsCreate_BookingsCreate_data[]) => void) => {
+        bookingsCreateMu({
             variables
         }).then((data) => {
-            if (data.data?.BookingCreate?.ok) {
-                onSucess?.()
+            if (data.data?.BookingsCreate?.ok) {
+                onSucess?.(data.data.BookingsCreate.data!)
             }
         })
     }
 
-    return {bookingCreate, createLoading}
+    return {bookingsCreate, createLoading}
 }
 
 export const useBookingDelete = (options?: MutationHookOptions<bookingDelete,bookingDeleteVariables>) => {

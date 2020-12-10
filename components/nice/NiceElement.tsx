@@ -26,6 +26,7 @@ export interface INiceElementProp {
     // yyyymmddhhmmss
     EdiDate: string;
     endPoint: string;
+    ReqReserved?: string;
 }
 
 const NiceElments: React.FC<INiceElementProp> = ({
@@ -47,6 +48,7 @@ const NiceElments: React.FC<INiceElementProp> = ({
     sid,
     EdiDate,
     endPoint,
+    ReqReserved
 }) => {
 
     alert(MID);
@@ -150,7 +152,7 @@ const NiceElments: React.FC<INiceElementProp> = ({
                 <input
                     id="ReqReserved"
                     name="ReqReserved"
-                    value=""
+                    value={ReqReserved}
                 />{" "}
                 <input name="ReturnURL" onChange={() => { }} value={ReturnURL} />
                 <input type="hidden" name="AcsNoIframe" onChange={() => { }} value="Y" />

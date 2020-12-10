@@ -74,6 +74,7 @@ export const F_BOOKING = gql`
         status
         memo
         code
+        groupCode
         product {
             _id
             title

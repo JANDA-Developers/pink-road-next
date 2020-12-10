@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { MypageLayout } from '../../layout/MypageLayout';
 import { Paginater } from 'components/common/Paginator';
 import { useBoardFindByEmail } from '../../hook/useBoardFindByEmail';
@@ -11,6 +11,8 @@ import isEmpty from '../../utils/isEmpty';
 import { ViewCount } from '../../components/common/ViewCount';
 import { SortSelect } from '../../components/common/SortSelect';
 import { autoComma } from '../../utils/formatter';
+import { changeVal } from '../../utils/eventValueExtracter';
+import { generateClientPaging } from '../../utils/generateClientPaging';
 
 interface IProp {
     boardWrapContext: {
@@ -21,7 +23,8 @@ interface IProp {
 
 export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
     const { boards, loading } = boardWrapContext;
-
+    const [view, setView] = useState(4);
+    const paging = generateClientPaging(boards, view);
 
     const handleThisMonth = () => {
 
@@ -35,7 +38,11 @@ export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
 
     }
 
-    const handleYesr = () => {
+    const handleYear = () => {
+
+    }
+
+    const handleSortChange = () => {
 
     }
 
@@ -50,16 +57,16 @@ export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
                             <div className="title">날짜</div>
                             <div className="text">
                                 <ul className="day_ul">
-                                    <li className="on">
+                                    <li onClick={handleThisMonth} className="on">
                                         <span>이번달</span>
                                     </li>
-                                    <li className="on">
+                                    <li onClick={handleLastMonth} className="on">
                                         <span>저번달</span>
                                     </li>
-                                    <li>
+                                    <li onClick={handleHalfYesr}>
                                         <span>6개월</span>
                                     </li>
-                                    <li>
+                                    <li onClick={handleYear}>
                                         <span>1년</span>
                                     </li>
                                 </ul>
@@ -103,8 +110,8 @@ export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
                         <div className="alignment">
                             <div className="left_div">총 <strong>{autoComma(boards.length)}</strong>개</div>
                             <div className="right_div">
-                                <SortSelect onChange={ } sort={ } />
-                                <ViewCount value={ } onChange={ } />
+                                <SortSelect onChange={handleSortChange} sort={ } />
+                                <ViewCount value={view} onChange={setView} />
                             </div>
                         </div>
 
