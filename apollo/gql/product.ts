@@ -1,5 +1,9 @@
 import { gql } from "@apollo/client";
+<<<<<<< Updated upstream
 import { F_CATEGORY, F_PAGE, F_PRODUCT, F_QUESTION } from "./fragments";
+=======
+import {  F_PAGE, F_PRODUCT, F_QUESTION } from "./fragments";
+>>>>>>> Stashed changes
 
 export const PRODUCT_CREATE = gql`
   mutation productCreate(
@@ -100,3 +104,24 @@ export const PRODUCT_FIND_BY_ID = gql`
   ${F_QUESTION}
   ${F_PRODUCT}
 `;
+
+// export const PRODUCTS_OPS = gql`
+//   query productFindById(
+//       $_id:String!
+//     ) {
+//       ProductFindById(
+//         _id: $_id
+//       ) {
+//       ok
+//       error
+//       data {
+//         ...Fproduct
+//         questions {
+//           ...Fquestion
+//         }
+//       }
+//     }
+//   }
+//   ${F_QUESTION}
+//   ${F_PRODUCT}
+// `;

@@ -4,6 +4,56 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: boardFindByEmail
+// ====================================================
+
+export interface boardFindByEmail_BoardFindByEmail_data_thumb {
+  __typename: "File";
+  uri: string;
+}
+
+export interface boardFindByEmail_BoardFindByEmail_data {
+  __typename: "IntegratedBoard";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  thumb: boardFindByEmail_BoardFindByEmail_data_thumb | null;
+  viewCount: number;
+  likeCount: number;
+  slug: string;
+  questionStatus: string | null;
+  boardType: BoardType;
+}
+
+export interface boardFindByEmail_BoardFindByEmail {
+  __typename: "IntegratedBoardResponse";
+  ok: boolean;
+  error: string | null;
+  data: boardFindByEmail_BoardFindByEmail_data[] | null;
+}
+
+export interface boardFindByEmail {
+  BoardFindByEmail: boardFindByEmail_BoardFindByEmail;
+}
+
+export interface boardFindByEmailVariables {
+  email: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: bookingList
 // ====================================================
 
@@ -427,7 +477,11 @@ export interface categoryUpdate_CategoryUpdate {
   __typename: "CategoryUpdateResponse";
   ok: boolean;
   error: string | null;
+<<<<<<< Updated upstream
   data: categoryUpdate_CategoryUpdate_data | null;
+=======
+  data: multiUpload_MultiUpload_data[] | null;
+>>>>>>> Stashed changes
 }
 
 export interface categoryUpdate {
@@ -458,8 +512,13 @@ export interface pcategoryCreate {
   pCategoryCreate: pcategoryCreate_pCategoryCreate;
 }
 
+<<<<<<< Updated upstream
 export interface pcategoryCreateVariables {
   params: pCategoryCreateInput;
+=======
+export interface signUpVariables {
+  params: AddUserInput;
+>>>>>>> Stashed changes
 }
 
 /* tslint:disable */
@@ -2044,6 +2103,7 @@ export interface productFindById_ProductFindById_data_images {
 export interface productFindById_ProductFindById_data_questions_author {
   __typename: "User";
   _id: string;
+<<<<<<< Updated upstream
   /**
    * 닉네임 유니크
    */
@@ -2056,13 +2116,20 @@ export interface productFindById_ProductFindById_data_questions_attachFiles {
   name: string;
   uri: string;
   owner: string;
+=======
+  name: string;
+>>>>>>> Stashed changes
 }
 
 export interface productFindById_ProductFindById_data_questions_thumb {
   __typename: "File";
+<<<<<<< Updated upstream
   name: string;
   uri: string;
   owner: string;
+=======
+  uri: string;
+>>>>>>> Stashed changes
 }
 
 export interface productFindById_ProductFindById_data_questions_product {
@@ -2085,7 +2152,10 @@ export interface productFindById_ProductFindById_data_questions {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
+<<<<<<< Updated upstream
   attachFiles: productFindById_ProductFindById_data_questions_attachFiles[] | null;
+=======
+>>>>>>> Stashed changes
   thumb: productFindById_ProductFindById_data_questions_thumb | null;
   viewCount: number;
   likeCount: number;
@@ -2166,7 +2236,7 @@ export interface pcategoryList_pCategoryList {
   __typename: "pCategoryListResponse";
   ok: boolean;
   error: string | null;
-  data: pcategoryList_pCategoryList_data[];
+  data: pcategoryList_pCategoryList_data[] | null;
 }
 
 export interface pcategoryList {
@@ -2179,6 +2249,71 @@ export interface pcategoryList {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+<<<<<<< Updated upstream
+=======
+// GraphQL query operation: categoryFindById
+// ====================================================
+
+export interface categoryFindById_CategoryFindById_data {
+  __typename: "Category";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  label: string;
+}
+
+export interface categoryFindById_CategoryFindById {
+  __typename: "CategoryFindByIdResponse";
+  ok: boolean;
+  error: string | null;
+  data: categoryFindById_CategoryFindById_data | null;
+}
+
+export interface categoryFindById {
+  CategoryFindById: categoryFindById_CategoryFindById;
+}
+
+export interface categoryFindByIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: categoryList
+// ====================================================
+
+export interface categoryList_CategoryList_data {
+  __typename: "Category";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  label: string;
+}
+
+export interface categoryList_CategoryList {
+  __typename: "CategoryListResponse";
+  ok: boolean;
+  error: string | null;
+  data: categoryList_CategoryList_data[] | null;
+}
+
+export interface categoryList {
+  CategoryList: categoryList_CategoryList;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+>>>>>>> Stashed changes
 // GraphQL query operation: signIn
 // ====================================================
 
@@ -2509,7 +2644,7 @@ export interface getContext_CategoryList {
   __typename: "CategoryListResponse";
   ok: boolean;
   error: string | null;
-  data: getContext_CategoryList_data[];
+  data: getContext_CategoryList_data[] | null;
 }
 
 export interface getContext {
@@ -3539,6 +3674,54 @@ export interface Fpayment {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: Fquestion
+// ====================================================
+
+export interface Fquestion_author {
+  __typename: "User";
+  _id: string;
+  name: string;
+}
+
+export interface Fquestion_thumb {
+  __typename: "File";
+  uri: string;
+}
+
+export interface Fquestion_product {
+  __typename: "Product";
+  _id: string;
+  title: string;
+}
+
+export interface Fquestion {
+  __typename: "Question";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: Fquestion_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  thumb: Fquestion_thumb | null;
+  viewCount: number;
+  likeCount: number;
+  product: Fquestion_product;
+  status: QuestionStatus;
+  no: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fcategory
 // ====================================================
 
@@ -4207,11 +4390,19 @@ export interface Fnews {
 //==============================================================
 
 /**
+<<<<<<< Updated upstream
  * 예약상태
  */
 export enum BookingStatus {
   CANCEL = "CANCEL",
   COMPLETE = "COMPLETE",
+=======
+ * 보드종류
+ */
+export enum BoardType {
+  PRODUCT = "PRODUCT",
+  QUESTION = "QUESTION",
+>>>>>>> Stashed changes
 }
 
 /**
@@ -4357,6 +4548,7 @@ export enum _ProductSort {
   createdAt_desc = "createdAt_desc",
   isNotice_asc = "isNotice_asc",
   isNotice_desc = "isNotice_desc",
+<<<<<<< Updated upstream
   likeCount_asc = "likeCount_asc",
   likeCount_desc = "likeCount_desc",
   subTitle_asc = "subTitle_asc",
@@ -4375,6 +4567,8 @@ export enum _QuestionSort {
   createdAt_desc = "createdAt_desc",
   isNotice_asc = "isNotice_asc",
   isNotice_desc = "isNotice_desc",
+=======
+>>>>>>> Stashed changes
   likeCount_asc = "likeCount_asc",
   likeCount_desc = "likeCount_desc",
   subTitle_asc = "subTitle_asc",
@@ -4710,6 +4904,7 @@ export interface _NewsFilter {
   keyWards_not_eq?: string | null;
   keyWards_in?: string[] | null;
   keyWards_contains?: string | null;
+<<<<<<< Updated upstream
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
@@ -4730,6 +4925,8 @@ export interface _PaymentFilter {
   customer_eq?: string | null;
   customer_not_eq?: string | null;
   customer_in?: string[] | null;
+=======
+>>>>>>> Stashed changes
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
@@ -4814,6 +5011,7 @@ export interface _ProductFilter {
   startDate_lt?: any | null;
   startDate_gte?: any | null;
   startDate_gt?: any | null;
+<<<<<<< Updated upstream
   title_eq?: string | null;
   title_not_eq?: string | null;
   title_contains?: string | null;
@@ -4845,6 +5043,8 @@ export interface _ProductFilter {
 export interface _QuestionFilter {
   AND?: _QuestionFilter[] | null;
   OR?: _QuestionFilter[] | null;
+=======
+>>>>>>> Stashed changes
   title_eq?: string | null;
   title_not_eq?: string | null;
   title_contains?: string | null;
@@ -4868,6 +5068,7 @@ export interface _QuestionFilter {
   keyWards_not_eq?: string | null;
   keyWards_in?: string[] | null;
   keyWards_contains?: string | null;
+<<<<<<< Updated upstream
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
@@ -4882,6 +5083,8 @@ export interface _QuestionFilter {
 export interface _UserFilter {
   AND?: _UserFilter[] | null;
   OR?: _UserFilter[] | null;
+=======
+>>>>>>> Stashed changes
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;

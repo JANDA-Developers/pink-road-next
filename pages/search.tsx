@@ -10,6 +10,7 @@ import dayjs from "dayjs";
 import { filterToRange, rangeToFilter } from '../utils/filter';
 import { ProductListBlock } from '../components/list/ProductList';
 import { ViewCount } from '../components/common/ViewCount';
+<<<<<<< Updated upstream
 import SortSelect from '../components/common/SortMethod';
 import { closeModal, openModal } from '../utils/popUp';
 import SubTopNav from '../layout/components/SubTop';
@@ -17,6 +18,9 @@ import { ViewSelect } from '../components/common/ViewSelect';
 import { getFromUrl } from '../utils/url';
 import { integratedProductSearch } from '../utils/genFilter';
 import { whenEnter } from '../utils/eventValueExtracter';
+=======
+import SortSelect from '../components/common/SortSelect';
+>>>>>>> Stashed changes
 
 interface IProp {
     context: ISearchContext
