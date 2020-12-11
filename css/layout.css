@@ -2285,18 +2285,19 @@ i.icon_plus {
     position: relative;
     display: block;
     color: #aaa;
-    padding-left:6px;
+    padding-left:21px;
     box-sizing: border-box;
     margin-top: 10px;
     font-weight: 100;
     font-size: 12px;
+    line-height: 20px;
 }
 .infotxt_gray::before{
     display: inline-block;
-    position: relative;
+    position: absolute;
     content: "\F16B";
-    left: -2px;
-    top: 6px;
+    left: 2px;
+    top: 7px;
     width: 15px;
     height: 15px;
     vertical-align: middle;

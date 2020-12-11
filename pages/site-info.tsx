@@ -14,9 +14,9 @@ type TGetProps = {
 export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
     const { data } = await usePageInfo("site-info");
     return {
+        revalidate: 1,
         props: {
             pageInfo: data?.value || "",
-            revalidate: 10
         }, // will be passed to the page component as props
     }
 }
@@ -241,41 +241,23 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <span {...edit("pink_supporter_sub")} />
                 </h4>
                 <ul>
-                    <li>
-                        <a href="">
-                            <img src='/img/pt_logo_02.png' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/pt_logo_03.png' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/pt_logo_04.png' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/pt_logo_05.png' alt="" />
-                        </a>
-                    </li>
                     {partners.kr.map((partner, index) => {
                         const { alt, img, link } = partner;
                         return <li key={index + "partner"}>
-                            <a href={link}>
-                                <img src='/img/pt_logo_05.png' alt={alt} />
-                                <span className="del" onClick={() => {
-                                    removeArray("partners", index);
-                                }}><i className="flaticon-multiply"></i></span>
+                            <a href={editMode ? undefined : link}>
+                                <img src={img} alt={alt} />
+                                {editMode &&
+                                    <span className="del" onClick={() => {
+                                        removeArray("partners", index);
+                                    }}><i className="flaticon-multiply"></i></span>
+                                }
                                 <Upload onUpload={(url) => {
                                     editArray("partners", index, { ...partner, img: url })
                                 }} />
                             </a>
                         </li>
                     })}
-                    {role === UserRole.admin || UserRole.manager &&
+                    {editMode &&
                         <li className="add" onClick={() => {
                             addArray("partners", {})
                         }}><i className="flaticon-add"></i>추가</li>

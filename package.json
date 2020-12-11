@@ -43,7 +43,7 @@
     "font-awesome": "^4.7.0",
     "graphql-request": "^3.3.0",
     "jquery": "^3.5.1",
-    "next": "9.5.5",
+    "next": "10.0.1",
     "next-images": "^1.6.2",
     "omit-deep-lodash": "^1.1.5",
     "pinkloader-ckeditor5-custom-build": "^0.0.1",

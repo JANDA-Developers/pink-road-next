@@ -210,9 +210,9 @@ interface IGetProps {
 export const getStaticProps: GetStaticProps<IGetProps> = async (context) => {
   const { data } = await usePageInfo("main");
   return {
+    revalidate: 1,
     props: {
       sitePageInfo: data?.value || "",
-      revalidate: 10
     }, // will be passed to the page component as props
   }
 }
