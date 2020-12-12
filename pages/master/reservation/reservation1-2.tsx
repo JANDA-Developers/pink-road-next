@@ -171,7 +171,7 @@ export const MsReservationA: React.FC<IProp> = () => {
                             </div>
                             <div className="t06">
                                 <div className="align">
-                                    <strong><i className="m_title">취소상태:</i><span className="cansel stand">취소요청</span></strong>
+                                    <strong><span className="cansel stand">취소요청</span></strong>
                                     <span className="refund-btn stand"><i className="m_title">환불상태:</i>환불요청<br />(전액환불)</span>
                                 </div>
                             </div>
@@ -222,7 +222,7 @@ export const MsReservationA: React.FC<IProp> = () => {
                             </div>
                             <div className="t06">
                                 <div className="align">
-                                    <strong><i className="m_title">취소상태:</i><span className="cansel ok">취소완료</span></strong>
+                                    <strong><span className="cansel ok">취소완료</span></strong>
                                     <span className="refund-btn stand"><i className="m_title">환불상태:</i>환불요청<br />(전액환불)</span>
                                 </div>
                             </div>
@@ -234,7 +234,7 @@ export const MsReservationA: React.FC<IProp> = () => {
                             </div>
                         </div>
 
-                        <Paginater pageNumber={10} totalPageCount={20} />
+                        {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
 
                         <div className="fin">
                             <div className="float_left">
