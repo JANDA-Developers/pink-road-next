@@ -51,13 +51,13 @@ const NiceElments: React.FC<INiceElementProp> = ({
     ReqReserved
 }) => {
 
-    alert(MID);
     useEffect(() => {
         import("./niceGlobal")
     }, [])
 
     const openNCmodal = () => {
-        window.jdPayStart();
+        if (window.jdPayStart)
+            window.jdPayStart();
     }
 
     useLayoutEffect(() => {

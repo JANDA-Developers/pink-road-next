@@ -45,6 +45,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const { nextPw, profile, pw, busiRegistration } = data;
     const { setPw, setProfile } = setData;
     const {
+        nickName,
         address,
         name,
         address_detail,
@@ -211,8 +212,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 </p>
                                 </li>
                                 <li className="ct">
-                                    {getItemCount()}
-                                    {/* <span>{getBracket()?.length}</span> */}
+                                    <span>{getItemCount()}</span>
                                     <p>
                                         장바구니
                                 </p>
@@ -235,12 +235,14 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="txt">
                                     <div className="input_relative">
                                         <input
-                                            value={nextPw.password}
+                                            value={nickName}
                                             onChange={(e) => {
-                                                const pw = e.currentTarget.value
-                                                setPw(pw);
+                                                const nickName = e.currentTarget.value
+                                                setProfile({
+                                                    ...profile,
+                                                    nickName
+                                                })
                                             }}
-                                            type="password"
                                             className={`form-control w100`}
                                             placeholder="닉네임을 입력 해주세요"
                                         />
@@ -257,10 +259,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     <div className="input_relative">
                                         <input
                                             value={nextPw.password}
-                                            onChange={(e) => {
-                                                const pw = e.currentTarget.value
-                                                setPw(pw);
-                                            }}
+                                            onChange={handlePassword("password")}
                                             type="password"
                                             className={`form-control w100`}
                                             placeholder="변경할 비밀번호를 입력 해주세요"

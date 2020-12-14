@@ -117,6 +117,9 @@ export interface bookingList_BookingList_data_product {
 export interface bookingList_BookingList_data_payment {
   __typename: "Payment";
   Amt: number | null;
+  PayMethod: string | null;
+  CardNo: string | null;
+  AuthDate: string | null;
 }
 
 export interface bookingList_BookingList_data {
@@ -208,6 +211,9 @@ export interface bookingsCreate_BookingsCreate_data_product {
 export interface bookingsCreate_BookingsCreate_data_payment {
   __typename: "Payment";
   Amt: number | null;
+  PayMethod: string | null;
+  CardNo: string | null;
+  AuthDate: string | null;
 }
 
 export interface bookingsCreate_BookingsCreate_data {
@@ -320,6 +326,9 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
 export interface bookingFindByCode_BookingFindByCode_data_payment {
   __typename: "Payment";
   Amt: number | null;
+  PayMethod: string | null;
+  CardNo: string | null;
+  AuthDate: string | null;
 }
 
 export interface bookingFindByCode_BookingFindByCode_data {
@@ -758,11 +767,6 @@ export interface newsFindById_NewsFindById_data_author_busiRegistration {
   owner: string;
 }
 
-export interface newsFindById_NewsFindById_data_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
 export interface newsFindById_NewsFindById_data_author {
   __typename: "User";
   _id: string;
@@ -809,10 +813,6 @@ export interface newsFindById_NewsFindById_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: newsFindById_NewsFindById_data_author_profileImg | null;
 }
 
 export interface newsFindById_NewsFindById_data_attachFiles {
@@ -928,11 +928,6 @@ export interface newsList_NewsList_data_author_busiRegistration {
   owner: string;
 }
 
-export interface newsList_NewsList_data_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
 export interface newsList_NewsList_data_author {
   __typename: "User";
   _id: string;
@@ -979,10 +974,6 @@ export interface newsList_NewsList_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: newsList_NewsList_data_author_profileImg | null;
 }
 
 export interface newsList_NewsList_data_attachFiles {
@@ -1277,11 +1268,6 @@ export interface portfolioFindById_PortfolioFindById_data_author_busiRegistratio
   owner: string;
 }
 
-export interface portfolioFindById_PortfolioFindById_data_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
 export interface portfolioFindById_PortfolioFindById_data_author {
   __typename: "User";
   _id: string;
@@ -1328,10 +1314,6 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: portfolioFindById_PortfolioFindById_data_author_profileImg | null;
 }
 
 export interface portfolioFindById_PortfolioFindById_data_thumb {
@@ -1443,11 +1425,6 @@ export interface portfolioList_PortfolioList_data_author_busiRegistration {
   owner: string;
 }
 
-export interface portfolioList_PortfolioList_data_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
 export interface portfolioList_PortfolioList_data_author {
   __typename: "User";
   _id: string;
@@ -1494,10 +1471,6 @@ export interface portfolioList_PortfolioList_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: portfolioList_PortfolioList_data_author_profileImg | null;
 }
 
 export interface portfolioList_PortfolioList_data_thumb {
@@ -1705,11 +1678,6 @@ export interface productDelete_ProductDelete_data_author_busiRegistration {
   owner: string;
 }
 
-export interface productDelete_ProductDelete_data_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
 export interface productDelete_ProductDelete_data_author {
   __typename: "User";
   _id: string;
@@ -1756,10 +1724,6 @@ export interface productDelete_ProductDelete_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: productDelete_ProductDelete_data_author_profileImg | null;
 }
 
 export interface productDelete_ProductDelete_data_category {
@@ -1816,7 +1780,7 @@ export interface productDelete_ProductDelete_data {
   startPoint: string;
   maxMember: number;
   minMember: number;
-  subTitle: string;
+  subTitle: string | null;
   adult_price: number;
   bookingCount: number;
   kids_price: number;
@@ -1907,11 +1871,6 @@ export interface productList_ProductList_data_author_busiRegistration {
   owner: string;
 }
 
-export interface productList_ProductList_data_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
 export interface productList_ProductList_data_author {
   __typename: "User";
   _id: string;
@@ -1958,10 +1917,6 @@ export interface productList_ProductList_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: productList_ProductList_data_author_profileImg | null;
 }
 
 export interface productList_ProductList_data_category {
@@ -2018,7 +1973,7 @@ export interface productList_ProductList_data {
   startPoint: string;
   maxMember: number;
   minMember: number;
-  subTitle: string;
+  subTitle: string | null;
   adult_price: number;
   bookingCount: number;
   kids_price: number;
@@ -2062,11 +2017,6 @@ export interface productFindById_ProductFindById_data_author_busiRegistration {
   name: string;
   uri: string;
   owner: string;
-}
-
-export interface productFindById_ProductFindById_data_author_profileImg {
-  __typename: "File";
-  uri: string;
 }
 
 export interface productFindById_ProductFindById_data_author {
@@ -2115,10 +2065,6 @@ export interface productFindById_ProductFindById_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: productFindById_ProductFindById_data_author_profileImg | null;
 }
 
 export interface productFindById_ProductFindById_data_category {
@@ -2221,7 +2167,7 @@ export interface productFindById_ProductFindById_data {
   startPoint: string;
   maxMember: number;
   minMember: number;
-  subTitle: string;
+  subTitle: string | null;
   adult_price: number;
   bookingCount: number;
   kids_price: number;
@@ -2357,11 +2303,6 @@ export interface getContext_GetProfile_data_busiRegistration {
   owner: string;
 }
 
-export interface getContext_GetProfile_data_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
 export interface getContext_GetProfile_data_bookings_product {
   __typename: "Product";
   _id: string;
@@ -2372,6 +2313,9 @@ export interface getContext_GetProfile_data_bookings_product {
 export interface getContext_GetProfile_data_bookings_payment {
   __typename: "Payment";
   Amt: number | null;
+  PayMethod: string | null;
+  CardNo: string | null;
+  AuthDate: string | null;
 }
 
 export interface getContext_GetProfile_data_bookings_seller {
@@ -2409,11 +2353,6 @@ export interface getContext_GetProfile_data_products_author_busiRegistration {
   name: string;
   uri: string;
   owner: string;
-}
-
-export interface getContext_GetProfile_data_products_author_profileImg {
-  __typename: "File";
-  uri: string;
 }
 
 export interface getContext_GetProfile_data_products_author {
@@ -2462,10 +2401,6 @@ export interface getContext_GetProfile_data_products_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: getContext_GetProfile_data_products_author_profileImg | null;
 }
 
 export interface getContext_GetProfile_data_products_category {
@@ -2528,7 +2463,7 @@ export interface getContext_GetProfile_data_products {
   startPoint: string;
   maxMember: number;
   minMember: number;
-  subTitle: string;
+  subTitle: string | null;
   adult_price: number;
   bookingCount: number;
   kids_price: number;
@@ -2587,10 +2522,6 @@ export interface getContext_GetProfile_data {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: getContext_GetProfile_data_profileImg | null;
   bookings: getContext_GetProfile_data_bookings[];
   products: getContext_GetProfile_data_products[];
 }
@@ -3183,11 +3114,6 @@ export interface userList_UserList_data_busiRegistration {
   owner: string;
 }
 
-export interface userList_UserList_data_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
 export interface userList_UserList_data {
   __typename: "User";
   _id: string;
@@ -3234,10 +3160,6 @@ export interface userList_UserList_data {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: userList_UserList_data_profileImg | null;
 }
 
 export interface userList_UserList {
@@ -3272,11 +3194,6 @@ export interface userFindById_UserFindById_data_busiRegistration {
   name: string;
   uri: string;
   owner: string;
-}
-
-export interface userFindById_UserFindById_data_profileImg {
-  __typename: "File";
-  uri: string;
 }
 
 export interface userFindById_UserFindById_data {
@@ -3325,10 +3242,6 @@ export interface userFindById_UserFindById_data {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: userFindById_UserFindById_data_profileImg | null;
 }
 
 export interface userFindById_UserFindById {
@@ -3360,11 +3273,6 @@ export interface FbookingByCode_product_author_busiRegistration {
   name: string;
   uri: string;
   owner: string;
-}
-
-export interface FbookingByCode_product_author_profileImg {
-  __typename: "File";
-  uri: string;
 }
 
 export interface FbookingByCode_product_author {
@@ -3413,10 +3321,6 @@ export interface FbookingByCode_product_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: FbookingByCode_product_author_profileImg | null;
 }
 
 export interface FbookingByCode_product_category {
@@ -3473,7 +3377,7 @@ export interface FbookingByCode_product {
   startPoint: string;
   maxMember: number;
   minMember: number;
-  subTitle: string;
+  subTitle: string | null;
   adult_price: number;
   bookingCount: number;
   kids_price: number;
@@ -3488,6 +3392,9 @@ export interface FbookingByCode_product {
 export interface FbookingByCode_payment {
   __typename: "Payment";
   Amt: number | null;
+  PayMethod: string | null;
+  CardNo: string | null;
+  AuthDate: string | null;
   ResultCode: string | null;
   ResultMsg: string | null;
   MID: string | null;
@@ -3498,14 +3405,11 @@ export interface FbookingByCode_payment {
   GoodsName: string | null;
   TID: string | null;
   AuthCode: string | null;
-  AuthDate: string | null;
-  PayMethod: string | null;
   CartData: string | null;
   Signature: string | null;
   MallReserved: string | null;
   CardCode: string | null;
   CardName: string | null;
-  CardNo: string | null;
   CardQuota: string | null;
   CardInterest: string | null;
   AcquCardCode: string | null;
@@ -3650,6 +3554,9 @@ export interface Fbooking_product {
 export interface Fbooking_payment {
   __typename: "Payment";
   Amt: number | null;
+  PayMethod: string | null;
+  CardNo: string | null;
+  AuthDate: string | null;
 }
 
 export interface Fbooking {
@@ -3689,11 +3596,6 @@ export interface Fuser_busiRegistration {
   name: string;
   uri: string;
   owner: string;
-}
-
-export interface Fuser_profileImg {
-  __typename: "File";
-  uri: string;
 }
 
 export interface Fuser {
@@ -3742,10 +3644,6 @@ export interface Fuser {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: Fuser_profileImg | null;
 }
 
 /* tslint:disable */
@@ -3762,11 +3660,6 @@ export interface Fportfolio_author_busiRegistration {
   name: string;
   uri: string;
   owner: string;
-}
-
-export interface Fportfolio_author_profileImg {
-  __typename: "File";
-  uri: string;
 }
 
 export interface Fportfolio_author {
@@ -3815,10 +3708,6 @@ export interface Fportfolio_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: Fportfolio_author_profileImg | null;
 }
 
 export interface Fportfolio_thumb {
@@ -3970,11 +3859,6 @@ export interface Fproduct_author_busiRegistration {
   owner: string;
 }
 
-export interface Fproduct_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
 export interface Fproduct_author {
   __typename: "User";
   _id: string;
@@ -4021,10 +3905,6 @@ export interface Fproduct_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: Fproduct_author_profileImg | null;
 }
 
 export interface Fproduct_category {
@@ -4081,7 +3961,7 @@ export interface Fproduct {
   startPoint: string;
   maxMember: number;
   minMember: number;
-  subTitle: string;
+  subTitle: string | null;
   adult_price: number;
   bookingCount: number;
   kids_price: number;
@@ -4164,11 +4044,6 @@ export interface Fnews_author_busiRegistration {
   owner: string;
 }
 
-export interface Fnews_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
 export interface Fnews_author {
   __typename: "User";
   _id: string;
@@ -4215,10 +4090,6 @@ export interface Fnews_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: Fnews_author_profileImg | null;
 }
 
 export interface Fnews_attachFiles {
@@ -4775,6 +4646,15 @@ export interface _BoardFilter {
 export interface _BookingFilter {
   AND?: _BookingFilter[] | null;
   OR?: _BookingFilter[] | null;
+  status_eq?: string | null;
+  status_not_eq?: string | null;
+  status_in?: string[] | null;
+  settleStatus_eq?: string | null;
+  settleStatus_not_eq?: string | null;
+  settleStatus_in?: string[] | null;
+  groupCode_eq?: string | null;
+  groupCode_not_eq?: string | null;
+  groupCode_in?: string[] | null;
   product_eq?: string | null;
   product_not_eq?: string | null;
   product_in?: string[] | null;
@@ -4907,18 +4787,15 @@ export interface _ProductFilter {
   categoryId_eq?: string | null;
   categoryId_not_eq?: string | null;
   categoryId_in?: string[] | null;
+  settlemtId_eq?: string | null;
+  settlemtId_not_eq?: string | null;
+  settlemtId_in?: string[] | null;
   address_eq?: string | null;
   address_not_eq?: string | null;
   address_contains?: string | null;
   address_not_contains?: string | null;
   address_in?: string[] | null;
   address_not_in?: string[] | null;
-  subTitle_eq?: string | null;
-  subTitle_not_eq?: string | null;
-  subTitle_contains?: string | null;
-  subTitle_not_contains?: string | null;
-  subTitle_in?: string[] | null;
-  subTitle_not_in?: string[] | null;
   type_eq?: ProductType | null;
   type_not_eq?: ProductType | null;
   type_in?: ProductType[] | null;
@@ -4941,6 +4818,12 @@ export interface _ProductFilter {
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
   keyWards_eq?: string | null;
   keyWards_not_eq?: string | null;
   keyWards_in?: string[] | null;

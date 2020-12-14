@@ -45,7 +45,7 @@ export const useBasketCount = ({
         setPrice(totalPrice)
     }, [count])
 
-    return { count, totalPrice, handleCount, setCount }
+    return { count, totalPrice, handleCount, setCount, setPrice }
 }
 
 
@@ -53,18 +53,13 @@ export interface IUseBasket {
     updateComponent: () => void;
     totalPrice: number;
     items: (IBasketItem & Fproduct)[];
+    getLoading: boolean
 }
 export const useBasket = () => {
     const { updateComponent } = useUpdate();
 
-    const removeUnMatchItem = (id: string) => {
-        alert("unExisst id catch")
-        removeItem(id);
-        updateComponent();
-    }
-
     const _items = getBracket() || [];
-    const ids = _items.map(i => i._id).filter(item => item);
+    const ids = _items.map(i => i._id);
 
     const { items: products, getLoading } = useProductList({
         initialFilter: {
@@ -72,14 +67,19 @@ export const useBasket = () => {
         }
     })
 
-    const items = getLoading ? [] : _items.map(item => {
-        const product = products?.find(p => p._id === item._id);
-        if (!product)
-            removeUnMatchItem(item._id);
-        return Object.assign(item, product);
-    })
+    const mappingItemWithProduct = (): any => {
+        return _items.map(item => {
+            const product = products?.find(p => p._id === item._id);
+            if (!product)
+                return null;
+            return Object.assign(item, product);
+        }).filter((item) => item);
+    }
+
+    const items: (IBasketItem & Fproduct)[] = getLoading ? [] : mappingItemWithProduct();
 
     const totalPrice = arraySum(items.map(item => item.price));
 
-    return { updateComponent, totalPrice, items }
+
+    return { updateComponent, totalPrice, items, getLoading }
 }

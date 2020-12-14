@@ -82,6 +82,9 @@ export const F_BOOKING = gql`
         }
         payment {
             Amt
+            PayMethod
+            CardNo
+            AuthDate
         }
         name
         email

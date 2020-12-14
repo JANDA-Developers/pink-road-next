@@ -16,6 +16,8 @@ import { getDefault, useTourWrite } from "../../../hook/useTourWrite";
 import { useProductFindById } from "../../../hook/useProduct";
 import { changeVal } from "../../../utils/eventValueExtracter";
 import PageLoading from "../../Loading";
+import { auth } from "../../../utils/with";
+import { ADMINS } from "../../../types/const";
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 interface IProp {
@@ -25,7 +27,7 @@ export const TourWrite: React.FC<IProp> = () => {
     const router = useRouter();
     const { query } = router;
     const id = query.id?.[0] as string | undefined;
-    const mode = id ? "create" : "edit";
+    const isCreateMode = id ? "edit" : "create";
     const { product, loading } = useProductFindById(id);
     const { categories } = useContext(AppContext);
     const {
@@ -80,8 +82,6 @@ export const TourWrite: React.FC<IProp> = () => {
         handleUploadClick
     } = handles;
     const [tab, setTab] = useState<number>(1);
-    const isCreateMode = mode === "create";
-
     const handleChangeOpen = (e: React.ChangeEvent<HTMLInputElement>) => {
         const bool = (e.currentTarget.value === "true")
         setSimpleData({
@@ -343,4 +343,4 @@ export const TourWrite: React.FC<IProp> = () => {
     </div>
 };
 
-export default TourWrite;
+export default auth(ADMINS)(TourWrite);

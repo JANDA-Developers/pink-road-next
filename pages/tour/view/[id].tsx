@@ -31,11 +31,18 @@ const TourDetail: React.FC = () => {
   const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
 
   const sliderRef = useRef<SLIDER>(null);
-  const { count, handleCount, totalPrice, setCount } = useBasketCount({
+  const { count, handleCount, totalPrice, setCount, setPrice } = useBasketCount({
     adult_price: product?.adult_price,
     baby_price: product?.baby_price,
-    kids_price: product?.kids_price
+    kids_price: product?.kids_price,
+    defaultCount: {
+      adult: 0,
+      baby: 0,
+      kids: 0
+    }
   });
+
+
   const [sliderIndex, setSlideIndex] = useState(0);
   const { scrollY } = useScroll();
   const tabOnCheck = tabCheck.bind(tabCheck, scrollY);
@@ -88,13 +95,13 @@ const TourDetail: React.FC = () => {
     }
   }
 
+  const handleDoPay = () => {
+    handleAddBracket()
+    router.push("/payment/")
+  }
+
   useEffect(() => {
     if (!product) return;
-    setCount({
-      adult: product.adult_price,
-      kids: product.kids_price,
-      baby: product.baby_price
-    })
   }, [product])
 
 
@@ -268,7 +275,7 @@ const TourDetail: React.FC = () => {
                   </a>
                 </div>
                 <div className="link02">
-                  <a href="/">
+                  <a onClick={handleDoPay}>
                     예약하기
                   </a>
                 </div>

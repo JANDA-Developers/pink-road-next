@@ -3,9 +3,9 @@ import {  bookingDelete, bookingDeleteVariables, bookingFindByCode, bookingFindB
 import { getRefetch } from "../utils/api";
 import { generateFindQuery, generateListQueryHook, generateMutationHook } from "../utils/query";
 
-export const useFindByCode = generateFindQuery<bookingFindByCode,bookingFindByCodeVariables,Fbooking>("code",BOOKING_FIND_BY_CODE)
+export const useBookingFindByCode = generateFindQuery<bookingFindByCode,bookingFindByCodeVariables,Fbooking>("code",BOOKING_FIND_BY_CODE)
 export const useBookingList = generateListQueryHook<_BookingFilter,_BookingSort,bookingList,bookingListVariables,Fbooking>(BOOKING_LIST,{defaultSort:[_BookingSort.createdAt_desc]});
-export const useBookingCreate = generateMutationHook<bookingsCreate,bookingsCreateVariables>(BOOKINGS_CREATE, {
+export const useBookingsCreate = generateMutationHook<bookingsCreate,bookingsCreateVariables>(BOOKINGS_CREATE, {
     ...getRefetch(BOOKING_LIST)
 });
 export const useBookingUpdate = generateMutationHook<bookingUpdate,bookingUpdateVariables>(BOOKING_UPDAET, {
