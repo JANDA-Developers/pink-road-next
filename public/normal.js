@@ -2,7 +2,7 @@
 
 $(window).scroll(function (e) {
     var scrollHeight = $(this).scrollTop();
-    if (scrollHeight < 670) {
+    if (scrollHeight < 500) {
         $("#gotop")
             .addClass("animationHide");
     } else {
