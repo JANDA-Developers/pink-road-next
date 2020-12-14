@@ -1,4 +1,4 @@
-import { MutationHookOptions, useMutation } from "@apollo/client";
+import { MutationHookOptions, useLazyQuery, useMutation } from "@apollo/client";
 import { getOperationName } from "@apollo/client/utilities";
 import { CATEGORY_DELETE, CATEGORY_LIST } from "../apollo/gql/category";
 import { categoryDelete, categoryDeleteVariables } from "../types/api";
@@ -10,6 +10,7 @@ import { DEFAULT_PAGE } from "../types/const";
 import { IListHook, ListInitOptions, useListQuery } from "./useListQuery";
 import { CATEGORY_UPDATE } from "../apollo/gql/category";
 import { getRefetch } from "../utils/api";
+import { useEffect } from "react";
 
 
 export const useCategoryDelete = (options?: MutationHookOptions<categoryDelete,categoryDeleteVariables>) => {
@@ -72,12 +73,16 @@ export interface IuseCategoryList  {
 export const useCategoryList = ({
     options = {}
 }:IuseItemListProp = {}):IuseCategoryList => {
-    const { data, loading:getLoading } = useQuery<categoryList>(CATEGORY_LIST, {
+    const [getData, { data, loading:getLoading }] = useLazyQuery<categoryList>(CATEGORY_LIST, {
         nextFetchPolicy: "cache-and-network",
         ...options
     })
     
     const items = data?.CategoryList.data || [];
+
+    useEffect(()=>{
+        getData();
+    },[])
     
     return {  getLoading, items }
 }

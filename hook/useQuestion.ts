@@ -7,8 +7,9 @@ import { QueryHookOptions, useQuery } from "@apollo/client"
 import { QUESTION_FIND_BY_ID } from "../apollo/gql/question";
 import { Fpage, Fquestion, questionList, questionListVariables, _PortfolioSort, _QuestionFilter, _QuestionSort } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
-import { IListHook, ListInitOptions, useListQuery } from "./useListQuery";
+import { IListHook, useListQuery } from "./useListQuery";
 import { questionUpdate, questionUpdateVariables } from "../types/api";
+import { IlistQueryInit } from "../types/interface";
 
 export const useQuestionDelete = (options?: MutationHookOptions<questionDelete,questionDeleteVariables>) => {
     const [questionUpdateMu, { loading: deleteLoading }] = useMutation<questionDelete, questionDeleteVariables>(QUESTION_DELETE, {
@@ -61,10 +62,7 @@ export const useQuestionFindById = (id?:string, {
     return { question, loading }
 }
 
-interface IuseItemListProp extends Partial<ListInitOptions<_QuestionFilter, _QuestionSort>> {
-    options?: QueryHookOptions<questionList, questionListVariables>
-}
-
+interface IuseItemListProp extends IlistQueryInit<_QuestionFilter, _QuestionSort,questionList, questionListVariables> {}
 export interface IUseQuestionList extends IListHook<_QuestionFilter, _QuestionSort> {
     items: Fquestion[];
     getLoading: boolean;
@@ -80,7 +78,7 @@ export const useQuestionList = ({
     options = {}
 }:IuseItemListProp = {}):IUseQuestionList => {
     const { variables: overrideVariables, ...ops } = options;
-    const {filter,integratedVariable,setFilter,setPage,setSort,setViewCount,sort,viewCount} = useListQuery({
+    const {integratedVariable,...useList} = useListQuery({
         initialFilter,
         initialPageIndex,
         initialSort,
@@ -98,7 +96,7 @@ export const useQuestionList = ({
     const items = data?.QuestionList.data || [];
     const pageInfo = data?.QuestionList.page || DEFAULT_PAGE;
     
-    return { pageInfo, filter, setPage, getLoading, setFilter, setSort, setViewCount, sort, viewCount, items }
+    return { pageInfo, getLoading, items, ...useList }
 }
 
 

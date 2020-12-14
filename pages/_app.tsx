@@ -12,8 +12,8 @@ import Toast from '../components/toast/Toast';
 import { GET_CONTEXT } from '../apollo/gql/queries';
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from '../apollo/gql/mutations';
 import { bracketVergionChange } from '../utils/Storage';
-import { AppProps } from 'next/dist/next-server/lib/router/router';
 import Page404 from './404';
+
 dayjs.locale('ko')
 
 export type TContext = {

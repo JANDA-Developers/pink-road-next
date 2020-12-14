@@ -2,16 +2,20 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { BoardView } from "components/board/View";
 import { Fquestion } from 'types/api';
-import Page404 from 'pages/404';
 import { useQuestionDelete, useQuestionFindById } from '../../../hook/useQuestion';
+import PageLoading from '../../Loading';
+import Page404 from '../../404';
 
 interface IProp {
-    item: Fquestion
 }
 
-export const QuestionDetail: React.FC<IProp> = ({ item }) => {
+export const QuestionDetail: React.FC<IProp> = () => {
     const router = useRouter();
-    const { title, thumb, createdAt, contents, subTitle, _id } = item;
+    const id = router.query.id as string;
+    const { question, loading } = useQuestionFindById(id);
+    if (loading) return <PageLoading />
+    if (!question) return <Page404 />
+    const { title, thumb, createdAt, contents, subTitle, _id } = question;
 
     const toDetail = () => {
         router.push(`/qna/write/${_id}`)
@@ -48,15 +52,4 @@ export const QuestionDetail: React.FC<IProp> = ({ item }) => {
 };
 
 
-export const QuestionDetailWrap: React.FC<IProp> = () => {
-    const { query } = useRouter()
-    const id = query.id as string;
-    const { question, loading } = useQuestionFindById(id)
-
-    if (loading) return null;
-    if (!question) return <Page404 />;
-
-    return <QuestionDetail item={question} />
-}
-
-export default QuestionDetailWrap;
+export default QuestionDetail;

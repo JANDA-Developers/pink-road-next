@@ -4,15 +4,28 @@ import SubTopNav from 'layout/components/SubTop';
 import { ProductPhotoBlock } from '../../components/list/ProductPhoto';
 import BoardList from '../../components/board/List';
 import { ProductListBlock } from '../../components/list/ProductList';
-import { ITourListWrapContext, TourListWrap } from '../../components/hoc/TourListWrap';
+import { useProductList } from '../../hook/useProduct';
+import { getTypeFilterByUrl, checkIsExp } from '../../utils/product';
+import { useCategoryList } from '../../hook/useCategory';
 
-interface IProp {
-    context: ITourListWrapContext;
-}
+interface IProp { }
 
-export const TourList: React.FC<IProp> = ({ context }) => {
+export const TourList: React.FC<IProp> = () => {
+    const isExp = checkIsExp()
+    const { initialFilter } = getTypeFilterByUrl(isExp);
+    const { items: cats } = useCategoryList();
     const [view, setView] = useState<"line" | "gal">("line");
-    const { isExp, items, pageInfo, setFilter, setSort, sort, filter, viewCount, setViewCount, cats, setPage } = context;
+    const {
+        items,
+        pageInfo,
+        setFilter,
+        setSort,
+        sort,
+        filter,
+        viewCount,
+        setViewCount,
+        setPage
+    } = useProductList({ initialFilter });
     const { totalCount } = pageInfo;
 
     const router = useRouter();
@@ -73,4 +86,4 @@ export const TourList: React.FC<IProp> = ({ context }) => {
 
 };
 
-export default TourListWrap(TourList);
+export default TourList;

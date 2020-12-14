@@ -11,12 +11,11 @@ import { useRouter } from 'next/router';
 
 
 interface IProp {
-    context: INewsContext
 }
 
-export const News: React.FC<IProp> = ({ context }) => {
+export const News: React.FC<IProp> = ({ }) => {
     const [view, setView] = useState<"line" | "gal">("line");
-    const { setSort, sort, filter, setFilter, pageInfo, viewCount, setViewCount, items: news } = context;
+    const { setSort, sort, filter, setPage, setFilter, pageInfo, viewCount, setViewCount, items: news } = useNewsList();
     const { totalCount } = pageInfo;
     const router = useRouter();
     const type = filter.type_eq;
@@ -41,6 +40,7 @@ export const News: React.FC<IProp> = ({ context }) => {
             <li className="homedeps2"><a href="../sub/experience_list.html">상품리스트</a></li>
         </SubTopNav>
         <BoardList
+            setPage={setPage}
             Categories={
                 <div id="sub_tap_nav" className="subtop_nav">
                     <ul>
@@ -108,27 +108,4 @@ export const News: React.FC<IProp> = ({ context }) => {
     </div>
 };
 
-interface INewsContext extends IUseNewsList { }
-
-const NewsWrap = () => {
-    const initType = getFromUrl("type")?.toUpperCase() || NEWS_TYPE.MEDIA;
-    const newListHook = useNewsList({
-        initialFilter: {
-            type_eq: initType
-        }
-    })
-
-    useEffect(() => {
-        newListHook.setFilter({
-            type_eq: initType
-        })
-
-    }, [initType])
-
-
-    const context: INewsContext = { ...newListHook };
-    return <News context={context} />
-
-}
-
-export default NewsWrap;
+export default News;

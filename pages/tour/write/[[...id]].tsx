@@ -5,37 +5,44 @@ import { initStorage } from '../../../utils/Storage';
 import "react-day-picker/lib/style.css";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
-import { ProductCreate, ProductCreateInput, ProductCreateVariables, ProductStatus, ProductType, ProductUpdateInput, } from '../../../types/api';
-import { useMutation } from '@apollo/client';
+import { ProductStatus, ProductType } from '../../../types/api';
 import DayRangePicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
 import { ItineryForm } from "components/tourWrite/ItineryForm";
-import { IproductFindById } from "types/interface";
 import { AppContext } from "pages/_app";
-import { TDeleteFn } from "pages/portfolio/write/[[...id]]";
-import Page404 from "pages/404";
 import { tapCheck } from "../../../utils/style";
 import TagInput from "../../../components/tagInput/TagInput";
 import { getDefault, useTourWrite } from "../../../hook/useTourWrite";
-import { useProductDelete, useProductFindById, useProductUpdate } from "../../../hook/useProduct";
-import { PRODUCTS_CREATE } from "../../../apollo/gql/product";
+import { useProductFindById } from "../../../hook/useProduct";
 import { changeVal } from "../../../utils/eventValueExtracter";
+import PageLoading from "../../Loading";
+
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 interface IProp {
-    context: ITourWriteWrapContext;
 }
 
-export const TourWrite: React.FC<IProp> = ({ context }) => {
+export const TourWrite: React.FC<IProp> = () => {
     const router = useRouter();
+    const { query } = router;
+    const id = query.id?.[0] as string | undefined;
+    const mode = id ? "create" : "edit";
+    const { product, loading } = useProductFindById(id);
     const { categories } = useContext(AppContext);
-    const { createFn, updateFn, deleteFn, product, mode } = context;
     const {
         tourSets, tourData,
         loadKey, validater: { validate },
         handles, firstDate,
         getCreateInput, getUpdateInput,
+        setTourData, mutations,
         hiddenFileInput, lastDate,
     } = useTourWrite(getDefault(product));
+
+    useEffect(() => {
+        setTourData(getDefault(product))
+    }, [product])
+
+
+    const { createFn, deleteFn, updateFn } = mutations;
     const { categoryId, its, simpleData, status, thumbs, keyWards, type } = tourData;
     const {
         setkeyWards,
@@ -120,6 +127,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
         initStorage()
     }, [])
 
+    if (loading) return <PageLoading />
     return <div key={loadKey} className="tour_box w100 board_write">
         <SubTopNav children={
             <>
@@ -255,7 +263,7 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
                     <div className="title">공개/비공개</div>
                     <div className="input_form">
                         <ul>
-                            <li><input onChange={handleChangeOpen} type="radio" name="isOpen" id="status-open" value={"true"} checked={isOpen} className="radio" /><label htmlFor="status-open">공개</label></li>
+                            <li><input onChange={handleChangeOpen} type="radio" name="isOpen" id="status-open" value={"true"} checked={!!isOpen} className="radio" /><label htmlFor="status-open">공개</label></li>
                             <li><input onChange={handleChangeOpen} type="radio" name="isOpen" id="status-sold" value={"false"} checked={!isOpen} className="radio" /><label htmlFor="status-sold">비공개</label></li>
                         </ul>
                     </div>
@@ -335,105 +343,4 @@ export const TourWrite: React.FC<IProp> = ({ context }) => {
     </div>
 };
 
-
-
-type TCreateFn = (params: ProductCreateInput) => void;
-type TUpdateFn = (_id: string, params: ProductUpdateInput) => void;
-interface IProp {
-    isExperience?: boolean;
-    mode?: "edit" | "create"
-}
-
-interface ITourWriteWrapContext {
-    createFn: TCreateFn;
-    updateFn: TUpdateFn;
-    deleteFn: TDeleteFn;
-    product?: IproductFindById;
-    findLoading: boolean;
-    createLoading: boolean;
-    mode: "create" | "edit"
-}
-
-//수정하고 나면 수정한 내용을 그대로 덮어버리면 안됨. 핑크로드의 승인이 필요함.
-export const TourWriteWrap: React.FC<IProp> = () => {
-    const { isManager } = useContext(AppContext);
-    const router = useRouter(); // => 넥스트에서는 변경
-    const { query } = router;
-
-    const id = query.id?.[0] as string | undefined;
-    const { productDelete, deleteLoading } = useProductDelete({
-        onCompleted: ({
-            ProductDelete
-        }) => {
-            if (ProductDelete.ok)
-                router.push("/tour/list")
-
-        }
-    })
-    const { productUpdate, updateLoading } = useProductUpdate({
-        onCompleted: ({ ProductUpdate }) => {
-            router.push(`/tour/view/${ProductUpdate?.data?._id}`)
-        }
-    })
-
-    const [ProductCreateMu, { loading: createLoading }] = useMutation<ProductCreate, ProductCreateVariables>(PRODUCTS_CREATE, {
-        onCompleted: ({ ProductCreate }) => {
-            if (ProductCreate.ok)
-                router.push(`/tour/view/${ProductCreate!.data!._id}`)
-        }
-    })
-
-    const { product, loading: findLoading } = useProductFindById({
-        variables: {
-            _id: id!
-        },
-        skip: !id
-    })
-
-    const createFn: TCreateFn = (params: ProductCreateInput) => {
-        ProductCreateMu({
-            variables: {
-                params
-            },
-        })
-    }
-
-    const updateFn: TUpdateFn = (_id, params) => {
-        productUpdate({
-            _id,
-            params: {
-                ...params,
-            }
-        })
-    }
-
-    const deleteFn: TDeleteFn = (id) => {
-        productDelete({
-            id
-        })
-    }
-
-    const unexistId = !findLoading && id && !product;
-
-    if (findLoading) return null;
-    if (unexistId) return <Page404 />
-    if (!isManager) {
-        return <Page404 />
-    }
-
-    const context: ITourWriteWrapContext = {
-        createFn,
-        updateFn,
-        deleteFn,
-        product,
-        findLoading,
-        createLoading,
-        mode: !id ? "create" : "edit"
-    }
-
-
-    return <TourWrite context={context} />;
-};
-
-
-export default TourWriteWrap;
+export default TourWrite;

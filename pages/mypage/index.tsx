@@ -19,6 +19,7 @@ import { GET_CONTEXT } from '../../apollo/gql/queries';
 import { getOperationName } from '@apollo/client/utilities';
 import { LastMonthBooking } from '../../components/static/LastMonthBooking';
 import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
+import { useBookingList } from '../../hook/useBooking';
 
 let SEND_LIMIT = 3;
 interface IProp { }
@@ -30,6 +31,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const { verifyComplete, verify } = useVerification();
     const [code, setCode] = useState("");
     const [nextPhoneNum, setNextPhoneNum] = useState("");
+
 
     const { data,
         setData,
@@ -535,4 +537,4 @@ export const MyPageProfile: React.FC<IProp> = () => {
 
 
 
-export default auth(MyPageProfile)(ONLY_LOGINED);
+export default auth(ONLY_LOGINED)(MyPageProfile);

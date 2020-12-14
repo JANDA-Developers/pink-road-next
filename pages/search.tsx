@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Paginater } from '../components/common/Paginator';
 import { DayPickerModal } from '../components/dayPickerModal/DayPickerModal';
 import { ProductPhotoBlock } from '../components/list/ProductPhoto';
-import { IuseProductList, useProductList } from '../hook/useProduct';
+import { useProductList } from '../hook/useProduct';
 import isEmpty from '../utils/isEmpty';
 import dayjs from "dayjs";
 import { filterToRange, rangeToFilter } from '../utils/filter';
@@ -14,14 +14,18 @@ import SubTopNav from '../layout/components/SubTop';
 import { integratedProductSearch } from '../utils/genFilter';
 import SortSelect from '../components/common/SortMethod';
 import { ProductType } from '../types/api';
+import { whenEnter } from '../utils/eventValueExtracter';
+import { getFromUrl } from '../utils/url';
 
-interface IProp {
-    context: ISearchContext
-    defaultSearch: string
-}
+interface IProp { }
 
-export const Search: React.FC<IProp> = ({ context, defaultSearch }) => {
-    const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = context;
+export const Search: React.FC<IProp> = () => {
+    const defaultSearch = getFromUrl("search") || "";
+    const initialFilter = {
+        initialFilter: integratedProductSearch(defaultSearch)
+    }
+    const productListHook = useProductList(initialFilter)
+    const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = productListHook;
     const [view, setView] = useState<"line" | "gal">("line");
     const [search, setSearch] = useState(defaultSearch);
     const { totalCount } = pageInfo;
@@ -193,18 +197,3 @@ export const Search: React.FC<IProp> = ({ context, defaultSearch }) => {
     </div>
 }
 
-
-interface ISearchContext extends IuseProductList { }
-
-const SearchWrap = () => {
-    const defaultSearch = getFromUrl("search") || "";
-    const productListHook = useProductList({
-        initialFilter: integratedProductSearch(defaultSearch)
-    })
-
-    return <Search defaultSearch={defaultSearch} context={productListHook} />
-}
-
-
-
-export default SearchWrap

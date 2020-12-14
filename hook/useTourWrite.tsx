@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { RefObject, useRef, useState } from "react";
 import { generateitinery, TRange } from "../components/tourWrite/helper";
-import { Ffile, ItineraryCreateInput, ProductCreateInput, ProductStatus, ProductType, ProductUpdateInput } from "../types/api";
+import { Ffile, ItineraryCreateInput, ProductCreate, ProductCreateInput, ProductCreateVariables, ProductStatus, ProductType, ProductUpdateInput } from "../types/api";
 import { IproductFindById, ISet } from "../types/interface";
 import isEmpty from "../utils/isEmpty";
 import { omits } from "../utils/omit";
@@ -10,6 +10,10 @@ import { toNumber } from "../utils/toNumber";
 import { Validater } from "../utils/validate";
 import { useUpload } from "./useUpload";
 import { autoComma, deepCopy } from "../utils/formatter";
+import { useProductDelete, useProductUpdate } from "./useProduct";
+import { useMutation } from "@apollo/client";
+import { PRODUCTS_CREATE } from "../apollo/gql/product";
+import { useRouter } from "next/router";
 
 type SimpleTypePart = "isOpen" | "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "contents" | "inOrNor" | "isNotice"
 export type TSimpleTypePart = Pick<Required<ProductCreateInput>, SimpleTypePart>
@@ -75,6 +79,11 @@ export interface IUseTour {
     loadKey: number;
     firstDate?: Date;
     lastDate?: Date;
+    mutations: {
+        createFn: (params: ProductCreateInput) => void;
+        updateFn: (_id: string, params: ProductUpdateInput) => void;
+        deleteFn: (id: string) => void;
+    }
     getCreateInput: () => ProductCreateInput;
     getUpdateInput: () => ProductUpdateInput;
     hiddenFileInput: RefObject<HTMLInputElement>
@@ -106,6 +115,61 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const [loadKey, setLoadKey] = useState<number>(0);
     const hiddenFileInput = useRef<HTMLInputElement>(null);
     const { signleUpload } = useUpload();
+    const router = useRouter();
+
+    const { productDelete, deleteLoading } = useProductDelete({
+        onCompleted: ({
+            ProductDelete
+        }) => {
+            if (ProductDelete.ok)
+                router.push("/tour/list")
+
+        }
+    })
+
+    const { productUpdate, updateLoading } = useProductUpdate({
+        onCompleted: ({ ProductUpdate }) => {
+            router.push(`/tour/view/${ProductUpdate?.data?._id}`)
+        }
+    })
+
+    const [ProductCreateMu, { loading: createLoading }] = useMutation<ProductCreate, ProductCreateVariables>(PRODUCTS_CREATE, {
+        onCompleted: ({ ProductCreate }) => {
+            if (ProductCreate.ok)
+                router.push(`/tour/view/${ProductCreate!.data!._id}`)
+        }
+    })
+
+    const createFn = (params: ProductCreateInput) => {
+        ProductCreateMu({
+            variables: {
+                params
+            },
+        })
+    }
+
+    const updateFn = (_id: string, params: ProductUpdateInput) => {
+        productUpdate({
+            _id,
+            params: {
+                ...params,
+            }
+        })
+    }
+
+    const deleteFn = (id: string) => {
+        if (confirm("정말로 상품을 삭제 하시겠습니가?"))
+            productDelete({
+                id
+            })
+    }
+
+    const mutations = {
+        createFn,
+        updateFn,
+        deleteFn
+    }
+
 
     const validater = new Validater([{
         value: thumbs?.[0]?.uri,
@@ -157,6 +221,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         categoryId,
         its,
         keyWards,
+        type,
         simpleData,
         status,
         thumbs
@@ -335,6 +400,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         getCreateInput,
         getUpdateInput,
         lastDate,
+        mutations,
         handles: {
             handleLoad,
             handleTextData,
@@ -346,7 +412,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             handleChangeSumbNail,
             handleClearThumb,
             handleDateState,
-            handleInputCommaChange
+            handleInputCommaChange,
         }
     }
 }
@@ -374,6 +440,7 @@ export const getDefault = (product: IproductFindById | undefined): Partial<IUseT
         status,
         subTitle,
         title,
+        isOpen
     } = product;
 
     const simpleData: TSimpleTypePart = {
@@ -391,6 +458,7 @@ export const getDefault = (product: IproductFindById | undefined): Partial<IUseT
         startPoint,
         subTitle,
         title,
+        isOpen
     }
 
     return {
@@ -400,7 +468,7 @@ export const getDefault = (product: IproductFindById | undefined): Partial<IUseT
         keyWards: keyWards || [],
         simpleData,
         status,
-        thumbs
+        thumbs,
     }
 
 }

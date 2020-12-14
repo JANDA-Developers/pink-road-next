@@ -52,7 +52,7 @@ export const ProductSearcher: React.FC<IProp> = ({ productListHook, onSelectProd
 
 
 const ProductSearcherWrap = (props: Pick<IProp, "onSelectProduct">) => {
-    const productListHook = useProductList({ initialFilter: { title_contains: "____" } });
+    const productListHook = useProductList();
     return <ProductSearcher  {...props} productListHook={productListHook} />
 }
 

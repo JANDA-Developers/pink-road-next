@@ -1,4 +1,5 @@
 import { Fproduct, ProductType } from "../types/api"
+import { getFromUrl } from "./url";
 
 export const getTypeTextOfProduct = (product:Fproduct) => {
     const len = product.itinerary.length;
@@ -27,3 +28,11 @@ export const getRangeString = (product:Fproduct) => {
     return rangeString;
 }
 
+
+
+export const checkIsExp = () => getFromUrl("exp") === "ture";
+export const getTypeFilterByUrl = (isExp:boolean) => {
+    const typeFilter = isExp ? ProductType.EXPERIENCE : ProductType.TOUR;
+    const productFilter = { initialFilter: { type_eq: typeFilter } };
+    return productFilter
+}

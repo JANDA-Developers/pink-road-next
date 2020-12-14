@@ -9,22 +9,17 @@ import { ViewCount } from '../../components/common/ViewCount';
 import { LastMonthBooking } from '../../components/static/LastMonthBooking';
 import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
 import { ThisMonthPayAmt } from '../../components/static/ThisMonthPayAmt';
-import { IuseBookingList, useBookingList } from '../../hook/useBookingList';
-import { usePaymentList } from '../../hook/usePayment';
-import { useProductList } from '../../hook/useProduct';
-import { UserRole } from '../../types/api';
+import { IuseBookingList, useBookingList } from '../../hook/useBooking';
 import { ALLOW_SELLERS } from '../../types/const';
 import { autoHypenPhone } from '../../utils/formatter';
-import { auth } from '../../utils/with';
-import PageLoading from '../Loading';
-import { AppContext } from '../_app';
+import { auth, compose } from '../../utils/with';
 
-interface IProp {
-    context: IMySettlementWrapContext
-}
+interface IProp { }
 
-export const MySettlement: React.FC<IProp> = ({ context }) => {
-    const { items, filter, getLoading, pageInfo, setFilter, setPage, setSort, setViewCount, sort, viewCount } = context;
+export const MySettlement: React.FC<IProp> = ({ }) => {
+    const {
+        items, filter, getLoading, pageInfo, setFilter, setPage, setSort, setViewCount, sort, viewCount
+    } = useBookingList();
 
     return <MypageLayout>
         <div className="in mypage_purchase">
@@ -312,30 +307,9 @@ export const MySettlement: React.FC<IProp> = ({ context }) => {
                 </div>
             </div>
         </div>
-        <div id="fade" className="fade" style={{ display: 'block;' }}></div>
-
     </MypageLayout>
 };
 
 
-interface IMySettlementWrapContext extends IuseBookingList {
-    // paymentListHook: IusePaymentList
-}
 
-export const MySettlementWrap = () => {
-    const { myProfile } = useContext(AppContext);
-    const _id = myProfile?._id;
-    const paymentListHook = usePaymentList();
-    const bookingListHook = useBookingList({
-        initialFilter: {
-            seller_eq: _id
-        }
-    })
-
-    const context = bookingListHook;
-    if (context.getLoading) return <PageLoading />
-
-    return <MySettlement context={context} />
-}
-
-export default auth(MySettlementWrap)(ALLOW_SELLERS);
+export default auth(ALLOW_SELLERS)(MySettlement)

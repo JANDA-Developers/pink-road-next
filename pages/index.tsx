@@ -7,68 +7,19 @@ import { Upload } from 'components/common/Upload';
 import Link from 'next/link';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { usePageInfo } from 'hook/usePageInfo';
-import { IuseProductList, useProductList } from 'hook/useProduct';
+import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
+import { getStaticPageInfo } from '../utils/page';
+import { useBookingList } from '../hook/useBooking';
 
-const DummyPhoto = [{
-  category: "문화/예술",
-  subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
-  title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
-}, {
-  category: "문화/예술",
-  subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
-  title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
-}, {
-  category: "문화/예술",
-  subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
-  title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
-}, {
-  category: "문화/예술",
-  subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
-  title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
-}, {
-  category: "문화/예술",
-  subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
-  title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
-}, {
-  category: "문화/예술",
-  subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
-  title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
-}, {
-  category: "문화/예술",
-  subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
-  title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
-}, {
-  category: "문화/예술",
-  subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
-  title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
-}, {
-  category: "문화/예술",
-  subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
-  title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
-}, {
-  category: "문화/예술",
-  subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
-  title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
-}, {
-  category: "문화/예술",
-  subTitle: "더운날 수목원으로 오세요~!!!!!!!!!!!!!!",
-  title: "골목길따가 추억을 걷는 여행!!!!!!!!!!!!!!!!!!!!!!"
-}];
-
-
-interface IProps {
-  context: IMainWrapContext
-}
-export const Main: React.FC<IProps> = ({ context }) => {
-  const { items, sitePageInfo } = context;
+export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+  const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
   const { editMode } = useContext(AppContext);
-  const original = sitePageInfo || pageInfoDefault;
+  const original = pageInfo || pageInfoDefault;
   const [page, setPage] = useState(original);
   const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPage)
-  const [model, setModel] = useState();
   const router = useRouter()
+  const bookingListHook = useBookingList();
 
 
   const toProductBoard = (id: string) => {
@@ -205,29 +156,7 @@ export const Main: React.FC<IProps> = ({ context }) => {
 
 
 interface IGetProps {
-  sitePageInfo: typeof pageInfoDefault | "",
+  pageInfo: typeof pageInfoDefault | "",
 }
-export const getStaticProps: GetStaticProps<IGetProps> = async (context) => {
-  const { data } = await usePageInfo("main");
-  return {
-    revalidate: 1,
-    props: {
-      sitePageInfo: data?.value || "",
-    }, // will be passed to the page component as props
-  }
-}
-
-interface IMainWrapContext extends IuseProductList, IGetProps {
-}
-
-const MainWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ sitePageInfo }) => {
-  const productList = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
-  const context: IMainWrapContext = {
-    ...productList,
-    sitePageInfo
-  }
-
-  return <Main context={context} />
-}
-
-export default MainWrap;
+export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("tourMain");
+export default Main;

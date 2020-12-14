@@ -18,7 +18,7 @@ interface IProp {
 }
 
 export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
-    const { boards, loading, setFilter, setSort, sort, filter } = boardWrapContext;
+    const { boards = [], loading, setFilter, setSort, sort, filter } = boardWrapContext;
     const [view, setView] = useState(4);
     const paging = generateClientPaging(boards || [], view);
 
@@ -165,4 +165,4 @@ export const MypageBoardWrap = () => {
     return <MyPageBoard boardWrapContext={mypageBoardWrapContext} />
 }
 
-export default auth(MypageBoardWrap)(ONLY_LOGINED);
+export default auth(ONLY_LOGINED)(MypageBoardWrap);

@@ -2,24 +2,6 @@ import React from "react";
 import $ from "jquery"
 import { ISet, TStieInfo } from "types/interface";
 
-// export const getSelection = () => window.getSelection();
-
-// export const haveSelection = () => {
-//     if (!window) throw Error("window is not exist")
-//     return !!getSelection();
-// }
-
-// export const getSelectionText = () => {
-//     if (!window) throw Error("window is not exist")
-//     var text = "";
-//     const selected = getSelection();
-//     if (selected) {
-//         text = selected.toString();
-//     }
-//     return text;
-// }
-
-
 const keyDownUlManage = (e: any,) => {
     var $this = $(e.currentTarget);
     if (!$this.html()) {
@@ -158,41 +140,3 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
     return { edit, ulEdit, imgEdit, editArray, addArray, removeArray, bg }
 }
-
-
-
-
-// export const onKeyPress = (e: React.KeyboardEvent<HTMLHeadingElement>) => {
-//     e.persist();
-//     const text = e.currentTarget.textContent;
-
-//     if(haveSelection()) {
-//         // 내용을 덮음
-//     } else {
-//         // 내용을 커서 기준으로 추가
-
-//         // 삭제일경우
-//         if(false) {
-//             // 커서 기준으로 뒤에있는 것을 제거함
-//         }
-//     }
-
-// }
-
-// // export const selectWord = (e) => {
-// //     let s = window.getSelection();
-// //     var range = s.getRangeAt(0);
-// //     var node = s.anchorNode;
-// //     while (range.toString().indexOf(' ') != 0) {
-// //         range.setStart(node, (range.startOffset - 1));
-// //     }
-// //     range.setStart(node, range.startOffset + 1);
-// //     do {
-// //         range.setEnd(node, range.endOffset + 1);
-
-// //     } while (range.toString().indexOf(' ') == -1 && range.toString().trim() != '' && range.endOffset < node.length);
-// //     var str = range.toString().trim();
-// //     alert(str);
-// // };
-
-

@@ -7,24 +7,14 @@ import { Upload } from 'components/common/Upload';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
 import { UserRole } from 'types/api';
+import { getStaticPageInfo } from '../utils/page';
 
 type TGetProps = {
     pageInfo: typeof pageInfoDefault | "",
 }
-export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
-    const { data } = await usePageInfo("site-info");
-    return {
-        revalidate: 1,
-        props: {
-            pageInfo: data?.value || "",
-        }, // will be passed to the page component as props
-    }
-}
 
+export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("site-info");
 export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
-    console.log("!!!pageInfo")
-    console.log("!!!pageInfo")
-    console.log(pageInfo)
     const original = pageInfo || pageInfoDefault;
     const { editMode, role } = useContext(AppContext)
     const [page, setPage] = useState<typeof pageInfoDefault>(original)
@@ -241,7 +231,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <span {...edit("pink_supporter_sub")} />
                 </h4>
                 <ul>
-                    {partners.kr.map((partner, index) => {
+                    {partners.kr.map((partner: any, index: number) => {
                         const { alt, img, link } = partner;
                         return <li key={index + "partner"}>
                             <a href={editMode ? undefined : link}>
@@ -297,16 +287,6 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             <input />
             <input onChange={() => { }} value={addInfo.link} />
         </div>}
-
-
-
-
-
-
-
-
-
-
         {/* popup은 언제나 class fade와 함께 있어야 한다. */}
         <div className="popup_bg_mini" style={{ display: 'none' }}>
             <a className="close_icon"><i className="flaticon-multiply" /></a>
@@ -324,12 +304,6 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             </div>
         </div>
         <div className="fade"></div>
-
-
-
-
-
-
     </div>;
 };
 

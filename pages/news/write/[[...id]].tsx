@@ -1,18 +1,13 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
-import {
-    NewsCreateInput,
-    NewsUpdateInput,
-    NEWS_TYPE,
-    Fnews
-} from '../../../types/api';
 import { BoardWrite } from "components/board/Write";
 import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
 import { omits } from "../../../utils/omit";
-import { useNewsCreate, useNewsDelete, useNewsUpdate, useNewsFindById } from "../../../hook/useNews";
-import { auth } from "../../../utils/with";
+import { auth, compose } from "../../../utils/with";
 import { ONLY_LOGINED } from "../../../types/const";
+import { Fnews, NEWS_TYPE } from '../../../types/api';
+import { useNewsCreate, useNewsDelete, useNewsUpdate } from "../../../hook/useNews";
 
 const categoryOps = [{
     label: "여행이야기",
@@ -27,41 +22,87 @@ const categoryOps = [{
     _id: NEWS_TYPE.CULTURE
 }]
 interface IProp {
-    // type: NEWS_TYPE;
-    context: ITourWriteWrapContext;
+    news: Fnews
 }
 
-export const NewsWrite: React.FC<IProp> = ({ context }) => {
+export const NewsWrite: React.FC<IProp> = ({ news }) => {
+    const id = news._id
     const router = useRouter();
-    const { createFn, news, mode, updateFn, id, deleteFn } = context;;
+    const mode = id ? "create" : "edit";
+
+    const goToView = (id: string) => {
+        router.push(`/news/view/${id}`)
+    }
+
+    const { newsUpdate } = useNewsUpdate({
+        awaitRefetchQueries: true,
+        onCompleted: ({ NewsUpdate }) => {
+            if (NewsUpdate.ok) {
+                const id = NewsUpdate.data!._id;
+                goToView(id)
+            }
+        },
+    })
+
+    const { newsCreate } = useNewsCreate({
+        awaitRefetchQueries: true,
+        onCompleted: ({ NewsCreate }) => {
+            if (NewsCreate.ok) {
+                const id = NewsCreate.data!._id;
+                goToView(id)
+            }
+        },
+    })
+
+    const { newsDelete } = useNewsDelete({
+        onCompleted: ({ NewsDelete }) => {
+            if (NewsDelete.ok)
+                router.push(`/news`)
+        },
+    })
+
     const boardHook = useBoard({
         ...news,
-        categoryId: news.type
+        categoryId: news?.type
     });
+
     const { boardData, loadKey, loadKeyAdd, setBoardData, validater: { validate } } = boardHook
 
-
     const handleUpdate = () => {
-        if (validate())
-            updateFn(id!, {
-                ...boardData,
-                type: boardData.categoryId as NEWS_TYPE
-            })
+        if (!validate()) return;
+
+        const params = {
+            ...boardData,
+            type: boardData.categoryId as NEWS_TYPE
+        }
+
+        newsUpdate({
+            params: omits(params, ["categoryId", "files"]),
+            id
+        })
     }
 
     const handleDelete = () => {
-        deleteFn(id!);
+        if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
+            newsDelete({
+                id
+            })
     }
 
     const handleCreate = () => {
-        if (validate()) {
-            const next = omits({
-                ...boardData,
-                content: boardData.contents,
-                type: boardData.categoryId as NEWS_TYPE
-            }, ["contents", "categoryId"])
-            createFn(next)
+        if (!validate()) return;
+
+        const createParams = {
+            ...boardData,
+            content: boardData.contents,
+            type: boardData.categoryId as NEWS_TYPE
         }
+
+        const next = omits(createParams, ["contents", "categoryId"])
+
+        newsCreate({
+            params: omits(next, ["categoryId", "files"])
+        })
     }
 
     const handleTempSave = () => {
@@ -105,98 +146,4 @@ export const NewsWrite: React.FC<IProp> = ({ context }) => {
 };
 
 
-export type TCreateFn = (params: NewsCreateInput) => void;
-export type TUpdateFn = (id: string, params: NewsUpdateInput) => void;
-export type TDeleteFn = (id: string) => void;
-
-interface IProp {
-    mode?: "edit" | "create"
-}
-
-interface ITourWriteWrapContext {
-    createFn: TCreateFn;
-    updateFn: TUpdateFn;
-    deleteFn: TDeleteFn;
-    news?: Fnews;
-    findLoading: boolean;
-    createLoading: boolean;
-    mode: "create" | "edit"
-    id?: string;
-}
-
-
-//수정하고 나면 수정한 내용을 그대로 덮어버리면 안됨. 핑크로드의 승인이 필요함.
-export const NewsWriteWrap: React.FC<IProp> = () => {
-    const router = useRouter(); // => 넥스트에서는 변경
-    const id = router.query.id?.[0] as string | undefined;
-    // const type = getFromUrl("type")?.toUpperCase();
-    // if (!type) return <Page404 />
-    const { newsUpdate, updateLoading } = useNewsUpdate({
-        onCompleted: ({ NewsUpdate }) => {
-            if (NewsUpdate.ok) {
-                const id = NewsUpdate.data!._id;
-                router.push(`/news/view/${id}`)
-            }
-        },
-        awaitRefetchQueries: true
-    })
-
-    const { newsCreate, createLoading } = useNewsCreate({
-        onCompleted: ({ NewsCreate }) => {
-            if (NewsCreate.ok) {
-                const id = NewsCreate.data!._id;
-                router.push(`/news/view/${id}`)
-            }
-        },
-        awaitRefetchQueries: true
-    })
-
-    const { newsDelete } = useNewsDelete({
-        onCompleted: ({ NewsDelete }) => {
-            if (NewsDelete.ok)
-                router.push(`/news`)
-        },
-    })
-
-    const { news, loading: findLoading } = useNewsFindById(id);
-
-    const createFn: TCreateFn = (params: NewsCreateInput) => {
-        newsCreate({
-            params: omits(params, ["categoryId", "files"])
-        })
-    }
-
-    const deleteFn: TDeleteFn = (id: string) => {
-        if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
-            newsDelete({
-                id
-            })
-    }
-
-    const updateFn = (id: string, params: NewsUpdateInput) => {
-        newsUpdate({
-            params: omits(params, ["categoryId", "files"]),
-            id
-        })
-    }
-
-    if (createLoading || findLoading) return null;
-
-    const context: ITourWriteWrapContext = {
-        createFn,
-        updateFn,
-        deleteFn,
-        news,
-        findLoading,
-        createLoading,
-        mode: !id ? "create" : "edit",
-        id
-    }
-
-    if (findLoading) return null;
-
-    return <NewsWrite context={context} />;
-};
-
-
-export default auth(NewsWriteWrap)(ONLY_LOGINED);
+export default auth(ONLY_LOGINED)(NewsWrite)

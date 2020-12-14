@@ -4,7 +4,6 @@ import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { IproductFindById } from "types/interface";
 import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
@@ -15,52 +14,32 @@ import { useScroll } from "../../../hook/useScroll";
 import { handleTab, tabCheck } from "../../../components/tourView/tabUtils";
 import { toast } from "react-toastify";
 import { addItem } from "../../../utils/Storage";
-import { useBasket, useBasketCount } from "../../../hook/useBasket";
+import { useBasketCount } from "../../../hook/useBasket";
 import { getRangeString } from "../../../utils/product";
 import { generateClientPaging } from "../../../utils/generateClientPaging";
 import { Paginater } from "../../../components/common/Paginator";
 import { QnaLi } from "../../../components/qna/QnaLi";
+import PageLoading from "../../Loading";
 
-interface IProps {
-  product: IproductFindById;
-}
+const TourDetail: React.FC = () => {
 
-const TourDetail: React.FC<IProps> = ({ product }) => {
+  const router = useRouter();
+  const id = router.query.id as string;
+  const { loading, product } = useProductFindById(id);
   const { isManager, isAdmin } = useContext(AppContext);
-  const {
-    _id,
-    adult_price,
-    baby_price,
-    caution,
-    contents,
-    images,
-    inOrNor,
-    itinerary,
-    keyWards,
-    questions,
-    kids_price,
-    maxMember,
-    minMember,
-    startPoint,
-    subTitle,
-    title,
-    startDate,
-    info,
-  } = product;
 
-  const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(questions || [], 4);
+  const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
 
   const sliderRef = useRef<SLIDER>(null);
-  const { count, handleCount, totalPrice } = useBasketCount({
-    adult_price,
-    baby_price,
-    kids_price
+  const { count, handleCount, totalPrice, setCount } = useBasketCount({
+    adult_price: product?.adult_price,
+    baby_price: product?.baby_price,
+    kids_price: product?.kids_price
   });
   const [sliderIndex, setSlideIndex] = useState(0);
   const { scrollY } = useScroll();
   const tabOnCheck = tabCheck.bind(tabCheck, scrollY);
 
-  const router = useRouter();
 
   const { productDelete } = useProductDelete({
     onCompleted: ({
@@ -73,7 +52,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
     }
   })
 
-  const toWrite = () => router.push(`/tour/write/${_id}`)
+  const toWrite = () => router.push(`/tour/write/${product?._id}`)
 
   const handleEdit = () => {
     toWrite();
@@ -81,11 +60,9 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
 
   const handleDelete = () => {
     productDelete({
-      id: _id
+      id: product!._id
     })
   }
-
-
 
   const handleSliderMove = (index: number) => () => {
     sliderRef.current?.slickGoTo(index)
@@ -100,8 +77,8 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
     addItem({
       count,
       price: totalPrice,
-      name: title,
-      _id
+      name: product!.title,
+      _id: product!._id
     })
 
     if (count.adult + count.baby + count.kids === 0) {
@@ -110,6 +87,38 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
       toast.info("장바구니에 저장 되었습니다.")
     }
   }
+
+  useEffect(() => {
+    if (!product) return;
+    setCount({
+      adult: product.adult_price,
+      kids: product.kids_price,
+      baby: product.baby_price
+    })
+  }, [product])
+
+
+  if (loading) return <PageLoading />
+  if (!product) return <Page404 />
+
+  const {
+    images,
+    keyWards,
+    adult_price,
+    baby_price,
+    kids_price,
+    title,
+    subTitle,
+    info,
+    startDate,
+    minMember,
+    maxMember,
+    startPoint,
+    itinerary,
+    contents,
+    inOrNor,
+    caution
+  } = product;
 
   return <div className="edtiorView">
     <SubTopNav children={
@@ -416,20 +425,6 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
   </div >
 }
 
-const TourDetailWrap = () => {
-  const { query } = useRouter();
-  const id = query.id as string;
-  const { loading, product } = useProductFindById({
-    variables: {
-      _id: id
-    },
-    skip: !id
-  });
 
-  if (loading) return null
-  if (!product) return <Page404 />
 
-  return <TourDetail product={product} />
-}
-
-export default TourDetailWrap;
+export default TourDetail;

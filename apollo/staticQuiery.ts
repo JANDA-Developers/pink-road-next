@@ -1,7 +1,7 @@
 
 import {  useSettlementCal } from "../hook/usePayment";
 import { _BookingFilter, _PaymentFilter } from "../types/api";
-import { lastMonthFirstDate, monthFirstDate, thisMonthFirstDate, thisMonthLastDate } from "../types/const";
+import { lastMonthFirstDate, lastMonthLastDate, thisMonthFirstDate, thisMonthLastDate } from "../types/const";
 import { getBookingCount } from "../utils/getBookingCount";
 
 export const getLastMonthCount = (filter:_BookingFilter) => {
@@ -9,7 +9,7 @@ export const getLastMonthCount = (filter:_BookingFilter) => {
     return getBookingCount({
         filter: {
             createdAt_gte: lastMonthFirstDate,
-            createdAt_lt: monthFirstDate,
+            createdAt_lt: lastMonthLastDate,
             ...filter
         }
     })

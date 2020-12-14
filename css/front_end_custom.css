@@ -308,3 +308,6 @@ figure:after {
 #basketModal .popup_bg_mini { 
     max-width: 400px;
 }
+.ck-reset_all {
+    overflow: hidden;
+}

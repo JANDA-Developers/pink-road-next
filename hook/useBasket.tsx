@@ -21,11 +21,11 @@ const DEFAULT_COUNT: IHumanCount = {
 }
 
 export const useBasketCount = ({
-    adult_price,
-    baby_price,
-    kids_price,
+    adult_price = 0,
+    baby_price = 0,
+    kids_price = 0,
     defaultCount = DEFAULT_COUNT
-}: IPrices = { adult_price: 0, baby_price: 0, kids_price: 0 }) => {
+}: Partial<IPrices> = { adult_price: 0, baby_price: 0, kids_price: 0 }) => {
     const [count, setCount] = useState<IHumanCount>(defaultCount);
     const [totalPrice, setPrice] = useState(0);
     const handleCount = (key: keyof IHumanCount, isUp: boolean) => () => {
@@ -45,7 +45,7 @@ export const useBasketCount = ({
         setPrice(totalPrice)
     }, [count])
 
-    return { count, totalPrice, handleCount }
+    return { count, totalPrice, handleCount, setCount }
 }
 
 

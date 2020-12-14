@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 
 
 export const foucsById = (id:string) => {
@@ -43,7 +44,7 @@ export class Validater {
               value = node.value();
             }
             if(!value) {
-                if(node.failMsg) alert(node.failMsg);
+                if(node.failMsg) toast(node.failMsg);
                 if(node.id) foucsById(node.id);
                 if(node.failFn) node.failFn();
                 return false;
