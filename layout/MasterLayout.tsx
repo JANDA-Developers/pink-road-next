@@ -38,6 +38,7 @@ export const MasterLayout: React.FC<IProp> = ({ children }) => {
             <div className="w1200">
                 {children}
             </div>
+
         </div>
     </div>
 };

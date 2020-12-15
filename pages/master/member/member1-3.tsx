@@ -7,6 +7,23 @@ import Link from "next/link";
 
 interface IProp { }
 
+const popupOpen = () => {
+    $('#Popup01').css({
+        'display': 'block'
+    });
+    $('#fade').css({
+        'display': 'block'
+    });
+
+}
+const popupClose = () => {
+    $('#Popup01').css({
+        'display': 'none'
+    });
+    $('#fade').css({
+        'display': 'none'
+    });
+}
 export const MsMemberC: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
@@ -130,7 +147,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">승인여부:</i><i className="approval stand">승인대기</i></div>
                             <div className="td06"><i className="m_title">가입일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">판매상품:</i><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
-                            <div className="td08"><button className="btn">상세보기</button></div>
+                            <div className="td08"><button className="btn" onClick={popupOpen}>상세보기</button></div>
                         </div>
 
                         <div className="list_line">
@@ -146,7 +163,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">승인여부:</i><i className="approval ok">승인</i></div>
                             <div className="td06"><i className="m_title">가입일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">판매상품:</i><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
-                            <div className="td08"><button className="btn">상세보기</button></div>
+                            <div className="td08"><button className="btn" onClick={popupOpen}>상세보기</button></div>
                         </div>
 
                         <div className="list_line">
@@ -162,7 +179,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">승인여부:</i><i className="approval no" data-tip="미승인사유 : ">미승인</i></div>
                             <div className="td06"><i className="m_title">가입일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">판매상품:</i><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
-                            <div className="td08"><button className="btn">상세보기</button></div>
+                            <div className="td08"><button className="btn" onClick={popupOpen}>상세보기</button></div>
                         </div>
 
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
@@ -182,7 +199,7 @@ export const MsMemberC: React.FC<IProp> = () => {
 
             {/* popup-상세보기 */}
             <div id="Popup01" className="popup_bg_full" style={{ display: 'none;' }}>
-                <a className="close_icon">
+                <a className="close_icon" onClick={popupClose}>
                     <i className="flaticon-multiply"></i>
                 </a>
                 <div className="in_txt master_popup">
@@ -255,22 +272,24 @@ export const MsMemberC: React.FC<IProp> = () => {
                     <div className="info_page">
                         <div className="full_div">
                             <h4>약관동의</h4>
-                            <div className="info_table line8 w50">
+                            <div className="info_table checkline">
                                 <div className="tr">
                                     <div className="th01">마케팅 정보수신동의</div>
-                                    <div className="td01 text-r">
+                                    <div className="td01">
                                         <span className="check no">동의안함</span>
                                     </div>
                                     <div className="th02">개인정보수집 및 이용</div>
-                                    <div className="td02 text-r">
+                                    <div className="td02">
                                         <span className="check no">동의안함</span>
                                     </div>
-                                    <div className="th03">개인정보 제3자 제공</div>
-                                    <div className="td03 text-r">
+                                </div>
+                                <div className="tr">
+                                    <div className="th01">개인정보 제3자 제공</div>
+                                    <div className="td01">
                                         <span className="check no">동의안함</span>
                                     </div>
-                                    <div className="th04">이용약관</div>
-                                    <div className="td04 text-r">
+                                    <div className="th02">이용약관</div>
+                                    <div className="td02">
                                         <span className="check ok">동의함</span>
                                     </div>
                                 </div>
@@ -431,7 +450,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-        <div id="fade" className="fade" style={{ display: 'none;' }}></div>
+        <div id="fade" className="fade" onClick={popupClose}></div>
     </MasterLayout >
 };
 

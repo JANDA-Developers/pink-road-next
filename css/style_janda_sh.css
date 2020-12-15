@@ -472,7 +472,6 @@
         right: 5px;
         top: 5px;
     }
-
     .input_relative .btn_in:before {
         position: absolute;
         right: 0px;
@@ -489,24 +488,20 @@
         margin-right: 0;
         line-height: 15px;
     }
-
     .input_relative input.ok ~ .btn_in:before {
         color: #2196F3;
         border: 2px solid #2196F3;
     }
-
 div.list_bottom {
     position: relative;
     display: block;
     margin-top: 50px;
 }
-
 div.btn_footer {
     width: 45%;
     display: inline-block;
     margin: 20px 0;
 }
-
 div.search_mini {
     width: 100%;
     position: relative;
@@ -518,13 +513,11 @@ div.search_mini {
     text-align: left;
     z-index: 1;
 }
-
     div.search_mini .in {
         width: 100%;
         position: relative;
         text-align: center;
     }
-
     div.search_mini svg {
         width: 15px;
         color: #999;
@@ -533,7 +526,6 @@ div.search_mini {
         top: 9px;
         right: 6%;
     }
-
     div.search_mini input {
         border: 1px solid #999;
         background-color: #fff;
@@ -545,15 +537,33 @@ div.search_mini {
         padding: 15px 20px;
         box-sizing: border-box;
     }
-
         div.search_mini input:focus {
             border: 1px solid #ed297b;
         }
-
             div.search_mini input:focus ~ svg {
                 fill: #ed297b;
             }
 div.popup_bg_full {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 90%;
+    z-index: 101;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+    /* padding: 60px 3% 30px;
+    box-sizing: border-box;
+    border-radius: 0px;
+    overflow: hidden;
+    border: 0; */
+}
+/* div.popup_bg_full {
     position: fixed;
     top: 0;
     left: 0;
@@ -566,7 +576,7 @@ div.popup_bg_full {
     overflow: hidden;
     background-color: #fff;
     border: 0;
-}
+} */
 div.popup_bg_full .fin{
     padding: 30px 0;
 }
@@ -631,8 +641,8 @@ div.popup_bg_full .fin{
         font-size: 20px;
         line-height: 40px;
         font-weight: 600;
-        position: absolute;
-        top: 19px;
+        position: fixed;
+        top: 18px;
     }    
     div.popup_bg_full h3 strong {
         color: #2196F3;
@@ -678,6 +688,7 @@ div.popup_bg_full .fin{
 
 div.popup_bg_mini {
     position: fixed;
+    display: none;
     top: 50%;
     left: 50%;
     width: 440px;
@@ -5685,7 +5696,7 @@ i.important_icon {
             .tour_details_in .boardReadBody .tour_list div {
                 position: relative;
                 box-sizing: border-box;
-                padding: 10px 10px 30px 15px;
+                padding: 5px 10px 30px 15px;
                 font-size: 16px;
                 color: #555;
             }
@@ -5746,6 +5757,12 @@ i.important_icon {
             padding-bottom: 50px;
             color: #555;
             position: relative;
+        }
+        .tour_details_in .boardReadBody .in_box .text p{
+            font-weight: 100;
+        }
+        .tour_details_in .boardReadBody .in_box .text strong{
+            font-weight:600;
         }
 
     .tour_details_in .boardReadFooter {
@@ -6119,13 +6136,12 @@ i.important_icon {
         display: inline-block;
         margin-right: 5px;
         margin-bottom: 5px;
-        border: 1px solid #ccc;
-        padding: 5px 15px;
+        padding: 2px 5px;
         box-sizing: border-box;
-        font-size: 12px;
-        color: #919191;
-        font-weight: 600;
-        border-radius: 100px;
+        font-size: 0.9em;
+        color: #999;
+        font-weight: 100;
+        background-color: #f5f5f5;
     }
 
     .option_tb .number_box {
@@ -9195,7 +9211,7 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
-    div.popup_bg_full {
+    /* div.popup_bg_full {
         top: 2%;
         left: 2%;
         width: 96%;
@@ -9203,7 +9219,7 @@ i.calendar {
         padding: 60px 22px 30px;
         border-radius: 20px;
         border: 5px solid #ccc;
-    }
+    } */
     
         div.popup_bg_full .in_txt {
             padding: 10px;
@@ -10000,7 +10016,7 @@ div.alignment select {
 }
 
 @media (min-width: 1200px) {
-    div.popup_bg_full {
+    /* div.popup_bg_full {
         top: 5%;
         left: 5%;
         width: 90%;
@@ -10008,7 +10024,7 @@ div.alignment select {
         padding: 60px 22px 30px;
         border-radius: 20px;
         border: 5px solid #ccc;
-    }
+    } */
     
         div.popup_bg_full .in_txt {
             padding: 10px;

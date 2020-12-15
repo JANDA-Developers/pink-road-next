@@ -936,7 +936,7 @@
     }
 
 
-/* master-popup*/
+/* master-popup*//* 
     .master_popup .info_txt {
         position:relative;
         border:5px solid #ccc;
@@ -1371,6 +1371,14 @@
         font-size: 1em;
     }    
   
+    .master_popup .info_page .checkline .th01,
+    .master_popup .info_page .checkline .th02{
+        width: 20%;
+    }   
+    .master_popup .info_page .checkline .td01,
+    .master_popup .info_page .checkline .td02{
+        width: 30%;
+    } 
     .master_popup .info_page .checkline .td01,
     .master_popup .info_page .checkline .td02,
     .master_popup .info_page .checkline .td03,
@@ -1574,7 +1582,7 @@
     }
     .master_popup .board_list_mini .tbody li {
         border-bottom: 1px solid #cccccc;
-    }
+    } */
 
     /*goods*/
     .master_box .goods .td01 {
@@ -1912,6 +1920,9 @@
         box-sizing: border-box;
         font-size: 10px;
         color: #555;
+    }
+    .master_box .reservation .r-number {
+        font-size: 1.1em;
     }
     .master_box .reservation .title {
         width: 100% !important;
@@ -2668,6 +2679,7 @@
         padding: 2px;
         box-sizing: border-box;
         vertical-align: top;
+        cursor: pointer;
     }
     .master_box .design .body-list .img{
         position: relative;
@@ -3127,6 +3139,12 @@ div.master_popup .info_txt {
         padding: 18px 10px;
         text-align: left;
     }    
+     div.master_popup .info_table .top_info span{
+        font-weight: 100;
+    }    
+     div.master_popup .info_table .top_info .tt{
+        font-weight: 600;
+    }    
      div.master_popup .info_table .top_info .float_right {
         float: none;
         line-height: 27px;
@@ -3249,6 +3267,20 @@ div.master_popup .info_txt {
     padding: 15px 15px;
     box-sizing: border-box;
     
+}
+div.master_popup .top04 {
+    width: 100% !important;
+    border-top: 1px #eee solid;
+    border-left: 0;
+    padding: 15px 15px;
+    box-sizing: border-box;
+}
+div.master_popup .top05 {
+    width: 100% !important;
+    border-top: 1px #eee solid;
+    border-left: 0;
+    padding: 15px 15px;
+    box-sizing: border-box;
 }
  div.master_popup .top03 .align {
     text-align:center;
@@ -3394,6 +3426,35 @@ div.master_popup .info_txt {
     vertical-align: top;
     position: relative;
 }
+ div.master_popup .info_table .tag {
+    display: block;
+    width: 100%;
+    vertical-align: top;
+    position: relative;
+}
+ div.master_popup .info_table .subTitle {
+    display: block;
+    width: 100%;
+    font-weight: 600;
+    font-size: 1.1em;
+    vertical-align: top;
+    position: relative;
+    color: #999;
+    margin-bottom: 10px;
+}
+ div.master_popup .info_table .tag li {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    vertical-align: top;
+    position: relative;
+    padding: 2px 5px;
+    box-sizing: border-box;
+    font-weight: 100;
+    background-color: #f5f5f5;
+    color: #555;
+    font-size: 0.9em;
+}
  div.master_popup .info_page .left_div {
     position: relative;
     width: 100%;
@@ -3406,12 +3467,20 @@ div.master_popup .info_txt {
     } 
      div.master_popup .info_page .info_table .tr > div {
         display: inline-block;
-        width: 25%;
+        width: auto;
         vertical-align: top;
         text-align: center;
         font-weight: 600;
         padding:10px 0;
         box-sizing:border-box;
+    }
+     div.master_popup .info_page .info_table .pp01 {
+       width: 80px !important;
+    } 
+     div.master_popup .info_page .info_table .td{
+      font-weight: 100 !important;
+      margin-right: 30px;
+      margin-left: 3px;
     }
 
  div.master_popup .info_page .right_div {
@@ -4147,8 +4216,10 @@ div.master_popup .info_txt span {
     font-size: 1.4em;
     font-weight: 600;
     color: #666;
-    display: inline-block;
+    display: inline-block !important;
     position: relative;
+    vertical-align: top;
+    line-height: 28px !important;
 }
 div.master_popup .info_txt span:after {
             display: inline-block;
@@ -4164,19 +4235,30 @@ width: auto;
 div.master_popup .top01 {
     width: 50% !important;
     padding: 15px 0;
+    min-height: 165px;
 }
 div.master_popup .top02 {
-    width: 20% !important;
+    width: 25% !important;
 border-top: 0;
     border-left: 1px #eee solid;
     padding: 15px 0;
 }
 div.master_popup .top03 {
+    width: 25% !important;
+    border-top: 0;
+    border-left: 1px #eee solid;
+    padding: 15px 15px;
+}
+
+div.master_popup .top04 {
+    width: 70% !important;
+    padding: 15px 0;
+}
+div.master_popup .top05 {
     width: 30% !important;
 border-top: 0;
     border-left: 1px #eee solid;
-    padding: 15px 15px;
-    
+    padding: 15px 0;
 }
 div.master_popup .s-day {
     width: 100%!important;
@@ -4199,18 +4281,18 @@ div.master_popup .where {
     padding-top: 0px !important;
     vertical-align: middle;
 }
-div.master_popup .top03 .align {
-    text-align: left;
+div.master_popup .top02 .align {
+    margin-top: 30px;
 }
 div.master_popup .info_table .img {
     display: inline-block !important;
-    width: 150px !important;
-    height: 90px;
+    width: 250px !important;
+    height: 140px;
     background-position: center;
     background-size: 100%;
     position: absolute !important;
     left: 10px;
-    top: 10px;
+    top: 12px;
 }
 div.master_popup .info_table .info {
         display: block !important;
@@ -4218,7 +4300,7 @@ div.master_popup .info_table .info {
         vertical-align: top;
         text-align: left;
         position: relative;
-        padding-left: 170px;
+        padding-left: 280px;
         padding-right: 10px;
         padding-bottom: 15px;
         box-sizing: border-box;
@@ -4285,18 +4367,22 @@ div.master_popup .info_table .th01,
         border-right: 1px #eee solid;
     border-bottom: 0;
         padding-left: 15px;
+        margin-right: 10px;
     }
     div.master_popup .tr .re02,
     div.master_popup .tr .re04,
     div.master_popup .tr .re06,
     div.master_popup .tr .re08 {
-        width: 8% !important;
+        width: auto !important;
+        margin-left: 5px;
     }
     div.master_popup .tr .re03,
     div.master_popup .tr .re05,
     div.master_popup .tr .re07,
     div.master_popup .tr .re09 {
-        width: 13.5% !important;
+        width: auto !important;
+        margin-left: 3px;
+        margin-right: 30px;
     }
     div.master_popup .info_page .line8 .th01,
     div.master_popup .info_page .line8 .th02,

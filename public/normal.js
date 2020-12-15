@@ -14,10 +14,18 @@ $(window).scroll(function (e) {
 
 
 // $(document).ready(function () {
-//     btn = $('.qna_box .dt');
-//     layer = $('.qna_box .dd');
-//     icon = $('.qna_box i.jandaicon-arr4-bottom')
+//     closebtn = $('#Popup01 .close_icon');
+//     popup = $('#Popup01');
 
+//     closebtn.click(function () {
+//         icon.toggle(
+//             function () {
+//                 icon.css({ transform: 'rotate(-180deg)' }),
+//                     function () {
+//                         icon.css({ transform: 'rotate( 0deg)' })
+
+//                     })
+// });
 //     btn.click(function () {
 //         layer.toggle(function () {
 //             $(this).find('.description').stop().animate({
@@ -43,15 +51,8 @@ $(window).scroll(function (e) {
 //     //             layer.css('display', 'none');
 //     //         });
 //     // });
-//     // btn.click(function () {
-//     //     icon.toggle(
-//     //         function () {
-//     //             icon.css({ transform: 'rotate(-180deg)' }),
-//     //                 function () { icon.css({ transform: 'rotate( 0deg)' })
-//     //     )
 
-//     // });
 
-//     return false;
+// return false;
 
 // });

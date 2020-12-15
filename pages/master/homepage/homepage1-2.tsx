@@ -3,7 +3,23 @@ import React from 'react';
 import Link from "next/link";
 
 interface IProp { }
+const popupOpen = () => {
+    $('#Popup01').css({
+        'display': 'block'
+    });
+    $('#fade').css({
+        'display': 'block'
+    });
 
+}
+const popupClose = () => {
+    $('#Popup01').css({
+        'display': 'none'
+    });
+    $('#fade').css({
+        'display': 'none'
+    });
+}
 export const MsHomepageA: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
@@ -39,7 +55,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                     </div>
                     <div className="sms-list">
                         <ul>
-                            <li>
+                            <li onClick={popupOpen}>
                                 <div className="title">
                                     <h5>회원가입할때</h5>
                                     <div className="tag">
@@ -55,7 +71,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                                 </div>
                                 <div className="mouseover"><span><i className="jandaicon-setting"></i>수정</span></div>
                             </li>
-                            <li>
+                            <li onClick={popupOpen}>
                                 <div className="title">
                                     <h5>회원가입할때</h5>
                                     <div className="tag">
@@ -71,7 +87,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                                 </div>
                                 <div className="mouseover"><span><i className="jandaicon-setting"></i>수정</span></div>
                             </li>
-                            <li>
+                            <li onClick={popupOpen}>
                                 <div className="title">
                                     <h5>회원가입할때</h5>
                                     <div className="tag">
@@ -87,7 +103,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                                 </div>
                                 <div className="mouseover"><span><i className="jandaicon-setting"></i>수정</span></div>
                             </li>
-                            <li>
+                            <li onClick={popupOpen}>
                                 <div className="title">
                                     <h5>회원가입을입을입을입을입을입을입을</h5>
                                     <div className="tag">
@@ -103,7 +119,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                                 </div>
                                 <div className="mouseover"><span><i className="jandaicon-setting"></i>수정</span></div>
                             </li>
-                            <li className="add">
+                            <li className="add" onClick={popupOpen}>
                                 <button><i className="flaticon-add"></i> 템플릿 생성</button>
                             </li>
                         </ul>
@@ -115,8 +131,8 @@ export const MsHomepageA: React.FC<IProp> = () => {
             </div>
 
             {/* popup-SMS문자 템플릿 */}
-            <div id="Popup01" className="popup_bg_full" style={{ display: 'block;' }}>
-                <a className="close_icon">
+            <div id="Popup01" className="popup_bg_full" >
+                <a className="close_icon" onClick={popupClose}>
                     <i className="flaticon-multiply"></i>
                 </a>
                 <div className="in_txt homepage_popup">
@@ -223,9 +239,6 @@ export const MsHomepageA: React.FC<IProp> = () => {
                             <p className="infotxt_gray">80Byte 이하일땐 80Byte 이상시 LMS입니다.</p>
                         </div>
                     </div>
-
-
-
                     <div className="fin">
                         <div className="float_left">
                             <button type="submit" className="btn medium">생성하기</button>
@@ -238,7 +251,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-        <div id="fade" className="fade" style={{ display: 'none;' }}></div>
+        <div id="fade" className="fade" onClick={popupClose}></div>
 
     </MasterLayout >
 };

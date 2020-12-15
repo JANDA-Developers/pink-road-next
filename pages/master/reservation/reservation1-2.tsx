@@ -7,7 +7,23 @@ import Link from "next/link";
 import ReactTooltip from 'react-tooltip';
 
 interface IProp { }
+const popupOpen = () => {
+    $('#Popup01').css({
+        'display': 'block'
+    });
+    $('#fade').css({
+        'display': 'block'
+    });
 
+}
+const popupClose = () => {
+    $('#Popup01').css({
+        'display': 'none'
+    });
+    $('#fade').css({
+        'display': 'none'
+    });
+}
 export const MsReservationA: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
@@ -177,7 +193,7 @@ export const MsReservationA: React.FC<IProp> = () => {
                             </div>
                             <div className="t07">
                                 <div className="align">
-                                    <button className="btn">상세보기</button>
+                                    <button className="btn" onClick={popupOpen}>상세보기</button>
                                     <button className="btn">환불완료<i className="jandaicon-info2 tooltip" data-tip="환불은 예약관리시스템에서 예약취소 처리후에 환불완료를 눌러주세요." /></button>
                                 </div>
                             </div>
@@ -228,7 +244,7 @@ export const MsReservationA: React.FC<IProp> = () => {
                             </div>
                             <div className="t07">
                                 <div className="align">
-                                    <button className="btn">상세보기</button>
+                                    <button className="btn" onClick={popupOpen}>상세보기</button>
                                     <button className="btn">환불완료<i className="jandaicon-info2 tooltip" data-tip="환불은 예약관리시스템에서 예약취소 처리후에 환불완료를 눌러주세요." /></button>
                                 </div>
                             </div>
@@ -241,7 +257,7 @@ export const MsReservationA: React.FC<IProp> = () => {
                                 <button type="submit" className="btn medium">전체선택</button>
                             </div>
                             <div className="float_right">
-                                <button type="submit" className="btn medium">선택 환불완료<i className="jandaicon-info2 tooltip" data-tip="환불은 예약관리시스템에서 예약취소 처리후에 환불완료를 눌러주세요." /></button>
+                                <button type="submit" className="btn medium">선택 환불완료</button>
                             </div>
                         </div>
                     </div>
@@ -251,9 +267,19 @@ export const MsReservationA: React.FC<IProp> = () => {
 
             </div>
             <SearcfInfoBox />
-            <div className="fade"></div>
-
         </div>
+
+        {/* popup-상세보기 */}
+        <div id="Popup01" className="popup_bg_full">
+            <a className="close_icon" onClick={popupClose}>
+                <i className="flaticon-multiply"></i>
+            </a>
+            <div className="in_txt master_popup">
+
+            </div>
+        </div>
+
+        <div id="fade" className="fade" onClick={popupClose}></div>
     </MasterLayout >
 };
 

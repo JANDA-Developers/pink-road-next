@@ -352,7 +352,7 @@ ul.list_ul li {
 }
 
 ul.list_ul.line3 li {
-    width: 31.3%;
+    width: 31.7%;
 }
 ul.list_ul.line3 li:last-child {
     display:none;
@@ -401,6 +401,16 @@ ul.list_ul li .bottom_txt {
     border-top: 1px dotted #d9d9d9;
 }
 
+ul.list_ul li .bottom_txt span {
+    display: inline-block;
+    padding: 2px 5px;
+    background-color: #F5F5F5;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #999;
+}
+
 ul.list_ul li .img {
     width: 100%;
     height: 222px;
@@ -439,6 +449,7 @@ ul.list_ul li .category {
         border: 1px solid #ccc;
         font-size: 11px;
         color: #999;
+        background-color: #fff !important;
     }
 
 ul.list_ul li .tag {
@@ -483,6 +494,7 @@ ul.list_ul li .subTitle {
     line-height: 20px;
     font-weight: 600;
     color: #999;
+    margin-bottom: 9px;
 }
 
 ul.list_ul li .cash {
@@ -2349,7 +2361,7 @@ div.sum_div {
         width: 100%;
     }
         ul.list_ul li .box {
-            padding: 0 15px 15px;
+            padding: 0 5px 5px;
         }
     ul.photo_ul {
         display: flex;

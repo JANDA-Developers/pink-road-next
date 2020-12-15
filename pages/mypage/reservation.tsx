@@ -5,6 +5,23 @@ import React from 'react';
 
 interface IProp { }
 
+const popupOpen = () => {
+    $('#Popup01').css({
+        'display': 'block'
+    });
+    $('#fade').css({
+        'display': 'block'
+    });
+
+}
+const popupClose = () => {
+    $('#Popup01').css({
+        'display': 'none'
+    });
+    $('#fade').css({
+        'display': 'none'
+    });
+}
 export const MyReservation: React.FC<IProp> = () => {
     return <MypageLayout>
         <div className="in reservation_div">
@@ -119,7 +136,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <div className="t02">
                                     <div className="align">
                                         <span className="r-number">R-34252</span>
-                                        <button className="btn">상세정보</button>
+                                        <button className="btn" onClick={popupOpen}>상세정보</button>
                                     </div>
                                 </div>
                                 <div className="t04">
@@ -170,7 +187,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <div className="t02">
                                     <div className="align">
                                         <span className="r-number">R-34252</span>
-                                        <button className="btn">상세정보</button>
+                                        <button className="btn" onClick={popupOpen}>상세정보</button>
                                     </div>
                                 </div>
                                 <div className="t04">
@@ -226,7 +243,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <div className="t02">
                                     <div className="align">
                                         <span className="r-number">R-34252</span>
-                                        <button className="btn">상세정보</button>
+                                        <button className="btn" onClick={popupOpen}>상세정보</button>
                                     </div>
                                 </div>
                                 <div className="t04">
@@ -274,8 +291,10 @@ export const MyReservation: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-        <div id="Popup01" className="popup_bg_full" style={{ display: 'block;' }}>
-            <a className="close_icon">
+
+        {/* popup-상세보기 = 마스터>예약관리>예약.결제관리 상세보기와 같음*/}
+        <div id="Popup01" className="popup_bg_full">
+            <a className="close_icon" onClick={popupClose}>
                 <i className="flaticon-multiply"></i>
             </a>
             <div className="in_txt reservation_popup">
@@ -511,7 +530,7 @@ export const MyReservation: React.FC<IProp> = () => {
 
             </div>
         </div>
-        <div id="fade" className="fade" style={{ display: 'block;' }}></div>
+        <div id="fade" className="fade" onClick={popupClose}></div>
     </MypageLayout>
 };
 

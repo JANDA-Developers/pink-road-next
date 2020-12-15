@@ -7,6 +7,24 @@ import Link from "next/link";
 
 interface IProp { }
 
+const popupOpen = () => {
+    $('#Popup01').css({
+        'display': 'block'
+    });
+    $('#fade').css({
+        'display': 'block'
+    });
+
+}
+const popupClose = () => {
+    $('#Popup01').css({
+        'display': 'none'
+    });
+    $('#fade').css({
+        'display': 'none'
+    });
+}
+
 export const MsMemberD: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
@@ -124,7 +142,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">담당자:</i>-</div>
                             <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
-                            <div className="td08"><button className="btn">상세보기</button></div>
+                            <div className="td08"><button className="btn" onClick={popupOpen}>상세보기</button></div>
                         </div>
 
                         <div className="list_line">
@@ -140,7 +158,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
                             <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
-                            <div className="td08"><button className="btn">상세보기</button></div>
+                            <div className="td08"><button className="btn" onClick={popupOpen}>상세보기</button></div>
                         </div>
                         <div className="list_line">
                         <div className="td01">
@@ -155,7 +173,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
                             <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
-                            <div className="td08"><button className="btn">상세보기</button></div>
+                            <div className="td08"><button className="btn" onClick={popupOpen}>상세보기</button></div>
                         </div>
 
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
@@ -165,8 +183,8 @@ export const MsMemberD: React.FC<IProp> = () => {
                     <SearcfInfoBox />
 
             {/* popup-상세보기--------------- 탈퇴에서는 회원정보를 수정할 수없음. input박스제거 */}
-            <div id="Popup01" className="popup_bg_full" style={{ display: 'none;' }}>
-                <a className="close_icon">
+            <div id="Popup01" className="popup_bg_full">
+                <a className="close_icon" onClick={popupClose}>
                     <i className="flaticon-multiply"></i>
                 </a>
                 <div className="in_txt master_popup">
@@ -400,7 +418,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-        <div id="fade" className="fade" style={{ display: 'none;' }}></div>
+        <div id="fade" className="fade" onClick={popupClose}></div>
     </MasterLayout >
 };
 
