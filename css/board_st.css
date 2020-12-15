@@ -652,7 +652,7 @@ ul.boardlist_ul li .cash {
 .board_list.st01 {
     position: relative;
     display: block;
-    width: 94%;
+    width: 100%;
 }
 
     .board_list.st01 .tbody {
@@ -662,46 +662,46 @@ ul.boardlist_ul li .cash {
     }
 
         .board_list.st01 .tbody li {
-            display: flex;
+            display: block;
             width: 100%;
-            line-height: 55px;
+            line-height: 25px;
             border-bottom: 1px solid #ccc;
             cursor: pointer;
+            box-sizing: border-box;
+            padding: 10px;
         }
-        .board_list.st01 .tbody .new {
-            width: 13px;
-            vertical-align: middle;
-        }
+    
            
             .board_list.st01 .tbody li > div {
                 display: inline-block;
-                padding: 10px;
-                font-size: 15px;
+                padding: 0px;
+                font-size: 13px;
                 box-sizing: border-box;
+                font-weight: 100;
             }
 
         .board_list.st01 .tbody .td01 {
-            width: 10%;
+            width: auto;
             text-align: center;
         }
 
         .board_list.st01 .tbody .td02 {
-            width: 10%;
+            width:auto;
             text-align: center;
         }
 
         .board_list.st01 .tbody .td03 {
-            width: 64%;
+            width:auto;
             text-align: left;
-            padding-left: 34px;
+            padding-left: 0;
             font-weight: 600;
         }
 
         .board_list.st01 .tbody .td04 {
-            width: 15%;
-            text-align: right;
-            color: #969696;
-            font-weight: 600;
+            width:auto;
+            text-align: left;
+            color: #555555;
+            font-weight: 100;
         }
 
 .board_list.st02 {
@@ -1928,8 +1928,12 @@ div.board_list_mini {
                 position:relative;
                 font-weight: 100;
             }
-
-    .fuction_list_mini .q_ok {
+    .new {
+        width: 16px;
+        vertical-align: middle;
+        margin-left: 10px;
+    }
+    i.q_ok {
         font-style: unset;
         display: inline-block;
         padding: 4px 10px;
@@ -1941,7 +1945,7 @@ div.board_list_mini {
         line-height: 1;
     }
 
-    .fuction_list_mini .q_no {
+    i.q_no {
         font-style: unset;
         display: inline-block;
         padding: 4px 10px;
@@ -2113,6 +2117,127 @@ div.sum_div {
         border-bottom: 1px solid #dadada
     }
 
+
+    /* QNA Board style */
+    .board_qna{
+        position: relative;
+        display: block;
+    }
+    .board_qna .dl{
+        position: relative;
+        display: block;
+        margin-bottom: 7px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .board_qna .dl:hover{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.089);
+}
+    .board_qna .dt{
+        position: relative;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        line-height: 150%;
+        font-weight: 600;
+        border: 1px solid #cfcfcf;
+        border-radius: 5px;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: #ffffff;
+        z-index: 2;
+    }
+    .board_qna .dt i[class*=jandaicon]{
+        float: right;
+        font-size: 1.8em;
+        opacity: 0.5;
+        line-height: 26px;
+
+    }
+    .board_qna .dt i.Q{
+        display: inline-block;
+        vertical-align: middle;
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+        background-image: url(/img/svg/icon_q.svg);
+        background-size: 66%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        
+    }
+    .board_qna .dt span{
+        display: inline-block;
+        padding-right: 15px;
+        color: #2196F3;
+        font-size: 1.2em;
+    }
+    .board_qna .dd{
+        position: relative;
+        display: none;
+        width: 100%;
+        line-height: 150%;
+        font-weight: 100;
+        font-size: 0.9em;
+        border: 1px solid #eee;
+        padding: 30px 20px 50px;   
+        margin-top: -7px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        z-index:1;
+     
+    }
+    .board_qna .dd i.A{
+        display: inline-block;
+        position: absolute;
+        vertical-align: middle;
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+        background-image: url(/img/svg/icon_a.svg);
+        background-size: 66%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        
+    }
+    .board_qna .dd p{
+        display: block;
+        margin-left: 30px;
+        line-height: 220%;
+        
+    }
+    .board_qna .dl.active .dd{
+        display: block;
+    }
+    .board_qna .dl.active .dt i[class*=jandaicon]{
+        transform: rotate(180deg);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (min-width:768px) {
     ul .list_ul.line3 li {
         width: 31.7%;
@@ -2185,6 +2310,37 @@ div.sum_div {
         text-align: center;
         font-size: 12px;
         padding: 13px 10px 10px;
+    }
+    .board_list.st01 .tbody li {
+        display: flex;
+        padding: 0;
+        line-height: 55px;
+    }
+    .board_list.st01 .tbody li > div{
+        padding: 10px;
+    }
+    .board_list.st01 .tbody .td01 {
+        width: 10%;
+        text-align: center;
+    }
+
+    .board_list.st01 .tbody .td02 {
+        width: 10%;
+        text-align: center;
+    }
+
+    .board_list.st01 .tbody .td03 {
+        width: 64%;
+        text-align: left;
+        padding-left: 34px;
+        font-weight: 600;
+    }
+
+    .board_list.st01 .tbody .td04 {
+        width: 15%;
+        text-align: right;
+        color: #555555;
+        font-weight: 100;
     }
 }
 

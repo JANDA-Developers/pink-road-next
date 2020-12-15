@@ -14,6 +14,9 @@ export const MsHomepageA: React.FC<IProp> = () => {
                         <li><Link href="/master/homepage"><a>기본설정</a></Link></li>
                         <li className="on"><Link href="/master/homepage/homepage1-2"><a>SMS관리</a></Link></li>
                         <li><Link href="/master/homepage/homepage1-3"><a>카카오비즈톡</a></Link></li>
+                        <li><Link href="/master/homepage/homepage1-4"><a>약관관리</a></Link></li>
+                        <li><Link href="/master/homepage/homepage1-5"><a>게시판관리</a></Link></li>
+                        <li><Link href="/master/homepage/homepage1-6"><a>정산관리</a></Link></li>
                     </ul>
                 </div>
                 <div className="con homepage sms">

@@ -323,7 +323,7 @@ export const Header: React.FC<IProp> = () => {
                                     <li><a href="/member/privacy-policy">개인정보처리방침</a></li>
                                     <li><a href="/member/electron-terms">전자상거래이용약관</a></li>
                                     <li><a href="/member/kr-terms">국내여행약관</a></li>
-                                    <li><a href="/member/inquirylist">고객문의</a></li>
+                                    <li><a href="/member/inquiry">고객문의</a></li>
                                     <li><a href="/member/notice">공지사항</a></li>
                                     <li><a href="/member/qna">자주하는질문</a></li>
                                 </ul>

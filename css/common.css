@@ -124,6 +124,19 @@ select:focus {
     font-size: 0;
     line-height: 0;
 }
+.show {
+    display:block;
+}
+.hide {
+    display:none;
+} 
+.rotate0 {
+   transform: rotate(0deg);
+}
+.rotate180 {
+    transform: rotate(180deg);
+} 
+
 .betatest {/* 핑크로더는 볼수 없게 none */
     display:inline-block !important;
 }
@@ -196,6 +209,12 @@ select:focus {
 }
 .JDslider .JDslider__dots {
     padding: 0 0;
+}
+
+.fin{
+    position: relative;
+    display: block;
+    height: 50px;
 }
 
 .float_left {
@@ -419,6 +438,9 @@ input[type="checkbox"] {
 
 .mb30 {
     margin-bottom: 30px;
+}
+.mb100 {
+    margin-bottom: 100px;
 }
 
 .ml5 {

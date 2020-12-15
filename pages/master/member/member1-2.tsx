@@ -19,7 +19,6 @@ export const MsMemberB: React.FC<IProp> = () => {
                         <li className="on"><Link href="/master/member/member1-2"><a>기업파트너 회원</a></Link></li>
                         <li><Link href="/master/member/member1-3"><a>개인파트너 회원</a></Link></li>
                         <li><Link href="/master/member/member1-4"><a>탈퇴회원</a></Link></li>
-                        <li><Link href="/master/member/member1-5"><a>회원약관 설정</a></Link></li>
                     </ul>
                 </div>
                 <div className="con partner">

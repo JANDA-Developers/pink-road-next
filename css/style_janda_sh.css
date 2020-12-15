@@ -8686,6 +8686,47 @@ i.calendar {
     margin-top: -8px;
 }
 
+
+
+/*notice_box*/
+.notice_box {
+    margin: 0 auto;
+    margin-top: 60px !important;
+    margin-bottom: 100px !important;
+    box-sizing: border-box;
+    padding: 0 3%;
+}
+/*qna_box*/
+.qna_box {
+    margin: 0 auto;
+    margin-top: 60px !important;
+    margin-bottom: 100px !important;
+    box-sizing: border-box;
+    padding: 0 3%;
+}
+.qna_box .alignment{
+   padding: 30px 0 0;
+}
+
+/*inquiry_box*/
+.inquiry_box{
+    margin: 0 auto;
+    margin-top: 60px !important;
+    margin-bottom: 100px !important;
+    box-sizing: border-box;
+    padding: 0 3%;
+}
+.inquiry_box .board_list.st01 .tbody .td03 {
+    width: auto;
+}
+.inquiry_box .board_list.st01 .tbody .td04 {
+    width: auto;
+    text-align: center;
+}
+.inquiry_box .board_list.st01 .tbody .td05 {
+    width: auto;
+    text-align: right;
+}
 @media (min-width: 768px) {   
     .notification_box .right {
     padding-left: 110px;
@@ -8776,6 +8817,9 @@ i.calendar {
         }
         .main_con_box1 .main_top_images .btn_list a {
             display: inline-block;
+            width: auto;
+            height: auto;
+            line-height: normal;
             color: #333;
             padding: 10px 62px;
             border: 2px solid #333;
@@ -9866,13 +9910,22 @@ div.alignment .right_div {
 div.alignment select {
         border-radius: 5px;
         height: 32px;
-width:auto;
-margin-top:0;
+        width:auto;
+        margin-top:0;
         font-size: 12px;
         padding: 0 10px;
         font-weight: 100;
         box-sizing: border-box;
         border: 1px solid #d2d2d2;
+    }
+    .inquiry_box .board_list.st01 .tbody .td03 {
+        width: 57%;
+    }
+    .inquiry_box .board_list.st01 .tbody .td04 {
+        width: 10%;
+    }
+    .inquiry_box .board_list.st01 .tbody .td05 {
+        width: 12%;
     }
 }
 
@@ -10243,6 +10296,16 @@ margin-top:0;
         .search_in .search_box .in .inf {
             width: 24%;
         }
+.qna_box {
+    padding: 0;
+}
+
+.inquiry_box{
+    padding: 0;
+}
+.notice_box{
+    padding: 0;
+}
 }
 
 @media (min-width: 1300px) {
@@ -10302,6 +10365,7 @@ margin-top:0;
     }
     .main_con_box1 .main_top_images strong {
         padding-left: 0;
+        width: 50%;
     }
     .main_con_box1 .main_top_images span {
         padding-left: 0;
