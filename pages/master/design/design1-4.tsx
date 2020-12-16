@@ -7,18 +7,11 @@ interface IProp { }
 
 const popupOpen = () => {
     $('#Popup01').css({
-        'display': 'block'
+        'display': 'flex'
     });
-    $('#fade').css({
-        'display': 'block'
-    });
-
 }
 const popupClose = () => {
     $('#Popup01').css({
-        'display': 'none'
-    });
-    $('#fade').css({
         'display': 'none'
     });
 }
@@ -431,13 +424,16 @@ export const MsDesignC: React.FC<IProp> = () => {
 
         {/* popup-상세보기 */}
         <div id="Popup01" className="popup_bg_full">
-            <a className="close_icon" onClick={popupClose}>
-                <i className="flaticon-multiply"></i>
-            </a>
             <div className="in_txt master_popup">
+                <a className="close_icon" onClick={popupClose}>
+                    <i className="flaticon-multiply"></i>
+                </a>
+                <div className="page">
+
+                </div>
             </div>
         </div>
-        <div id="fade" className="fade" onClick={popupClose}></div>
+
     </MasterLayout >
 };
 

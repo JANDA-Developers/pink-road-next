@@ -10,18 +10,12 @@ interface IProp { }
 
 const popupOpen = () => {
     $('#Popup01').css({
-        'display': 'block'
-    });
-    $('#fade').css({
-        'display': 'block'
+        'display': 'flex'
     });
 
 }
 const popupClose = () => {
     $('#Popup01').css({
-        'display': 'none'
-    });
-    $('#fade').css({
         'display': 'none'
     });
 }
@@ -162,12 +156,12 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                             <div className="t04">
                                 <div className="info">
-                                    <span className="ct">문화</span>
+                                    <span className="ct">문화</span> <span className="g-number">상품번호: PINK-034982</span>
                                     <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                     <div className="txt">
                                         <span className="s-day">출발일: 2020.9.9</span>
                                         <span className="where">출발장소: 부산대학교 앞</span>
-                                        <span className="g-number">상품번호: PINK-034982</span>
+
                                         <span className="men">가격: 성인:25,000/소아10,000/유아:5,000</span>
                                     </div>
                                 </div>
@@ -183,7 +177,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                                     <strong className="money"><i className="m_title">합계금액:</i>920,000원</strong>
                                     <span className="sum01">매출금액(+) 400,000원</span>
                                     <span className="sum02">매입금액(-) 400,000원</span>
-                                    <span className="sum03">정산(=) 100,000원</span>
+                                    <span className="sum03">정산금액: 830,000원</span>
                                 </div>
                             </div>
                             <div className="t07">
@@ -220,12 +214,11 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                             <div className="t04">
                                 <div className="info">
-                                    <span className="ct">문화</span>
+                                    <span className="ct">문화</span><span className="g-number">상품번호: PINK-034982</span>
                                     <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                     <div className="txt">
                                         <span className="s-day">출발일: 2020.9.9</span>
                                         <span className="where">출발장소: 부산대학교 앞</span>
-                                        <span className="g-number">상품번호: PINK-034982</span>
                                         <span className="men">가격: 성인:25,000/소아10,000/유아:5,000</span>
                                     </div>
                                 </div>
@@ -241,7 +234,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                                     <strong className="money"><i className="m_title">합계금액:</i>920,000원</strong>
                                     <span className="sum01">매출금액(+) 400,000원</span>
                                     <span className="sum02">매입금액(-) 400,000원</span>
-                                    <span className="sum03">정산(=) 100,000원</span>
+                                    <span className="sum03">정산금액: 830,000원</span>
                                 </div>
                             </div>
                             <div className="t07">
@@ -277,12 +270,12 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                             <div className="t04">
                                 <div className="info">
-                                    <span className="ct">문화</span>
+                                    <span className="ct">문화</span>  <span className="g-number">상품번호: PINK-034982</span>
                                     <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                     <div className="txt">
                                         <span className="s-day">출발일: 2020.9.9</span>
                                         <span className="where">출발장소: 부산대학교 앞</span>
-                                        <span className="g-number">상품번호: PINK-034982</span>
+
                                         <span className="men">가격: 성인:25,000/소아10,000/유아:5,000</span>
                                     </div>
                                 </div>
@@ -298,7 +291,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                                     <strong className="money"><i className="m_title">합계금액:</i>920,000원</strong>
                                     <span className="sum01">매출금액(+) 400,000원</span>
                                     <span className="sum02">매입금액(-) 400,000원</span>
-                                    <span className="sum03">정산(=) 100,000원</span>
+                                    <span className="sum03">정산금액: 830,000원</span>
                                 </div>
                             </div>
                             <div className="t07">
@@ -335,15 +328,279 @@ export const MsReservationB: React.FC<IProp> = () => {
 
         {/* popup-상세보기 */}
         <div id="Popup01" className="popup_bg_full">
-            <a className="close_icon" onClick={popupClose}>
-                <i className="flaticon-multiply"></i>
-            </a>
             <div className="in_txt master_popup">
+                <a className="close_icon" onClick={popupClose}>
+                    <i className="flaticon-multiply"></i>
+                </a>
+                <div className="page">
+                    <h3>예약 상세정보</h3>
+                    <div className="info_txt">
+                        <span className="g-number">상품번호: PK-034982</span>
+                        <span className="goods-state1 st01">확정여부: <i>출발확정</i></span>{/* 출발확정/출발미정 */}
+                        <span className="r-day">출발일: 2020.08.26</span>
+                        <span className="goods-state2">상품상태: 예약진행중</span>
+                        <button className="btn"><i className="flaticon-print mr5"></i>프린터</button>
+                        <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
+                    </div>
 
+                    <div className="info_table">
+                        <div className="tr">
+                            <div className="top04">
+                                <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
+                                <div className="info">
+                                    <span className="ct">문화</span>
+                                    <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
+                                    <div className="txt">
+                                        <div className="subTitle">대가야의 역사를 체험하고 느껴보는 여행</div>
+                                        <ul className="tag">
+                                            <li>#거제도</li>
+                                            <li>#1박2일</li>
+                                            <li>#꽃나들이</li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="top05">
+                                <div className="align">
+                                    <span className="s-day">출발일: 2020.9.9</span>
+                                    <span className="where">출발장소: 부산대학교 앞</span>
+                                    <span className="people">인원: 40명 (성인30/유아10/소아0)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="info_page">
+                        <div className="left_div">
+                            <h4>결제 정보</h4>
+                            <div className="info_table w50">
+                                <div className="tr">
+                                    <div className="th01">
+                                        결제건수
+                                </div>
+                                    <div className="td01">
+                                        <span>43</span>
+                                    </div>
+                                    <div className="th02">
+                                        결제금액
+                                </div>
+                                    <div className="td02">
+                                        <span className="blue_font">43,444,3333원</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div className="right_div">
+                            <h4>환불 정보</h4>
+                            <div className="info_table w50">
+                                <div className="tr">
+                                    <div className="th01">
+                                        환불건수
+                                </div>
+                                    <div className="td01">
+                                        <span>3</span>
+                                    </div>
+                                    <div className="th02">
+                                        환불금액
+                                </div>
+                                    <div className="td02">
+                                        <span className="red_font">- 45,433,000원</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div className="info_page">
+                        <div className="full_div">
+                            <h4>
+                                파트너 정보
+                        </h4>
+                            <div className="info_table partnerinfo">
+                                <div className="tr">
+                                    <div className="th01">
+                                        파트너명
+                                </div>
+                                    <div className="td01">
+                                        <span>푸른여행</span>
+                                    </div>
+                                    <div className="th02">
+                                        아이디
+                                </div>
+                                    <div className="td02">
+                                        <span>zozozo@gmail.com</span>
+                                    </div>
+                                    <div className="th03">
+                                        담당자
+                                </div>
+                                    <div className="td03">
+                                        <span>김하나 (<a href="tel:">010-3333-3333</a> )</span>
+                                    </div>
+                                    <div className="th04">
+                                        정산계좌
+                                </div>
+                                    <div className="td04">
+                                        <span>(부산은행)2324-23423-234 / 김호인</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="info_page">
+                        <div className="full_div">
+                            <h4>
+                                예약자 정보
+                        </h4>
+                            <div className="info_table">
+                                <div className="top_info">
+                                    <span className="tt">예약인원</span>
+                                    <span>총 40명 ( 성인30 / 소아10 / 유아0 )</span>
+                                    <span className="float_right">예약완료 38명 / 예약취소 10명 / 예약대기 2명</span>
+                                </div>
+                                <div className="tr">
+                                    <div className="pp01">
+                                        1
+                                </div>
+                                    <div className="th">예약번호</div>
+                                    <div className="td"><span>R-83729</span></div>
+                                    <div className="th">예약상태</div>
+                                    <div className="td"><span className="blue_font">예약완료</span></div>
+                                    <div className="th">예약자명</div>
+                                    <div className="td"><span>홍언니</span></div>
+                                    <div className="th">연락처</div>
+                                    <div className="td"><a href="tel:010-0000-0000">010-0000-0000</a></div>
+                                    <div className="th">성별</div>
+                                    <div className="td"><span>여성</span></div>
+                                    <div className="th">나이</div>
+                                    <div className="td"><span>1988-03-03 (만 32세)</span></div>
+                                    <div className="th">결제금액</div>
+                                    <div className="td"><span>30,000원</span></div>
+                                    <div className="th">메모</div>
+                                    <div className="td"><span>------------------------------------------------</span></div>
+                                </div>
+                                <div className="tr">
+                                    <div className="pp01">
+                                        2
+                                </div>
+                                    <div className="th">예약번호</div>
+                                    <div className="td"><span>R-83729</span></div>
+                                    <div className="th">예약상태</div>
+                                    <div className="td"><span className="red_font">예약취소</span></div>
+                                    <div className="th">예약자명</div>
+                                    <div className="td"><span>홍언니</span></div>
+                                    <div className="th">연락처</div>
+                                    <div className="td"><a href="tel:010-0000-0000">010-0000-0000</a></div>
+                                    <div className="th">성별</div>
+                                    <div className="td"><span>여성</span></div>
+                                    <div className="th">나이</div>
+                                    <div className="td"><span>1988-03-03 (만 32세)</span></div>
+                                    <div className="th">결제금액</div>
+                                    <div className="td"><span>-50,000원</span></div>
+                                    <div className="th">메모</div>
+                                    <div className="td"><span>------------------------------------------------</span></div>
+                                </div>
+                                <div className="tr">
+                                    <div className="pp01">
+                                        3
+                                </div>
+                                    <div className="th">예약번호</div>
+                                    <div className="td"><span>R-83729</span></div>
+                                    <div className="th">예약상태</div>
+                                    <div className="td"><span>예약대기</span></div>
+                                    <div className="th">예약자명</div>
+                                    <div className="td"><span>홍언니</span></div>
+                                    <div className="th">연락처</div>
+                                    <div className="td"><a href="tel:010-0000-0000">010-0000-0000</a></div>
+                                    <div className="th">성별</div>
+                                    <div className="td"><span>여성</span></div>
+                                    <div className="th">나이</div>
+                                    <div className="td"><span>1988-03-03 (만 32세)</span></div>
+                                    <div className="th">결제금액</div>
+                                    <div className="td"><span>-</span></div>
+                                    <div className="th">메모</div>
+                                    <div className="td"><span>------------------------------------------------</span></div>
+                                </div>
+                                <div className="tr">
+                                    <div className="pp01">
+                                        4
+                                </div>
+                                    <div className="th">예약번호</div>
+                                    <div className="td"><span>R-83729</span></div>
+                                    <div className="th">예약상태</div>
+                                    <div className="td"><span className="blue_font">예약완료</span></div>
+                                    <div className="th">예약자명</div>
+                                    <div className="td"><span>홍언니</span></div>
+                                    <div className="th">연락처</div>
+                                    <div className="td"><a href="tel:010-0000-0000">010-0000-0000</a></div>
+                                    <div className="th">성별</div>
+                                    <div className="td"><span>여성</span></div>
+                                    <div className="th">나이</div>
+                                    <div className="td"><span>1988-03-03 (만 32세)</span></div>
+                                    <div className="th">결제금액</div>
+                                    <div className="td"><span>50,000원</span></div>
+                                    <div className="th">메모</div>
+                                    <div className="td"><span>------------------------------------------------</span></div>
+                                </div>
+
+                                <div className="tr end">
+                                    <div className="sum">
+                                        <ul>
+                                            <li><span>합계금액</span>300,000원</li>
+                                            <li><span>수수료</span>(-)34,058원</li>
+                                            <li><span>환수금</span>(-)134,058원</li>
+                                            <li><span>부가가치세</span>(-)4,058원</li>
+                                        </ul>
+                                    = 정산금액 : <strong>250,000원</strong>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div className="info_page">
+                        <h4>메모</h4>
+                        <div className="write_comment">
+                            <div className="comment_layout">
+                                <ul className="text_box">
+                                    <li>
+                                        <div className="txta w100">
+                                            <textarea style={{ height: "100px;" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
+                                        </div>
+                                    </li>
+                                    <li className="tr count">0/3000</li>
+                                </ul>
+                                <div className="text_box_bottom">
+                                    <div className="float_left w50">
+                                        <span><i className="jandaicon-info2"></i>기존의 메모를 삭제하시면 되돌릴 수 없습니다. 신중하게 입력해 주세요.</span>
+                                    </div>
+                                    <div className="btn_send float_right"><button className="comment_btn">저장</button> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div className="fin">
+                        <div className="float_left">
+                            <button type="submit" className="btn medium">정산완료</button>
+                        </div>
+                        <div className="float_right">
+                            <button type="submit" className="btn medium">수정하기</button>
+                            <button type="submit" className="btn medium">저장하기</button>
+                            <Link href=""><a className="btn medium">상품수정 하러가기</a></Link>{/* 상품수정폼 가기 */}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div id="fade" className="fade" onClick={popupClose}></div>
     </MasterLayout >
 };
 

@@ -258,7 +258,7 @@
             display: inline-block;
             width: 24.5%;
             text-align: center;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 600;
             line-height: 37px;
         }
@@ -289,6 +289,10 @@
                 font-size: 12px;
                 padding: 10px 10px 10px;
                 box-sizing: border-box;
+                font-weight: 100;
+            }
+            .board_list_mini .tbody li > div a{
+                font-weight: 600;
             }
 
     .board_list_mini.ln04 .th01 {
@@ -321,7 +325,7 @@
     .board_list_mini .q_ok {
         font-style: unset;
         display: inline-block;
-        padding: 4px 10px;
+        padding: 4px 5px;
         margin-left: 15px;
         font-size: 10px;
         color: #002faa;
@@ -333,7 +337,7 @@
     .board_list_mini .q_no {
         font-style: unset;
         display: inline-block;
-        padding: 4px 10px;
+        padding: 4px 5px;
         margin-left: 15px;
         font-size: 10px;
         color: #3f65c9;

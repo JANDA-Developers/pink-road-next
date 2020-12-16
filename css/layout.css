@@ -336,18 +336,40 @@ i.tooltip{
                     width: auto;
                     text-align: center;
                     position: relative;
+                    margin: 0 10px;
                 }
 
                     .header .hd_center .nav_wrap .deps1 > li > a {
+                        width: auto;
                         font-size: 18px;
                         font-weight: 400;
+                        line-height: 48px;
                         color: #333333;
-                        width: auto;
-                        margin-right: 23px;
                         letter-spacing: -1px;
+                        cursor: pointer;
+                    }
+                    .header .hd_center .nav_wrap .deps1 > li > a:before {
+                        content: '';
+                        width: 100%;
+                        height: 5px;
+                        position: absolute;
+                        bottom: 0px;
+                        left: 0;
+                        background: #ed297b;
+                        display: block;
+                        visibility: hidden;
+                        transform: scaleX(0);
+                        transition: all 0.25s ease-in-out 0s;
+                    }
+                    .header .hd_center .nav_wrap .deps1 > li:hover > a:before,
+                    .header .hd_center .nav_wrap .deps1 > li.on > a:before {
+                        visibility: visible;
+                        -webkit-transform: scaleX(1);
+                        transform: scaleX(1);
                     }
 
-            .header .hd_center .nav_wrap > .deps1 > li > a:hover {
+            .header .hd_center .nav_wrap > .deps1 > li.on > a,
+            .header .hd_center .nav_wrap > .deps1 > li:hover > a {
                 color: #e41773;
                 transition: all 0.5s;
             }
@@ -383,25 +405,31 @@ i.tooltip{
                     }
             .header .hd_center .nav_wrap > .deps1 .deps_nav {
                 position: absolute;
-                top: 32px;
-                padding: 15px;
-                width: 150%;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-                line-height: 25px !important;
-                border-top: 3px solid #ed297b;
-                border-radius: 0 0 5px 5px;
-                background-color: #fff;
-                -webkit-box-shadow: 1px 1px 2px #000;
-                box-shadow: 1px 1px 2px #000;
+                top: 57px;
+                min-width: 100px;
+                line-height: 30px !important;
                 text-align: left;
+                box-sizing: border-box;
+                border-top: 5px solid #ed297b;
+                background-color: rgba(255, 255, 255, 0.856);
                 z-index: 70;
+            }
+            .header .hd_center .nav_wrap > .deps1 .deps_nav li {
+                display: block;
+                text-align: center;
+                box-sizing: border-box;
+
             }
                 .header .hd_center .nav_wrap > .deps1 .deps_nav a {
                     font-size: 0.8em;
                     color: #999;
-                }    .header .hd_center .nav_wrap > .deps1 .deps_nav a:hover {
-                 
+                    display: block;
+                    border-bottom: 1px dotted rgb(155, 155, 155);
+                }    
+                .header .hd_center .nav_wrap > .deps1 .deps_nav li:last-child a {
+                    border-bottom: 0;
+                }
+                .header .hd_center .nav_wrap > .deps1 .deps_nav a:hover {
                     color: #333;
                 }
 
@@ -2399,7 +2427,6 @@ i.icon_plus {
     }
     .header .hd_center .nav_wrap .deps1 > li > a {
         font-size: 15px;
-        margin-right: 15px;
     }   .header .top-menu {
         display: block;
     }
@@ -2649,7 +2676,6 @@ i.icon_plus {
     }
         .header .hd_center .nav_wrap .deps1 > li > a {
             font-size: 16px;
-            margin-right: 23px;
         }
     .header .hd_right {
         right: 0;

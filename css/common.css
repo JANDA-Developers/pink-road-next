@@ -41,7 +41,9 @@ fieldset, img {
 hr {
     display: none;
 }
-
+i{
+    font-style: normal;
+}
 ::placeholder {
     color: #d4d4d4;
 }

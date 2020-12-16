@@ -37,7 +37,10 @@ export const MsHomepageMain: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
-                                        <input className="mr10" type="checkbox" />
+                                        <span className="checkbox mr5">
+                                            <input type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                            <label htmlFor="agree1" />
+                                        </span>
                                         <span>검색엔진 최적화 기능 사용</span>
                                     </div>
                                 </div>
@@ -61,7 +64,10 @@ export const MsHomepageMain: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
-                                        <input className="mr10" type="checkbox" />
+                                        <span className="checkbox mr5">
+                                            <input type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                            <label htmlFor="agree1" />
+                                        </span>
                                         <span>문서 제목 최적화 기능 사용</span>
                                     </div>
                                 </div>

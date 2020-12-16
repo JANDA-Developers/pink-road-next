@@ -10,18 +10,12 @@ interface IProp { }
 
 const popupOpen = () => {
     $('#Popup01').css({
-        'display': 'block'
-    });
-    $('#fade').css({
-        'display': 'block'
+        'display': 'flex'
     });
 
 }
 const popupClose = () => {
     $('#Popup01').css({
-        'display': 'none'
-    });
-    $('#fade').css({
         'display': 'none'
     });
 }
@@ -166,12 +160,11 @@ export const MsReservationC: React.FC<IProp> = () => {
                             </div>
                             <div className="t03">
                                 <div className="info">
-                                    <span className="ct">문화</span>
+                                    <span className="ct">문화</span> <span className="g-number">상품번호: PINK-034982</span>
                                     <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                     <div className="txt">
                                         <span className="s-day">출발일: 2020.9.9</span>
                                         <span className="where">출발장소: 부산대학교 앞</span>
-                                        <span className="g-number">상품번호: PINK-034982</span>
                                         <span className="men">인원: 총 10명 (성인:3/소아:3/유아:4)</span>
                                     </div>
                                 </div>
@@ -220,12 +213,12 @@ export const MsReservationC: React.FC<IProp> = () => {
                             </div>
                             <div className="t03">
                                 <div className="info">
-                                    <span className="ct">문화</span>
+                                    <span className="ct">문화</span> <span className="g-number">상품번호: PINK-034982</span>
                                     <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                     <div className="txt">
                                         <span className="s-day">출발일: 2020.9.9</span>
                                         <span className="where">출발장소: 부산대학교 앞</span>
-                                        <span className="g-number">상품번호: PINK-034982</span>
+
                                         <span className="men">인원: 총 10명 (성인:3/소아:3/유아:4)</span>
                                     </div>
                                 </div>
@@ -277,15 +270,16 @@ export const MsReservationC: React.FC<IProp> = () => {
 
         {/* popup-상세보기 */}
         <div id="Popup01" className="popup_bg_full">
-            <a className="close_icon" onClick={popupClose}>
-                <i className="flaticon-multiply"></i>
-            </a>
             <div className="in_txt master_popup">
+                <a className="close_icon" onClick={popupClose}>
+                    <i className="flaticon-multiply"></i>
+                </a>
+                <div className="page">
 
+                </div>
             </div>
         </div>
 
-        <div id="fade" className="fade" onClick={popupClose}></div>
     </MasterLayout >
 };
 
