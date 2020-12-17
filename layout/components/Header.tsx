@@ -189,7 +189,7 @@ export const Header: React.FC<IProp> = () => {
                                 <li><span><Link href="/"><a>로그아웃</a></Link></span></li>
                             </ul>
                         </div>
-                        <div className="search_top">
+                        <div className="searchtop">
                             <div className="search_btn">
                                 <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
                                     현재 브라우저는 iframe을 지원하지 않습니다.

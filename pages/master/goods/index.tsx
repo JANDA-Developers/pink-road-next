@@ -180,8 +180,8 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
                             <div className="td06"><i className="m_title">인원:</i>10/22</div>
                             <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
-                            <div className="td08"><span className="tour-ok">출발확정</span></div>
-                            <div className="td09"><button onClick={popupOpen} className="btn">상세보기</button></div>
+                            <div className="td08"><span className="state_icon tour-ok">출발확정</span></div>
+                            <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
                         </div>
                         <div className="list_line">
                             <div className="td01">
@@ -196,25 +196,8 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
                             <div className="td06"><i className="m_title">인원:</i>10/22</div>
                             <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
-                            <div className="td08"><span className="tour-yes">출발미확정</span></div>
-                            <div className="td09"><button onClick={popupOpen} className="btn">상세보기</button></div>
-                        </div>
-
-                        <div className="list_line">
-                            <div className="td01">
-                                <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                    <label htmlFor="agree0" />
-                                </i>
-                            </div>
-                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
-                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
-                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
-                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
-                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
-                            <div className="td08"><span data-tip="사유: 태풍이 옴" className="tour-no">여행취소</span></div>
-                            <div className="td09"><button onClick={popupOpen} className="btn">상세보기</button></div>
+                            <div className="td08"><span className="state_icon tour-yes">출발미확정</span></div>
+                            <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
                         </div>
 
                         <div className="list_line">
@@ -230,8 +213,8 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
                             <div className="td06"><i className="m_title">인원:</i>10/22</div>
                             <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
-                            <div className="td08"><span data-tip="사유: 사진이 깨짐" className="plainning-no">기획반려</span></div>
-                            <div className="td09"><button onClick={popupOpen} className="btn">상세보기</button></div>
+                            <div className="td08"><span data-tip="사유: 태풍이 옴" className="state_icon tour-no">여행취소</span></div>
+                            <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
                         </div>
 
                         <div className="list_line">
@@ -247,8 +230,25 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
                             <div className="td06"><i className="m_title">인원:</i>10/22</div>
                             <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
-                            <div className="td08"><span className="plainning-yes">기획요청</span></div>
-                            <div className="td09"><button onClick={popupOpen} className="btn">상세보기</button></div>
+                            <div className="td08"><span data-tip="사유: 사진이 깨짐" className="state_icon plainning-no">기획반려</span></div>
+                            <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
+                        </div>
+
+                        <div className="list_line">
+                            <div className="td01">
+                                <i className="checkbox">
+                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                    <label htmlFor="agree0" />
+                                </i>
+                            </div>
+                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
+                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
+                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
+                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
+                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
+                            <div className="td08"><span className="state_icon plainning-yes">기획요청</span></div>
+                            <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
                         </div>
 
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
@@ -414,9 +414,9 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                 <h4>
                                     예약자 정보
                             <span>
-                                        <button className="btn">전체선택</button>
-                                        <button className="btn">예약완료 선택</button>
-                                        <button className="btn">SMS보내기</button>
+                                        <button className="btn topside">전체선택</button>
+                                        <button className="btn topside">예약완료 선택</button>
+                                        <button className="btn topside">SMS보내기</button>
                                     </span>
                                 </h4>
                                 <div className="info_table">

@@ -187,8 +187,8 @@ export const MsReservationA: React.FC<IProp> = () => {
                             </div>
                             <div className="t07">
                                 <div className="align">
-                                    <button className="btn" onClick={popupOpen}>상세보기</button>
-                                    <button className="btn">환불완료<i className="jandaicon-info2 tooltip" data-tip="환불은 예약관리시스템에서 예약취소 처리후에 환불완료를 눌러주세요." /></button>
+                                    <button className="btn small" onClick={popupOpen}>상세보기</button>
+                                    <button className="btn small">환불완료<i className="jandaicon-info2 tooltip" data-tip="환불은 예약관리시스템에서 예약취소 처리후에 환불완료를 눌러주세요." /></button>
                                 </div>
                             </div>
                         </div>
@@ -237,8 +237,8 @@ export const MsReservationA: React.FC<IProp> = () => {
                             </div>
                             <div className="t07">
                                 <div className="align">
-                                    <button className="btn" onClick={popupOpen}>상세보기</button>
-                                    <button className="btn">환불완료<i className="jandaicon-info2 tooltip" data-tip="환불은 예약관리시스템에서 예약취소 처리후에 환불완료를 눌러주세요." /></button>
+                                    <button className="btn small" onClick={popupOpen}>상세보기</button>
+                                    <button className="btn small">환불완료<i className="jandaicon-info2 tooltip" data-tip="환불은 예약관리시스템에서 예약취소 처리후에 환불완료를 눌러주세요." /></button>
                                 </div>
                             </div>
                         </div>

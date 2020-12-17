@@ -142,7 +142,7 @@ export const MsMemberB: React.FC<IProp> = () => {
                             <div className="td06"><i className="m_title">승인여부:</i><i className="approval stand">승인대기</i></div>
                             <div className="td07"><i className="m_title">가입일:</i>2020.11.22</div>
                             <div className="td08"><i className="m_title">판매상품:</i><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
-                            <div className="td09"><button className="btn" onClick={popupOpen}>상세보기</button></div>
+                            <div className="td09"><button className="btn small" onClick={popupOpen}>상세보기</button></div>
                         </div>
 
                         <div className="list_line">
@@ -159,7 +159,7 @@ export const MsMemberB: React.FC<IProp> = () => {
                             <div className="td06"><i className="m_title">승인여부:</i><i className="approval ok">승인</i></div>
                             <div className="td07"><i className="m_title">가입일:</i>2020.11.22</div>
                             <div className="td08"><i className="m_title">판매상품:</i><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
-                            <div className="td09"><button className="btn" onClick={popupOpen}>상세보기</button></div>
+                            <div className="td09"><button className="btn small" onClick={popupOpen}>상세보기</button></div>
                         </div>
 
                         <div className="list_line">
@@ -176,7 +176,7 @@ export const MsMemberB: React.FC<IProp> = () => {
                             <div className="td06"><i className="m_title">승인여부:</i><i className="approval no" data-tip="미승인사유 : 서류보완">미승인</i></div>
                             <div className="td07"><i className="m_title">가입일:</i>2020.11.22</div>
                             <div className="td08"><i className="m_title">판매상품:</i><strong>총 9건</strong><br />(여행<strong>2</strong>/체험<strong>7</strong>)</div>
-                            <div className="td09"><button className="btn" onClick={popupOpen}>상세보기</button></div>
+                            <div className="td09"><button className="btn small" onClick={popupOpen}>상세보기</button></div>
                         </div>
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                         <div className="fin">

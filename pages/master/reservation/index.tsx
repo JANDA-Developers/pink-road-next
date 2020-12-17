@@ -195,8 +195,8 @@ export const MsReservationMain: React.FC<IProp> = () => {
                             </div>
                             <div className="t07">
                                 <div className="align">
-                                    <button className="btn" onClick={popupOpen}>상세보기</button>
-                                    <button className="btn">예약취소</button>
+                                    <button className="btn small" onClick={popupOpen}>상세보기</button>
+                                    <button className="btn small">예약취소</button>
                                 </div>
                             </div>
                         </div>
@@ -248,8 +248,8 @@ export const MsReservationMain: React.FC<IProp> = () => {
                             </div>
                             <div className="t07">
                                 <div className="align">
-                                    <button className="btn" onClick={popupOpen}>상세보기</button>
-                                    <button className="btn">예약취소</button>
+                                    <button className="btn small" onClick={popupOpen}>상세보기</button>
+                                    <button className="btn small">예약취소</button>
                                 </div>
                             </div>
                         </div>

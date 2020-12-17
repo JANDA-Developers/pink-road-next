@@ -136,7 +136,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">담당자:</i>-</div>
                             <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
-                            <div className="td08"><button className="btn" onClick={popupOpen}>상세보기</button></div>
+                            <div className="td08"><button className="btn small" onClick={popupOpen}>상세보기</button></div>
                         </div>
 
                         <div className="list_line">
@@ -152,7 +152,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
                             <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
-                            <div className="td08"><button className="btn" onClick={popupOpen}>상세보기</button></div>
+                            <div className="td08"><button className="btn small" onClick={popupOpen}>상세보기</button></div>
                         </div>
                         <div className="list_line">
                         <div className="td01">
@@ -167,10 +167,17 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
                             <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
-                            <div className="td08"><button className="btn" onClick={popupOpen}>상세보기</button></div>
+                            <div className="td08"><button className="btn small" onClick={popupOpen}>상세보기</button></div>
                         </div>
 
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
+                        <div className="fin">
+                            <div className="float_left">
+                                <button type="submit" className="btn medium">전체선택</button>
+                            </div>
+                            <div className="float_right">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

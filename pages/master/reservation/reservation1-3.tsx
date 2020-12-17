@@ -187,10 +187,10 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                             <div className="t08">
                                 <div className="align">
-                                    <button className="btn" onClick={popupOpen}>상세보기</button>
-                                    <button className="btn">정산완료</button>
-                                    <button className="btn off">지급보류</button>
-                                    <button className="btn off">정산대기</button>
+                                    <button className="btn small" onClick={popupOpen}>상세보기</button>
+                                    <button className="btn small">정산완료</button>
+                                    <button className="btn small off">지급보류</button>
+                                    <button className="btn small off">정산대기</button>
                                 </div>
                             </div>
                         </div>
@@ -244,10 +244,10 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                             <div className="t08">
                                 <div className="align">
-                                    <button className="btn" onClick={popupOpen}>상세보기</button>
-                                    <button className="btn">정산완료</button>
-                                    <button className="btn off">지급보류</button>
-                                    <button className="btn off">정산대기</button>
+                                    <button className="btn small" onClick={popupOpen}>상세보기</button>
+                                    <button className="btn small">정산완료</button>
+                                    <button className="btn small off">지급보류</button>
+                                    <button className="btn small off">정산대기</button>
                                 </div>
                             </div>
                         </div>
@@ -301,10 +301,10 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                             <div className="t08">
                                 <div className="align">
-                                    <button className="btn" onClick={popupOpen}>상세보기</button>
-                                    <button className="btn">정산완료</button>
-                                    <button className="btn">지급보류</button>
-                                    <button className="btn">정산대기</button>
+                                    <button className="btn small" onClick={popupOpen}>상세보기</button>
+                                    <button className="btn small">정산완료</button>
+                                    <button className="btn small">지급보류</button>
+                                    <button className="btn small">정산대기</button>
                                 </div>
                             </div>
                         </div>

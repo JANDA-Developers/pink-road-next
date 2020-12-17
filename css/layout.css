@@ -124,6 +124,9 @@ i.tooltip{
         text-align: center;
         color: #8b8b8b;
     }
+   
+
+/* janda copyright */
 .footer-area-bottom {/*핑크로더는삭제요청*/
     background: #dedede;
     display:none;
@@ -149,8 +152,36 @@ i.tooltip{
         text-align: left;
         font-size: 20px
     }
-/* img edit btn */
 
+    /* search_top */
+
+     .search_top .svg_img {
+        width: 20px;
+        height: 20px;
+        opacity: 0.3;
+        position: absolute;
+        top: 50%;
+        right: 13px;
+        margin-top: -10px;
+    }
+    .search_top .svg_img:hover {
+       opacity: 0.5;
+   }
+     .search_top .svg_img button {
+        width: 100%;
+        height: 100%;
+        z-index: 33;
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 0;
+        border: 0;
+        background-color: initial;
+     
+    }
+
+/* img edit btn */
 .img_edit {
     position: relative;
 }
@@ -581,7 +612,7 @@ rect.allmenu_svg {
                 background-color: #f5f5f5;
             }
 
-    .header .search_top {
+    .header .searchtop {
         width: 29px;
         height: 36px;
         position: relative;
@@ -591,7 +622,7 @@ rect.allmenu_svg {
         vertical-align: middle;
     }
 
-        .header .search_top .search_btn {
+        .header .searchtop .search_btn {
             position: relative;
             display: inline-block;
             vertical-align: middle;
@@ -599,17 +630,17 @@ rect.allmenu_svg {
             padding-top: 4px;
         }
 
-            .header .search_top .search_btn object {
+            .header .searchtop .search_btn object {
                 cursor: pointer;
                 display: inline-block;
                 vertical-align: middle;
                 opacity: 0.8;
             }
-            .header .search_top .search_btn:hover object {
+            .header .searchtop .search_btn:hover object {
                 opacity: 1;
             }
 
-            .header .search_top .search_btn button {
+            .header .searchtop .search_btn button {
                 width: 30px;
                 height: 30px;
                 display: block;
@@ -2338,6 +2369,124 @@ i.icon_plus {
     line-height: 6px;
     
 }
+
+/* search_top */
+.search_top {
+    position: relative;
+    border: 5px solid rgb(210 210 210);
+    padding: 15px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 28px;
+}
+.search_top .hang {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-top: 8px;
+}
+.search_top .hang.fr {
+    width: 100%;
+    margin-top: 8px;
+    float: none !important;
+    
+}
+.search_top .day_ul {
+    display: flex;
+    width: 100%;
+    vertical-align: middle;
+    border:0;
+    border-radius: 100px;
+    text-align: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+.search_top .day_ul li {
+    display: inline-block;
+    padding: 3px 10px;
+    box-sizing: border-box;
+    float: left;
+    border-right: 1px solid #ccc;   
+     background-color: #eaeaea;
+    cursor: pointer;
+    font-size: 0.7em;
+    width: 25%;
+}
+.search_top .day_ul li.on {
+    background-color: #696969;
+}
+.search_top .day_ul li.on span {
+    color: #fff;
+}
+.search_top .day_ul li:last-child {
+
+    border-right: 0;
+}
+.search_top .day_ul span {
+    display: block;
+    color: #7b7b7b;
+    font-size: 12px;
+    font-weight: 600;
+}
+.search_top .input_box {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 44%;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.search_top .search_div {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+.search_top .search_div:hover .svg_img{
+    opacity: 0.5;
+}
+.search_top .search_div input {
+    height: 34px;
+    font-size: 0.9em;
+    
+}
+.search_top .calendar {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+    margin-left: 3px;
+    margin-right: 2px;
+    position: absolute;
+    right: 0px;
+    top: 7px;
+    opacity: 0.4;
+}
+.search_top .calendar img {
+    width: 100%;
+    height: 26px;
+    opacity: 0.5;
+}
+.search_top .calendar:hover img,
+.search_top .day:hover ~ .calendar img {
+    opacity: 1;
+}
+.search_top .calendar button {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    background-color: initial;
+    cursor: pointer;
+}
 @media (min-width:768px) {
     .pc {
         display: none;
@@ -2354,7 +2503,22 @@ i.icon_plus {
     .m {
         display: none;
     }
-
+   .search_top .hang {
+        width: auto;
+        margin-top: 0;
+    }
+   .search_top .option {
+        width: 100px;
+        margin-right: 10px;
+        margin-bottom: 0;
+    }
+    .search_top .search_div {
+        width: 80%;
+    }
+    .search_top .day_ul{
+        width: 250px;
+        display: flex;
+    }
     #content .x {
         width: 100%;
     }
@@ -2391,6 +2555,10 @@ i.icon_plus {
 }
 
 @media (min-width:1000px) {
+    .search_top .input_box {
+        margin-left: 0;
+        width: 200px;
+    }
     #gotop {
        
         width: 35px;
@@ -2654,6 +2822,18 @@ i.icon_plus {
 
     .m {
         display: none;
+    }
+   .search_top .search_div {
+        width: 240px;
+    }
+    .search_top {
+        text-align: left;
+    }
+   .search_top .hang.fr {
+        width: auto;
+        margin-top: 0;
+        float: right !important;
+        
     }
     .header > .w1200 {
         padding: 28px 0;

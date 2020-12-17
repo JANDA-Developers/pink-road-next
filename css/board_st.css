@@ -28,6 +28,7 @@
     vertical-align: bottom;
     border: 1px solid #cfcfcf;
     margin-right:8px;
+    vertical-align: middle;
 }
 
     .board_option li {
@@ -2024,13 +2025,11 @@ div.sum_div {
         div.sum_div li .function i {
             margin-right: 10px;
         }
-
     div.sum_div .first_ul li {
         background-color: #ffffff;
         padding: 0 10px;
         box-sizing: border-box;
     }
-
     div.sum_div .last_ul {
         text-align: right;
         width: 100%;
@@ -2038,18 +2037,15 @@ div.sum_div {
         border-bottom: 0;
         background-color: #797979;
     }
-
         div.sum_div .last_ul li {
             width: 100%;
             padding: 15px;
             box-sizing: border-box;
         }
-
             div.sum_div .last_ul li div {
                 font-size: 22px;
                 color: #ffffff;
             }
-
         div.sum_div .last_ul i {
             margin-right: 20px;
             font-size: 13px;
@@ -2062,7 +2058,6 @@ div.sum_div {
     display: block;
     border-top: 2px solid #555;
 }
-
     .reservation_list .th {
         position: relative;
         width: 100%;
@@ -2073,7 +2068,6 @@ div.sum_div {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-
     .reservation_list .td {
         position: relative;
         width: 100%;
@@ -2081,7 +2075,6 @@ div.sum_div {
         border-bottom: 1px solid #c4c4c4;
         line-height: 22px;
     }
-
     .reservation_list .th div[class*=t0] {
         display: inline-block;
         width: 50%;
@@ -2090,7 +2083,6 @@ div.sum_div {
         font-weight: 600;
         border-left: 0 !important;
     }
-
     .reservation_list .td div[class*=t0] {
         display: inline-block;
         width: 50%;

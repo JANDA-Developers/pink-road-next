@@ -150,7 +150,10 @@ export const MsMemberA: React.FC<IProp> = () => {
                             <div className="td06"><i className="m_title">국적:</i>외국인</div>
                             <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
                             <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
-                            <div className="td09"><i className="btn" onClick={popupOpen3}>상세보기</i><i className="btn" onClick={popupOpen1}>작성한 게시글</i></div>
+                            <div className="td09">
+                                <i className="btn small" onClick={popupOpen3}>상세보기</i>
+                                <i className="btn small" onClick={popupOpen1}>작성한 게시글</i>
+                            </div>
                         </div>
 
                         <div className="list_line">
@@ -167,7 +170,10 @@ export const MsMemberA: React.FC<IProp> = () => {
                             <div className="td06"><i className="m_title">국적:</i>외국인</div>
                             <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
                             <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
-                            <div className="td09"><i className="btn" onClick={popupOpen3}>상세보기</i><i className="btn" onClick={popupOpen1}>작성한 게시글</i></div>
+                            <div className="td09">
+                                <i className="btn small" onClick={popupOpen3}>상세보기</i>
+                                <i className="btn small" onClick={popupOpen1}>작성한 게시글</i>
+                            </div>
                         </div>
                         <div className="list_line">
                             <div className="td01">
@@ -183,7 +189,10 @@ export const MsMemberA: React.FC<IProp> = () => {
                             <div className="td06"><i className="m_title">국적:</i>외국인</div>
                             <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
                             <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
-                            <div className="td09"><i className="btn" onClick={popupOpen3}>상세보기</i><i className="btn" onClick={popupOpen1}>작성한 게시글</i></div>
+                            <div className="td09">
+                                <i className="btn small" onClick={popupOpen3}>상세보기</i>
+                                <i className="btn small" onClick={popupOpen1}>작성한 게시글</i>
+                            </div>
                         </div>
                         <div className="list_line">
                             <div className="td01">
@@ -199,7 +208,10 @@ export const MsMemberA: React.FC<IProp> = () => {
                             <div className="td06"><i className="m_title">국적:</i>외국인</div>
                             <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
                             <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
-                            <div className="td09"><i className="btn" onClick={popupOpen3}>상세보기</i><i className="btn" onClick={popupOpen1}>작성한 게시글</i></div>
+                            <div className="td09">
+                                <i className="btn small" onClick={popupOpen3}>상세보기</i>
+                                <i className="btn small" onClick={popupOpen1}>작성한 게시글</i>
+                            </div>
                         </div>
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                         <div className="fin">
@@ -227,7 +239,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                         {/* 작성한글 */}
                         <div className="info_page">
                             <div className="alignment">
-                                <div className="left_div">총 <strong>22,222</strong>개</div>
+                                <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>건</span></div>
                                 <div className="right_div">
                                     <select className="sel01">
                                         <option>작성일 &uarr;</option>
@@ -259,8 +271,10 @@ export const MsMemberA: React.FC<IProp> = () => {
                                     <ul>
                                         <li>
                                             <div className="tt01 checkbox">
-                                                <input type="checkbox" name="agree" id="agree-popup-1" title="선택" />
-                                                <label htmlFor="agree-popup-1" />
+                                                <i className="checkbox">
+                                                    <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                                    <label htmlFor="agree0" />
+                                                </i>
                                             </div>
                                             <div className="tt02">문의하기</div>
                                             <div className="tt03">23</div>
@@ -269,8 +283,10 @@ export const MsMemberA: React.FC<IProp> = () => {
                                         </li>
                                         <li>
                                             <div className="tt01 checkbox">
-                                                <input type="checkbox" name="agree" id="agree-popup-2" title="선택" />
-                                                <label htmlFor="agree-popup-2" />
+                                                <i className="checkbox">
+                                                    <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                                    <label htmlFor="agree0" />
+                                                </i>
                                             </div>
                                             <div className="tt02">문의하기</div>
                                             <div className="tt03">23</div>
