@@ -14,6 +14,7 @@ export interface IBoardOpen {
     files: boolean;
     summary: boolean;
     thumb: boolean;
+    open: boolean;
 }
 
 type TCategory = { _id: string, label: string };
@@ -152,15 +153,17 @@ export const BoardWrite: React.FC<IProps> = ({
                             </div>
                         </div>
                     }
-                    <div className="write_type">
-                        <div className="title">글 설정</div>
-                        <div className="input_form">
-                            <ul>
-                                <li><input onChange={handleChangeOpen} type="radio" name="status" id="status-open" value={"true"} checked={isOpen} className="radio" /><label htmlFor="status-open">공개</label></li>
-                                <li><input onChange={handleChangeOpen} type="radio" name="status" id="status-sold" value={"false"} checked={!isOpen} className="radio" /><label htmlFor="status-sold">비공개</label></li>
-                            </ul>
+                    {opens.thumb &&
+                        <div className="write_type">
+                            <div className="title">글 설정</div>
+                            <div className="input_form">
+                                <ul>
+                                    <li><input onChange={handleChangeOpen} type="radio" name="status" id="status-open" value={"true"} checked={isOpen} className="radio" /><label htmlFor="status-open">공개</label></li>
+                                    <li><input onChange={handleChangeOpen} type="radio" name="status" id="status-sold" value={"false"} checked={!isOpen} className="radio" /><label htmlFor="status-sold">비공개</label></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                    }
                     {WriteInjection}
                 </div>
                 {/* 첨부파일 */}

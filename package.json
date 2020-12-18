@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "precodegen": "apollo schema:download --endpoint=http://10.159.6.11:4000/graphql",
+    "precodegen": "apollo schema:download --endpoint=http://localhost:4000/graphql",
     "codegen": "apollo codegen:generate types/api.ts   --includes=apollo/gql/* --queries=apollo/gql/*.ts --addTypename --localSchemaFile=schema.json --target=typescript --outputFlat"
   },
   "dependencies": {

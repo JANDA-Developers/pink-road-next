@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import dynamic from "next/dynamic";
 import React from "react";
 import { Ffile } from "types/api"
+import { TElements } from "../../types/interface";
 import { ContentViewer } from "../contentViewer/ContentViewer";
 
 interface IProps {
@@ -22,11 +23,12 @@ interface IProps {
     onEdit?: () => void;
     onDelete?: () => void;
     content?: string;
+    Buttons?: TElements
 }
 
 
 export const BoardView: React.FC<IProps> = (data) => {
-    const { catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, onNext, onPrev, onDelete, subTitle } = data;
+    const { catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, onNext, onPrev, onDelete, subTitle, Buttons } = data;
 
 
     const handlePrev = () => {
@@ -90,6 +92,7 @@ export const BoardView: React.FC<IProps> = (data) => {
                     <div className="float_right">
                         <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>
                         <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>
+                        {Buttons}
                     </div>
                 </div>
                 {(onPrev || onNext) && <div className="board_list_mini">

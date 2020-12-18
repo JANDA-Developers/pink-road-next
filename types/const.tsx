@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { IPageInfo } from "./interface"
-import { ItineraryCreateInput, ProductStatus, UserRole, } from "./api";
+import { Fquestion_author_profileImg, ItineraryCreateInput, ProductStatus, UserRole, } from "./api";
 
 export const lastMonthFirstDate = dayjs().add(-1, "m").set("day", 1).toDate();
 export const lastMonthLastDate = dayjs().add(-1, "m").endOf("month").toDate();
@@ -14,6 +14,9 @@ export const DEFAULTS = {
 }
 
 export const BG = (url: string) => ({ backgroundImage: `url(${url})` })
+export const BGprofile = (profileImg: Fquestion_author_profileImg | null | undefined) => {
+    return BG(profileImg?.uri || DEFAULT_PROFILE_IMG);
+}
 
 export const Econvert = (status: ProductStatus) => {
 
@@ -65,3 +68,5 @@ export const ADMINS = [UserRole.admin, UserRole.manager];
 export const ONLY_LOGINED = [UserRole.admin, UserRole.individual, UserRole.manager, UserRole.partner, UserRole.partnerB];
 export const FULL_ACCESS = [...ONLY_LOGINED, UserRole.anonymous];
 export const ALLOW_SELLERS = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin];
+
+export const DEFAULT_PROFILE_IMG = "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png";

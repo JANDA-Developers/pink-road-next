@@ -20,18 +20,23 @@ import { generateClientPaging } from "../../../utils/generateClientPaging";
 import { Paginater } from "../../../components/common/Paginator";
 import { QnaLi } from "../../../components/qna/QnaLi";
 import PageLoading from "../../Loading";
+import { CommentWrite } from "../../../components/comment/CommentWrite";
 
 const TourDetail: React.FC = () => {
 
   const router = useRouter();
   const id = router.query.id as string;
   const { loading, product } = useProductFindById(id);
-  const { isManager, isAdmin } = useContext(AppContext);
+  const { isManager, isAdmin, myProfile } = useContext(AppContext);
+  const isMyProduct = product?.author?._id === myProfile?._id;
 
   const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
 
+  console.log("product?.questions");
+  console.log(product?.questions);
+
   const sliderRef = useRef<SLIDER>(null);
-  const { count, handleCount, totalPrice, setCount, setPrice } = useBasketCount({
+  const { count, handleCount, totalPrice } = useBasketCount({
     adult_price: product?.adult_price,
     baby_price: product?.baby_price,
     kids_price: product?.kids_price,
@@ -41,7 +46,6 @@ const TourDetail: React.FC = () => {
       kids: 0
     }
   });
-
 
   const [sliderIndex, setSlideIndex] = useState(0);
   const { scrollY } = useScroll();
@@ -95,6 +99,10 @@ const TourDetail: React.FC = () => {
     }
   }
 
+  const handleQnaClick = (id: string) => () => {
+    router.push("/qna/view/" + id);
+  }
+
   const handleDoPay = () => {
     handleAddBracket()
     router.push("/payment/")
@@ -127,6 +135,9 @@ const TourDetail: React.FC = () => {
     caution
   } = product;
 
+  console.log("questionSliced");
+  console.log(questionSliced);
+
   return <div className="edtiorView">
     <SubTopNav children={
       <>
@@ -152,7 +163,7 @@ const TourDetail: React.FC = () => {
                   <Slide key={i + "sliderImg"} >
                     <img src={img?.uri} alt={img.name} />
                   </Slide>
-                )}
+                ) || ""}
               </Slider>
             </div>
             <ul className="photo_list">
@@ -348,14 +359,14 @@ const TourDetail: React.FC = () => {
               <div className="tbody">
                 <ul>
                   {questionSliced.map(qs =>
-                    <QnaLi key={qs._id} question={qs} />
+                    <QnaLi onClick={handleQnaClick(qs._id)} key={qs._id} question={qs} />
                   )}
                 </ul>
               </div>
               <div className="boardNavigation">
                 <Paginater pageInfo={questionPageInfo} isMini setPage={setQuestionPage} />
                 <div className="float_right">
-                  <Link href="/qna/">
+                  <Link href={`/qna/write?pid=${id}&name=${title}`}>
                     <a className="mini_btn small">고객센터 문의하기</a>
                   </Link>
                 </div>

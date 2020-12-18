@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const generateClientPaging = <T>(items:T[],cntPerPage:number) => {
-    const [page,setPage] = useState(0);
+    const [page,setPage] = useState(1);
     const paging = new Page(page,cntPerPage);
     paging.calculate(items.length)
 

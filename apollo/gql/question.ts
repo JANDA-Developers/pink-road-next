@@ -1,5 +1,40 @@
 import { gql } from "@apollo/client"
-import { F_PAGE, F_QUESTION } from "./fragments"
+import { F_ANSWER } from "./answer"
+import { F_FILE, F_PAGE } from "./fragments"
+
+
+export const F_QUESTION = gql`
+    fragment Fquestion  on Question {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        title
+        contents
+       
+        isNotice
+        isOpen
+        summary
+        subTitle
+        status
+        answers {
+          ...Fanswer
+        }
+        keyWards
+        attachFiles {
+            ...Ffile
+        }
+        thumb {
+            ...Ffile
+        }
+        viewCount
+        likeCount
+        status
+        no
+    }
+    ${F_ANSWER}
+    ${F_FILE}
+`
 
 
 export const QUESTION_LIST = gql`
@@ -19,7 +54,24 @@ export const QUESTION_LIST = gql`
       ...Fpage
     }
     data  {
-      ...Fquestion
+      ...Fquestion,
+      author {
+            _id
+            nickName
+            email
+            profileImg {
+              uri
+            }
+        }
+        product {
+          _id
+          title
+          author {
+            _id
+            name
+            nickName
+          }
+      }
     }
   }
   }
@@ -84,7 +136,23 @@ query questionFindById(
   error 
   data {
     ...Fquestion
-
+    author {
+      _id
+      nickName
+      email
+      profileImg {
+        uri
+      }
+    }
+    product {
+      _id
+      title
+      author {
+        _id
+        name
+        nickName
+      }
+    }
   }
 }
 }

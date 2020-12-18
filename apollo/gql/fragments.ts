@@ -125,9 +125,9 @@ export const F_USER = gql`
         name
         bank_name
         phoneNumber
-        # profileImg {
-        #     uri
-        # }
+        profileImg {
+            uri
+        }
     }
     ${F_FILE}
 `
@@ -250,41 +250,4 @@ export const F_PRODUCT = gql`
     ${F_FILE}
     ${F_USER}
     ${F_ITINERARY}
-`
-
-
-export const F_QUESTION = gql`
-    fragment Fquestion  on Question {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        title
-        contents
-        author {
-            _id
-            nickName
-            email
-        }
-        isNotice
-        isOpen
-        summary
-        subTitle
-        keyWards
-        attachFiles {
-            ...Ffile
-        }
-        thumb {
-            ...Ffile
-        }
-        viewCount
-        likeCount
-        # product {
-        #     _id
-        #     title
-        # }
-        status
-        no
-    }
-    ${F_FILE}
 `

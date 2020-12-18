@@ -1,28 +1,26 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from 'react';
-import { initStorage, Storage } from '../../../utils/Storage';
 import { BoardWrite } from "components/board/Write";
-import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
+import { useBoard } from "hook/useBoard";
 import { omits } from "../../../utils/omit";
-import { auth, compose } from "../../../utils/with";
+import { auth } from "../../../utils/with";
 import { ONLY_LOGINED } from "../../../types/const";
-import ProductSearcherWrap from "../../../components/productSearcher/ProductSearcher";
+import { ProductSearcher } from "../../../components/productSearcher/ProductSearcher";
 import { Validater } from "../../../utils/validate";
 import { useQuestionCreate, useQuestionDelete, useQuestionFindById, useQuestionUpdate } from "../../../hook/useQuestion";
+import { getFromUrl } from "../../../utils/url";
 
 interface IProp { }
 
 export const QuestionWrite: React.FC<IProp> = () => {
     const router = useRouter();
-    const id = router.query.id as string;
-    const { loading, question } = useQuestionFindById();
-    const mode = id ? "create" : "edit"
-    const open = {
-        thumb: true,
-        title: true
-    };
+    const id = router.query.id?.[0] as string;
+    const { item: question } = useQuestionFindById(id);
+    const mode = id ? "edit" : "create";
+    const urlProductId = getFromUrl("pid") || "";
+    const urlProductName = getFromUrl("name") || "";
 
-    const { questionUpdate } = useQuestionUpdate({
+    const [questionUpdateMu] = useQuestionUpdate({
         onCompleted: ({ QuestionUpdate }) => {
             if (QuestionUpdate.ok) {
                 const id = QuestionUpdate.data!._id;
@@ -32,7 +30,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
         awaitRefetchQueries: true
     })
 
-    const { questionCreate } = useQuestionCreate({
+    const [questionCreateMu] = useQuestionCreate({
         onCompleted: ({ QuestionCreate }) => {
             if (QuestionCreate.ok) {
                 const id = QuestionCreate.data!._id;
@@ -42,7 +40,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
         awaitRefetchQueries: true
     })
 
-    const { questionDelete } = useQuestionDelete({
+    const [questionDeleteMu] = useQuestionDelete({
         onCompleted: ({ QuestionDelete }) => {
             if (QuestionDelete.ok)
                 router.push(`/qna`)
@@ -51,17 +49,21 @@ export const QuestionWrite: React.FC<IProp> = () => {
 
     const boardHook = useBoard({
         ...question,
-    }, open);
+    }, { storeKey: "questionWrite" });
 
-    const [productId, setProductId] = useState("");
-    const { boardData, loadKey, loadKeyAdd, setBoardData, validater: { nodes } } = boardHook
+    const [productId, setProductId] = useState(urlProductId);
+    const { boardData, loadKey, handleCancel, handleLoad, handleTempSave, setBoardData } = boardHook
 
     const { validate } = new Validater([
-        ...nodes,
+        {
+            value: boardData.title,
+            failMsg: "제목 값은 필수 입니다.",
+        },
         {
             value: boardData.contents,
             failMsg: "콘텐츠 값은 필수 입니다.",
-        }, {
+        },
+        {
             value: productId,
             failMsg: "상품 선택은 필수 입니다.",
         }]
@@ -74,16 +76,20 @@ export const QuestionWrite: React.FC<IProp> = () => {
             ...boardData,
         }
 
-        questionUpdate({
-            params: omits(params, ["categoryId", "files"]),
-            id
+        questionUpdateMu({
+            variables: {
+                params: omits(params, ["categoryId", "files"]),
+                id
+            }
         })
     }
 
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
-            questionDelete({
-                id
+            questionDeleteMu({
+                variables: {
+                    id
+                }
             })
     }
 
@@ -95,39 +101,40 @@ export const QuestionWrite: React.FC<IProp> = () => {
             productId,
         }
 
-        questionCreate({
-            params: omits(next, ["categoryId", "files"])
+        questionCreateMu({
+            variables: {
+                params: omits(next, ["categoryId", "files"])
+            }
         })
     }
 
-    const handleTempSave = () => {
-        Storage?.saveLocal("questionWrite", boardData);
-    }
-
-    const handleCancel = () => {
-        router.back()
-    }
-
-    const handleLoad = () => {
-        const saveData = Storage?.getLocalObj<IUseBoardData>("questionWrite");
-        if (!isUnLoaded(saveData)) {
-            setBoardData(saveData);
-            loadKeyAdd();
-        }
-    }
-
     useEffect(() => {
-        initStorage()
-    }, [])
+        setBoardData({
+            title: question?.title,
+            contents: question?.contents,
+        })
+        setProductId(question?.product._id || "")
+    }, [question?._id])
+
 
     return <BoardWrite
-        WriteInjection={<ProductSearcherWrap
-            onSelectProduct={(product) => {
-                setProductId(product._id);
-            }} />
+        WriteInjection={
+            urlProductId ? <div className="write_type">
+                <div className="title">상품명</div>
+                <div className="input_form">
+                    <input readOnly id="title" value={urlProductName} type="text" name="title" className="inputText w100" />
+                </div>
+            </div> :
+                <ProductSearcher
+                    defaultProductId={productId}
+                    defaultSearch={question?.product.title}
+                    onSelectProduct={(product: any) => {
+                        setProductId(product._id);
+                    }}
+                />
         }
         boardHook={boardHook}
-        key={loadKey}
+        key={loadKey + (question?._id || "") + productId}
         mode={mode}
         onCancel={handleCancel}
         onCreate={handleCreate}
@@ -135,7 +142,9 @@ export const QuestionWrite: React.FC<IProp> = () => {
         onEdit={handleUpdate}
         onSave={handleTempSave}
         onLoad={handleLoad}
-        opens={open}
+        opens={{
+            title: true,
+        }}
     />
 };
 

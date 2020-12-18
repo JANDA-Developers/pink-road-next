@@ -5,18 +5,29 @@ import { useEffect } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
 
-export const generateListQueryHook = <F,S,Q,V,ResultFragment>(
-    QUERY: DocumentNode,
-    {defaultSort}: {
-    defaultSort:S[]
-}) => {
 
+const dataCheck = (data:any,operationName:string) => {
+    if(data?.hasOwnProperty(operationName) === false) {
+        console.log(data)
+        throw Error(`result data object dose not have property ${operationName} look this above object ↑ `)
+    }
+    if(data?.[operationName].hasOwnProperty("data") === false) {
+        console.log(data[operationName])
+        throw Error(`result data object dose not have property data look this above object ↑ `)
+    }
+}
+
+export const generateListQueryHook = <F,S,Q,V,R>(
+    QUERY: DocumentNode,
+    queryInit: Partial<ListInitOptions<F, S>> = {}
+) => {
     const listQueryHook = (
         {
             initialPageIndex = 1,
-            initialSort = defaultSort,
+            initialSort = [],
             initialFilter,
             initialViewCount = 20,
+            ...queryInit
         }: Partial<ListInitOptions<F, S>> = {},
         options: QueryHookOptions<Q, V> = {}
     )=> {
@@ -40,9 +51,11 @@ export const generateListQueryHook = <F,S,Q,V,ResultFragment>(
         })
 
       
+
         const operationName = getQueryName(QUERY);
+        dataCheck(data,operationName)
         // @ts-ignore
-        const items: ResultFragment[] = data?.[operationName]?.data || []
+        const items: R[] = data?.[operationName]?.data || []
         // @ts-ignore
         const pageInfo: Fpage = data?.[operationName]?.page || DEFAULT_PAGE
 
@@ -75,9 +88,10 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
 }
 
 
+
 export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V,QUERY:DocumentNode) => {
     const findQueryHook = (key:any, options:QueryHookOptions<Q, V> = {}) => {
-        const [getData, { data, loading }] = useLazyQuery<Q, V>(QUERY, {
+        const [getData, { data, loading, error:apolloError }] = useLazyQuery<Q, V>(QUERY, {
             skip: !key,
             nextFetchPolicy: "network-only",
             // @ts-ignore
@@ -86,16 +100,23 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V,QUERY:Docu
             },
             ...options,
         })
-        
-        const operationName = getQueryName(QUERY);
-        // @ts-ignore
-        const item:ResultFragment | undefined = data?.[operationName]?.data | undefined;
 
+        const operationName = getQueryName(QUERY);
+
+        // @ts-ignore
+        const item:ResultFragment | undefined = data?.[operationName]?.data || undefined;
+        // @ts-ignore
+        const errorFromServer:string = data?.[operationName]?.error;
+        dataCheck(data,operationName)
+   
         useEffect(()=>{
+            if(key)
             getData()
         },[key])
 
-        return {item,loading}
+        const error = apolloError || errorFromServer 
+
+        return {item, loading, error}
     }
 
     return findQueryHook

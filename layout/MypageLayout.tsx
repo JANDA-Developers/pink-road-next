@@ -6,7 +6,7 @@ import { useUpload } from '../hook/useUpload';
 import { useUserUpdate } from '../hook/useUser';
 import { AppContext } from '../pages/_app';
 import { Ffile, ProductStatus } from '../types/api';
-import { BG } from '../types/const';
+import { BG, BGprofile } from '../types/const';
 import { omits } from '../utils/omit';
 import { getItemCount, Storage } from '../utils/Storage';
 
@@ -79,9 +79,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                 <div className="lnb">
                     <div className="profile_box">
                         <div className="welcome">
-                            <span style={BG(myProfile?.profileImg?.uri || "")} onClick={() => {
-                                hiddenFileInput.current?.click()
-                            }} className="img"><i className="jandaicon-setting"></i>프로필이미지</span>
+                            <span style={BGprofile(myProfile?.profileImg)} onClick={hiddenFileInput.current?.click} className="img"><i className="jandaicon-setting"></i>프로필이미지</span>
                             <input onChange={handleChangeProfile} ref={hiddenFileInput} hidden type="file" />
                             <span className="name1">
                                 {isParterNonB && <i className="ct_guide">Partner</i>}{/* 개인파트너 -*/}

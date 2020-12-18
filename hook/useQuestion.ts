@@ -1,141 +1,88 @@
-import { MutationHookOptions, useMutation } from "@apollo/client";
-import { getOperationName } from "@apollo/client/utilities";
 import { QUESTION_DELETE, QUESTION_LIST, QUESTION_CREATE, QUESTION_UPDAET } from "../apollo/gql/question";
-import { questionCreate, questionCreateVariables, questionDelete, questionDeleteVariables } from "../types/api";
+import { questionCreate, questionCreateVariables, questionDelete, questionDeleteVariables, questionFindById_QuestionFindById_data, questionList_QuestionList_data, questionUpdate, questionUpdateVariables } from "../types/api";
 import { questionFindById, questionFindByIdVariables } from "../types/api";
-import { QueryHookOptions, useQuery } from "@apollo/client"
+import { QueryHookOptions } from "@apollo/client"
 import { QUESTION_FIND_BY_ID } from "../apollo/gql/question";
-import { Fpage, Fquestion, questionList, questionListVariables, _PortfolioSort, _QuestionFilter, _QuestionSort } from "../types/api";
-import { DEFAULT_PAGE } from "../types/const";
-import { IListHook, useListQuery } from "./useListQuery";
-import { questionUpdate, questionUpdateVariables } from "../types/api";
-import { IlistQueryInit } from "../types/interface";
+import { questionList, _PortfolioSort, _QuestionFilter, _QuestionSort } from "../types/api";
+import { generateFindQuery, generateListQueryHook, generateMutationHook } from "../utils/query";
+import { getRefetch } from "../utils/api";
 
-export const useQuestionDelete = (options?: MutationHookOptions<questionDelete,questionDeleteVariables>) => {
-    const [questionUpdateMu, { loading: deleteLoading }] = useMutation<questionDelete, questionDeleteVariables>(QUESTION_DELETE, {
-        refetchQueries: [getOperationName(QUESTION_LIST) || ""],
-        ...options
-    });
-    
-    const questionDelete = (variables: questionDeleteVariables, onSucess?: () => void) => {
-        questionUpdateMu({
-            variables
-        }).then((data) => {
-            if (data.data?.QuestionDelete.ok) {
-                onSucess?.()
-            }
-        })
-    }
-
-    return {questionDelete, deleteLoading}
-}
-
-
-
-export interface IUseQuestionFindById {
-    question?: Fquestion;
-    loading: boolean;
-}
 export interface IuseQuestionFindByIdProp extends QueryHookOptions<questionFindById,questionFindByIdVariables> {
 }
 
-export const useQuestionFindById = (id?:string, {
-    ...options
-}:IuseQuestionFindByIdProp = {}):IUseQuestionFindById => {
-    const { data, loading } = useQuery<questionFindById, questionFindByIdVariables>(QUESTION_FIND_BY_ID, {
-        ...options,
-        skip:!id,
-        nextFetchPolicy: "cache-and-network",
-        onCompleted: ({QuestionFindById})=> {
-            if(!QuestionFindById.ok) {
-                console.error(data?.QuestionFindById.error);
-                alert("잘못된 접근 입니다.");
-            }
-        },
-        variables: {
-            id:id || ""
-        }
-    })
+export const useQuestionFindById = generateFindQuery<questionFindById,questionFindByIdVariables,questionFindById_QuestionFindById_data>("id",QUESTION_FIND_BY_ID);
+export const useQuestionList = generateListQueryHook<_QuestionFilter,_QuestionSort,questionList,questionCreateVariables,questionList_QuestionList_data>(QUESTION_LIST);
+export const useQuestionCreate = generateMutationHook<questionCreate,questionCreateVariables>(QUESTION_CREATE,{...getRefetch(QUESTION_FIND_BY_ID,QUESTION_LIST)});
+export const useQuestionDelete = generateMutationHook<questionDelete,questionDeleteVariables>(QUESTION_DELETE,{...getRefetch(QUESTION_FIND_BY_ID,QUESTION_LIST)});
+export const useQuestionUpdate = generateMutationHook<questionUpdate, questionUpdateVariables>(QUESTION_UPDAET,{...getRefetch(QUESTION_FIND_BY_ID,QUESTION_LIST)});
 
-    const question = data?.QuestionFindById?.data || undefined
+
+// export const useQuestionList = ({
+//     initialPageIndex = 1,
+//     initialSort = [_QuestionSort.createdAt_desc],
+//     initialFilter = {},
+//     initialViewCount = 20,
+//     options = {}
+// }:IuseItemListProp = {}):IUseQuestionList => {
+//     const { variables: overrideVariables, ...ops } = options;
+//     const {integratedVariable,...useList} = useListQuery({
+//         initialFilter,
+//         initialPageIndex,
+//         initialSort,
+//         initialViewCount
+//     });
+//     const { data, loading:getLoading } = useQuery<questionList, questionListVariables>(QUESTION_LIST, {
+//         nextFetchPolicy: "network-only",
+//         variables: {
+//             ...integratedVariable,
+//             ...overrideVariables
+//         },
+//         ...ops
+//     })
     
-    return { question, loading }
-}
-
-interface IuseItemListProp extends IlistQueryInit<_QuestionFilter, _QuestionSort,questionList, questionListVariables> {}
-export interface IUseQuestionList extends IListHook<_QuestionFilter, _QuestionSort> {
-    items: Fquestion[];
-    getLoading: boolean;
-    pageInfo: Fpage;
-}
-
-
-export const useQuestionList = ({
-    initialPageIndex = 1,
-    initialSort = [_QuestionSort.createdAt_desc],
-    initialFilter = {},
-    initialViewCount = 20,
-    options = {}
-}:IuseItemListProp = {}):IUseQuestionList => {
-    const { variables: overrideVariables, ...ops } = options;
-    const {integratedVariable,...useList} = useListQuery({
-        initialFilter,
-        initialPageIndex,
-        initialSort,
-        initialViewCount
-    });
-    const { data, loading:getLoading } = useQuery<questionList, questionListVariables>(QUESTION_LIST, {
-        nextFetchPolicy: "network-only",
-        variables: {
-            ...integratedVariable,
-            ...overrideVariables
-        },
-        ...ops
-    })
+//     const items = data?.QuestionList.data || [];
+//     const pageInfo = data?.QuestionList.page || DEFAULT_PAGE;
     
-    const items = data?.QuestionList.data || [];
-    const pageInfo = data?.QuestionList.page || DEFAULT_PAGE;
+//     return { pageInfo, getLoading, items, ...useList }
+// }
+
+
+// export const useQuestionUpdate = (options?: MutationHookOptions<questionUpdate,questionUpdateVariables>) => {
+//     const [questionUpdateMu, { loading: updateLoading }] = useMutation<questionUpdate, questionUpdateVariables>(QUESTION_UPDAET, {
+//         refetchQueries: [getOperationName(QUESTION_LIST) || ""],
+//         ...options
+//     });
     
-    return { pageInfo, getLoading, items, ...useList }
-}
+//     const questionUpdate = (variables: questionUpdateVariables, onSucess?: () => void) => {
+//         questionUpdateMu({
+//             variables
+//         }).then((data) => {
+//             if (data.data?.QuestionUpdate?.ok) {
+//                 onSucess?.()
+//             }
+//         })
+//     }
+
+//     return {questionUpdate, updateLoading}
+// }
 
 
-export const useQuestionUpdate = (options?: MutationHookOptions<questionUpdate,questionUpdateVariables>) => {
-    const [questionUpdateMu, { loading: updateLoading }] = useMutation<questionUpdate, questionUpdateVariables>(QUESTION_UPDAET, {
-        refetchQueries: [getOperationName(QUESTION_LIST) || ""],
-        ...options
-    });
+// export const useQuestionCreate = (options?: MutationHookOptions<questionCreate,questionCreateVariables>) => {
+//     const [questionUpdateMu, { loading: createLoading }] = useMutation<questionCreate,questionCreateVariables>(QUESTION_CREATE, {
+//         refetchQueries: [getOperationName(QUESTION_CREATE) || ""],
+//         ...options
+//     });
     
-    const questionUpdate = (variables: questionUpdateVariables, onSucess?: () => void) => {
-        questionUpdateMu({
-            variables
-        }).then((data) => {
-            if (data.data?.QuestionUpdate?.ok) {
-                onSucess?.()
-            }
-        })
-    }
+//     const questionCreate = async (variables: questionCreateVariables, onSucess?: () => void) => {
+//         return await questionUpdateMu({
+//             variables
+//         }).then((data) => {
+//             if (data.data?.QuestionCreate?.ok) {
+//                 onSucess?.()
+//             }
+//             return data.data
+//         })
+//     }
 
-    return {questionUpdate, updateLoading}
-}
-
-
-export const useQuestionCreate = (options?: MutationHookOptions<questionCreate,questionCreateVariables>) => {
-    const [questionUpdateMu, { loading: createLoading }] = useMutation<questionCreate,questionCreateVariables>(QUESTION_CREATE, {
-        refetchQueries: [getOperationName(QUESTION_CREATE) || ""],
-        ...options
-    });
-    
-    const questionCreate = async (variables: questionCreateVariables, onSucess?: () => void) => {
-        return await questionUpdateMu({
-            variables
-        }).then((data) => {
-            if (data.data?.QuestionCreate?.ok) {
-                onSucess?.()
-            }
-            return data.data
-        })
-    }
-
-    return {questionCreate, createLoading}
-}
+//     return {questionCreate, createLoading}
+// }

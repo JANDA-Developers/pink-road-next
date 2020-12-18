@@ -7,6 +7,7 @@ interface IProp extends IDiv {
     title: string;
 }
 
+
 export const Modal: React.FC<IProp> = ({ id, children, title, ...props }) => {
     return <div className="modal" style={{
         top: 0,

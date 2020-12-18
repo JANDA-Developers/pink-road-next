@@ -25,7 +25,7 @@ export const Payment: React.FC<IProp> = ({ }) => {
     const [createdBookings, setCreatedBookings] = useState<Fbooking[]>([]);
     const [customParams, setCustomParams] = useState<IcustomParams>();
     const { item: findBooking } = useBookingFindByCode(urlBKcode);
-    const [bookingCreate, { loading }] = useBookingsCreate();
+    const [bookingCreate] = useBookingsCreate();
     const { items, totalPrice, updateComponent, getLoading }: IUseBasket = useBasket()
 
     const startPay = () => {
@@ -89,7 +89,6 @@ export const Payment: React.FC<IProp> = ({ }) => {
     }
 
     return <PaymentLayout>
-        {JSON.stringify(customParams || {})}
         <NiceElments ReqReserved={encodeURIComponent(JSON.stringify(customParams || {}))}
             {...generateNiceData({
                 auth: niceAuth,

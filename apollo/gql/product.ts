@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
-import {  F_PAGE, F_PRODUCT, F_QUESTION } from "./fragments";
+import {  F_PAGE, F_PRODUCT } from "./fragments";
+import { F_QUESTION } from "./question";
 
 export const PRODUCTS_CREATE = gql`
   mutation ProductCreate(

@@ -10,7 +10,6 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
 import { getStaticPageInfo } from '../utils/page';
-import { useBookingList } from '../hook/useBooking';
 
 export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
@@ -19,7 +18,6 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const [page, setPage] = useState(original);
   const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPage)
   const router = useRouter()
-  const bookingListHook = useBookingList();
 
 
   const toProductBoard = (id: string) => {
@@ -118,12 +116,13 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 <span><Link href="/tour?exp=true"><a>더많은체험</a></Link></span>
               </div>
               <i><svg><polygon points="69.22 12.71 0 12.71 0 10.71 64.33 10.71 54.87 1.43 56.27 0 69.22 12.71" /></svg></i>
+
             </li>
             {items.map((item) =>
               <Link key={item._id} href={`/tour/view/${item._id}`}>
                 <li className="list_in">
                   <div className="img" onClick={() => { toProductBoard(item._id) }} style={{
-                    backgroundImage: `url(${item.images[0]?.uri})`
+                    backgroundImage: `url(${item?.images?.[0]?.uri})`
                   }}></div>
                   <div className="box">
                     <div className="category"><span>{item.category?.label}</span></div>

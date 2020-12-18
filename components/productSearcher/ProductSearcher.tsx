@@ -8,13 +8,18 @@ import { integratedProductSearch } from '../../utils/genFilter';
 import isEmpty from '../../utils/isEmpty';
 
 interface IProp {
-    productListHook: IuseProductList
+    defaultSearch?: string;
+    defaultProductId?: string;
     onSelectProduct: (product: Fproduct) => void;
 }
 
-export const ProductSearcher: React.FC<IProp> = ({ productListHook, onSelectProduct }) => {
-    const [search, setSearch] = useState("");
-    const { setFilter, items } = productListHook;
+export const ProductSearcher: React.FC<IProp> = ({ defaultSearch, onSelectProduct, defaultProductId }) => {
+    const [search, setSearch] = useState(defaultSearch);
+    const { setFilter, items } = useProductList({
+        initialFilter: {
+            _id_eq: defaultProductId
+        }
+    });
 
     const getData = () => {
         setFilter(integratedProductSearch(search || "____"));
@@ -36,7 +41,7 @@ export const ProductSearcher: React.FC<IProp> = ({ productListHook, onSelectProd
         {isEmpty(items) ||
             <div className="productSearcher__items">
                 {items.map(item => <div className={`productSearcher__item ${search === item.title && "on"}`} onClick={handleSelectProduct(item)} key={item._id}>
-                    <img className="productSearcher__img" src={item.images[0]?.uri} />
+                    <img className="productSearcher__img" src={item?.images?.[0]?.uri} />
                     <div>
                         <h4>
                             {item.title}
@@ -51,9 +56,4 @@ export const ProductSearcher: React.FC<IProp> = ({ productListHook, onSelectProd
 };
 
 
-const ProductSearcherWrap = (props: Pick<IProp, "onSelectProduct">) => {
-    const productListHook = useProductList();
-    return <ProductSearcher  {...props} productListHook={productListHook} />
-}
-
-export default ProductSearcherWrap
+export default ProductSearcher

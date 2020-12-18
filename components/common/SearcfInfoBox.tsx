@@ -19,3 +19,4 @@ export const SearcfInfoBox: React.FC<IProp> = () => {
         </ul>
     </div>;
 };
+

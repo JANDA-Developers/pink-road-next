@@ -185,7 +185,6 @@ export const TourWrite: React.FC<IProp> = () => {
                         <input id="title" onChange={handleInputChange("title")} value={title} type="text" name="title" className="inputText w100" />
                     </div>
                 </div>
-
                 <div className="write_type">
                     <div className="title">부제목</div>
                     <div className="input_form">
