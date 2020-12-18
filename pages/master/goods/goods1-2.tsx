@@ -16,7 +16,6 @@ export const MsGoodsct: React.FC<IProp> = () => {
                     <ul>
                         <li><Link href="/master/goods"><a>상품관리</a></Link></li>
                         <li className="on"><Link href="/master/goods/goods1-2"><a>카테고리설정</a></Link></li>
-                        <li><Link href="/master/goods/goods1-3"><a>약관관리</a></Link></li>
                     </ul>
                 </div>
                 <div className="con goods2">

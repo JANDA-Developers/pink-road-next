@@ -6,6 +6,86 @@
 .jandaicon-info2.tooltip{
     line-height: 10px;
 }
+/* styleguide */
+.styleguidebox{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 10%;
+    box-sizing: border-box;
+}
+.styleguidebox h3{
+    font-size: 2em;
+    line-height: 150%;
+}
+.styleguidebox h4{
+    font-size: 1.5em;
+    line-height: 150%;
+}
+.styleguidebox .chartlist{
+    position: relative;
+    display: block;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+}
+.styleguidebox .chartlist li{
+    display: inline-block;
+    margin-right: 15px;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+    padding: 2px;
+}
+.styleguidebox .chartlist li a{
+    font-weight: 600;
+}
+.styleguidebox .chartlist li:hover a{
+    color: #2196F3;
+}
+.styleguidebox .layoutbox{
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.styleguidebox .layoutbox__ex{
+    border: 5px solid #f5f5f5;
+    margin-top: 20px;
+    padding: 5%;
+    box-sizing: border-box;
+    text-align: left;
+}
+.styleguidebox .layoutbox__ovject{
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    margin: 1%;
+    margin-bottom: 20px;
+    
+}
+.styleguidebox .layoutbox__ovject.w100{
+    width: 100%;
+}
+.styleguidebox .layoutbox__ovject__txt{
+    display: inline-block;
+    font-size: 12px;
+    line-height: 180%;
+    color: #777;
+    background-color: #fffbe2;
+}
+.styleguidebox .layoutbox__infotext{
+    font-weight: 100;
+    font-size: 14px;
+}
+.styleguidebox .layoutbox__item{
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+}
+
+
+
 /* main */
 #main.main {
     position: relative;
@@ -472,7 +552,6 @@
         right: 5px;
         top: 5px;
     }
-
     .input_relative .btn_in:before {
         position: absolute;
         right: 0px;
@@ -489,24 +568,20 @@
         margin-right: 0;
         line-height: 15px;
     }
-
     .input_relative input.ok ~ .btn_in:before {
         color: #2196F3;
         border: 2px solid #2196F3;
     }
-
 div.list_bottom {
     position: relative;
     display: block;
     margin-top: 50px;
 }
-
 div.btn_footer {
     width: 45%;
     display: inline-block;
     margin: 20px 0;
 }
-
 div.search_mini {
     width: 100%;
     position: relative;
@@ -518,13 +593,11 @@ div.search_mini {
     text-align: left;
     z-index: 1;
 }
-
     div.search_mini .in {
         width: 100%;
         position: relative;
         text-align: center;
     }
-
     div.search_mini svg {
         width: 15px;
         color: #999;
@@ -533,7 +606,6 @@ div.search_mini {
         top: 9px;
         right: 6%;
     }
-
     div.search_mini input {
         border: 1px solid #999;
         background-color: #fff;
@@ -545,41 +617,48 @@ div.search_mini {
         padding: 15px 20px;
         box-sizing: border-box;
     }
-
         div.search_mini input:focus {
             border: 1px solid #ed297b;
         }
-
             div.search_mini input:focus ~ svg {
                 fill: #ed297b;
             }
 div.popup_bg_full {
     position: fixed;
+    display: none;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    bottom: 0;
+    right: 0;
     z-index: 101;
-    padding: 60px 3% 30px;
-    box-sizing: border-box;
-    border-radius: 0px;
-    overflow: hidden;
-    background-color: #fff;
-    border: 0;
+    background-color: rgba(0, 0, 0, 0.80);
+    justify-content: center;
+    align-items: center;
 }
 div.popup_bg_full .fin{
     padding: 30px 0;
 }
 
     div.popup_bg_full .in_txt {
+        position: relative;
+        height: 90%;
+        width: 90%;
+        border-radius: 10px;
+        padding: 90px 10px 10px 10px;
+        box-sizing: border-box;
+        background-color: #ffffff;
+        box-shadow: 2px 2px 2px #00000052;
+    }
+    div.popup_bg_full .in_txt .page {
         height: 100%;
         width: 100%;
         overflow-y: scroll;
         margin: 0 auto;
         text-align: left;
         font-size: 12px;
-        padding: 10px 10px 10px 0;
+        padding: 20px 10px 10px 0px;
         box-sizing: border-box;
+
     }
 
     div.popup_bg_full .in_txt2 {
@@ -631,8 +710,8 @@ div.popup_bg_full .fin{
         font-size: 20px;
         line-height: 40px;
         font-weight: 600;
-        position: absolute;
-        top: 19px;
+        position: fixed;
+        top: 55px;
     }    
     div.popup_bg_full h3 strong {
         color: #2196F3;
@@ -662,8 +741,6 @@ div.popup_bg_full .fin{
     div.popup_bg_full h4 .btn {
         padding: 0px 10px;
         margin-left: 5px;
-        font-size: 0.9em;
-        border-radius: 0;
     }
     div.popup_bg_full h4 span strong {
       
@@ -677,17 +754,33 @@ div.popup_bg_full .fin{
     }
 
 div.popup_bg_mini {
+<<<<<<< HEAD
+=======
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+>>>>>>> origin/design
     z-index: 101;
-    padding: 23px 0;
-    box-sizing: border-box;
+    background-color: rgb(0 0 0 / 80%);
+    justify-content: center;
+    align-items: center;
+}
+div.popup_bg_mini .fin{
+    padding: 10px 0 !important;
+}
+div.popup_bg_mini .page{
+    height: 100%;
+    width: 100%;
     border-radius: 20px;
+    padding: 20px 10px 10px 0px;
+    box-sizing: border-box;
     overflow: hidden;
     background-color: #fff;
     box-shadow: 2px 2px 2px #00000052;
     position: relative;
-}
-div.popup_bg_mini .fin{
-    padding: 10px 0 !important;
 }
 
 .popup_bg_mini .fade {
@@ -695,9 +788,11 @@ div.popup_bg_mini .fin{
 }
 
     div.popup_bg_mini .in_txt {
-        height: 100%;
-        width: 100%;
-        margin: 0 auto;
+        position: relative;
+        height:280px;
+        width: 500px;  
+        box-sizing: border-box;
+        padding: 0;
         text-align: left;
         font-size: 12px;
     }
@@ -735,8 +830,8 @@ div.popup_bg_mini .fin{
 
     div.popup_bg_mini .close_icon {
         position: absolute;
-        top: 29px;
-        right: 17px;
+        top: 25px;
+        right: 32px;
         display: block;
         width: 30px;
         height: 30px;
@@ -777,7 +872,6 @@ div.popup_bg_mini .fin{
     div.popup_bg_mini .con {
         display: block;
         position: relative;
-        height: 100%;
         width: 100%;
         padding: 25px 37px 0;
         box-sizing: border-box;
@@ -824,32 +918,42 @@ div.popup_bg_mini .fin{
         top: 16px;
     }
 
-div.popup_bg {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 800px;
-    height: 500px;
-    margin-top: -250px;
-    margin-left: -400px;
-    z-index: 101;
-    padding: 60px 22px;
-    box-sizing: border-box;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #fff;
-    box-shadow: 2px 2px 2px #00000052;
-}
 
+    div.popup_bg {
+        position: fixed;
+        display: none;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 101;
+        background-color: rgb(0 0 0 / 80%);
+        justify-content: center;
+        align-items: center;
+    }
+    div.popup_bg .fin{
+        padding: 10px 0 !important;
+    }
     div.popup_bg .in_txt {
-        height: 386px;
-        width: 90%;
-        overflow-y: scroll;
-        margin: 0 auto;
+        position: relative;
+        width: 800px;
+        height: 500px;
         text-align: left;
         font-size: 12px;
+        overflow: hidden;
+        padding: 50px 10px 10px 0px;
+        box-sizing: border-box;
+        border-radius: 20px;
+        background-color: #fff;
+        box-shadow: 2px 2px 2px #00000052;
     }
-
+    div.popup_bg .page{
+        height: 100%;
+        width: 100%;
+        padding: 10px 10px 10px 0px;
+        box-sizing: border-box;
+        overflow-y: scroll;
+    }
     div.popup_bg .in_txt2 {
         height: 418px;
         width: 90%;
@@ -858,8 +962,8 @@ div.popup_bg {
 
     div.popup_bg .close_icon {
         position: absolute;
-        top: 29px;
-        right: 17px;
+        top: 21px;
+        right: 3px;
         display: block;
         width: 30px;
         height: 30px;
@@ -930,7 +1034,7 @@ div.alignment {
 
     div.alignment .left_div {
         display: inline-block;
-        width: 100%;
+        width: 50%;
         text-align: left;
         font-size: 14px;
         line-height: 22px;
@@ -948,7 +1052,7 @@ div.alignment {
 
     div.alignment .right_div {
         display: inline-block;
-        width: 100%;
+        width: 50%;
         text-align: left;
         font-size: 14px;
     }
@@ -5683,7 +5787,7 @@ i.important_icon {
             .tour_details_in .boardReadBody .tour_list div {
                 position: relative;
                 box-sizing: border-box;
-                padding: 10px 10px 30px 15px;
+                padding: 5px 10px 30px 15px;
                 font-size: 16px;
                 color: #555;
             }
@@ -5744,6 +5848,12 @@ i.important_icon {
             padding-bottom: 50px;
             color: #555;
             position: relative;
+        }
+        .tour_details_in .boardReadBody .in_box .text p{
+            font-weight: 100;
+        }
+        .tour_details_in .boardReadBody .in_box .text strong{
+            font-weight:600;
         }
 
     .tour_details_in .boardReadFooter {
@@ -6117,13 +6227,12 @@ i.important_icon {
         display: inline-block;
         margin-right: 5px;
         margin-bottom: 5px;
-        border: 1px solid #ccc;
-        padding: 5px 15px;
+        padding: 2px 5px;
         box-sizing: border-box;
-        font-size: 12px;
-        color: #919191;
-        font-weight: 600;
-        border-radius: 100px;
+        font-size: 0.9em;
+        color: #999;
+        font-weight: 100;
+        background-color: #f5f5f5;
     }
 
     .option_tb .number_box {
@@ -8684,6 +8793,47 @@ i.calendar {
     margin-top: -8px;
 }
 
+
+
+/*notice_box*/
+.notice_box {
+    margin: 0 auto;
+    margin-top: 60px !important;
+    margin-bottom: 100px !important;
+    box-sizing: border-box;
+    padding: 0 3%;
+}
+/*qna_box*/
+.qna_box {
+    margin: 0 auto;
+    margin-top: 60px !important;
+    margin-bottom: 100px !important;
+    box-sizing: border-box;
+    padding: 0 3%;
+}
+.qna_box .alignment{
+   padding: 30px 0 0;
+}
+
+/*inquiry_box*/
+.inquiry_box{
+    margin: 0 auto;
+    margin-top: 60px !important;
+    margin-bottom: 100px !important;
+    box-sizing: border-box;
+    padding: 0 3%;
+}
+.inquiry_box .board_list.st01 .tbody .td03 {
+    width: auto;
+}
+.inquiry_box .board_list.st01 .tbody .td04 {
+    width: auto;
+    text-align: center;
+}
+.inquiry_box .board_list.st01 .tbody .td05 {
+    width: auto;
+    text-align: right;
+}
 @media (min-width: 768px) {   
     .notification_box .right {
     padding-left: 110px;
@@ -8774,6 +8924,9 @@ i.calendar {
         }
         .main_con_box1 .main_top_images .btn_list a {
             display: inline-block;
+            width: auto;
+            height: auto;
+            line-height: normal;
             color: #333;
             padding: 10px 62px;
             border: 2px solid #333;
@@ -9149,7 +9302,7 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
-    div.popup_bg_full {
+    /* div.popup_bg_full {
         top: 2%;
         left: 2%;
         width: 96%;
@@ -9157,16 +9310,16 @@ i.calendar {
         padding: 60px 22px 30px;
         border-radius: 20px;
         border: 5px solid #ccc;
-    }
+    } */
     
         div.popup_bg_full .in_txt {
-            padding: 10px;
+            padding: 50px 20px 20px;
         }
     
     div.popup_bg_full .close_icon {
             position: absolute;
-            top: 29px;
-            right: 17px;
+            top:15px;
+            right: 2px;
             display: block;
             width: 30px;
             height: 30px;
@@ -9864,13 +10017,22 @@ div.alignment .right_div {
 div.alignment select {
         border-radius: 5px;
         height: 32px;
-width:auto;
-margin-top:0;
+        width:auto;
+        margin-top:0;
         font-size: 12px;
         padding: 0 10px;
         font-weight: 100;
         box-sizing: border-box;
         border: 1px solid #d2d2d2;
+    }
+    .inquiry_box .board_list.st01 .tbody .td03 {
+        width: 57%;
+    }
+    .inquiry_box .board_list.st01 .tbody .td04 {
+        width: 10%;
+    }
+    .inquiry_box .board_list.st01 .tbody .td05 {
+        width: 12%;
     }
 }
 
@@ -9945,7 +10107,7 @@ margin-top:0;
 }
 
 @media (min-width: 1200px) {
-    div.popup_bg_full {
+    /* div.popup_bg_full {
         top: 5%;
         left: 5%;
         width: 90%;
@@ -9953,10 +10115,10 @@ margin-top:0;
         padding: 60px 22px 30px;
         border-radius: 20px;
         border: 5px solid #ccc;
-    }
+    } */
     
         div.popup_bg_full .in_txt {
-            padding: 10px;
+            padding:50px 20px 20px;
         }
     .main_con_box1 .ovj {
         width: 1200px;
@@ -10214,7 +10376,7 @@ margin-top:0;
         }
 
     .search_box {
-        padding: 50px 129px;
+        padding: 50px 49px;
     }
 
     .search_in {
@@ -10241,6 +10403,16 @@ margin-top:0;
         .search_in .search_box .in .inf {
             width: 24%;
         }
+.qna_box {
+    padding: 0;
+}
+
+.inquiry_box{
+    padding: 0;
+}
+.notice_box{
+    padding: 0;
+}
 }
 
 @media (min-width: 1300px) {
@@ -10300,6 +10472,7 @@ margin-top:0;
     }
     .main_con_box1 .main_top_images strong {
         padding-left: 0;
+        width: 50%;
     }
     .main_con_box1 .main_top_images span {
         padding-left: 0;

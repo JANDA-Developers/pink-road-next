@@ -179,9 +179,9 @@ td {
     padding-bottom: 15px;
 }
 .deps:hover .deps_nav {
-    padding-top: 15px!important;
-    padding-bottom: 15px!important;
-    max-height: 100px;
+    /* padding-top: 15px!important;
+    padding-bottom: 15px!important; */
+   min-height: 100px;
     opacity: 1;
 }
 

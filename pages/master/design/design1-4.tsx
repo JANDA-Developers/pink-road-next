@@ -5,6 +5,16 @@ import Link from "next/link";
 
 interface IProp { }
 
+const popupOpen = () => {
+    $('#Popup01').css({
+        'display': 'flex'
+    });
+}
+const popupClose = () => {
+    $('#Popup01').css({
+        'display': 'none'
+    });
+}
 export const MsDesignC: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
@@ -28,6 +38,47 @@ export const MsDesignC: React.FC<IProp> = () => {
                     </div>
 
 
+                    {/* 메인화면 상품진열 */}
+                    <div className="block_box">
+                        <div className="head">
+                            <h5>메인화면 상품진열</h5>
+                            <div className="float_right">
+                                <div className="switch">
+                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
+                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="body">
+                            <div className="body-list">
+                                <ul>
+                                    <li onClick={popupOpen}>
+                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
+                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
+                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
+                                    </li>
+                                    <li onClick={popupOpen}>
+                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
+                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
+                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
+                                    </li>
+                                    <li onClick={popupOpen}>
+                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
+                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
+                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
+                                    </li>
+                                    <li onClick={popupOpen}>
+                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
+                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
+                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
+                                    </li>
+                                    <li onClick={popupOpen}>
+                                        <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     {/* Tour 문화·예술여행 */}
                     <div className="block_box">
                         <div className="head">
@@ -46,27 +97,27 @@ export const MsDesignC: React.FC<IProp> = () => {
                             </div>
                             <div className="body-list">
                                 <ul>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
                                     </li>
                                 </ul>
@@ -92,27 +143,27 @@ export const MsDesignC: React.FC<IProp> = () => {
                             </div>
                             <div className="body-list">
                                 <ul>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
                                     </li>
                                 </ul>
@@ -139,27 +190,27 @@ export const MsDesignC: React.FC<IProp> = () => {
                             </div>
                             <div className="body-list">
                                 <ul>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
                                     </li>
                                 </ul>
@@ -186,27 +237,27 @@ export const MsDesignC: React.FC<IProp> = () => {
                             </div>
                             <div className="body-list">
                                 <ul>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
                                     </li>
                                 </ul>
@@ -233,27 +284,27 @@ export const MsDesignC: React.FC<IProp> = () => {
                             </div>
                             <div className="body-list">
                                 <ul>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
                                     </li>
                                 </ul>
@@ -279,27 +330,27 @@ export const MsDesignC: React.FC<IProp> = () => {
                             </div>
                             <div className="body-list">
                                 <ul>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
                                     </li>
                                 </ul>
@@ -326,27 +377,27 @@ export const MsDesignC: React.FC<IProp> = () => {
                             </div>
                             <div className="body-list">
                                 <ul>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
                                     </li>
                                 </ul>
@@ -373,27 +424,27 @@ export const MsDesignC: React.FC<IProp> = () => {
                             </div>
                             <div className="body-list">
                                 <ul>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
                                         <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
                                         <div className="date">2020.03.13 ~ 2020.03.15</div>
                                     </li>
-                                    <li>
+                                    <li onClick={popupOpen}>
                                         <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
                                     </li>
                                 </ul>
@@ -410,10 +461,22 @@ export const MsDesignC: React.FC<IProp> = () => {
                     </div>
                 </div>
             </div>
-
-
         </div>
 
+        {/* popup-상세보기 */}
+        <div id="Popup01" className="popup_bg">
+            <div className="in_txt master_popup">
+                <a className="close_icon" onClick={popupClose}>
+                    <i className="flaticon-multiply"></i>
+                </a>
+                <div className="page">
+                    <h3>상품선택</h3>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </MasterLayout >
 };

@@ -7,6 +7,18 @@ import Link from "next/link";
 
 interface IProp { }
 
+const popupOpen = () => {
+    $('#Popup01').css({
+        'display': 'flex'
+    });
+
+}
+const popupClose = () => {
+    $('#Popup01').css({
+        'display': 'none'
+    });
+}
+
 export const MsMemberD: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
@@ -18,7 +30,6 @@ export const MsMemberD: React.FC<IProp> = () => {
                         <li><Link href="/master/member/member1-2"><a>기업파트너 회원</a></Link></li>
                         <li><Link href="/master/member/member1-3"><a>개인파트너 회원</a></Link></li>
                         <li className="on"><Link href="/master/member/member1-4"><a>탈퇴회원</a></Link></li>
-                        <li><Link href="/master/member/member1-5"><a>회원약관 설정</a></Link></li>
                     </ul>
                 </div>
                 <div className="con withdrawal">
@@ -125,7 +136,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">담당자:</i>-</div>
                             <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
-                            <div className="td08"><button className="btn">상세보기</button></div>
+                            <div className="td08"><button className="btn small" onClick={popupOpen}>상세보기</button></div>
                         </div>
 
                         <div className="list_line">
@@ -141,7 +152,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
                             <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
-                            <div className="td08"><button className="btn">상세보기</button></div>
+                            <div className="td08"><button className="btn small" onClick={popupOpen}>상세보기</button></div>
                         </div>
                         <div className="list_line">
                         <div className="td01">
@@ -156,21 +167,30 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
                             <div className="td06"><i className="m_title">탈퇴일:</i>2020.11.22</div>
                             <div className="td07"><i className="m_title">가입방법:</i>카카오톡연동</div>
-                            <div className="td08"><button className="btn">상세보기</button></div>
+                            <div className="td08"><button className="btn small" onClick={popupOpen}>상세보기</button></div>
                         </div>
 
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
+                        <div className="fin">
+                            <div className="float_left">
+                                <button type="submit" className="btn medium">전체선택</button>
+                            </div>
+                            <div className="float_right">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
                     <SearcfInfoBox />
 
             {/* popup-상세보기--------------- 탈퇴에서는 회원정보를 수정할 수없음. input박스제거 */}
-            <div id="Popup01" className="popup_bg_full" style={{ display: 'none;' }}>
-                <a className="close_icon">
+            <div id="Popup01" className="popup_bg_full">
+              
+                <div className="in_txt master_popup">
+                <a className="close_icon" onClick={popupClose}>
                     <i className="flaticon-multiply"></i>
                 </a>
-                <div className="in_txt master_popup">
+                <div className="page">
                     <h3>상세정보</h3>
                     <div className="info_txt">
                         <span className="start-day">탈퇴일: 2020.08.26</span>
@@ -399,9 +419,9 @@ export const MsMemberD: React.FC<IProp> = () => {
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
-        <div id="fade" className="fade" style={{ display: 'none;' }}></div>
     </MasterLayout >
 };
 

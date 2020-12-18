@@ -11,7 +11,7 @@ const info: TStieInfo = {
         kr: `체험`,
     },
     title: {
-        kr: `PinkRoder allows people, time, and space to coexist.`,
+        kr: `PINKRODER ALLOWS PEOPLE, TIME, AND SPACE TO COESIST.`,
     },
     subtitle: {
         kr: `사람과 시간과 공간들의 공존<br class="no" />
