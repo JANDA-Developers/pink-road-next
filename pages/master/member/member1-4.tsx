@@ -171,8 +171,6 @@ export const MsMemberD: React.FC<IProp> = () => {
                         </div>
 
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
-<<<<<<< HEAD
-=======
                         <div className="fin">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">전체선택</button>
@@ -180,7 +178,6 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="float_right">
                             </div>
                         </div>
->>>>>>> origin/design
                     </div>
                 </div>
             </div>
