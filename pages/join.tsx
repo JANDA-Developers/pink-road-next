@@ -1,14 +1,15 @@
-import React, { createContext, useState } from 'react';
-import { gql, useMutation } from "@apollo/client";
-import { GoogleLogin } from 'react-google-login';
-import KakaoLogin from 'react-kakao-login';
-import axios from "axios";
-import FormPartnerCor from 'components/join/FormPartnerCor';
+import React, { createContext, useContext, useState } from 'react';
+import FormPartnerCor from 'components/join/FormPartnerBusi';
 import FormPartnerNormal from 'components/join/FormPartnerNormal';
-import PolicyPopup from 'components/policyPopup/PolicyPopup';
 import FormNormal from 'components/join/FormNormal';
 import SubTopNav from 'layout/components/SubTop';
-import { SIGNINGOOGLE, SIGNINKAKAO } from '../apollo/gql/mutations';
+import { useVerification } from '../hook/useVerification';
+import { ISet } from '../types/interface';
+import { UserRole } from '../types/api';
+import { Modal } from '../components/modal/Modal';
+import { UsePolicy } from '../components/policy/UsePolicy';
+import { SERVER_URI } from '../apollo/uri';
+import { getFromUrl } from '../utils/url';
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -22,123 +23,49 @@ interface IchkPolocy {
 export const ContextPolicyChk = createContext<IchkPolocy | null>(null);
 
 
-export type TForm = {
-    openPopup: (element: string | null) => void;
-    handleJoinProcess: (processTarget: string) => void;
+
+type TJoinProcess = "userType" | "verification" | "userInfo" | "registered"
+interface IjoinContext extends ReturnType<typeof useVerification> {
+    joinProcess: TJoinProcess;
+    setJoinProcess: ISet<TJoinProcess>
+    userType: UserRole,
+    setUserType: ISet<UserRole>
+    verificationId?: string
+    verifiedEmail?: string
 }
 
-type TJoinProcess = {
-    userType: boolean,
-    verification: boolean,
-    userInfo: boolean,
-    registered: boolean
-}
-
-const openPopup = (element: string | null) => {
-    let popupElement = document.getElementById(`${element}`) as HTMLElement;
-    popupElement!.style.display = 'block';
-    document!.getElementById('fade')!.style.display = 'block';
-}
-
-const closePopup = (element: string | null) => {
-    let popupElement = document.getElementById(`${element}`) as HTMLElement;
-    popupElement!.style.display = 'none';
-    document!.getElementById('fade')!.style.display = 'none';
-}
-
+export const JoinContext = React.createContext<null | IjoinContext>(null);
 
 const Join = () => {
-
-    const [joinForm, setJoinForm] = useState('partnerNormal');
-
-    const [joinProcess, setJoinProcess] = useState<TJoinProcess>({
-        userType: true,
-        verification: false,
-        userInfo: false,
-        registered: false
+    const verificationId = getFromUrl("vid") || undefined;
+    const verifiedEmail = getFromUrl("email") || undefined;
+    const [userType, setUserType] = useState<UserRole>(UserRole.individual);
+    const [joinProcess, setJoinProcess] = useState<TJoinProcess>(verificationId ? "userInfo" : "userType");
+    const verifiHook = useVerification({
+        _id: verificationId,
     });
 
-    const [joinVerified, setJoinVerified] = useState(false);
-
-    const handleJoinProcess = (processTarget: string) => {
-
-        switch (processTarget) {
-            case 'userType':
-                setJoinProcess({
-                    ...joinProcess,
-                    userType: false,
-                    verification: true
-                })
-                break;
-
-            case 'verification':
-                setJoinProcess({
-                    ...joinProcess,
-                    verification: false,
-                    userInfo: true
-                })
-                break;
-
-            case 'registered':
-                setJoinProcess({
-                    ...joinProcess,
-                    userInfo: false,
-                    registered: true
-                })
-                break;
-        }
-
+    const context: IjoinContext = {
+        ...verifiHook,
+        joinProcess,
+        setUserType,
+        userType,
+        verifiedEmail,
+        verificationId,
+        setJoinProcess,
     }
 
-    const handleChange = (formState: string | null, processTarget: string) => {
-        if (formState)
-            setJoinForm(formState)
-        handleJoinProcess(processTarget)
-    }
+    const formRender = (formSelected: UserRole) => {
 
+        if (UserRole.individual === formSelected)
+            return <FormNormal />
 
-    const handleVerifyGoogle = async (veriState: boolean) => {
+        if (UserRole.partnerB === formSelected)
+            return <FormPartnerCor />
 
-        if (veriState) {
-            alert('구글 인증에 성공하였습니다.');
-            handleJoinProcess('verification');
-        } else {
-            alert('구글 인증에 실패하였습니다.');
-        }
+        if (UserRole.partner === formSelected)
+            return <FormPartnerNormal />
 
-    }
-
-    const handleVerifyKakao = async (veriState: boolean) => {
-
-        if (veriState) {
-            alert('카카오 인증에 성공하였습니다');
-            handleJoinProcess('verification');
-        } else {
-            alert('카카오 인증에 실패하였습니다');
-        }
-
-    }
-
-
-    const handleFormRender = (formSelected: string) => {
-
-        if (formSelected === 'normal') {
-            {/* 회원정보:개인 */ }
-            return <FormNormal openPopup={openPopup} handleJoinProcess={handleJoinProcess} />
-        }
-        if (formSelected === 'partnerCor') {
-            {/* 회원정보:기업파트너 */ }
-            return <FormPartnerCor openPopup={openPopup} handleJoinProcess={handleJoinProcess} />
-        }
-        if (formSelected === 'partnerNormal') {
-            {/* 회원정보:개인파트너 */ }
-            return <FormPartnerNormal openPopup={openPopup} handleJoinProcess={handleJoinProcess} />
-        }
-
-    }
-
-    const handleValidate = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
     }
 
     return (
@@ -153,22 +80,22 @@ const Join = () => {
                         </h4>
                         <div className="join_address w100">
                             <ul>
-                                <li className={`${joinProcess.userType && 'on'}`}>
+                                <li className={`${joinProcess === "userType" && 'on'}`}>
                                     <i>Setep.01</i>
                                     <br />
                                     회원선택
                                 </li>
-                                <li className={`${joinProcess.verification && 'on'}`}>
+                                <li className={`${joinProcess === "verification" && 'on'}`}>
                                     <i>Setep.02</i>
                                     <br />
                                     인증
                                 </li>
-                                <li className={`${joinProcess.userInfo && 'on'}`}>
+                                <li className={`${joinProcess === "userInfo" && 'on'}`}>
                                     <i>Setep.03</i>
                                     <br />
                                     정보입력
                                 </li>
-                                <li className={`${joinProcess.registered && 'on'}`}>
+                                <li className={`${joinProcess === "registered" && 'on'}`}>
                                     <i>Setep.04</i>
                                     <br />
                                     가입완료
@@ -176,30 +103,27 @@ const Join = () => {
                             </ul>
                         </div>
                         <div className="join_wrap2 w1200">
-
-                            {/* 인증 공통사항 */}
-                            {joinProcess.userType &&
-                                <UserType handleChange={handleChange} />
-                            }
-
-                            {joinProcess.verification &&
-                                <Verification handleVerifyGoogle={handleVerifyGoogle} handleVerifyKakao={handleVerifyKakao} />
-                            }
-
-                            {joinProcess.userInfo &&
-                                <div className="w1200 " id="con02">
-                                    {handleFormRender(joinForm)}
-                                </div>
-                            }
-
-                            {joinProcess.registered &&
-                                <JoinResult />
-                            }
-
+                            <JoinContext.Provider value={context}>
+                                {joinProcess === "userType" &&
+                                    <UserType />
+                                }
+                                {joinProcess === "verification" &&
+                                    <Verification />
+                                }
+                                {joinProcess === "userInfo" && userType &&
+                                    <div className="w1200 " id="con02">
+                                        {formRender(userType)}
+                                    </div>
+                                }
+                                {joinProcess === "registered" &&
+                                    <JoinResult />
+                                }
+                            </JoinContext.Provider>
                         </div>
                         {/* Popup:이용약관 */}
-                        <PolicyPopup closePopup={closePopup} />
-                        <div id="fade" className="fade" />
+                        <Modal title="이용약관" id="policyPopUp">
+                            <UsePolicy />
+                        </Modal>
                     </div>
                 </div>
             </div>
@@ -232,57 +156,16 @@ const JoinResult = () => {
 }
 
 
+const Verification: React.FC = () => {
 
-interface IProps {
-    handleVerifyGoogle: (veriState: boolean) => void;
-    handleVerifyKakao: (veriState: boolean) => void;
-}
-
-const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao }) => {
-
-    /* ::::: GraphQL ::::: */
-
-    const [signInGoogleMutation] = useMutation(SIGNINGOOGLE)
-    const [signInKakaoMutation] = useMutation(SIGNINKAKAO)
-
-    const setGoogleToken = (token) => {
-        localStorage.setItem('token', token);
+    const { setJoinProcess } = useContext(JoinContext)!;
+    const handleAuth = (target: "google" | "kakao") => () => {
+        window.location.href = SERVER_URI + "/login/" + target
     }
+    const [code, setCode] = useState("");
 
-    const responseGoogle = async (response) => {
-
-        const { data } = await signInGoogleMutation({ variables: { code: new String(response.code) } });
-        const token = data.SignInGoogle.data.token;
-
-        if (data.SignInGoogle.ok) {
-            handleVerifyGoogle(true);
-            setGoogleToken(token);
-        } else {
-            handleVerifyGoogle(false);
-        }
-
-    }
-
-    const responseKakao = async (response) => {
-        const { data } = await signInKakaoMutation({ variables: { code: "3_sVvZcXcOlZNHEjKH763miBWOF-tmP8RDQZQuzhHDecY6apMee0yNQZWqj3EpRkq1R8rAo9cxgAAAF1hDr4yg" } });
-        console.log('kakao');
-        if (data.SignInKakao.ok) {
-            handleVerifyKakao(true);
-        } else {
-            handleVerifyKakao(false);
-        }
-    }
-
-
-    const REST_API_KEY = "f1a52f415e4f545780749d7ea195c398"
-    const REDIRECT_URI = "http://localhost:3000"
-
-    const kako_auth_link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
-    const handleClick = (e) => {
-        e.preventDefault();
-        window.open(kako_auth_link, "myWindow", "width=800, height=800")
-        return false;
+    const handleSelfAuth = () => {
+        setJoinProcess("userInfo")
     }
 
     return (
@@ -297,53 +180,52 @@ const Verification: React.FC<IProps> = ({ handleVerifyGoogle, handleVerifyKakao 
                 본인확인을 받으시기 바랍니다.
             </p>
             <ul>
-                <li className="socialVerify">
+                <li onClick={handleAuth("google")} className="socialVerify">
                     <i className="jandaicon-google1" />
                     구글 인증
-                    <GoogleLogin
-                        clientId="618452450177-q88svpla9jpeg4ar1hr0eluvjmrob079.apps.googleusercontent.com"
-                        buttonText="Login"
-                        responseType="code"
-                        scope="https://www.googleapis.com/auth/userinfo.profile"
-                        onSuccess={responseGoogle}
-                        onFailure={responseGoogle}
-                        cookiePolicy={'single_host_origin'}
-                        icon={false}
-                    />
                 </li>
-                <li className="socialVerify">
+                <li onClick={handleAuth("kakao")} className="socialVerify">
                     <i className="jandaicon-kakaotalk" />
                     카카오톡 인증
-                    <KakaoLogin
-                        token={"6917a7c01132d43ab44046a7806f1ddc"}
-                        onSuccess={responseKakao}
-                        onFail={console.error}
-                        onLogout={console.info}
-                    />
-
+                </li>
+                <li onClick={handleSelfAuth} className="socialVerify">
+                    <i className="jandaicon-kakaotalk" />
+                    이메일 인증
                 </li>
             </ul>
             <p className="bt_txt">
-                ※ 본인인증 시 제공되는 정보로 회원가입시 필요한 정보를 연동합니다. 2
+                ※ 본인인증 시 제공되는 정보로 회원가입시 필요한 정보를 연동합니다.
             </p>
+            <Modal title="이메일 인증" id="emailVerifi" >
+                <h6>
+                    인증번호를 입력 해주세요.
+                </h6>
+                <input value={code} onChange={(e) => {
+                    setCode(e.currentTarget.value)
+                }} />
+            </Modal>
         </div>
     )
 }
 
 
-interface IUserTypeProps {
-    handleChange: (element: string | null, processTarget: string) => void;
-}
 
 
-const UserType: React.FC<IUserTypeProps> = ({ handleChange }) => {
+const UserType: React.FC = () => {
+    const { setJoinProcess, setUserType } = useContext(JoinContext)!;
+
+    const handleTypeChoice = (userType: UserRole) => () => {
+        setJoinProcess("verification");
+        setUserType(userType)
+    }
+
     return (
         <div className="choice_box" id="con00">
             <h5>회원 종류 선택하기</h5>
             <p>회원가입을 하시고 더 많은 정보와 혜택을 누려보세요~!! </p>
             <ul>
                 {/* 커스텀디자인 */}
-                <li className="li01" onClick={() => { handleChange('normal', 'userType'); }}>
+                <li className="li01" onClick={handleTypeChoice(UserRole.individual)}>
                     <strong>개인 회원</strong>
                     <span>
                         구매를 위한 개인회원입니다.
@@ -351,12 +233,12 @@ const UserType: React.FC<IUserTypeProps> = ({ handleChange }) => {
                     회원가입을 하고 여행을 떠나세요~!!
                 </span>
                 </li>
-                <li className="li02" onClick={() => { handleChange('partnerCor', 'userType'); }}>
+                <li className="li02" onClick={handleTypeChoice(UserRole.partnerB)}>
                     <i />
                     <strong>기업파트너 회원</strong>
                     <span>기업파트너를 위한 회원입니다.</span>
                 </li>
-                <li className="li03" onClick={() => { handleChange('partnerNormal', 'userType'); }}>
+                <li className="li03" onClick={handleTypeChoice(UserRole.partner)}>
                     <i />
                     <strong>개인파트너 회원</strong>
                     <span>개인파트너를 위한 회원입니다.</span>

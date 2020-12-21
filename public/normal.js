@@ -3,14 +3,8 @@
 $(window).scroll(function (e) {
     var scrollHeight = $(this).scrollTop();
     if (scrollHeight < 500) {
-<<<<<<< HEAD
-        $("#gotop")
-            .addClass("animationHide");
-=======
-        console.log("500 이하");
         $("#gotop").addClass("animationHide");
 
->>>>>>> origin/design
     } else {
         $("#gotop").removeClass("animationHide");
     }

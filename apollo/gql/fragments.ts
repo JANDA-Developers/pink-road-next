@@ -94,44 +94,6 @@ export const F_BOOKING = gql`
 `
 
 
-
-export const F_USER = gql`
-    fragment Fuser  on User  {
-        _id
-        nickName
-        createdAt
-        updatedAt
-        isDelete
-        email
-        role
-        brith_date
-        address
-        address_detail
-        acceptSms
-        acceptEamil
-        is_froreginer
-        busi_contact
-        gender
-        busi_num
-        busi_department
-        isVerifiedPhoneNumber,
-        busiRegistration {
-            ...Ffile
-        },
-        is_priv_corper
-        busi_name
-        busi_address
-        account_number
-        name
-        bank_name
-        phoneNumber
-        profileImg {
-            uri
-        }
-    }
-    ${F_FILE}
-`
-
 export const F_PORTFOLIO = gql`
     fragment Fportfolio on Portfolio {
         _id

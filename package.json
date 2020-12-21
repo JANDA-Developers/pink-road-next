@@ -38,6 +38,7 @@
     "axios": "^0.21.0",
     "ckeditor5-custom-build-with-balloon-editor": "^0.0.7",
     "classnames": "^2.2.6",
+    "cors": "^2.8.5",
     "dayjs": "^1.9.4",
     "editorjs-paragraph-with-alignment": "^1.1.0",
     "font-awesome": "^4.7.0",

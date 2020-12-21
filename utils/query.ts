@@ -6,20 +6,24 @@ import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
 
 
-const dataCheck = (data:any,operationName:string) => {
+const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["data","page"]) => {
     if(data?.hasOwnProperty(operationName) === false) {
         console.log(data)
         throw Error(`result data object dose not have property ${operationName} look this above object ↑ `)
     }
-    if(data?.[operationName].hasOwnProperty("data") === false) {
-        console.log(data[operationName])
-        throw Error(`result data object dose not have property data look this above object ↑ `)
-    }
+
+    checkProperty.forEach(p => {
+        if(data?.[operationName].hasOwnProperty(p) === false) {
+            console.log(data[operationName])
+            throw Error(`result data object dose not have property ${p} look this above object ↑ `)
+        }
+    })
 }
 
 export const generateListQueryHook = <F,S,Q,V,R>(
     QUERY: DocumentNode,
-    queryInit: Partial<ListInitOptions<F, S>> = {}
+    queryInit: Partial<ListInitOptions<F, S>> = {},
+    defaultOptions?: QueryHookOptions<Q,V>
 ) => {
     const listQueryHook = (
         {
@@ -27,9 +31,8 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             initialSort = [],
             initialFilter,
             initialViewCount = 20,
-            ...queryInit
-        }: Partial<ListInitOptions<F, S>> = {},
-        options: QueryHookOptions<Q, V> = {}
+        }: Partial<ListInitOptions<F, S>> = {...queryInit},
+        options: QueryHookOptions<Q, V> = {...defaultOptions}
     )=> {
         const { variables: overrideVariables, ...ops } = options;
         const { integratedVariable,...params } = useListQuery({
@@ -38,7 +41,6 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             initialSort,
             initialViewCount
         })
-
         
         const [getData, { data, loading: getLoading }] = useLazyQuery<Q,V>(QUERY,{
             fetchPolicy: "network-only",
@@ -49,8 +51,6 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             },
             ...ops
         })
-
-      
 
         const operationName = getQueryName(QUERY);
         dataCheck(data,operationName)

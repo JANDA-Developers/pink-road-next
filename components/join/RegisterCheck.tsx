@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
-import { registerChkWarning, policyChkWarning, emptyAllow } from './helper';
-import { useMutation } from '@apollo/client';
-import { signUp, signUpVariables, UserRole } from '../../types/api';
-import { isEmail, isPhone, isPassword } from 'utils/validation';
-import { TFormNormal } from "./FormNormal";
-import { TFormPartnetCor } from "./FormPartnerCor";
-import { TFormPartnerNormal } from "./FormPartnerNormal";
-import { SIGN_UP } from '../../apollo/gql/mutations';
+import React, { useContext, useState } from 'react'
+import { AddUserInput, UserRole } from '../../types/api';
+import { isEmail, isPhone, isPassword, isName } from 'utils/validation';
+import { useSignUp } from '../../hook/useUser';
+import { Validater } from '../../utils/validate';
+import { JoinContext } from '../../pages/join';
+import { openModal } from '../../utils/popUp';
+import { ISignUpInput } from '../../hook/useJoin';
 
 type TSMS = {
   sns: true,
@@ -24,20 +23,17 @@ export type TPolicyChk = {
 }
 
 interface IProps {
-  openPopup: (element: string | null) => void;
-  handleJoinProcess: (errTarget: any) => void;
-  registerInfo: any;
-  registerSort?: string;
-  handleErrDisplay: (errTarget: any) => void;
+  registerInfo: ISignUpInput;
 }
 
-const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registerInfo, registerSort }) => {
+const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
 
-  const [ProductCreateMu, { loading: create_loading }] = useMutation<signUp, signUpVariables>(SIGN_UP, {
+  const { userType, setJoinProcess, verificationId } = useContext(JoinContext)!;
+
+
+  const [signUpMu] = useSignUp({
     onCompleted: () => {
-      console.log('result');
-      /* 최종 Post Values */
-      handleJoinProcess('registered');
+      setJoinProcess('registered');
     }
   });
 
@@ -56,19 +52,9 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
     policy_info_3rd: false
   });
 
-  const [chkPolocyOptional, setChkPolicyOptional] = useState({
-    policy_use: false,
-    policy_info_collect: false,
-    policy_info_entrust: false,
-    policy_traveler: false,
-    policy_partner: false,
-    policy_marketing: false,
-    policy_info_3rd: true
-  });
+  const optional: (keyof typeof chkPolocy)[] = ["policy_info_3rd"]
 
   const [chkAll, setChkAll] = useState(false);
-
-  const [validateOK, setValidateOK] = useState();
 
   const handleSMSAgree = (smsTarget: keyof TSMS) => {
 
@@ -80,9 +66,27 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
 
   }
 
-  const handleAgreeAll = (chkState: boolean) => {
 
-    if (!chkAll) {
+  const isCheckAll = () => {
+    let chkAll = true;
+    let policy: keyof TPolicyChk;
+
+
+    for (policy in chkPolocy) {
+      const check = chkPolocy[policy];
+      if (!check && optional.includes(policy)) {
+        chkAll = false;
+        alert(`필수 약관에 동의 해주십시요`);
+        break;
+      }
+    }
+
+    return chkAll
+  }
+
+  const handleAgreeAll = () => {
+
+    if (!isCheckAll()) {
       setChkAll(true);
       let policy: keyof TPolicyChk;
       let agreeAll = chkPolocy;
@@ -105,210 +109,74 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
     setChkPolicy({
       ...agreeNewState
     })
-
-  }
-
-  const removeSpace = (trimTarget) => {
-    return trimTarget.replace(/\s/g, '');
-  }
-
-  const regExpPhone = (testTarget) => {
-    const regPhone = new RegExp(/^[0-9]+$/g);
-    return regPhone.test(removeSpace(testTarget));
-  }
-
-  const validateCommon = () => {
-
-    const regPhone = new RegExp(/^[0-9]+$/g);
-    const phoneTest = regPhone.test(registerInfo.contact);
-
-    if (registerInfo.password != registerInfo.passwordChk) {
-      alert('비밀번호 확인란에 기입하신 정보가 비밀번호와 다릅니다');
-      return false;
-    }
-
-    if (!isEmail(registerInfo.email)) {
-      alert('올바른 이메일을 사용해 주십시요');
-      return false;
-    }
-
-    if (!isPassword(registerInfo.password)) {
-      alert('비밀번호는 특수문자 1개이상 및 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다');
-      return false;
-    }
-
-    if (!regExpPhone(registerInfo.contact)) {
-      alert('연락처란에는 숫자만 기입해 주십시요');
-      return false;
-    }
-
-
-    return true;
-
   }
 
 
-  const validateNormal = () => {
 
-    if (validateCommon()) {
+  const { nodes, validate: normalValidate } = new Validater([{
+    value: verificationId,
+    failMsg: "이메일 인증을 받아주세요.",
+  }, {
+    value: registerInfo.pw != registerInfo.pwcheck,
+    failMsg: "비밀번호가 일치하지 않습니다.",
+  }, {
+    value: isEmail(registerInfo.email),
+    failMsg: "올바른 이메일을 사용해 주십시요.",
+  }, {
+    value: isPassword(registerInfo.pw || ""),
+    failMsg: "비밀번호는 특수문자 1개이상 및 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다",
+  }, {
+    value: isPhone(registerInfo.account_number || ""),
+    failMsg: "연락처란에는 숫자만 기입해 주십시요",
+  }, {
+    value: isCheckAll(),
+    failMsg: "동의 항목에 모두 체크 해주세요."
+  }])
 
-      const regName = new RegExp(/^[가-힣 ]+$/);
-      const nameTest = regName.test(registerInfo.name);
+  const { validate: partnerValidate } = new Validater([
+    {
+      value: isName(registerInfo.name || ""),
+      failMsg: "이름 값이 올바르지 않습니다."
+    },
+    ...nodes
+  ])
 
-      if (!nameTest) {
-        alert('이름은 한글로 입력해 주십시요');
-        return false;
-      }
+  const { validate: BpartnerValidate } = new Validater([
+    {
+      value: isPhone(registerInfo.busi_contact || ""),
+      failMsg: "담당자 연락처가 올바르지 않습니다."
+    },
+    ...nodes
+  ])
 
-      if (registerInfo.name.length < registerInfo.nameLeng) {
-        alert(`이름은 ${registerInfo.nameLeng} 글자 이상이여야 합니다`);
-        return false;
-      }
 
-      if (!isPhone(registerInfo.contact)) {
-        alert('올바른 휴대폰 번호를 사용해 주십시요');
-        return false;
-      }
+  const validate = (): boolean => {
+    switch (userType) {
+      case UserRole.individual:
+        return normalValidate();
 
-      handleRegister();
+      case UserRole.partner:
+        return partnerValidate();
 
+      case UserRole.partnerB:
+        return BpartnerValidate();
+        break;
     }
-
+    return false;
   }
 
-  const validatePartnerCor = () => {
 
-    if (validateCommon()) {
-
-      if (!regExpPhone(registerInfo.incharge_number)) {
-        alert('담당자 연락처에는 숫자만 기입해 주십시요');
-        return false;
-      }
-
-      handleRegister();
-
-    }
-
-  }
-
-  const validatePartnerNormal = () => {
-
-    if (validateCommon()) {
-
-      handleRegister();
-
-    }
-
-  }
-
-
-  const validateEmptyChk = () => {
-
-    let registerData;
-
-    for (registerData in registerInfo) {
-
-      let chkEmpty = registerInfo[registerData];
-
-      if (typeof chkEmpty != "boolean") {
-
-        if (emptyAllow[registerData] === undefined) {
-
-          chkEmpty.trim();
-          if (chkEmpty.length <= 0) {
-            alert(`${registerChkWarning[registerData]}란에 정보를 입력해주세요.`);
-            document.getElementsByName(registerData)[0].focus();
-            return false;
-          }
-
-        }
-
-      }
-
-    }
-    return true;
-
-  }
-
-  const handleValidateInit = (validateTarget?: string) => {
-
-
-    if (validateEmptyChk()) {
-
-      alert('Input Validation start');
-      switch (validateTarget) {
-        case 'normal':
-          validateNormal();
-          break;
-
-        case 'partnerCor':
-          validatePartnerCor();
-          break;
-
-        case 'partnerNormal':
-          validatePartnerNormal();
-          break;
-      }
-
-    }
-
-  }
 
   const handleRegister = () => {
-
-    let chkAll = true;
-    let policy: keyof TPolicyChk;
-
-    for (policy in chkPolocy) {
-      if (!chkPolocy[policy] && !chkPolocyOptional[policy]) {
-        chkAll = false;
-        alert(`${policyChkWarning[policy]} 에 동의 해주십시요`);
-        break;
+    const validatedData: Required<ISignUpInput> = registerInfo as any
+    signUpMu({
+      variables: {
+        params: {
+          ...validatedData
+        },
+        verificationId: verificationId!
       }
-    }
-
-    if (chkAll) {
-
-      alert('Validation end');
-
-      console.log(registerInfo);
-
-      // const { address,
-      //   address_detail,
-      //   birthday,
-      //   contact,
-      //   email,
-      //   gender,
-      //   isKorean,
-      //   name,
-      //   password,
-      //   register_sort
-      // } = registerInfo;
-
-      // ProductCreateMu({
-      //   variables: {
-      //     data: {
-      //       email,
-      //       pw: password,
-      //       is_froreginer: isKorean,
-      //       role: UserRole.anonymous,
-      //       bank_name: "",
-      //       account_number: "",
-      //       address: address,
-      //       brith_date: birthday,
-      //       bsui_address: address,
-      //       busi_contact: contact,
-      //       busi_name: name,
-      //       busi_num: "",
-      //       gender,
-      //       is_priv_corper: isKorean,
-
-      //     }
-      //   }
-      // })
-
-    }
-
+    })
   }
 
   return (
@@ -369,10 +237,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
           </div>
         </div>
         <div className="agreeChk mb10">
-          <input type="checkbox" className="checkbox" onChange={() => {
-            handleAgreeAll(!chkAll)
-          }
-          } />
+          <input checked={chkAll} type="checkbox" className="checkbox" onChange={handleAgreeAll} />
           <span>모두 동의합니다</span>
         </div>
         <div className="agreeChk_list">
@@ -390,7 +255,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
               <div className="in_box2">
                 <a
                   onClick={() => {
-                    openPopup('Popup01');
+                    openModal('#Popup01');
                   }}
                 >
                   전문보기 &gt;
@@ -411,7 +276,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
                 <a
                   href="#"
                   onClick={() => {
-                    openPopup('Popup02');
+                    openModal('#Popup02');
                   }}
                 >
                   전문보기 &gt;
@@ -432,7 +297,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
                 <a
                   href="#"
                   onClick={() => {
-                    openPopup('Popup03');
+                    openModal('#Popup03');
                   }}
                 >
                   전문보기 &gt;
@@ -453,7 +318,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
                 <a
                   href="#"
                   onClick={() => {
-                    openPopup('Popup04');
+                    openModal('#Popup04');
                   }}
                 >
                   전문보기 &gt;
@@ -474,7 +339,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
                 <a
                   href="#"
                   onClick={() => {
-                    openPopup('Popup07');
+                    openModal('#Popup07');
                   }}
                 >
                   전문보기 &gt;
@@ -495,7 +360,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
                 <a
                   href="#"
                   onClick={() => {
-                    openPopup('Popup06');
+                    openModal('#Popup06');
                   }}
                 >
                   전문보기 &gt;
@@ -516,7 +381,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
                 <a
                   href="#"
                   onClick={() => {
-                    openPopup('Popup05');
+                    openModal('#Popup05');
                   }}
                 >
                   전문보기 &gt;
@@ -530,7 +395,9 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
         <a href="/" className="cancel btn">취소</a>
         <button type="submit" className="sum btn"
           onClick={() => {
-            handleValidateInit(registerSort);
+            if (validate()) {
+              handleRegister()
+            }
           }}>등록</button>
       </div>
     </>

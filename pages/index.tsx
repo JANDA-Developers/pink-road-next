@@ -150,6 +150,11 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <Upload onUpload={imgEdit("bottom_bg_img")} />
     </div>
     <HiddenSubmitBtn original={original} setData={setPage} path="main" data={page} />
+    <div>
+      <div className="col-md-6">
+        <div ui-view></div>
+      </div>
+    </div>
   </div >
 };
 

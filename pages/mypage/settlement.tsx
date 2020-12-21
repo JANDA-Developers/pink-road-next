@@ -16,13 +16,6 @@ import { auth, compose } from '../../utils/with';
 
 interface IProp { }
 
-<<<<<<< HEAD
-export const MySettlement: React.FC<IProp> = ({ }) => {
-    const {
-        items, filter, getLoading, pageInfo, setFilter, setPage, setSort, setViewCount, sort, viewCount
-    } = useBookingList();
-
-=======
 const popupOpen = () => {
     $('#Popup01').css({
         'display': 'flex'
@@ -47,7 +40,6 @@ const popupClose2 = () => {
 }
 
 export const MySettlement: React.FC<IProp> = () => {
->>>>>>> origin/design
     return <MypageLayout>
         <div className="in mypage_purchase">
             <h4>매출/정산관리</h4>
@@ -164,7 +156,6 @@ export const MySettlement: React.FC<IProp> = () => {
                             </div>
                             <div className="tbody">
                                 <ul>
-<<<<<<< HEAD
                                     {items.map(item =>
                                         <li>
                                             <div className="th01"><input type="checkbox" /></div>
@@ -189,41 +180,6 @@ export const MySettlement: React.FC<IProp> = () => {
                                 </div>
 
                             </div>
-=======
-                                    <li>
-                                        <div className="th01">
-                                            <span className="checkbox">
-                                                <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                                <label htmlFor="agree0" />
-                                            </span>
-                                        </div>
-                                        <div className="th02">PINK-01230</div>
-                                        <div className="th03">제주도로 떠나요~ </div>
-                                        <div className="th04">홍나리<br />010-0100-0000</div>
-                                        <div className="th05">2020.02.02</div>
-                                        <div className="th06">50,000</div>
-                                        <div className="th07"><strong className="ok">예약완료</strong></div>
-                                        <div className="th08"><i className="btn" onClick={popupOpen2}>상세보기</i></div>
-                                    </li>
-                                    <li>
-                                        <div className="th01">
-                                            <span className="checkbox">
-                                                <input type="checkbox" name="agree" id="agree0" title="전체선택" />
-                                                <label htmlFor="agree0" />
-                                            </span>
-                                        </div>
-                                        <div className="th02">PINK-01230</div>
-                                        <div className="th03">제주도로 떠나요~ </div>
-                                        <div className="th04">홍나리<br />010-0100-0000</div>
-                                        <div className="th05">2020.02.02</div>
-                                        <div className="th06">50,000</div>
-                                        <div className="th07"><strong className="no">예약취소</strong></div>
-                                        <div className="th08"><i className="btn" onClick={popupOpen2}>상세보기</i></div>
-                                    </li>
-                                </ul>
-                            </div>
-
->>>>>>> origin/design
                         </div>
 
                         <div className="in_fin mt30">
@@ -238,15 +194,8 @@ export const MySettlement: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-        <div id="Popup01" className="popup_bg_full" style={{ display: 'none' }}>
-            <a className="close_icon">
-                <i className="flaticon-multiply"></i>
-            </a>
-=======
         {/* popup - 정산 계산하기 */}
         <div id="Popup01" className="popup_bg_full">
->>>>>>> origin/design
             <div className="in_txt statement_popup">
                 <a className="close_icon" onClick={popupClose}>
                     <i className="flaticon-multiply"></i>

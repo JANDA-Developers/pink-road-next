@@ -39,43 +39,8 @@ export const MyPageBasket: React.FC<IProp> = ({ context }) => {
                                 <button onClick={handleOrder} className="btn orders">주문하기</button>
                             </div>
                         </div>
-<<<<<<< HEAD
                     }
                 />
-=======
-                    )}
-
-                    <div className="baket_bottom">
-                        <div className="sum01 mr10"><strong>합계금액</strong></div>
-                        <div className="sum02 mr10">상품금액<strong className="ml5">{autoComma(totalPrice)}원</strong></div>
-                        <div className="sum03 mr10">=</div>
-                        <div className="sum04"><strong>{priceLines}원</strong></div>
-                    </div>
-
-                    <div className="baket_check">
-                        <div className="left">
-
-                            <button onClick={handleSelectAll} className="btn">
-                                <span className="checkbox mr5">
-                                    <input type="checkbox" name="agreeAll" id="agreeAll" title="전체선택" />
-                                    <label htmlFor="agreeAll" />
-                                </span>
-                                전체선택
-                                </button>
-                            <button onClick={handleDeleteSelects} className="btn">선택삭제</button>
-                            <button onClick={handleDeleteAll} className="btn">전체삭제</button>
-                        </div>
-
-                    </div>
-                    <div className="baket_btn">
-                        <div className="left">
-                            <button className="btn">쇼핑 계속하기</button>
-                            <button onClick={handleOrder} className="btn orders">주문하기</button>
-                        </div>
-
-                    </div>
-                </div>
->>>>>>> origin/design
             </div>
 
         </div>

@@ -770,35 +770,6 @@ export interface multiUploadVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: signUp
-// ====================================================
-
-export interface signUp_SignUp_data {
-  __typename: "SignUpResult";
-  email: string;
-}
-
-export interface signUp_SignUp {
-  __typename: "SignUpResponse";
-  ok: boolean;
-  error: string | null;
-  data: signUp_SignUp_data | null;
-}
-
-export interface signUp {
-  SignUp: signUp_SignUp;
-}
-
-export interface signUpVariables {
-  params: AddUserInput;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: pageInfoDelete
 // ====================================================
 
@@ -903,6 +874,10 @@ export interface newsFindById_NewsFindById_data_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -927,6 +902,10 @@ export interface newsFindById_NewsFindById_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -1073,6 +1052,10 @@ export interface newsList_NewsList_data_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -1097,6 +1080,10 @@ export interface newsList_NewsList_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -1422,6 +1409,10 @@ export interface portfolioFindById_PortfolioFindById_data_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -1446,6 +1437,10 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -1588,6 +1583,10 @@ export interface portfolioList_PortfolioList_data_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -1612,6 +1611,10 @@ export interface portfolioList_PortfolioList_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -1850,6 +1853,10 @@ export interface productDelete_ProductDelete_data_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -1874,6 +1881,10 @@ export interface productDelete_ProductDelete_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -2052,6 +2063,10 @@ export interface productList_ProductList_data_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -2076,6 +2091,10 @@ export interface productList_ProductList_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -2209,6 +2228,10 @@ export interface productFindById_ProductFindById_data_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -2233,6 +2256,10 @@ export interface productFindById_ProductFindById_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -2269,42 +2296,6 @@ export interface productFindById_ProductFindById_data_images {
   name: string;
   uri: string;
   owner: string;
-}
-
-export interface productFindById_ProductFindById_data_questions_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
-export interface productFindById_ProductFindById_data_questions_author {
-  __typename: "User";
-  _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  email: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: productFindById_ProductFindById_data_questions_author_profileImg | null;
-}
-
-export interface productFindById_ProductFindById_data_questions_product_author {
-  __typename: "User";
-  _id: string;
-  name: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-}
-
-export interface productFindById_ProductFindById_data_questions_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-  author: productFindById_ProductFindById_data_questions_product_author | null;
 }
 
 export interface productFindById_ProductFindById_data_questions_answers_author_profileImg {
@@ -2358,8 +2349,6 @@ export interface productFindById_ProductFindById_data_questions {
   isDelete: boolean;
   title: string;
   contents: string;
-  author: productFindById_ProductFindById_data_questions_author | null;
-  product: productFindById_ProductFindById_data_questions_product;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -2616,6 +2605,10 @@ export interface getContext_GetProfile_data_products_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -2640,6 +2633,10 @@ export interface getContext_GetProfile_data_products_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -2741,6 +2738,10 @@ export interface getContext_GetProfile_data {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -2765,6 +2766,10 @@ export interface getContext_GetProfile_data {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -2858,42 +2863,6 @@ export interface questionList_QuestionList_page {
   remainder: number;
 }
 
-export interface questionList_QuestionList_data_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
-export interface questionList_QuestionList_data_author {
-  __typename: "User";
-  _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  email: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: questionList_QuestionList_data_author_profileImg | null;
-}
-
-export interface questionList_QuestionList_data_product_author {
-  __typename: "User";
-  _id: string;
-  name: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-}
-
-export interface questionList_QuestionList_data_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-  author: questionList_QuestionList_data_product_author | null;
-}
-
 export interface questionList_QuestionList_data_answers_author_profileImg {
   __typename: "File";
   uri: string;
@@ -2937,6 +2906,42 @@ export interface questionList_QuestionList_data_thumb {
   owner: string;
 }
 
+export interface questionList_QuestionList_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface questionList_QuestionList_data_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  email: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: questionList_QuestionList_data_author_profileImg | null;
+}
+
+export interface questionList_QuestionList_data_product_author {
+  __typename: "User";
+  _id: string;
+  name: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+}
+
+export interface questionList_QuestionList_data_product {
+  __typename: "Product";
+  _id: string;
+  title: string;
+  author: questionList_QuestionList_data_product_author | null;
+}
+
 export interface questionList_QuestionList_data {
   __typename: "Question";
   _id: string;
@@ -2945,8 +2950,6 @@ export interface questionList_QuestionList_data {
   isDelete: boolean;
   title: string;
   contents: string;
-  author: questionList_QuestionList_data_author | null;
-  product: questionList_QuestionList_data_product;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -2959,6 +2962,8 @@ export interface questionList_QuestionList_data {
   viewCount: number;
   likeCount: number;
   no: number;
+  author: questionList_QuestionList_data_author | null;
+  product: questionList_QuestionList_data_product;
 }
 
 export interface questionList_QuestionList {
@@ -3070,42 +3075,6 @@ export interface questionUpdateVariables {
 // GraphQL query operation: questionFindById
 // ====================================================
 
-export interface questionFindById_QuestionFindById_data_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
-export interface questionFindById_QuestionFindById_data_author {
-  __typename: "User";
-  _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  email: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: questionFindById_QuestionFindById_data_author_profileImg | null;
-}
-
-export interface questionFindById_QuestionFindById_data_product_author {
-  __typename: "User";
-  _id: string;
-  name: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-}
-
-export interface questionFindById_QuestionFindById_data_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-  author: questionFindById_QuestionFindById_data_product_author | null;
-}
-
 export interface questionFindById_QuestionFindById_data_answers_author_profileImg {
   __typename: "File";
   uri: string;
@@ -3149,6 +3118,42 @@ export interface questionFindById_QuestionFindById_data_thumb {
   owner: string;
 }
 
+export interface questionFindById_QuestionFindById_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface questionFindById_QuestionFindById_data_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  email: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: questionFindById_QuestionFindById_data_author_profileImg | null;
+}
+
+export interface questionFindById_QuestionFindById_data_product_author {
+  __typename: "User";
+  _id: string;
+  name: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+}
+
+export interface questionFindById_QuestionFindById_data_product {
+  __typename: "Product";
+  _id: string;
+  title: string;
+  author: questionFindById_QuestionFindById_data_product_author | null;
+}
+
 export interface questionFindById_QuestionFindById_data {
   __typename: "Question";
   _id: string;
@@ -3157,8 +3162,6 @@ export interface questionFindById_QuestionFindById_data {
   isDelete: boolean;
   title: string;
   contents: string;
-  author: questionFindById_QuestionFindById_data_author | null;
-  product: questionFindById_QuestionFindById_data_product;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -3171,6 +3174,8 @@ export interface questionFindById_QuestionFindById_data {
   viewCount: number;
   likeCount: number;
   no: number;
+  author: questionFindById_QuestionFindById_data_author | null;
+  product: questionFindById_QuestionFindById_data_product;
 }
 
 export interface questionFindById_QuestionFindById {
@@ -3396,6 +3401,36 @@ export interface settlementCompleteVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: signUp
+// ====================================================
+
+export interface signUp_SignUp_data {
+  __typename: "SignUpResult";
+  email: string;
+}
+
+export interface signUp_SignUp {
+  __typename: "SignUpResponse";
+  ok: boolean;
+  error: string | null;
+  data: signUp_SignUp_data | null;
+}
+
+export interface signUp {
+  SignUp: signUp_SignUp;
+}
+
+export interface signUpVariables {
+  params: AddUserInput;
+  verificationId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: userResign
 // ====================================================
 
@@ -3412,36 +3447,6 @@ export interface userResign {
 export interface userResignVariables {
   _id: string;
   pw: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: signInGoogle
-// ====================================================
-
-export interface signInGoogle_SignInGoogle_data {
-  __typename: "SignInGoogle";
-  email: string;
-  token: string;
-}
-
-export interface signInGoogle_SignInGoogle {
-  __typename: "SignInGoogleResponse";
-  ok: boolean;
-  error: string | null;
-  data: signInGoogle_SignInGoogle_data | null;
-}
-
-export interface signInGoogle {
-  SignInGoogle: signInGoogle_SignInGoogle;
-}
-
-export interface signInGoogleVariables {
-  code: string;
 }
 
 /* tslint:disable */
@@ -3482,72 +3487,14 @@ export interface userUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: SignInGoogle
-// ====================================================
-
-export interface SignInGoogle_SignInGoogle_data {
-  __typename: "SignInGoogle";
-  token: string;
-  email: string;
-}
-
-export interface SignInGoogle_SignInGoogle {
-  __typename: "SignInGoogleResponse";
-  ok: boolean;
-  error: string | null;
-  data: SignInGoogle_SignInGoogle_data | null;
-}
-
-export interface SignInGoogle {
-  SignInGoogle: SignInGoogle_SignInGoogle;
-}
-
-export interface SignInGoogleVariables {
-  code: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: SignInKakao
-// ====================================================
-
-export interface SignInKakao_SignInKakao_data {
-  __typename: "SignInKakao";
-  token: string;
-  email: string;
-}
-
-export interface SignInKakao_SignInKakao {
-  __typename: "SignInKakaoResponse";
-  ok: boolean;
-  error: string | null;
-  data: SignInKakao_SignInKakao_data | null;
-}
-
-export interface SignInKakao {
-  SignInKakao: SignInKakao_SignInKakao;
-}
-
-export interface SignInKakaoVariables {
-  code: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: verificationStart
 // ====================================================
 
 export interface verificationStart_VerificationStart_data {
   __typename: "Verification";
   _id: string;
+  payload: string;
+  target: VerificationTarget;
   isVerified: boolean;
 }
 
@@ -3559,6 +3506,9 @@ export interface verificationStart_VerificationStart {
 }
 
 export interface verificationStart {
+  /**
+   * 인증 요청을 하는 함수, 이메일 또는 핸드폰으로 인증번호를 발신하고 인증 테이블에 요청 추가함
+   */
   VerificationStart: verificationStart_VerificationStart;
 }
 
@@ -3704,6 +3654,10 @@ export interface userList_UserList_data {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -3728,6 +3682,10 @@ export interface userList_UserList_data {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -3795,6 +3753,10 @@ export interface userFindById_UserFindById_data {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -3819,6 +3781,10 @@ export interface userFindById_UserFindById_data {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -3921,6 +3887,10 @@ export interface FbookingByCode_product_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -3945,6 +3915,10 @@ export interface FbookingByCode_product_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -4216,79 +4190,6 @@ export interface Fbooking {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: Fuser
-// ====================================================
-
-export interface Fuser_busiRegistration {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
-}
-
-export interface Fuser_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
-export interface Fuser {
-  __typename: "User";
-  _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  role: UserRole;
-  brith_date: string;
-  address: string;
-  address_detail: string;
-  acceptSms: boolean;
-  acceptEamil: boolean;
-  is_froreginer: boolean;
-  /**
-   * 기업 전화번호
-   */
-  busi_contact: string;
-  gender: GENDER;
-  busi_num: string;
-  /**
-   * 부서명
-   */
-  busi_department: string;
-  isVerifiedPhoneNumber: boolean;
-  /**
-   * 사업자 등록증
-   */
-  busiRegistration: Fuser_busiRegistration | null;
-  /**
-   * 개인법인인지 아닌지 체크함
-   */
-  is_priv_corper: boolean;
-  /**
-   * 사업자명
-   */
-  busi_name: string;
-  busi_address: string;
-  account_number: string;
-  name: string;
-  bank_name: string;
-  phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: Fuser_profileImg | null;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL fragment: Fportfolio
 // ====================================================
 
@@ -4326,6 +4227,10 @@ export interface Fportfolio_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -4350,6 +4255,10 @@ export interface Fportfolio_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -4532,6 +4441,10 @@ export interface Fproduct_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -4556,6 +4469,10 @@ export interface Fproduct_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -4671,6 +4588,10 @@ export interface Fnews_author {
    * 기업 전화번호
    */
   busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
   gender: GENDER;
   busi_num: string;
   /**
@@ -4695,6 +4616,10 @@ export interface Fnews_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   /**
    * 프로필 사진
    */
@@ -4743,42 +4668,6 @@ export interface Fnews {
 // ====================================================
 // GraphQL fragment: Fquestion
 // ====================================================
-
-export interface Fquestion_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
-export interface Fquestion_author {
-  __typename: "User";
-  _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  email: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: Fquestion_author_profileImg | null;
-}
-
-export interface Fquestion_product_author {
-  __typename: "User";
-  _id: string;
-  name: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-}
-
-export interface Fquestion_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-  author: Fquestion_product_author | null;
-}
 
 export interface Fquestion_answers_author_profileImg {
   __typename: "File";
@@ -4831,8 +4720,6 @@ export interface Fquestion {
   isDelete: boolean;
   title: string;
   contents: string;
-  author: Fquestion_author | null;
-  product: Fquestion_product;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -4941,6 +4828,87 @@ export interface Fsettlement {
 // @generated
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL fragment: Fuser
+// ====================================================
+
+export interface Fuser_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fuser_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface Fuser {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: Fuser_busiRegistration | null;
+  /**
+   * 개인법인인지 아닌지 체크함
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  phoneNumber: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: Fuser_profileImg | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
@@ -5036,6 +5004,8 @@ export enum VerificationEvent {
   NotificationSenderAdd = "NotificationSenderAdd",
   SignInWithEmail = "SignInWithEmail",
   SignInWithPhone = "SignInWithPhone",
+  SignInWtihGoogle = "SignInWtihGoogle",
+  SignInWtihKakao = "SignInWtihKakao",
   UserFindEmail = "UserFindEmail",
   UserResetPassword = "UserResetPassword",
   UserUpdateInfo = "UserUpdateInfo",
@@ -5179,6 +5149,7 @@ export enum _UserSort {
 
 export interface AddUserInput {
   nickName: string;
+  busiRegistration?: FileCreateInput | null;
   address_detail: string;
   name: string;
   phoneNumber: string;
@@ -5195,9 +5166,12 @@ export interface AddUserInput {
   busi_num?: string | null;
   is_priv_corper?: boolean | null;
   busi_name?: string | null;
-  bsui_address?: string | null;
+  busi_address?: string | null;
+  busi_address_detail?: string | null;
   account_number?: string | null;
   bank_name?: string | null;
+  partnerName?: string | null;
+  manageContact?: string | null;
 }
 
 export interface AnswerCreateInput {
@@ -5435,6 +5409,7 @@ export interface UserUpdateInput {
   nickName?: string | null;
   acceptSms?: boolean | null;
   busiRegistration?: FileCreateInput | null;
+  busi_address_detail?: string | null;
   acceptEamil?: boolean | null;
   address_detail?: string | null;
   phoneNumber?: string | null;
@@ -5450,10 +5425,12 @@ export interface UserUpdateInput {
   busi_num?: string | null;
   is_priv_corper?: boolean | null;
   busi_name?: string | null;
-  bsui_address?: string | null;
+  busi_address?: string | null;
   account_number?: string | null;
   bank_name?: string | null;
   profileImg?: FileCreateInput | null;
+  partnerName?: string | null;
+  manageContact?: string | null;
 }
 
 export interface _BoardFilter {

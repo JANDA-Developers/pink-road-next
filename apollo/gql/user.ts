@@ -1,6 +1,64 @@
 import { gql } from "@apollo/client";
-import { F_PAGE, F_USER } from "./fragments";
+import { F_FILE, F_PAGE } from "./fragments";
 
+export const F_USER = gql`
+    fragment Fuser  on User  {
+        _id
+        nickName
+        createdAt
+        updatedAt
+        isDelete
+        email
+        role
+        brith_date
+        address
+        address_detail
+        acceptSms
+        acceptEamil
+        is_froreginer
+        busi_contact
+        manageContact
+        gender
+        busi_num
+        busi_department
+        isVerifiedPhoneNumber,
+        busiRegistration {
+            ...Ffile
+        },
+        is_priv_corper
+        busi_name
+        busi_address
+        account_number
+        name
+        bank_name
+        phoneNumber
+        manageName
+        profileImg {
+            uri
+        }
+        busi_department
+    }
+    ${F_FILE}
+`
+
+export const SIGN_UP = gql`
+  mutation signUp(
+      $params: AddUserInput!
+      $verificationId: String!
+    ) {
+      SignUp(
+        params:$params
+        verificationId: $verificationId
+      ) {
+      ok
+      error 
+      data {
+          email
+      }
+    }
+  }
+  ${F_FILE}
+`;
 
 
 export const RESIGN = gql`
@@ -18,22 +76,6 @@ export const RESIGN = gql`
   }
 `;
 
-export const SIGN_IN_GOOGLE = gql`
-  mutation signInGoogle(
-      $code: String!
-    ) {
-      SignInGoogle(
-        code:$code
-      ) {
-      ok
-      error 
-      data {
-          email
-          token
-      }
-    }
-  }
-`;
 
 export const USER_UPDATE = gql`
     mutation userUpdate($params:UserUpdateInput!,$_id: String!, $pw: String) {
@@ -48,34 +90,6 @@ export const USER_UPDATE = gql`
     }
 `
 
-
-export const SIGNINGOOGLE = gql`
-    mutation SignInGoogle($code : String!){
-      SignInGoogle(code : $code){
-        ok
-        error
-        data{
-          token
-          email
-        }
-      }
-    }
-`
-
-export const SIGNINKAKAO= gql`
-    mutation SignInKakao($code : String!){
-      SignInKakao(code : $code){
-        ok
-        error
-        data{
-          token
-          email
-        }
-      }
-    }
-`
-
-
 export const VERIFICATION_START =gql`
 mutation verificationStart($target: VerificationTarget!, $payload: String!, $event: VerificationEvent!){
     VerificationStart(target : $target, payload : $payload, event : $event){
@@ -83,10 +97,13 @@ mutation verificationStart($target: VerificationTarget!, $payload: String!, $eve
       error
       data {
         _id
+        payload
+        target
         isVerified
       }
     }
-  }`
+  }
+  `
 
 export const VERIFICATION_COMPLETE=gql`
 mutation verificationComplete(

@@ -5790,6 +5790,18 @@
             "deprecationReason": null
           },
           {
+            "name": "SignInWtihKakao",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SignInWtihGoogle",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "NotificationSenderAdd",
             "description": null,
             "isDeprecated": false,
@@ -6572,6 +6584,22 @@
             "deprecationReason": null
           },
           {
+            "name": "busi_address_detail",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "account_number",
             "description": null,
             "args": [],
@@ -6606,6 +6634,38 @@
           {
             "name": "name",
             "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "manageName",
+            "description": "담당자명",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "manageContact",
+            "description": "담당자 연락처",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -13060,194 +13120,6 @@
             "type": {
               "kind": "OBJECT",
               "name": "SignIn",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "SignInGoogle",
-        "description": null,
-        "fields": [
-          {
-            "name": "email",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "token",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "SignInGoogleResponse",
-        "description": null,
-        "fields": [
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "data",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "SignInGoogle",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "SignInKakao",
-        "description": null,
-        "fields": [
-          {
-            "name": "email",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "token",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "SignInKakaoResponse",
-        "description": null,
-        "fields": [
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "data",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "SignInKakao",
               "ofType": null
             },
             "isDeprecated": false,
@@ -19952,6 +19824,16 @@
             "defaultValue": null
           },
           {
+            "name": "busiRegistration",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "FileCreateInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "address_detail",
             "description": null,
             "type": {
@@ -20144,7 +20026,17 @@
             "defaultValue": null
           },
           {
-            "name": "bsui_address",
+            "name": "busi_address",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "busi_address_detail",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -20165,6 +20057,26 @@
           },
           {
             "name": "bank_name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "partnerName",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "manageContact",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -20380,6 +20292,16 @@
             "defaultValue": null
           },
           {
+            "name": "busi_address_detail",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "acceptEamil",
             "description": null,
             "type": {
@@ -20530,7 +20452,7 @@
             "defaultValue": null
           },
           {
-            "name": "bsui_address",
+            "name": "busi_address",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -20565,6 +20487,26 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "FileCreateInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "partnerName",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "manageContact",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -23026,7 +22968,7 @@
           },
           {
             "name": "VerificationStart",
-            "description": null,
+            "description": "인증 요청을 하는 함수, 이메일 또는 핸드폰으로 인증번호를 발신하고 인증 테이블에 요청 추가함",
             "args": [
               {
                 "name": "target",
@@ -24111,71 +24053,23 @@
             "deprecationReason": null
           },
           {
-            "name": "SignInGoogle",
-            "description": null,
-            "args": [
-              {
-                "name": "code",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "SignInGoogleResponse",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SignInKakao",
-            "description": null,
-            "args": [
-              {
-                "name": "code",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "SignInKakaoResponse",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "SignUp",
             "description": null,
             "args": [
+              {
+                "name": "verificationId",
+                "description": "이메일인증:: 이 행위는 항상 인증이 필요합니다.",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
               {
                 "name": "params",
                 "description": null,

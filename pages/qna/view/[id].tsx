@@ -41,8 +41,6 @@ export const QuestionDetail: React.FC<IProp> = () => {
         router.push(`/tour/${product._id}`)
     }
 
-
-
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
             questionDeleteMu({

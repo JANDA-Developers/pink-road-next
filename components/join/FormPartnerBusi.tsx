@@ -1,190 +1,28 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import DaumPostcode from 'react-daum-postcode';
+import { useJoin } from '../../hook/useJoin';
+import { JoinContext } from '../../pages/join';
+import { UserRole } from '../../types/api';
 import RegisterCheck from './RegisterCheck';
-import { TForm } from 'pages/join';
 
-export type TFormPartnetCor = {
-  email: string,
-  password: string,
-  passwordChk: string,
-  name_company: string,
-  business_sort: string,
-  business_number: string,
-  areacode: string,
-  contact: string,
-  address: string,
-  address_detail: string,
-  department: string,
-  incharge_name: string,
-  incharge_number: string,
-  business_license: string,
-  bank_name: string,
-  bank_account: string,
-  register_sort: string,
-  is_priv_corper: boolean
-}
-
-const defaultInfo: TFormPartnetCor = process.env.NODE_ENV === "development" ? {
-  email: "test@naver.com",
-  password: "!238917",
-  passwordChk: "!238917",
-  name_company: "테스트 네임",
-  business_sort: "개인",
-  business_number: "123123",
-  areacode: "02",
-  contact: "123123",
-  address: "address",
-  address_detail: "address_detail",
-  department: "영업부서",
-  incharge_name: "담당자 이름",
-  incharge_number: "0101112222",
-  business_license: "jpg, png 파일만 업로드 가능합니다",
-  bank_name: "KB",
-  bank_account: "1122333",
-  register_sort: "partnerB",
-  is_priv_corper: true
-} : {
-    email: "",
-    password: "",
-    passwordChk: "",
-    name_company: "",
-    business_sort: "개인",
-    business_number: "",
-    areacode: "02",
-    contact: "",
-    address: "",
-    address_detail: "",
-    department: "",
-    incharge_name: "",
-    incharge_number: "",
-    business_license: "jpg, png 파일만 업로드 가능합니다",
-    bank_name: "",
-    bank_account: "",
-    register_sort: "partnerB",
-    is_priv_corper: true
-  }
-
-const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
-
-  const [formInfo, setFormInfo] = useState<TFormPartnetCor>(defaultInfo)
-
-  const [errDisplay, setErrDisplay] = useState({
-    email: false,
-    password: false,
-    passwordChk: false,
-    name_company: false,
-    business_sort: false,
-    business_number: false,
-    areacode: false,
-    contact: false,
-    address: false,
-    address_detail: false,
-    department: false,
-    incharge_name: false,
-    incharge_number: false,
-    business_license: false,
-    bank_name: false,
-    bank_account: false,
-    register_sort: false,
-    is_priv_corper: false
-  });
-
-  const [daumAddress, setDaumAddress] = useState(false);
-
-
-  const handleAddress = (address) => {
-
-    setDaumAddress(true);
-
-  }
-
-  const addressUpdate = (address) => {
-
-    setFormInfo({
-      ...formInfo,
-      address: address
-    })
-
-  }
-
-  const handleComplete = (data) => {
-
-    let fullAddress = data.address;
-    let extraAddress = '';
-
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== '') {
-        extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
-      }
-      fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
-    }
-
-    addressUpdate(fullAddress);
-    setDaumAddress(false);
-
-  }
-
-
-  const handleForm = (e: React.ChangeEvent<HTMLInputElement>) => {
-
-    setErrDisplay({
-      ...errDisplay,
-      [e.target.name]: false
-    })
-
-    setFormInfo({
-      ...formInfo,
-      [e.target.name]: e.target.value
-    })
-
-  }
-
-  const handleErrDisplay = (errTarget: keyof TFormPartnetCor) => {
-
-    let errList = errDisplay;
-    errList[errTarget] = !errDisplay[errTarget];
-    setErrDisplay({
-      ...errList
-    })
-
-  }
-
-  const handleBusinessSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
-
-    setFormInfo({
-      ...formInfo,
-      business_sort: e.target.value
-    })
-
-  }
-
-  const handleContact = (e: React.ChangeEvent<HTMLSelectElement>) => {
-
-    setFormInfo({
-      ...formInfo,
-      areacode: e.target.value
-    })
-
-  }
-
-  const handleBusinessLicense = (e: React.ChangeEvent<HTMLInputElement>) => {
-
-    if (e.target.files) {
-      const fileType = e.target.files[0].type;
-      if (fileType != 'image/png' && fileType != 'image/jepg') {
-        alert('jpg 혹은 png 파일만 업로드 가능합니다');
-        return false;
-      }
-      setFormInfo({
-        ...formInfo,
-        business_license: e.target.files[0].name
-      })
-    }
-
-  }
+const FormPartnerBusi: React.FC = () => {
+  const {
+    birthdayPicker,
+    data,
+    daumAddress,
+    dayPickerMonth,
+    handleAddress,
+    handleBirthPicker,
+    handleData,
+    handleDaumPostalComplete,
+    handleDayClick,
+    handleDayPickerMonth,
+    handleGender,
+    handleNationality,
+    handleBusinessLicense,
+    setBirthDayPicker,
+    errDisplay
+  } = useJoin()
 
   return (
     <>
@@ -201,7 +39,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             <i className="important_icon" />
                 이메일
               </label>
-          <span className={`er red_font ${errDisplay.email && `on`}`}>
+          <span className={`er red_font `}>
             * 해당 이메일은 이미 사용중입니다.
               </span>
           <input
@@ -209,8 +47,8 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             className="w100"
             name="email"
             placeholder="email@email.com"
-            value={formInfo.email}
-            onChange={(e) => { handleForm(e) }}
+            value={data.email || ""}
+            onChange={handleData("email")}
           />
         </div>
         <div className="pw_wrap">
@@ -218,7 +56,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             <i className="important_icon" />
                 비밀번호
               </label>
-          <span className={`er red_font ${errDisplay.password && `on`}`}>
+          <span className={`er red_font ${errDisplay.pw && `on`}`}>
             *비밀번호는 특수문자 1개이상 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다
               </span>
           <input
@@ -226,8 +64,8 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             className="w100"
             name="password"
             placeholder="비밀번호를 입력해주세요"
-            value={formInfo.password}
-            onChange={(e) => { handleForm(e) }}
+            value={data.pw}
+            onChange={handleData("pw")}
           />
         </div>
         <div className="pw_wrap_c">
@@ -243,7 +81,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             className="w100"
             name="passwordChk"
             placeholder="비밀번호 확인"
-            onChange={(e) => { handleForm(e) }}
+            onChange={handleData("pwcheck")}
           />
         </div>
         <hr />
@@ -259,8 +97,8 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             className="w100"
             name="name_company"
             placeholder="업체명을 입력해주세요"
-            value={formInfo.name_company}
-            onChange={(e) => { handleForm(e) }}
+            value={data.busi_name || ""}
+            onChange={handleData("busi_name")}
           />
         </div>
         <div className="ph_wrap">
@@ -272,17 +110,17 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             *사업자번호가 바르지 않습니다.
               </span>
           <div className="w100">
-            <select className="w20" value={formInfo.business_sort} onChange={handleBusinessSort}>
-              <option value="개인">개인</option>
-              <option value="법인">법인</option>
+            <select className="w20" value={data.is_priv_corper ? "true" : "false"} onChange={handleData("is_priv_corper")}>
+              <option value={"false"}>개인</option>
+              <option value={"true"}>법인</option>
             </select>
             <input
               type="text"
               className="form-control w70"
               name="business_number"
               placeholder="사업자번호를 입력해주세요."
-              value={formInfo.business_number}
-              onChange={(e) => { handleForm(e) }}
+              value={data.busi_num || ""}
+              onChange={handleData("busi_num")}
             />
           </div>
         </div>
@@ -290,17 +128,13 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
           <label>대표 전화번호</label>
           <span className={`er red_font ${errDisplay.contact && `on`}`}>*숫자만 입력이 가능합니다.</span>
           <div className="w100">
-            <select className="w20" value={formInfo.areacode} onChange={handleContact}>
-              <option value="02">02</option>
-              <option value="055">055</option>
-            </select>
             <input
               type="text"
-              className="form-control w70"
+              className="form-control w100"
               name="contact"
               placeholder="전화번호를 입력해주세요."
-              value={formInfo.contact}
-              onChange={(e) => { handleForm(e) }}
+              value={data.busi_contact || ""}
+              onChange={handleData("busi_contact")}
             />
           </div>
         </div>
@@ -309,20 +143,20 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
           <span className="er red_font">*주소가 정확하지 않습니다.</span>
           <div className="w100">
             <input type="text" className="w80" name="address"
-              value={formInfo.address}
-              onChange={(e) => { handleForm(e) }} />
+              value={data.busi_address || ""}
+              onChange={handleData("busi_address")} />
             <button type="button" className="btn btn_mini" onClick={handleAddress}>
               찾기
             </button>
           </div>
           <div className="w100 mt5">
             <input type="text" className="w100" name="address_detail" placeholder="상세주소"
-              value={formInfo.address_detail}
-              onChange={(e) => { handleForm(e) }} />
+              value={data.busi_address_detail || ""}
+              onChange={handleData("busi_address_detail")} />
           </div>
           <div className={`daum_addresss ${daumAddress && 'on'}`}>
             <DaumPostcode
-              onComplete={handleComplete}
+              onComplete={handleDaumPostalComplete}
             />
           </div>
         </div>
@@ -335,16 +169,16 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
               className="form-control w20"
               placeholder="부서명"
               name="department"
-              value={formInfo.department}
-              onChange={(e) => { handleForm(e) }}
+              value={data.busi}
+              onChange={ }
             />{" "}
             <input
               type="text"
               className="form-control w70"
               name="incharge_name"
               placeholder="담당자를 입력해주세요."
-              value={formInfo.incharge_name}
-              onChange={(e) => { handleForm(e) }}
+              value={data.manageName}
+              onChange={handle("manageName")}}
             />
           </div>
         </div>
@@ -357,7 +191,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
               className="w80"
               name="incharge_number"
               placeholder="-를 제외한 휴대폰 번호를 입력해주세요"
-              value={formInfo.incharge_number}
+              value={data.incharge_number}
               onChange={(e) => { handleForm(e) }}
             />
             <button type="button" className="btn btn_mini">
@@ -375,7 +209,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
               </span>
           <div className="w100 apply_relative">
             <span className="w80 upload_out_box">
-              {formInfo.business_license}
+              {data.busiRegistration?.name}
             </span>
 
             <label htmlFor="business_license" className="cus_file_busi_license">
@@ -401,29 +235,25 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
               name="bank_name"
               style={{ minWidth: 55 }}
               placeholder="은행"
-              value={formInfo.bank_name}
-              onChange={(e) => { handleForm(e) }}
+              value={data.bank_name || ""}
+              onChange={handleData("bank_name")}
             />
             <input
               type="text"
               className="w80"
               name="bank_account"
               placeholder="계좌번호"
-              value={formInfo.bank_account}
-              onChange={(e) => { handleForm(e) }}
+              value={data.account_number || ""}
+              onChange={handleData("account_number")}
             />
           </div>
         </div>
       </div>
       <RegisterCheck
-        openPopup={openPopup}
-        handleJoinProcess={handleJoinProcess}
-        registerInfo={formInfo}
-        registerSort={'partnerCor'}
-        handleErrDisplay={handleErrDisplay}
+        registerInfo={data}
       />
     </>
   )
 }
 
-export default FormPartnerCor
+export default FormPartnerBusi

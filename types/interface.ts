@@ -60,3 +60,4 @@ export type E_INPUT = React.ChangeEvent<HTMLInputElement>;
 export interface IlistQueryInit<F,S,Q,V> extends Partial<ListInitOptions<F, S>> {
     options?: QueryHookOptions<Q, V>
 }
+

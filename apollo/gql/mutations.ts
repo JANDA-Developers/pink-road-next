@@ -98,22 +98,6 @@ export const MULTI_UPLOAD = gql`
   ${F_FILE}
 `;
 
-export const SIGN_UP = gql`
-  mutation signUp(
-      $params: AddUserInput!
-    ) {
-      SignUp(
-        params:$params
-      ) {
-      ok
-      error 
-      data {
-          email
-      }
-    }
-  }
-  ${F_FILE}
-`;
 
 
 

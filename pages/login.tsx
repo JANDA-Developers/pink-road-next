@@ -36,15 +36,15 @@ export const Login: React.FC<IProp> = () => {
     // saveLocal("saveid", id);
     useEffect(() => {
         initStorage()
-        setId(Storage.getLocal("saveid", ""))
-        setSaveId(!!Storage.getLocal("saveId?", ""))
-        setSaveSession(!!Storage.getLocal("saveSession?", ""))
+        setId(Storage!.getLocal("saveid", ""))
+        setSaveId(!!Storage!.getLocal("saveId?", ""))
+        setSaveSession(!!Storage!.getLocal("saveSession?", ""))
     }, [])
 
 
     useEffect(() => {
-        Storage.saveLocal("saveid", saveId)
-        Storage.saveLocal("saveSession?", saveSession)
+        Storage?.saveLocal("saveid", saveId)
+        Storage?.saveLocal("saveSession?", saveSession)
 
     }, [saveId, saveSession])
 

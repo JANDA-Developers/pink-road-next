@@ -4,11 +4,30 @@ import cache from "./cache";
 import { createUploadLink } from "apollo-upload-client";
 
 
+export function getCookie(name: string) {
+  var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  return v ? v[2] : null;
+}
+
+export function eraseCookie(name: string) {
+  document.cookie = name + '=; Max-Age=-99999999;';
+}
+
+const getCookieToken = () => {
+  const cookieToken = getCookie("jwt")
+  if (cookieToken) {
+    window.localStorage.setItem("jwt", cookieToken);
+    eraseCookie("jwt")
+  }
+}
+
 const getToken = () => {
   if (typeof window === "undefined") {
     return ""
-  } else
+  } else {
+    getCookieToken();
     return window.localStorage.getItem("jwt")
+  }
 }
 const headers = {
   "Authorization": "Bearer " + getToken()
