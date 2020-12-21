@@ -469,10 +469,48 @@ export const MsDesignC: React.FC<IProp> = () => {
                 <a className="close_icon" onClick={popupClose}>
                     <i className="flaticon-multiply"></i>
                 </a>
-                <div className="page">
+                <div className="goodsall">
                     <h3>상품선택</h3>
-                    <div>
-
+                    <div className="goodsall__search search_top">
+                        <div className="search_div">
+                            <input className="w100" type="text" placeholder="검색할 상품명을 입력해주세요." />
+                            <div className="svg_img">
+                                <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                <button />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="goodsall__list">
+                        <p>검색결과 <strong>22건</strong></p>
+                        <ul>
+                            <li>
+                                <div className="goodsall__list__img">
+                                    <img src="/img/sample_01.gif" alt="상품이미지" />
+                                </div>
+                                <div className="goodsall__list__text">
+                                    <div className="title">떠나요~제떠나요~제떠나요~제떠나요~제떠나요~제주도~~~!!!~!~#@!#</div>
+                                    <div className="date">2020.03.13 ~ 2020.03.15</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="goodsall__list__img">
+                                    <img src="/img/sample_01.gif" alt="상품이미지" />
+                                </div>
+                                <div className="goodsall__list__text">
+                                    <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
+                                    <div className="date">2020.03.13 ~ 2020.03.15</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="goodsall__list__img">
+                                    <img src="/img/sample_01.gif" alt="상품이미지" />
+                                </div>
+                                <div className="goodsall__list__text">
+                                    <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
+                                    <div className="date">2020.03.13 ~ 2020.03.15</div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

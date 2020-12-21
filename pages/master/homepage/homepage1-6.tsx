@@ -12,11 +12,11 @@ export const MsHomepageA: React.FC<IProp> = () => {
                 <div className="tab-nav">
                     <ul>
                         <li><Link href="/master/homepage"><a>기본설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-2"><a>SMS관리</a></Link></li>
+                        <li><Link href="/master/homepage/homepage1-2"><a>SMS설정</a></Link></li>
                         <li><Link href="/master/homepage/homepage1-3"><a>카카오비즈톡</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-4"><a>약관관리</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-5"><a>게시판관리</a></Link></li>
-                        <li className="on"><Link href="/master/homepage/homepage1-6"><a>정산관리</a></Link></li>
+                        <li><Link href="/master/homepage/homepage1-4"><a>약관설정</a></Link></li>
+                        <li><Link href="/master/homepage/homepage1-5"><a>게시판설정</a></Link></li>
+                        <li className="on"><Link href="/master/homepage/homepage1-6"><a>정산설정</a></Link></li>
                     </ul>
                 </div>
                 <div className="con homepage terms">

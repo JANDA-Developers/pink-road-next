@@ -194,7 +194,7 @@ export const MyGoods: React.FC<IProp> = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <Paginater pageNumber={10} totalPageCount={20} />
+                            {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                         </div>
                         <div className="boardNavigation">
                             <div className="float_left">
