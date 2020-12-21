@@ -1,5 +1,45 @@
 import { gql } from "@apollo/client";
 
+export const F_USER = gql`
+    fragment Fuser  on User  {
+        _id
+        nickName
+        createdAt
+        updatedAt
+        isDelete
+        email
+        role
+        brith_date
+        address
+        address_detail
+        acceptSms
+        acceptEamil
+        is_froreginer
+        busi_contact
+        manageContact
+        gender
+        busi_num
+        busi_department
+        isVerifiedPhoneNumber,
+        busiRegistration {
+            ...Ffile
+        },
+        is_priv_corper
+        busi_name
+        busi_address
+        account_number
+        name
+        bank_name
+        phoneNumber
+        manageName
+        profileImg {
+            uri
+        }
+        busi_department
+    }
+    ${F_FILE}
+`
+
 
 export const F_PAYMENT = gql`
     fragment Fpayment  on Payment  {

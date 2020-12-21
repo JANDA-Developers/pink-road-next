@@ -162,7 +162,6 @@ const Verification: React.FC = () => {
     const handleAuth = (target: "google" | "kakao") => () => {
         window.location.href = SERVER_URI + "/login/" + target
     }
-    const [code, setCode] = useState("");
 
     const handleSelfAuth = () => {
         setJoinProcess("userInfo")
@@ -196,14 +195,7 @@ const Verification: React.FC = () => {
             <p className="bt_txt">
                 ※ 본인인증 시 제공되는 정보로 회원가입시 필요한 정보를 연동합니다.
             </p>
-            <Modal title="이메일 인증" id="emailVerifi" >
-                <h6>
-                    인증번호를 입력 해주세요.
-                </h6>
-                <input value={code} onChange={(e) => {
-                    setCode(e.currentTarget.value)
-                }} />
-            </Modal>
+            
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_BOOKING, F_CATEGORY, F_PAGE, F_PAGE_INFO, F_PRODUCT, F_USER } from "./fragments";
+import { F_BOOKING, F_CATEGORY,  F_PAGE_INFO, F_PRODUCT } from "./fragments";
 
 /* :::::::::::::::::::::::::::::::::::::: 
 
