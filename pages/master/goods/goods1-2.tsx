@@ -16,7 +16,6 @@ export const MsGoodsct: React.FC<IProp> = () => {
                     <ul>
                         <li><Link href="/master/goods"><a>상품관리</a></Link></li>
                         <li className="on"><Link href="/master/goods/goods1-2"><a>카테고리설정</a></Link></li>
-                        <li><Link href="/master/goods/goods1-3"><a>약관관리</a></Link></li>
                     </ul>
                 </div>
                 <div className="con goods2">
@@ -24,9 +23,9 @@ export const MsGoodsct: React.FC<IProp> = () => {
                         <div className="body-hang">
                             <div className="option-A">Tour</div>
                             <div className="option-C">
-                                <div className="point_box">
-                                    <span className="point no on">사용안함</span>
-                                    <span className="point yes">사용함</span>
+                                <div className="switch">
+                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
+                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
                                 </div>
                             </div>
                             <div className="option-B">
@@ -57,9 +56,9 @@ export const MsGoodsct: React.FC<IProp> = () => {
                         <div className="body-hang">
                             <div className="option-A">Experience</div>
                             <div className="option-C">
-                                <div className="point_box">
-                                    <span className="point no">사용안함</span>
-                                    <span className="point yes on">사용함</span>
+                                <div className="switch">
+                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
+                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
                                 </div>
                             </div>
                             <div className="option-B">

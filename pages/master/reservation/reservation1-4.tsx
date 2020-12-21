@@ -8,6 +8,17 @@ import ReactTooltip from 'react-tooltip';
 
 interface IProp { }
 
+const popupOpen = () => {
+    $('#Popup01').css({
+        'display': 'flex'
+    });
+
+}
+const popupClose = () => {
+    $('#Popup01').css({
+        'display': 'none'
+    });
+}
 export const MsReservationC: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
@@ -149,12 +160,11 @@ export const MsReservationC: React.FC<IProp> = () => {
                             </div>
                             <div className="t03">
                                 <div className="info">
-                                    <span className="ct">문화</span>
+                                    <span className="ct">문화</span> <span className="g-number">상품번호: PINK-034982</span>
                                     <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                     <div className="txt">
                                         <span className="s-day">출발일: 2020.9.9</span>
                                         <span className="where">출발장소: 부산대학교 앞</span>
-                                        <span className="g-number">상품번호: PINK-034982</span>
                                         <span className="men">인원: 총 10명 (성인:3/소아:3/유아:4)</span>
                                     </div>
                                 </div>
@@ -180,9 +190,9 @@ export const MsReservationC: React.FC<IProp> = () => {
                             </div>
                             <div className="t07">
                                 <div className="align">
-                                    <button className="btn">상세보기</button>
-                                    <button className="btn">예약취소</button>
-                                    <button className="btn">입금확인</button>
+                                    <button className="btn small" onClick={popupOpen}>상세보기</button>
+                                    <button className="btn small">예약취소</button>
+                                    <button className="btn small">입금확인</button>
                                 </div>
                             </div>
                         </div>
@@ -203,12 +213,12 @@ export const MsReservationC: React.FC<IProp> = () => {
                             </div>
                             <div className="t03">
                                 <div className="info">
-                                    <span className="ct">문화</span>
+                                    <span className="ct">문화</span> <span className="g-number">상품번호: PINK-034982</span>
                                     <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                     <div className="txt">
                                         <span className="s-day">출발일: 2020.9.9</span>
                                         <span className="where">출발장소: 부산대학교 앞</span>
-                                        <span className="g-number">상품번호: PINK-034982</span>
+
                                         <span className="men">인원: 총 10명 (성인:3/소아:3/유아:4)</span>
                                     </div>
                                 </div>
@@ -234,9 +244,9 @@ export const MsReservationC: React.FC<IProp> = () => {
                             </div>
                             <div className="t07">
                                 <div className="align">
-                                    <button className="btn">상세보기</button>
-                                    <button className="btn">예약취소</button>
-                                    <button className="btn">입금확인</button>
+                                    <button className="btn small" onClick={popupOpen}>상세보기</button>
+                                    <button className="btn small">예약취소</button>
+                                    <button className="btn small">입금확인</button>
                                 </div>
                             </div>
                         </div>
@@ -252,15 +262,24 @@ export const MsReservationC: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
             <SearcfInfoBox />
-            <div className="fade"></div>
-
         </div>
+
+
+        {/* popup-상세보기 */}
+        <div id="Popup01" className="popup_bg_full">
+            <div className="in_txt master_popup">
+                <a className="close_icon" onClick={popupClose}>
+                    <i className="flaticon-multiply"></i>
+                </a>
+                <div className="page">
+
+                </div>
+            </div>
+        </div>
+
     </MasterLayout >
 };
 

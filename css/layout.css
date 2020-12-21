@@ -59,7 +59,7 @@ i.tooltip{
     z-index: 98;
     transform-origin: center right;
     transition: 1s;
-    transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in;
     opacity: 80;
     border: 1px solid #ccc;
     border-right: 0;
@@ -68,7 +68,7 @@ i.tooltip{
 }
     #gotop.animationHide {
         opacity: 0;
-        transform: scale(0);
+        transform:translate(120px, 0);
     }
     #gotop .top {
         display: inline-block;
@@ -124,6 +124,9 @@ i.tooltip{
         text-align: center;
         color: #8b8b8b;
     }
+   
+
+/* janda copyright */
 .footer-area-bottom {/*핑크로더는삭제요청*/
     background: #dedede;
     display:none;
@@ -149,8 +152,36 @@ i.tooltip{
         text-align: left;
         font-size: 20px
     }
-/* img edit btn */
 
+    /* search_top */
+
+     .search_top .svg_img {
+        width: 20px;
+        height: 20px;
+        opacity: 0.3;
+        position: absolute;
+        top: 50%;
+        right: 13px;
+        margin-top: -10px;
+    }
+    .search_top .svg_img:hover {
+       opacity: 0.5;
+   }
+     .search_top .svg_img button {
+        width: 100%;
+        height: 100%;
+        z-index: 33;
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 0;
+        border: 0;
+        background-color: initial;
+     
+    }
+
+/* img edit btn */
 .img_edit {
     position: relative;
 }
@@ -336,18 +367,40 @@ i.tooltip{
                     width: auto;
                     text-align: center;
                     position: relative;
+                    margin: 0 10px;
                 }
 
                     .header .hd_center .nav_wrap .deps1 > li > a {
+                        width: auto;
                         font-size: 18px;
                         font-weight: 400;
+                        line-height: 48px;
                         color: #333333;
-                        width: auto;
-                        margin-right: 23px;
                         letter-spacing: -1px;
+                        cursor: pointer;
+                    }
+                    .header .hd_center .nav_wrap .deps1 > li > a:before {
+                        content: '';
+                        width: 100%;
+                        height: 5px;
+                        position: absolute;
+                        bottom: 0px;
+                        left: 0;
+                        background: #ed297b;
+                        display: block;
+                        visibility: hidden;
+                        transform: scaleX(0);
+                        transition: all 0.25s ease-in-out 0s;
+                    }
+                    .header .hd_center .nav_wrap .deps1 > li:hover > a:before,
+                    .header .hd_center .nav_wrap .deps1 > li.on > a:before {
+                        visibility: visible;
+                        -webkit-transform: scaleX(1);
+                        transform: scaleX(1);
                     }
 
-            .header .hd_center .nav_wrap > .deps1 > li > a:hover {
+            .header .hd_center .nav_wrap > .deps1 > li.on > a,
+            .header .hd_center .nav_wrap > .deps1 > li:hover > a {
                 color: #e41773;
                 transition: all 0.5s;
             }
@@ -383,25 +436,31 @@ i.tooltip{
                     }
             .header .hd_center .nav_wrap > .deps1 .deps_nav {
                 position: absolute;
-                top: 32px;
-                padding: 15px;
-                width: 150%;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-                line-height: 25px !important;
-                border-top: 3px solid #ed297b;
-                border-radius: 0 0 5px 5px;
-                background-color: #fff;
-                -webkit-box-shadow: 1px 1px 2px #000;
-                box-shadow: 1px 1px 2px #000;
+                top: 57px;
+                min-width: 100px;
+                line-height: 30px !important;
                 text-align: left;
+                box-sizing: border-box;
+                border-top: 5px solid #ed297b;
+                background-color: rgba(255, 255, 255, 0.856);
                 z-index: 70;
+            }
+            .header .hd_center .nav_wrap > .deps1 .deps_nav li {
+                display: block;
+                text-align: center;
+                box-sizing: border-box;
+
             }
                 .header .hd_center .nav_wrap > .deps1 .deps_nav a {
                     font-size: 0.8em;
                     color: #999;
-                }    .header .hd_center .nav_wrap > .deps1 .deps_nav a:hover {
-                 
+                    display: block;
+                    border-bottom: 1px dotted rgb(155, 155, 155);
+                }    
+                .header .hd_center .nav_wrap > .deps1 .deps_nav li:last-child a {
+                    border-bottom: 0;
+                }
+                .header .hd_center .nav_wrap > .deps1 .deps_nav a:hover {
                     color: #333;
                 }
 
@@ -553,7 +612,7 @@ rect.allmenu_svg {
                 background-color: #f5f5f5;
             }
 
-    .header .search_top {
+    .header .searchtop {
         width: 29px;
         height: 36px;
         position: relative;
@@ -563,7 +622,7 @@ rect.allmenu_svg {
         vertical-align: middle;
     }
 
-        .header .search_top .search_btn {
+        .header .searchtop .search_btn {
             position: relative;
             display: inline-block;
             vertical-align: middle;
@@ -571,17 +630,17 @@ rect.allmenu_svg {
             padding-top: 4px;
         }
 
-            .header .search_top .search_btn object {
+            .header .searchtop .search_btn object {
                 cursor: pointer;
                 display: inline-block;
                 vertical-align: middle;
                 opacity: 0.8;
             }
-            .header .search_top .search_btn:hover object {
+            .header .searchtop .search_btn:hover object {
                 opacity: 1;
             }
 
-            .header .search_top .search_btn button {
+            .header .searchtop .search_btn button {
                 width: 30px;
                 height: 30px;
                 display: block;
@@ -1058,6 +1117,7 @@ rect.allmenu_svg {
         .header_nav ul li {
             vertical-align: top;
             line-height: 50px;
+            height: 50px;
             padding-left: 4px;
             padding-right: 15px;
             position: relative;
@@ -1065,6 +1125,7 @@ rect.allmenu_svg {
             display: inline-block;
             color: #c1c1c1;
             border-bottom: 1px solid #c1c1c1;
+            box-sizing: border-box;
         }
             .header_nav ul li a {
                 color: #c1c1c1;
@@ -1088,7 +1149,7 @@ rect.allmenu_svg {
             .header_nav ul .home a {
                 display: block;
                 width: 38px;
-                height:49px;
+                height:50px;
                 text-align: center;
                 line-height: 60px;
                 overflow: hidden;
@@ -2308,6 +2369,124 @@ i.icon_plus {
     line-height: 6px;
     
 }
+
+/* search_top */
+.search_top {
+    position: relative;
+    border: 5px solid rgb(210 210 210);
+    padding: 15px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 28px;
+}
+.search_top .hang {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-top: 8px;
+}
+.search_top .hang.fr {
+    width: 100%;
+    margin-top: 8px;
+    float: none !important;
+    
+}
+.search_top .day_ul {
+    display: flex;
+    width: 100%;
+    vertical-align: middle;
+    border:0;
+    border-radius: 100px;
+    text-align: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+.search_top .day_ul li {
+    display: inline-block;
+    padding: 3px 10px;
+    box-sizing: border-box;
+    float: left;
+    border-right: 1px solid #ccc;   
+     background-color: #eaeaea;
+    cursor: pointer;
+    font-size: 0.7em;
+    width: 25%;
+}
+.search_top .day_ul li.on {
+    background-color: #696969;
+}
+.search_top .day_ul li.on span {
+    color: #fff;
+}
+.search_top .day_ul li:last-child {
+
+    border-right: 0;
+}
+.search_top .day_ul span {
+    display: block;
+    color: #7b7b7b;
+    font-size: 12px;
+    font-weight: 600;
+}
+.search_top .input_box {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 44%;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.search_top .search_div {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+.search_top .search_div:hover .svg_img{
+    opacity: 0.5;
+}
+.search_top .search_div input {
+    height: 34px;
+    font-size: 0.9em;
+    
+}
+.search_top .calendar {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+    margin-left: 3px;
+    margin-right: 2px;
+    position: absolute;
+    right: 0px;
+    top: 7px;
+    opacity: 0.4;
+}
+.search_top .calendar img {
+    width: 100%;
+    height: 26px;
+    opacity: 0.5;
+}
+.search_top .calendar:hover img,
+.search_top .day:hover ~ .calendar img {
+    opacity: 1;
+}
+.search_top .calendar button {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    background-color: initial;
+    cursor: pointer;
+}
 @media (min-width:768px) {
     .pc {
         display: none;
@@ -2324,7 +2503,22 @@ i.icon_plus {
     .m {
         display: none;
     }
-
+   .search_top .hang {
+        width: auto;
+        margin-top: 0;
+    }
+   .search_top .option {
+        width: 100px;
+        margin-right: 10px;
+        margin-bottom: 0;
+    }
+    .search_top .search_div {
+        width: 80%;
+    }
+    .search_top .day_ul{
+        width: 250px;
+        display: flex;
+    }
     #content .x {
         width: 100%;
     }
@@ -2361,6 +2555,10 @@ i.icon_plus {
 }
 
 @media (min-width:1000px) {
+    .search_top .input_box {
+        margin-left: 0;
+        width: 200px;
+    }
     #gotop {
        
         width: 35px;
@@ -2397,7 +2595,6 @@ i.icon_plus {
     }
     .header .hd_center .nav_wrap .deps1 > li > a {
         font-size: 15px;
-        margin-right: 15px;
     }   .header .top-menu {
         display: block;
     }
@@ -2626,6 +2823,18 @@ i.icon_plus {
     .m {
         display: none;
     }
+   .search_top .search_div {
+        width: 240px;
+    }
+    .search_top {
+        text-align: left;
+    }
+   .search_top .hang.fr {
+        width: auto;
+        margin-top: 0;
+        float: right !important;
+        
+    }
     .header > .w1200 {
         padding: 28px 0;
     }
@@ -2647,7 +2856,6 @@ i.icon_plus {
     }
         .header .hd_center .nav_wrap .deps1 > li > a {
             font-size: 16px;
-            margin-right: 23px;
         }
     .header .hd_right {
         right: 0;
