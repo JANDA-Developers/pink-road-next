@@ -36,14 +36,14 @@ type TJoinProcess = {
 
 const openPopup = (element: string | null) => {
     let popupElement = document.getElementById(`${element}`) as HTMLElement;
-    popupElement!.style.display = 'block';
-    document!.getElementById('fade')!.style.display = 'block';
+    popupElement!.style.display = 'flex';
+    // document!.getElementById('fade')!.style.display = 'flex';
 }
 
 const closePopup = (element: string | null) => {
     let popupElement = document.getElementById(`${element}`) as HTMLElement;
     popupElement!.style.display = 'none';
-    document!.getElementById('fade')!.style.display = 'none';
+    // document!.getElementById('fade')!.style.display = 'none';
 }
 
 
@@ -199,7 +199,7 @@ const Join = () => {
                         </div>
                         {/* Popup:이용약관 */}
                         <PolicyPopup closePopup={closePopup} />
-                        <div id="fade" className="fade" />
+                        {/* <div id="fade" className="fade" /> */}
                     </div>
                 </div>
             </div>
@@ -214,8 +214,8 @@ const JoinResult = () => {
             <img src="/img/join_img01.png" alt="환영합니다 이미지" />
             <h5>회원가입을 축하드립니다!</h5>
             <p>
-                가입승인 후에 서비스를 이용할 수 있습니다. <br className="no" />
-                잠시만 기다려주세요! 가입승인은 최대 24시간이 걸리며,{" "}
+                기업파트너or개인파트너는 가입승인 후에 서비스를 이용할 수 있습니다. <br className="no" />
+                잠시만 기다려주세요! 가입승인이 최대 24시간이 걸리며,{" "}
                 <br className="no" />
                 가입시 입력된 이메일로 가입승인 이메일로 안내드리겠습니다.
             </p>

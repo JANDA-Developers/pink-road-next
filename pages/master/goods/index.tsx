@@ -176,7 +176,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             </div>
                             <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
                             <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td04"><Link href="/"><a> 떠나요~거제도~!!!!!!!!!!!!!!!!</a></Link></div>
                             <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
                             <div className="td06"><i className="m_title">인원:</i>10/22</div>
                             <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
@@ -192,7 +192,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             </div>
                             <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
                             <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td04"><Link href="/"><a> 떠나요~거제도~!!!!!!!!!!!!!!!!</a></Link></div>
                             <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
                             <div className="td06"><i className="m_title">인원:</i>10/22</div>
                             <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
@@ -209,7 +209,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             </div>
                             <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
                             <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td04"><Link href="/"><a> 떠나요~거제도~!!!!!!!!!!!!!!!!</a></Link></div>
                             <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
                             <div className="td06"><i className="m_title">인원:</i>10/22</div>
                             <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
@@ -226,7 +226,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             </div>
                             <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
                             <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td04"><Link href="/"><a> 떠나요~거제도~!!!!!!!!!!!!!!!!</a></Link></div>
                             <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
                             <div className="td06"><i className="m_title">인원:</i>10/22</div>
                             <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
@@ -243,7 +243,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             </div>
                             <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
                             <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
+                            <div className="td04"><Link href="/"><a> 떠나요~거제도~!!!!!!!!!!!!!!!!</a></Link></div>
                             <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
                             <div className="td06"><i className="m_title">인원:</i>10/22</div>
                             <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
@@ -338,13 +338,13 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
                         </div>
 
-                        <div className="info_table">
+                        <div className="info_table goodsinfo">
                             <div className="tr">
                                 <div className="top04">
                                     <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
                                     <div className="info">
                                         <span className="ct">문화</span>
-                                        <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
+                                        <strong className="title"><Link href="/"><a> 떠나요~거제도~!!!!!!!!!!!!!!!!</a></Link></strong>
                                         <div className="txt">
                                             <div className="subTitle">대가야의 역사를 체험하고 느껴보는 여행</div>
                                             <ul className="tag">
@@ -413,19 +413,19 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             <div className="full_div">
                                 <h4>
                                     예약자 정보
-                            <span>
+                                    <span className="full_div__right__btn">
                                         <button className="btn topside">전체선택</button>
                                         <button className="btn topside">예약완료 선택</button>
                                         <button className="btn topside">SMS보내기</button>
                                     </span>
                                 </h4>
-                                <div className="info_table">
+                                <div className="info_table peoplelist">
                                     <div className="top_info">
                                         <span className="tt">예약인원</span>
                                         <span>총 40명 ( 성인30 / 소아10 / 유아0 )</span>
                                         <span className="float_right">예약완료 38명 / 예약취소 10명 / 예약대기 2명</span>
                                     </div>
-                                    <div className="tr">
+                                    <div className="tr first">
                                         <div className="pp01">
                                             <span className="checkbox">
                                                 <input type="checkbox" name="agree" id="agree1" title="개별선택" />
@@ -447,7 +447,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                         <div className="th">메모</div>
                                         <div className="td"><span>------------------------------------------------</span></div>
                                     </div>
-                                    <div className="tr">
+                                    <div className="tr first">
                                         <div className="pp01">
                                             <span className="checkbox">
                                                 <input type="checkbox" name="agree" id="agree1" title="개별선택" />
@@ -469,7 +469,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                         <div className="th">메모</div>
                                         <div className="td"><span>------------------------------------------------</span></div>
                                     </div>
-                                    <div className="tr">
+                                    <div className="tr first">
                                         <div className="pp01">
                                             <span className="checkbox">
                                                 <input type="checkbox" name="agree" id="agree1" title="개별선택" />
@@ -491,7 +491,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                         <div className="th">메모</div>
                                         <div className="td"><span>------------------------------------------------</span></div>
                                     </div>
-                                    <div className="tr">
+                                    <div className="tr first">
                                         <div className="pp01">
                                             <span className="checkbox">
                                                 <input type="checkbox" name="agree" id="agree1" title="개별선택" />

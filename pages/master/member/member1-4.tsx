@@ -293,8 +293,9 @@ export const MsMemberD: React.FC<IProp> = () => {
                     {/* 예약 및 결제 */}
                     <div className="info_page">
                         <div className="full_div">
-                            <h4>예약 및 결제<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i><span><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
-                            <div className="info_table w50">
+                            <h4>예약 및 결제<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i>
+                            <span className="full_div__right"><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
+                            <div className="info_table reservationlist">
 
                                 <div className="tr">
                                     <div className="re01">
@@ -364,8 +365,9 @@ export const MsMemberD: React.FC<IProp> = () => {
                     {/* 취소 및 환불내역 */}
                     <div className="info_page">
                         <div className="full_div">
-                            <h4>취소 및 환불내역<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i><span><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
-                            <div className="info_table w50">
+                            <h4>취소 및 환불내역<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i>
+                            <span className="full_div__right"><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
+                            <div className="info_table reservationlist">
                                 <div className="tr">
                                     <div className="re01">
                                         예약번호

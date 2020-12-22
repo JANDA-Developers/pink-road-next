@@ -125,6 +125,54 @@ export const MyPageBasket: React.FC<IProp> = ({ getLoading, products }) => {
                         <div className="t04">상품금액</div>
                         <div className="t05">상태</div>
                     </div>
+
+
+
+
+
+
+                    <div className="td">
+                        <div className="t01">
+                            <span className="checkbox">
+                                <input type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                <label htmlFor="agree1" />
+                            </span>
+                        </div>
+                        <div className="t02">
+                            <div className="img">
+                                <div className="right">
+                                    <div className="ct">문화·예술여행</div>
+                                    <div className="code">F71WOMMDV</div>
+                                    <div className="title"><a href="/">작가감성, 통영 예술여행</a></div>
+                                    <div className="subtitle">이민아 시인과 강지훈 작가가 함께하는 예술여행</div>
+                                </div>
+                                <span className="del">
+                                    <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
+                                    <button />
+                                </span>
+                            </div>
+                            <div className="t03">
+                                <div className="day">출발일 : <strong>01.01 (W)</strong> </div>
+                                <div className="start_where">출발장소 : 중앙동 40계단 - 부산지하철 1호선 중앙역 11번 출구</div>
+                                <div className="tour_mode">여행방식 :연박여행</div>
+                                <div className="men">선택인원 : <strong>총 1명</strong> - 성인1, 소인0, 유아0</div>
+                                <button className="btn option_btn">조건 추가/변경</button>
+                            </div>
+                            <div className="t04">
+
+                                <div className="money"><strong>104,500 원</strong></div>
+                                <button className="btn hit">주문하기</button>
+                            </div>
+                            <div className="t05">
+                                <div className="day_cunt">출발 D-9</div>
+                                <div className="men_cunt">모집 인원 : <strong>20</strong> / 40</div><div className="state onsale">OPEN</div></div>
+                        </div>
+
+                    </div>
+
+
+
+
                     {getLoading || items.map(item =>
                         <div key={item._id} className="td">
                             <div className="t01">

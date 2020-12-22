@@ -60,7 +60,7 @@ export const QnaTable: React.FC<IProp> = () => {
                                 <div className="td02"><span className="ct_01">공지</span></div>
                                 <div className="td03">
                                     10월의 여행일정 미리 공지
-                                    <object className="new" type="image/svg+xml" data="../img/svg/new.svg">new</object>
+                                    <img className="new" src="/img/svg/new.svg" />
                                 </div>
                                 <div className="td04">2020.02.02 11:00</div>
                             </li>

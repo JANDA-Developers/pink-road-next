@@ -69,7 +69,7 @@ h1, h2, h3, h4, h5, h6,h7,h8 {
 a {
     color: #333;
     text-decoration: none;
-    /*transition: all 0.3s ease 0s;*/
+    transition: all 0.3s ease 0s;
 }
 
     a:link {
@@ -210,7 +210,7 @@ select:focus {
         color: #999;
         border: 1px solid #cfcfcf;
         box-sizing: border-box;
-        padding: 0 15px;
+        padding: 0 9px;
         font-size: 0.8em;
         display: inline-block;
         line-height: 28px;
@@ -404,7 +404,8 @@ input[type="checkbox"] {
     box-sizing: border-box;
     padding: 0;
 }
-input[type="text"] {
+input[type="text"],
+input[type="email"] {
     border-radius: 5px;
     height: 34px;
     padding-left: 10px;
@@ -785,6 +786,9 @@ br.no {
     .fin .float_right{
         width: 50%;
         text-align: right;
+    }
+    .btn.topside {
+        padding: 0 15px;
     }
 }
 @media (min-width: 1200px) {

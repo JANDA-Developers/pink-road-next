@@ -177,7 +177,7 @@ export const Header: React.FC<IProp> = () => {
                     <div className="nav_bg"></div>
                     <div className="hd_right">
 
-                        <div className="profile">
+                        {/* <div className="profile">
                             <span className="photo">프로필 사진</span>
                             <ul>
                                 <li><span><Link href="/my-page"><a>회원정보</a></Link></span></li>
@@ -188,7 +188,7 @@ export const Header: React.FC<IProp> = () => {
                                 <li><span><Link href="/"><a>매출/정산관리</a></Link></span></li>
                                 <li><span><Link href="/"><a>로그아웃</a></Link></span></li>
                             </ul>
-                        </div>
+                        </div> */}
                         <div className="searchtop">
                             <div className="search_btn">
                                 <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
@@ -233,7 +233,7 @@ export const Header: React.FC<IProp> = () => {
                     </div>
                     <div id="all_menu">
                         <strong>전체메뉴</strong>
-                        <div className="m_member">
+                        {isLogin ? <div className="m_member">
                             <div className="profile">
                                 <span className="photo"></span>
                             </div>
@@ -242,12 +242,20 @@ export const Header: React.FC<IProp> = () => {
                                 <span className="text02">0원</span>
                             </div>
                         </div>
+                            : <i />}
+
                         <div className="m_all_menu_in">
-                            <span><Link href="../login"><a>LOGIN</a></Link></span>
-                            <span><Link href="/"><a>LOGOUT</a></Link></span>
-                            <span><Link href="../my-page"><a>MY PAGE</a></Link></span>
-                            <span><Link href="/"><a>알림</a></Link></span>
-                            <span><Link href="https://booking-app.stayjanda.cloud/#/"><a>예약관리시스템</a></Link></span>
+                            {isLogin ? <span><a onClick={handleLogOut}>LOGOUT</a></span>
+                                : <span><Link href="/login"><a>LOGIN</a></Link></span>}
+                            {isLogin ? <span><Link href="/mypage"><a>MY PAGE</a></Link></span>
+                                : <i />}
+                            {isLogin ? <span><Link href="/mypage/notification"><a>알림</a></Link></span>
+                                : <i />}
+                            {isLogin ? <i />
+                                : <span><Link href="/join"><a>JOIN</a></Link></span>}
+                            <span><Link href="/member/inquiry"><a>고객문의</a></Link></span>
+                            <span><Link href="/member/qna"><a>자주하는 질문</a></Link></span>
+                            {/* <span><Link href="https://booking-app.stayjanda.cloud/#/"><a>예약관리시스템</a></Link></span> */}
                         </div>
                         <ul>
                             <li className="a_menu_tit deps solo_nav">

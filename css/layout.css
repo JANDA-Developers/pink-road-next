@@ -976,9 +976,9 @@ rect.allmenu_svg {
             margin-bottom: 0;
             width: 100%;
             vertical-align: top;
-            padding: 5% 3%;
+            padding: 3% 3%;
             box-sizing: border-box;
-            border-top: 1px solid #ffffff3b;
+            border-bottom: 1px solid #ffffff0a;
         }
 
             #all_menu ul .a_menu_tit .depth1 {
@@ -1000,6 +1000,7 @@ rect.allmenu_svg {
                         font-weight: normal;
                         color: #ffffff;
                         opacity: 0.9;
+                        font-weight: 100;
                         letter-spacing: -1px;
                         padding-bottom: 14px;
                     }
@@ -1026,10 +1027,10 @@ rect.allmenu_svg {
         display: block;
         width: 90%;
         margin: 0 5%;
-        background-color: #ffffff3b;
-        border: 1px solid #ffffff87;
+        /* background-color: #ffffff3b; */
+        border: 1px solid#ffffff2e;
         padding: 7px 20px;
-        text-align: left;
+        text-align: center;
         border-radius: 3px;
         box-sizing: border-box;
     }
@@ -1052,9 +1053,9 @@ rect.allmenu_svg {
                 display:none;
             }  
     #all_menu .m_all_menu_in a{
-        color:#fff;
+        color:#c8c8c8;
         font-weight:600;
-        font-size:0.8em;
+        font-size:0.9em;
     }
     #all_menu .m_member {
         position: relative;
@@ -2494,11 +2495,11 @@ i.icon_plus {
         }
 
     .search_box .jul2 {
-        padding: 10px 0 10px;
+        padding: 0 0 10px;
         width: 100%;
         display: block;
         border-bottom: 1px dotted #dbdbdb;
-        border-top: 1px dotted #dbdbdb;
+       
     }
 
     .search_box .jul3 {
@@ -3231,7 +3232,6 @@ i.icon_plus {
         padding: 10px 0 10px;
         width: 100%;
         display: flex;
-        border-bottom: 1px dotted #dbdbdb;
         border-top: 1px dotted #dbdbdb;
     }
 
@@ -3448,7 +3448,6 @@ margin-bottom:0;
         padding: 193px 0 0;
     }
         #all_menu .m_all_menu_in {
-          
             display: none;
         }
         #all_menu .m_member {
