@@ -4,8 +4,6 @@
     margin-top: 0 !important;
     margin-bottom: 100px !important;
     padding-top: 50px !important;
-    padding-left: 3%;
-    padding-right: 3%;
     box-sizing: border-box;
     min-height: 800px;
     vertical-align: top;
@@ -90,6 +88,8 @@
         top: -37px;
     }
     .master_box h4 {
+        padding-left: 3%;
+        box-sizing: border-box;
         line-height: 70px;
         font-size: 1.6em;
     }
@@ -100,7 +100,7 @@
         text-align: left;
         line-height: 40px;
         background-color: #f0f0f0;
-        border-radius: 5px 5px 0 0;
+        border-radius:0;
         padding-left: 0;
         box-sizing: border-box;
         border: 1px solid #ccc;
@@ -1432,15 +1432,12 @@
         margin-right: 10px;
     }
     
+    .master_box .design {
+        padding: 30px 3%;
+    }
 
     .master_box .design .fin {
         padding: 20px 0;
-        box-sizing: border-box;
-    }
-    .master_box .design {
-        position: relative;
-        display: block;
-        padding: 30px;
         box-sizing: border-box;
     }
     .master_box .design h5 {
@@ -1535,6 +1532,7 @@
         position: relative;
         display: block;
         width: 100%;
+        max-width: 100%;
         height: 260px;
         overflow: hidden;
         border-radius: 5px;
@@ -1950,8 +1948,6 @@
     .master_box .design .block_box {
         position: relative;
         display:block;
-        border: 1px solid #eee;
-        padding: 20px;
         box-sizing: border-box;
         margin-bottom: 15px;
     }
@@ -1960,7 +1956,7 @@
         position: relative;
         display:block;
         box-sizing: border-box;
-        padding: 15px;
+        padding: 15px 0;
     }
     .master_box .design .block_box .head{
         border-bottom: 2px solid #333333;
@@ -1977,6 +1973,7 @@
         display:flex; 
          border-bottom: 1px dotted rgb(167, 167, 167);
     }
+  
    
     .master_box .design .body-title .th{
         position: relative;
@@ -2005,17 +2002,18 @@
     .master_box .design .body-list li{
         position: relative;
         display:inline-block;
-        width: 20%;
+        width: 50%;
         padding: 2px;
         box-sizing: border-box;
         vertical-align: top;
         cursor: pointer;
+        margin-bottom: 15px;
     }
     .master_box .design .body-list .img{
         position: relative;
         display:inline-block;
         width:100%;
-        height: 126px;
+        height: 85px;
         margin-bottom: 10px;
         background-position: center top;
         background-size: 100%;
@@ -2057,7 +2055,7 @@
         width: 100%;
         text-align: center;
         cursor: pointer;
-        line-height: 126px;
+        line-height: 100px;
     }
 
 
@@ -2890,6 +2888,7 @@ div.master_popup .top05 {
     text-align: left !important;
     padding-left: 10px !important;
     width:30% !important;
+    font-weight: 600 !important;
 }
  div.master_popup .info_page .td01,
  div.master_popup .info_page .td02 {
@@ -2985,7 +2984,7 @@ div.master_popup .tr .re01 {
     width: 100% !important;
     border-right: 0;
     border-bottom: 1px #eee solid;
-    font-weight: 600;
+    font-weight: 600 !important;
     padding-left: 15px;
     background-color: #f4faff;
 }
@@ -3185,6 +3184,21 @@ div.master_popup .goodslist {
 
     
 @media (min-width: 1000px) {    
+    .master_box h4{
+        padding-left: 0;
+    }
+    .master_box .in_content {
+        border-radius: 5px 5px 0 0;
+    }
+    .master_box .design {
+        padding: 30px;
+    }
+    .master_box .design .block_box {
+      
+        border: 1px solid #eee;
+        padding: 20px;
+        margin-bottom: 15px;
+    }
     .master_box .in_content .con_box_body .list_head{
          display: flex;
     }
@@ -3499,6 +3513,13 @@ div.master_popup .goodslist {
         display:block !important;
         text-align: center !important;
     }
+
+    .master_box .design .body-list li {
+        width: 20%;
+    }
+    .master_box .design .body-list .add button {
+        line-height: 126px;
+    }
     .master_box .design .design_table .tbody{
         display: flex;
     }
@@ -3594,34 +3615,34 @@ div.master_popup .goodslist {
     }
 
     div.master_popup .info_txt {
-    position:relative;
-    border:5px solid #ccc;
-    padding:15px;
-    box-sizing:border-box;
-    margin-bottom:20px;
-    text-align:left;
-    line-height:28px;
-}
-div.master_popup .info_txt span {
-    margin-right: 20px;
-    font-size: 1.4em;
-    font-weight: 600;
-    color: #666;
-    display: inline-block !important;
-    position: relative;
-    vertical-align: top;
-    line-height: 28px !important;
-}
-div.master_popup .info_txt span:after {
+        position:relative;
+        border:5px solid #ccc;
+        padding:15px;
+        box-sizing:border-box;
+        margin-bottom:20px;
+        text-align:left;
+        line-height:28px;
+    }
+    div.master_popup .info_txt span {
+        margin-right: 20px;
+        font-size: 1.4em;
+        font-weight: 600;
+        color: #666;
+        display: inline-block !important;
+        position: relative;
+        vertical-align: top;
+        line-height: 28px !important;
+    }
+    div.master_popup .info_txt span:after {
             display: inline-block;
         }
-        div.master_popup .info_txt button {
-    float: right;
-    font-size: 12px;
-    line-height: 27px;
-    padding: 0 13px;
-width: auto;
-}
+    div.master_popup .info_txt button {
+        float: right;
+        font-size: 12px;
+        line-height: 27px;
+        padding: 0 13px;
+         width: auto;
+    }
 
 div.master_popup .top01 {
     width: 50% !important;
@@ -3706,21 +3727,13 @@ div.master_popup .info_table .info {
     vertical-align: top;
     position: relative;
 }
-/* div.master_popup .info_page .left_div {
-    position: relative;
-    width: 50%;
+.master_box .design .block_box .head,
+.master_box .design .block_box .body {
+    padding: 15px;
 }
-div.master_popup .info_page .right_div {
-    position: absolute;
-    top: 0;
-    width: 48%;
-    height: 100%;
-    display: block;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    margin-left: 52%;
-} */
-
+.master_box .design .body-list .img {
+    height: 126px;
+}
 div.master_popup .info_page .info_table .tr {
     display: flex;
     text-align: left;
@@ -3889,6 +3902,9 @@ div.master_popup .info_table .th01,
 }
 
 @media (max-width: 767px) {
+    .master_box .design .body-title .w50{
+        width: 100%;
+    }
 }
 
 
