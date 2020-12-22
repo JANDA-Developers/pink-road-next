@@ -863,6 +863,10 @@ export interface newsFindById_NewsFindById_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -890,7 +894,7 @@ export interface newsFindById_NewsFindById_data_author {
    */
   busiRegistration: newsFindById_NewsFindById_data_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -902,10 +906,6 @@ export interface newsFindById_NewsFindById_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -1041,6 +1041,10 @@ export interface newsList_NewsList_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -1068,7 +1072,7 @@ export interface newsList_NewsList_data_author {
    */
   busiRegistration: newsList_NewsList_data_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -1080,10 +1084,6 @@ export interface newsList_NewsList_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -1398,6 +1398,10 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -1425,7 +1429,7 @@ export interface portfolioFindById_PortfolioFindById_data_author {
    */
   busiRegistration: portfolioFindById_PortfolioFindById_data_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -1437,10 +1441,6 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -1572,6 +1572,10 @@ export interface portfolioList_PortfolioList_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -1599,7 +1603,7 @@ export interface portfolioList_PortfolioList_data_author {
    */
   busiRegistration: portfolioList_PortfolioList_data_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -1611,10 +1615,6 @@ export interface portfolioList_PortfolioList_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -1842,6 +1842,10 @@ export interface productDelete_ProductDelete_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -1869,7 +1873,7 @@ export interface productDelete_ProductDelete_data_author {
    */
   busiRegistration: productDelete_ProductDelete_data_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -1881,10 +1885,6 @@ export interface productDelete_ProductDelete_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -2052,6 +2052,10 @@ export interface productList_ProductList_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -2079,7 +2083,7 @@ export interface productList_ProductList_data_author {
    */
   busiRegistration: productList_ProductList_data_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -2091,10 +2095,6 @@ export interface productList_ProductList_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -2217,6 +2217,10 @@ export interface productFindById_ProductFindById_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -2244,7 +2248,7 @@ export interface productFindById_ProductFindById_data_author {
    */
   busiRegistration: productFindById_ProductFindById_data_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -2256,10 +2260,6 @@ export interface productFindById_ProductFindById_data_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -2594,6 +2594,10 @@ export interface getContext_GetProfile_data_products_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -2621,7 +2625,7 @@ export interface getContext_GetProfile_data_products_author {
    */
   busiRegistration: getContext_GetProfile_data_products_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -2633,10 +2637,6 @@ export interface getContext_GetProfile_data_products_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -2727,6 +2727,10 @@ export interface getContext_GetProfile_data {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -2754,7 +2758,7 @@ export interface getContext_GetProfile_data {
    */
   busiRegistration: getContext_GetProfile_data_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -2766,10 +2770,6 @@ export interface getContext_GetProfile_data {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -3643,6 +3643,10 @@ export interface userList_UserList_data {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -3670,7 +3674,7 @@ export interface userList_UserList_data {
    */
   busiRegistration: userList_UserList_data_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -3682,10 +3686,6 @@ export interface userList_UserList_data {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -3742,6 +3742,10 @@ export interface userFindById_UserFindById_data {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -3769,7 +3773,7 @@ export interface userFindById_UserFindById_data {
    */
   busiRegistration: userFindById_UserFindById_data_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -3781,10 +3785,6 @@ export interface userFindById_UserFindById_data {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -3876,6 +3876,10 @@ export interface FbookingByCode_product_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -3903,7 +3907,7 @@ export interface FbookingByCode_product_author {
    */
   busiRegistration: FbookingByCode_product_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -3915,10 +3919,6 @@ export interface FbookingByCode_product_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -4143,6 +4143,87 @@ export interface Ffile {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: Fuser
+// ====================================================
+
+export interface Fuser_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fuser_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface Fuser {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: Fuser_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: Fuser_profileImg | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fbooking
 // ====================================================
 
@@ -4216,6 +4297,10 @@ export interface Fportfolio_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -4243,7 +4328,7 @@ export interface Fportfolio_author {
    */
   busiRegistration: Fportfolio_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -4255,10 +4340,6 @@ export interface Fportfolio_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -4430,6 +4511,10 @@ export interface Fproduct_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -4457,7 +4542,7 @@ export interface Fproduct_author {
    */
   busiRegistration: Fproduct_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -4469,10 +4554,6 @@ export interface Fproduct_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -4577,6 +4658,10 @@ export interface Fnews_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
   role: UserRole;
   brith_date: string;
   address: string;
@@ -4604,7 +4689,7 @@ export interface Fnews_author {
    */
   busiRegistration: Fnews_author_busiRegistration | null;
   /**
-   * 개인법인인지 아닌지 체크함
+   * 개인 법인인지 아닌지 체크함 True = 법인
    */
   is_priv_corper: boolean;
   /**
@@ -4616,10 +4701,6 @@ export interface Fnews_author {
   name: string;
   bank_name: string;
   phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
   /**
    * 프로필 사진
    */
@@ -4821,87 +4902,6 @@ export interface Fsettlement {
   acceptDate: any | null;
   completeDate: any | null;
   cancelDate: any | null;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: Fuser
-// ====================================================
-
-export interface Fuser_busiRegistration {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
-}
-
-export interface Fuser_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
-export interface Fuser {
-  __typename: "User";
-  _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  role: UserRole;
-  brith_date: string;
-  address: string;
-  address_detail: string;
-  acceptSms: boolean;
-  acceptEamil: boolean;
-  is_froreginer: boolean;
-  /**
-   * 기업 전화번호
-   */
-  busi_contact: string;
-  /**
-   * 담당자 연락처
-   */
-  manageContact: string;
-  gender: GENDER;
-  busi_num: string;
-  /**
-   * 부서명
-   */
-  busi_department: string;
-  isVerifiedPhoneNumber: boolean;
-  /**
-   * 사업자 등록증
-   */
-  busiRegistration: Fuser_busiRegistration | null;
-  /**
-   * 개인법인인지 아닌지 체크함
-   */
-  is_priv_corper: boolean;
-  /**
-   * 사업자명
-   */
-  busi_name: string;
-  busi_address: string;
-  account_number: string;
-  name: string;
-  bank_name: string;
-  phoneNumber: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: Fuser_profileImg | null;
 }
 
 /* tslint:disable */
@@ -5172,6 +5172,7 @@ export interface AddUserInput {
   bank_name?: string | null;
   partnerName?: string | null;
   manageContact?: string | null;
+  manageName?: string | null;
 }
 
 export interface AnswerCreateInput {

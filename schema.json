@@ -6505,7 +6505,7 @@
           },
           {
             "name": "is_priv_corper",
-            "description": "개인법인인지 아닌지 체크함",
+            "description": "개인 법인인지 아닌지 체크함 True = 법인",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -20077,6 +20077,16 @@
           },
           {
             "name": "manageContact",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "manageName",
             "description": null,
             "type": {
               "kind": "SCALAR",

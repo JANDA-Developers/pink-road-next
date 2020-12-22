@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_FILE, F_PAGE } from "./fragments";
+import { F_FILE, F_PAGE, F_USER } from "./fragments";
 
 
 export const SIGN_UP = gql`
@@ -18,7 +18,6 @@ export const SIGN_UP = gql`
       }
     }
   }
-  ${F_FILE}
 `;
 
 

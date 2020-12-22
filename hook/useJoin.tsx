@@ -29,6 +29,7 @@ export const useJoin = () => {
         manageContact: false,
         partnerName: false,
         busiRegistration: false,
+        manageName: false,
         busi_contact: false,
         busi_name: false,
         busi_num: false,
@@ -49,7 +50,7 @@ export const useJoin = () => {
         setErrDisplay({ ...errDisplay })
     }
 
-    const { verifiedEmail, verifyMu, verifyCompleteMu } = useContext(JoinContext)!;
+    const { verifiedEmail } = useContext(JoinContext)!;
     const [data, setData] = useState<ISignUpInput>({ email: verifiedEmail })
     const [daumAddress, setDaumAddress] = useState(false);
     const { signleUpload } = useUpload();
@@ -108,6 +109,7 @@ export const useJoin = () => {
             fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
         addressUpdate(fullAddress);
+        setDaumAddress(false);
     }
 
     const handleData = (key: keyof typeof data) => (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
@@ -144,7 +146,6 @@ export const useJoin = () => {
         dayPickerMonth,
         birthdayPicker,
         setBirthDayPicker,
-        handleVerifiEmail,
         handleDaumPostalComplete,
         handleAddress,
         handleDayClick,

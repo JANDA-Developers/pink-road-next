@@ -9,7 +9,7 @@ interface IProp extends IDiv {
 
 
 export const Modal: React.FC<IProp> = ({ id, children, title, ...props }) => {
-    return <div className="modal" style={{
+    return <div className="popup_bg_mini" style={{
         top: 0,
         bottom: 0,
         right: 0,
@@ -18,18 +18,16 @@ export const Modal: React.FC<IProp> = ({ id, children, title, ...props }) => {
         display: "none",
         justifyContent: "center",
         alignItems: "center"
-    }} id={id}>
-        <div className="popup_bg_mini"  {...props}>
+    }} id={id}  {...props}>
+        <div className="in_txt">
             <a onClick={closeModal(`#${id}`)} className="close_icon"><i className="flaticon-multiply" /></a>
-            <div className="in_txt">
+            <div className="page">
+
                 <h3>{title}</h3>
                 <div className="con">
                     {children}
                 </div>
             </div>
         </div>
-        <div style={{
-            display: "block"
-        }} className="fade" />
     </div>
 };

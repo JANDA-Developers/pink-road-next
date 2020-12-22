@@ -1,7 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
-import FormPartnerCor from 'components/join/FormPartnerBusi';
-import FormPartnerNormal from 'components/join/FormPartnerNormal';
-import FormNormal from 'components/join/FormNormal';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import FormNormal from 'components/join/UserInfoForm';
 import SubTopNav from 'layout/components/SubTop';
 import { useVerification } from '../hook/useVerification';
 import { ISet } from '../types/interface';
@@ -10,6 +8,11 @@ import { Modal } from '../components/modal/Modal';
 import { UsePolicy } from '../components/policy/UsePolicy';
 import { SERVER_URI } from '../apollo/uri';
 import { getFromUrl } from '../utils/url';
+import { closeModal, openModal } from '../utils/popUp';
+import { VerifiEamilModal } from '../components/verifiModal/VerifiEmailModal';
+import { Storage } from '../utils/Storage';
+import { useUpdate } from '../hook/useUpdater';
+import UserInfoForm from 'components/join/UserInfoForm';
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -30,8 +33,12 @@ interface IjoinContext extends ReturnType<typeof useVerification> {
     setJoinProcess: ISet<TJoinProcess>
     userType: UserRole,
     setUserType: ISet<UserRole>
+    isPartenerB: boolean,
+    isPartner: boolean,
+    isIndi: boolean,
     verificationId?: string
     verifiedEmail?: string
+
 }
 
 export const JoinContext = React.createContext<null | IjoinContext>(null);
@@ -39,11 +46,20 @@ export const JoinContext = React.createContext<null | IjoinContext>(null);
 const Join = () => {
     const verificationId = getFromUrl("vid") || undefined;
     const verifiedEmail = getFromUrl("email") || undefined;
+    const { updateComponent } = useUpdate();
     const [userType, setUserType] = useState<UserRole>(UserRole.individual);
-    const [joinProcess, setJoinProcess] = useState<TJoinProcess>(verificationId ? "userInfo" : "userType");
+    const [joinProcess, setJoinProcess] = useState<TJoinProcess>("userType");
     const verifiHook = useVerification({
         _id: verificationId,
     });
+
+    const checkProcess = (process: TJoinProcess) => process === joinProcess;
+    const checkProcessOn = (process: TJoinProcess) => checkProcess(process) ? "on" : "";
+
+    const isPartenerB = userType === UserRole.partnerB;
+    const isPartner = userType === UserRole.partner;
+    const isIndi = userType === UserRole.individual;
+
 
     const context: IjoinContext = {
         ...verifiHook,
@@ -53,24 +69,26 @@ const Join = () => {
         verifiedEmail,
         verificationId,
         setJoinProcess,
+        isPartenerB,
+        isPartner,
+        isIndi
     }
 
-    const formRender = (formSelected: UserRole) => {
+    useEffect(() => {
+        const lastRole = Storage?.getLocal("signUpRole", "") as UserRole;
+        if (lastRole) {
+            setUserType(lastRole)
+        }
+    }, [])
 
-        if (UserRole.individual === formSelected)
-            return <FormNormal />
-
-        if (UserRole.partnerB === formSelected)
-            return <FormPartnerCor />
-
-        if (UserRole.partner === formSelected)
-            return <FormPartnerNormal />
-
-    }
+    useEffect(() => {
+        if (verificationId)
+            setJoinProcess("userInfo")
+    }, [])
 
     return (
         <div>
-            <div>
+            <div >
                 <SubTopNav title="as" desc="asd" />
                 {/* 개인 */}
                 <div className="sign_in famile">
@@ -80,22 +98,22 @@ const Join = () => {
                         </h4>
                         <div className="join_address w100">
                             <ul>
-                                <li className={`${joinProcess === "userType" && 'on'}`}>
+                                <li key={joinProcess} className={checkProcessOn("registered")}>
                                     <i>Setep.01</i>
                                     <br />
                                     회원선택
                                 </li>
-                                <li className={`${joinProcess === "verification" && 'on'}`}>
+                                <li className={checkProcessOn("verification")}>
                                     <i>Setep.02</i>
                                     <br />
                                     인증
                                 </li>
-                                <li className={`${joinProcess === "userInfo" && 'on'}`}>
+                                <li className={checkProcessOn("userInfo")}>
                                     <i>Setep.03</i>
                                     <br />
                                     정보입력
                                 </li>
-                                <li className={`${joinProcess === "registered" && 'on'}`}>
+                                <li className={checkProcessOn("registered")}>
                                     <i>Setep.04</i>
                                     <br />
                                     가입완료
@@ -104,18 +122,18 @@ const Join = () => {
                         </div>
                         <div className="join_wrap2 w1200">
                             <JoinContext.Provider value={context}>
-                                {joinProcess === "userType" &&
+                                {checkProcess("userType") &&
                                     <UserType />
                                 }
-                                {joinProcess === "verification" &&
+                                {checkProcess("verification") &&
                                     <Verification />
                                 }
-                                {joinProcess === "userInfo" && userType &&
+                                {checkProcess("userInfo") && userType &&
                                     <div className="w1200 " id="con02">
-                                        {formRender(userType)}
+                                        <UserInfoForm />
                                     </div>
                                 }
-                                {joinProcess === "registered" &&
+                                {checkProcess("registered") &&
                                     <JoinResult />
                                 }
                             </JoinContext.Provider>
@@ -158,13 +176,13 @@ const JoinResult = () => {
 
 const Verification: React.FC = () => {
 
-    const { setJoinProcess } = useContext(JoinContext)!;
+    const { setJoinProcess, verifiData, verifyCompleteMu, verifyMu, setVerifiData, totalLoading } = useContext(JoinContext)!;
     const handleAuth = (target: "google" | "kakao") => () => {
-        window.location.href = SERVER_URI + "/login/" + target
+        window.location.href = process.env.NEXT_PUBLIC_SERVER_URI + "/login/" + target
     }
 
     const handleSelfAuth = () => {
-        setJoinProcess("userInfo")
+        openModal("#emailVerifi")()
     }
 
     return (
@@ -195,7 +213,17 @@ const Verification: React.FC = () => {
             <p className="bt_txt">
                 ※ 본인인증 시 제공되는 정보로 회원가입시 필요한 정보를 연동합니다.
             </p>
-            
+            <VerifiEamilModal onSuccess={() => {
+                closeModal("#emailVerifi")()
+                setJoinProcess("userInfo");
+            }} verifiHook={{
+                verifiData,
+                verifyCompleteMu,
+                verifyMu,
+                setVerifiData,
+                totalLoading
+            }} />
+
         </div>
     )
 }
@@ -208,6 +236,7 @@ const UserType: React.FC = () => {
 
     const handleTypeChoice = (userType: UserRole) => () => {
         setJoinProcess("verification");
+        Storage?.saveLocal("signUpRole", userType)
         setUserType(userType)
     }
 

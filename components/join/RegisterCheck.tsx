@@ -6,6 +6,10 @@ import { Validater } from '../../utils/validate';
 import { JoinContext } from '../../pages/join';
 import { openModal } from '../../utils/popUp';
 import { ISignUpInput } from '../../hook/useJoin';
+import { omits } from '../../utils/omit';
+import { Modal } from '../modal/Modal';
+import PolicyPopup from '../policyPopup/PolicyPopup';
+import { PrivacyPolicy } from '../policy/PriviacyPolicy';
 
 type TSMS = {
   sns: true,
@@ -76,7 +80,6 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
       const check = chkPolocy[policy];
       if (!check && optional.includes(policy)) {
         chkAll = false;
-        alert(`필수 약관에 동의 해주십시요`);
         break;
       }
     }
@@ -111,13 +114,11 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
     })
   }
 
-
-
   const { nodes, validate: normalValidate } = new Validater([{
     value: verificationId,
     failMsg: "이메일 인증을 받아주세요.",
   }, {
-    value: registerInfo.pw != registerInfo.pwcheck,
+    value: registerInfo.pw === registerInfo.pwcheck,
     failMsg: "비밀번호가 일치하지 않습니다.",
   }, {
     value: isEmail(registerInfo.email),
@@ -126,10 +127,10 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
     value: isPassword(registerInfo.pw || ""),
     failMsg: "비밀번호는 특수문자 1개이상 및 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다",
   }, {
-    value: isPhone(registerInfo.account_number || ""),
+    value: isPhone(registerInfo.phoneNumber || ""),
     failMsg: "연락처란에는 숫자만 기입해 주십시요",
   }, {
-    value: isCheckAll(),
+    value: isCheckAll,
     failMsg: "동의 항목에 모두 체크 해주세요."
   }])
 
@@ -168,11 +169,12 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
 
 
   const handleRegister = () => {
-    const validatedData: Required<ISignUpInput> = registerInfo as any
+    const validatedData: AddUserInput = omits(registerInfo, ["pwcheck"]) as any
     signUpMu({
       variables: {
         params: {
-          ...validatedData
+          ...validatedData,
+          role: userType
         },
         verificationId: verificationId!
       }
@@ -254,12 +256,10 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  onClick={() => {
-                    openModal('#Popup01');
-                  }}
+                  onClick={openModal('#UsePolicy')}
                 >
                   전문보기 &gt;
-                  </a>
+                </a>
               </div>
             </li>
             <li>
@@ -274,10 +274,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  href="#"
-                  onClick={() => {
-                    openModal('#Popup02');
-                  }}
+                  onClick={openModal('#PrivacyPolicy')}
                 >
                   전문보기 &gt;
                   </a>
@@ -295,10 +292,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  href="#"
-                  onClick={() => {
-                    openModal('#Popup03');
-                  }}
+                  onClick={openModal('#PrivacyConsignmentPolicy')}
                 >
                   전문보기 &gt;
                   </a>
@@ -316,10 +310,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  href="#"
-                  onClick={() => {
-                    openModal('#Popup04');
-                  }}
+                  onClick={openModal('#TravelerPolicy')}
                 >
                   전문보기 &gt;
                   </a>
@@ -337,10 +328,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  href="#"
-                  onClick={() => {
-                    openModal('#Popup07');
-                  }}
+                  onClick={openModal('#PartnerPolicy')}
                 >
                   전문보기 &gt;
                   </a>
@@ -358,10 +346,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  href="#"
-                  onClick={() => {
-                    openModal('#Popup06');
-                  }}
+                  onClick={openModal('#MarketingPolicy')}
                 >
                   전문보기 &gt;
                   </a>
@@ -379,10 +364,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  href="#"
-                  onClick={() => {
-                    openModal('#Popup05');
-                  }}
+                  onClick={openModal('#ThirdPolicy')}
                 >
                   전문보기 &gt;
                   </a>
@@ -391,6 +373,27 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
           </ul>
         </div>
       </div>
+      <Modal id="UsePolicy" title="이용약관 동의">
+        <PolicyPopup />
+      </Modal>
+      <Modal id="PrivacyPolicy" title="개인정보 수집 및 이용 동의">
+        <PrivacyPolicy />
+      </Modal>
+      <Modal id="PrivacyConsignmentPolicy" title="개인정보처리 위탁">
+        <PolicyPopup />
+      </Modal>
+      <Modal id="TravelerPolicy" title="여행자약관">
+        <PolicyPopup />
+      </Modal>
+      <Modal id="PartnerPolicy" title="파트너약관">
+        <PolicyPopup />
+      </Modal>
+      <Modal id="MarketingPolicy" title="마케팅정보 수신동의">
+        <PolicyPopup />
+      </Modal>
+      <Modal id="ThirdPolicy" title="개인정보 제3자 제공">
+        <PolicyPopup />
+      </Modal>
       <div className="fin">
         <a href="/" className="cancel btn">취소</a>
         <button type="submit" className="sum btn"
