@@ -67,7 +67,9 @@ export const MyPageBoard: React.FC<IProp> = () => {
 
                     <div className="con_bottom">
                         <div className="alignment">
-                            <div className="left_div">총 <strong>22,222</strong>개</div>
+                            <div className="left_div">
+                                <span className="infotxt">총 <strong>22,222</strong>건</span>
+                            </div>
                             <div className="right_div">
                                 <select className="sel01">
                                     <option>작성일 &uarr;</option>

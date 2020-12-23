@@ -405,7 +405,7 @@ const RegisterCheck: React.FC<IProps> = ({ openPopup, handleJoinProcess, registe
                   onClick={() => { handlePolicy('policy_info_collect') }} />
                 <span>
                   <strong>개인정보 수집 및 이용 동의</strong>[필수]
-                  </span>
+                </span>
               </div>
               <div className="in_box2">
                 <a

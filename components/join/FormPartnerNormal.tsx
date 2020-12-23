@@ -33,9 +33,9 @@ const defaultInfo: TFormPartnerNormal = process.env.NODE_ENV === "development" ?
   partner_contact: "0101112222",
   address: "address",
   address_detail: "address_detail",
-  partner_file: "jpg, png 파일만 업로드 가능합니다",
-  bank_name: "KB",
-  bank_account: "1112222333",
+  partner_file: "jpg, png",
+  bank_name: "국민",
+  bank_account: "'-'없이 입력해주세요.",
   register_sort: "partner",
   is_priv_corper: false
 } : {
@@ -82,32 +82,32 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
   const [daumAddress, setDaumAddress] = useState(false);
 
   const handleAddress = (address) => {
-      setDaumAddress(true); 
+    setDaumAddress(true);
   }
 
   const addressUpdate = (address) => {
-      setFormInfo({
-          ...formInfo,
-          address: address
-      })
+    setFormInfo({
+      ...formInfo,
+      address: address
+    })
   }
 
   const handleComplete = (data) => {
 
-      let fullAddress = data.address;
-      let extraAddress = ''; 
-      
-      if (data.addressType === 'R') {
-        if (data.bname !== '') {
-          extraAddress += data.bname;
-        }
-        if (data.buildingName !== '') {
-          extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
-        }
-        fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
       }
-      addressUpdate(fullAddress);
-      setDaumAddress(false);
+      if (data.buildingName !== '') {
+        extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
+      }
+      fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+    }
+    addressUpdate(fullAddress);
+    setDaumAddress(false);
   }
 
 
@@ -158,12 +158,12 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
     if (e.target.files) {
       const fileTypeChk = ['image/jpg', 'image/jpeg', 'image/png'];
       const fileType = e.target.files[0].type;
-      
+
       console.log(e.target.files[0]);
 
       console.log(fileType);
 
-      if(!fileTypeChk.includes(fileType))  {
+      if (!fileTypeChk.includes(fileType)) {
         // alert('jpg 혹은 png 파일만 업로드 가능합니다');
         return false;
       }
@@ -294,7 +294,7 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
             </select>
             <input
               type="text"
-              className="form-control w70"
+              className="form-control w70 ml5"
               name="partner_contact"
               placeholder="전화번호를 입력해주세요."
               value={formInfo.partner_contact}
@@ -329,7 +329,7 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
               </span>
 
           <div className="w100 apply_relative">
-            <span className="w80 upload_out_box">
+            <span className="w50 upload_out_box">
               {formInfo.partner_file}
             </span>
 
@@ -351,7 +351,7 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
             *정보를 정확하게 입력해주세요.
               </span>
           <div className="w100">
-            <input type="text" className="w10" style={{ minWidth: 55 }}
+            <input type="text" className="w10 mr5" style={{ minWidth: 55 }}
               name="bank_name"
               placeholder="은행"
               value={formInfo.bank_name}
@@ -364,7 +364,7 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
           </div>
         </div>
       </div>
-      
+
       <DaumPostcode
         onComplete={handleComplete}
       />

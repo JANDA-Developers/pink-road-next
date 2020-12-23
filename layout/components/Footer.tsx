@@ -74,7 +74,7 @@ export const Footer: React.FC<IProp> = () => {
                             <strong>영업보증보험</strong>
                             <span>5천만원 가입</span>
                         </li>
-                        <li className="bottom_txt">
+                        <li className="bottom_txt pc">
                             Copyright © 2020 PINKROADER Co., Ltd. All rights reserved
                          </li>
                     </ul>
@@ -96,6 +96,9 @@ export const Footer: React.FC<IProp> = () => {
                             <strong>계좌번호</strong>
                             <span>신한은행 100-031-819617/예금주:주식회사 핑크로더</span>
                         </li>
+                        <li className="bottom_txt m">
+                            Copyright © 2020 PINKROADER Co., Ltd. All rights reserved
+                         </li>
                     </ul>
                     <div className="bottom_bn">
                         <div className="partner">

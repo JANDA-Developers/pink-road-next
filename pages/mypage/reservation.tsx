@@ -129,19 +129,19 @@ export const MyReservation: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t02">
                                     <div className="align">
-                                        <span className="r-number">R-34252</span>
+                                        <span className="r-number"><i className="m_title">예약번호:</i>R-34252</span>
                                         <button className="btn" onClick={popupOpen}>상세정보</button>
                                     </div>
                                 </div>
                                 <div className="t04">
                                     <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
                                     <div className="info">
-                                        <span className="ct">문화</span>
+                                        <span className="ct">문화</span><span className="g-number">상품번호: PK-034982</span>
                                         <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                         <div className="txt">
                                             <span className="s-day">출발일: 2020.9.9</span>
                                             <span className="where">출발장소: 부산대학교 앞</span>
-                                            <span className="g-number">상품번호: PK-034982</span>
+
                                             <span className="r-day">예약일: 2020.08.26</span>
 
                                             <span className="goods-state1">확정여부: 출발미정(6/10)</span>
@@ -152,14 +152,14 @@ export const MyReservation: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t05">
                                     <div className="align">
-                                        <span className="name">홍언니</span>
+                                        <span className="name"><i className="m_title">예약자:</i>홍언니</span>
                                         <span className="ph">010-2222-2222</span>
                                         <span className="men">예약인원: 총 4명<br />( 성인2 / 소아2 / 유아0 )</span>
                                     </div>
                                 </div>
                                 <div className="t06">
                                     <div className="align">
-                                        <strong className="money">50,000</strong>
+                                        <strong className="money"><i className="m_title">금액:</i>50,000원</strong>
                                         <span className="pay">결제종류: 신용카드</span>
                                         <span className="pay-day">결제일: 2020.08.26</span>
                                     </div>
@@ -180,41 +180,37 @@ export const MyReservation: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t02">
                                     <div className="align">
-                                        <span className="r-number">R-34252</span>
+                                        <span className="r-number"><i className="m_title">예약번호:</i>R-34252</span>
                                         <button className="btn" onClick={popupOpen}>상세정보</button>
                                     </div>
                                 </div>
                                 <div className="t04">
                                     <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
                                     <div className="info">
-                                        <span className="ct">문화</span>
+                                        <span className="ct">문화</span> <span className="g-number">상품번호: PK-034982</span>
                                         <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                         <div className="txt">
                                             <span className="s-day">출발일: 2020.9.9</span>
                                             <span className="where">출발장소: 부산대학교 앞</span>
-                                            <span className="g-number">상품번호: PK-034982</span>
+
                                             <span className="r-day">예약일: 2020.08.26</span>
 
                                             <span className="goods-state1">확정여부: 출발미정(6/10)</span>
                                             <span className="goods-state2">상품상태: 예약진행중</span>
 
                                         </div>
-
-                                    </div>
-                                    <div className="memo">
-                                        <p><i className="flaticon-flag-2"></i>메모자리~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모~~~~~~~~~~~~~~~~~~~</p>
                                     </div>
                                 </div>
                                 <div className="t05">
                                     <div className="align">
-                                        <span className="name">홍언니</span>
+                                        <span className="name"><i className="m_title">예약자:</i>홍언니</span>
                                         <span className="ph">010-2222-2222</span>
                                         <span className="men">예약인원: 총 4명<br />( 성인2 / 소아2 / 유아0 )</span>
                                     </div>
                                 </div>
                                 <div className="t06">
                                     <div className="align">
-                                        <strong className="money">50,000</strong>
+                                        <strong className="money"><i className="m_title">금액:</i>50,000원</strong>
                                         <span className="pay">결제종류: 신용카드</span>
                                         <span className="pay-day">결제일: 2020.08.26</span>
                                     </div>
@@ -236,20 +232,21 @@ export const MyReservation: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t02">
                                     <div className="align">
-                                        <span className="r-number">R-34252</span>
+                                        <span className="r-number"><i className="m_title">예약번호:</i>R-34252</span>
                                         <button className="btn" onClick={popupOpen}>상세정보</button>
                                     </div>
                                 </div>
                                 <div className="t04">
                                     <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
                                     <div className="info">
-                                        <span className="ct">문화</span>
+                                        <span className="ct">문화</span> <span className="g-number">상품번호: PK-034982</span>
                                         <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                         <div className="txt">
                                             <span className="s-day">출발일: 2020.9.9</span>
                                             <span className="where">출발장소: 부산대학교 앞</span>
-                                            <span className="g-number">상품번호: PK-034982</span>
+
                                             <span className="r-day">예약일: 2020.08.26</span>
+
                                             <span className="goods-state1">확정여부: 출발미정(6/10)</span>
                                             <span className="goods-state2">상품상태: 예약진행중</span>
 
@@ -258,14 +255,14 @@ export const MyReservation: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t05">
                                     <div className="align">
-                                        <span className="name">홍언니</span>
+                                        <span className="name"><i className="m_title">예약자:</i>홍언니</span>
                                         <span className="ph">010-2222-2222</span>
                                         <span className="men">예약인원: 총 4명<br />( 성인2 / 소아2 / 유아0 )</span>
                                     </div>
                                 </div>
                                 <div className="t06">
                                     <div className="align">
-                                        <strong className="money">50,000</strong>
+                                        <strong className="money"><i className="m_title">금액:</i>50,000원</strong>
                                         <span className="pay">결제종류: 신용카드</span>
                                         <span className="pay-day">결제일: 2020.08.26</span>
                                     </div>
@@ -302,7 +299,7 @@ export const MyReservation: React.FC<IProp> = () => {
                         <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
                     </div>
 
-                    <div className="info_table">
+                    <div className="info_table goodsinfo">
                         <div className="tr">
                             <div className="top01">
                                 <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
@@ -403,25 +400,25 @@ export const MyReservation: React.FC<IProp> = () => {
                     <div className="info_page">
                         <div className="full_div">
                             <h4>예약자 정보</h4>
-                            <div className="info_table w50">
+                            <div className="info_table peoplelist">
                                 <div className="top_info">
                                     <span className="tt">선택된 예약 인원</span>
                                     <span>총 4명 ( 성인2 / 소아2 / 유아0 )</span>
                                     <span className="float_right"><i className="menok">예약자-포함</i><i className="menno">예약자-미포함</i></span> {/* 포함 미포함 둘중하나만 표시*/}
                                 </div>
-                                <div className="tr">
+                                <div className="tr first">
                                     <div className="re01">
                                         예약자(본인)
-                                </div>
+                                    </div>
                                     <div className="re02">
                                         예약자명
-                                </div>
+                                    </div>
                                     <div className="re03">
                                         <span>홍언니</span>
                                     </div>
                                     <div className="re04">
                                         연락처
-                                </div>
+                                    </div>
                                     <div className="re05">
                                         <a href="tel:010-0000-0000">010-0000-0000</a>
                                     </div>

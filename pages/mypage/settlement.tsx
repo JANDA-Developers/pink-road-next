@@ -40,20 +40,20 @@ export const MySettlement: React.FC<IProp> = () => {
                     </div>
                     <ul>
                         <li>
-                            <strong>저번달 예약</strong>
                             <div><strong>2</strong>건</div>
+                            <strong>저번달 예약</strong>
                         </li>
                         <li>
-                            <strong>이번달 예약</strong>
                             <div><strong>232</strong>건</div>
+                            <strong>이번달 예약</strong>
                         </li>
                         <li>
-                            <strong>이번달 정산 예정금</strong>
-                            <div><strong>22,2222,222</strong>원</div>
+                            <div><strong>22,222</strong>건</div>
+                            <strong>총 예약</strong>
                         </li>
                         <li>
-                            <strong>예약취소 환수금</strong>
                             <div><strong>55,555</strong>원</div>
+                            <strong>예약취소 환수금</strong>
                         </li>
                     </ul>
                 </div>
@@ -146,9 +146,9 @@ export const MySettlement: React.FC<IProp> = () => {
                                 </div>
                                 <div className="th02">상품코드</div>
                                 <div className="th03">상품명</div>
-                                <div className="th04">예약자/연락처</div>
+                                <div className="th04">예약자</div>
                                 <div className="th05">예약날짜</div>
-                                <div className="th06">예약금</div>
+                                <div className="th06">금액</div>
                                 <div className="th07">상태</div>
                                 <div className="th08">상세보기</div>
                             </div>
@@ -161,11 +161,11 @@ export const MySettlement: React.FC<IProp> = () => {
                                                 <label htmlFor="agree0" />
                                             </span>
                                         </div>
-                                        <div className="th02">PINK-01230</div>
+                                        <div className="th02"><i className="m_title">상품코드:</i>PINK-01230</div>
                                         <div className="th03">제주도로 떠나요~ </div>
-                                        <div className="th04">홍나리<br />010-0100-0000</div>
-                                        <div className="th05">2020.02.02</div>
-                                        <div className="th06">50,000</div>
+                                        <div className="th04"><i className="m_title">예약자:</i>홍나리<br />010-0100-0000</div>
+                                        <div className="th05"><i className="m_title">예약날짜:</i>2020.02.02</div>
+                                        <div className="th06"><i className="m_title">금액:</i>50,000원</div>
                                         <div className="th07"><strong className="ok">예약완료</strong></div>
                                         <div className="th08"><i className="btn" onClick={popupOpen2}>상세보기</i></div>
                                     </li>
@@ -176,12 +176,12 @@ export const MySettlement: React.FC<IProp> = () => {
                                                 <label htmlFor="agree0" />
                                             </span>
                                         </div>
-                                        <div className="th02">PINK-01230</div>
+                                        <div className="th02"><i className="m_title">상품코드:</i>PINK-01230</div>
                                         <div className="th03">제주도로 떠나요~ </div>
-                                        <div className="th04">홍나리<br />010-0100-0000</div>
-                                        <div className="th05">2020.02.02</div>
-                                        <div className="th06">50,000</div>
-                                        <div className="th07"><strong className="no">예약취소</strong></div>
+                                        <div className="th04"><i className="m_title">예약자:</i>홍나리<br />010-0100-0000</div>
+                                        <div className="th05"><i className="m_title">예약날짜:</i>2020.02.02</div>
+                                        <div className="th06"><i className="m_title">금액:</i>50,000원</div>
+                                        <div className="th07"><strong className="ok">예약완료</strong></div>
                                         <div className="th08"><i className="btn" onClick={popupOpen2}>상세보기</i></div>
                                     </li>
                                 </ul>
@@ -228,7 +228,7 @@ export const MySettlement: React.FC<IProp> = () => {
                                     <div className="th03">제주도로 떠나요~ </div>
                                     <div className="th04">홍나리</div>
                                     <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000</div>
+                                    <div className="th06">50,000원</div>
                                     <div className="th07"><strong className="ok">예약완료</strong></div>
                                 </li>
                                 <li>
@@ -236,7 +236,7 @@ export const MySettlement: React.FC<IProp> = () => {
                                     <div className="th03">제주도로 떠나요~ </div>
                                     <div className="th04">홍나리</div>
                                     <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000</div>
+                                    <div className="th06">50,000원</div>
                                     <div className="th07"><strong className="ok">예약완료</strong></div>
                                 </li>
                                 <li>
@@ -244,7 +244,7 @@ export const MySettlement: React.FC<IProp> = () => {
                                     <div className="th03">제주도로 떠나요~ </div>
                                     <div className="th04">홍나리</div>
                                     <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000</div>
+                                    <div className="th06">50,000원</div>
                                     <div className="th07"><strong className="ok">예약완료</strong></div>
                                 </li>
                                 <li>
@@ -252,7 +252,7 @@ export const MySettlement: React.FC<IProp> = () => {
                                     <div className="th03">제주도로 떠나요~ </div>
                                     <div className="th04">홍나리</div>
                                     <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000</div>
+                                    <div className="th06">50,000원</div>
                                     <div className="th07"><strong className="ok">예약완료</strong></div>
                                 </li>
                                 <li>
@@ -260,7 +260,7 @@ export const MySettlement: React.FC<IProp> = () => {
                                     <div className="th03">제주도로 떠나요~ </div>
                                     <div className="th04">홍나리</div>
                                     <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000</div>
+                                    <div className="th06">50,000원</div>
                                     <div className="th07"><strong className="ok">예약완료</strong></div>
                                 </li>
                             </ul>
@@ -285,7 +285,7 @@ export const MySettlement: React.FC<IProp> = () => {
                                     <div className="th03">제주도로 떠나요~ </div>
                                     <div className="th04">홍나리</div>
                                     <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000</div>
+                                    <div className="th06">50,000원</div>
                                     <div className="th07"><strong className="no">예약취소</strong></div>
                                 </li>
                                 <li>
@@ -293,7 +293,7 @@ export const MySettlement: React.FC<IProp> = () => {
                                     <div className="th03">제주도로 떠나요~ </div>
                                     <div className="th04">홍나리</div>
                                     <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000</div>
+                                    <div className="th06">50,000원</div>
                                     <div className="th07"><strong className="no">예약취소</strong></div>
                                 </li>
                             </ul>
@@ -368,7 +368,7 @@ export const MySettlement: React.FC<IProp> = () => {
                         <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
                     </div>
 
-                    <div className="info_table">
+                    <div className="info_table goodsinfo">
                         <div className="tr">
                             <div className="top01">
                                 <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
@@ -469,13 +469,13 @@ export const MySettlement: React.FC<IProp> = () => {
                     <div className="info_page">
                         <div className="full_div">
                             <h4>예약자 정보</h4>
-                            <div className="info_table w50">
+                            <div className="info_table peoplelist">
                                 <div className="top_info">
                                     <span className="tt">선택된 예약 인원</span>
                                     <span>총 4명 ( 성인2 / 소아2 / 유아0 )</span>
                                     <span className="float_right"><i className="menok">예약자-포함</i><i className="menno">예약자-미포함</i></span> {/* 포함 미포함 둘중하나만 표시*/}
                                 </div>
-                                <div className="tr">
+                                <div className="tr first">
                                     <div className="re01">
                                         예약자(본인)
                                 </div>

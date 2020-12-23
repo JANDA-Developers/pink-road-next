@@ -68,7 +68,7 @@
                 font-weight: 500;
             }
             .mypage_in .lnb .profile_box .welcome ul li i{
-               display: block;
+               display: inline-block;
                margin-right: 0;
             }
 
@@ -273,14 +273,13 @@
             display: block;
             border-radius: 5px;
             background-color: #ffffff;
-            -webkit-box-sizing: border-box;
             box-sizing: border-box;
-            -webkit-box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
             box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+            padding-bottom: 30px;
         }
 
         .mypage_in .in .box1 {
-            padding: 50px;
+            padding: 30px 5%;
             position: relative;
             box-sizing: border-box;
             display: block;
@@ -332,12 +331,12 @@
                 }
 
                 .mypage_in .in .box1 .top_info li.ct span {
-                    font-size: 39px;
+                    font-size: 1.7em;
                     font-weight: 600;
                 }
 
                 .mypage_in .in .box1 .top_info li.ct p {
-                    font-size: 14px;
+                    font-size: 0.8em;
                     color: #8b8b8b;
                     font-weight: 600;
                     letter-spacing: -1px;
@@ -346,7 +345,7 @@
         .mypage_in .in .box2 {
             position: relative;
             top: -1px;
-            padding: 50px;
+            padding: 0 5% ;
             border-radius: 0;
             box-sizing: border-box;
             display: block;
@@ -356,7 +355,7 @@
         .mypage_in .in .box3 {
             position: relative;
             top: -2px;
-            padding: 50px;
+            padding: 0 5%;
             box-sizing: border-box;
             display: block;
             text-align: left;
@@ -367,6 +366,9 @@
             display: block;
             width: 100%;
             margin-top: 20px;
+            box-sizing: border-box;
+            padding: 0 3%;
+            height: auto;
         }
 
             .mypage_in .in .fin .btn {
@@ -384,11 +386,11 @@
                 }
 
         .mypage_in .in .box_left {
-            position: absolute;
-            width: 20%;
+            position: relative;
+            width: 100%;
             left: 0;
             top: 0;
-            padding: 54px 0 0 50px;
+            padding: 54px 0 0 0;
         }
 
         .mypage_in .in h4 {
@@ -401,10 +403,11 @@
         }
 
         .mypage_in .in h5 {
-            font-size: 25px;
+            font-size: 1.5em;
+            line-height: 40px;
             font-weight: 600;
             display: block;
-            text-align: right;
+            text-align: left;
             color: #9c9c9c;
         }
 
@@ -418,10 +421,9 @@
 
         .mypage_in .in .box_right {
             position: relative;
-            width: 75%;
-            margin-left: 24%;
+            width: 100%;
             box-sizing: border-box;
-            padding: 0px 30px 30px;
+            padding: 0px 0px 30px;
         }
 
         .mypage_in .in i.icon {
@@ -453,26 +455,28 @@
         padding: 0 10px;
         box-sizing: border-box;
         border-bottom: 1px solid #cccccc52;
-        display: flex;
+        display: block;
     }
 
     .mypage_in .box_right .title {
-        font-size: 16px;
+        font-size: 1em;
         font-weight: 600;
-        line-height: 60px;
-        display: inline-block;
+        line-height: 30px;
+        display:block;
         color: #333;
-        width: 30%;
+        width:100%;
+        padding-top: 10px;
     }
 
     .mypage_in .box_right .txt {
         font-size: 14px;
         font-weight: 200;
-        line-height: 60px;
-        display: inline-block;
-        width: 70%;
+        line-height: 30px;
+        display: block;
+        width:100%;
         color: #333;
         letter-spacing: 0;
+        padding-bottom: 15px;
     }
 
         .mypage_in .box_right .txt.line2 {
@@ -713,7 +717,7 @@
         .mypage_in .statement_div li {
             display: inline-block;
             width: auto;
-            padding: 0 32px;
+            padding: 0 8px;
             margin-top: 22px;
             margin-bottom: 30px;
             position: relative;
@@ -745,14 +749,14 @@
         .mypage_in .statement_div div {
             display: block;
             text-align: left;
-            font-size: 15px;
+            font-size: 0.8em;
             font-weight: 400;
             color: #616161;
             letter-spacing: 0;
         }
     
             .mypage_in .statement_div div strong {
-                font-size: 28px;
+                font-size: 1.7em;
                 font-weight: 600;
                 color: #333;
                 display: inline-block;
@@ -923,7 +927,7 @@
         box-sizing: border-box;
         -webkit-box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
         box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
-        padding: 30px;
+        padding: 30px 3%;
     }
 
         .goods_div .paper_div .con_top h6 {
@@ -961,67 +965,67 @@
 }
 
     .reservation_div .t01 {
-        width: 5% !important;
-        padding:10px 0;
+        width:100% !important;
+        padding:0;
+        text-align: left !important;
     }
     .reservation_div .t02 {
-        width: 10% !important;
-        padding: 10px 0;
-        border-left: 1px #eee solid;
+        width: 100% !important;
+        padding: 0;
+      text-align: left !important;
+      position: unset !important;
+      margin-bottom: 5px;
+    }
+    .reservation_div .t02 .align{
+      position: unset !important;
+    }
+    .reservation_div .t02 .btn {
+        width:90%;
+        position: absolute;
+        bottom: 10px;
+        left: 5%;
+        line-height: 35px !important;
     }
     .reservation_div .t03 {
-        width: 13% !important;
-        padding: 10px 0;
-        border-left: 1px #eee solid;
+        width: auto !important;
+        padding:0;
     }
     .reservation_div .t04 {
-        width: 44% !important;
-        padding: 10px 0 0;
-        border-left: 1px #eee solid;
+        width: 100% !important;
+        padding:0;
+        text-align: left;
     }
     .reservation_div .t05 {
-        width: 13% !important;
-        padding: 10px 0;
-        border-left: 1px #eee solid;
+        width:  100% !important;
+        padding:0;
+        text-align: left !important;
     }
     .reservation_div .t06 {
-        width: 15% !important;
-        padding: 10px 0;
-        border-left: 1px #eee solid;
+        width: auto !important;
+        padding: 0;
+        text-align: left !important;
     }
     .reservation_div .t07 {
-        width: 13% !important;
-        padding: 10px 0;
-        border-left: 1px #eee solid;
+        width: 100% !important;
+        padding: 0;
+        text-align: left !important;
+        margin-top: 5px;
     } 
         .reservation_div .th .t01 .checkbox {
             top: 50%;
             margin-top: -16px;
         }
-    .reservation_div .td .t01 .checkbox {
+    /* .reservation_div .td .t01 .checkbox {
         top: 50%;
         margin-top: -8px;
-    }
+    } */
     .reservation_div .align {
         display: inline-block;
         width: 100%;
         vertical-align: middle;
         position: relative;
-        top: 50%;
-        margin-top: -40px;
     }    
-    .reservation_div .t02 .align {
-        top: 50%;
-        margin-top: -60px;
-    }  
-    .reservation_div .t06 .align {
-        top: 50%;
-        margin-top: -35px;
-    }   
-    .reservation_div .t07 .align {
-        top: 50%;
-        margin-top: -30px;
-    }
+ 
     .reservation_div .paper_div {
         border-radius: 0 !important;
         background-color: #ffffff;
@@ -1054,13 +1058,13 @@
     }
     .reservation_div .t04 .img {
         display:inline-block !important;
-        width:150px !important;
-        height:90px;
+        width:100px !important;
+        height:64px;
         background-position:center;
         background-size:100%;
         position:absolute !important;
-        left:10px;
-        top:10px;
+        left:15px;
+        top:20px;
     }
     .reservation_div .t04 .info {
         display: block !important;
@@ -1068,10 +1072,12 @@
         vertical-align: top;
         text-align: left;
         position: relative;
-        padding-left: 170px;
-        padding-right: 10px;
+        padding-left: 120px;
+        padding-right: 15px;
         padding-bottom:15px;
+        padding-top:15px;
         box-sizing: border-box;
+        border: 3px solid #f5f5f5;
     }
     .reservation_div .memo {
         width: 100% !important;
@@ -1104,16 +1110,18 @@
             text-align:left;
         }
     .reservation_div .pay {
-        width: 100% !important;
-        display: block !important;
+        width: auto !important;
+        display: inline-block !important;
         line-height: 160%;
         font-size: 0.9em;
         color: #333;
         padding-top: 0px !important;
         vertical-align: middle;
-    } .reservation_div .pay-day {
-        width: 100% !important;
-        display: block !important;
+        margin-right: 15px;
+    } 
+    .reservation_div .pay-day {
+        width: auto !important;
+        display: inline-block !important;
         line-height: 160%;
         font-size: 0.9em;
         color: #333;
@@ -1121,8 +1129,8 @@
         vertical-align: middle;
     }
     .reservation_div .name {
-        width: 100% !important;
-        display: block !important;
+        width: auto !important;
+        display: inline-block !important;
         line-height: 160%;
         font-size: 0.9em;
         color: #333;
@@ -1131,14 +1139,16 @@
         font-weight: 600;
     }  
       .reservation_div .ph {
-        width: 100% !important;
-        display: block !important;
+        width: auto !important;
+        display: inline-block !important;
         line-height: 160%;
         font-size: 0.9em;
         color: #333;
         padding-top: 0px !important;
         vertical-align: middle;
+        margin-right: 15px;
     }
+    
     .reservation_div .ct {
         width: auto !important;
         display: inline-block;
@@ -1210,7 +1220,6 @@
         line-height: 100%;
         font-size: 0.9em;
         color: #333;
-        margin-top: 30px;
         vertical-align: middle;
         margin-right: 10px;
     }
@@ -1223,6 +1232,9 @@
         color: #2196F3 !important;
         padding-top: 0px !important;
         vertical-align: middle;
+    }
+    .reservation_div .men br{
+        display: none;
     }
     .reservation_div .goods-state1 {
         width: auto !important;
@@ -1248,23 +1260,25 @@
         vertical-align: middle;
     }
     .reservation_div .money {
-        width: 100% !important;
-        display: block !important;
+        width: auto !important;
+        display: inline-block !important;
         text-align: center !important;
         line-height: 127%;
         font-size: 1.3em;
         color: #ed297b;
         vertical-align: middle;
+        margin-right: 15px;
     }
     .reservation_div .refund-txt {
-        width: 100% !important;
-        display: block !important;
+        width: auto !important;
+        display: inline-block !important;
         text-align: center !important;
         line-height: 127%;
         font-size: 0.8em;
         color: #cf3932;
         padding-top: 3px !important;
         vertical-align: middle;
+        margin-left: 15px;
     }
     .reservation_div .state {
         width: auto !important;
@@ -1871,14 +1885,13 @@ div.reservation_popup .tr select {
         background-color: #ffffff;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        padding: 50px;
+        padding: 30px 3%;
         box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
     }
 
     .myboard_box .board_list_mini .thead{
         background-color: #ffffff;
         border-bottom: 1px solid #cecece;
-        border-top: 2px solid #555;
     }
 
     .myboard_box .board_list_mini .thead > div {
@@ -1895,16 +1908,19 @@ div.reservation_popup .tr select {
     }
 
         .myboard_box .con_bottom .th02 {
-            width: 15%;
+            width: auto;
+            margin-right: 15px;
         }
         .myboard_box .con_bottom .th03 {
-            width: 10%;
+            width: auto;
         }
         .myboard_box .con_bottom .th04 {
-            width: 50%;
+            width: 100%;
+            font-size: 1.2em;
+            text-align: left;
         }
         .myboard_box .con_bottom .th05 {
-            width: 24%;
+            width: auto;
         }
         .myboard_box .con_bottom .tbody .th04 {
            text-align: left;
@@ -2688,9 +2704,48 @@ div.reservation_popup .tr select {
     position: relative;
     display: block;
 }
-    .mypage_purchase .fuction_list_mini .thead .th01,
-    .mypage_purchase .fuction_list_mini .tbody .th01 {
-        width: 5%;
+    .mypage_purchase .fuction_list_mini .th01 {
+        width: 100%;
+        text-align: left;
+    }
+    .mypage_purchase .fuction_list_mini .th02 {
+        width: 100%;
+        text-align: left;
+    }
+    .mypage_purchase .fuction_list_mini .th03 {
+        width: 100%;
+        text-align: left;
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    .mypage_purchase .fuction_list_mini .th04 {
+        width: auto;
+        margin-right: 15px;
+    }
+    .mypage_purchase .fuction_list_mini .th05 {
+        width: auto;
+        margin-right: 15px;
+    }
+    .mypage_purchase .fuction_list_mini .th06 {
+        width: auto;
+        margin-right: 15px;
+    }
+    .mypage_purchase .fuction_list_mini .th07 {
+        width: auto;
+        position: absolute;
+        top: 0;
+        right: 5px;
+    }
+    .mypage_purchase .fuction_list_mini .th08 {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .mypage_purchase .fuction_list_mini .th04 br {
+        display: none;
+    }
+    .mypage_purchase .fuction_list_mini .th08 .btn{
+        width: 100%;
     }
     .mypage_purchase .fuction_list_mini .thead .th01 .checkbox {
         top: 50%;
@@ -2705,7 +2760,7 @@ div.reservation_popup .tr select {
         background-color: #ffffff;
         box-sizing: border-box;
         box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
-        padding: 3%;
+        padding: 30px 3%;
     }
 
         .mypage_purchase .paper_div .con_top h6 {
@@ -2723,6 +2778,39 @@ div.reservation_popup .tr select {
         text-align: left;
         z-index: 1;
     }
+    .statement_popup .page{
+        padding: 0px 10px 10px 0px !important;
+    }
+    .statement_popup .alignment{
+        padding: 0 0 5px;
+    }
+    .statement_popup .fuction_list_mini .th02{
+        width: auto;
+        margin-right: 15px;
+    }
+    .statement_popup .fuction_list_mini .th03{
+        width: 100%;
+        font-size: 1.2em;
+        font-weight: 600;
+        text-align: left;
+    }
+    .statement_popup .fuction_list_mini .th04{
+        width: auto;
+        margin-right: 15px;
+    }
+    .statement_popup .fuction_list_mini .th05{
+        width: auto;
+        margin-right: 15px;
+    }
+    .statement_popup .fuction_list_mini .th06{
+        width: auto;
+        margin-right: 15px;
+    }
+    .statement_popup .fuction_list_mini .th07{
+        width: auto;
+    }
+
+
 @media (min-width: 768px) {
 
 
@@ -2749,7 +2837,7 @@ div.reservation_popup .tr select {
     }
 
     .mypage_purchase .paper_div{
-        padding: 30px;
+        padding: 50px;
         border-radius: 5px !important;
     }
     .mypage_purchase .search_box{
@@ -2801,11 +2889,12 @@ div.reservation_popup .tr select {
 
         .mypage_in .lnb .profile_box .time,
         .mypage_in .lnb .profile_box .name1,
-        .mypage_in .lnb .profile_box .name2,
-        .mypage_in .lnb .profile_box .point {
-            padding-left: 50px;
+        .mypage_in .lnb .profile_box .name2 {
+            padding-left: 98px;
         }
-
+        .mypage_in .lnb .profile_box .point{
+            margin-top: 10px;
+        }
     .mypage_in .lnb ul {
         width: auto;
         position: absolute;
@@ -2971,14 +3060,14 @@ div.reservation_popup .tr select {
     .goods_div .fuction_list_mini .th07 span{
         display: block !important;
     }
-                .goods_div .fuction_list_mini .th08 .btn {
-                    width: 49%;
-                    padding: 0 12px;
-                    font-size: 11px;
-                    line-height: 22px;
-                    text-align: center;
-                    margin: 1px;
-                }
+        .goods_div .fuction_list_mini .th08 .btn {
+            width: 45%;
+            padding: 0 12px;
+            font-size: 11px;
+            line-height: 22px;
+            text-align: center;
+            margin: 1px;
+        }
     div.reservation_popup .write_comment .text_box_bottom .float_left {
         display: block;
         position: relative;
@@ -3217,7 +3306,311 @@ div.reservation_popup .tr select {
         padding: 0 74px;
         width: auto;
     }
-  
+    .mypage_in .in .fin{
+        display: flex;
+    }
+    .mypage_in .mypage_page .fin{
+        padding: 30px 90px;
+        box-sizing: border-box;
+        height: 130px;
+    }
+    .mypage_in .subtop_nav {
+        top: -53px;
+    }
+    .mypage_in .lnb .profile_box .welcome ul li i {
+        display:block;
+    }
+    .mypage_in .in .box1{
+        padding: 50px;
+    }
+    .mypage_in .in .box1 .top_info li.ct p {
+        font-size: 1em;
+    }
+    .mypage_in .in .box1 .top_info li.ct span {
+        font-size: 2.5em;
+    }
+    .mypage_in .in .box_left {
+        position: absolute;
+        width: 20%;
+        left: 0;
+        top: 0;
+        padding: 54px 0 0 50px;
+    }
+    .mypage_in .in .box_right {
+        position: relative;
+        width: 75%;
+        margin-left: 24%;
+        box-sizing: border-box;
+        padding: 0px 30px 30px;
+    }
+    .mypage_in .in h5 {
+        font-size: 1.6em;
+        font-weight: 600;
+        display: block;
+        text-align: right;
+    }
+    .mypage_in .in .box2 {
+        position: relative;
+        padding: 50px;
+    }
+    .mypage_in .box_right li {
+        width: 100%;
+        line-height: 50px;
+        padding: 0 10px;
+        display: flex;
+    }
+
+    .mypage_in .box_right .title {
+        font-size: 1em;
+        display: inline-block;
+        width:30%;    
+        line-height: 60px;
+        padding-top: 0;
+    }
+
+    .mypage_in .box_right .txt {
+        font-size: 14px;
+        display: inline-block;
+        width:70%;
+        line-height: 60px;
+        padding-bottom: 0;
+    }
+    .mypage_in .in .box3{
+        padding: 50px;
+    }
+    .myboard_box .con_bottom .th02 {
+        width: 15%;
+        margin-right: 0;
+    }
+    .myboard_box .con_bottom .th03 {
+        width: 10%;
+    }
+    .myboard_box .con_bottom .th04 {
+        width: 50%;
+        font-size: 0.8em;
+    }
+    .myboard_box .con_bottom .thead .th04 {
+       text-align: center;
+    }
+    .myboard_box .con_bottom .th05 {
+        width: 24%;
+    }
+    .myboard_box .paper_div{
+        padding: 50px;
+    }
+    .goods_div .paper_div{
+        padding: 50px;
+    }
+    .mypage_purchase .fuction_list_mini .th01 {
+        width: 5%;
+        text-align: center;
+    }
+    .mypage_purchase .fuction_list_mini .th02 {
+        width: 10%;
+    }
+    .mypage_purchase .fuction_list_mini .th03 {
+        width: 30%;
+        text-align: left;
+        font-size: 0.8em;
+        margin-bottom: 0;
+    }
+
+    .mypage_purchase .fuction_list_mini .th04 {
+        width: 15%;
+        margin-right: 0;
+    }
+    .mypage_purchase .fuction_list_mini .th05 {
+        width: 10%;
+        margin-right: 0;
+    }
+   
+    .mypage_purchase .fuction_list_mini .th06 {
+        width: 10%;
+        margin-right: 0;
+    }
+    .mypage_purchase .fuction_list_mini .th07 {
+        width: 10%;
+        margin-right: 0;
+        position: relative;
+        top: unset;
+        right: unset;
+    }
+    .mypage_purchase .fuction_list_mini .th08 {
+        width: 10%;
+        margin-top: 0;
+    }
+    .mypage_purchase .fuction_list_mini .th04 br{
+       display: inline-block;
+    }
+    .mypage_purchase .fuction_list_mini .thead .th03 {
+        text-align: center;
+        font-size: 1em;
+    }
+    .mypage_purchase .fuction_list_mini .tbody .th02,
+    .mypage_purchase .fuction_list_mini .tbody .th03,
+    .mypage_purchase .fuction_list_mini .tbody .th05,
+    .mypage_purchase .fuction_list_mini .tbody .th06,
+    .mypage_purchase .fuction_list_mini .tbody .th07 {
+        padding: 20px 5px 5px;
+    }
+    .mypage_in .statement_div li {
+        padding: 0 32px;
+        margin-top: 22px;
+        margin-bottom: 30px;
+    }
+    .mypage_in .statement_div div {
+        display: block;
+        text-align: left;
+        font-size: 15px;
+        font-weight: 400;
+        color: #616161;
+        letter-spacing: 0;
+    }
+    .mypage_in .statement_div div strong {
+        font-size: 2.7em;
+    }
+    .statement_popup .fuction_list_mini .th02{
+        width: 15%;
+    }
+    .statement_popup .fuction_list_mini .th03{
+        width: 30%;
+        text-align: left;
+        font-size: 0.9em;
+    }
+    .statement_popup .fuction_list_mini .thead .th03{
+        text-align: center;
+        font-size:1em;
+    }
+    .statement_popup .fuction_list_mini .th04{
+        width: 15%;
+    }
+    .statement_popup .fuction_list_mini .th05{
+        width: 15%;
+    }
+    .statement_popup .fuction_list_mini .th06{
+        width: 15%;
+    }
+    .statement_popup .fuction_list_mini .th07{
+        width: 15%;
+    }
+
+
+    .reservation_div .t01 {
+        width: 5% !important;
+        padding:10px 0;
+    }
+    .reservation_div .t02 {
+        width: 10% !important;
+        padding: 10px 0;
+        border-left: 1px #eee solid;
+        margin-bottom: 0;
+    }
+    .reservation_div .t03 {
+        width: 13% !important;
+        padding: 10px 0;
+        border-left: 1px #eee solid;
+    }
+    .reservation_div .t04 {
+        width: 44% !important;
+        padding: 10px 0 0;
+        border-left: 1px #eee solid;
+    }
+    .reservation_div .t05 {
+        width: 13% !important;
+        padding: 10px 0;
+        border-left: 1px #eee solid;
+    }
+    .reservation_div .t06 {
+        width: 15% !important;
+        padding: 10px 0;
+        border-left: 1px #eee solid;
+    }
+    .reservation_div .t07 {
+        width: 13% !important;
+        padding: 10px 0;
+        border-left: 1px #eee solid;
+    } 
+    .reservation_div .td .t01 .checkbox {
+        top: 50%;
+        margin-top: -8px;
+    }
+    .reservation_div .align {
+        top: 50%;
+        margin-top: -40px;
+    }    
+    .reservation_div .t02 .align {
+        top: 50%;
+        margin-top: -60px;
+    }  
+    .reservation_div .t06 .align {
+        top: 50%;
+        margin-top: -35px;
+    }   
+    .reservation_div .t07 .align {
+        top: 50%;
+        margin-top: -30px;
+    }
+    .reservation_div .t04 .img {
+        width: 150px !important;
+        height: 90px;
+        left: 10px;
+        top: 10px;
+    }
+    .reservation_div .r-number {
+        width: auto !important;
+        display: inline-block !important;
+        text-align: left !important;
+        line-height: 100%;
+        font-size: 0.9em;
+        color: #333;
+        margin-top: 30px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+    .reservation_div .t04 .info {
+        padding-left: 170px;
+        text-align: left;
+        position: relative;
+        padding-top: 0;
+        padding-right: 10px;
+        padding-bottom: 15px;
+        box-sizing: border-box;
+        border: 0;
+    }
+    .reservation_div .name{
+        width: 100% !important;
+        display: block !important;
+        margin-right: 0;
+    }
+    .reservation_div .ph{
+        width: 100% !important;
+        display: block !important;
+        margin-right: 0;
+    }
+    .reservation_div .money{
+        width: 100% !important;
+        display: block !important;
+        margin-right: 0;
+    }
+    .reservation_div .pay{
+        width: 100% !important;
+        display: block !important;
+        margin-right: 0;
+    }
+    .reservation_div .pay-day{
+        width: 100% !important;
+        display: block !important;
+        margin-right: 0;
+    }
+
+    .reservation_div .men br{
+        display: inline-block;
+    }
+    .reservation_div .refund-txt {
+        width: 100% !important;
+        display: block !important;
+        margin-left: 0;
+    }
 }
     
     
@@ -3230,8 +3623,11 @@ div.reservation_popup .tr select {
 }
 
 @media (max-width: 767px) {
+    .mypage_in .statement_div li:after{
+        display: none;
+    }
     .mypage_in .subtop_nav {
-        top: -39px;
+        top: -34px;
     }
     .basket_box .basket_list .td{
         display: block !important;
@@ -3319,6 +3715,9 @@ div.reservation_popup .tr select {
     }
     .basket_box .basket_list .code{
         font-weight: 100;
+    }
+    .mypage_in .box_right .txt{
+        text-align: left !important;
     }
 }
 

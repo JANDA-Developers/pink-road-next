@@ -1949,6 +1949,12 @@ footer .footer_in_bottom {
             box-sizing: border-box;
             
         }
+        .footer_in .copyright .footer_homepage_info .pc {
+            display: none;
+        }
+        .footer_in .copyright .footer_homepage_info .m {
+            display: inline-block;
+        }
 
         .footer_in .copyright .footer_homepage_info a.url {
             font-size: 10px;
@@ -2008,6 +2014,7 @@ footer .footer_in_bottom {
         color: #a4a4a4;
         font-weight: 400;
         letter-spacing: 0;
+        font-size: 0.8em;
     }
 
     .footer_in .copyright .bottom_bn {
@@ -3623,6 +3630,12 @@ margin-bottom:0;
     .top_visual {
         height: 390px;
     }
+    .footer_in .copyright .footer_homepage_info .pc {
+        display: inline-block;
+    }
+    .footer_in .copyright .footer_homepage_info .m {
+        display: none;
+    }
 
 }
 
@@ -3899,6 +3912,9 @@ margin-bottom:0;
         width:80px;
         margin-right:15px;
     }
+    .search_box .jul1 .option {
+        margin-bottom: 10px;
+      }
 }
 
 @media (max-width:360px) {
@@ -3909,7 +3925,7 @@ margin-bottom:0;
         font-size: 11px;
     }
     .footer_in .copyright .bottom_txt {
-        font-size: 10px;
+        font-size: 0.7em;
     }
     .footer_in .bottom_bn span {
         width: 31%;
@@ -3931,4 +3947,5 @@ margin-bottom:0;
     #all_menu ul .a_menu_tit .depth1 li a {
         font-size: 14px;
     }
+  
 }

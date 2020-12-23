@@ -8792,7 +8792,7 @@ i.calendar {
         font-weight: 600;
     }
         div.popup_bg_full h3 {
-            top: 30px;
+            top: 35px;
         }
      
     div.popup_bg_full .close_icon {
@@ -8812,10 +8812,6 @@ i.calendar {
             font-size: 12px;
         }
 
-        div.alignment {
-            width: 100%;
-            padding: 30px 5px 5px;
-        }
     .selectViewList ul.list_ul .list_in .txt2 {
         position: absolute;
         right: 0;

@@ -236,12 +236,12 @@
             font-size: 40px;
         }
 
-.board_list_mini {
-    position: relative;
-    display: block;
-    width: 100%;
-    border-top: 3px solid #333;
-}
+       .board_list_mini {
+            position: relative;
+            display: block;
+            width: 100%;
+            border-top: 3px solid #555;
+        }
 
     .board_list_mini .thead {
         position: relative;
@@ -1361,11 +1361,7 @@ div.comment_box {
                 font-weight: 600;
             }
 
-div.board_list_mini {
-    position: relative;
-    display: block;
-    border-top: 2px solid #c1c1c1;
-}
+
     div.board_list_mini.type2 {
         border-bottom: 2px solid #ccc;
         border-top: 2px solid #ccc;
@@ -1913,20 +1909,14 @@ div.board_list_mini {
         background-color: #fff;
     }
 
-    .fuction_list_mini input[type=checkbox] {
-        /*vertical-align: middle;
-        vertical-align: -webkit-baseline-middle;
-        display:inline-block;*/
-    }
-
     .fuction_list_mini .thead > div {
         display: inline-block;
         width: 24.5%;
         text-align: center;
-        font-size: 12px;
+        font-size: 1em;
         font-weight: 600;
         line-height: 120%;
-        padding: 13px 10px 10px;
+        padding: 17px 10px;
         box-sizing: border-box;
     }
 
@@ -1948,7 +1938,7 @@ div.board_list_mini {
             width: 100%;
             border-bottom: 1px solid #eeeeee;
             box-sizing: border-box;
-            padding: 22px 0;
+            padding: 3%;
         }
 
             .fuction_list_mini .tbody li > div {
@@ -1991,32 +1981,34 @@ div.board_list_mini {
     }
 div.sum_div {
     position: relative;
+    border: solid #eee 3px;
+    box-sizing: border-box;
+    margin-top: 30px;
+
 }
 
     div.sum_div .first_ul {
-        margin-top: 12px;
         position: relative;
-        background-color: #e8e8e8;
         padding: 15px;
         box-sizing: border-box;
         text-align: left;
-        border-top: 2px solid #797979;
     }
 
     div.sum_div li {
         display: inline-block;
-        width: 48.5%;
+        width: 100%;
         box-sizing: border-box;
         position: relative;
         text-align: right;
         line-height: 38px;
+        border-bottom: 1px solid #eee;
     }
 
         div.sum_div li > div {
             display: inline-block;
             position: relative;
             font-size: 14px;
-            color: #737689;
+            color: #333333;
         }
 
         div.sum_div li .title {
@@ -2043,7 +2035,7 @@ div.sum_div {
         }
     div.sum_div .first_ul li {
         background-color: #ffffff;
-        padding: 0 10px;
+        padding: 0;
         box-sizing: border-box;
     }
     div.sum_div .last_ul {
@@ -2057,6 +2049,7 @@ div.sum_div {
             width: 100%;
             padding: 15px;
             box-sizing: border-box;
+            margin: 0;
         }
             div.sum_div .last_ul li div {
                 font-size: 22px;
@@ -2077,7 +2070,7 @@ div.sum_div {
     .reservation_list .th {
         position: relative;
         width: 100%;
-        display: flex;
+        display: none;
         border-bottom: 1px solid #999;
         line-height: 30px;
         box-sizing: border-box;
@@ -2087,9 +2080,11 @@ div.sum_div {
     .reservation_list .td {
         position: relative;
         width: 100%;
-        display: flex;
+        display: block;
         border-bottom: 1px solid #c4c4c4;
         line-height: 22px;
+        box-sizing: border-box;
+        padding: 5% 5% 80px 5%;
     }
     .reservation_list .th div[class*=t0] {
         display: inline-block;
@@ -2415,6 +2410,18 @@ div.sum_div {
         width: 20%;
         text-align: center;
     }
+    div.sum_div li {
+        width: 43%;
+        margin: 0 3%;
+    }
+    .reservation_list .th {
+        display: flex;
+    }
+    .reservation_list .td{
+        display: flex;
+        padding: 0;
+    }
+
 }
 
 @media (min-width:1200px) {

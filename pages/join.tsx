@@ -9,6 +9,7 @@ import PolicyPopup from 'components/policyPopup/PolicyPopup';
 import FormNormal from 'components/join/FormNormal';
 import SubTopNav from 'layout/components/SubTop';
 import { SIGNINGOOGLE, SIGNINKAKAO } from '../apollo/gql/mutations';
+import Link from 'next/link';
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -220,12 +221,12 @@ const JoinResult = () => {
                 가입시 입력된 이메일로 가입승인 이메일로 안내드리겠습니다.
             </p>
             <div className="fin">
-                <button
-                    className="sum btn"
-                //   onclick="location.href='../login';"
-                >
-                    로그인 하러가기
-                </button>
+                <Link href="/login">
+                    <a
+                        className="sum btn"
+                    >
+                        로그인 하러가기
+                </a></Link>
             </div>
         </div>
     )

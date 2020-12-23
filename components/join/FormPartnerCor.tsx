@@ -38,9 +38,9 @@ const defaultInfo: TFormPartnetCor = process.env.NODE_ENV === "development" ? {
   department: "영업부서",
   incharge_name: "담당자 이름",
   incharge_number: "0101112222",
-  business_license: "jpg, png 파일만 업로드 가능합니다",
-  bank_name: "KB",
-  bank_account: "1122333",
+  business_license: "jpg, png",
+  bank_name: "국민",
+  bank_account: "'-'없이 입력해주세요.",
   register_sort: "partnerB",
   is_priv_corper: true
 } : {
@@ -278,7 +278,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             </select>
             <input
               type="text"
-              className="form-control w70"
+              className="form-control w70 ml5"
               name="business_number"
               placeholder="사업자번호를 입력해주세요."
               value={formInfo.business_number}
@@ -296,7 +296,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             </select>
             <input
               type="text"
-              className="form-control w70"
+              className="form-control w70 ml5"
               name="contact"
               placeholder="전화번호를 입력해주세요."
               value={formInfo.contact}
@@ -374,7 +374,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             *jpg, gif, png 이외에 업로드 불가능합니다.
               </span>
           <div className="w100 apply_relative">
-            <span className="w80 upload_out_box">
+            <span className="w50 upload_out_box">
               {formInfo.business_license}
             </span>
 
@@ -397,7 +397,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
           <div className="w100">
             <input
               type="text"
-              className="w10"
+              className="w10 mr5"
               name="bank_name"
               style={{ minWidth: 55 }}
               placeholder="은행"
