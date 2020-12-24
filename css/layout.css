@@ -3636,6 +3636,9 @@ margin-bottom:0;
     .footer_in .copyright .footer_homepage_info .m {
         display: none;
     }
+    #all_menu ul .a_menu_tit{
+        border-bottom: 0;
+    }
 
 }
 

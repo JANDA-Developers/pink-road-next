@@ -2879,17 +2879,13 @@ div.reservation_popup .tr select {
     .mypage_in .lnb .profile_box {
         text-align: left;
     }
-
         .mypage_in .lnb .profile_box .img {
             display: block;
             position: absolute;
             width: 79px;
             height: 79px;
         }
-
-        .mypage_in .lnb .profile_box .time,
-        .mypage_in .lnb .profile_box .name1,
-        .mypage_in .lnb .profile_box .name2 {
+        .mypage_in .lnb .profile_box .name1{
             padding-left: 98px;
         }
         .mypage_in .lnb .profile_box .point{
