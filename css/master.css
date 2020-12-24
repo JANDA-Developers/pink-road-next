@@ -1324,7 +1324,7 @@
         text-align: center !important;
         line-height: 127%;
         font-size: 1.1em;
-        color: #ed297b;
+        color: #5bace9;
         vertical-align: middle;
         margin-right: 15px;
     }
@@ -1441,7 +1441,7 @@
         display: block !important;
         box-sizing: border-box;
         font-weight: 600;
-        color: #ed297b;
+        color: #5bace9;
         font-size: 1.3em;
         line-height: 200%;
     }
@@ -2872,7 +2872,7 @@ div.master_popup .people{
     text-align: center !important;
     line-height: 127%;
     font-size: 1.3em;
-    color: #ed297b;
+    color: #5bace9;
     vertical-align: middle;
 }
  div.master_popup .state {
@@ -3032,7 +3032,7 @@ div.master_popup .reservationlist .tr{
      background-color: #f2f6fa;
     }
     div.master_popup .info_page .info_table .sum strong{
-     color: #ed297b;
+     color: #5bace9;
    }
     div.master_popup .info_page .info_table .sum ul{
     display: inline-block;

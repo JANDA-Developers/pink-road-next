@@ -2,7 +2,7 @@ import { IPageInfo } from "./interface"
 import { ItineraryCreateInput, ProductStatus, UserRole, } from "./api";
 
 export const DEFAULTS = {
-    logo: "src/img/logo_1.png",
+    logo: "src/its/logo_1.png",
     productImg: "src/img/sample_01.gif",
 }
 

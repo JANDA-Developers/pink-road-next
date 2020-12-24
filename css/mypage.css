@@ -1265,7 +1265,7 @@
         text-align: center !important;
         line-height: 127%;
         font-size: 1.3em;
-        color: #ed297b;
+        color: #5bace9;
         vertical-align: middle;
         margin-right: 15px;
     }
@@ -1574,7 +1574,7 @@
     text-align: center !important;
     line-height: 127%;
     font-size: 1.3em;
-    color: #ed297b;
+    color: #5bace9;
     vertical-align: middle;
 }
  div.reservation_popup .state {
@@ -2418,7 +2418,7 @@ div.reservation_popup .tr select {
         text-align: center !important;
         line-height: 127%;
         font-size: 1.3em;
-        color: #ed297b;
+        color: #5bace9;
         padding-top: 22px !important;
         vertical-align: middle;
     }

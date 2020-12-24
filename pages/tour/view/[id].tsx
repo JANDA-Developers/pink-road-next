@@ -415,7 +415,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
           </div>}
         </div>
         <div className="add_list">
-          <h4>핑크로더 추천여행</h4>{/* 랜덤노출 */}
+          <h4>잇츠가이드 추천여행</h4>{/* 랜덤노출 */}
           <ul className="list_ul line3">
             <li className="list_in">
               <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(/img/sample_01.gif)' }}>상품이미지</div>

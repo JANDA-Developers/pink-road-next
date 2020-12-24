@@ -6,10 +6,10 @@ import RegisterCheck, { TPolicyChk } from './RegisterCheck';
 import Calendar from '../common/icon/CalendarIcon';
 import 'react-day-picker/lib/style.css';
 import { GENDER } from '../../types/api';
-import { TForm } from 'pages/join';
+import { TForm } from 'pages/member/join';
 
 export type TFormNormal = {
-    nameLeng:number,
+    nameLeng: number,
     email: string,
     password: string,
     passwordChk: string,
@@ -36,7 +36,7 @@ type TFormError = {
 }
 
 const defaultInfo: TFormNormal = process.env.NODE_ENV === "development" ? {
-    nameLeng:3,
+    nameLeng: 3,
     email: "test@naver.com",
     password: "!238917",
     passwordChk: "!238917",
@@ -50,7 +50,7 @@ const defaultInfo: TFormNormal = process.env.NODE_ENV === "development" ? {
     register_sort: "individual",
     is_priv_corper: false
 } : {
-        nameLeng:3,
+        nameLeng: 3,
         email: "",
         password: "",
         passwordChk: "",
@@ -66,44 +66,44 @@ const defaultInfo: TFormNormal = process.env.NODE_ENV === "development" ? {
     }
 
 
-    const currentYear = new Date().getFullYear();
-    const fromMonth = new Date(currentYear, 0);
-    const toMonth = new Date(currentYear + 0, 11);
+const currentYear = new Date().getFullYear();
+const fromMonth = new Date(currentYear, 0);
+const toMonth = new Date(currentYear + 0, 11);
 
-    function YearMonthForm({ date, localeUtils, onChange }) {
+function YearMonthForm({ date, localeUtils, onChange }) {
 
-        const months = localeUtils.getMonths();
+    const months = localeUtils.getMonths();
 
-        const years = [];
-        for (let i = fromMonth.getFullYear()-70; i <= toMonth.getFullYear(); i += 1) {
-            years.push(i);
-        }
+    const years = [];
+    for (let i = fromMonth.getFullYear() - 70; i <= toMonth.getFullYear(); i += 1) {
+        years.push(i);
+    }
 
-        const handleChange = function handleChange(e) {
-            const { year, month } = e.target.form;
-            onChange(new Date(year.value, month.value));
-        };
+    const handleChange = function handleChange(e) {
+        const { year, month } = e.target.form;
+        onChange(new Date(year.value, month.value));
+    };
 
-        return (
-            <form className="DayPicker-Caption">
+    return (
+        <form className="DayPicker-Caption">
             <select name="month" onChange={handleChange} value={date.getMonth()}>
                 {months.map((month, i) => (
-                <option key={month} value={i}>
-                    {month}
-                </option>
+                    <option key={month} value={i}>
+                        {month}
+                    </option>
                 ))}
             </select>
             <select name="year" onChange={handleChange} value={date.getFullYear()}>
                 {years.map(year => (
-                <option key={year} value={year}>
-                    {year}
-                </option>
+                    <option key={year} value={year}>
+                        {year}
+                    </option>
                 ))}
             </select>
-            </form>
-        );
-        
-    }
+        </form>
+    );
+
+}
 
 
 const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
@@ -192,8 +192,8 @@ const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
 
     const handleAddress = (address) => {
 
-        setDaumAddress(true); 
-   
+        setDaumAddress(true);
+
     }
 
     const addressUpdate = (address) => {
@@ -202,27 +202,27 @@ const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
             ...formInfo,
             address: address
         })
-        
+
     }
 
     const handleComplete = (data) => {
 
         let fullAddress = data.address;
-        let extraAddress = ''; 
-        
+        let extraAddress = '';
+
         if (data.addressType === 'R') {
-          if (data.bname !== '') {
-            extraAddress += data.bname;
-          }
-          if (data.buildingName !== '') {
-            extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
-          }
-          fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+            if (data.bname !== '') {
+                extraAddress += data.bname;
+            }
+            if (data.buildingName !== '') {
+                extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
+            }
+            fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
-     
+
         addressUpdate(fullAddress);
         setDaumAddress(false);
-     
+
     }
 
     // console.log(` pikcer ${birthdayPicker}`); 
@@ -368,9 +368,9 @@ const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
                                 canChangeMonth={false}
                                 captionElement={({ date, localeUtils }) => (
                                     <YearMonthForm
-                                    date={date}
-                                    localeUtils={localeUtils}
-                                    onChange={handleDayPickerMonth}
+                                        date={date}
+                                        localeUtils={localeUtils}
+                                        onChange={handleDayPickerMonth}
                                     />
                                 )}
                             />

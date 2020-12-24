@@ -54,7 +54,7 @@ export const MsHomepageMain: React.FC<IProp> = () => {
                                         <input className="w50" type="file" />
                                         <p className="infotxt_gray">페이스북 공유 시 문서에 이미지가 없으면 기본 이미지로 사용됩니다. (추천 : 1200x600, 600x315, 200x200)</p>
                                         {/* 첨부파일 미리보기 이미지 */}
-                                        <img className="mt15 w50" src="/img/logo_1.png" alt="첨부파일 미리보기" />
+                                        <img className="mt15 w50" src="/its/logo_1.png" alt="첨부파일 미리보기" />
                                     </div>
                                 </div>
                             </div>

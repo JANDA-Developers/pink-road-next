@@ -61,7 +61,7 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
         <div className="con02 con_block">
             <div className="w1200">
                 <h4>
-                    핑크로더는 사라져가는 가치 있는 것들을 되살리는 일을 하고 있습니다.<br />
+                    잇츠가이드는 사라져가는 가치 있는 것들을 되살리는 일을 하고 있습니다.<br />
                     사람과 상생할 수 있는 지역콘텐츠를 개발하며 여행/디자인/ 교육등의
                 다양한 방식으로 소통하는법을 <br className="no" />창출하고 더 나은 새로운 것을 제안합니다.
                 </h4>
@@ -160,7 +160,7 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
         <div className="w100 con05 con_block">
             <div className="w1200">
                 <div className="txt">
-                    <h4>핑크로더 홈페이지는</h4>
+                    <h4>잇츠가이드 홈페이지는</h4>
                     <span>사회적경제 혁신성장사업[비R&D] 사회적경제기업 경쟁력 강화 사업화지원 프로그램의 지원을 받아 일부 제작 되었습니다.</span>
                 </div>
                 <a target="_blank" className="link" href="/pinkroader_company_introduction_letter.pdf">회사소개서<br />다운로드</a>

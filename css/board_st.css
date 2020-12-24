@@ -215,7 +215,7 @@
         box-sizing: border-box;
         padding: 30px;
         width: 100%;
-        background-color: #ed297b;
+        background-color: #5bace9;
     }
 
         .statement_div .top_box ul {
@@ -520,7 +520,7 @@ ul.list_ul li .cash {
 
     ul.list_ul li .cash strong {
         font-size: 20px;
-        color: #ed297b;
+        color: #5bace9;
     }
 
 /* board style ul */
@@ -640,7 +640,7 @@ ul.boardlist_ul li .cash {
     display: block;
     text-align: left;
     font-size: 16px;
-    color: #ed297b;
+    color: #5bace9;
     line-height: 28px;
 }
 
@@ -653,9 +653,9 @@ ul.boardlist_ul li .cash {
     display: inline-block;
     padding: 0 13px;
     font-size: 12px;
-    color: #ed297b;
+    color: #5bace9;
     font-weight: 600;
-    border: 1px solid #ed297b;
+    border: 1px solid #5bace9;
     border-radius: 100px;
     line-height: initial;
     background-color: #fff;
@@ -986,8 +986,8 @@ ul.photo_ul li .category {
             }
 
             /*.board_box .xe_content .xe_top .ct_01 {
-                color: #ed297b;
-                border: 1px solid #ed297b;
+                color: #5bace9;
+                border: 1px solid #5bace9;
             }
 
             .board_box .xe_content .xe_top .ct_02 {
@@ -1142,12 +1142,12 @@ div.download_box {
         }
 
         div.download_box li:hover i {
-            color: #ed297b;
+            color: #5bace9;
         }
 
         div.download_box li:hover a {
-            color: #ed297b;
-            border: 1px solid #ed297b;
+            color: #5bace9;
+            border: 1px solid #5bace9;
         }
 
 
@@ -1352,7 +1352,7 @@ div.comment_box {
             }
 
             div.comment_box .write_comment .text_box_bottom span.on {
-                color: #ed297b;
+                color: #5bace9;
             }
 
             div.comment_box .write_comment .text_box_bottom span i {
@@ -1875,14 +1875,14 @@ div.comment_box {
         }
 
     .boardNavigation .pointcolor {
-        color: #ed297b !important;
-        border: 1px solid #ed297b !important;
+        color: #5bace9 !important;
+        border: 1px solid #5bace9 !important;
     }
 
         .boardNavigation .pointcolor:hover {
-            background: #ed297b !important;
+            background: #5bace9 !important;
             color: #fff !important;
-            border: 1px solid #ed297b !important;
+            border: 1px solid #5bace9 !important;
         }
 
     .boardNavigation .impact {
@@ -2075,11 +2075,7 @@ div.sum_div {
         line-height: 30px;
         box-sizing: border-box;
         padding-top: 10px;
-<<<<<<< Updated upstream
         padding-bottom: 5px;
-=======
-        padding-bottom: 12px;
->>>>>>> Stashed changes
     }
     .reservation_list .td {
         position: relative;
@@ -2336,7 +2332,7 @@ div.sum_div {
         margin-right: 2%;
     }
     ul.list_ul .list_in:hover {
-        border: 2px solid #ed297b;
+        border: 2px solid #5bace9;
     }
     .fuction_list_mini .tbody li{
         padding: 0;

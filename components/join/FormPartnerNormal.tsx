@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import RegisterCheck from './RegisterCheck';
-import { TForm } from 'pages/join';
+import { TForm } from 'pages/member/join';
 
 export type TFormPartnerNormal = {
   email: string,

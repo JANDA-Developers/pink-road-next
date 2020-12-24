@@ -139,7 +139,7 @@ select:focus {
     transform: rotate(180deg);
 } 
 
-.betatest {/* 핑크로더는 볼수 없게 none */
+.betatest {/* 잇츠가이드 볼수 없게 none */
     display:inline-block !important;
 }
 /* btn */
@@ -334,7 +334,7 @@ select:focus {
         color: #eee;
     } 
     .color02 {
-        color: #ed297b;
+        color: #5bace9;
     }
 .bd_l:after {
     content: '';

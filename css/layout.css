@@ -22,6 +22,45 @@ i.tooltip{
     font-weight: 100;
 }
 
+
+
+/* 별점디자인-Rating Star Widgets Style */
+.rating-stars ul {
+    list-style-type: none;
+    padding: 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    margin-top:10px;
+}
+
+.rating-stars li {
+    width: 8% !important;
+    margin-right:0 !important;
+}
+
+.rating-stars ul > li.star {
+    display: inline-block;
+}
+
+    /* Idle State of the stars */
+    .rating-stars ul > li.star > i.fa {
+        font-size: 1.3em; /* Change the size of the stars */
+        color: #ccc; /* Color on idle state */
+        text-align: left;
+    }
+
+    /* Hover state of the stars */
+    .rating-stars ul > li.star.hover > i.fa {
+        color: #FFCC36;
+    }
+
+    /* Selected state of the stars */
+    .rating-stars ul > li.star.selected > i.fa {
+        color: #FF912C;
+    }
+
+
+
 /* 편집모드 활성화 아이콘 */
 
 #setting_link {
@@ -127,9 +166,9 @@ i.tooltip{
    
 
 /* janda copyright */
-.footer-area-bottom {/*핑크로더는삭제요청*/
+.footer-area-bottom {
     background: #dedede;
-    display:none;
+    display:block;
 }
 
     .footer-area-bottom .janda_txt p {
@@ -274,7 +313,7 @@ i.tooltip{
     }    
     .header .main_menu > .w1200 {
         box-sizing: border-box;
-        padding: 12px 15px;
+        padding: 25px 15px;
     } 
     .header .top-menu {
         display: none;
@@ -332,14 +371,17 @@ i.tooltip{
     }
 
         .header .hd_left .logo img {
-            margin-top: 10px;
+            margin-top: 16px;
             height: 32px;
         }
 
     .header .hd_center {
+        position: relative;
+        display: inline-block;
+        right: 32px;
+        top: -3px;
         width: auto;
         z-index: 30;
-        display: inline-block;
     }
 
         .header .hd_center .nav_wrap {
@@ -372,21 +414,21 @@ i.tooltip{
 
                     .header .hd_center .nav_wrap .deps1 > li > a {
                         width: auto;
-                        font-size: 18px;
-                        font-weight: 400;
+                        font-size: 1.2em;
+                        font-weight: 600;
                         line-height: 48px;
-                        color: #333333;
+                        color: #989898;
                         letter-spacing: -1px;
                         cursor: pointer;
                     }
                     .header .hd_center .nav_wrap .deps1 > li > a:before {
                         content: '';
                         width: 100%;
-                        height: 5px;
+                        height: 8px;
                         position: absolute;
-                        bottom: 0px;
+                        bottom: -10px;
                         left: 0;
-                        background: #ed297b;
+                        background: #5bace9;
                         display: block;
                         visibility: hidden;
                         transform: scaleX(0);
@@ -401,7 +443,7 @@ i.tooltip{
 
             .header .hd_center .nav_wrap > .deps1 > li.on > a,
             .header .hd_center .nav_wrap > .deps1 > li:hover > a {
-                color: #e41773;
+                color: #5bace9;
                 transition: all 0.5s;
             }
 
@@ -441,7 +483,7 @@ i.tooltip{
                 line-height: 30px !important;
                 text-align: left;
                 box-sizing: border-box;
-                border-top: 5px solid #ed297b;
+                border-top: 5px solid #5bace9;
                 background-color: rgba(255, 255, 255, 0.856);
                 z-index: 70;
             }
@@ -477,7 +519,7 @@ i.tooltip{
 }
 
 rect.allmenu_svg {
-    fill: #ed297b;
+    fill: #5bace9;
 }
 
 .header .hd_right {
@@ -547,15 +589,15 @@ rect.allmenu_svg {
             .header .hd_right .join span:hover,
             .header .hd_right .login span:hover,
             .header .hd_right .logout span:hover {
-                border-color: #e41773;
-                color: #e41773;
+                border-color: #5bace9;
+                color: #5bace9;
             }
 
                 .header .hd_right .mypage span:hover a,
                 .header .hd_right .join span:hover a,
                 .header .hd_right .login span:hover a,
                 .header .hd_right .logout span:hover a {
-                    color: #e41773;
+                    color: #5bace9;
                 }
 
     .header .hd_right .profile {
@@ -630,13 +672,19 @@ rect.allmenu_svg {
             padding-top: 4px;
         }
 
-            .header .searchtop .search_btn object {
+            .header .searchtop .search_btn img {
                 cursor: pointer;
                 display: inline-block;
                 vertical-align: middle;
-                opacity: 0.8;
+                opacity: 0.6;
             }
-            .header .searchtop .search_btn:hover object {
+            .header .searchtop .search_btn:hover img {
+                opacity: 1;
+            }
+            .header .searchtop .search_wrap .search_btn img {
+                opacity: 0.4;
+            }
+            .header .searchtop .search_wrap .search_btn:hover img {
                 opacity: 1;
             }
 
@@ -731,7 +779,7 @@ rect.allmenu_svg {
     padding-top: 0;
     top: 50%;
     right: 15px;
-    margin-top: -11px;
+    margin-top: -8px;
 }
     .header .search_wrap .close_btn i {
         color: #ccc;
@@ -776,11 +824,11 @@ rect.allmenu_svg {
 
     }
 
-        .header .all_menu_btn object {
+        .header .all_menu_btn img {
             width: 100%;
-            opacity: 0.8;
+            opacity: 0.6;
         }
-        .header .all_menu_btn:hover object {
+        .header .all_menu_btn:hover img {
             opacity:1;
         }
 
@@ -1239,7 +1287,7 @@ rect.allmenu_svg {
         #container .row1 .inf_tit .inf_count {
             font-size: 32px;
             font-weight: 600;
-            color: #e41773;
+            color: #5bace9;
             line-height: 1em;
         }
 
@@ -1617,11 +1665,11 @@ rect.allmenu_svg {
         padding: 20px 0;
         text-align: center;
         font-size: 20px;
-        background: #e41773;
-        background: -moz-linear-gradient(-45deg, #e41773 0%, #e41773 58%);
-        background: -webkit-linear-gradient(-45deg, #e41773 0%, #e41773 58%);
-        background: linear-gradient(135deg, #e41773 0%, #e41773 58%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e41773', endColorstr='#e41773', GradientType=1);
+        background: #5bace9;
+        background: -moz-linear-gradient(-45deg, #5bace9 0%, #5bace9 58%);
+        background: -webkit-linear-gradient(-45deg, #5bace9 0%, #5bace9 58%);
+        background: linear-gradient(135deg, #5bace9 0%, #5bace9 58%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5bace9', endColorstr='#5bace9', GradientType=1);
         color: #ffffff;
     }
 
@@ -1801,7 +1849,7 @@ footer .footer_in_bottom {
         }
 
             .footer_in .bottom_nav li a:hover {
-                color: #ed297b;
+                color: #5bace9;
                 font-weight: 600;
             }
 
@@ -1828,8 +1876,8 @@ footer .footer_in_bottom {
 
             .footer_in .bottom_nav .cs a:hover {
                 color: #fff;
-                background-color: #ed297b;
-                border: 1px solid #ed297b;
+                background-color: #5bace9;
+                border: 1px solid #5bace9;
                 font-weight: 600;
                 font-size: 12px;
             }
@@ -1867,7 +1915,7 @@ footer .footer_in_bottom {
 
         .footer_in .sns a:hover {
             font-weight: 500;
-            background-color: #ed297b;
+            background-color: #5bace9;
         }
 
 .footer_in .f_detail_wrap .ft_left .logo_bottom {
@@ -2114,13 +2162,13 @@ footer .footer_in_bottom {
         }
 
     .xet_btn.pomegrante {
-        color: #ed297b;
-        border: 1px solid #ed297b;
+        color: #5bace9;
+        border: 1px solid #5bace9;
     }
 
         .xet_btn.pomegrante:active,
         .xet_btn.pomegrante:hover {
-            background: #ed297b;
+            background: #5bace9;
             color: #fff;
         }
 
@@ -2560,10 +2608,10 @@ i.icon_plus {
         overflow: hidden;
         cursor: pointer;
         background: #2196F3;
-        background: -moz-linear-gradient(-45deg, #ed297b 0%, #ed297b 58%);
-        background: -webkit-linear-gradient(-45deg, #ed297b 0%, #ed297b 58%);
-        background: linear-gradient(135deg, #ed297b 0%, #ed297b 58%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#af0d56', endColorstr='#ed297b', GradientType=1);
+        background: -moz-linear-gradient(-45deg, #5bace9 0%, #5bace9 58%);
+        background: -webkit-linear-gradient(-45deg, #5bace9 0%, #5bace9 58%);
+        background: linear-gradient(135deg, #5bace9 0%, #5bace9 58%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#af0d56', endColorstr='#5bace9', GradientType=1);
         color: #fff;
     }
 
@@ -2848,10 +2896,10 @@ i.icon_plus {
             overflow: hidden;
             cursor: pointer;
             background: #fda230;
-            background: -moz-linear-gradient(-45deg, #fda230 0%, #ed297b 58%);
-            background: -webkit-linear-gradient(-45deg, #fda230 0%,#ed297b 58%);
-            background: linear-gradient(135deg, #fda230 0%,#ed297b 58%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fda230', endColorstr='#ed297b',GradientType=1 );
+            background: -moz-linear-gradient(-45deg, #fda230 0%, #5bace9 58%);
+            background: -webkit-linear-gradient(-45deg, #fda230 0%,#5bace9 58%);
+            background: linear-gradient(135deg, #fda230 0%,#5bace9 58%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fda230', endColorstr='#5bace9',GradientType=1 );
             color: #fff
         }
 
@@ -2931,20 +2979,20 @@ i.icon_plus {
     }
 
         .search_in .search_box .check.on {
-            background: #ed297b;
+            background: #5bace9;
             z-index: 6;
             color: #fff;
-            border: 1px solid #ed297b
+            border: 1px solid #5bace9
         }
 
         .search_in .search_box .check:hover {
-            color: #ed297b;
-            border: 1px solid #ed297b
+            color: #5bace9;
+            border: 1px solid #5bace9
         }
 
         .search_in .search_box .check.on:hover {
             color: #fff;
-            border: 1px solid #ed297b
+            border: 1px solid #5bace9
         }
 
     .search_in .alignment2 {
@@ -3404,9 +3452,8 @@ margin-bottom:0;
         display:inline-block;
     }
     .header {
-        height: 113px;
+        height: 134px;
         margin-bottom: 0;
-        z-index: 100;
     }
         .header > .w1200 {
             padding: 28px 42px;
@@ -3414,15 +3461,16 @@ margin-bottom:0;
         .header .hidden {
             width: 100%;
             height: 77px;
-            top: 113px;
+            top: 134px;
             right: 0;
         }
     .header .hd_center .nav_wrap {
         display: inline-block;
     }
     .header .hd_center .nav_wrap .deps1 > li > a {
-        font-size: 15px;
-    }   .header .top-menu {
+        font-size: 1.3em;
+    }  
+     .header .top-menu {
         display: block;
     }
         .header .search_wrap {
@@ -3466,11 +3514,13 @@ margin-bottom:0;
         }
             #all_menu ul .a_menu_tit {
                 border-top: 0;
+                border-bottom: 0;
                 padding: 0;
                 padding-right: 2%;
                 width: 30%;
                 margin-bottom: 20px;
                 min-width: 100px;
+
             }
                 #all_menu ul .a_menu_tit a {
                     font-size: 19px;
@@ -3687,7 +3737,7 @@ margin-bottom:0;
         display: flex;
     }
         .header .hd_center .nav_wrap .deps1 > li > a {
-            font-size: 16px;
+            font-size: 1.5em;
         }
     .header .hd_right {
         right: 0;
@@ -3794,7 +3844,7 @@ margin-bottom:0;
                 min-width: 180px;
             }
     .header .hd_center .nav_wrap .deps1 > li > a {
-        font-size: 19px;
+        font-size: 1.7em;
     }
 }
 
