@@ -2075,7 +2075,11 @@ div.sum_div {
         line-height: 30px;
         box-sizing: border-box;
         padding-top: 10px;
+<<<<<<< Updated upstream
         padding-bottom: 5px;
+=======
+        padding-bottom: 12px;
+>>>>>>> Stashed changes
     }
     .reservation_list .td {
         position: relative;
