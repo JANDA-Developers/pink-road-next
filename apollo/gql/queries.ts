@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
 import { F_BOOKING, F_CATEGORY,  F_PAGE_INFO, F_PRODUCT,F_USER } from "./fragments";
+import { F_HOMEPAGE } from "./homepage";
+import { F_SYSTEMNOTI } from "./systemNoti";
 
 /* :::::::::::::::::::::::::::::::::::::: 
 
@@ -66,6 +68,9 @@ export const GET_CONTEXT = gql`
         error
         data {
           ...Fuser
+          unReadNoties {
+            ...FsystemNoti
+          }
           bookings {
             ...Fbooking
             seller {
@@ -93,7 +98,16 @@ export const GET_CONTEXT = gql`
           ...Fcategory
         }
       }
-  }
+      Homepage {
+        ok
+        error
+        data {
+            ...Fhomepage
+        }
+      }
+    }
+  ${F_SYSTEMNOTI}
+  ${F_HOMEPAGE}
   ${F_PRODUCT}
   ${F_BOOKING}
   ${F_CATEGORY}

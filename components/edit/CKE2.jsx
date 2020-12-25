@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Editor from 'pinkloader-ckeditor5-custom-build/build/ckeditor';
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import { SERVER_URI } from 'apollo/uri';
@@ -143,6 +143,7 @@ const editorConfiguration = {
 
 
   const CKEDITOR = ({data,onChange}) => {
+
       return (
           <div className="myckeditor">
               <CKEditor
@@ -170,5 +171,5 @@ const editorConfiguration = {
 
   }
 
-
 export default CKEDITOR;
+

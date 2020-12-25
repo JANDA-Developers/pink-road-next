@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { DayModifiers } from "react-day-picker";
 import { JoinContext } from "../pages/join";
 import { AddUserInput, GENDER, VerificationEvent, VerificationTarget } from "../types/api";
+import { E_INPUT } from "../types/interface";
 import { useUpload } from "./useUpload";
 
 export interface ISignUpInput extends Partial<AddUserInput> {
@@ -20,6 +21,7 @@ export const useJoin = () => {
         acceptEamil: false,
         acceptSms: false,
         account_number: false,
+        busi_department: false,
         address: false,
         address_detail: false,
         bank_name: false,
@@ -50,12 +52,14 @@ export const useJoin = () => {
         setErrDisplay({ ...errDisplay })
     }
 
-    const { verifiedEmail } = useContext(JoinContext)!;
-    const [data, setData] = useState<ISignUpInput>({ email: verifiedEmail })
+    const { verifiData: { payload } } = useContext(JoinContext)!;
+    const [data, setData] = useState<ISignUpInput>({ email: payload })
     const [daumAddress, setDaumAddress] = useState(false);
     const { signleUpload } = useUpload();
 
-    const handleAddress = () => {
+    const handleAddress = (e: any) => {
+        e.preventDefault();
+        e.stopPropagation();
         setDaumAddress(true);
     }
 
@@ -66,7 +70,9 @@ export const useJoin = () => {
         setDayPickerMonth(newVal);
     }
 
-    const handleBirthPicker = () => {
+    const handleBirthPicker = (e: any) => {
+        e.preventDefault();
+        e.stopPropagation();
         setBirthDayPicker(!birthdayPicker)
     }
 
@@ -93,6 +99,7 @@ export const useJoin = () => {
             address: address
         })
     }
+
 
     const handleDaumPostalComplete = (data: any) => {
 
@@ -152,6 +159,7 @@ export const useJoin = () => {
         data,
         handleDayPickerMonth,
         daumAddress,
+        setDaumAddress,
         handleData,
         handleBusinessLicense,
         handleGender,

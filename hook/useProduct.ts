@@ -1,6 +1,6 @@
-import { MutationHookOptions, useLazyQuery, useMutation } from "@apollo/client";
+import { MutationHookOptions, useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { PRODUCT_POST_DELETE, PRODUCT_POST_LIST } from "../apollo/gql/product";
-import { productDelete, productDeleteVariables } from "../types/api";
+import { bookingList, bookingListVariables, productDelete, productDeleteVariables } from "../types/api";
 import { productFindById, productFindByIdVariables } from "../types/api";
 import { IlistQueryInit, IproductFindById } from "../types/interface";
 import { QueryHookOptions } from "@apollo/client"
@@ -128,3 +128,13 @@ export const useProductUpdate = (options?: MutationHookOptions<productUpdate,pro
 
     return {productUpdate, updateLoading}
 }
+
+
+
+
+
+
+
+
+
+

@@ -4,7 +4,7 @@ import { AppContext } from '../_app';
 import { getItemCount } from '../../utils/Storage';
 import { arraySum } from '../../utils/math';
 import { setLastMonthCount, setThisMonthCount } from '../../components/mypage/countSetter';
-import { GENDER } from '../../types/api';
+import { GENDER, UserRole } from '../../types/api';
 import { autoHypenPhone, cc_format } from "../../utils/formatter";
 import { useUserUpdate } from '../../hook/useUserUpdate';
 import { useMyProfile } from '../../hook/useMyProfile';
@@ -27,11 +27,9 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const { userUpdate } = useUserUpdate({
         refetchQueries: [getOperationName(GET_CONTEXT) || ""],
     });
-    const { myProfile: defaultProfile } = useContext(AppContext);
-    const { verifyComplete, verify } = useVerification();
-    const [code, setCode] = useState("");
+    const { myProfile: defaultProfile, role, isAdmin } = useContext(AppContext);
+    const { code, setCode } = useVerification();
     const [nextPhoneNum, setNextPhoneNum] = useState("");
-
 
     const { data,
         setData,
@@ -93,35 +91,33 @@ export const MyPageProfile: React.FC<IProp> = () => {
     }
 
     const handleRetire = () => {
-
     }
 
     let verifyTemplate = (verificationId: string) => {
-
-        if (code.length < 4) {
-            toast("인증번호를 입력 바랍니다.");
-            return;
-        }
-        verifyComplete({
-            code,
-            payload: phoneNumber,
-            verificationId
-        })
+        // if (code.length < 4) {
+        //     toast("인증번호를 입력 바랍니다.");
+        //     return;
+        // }
+        // verifyComplete({
+        //     code,
+        //     payload: phoneNumber,
+        //     verificationId
+        // })
     }
 
     let handleVerifyComplete: () => any = () => { };
 
     const handleVerifi = () => {
-        if (SEND_LIMIT < 0) {
-            alert("더이상 요청할 수 없습니다 화면을 새로고침 해주세요.");
-            return;
-        }
-        verify(phoneNumber, (data) => {
-            SEND_LIMIT = SEND_LIMIT - 1;
-            const verifiId = data?.VerificationStart.data?._id;
-            if (!verifiId) throw Error("Verifi start fail");
-            handleVerifyComplete = verifyTemplate.bind(verifyTemplate, verifiId);
-        })
+        // if (SEND_LIMIT < 0) {
+        //     alert("더이상 요청할 수 없습니다 화면을 새로고침 해주세요.");
+        //     return;
+        // }
+        // verify(phoneNumber, (data) => {
+        //     SEND_LIMIT = SEND_LIMIT - 1;
+        //     const verifiId = data?.VerificationStart.data?._id;
+        //     if (!verifiId) throw Error("Verifi start fail");
+        //     handleVerifyComplete = verifyTemplate.bind(verifyTemplate, verifiId);
+        // })
     }
 
     const handleChangePhoneNumber = () => {
@@ -137,30 +133,33 @@ export const MyPageProfile: React.FC<IProp> = () => {
 
     const pwSameCheck = () => nextPw.password && nextPw.password === nextPw.passwordCheck;
 
-    const [state, setState] = useState<"partnerB" | "noraml" | "indiPartner">("partnerB");
+    const [state, setState] = useState<UserRole>(role);
 
-    const isPartnerB = state === "partnerB"
-    const isPartner = state === "indiPartner"
-    const isBuyer = state === "noraml";
+    const isPartnerB = state === "partnerB" || role === UserRole.manager || UserRole.admin;
+    const isPartner = state === UserRole.partner
+    const isBuyer = state === UserRole.individual;
     const isSeller = isPartnerB || isPartner;
 
 
     return <MypageLayout >
-        <button style={{
-            color: isPartnerB ? "red" : undefined
-        }} onClick={() => {
-            setState("partnerB")
-        }}>파트너B</button>
-        <button style={{
-            color: isPartner ? "red" : undefined
-        }} onClick={() => {
-            setState("indiPartner")
-        }}>파트너</button>
-        <button style={{
-            color: isBuyer ? "red" : undefined
-        }} onClick={() => {
-            setState("noraml")
-        }}>구매자</button>
+        {isAdmin && <div>
+            <button style={{
+                color: isPartnerB ? "red" : undefined
+            }} onClick={() => {
+                setState(UserRole.partnerB)
+            }}>파트너B</button>
+            <button style={{
+                color: isPartner ? "red" : undefined
+            }} onClick={() => {
+                setState(UserRole.partner)
+            }}>파트너</button>
+            <button style={{
+                color: isBuyer ? "red" : undefined
+            }} onClick={() => {
+                setState(UserRole.individual)
+            }}>구매자</button>
+        </div>
+        }
         <div className="in">
             <h4>회원정보</h4>
             <div className="mypage_page">
@@ -282,7 +281,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     </div>
                                 </div>
                             </li>
-                            {isSeller ||
+                            {isSeller ?
                                 <li>
                                     <div className="title">이름</div>
                                     <div className="txt">
@@ -292,9 +291,9 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                             <li className={`c_out ${is_froreginer && "on"}`}>외국인</li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li> : ""
                             }
-                            {isSeller ||
+                            {isSeller ?
                                 <li>
                                     <div className="title">성별</div>
                                     <div className="txt">
@@ -303,7 +302,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                             <li className={`${isFemale || "on"} men`}>남</li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li> : ""
                             }
                             <li>
                                 <div className="title">연락처</div>

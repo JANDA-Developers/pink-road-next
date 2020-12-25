@@ -1,18 +1,15 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import FormNormal from 'components/join/UserInfoForm';
 import SubTopNav from 'layout/components/SubTop';
 import { useVerification } from '../hook/useVerification';
 import { ISet } from '../types/interface';
 import { UserRole } from '../types/api';
-import { Modal } from '../components/modal/Modal';
-import { UsePolicy } from '../components/policy/UsePolicy';
-import { SERVER_URI } from '../apollo/uri';
 import { getFromUrl } from '../utils/url';
 import { closeModal, openModal } from '../utils/popUp';
 import { VerifiEamilModal } from '../components/verifiModal/VerifiEmailModal';
 import { Storage } from '../utils/Storage';
-import { useUpdate } from '../hook/useUpdater';
 import UserInfoForm from 'components/join/UserInfoForm';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -38,20 +35,28 @@ interface IjoinContext extends ReturnType<typeof useVerification> {
     isIndi: boolean,
     verificationId?: string
     verifiedEmail?: string
+    oauth?: string
 
 }
 
 export const JoinContext = React.createContext<null | IjoinContext>(null);
 
 const Join = () => {
+    const router = useRouter();
     const verificationId = getFromUrl("vid") || undefined;
     const verifiedEmail = getFromUrl("email") || undefined;
-    const { updateComponent } = useUpdate();
+    const oauth = getFromUrl("oauth") || undefined;
     const [userType, setUserType] = useState<UserRole>(UserRole.individual);
-    const [joinProcess, setJoinProcess] = useState<TJoinProcess>("userType");
+    const [joinProcess, joinSet] = useState<TJoinProcess>("userType");
     const verifiHook = useVerification({
         _id: verificationId,
+        payload: verifiedEmail
     });
+    const setJoinProcess = (process: TJoinProcess) => {
+        history.pushState({ joinProcess: joinProcess }, "회원가입 절차");
+        history.pushState({ joinProcess: joinProcess }, "회원가입 절차");
+        joinSet(process)
+    }
 
     const checkProcess = (process: TJoinProcess) => process === joinProcess;
     const checkProcessOn = (process: TJoinProcess) => checkProcess(process) ? "on" : "";
@@ -71,7 +76,8 @@ const Join = () => {
         setJoinProcess,
         isPartenerB,
         isPartner,
-        isIndi
+        isIndi,
+        oauth
     }
 
     useEffect(() => {
@@ -81,9 +87,21 @@ const Join = () => {
         }
     }, [])
 
+
     useEffect(() => {
-        if (verificationId)
+        if (oauth) {
+            setJoinProcess("verification")
+        }
+        if (verificationId) {
             setJoinProcess("userInfo")
+        }
+    }, [])
+
+
+    useEffect(() => {
+        window.onpopstate = function (event) {
+            joinSet(event.state.joinProcess);
+        };
     }, [])
 
     return (
@@ -98,7 +116,9 @@ const Join = () => {
                         </h4>
                         <div className="join_address w100">
                             <ul>
-                                <li key={joinProcess} className={checkProcessOn("registered")}>
+                                <li
+                                    key={joinProcess}
+                                    className={checkProcessOn("userType")}>
                                     <i>Setep.01</i>
                                     <br />
                                     회원선택
@@ -138,10 +158,6 @@ const Join = () => {
                                 }
                             </JoinContext.Provider>
                         </div>
-                        {/* Popup:이용약관 */}
-                        <Modal title="이용약관" id="policyPopUp">
-                            <UsePolicy />
-                        </Modal>
                     </div>
                 </div>
             </div>
@@ -162,12 +178,13 @@ const JoinResult = () => {
                 가입시 입력된 이메일로 가입승인 이메일로 안내드리겠습니다.
             </p>
             <div className="fin">
-                <button
-                    className="sum btn"
-                //   onclick="location.href='../login';"
-                >
-                    로그인 하러가기
+                <Link href="/login">
+                    <button
+                        className="sum btn"
+                    >
+                        로그인 하러가기
                 </button>
+                </Link>
             </div>
         </div>
     )
@@ -175,8 +192,7 @@ const JoinResult = () => {
 
 
 const Verification: React.FC = () => {
-
-    const { setJoinProcess, verifiData, verifyCompleteMu, verifyMu, setVerifiData, totalLoading } = useContext(JoinContext)!;
+    const { setJoinProcess, oauth, ...verifiHook } = useContext(JoinContext)!;
     const handleAuth = (target: "google" | "kakao") => () => {
         window.location.href = process.env.NEXT_PUBLIC_SERVER_URI + "/login/" + target
     }
@@ -184,6 +200,21 @@ const Verification: React.FC = () => {
     const handleSelfAuth = () => {
         openModal("#emailVerifi")()
     }
+
+    useEffect(() => {
+        if (!oauth) return;
+        const isgoogle = oauth === "google";
+        const authEmail = getFromUrl("oauthEmail");
+        let target = isgoogle ? "구글" : "카카오";
+        alert(`현재 웹사이트는 이미 ${target} ${authEmail} 계정에 연결되어 있습니다. 새로 가입하시길 원하신다면 먼저 ${target}에 로그아웃을 해야합니다. 아래와 같은 방법을 시도해 보세요.
+             - 이메일 인증을 사용
+             - 다른 브라우저를 사용
+             - 다른 기기를 사용
+             - 브라우저 쿠키를 삭제
+             `)
+        // const googleLogout = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://www.example.com";
+        // const kakakoLogout = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://www.example.com";
+    }, [oauth])
 
     return (
         <div className="certified" id="con01">
@@ -217,11 +248,7 @@ const Verification: React.FC = () => {
                 closeModal("#emailVerifi")()
                 setJoinProcess("userInfo");
             }} verifiHook={{
-                verifiData,
-                verifyCompleteMu,
-                verifyMu,
-                setVerifiData,
-                totalLoading
+                ...verifiHook
             }} />
 
         </div>

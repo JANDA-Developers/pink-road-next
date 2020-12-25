@@ -21,3 +21,4 @@ export const useUserUpdate = (options?: MutationHookOptions<userUpdate,userUpdat
 
     return {userUpdate, updateLoading}
 }
+

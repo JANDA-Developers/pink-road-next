@@ -5,8 +5,6 @@ import pageInfoDefault from 'info/siteInfo.json';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { Upload } from 'components/common/Upload';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { usePageInfo } from 'hook/usePageInfo';
-import { UserRole } from 'types/api';
 import { getStaticPageInfo } from '../utils/page';
 
 type TGetProps = {

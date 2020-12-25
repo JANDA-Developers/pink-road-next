@@ -42,7 +42,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             initialViewCount
         })
         
-        const [getData, { data, loading: getLoading }] = useLazyQuery<Q,V>(QUERY,{
+        const [getData, { data, loading: getLoading,...queryElse }] = useLazyQuery<Q,V>(QUERY,{
             fetchPolicy: "network-only",
             // @ts-ignore
             variables: {
@@ -68,7 +68,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             params.page
         ])
 
-        return { pageInfo,  getLoading, items, ...params }
+        return { pageInfo,  getLoading, items, ...params,...queryElse }
     }
 
     return listQueryHook
@@ -89,15 +89,15 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
 
 
 
-export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V,QUERY:DocumentNode) => {
-    const findQueryHook = (key:any, options:QueryHookOptions<Q, V> = {}) => {
+export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V | null, QUERY:DocumentNode) => {
+    const findQueryHook = (key?:any, options:QueryHookOptions<Q, V> = {}) => {
         const [getData, { data, loading, error:apolloError }] = useLazyQuery<Q, V>(QUERY, {
             skip: !key,
             nextFetchPolicy: "network-only",
             // @ts-ignore
-            variables: {
+            variables: findBy ? {
                 [findBy]: key
-            },
+            } : undefined,
             ...options,
         })
 

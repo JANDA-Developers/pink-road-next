@@ -8,8 +8,7 @@ import { openModal } from '../../utils/popUp';
 import { ISignUpInput } from '../../hook/useJoin';
 import { omits } from '../../utils/omit';
 import { Modal } from '../modal/Modal';
-import PolicyPopup from '../policyPopup/PolicyPopup';
-import { PrivacyPolicy } from '../policy/PriviacyPolicy';
+import { Policy } from '../policy/PriviacyPolicy';
 
 type TSMS = {
   sns: true,
@@ -32,12 +31,20 @@ interface IProps {
 
 const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
 
-  const { userType, setJoinProcess, verificationId } = useContext(JoinContext)!;
+  const { userType, setJoinProcess, verifiData } = useContext(JoinContext)!;
+
+  const { _id: verificationId } = verifiData;
 
 
   const [signUpMu] = useSignUp({
-    onCompleted: () => {
-      setJoinProcess('registered');
+    onCompleted: ({ SignUp }) => {
+      if (SignUp.ok) {
+        alert("회원가입 완료")
+        setJoinProcess('registered');
+      } else {
+        alert(SignUp.error);
+        alert("회원가입에 실패 했습니다. 관리자 문의 바랍니다.");
+      }
     }
   });
 
@@ -114,40 +121,78 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
     })
   }
 
-  const { nodes, validate: normalValidate } = new Validater([{
+
+
+
+  if (userType === UserRole.partnerB) {
+    //네이밍 얼라이어스
+    registerInfo.name = registerInfo.manageName;
+    registerInfo.phoneNumber = registerInfo.manageContact;
+    registerInfo.address = registerInfo.address;
+    registerInfo.address_detail = registerInfo.address_detail;
+  }
+
+  const { nodes: sharedValidate } = new Validater([{
     value: verificationId,
     failMsg: "이메일 인증을 받아주세요.",
   }, {
     value: registerInfo.pw === registerInfo.pwcheck,
     failMsg: "비밀번호가 일치하지 않습니다.",
   }, {
-    value: isEmail(registerInfo.email),
-    failMsg: "올바른 이메일을 사용해 주십시요.",
-  }, {
     value: isPassword(registerInfo.pw || ""),
     failMsg: "비밀번호는 특수문자 1개이상 및 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다",
   }, {
-    value: isPhone(registerInfo.phoneNumber || ""),
-    failMsg: "연락처란에는 숫자만 기입해 주십시요",
-  }, {
     value: isCheckAll,
     failMsg: "동의 항목에 모두 체크 해주세요."
-  }])
+  },
+  {
+    value: registerInfo.address,
+    failMsg: "주소값을 입력 해주세요."
+  },
+  {
+    value: registerInfo.address_detail,
+    failMsg: "상세 주소값을 입력 해주세요."
+  },
+  ])
+
+  const { validate: normalValidate } = new Validater([
+    {
+      value: isName(registerInfo.name || ""),
+      failMsg: "이름 값이 올바르지 않습니다."
+    },
+    {
+      value: isPhone(registerInfo.phoneNumber || ""),
+      failMsg: "올바른 핸드폰 번호가 아닙니다.",
+    },
+    ...sharedValidate
+  ])
 
   const { validate: partnerValidate } = new Validater([
     {
       value: isName(registerInfo.name || ""),
       failMsg: "이름 값이 올바르지 않습니다."
     },
-    ...nodes
+    ...sharedValidate
   ])
 
   const { validate: BpartnerValidate } = new Validater([
     {
       value: isPhone(registerInfo.busi_contact || ""),
+      failMsg: "대표 연락처가 올바르지 않습니다."
+    },
+    {
+      value: isPhone(registerInfo.manageContact || ""),
       failMsg: "담당자 연락처가 올바르지 않습니다."
     },
-    ...nodes
+    {
+      value: registerInfo.busi_address,
+      failMsg: "주소값을 입력 해주세요."
+    },
+    {
+      value: registerInfo.busi_address_detail,
+      failMsg: "상세 주소값을 입력 해주세요."
+    },
+    ...sharedValidate
   ])
 
 
@@ -249,7 +294,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               <div className="in_box1">
                 <input type="checkbox" className="checkbox"
                   checked={chkPolocy.policy_use}
-                  onClick={() => { handlePolicy('policy_use') }} />
+                  onChange={() => { handlePolicy('policy_use') }} />
                 <span>
                   <strong>이용약관 동의</strong>[필수]
                   </span>
@@ -374,25 +419,31 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         </div>
       </div>
       <Modal id="UsePolicy" title="이용약관 동의">
-        <PolicyPopup />
+        <Policy type="usePolicy" />
       </Modal>
+
       <Modal id="PrivacyPolicy" title="개인정보 수집 및 이용 동의">
-        <PrivacyPolicy />
+        <Policy type="PrivacyPolicy" />
       </Modal>
-      <Modal id="PrivacyConsignmentPolicy" title="개인정보처리 위탁">
-        <PolicyPopup />
-      </Modal>
+
       <Modal id="TravelerPolicy" title="여행자약관">
-        <PolicyPopup />
+        <Policy type="travelerPolicy" />
       </Modal>
+
       <Modal id="PartnerPolicy" title="파트너약관">
-        <PolicyPopup />
+        <Policy type="partnerPolicy" />
       </Modal>
+
       <Modal id="MarketingPolicy" title="마케팅정보 수신동의">
-        <PolicyPopup />
+        <Policy type="marketingPolic" />
       </Modal>
+
+      <Modal id="MarketingPolicy" title="비지니스 파트너 약관">
+        <Policy type="partnerBpolicy" />
+      </Modal>
+
       <Modal id="ThirdPolicy" title="개인정보 제3자 제공">
-        <PolicyPopup />
+        <Policy type="thirdPolicy" />
       </Modal>
       <div className="fin">
         <a href="/" className="cancel btn">취소</a>

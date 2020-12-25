@@ -83,7 +83,8 @@ export const F_USER = gql`
         gender
         busi_num
         busi_department
-        isVerifiedPhoneNumber,
+        isVerifiedManager
+        isVerifiedPhoneNumber
         busiRegistration {
             ...Ffile
         },

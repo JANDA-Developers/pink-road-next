@@ -66,8 +66,7 @@ export const Login: React.FC<IProp> = () => {
         fetchPolicy: "network-only",
         onCompleted: ({ SignIn }) => {
             if (SignIn.ok) {
-                Storage.saveLocal("jwt", SignIn.data.token);
-                toast.info("환영합니다.");
+                Storage?.saveLocal("jwt", SignIn.data?.token || "");
                 location.href = "/"
             } else {
                 alert(SignIn.error)

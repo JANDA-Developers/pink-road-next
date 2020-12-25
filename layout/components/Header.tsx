@@ -6,6 +6,8 @@ import { AppContext } from "pages/_app";
 import { NEWS_TYPE } from "../../types/api";
 import { setVal, whenEnter } from "../../utils/eventValueExtracter";
 import { useRouter } from "next/router";
+import cache from "../../apollo/cache";
+import { NotiIcon } from "./NotiIcon";
 
 interface IProp { }
 
@@ -75,7 +77,7 @@ export const Header: React.FC<IProp> = () => {
 
     const handleLogOut = () => {
         localStorage.removeItem("jwt");
-        location.reload();
+        location.href = process.env.NEXT_PUBLIC_CLIENT_DOMAIN + "/"
     }
 
     const goToSearchPage = () => {
@@ -93,7 +95,7 @@ export const Header: React.FC<IProp> = () => {
     return <header className="header" id="header">
         <div className="top-menu">
             <div className="w1200">
-                {isLogin ? <p><strong>{myProfile?.name}</strong>님 어서오세요~!!</p>
+                {isLogin ? <p><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>
                     : <i />}
                 <ul>
                     <li className="join">
@@ -215,13 +217,7 @@ export const Header: React.FC<IProp> = () => {
                         </div>
                         {isLogin ?
                             <div className="inform_top">
-                                <div className="inform_icon">
-                                    <object type="image/svg+xml" data={'/img/svg/inform_icon4.svg'}>
-                                        현재 브라우저는 iframe을 지원하지 않습니다.
-                            </object>
-                                    <button />
-                                    <span className="number">99+</span>
-                                </div>
+                                <NotiIcon />
                             </div>
                             : <i />}
                         <div onClick={handleAllMenu} className="all_menu_btn">

@@ -17,9 +17,11 @@ import { useProductFindById } from "../../../hook/useProduct";
 import { changeVal } from "../../../utils/eventValueExtracter";
 import PageLoading from "../../Loading";
 import { auth } from "../../../utils/with";
-import { ADMINS } from "../../../types/const";
+import { ADMINS, ALLOW_SELLERS } from "../../../types/const";
+import { EditorLoading } from "../../../components/edit/EdiotrLoading";
 
-const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
+
+const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
 interface IProp {
 }
 
@@ -342,4 +344,4 @@ export const TourWrite: React.FC<IProp> = () => {
     </div>
 };
 
-export default auth(ADMINS)(TourWrite);
+export default auth(ALLOW_SELLERS)(TourWrite);

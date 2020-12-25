@@ -646,6 +646,88 @@ export interface categoryUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: homepage
+// ====================================================
+
+export interface homepage_Homepage_data {
+  __typename: "Homepage";
+  logi: string;
+  siteDesc: string;
+  siteKeyWards: string[];
+  siteName: string;
+  signUpRedirect: string;
+  blacklist: string[];
+  loginRedirect: string;
+  loginOutRedirect: string;
+  PrivacyPolicy: string;
+  partnerBpolicy: string;
+  usePolicy: string;
+  travelerPolicy: string;
+  partnerPolicy: string;
+  marketingPolic: string;
+  thirdPolicy: string;
+}
+
+export interface homepage_Homepage {
+  __typename: "HomepageResponse";
+  ok: boolean;
+  error: string | null;
+  data: homepage_Homepage_data | null;
+}
+
+export interface homepage {
+  Homepage: homepage_Homepage;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: homepageUpdate
+// ====================================================
+
+export interface homepageUpdate_HomepageUpdate_data {
+  __typename: "Homepage";
+  logi: string;
+  siteDesc: string;
+  siteKeyWards: string[];
+  siteName: string;
+  signUpRedirect: string;
+  blacklist: string[];
+  loginRedirect: string;
+  loginOutRedirect: string;
+  PrivacyPolicy: string;
+  partnerBpolicy: string;
+  usePolicy: string;
+  travelerPolicy: string;
+  partnerPolicy: string;
+  marketingPolic: string;
+  thirdPolicy: string;
+}
+
+export interface homepageUpdate_HomepageUpdate {
+  __typename: "HomepageUpdateResponse";
+  ok: boolean;
+  error: string | null;
+  data: homepageUpdate_HomepageUpdate_data | null;
+}
+
+export interface homepageUpdate {
+  HomepageUpdate: homepageUpdate_HomepageUpdate;
+}
+
+export interface homepageUpdateVariables {
+  params: HomepageUpdateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: pcategoryCreate
 // ====================================================
 
@@ -888,6 +970,7 @@ export interface newsFindById_NewsFindById_data_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -1066,6 +1149,7 @@ export interface newsList_NewsList_data_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -1423,6 +1507,7 @@ export interface portfolioFindById_PortfolioFindById_data_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -1597,6 +1682,7 @@ export interface portfolioList_PortfolioList_data_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -1867,6 +1953,7 @@ export interface productDelete_ProductDelete_data_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -2077,6 +2164,7 @@ export interface productList_ProductList_data_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -2242,6 +2330,7 @@ export interface productFindById_ProductFindById_data_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -2526,6 +2615,20 @@ export interface getContext_GetProfile_data_profileImg {
   uri: string;
 }
 
+export interface getContext_GetProfile_data_unReadNoties {
+  __typename: "SystemNoti";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  type: SystemNotiType;
+  /**
+   * html
+   */
+  content: string;
+  isRead: boolean;
+}
+
 export interface getContext_GetProfile_data_bookings_product {
   __typename: "Product";
   _id: string;
@@ -2619,6 +2722,7 @@ export interface getContext_GetProfile_data_products_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -2752,6 +2856,7 @@ export interface getContext_GetProfile_data {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -2774,6 +2879,7 @@ export interface getContext_GetProfile_data {
    * 프로필 사진
    */
   profileImg: getContext_GetProfile_data_profileImg | null;
+  unReadNoties: getContext_GetProfile_data_unReadNoties[] | null;
   bookings: getContext_GetProfile_data_bookings[];
   products: getContext_GetProfile_data_products[];
 }
@@ -2801,9 +2907,36 @@ export interface getContext_CategoryList {
   data: getContext_CategoryList_data[] | null;
 }
 
+export interface getContext_Homepage_data {
+  __typename: "Homepage";
+  logi: string;
+  siteDesc: string;
+  siteKeyWards: string[];
+  siteName: string;
+  signUpRedirect: string;
+  blacklist: string[];
+  loginRedirect: string;
+  loginOutRedirect: string;
+  PrivacyPolicy: string;
+  partnerBpolicy: string;
+  usePolicy: string;
+  travelerPolicy: string;
+  partnerPolicy: string;
+  marketingPolic: string;
+  thirdPolicy: string;
+}
+
+export interface getContext_Homepage {
+  __typename: "HomepageResponse";
+  ok: boolean;
+  error: string | null;
+  data: getContext_Homepage_data | null;
+}
+
 export interface getContext {
   GetProfile: getContext_GetProfile;
   CategoryList: getContext_CategoryList;
+  Homepage: getContext_Homepage;
 }
 
 /* tslint:disable */
@@ -3401,6 +3534,175 @@ export interface settlementCompleteVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: unReadSystemNotiFind
+// ====================================================
+
+export interface unReadSystemNotiFind_UnReadSystemNotiFind_data {
+  __typename: "SystemNoti";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  type: SystemNotiType;
+  /**
+   * html
+   */
+  content: string;
+  isRead: boolean;
+}
+
+export interface unReadSystemNotiFind_UnReadSystemNotiFind {
+  __typename: "UnReadSystemNotiFindResponse";
+  ok: boolean;
+  error: string | null;
+  data: unReadSystemNotiFind_UnReadSystemNotiFind_data[] | null;
+}
+
+export interface unReadSystemNotiFind {
+  UnReadSystemNotiFind: unReadSystemNotiFind_UnReadSystemNotiFind;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: systemNotiList
+// ====================================================
+
+export interface systemNotiList_SystemNotiList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface systemNotiList_SystemNotiList_data {
+  __typename: "SystemNoti";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  type: SystemNotiType;
+  /**
+   * html
+   */
+  content: string;
+  isRead: boolean;
+}
+
+export interface systemNotiList_SystemNotiList {
+  __typename: "SystemNotiListResponse";
+  ok: boolean;
+  error: string | null;
+  page: systemNotiList_SystemNotiList_page;
+  data: systemNotiList_SystemNotiList_data[];
+}
+
+export interface systemNotiList {
+  SystemNotiList: systemNotiList_SystemNotiList;
+}
+
+export interface systemNotiListVariables {
+  sort?: _SystemNotiSort[] | null;
+  filter?: _SystemNotiFilter | null;
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: systemNotiRead
+// ====================================================
+
+export interface systemNotiRead_SystemNotiRead {
+  __typename: "SystemNotiReadResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface systemNotiRead {
+  SystemNotiRead: systemNotiRead_SystemNotiRead;
+}
+
+export interface systemNotiReadVariables {
+  ids: string[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: systemNotiHide
+// ====================================================
+
+export interface systemNotiHide_SystemNotiHide {
+  __typename: "SystemNotiHideResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface systemNotiHide {
+  SystemNotiHide: systemNotiHide_SystemNotiHide;
+}
+
+export interface systemNotiHideVariables {
+  ids: string[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: signUp
 // ====================================================
 
@@ -3668,6 +3970,7 @@ export interface userList_UserList_data {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -3767,6 +4070,7 @@ export interface userFindById_UserFindById_data {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -3901,6 +4205,7 @@ export interface FbookingByCode_product_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -4194,6 +4499,7 @@ export interface Fuser {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -4322,6 +4628,7 @@ export interface Fportfolio_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -4536,6 +4843,7 @@ export interface Fproduct_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -4632,6 +4940,34 @@ export interface Fproduct {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: Fhomepage
+// ====================================================
+
+export interface Fhomepage {
+  __typename: "Homepage";
+  logi: string;
+  siteDesc: string;
+  siteKeyWards: string[];
+  siteName: string;
+  signUpRedirect: string;
+  blacklist: string[];
+  loginRedirect: string;
+  loginOutRedirect: string;
+  PrivacyPolicy: string;
+  partnerBpolicy: string;
+  usePolicy: string;
+  travelerPolicy: string;
+  partnerPolicy: string;
+  marketingPolic: string;
+  thirdPolicy: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fnews
 // ====================================================
 
@@ -4683,6 +5019,7 @@ export interface Fnews_author {
    * 부서명
    */
   busi_department: string;
+  isVerifiedManager: boolean;
   isVerifiedPhoneNumber: boolean;
   /**
    * 사업자 등록증
@@ -4909,6 +5246,29 @@ export interface Fsettlement {
 // @generated
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL fragment: FsystemNoti
+// ====================================================
+
+export interface FsystemNoti {
+  __typename: "SystemNoti";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  type: SystemNotiType;
+  /**
+   * html
+   */
+  content: string;
+  isRead: boolean;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
@@ -4983,6 +5343,16 @@ export enum SettlementStatus {
   COMPLETE = "COMPLETE",
   READY = "READY",
   REQUEST = "REQUEST",
+}
+
+/**
+ * 시스템 노티피케이션 타입
+ */
+export enum SystemNotiType {
+  booking = "booking",
+  cancel = "cancel",
+  memeber = "memeber",
+  system = "system",
 }
 
 /**
@@ -5142,6 +5512,14 @@ export enum _SettlementSort {
 /**
  * Auto generated sort type
  */
+export enum _SystemNotiSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+}
+
+/**
+ * Auto generated sort type
+ */
 export enum _UserSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
@@ -5156,7 +5534,7 @@ export interface AddUserInput {
   email: any;
   pw: string;
   role: UserRole;
-  brith_date: string;
+  brith_date?: string | null;
   address: string;
   acceptSms?: boolean | null;
   acceptEamil?: boolean | null;
@@ -5169,6 +5547,7 @@ export interface AddUserInput {
   busi_address?: string | null;
   busi_address_detail?: string | null;
   account_number?: string | null;
+  busi_department?: string | null;
   bank_name?: string | null;
   partnerName?: string | null;
   manageContact?: string | null;
@@ -5229,6 +5608,24 @@ export interface FileUpdateInput {
   fileType?: string | null;
   uri: string;
   owner?: string | null;
+}
+
+export interface HomepageUpdateInput {
+  logi?: string | null;
+  siteDesc?: string | null;
+  siteKeyWards?: string[] | null;
+  siteName?: string | null;
+  signUpRedirect?: string | null;
+  blacklist?: string[] | null;
+  loginRedirect?: string | null;
+  loginOutRedirect?: string | null;
+  PrivacyPolicy?: string | null;
+  usePolicy?: string | null;
+  partnerBpolicy?: string | null;
+  travelerPolicy?: string | null;
+  partnerPolicy?: string | null;
+  marketingPolic?: string | null;
+  thirdPolicy?: string | null;
 }
 
 export interface ItineraryCreateInput {
@@ -5432,6 +5829,7 @@ export interface UserUpdateInput {
   profileImg?: FileCreateInput | null;
   partnerName?: string | null;
   manageContact?: string | null;
+  isVerifiedManager?: boolean | null;
 }
 
 export interface _BoardFilter {
@@ -5704,6 +6102,20 @@ export interface _QuestionFilter {
 export interface _SettlementFilter {
   AND?: _SettlementFilter[] | null;
   OR?: _SettlementFilter[] | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
+}
+
+export interface _SystemNotiFilter {
+  AND?: _SystemNotiFilter[] | null;
+  OR?: _SystemNotiFilter[] | null;
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;

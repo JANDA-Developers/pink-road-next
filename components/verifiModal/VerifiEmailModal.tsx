@@ -12,30 +12,32 @@ interface IProp {
 export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => {
     const [email, setEmail] = useState("")
     const [code, setCode] = useState("")
+    const [sendEmailCount, setSendEmailCount] = useState(0);
 
-    const { verifyMu, verifyCompleteMu, verifiData } = verifiHook;
+    const { verifiComplete, verifiStart, verifiData } = verifiHook;
 
     const handleSendEmail = () => {
         if (!isEmail(email)) {
             alert("올바른 이메일이 아닙니다.");
             return;
         }
-        verifyMu({
-            variables: {
-                event: VerificationEvent.UserVerifyEmail,
-                target: VerificationTarget.EMAIL,
-                payload: email,
-            }
-        }).then(result => {
-            if (result.data?.VerificationStart.ok) {
+        console.log("verifiStart");
+        console.log(verifiStart);
+        verifiStart({
+            event: VerificationEvent.UserVerifyEmail,
+            target: VerificationTarget.EMAIL,
+            payload: email,
+        }).then(({ ok }) => {
+            if (ok) {
                 alert("인증이 코드가 이메일로 전송 되었습니다.");
+                setSendEmailCount(sendEmailCount + 1)
             } else {
                 alert("인증번호 발송이 실패 했습니다.")
             }
         })
     }
 
-    const handleComplete = () => {
+    const handleComplete = async () => {
 
         if (!verifiData) {
             alert("먼저 인증 문자를 발송 해주세요.");
@@ -45,23 +47,18 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => 
             alert("인증 번호를 입력 해주세요.");
             return;
         }
-        verifyCompleteMu({
-            variables: {
-                code,
-                target: VerificationTarget.EMAIL,
-                payload: verifiData.payload!,
-                verificationId: verifiData._id!
-            }
-        }).then(result => {
-            console.log(result.errors);
-            if (result.data?.VerificationComplete.ok) {
+        await verifiComplete(code).then(result => {
+            if (result.ok) {
                 alert("인증이 완료 되었습니다.");
-                onSuccess()
             } else {
                 alert("인증번호가 일치하지 않습니다.")
             }
         })
+
+        onSuccess()
     }
+
+    const sendCountOver = sendEmailCount > 5;
 
     return <Modal title="이메일 인증" id="emailVerifi" >
         <h6>
@@ -70,10 +67,17 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => 
         <input value={email} onChange={(e) => {
             setEmail(e.currentTarget.value)
         }} />
-        <input value={code} onChange={(e) => {
-            setCode(e.currentTarget.value)
-        }} />
-        <button onClick={handleSendEmail}>인증 이메일 발송</button>
-        <button onClick={handleComplete}>인증 완료</button>
+        {sendEmailCount ?
+            <div>
+                <h6>
+                    인증번호를 입력 해주세요.
+            </h6>
+                <input value={code} onChange={(e) => {
+                    setCode(e.currentTarget.value)
+                }} />
+            </div> : ""
+        }
+        {!sendCountOver ? <button onClick={handleSendEmail}>{sendEmailCount ? "인증이메일 발송" : "인증메일 재발송"}</button> : <button>재발송 횟수를 초과하였습니다.</button>}
+        {sendEmailCount ? <button onClick={handleComplete}>인증 완료</button> : ""}
     </Modal>;
 };

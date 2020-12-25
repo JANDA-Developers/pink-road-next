@@ -13,6 +13,7 @@ type TCallBack<T> = (data: T | undefined) => void
 type TVerifiData = Partial<Omit<verificationComplete_VerificationComplete_data, "__typename">>;
 export type TuseVerification = ReturnType<typeof useVerification>
 export const useVerification = (defaultData?:TVerifiData) =>  {
+    const [code, setCode] = useState("");
     const [verifiData, setVerifiData] = useState<TVerifiData | undefined>(defaultData)
     const [verifyMu, {loading:startLoading}] = useVerificationStart({onCompleted:
         ({VerificationStart})=>{
@@ -26,8 +27,29 @@ export const useVerification = (defaultData?:TVerifiData) =>  {
         }
     });
 
+    const verifiStart = async (variables:verificationStartVariables) => {
+        return await verifyMu({
+            variables
+        }).then(result => {
+            return {...result?.data?.VerificationStart};
+        })
+    }
+
+    const verifiComplete = async (_code?:string) => {
+        return await verifyCompleteMu({
+            variables: {
+                code: _code || code,
+                payload: verifiData.payload,
+                target: verifiData.target,
+                verificationId: verifiData._id
+            }
+        }).then(result => {
+            return {...result?.data?.VerificationComplete};
+        })
+    }
+
     const totalLoading = startLoading || completeLoading;
 
-    return {verifyMu, verifyCompleteMu, verifiData, totalLoading, setVerifiData};
+    return { code, setCode, verifiStart, verifiComplete, verifyMu, verifyCompleteMu, verifiData, totalLoading, setVerifiData};
 }
 

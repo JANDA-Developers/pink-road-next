@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import DaumPostcode from 'react-daum-postcode';
-import DayPicker, { DayModifiers } from 'react-day-picker';
-import dayjs from 'dayjs'
+import DayPicker from 'react-day-picker';
 import RegisterCheck from './RegisterCheck';
 import Calendar from '../common/icon/CalendarIcon';
 import 'react-day-picker/lib/style.css';
@@ -9,7 +8,7 @@ import { GENDER } from '../../types/api';
 import { fromMonth, toMonth, useJoin } from '../../hook/useJoin';
 import { YearMonthForm } from './YearMonthForm';
 import { JoinContext } from '../../pages/join';
-
+import { autoHypenPhone } from '../../utils/formatter';
 
 
 
@@ -34,8 +33,20 @@ const UserInfoForm: React.FC = () => {
         setBirthDayPicker,
         handleNationality,
         errDisplay,
+        setDaumAddress,
         handleBusinessLicense
     } = useJoin()
+
+    useEffect(() => {
+        const hideDaumAddress = () => {
+            setDaumAddress(false)
+            setBirthDayPicker(false)
+        }
+        window.addEventListener("click", hideDaumAddress)
+        return () => {
+            window.removeEventListener("click", hideDaumAddress)
+        }
+    }, [])
 
 
     return (
@@ -183,7 +194,9 @@ const UserInfoForm: React.FC = () => {
                             <div className="ph_wrap">
                                 <label>생년월일</label>
                                 <span className={`er red_font ${errDisplay.brith_date && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
-                                <div className="w100 join_birthday">
+                                <div
+                                    onClick={handleBirthPicker}
+                                    className="w100 join_birthday">
                                     <input
                                         type="text"
                                         name="birthday"
@@ -192,7 +205,7 @@ const UserInfoForm: React.FC = () => {
                                         value={data.brith_date}
                                         onChange={handleData("brith_date")}
                                     />
-                                    <i className="calendar" onClick={handleBirthPicker}>
+                                    <i className="calendar">
                                         <Calendar />
                                     </i>
                                     <DayPicker
@@ -231,11 +244,11 @@ const UserInfoForm: React.FC = () => {
                     <div className="ph_wrap daum_addresss_wrap">
                         <label>주소</label>
                         <span className="er red_font">*주소가 정확하지 않습니다.</span>
-                        <div className="w100">
+                        <div onClick={handleAddress} className="w100">
                             <input type="text" className="w80" name="address"
                                 value={data.address}
                                 onChange={handleData("address")} />
-                            <button type="button" className="btn btn_mini" onClick={handleAddress}>
+                            <button type="button" className="btn btn_mini" >
                                 찾기
                             </button>
                         </div>
@@ -244,16 +257,12 @@ const UserInfoForm: React.FC = () => {
                                 value={data.address_detail}
                                 onChange={handleData("address_detail")} />
                         </div>
-
-                        {/* <div className={`daum_addresss ${daumAddress && 'on'}`}>
+                        <div className={`daum_addresss ${daumAddress && 'on'}`}>
                             <DaumPostcode
                                 onComplete={handleDaumPostalComplete}
                             />
-                        </div> */}
+                        </div>
                     </div>
-
-
-
                     {isPartenerB &&
                         <div>
                             <div className="ph_wrap">
@@ -278,7 +287,7 @@ const UserInfoForm: React.FC = () => {
                         </label>
                                 <span className="er red_font">
                                     *사업자번호가 바르지 않습니다.
-              </span>
+                                </span>
                                 <div className="w100">
                                     <select className="w20" value={data.is_priv_corper ? "true" : "false"} onChange={handleData("is_priv_corper")}>
                                         <option value={"false"}>개인</option>
@@ -317,8 +326,8 @@ const UserInfoForm: React.FC = () => {
                                         className="form-control w20"
                                         placeholder="부서명"
                                         name="department"
-                                        value={data.busi_name || ""}
-                                        onChange={handleData("busi_name")}
+                                        value={data.busi_department || ""}
+                                        onChange={handleData("busi_department")}
                                     />{" "}
                                     <input
                                         type="text"
@@ -339,7 +348,7 @@ const UserInfoForm: React.FC = () => {
                                         className="w80"
                                         name="incharge_number"
                                         placeholder="-를 제외한 휴대폰 번호를 입력해주세요"
-                                        value={data.manageContact || ""}
+                                        value={autoHypenPhone(data.manageContact || "")}
                                         onChange={handleData("manageContact")}
                                     />
                                     <button type="button" className="btn btn_mini">
@@ -411,3 +420,5 @@ const UserInfoForm: React.FC = () => {
 }
 
 export default UserInfoForm
+
+
