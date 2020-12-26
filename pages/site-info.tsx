@@ -55,7 +55,16 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
     return <div className="siteInfo_in">
         <HiddenSubmitBtn setData={setPage} original={original} path="site-info" data={page} />
-        <div style={{
+        <div className="top_bg w100">
+            <div className="w1200">
+                <h3 {...edit("con01_mainTitle")} />
+                <p {...edit("con01_secondTitle")} />
+                <div className="logo"><img src="/its/logo_1.png" alt="잇츠가이드 로고" /></div>
+            </div>
+        </div>
+
+
+        {/* <div style={{
             ...bg("mainBg")
         }} className="top_bg w100">
             <div className="w1200">
@@ -63,9 +72,9 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                 <span  {...edit("secondTitle")} />
             </div>
             <Upload onUpload={imgEdit("mainBg")} />
-        </div>
+        </div> */}
         {/* <div className="bold" title="Bold" onClick={() => { effectDoc('bold') }}>B</div> */}
-        <div className="w100 con01 con_block">
+        {/* <div className="w100 con01 con_block">
             <div className="">
                 <div className="bottom">
                     <div className="haf_first">
@@ -82,7 +91,66 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     </div>
                 </div>
             </div>
+        </div> */}
+        <div className="con02">
+            <div className="w1200">
+                <div className="top_txt">
+                    <h4 {...edit("con02_mainTitle")} />
+                    <p {...edit("con02_secondTitle")} />
+                </div>
+                <ul>
+                    <li>
+                        <i className="svg1"><img src="/img/svg/siteinfo_icon_03.svg" /></i>
+                        <strong {...edit("con02_icon01_txt")} />
+                        {/* <!--<p>
+                        Trust
+                    </p>--> */}
+                    </li>
+                    <li>
+                        <i className="svg2"><img src="/img/svg/siteinfo_icon_01.svg" /></i>
+                        <strong {...edit("con02_icon02_txt")} />
+                        {/* <!--<p>Bright future</p>--> */}
+                    </li>
+                    <li>
+                        <i className="svg3"><img src="/img/svg/siteinfo_icon_02.svg" /></i>
+                        <strong {...edit("con02_icon03_txt")} />
+                        {/* <!--<p>Reservation</p>--> */}
+
+                    </li>
+                </ul>
+            </div>
         </div>
+
+        <div className="w100 con01 con_block">
+            <div className="w1200">
+                <h4>
+                    <i className="after flaticon-cloud-computing-5"></i>
+                    <span {...edit("con03_txt")} />
+                    <i className="before flaticon-command"></i>
+                </h4>
+
+            </div>
+
+        </div>
+
+
+        <div className="w100 con03 con_block">
+            <div className="w1200">
+                <h4 {...edit("con04_mainTitle")} />
+                <p {...edit("con04_secondTitle")} />
+                <div className="info_address">
+                    <ul>
+                        <li className="on">가이드 or<br />여행선택</li>
+                        <li className="on">여행일정<br />확인</li>
+                        <li className="on">날짜 선택 후<br />예약하기</li>
+                        <li className="on">확정문자 받고<br />여행가기</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        {/* 
         <div className="con02">
             <div className="w1200">
                 <div className="top_txt">
@@ -113,8 +181,8 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     </li>
                 </ul>
             </div>
-        </div>
-        <div className="w100 con03 con_block">
+        </div> */}
+        {/* <div className="w100 con03 con_block">
             <div className="w1200">
                 <h4  {...edit("value_title")} />
                 <p {...edit("value_desc")} />
@@ -230,7 +298,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
         <div className="w100 con06 con_block">
             <div className="w1200">
                 <h4>
@@ -291,7 +359,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
             </div>
         </div>
-        <div className="w100 con07 con_block">
+        {/* <div className="w100 con07 con_block">
             <div className="w1200">
                 <h4>
                     <strong>우리는 쉬운 길보다 옳은 길을 만들고 걸어갑니다.</strong>
@@ -312,7 +380,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             left: 0,
             overflow: "hidden"
         }}>
-            {/* <input onChange={changePartner} value={addInfo.alt} /> */}
+          
             <Upload onUpload={(url) => {
                 setAddInfo({
                     ...addInfo,
@@ -321,34 +389,79 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             }} />
             <input />
             <input onChange={() => { }} value={addInfo.link} />
-        </div>}
+        </div>} */}
 
+        <div className="w100">
+            <div className="main_con_box7">
+                <div className="box01">
+                    <div className="w1200">
+                        <span className="sidetxt">recruiting new guide</span>
+                        <h2>잇츠가이드 플랫폼에서<br /><strong>더 많은 <i>활동영역</i>을 넓혀보시기 바랍니다.</strong></h2>
+                        <div className="link"><a href="../sub/join.html">가이드지원<i></i></a></div>
 
-
-
-
-
-
-
-
-
-        {/* popup은 언제나 class fade와 함께 있어야 한다. */}
-        <div className="popup_bg_mini" style={{ display: 'none' }}>
-            <a className="close_icon"><i className="flaticon-multiply" /></a>
-            <div className="in_txt">
-                <h3>이미지 업로드</h3>
-                <div className="con">
-                    <div className="input_box">
-                        <input type="file" />
                     </div>
-                    <div className="info">
-                        <p><i className="flaticon-flag-1" /> 사이즈는 가로사이즈 300px이 넘지 않아야 합니다. <br /> PNG파일을 권장드리나 gif, jpg도 업로드가능합니다.</p>
-                    </div>
+                    <div className="ovj">IT'S GUIDE</div>
+                </div>
+                <div className="box02">
+                    <div className="left">
+                        <h3>
+                            가이드 고객 관리가<br />
+                                이젠 어렵지가 않아요.<br />
+                                예약관리프로그램이<br />
+                                가이드 고객의 예약을<br />
+                                관리해드립니다.
 
+                            </h3>
+                        <p>
+                            예약관리시스템에서 결제도 한번에 관리도 한번에
+                            관리해드립니다. 더 이상 어렵게 관리하지 마세요.
+                            </p>
+                    </div>
+                    <div className="right">
+                        <div className="txt">
+                            <strong>01</strong>
+                            <p>
+                                reservation<br />
+                                    management
+                                </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div className="box03">
+                    <div className="left">
+                        <div className="txt">
+                            <strong>02</strong>
+                            <p>
+                                be free from<br />
+                                    marketing expenses
+                                </p>
+                        </div>
+                    </div>
+                    <div className="right">
+
+                        <h3>
+                            잇츠가이드에서는<br />
+                                마케팅 걱정이 없어요.<br />
+                                따로 광고하지 않아도<br />
+                                예약이 이루어집니다.
+
+                            </h3>
+                        <p>
+                            잇츠가이드에서 가이드만 하세요. 홍보와 마케팅은
+                            저희가 다 하겠습니다.
+                            </p>
+
+
+                    </div>
                 </div>
             </div>
         </div>
-        <div className="fade"></div>
+
+
+
+
+
 
 
 

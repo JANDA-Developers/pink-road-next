@@ -376,7 +376,7 @@ ul.list_ul.line4 li {
 ul.list_ul .list_in {
     vertical-align: top;
     border: 2px solid #ffffff;
-    padding: 3px 3px 20px 3px;
+    padding: 3px;
     box-sizing: border-box;
 }
 
@@ -413,7 +413,7 @@ ul.list_ul li .bottom_txt {
     border-top: 1px dotted #d9d9d9;
 }
 
-ul.list_ul li .bottom_txt span {
+ul.list_ul li .bottom_txt div[class*=tag] span {
     display: inline-block;
     padding: 2px 5px;
     background-color: #F5F5F5;
@@ -476,7 +476,8 @@ ul.list_ul li .tag2 {
     width: 100%;
     display: block;
     text-align: left;
-    font-size: 12px;
+    font-weight: 100;
+    font-size:1em;
 }
 
     ul.list_ul li .tag2 span {

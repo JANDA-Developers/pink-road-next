@@ -10,6 +10,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePageInfo } from 'hook/usePageInfo';
 import { IuseProductList, useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
+import { GoodsListAPI } from 'components/common/GoodsListAPI';
 
 const DummyPhoto = [{
   category: "문화/예술",
@@ -122,31 +123,6 @@ export const Main: React.FC<IProps> = ({ context }) => {
 
     </div>
 
-    {/* <div className="main_con_box2">
-      <div className="w1200">
-        <div className="top_txt">
-          <h2 {...edit("purposeTitle")} />
-          <span {...edit("purposeSubTitle")}></span>
-        </div>
-        <ul>
-          <li>
-            <i className="icon_01"></i>
-            <strong  {...edit("purposeCircle1")} />
-            <span {...edit("purposeCircle1_en")} />
-          </li>
-          <li>
-            <i className="icon_02"></i>
-            <strong {...edit("purposeCircle2")} />
-            <span {...edit("purposeCircle2_en")} />
-          </li>
-          <li>
-            <i className="icon_03"></i>
-            <strong {...edit("purposeCircle3")} />
-            <span {...edit("purposeCircle3_en")} />
-          </li>
-        </ul>
-      </div>
-    </div> */}
     <div className="main_con_box3">
       <div className="w1200">
         <div className="top_txt">
@@ -171,40 +147,6 @@ export const Main: React.FC<IProps> = ({ context }) => {
       </div>
     </div>
 
-    {/* <div className="main_con_box4">
-      <div className="w100">
-        <div className="photo_box">
-          <ul className="photo_ul line3 main_photo_ul">
-            <li className="top_txt">
-              <h2 {...edit("valuable_exp")} />
-              <span className="txt" {...edit("valuable_exp_sub")} />
-              <div className="btn_list">
-                <span><Link href="/tour"><a>공정여행</a></Link></span>
-                <span><Link href="/tour"><a>더많은체험</a></Link></span>
-              </div>
-              <i><svg><polygon points="69.22 12.71 0 12.71 0 10.71 64.33 10.71 54.87 1.43 56.27 0 69.22 12.71" /></svg></i>
-            </li>
-            {items.map((item) =>
-              <Link key={item._id} href={`/tour/view/${item._id}`}>
-                <li className="list_in">
-                  <div className="img" onClick={() => { toProductBoard(item._id) }} style={{
-                    backgroundImage: `url(${item.images[0]?.uri})`
-                  }}></div>
-                  <div className="box">
-                    <div className="category"><span>{item.category?.label}</span></div>
-                    <div className="title">{item.title}</div>
-                    <div className="subTitle">
-                      {item.subTitle}
-                    </div>
-                  </div>
-                </li >
-              </Link>
-            )}
-          </ul>
-        </div>
-      </div>
-    </div> */}
-
     <div className="main_con_box4">
       <div className="w1200">
         <div className="deal_list">
@@ -214,87 +156,7 @@ export const Main: React.FC<IProps> = ({ context }) => {
               <span className="goto_page"><a href="/tour">바로가기<i className="flaticon-menu-1"></i></a></span>
             </div>
           </div>
-          <ul className="list_ul line4">
-            <li className="list_in">
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="box">
-                <div className="category"><span>당일여행</span></div>
-                <div className="title">꽃길만 걸으실 분들을 모집합니다.</div>
-                <div className="bottom_txt">
-                  <div className="tag2">
-                    <span>#당일여행</span>
-                    <span>#버스투어</span>
-                    <span>#부산근교</span>
-                  </div>
-                  <div className="rating-stars">
-                    <ul id="stars">
-                      <li className="star" title="Poor" data-value="1">
-                        <i className="fa fa-star fa-fw"></i>
-                      </li>
-                      <li className="star" title="Fair" data-value="2">
-                        <i className="fa fa-star fa-fw"></i>
-                      </li>
-                      <li className="star" title="Good" data-value="3">
-                        <i className="fa fa-star fa-fw"></i>
-                      </li>
-                      <li className="star" title="Excellent" data-value="4">
-                        <i className="fa fa-star fa-fw"></i>
-                      </li>
-                      <li className="star" title="WOW!!!" data-value="5">
-                        <i className="fa fa-star fa-fw"></i>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="cash"><strong>70,000</strong>원</div>
-                </div>
-              </div>
-            </li>
-            <li className="list_in">
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="box">
-                <div className="category"><span>당일여행</span></div>
-                <div className="title">진해로 소풍 가실분들 모집중</div>
-                <div className="bottom_txt">
-                  <div className="tag2">
-                    <span>#뚜벅이여행</span>
-                    <span>#소풍</span>
-                    <span>#진해</span>
-                  </div>
-                  <div className="cash"><strong>30,000</strong>원</div>
-                </div>
-              </div>
-            </li>
-            <li className="list_in">
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="box">
-                <div className="category"><span>1박2일</span></div>
-                <div className="title">제주도 꽃구경 가실분?!</div>
-                <div className="bottom_txt">
-                  <div className="tag2">
-                    <span>#1박2일</span>
-                    <span>#제주도</span>
-                    <span>#꽃놀이</span>
-                  </div>
-                  <div className="cash"><strong>230,000</strong>원</div>
-                </div>
-              </div>
-            </li>
-            <li className="list_in">
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="box">
-                <div className="category"><span>1박2일</span></div>
-                <div className="title">양떼목장으로 떠나요~!!</div>
-                <div className="bottom_txt">
-                  <div className="tag2">
-                    <span>#1박2일</span>
-                    <span>#버스관광</span>
-                    <span>#평창</span>
-                  </div>
-                  <div className="cash"><strong>250,000</strong>원</div>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <GoodsListAPI />
         </div>
 
 
@@ -305,89 +167,12 @@ export const Main: React.FC<IProps> = ({ context }) => {
               <span className="goto_page"><a href="/tour">바로가기<i className="flaticon-menu-1"></i></a></span>
             </div>
           </div>
-          <ul className="list_ul line4">
-
-
-            <li className="list_in">
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="box">
-                <div className="category"><span>당일여행</span></div>
-                <div className="title">꽃길만 걸으실 분들을 모집합니다.</div>
-                <div className="bottom_txt">
-                  <div className="tag2">
-                    <span>#당일여행</span>
-                    <span>#버스투어</span>
-                    <span>#부산근교</span>
-                  </div>
-                  <div className="cash"><strong>70,000</strong>원</div>
-                </div>
-              </div>
-            </li>
-            <li className="list_in">
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="box">
-                <div className="category"><span>당일여행</span></div>
-                <div className="title">진해로 소풍 가실분들 모집중</div>
-                <div className="bottom_txt">
-                  <div className="tag2">
-                    <span>#뚜벅이여행</span>
-                    <span>#소풍</span>
-                    <span>#진해</span>
-                  </div>
-                  <div className="cash"><strong>30,000</strong>원</div>
-                </div>
-              </div>
-            </li>
-            <li className="list_in">
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="box">
-                <div className="category"><span>1박2일</span></div>
-                <div className="title">제주도 꽃구경 가실분?!</div>
-                <div className="bottom_txt">
-                  <div className="tag2">
-                    <span>#1박2일</span>
-                    <span>#제주도</span>
-                    <span>#꽃놀이</span>
-                  </div>
-                  <div className="cash"><strong>230,000</strong>원</div>
-                </div>
-              </div>
-            </li>
-            <li className="list_in">
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="box">
-                <div className="category"><span>1박2일</span></div>
-                <div className="title">양떼목장으로 떠나요~!!</div>
-                <div className="bottom_txt">
-                  <div className="tag2">
-                    <span>#1박2일</span>
-                    <span>#버스관광</span>
-                    <span>#평창</span>
-                  </div>
-                  <div className="cash"><strong>250,000</strong>원</div>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <GoodsListAPI />
         </div>
 
       </div>
     </div>
 
-
-    {/* <div className="main_con_box5">
-      <div className="txt">
-        <h2 {...edit('bottom_title')} />
-        <p {...edit('bottom_desc')} />
-      </div>
-      <div
-        className="main_bg_img"
-        style={{ ...bg("bottom_bg_img") }}
-      />
-      <Upload onUpload={imgEdit("bottom_bg_img")} />
-    </div>
-    <HiddenSubmitBtn original={original} setData={setPage} path="main" data={page} />
-  </div > */}
     <div className="main_con_box5">
       <div className="w1200">
         <div className="txt">
@@ -424,49 +209,10 @@ export const Main: React.FC<IProps> = ({ context }) => {
           </div>
           <a className="right_mov"><i className="jandaicon-arr2-right"></i></a>
         </div>
+
         <div className="goods_list">
-          <ul className="line4">
-            <li>
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="title">꽃길만 걸으실 분들을 모집합니다.</div>
-              <div className="tag">
-                <span>#1박2일</span>
-                <span>#제주도</span>
-                <span>#꽃놀이</span>
-              </div>
-              <div className="cash"><strong>70,000</strong>원</div>
-            </li>
-            <li>
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="title">진해로 소풍 가실분들 모집중</div>
-              <div className="tag">
-                <span>#1박2일</span>
-                <span>#제주도</span>
-                <span>#꽃놀이</span>
-              </div>
-              <div className="cash"><strong>30,000</strong>원</div>
-            </li>
-            <li>
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="title">제주도 꽃구경 가실분?!</div>
-              <div className="tag">
-                <span>#1박2일</span>
-                <span>#제주도</span>
-                <span>#꽃놀이</span>
-              </div>
-              <div className="cash"><strong>230,000</strong>원</div>
-            </li>
-            <li>
-              <div className="img" style={{ backgroundImage: 'url(/its/store_01.jpg' }}>상품이미지</div>
-              <div className="title">양떼목장으로 떠나요~!!</div>
-              <div className="tag">
-                <span>#1박2일</span>
-                <span>#제주도</span>
-                <span>#꽃놀이</span>
-              </div>
-              <div className="cash"><strong>250,000</strong>원</div>
-            </li>
-          </ul>
+          <GoodsListAPI />
+
         </div>
 
       </div>

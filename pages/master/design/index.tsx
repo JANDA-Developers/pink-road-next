@@ -128,7 +128,7 @@ export const MsDesignMain: React.FC<IProp> = () => {
                                     <div className="title">카피라이터</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input className="w90" placeholder="Copyright © 2020 PINKROADER Co., Ltd. All rights reserved" type="text" /></div>
+                                    <div className="txt"><input className="w90" placeholder="Copyright © 2020 JANDA Co., Ltd. All rights reserved" type="text" /></div>
                                 </div>
                             </div>
                         </div>

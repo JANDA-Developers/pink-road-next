@@ -52,6 +52,25 @@ export const Header: React.FC<IProp> = () => {
             'display': 'block'
         });
     }
+    const languageOpen = () => {
+
+        $('.languageBox').css({
+            'display': 'block'
+        });
+        $('.language .btn i').animate({
+            'transform': 'rotate(180deg)'
+        });
+    }
+    const languageClose = () => {
+
+        $('.languageBox').css({
+            'display': 'none'
+        });
+        $('.language .btn i').animate({
+            'transform': 'rotate(0deg)'
+        });
+    }
+
     const handleAllClose = () => {
         const target = document.getElementById('all_menu_right');
         if (target)
@@ -86,7 +105,7 @@ export const Header: React.FC<IProp> = () => {
             <div className="w1200">
                 {isLogin ? <p><strong>하나룽</strong>님 어서오세요~!!</p>
                     : <i />}
-                <ul>
+                <ul className="top-menu-in">
                     <li className="join">
                         {isLogin ? <i />
                             : <Link href="/member/join">
@@ -99,9 +118,9 @@ export const Header: React.FC<IProp> = () => {
                                 <a>LOGIN</a>
                             </Link>}
                     </li>
-                    <li>
-                        <button className="btn">English<i className="jandaicon-arr4-bottom"></i></button>
-                        <ul className="languageBox">
+                    <li className="language">
+                        <button className="btn" onClick={languageOpen}>English<i className="jandaicon-arr4-bottom"></i></button>
+                        <ul className="languageBox" onClick={languageClose}>
                             <li><a href="/">English</a></li>
                             <li><a href="/">Chinese</a></li>
                             <li><a href="/">Japanese</a></li>
