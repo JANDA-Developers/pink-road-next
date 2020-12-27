@@ -10,6 +10,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
 import { getStaticPageInfo } from '../utils/page';
+import { GoodsListAPI } from '../components/common/GoodsListAPI';
 
 export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
