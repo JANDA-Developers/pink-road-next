@@ -11,7 +11,7 @@ interface IProp {
 
 export const NewsDetail: React.FC<IProp> = ({ item }) => {
     const router = useRouter();
-    const { title, thumb, createdAt, contents, summary, _id } = item;
+    const { title, thumb, createdAt, contents, _id, subTitle } = item;
 
     const toDetail = () => {
         router.push(`/news/write/${_id}`)
@@ -40,7 +40,7 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
         content={contents}
         writer={"관리자"}
         title={title}
-        summary={summary || ""}
+        subTitle={subTitle || ""}
         onDelete={handleDelete}
         onEdit={toDetail}
         createAt={createdAt}

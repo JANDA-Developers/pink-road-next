@@ -9,3 +9,12 @@ export const filterToRange = (filter:any, key:string):TRange => {
 
     return range;
 }
+
+export const rangeToFilter = (date:TRange) => {
+    const filter = {
+        startDate_gte: date.from ? dayjs(date.from).toDate() : undefined ,
+        startDate_lte: date.to ? dayjs(date.to).toDate() : undefined
+    }
+
+    return filter;
+}

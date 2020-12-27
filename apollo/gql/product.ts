@@ -1,8 +1,9 @@
 import { gql } from "@apollo/client";
-import { F_CATEGORY, F_PAGE, F_PRODUCT } from "./fragments";
+import {  F_PAGE, F_PRODUCT } from "./fragments";
+import { F_QUESTION } from "./question";
 
-export const PRODUCT_CREATE = gql`
-  mutation productCreate(
+export const PRODUCTS_CREATE = gql`
+  mutation ProductCreate(
         $params: ProductCreateInput!
     ) {
     ProductCreate(
@@ -91,8 +92,33 @@ export const PRODUCT_FIND_BY_ID = gql`
       error
       data {
         ...Fproduct
+        questions {
+          ...Fquestion
+        }
       }
     }
   }
+  ${F_QUESTION}
   ${F_PRODUCT}
 `;
+
+// export const PRODUCTS_OPS = gql`
+//   query productFindById(
+//       $_id:String!
+//     ) {
+//       ProductFindById(
+//         _id: $_id
+//       ) {
+//       ok
+//       error
+//       data {
+//         ...Fproduct
+//         questions {
+//           ...Fquestion
+//         }
+//       }
+//     }
+//   }
+//   ${F_QUESTION}
+//   ${F_PRODUCT}
+// `;

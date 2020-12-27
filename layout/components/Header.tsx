@@ -1,14 +1,21 @@
 import Link from "next/link"
-import React, { useContext, useEffect, useLayoutEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { EditBtn } from 'components/common/EditBtn';
 import $ from "jquery";
 import { AppContext } from "pages/_app";
+import { NEWS_TYPE } from "../../types/api";
+import { setVal, whenEnter } from "../../utils/eventValueExtracter";
+import { useRouter } from "next/router";
+import cache from "../../apollo/cache";
+import { NotiIcon } from "./NotiIcon";
 
 interface IProp { }
 
 export const Header: React.FC<IProp> = () => {
+    const [search, setSearch] = useState("");
+    const rotuer = useRouter()
 
-    const { isLogin } = useContext(AppContext);
+    const { isLogin, myProfile } = useContext(AppContext);
 
     const handleNav = () => {
         $('#header').attr("tabindex", -1);
@@ -89,7 +96,11 @@ export const Header: React.FC<IProp> = () => {
 
     const handleLogOut = () => {
         localStorage.removeItem("jwt");
-        location.reload();
+        location.href = process.env.NEXT_PUBLIC_CLIENT_DOMAIN + "/"
+    }
+
+    const goToSearchPage = () => {
+        rotuer.push(`/search?search=${search}#ProductViewer`)
     }
 
     useEffect(() => {
@@ -103,7 +114,7 @@ export const Header: React.FC<IProp> = () => {
     return <header className="header" id="header">
         <div className="top-menu">
             <div className="w1200">
-                {isLogin ? <p><strong>하나룽</strong>님 어서오세요~!!</p>
+                {isLogin ? <p><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>
                     : <i />}
                 <ul className="top-menu-in">
                     <li className="join">
@@ -146,7 +157,6 @@ export const Header: React.FC<IProp> = () => {
                             </h1>
                         </div>
                     </div>
-
                     <div className="nav_bg"></div>
                     <div className="hd_right">
                         <div className="hd_center">
@@ -189,7 +199,7 @@ export const Header: React.FC<IProp> = () => {
                                 <div className="w1200">
                                     <div className="search_wrap">
 
-                                        <input type="text" placeholder="검색어를 입력해주세요" />
+                                        <input onKeyPress={whenEnter(goToSearchPage)} value={search} onChange={setVal(setSearch)} type="text" placeholder="검색어를 입력해주세요" />
                                         <div className="search_btn">
                                             <img src={'/img/svg/search_icon.svg'} />
                                             <button className="btt1" />
@@ -197,6 +207,10 @@ export const Header: React.FC<IProp> = () => {
                                         <div className="close_btn" onClick={handSearchClose}>
                                             <i className="flaticon-multiply"></i>
                                             <button className="btt2" />
+                                        </div>
+
+                                        <div>
+
                                         </div>
                                     </div>
                                 </div>

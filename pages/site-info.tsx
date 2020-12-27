@@ -5,22 +5,13 @@ import pageInfoDefault from 'info/siteInfo.json';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { Upload } from 'components/common/Upload';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { usePageInfo } from 'hook/usePageInfo';
-import { UserRole } from 'types/api';
+import { getStaticPageInfo } from '../utils/page';
 
 type TGetProps = {
     pageInfo: typeof pageInfoDefault | "",
 }
-export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
-    const { data } = await usePageInfo("site-info");
-    return {
-        props: {
-            pageInfo: data?.value || "",
-            revalidate: 10
-        }, // will be passed to the page component as props
-    }
-}
 
+export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("site-info");
 export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
     const original = pageInfo || pageInfoDefault;
     const { editMode, role } = useContext(AppContext)
@@ -306,51 +297,23 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <span {...edit("pink_supporter_sub")} />
                 </h4>
                 <ul>
-                    <li>
-                        <a href="">
-                            <img src='/img/ptn_01.jpg' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/ptn_02.jpg' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/ptn_03.png' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/ptn_04.png' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/ptn_05.jpg' alt="" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src='/img/ptn_06.jpg' alt="" />
-                        </a>
-                    </li>
-                    {partners.kr.map((partner, index) => {
+                    {partners.kr.map((partner: any, index: number) => {
                         const { alt, img, link } = partner;
-                        return <li key={index + "partner"} className="betatest">
-                            <a href={link}>
-                                <img src='/img/pt_logo_05.png' alt={alt} />
-                                <span className="del" onClick={() => {
-                                    removeArray("partners", index);
-                                }}><i className="flaticon-multiply"></i></span>
+                        return <li key={index + "partner"}>
+                            <a href={editMode ? undefined : link}>
+                                <img src={img} alt={alt} />
+                                {editMode &&
+                                    <span className="del" onClick={() => {
+                                        removeArray("partners", index);
+                                    }}><i className="flaticon-multiply"></i></span>
+                                }
                                 <Upload onUpload={(url) => {
                                     editArray("partners", index, { ...partner, img: url })
                                 }} />
                             </a>
                         </li>
                     })}
-                    {role === UserRole.admin || UserRole.manager &&
+                    {editMode &&
                         <li className="add" onClick={() => {
                             addArray("partners", {})
                         }}><i className="flaticon-add"></i>추가</li>
@@ -457,17 +420,6 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
     </div>;
 };
 

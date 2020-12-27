@@ -1,10 +1,18 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import Link from 'next/link';
 import React from 'react';
+import { useProductList } from '../../hook/useProduct';
+import { useUserList } from '../../hook/useUser';
 
 interface IProp { }
 
 export const MsIndex: React.FC<IProp> = () => {
+    const { items: products } = useProductList();
+    const { items: users } = useUserList();
+    // const { } = useQuestionList();
+
+    // const { } = use
+
     return <MasterLayout>
         <div className="in">
             <div className="main_paper_div">

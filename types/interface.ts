@@ -1,4 +1,6 @@
+import { QueryHookOptions } from "@apollo/client";
 import { CSSProperties, Dispatch } from "react";
+import { ListInitOptions } from "../hook/useListQuery";
 import {  portfolioFindById_PortfolioFindById_data, productFindById_ProductFindById_data, productFindById_ProductFindById_data_itinerary, productList_ProductList_data, productList_ProductList_page} from "../types/api";
 
 export interface Iitineraries extends productFindById_ProductFindById_data_itinerary {}
@@ -37,7 +39,7 @@ export enum QStatus {
 export declare type ISet<T> = Dispatch<React.SetStateAction<T>>;
 
 
-export type TPageKeys = "site-info" | "main" | "portfolio"
+export type TPageKeys = "site-info" | "main" | "portfolio" | "tourMain"
 
 
 export type TLangs = "kr" | "en" | string
@@ -53,3 +55,9 @@ export type TStieInfo = {
 
 
 export type E_INPUT = React.ChangeEvent<HTMLInputElement>;
+
+
+export interface IlistQueryInit<F,S,Q,V> extends Partial<ListInitOptions<F, S>> {
+    options?: QueryHookOptions<Q, V>
+}
+

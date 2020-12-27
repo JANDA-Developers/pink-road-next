@@ -16,6 +16,7 @@ export interface IListHook<F, S> {
     setFilter: ISet<F>;
     setPage: ISet<number>;
     viewCount: number;
+    page: number
 }
 
 export function useListQuery<F, S>({ initialFilter, initialPageIndex, initialSort, initialViewCount }: ListInitOptions<F, S>) {
@@ -33,5 +34,5 @@ export function useListQuery<F, S>({ initialFilter, initialPageIndex, initialSor
         sort,
     }
 
-    return { filter, setFilter, setPage, integratedVariable, sort, setSort, viewCount, setViewCount }
+    return { filter, setFilter, setPage, integratedVariable, sort, setSort, viewCount, setViewCount, page }
 }

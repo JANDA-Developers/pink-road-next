@@ -211,4 +211,4 @@ export const MyGoods: React.FC<IProp> = () => {
     </MypageLayout>
 };
 
-export default auth(MyGoods)(ONLY_LOGINED);
+export default auth(ONLY_LOGINED)(MyGoods);

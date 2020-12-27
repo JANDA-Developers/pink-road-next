@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
-import { F_BOOKING, F_CATEGORY, F_PAGE, F_PAGE_INFO, F_PRODUCT, F_USER } from "./fragments";
+import { F_BOOKING, F_CATEGORY,  F_PAGE_INFO, F_PRODUCT,F_USER } from "./fragments";
+import { F_HOMEPAGE } from "./homepage";
+import { F_SYSTEMNOTI } from "./systemNoti";
 
 /* :::::::::::::::::::::::::::::::::::::: 
 
@@ -22,40 +24,6 @@ export const PCAT_LIST = gql`
     }
   }
 `
-
-
-export const CATEGORY_FIND_BY_ID = gql`
-  query categoryFindById(
-      $id: String!
-    ) {
-      CategoryFindById(
-        id: $id
-      ) {
-      ok
-      error
-      data {
-        ...Fcategory
-      }
-    }
-  }
-  ${F_CATEGORY}
-`;
-
-
-export const CATEGORY_LIST = gql`
-  query categoryList {
-      CategoryList  {
-        ok
-        error
-        data {
-          ...Fcategory
-        }
-      }
-  }
-  ${F_CATEGORY}
-`;
-
-
 
 export const SIGN_IN = gql`
   query signIn(
@@ -100,6 +68,9 @@ export const GET_CONTEXT = gql`
         error
         data {
           ...Fuser
+          unReadNoties {
+            ...FsystemNoti
+          }
           bookings {
             ...Fbooking
             seller {
@@ -127,7 +98,16 @@ export const GET_CONTEXT = gql`
           ...Fcategory
         }
       }
-  }
+      Homepage {
+        ok
+        error
+        data {
+            ...Fhomepage
+        }
+      }
+    }
+  ${F_SYSTEMNOTI}
+  ${F_HOMEPAGE}
   ${F_PRODUCT}
   ${F_BOOKING}
   ${F_CATEGORY}

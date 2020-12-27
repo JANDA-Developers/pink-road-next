@@ -2,18 +2,20 @@ import React, { useEffect, useState } from 'react';
 import 'css/all.css';
 import Layout from '../layout/Layout';
 import { ApolloProvider, useMutation, useQuery } from '@apollo/client';
-import { getContext_GetProfile_data as IProfile, categoryList_CategoryList_data, pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables, getContext, UserRole } from 'types/api';
+import { getContext_GetProfile_data as IProfile, categoryList_CategoryList_data, pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables, getContext, UserRole, Fhomepage } from 'types/api';
 import PinkClient from "apollo/client"
 import { ISet } from 'types/interface';
 import "dayjs/locale/ko"
 import dayjs from 'dayjs';
-import { ADMINS, FULL_ACCESS } from '../types/const';
+import { ADMINS, FULL_ACCESS, SELLERS } from '../types/const';
 import Toast from '../components/toast/Toast';
 import { GET_CONTEXT } from '../apollo/gql/queries';
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from '../apollo/gql/mutations';
 import { bracketVergionChange } from '../utils/Storage';
-import { AppProps } from 'next/dist/next-server/lib/router/router';
 import Page404 from './404';
+import PageDeny from './Deny';
+
+
 dayjs.locale('ko')
 
 export type TContext = {
@@ -28,6 +30,7 @@ export type TContext = {
   myProfile?: IProfile
   isLogin?: boolean;
   isParterB?: boolean;
+  homepage?: Fhomepage;
   isParterNonB?: boolean;
 }
 
@@ -41,6 +44,7 @@ const defaultContext: TContext = {
   isSeller: false,
   submitEdit: undefined,
   myProfile: undefined,
+  homepage: undefined,
   isLogin: false,
   isParterB: false,
   isParterNonB: false
@@ -50,8 +54,8 @@ export const AppContext = React.createContext<TContext>(defaultContext);
 
 function App({ Component, pageProps }: any) {
   const ComponentLayout = Component.Layout ? Component.Layout : Layout;
-  console.log(Component.Auth);
   const ComponentAuth = Component.Auth ? Component.Auth : FULL_ACCESS;
+
   const [pageInfoCreateMu, { loading: pageInfoCreateLoading }] = useMutation<pageInfoCreate, pageInfoCreateVariables>(PAGE_INFO_CREATE, {
     client: PinkClient
   })
@@ -64,6 +68,7 @@ function App({ Component, pageProps }: any) {
     nextFetchPolicy: "cache-and-network"
   })
 
+  const homepage = data?.Homepage.data || undefined;
   const catList = data?.CategoryList?.data || []
   const myProfile = data?.GetProfile?.data || undefined
   const role: UserRole = myProfile?.role || UserRole.anonymous
@@ -100,12 +105,19 @@ function App({ Component, pageProps }: any) {
   useEffect(() => { bracketVergionChange() }, [])
 
 
-  console.log("myProfile");
-  console.log(myProfile);
-
   if (!ComponentAuth.includes(role || null)) {
-    console.log("Page404");
-    Component = Page404
+    Component = PageDeny
+  }
+
+
+  if (
+    //인증 받지 않았으며 일반 권한은 아닌경우
+    SELLERS.includes(role) &&
+    !myProfile.isVerifiedManager &&
+    !ComponentAuth.includes(UserRole.anonymous) &&
+    !ComponentAuth.includes(UserRole.individual)
+  ) {
+    Component = () => <PageDeny msg="인증되지 않은 판매자 입니다. 인증 소요시간은 평균 24시간 입니다." />
   }
 
   return (
@@ -123,7 +135,8 @@ function App({ Component, pageProps }: any) {
           isAdmin: role === UserRole.admin,
           isManager: ADMINS.includes(role),
           isLogin: !!myProfile,
-          isParterNonB
+          isParterNonB,
+          homepage
         }}>
           <ComponentLayout>
             <Component {...pageProps} />

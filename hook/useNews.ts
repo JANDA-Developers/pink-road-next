@@ -9,6 +9,7 @@ import { Fpage, Fnews, newsList, newsListVariables, _PortfolioSort, _NewsFilter,
 import { DEFAULT_PAGE } from "../types/const";
 import { IListHook, ListInitOptions, useListQuery } from "./useListQuery";
 import { newsUpdate, newsUpdateVariables } from "../types/api";
+import { getRefetch } from "../utils/api";
 
 export const useNewsDelete = (options?: MutationHookOptions<newsDelete,newsDeleteVariables>) => {
     const [newsUpdateMu, { loading: deleteLoading }] = useMutation<newsDelete, newsDeleteVariables>(NEWS_DELETE, {
@@ -104,7 +105,7 @@ export const useNewsList = ({
 
 export const useNewsUpdate = (options?: MutationHookOptions<newsUpdate,newsUpdateVariables>) => {
     const [newsUpdateMu, { loading: updateLoading }] = useMutation<newsUpdate, newsUpdateVariables>(NEWS_UPDAET, {
-        refetchQueries: [getOperationName(NEWS_LIST) || ""],
+        ...getRefetch(NEWS_LIST,NEWS_FIND_BY_ID),
         ...options
     });
     

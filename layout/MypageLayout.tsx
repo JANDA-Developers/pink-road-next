@@ -1,15 +1,41 @@
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import { userInfo } from 'os';
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
+import { useUpload } from '../hook/useUpload';
+import { useUserUpdate } from '../hook/useUser';
 import { AppContext } from '../pages/_app';
-import { ProductStatus } from '../types/api';
+import { Ffile, ProductStatus } from '../types/api';
+import { BG, BGprofile } from '../types/const';
+import { omits } from '../utils/omit';
 import { getItemCount, Storage } from '../utils/Storage';
 
 interface IProp { }
 
 export const MypageLayout: React.FC<IProp> = ({ children }) => {
+    const { userUpdate } = useUserUpdate()
+    const { signleUpload } = useUpload();
     const { isSeller, isParterB, isParterNonB, myProfile } = useContext(AppContext);
+    const hiddenFileInput = useRef<HTMLInputElement>(null);
+
+    const changeProfile = (file: Ffile) => {
+        userUpdate({
+            _id: myProfile!._id,
+            params: {
+                profileImg: omits(file)
+            }
+        })
+    }
+
+    const handleChangeProfile = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (!event.target.files) return;
+        const fileUploaded = event.target.files;
+        const onUpload = (_: string, data: Ffile) => {
+            changeProfile(data)
+        }
+        signleUpload(fileUploaded, onUpload);
+    };
+
 
     return <div>
         <div className="top_visual">
@@ -38,22 +64,23 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         </div>
         <div className="mypage_in w100">
             <ul className="subtop_nav">
-                {isSeller || <li className="on"><a href="/mypage">회원정보</a></li>}{/* 개인 -*/}
-                <li><a href="/mypage/notification">알림</a></li>{/* 개인/기업파트너/개인파트너 -*/}
-                {isSeller || <li><a href="/mypage/purchase">구매내역</a></li>}{/* 개인 -*/}
-                {isSeller || <li><a href="/mypage/basket">장바구니</a></li>}{/* 개인 -*/}
-                <li><a href="/mypage/my-board">나의 게시글</a></li>{/* 개인/기업파트너/개인파트너 -*/}
-                {isSeller && <li><a href="/mypage/reservation">예약관리</a></li>}{/* 기업파트너/개인파트너 -*/}
-                {isParterB && <li><a href="/mypage/goods">상품관리</a></li>}{/* 기업파트너 -*/}
-                {isSeller && !isParterB && <li><a href="/mypage/plainning">기획관리</a></li>}{/* 개인파트너 -*/}
-                {isSeller && <li><a href="/mypage/settlement">매출/정산관리</a></li>}{/* 기업파트너/개인파트너 -*/}
+                {isSeller || <li className="on"><Link href="/mypage"><a >회원정보</a></Link></li>}{/* 개인 -*/}
+                <li><Link href="/mypage/notification"><a >알림</a></Link></li>{/* 개인/기업파트너/개인파트너 -*/}
+                {isSeller || <li><Link href="/mypage/purchase"><a >구매내역</a></Link></li>}{/* 개인 -*/}
+                {isSeller || <li><Link href="/mypage/basket"><a >장바구니</a></Link></li>}{/* 개인 -*/}
+                <li><Link href="/mypage/my-board"><a >나의 게시글</a></Link></li>{/* 개인/기업파트너/개인파트너 -*/}
+                {isSeller && <li><Link href="/mypage/reservation"><a >예약관리</a></Link></li>}{/* 기업파트너/개인파트너 -*/}
+                {isParterB && <li><Link href="/mypage/goods"><a >상품관리</a></Link></li>}{/* 기업파트너 -*/}
+                {isSeller && !isParterB && <li><Link href="/mypage/plainning"><a >기획관리</a></Link></li>}{/* 개인파트너 -*/}
+                {isSeller && <li><Link href="/mypage/settlement"><a >매출/정산관리</a></Link></li>}{/* 기업파트너/개인파트너 -*/}
             </ul>
             <div className="w1200">
 
                 <div className="lnb">
                     <div className="profile_box">
                         <div className="welcome">
-                            <span className="img"><i className="jandaicon-setting"></i>프로필이미지</span>
+                            <span style={BGprofile(myProfile?.profileImg)} onClick={hiddenFileInput.current?.click} className="img"><i className="jandaicon-setting"></i>프로필이미지</span>
+                            <input onChange={handleChangeProfile} ref={hiddenFileInput} hidden type="file" />
                             <span className="name1">
                                 {isParterNonB && <i className="ct_guide">Partner</i>}{/* 개인파트너 -*/}
                                 {isParterB && <i className="ct_partner">Partner</i>}{/* 기업파트너 -*/}

@@ -15,12 +15,18 @@ import { PAGE_INFO_READ } from "../apollo/gql/queries";
 export const graphQLClient = new GraphQLClient(SERVER_URI, {
     credentials: 'include',
     mode: 'cors',
+    cache: "reload",
 })
-
 export type TUsePageInfo = {
     data: pageInfoRead_PageInfoRead_data;
 }
 export const usePageInfo = async (key: TPageKeys) => {
+    const graphQLClient = new GraphQLClient(SERVER_URI, {
+        credentials: 'include',
+        mode: 'cors',
+        cache: "reload",
+    })
+
     const { PageInfoRead } = await graphQLClient.request<pageInfoRead, pageInfoReadVariables>(PAGE_INFO_READ, { key })
     const { data } = PageInfoRead;
     return { data };

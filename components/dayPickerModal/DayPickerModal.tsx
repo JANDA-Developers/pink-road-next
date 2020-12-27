@@ -14,7 +14,9 @@ export const DayPickerModal: React.FC<IProp> = ({ onSubmit, defaultRange }) => {
     const handleSubmit = () => {
         onSubmit({ from, to });
     }
-    return <Modal id="dayPickerModal" title="날짜선택">
+    return <Modal style={{
+        display: "none"
+    }} id="dayPickerModal" title="날짜선택">
         <DayRangePicker from={from} to={to} onRangeChange={setRange} />
         <button onClick={handleSubmit} className="btn w100">변경하기</button>
     </Modal>;

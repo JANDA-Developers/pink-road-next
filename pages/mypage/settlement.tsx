@@ -1,8 +1,18 @@
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import { Paginater } from 'components/common/Paginator';
 import { PurChasedItem } from 'components/mypage/PurchasedItem';
+import dayjs from 'dayjs';
 import { MypageLayout } from 'layout/MypageLayout';
-import React from 'react';
+import React, { useContext } from 'react';
+import SortSelect from '../../components/common/SortMethod';
+import { ViewCount } from '../../components/common/ViewCount';
+import { LastMonthBooking } from '../../components/static/LastMonthBooking';
+import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
+import { ThisMonthPayAmt } from '../../components/static/ThisMonthPayAmt';
+import { IuseBookingList, useBookingList } from '../../hook/useBooking';
+import { ALLOW_SELLERS } from '../../types/const';
+import { autoHypenPhone } from '../../utils/formatter';
+import { auth, compose } from '../../utils/with';
 
 interface IProp { }
 
@@ -40,18 +50,19 @@ export const MySettlement: React.FC<IProp> = () => {
                     </div>
                     <ul>
                         <li>
-                            <div><strong>2</strong>건</div>
                             <strong>저번달 예약</strong>
+                            <div><strong><LastMonthBooking /></strong>건</div>
                         </li>
                         <li>
-                            <div><strong>232</strong>건</div>
                             <strong>이번달 예약</strong>
+                            <div><strong><ThisMonthBooking /></strong>건</div>
                         </li>
                         <li>
-                            <div><strong>22,222</strong>건</div>
-                            <strong>총 예약</strong>
+                            <strong>이번달 정산 예정금</strong>
+                            <div><strong><ThisMonthPayAmt /></strong>원</div>
                         </li>
                         <li>
+                            <strong>이번달 취소 환수금</strong>
                             <div><strong>55,555</strong>원</div>
                             <strong>예약취소 환수금</strong>
                         </li>
@@ -65,7 +76,7 @@ export const MySettlement: React.FC<IProp> = () => {
                             <div className="text">
                                 <span className="check on">전체</span>
                                 <span className="check">예약완료</span>
-                                <span className="check">사용완료</span>
+                                <span className="check">예약취소</span>
                             </div>
                         </div>
                         <div className="jul4">
@@ -124,16 +135,8 @@ export const MySettlement: React.FC<IProp> = () => {
                                 총 <strong>22,222</strong>개
                             </div>
                             <div className="right_div">
-                                <select className="sel01">
-                                    <option>추천수</option>
-                                    <option>예약수</option>
-                                    <option>조회수</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
+                                <SortSelect onChange={setSort} sort={sort} />
+                                <ViewCount value={viewCount} onChange={setViewCount} />
                             </div>
                         </div>
                         <div className="fuction_list_mini ln08">
@@ -154,39 +157,30 @@ export const MySettlement: React.FC<IProp> = () => {
                             </div>
                             <div className="tbody">
                                 <ul>
-                                    <li>
-                                        <div className="th01">
-                                            <span className="checkbox">
-                                                <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                                <label htmlFor="agree0" />
-                                            </span>
-                                        </div>
-                                        <div className="th02"><i className="m_title">상품코드:</i>PINK-01230</div>
-                                        <div className="th03">제주도로 떠나요~ </div>
-                                        <div className="th04"><i className="m_title">예약자:</i>홍나리<br />010-0100-0000</div>
-                                        <div className="th05"><i className="m_title">예약날짜:</i>2020.02.02</div>
-                                        <div className="th06"><i className="m_title">금액:</i>50,000원</div>
-                                        <div className="th07"><strong className="ok">예약완료</strong></div>
-                                        <div className="th08"><i className="btn" onClick={popupOpen2}>상세보기</i></div>
-                                    </li>
-                                    <li>
-                                        <div className="th01">
-                                            <span className="checkbox">
-                                                <input type="checkbox" name="agree" id="agree0" title="전체선택" />
-                                                <label htmlFor="agree0" />
-                                            </span>
-                                        </div>
-                                        <div className="th02"><i className="m_title">상품코드:</i>PINK-01230</div>
-                                        <div className="th03">제주도로 떠나요~ </div>
-                                        <div className="th04"><i className="m_title">예약자:</i>홍나리<br />010-0100-0000</div>
-                                        <div className="th05"><i className="m_title">예약날짜:</i>2020.02.02</div>
-                                        <div className="th06"><i className="m_title">금액:</i>50,000원</div>
-                                        <div className="th07"><strong className="ok">예약완료</strong></div>
-                                        <div className="th08"><i className="btn" onClick={popupOpen2}>상세보기</i></div>
-                                    </li>
+                                    {items.map(item =>
+                                        <li>
+                                            <div className="th01"><input type="checkbox" /></div>
+                                            <div className="th02">{item.code}</div>
+                                            <div className="th03">{item.product.title}</div>
+                                            <div className="th04">{item.name}<br />{autoHypenPhone(item.phoneNumber)}</div>
+                                            <div className="th05">{dayjs(item.createdAt).format("YYYY.MM.DD")}</div>
+                                            <div className="th06">{item}</div>
+                                            <div className="th07"><strong className="ok">예약완료</strong></div>
+                                            <div className="th08"><i className="btn">상세보기</i></div>
+                                        </li>
+                                    )}
                                 </ul>
                             </div>
+                            <div className="boardNavigation">
+                                <div className="float_left">
+                                    <div className="pagenate_mini">
+                                        <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
+                                        <div className="count"><strong>1</strong> / 10</div>
+                                        <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
+                                    </div>
+                                </div>
 
+                            </div>
                         </div>
 
                         <div className="in_fin mt30">
@@ -590,7 +584,9 @@ export const MySettlement: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-    </MypageLayout>
+    </MypageLayout >
 };
 
-export default MySettlement;
+
+
+export default auth(ALLOW_SELLERS)(MySettlement)

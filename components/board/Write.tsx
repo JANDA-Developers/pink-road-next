@@ -7,13 +7,14 @@ import { useUpload } from "hook/useUpload";
 import { IUseBoard } from "hook/useBoard";
 import { AppContext } from "../../pages/_app";
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
-interface IOpen {
+export interface IBoardOpen {
     title: boolean
     subTitle: boolean;
     category: boolean;
     files: boolean;
     summary: boolean;
     thumb: boolean;
+    open: boolean;
 }
 
 type TCategory = { _id: string, label: string };
@@ -28,7 +29,7 @@ interface IProps {
     onCreate?: () => void;
     onLoad?: () => void;
     onCancel?: () => void;
-    opens: Partial<IOpen>
+    opens: Partial<IBoardOpen>
 }
 
 export const BoardWrite: React.FC<IProps> = ({
@@ -45,7 +46,7 @@ export const BoardWrite: React.FC<IProps> = ({
     onSave: handleSave
 }) => {
     const { myProfile } = useContext(AppContext);
-    const email = myProfile?.email || "";
+    const name = myProfile?.nickName || "";
     const isCreateMode = mode === "create";
     const { signleUpload } = useUpload();
     const { boardData, boardSets } = boardHook;
@@ -106,7 +107,7 @@ export const BoardWrite: React.FC<IProps> = ({
                     <div className="write_type">
                         <div className="title">작성자</div>
                         <div className="input_form">
-                            <input readOnly value={email} type="text" name="title" className="inputText w50 fix" />{/* 자동출력 고정 */}
+                            <input readOnly value={name} type="text" name="title" className="inputText w50 fix" />{/* 자동출력 고정 */}
                         </div>
                     </div>
                     <div className="write_type">
@@ -152,15 +153,17 @@ export const BoardWrite: React.FC<IProps> = ({
                             </div>
                         </div>
                     }
-                    <div className="write_type">
-                        <div className="title">글 설정</div>
-                        <div className="input_form">
-                            <ul>
-                                <li><input onChange={handleChangeOpen} type="radio" name="status" id="status-open" value={"true"} checked={isOpen} className="radio" /><label htmlFor="status-open">공개</label></li>
-                                <li><input onChange={handleChangeOpen} type="radio" name="status" id="status-sold" value={"false"} checked={!isOpen} className="radio" /><label htmlFor="status-sold">비공개</label></li>
-                            </ul>
+                    {opens.thumb &&
+                        <div className="write_type">
+                            <div className="title">글 설정</div>
+                            <div className="input_form">
+                                <ul>
+                                    <li><input onChange={handleChangeOpen} type="radio" name="status" id="status-open" value={"true"} checked={isOpen} className="radio" /><label htmlFor="status-open">공개</label></li>
+                                    <li><input onChange={handleChangeOpen} type="radio" name="status" id="status-sold" value={"false"} checked={!isOpen} className="radio" /><label htmlFor="status-sold">비공개</label></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                    }
                     {WriteInjection}
                 </div>
                 {/* 첨부파일 */}

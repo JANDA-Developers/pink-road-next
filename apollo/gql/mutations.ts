@@ -1,23 +1,6 @@
 import { gql } from "@apollo/client";
 import { F_ITINERARY, F_CATEGORY, F_PRODUCT, F_FILE, F_PAGE_INFO } from "./fragments";
 
-export const CATEGORY_CREATE = gql`
-  mutation categoryCreate(
-      $params: CategoryCreateInput!
-    ) {
-    CategoryCreate(
-        params:$params
-      ) {
-      ok
-      error 
-      data {
-          ...Fcategory
-      }
-    }
-  }
-  ${F_CATEGORY}
-`;
-
   
 export const PCATEGORY_CREATAE = gql`
   mutation pcategoryCreate(
@@ -61,24 +44,22 @@ export const PCATEGORY_UPDATE = gql`
 }
 `
 
-
-
-export const CATEGORY_DELETE = gql`
-  mutation categoryDelete(
-      $id: String!
+export const PAGE_INFO_CREATE = gql`
+  mutation pageInfoCreate(
+    $params: PageInfoCreateInput!
     ) {
-    CategoryDelete(
-        _id:$id
-      ) {
-      ok
-      error 
-      data {
-          ...Fcategory
+    PageInfoCreate(
+      params:$params
+      )  {
+        ok
+        error
       }
-    }
   }
-  ${F_CATEGORY}
 `;
+
+
+
+
 
 // export const ITINERY_DELETE = gql`
 //   mutation categoryUpdate(
@@ -117,83 +98,8 @@ export const MULTI_UPLOAD = gql`
   ${F_FILE}
 `;
 
-export const SIGN_UP = gql`
-  mutation signUp(
-      $data: AddUserInput!
-    ) {
-      SignUp(
-        data:$data
-      ) {
-      ok
-      error 
-      data {
-          email
-      }
-    }
-  }
-  ${F_FILE}
-`;
 
 
-
-export const SIGN_IN_GOOGLE = gql`
-  mutation signInGoogle(
-      $code: String!
-    ) {
-      SignInGoogle(
-        code:$code
-      ) {
-      ok
-      error 
-      data {
-          email
-          token
-      }
-    }
-  }
-`;
-
-
-
-export const PAGE_INFO_CREATE = gql`
-  mutation pageInfoCreate(
-    $params: PageInfoCreateInput!
-    ) {
-    PageInfoCreate(
-      params:$params
-      )  {
-        ok
-        error
-      }
-  }
-`;
-
-
-export const SIGNINGOOGLE = gql`
-    mutation SignInGoogle($code : String!){
-      SignInGoogle(code : $code){
-        ok
-        error
-        data{
-          token
-          email
-        }
-      }
-    }
-`
-
-export const SIGNINKAKAO= gql`
-    mutation SignInKakao($code : String!){
-      SignInKakao(code : $code){
-        ok
-        error
-        data{
-          token
-          email
-        }
-      }
-    }
-`
 
 export const PAGE_INFO_DELETE = gql`
   mutation pageInfoDelete(

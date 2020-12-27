@@ -1,28 +1,48 @@
 import { gql } from "@apollo/client";
 
-export const F_QUESTION = gql`
-    fragment Fcategory on Question {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        title
-        contents
-        author
-        isNotice
-        isOpen
-        summary
-        subTitle
-        keyWards
-        attachFiles
-        thumb
-        viewCount
-        likeCount
-        ProductId
-        status
-        no
+
+
+export const F_PAYMENT = gql`
+    fragment Fpayment  on Payment  {
+        ResultCode
+        ResultMsg
+        Amt
+        MID
+        Moid
+        BuyerEmail
+        BuyerTel
+        BuyerName
+        GoodsName
+        TID
+        AuthCode
+        AuthDate
+        PayMethod
+        CartData
+        Signature
+        MallReserved
+        CardCode
+        CardName
+        CardNo
+        CardQuota
+        CardInterest
+        AcquCardCode
+        AcquCardName
+        CardCl
+        CcPartCl
+        CouponAmt
+        CouponMinAmt
+        PointAppAmt
+        ClickpayCl
+        MultiCl
+        MultiCardAcquAmt
+        MultiPointAmt
+        MultiCouponAmt
+        RcptType
+        RcptTID
+        RcptAuthCode
     }
 `
+
 
 export const F_CATEGORY = gql`
     fragment Fcategory on Category {
@@ -41,6 +61,49 @@ export const F_FILE = gql`
     }
 `
 
+
+export const F_USER = gql`
+    fragment Fuser  on User  {
+        _id
+        nickName
+        createdAt
+        updatedAt
+        isDelete
+        email
+        manageName
+        role
+        brith_date
+        address
+        address_detail
+        acceptSms
+        acceptEamil
+        is_froreginer
+        busi_contact
+        manageContact
+        gender
+        busi_num
+        busi_department
+        isVerifiedManager
+        isVerifiedPhoneNumber
+        busiRegistration {
+            ...Ffile
+        },
+        is_priv_corper
+        busi_name
+        busi_address
+        account_number
+        name
+        bank_name
+        phoneNumber
+        manageName
+        profileImg {
+            uri
+        }
+        busi_department
+    }
+    ${F_FILE}
+`
+
 export const F_BOOKING = gql`
     fragment Fbooking on Booking {
         _id
@@ -55,49 +118,25 @@ export const F_BOOKING = gql`
         status
         memo
         code
+        groupCode
         product {
             _id
             title
+            code
+        }
+        payment {
+            Amt
+            PayMethod
+            CardNo
+            AuthDate
         }
         name
         email
         phoneNumber
+        isPaid
     }
 `
 
-export const F_USER = gql`
-    fragment Fuser  on User  {
-        _id
-        nickName
-        createdAt
-        updatedAt
-        isDelete
-        email
-        role
-        brith_date
-        address
-        address_detail
-        acceptSms
-        acceptEamil
-        is_froreginer
-        busi_contact
-        gender
-        busi_num
-        busi_department
-        isVerifiedPhoneNumber,
-        busiRegistration {
-            ...Ffile
-        },
-        is_priv_corper
-        busi_name
-        busi_address
-        account_number
-        name
-        bank_name
-        phoneNumber
-    }
-    ${F_FILE}
-`
 
 export const F_PORTFOLIO = gql`
     fragment Fportfolio on Portfolio {
