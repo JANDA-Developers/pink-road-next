@@ -3,12 +3,12 @@ import { AddUserInput, UserRole } from '../../types/api';
 import { isEmail, isPhone, isPassword, isName } from 'utils/validation';
 import { useSignUp } from '../../hook/useUser';
 import { Validater } from '../../utils/validate';
-import { JoinContext } from '../../pages/join';
 import { openModal } from '../../utils/popUp';
 import { ISignUpInput } from '../../hook/useJoin';
 import { omits } from '../../utils/omit';
 import { Modal } from '../modal/Modal';
 import { Policy } from '../policy/PriviacyPolicy';
+import { JoinContext } from '../../pages/member/join';
 
 type TSMS = {
   sns: true,
@@ -181,7 +181,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
       failMsg: "대표 연락처가 올바르지 않습니다."
     },
     {
-      value: isPhone(registerInfo.manageContact || ""),
+      value: isPhone(registerInfo.busi_contact || ""),
       failMsg: "담당자 연락처가 올바르지 않습니다."
     },
     {
