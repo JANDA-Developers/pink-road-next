@@ -305,8 +305,9 @@ export const MsMemberC: React.FC<IProp> = () => {
                         {/* 예약 및 결제 */}
                         <div className="info_page">
                             <div className="full_div">
-                                <h4>예약 및 결제<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i><span><strong>11월</strong> - 예약<strong> 23건</strong> / 실적<strong className="sky_font"> 2,000,000원</strong><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
-                                <div className="info_table w50">
+                                <h4>예약 및 결제<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i>
+                                    <span className="full_div__right"><strong>11월</strong> - 예약<strong> 23건</strong> / 실적<strong className="sky_font"> 2,000,000원</strong><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
+                                <div className="info_table reservationlist">
 
                                     <div className="tr">
                                         <div className="re01">
@@ -376,8 +377,9 @@ export const MsMemberC: React.FC<IProp> = () => {
                         {/* 취소 및 환불내역 */}
                         <div className="info_page">
                             <div className="full_div">
-                                <h4>취소 및 환불내역<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i><span><strong>11월</strong> - 취소예약<strong> 23건</strong> / 환수<strong className="red_font"> -1,000,000원</strong><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
-                                <div className="info_table w50">
+                                <h4>취소 및 환불내역<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i>
+                                    <span className="full_div__right"><strong>11월</strong> - 취소예약<strong> 23건</strong> / 환수<strong className="red_font"> -1,000,000원</strong><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
+                                <div className="info_table reservationlist">
                                     <div className="tr">
                                         <div className="re01">
                                             예약번호

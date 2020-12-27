@@ -116,10 +116,6 @@
     border-bottom: 1px solid #ccc;
     text-align: left;
 }
-
-    .board_list .list_ul > li:hover {
-    }
-
 .board_list .list_ul li.fix {
     background-color: #f5f5f5;
 }
@@ -240,18 +236,18 @@
             font-size: 40px;
         }
 
-.board_list_mini {
-    position: relative;
-    display: block;
-    width: 100%;
-}
+       .board_list_mini {
+            position: relative;
+            display: block;
+            width: 100%;
+            border-top: 3px solid #555;
+        }
 
     .board_list_mini .thead {
         position: relative;
-        display: flex;
+        display: none;
         width: 100%;
         border-bottom: 2px solid #ccc;
-        border-top: 1px solid #ccc;
         background-color: #f4f4f4;
     }
 
@@ -262,6 +258,7 @@
             font-size: 14px;
             font-weight: 600;
             line-height: 37px;
+            padding: 10px;
         }
 
     .board_list_mini .tbody {
@@ -278,8 +275,10 @@
 
         .board_list_mini .tbody li {
             position: relative;
-            display: flex;
+            display: block;
             width: 100%;
+            padding: 3%;
+            box-sizing: border-box;
             border-bottom: 1px solid #eeeeee;
         }
 
@@ -288,17 +287,23 @@
                 width: 24.5%;
                 text-align: center;
                 font-size: 12px;
-                padding: 10px 10px 10px;
+                padding: 0;
                 box-sizing: border-box;
                 font-weight: 100;
             }
             .board_list_mini .tbody li > div a{
                 font-weight: 600;
             }
-
+            .board_list_mini.ln05 .tt01 {
+                width: 100%;
+                text-align: left;
+            }
     .board_list_mini.ln04 .th01 {
-        width: 15%;
+        width: 100%;
+        text-align: left;   
+        font-weight: 100;
     }
+
     .board_list_mini.ln04 .thead .th01 .checkbox {
         top:10px;
     }    .board_list_mini.ln04 .tbody .th01 .checkbox {
@@ -307,16 +312,19 @@
 
     .board_list_mini.ln04 .th02 {
         text-align: left;
-        width: 45%;
+        width: 100%;
         font-weight: 600;
+        font-size: 1.2em;
     }
 
     .board_list_mini.ln04 .th03 {
-        width: 20%;
+        width: auto;
+        margin-right: 15px;
     }
 
     .board_list_mini.ln04 .th04 {
-        width: 20%;
+        width: auto;
+        font-weight: 100;
     }
 
     .board_list_mini.ln04 .thead .th02 {
@@ -347,12 +355,11 @@
         line-height: 1;
     }
 ul.list_ul {
-    width:94%;
+    width:100%;
     margin:0 auto;
 }
 ul.list_ul li {
     display: inline-block;
-    margin-right: 2%;
     cursor: pointer;
 }
 
@@ -644,7 +651,7 @@ ul.boardlist_ul li .cash {
 
 .board_list .ct_01 {
     display: inline-block;
-    padding: 3px 13px;
+    padding: 0 13px;
     font-size: 12px;
     color: #ed297b;
     font-weight: 600;
@@ -652,11 +659,12 @@ ul.boardlist_ul li .cash {
     border-radius: 100px;
     line-height: initial;
     background-color: #fff;
+  
 }
 
 .board_list .ct_02 {
     display: inline-block;
-    padding: 3px 13px;
+    padding: 0 13px;
     font-size: 12px;
     color: #002faa;
     font-weight: 600;
@@ -664,6 +672,7 @@ ul.boardlist_ul li .cash {
     border-radius: 100px;
     line-height: initial;
     background-color: #fff;
+    
 }
 
 .board_list.st01 {
@@ -700,6 +709,7 @@ ul.boardlist_ul li .cash {
         .board_list.st01 .tbody .td01 {
             width: auto;
             text-align: center;
+            margin-right: 15px;
         }
 
         .board_list.st01 .tbody .td02 {
@@ -708,10 +718,12 @@ ul.boardlist_ul li .cash {
         }
 
         .board_list.st01 .tbody .td03 {
-            width:auto;
+            width:100%;
             text-align: left;
             padding-left: 0;
             font-weight: 600;
+            font-size: 1.2em;
+            overflow-wrap: anywhere;
         }
 
         .board_list.st01 .tbody .td04 {
@@ -1349,10 +1361,7 @@ div.comment_box {
                 font-weight: 600;
             }
 
-div.board_list_mini {
-    position: relative;
-    display: block;
-}
+
     div.board_list_mini.type2 {
         border-bottom: 2px solid #ccc;
         border-top: 2px solid #ccc;
@@ -1362,9 +1371,11 @@ div.board_list_mini {
     div.board_list_mini li {
         position: relative;
         display: flex;
-        line-height: 35px;
+        line-height: 25px;
         cursor: pointer;
         font-size: 14px;
+        box-sizing: border-box;
+        padding: 5%;
     }
 
         div.board_list_mini li.first {
@@ -1374,13 +1385,14 @@ div.board_list_mini {
         div.board_list_mini li:hover {
             background-color: #fbfbfb;
         }
+        div.board_list_mini .no_data {
+            display: block !important;
+            text-align: center;
+            line-height: 50px;
+        }
         div.board_list_mini .no_data:hover {
             background-color: #ffffff;
             cursor: unset;
-        }
-        div.board_list_mini .no_data {
-            display: block;
-            text-align: center;
         }
 
     div.board_list_mini span {
@@ -1897,20 +1909,14 @@ div.board_list_mini {
         background-color: #fff;
     }
 
-    .fuction_list_mini input[type=checkbox] {
-        /*vertical-align: middle;
-        vertical-align: -webkit-baseline-middle;
-        display:inline-block;*/
-    }
-
     .fuction_list_mini .thead > div {
         display: inline-block;
         width: 24.5%;
         text-align: center;
-        font-size: 12px;
+        font-size: 1em;
         font-weight: 600;
         line-height: 120%;
-        padding: 13px 10px 10px;
+        padding: 17px 10px;
         box-sizing: border-box;
     }
 
@@ -1932,7 +1938,7 @@ div.board_list_mini {
             width: 100%;
             border-bottom: 1px solid #eeeeee;
             box-sizing: border-box;
-            padding: 22px 0;
+            padding: 3%;
         }
 
             .fuction_list_mini .tbody li > div {
@@ -1946,7 +1952,7 @@ div.board_list_mini {
                 font-weight: 100;
             }
     .new {
-        width: 16px;
+        width: 12px;
         vertical-align: middle;
         margin-left: 10px;
     }
@@ -1975,32 +1981,34 @@ div.board_list_mini {
     }
 div.sum_div {
     position: relative;
+    border: solid #eee 3px;
+    box-sizing: border-box;
+    margin-top: 30px;
+
 }
 
     div.sum_div .first_ul {
-        margin-top: 12px;
         position: relative;
-        background-color: #e8e8e8;
         padding: 15px;
         box-sizing: border-box;
         text-align: left;
-        border-top: 2px solid #797979;
     }
 
     div.sum_div li {
         display: inline-block;
-        width: 48.5%;
+        width: 100%;
         box-sizing: border-box;
         position: relative;
         text-align: right;
         line-height: 38px;
+        border-bottom: 1px solid #eee;
     }
 
         div.sum_div li > div {
             display: inline-block;
             position: relative;
             font-size: 14px;
-            color: #737689;
+            color: #333333;
         }
 
         div.sum_div li .title {
@@ -2027,7 +2035,7 @@ div.sum_div {
         }
     div.sum_div .first_ul li {
         background-color: #ffffff;
-        padding: 0 10px;
+        padding: 0;
         box-sizing: border-box;
     }
     div.sum_div .last_ul {
@@ -2041,6 +2049,7 @@ div.sum_div {
             width: 100%;
             padding: 15px;
             box-sizing: border-box;
+            margin: 0;
         }
             div.sum_div .last_ul li div {
                 font-size: 22px;
@@ -2061,19 +2070,21 @@ div.sum_div {
     .reservation_list .th {
         position: relative;
         width: 100%;
-        display: flex;
+        display: none;
         border-bottom: 1px solid #999;
         line-height: 30px;
         box-sizing: border-box;
         padding-top: 10px;
-        padding-bottom: 10px;
+        padding-bottom: 11px;
     }
     .reservation_list .td {
         position: relative;
         width: 100%;
-        display: flex;
+        display: block;
         border-bottom: 1px solid #c4c4c4;
         line-height: 22px;
+        box-sizing: border-box;
+        padding: 5% 5% 80px 5%;
     }
     .reservation_list .th div[class*=t0] {
         display: inline-block;
@@ -2243,9 +2254,6 @@ div.sum_div {
 
 
 
-
-
-
 @media (min-width:768px) {
     ul .list_ul.line3 li {
         width: 31.7%;
@@ -2266,7 +2274,21 @@ div.sum_div {
     }
 }
 @media (min-width:1000px) {
-    
+    .new {
+        width: 16px;
+    }
+.board_list .ct_01 {
+    padding: 3px 13px;
+    margin-left: 0;
+}
+
+.board_list .ct_02 {
+    padding: 3px 13px;
+    margin-left: 0;
+}
+    .board_list_mini .thead{
+        display: flex;
+    }
     .m_title{
         display: none !important;
     }
@@ -2306,6 +2328,9 @@ div.sum_div {
         width: 33%;
         height: 300px;
     }
+    ul.list_ul li {
+        margin-right: 2%;
+    }
     ul.list_ul .list_in:hover {
         border: 2px solid #ed297b;
     }
@@ -2330,6 +2355,7 @@ div.sum_div {
     .board_list.st01 .tbody .td01 {
         width: 10%;
         text-align: center;
+        margin-right: 0;
     }
 
     .board_list.st01 .tbody .td02 {
@@ -2342,6 +2368,7 @@ div.sum_div {
         text-align: left;
         padding-left: 34px;
         font-weight: 600;
+        font-size: 1em;
     }
 
     .board_list.st01 .tbody .td04 {
@@ -2350,6 +2377,51 @@ div.sum_div {
         color: #555555;
         font-weight: 100;
     }
+    .board_list_mini .tbody li{
+        display: flex;
+        padding: 0;
+    }
+    .board_list_mini .tbody li > div{
+        padding: 10px 10px 10px;
+    }
+    .board_list_mini.ln05 .th01 {
+        width: 10%;
+        text-align: center;
+    }
+    div.board_list_mini li {
+        line-height: 35px;
+        padding: 0;
+    }
+    .board_list_mini.ln04 .th01 {
+        width: 15%;
+        text-align: center;
+    }
+    .board_list_mini.ln04 .th02 {
+        width: 45%;
+        text-align: left;
+        font-size: 0.9em;
+    }
+    .board_list_mini.ln04 .th03 {
+        width: 20%;
+        text-align: center;
+        margin-right: 0;
+    }
+    .board_list_mini.ln04 .th04 {
+        width: 20%;
+        text-align: center;
+    }
+    div.sum_div li {
+        width: 43%;
+        margin: 0 3%;
+    }
+    .reservation_list .th {
+        display: flex;
+    }
+    .reservation_list .td{
+        display: flex;
+        padding: 0;
+    }
+
 }
 
 @media (min-width:1200px) {

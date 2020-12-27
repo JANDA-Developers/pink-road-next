@@ -172,8 +172,8 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     <p>저번달 총 매량</p>
                                 </li>
                                 <li className="ct">
-                                    <span >1</span>
-                                    <p>정산 신청건</p>
+                                    <span id="SellCount">234</span>
+                                    <p>이번달 총 판매량</p>
                                 </li>
                                 <li className="ct">
                                     <ThisMonthBooking />
@@ -182,7 +182,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <li className="ct">
                                     <span>{sellCounts}</span>
                                     <p>
-                                        총 판매 수<i className="jandaicon-info2" />
+                                        총 판매 수<i className="jandaicon-info2" data-tip="총 예약자 수" />
                                     </p>
                                 </li>
                                 <li className="ct">
@@ -195,7 +195,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <li className="ct">
                                     <span>{bookings.length}</span>
                                     <p>
-                                        총 구매 수<i className="jandaicon-info2" />
+                                        총 구매 수 {/* <i className="jandaicon-info2" /> */}
                                     </p>
                                 </li>
                                 <li className="ct">
@@ -362,7 +362,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     <input
                                         value={busi_num}
                                         type="text"
-                                        className="form-control w70"
+                                        className="form-control w70 ml5"
                                         placeholder="사업자번호를 입력해주세요."
                                     />
                                 </div>
@@ -403,7 +403,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                         value={busi_department}
                                         onChange={handleTextData("busi_department")}
                                         type="text"
-                                        className="form-control w20"
+                                        className="form-control w20 mr5"
                                         placeholder="부서명"
                                     />
                                     <input
@@ -444,7 +444,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                         <input
                                             value={bank_name}
                                             type="text"
-                                            className="form-control w20"
+                                            className="form-control w20 mr5"
                                             placeholder="은행명"
                                         />
                                         <input
@@ -476,14 +476,22 @@ export const MyPageProfile: React.FC<IProp> = () => {
                             <li>
                                 <div className="title">SNS 수신동의</div>
                                 <div className="txt tr">
-                                    <input onChange={toggleCheck("acceptSms")} checked={acceptSms} type="checkbox" />
+                                    {/* <input onChange={toggleCheck("acceptSms")} checked={acceptSms} type="checkbox" /> */}
+                                    <span className="checkbox mr5">
+                                        <input type="checkbox" onChange={toggleCheck("acceptSms")} checked={acceptSms} id="agree1" title="동의" />
+                                        <label htmlFor="agree1" />
+                                    </span>
                                     <span>SNS 수신 동의를 합니다.</span>
                                 </div>
                             </li>
                             <li>
                                 <div className="title">E-mail 수신동의</div>
                                 <div className="txt tr">
-                                    <input onChange={toggleCheck("acceptEamil")} checked={acceptEamil} type="checkbox" />
+                                    {/* <input onChange={toggleCheck("acceptEamil")} checked={acceptEamil} type="checkbox" /> */}
+                                    <span className="checkbox mr5">
+                                        <input type="checkbox" onChange={toggleCheck("acceptEamil")} checked={acceptEamil} id="agree2" title="동의" />
+                                        <label htmlFor="agree2" />
+                                    </span>
                                     <span>E-mail 수신 동의를 합니다.</span>
                                 </div>
                             </li>
@@ -492,13 +500,14 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 </div>
                 <div className="fin">
                     <div className="float_left">
-                        <button onClick={handleRetire} type="submit" className="btn medium color01">
-                            회원탈퇴
+
+                        <button onClick={handleUpdate} type="submit" className="btn medium">
+                            수정
                         </button>
                     </div>
                     <div className="float_right">
-                        <button onClick={handleUpdate} type="submit" className="btn medium">
-                            수정
+                        <button onClick={handleRetire} type="submit" className="btn medium color01">
+                            회원탈퇴
                         </button>
                     </div>
                 </div>

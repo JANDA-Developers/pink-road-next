@@ -125,6 +125,7 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
             </div>
         )}
 
+
         <div className="baket_bottom">
             <div className="sum01"><strong>합계금액</strong></div>
             <div className="sum02">상품금액<strong>{autoComma(totalPrice)}원</strong></div>

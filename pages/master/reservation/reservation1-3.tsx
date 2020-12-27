@@ -29,7 +29,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                         <li><Link href="/master/reservation"><a>예약·결제관리</a></Link></li>
                         <li><Link href="/master/reservation/reservation1-2"><a>취소·환불관리</a></Link></li>
                         <li className="on"><Link href="/master/reservation/reservation1-3"><a>매출·정산관리</a></Link></li>
-                        <li><Link href="/master/reservation/reservation1-4"><a>예약수기등록관리</a></Link></li>
+                        {/* <li><Link href="/master/reservation/reservation1-4"><a>예약수기등록관리</a></Link></li> */}
                     </ul>
                 </div>
                 <div className="con reservation calculate">
@@ -343,7 +343,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                         <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
                     </div>
 
-                    <div className="info_table">
+                    <div className="info_table goodsinfo">
                         <div className="tr">
                             <div className="top04">
                                 <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
@@ -398,7 +398,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                                 <div className="tr">
                                     <div className="th01">
                                         환불건수
-                                </div>
+                                    </div>
                                     <div className="td01">
                                         <span>3</span>
                                     </div>
@@ -422,7 +422,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                                 <div className="tr">
                                     <div className="th01">
                                         파트너명
-                                </div>
+                                    </div>
                                     <div className="td01">
                                         <span>푸른여행</span>
                                     </div>
@@ -454,8 +454,8 @@ export const MsReservationB: React.FC<IProp> = () => {
                         <div className="full_div">
                             <h4>
                                 예약자 정보
-                        </h4>
-                            <div className="info_table">
+                            </h4>
+                            <div className="info_table peoplelist">
                                 <div className="top_info">
                                     <span className="tt">예약인원</span>
                                     <span>총 40명 ( 성인30 / 소아10 / 유아0 )</span>
@@ -585,12 +585,11 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-
-
-
                     <div className="fin">
                         <div className="float_left">
                             <button type="submit" className="btn medium">정산완료</button>
+                            <button type="submit" className="btn medium">정산대기</button>
+                            <button type="submit" className="btn medium">지급보류</button>
                         </div>
                         <div className="float_right">
                             <button type="submit" className="btn medium">수정하기</button>

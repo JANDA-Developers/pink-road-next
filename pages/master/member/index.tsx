@@ -9,7 +9,7 @@ import ReactTooltip from 'react-tooltip';
 interface IProp { }
 
 
-const popupOpen1 = () => {
+export const popupOpen1 = () => {
     $('#Popup01').css({
         'display': 'flex'
     });
@@ -32,7 +32,7 @@ const popupClose3 = () => {
 
 export const MsMemberA: React.FC<IProp> = () => {
     return <MasterLayout>
-        <div className="in ">
+        <div className="in">
             <h4>회원관리</h4>
             <div className="in_content">
                 <div className="tab-nav">
@@ -275,8 +275,8 @@ export const MsMemberA: React.FC<IProp> = () => {
                                                     <label htmlFor="agree0" />
                                                 </i>
                                             </div>
-                                            <div className="tt02">문의하기</div>
-                                            <div className="tt03">23</div>
+                                            <div className="tt02"><i className="m_title">게시판:</i>문의하기</div>
+                                            <div className="tt03"><i className="m_title">번호:</i>23</div>
                                             <div className="tt04"><a href="/">궁금한게 있어요 :) <i className="q_ok">답변완료</i></a></div>
                                             <div className="tt05">2020.02.02 11:00</div>
                                         </li>
@@ -287,9 +287,9 @@ export const MsMemberA: React.FC<IProp> = () => {
                                                     <label htmlFor="agree0" />
                                                 </i>
                                             </div>
-                                            <div className="tt02">문의하기</div>
-                                            <div className="tt03">23</div>
-                                            <div className="tt04"><a href="/">궁금한게 있어요 :) <i className="q_no">답변중</i></a></div>
+                                            <div className="tt02"><i className="m_title">게시판:</i>문의하기</div>
+                                            <div className="tt03"><i className="m_title">번호:</i>23</div>
+                                            <div className="tt04"><a href="/">궁금한게 있어요 :) <i className="q_ok">답변완료</i></a></div>
                                             <div className="tt05">2020.02.02 11:00</div>
                                         </li>
                                         <li className="no_data">
@@ -421,7 +421,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                             <div className="info_page">
                                 <div className="full_div">
                                     <h4>예약 및 결제</h4>
-                                    <div className="info_table w50">
+                                    <div className="info_table reservationlist">
 
                                         <div className="tr">
                                             <div className="re01">
@@ -491,7 +491,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                             <div className="info_page">
                                 <div className="full_div">
                                     <h4>취소 및 환불내역</h4>
-                                    <div className="info_table w50">
+                                    <div className="info_table reservationlist">
                                         <div className="tr">
                                             <div className="re01">
                                                 예약번호

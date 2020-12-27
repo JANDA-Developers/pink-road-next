@@ -8,6 +8,9 @@
     min-height: 800px;
     vertical-align: top;
 }
+.master_box .btn.small{
+    line-height: 40px;
+}
 .master_box .top_info_number{
     position: relative;
     background-color: #f5f5f5;
@@ -54,6 +57,7 @@
 .master_box .search_info_box li{
     line-height: 180%;
     font-weight: 100;
+    font-size: 0.9em;
     color: #adadad;
 }
 .master_box .search_info_box li i{
@@ -78,8 +82,8 @@
     float: none;
 }
 .master_box .fin {
-    height: 77px;
-    padding:0;
+    height: auto;
+    padding:15px 3%;
     box-sizing: border-box;
 }
 
@@ -88,7 +92,9 @@
         top: -37px;
     }
     .master_box h4 {
-        padding-left: 3%;
+        padding-left:0;
+        display: block;
+        text-align: center;
         box-sizing: border-box;
         line-height: 70px;
         font-size: 1.6em;
@@ -470,11 +476,13 @@
                     font-size: 13px;
                     width: 100%;
                     text-align: center;
+                    box-sizing: border-box;
                 }
 
             .master_box .in_content .con_box_body .list_line {
                 position: relative;
                 display: block;
+                padding: 3%;
                 box-sizing: border-box;
                 background-color: #fff;
             }
@@ -491,25 +499,26 @@
                 margin-top: 0;    
                 line-height: 18px ;
             }
-
-    
-
                 .master_box .in_content .con_box_body .list_line div[class*=td] {
                     display: inline-block;
-                    color: #6d6d6d;
+                    color: #333;
                     font-weight: 100;
-                    padding: 5px;
+                    padding: 0;
                     line-height: 28px;
                     width:auto;
-                    font-size: 0.9em;
+                    font-size: 0.8em;
                     text-align: center;
                     border-bottom: 0;
+                    box-sizing: border-box;
                 }
 
         .master_box .in_content .alignment {
             padding: 0;
             height: 124px;
         }
+        .master_box .con.reservation .alignment {
+            height: 164px;
+        }   
         .master_box .in_content .con_box_body .list_line {
             border-bottom: 1px solid #eee;
         }
@@ -518,91 +527,137 @@
     .master_box .guide .list_line div[class*="td"],
     .master_box .withdrawal .list_line div[class*="td"]{
         line-height: 18px !important;
-        padding: 8px 5px;
+        padding: 0;
     }
  
     .master_box .partner .td01 {
-        width: 5% !important;
+        width: 100% !important;
+        text-align: left !important;
     }
     .master_box .partner .td02 {
-        width: 8% !important;
+        width: 100% !important;
+        font-size: 1.3em !important;
+        font-weight: 600 !important;
+        text-align: left !important;
+        margin-top: 10px;
     }
     .master_box .partner .td03 {
-        width: 15% !important;
+        width: 100% !important;
+        font-size: 1.3em !important;
+        font-weight: 600 !important;
+        text-align: left !important;
+        margin-bottom: 10px;
     }
     .master_box .partner .td04 {
-        width: 9% !important;
+        width: auto !important;
+        margin-right: 15px;
     }
     .master_box .partner .td05 a {
         font-size: 0.8em;
      }
     .master_box .partner .td05 {
-        width: 14% !important;
+        width: auto !important;
+        margin-right: 15px;
+    }
+    .master_box .partner .td05 br{
+        display: none;
     }
     .master_box .partner .td06 {
-        width: 8% !important;
+        width: auto !important;
     }
     .master_box .partner .td07 {
-        width: 8% !important;
+        width: auto !important;
+        margin-right: 15px;
     }
     .master_box .partner .td08 {
-        width: 15% !important;
+        width: auto !important;
+    }
+    .master_box .partner .td08 br {
+       display: none; 
     }
     .master_box .partner .td09 {
-        width: 10% !important;
+        width:100% !important;
+        margin-top: 10px;
     }
+    .master_box .partner .td09 .btn {
+        width:100% !important;
+    }
+
     .master_box .withdrawal .td01 {
-        width: 5% !important;
+        width: 100% !important;
+        text-align: left !important;
     }
     .master_box .withdrawal .td02 {
-        width: 10% !important;
+        width: 100% !important;
+        text-align: left !important;
+        margin-top: 10px;
     }
     .master_box .withdrawal .td03 {
-        width: 15% !important;
+        width: 100% !important;
+        font-size: 1.3em !important;
+        font-weight: 600 !important;
+        text-align: left !important;
+        margin-top: 10px;
+        margin-bottom: 5px;
     }
     .master_box .withdrawal .td04 {
-        width: 21% !important;
+        width: 100% !important;
+        font-size: 1.3em !important;
+        font-weight: 600 !important;
+        text-align: left !important;
+        margin-bottom: 10px;
     }
     .master_box .withdrawal .td05 a {
         font-size: 0.8em;
      }
     .master_box .withdrawal .td05 {
-        width: 14% !important;
+        width: auto !important;
+        margin-right: 15px;
+    }
+    .master_box .withdrawal .td05 br {
+       display: none;
     }
     .master_box .withdrawal .td06 {
-        width: 10% !important;
+        width: auto !important;
+        margin-right: 15px;
     }
     .master_box .withdrawal .td07 {
-        width: 10% !important;
+        width:auto !important;
+       
+    }
+    .master_box .withdrawal .td08 {
+        width:100% !important;
+        margin-top: 10px;
+    }
+    .master_box .withdrawal .td08 .btn {
+        width:100% !important;
+       
     }
     .master_box .withdrawal .list_line .td07,
     .master_box .withdrawal .list_line .td06,
     .master_box .withdrawal .list_line .td04,
     .master_box .withdrawal .list_line .td03,
     .master_box .withdrawal .list_line .td02 {
-        padding-top: 15px !important;
-    }
-    .master_box .withdrawal .td08 {
-        width: 10% !important;
+        padding-top: 0 !important;
     }
     .master_box .partner .list_line .td02,
     .master_box .partner .list_line .td03,
     .master_box .partner .list_line .td04,
     .master_box .partner .list_line .td06,
     .master_box .partner .list_line .td07{
-        padding:15px 5px 8px!important;
+        padding:0!important;
     }  
     .master_box .partner .list_line .td09{
-        padding:8px 5px 8px!important;
+        padding:0!important;
     }
     .master_box .guide .list_line .td02,
     .master_box .guide .list_line .td03,
     .master_box .guide .list_line .td05,
     .master_box .guide .list_line .td06{
-        padding:15px 5px 8px!important;
+        padding:0!important;
     }
     .master_box .guide .list_line .td08{
-        padding:8px 5px 8px!important;
+        padding:0!important;
     }
     .master_box .in_content .bg {
         position: absolute;
@@ -629,6 +684,7 @@
     .master_box .con.family .td01 { 
         width: 100% !important;
         text-align: left !important;
+        margin-bottom: 10px;
     }
     .master_box .con.family .td02 { 
         width: auto;
@@ -656,33 +712,58 @@
         width:100% !important;
     }
     .master_box .con.family .td09 .btn { 
-        width:45% !important;
+        width:47% !important;
         line-height: 30px;
     }
     
     .master_box .con.guide .td01 { 
-        width: auto;
+        width: 100% !important;
+        text-align: left !important;
     }
     .master_box .con.guide .td02 { 
-        width:auto;
+        width: 100% !important;
+        text-align: left !important;
+        font-size: 1.3em !important;
+        font-weight: 600 !important;
+        margin-top: 10px;
     }
+    
     .master_box .con.guide .td03 { 
-        width: auto;
+        width: 100% !important;
+        text-align: left !important;
+        font-size: 1.3em !important;
+        font-weight: 600 !important;
+        margin-bottom: 10px;
     }
+    
     .master_box .con.guide .td04 { 
-        width: auto;
+        width: auto !important;
+        margin-right: 15px;
+    }
+    .master_box .con.guide .td04 br{ 
+        display: none;
     }
     .master_box .con.guide .td05 { 
-        width: auto;
+        width: auto !important;
+        margin-right: 15px;
     }
     .master_box .con.guide .td06 { 
-        width: auto;
+        width: auto !important;
+        margin-right: 15px;
     }
     .master_box .con.guide .td07 { 
-        width: auto;
+        width: auto !important;
+        margin-right: 15px;
+    }
+    .master_box .con.guide .td07 br{ 
+        display: none;
     }
     .master_box .con.guide .td08 { 
-        width: auto;
+        width: 100% !important;
+        margin-top: 10px;
+    }
+    .master_box .con.guide .td08 .btn { 
+        width: 100% !important;
     }
     .master_box .board_option li.on a {
         color: #333;
@@ -717,19 +798,7 @@
        margin-bottom: 5px;
        border-radius: 5px;
     }
-    .master_box .approval {
-        font-style: normal;
-        font-weight: 600;
-    }
-    .master_box .approval.ok {
-        color: #2196F3;
-    }
-    .master_box .approval.no {
-        color: #f32121;
-    }
-    .master_box .approval.stand {
-        color: #059600;
-    }
+
 
     .master_box .calendar {
         width: 30px;
@@ -807,32 +876,48 @@
 
 
     /*goods*/
+    .master_box .goods .board_option a{
+        padding: 10px 5px;
+    }
+
     .master_box .goods .td01 {
-        width: auto !important;
+        width: 100% !important;
+        text-align: left !important;
     }
     .master_box .goods .td02 {
         width: auto !important;
+        margin-right: 15px;
     }
     .master_box .goods .td03 {
         width: auto !important;
     }
     .master_box .goods .td04 {
-        width: auto !important;
+        width: 100% !important;
+        font-weight: 600 !important;
+        font-size: 1.3em !important;
+        text-align: left !important;
     }
     .master_box .goods .td05 {
         width: auto !important;
+        margin-right: 15px;
     }
     .master_box .goods .td06 {
         width: auto !important;
+        margin-right: 15px;
     }
     .master_box .goods .td07 {
         width: auto !important;
+        margin-right: 15px;
     }
     .master_box .goods .td08 {
         width: auto !important;
     }
     .master_box .goods .td09 {
-        width: auto !important;
+        width: 100% !important;
+        margin-top: 10px;
+    }
+    .master_box .goods .td09 .btn {
+        width: 100% !important;
     }
     .master_box .goods .list_line div[class*=td] {
         word-break: break-all;
@@ -988,13 +1073,14 @@
         box-sizing: border-box;
         position: relative;
         font-weight: 100;
-        padding: 10px 0;
+        padding:0;
         font-size: 12px;
         line-height: 130%;
     }  
   
     .master_box .reservation .reservation_list .t01 {
-        width:auto !important;
+        width:100% !important;
+        text-align: left !important;
         padding: 0;
     }
     .master_box .reservation .reservation_list .t02 {
@@ -1002,30 +1088,38 @@
         padding: 0;
         border-left:0;
     }
+
     .master_box .reservation .reservation_list .t03 {
         width:auto !important;
         padding: 0;
         border-left:0;
     }
     .master_box .reservation .reservation_list .t04 {
-        width:auto !important;
+        width:100% !important;
         padding: 0;
         border-left:0;
     }
     .master_box .reservation .reservation_list .t05 {
-        width:auto !important;
+        width:100% !important;
         padding: 0;
         border-left:0;
     }
+    .master_box .reservation .reservation_list .t05 br {
+       display: none;
+    }
     .master_box .reservation .reservation_list .t06 {
-        width:auto !important;
+        width:100% !important;
         padding: 0;
         border-left:0;
     }
     .master_box .reservation .reservation_list .t07 {
-        width:auto !important;
+        width:100% !important;
         padding: 0;
         border-left:0;
+    }
+    .master_box .reservation .reservation_list .t07 .btn {
+        width: 47% !important;
+      
     }
      .master_box .reservation_list .thead {
         position: relative;
@@ -1045,7 +1139,7 @@
         display: block;
         border-bottom: 1px solid #c4c4c4;
         line-height: 22px;
-        padding: 20px 5px;
+        padding: 25px 20px 20px;
         box-sizing: border-box;
     }
      .master_box .reservation_list .t01 .checkbox {
@@ -1058,6 +1152,7 @@
     .master_box .reservation .reservation_list .t05 strong {
         width:auto !important;
         display: inline-block !important;
+        margin-right: 15px;
         
     }
     .master_box .reservation .cansel {
@@ -1092,8 +1187,8 @@
         vertical-align: top;
         text-align: left;
         position: relative;
-        padding-right: 10px;
-        padding-left: 10px;
+        padding-right: 0px;
+        padding-left: 0px;
         box-sizing: border-box;
     }
     .master_box .reservation .ct {
@@ -1119,6 +1214,15 @@
     }
     .master_box .reservation .r-number {
         font-size: 1.1em;
+    }
+    .master_box .reservation .goods-ct {
+        font-size: 1.1em;
+    }
+    .master_box .reservation .t02 .goods-ct,
+    .master_box .reservation .t02 .r-number,
+    .master_box .reservation .t02 .pay-day  {
+       margin-right: 15px;
+       font-size: 1em;
     }
     .master_box .reservation .title {
         width: 100% !important;
@@ -1180,20 +1284,22 @@
         color: #333;
         padding-top: 0px !important;
         vertical-align: middle;
+        margin-right: 15px;
     }
     .master_box .reservation .name {
-        width: 100% !important;
-        display: block !important;
+        width: auto !important;
+        display: inline-block !important;
         line-height: 160%;
         font-size: 1em;
         color: #333;
         padding-top: 0px !important;
         vertical-align: middle;
         font-weight: 600;
+        margin-right: 15px;
     }
     .master_box .reservation .patner-name {
-        width: 100% !important;
-        display: block !important;
+        width: auto !important;
+        display: inline-block !important;
         line-height: 160%;
         font-size: 0.8em;
         color: #333;
@@ -1202,8 +1308,8 @@
         font-weight: 100;
     }
     .master_box .reservation .member {
-        width: 100% !important;
-        display: block !important;
+        width: auto !important;
+        display: inline-block !important;
         line-height: 160%;
         font-size: 0.8em;
         color: #333;
@@ -1213,13 +1319,14 @@
         
     }
     .master_box .reservation .money {
-        width: 100% !important;
-        display: block !important;
+        width: auto !important;
+        display: inline-block !important;
         text-align: center !important;
         line-height: 127%;
         font-size: 1.1em;
         color: #ed297b;
         vertical-align: middle;
+        margin-right: 15px;
     }
 
     .master_box .reservation .pay {
@@ -1260,8 +1367,9 @@
 
    
     .master_box .reservation.calculate .reservation_list .t01 {
-        width:auto !important;
+        width:100% !important;
         padding: 0;
+        text-align: left;
     }
     .master_box .reservation.calculate .reservation_list .t02 {
         width:auto !important;
@@ -1270,22 +1378,31 @@
     .master_box .reservation.calculate .reservation_list .t03 {
         width:auto !important;
         padding: 0;
+        margin-left: 10px;
+    }
+    .master_box .reservation.calculate .reservation_list .t03 br {
+       display: none;
+     
     }
     .master_box .reservation.calculate .reservation_list .t04 {
-        width:auto !important;
+        width:100% !important;
         padding: 0;
     }
     .master_box .reservation.calculate .reservation_list .t05 {
-        width:auto !important;
+        width:100% !important;
         padding: 0;
+        text-align: left;
     }
     .master_box .reservation.calculate .reservation_list .t06 {
-        width:auto !important;
-        padding: 0;
+        width:100% !important;
+        padding: 5px 5px 5px;
+        text-align: left;
+        background-color: #f2f2f2;
     }
     .master_box .reservation.calculate .reservation_list .t07 {
         width:100% !important;
-        padding: 0;
+        padding: 10px 0 15px 0;
+
     }
     .master_box .reservation.calculate .reservation_list .t08 {
         width:100% !important;
@@ -1305,23 +1422,28 @@
         display: inline-block !important;
         color: #333;
         box-sizing: border-box;
+        margin-right: 10px;
     }
     .master_box .reservation.calculate .sum01 {
         width:auto !important;
         display: inline-block !important;
         box-sizing: border-box;
+        margin-right: 10px;
     }
     .master_box .reservation.calculate .sum02 {
         width:auto !important;
         display: inline-block !important;
         box-sizing: border-box;
+        margin-right: 10px;
     }
     .master_box .reservation.calculate .sum03 {
-        width:auto !important;
-        display: inline-block !important;
+        width:100% !important;
+        display: block !important;
         box-sizing: border-box;
         font-weight: 600;
         color: #ed297b;
+        font-size: 1.3em;
+        line-height: 200%;
     }
     .master_box .reservation.calculate .btn {
         border: 1px solid #cfcfcf;
@@ -1333,10 +1455,10 @@
         vertical-align: top;
         text-align: left;
         position: relative;
-        
-        padding-right: 10px;
-        padding-left: 10px;
-        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
         box-sizing: border-box;
     }
     .master_box .calculate .men {
@@ -1755,16 +1877,16 @@
 .master_box .notification_box {
     position: relative;
     box-sizing: border-box;
-    padding: 0 3%;
+    padding: 0;
 }
 
     .master_box .notification_box .paper_div {
         position: relative;
-        border-radius: 5px;
+        border-radius:0;
         background-color: #ffffff;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        padding: 0;
+        padding: 0 3% 50px;
         box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
     }
     .master_box .notification_box .del {
@@ -1800,7 +1922,7 @@
     }
     .master_box .notification_box .date_fom .right {
         margin-left: 0;
-        padding-left: 110px;
+        padding-left: 40px;
         width: 100%;
     }
         .master_box .notification_box .date_fom::after {
@@ -2243,9 +2365,13 @@
         font-weight: 600;
         font-size: 1.4em;
         transition: all 0.3s ease 0s;
+        align-items: center;
+    justify-content: center;
+
+
     }
     .master_box .homepage.sms .sms-list li:hover .mouseover{
-        display: block;    
+        display: flex;    
         transition: 0.4s;
     }
   
@@ -2424,16 +2550,12 @@ div.master_popup .info_page textarea{
    border-top: 3px #333 solid;
 
 } 
-div.master_popup .info_page {
-   position: relative;
-   box-sizing: border-box;
-   margin-bottom: 20px;
-   text-align: left;
-} 
 div.master_popup .info_page h4 {
     position: relative;
     top:0;
     width:100%;
+    text-align: left;
+    box-sizing: border-box;
     display:block;
 }
  div.master_popup .info_txt span {
@@ -2476,6 +2598,12 @@ div.master_popup .info_page h4 {
     margin-bottom:30px;
     border-top: 3px #333 solid;
 }
+ div.master_popup .goodsinfo {
+    border-top: 0;
+    border: 1px #ccc solid;
+    border-radius: 10px;
+    overflow: hidden;
+}
      div.master_popup .info_table .top_info {
         position: relative;
         width: 100%;
@@ -2483,19 +2611,21 @@ div.master_popup .info_page h4 {
         box-sizing: border-box;
         display: block;
         border-bottom: 1px solid #c4c4c4;
+        border-right: 1px solid #c4c4c4;
+        border-left: 1px solid #c4c4c4;
         line-height: 22px;
         padding: 18px 10px;
-        text-align: left;
+        text-align: center;
+        margin-bottom: 5px;
     }    
      div.master_popup .info_table .top_info span{
         font-weight: 100;
-    }    
-     div.master_popup .info_table .top_info .tt{
-        font-weight: 600;
-    }    
+    }   
      div.master_popup .info_table .top_info .float_right {
         float: none;
         line-height: 27px;
+        display: block;
+        padding-left: 0;
     }    
      div.master_popup .info_table .tr {
         position: relative;
@@ -2505,12 +2635,38 @@ div.master_popup .info_page h4 {
         border-bottom: 0;
         line-height: 22px;
         text-align: left;
+        
     }
-     div.master_popup .info_table .th01,
-     div.master_popup .info_table .td01 {
-        border-bottom: 1px solid #c4c4c4;
+     div.master_popup .peoplelist .tr {
+        border: 1px solid #c4c4c4;
+        padding: 10px !important;
+        margin-bottom: 5px;
     }
-
+     div.master_popup .peoplelist .tr > div {
+        margin-bottom: 5px;
+        text-align: left !important;
+        width: 100% !important;
+    }
+     div.master_popup .peoplelist .tr.first > div {
+        margin-bottom: 5px;
+        text-align: left !important;
+        width: auto !important;
+    }
+    div.master_popup .peoplelist .tr.first .re01 {
+        width: 100% !important;
+        text-align: center !important;
+    }
+    div.master_popup .peoplelist .tr input[type=text],
+    div.master_popup .peoplelist .tr select {
+       width: 100% !important;
+   } 
+     div.master_popup .peoplelist .tr.end {
+        padding: 0 !important;
+    }
+    div.master_popup .peoplelist .tr .re01{
+        font-size: 1.3em;
+        text-align: center !important;
+    }
  div.master_popup .info_table .img {
     display: inline-block !important;
     width: 100% !important;
@@ -2554,16 +2710,21 @@ div.master_popup .info_page h4 {
     vertical-align: middle;
 }
  div.master_popup .board_list_mini .tt01  {
-    width: auto;
+    width: 100%;
 }
 div.master_popup .board_list_mini .tt02  {
     width: auto;
+    margin-right: 10px;
+    line-height: 110%;
 }
 div.master_popup .board_list_mini .tt03  {
     width: auto;
+    line-height: 110%;
 }
 div.master_popup .board_list_mini .tt04  {
     width: 100%;
+    text-align: left !important;
+    font-size: 1.1em !important;
 }
 div.master_popup .board_list_mini .tt05  {
     width: auto;
@@ -2577,7 +2738,6 @@ div.master_popup .board_list_mini .tt05  {
         padding-top: 5px !important;
         padding-bottom: 3px;
         margin-bottom: 5px;
-        border-bottom: 1px dotted #ccc;
     }
      div.master_popup .info_table .ct {
         width: auto !important;
@@ -2613,23 +2773,23 @@ div.master_popup .board_list_mini .tt05  {
 }
  div.master_popup .top01 {
     width: 100% !important;
-    padding: 15px 0 0;
+    padding: 0;
     box-sizing: border-box;
 }
  div.master_popup .top02 {
     width: 100% !important;
-    border-top: 1px #eee solid;
+    border-top: 0;
     border-left: 0;
-    padding: 5px 0;
+    padding: 0 0 10px;
     box-sizing: border-box;
 }
  div.master_popup .top03 {
     width: 100% !important;
-    border-top: 1px #eee solid;
+    border-top: 0;
     border-left: 0;
     padding: 15px 15px;
     box-sizing: border-box;
-    
+
 }
 div.master_popup .top04 {
     width: 100% !important;
@@ -2657,12 +2817,7 @@ div.master_popup .top05 {
 } div.master_popup .top03 span i {
     margin-right:4px;
 }
- div.master_popup .top04 {
-    width: 10% !important;
-    border-left: 1px #eee solid;
-    padding: 15px 0;
-    box-sizing: border-box;
-}
+
  div.master_popup .memo {
     width: 100% !important;
     display: block;
@@ -2708,7 +2863,9 @@ div.master_popup .top05 {
     margin-right: 10px;
     font-family: '돋음';
 }
-
+div.master_popup .people{
+    display: block;
+}
  div.master_popup .money {
     width: 100% !important;
     display: block !important;
@@ -2748,36 +2905,38 @@ div.master_popup .top05 {
     }
  div.master_popup .top_info .tt {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 600 !important;
     margin-right: 20px;
-    padding-left:10px;
+    padding-left:0px;
 }
  div.master_popup .menno {
-    width: auto !important;
-    display: inline-block;
+    width: 100% !important;
+    display:block;
     line-height: 122%;
-    padding: 3px 15px !important;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     font-size: 13px;
     font-weight: 600;
+    padding: 8px 15px !important;
+    margin:10px 0 0;
+    text-align: center;
     border-radius: 100px;
     font-style: unset;
     border: 1px solid #616161 !important;
     color: #616161 !important;
-    margin:0 10px;
 }
  div.master_popup .menok {
-    margin: 0 10px;
-    width: auto !important;
-    display: inline-block;
-    line-height: 122%;
-    padding: 3px 15px !important;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    font-size: 13px;
-    font-weight: 600;
-    border-radius: 100px;
+     width: 100% !important;
+     display: block;
+     line-height: 122%;
+     -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+     font-size: 13px;
+     font-weight: 600;
+     border-radius: 100px;
+     text-align: center;
+     padding: 8px 15px !important;
+     margin:10px 0 0;
     font-style: unset;
     border: 1px solid #2196F3 !important;
     color: #2196F3 !important;
@@ -2818,15 +2977,25 @@ div.master_popup .top05 {
     color: #555;
     font-size: 0.9em;
 }
- /* div.master_popup .info_page .left_div {
-    position: relative;
-    width: 100%;
-} */
-     div.master_popup .info_page .info_table .tr {
+div.master_popup .reservationlist .tr{
+    border: 1px solid #eee ;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+     /* div.master_popup .info_page .info_table .tr {
         display: block;
         text-align: left;
         width: 100%;
         position: relative;
+        padding:0;
+    }  */
+     div.master_popup .info_page .info_table .td span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: block;
+        max-width: auto;
     } 
      div.master_popup .info_page .info_table .tr > div {
         display: inline-block;
@@ -2834,11 +3003,16 @@ div.master_popup .top05 {
         vertical-align: top;
         text-align: center;
         font-weight: 600;
-        padding:10px 0;
+        line-height: 52px;
+        padding:0;
         box-sizing:border-box;
     }
+     div.master_popup .peoplelist .tr.first > div {
+        line-height: 22px;
+    }
      div.master_popup .info_page .info_table .pp01 {
-       width: 80px !important;
+       width: auto !important;
+       margin-right: 15px;
     } 
      div.master_popup .info_page .info_table .td{
       font-weight: 100 !important;
@@ -2849,7 +3023,7 @@ div.master_popup .top05 {
       font-weight: 600 !important;
     }
      div.master_popup .info_page .info_table .sum{
-        padding: 10px;
+        padding: 10px !important;
         font-size: 1.2em;
      font-weight: 600 !important;
      display: block !important;
@@ -2875,42 +3049,32 @@ div.master_popup .top05 {
     font-weight: 600;
    }
 
- /* div.master_popup .info_page .right_div {
-    position: relative;
-    top: 0;
-    width: 100;
-    height: 100%;
-    display: block;
-    box-sizing: border-box;
-} */
- div.master_popup .info_page .th01,
- div.master_popup .info_page .th02 {
+ div.master_popup .info_page div[class*=th0] {
     text-align: left !important;
-    padding-left: 10px !important;
     width:30% !important;
     font-weight: 600 !important;
+    padding-left: 10px !important;
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+    border-bottom: 1px solid #c4c4c4;
 }
- div.master_popup .info_page .td01,
- div.master_popup .info_page .td02 {
+ div.master_popup .info_page div[class*=td0] {
     text-align: left !important;
     font-weight: 500 !important;
     width: 70% !important;
     font-family: '돋음';
     font-size: 1.1em;
-}
- div.master_popup .info_page .line8 .th01,
- div.master_popup .info_page .line8 .th02,
- div.master_popup .info_page .line8 .th03,
- div.master_popup .info_page .line8 .th04 {
-    width:30% !important;
-    text-align: center !important;
-    padding-left: 0 !important;
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
     border-bottom: 1px solid #c4c4c4;
 }
- div.master_popup .info_page .line8 .td01,
- div.master_popup .info_page .line8 .td02,
- div.master_popup .info_page .line8 .td03,
- div.master_popup .info_page .line8 .td04 {
+ div.master_popup .info_page .line8 div[class*=th0] {
+    width:30% !important;
+    text-align: left !important;
+    padding-left: 10px !important;
+    border-bottom: 1px solid #c4c4c4;
+}
+ div.master_popup .info_page .line8 div[class*=td0]{
     width: 70% !important;
     text-align: left !important;
     font-weight: 500 !important;
@@ -2960,7 +3124,6 @@ div.master_popup .write_comment {
             color: #333;
             font-weight: 600;
             border-left: 1px solid #ccc;
-            background-color: #ffffff;
         }
         div.master_popup .write_comment .text_box_bottom .float_left {
             display: block;
@@ -2984,9 +3147,11 @@ div.master_popup .tr .re01 {
     width: 100% !important;
     border-right: 0;
     border-bottom: 1px #eee solid;
+    margin-bottom: 10px;
     font-weight: 600 !important;
     padding-left: 15px;
-    background-color: #f4faff;
+    /* background-color: #f4faff; */
+    line-height: 30px !important;
 }
 div.master_popup .cut_nev {
     display:inline-block;
@@ -3003,6 +3168,7 @@ div.master_popup .cut_nev {
         transform: scale(0.9);
         cursor: pointer;
         opacity:0.8;
+        line-height: 24px;
     }
         div.master_popup .cut_nev > i:hover {
             opacity: 1;
@@ -3011,17 +3177,21 @@ div.master_popup .tr .re02,
 div.master_popup .tr .re04,
 div.master_popup .tr .re06,
 div.master_popup .tr .re08 {
-    width: 30% !important;
+    width: auto !important;
+    line-height: 20px !important;
+    margin-right: 5px;
 }
 div.master_popup .tr .re03,
 div.master_popup .tr .re05,
 div.master_popup .tr .re07,
 div.master_popup .tr .re09 {
-    width: 70% !important;
+    width: auto !important;
     font-weight: 500 !important;
     text-align: left !important;
     font-family: '돋음';
-    padding: 8px !important;
+    padding: 0 !important;
+    margin-right: 15px;
+    line-height: 20px !important;
 }
 
 div.master_popup .tr input[type=text] {
@@ -3044,17 +3214,24 @@ div.master_popup .tr select {
     padding: 4px;
     font-size: 12px;
 }
-
+div.master_popup .tr .select2 {
+    width: 30%;
+}
 
 div.master_popup .goodslist {
     width: 100%;
    display: block;
 }
 
+div.master_popup div.alignment{
+    padding: 0 0 15px;
+}
+
+
 
 
 @media (min-width: 768px) {
-   
+    
     .master_box .main_paper_div .hang{
         border-radius: 5px;
     }
@@ -3184,8 +3361,15 @@ div.master_popup .goodslist {
 
     
 @media (min-width: 1000px) {    
+    .master_box .btn.small{
+        line-height: 28px;
+    }
     .master_box h4{
         padding-left: 0;
+        text-align: left;
+    }
+    div.master_popup div.alignment{
+        padding: 30px 0 15px;
     }
     .master_box .in_content {
         border-radius: 5px 5px 0 0;
@@ -3218,20 +3402,25 @@ div.master_popup .goodslist {
        
         height: 44px;
     }   
+    .master_box .con.reservation .alignment {
+       
+        height: 44px;
+    }   
     .master_box .in_content .con_box_body .list_line div[class*=td] {
-      
         line-height: 48px;
+        padding: 5px;
         overflow-wrap: anywhere;
     }
      .master_box .con.family .td01 { 
         width: 5% !important;
         text-align: center !important;
+        margin-bottom: 0;
     }
     .master_box .con.family .td02 { 
         width: 13% !important;
     }
     .master_box .con.family .td03 { 
-        width: 13% !important;
+        width: 26% !important;
     }
     .master_box .con.family .td04 { 
         width: 10% !important;
@@ -3258,62 +3447,112 @@ div.master_popup .goodslist {
     }
     .master_box .con.guide .td01 { 
         width: 5% !important;
-    
+        text-align: center !important;
     }
     .master_box .con.guide .td02 { 
-        width: 15% !important;
+        width: 12% !important;
+        margin-top: 0;
+        font-size: 0.8em !important;
+        text-align: center !important;
+        font-weight: 100 !important;
+    }
+    .master_box .con.guide .list_head .td02 { 
+        font-size: 0.9em !important;
+        font-weight: 600 !important;
     }
     .master_box .con.guide .td03 { 
         width: 20% !important;
+        margin-bottom: 0;
+        font-size: 0.8em !important;
+        text-align: center !important;
+        font-weight: 100 !important;
+    }
+    .master_box .con.guide .list_head .td03 { 
+        font-size: 0.9em !important;
+        font-weight: 600 !important;
     }
     .master_box .con.guide .td04 { 
         width: 10% !important;
+        margin-right: 0;
+        font-weight: 100 !important;
+    }
+    .master_box .con.guide .list_head .td04 { 
+        font-size: 0.9em !important;
+        font-weight: 600 !important;
+    }
+    .master_box .con.guide .td04 br{ 
+        display: inline-block;
     }
     .master_box .con.guide .td05 { 
         width: 10% !important;
+        margin-right: 0;
     }
     .master_box .con.guide .td06 { 
         width: 10% !important;
+        margin-right: 0;
     }
     .master_box .con.guide .td07 { 
         width: 15% !important;
+        margin-right: 0;
+    }
+    .master_box .con.guide .td07 br{ 
+        display: inline-block;
     }
     .master_box .con.guide .td08 { 
-        width: 10% !important;
+        width: 17% !important;
+        margin-top: 0;
+    }
+    .master_box .con.guide .td08 .btn { 
+        width: auto !important;
     }
 
     .master_box .con.goods .td01 {
         width: 5% !important;
+        text-align: center !important;
     }
     .master_box .con.goods .td02 {
         width: 7% !important;
+        margin-right: 0;
     }
     .master_box .con.goods .td03 {
         width: 7% !important;
     }
     .master_box .con.goods .td04 {
         width: 36% !important;
+        font-size: 0.9em !important;
+        text-align: center !important;
     }
     .master_box .con.goods .list_line .td04 {
         width: 36% !important;
         text-align: left !important;
+        font-weight: 600 !important;
+        font-size: 0.8em !important;
     }
     .master_box .con.goods .td05 {
         width: 10% !important;
+        margin-right: 0;
     }
     .master_box .con.goods .td06 {
         width: 5% !important;
+        margin-right: 0;
     }
     .master_box .con.goods .td07 {
         width: 10% !important;
+        margin-right: 0;
     }
     .master_box .con.goods .td08 {
         width: 7% !important;
     }
     .master_box .con.goods .td09 {
         width: 10% !important;
+        margin-top: 0;
     }
-
+    .master_box .con.goods .td09 .btn {
+        width: auto !important;
+    }
+    .master_box .reservation_list .tbody div[class*=t0] {
+        padding:10px 0;
+    }  
     .master_box .reservation_list .thead {
         display: flex;
     }
@@ -3321,10 +3560,12 @@ div.master_popup .goodslist {
     .master_box .reservation .reservation_list .t05 span {
         width:100% !important;
         display: block !important;
+        margin-right: 0;
     }
     .master_box .reservation .reservation_list .t01 {
         width: 5% !important;
         padding: 10px 0;
+        text-align: center !important;
     }
     .master_box .reservation .reservation_list .t02 {
         width: 18% !important;
@@ -3354,6 +3595,9 @@ div.master_popup .goodslist {
     .master_box .reservation .reservation_list .t05 .align {
         padding-top: 17px;
     }
+    .master_box .reservation .reservation_list .t05 br {
+        display: inline-block;
+     }
     .master_box .reservation .reservation_list .t06 {
         width: 15% !important;
         border-left: 1px #eee solid;
@@ -3364,6 +3608,9 @@ div.master_popup .goodslist {
     .master_box .reservation .reservation_list .t07 {
         width: 13% !important;
         border-left: 1px #eee solid;
+    }
+    .master_box .reservation .reservation_list .t07 .btn{
+        width: auto !important;
     }
     .master_box .reservation.add .reservation_list .t07 {
         width: 20% !important;
@@ -3376,6 +3623,7 @@ div.master_popup .goodslist {
     .master_box .reservation .name {
         width: 100% !important;
         display: block;
+        margin-right: 0;
     }
     .master_box .reservation .patner-name {
         width: 100% !important;
@@ -3389,12 +3637,14 @@ div.master_popup .goodslist {
     .master_box .reservation .money {
         width: 100% !important;
         display: block;
+        margin-right: 0;
     }
     .master_box .reservation .pay-option {
         width: 100% !important;
         display: block !important;
         text-align: center !important;
         line-height: 180%;
+        margin-right: 0;
     }
 
     .master_box .reservation .pay {
@@ -3411,9 +3661,15 @@ div.master_popup .goodslist {
         width: 100% !important;
         display:block !important;
     }
-
+    .master_box .reservation .t02 .goods-ct,
+    .master_box .reservation .t02 .r-number,
+    .master_box .reservation .t02 .pay-day  {
+       margin-right: 0;
+       font-size: 1em;
+    }
     .master_box .reservation.calculate .reservation_list .t01 {
         width:5% !important;
+        text-align: center;
     }
     .master_box .reservation.calculate .reservation_list .t02 {
         width:5% !important;
@@ -3423,6 +3679,10 @@ div.master_popup .goodslist {
     }
     .master_box .reservation.calculate .reservation_list .t03 {
         width:10% !important;
+        margin-left: 0;;
+    }
+    .master_box .reservation.calculate .reservation_list .t03 br{
+        display: inline-block;
     }
     .master_box .reservation.calculate .reservation_list .t03 .align {
         padding-top: 30px;
@@ -3447,6 +3707,8 @@ div.master_popup .goodslist {
     }
     .master_box .reservation.calculate .reservation_list .t06 {
         width:17% !important;
+        background-color: #fff;
+        padding: 0;
     }
     .master_box .reservation.calculate .reservation_list .t06 .align {
         padding-top: 10px ;
@@ -3468,6 +3730,12 @@ div.master_popup .goodslist {
         width:100% !important;
         display:block !important;
         text-align: center;
+    }
+    .master_box .calculate .info {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 0;
+        padding-bottom: 0;
     }
     .master_box .reservation.calculate .men {
         width:100% !important;
@@ -3586,6 +3854,7 @@ div.master_popup .goodslist {
     }
     .master_box .fin {
         padding: 20px;
+        height: 77px;
     }
   
     .master_box .homepage.sms .sms-list li {
@@ -3612,8 +3881,14 @@ div.master_popup .goodslist {
     div.master_popup .info_table .tr {
         display: flex;
         border-bottom: 1px solid #c4c4c4;
+        padding:0 !important;
     }
-
+    div.master_popup .peoplelist .tr {
+        padding: 0 !important;
+        margin-bottom: 0;
+        border: 0;
+        border-bottom: 1px solid #eee;
+    }
     div.master_popup .info_txt {
         position:relative;
         border:5px solid #ccc;
@@ -3643,7 +3918,9 @@ div.master_popup .goodslist {
         padding: 0 13px;
          width: auto;
     }
-
+    .master_box .notification_box .date_fom .right {
+        padding-left: 110px;
+    }
 div.master_popup .top01 {
     width: 50% !important;
     padding: 15px 0;
@@ -3651,13 +3928,12 @@ div.master_popup .top01 {
 }
 div.master_popup .top02 {
     width: 25% !important;
-border-top: 0;
     border-left: 1px #eee solid;
-    padding: 15px 0;
+    padding: 15px 0 15px;   
+
 }
 div.master_popup .top03 {
     width: 25% !important;
-    border-top: 0;
     border-left: 1px #eee solid;
     padding: 15px 15px;
 }
@@ -3699,6 +3975,9 @@ div.master_popup .where {
 div.master_popup .top02 .align {
     margin-top: 30px;
 }
+div.master_popup .info_table {
+    border-bottom: 0;
+}
 div.master_popup .info_table .img {
     display: inline-block !important;
     width: 250px !important;
@@ -3738,53 +4017,172 @@ div.master_popup .info_page .info_table .tr {
     display: flex;
     text-align: left;
     width: 100%;
+    padding: 0;
+}
+div.master_popup .info_page .reservationlist .tr {
+    margin-bottom: 0;
 }
 div.master_popup .info_page .info_table .tr > div {
     font-weight: 100;
+    padding: 10px 0;
+    font-size: 1em;
+    line-height: 22px;
+    margin-bottom: 0;
 }
-div.master_popup .info_page .th01, 
-div.master_popup .info_page .th02 {
+
+div.master_popup .info_page div[class*=th0] {
     text-align: left !important;
     padding-left: 10px !important;
     width: 18% !important;
+    border-bottom: 0;
 }
-div.master_popup .info_page .td01, 
-div.master_popup .info_page .td02 {
+ div.master_popup .info_page div[class*=td0] {
     text-align: left !important;
     font-weight: 500 !important;
     width: 32% !important;
     font-size: 1.1em;
+    border-bottom:0;
 }
+  .master_box .partner .td01 {
+        width: 5% !important;
+        text-align: center !important;
+    }
+    .master_box .partner .td02 {
+        margin-top: 0;
+        width: 8% !important;
+        text-align: center !important;
+        font-weight: 100 !important;
+        font-size: 0.8em !important;
+    }
+    .master_box .partner .list_head .td02 {
+        font-weight: 600 !important;
+        font-size: 1em !important;
+    }
+    .master_box .partner .td03 {
+        width: 20% !important;
+        margin-bottom: 0;
+        text-align: center !important;
+        font-weight: 100 !important;
+        font-size: 0.8em !important;
+    }
+    .master_box .partner .list_head .td03 {
+        font-weight: 600 !important;
+        font-size: 1em !important;
+    }
+    .master_box .partner .td04 {
+        width: 9% !important;
+        margin-right:0;
+    }
+    .master_box .partner .td05 a {
+        font-size: 0.8em;
+     }
+    .master_box .partner .td05 {
+        width: 14% !important;
+        margin-right:0;
+    }
+    .master_box .partner .td05 br{
+        display: inline-block;
+    }
+    .master_box .partner .td06 {
+        width: 8% !important;
+        margin-right:0;
+    }
+    .master_box .partner .td07 {
+        width: 8% !important;
+        margin-right:0;
+    }
+    .master_box .partner .td08 {
+        width: 15% !important;
+    }
+    .master_box .partner .td08 br{
+       display: inline-block;
+    }
+    .master_box .partner .td09 {
+        width: 10% !important;
+        margin-top: 0px;
+    }
+    .master_box .partner .td09 .btn{
+        width: auto;
+    }
+    .master_box .partner .list_line .td02,
+    .master_box .partner .list_line .td03,
+    .master_box .partner .list_line .td04,
+    .master_box .partner .list_line .td06,
+    .master_box .partner .list_line .td07{
+        padding:15px 5px 8px!important;
+    }  
+    .master_box .partner .list_line .td09{
+        padding:8px 5px 8px!important;
+    }
+
+    .master_box .guide .list_line .td02,
+    .master_box .guide .list_line .td03,
+    .master_box .guide .list_line .td05,
+    .master_box .guide .list_line .td06{
+        padding:15px 5px 8px!important;
+    }
+    .master_box .guide .list_line .td08{
+        padding:8px 5px 8px!important;
+    }
+
+    
 div.master_popup .info_table .th01, 
  div.master_popup .info_table .td01 {
     border-bottom: 0;
 }
  div.master_popup .info_table .top_info {
-
     width: 100%;
     display: block;
     border-bottom: 1px solid #c4c4c4;
+    border-left: 0;
+    border-right: 0;
     line-height: 45px;
     padding: 0 10px;
     text-align: left;
+    margin-bottom: 0;
 }
  div.master_popup .info_table .top_info .float_right {
         float: right;
         line-height: 45px;
+        padding-left: 0px;
+        display: inline-block;
+    }
+    div.master_popup .peoplelist .tr > div{
+        width: auto !important;
+    }
+    
+    div.master_popup .peoplelist .tr .re01 {
+        font-size: 1.1em;
+        text-align: center !important;
+        width: 150px !important;
+    }
+    div.master_popup .peoplelist .tr.first > div {
+        margin-bottom: 0;
     }
     div.master_popup .tr .re01{
         width: 15% !important;
+        background-color: #f4faff;
         border-right: 1px #eee solid;
-    border-bottom: 0;
+        margin-bottom: 0;
+        border-top: 1px #eee solid;
+        border-bottom: 0;
         padding-left: 15px;
         margin-right: 10px;
+        line-height: 40px !important;
     }
+    div.master_popup .peoplelist .tr.first > div:first-child {
+        width: 150px !important;
+        text-align: center !important;
+    }
+  
     div.master_popup .tr .re02,
     div.master_popup .tr .re04,
     div.master_popup .tr .re06,
     div.master_popup .tr .re08 {
         width: auto !important;
         margin-left: 5px;
+        line-height: 40px !important;
+        font-weight: 600 !important;
     }
     div.master_popup .tr .re03,
     div.master_popup .tr .re05,
@@ -3793,21 +4191,17 @@ div.master_popup .info_table .th01,
         width: auto !important;
         margin-left: 3px;
         margin-right: 30px;
+        padding: 8px !important;
+        line-height: 40px !important;
     }
-    div.master_popup .info_page .line8 .th01,
-    div.master_popup .info_page .line8 .th02,
-    div.master_popup .info_page .line8 .th03,
-    div.master_popup .info_page .line8 .th04 {
+    div.master_popup .info_page .line8 div[class*=th0] {
        width:30% !important;
        text-align: center !important;
        padding-left: 0 !important;
        border-bottom: 0;
        font-weight: 600 !important;
    }
-    div.master_popup .info_page .line8 .td01,
-    div.master_popup .info_page .line8 .td02,
-    div.master_popup .info_page .line8 .td03,
-    div.master_popup .info_page .line8 .td04 {
+    div.master_popup .info_page .line8 div[class*=td0] {
        width: 70% !important;
        text-align: left !important;
        font-weight: 500 !important;
@@ -3816,17 +4210,11 @@ div.master_popup .info_table .th01,
        border-bottom: 0;
    }
 
-   div.master_popup .info_page .partnerinfo .th01,
-   div.master_popup .info_page .partnerinfo .th02,
-   div.master_popup .info_page .partnerinfo .th03,
-   div.master_popup .info_page .partnerinfo .th04{
+   div.master_popup .info_page .partnerinfo div[class*=th0]{
         width: 7% !important;
         font-weight: 600 !important;
    }
-   div.master_popup .info_page .partnerinfo .td01,
-   div.master_popup .info_page .partnerinfo .td02,
-   div.master_popup .info_page .partnerinfo .td03,
-   div.master_popup .info_page .partnerinfo .td04{
+   div.master_popup .info_page .partnerinfo div[class*=td0]{
         width: 18% !important;
         text-align: left !important;
    }
@@ -3837,9 +4225,11 @@ div.master_popup .info_table .th01,
         display: block !important;
         width: 100% !important;
         text-align: right !important;
+        padding: 0;
     }
     .master_box .notification_box .paper_div {
         padding: 30px 50px 100px;
+        border-radius: 5px;
     }
     .master_box .notification_box .right .hang:before {
         width: 5px;
@@ -3858,25 +4248,143 @@ div.master_popup .info_table .th01,
     }
     div.master_popup .board_list_mini .tt01  {
         width: 5%;
+        text-align: center;
     }
     div.master_popup .board_list_mini .tt02  {
         width: 10%;
+        line-height: 37px;
+        margin-right: 0;
     }
     div.master_popup .board_list_mini .tt03  {
         width: 10%;
+        line-height: 37px;
     }
     div.master_popup .board_list_mini .tt04  {
-        width: 65%;
+        width: 60%;
+        font-size: 0.9em !important;
+    }
+    div.master_popup .board_list_mini .thead .tt04   {
+        font-size: 1.1em !important;
+        text-align: center !important;
     }
     div.master_popup .board_list_mini .tbody .tt04  {
         text-align: left;
     }
     div.master_popup .board_list_mini .tt05  {
-        width: 10%;
+        width: 15%;
     }
     div.master_popup .top03 .align{
         padding-top: 30px;
     }
+    div.master_popup .info_page .info_table .pp01 {
+        width: 80px !important;
+        margin-right: 0;
+     } 
+     div.master_popup .info_page .info_table .td span {
+    
+        max-width: 115px;
+    } 
+    .master_box .in_content .con_box_body .list_line{
+        padding: 0;
+    }
+    div.master_popup .tr .select2 {
+        width: 30%;
+    }
+    .master_box .withdrawal .td01 {
+        width: 5% !important;
+        text-align: center !important;
+    }
+    .master_box .withdrawal .td02 {
+        width: 10% !important;
+        text-align: center !important;
+        margin-top: 0;
+    }
+    .master_box .withdrawal .td03 {
+        width: 15% !important;
+        font-weight: 100 !important;
+        text-align: center !important;
+        font-size: 0.9em !important;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .master_box .withdrawal .list_head .td03 {
+        font-weight: 600 !important;
+        font-size:1em !important;
+    }
+    .master_box .withdrawal .td04 {
+        width: 21% !important;
+        font-weight: 100 !important;
+        text-align: center !important;
+        font-size: 0.9em !important;
+        margin-bottom: 0;
+    }
+    .master_box .withdrawal .list_head .td04 {
+        font-weight: 600 !important;
+        font-size:1em !important;
+    }
+    .master_box .withdrawal .td05 a {
+        font-size: 0.8em;
+     }
+    .master_box .withdrawal .td05 {
+        width: 14% !important;
+        margin-right: 0;
+    }
+    .master_box .withdrawal .td05 br {
+        display: inline-block;
+     }
+    .master_box .withdrawal .td06 {
+        width: 10% !important;
+        margin-right: 0;
+    }
+    .master_box .withdrawal .td07 {
+        width: 10% !important;
+        margin-right: 0;
+    }
+    .master_box .withdrawal .list_line .td07,
+    .master_box .withdrawal .list_line .td06,
+    .master_box .withdrawal .list_line .td04,
+    .master_box .withdrawal .list_line .td03,
+    .master_box .withdrawal .list_line .td02 {
+        padding-top: 15px !important;
+    }
+    .master_box .withdrawal .td08 {
+        width: 15% !important;
+        margin-top: 0;
+    }
+    .master_box .withdrawal .td08 .btn {
+        width: auto!important;
+    }
+    .master_box .reservation .info {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    div.master_popup .menno {
+        width: auto !important;
+        display:inline-block;
+        margin:0 10px;
+        padding: 4px 15px !important;
+    }
+     div.master_popup .menok {
+         width: auto !important;
+         display: inline-block;
+         margin:0 10px;
+         padding: 4px 15px !important;
+    }
+    div.master_popup .top_info .tt {
+        padding-left:10px;
+    }
+    div.master_popup .goodsinfo {
+        border: 0;
+        border-top: 3px #333 solid;
+        border-radius: 0;
+    }
+    div.master_popup .top01 {
+        padding: 15px 0 0;
+    }
+    div.master_popup .info_table .title {
+        border-bottom: 1px dotted #ccc;
+    }
+  
 }
     
     
@@ -3905,9 +4413,46 @@ div.master_popup .info_table .th01,
     .master_box .design .body-title .w50{
         width: 100%;
     }
+    .master_box .con.family .td02 { 
+        width: 100% !important;
+        font-size: 1.2em !important;
+        display: block !important;
+        font-weight: 600 !important;
+        text-align: left !important;
+        line-height: 100% !important;
+    }
+    .master_box .con.family .td03 { 
+        width: 100% !important;
+        font-size: 1.2em !important;
+        display: block !important;
+        font-weight: 600 !important;
+        text-align: left !important;
+        line-height: 100% !important;
+        margin-bottom: 10px;
+    }
+    .master_box .con.family .td04,
+    .master_box .con.family .td05,
+    .master_box .con.family .td06,
+    .master_box .con.family .td07,
+    .master_box .con.family .td08 { 
+        margin-right: 15px;
+        line-height: 150% !important;
+    }
+    .master_box .con.family .td09 { 
+        margin-top: 10px;
+    }
 }
 
 
 @media (max-width:360px) {
+    .master_box .goods .alignment {
+        height: 158px;
+    }
+    .master_box .top_info_number li strong {
+        font-size: 1.3em;
+    }
+    .master_box .top_info_number li span {
+        font-size: 0.9em;
+    }
 
 }
