@@ -6906,48 +6906,6 @@ div.gallery_lightbox .thumbList {
         color: #ffffff;
     }
 
-/* mypage purchase */
-/* .mypage_purchase {
-    position: relative;
-    display: block;
-}
-    .mypage_purchase .fuction_list_mini .thead .th01,
-    .mypage_purchase .fuction_list_mini .tbody .th01 {
-        width: 5%;
-    }
-    .mypage_purchase .fuction_list_mini .thead .th01 .checkbox {
-        top: 50%;
-        margin-top: -8px;
-    }
-
-    .mypage_purchase .fuction_list_mini .tbody .th01 .checkbox {
-        top: 50%;
-        margin-top: -8px;
-    }
-    .mypage_purchase .paper_div {
-        background-color: #ffffff;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
-        box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
-        padding: 30px;
-    }
-
-        .mypage_purchase .paper_div .con_top h6 {
-            font-size: 1.3em;
-        }
-
-    .mypage_purchase .search_box {
-        position: relative;
-        display: block;
-        width: 100%;
-        margin: 0 auto;
-        padding: 50px 36px;
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        text-align: left;
-        z-index: 1;
-    } */
 
 /* count */
 .count_div .top_box {
