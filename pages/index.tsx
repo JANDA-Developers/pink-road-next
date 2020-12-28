@@ -10,11 +10,15 @@ import { getStaticPageInfo } from '../utils/page';
 import { GoodsListAPI } from '../components/common/GoodsListAPI';
 import { IEditPage } from '../utils/with';
 import { EditContext } from './_app';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+
 
 export const Main: React.FC = () => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
   const { imgEdit, edit, bg } = useContext<IEditPage<typeof pageInfoDefault>>(EditContext as any);
   const router = useRouter()
+
 
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
@@ -60,6 +64,28 @@ export const Main: React.FC = () => {
       </div>
 
     </div>
+
+    <Slider
+      autoplay
+      prevArrow={<div>이전</div>}
+      nextArrow={<div>다음</div>}
+      arrows={true}
+      dots={false}
+      infinite={true}
+      className="">
+      <div>
+        1
+      </div>
+      <div>
+        2
+      </div>
+      <div>
+        3
+        </div>
+      <div>
+        4
+        </div>
+    </Slider>
 
     <div className="main_con_box3">
       <div className="w1200">
