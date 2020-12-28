@@ -1844,6 +1844,58 @@ div.comment_box {
             border-color:#555;
         }
 
+        div.board_view {
+            position:relative;
+            width:100%;
+            display:block;
+        
+        }
+            div.board_view .thumbnail {
+                display: inline-block;
+                position:relative;
+                width: 212px;
+                height: 158px;
+                margin: 1%;
+                background-position: center;
+                background-size: 120%;
+                cursor:pointer;
+            }
+                div.board_view .thumbnail:after {
+                    top: 0;
+                    left: 0;
+                    position: absolute;
+                    background-size: 100%;
+                    opacity: 0 !important;
+                    filter: alpha(opacity=50);
+                    z-index: 0;
+                    content: "";
+                    width: 100%;
+                    height: 100%;
+                }
+                div.board_view .thumbnail:hover:after {
+                    opacity: 0.8 !important;
+                }
+                div.board_view .thumbnail .in_black {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    display: none;
+                    padding: 30px 15px 0;
+                    box-sizing: border-box;
+                    text-align: left;
+                    font-size: 16px;
+                    color: #fff;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.84);
+                }     
+                div.board_view .thumbnail .in_black h4 {
+                    
+                    color: #fff;
+                }  
+                div.board_view .thumbnail:hover .in_black {
+                    display: block;
+                }
 .boardNavigation {
     margin-top: 15px;
     height: 38px;

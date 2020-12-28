@@ -11,8 +11,8 @@ export const QnaTable: React.FC<IProp> = () => {
                 style={{ backgroundImage: `url(/its/su_visual_bg.jpg)` }}
             >
                 <div className="w1200">
-                    <h2 className="title">공지사항</h2>
-                    <p className="text">잇츠가이드가 알려드립니다.</p>
+                    <h2 className="title">문의하기</h2>
+                    <p className="text">궁금한 것을 지금 물어보세요.</p>
                 </div>
             </div>
             <div className="header_nav">
@@ -20,23 +20,28 @@ export const QnaTable: React.FC<IProp> = () => {
                     <li className="home">
                         <a href="../main/main.html"></a>
                     </li>
-                    <li className="homedeps1">서비스</li>
+                    <li className="homedeps1">Member</li>
                     <li className="homedeps2">
-                        <Link href="/service/notice"><a>공지사항</a></Link>
+                        <Link href="/service/inquiry"><a>문의하기</a></Link>
                     </li>
                 </ul>
             </div>
         </div>
-        <div className="notice_box w1200">
+        <div className="inquiry_box w1200">
             <ul className="subtop_nav">
-                <li className="on"><Link href="/service/notice"><a>공지사항</a></Link></li>
+                <li><Link href="/service/notice"><a>공지사항</a></Link></li>
                 <li><Link href="/service/event"><a>이벤트</a></Link></li>
-                <li><Link href="/service/inquiry"><a>문의하기</a></Link></li>
+                <li className="on"><Link href="/service/inquiry"><a>문의하기</a></Link></li>
             </ul>
             <div>
+
                 <div className="alignment">
                     <div className="left_div">
-                        <span className="infotxt">총 <strong>0</strong>개</span>
+                        <ul className="board_option">
+                            <li className="on"><a href="/">전체<strong>46</strong></a></li>
+                            <li><a href="/">미답변<strong>23</strong></a></li>
+                            <li><a href="/">답변완료<strong>23</strong></a></li>
+                        </ul>
                     </div>
                     <div className="right_div">
                         <select className="sel01">
@@ -57,30 +62,35 @@ export const QnaTable: React.FC<IProp> = () => {
                         <ul>
                             <li>
                                 <div className="td01">221</div>
-                                <div className="td02"><span className="ct_01">공지</span></div>
+                                <div className="td02"><Link href="/"><a>PINK-99930</a></Link></div>
                                 <div className="td03">
-                                    10월의 여행일정 미리 공지
-                                    <img className="new" src="/img/svg/new.svg" />
+                                    문의합니다 :)
+                                    <object className="new" type="image/svg+xml" data="../img/svg/new.svg">new</object>
+                                    <i className="q_no">미답변</i>
                                 </div>
-                                <div className="td04">2020.02.02 11:00</div>
+                                <div className="td04">홀리홀리</div>
+                                <div className="td05">2020.02.02 11:00</div>
                             </li>
                             <li>
                                 <div className="td01">221</div>
-                                <div className="td02"><span className="ct_02">안내</span></div>
-                                <div className="td03">10월의 여행일정 미리 공지</div>
-                                <div className="td04">2020.02.02 11:00</div>
+                                <div className="td02"><Link href="/"><a>PINK-99930</a></Link></div>
+                                <div className="td03">문의합니다 :)<i className="q_no">미답변</i></div>
+                                <div className="td04">홀리홀리</div>
+                                <div className="td05">2020.02.02 11:00</div>
                             </li>
                             <li>
                                 <div className="td01">221</div>
-                                <div className="td02"><span className="ct_01">공지</span></div>
-                                <div className="td03">10월의 여행일정 미리 공지</div>
-                                <div className="td04">2020.02.02 11:00</div>
+                                <div className="td02"><Link href="/"><a>PINK-99930</a></Link></div>
+                                <div className="td03">문의합니다 :)<i className="q_ok">답변완료</i></div>
+                                <div className="td04">홀리홀리</div>
+                                <div className="td05">2020.02.02 11:00</div>
                             </li>
                             <li>
                                 <div className="td01">221</div>
-                                <div className="td02"><span className="ct_01">공지</span></div>
-                                <div className="td03">10월의 여행일정 미리 공지</div>
-                                <div className="td04">2020.02.02 11:00</div>
+                                <div className="td02">-</div>
+                                <div className="td03">문의합니다 :)</div>
+                                <div className="td04">홀리홀리</div>
+                                <div className="td05">2020.02.02 11:00</div>
                             </li>
                         </ul>
 
@@ -119,6 +129,10 @@ export const QnaTable: React.FC<IProp> = () => {
                     </div>
 
                 </div>
+
+
+
+
             </div>
         </div>
     </div >;

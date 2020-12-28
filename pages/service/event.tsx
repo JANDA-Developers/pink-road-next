@@ -8,30 +8,30 @@ export const QnaTable: React.FC<IProp> = () => {
         <div className="top_visual">
             <div
                 className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/pr_img_06.jpg)` }}
+                style={{ backgroundImage: `url(/its/su_visual_bg.jpg)` }}
             >
                 <div className="w1200">
-                    <h2 className="title">고객문의</h2>
-                    {/*<p className="text">지금 여행을 떠나세요~!~~!!!!!</p>*/}
+                    <h2 className="title">이벤트</h2>
+                    <p className="text">궁금한 것을 지금 물어보세요.</p>
                 </div>
             </div>
             <div className="header_nav">
                 <ul>
                     <li className="home">
-                        <a href="../main/main.html"></a>
+                        <Link href="/index"><a></a></Link>
                     </li>
-                    <li className="homedeps1">Member</li>
+                    <li className="homedeps1">서비스</li>
                     <li className="homedeps2">
-                        <Link href="/member/inquiry"><a>고객문의</a></Link>
+                        <Link href="/service/event"><a>이벤트</a></Link>
                     </li>
                 </ul>
             </div>
         </div>
         <div className="inquiry_box w1200">
             <ul className="subtop_nav">
-                <li><Link href="/member/notice"><a>공지사항</a></Link></li>
-                <li><Link href="/member/qna"><a>자주하는 질문</a></Link></li>
-                <li className="on"><Link href="/member/inquiry"><a>고객문의</a></Link></li>
+                <li><Link href="/service/notice"><a>공지사항</a></Link></li>
+                <li className="on"><Link href="/service/event"><a>이벤트</a></Link></li>
+                <li><Link href="/service/inquiry"><a>문의하기</a></Link></li>
             </ul>
             <div>
 

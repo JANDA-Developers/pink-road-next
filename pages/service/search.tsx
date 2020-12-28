@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-import { Paginater } from '../components/common/Paginator';
-import { DayPickerModal } from '../components/dayPickerModal/DayPickerModal';
-import { ProductPhotoBlock } from '../components/list/ProductPhoto';
-import { useProductList } from '../hook/useProduct';
-import isEmpty from '../utils/isEmpty';
+import { Paginater } from '../../components/common/Paginator';
+import { DayPickerModal } from '../../components/dayPickerModal/DayPickerModal';
+import { ProductPhotoBlock } from '../../components/list/ProductPhoto';
+import { useProductList } from '../../hook/useProduct';
+import isEmpty from '../../utils/isEmpty';
 import dayjs from "dayjs";
-import { filterToRange, rangeToFilter } from '../utils/filter';
-import { ProductListBlock } from '../components/list/ProductList';
-import { ViewCount } from '../components/common/ViewCount';
-import { closeModal, openModal } from '../utils/popUp';
-import { ViewSelect } from '../components/common/ViewSelect';
-import SubTopNav from '../layout/components/SubTop';
-import { integratedProductSearch } from '../utils/genFilter';
-import SortSelect from '../components/common/SortMethod';
-import { ProductType } from '../types/api';
-import { whenEnter } from '../utils/eventValueExtracter';
-import { getFromUrl } from '../utils/url';
+import { filterToRange, rangeToFilter } from '../../utils/filter';
+import { ProductListBlock } from '../../components/list/ProductList';
+import { ViewCount } from '../../components/common/ViewCount';
+import { closeModal, openModal } from '../../utils/popUp';
+import { ViewSelect } from '../../components/common/ViewSelect';
+import SubTopNav from '../../layout/components/SubTop';
+import { integratedProductSearch } from '../../utils/genFilter';
+import SortSelect from '../../components/common/SortMethod';
+import { ProductType } from '../../types/api';
+import { whenEnter } from '../../utils/eventValueExtracter';
+import { getFromUrl } from '../../utils/url';
+import Link from 'next/link';
 
 interface IProp { }
 
@@ -70,10 +71,10 @@ export const Search: React.FC<IProp> = () => {
 
     const noProduct = isEmpty(products);
     return <div>
-        <SubTopNav subTopBg={'/img/pr_img_05.jpg'} title="통합검색" desc="지금 여행을 떠나세요~!~~!!!!!" >
-            <li className="homedeps1">Member</li>
+        <SubTopNav subTopBg={'/its/su_visual_bg.jpg'} title="통합검색" desc="지금 여행을 떠나세요~!~~!!!!!" >
+            <li className="homedeps1">서비스</li>
             <li className="homedeps2">
-                <a href="/">통합검색</a>
+                <Link href="/"><a>통합검색</a></Link>
             </li>
         </SubTopNav>
 

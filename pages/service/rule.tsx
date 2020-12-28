@@ -9,21 +9,21 @@ export const Rule: React.FC<IProp> = () => {
         <div className="top_visual">
             <div
                 className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/pr_img_01.jpg)` }}
+                style={{ backgroundImage: `url(/its/su_visual_bg.jpg)` }}
             >
                 <div className="w1200">
                     <h2 className="title">이용약관</h2>
-                    {/*<p className="text">지금 여행을 떠나세요~!~~!!!!!</p>*/}
+                    <p className="text">지금 여행을 떠나세요~!~~!!!!!</p>
                 </div>
             </div>
             <div className="header_nav">
                 <ul>
                     <li className="home">
-                        <a href="/index"></a>
+                    <Link href="/index"><a></a></Link> 
                     </li>
-                    <li className="homedeps1">Member</li>
+                    <li className="homedeps1">서비스</li>
                     <li className="homedeps2">
-                        <a href="/">이용약관</a>
+                        <Link href="/"><a>이용약관</a></Link> 
                     </li>
                 </ul>
             </div>
@@ -31,9 +31,8 @@ export const Rule: React.FC<IProp> = () => {
 
     <div className="rule_box w1200">
         <ul className="subtop_nav">
-            <li className="on"><a href="/member/rule">이용약관</a></li>
-            <li><a href="/member/privacy-policy">개인정보처리방침</a></li>
-            <li><a href="/member/kr-terms">국내여행약관</a></li>
+            <li className="on"><a href="/service/rule">이용약관</a></li>
+            <li><a href="/service/privacy-policy">개인정보처리방침</a></li>
         </ul>
 
         <h4>제 1조 목적</h4>

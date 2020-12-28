@@ -7,7 +7,7 @@ import 'react-day-picker/lib/style.css';
 import { GENDER } from '../../types/api';
 import { fromMonth, toMonth, useJoin } from '../../hook/useJoin';
 import { YearMonthForm } from './YearMonthForm';
-import { JoinContext } from '../../pages/join';
+import { JoinContext } from '../../pages/member/join';
 import { autoHypenPhone } from '../../utils/formatter';
 
 

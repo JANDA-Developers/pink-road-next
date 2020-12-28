@@ -1,15 +1,16 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import SubTopNav from 'layout/components/SubTop';
-import { useVerification } from '../hook/useVerification';
-import { ISet } from '../types/interface';
-import { UserRole } from '../types/api';
-import { getFromUrl } from '../utils/url';
-import { closeModal, openModal } from '../utils/popUp';
-import { VerifiEamilModal } from '../components/verifiModal/VerifiEmailModal';
-import { Storage } from '../utils/Storage';
+
 import UserInfoForm from 'components/join/UserInfoForm';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useVerification } from 'hook/useVerification';
+import { ISet } from 'types/interface';
+import { getFromUrl } from 'utils/url';
+import { UserRole } from 'types/api';
+import { Storage } from 'utils/Storage';
+import { closeModal, openModal } from 'utils/popUp';
+import { VerifiEamilModal } from 'components/verifiModal/VerifiEmailModal';
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -273,7 +274,7 @@ const UserType: React.FC = () => {
             <p>회원가입을 하시고 더 많은 정보와 혜택을 누려보세요~!! </p>
             <ul>
                 {/* 커스텀디자인 */}
-                <li className="li01" onClick={() => { handleChange('normal', 'userType'); }}>
+                <li className="li01" onClick={() => { handleTypeChoice(UserRole.partner); }}>
                     <strong>가이드 회원</strong>
                     <span>
                         가이드로 등록을 원하시나요?

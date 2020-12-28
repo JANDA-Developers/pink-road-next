@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 interface IProp { }
 
@@ -7,7 +8,7 @@ export const Search: React.FC<IProp> = () => {
         <div className="top_visual">
             <div
                 className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/pr_img_17.jpg)` }}
+                style={{ backgroundImage: `url(/its/su_visual_bg.jpg)` }}
             >
                 <div className="w1200">
                     <h2 className="title">아이디/비밀번호 찾기</h2>
@@ -17,22 +18,27 @@ export const Search: React.FC<IProp> = () => {
             <div className="header_nav">
                 <ul>
                     <li className="home">
-                        <a href="/index"></a>
+                        <Link href="/index"><a></a></Link>
                     </li>
                     <li className="homedeps1">Member</li>
                     <li className="homedeps2">
-                        <a href="/">아이디/비밀번호 찾기</a>
+                        <Link href="/"><a>아이디/비밀번호 찾기</a></Link>
                     </li>
                 </ul>
             </div>
         </div>
 
         <div className="findmembers_box w1200">
+            <ul className="subtop_nav">
+                <li><Link href="/member/login"><a>로그인</a></Link></li>
+                <li><Link href="/member/join"><a>회원가입</a></Link></li>
+                <li className="on"><Link href="/member/findmembers"><a>아이디/비밀번호 찾기</a></Link></li>
+            </ul>
             <div className="con_box">
                 <div className="left">
-                <h3>아이디 찾기</h3> 
-                <span className="info">아이디가 기억나지 않으신가요? 가입 시 입력한 개인 정보로 인증 절차를 거치면 확인이 가능합니다.</span>
-               
+                    <h3>아이디 찾기</h3>
+                    <span className="info">아이디가 기억나지 않으신가요? 가입 시 입력한 개인 정보로 인증 절차를 거치면 확인이 가능합니다.</span>
+
                     <div className="idfind_box in_box">
                         <h4>이름</h4>
                         <div className="input_box"><input type="text" placeholder="이름을 입력해 주세요." /></div>
@@ -67,7 +73,7 @@ export const Search: React.FC<IProp> = () => {
             </div>
         </div>
     </div>
-   
+
 }
 
 export default Search

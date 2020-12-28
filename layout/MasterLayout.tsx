@@ -7,7 +7,7 @@ export const MasterLayout: React.FC<IProp> = ({ children }) => {
         <div className="top_visual">
             <div
                 className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/pr_img_40.jpg)` }}
+                style={{ backgroundImage: `url(/its/su_visual_bg.jpg)` }}
             >
                 <div className="w1200">
                     <h2 className="title">Master</h2>

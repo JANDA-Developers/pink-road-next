@@ -169,7 +169,7 @@ export const Header: React.FC<IProp> = () => {
                                         <a href="/tour">It's투어</a>
                                     </li>
                                     <li className="deps">
-                                        <a href="/notice">서비스</a>
+                                        <a href="/service/notice">서비스</a>
                                     </li>
                                     <li className="deps">
                                         <a href="/site-info">소개</a>
@@ -254,7 +254,7 @@ export const Header: React.FC<IProp> = () => {
                                 : <i />}
                             {isLogin ? <i />
                                 : <span><Link href="/member/join"><a>JOIN</a></Link></span>}
-                            <span><Link href="/member/inquiry"><a>고객문의</a></Link></span>
+                            <span><Link href="/member/inquiry"><a>문의하기</a></Link></span>
                             <span><Link href="/member/event"><a>이벤트</a></Link></span>
                             {/* <span><Link href="https://booking-app.stayjanda.cloud/#/"><a>예약관리시스템</a></Link></span> */}
                         </div>
@@ -284,7 +284,7 @@ export const Header: React.FC<IProp> = () => {
                                 <ul className="depth1">
                                     <li><a href="/mypage">회원정보</a></li>
                                     <li><a href="/mypage/notification">알림</a></li>
-                                    <li><a href="/mypage/">프로필관리</a></li>
+                                    <li><a href="/mypage/profilepage">프로필관리</a></li>
                                     <li><a href="/mypage/basket">리뷰관리</a></li>
                                     <li><a href="/mypage/write">나의 게시글</a></li>
                                     <li><a href="/mypage/reservation">예약관리</a></li>
@@ -308,7 +308,7 @@ export const Header: React.FC<IProp> = () => {
                                 <ul className="depth1">
                                     <li><a href="/member/login">로그인</a></li>
                                     <li><a href="/member/join">회원가입</a></li>
-                                    <li><a href="/member/idpw_find">아이디/비번 찾기</a></li>
+                                    <li><a href="/member/findmembers">아이디/비번 찾기</a></li>
 
 
                                 </ul>

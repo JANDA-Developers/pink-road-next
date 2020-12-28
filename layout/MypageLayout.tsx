@@ -41,7 +41,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         <div className="top_visual">
             <div
                 className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/pr_img_37.jpg)` }}
+                style={{ backgroundImage: `url(/its/su_visual_bg.jpg)` }}
             >
                 <div className="w1200">
                     <h2 className="title">My page</h2>
@@ -64,15 +64,13 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         </div>
         <div className="mypage_in w100">
             <ul className="subtop_nav">
-                {isSeller || <li className="on"><Link href="/mypage"><a >회원정보</a></Link></li>}{/* 개인 -*/}
-                <li><Link href="/mypage/notification"><a >알림</a></Link></li>{/* 개인/기업파트너/개인파트너 -*/}
-                {isSeller || <li><Link href="/mypage/purchase"><a >구매내역</a></Link></li>}{/* 개인 -*/}
-                {isSeller || <li><Link href="/mypage/basket"><a >장바구니</a></Link></li>}{/* 개인 -*/}
-                <li><Link href="/mypage/my-board"><a >나의 게시글</a></Link></li>{/* 개인/기업파트너/개인파트너 -*/}
-                {isSeller && <li><Link href="/mypage/reservation"><a >예약관리</a></Link></li>}{/* 기업파트너/개인파트너 -*/}
-                {isParterB && <li><Link href="/mypage/goods"><a >상품관리</a></Link></li>}{/* 기업파트너 -*/}
-                {isSeller && !isParterB && <li><Link href="/mypage/plainning"><a >기획관리</a></Link></li>}{/* 개인파트너 -*/}
-                {isSeller && <li><Link href="/mypage/settlement"><a >매출/정산관리</a></Link></li>}{/* 기업파트너/개인파트너 -*/}
+                {isSeller || <li className="on"><Link href="/mypage"><a >회원정보</a></Link></li>}{/* 가이드 -*/}
+                <li><Link href="/mypage/notification"><a >알림</a></Link></li>{/* 가이드 -*/}
+                {isSeller || <li><Link href="/mypage/profilepage"><a >프로필관리</a></Link></li>}{/* 가이드 -*/}
+                <li><Link href="/mypage/my-board"><a >나의 게시글</a></Link></li>{/* 가이드 -*/}
+                {isSeller && <li><Link href="/mypage/reservation"><a >예약관리</a></Link></li>}{/* 가이드 -*/}
+                {isParterB && <li><Link href="/mypage/goods"><a >상품관리</a></Link></li>}{/* 가이드 -*/}
+                {isSeller && <li><Link href="/mypage/settlement"><a >매출/정산관리</a></Link></li>}{/* 가이드 -*/}
             </ul>
             <div className="w1200">
 

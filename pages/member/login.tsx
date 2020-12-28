@@ -4,7 +4,7 @@ import { LocalManager, Storage, initStorage } from 'utils/Storage';
 import pageInfo from 'info/login.json'
 import { Upload } from 'components/common/Upload';
 import { getEditUtils } from 'utils/pageEdit';
-import { AppContext } from '../_app';
+import { AppContext, EditContext } from '../_app';
 import { BG } from '../../types/const';
 import { signIn, signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';

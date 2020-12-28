@@ -234,7 +234,7 @@ const info = {
     valuable_exp_sub: { kr: `가치있는 체험` },
     bottom_title: { kr: `<strong>우리는</strong>새로운 변화속에서 <strong>사회적 가치</strong>를 지키며 서로 <strong>상생</strong>하는 일을 합니다.` },
     bottom_desc: { kr: `We keep our social values in new changes and work together` },
-    bottom_bg_img: { kr: `/img/pr_img_12.jpg` },
+    bottom_bg_img: { kr: `2.jpg` },
 }
 
 //html edit 기능에 의존하지말고  style 오브젝트를 넣으면 안될까? 

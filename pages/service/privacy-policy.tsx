@@ -6,11 +6,11 @@ const PrivacyPolicy = () => {
             <div className="top_visual">
                 <div
                     className="sub_header sub_bg"
-                    style={{ backgroundImage: `url(/img/pr_img_06.jpg)` }}
+                    style={{ backgroundImage: `url(/its/su_visual_bg.jpg)` }}
                 >
                     <div className="w1200">
                         <h2 className="title">개인정보처리방침</h2>
-                        {/*<p className="text">지금 여행을 떠나세요~!~~!!!!!</p>*/}
+                        <p className="text">개인정보처리방침을 지금 확인해 보세요.</p>
                     </div>
                 </div>
                 <div className="header_nav">
@@ -18,7 +18,7 @@ const PrivacyPolicy = () => {
                         <li className="home">
                             <a href="../main/main.html"></a>
                         </li>
-                        <li className="homedeps1">Member</li>
+                        <li className="homedeps1">서비스</li>
                         <li className="homedeps2">
                             <a href="/">개인정보처리방침</a>
                         </li>
@@ -28,9 +28,8 @@ const PrivacyPolicy = () => {
 
             <div className="privacy_box w1200">
                 <ul className="subtop_nav">
-                    <li><a href="/member/rule">이용약관</a></li>
-                    <li className="on"><a href="/member/privacy-policy">개인정보처리방침</a></li>
-                    <li><a href="/member/kr-terms">국내여행약관</a></li>
+                    <li><a href="/service/rule">이용약관</a></li>
+                    <li className="on"><a href="/service/privacy-policy">개인정보처리방침</a></li>
                 </ul>
                 <p>
                    주식회사 잇츠가이드 (이하 ‘당사’)는 고객의 개인정보보호와 정보주체의 권익보장을 위해 최선의 노력을 다하고 있습니다. 당사는 『개인정보보호법』 관련 조항과 『정보통신망 이용촉진 및 정보보호에 관한 법률』의 기준에 따라 ‘개인정보처리방침’을 수립하여 이를 준수하고 있습니다. 고객의 개인정보가 어떠한 목적과 절차로 수집,이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 다음과 같이 알려드립니다. 본 개인정보처리방침을 개정하는 경우에는 당사 웹사이트를 통하여 사전에 고지 하겠습니다.

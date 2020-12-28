@@ -123,23 +123,23 @@ export const Main: React.FC = () => {
           <div className="man_box">
             <ul>
               <li className="on">
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg' }}>프로필사진</span>
+                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
                 <div className="name"><i>G</i>김행자</div>
               </li>
               <li>
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg' }}>프로필사진</span>
+                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
                 <div className="name"><i>G</i>김행자</div>
               </li>
               <li>
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg' }}>프로필사진</span>
+                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
                 <div className="name"><i>G</i>김행자</div>
               </li>
               <li>
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg' }}>프로필사진</span>
+                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
                 <div className="name"><i>G</i>김행자</div>
               </li>
               <li>
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg' }}>프로필사진</span>
+                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
                 <div className="name"><i>G</i>김행자</div>
               </li>
 
