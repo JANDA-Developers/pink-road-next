@@ -22,7 +22,6 @@ export const Upload: React.FC<IUploadProps> = ({ onUpload }) => {
         const file = hiddenImgInput.current?.files;
         if (!file) return;
         signleUpload(file, (url, data) => {
-            console.log(data);
             onUpload(url);
         })
     }} hidden type="file" /></div>;

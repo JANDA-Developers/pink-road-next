@@ -1,15 +1,26 @@
-import React from "react";
+import { CSSProperties } from "react";
 import $ from "jquery"
-import { ISet, TStieInfo } from "types/interface";
+import { ISet } from "../types/interface";
+import { IEditKit } from "../components/Img/Img";
+
+interface Style {
+    style?: CSSProperties,
+}
+interface TInfoCell extends Style {
+    [key: string]: any
+}
+export type TWebPageInfo = {
+    [key: string]: TInfoCell
+}
 
 const keyDownUlManage = (e: any,) => {
-    var $this = $(e.currentTarget);
+    const $this = $(e.currentTarget);
     if (!$this.html()) {
-        var $li = $('<li></li>');
+        const $li = $('<li></li>');
 
-        var sel = window.getSelection()!;
+        const sel = window.getSelection()!;
 
-        var range = sel.getRangeAt(0);
+        let range = sel.getRangeAt(0);
 
         range.collapse(false);
         range.insertNode($li.get(0));
@@ -22,7 +33,7 @@ const keyDownUlManage = (e: any,) => {
     } else {
         //are there any tags that AREN'T LIs?
         //this should only occur on a paste
-        var $nonLI = $this.find(':not(li, br)');
+        const $nonLI = $this.find(':not(li, br)');
 
         if ($nonLI.length) {
             $this.contents().replaceWith(function () {
@@ -36,15 +47,14 @@ const keyDownUlManage = (e: any,) => {
 
 
 
-export const onSingleBlur = (data: TStieInfo, set: ISet<TStieInfo>, e: React.FocusEvent<HTMLElement>, key: string) => {
+export const onSingleBlur = (data: TWebPageInfo, set: ISet<TWebPageInfo>, lang: string, e: React.FocusEvent<HTMLElement>, key: string) => {
     const text = e.currentTarget.innerHTML;
-    console.log("text");
-    console.log(text);
     if (!key) throw Error("this Element dose not have name property")
     if (data[key] === undefined) throw Error(`the key ${key} dose not exisit on data`);
-    if (data[key]["kr"] === undefined) throw Error(`the key ${key} ${"kr"} dose not exisit on data`);
+    if (data[key][lang] === undefined) throw Error(`the key ${key} ${lang} dose not exisit on data`);
 
-    data[key]["kr"] = text || "";
+    //TODO 이게 올바른 값인지 확인해야함
+    data[key][lang] = text || "";
     set({ ...data })
 }
 
@@ -54,42 +64,62 @@ export const effectDoc = (command: TCommand) => {
     document.execCommand(command)
 }
 
-export const editUl = (e: React.KeyboardEvent<HTMLUListElement>) => {
 
+export interface IGetEditUtilsResult<Page> {
+    page: Page;
+    setPage: React.Dispatch<any>;
+    lang: string;
+    edit: (key: keyof Page) => any;
+    ulEdit: (key: keyof Page) => any;
+    imgEdit: (key: keyof Page) => (url: string) => void;
+    editArray: (key: keyof Page, index: number, value: any) => void;
+    addArray: (key: keyof Page, value: any) => void;
+    removeArray: (key: keyof Page, index: number) => void
+    bg: (key: keyof Page) => {
+        backgroundImage: string;
+    } | undefined;
+    src: (key: keyof Page) => {
+        src: any;
+        "data-imgkey": keyof Page;
+        "data-img": string;
+    } | undefined;
+    editKit: (key: string) => IEditKit
 }
 
 
-export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean, page: T, setPage: ISet<any>) => {
-    const lang = "kr";
+export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean, page: T, setPage: ISet<any>, lang = "kr") => {
+    const validateKey = (key: string | keyof T, array?: number | true) => {
+        if (!page[key]) throw Error(`키값 ${key}은 존재하지 않습니다.`);
+        if (page[key][lang] === undefined) throw Error(`언어 ${lang}은 ${key}에 존재하지 않습니다.`);
+
+        if (array !== undefined) {
+            if (!Array.isArray(page[key][lang])) throw Error(`the ${key} object is not array!!`);
+            if (array !== true)
+                if (!page[key][lang][array]) throw Error(`the object key ${key} dose not  have index ${array}!!`)
+        }
+    }
+
     const editable: "true" | undefined = editMode === true ? "true" : undefined;
 
-    const singleBlur = onSingleBlur.bind(onSingleBlur, page, setPage);
+    const singleBlur = onSingleBlur.bind(onSingleBlur, page, setPage, lang);
 
     const editArray = (key: keyof T, index: number, value: any) => {
-        if (!page[key]['kr']) throw Error("this Element dose not have name property")
-        if (Array.isArray(!page[key]['kr'])) throw Error(`the ${key} object is not array!!`)
-        if (!page[key]['kr'][index]) throw Error(`the object key ${key} dose not  have index ${index}!!`)
-        page[key]['kr'][index] = value
+        validateKey(key, index)
+        page[key][lang][index] = value
         // @ts-ignore
         setPage({ ...page });
     }
 
     const addArray = (key: keyof T, value: any) => {
-        if (!page[key]['kr']) throw Error("this Element dose not have name property")
-        if (!Array.isArray(page[key]['kr'])) throw Error(`the ${key} object is not array!!`)
-        const target = page[key]['kr'];
-        // @ts-ignore
+        validateKey(key, true)
+        const target = page[key][lang];
         target[target.length] = value;
-        // @ts-ignore
         setPage({ ...page });
     }
 
     const removeArray = (key: keyof T, index: number) => {
-        if (!page[key]) throw Error("this Element dose not have name property")
-        if (!Array.isArray(page[key]['kr'])) throw Error(`the ${key} object is not array!!`)
-        if (page[key]['kr'][index] === undefined) throw Error(`the object key ${key} dose not  have index ${index}!!`)
-        page[key]['kr'].splice(index, 1)
-        // @ts-ignore
+        validateKey(key, index)
+        page[key][lang].splice(index, 1)
         setPage({ ...page });
     }
 
@@ -100,9 +130,10 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
     }
 
     const data = (key: keyof T) => {
+        validateKey(key)
         return {
             dangerouslySetInnerHTML: {
-                __html: page[key]["kr"]
+                __html: page[key][lang]
             }
         }
     }
@@ -125,18 +156,37 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
     })
 
     const onImgUpload = (key: keyof T, url: string) => {
-        if (!page[key]) throw Error(`there is no key ${key} in page`)
-        //TODO
-        //값이 스트링값이 아니라면 style 
-        // @ts-ignore
-        page[key]["kr"] = url
+        validateKey(key)
+        page[key][lang] = url
         setPage({ ...page })
     }
 
     const imgEdit = (key: keyof T) => onImgUpload.bind(onImgUpload, key);
+    const bg = (key: keyof T) => {
+        validateKey(key)
+        return ({ backgroundImage: `url(${page[key][lang]})`, "data-edit": editable ? "bg" : "" })
+    }
+    const src = (key: keyof T) => {
+        validateKey(key)
+        return ({ src: page[key][lang], "data-imgkey": key, "data-img": "img" })
+    }
 
-    const bg = (key: keyof T) => ({ backgroundImage: `url(${page[key]["kr"]})` })
+    const editKit = (key: string) => {
+        validateKey(key)
+        const upload = imgEdit.bind(imgEdit, key)();
+        const _bg = bg.bind(bg, key)();
+        const _src = src.bind(src, key)();
+
+        return {
+            upload,
+            bg: _bg,
+            src: _src
+        }
+    }
 
 
-    return { edit, ulEdit, imgEdit, editArray, addArray, removeArray, bg }
+    return {
+        page,
+        setPage, lang, edit, ulEdit, imgEdit, editArray, addArray, removeArray, bg, src, editKit
+    }
 }

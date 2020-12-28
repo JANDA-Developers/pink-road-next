@@ -16,7 +16,7 @@ interface IProp {
 }
 
 export const Login: React.FC<IProp> = () => {
-    const { editMode } = useContext(AppContext)
+    const { editMode } = useContext(EditContext)
     const [saveId, setSaveId] = useState(false);
     const [saveSession, setSaveSession] = useState(false);
     const [userId, setId] = useState("");
@@ -54,12 +54,10 @@ export const Login: React.FC<IProp> = () => {
 
     const handleId = (id: string) => {
         setId(id);
-        console.log(userId);
     }
 
     const handlePw = (pw: string) => {
         setPw(pw);
-        console.log(userPw);
     }
 
     const [LoginQu, { loading: create_loading }] = useLazyQuery<signIn, signInVariables>(SIGN_IN, {

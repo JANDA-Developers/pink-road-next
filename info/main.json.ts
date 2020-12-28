@@ -1,8 +1,13 @@
-import { TStieInfo } from "types/interface";
 
+<<<<<<< Updated upstream
 const info: TStieInfo = {
     mainBg: {
         kr: `/img/pr_img_43.jpg`,
+=======
+const info = {
+    m_01_title: {
+        kr: `특별한 여행<br/>즐거운 추억<br/>소중한 당신`,
+>>>>>>> Stashed changes
     },
     mainLink1: {
         kr: `투어`,

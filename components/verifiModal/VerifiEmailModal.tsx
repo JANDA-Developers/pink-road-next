@@ -21,8 +21,6 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => 
             alert("올바른 이메일이 아닙니다.");
             return;
         }
-        console.log("verifiStart");
-        console.log(verifiStart);
         verifiStart({
             event: VerificationEvent.UserVerifyEmail,
             target: VerificationTarget.EMAIL,

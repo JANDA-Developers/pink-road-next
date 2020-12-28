@@ -70,3 +70,7 @@ export const ONLY_LOGINED = [UserRole.admin, UserRole.individual, UserRole.manag
 export const FULL_ACCESS = [...ONLY_LOGINED, UserRole.anonymous];
 export const ALLOW_SELLERS = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin];
 export const DEFAULT_PROFILE_IMG = "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png";
+
+export const DEFAULT_PAGEINFO = {
+    pageInfo: {}, defaultPageInfo: {}, pageKey: ""
+}
