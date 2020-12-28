@@ -146,8 +146,6 @@ const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
         })
         setBirthDayPicker(!birthdayPicker)
 
-        console.log(formInfo);
-
     }
 
     const handleForm = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -224,8 +222,6 @@ const FormNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
         setDaumAddress(false);
 
     }
-
-    // console.log(` pikcer ${birthdayPicker}`); 
 
     return (
         <>

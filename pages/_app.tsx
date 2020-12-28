@@ -7,21 +7,20 @@ import PinkClient from "apollo/client"
 import { ISet } from 'types/interface';
 import "dayjs/locale/ko"
 import dayjs from 'dayjs';
-import { ADMINS, FULL_ACCESS, SELLERS } from '../types/const';
+import { ADMINS, DEFAULT_PAGEINFO, FULL_ACCESS, SELLERS } from '../types/const';
 import Toast from '../components/toast/Toast';
 import { GET_CONTEXT } from '../apollo/gql/queries';
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from '../apollo/gql/mutations';
 import { bracketVergionChange } from '../utils/Storage';
 import Page404 from './404';
 import PageDeny from './Deny';
+import { IUsePageEdit, usePageEdit } from '../hook/usePageEdit';
+import { HiddenSubmitBtn } from '../components/common/HiddenSubmitBtn';
 
 
 dayjs.locale('ko')
 
 export type TContext = {
-  editMode: boolean;
-  setEditMode: ISet<boolean>;
-  submitEdit?: (pageKey: string, data: any) => void;
   categories: categoryList_CategoryList_data[]
   role: UserRole
   isAdmin: boolean,
@@ -42,7 +41,6 @@ const defaultContext: TContext = {
   isAdmin: false,
   isManager: false,
   isSeller: false,
-  submitEdit: undefined,
   myProfile: undefined,
   homepage: undefined,
   isLogin: false,
@@ -50,19 +48,16 @@ const defaultContext: TContext = {
   isParterNonB: false
 }
 
+export const EditContext: React.Context<IUsePageEdit<any>> = React.createContext<any>({})
 export const AppContext = React.createContext<TContext>(defaultContext);
 
 function App({ Component, pageProps }: any) {
+  const { pageInfo, defaultPageInfo, pageKey } = pageProps ? pageProps : DEFAULT_PAGEINFO;
   const ComponentLayout = Component.Layout ? Component.Layout : Layout;
   const ComponentAuth = Component.Auth ? Component.Auth : FULL_ACCESS;
 
-  const [pageInfoCreateMu, { loading: pageInfoCreateLoading }] = useMutation<pageInfoCreate, pageInfoCreateVariables>(PAGE_INFO_CREATE, {
-    client: PinkClient
-  })
+  const editorTools = usePageEdit(pageInfo, defaultPageInfo);
 
-  const [pageInfoUpdateMu, { loading: pageInfoUpdateLoading }] = useMutation<pageInfoUpdate, pageInfoUpdateVariables>(PAGE_INFO_UPDATE, {
-    client: PinkClient
-  })
   const { data } = useQuery<getContext>(GET_CONTEXT, {
     client: PinkClient,
     nextFetchPolicy: "cache-and-network"
@@ -73,33 +68,11 @@ function App({ Component, pageProps }: any) {
   const myProfile = data?.GetProfile?.data || undefined
   const role: UserRole = myProfile?.role || UserRole.anonymous
 
-  const submitEdit = (key: string, value: any) => {
-    const params = {
-      key,
-      value
-    };
-    pageInfoCreateMu({
-      variables: {
-        params
-      }
-    }).then((data) => {
-      console.log(data)
-      pageInfoUpdateMu({
-        variables: {
-          key,
-          params: {
-            key,
-            value
-          }
-        }
-      })
-    })
-  }
+
 
   const isSeller = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
   const isParterB = [UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
   const isParterNonB = [UserRole.partner, UserRole.manager, UserRole.admin].includes(role);
-  const [editMode, setEditMode] = useState<boolean>(false);
   {/* <DaumPostcode autoResize autoClose onSearch={() => { }} onComplete={(asd) => { }} /> */ }
 
   useEffect(() => { bracketVergionChange() }, [])
@@ -124,9 +97,6 @@ function App({ Component, pageProps }: any) {
     <div className="App">
       <ApolloProvider client={PinkClient}>
         <AppContext.Provider value={{
-          editMode,
-          setEditMode,
-          submitEdit,
           categories: catList || [],
           role,
           myProfile,
@@ -138,9 +108,12 @@ function App({ Component, pageProps }: any) {
           isParterNonB,
           homepage
         }}>
-          <ComponentLayout>
-            <Component {...pageProps} />
-          </ComponentLayout>
+          <EditContext.Provider value={editorTools}>
+            <ComponentLayout>
+              <Component {...pageProps} />
+            </ComponentLayout>
+            <HiddenSubmitBtn path={pageKey} />
+          </EditContext.Provider>
         </AppContext.Provider>
       </ApolloProvider>
       <Toast />

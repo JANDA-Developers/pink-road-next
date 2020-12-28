@@ -70,8 +70,6 @@ function jdPayStart() {
     const mobileAction = "https://web.nicepay.co.kr/v3/v3Payment.jsp";
     target.attr("accept-charset", "euc-kr");
     target.attr("action", mobileAction);
-    // @ts-ignore
-    console.log(document.getElementById("ReqReserved").value);
     target.submit();
   } else {
     window.nicepaySubmit = PCnicepaySubmit;

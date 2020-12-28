@@ -32,8 +32,6 @@ const TourDetail: React.FC = () => {
 
   const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
 
-  console.log("product?.questions");
-  console.log(product?.questions);
 
   const sliderRef = useRef<SLIDER>(null);
   const { count, handleCount, totalPrice } = useBasketCount({
@@ -135,8 +133,6 @@ const TourDetail: React.FC = () => {
     caution
   } = product;
 
-  console.log("questionSliced");
-  console.log(questionSliced);
 
   return <div className="edtiorView">
     <SubTopNav children={

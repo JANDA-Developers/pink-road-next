@@ -1,6 +1,5 @@
-import { TStieInfo } from "types/interface";
 
-const info: TStieInfo = {
+const info = {
     m_01_title: {
         kr: `특별한 여행<br/>즐거운 추억<br/>소중한 당신`,
     },

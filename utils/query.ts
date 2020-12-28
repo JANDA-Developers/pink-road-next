@@ -8,13 +8,11 @@ import { DEFAULT_PAGE } from "../types/const";
 
 const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["data","page"]) => {
     if(data?.hasOwnProperty(operationName) === false) {
-        console.log(data)
         throw Error(`result data object dose not have property ${operationName} look this above object ↑ `)
     }
 
     checkProperty.forEach(p => {
         if(data?.[operationName].hasOwnProperty(p) === false) {
-            console.log(data[operationName])
             throw Error(`result data object dose not have property ${p} look this above object ↑ `)
         }
     })

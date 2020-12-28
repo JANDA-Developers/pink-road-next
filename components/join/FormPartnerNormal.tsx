@@ -159,9 +159,6 @@ const FormPartnerNormal: React.FC<TForm> = ({ openPopup, handleJoinProcess }) =>
       const fileTypeChk = ['image/jpg', 'image/jpeg', 'image/png'];
       const fileType = e.target.files[0].type;
 
-      console.log(e.target.files[0]);
-
-      console.log(fileType);
 
       if (!fileTypeChk.includes(fileType)) {
         // alert('jpg 혹은 png 파일만 업로드 가능합니다');

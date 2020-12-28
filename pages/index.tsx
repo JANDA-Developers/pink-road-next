@@ -1,30 +1,20 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import pageInfoDefault from 'info/main.json';
-import { getEditUtils } from 'utils/pageEdit';
-import { AppContext } from './_app'
 import { Meta } from 'components/common/meta/Meta';
 import { Upload } from 'components/common/Upload';
 import Link from 'next/link';
-import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetStaticProps } from 'next';
 import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
 import { getStaticPageInfo } from '../utils/page';
 import { GoodsListAPI } from '../components/common/GoodsListAPI';
+import { IEditPage } from '../utils/with';
+import { EditContext } from './_app';
 
-export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+export const Main: React.FC = () => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
-  const { editMode } = useContext(AppContext);
-  const original = pageInfo || pageInfoDefault;
-  const [page, setPage] = useState(original);
-  const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPage)
+  const { imgEdit, edit, bg } = useContext<IEditPage<typeof pageInfoDefault>>(EditContext as any);
   const router = useRouter()
-
-
-  const toProductBoard = (id: string) => {
-    router.push(id);
-  }
-
 
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
@@ -242,17 +232,14 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         </div>
       </div>
     </div>
-
-
-
-
   </div >
 
 };
 
-
 interface IGetProps {
   pageInfo: typeof pageInfoDefault | "",
 }
-export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("tourMain");
+
+
+export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("main", pageInfoDefault);
 export default Main;

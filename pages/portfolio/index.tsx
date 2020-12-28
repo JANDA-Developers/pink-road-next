@@ -38,8 +38,6 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
         });
     }
 
-    console.log("portfolios.length");
-    console.log(portfolios.length);
 
     const handleAllCat = () => {
         setPFpage(1);

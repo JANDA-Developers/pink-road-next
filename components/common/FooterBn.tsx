@@ -16,7 +16,6 @@ interface IProps {
 }
 
 export const FooterBn: React.FC<IProps> = ({ context }) => {
-    console.log("AWESOME")
     const { items, sitePageInfo } = context;
     const { editMode } = useContext(AppContext);
     const original = sitePageInfo || pageInfoDefault;
