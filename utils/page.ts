@@ -3,6 +3,7 @@ import { HOMEPAGE } from "../apollo/gql/homepage";
 import { SERVER_URI } from "../apollo/uri";
 import { usePageInfo } from "../hook/usePageInfo";
 import { Fhomepage, Fpage, homepage } from "../types/api"
+import { DEFAULT_HOMEPAGE } from "../types/const";
 import { TPageKeys } from "../types/interface";
 import { Page } from "./generateClientPaging";
 
@@ -20,8 +21,7 @@ export const useHomepageServerSide = async () => {
         cache: "reload",
     })
 
-    const {Homepage:{data}} = await graphQLClient.request<homepage>(HOMEPAGE)
-    if(!data) throw Error("homepage is not exsist");
+    const {Homepage:{data = DEFAULT_HOMEPAGE}} = await graphQLClient.request<homepage>(HOMEPAGE)
     return { data };
 }
 

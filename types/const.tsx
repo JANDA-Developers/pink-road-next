@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { IPageInfo } from "./interface"
-import { Fquestion_author_profileImg, ItineraryCreateInput, ProductStatus, UserRole, } from "./api";
+import { Fquestion_author_profileImg, homepage, homepage_Homepage, ItineraryCreateInput, ProductStatus, UserRole, } from "./api";
 
 export const lastMonthFirstDate = dayjs().add(-1, "m").set("day", 1).toDate();
 export const lastMonthLastDate = dayjs().add(-1, "m").endOf("month").toDate();
@@ -73,4 +73,28 @@ export const DEFAULT_PROFILE_IMG = "https://www.pngitem.com/pimgs/m/146-1468479_
 
 export const DEFAULT_PAGEINFO = {
     pageInfo: {}, defaultPageInfo: {}, pageKey: ""
+}
+
+export const DEFAULT_HOMEPAGE: homepage_Homepage = {
+    error: "",
+    ok: true,
+    __typename: "HomepageResponse",
+    data: {
+        PrivacyPolicy: "",
+        __typename: "Homepage",
+        blacklist: [],
+        logi: "",
+        loginOutRedirect: "",
+        loginRedirect: "",
+        marketingPolic: "",
+        partnerBpolicy: "",
+        partnerPolicy: "",
+        signUpRedirect: "",
+        siteDesc: "",
+        siteKeyWards: [""],
+        siteName: "",
+        thirdPolicy: "",
+        travelerPolicy: "",
+        usePolicy: ""
+    }
 }

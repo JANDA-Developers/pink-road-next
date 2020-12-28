@@ -1,30 +1,27 @@
 import React, { useContext, useState } from 'react';
 import { getEditUtils } from '../utils/pageEdit';
-import { AppContext } from "./_app";
+import { AppContext, EditContext } from "./_app";
 import pageInfoDefault from 'info/siteInfo.json';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { Upload } from 'components/common/Upload';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { getStaticPageInfo } from '../utils/page';
+import { IEditPage } from '../utils/with';
 
 type TGetProps = {
     pageInfo: typeof pageInfoDefault | "",
 }
 
-export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("site-info");
+export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("site-info", pageInfoDefault);
 export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
     const original = pageInfo || pageInfoDefault;
-    const { editMode, role } = useContext(AppContext)
-    const [page, setPage] = useState<typeof pageInfoDefault>(original)
-    const [open, setOpen] = useState(true);
+    const { editMode, edit, editArray, addArray, removeArray, page } = useContext<IEditPage<typeof pageInfoDefault>>(EditContext as any);
+    const { partners } = page;
     const [addInfo, setAddInfo] = useState({
         alt: "",
         img: "",
         link: "",
     })
-
-    const { edit, ulEdit, imgEdit, editArray, addArray, removeArray, bg } = getEditUtils(editMode, page, setPage);
-    const { partners } = page;
 
     const changePartner = (key: string) => (e: any) => {
         const value = e.currentTarget.value;
@@ -45,7 +42,6 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
 
     return <div className="siteInfo_in">
-        <HiddenSubmitBtn setData={setPage} original={original} path="site-info" data={page} />
         <div className="top_bg w100">
             <div className="w1200">
                 <h3 {...edit("con01_mainTitle")} />
@@ -139,8 +135,6 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                 </div>
             </div>
         </div>
-
-
         {/* 
         <div className="con02">
             <div className="w1200">
@@ -297,7 +291,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <span {...edit("pink_supporter_sub")} />
                 </h4>
                 <ul>
-                    {partners.kr.map((partner: any, index: number) => {
+                    {/* {partners.kr.map((partner: any, index: number) => {
                         const { alt, img, link } = partner;
                         return <li key={index + "partner"}>
                             <a href={editMode ? undefined : link}>
@@ -317,7 +311,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                         <li className="add" onClick={() => {
                             addArray("partners", {})
                         }}><i className="flaticon-add"></i>추가</li>
-                    }
+                    } */}
                 </ul>
 
             </div>
