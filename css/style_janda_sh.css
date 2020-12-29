@@ -117,6 +117,10 @@
     min-height: 670px;
     width: 100%;
     position:relative;
+    background-image: url(/its/main_top_bg.jpg);
+}
+.main_con_box1 .main_top_images.img2 {
+    background-image: url(/its/main_top_bg2.jpg);
 }
    
 .main_con_box1 .w1200 {
@@ -10251,7 +10255,7 @@ div.alignment .right_div {
 @media (min-width: 1300px) {
     .main_con_box1 .main_top_images strong {
         padding-left: 0;
-        width: 50%;
+        width: 100%;
     }
     .main_con_box1 .main_top_images span {
         padding-left: 0;
@@ -10271,7 +10275,7 @@ div.alignment .right_div {
         width: 90%;
     }
     .main_con_box1 .main_top_images {
-        background-size: 140%;
+        background-size: 102%;
         min-height: 800px;
         background-position: -10px center;
     }
