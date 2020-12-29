@@ -10,6 +10,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
 import { getStaticPageInfo } from '../utils/page';
+import Slider from "react-slick";
 
 export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
@@ -41,19 +42,19 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         className="">
         <div
           className="main_top_images img1"
-          style={{ ...bg("m_01_mainBg") }}
+          style={{ ...bg("m_01_mainBg1") }}
         >
-          {/* <Upload onUpload={imgEdit("m_01_mainBg")} /> */}
+          {/* <Upload onUpload={imgEdit("m_01_mainBg1")} /> */}
           <div className="w1200">
-            <strong {...edit("m_01_title")} />
-            <span {...edit('m_01_subtitle')}>
+            <strong {...edit("m_01_title1")} />
+            <span {...edit('m_01_subtitle1')}>
             </span>
             <div className="btn_list">
               <Link href="/guide">
-                <a className="tourLink" {...edit("m_01_mainLink1")} />
+                <a className="tourLink" {...edit("m_01_mainLink1_1")} />
               </Link>
               <Link href="/tour">
-                <a  {...edit("m_01_mainLink2")} />
+                <a  {...edit("m_01_mainLink1_2")} />
               </Link>
             </div>
           </div>
@@ -62,14 +63,17 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           className="main_top_images img2"
           style={{ ...bg("m_01_mainBg2") }}
         >
-          {/* <Upload onUpload={imgEdit("m_01_mainBg")} /> */}
+          {/* <Upload onUpload={imgEdit("m_01_mainBg2")} /> */}
           <div className="w1200">
             <strong {...edit("m_01_title2")} />
             <span {...edit('m_01_subtitle2')}>
             </span>
             <div className="btn_list">
-              <Link href="/member/join">
+              <Link href="/guide">
                 <a className="tourLink" {...edit("m_01_mainLink2_1")} />
+              </Link>
+              <Link href="/tour">
+                <a  {...edit("m_01_mainLink2_2")} />
               </Link>
             </div>
           </div>

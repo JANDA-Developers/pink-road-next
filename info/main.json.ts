@@ -1,32 +1,35 @@
 import { TStieInfo } from "types/interface";
 
 const info: TStieInfo = {
-    mainBg: {
+    m_01_mainBg1: {
         kr: `/img/pr_img_43.jpg`,
     },
-    mainLink1: {
+    m_01_mainLink1_1: {
         kr: `투어`,
     },
-    mainLink2: {
+    m_01_mainLink1_2: {
         kr: `체험`,
     },
-    title: {
+    m_01_title1: {
         kr: `PINKRODER ALLOWS PEOPLE, TIME, AND SPACE TO COESIST.`,
     },
-    subtitle: {
+    m_01_subtitle1: {
         kr: `사람과 시간과 공간들의 공존<br class="no" />
         핑크로더는 사라져가는 가치 있는 것 들을 위해 컨텐츠를 개발하고 소통합니다.`
     },
-    mainBg2: {
+    m_01_mainBg2: {
         kr: `/img/pr_img_43.jpg`,
     },
-    mainLink3: {
+    m_01_mainLink2_1: {
         kr: `투어`,
     },
-    title2: {
+    m_01_mainLink2_2: {
+        kr: `체험`,
+    },
+    m_01_title2: {
         kr: `PINKRODER ALLOWS PEOPLE, TIME, AND SPACE TO COESIST.`,
     },
-    subtitle2: {
+    m_01_subtitle2: {
         kr: `사람과 시간과 공간들의 공존<br class="no" />
         핑크로더는 사라져가는 가치 있는 것 들을 위해 컨텐츠를 개발하고 소통합니다.`
     },
