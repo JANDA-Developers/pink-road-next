@@ -95,7 +95,7 @@ export const ProfilePage: React.FC<IProp> = () => {
                 </div>
                 <div className="fin">
                     <div className="float_left">
-                        <Link href="/"><a className="btn">나의 프로필 바로가기</a></Link>
+                        <Link href="/mypage/profile"><a className="btn">나의 프로필 바로가기</a></Link>
                     </div>
                     <div className="float_right">
                         <button type="submit" className="btn medium">저장하기</button>

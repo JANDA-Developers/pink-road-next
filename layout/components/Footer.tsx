@@ -124,7 +124,7 @@ export const Footer: React.FC<IProp> = () => {
                     <p>
                         <a href="https://stayjanda.com/" target="_blank" rel="noopener">
                             <i className="jandaicon-janda"></i>
-                            대한민국 1등 온·오프라인 비대면 통합예약 솔루션
+                            대한민국 1등 클라우드·핀테크 기반 예약솔루션
                         </a>
                     </p>
                 </div>

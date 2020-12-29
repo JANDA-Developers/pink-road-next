@@ -694,7 +694,7 @@ rect.allmenu_svg {
             position: relative;
             display: inline-block;
             vertical-align: middle;
-            width: 24px;
+            width: 27px;
             padding-top: 4px;
         }
 
@@ -1243,7 +1243,7 @@ rect.allmenu_svg {
             display: inline-block;
             position: absolute;
             font-size: 6px;
-            color: #ccc;
+            color: #9fd5ff;
             left: -6px;
         }
 
@@ -2064,7 +2064,7 @@ footer .footer_in_bottom {
     .footer_in .copyright strong {
         font-size: 13px;
         font-weight: 600;
-        color: #333333;
+        color: #666666;
         margin-right: 6px;
     }
 
@@ -3193,6 +3193,7 @@ i.icon_plus {
     display: inline-block;
     width: 100%;
     box-sizing: border-box;
+    margin-top: 5px;
 }
 .search_top .search_div:hover .svg_img{
     opacity: 0.5;
@@ -3712,6 +3713,9 @@ margin-bottom:0;
     }
     .footer_in .copyright .footer_homepage_info .m {
         display: none;
+    }
+    .search_top .search_div{
+        margin-top: 0;
     }
 
 }

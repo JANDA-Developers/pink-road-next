@@ -9,7 +9,7 @@ export const Profile: React.FC<IProp> = () => {
 
     return <div className="in profile_box">
         <div className="member_details_in w100">
-            <div className="top_bg">
+            <div className="top_bg" style={{ backgroundImage: "url(/its/main_bg_001.jpg)" }}>
                 <div className="w1200">
                     <div className="left_btn">
                         <a href="/">채널톡 문의하기</a>
@@ -122,11 +122,21 @@ export const Profile: React.FC<IProp> = () => {
                                         <h4>떠나요~ 제주도~ 푸른바다로~</h4>
                                     </div>
                                 </div>
+                                <div className="thumbnail" style={{ backgroundImage: "url(/its/tem_bg_03.jpg)" }} >
+                                    <div className="in_black">
+                                        <h4>떠나요~ 제주도~ 푸른바다로~</h4>
+                                    </div>
+                                </div>
+                                <div className="thumbnail" style={{ backgroundImage: "url(/its/tem_bg_03.jpg)" }} >
+                                    <div className="in_black">
+                                        <h4>떠나요~ 제주도~ 푸른바다로~</h4>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
 
-                        <div className="review_board mt50">
+                        <div className="mt50">
                             <div className="alignment">
                                 <div className="left_div"><h3>등록된 상품 <strong>23</strong></h3></div>
                                 <div className="right_div">
@@ -135,7 +145,7 @@ export const Profile: React.FC<IProp> = () => {
                             </div>
                             <ul className="list_ul line4">
                                 <li className="list_in">
-                                    <div className="img" style={{ backgroundImage: "url(/its/sample_01.gif)" }}>상품이미지</div>
+                                    <div className="img" style={{ backgroundImage: "url(/its/tem_bg_02.jpg)" }}>상품이미지</div>
                                     <div className="box">
                                         <div className="category"><span>당일여행</span></div>
                                         <div className="title">꽃길만 걸으실 분들을 모집합니다.</div>
@@ -195,7 +205,7 @@ export const Profile: React.FC<IProp> = () => {
                                     </div>
                                 </li>
                                 <li className="list_in">
-                                    <div className="img" style={{ backgroundImage: "url(/its/sample_01.gif)" }}>상품이미지</div>
+                                    <div className="img" style={{ backgroundImage: "url(/its/tem_bg_02.jpg)" }}>상품이미지</div>
                                     <div className="box">
                                         <div className="category"><span>당일여행</span></div>
                                         <div className="title">꽃길만 걸으실 분들을 모집합니다.</div>

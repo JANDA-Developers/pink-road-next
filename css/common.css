@@ -192,8 +192,8 @@ select:focus {
         color: #333;
     }
     .btn.medium {
-        color: #999;
-        border: 1px solid #cfcfcf;
+        color: #6c6c6c;
+        border: 1px solid #7d7d7d;
         border-radius: 5px;
         box-sizing: border-box;
         padding: 0 15px;
@@ -366,11 +366,13 @@ select:focus {
 }
 
 .fin .float_left{
-    width: 100%;
+    width: auto;
+    display: inline-block;
     float: none;
 }
 .fin .float_right{
-    width: 100%;
+    width: auto;
+    display: inline-block;
     float: none;
 }
 .xet-acc {
@@ -577,6 +579,9 @@ select {
 
 .mt30 {
     margin-top: 30px;
+}
+.mt50 {
+    margin-top:50px;
 }
 
 .mr5 {
