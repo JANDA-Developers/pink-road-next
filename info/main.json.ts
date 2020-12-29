@@ -18,20 +18,16 @@ const info: TStieInfo = {
         핑크로더는 사라져가는 가치 있는 것 들을 위해 컨텐츠를 개발하고 소통합니다.`
     },
     m_01_mainBg2: {
-        kr: `/img/pr_img_43.jpg`,
+        kr: `/img/pr_img_40.jpg`,
     },
     m_01_mainLink2_1: {
-        kr: `투어`,
-    },
-    m_01_mainLink2_2: {
-        kr: `체험`,
+        kr: `회사소개서 다운로드`,
     },
     m_01_title2: {
-        kr: `PINKRODER ALLOWS PEOPLE, TIME, AND SPACE TO COESIST.`,
+        kr: `사회적경제 혁신성장사업[비R&D] 사회적경제기업 경쟁력 강화 사업화지원 프로그램의 지원을 받아 일부 제작 되었습니다.`,
     },
     m_01_subtitle2: {
-        kr: `사람과 시간과 공간들의 공존<br class="no" />
-        핑크로더는 사라져가는 가치 있는 것 들을 위해 컨텐츠를 개발하고 소통합니다.`
+        kr: `PINKROADER 2021`
     },
     homedeps1: {
         kr: `Experience`

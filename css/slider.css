@@ -55,23 +55,26 @@
 .Slider_box .slick-list {
 	margin: 0;
 }
-.Slider_box .slick-prev img,.Slider_box .slick-next img{
-	width: 50px;
-	height: 50px;
+.Slider_box .slick-prev img{
+	width: 100px;
+
+}
+.Slider_box .slick-next img{
+	width: 70px;
 
 }
 .Slider_box .slick-prev{
-    top: 50%;
-	left: 3%;
+	top: 20%;
+    left: 7%;
 	position: absolute;
 	cursor: pointer;
-	transform: rotate(-180deg);
 }
 .Slider_box .slick-next{
-    top: 50%;
-	right: 3%;
+	top: 91%;
+    right: 5%;
 	position: absolute;
-    cursor: pointer;
+	cursor: pointer;
+	
 }
 .Slider_box .slick-list .slick-slide {
 	float: left;

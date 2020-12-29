@@ -25,7 +25,6 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
     router.push(id);
   }
 
-
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
 
@@ -34,51 +33,46 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
       <Slider
         autoplay
-        prevArrow={<div className="rev"><img src="/img/svg/arr_right_w.svg" alt="이전" /></div>}
+        prevArrow={<div className="rev"><img src="/img/svg/arr_left_w.svg" alt="이전" /></div>}
         nextArrow={<div className="next"><img src="/img/svg/arr_right_w.svg" alt="다음" /></div>}
         arrows={true}
         dots={false}
         infinite={true}
         className="">
-        <div
-          className="main_top_images img1"
-          style={{ ...bg("m_01_mainBg1") }}
-        >
-          {/* <Upload onUpload={imgEdit("m_01_mainBg1")} /> */}
-          <div className="w1200">
-            <strong {...edit("m_01_title1")} />
-            <span {...edit('m_01_subtitle1')}>
-            </span>
-            <div className="btn_list">
-              <Link href="/guide">
-                <a className="tourLink" {...edit("m_01_mainLink1_1")} />
-              </Link>
-              <Link href="/tour">
-                <a  {...edit("m_01_mainLink1_2")} />
-              </Link>
+        <div>
+          <div className="main_top_images" style={bg("m_01_mainBg1")}>
+            {/* <Upload onUpload={imgEdit("m_01_mainBg1")} /> */}
+            <div className="w1200">
+              <strong {...edit("m_01_title1")} />
+              <span {...edit('m_01_subtitle1')}>
+              </span>
+              <div className="btn_list">
+                <Link href="/guide">
+                  <a className="tourLink" {...edit("m_01_mainLink1_1")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink1_2")} />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-        <div
-          className="main_top_images img2"
-          style={{ ...bg("m_01_mainBg2") }}
-        >
-          {/* <Upload onUpload={imgEdit("m_01_mainBg2")} /> */}
-          <div className="w1200">
-            <strong {...edit("m_01_title2")} />
-            <span {...edit('m_01_subtitle2')}>
-            </span>
-            <div className="btn_list">
-              <Link href="/guide">
-                <a className="tourLink" {...edit("m_01_mainLink2_1")} />
-              </Link>
-              <Link href="/tour">
-                <a  {...edit("m_01_mainLink2_2")} />
-              </Link>
+        <div>
+          <div className="main_top_images img2" style={bg("m_01_mainBg2")}>
+            {/* <Upload onUpload={imgEdit("m_01_mainBg2")} /> */}
+            <div className="w1200">
+              <strong {...edit("m_01_title2")} />
+              <span {...edit('m_01_subtitle2')}>
+              </span>
+              <div className="btn_list">
+                <Link href="/guide">
+                  <a className="/pinkroader_company_introduction_letter.pdf" {...edit("m_01_mainLink2_1")} />
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </Slider>
       {/* <div
         className="main_top_images"
@@ -100,7 +94,7 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           </div>
         </div>
       </div> */}
-    </div>
+    </div >
 
 
 
