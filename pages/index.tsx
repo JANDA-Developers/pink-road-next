@@ -7,12 +7,8 @@ import { GetStaticProps } from 'next';
 import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
 import { getStaticPageInfo } from '../utils/page';
-<<<<<<< Updated upstream
-=======
-import { GoodsListAPI } from '../components/common/GoodsListAPI';
 import { IEditPage } from '../utils/with';
 import { EditContext } from './_app';
->>>>>>> Stashed changes
 
 export const Main: React.FC = () => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
@@ -155,12 +151,7 @@ export const Main: React.FC = () => {
 interface IGetProps {
   pageInfo: typeof pageInfoDefault | "",
 }
-<<<<<<< Updated upstream
-export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("tourMain");
-export default Main;
-=======
 
 
 export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("main", pageInfoDefault);
 export default Main;
->>>>>>> Stashed changes
