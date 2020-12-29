@@ -2,6 +2,8 @@ import { MasterLayout } from 'layout/MasterLayout';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
+import { ADMINS } from 'types/const';
+import { auth } from 'utils/with';
 
 interface IProp { }
 
@@ -187,4 +189,4 @@ export const MsDesignB: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsDesignB;
+export default auth(ADMINS)(MsDesignB);

@@ -1,6 +1,8 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import React from 'react';
 import Link from "next/link";
+import { ADMINS } from 'types/const';
+import { auth } from 'utils/with';
 
 interface IProp { }
 
@@ -332,4 +334,4 @@ export const MsDesignMain: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsDesignMain;
+export default auth(ADMINS)(MsDesignMain);

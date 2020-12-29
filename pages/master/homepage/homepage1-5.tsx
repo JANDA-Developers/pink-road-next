@@ -1,10 +1,12 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import React from 'react';
 import Link from "next/link";
+import { ADMINS } from 'types/const';
+import { auth } from 'utils/with';
 
 interface IProp { }
 
-export const MsHomepageA: React.FC<IProp> = () => {
+export const MsHomepageD: React.FC<IProp> = () => {
     return <MasterLayout>
         <div className="in ">
             <h4>홈페이지 설정</h4>
@@ -99,4 +101,4 @@ export const MsHomepageA: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsHomepageA;
+export default auth(ADMINS)(MsHomepageD);

@@ -1,6 +1,8 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import Link from 'next/link';
 import React from 'react';
+import { ADMINS } from 'types/const';
+import { auth } from 'utils/with';
 import { useProductList } from '../../hook/useProduct';
 import { useUserList } from '../../hook/useUser';
 
@@ -621,4 +623,4 @@ export const MsIndex: React.FC<IProp> = () => {
     </MasterLayout>
 };
 
-export default MsIndex;
+export default auth(ADMINS)(MsIndex);

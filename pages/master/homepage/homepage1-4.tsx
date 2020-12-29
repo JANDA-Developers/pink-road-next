@@ -12,7 +12,7 @@ const Editor = LoadEditor();
 
 interface IProp { }
 export const getStaticProps: GetStaticProps<TGetHomepage> = getHomepage;
-export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ homepage }) => {
+export const MsHomepageC: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ homepage }) => {
 
     const [homepageUpdateMu] = useHomepageUpdate();
 
@@ -152,4 +152,4 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
     </MasterLayout >
 };
 
-export default auth(ADMINS)(MsHomepageA);
+export default auth(ADMINS)(MsHomepageC);

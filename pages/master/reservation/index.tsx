@@ -5,6 +5,8 @@ import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
 import ReactTooltip from 'react-tooltip';
+import { auth } from 'utils/with';
+import { ADMINS } from 'types/const';
 
 interface IProp { }
 
@@ -513,4 +515,5 @@ export const MsReservationMain: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsReservationMain;
+
+export default auth(ADMINS)(MsReservationMain);

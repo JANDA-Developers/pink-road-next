@@ -1,5 +1,7 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import React from 'react';
+import { ADMINS } from 'types/const';
+import { auth } from 'utils/with';
 
 interface IProp { }
 
@@ -100,4 +102,4 @@ export const Notification: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default Notification;
+export default auth(ADMINS)(Notification);

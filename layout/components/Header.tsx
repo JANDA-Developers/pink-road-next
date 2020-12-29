@@ -15,7 +15,7 @@ export const Header: React.FC<IProp> = () => {
     const [search, setSearch] = useState("");
     const rotuer = useRouter()
 
-    const { isLogin, myProfile } = useContext(AppContext);
+    const { isLogin, myProfile, isSeller, isManager, isAdmin } = useContext(AppContext);
 
     const handleNav = () => {
         $('#header').attr("tabindex", -1);
@@ -114,14 +114,10 @@ export const Header: React.FC<IProp> = () => {
     return <header className="header" id="header">
         <div className="top-menu">
             <div className="w1200">
-                {isLogin ? <p><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>
-                    : <i />}
+                {isLogin && <p><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>}
                 <ul className="top-menu-in">
                     <li className="join">
-                        {isLogin ? <i />
-                            : <Link href="/member/join">
-                                <a>JOIN</a>
-                            </Link>}
+                        {isLogin && <Link href="/member/join"><a>JOIN</a></Link>}
                     </li>
                     <li className="login">
                         {isLogin ? <a onClick={handleLogOut}>LOGOUT</a>
@@ -217,7 +213,7 @@ export const Header: React.FC<IProp> = () => {
                             </div>
                             <div onClick={handSearchClose} className="search_bg"></div>
                         </div>
-                        {isLogin ?
+                        {isLogin &&
                             <div className="inform_top">
                                 <div className="inform_icon">
                                     <img src={'/img/svg/inform_icon4.svg'} />
@@ -225,7 +221,7 @@ export const Header: React.FC<IProp> = () => {
                                     <span className="number">99+</span>
                                 </div>
                             </div>
-                            : <i />}
+                        }
                         <div onClick={handleAllMenu} className="all_menu_btn">
                             <img src={'/img/svg/allmenu_icon.svg'} />
                             <button />
@@ -234,7 +230,7 @@ export const Header: React.FC<IProp> = () => {
                     </div>
                     <div id="all_menu">
                         <strong>전체메뉴</strong>
-                        {isLogin ? <div className="m_member">
+                        {isSeller && <div className="m_member">
                             <div className="profile">
                                 <span className="photo"></span>
                             </div>
@@ -242,17 +238,14 @@ export const Header: React.FC<IProp> = () => {
                                 <span className="text01">포인트</span>
                                 <span className="text02">0원</span>
                             </div>
-                        </div>
-                            : <i />}
+                        </div>}
 
                         <div className="m_all_menu_in">
                             {isLogin ? <span><a onClick={handleLogOut}>LOGOUT</a></span>
                                 : <span><Link href="/login"><a>LOGIN</a></Link></span>}
-                            {isLogin ? <span><Link href="/mypage"><a>MY PAGE</a></Link></span>
-                                : <i />}
-                            {isLogin ? <span><Link href="/mypage/notification"><a>알림</a></Link></span>
-                                : <i />}
-                            {isLogin ? <i />
+                            {isLogin && <span><Link href="/mypage"><a>MY PAGE</a></Link></span>}
+                            {isLogin && <span><Link href="/mypage/notification"><a>알림</a></Link></span>}
+                            {isLogin ? ""
                                 : <span><Link href="/member/join"><a>JOIN</a></Link></span>}
                             <span><Link href="/member/inquiry"><a>문의하기</a></Link></span>
                             <span><Link href="/member/event"><a>이벤트</a></Link></span>
@@ -279,7 +272,7 @@ export const Header: React.FC<IProp> = () => {
                             <li className="a_menu_tit deps">
                                 <Link href="/site-info"><a>소개<i className="jandaicon-arr4-right"></i></a></Link>
                             </li>
-                            <li className="a_menu_tit deps hiddennav betatest">
+                            {isSeller && <li className="a_menu_tit deps hiddennav betatest">
                                 <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
                                     <li><a href="/mypage">회원정보</a></li>
@@ -291,8 +284,9 @@ export const Header: React.FC<IProp> = () => {
                                     <li><a href="/mypage/goods">나의 It's투어</a></li>
                                     <li><a href="/mypage/settlement">매출/정산</a></li>
                                 </ul>
-                            </li>
-                            <li className="a_menu_tit deps hiddennav betatest">
+                            </li>}
+
+                            {isManager && <li className="a_menu_tit deps hiddennav betatest">
                                 <a href="/master">Master<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">
                                     <li><a href="/master/notification">알림</a></li>
@@ -302,17 +296,16 @@ export const Header: React.FC<IProp> = () => {
                                     <li><a href="/master/design">디자인 설정</a></li>
                                     <li><a href="/master/homepage">홈페이지 설정</a></li>
                                 </ul>
-                            </li>
-                            <li className="a_menu_tit deps hiddennav betatest">
+                            </li>}
+
+                            {isAdmin && <li className="a_menu_tit deps hiddennav betatest">
                                 <a href="/member/login">Member<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">
                                     <li><a href="/member/login">로그인</a></li>
                                     <li><a href="/member/join">회원가입</a></li>
                                     <li><a href="/member/findmembers">아이디/비번 찾기</a></li>
-
-
                                 </ul>
-                            </li>
+                            </li>}
 
                         </ul>
                         <button className="btn_all_close" onClick={handleAllClose}>
