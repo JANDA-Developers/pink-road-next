@@ -11,7 +11,6 @@ import { GoodsListAPI } from '../components/common/GoodsListAPI';
 import { IEditPage } from '../utils/with';
 import { EditContext } from './_app';
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 
 
 export const Main: React.FC = () => {

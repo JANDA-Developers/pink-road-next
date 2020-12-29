@@ -4,7 +4,9 @@
 	position: relative;
 	overflow: hidden;
 }
-
+.Slider_box .main_top_images{
+	outline: none;
+}
 .Slider_box--unDisplayArrow .slick-arrow {
 	display: none !important;
 }
