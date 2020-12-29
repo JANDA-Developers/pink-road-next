@@ -27,8 +27,56 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
-    <div className="main_con_box1">
-      <div
+
+
+    <div className="main_con_box1 Slider_box">
+
+      <Slider
+        autoplay
+        prevArrow={<div className="rev"><img src="/img/svg/arr_right_w.svg" alt="이전" /></div>}
+        nextArrow={<div className="next"><img src="/img/svg/arr_right_w.svg" alt="다음" /></div>}
+        arrows={true}
+        dots={false}
+        infinite={true}
+        className="">
+        <div
+          className="main_top_images img1"
+          style={{ ...bg("m_01_mainBg") }}
+        >
+          {/* <Upload onUpload={imgEdit("m_01_mainBg")} /> */}
+          <div className="w1200">
+            <strong {...edit("m_01_title")} />
+            <span {...edit('m_01_subtitle')}>
+            </span>
+            <div className="btn_list">
+              <Link href="/guide">
+                <a className="tourLink" {...edit("m_01_mainLink1")} />
+              </Link>
+              <Link href="/tour">
+                <a  {...edit("m_01_mainLink2")} />
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div
+          className="main_top_images img2"
+          style={{ ...bg("m_01_mainBg2") }}
+        >
+          {/* <Upload onUpload={imgEdit("m_01_mainBg")} /> */}
+          <div className="w1200">
+            <strong {...edit("m_01_title2")} />
+            <span {...edit('m_01_subtitle2')}>
+            </span>
+            <div className="btn_list">
+              <Link href="/member/join">
+                <a className="tourLink" {...edit("m_01_mainLink2_1")} />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+      </Slider>
+      {/* <div
         className="main_top_images"
         style={{ ...bg("mainBg") }}
       >
@@ -47,9 +95,11 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
             </Link>
           </div>
         </div>
-
-      </div>
+      </div> */}
     </div>
+
+
+
     <div className="main_con_box2">
       <div className="w1200">
         <div className="top_txt">

@@ -17,6 +17,19 @@ const info: TStieInfo = {
         kr: `사람과 시간과 공간들의 공존<br class="no" />
         핑크로더는 사라져가는 가치 있는 것 들을 위해 컨텐츠를 개발하고 소통합니다.`
     },
+    mainBg2: {
+        kr: `/img/pr_img_43.jpg`,
+    },
+    mainLink3: {
+        kr: `투어`,
+    },
+    title2: {
+        kr: `PINKRODER ALLOWS PEOPLE, TIME, AND SPACE TO COESIST.`,
+    },
+    subtitle2: {
+        kr: `사람과 시간과 공간들의 공존<br class="no" />
+        핑크로더는 사라져가는 가치 있는 것 들을 위해 컨텐츠를 개발하고 소통합니다.`
+    },
     homedeps1: {
         kr: `Experience`
     },
