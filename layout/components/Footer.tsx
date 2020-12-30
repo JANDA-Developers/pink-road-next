@@ -49,7 +49,9 @@ export const Footer: React.FC<IProp> = () => {
                 <div className="ft_left">
                     <div className="magency logo_bottom">
                         <img src="/its/logo_2.png" alt="logo" />
+
                     </div>
+
                 </div>
                 <div className="copyright">
                     <ul className="footer_homepage_info">
@@ -101,20 +103,18 @@ export const Footer: React.FC<IProp> = () => {
                             <span>농협 351-1150-2295-63</span>
                         </li>
                         <li className="bottom_txt m">
-                            Copyright © 2020 it's Guide Co., Ltd. All rights reserved
+                            Copyright © 2021 it's Guide Co., Ltd. All rights reserved
                          </li>
                     </ul>
-                    <div className="bottom_bn">
-                        <div className="partner">
-                            <span className="link" style={{ width: "114px" }}><img src="/img/pt_logo_01.png" alt="중소벤처기업로고" /></span>
-                            <span className="link" style={{ width: "90px" }}><img src="/img/pt_logo_02.png" alt="여성기업" /></span>
-                            <span className="link" style={{ width: "90px" }}><img src="/img/pt_logo_03.png" alt="사회적기업" /></span>
-                            <span className="link"><img src="/img/pt_logo_04.png" alt="공유경제부산" /></span>
-                            <span className="link" style={{ width: "88px" }}><img src="/img/pt_logo_05.png" alt="벤처기업인증" /></span>
-                        </div>
+
+                </div>
+                <div className="bottom_bn">
+                    <div className="partner">
+                        <span className="link" style={{ width: "77px" }}><img src="/its/partner_01.png" alt="한국관광공사 로고" /></span>
+                        <span className="link"><img src="/its/partner_02.png" alt="부산관광공사 로고" /></span>
+                        <span className="link"><img src="/its/partner_03.png" alt="부산관광기업지원센터 로고" /></span>
                     </div>
                 </div>
-
             </div>
         </div>
         <div id="fade1" onClick={handleFadeClick} />

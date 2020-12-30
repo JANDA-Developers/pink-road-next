@@ -31,67 +31,49 @@ export const Main: React.FC = () => {
         dots={false}
         infinite={true}
         className="">
-        <div
-          className="main_top_images img1"
-          style={{ ...bg("m_01_mainBg") }}
-        >
-          {/* <Upload onUpload={imgEdit("m_01_mainBg")} /> */}
-          <div className="w1200">
-            <strong {...edit("m_01_title")} />
-            <span {...edit('m_01_subtitle')}>
-            </span>
-            <div className="btn_list">
-              <Link href="/guide">
-                <a className="tourLink" {...edit("m_01_mainLink1")} />
-              </Link>
-              <Link href="/tour">
-                <a  {...edit("m_01_mainLink2")} />
-              </Link>
+        <div>
+          <div
+            className="main_top_images img1"
+            style={{ ...bg("m_01_mainBg") }}
+          >
+            <Upload onUpload={imgEdit("m_01_mainBg")} />
+            <div className="w1200">
+              <strong {...edit("m_01_title")} />
+              <span {...edit('m_01_subtitle')}>
+              </span>
+              <div className="btn_list">
+                <Link href="/guide">
+                  <a className="tourLink" {...edit("m_01_mainLink1")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink2")} />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-        <div
-          className="main_top_images img2"
-          style={{ ...bg("m_01_mainBg2") }}
-        >
-          {/* <Upload onUpload={imgEdit("m_01_mainBg")} /> */}
-          <div className="w1200">
-            <strong {...edit("m_01_title2")} />
-            <span {...edit('m_01_subtitle2')}>
-            </span>
-            <div className="btn_list">
-              <Link href="/member/join">
-                <a className="tourLink" {...edit("m_01_mainLink2_1")} />
-              </Link>
+        <div>
+          <div
+            className="main_top_images img1"
+            style={{ ...bg("m_01_mainBg2") }}
+          >
+            <Upload onUpload={imgEdit("m_01_mainBg2")} />
+            <div className="w1200">
+              <strong {...edit("m_01_title2")} />
+              <span {...edit('m_01_subtitle2')}>
+              </span>
+              <div className="btn_list">
+                <Link href="/member/join">
+                  <a className="tourLink" {...edit("m_01_mainLink2_1")} />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
       </Slider>
     </div>
-    {/* <div className="main_con_box1">
-      <div
-        className="main_top_images"
-        style={{ ...bg("m_01_mainBg") }}
-      >
-        <Upload onUpload={imgEdit("m_01_mainBg")} />
-        <div className="ovj"><img src="/its/main_top_ovj.png" /></div>
-        <div className="w1200">
-          <strong {...edit("m_01_title")} />
-          <span {...edit('m_01_subtitle')}>
-          </span>
-          <div className="btn_list">
-            <Link href="/guide">
-              <a className="tourLink" {...edit("m_01_mainLink1")} />
-            </Link>
-            <Link href="/tour">
-              <a  {...edit("m_01_mainLink2")} />
-            </Link>
-          </div>
-        </div>
 
-      </div>
-    </div> */}
     <div className="main_con_box2">
       <div className="w1200">
         <div className="top_txt">
@@ -194,7 +176,18 @@ export const Main: React.FC = () => {
                 <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
                 <div className="name"><i>G</i>김행자</div>
               </li>
-
+              <li>
+                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
+                <div className="name"><i>G</i>김행자</div>
+              </li>
+              <li>
+                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
+                <div className="name"><i>G</i>김행자</div>
+              </li>
+              <li>
+                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
+                <div className="name"><i>G</i>김행자</div>
+              </li>
             </ul>
           </div>
           <a className="right_mov"><i className="jandaicon-arr2-right"></i></a>
@@ -288,10 +281,9 @@ export const Main: React.FC = () => {
 
 };
 
-interface IGetProps {
+export interface IGetProps {
   pageInfo: typeof pageInfoDefault | "",
 }
-
 
 export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("main", pageInfoDefault);
 export default Main;
