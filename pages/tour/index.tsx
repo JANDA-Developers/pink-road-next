@@ -40,9 +40,7 @@ export const TourMain: React.FC<IProp> = ({ pageInfo: sitePageInfo }) => {
         </SubTopNav>
         <div className="in ">
             <div className="itstour_box">
-
                 <div className="w1200">
-
 
                     <div className="theme_deal">
                         <ul>
@@ -68,7 +66,6 @@ export const TourMain: React.FC<IProp> = ({ pageInfo: sitePageInfo }) => {
                         </ul>
                     </div>
 
-
                     <div className="deal_list mt30">
                         <div className="alignment">
                             <div className="left_div"><h4>#꽃길만걷자</h4></div>
@@ -88,7 +85,6 @@ export const TourMain: React.FC<IProp> = ({ pageInfo: sitePageInfo }) => {
                         </div>
                         <GoodsListAPI />
                     </div>
-
 
                     <div className="goods_box">
                         <div className="w1200">

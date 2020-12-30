@@ -1,13 +1,13 @@
 import { QueryHookOptions } from "@apollo/client";
 import { CSSProperties, Dispatch } from "react";
 import { ListInitOptions } from "../hook/useListQuery";
-import {  portfolioFindById_PortfolioFindById_data, productFindById_ProductFindById_data, productFindById_ProductFindById_data_itinerary, productList_ProductList_data, productList_ProductList_page} from "../types/api";
+import { portfolioFindById_PortfolioFindById_data, productFindById_ProductFindById_data, productFindById_ProductFindById_data_itinerary, productList_ProductList_data, productList_ProductList_page } from "../types/api";
 
-export interface Iitineraries extends productFindById_ProductFindById_data_itinerary {}
-export interface IproductFindById  extends productFindById_ProductFindById_data {}
+export interface Iitineraries extends productFindById_ProductFindById_data_itinerary { }
+export interface IproductFindById extends productFindById_ProductFindById_data { }
 export interface IProduct extends productList_ProductList_data { };
-export interface IPortfolio extends portfolioFindById_PortfolioFindById_data {};
-export interface IPageInfo extends  productList_ProductList_page {}
+export interface IPortfolio extends portfolioFindById_PortfolioFindById_data { };
+export interface IPageInfo extends productList_ProductList_page { }
 export interface ILi extends React.HTMLAttributes<HTMLLIElement> {
 }
 export declare type TElements = string | JSX.Element | JSX.Element[] | string[];
@@ -39,25 +39,25 @@ export enum QStatus {
 export declare type ISet<T> = Dispatch<React.SetStateAction<T>>;
 
 
-export type TPageKeys = "site-info" | "main" | "portfolio" | "tourMain"
+export type TPageKeys = "site-info" | "main" | "portfolio" | "tourMain" | "guidemain"
 
 
 export type TLangs = "kr" | "en" | string
 interface Foo {
-    style?:CSSProperties,
+    style?: CSSProperties,
 }
 interface TInfoCell extends Foo {
-    [key:string]:any
+    [key: string]: any
 }
 export type TStieInfo = {
-    [key:string]:TInfoCell
+    [key: string]: TInfoCell
 }
 
 
 export type E_INPUT = React.ChangeEvent<HTMLInputElement>;
 
 
-export interface IlistQueryInit<F,S,Q,V> extends Partial<ListInitOptions<F, S>> {
+export interface IlistQueryInit<F, S, Q, V> extends Partial<ListInitOptions<F, S>> {
     options?: QueryHookOptions<Q, V>
 }
 
