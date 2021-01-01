@@ -376,7 +376,8 @@ ul.list_ul.line4 li {
 ul.list_ul .list_in {
     vertical-align: top;
     border: 2px solid #ffffff;
-    padding: 3px 3px 20px 3px;
+    padding: 3px;
+    margin-bottom: 20px;
     box-sizing: border-box;
 }
 
@@ -435,9 +436,8 @@ ul.list_ul li .img {
     background-repeat: no-repeat;
 }
 ul.list_ul li:hover .img {
-    -moz-transition: background 0.4s ease;
-   transition: background 0.4s ease;
-    background-size: 110%;
+   transition: background 0.8s ease;
+    background-size: 105%;
 }
 
 ul.list_ul.line3 li .img {
@@ -574,9 +574,8 @@ ul.boardlist_ul li .img {
     margin-bottom: 15px;
 }
     ul.boardlist_ul li:hover .img {
-        background-size: 110%;
-        -moz-transition: background 0.4s ease;
-        transition: background 0.4s ease;
+        background-size: 105%;
+        transition: background 0.8s ease;
     }
 
 ul.boardlist_ul li .category {
@@ -903,7 +902,7 @@ ul.photo_ul li .img {
 }
 
 ul.photo_ul li .box {
-    display: none;
+    display: inline-block;
     position: absolute;
     top: 0;
     left: 0;
@@ -914,10 +913,12 @@ ul.photo_ul li .box {
     padding:77px 35px 0;
     box-sizing: border-box;
     color: #fff;
+    opacity: 0;
+    transition: all 0.4s ease-out;
 }
 
 ul.photo_ul li:hover .box {
-    display: inline-block;
+    opacity: 1;
 }
 
 ul.photo_ul li .title {

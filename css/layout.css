@@ -3658,6 +3658,9 @@ margin-bottom:0;
     .m {
         display: none;
     }
+    .header .main_menu > .w1200 {
+        padding: 12px 0px; 
+    } 
    .search_top .search_div {
         width: 240px;
     }

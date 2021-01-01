@@ -41,7 +41,7 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         className="">
         <div>
           <div className="main_top_images" style={bg("m_01_mainBg1")}>
-            {/* <Upload onUpload={imgEdit("m_01_mainBg1")} /> */}
+            <Upload onUpload={imgEdit("m_01_mainBg1")} />
             <div className="w1200">
               <strong {...edit("m_01_title1")} />
               <span {...edit('m_01_subtitle1')}>
@@ -59,7 +59,7 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         </div>
         <div>
           <div className="main_top_images img2" style={bg("m_01_mainBg2")}>
-            {/* <Upload onUpload={imgEdit("m_01_mainBg2")} /> */}
+            <Upload onUpload={imgEdit("m_01_mainBg2")} />
             <div className="w1200">
               <strong {...edit("m_01_title2")} />
               <span {...edit('m_01_subtitle2')}>
@@ -74,26 +74,6 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
         </div>
       </Slider>
-      {/* <div
-        className="main_top_images"
-        style={{ ...bg("mainBg") }}
-      >
-        <Upload onUpload={imgEdit("mainBg")} />
-        <div className="ovj"></div>
-        <div className="w1200">
-          <strong {...edit("title")} />
-          <span {...edit('subtitle')}>
-          </span>
-          <div className="btn_list">
-            <Link href="/tour">
-              <a className="tourLink" {...edit("mainLink1")} />
-            </Link>
-            <Link href="/tour?exp=true">
-              <a  {...edit("mainLink2")} />
-            </Link>
-          </div>
-        </div>
-      </div> */}
     </div >
 
 
@@ -104,25 +84,44 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <h2 {...edit("purposeTitle")} />
           <span {...edit("purposeSubTitle")}></span>
         </div>
-        <ul>
-          <li>
-            <i className="icon_01"></i>
-            <strong  {...edit("purposeCircle1")} />
-            <span {...edit("purposeCircle1_en")} />
+        <ul className="infolist">
+          <li className="infolist__01" style={bg("purposeCircle1_bg")}>
+            <div className="pack">
+              <div className="img" style={bg("purposeCircle1_bg")}><Upload onUpload={imgEdit("purposeCircle1_bg")} /></div>
+              <strong  {...edit("purposeCircle1")} />
+              <span {...edit("purposeCircle1_en")} />
+            </div>
+
           </li>
-          <li>
-            <i className="icon_02"></i>
-            <strong {...edit("purposeCircle2")} />
-            <span {...edit("purposeCircle2_en")} />
+          <li className="infolist__02" style={bg("purposeCircle2_bg")}>
+            <div className="pack">
+
+              <div className="img" style={bg("purposeCircle2_bg")}><Upload onUpload={imgEdit("purposeCircle2_bg")} /></div>
+              <strong  {...edit("purposeCircle2")} />
+              <span {...edit("purposeCircle2_en")} />
+            </div>
           </li>
-          <li>
-            <i className="icon_03"></i>
-            <strong {...edit("purposeCircle3")} />
-            <span {...edit("purposeCircle3_en")} />
+          <li className="infolist__03" style={bg("purposeCircle3_bg")}>
+            <div className="pack">
+              <div className="img" style={bg("purposeCircle3_bg")}><Upload onUpload={imgEdit("purposeCircle3_bg")} /></div>
+              <strong  {...edit("purposeCircle3")} />
+              <span {...edit("purposeCircle3_en")} />
+            </div>
           </li>
         </ul>
       </div>
     </div>
+
+    <div className="main_con_box6">
+      <ul className="mainbn">
+        <li className="mainbn__01"></li>
+        <li className="mainbn__02"></li>
+        <li className="mainbn__03"></li>
+        <li className="mainbn__04"></li>
+        <li className="mainbn__05"></li>
+      </ul>
+    </div>
+
     <div className="main_con_box3">
       <div className="w1200">
         <div className="top_txt">
@@ -152,6 +151,7 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         </ul>
       </div>
     </div>
+
     <div className="main_con_box4">
       <div className="w100">
         <div className="photo_box">
@@ -187,15 +187,16 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
       </div>
     </div>
     <div className="main_con_box5">
-      <div className="txt">
+      <div className="txt w1200">
         <h2 {...edit('bottom_title')} />
         <p {...edit('bottom_desc')} />
+        <div className="ovj" style={bg("bottom_ovj")}><Upload onUpload={imgEdit("bottom_ovj")} /></div>
       </div>
-      <div
+      {/* <div
         className="main_bg_img"
         style={{ ...bg("bottom_bg_img") }}
       />
-      <Upload onUpload={imgEdit("bottom_bg_img")} />
+      <Upload onUpload={imgEdit("bottom_bg_img")} /> */}
     </div>
     <HiddenSubmitBtn original={original} setData={setPage} path="main" data={page} />
     <div>

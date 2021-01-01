@@ -24,7 +24,7 @@ const info: TStieInfo = {
         kr: `회사소개서 다운로드`,
     },
     m_01_title2: {
-        kr: `사회적경제 혁신성장사업[비R&D] 사회적경제기업 경쟁력 강화 사업화지원 프로그램의 지원을 받아 일부 제작 되었습니다.`,
+        kr: `THE COEXISTENCE OF PEOPLE, TIME AND SPACE. PINKROAD`,
     },
     m_01_subtitle2: {
         kr: `PINKROADER 2021`
@@ -39,10 +39,13 @@ const info: TStieInfo = {
         kr: `목표로 삼고 나아가는 가치있는 생각 3가지`
     },
     purposeCircle1: { kr: `지속 가능한 <br class="no" />공간을 그리다` },
+    purposeCircle1_bg: { kr: `/img/pr_img_40.jpg` },
     purposeCircle1_en: { kr: `sustainable space` },
     purposeCircle2: { kr: `잊히지 않는 <br class="no" />시대를 그리다` },
+    purposeCircle2_bg: { kr: `/img/pr_img_41.jpg` },
     purposeCircle2_en: { kr: `unforgettable period` },
     purposeCircle3: { kr: `상생하는 <br class="no" />사람을 그리다 ` },
+    purposeCircle3_bg: { kr: `/img/pr_img_42.jpg` },
     purposeCircle3_en: { kr: `co-prosperity person` },
     busi_area_title: { kr: `Business Area` },
     busi_area1_title: { kr: `Brand Consulting` },
@@ -84,9 +87,10 @@ const info: TStieInfo = {
 `},
     valuable_exp: { kr: `FAIR<br />TOUR` },
     valuable_exp_sub: { kr: `가치있는 체험` },
-    bottom_title: { kr: `<strong>우리는</strong>새로운 변화속에서 <strong>사회적 가치</strong>를 지키며 서로 <strong>상생</strong>하는 일을 합니다.` },
+    bottom_title: { kr: `<strong>우리는</strong>새로운 변화속에서 <strong>사회적 가치</strong>를<br/> 지키며 서로 <strong>상생</strong>하는 일을 합니다.` },
     bottom_desc: { kr: `We keep our social values in new changes and work together` },
-    bottom_bg_img: { kr: `/img/pr_img_12.jpg` },
+    bottom_bg_img: { kr: `/img/main_con_box5_bg.gif` },
+    bottom_ovj: { kr: `/img/main_con_box5_ovj.png` },
 }
 
 //html edit 기능에 의존하지말고  style 오브젝트를 넣으면 안될까? 
