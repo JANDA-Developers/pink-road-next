@@ -15,6 +15,18 @@ const info = {
     m_01_mainLink2: {
         kr: `It's가이드`,
     },
+    m_01_title2: {
+        kr: `가이드를 위한<br/>가이드에 의한<br/>가이드플랫폼`,
+    },
+    m_01_subtitle2: {
+        kr: `지금 가이드를 등록하세요.`
+    },
+    m_01_mainBg2: {
+        kr: `/its/main_top_bg2.jpg`,
+    },
+    m_01_mainLink2_1: {
+        kr: `가이드 등록하기`,
+    },
     m_02_title: {
         kr: `등록된 가이드`,
     },

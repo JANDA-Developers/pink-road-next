@@ -112,6 +112,10 @@ export const Header: React.FC<IProp> = () => {
 
 
     return <header className="header" id="header">
+        <div className="u_skip">
+            <a href="#nav_wrap" onClick={handleNav}><span>상단메뉴 바로가기</span></a>
+            <a href="#main" onClick={handleMain}><span>본문 바로가기</span></a>
+        </div>
         <div className="top-menu">
             <div className="w1200">
                 {isLogin && <p><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>}
@@ -139,10 +143,7 @@ export const Header: React.FC<IProp> = () => {
         </div>
         <div className="main_menu">
             <div className="w1200">
-                <div className="u_skip">
-                    <a href="#nav-bar" onClick={handleNav}><span>상단메뉴 바로가기</span></a>
-                    <a href="#main" onClick={handleMain}><span>본문 바로가기</span></a>
-                </div>
+
                 <div className="hd_size">
                     <div className="hd_left">
                         <div className="logo">
@@ -156,7 +157,7 @@ export const Header: React.FC<IProp> = () => {
                     <div className="nav_bg"></div>
                     <div className="hd_right">
                         <div className="hd_center">
-                            <div className="nav_wrap">
+                            <div className="nav_wrap" id="nav_wrap">
                                 <ul className="deps1">
                                     <li className="deps">
                                         <a href="/guide">It's가이드</a>
@@ -189,7 +190,7 @@ export const Header: React.FC<IProp> = () => {
                         <div className="searchtop">
                             <div className="search_btn">
                                 <img src={'/img/svg/search_icon.svg'} alt="search icon" />
-                                <button onClick={handSearch} />
+                                <button onClick={handSearch} tabindex="0" />
                             </div>
                             <div className="hidden">
                                 <div className="w1200">
@@ -228,7 +229,7 @@ export const Header: React.FC<IProp> = () => {
                         </div>
 
                     </div>
-                    <div id="all_menu">
+                    <div id="all_menu" tabIndex="0">
                         <strong>전체메뉴</strong>
                         {isSeller && <div className="m_member">
                             <div className="profile">

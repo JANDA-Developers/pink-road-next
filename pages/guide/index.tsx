@@ -8,85 +8,83 @@ import { EditContext } from '../_app';
 import { IEditPage } from '../../utils/with';
 import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
+import { GetStaticProps } from 'next';
+import { IGetProps } from 'pages';
+import { getStaticPageInfo } from 'utils/page';
+import { Upload } from 'components/common/Upload';
 
 interface IProp { }
+
 export const GuideMain: React.FC<IProp> = () => {
+    const { imgEdit, edit, bg } = useContext<IEditPage<typeof pageInfoDefault>>(EditContext as any);
+
     // const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
     // const { imgEdit, edit, bg } = useContext<IEditPage<typeof pageInfoDefault>>(EditContext as any);
     // const router = useRouter()
     return <div >
         <Meta />
-        <SubTopNav title="temp" desc="temp" >
+        {/* <SubTopNav title="temp" desc="temp" >
             <li className="homedeps1">
                 <Link href="/tour/main?exp=true">
                     <a>It's가이드</a>
                 </Link>
             </li>
-        </SubTopNav>
-        {/* <div className="goods_box">
-            <div className="w1200">
-                <div id="sub_tap_nav" className="subtop_nav betatest">
-                    <ul>
-                        <li className="on"><a href="/tour/list">전체</a></li>
-                        <li><a href="/tour/list">문화·예술여행</a></li>
-
-                        <li className="on">
-                            <Link href="/tour/list">
-                                <a >전체</a>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/tour/list">
-                                <a >문화·예술여행</a>
-                            </Link>
-                        </li>
-                        <li><a href="/tour/list">교육·답사여행</a></li>
-                        <li><a href="/tour/list">역사여행</a></li>
-                        <li><a href="/tour/list">팸투어</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div> */}
-
+        </SubTopNav> */}
 
         <div className="guide_box">
             <div className="w100">
-                <div className="guide_top_bn w100" style={{ backgroundImage: 'url(/its/main_bg_001.jpg)' }}>
+
+                <div className="guide_top_bn w100" style={{ ...bg("guideMain_bg") }}>
+                    <Upload onUpload={imgEdit("guideMain_bg")} />
                     <div className="w1200">
                         <div className="txt">
-                            <h3>
-                                당신의 비즈니스를 서포트하는 전문가이드<br />
-                                당신의 여행을 서포트하는 안심가이드
-                            </h3>
-                            <span>
-                                마음편한 가이드를 찾으세요. 어려워하지마세요.<br />
-                                잇츠가이드가 해결 해줄게요.
-                            </span>
+                            <h3 {...edit("guideMain_top_title")} />
+                            <span {...edit("guideMain_top_subtitle")} />
                             <ul className="btn_list">
-                                <li><a href="../sub/guide_list.html">여행가이드</a></li>
-                                <li><a href="../sub/guide_list.html">비지니스통역가이드</a></li>
-                                <li><a href="../sub/guide_list.html">의료관광가이드</a></li>
-                                <li><a href="../sub/guide_list.html">전체보기</a></li>
+                                <li><Link href="/guide"><a {...edit("guideMain_top_btn01")} /></Link></li>{ /* 여행가이드 해시태그를 가진 가이드만 보여주기  */}
+                                <li><Link href="/guide"><a {...edit("guideMain_top_btn02")} /></Link></li>{ /* 비지니스통역가이드 해시태그를 가진 가이드만 보여주기  */}
+                                <li><Link href="/guide"><a {...edit("guideMain_top_btn03")} /></Link></li>{ /* 의료관광가이드 해시태그를 가진 가이드만 보여주기  */}
+                                <li><Link href="/guide"><a {...edit("guideMain_top_btn04")} /></Link></li>{ /* 전체가이드 보기  */}
                             </ul>
                         </div>
                     </div>
-
                 </div>
 
                 <div className="guide_content w1200">
                     <div className="con01">
                         <div className="top_txt">
-                            <h2>등록된 가이드</h2>
-                            <strong>1244</strong>
+                            <h2 {...edit("guideMain01_subtitle")} />
+                            <strong {...edit("guideMain01_title")} />
                         </div>
                         <ul className="pr_list">
-                            <li style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</li>
-                            <li style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</li>
-                            <li style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</li>
-                            <li style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</li>
-                            <li style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</li>
-                            <li style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</li>
-                            <li style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</li>
+                            <li style={{ ...bg("guideMain01_photo01") }}>
+                                <Upload onUpload={imgEdit("guideMain01_photo01")} />
+                            프로필사진
+                            </li>
+                            <li style={{ ...bg("guideMain01_photo02") }}>
+                                <Upload onUpload={imgEdit("guideMain01_photo02")} />
+                            프로필사진
+                            </li>
+                            <li style={{ ...bg("guideMain01_photo03") }}>
+                                <Upload onUpload={imgEdit("guideMain01_photo03")} />
+                            프로필사진
+                            </li>
+                            <li style={{ ...bg("guideMain01_photo04") }}>
+                                <Upload onUpload={imgEdit("guideMain01_photo04")} />
+                            프로필사진
+                            </li>
+                            <li style={{ ...bg("guideMain01_photo05") }}>
+                                <Upload onUpload={imgEdit("guideMain01_photo05")} />
+                            프로필사진
+                            </li>
+                            <li style={{ ...bg("guideMain01_photo06") }}>
+                                <Upload onUpload={imgEdit("guideMain01_photo06")} />
+                            프로필사진
+                            </li>
+                            <li style={{ ...bg("guideMain01_photo07") }}>
+                                <Upload onUpload={imgEdit("guideMain01_photo07")} />
+                            프로필사진
+                            </li>
                             <li className="plus"><a href="/">+</a></li>
                         </ul>
                     </div>
@@ -128,7 +126,7 @@ export const GuideMain: React.FC<IProp> = () => {
                             <div className="alignment">
                                 <div className="left_div">
                                     <h2>
-                                        GUIDE<span>볼수록 매력있는 가이드만 모았어요!</span>
+                                        GUIDE<span {...edit("guideMain05_subtitle")} />
                                     </h2>
                                 </div>
                                 <div className="right_div">
@@ -160,7 +158,18 @@ export const GuideMain: React.FC<IProp> = () => {
                                         <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
                                         <div className="name"><i>G</i>김행자</div>
                                     </li>
-
+                                    <li>
+                                        <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
+                                        <div className="name"><i>G</i>김행자</div>
+                                    </li>
+                                    <li>
+                                        <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
+                                        <div className="name"><i>G</i>김행자</div>
+                                    </li>
+                                    <li>
+                                        <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
+                                        <div className="name"><i>G</i>김행자</div>
+                                    </li>
                                 </ul>
                             </div>
                             <a className="right_mov"><i className="jandaicon-arr2-right"></i></a>
@@ -177,12 +186,11 @@ export const GuideMain: React.FC<IProp> = () => {
                 <div className="main_con_box7">
                     <div className="box01">
                         <div className="w1200">
-                            <span className="sidetxt">recruiting new guide</span>
-                            <h2>잇츠가이드 플랫폼에서<br /><strong>더 많은 <i>활동영역</i>을 넓혀보시기 바랍니다.</strong></h2>
-                            <div className="link"><a href="/member/join">가이드지원<i></i></a></div>
-
+                            <span className="sidetxt" {...edit("guideMain07_subtitle")} />
+                            <h2 {...edit("guideMain07_title")} />
+                            <div className="link"><a href="/member/join" {...edit("guideMain07_link")} /></div>
                         </div>
-                        <div className="ovj">IT'S GUIDE</div>
+                        <div className="ovj" {...edit("guideMain07_ovj")} />
                     </div>
                 </div>
 
@@ -192,4 +200,5 @@ export const GuideMain: React.FC<IProp> = () => {
     </div >;
 };
 
+export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("guidemain", pageInfoDefault);
 export default GuideMain;
