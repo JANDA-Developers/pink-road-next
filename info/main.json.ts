@@ -1,26 +1,33 @@
+import { TStieInfo } from "../types/interface";
 
-<<<<<<< Updated upstream
 const info: TStieInfo = {
-    mainBg: {
+    m_01_mainBg1: {
         kr: `/img/pr_img_43.jpg`,
-=======
-const info = {
-    m_01_title: {
-        kr: `특별한 여행<br/>즐거운 추억<br/>소중한 당신`,
->>>>>>> Stashed changes
     },
-    mainLink1: {
+    m_01_mainLink1_1: {
         kr: `투어`,
     },
-    mainLink2: {
+    m_01_mainLink1_2: {
         kr: `체험`,
     },
-    title: {
+    m_01_title1: {
         kr: `PINKRODER ALLOWS PEOPLE, TIME, AND SPACE TO COESIST.`,
     },
-    subtitle: {
+    m_01_subtitle1: {
         kr: `사람과 시간과 공간들의 공존<br class="no" />
         핑크로더는 사라져가는 가치 있는 것 들을 위해 컨텐츠를 개발하고 소통합니다.`
+    },
+    m_01_mainBg2: {
+        kr: `/img/pr_img_40.jpg`,
+    },
+    m_01_mainLink2_1: {
+        kr: `회사소개서 다운로드`,
+    },
+    m_01_title2: {
+        kr: `사회적경제 혁신성장사업[비R&D] 사회적경제기업 경쟁력 강화 사업화지원 프로그램의 지원을 받아 일부 제작 되었습니다.`,
+    },
+    m_01_subtitle2: {
+        kr: `PINKROADER 2021`
     },
     homedeps1: {
         kr: `Experience`

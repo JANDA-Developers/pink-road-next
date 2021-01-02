@@ -145,7 +145,7 @@ select:focus {
 /* btn */
 .btn {
     position: relative;
-    box-shadow: none;
+    box-shadow: unset;
     background-color: #fff;
     background-image: none;
     background-image: none;

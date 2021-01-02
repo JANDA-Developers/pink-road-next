@@ -7,18 +7,69 @@ import { GetStaticProps } from 'next';
 import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
 import { getStaticPageInfo } from '../utils/page';
-import { IEditPage } from '../utils/with';
 import { EditContext } from './_app';
+import Slider from "react-slick";
 
 export const Main: React.FC = () => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
   const { imgEdit, edit, bg } = useContext<IEditPage<typeof pageInfoDefault>>(EditContext as any);
   const router = useRouter()
 
+
+  const toProductBoard = (id: string) => {
+    router.push(id);
+  }
+
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
-    <div className="main_con_box1">
-      <div
+
+
+    <div className="main_con_box1 Slider_box">
+
+      <Slider
+        autoplay
+        prevArrow={<div className="rev"><img src="/img/svg/arr_left_w.svg" alt="이전" /></div>}
+        nextArrow={<div className="next"><img src="/img/svg/arr_right_w.svg" alt="다음" /></div>}
+        arrows={true}
+        dots={false}
+        infinite={true}
+        className="">
+        <div>
+          <div className="main_top_images" style={bg("m_01_mainBg1")}>
+            {/* <Upload onUpload={imgEdit("m_01_mainBg1")} /> */}
+            <div className="w1200">
+              <strong {...edit("m_01_title1")} />
+              <span {...edit('m_01_subtitle1')}>
+              </span>
+              <div className="btn_list">
+                <Link href="/guide">
+                  <a className="tourLink" {...edit("m_01_mainLink1_1")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink1_2")} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="main_top_images img2" style={bg("m_01_mainBg2")}>
+            {/* <Upload onUpload={imgEdit("m_01_mainBg2")} /> */}
+            <div className="w1200">
+              <strong {...edit("m_01_title2")} />
+              <span {...edit('m_01_subtitle2')}>
+              </span>
+              <div className="btn_list">
+                <Link href="/guide">
+                  <a className="/pinkroader_company_introduction_letter.pdf" {...edit("m_01_mainLink2_1")} />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </Slider>
+      {/* <div
         className="main_top_images"
         style={{ ...bg("mainBg") }}
       >
@@ -37,9 +88,11 @@ export const Main: React.FC = () => {
             </Link>
           </div>
         </div>
+      </div> */}
+    </div >
 
-      </div>
-    </div>
+
+
     <div className="main_con_box2">
       <div className="w1200">
         <div className="top_txt">
@@ -139,7 +192,6 @@ export const Main: React.FC = () => {
       />
       <Upload onUpload={imgEdit("bottom_bg_img")} />
     </div>
-    <HiddenSubmitBtn original={original} setData={setPage} path="main" data={page} />
     <div>
       <div className="col-md-6">
         <div ui-view></div>
