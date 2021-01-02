@@ -274,7 +274,7 @@ const UserType: React.FC = () => {
             <p>회원가입을 하시고 더 많은 정보와 혜택을 누려보세요~!! </p>
             <ul>
                 {/* 커스텀디자인 */}
-                <li className="li01" onClick={() => { handleTypeChoice(UserRole.partner); }}>
+                <li className="li01" onClick={handleTypeChoice(UserRole.partner)}>
                     <strong>가이드 회원</strong>
                     <span>
                         가이드로 등록을 원하시나요?

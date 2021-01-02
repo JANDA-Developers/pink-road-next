@@ -62,7 +62,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                 </ul>
             </div>
         </div>
-        <div className="mypage_in w100">
+        <div className="w100">
             <ul className="subtop_nav">
                 {isSeller || <li className="on"><Link href="/mypage"><a >회원정보</a></Link></li>}{/* 가이드 -*/}
                 <li><Link href="/mypage/notification"><a >알림</a></Link></li>{/* 가이드 -*/}
