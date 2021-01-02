@@ -49,6 +49,7 @@ const info: TStieInfo = {
     purposeCircle3_en: { kr: `co-prosperity person` },
     busi_area_title: { kr: `Business Area` },
     busi_area1_title: { kr: `Brand Consulting` },
+    busi_area1_bg: { kr: `/img/pr_img_20.jpg` },
     busi_area1_desc: {
         kr: `진정성 있고 마음으로 공감할 수 있는
     브랜드 컨텐츠 스토리를 만듭니다.
@@ -58,6 +59,7 @@ const info: TStieInfo = {
     으로 공감할 수 있는 스토리텔링 기반
     종합 브랜드 컨설팅을 진행합니다.`},
     busi_area2_title: { kr: `Content R&D` },
+    busi_area2_bg: { kr: `/img/pr_img_23.jpg` },
     busi_area2_desc: {
         kr: `지역의 가치있는 문화를 발굴하고 연구
     하여 그에 맞는 새로운 컨텐츠를 개발
@@ -67,6 +69,7 @@ const info: TStieInfo = {
     고민합니다. 나아가 보존과 응용을 통해
     컨 텐 츠 에 비 전 을 담 습 니 다 .`},
     busi_area3_title: { kr: `Co-prosperity` },
+    busi_area3_bg: { kr: `/img/pr_img_22.jpg` },
     busi_area3_desc: {
         kr: `경제적, 환경적, 사회문화적 지속
     가능성을 모두 충족하는 여행컨텐츠를
@@ -76,6 +79,7 @@ const info: TStieInfo = {
     만듭니다. 자연을 보전하며 커뮤니티를
     통해 사람과 지역 모두가 상생합니다.`},
     busi_area4_title: { kr: `Social Design` },
+    busi_area4_bg: { kr: `/img/pr_img_21.jpg` },
     busi_area4_desc: {
         kr: `
     사회와 지역을 중심으로 한 디자인
