@@ -123,34 +123,38 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
     </div>
 
     <div className="main_con_box3">
-      <div className="w1200">
+      <div>
         <div className="top_txt">
           <h2 {...edit("busi_area_title")} />
         </div>
         <ul>
-          <li className="img01">
-            <i></i>
-            <strong {...edit("busi_area1_title")} />
-            <span {...edit("busi_area1_desc")} />
+          <li className="img01" style={bg("busi_area1_bg")}><Upload onUpload={imgEdit("busi_area1_bg")} />
+            <div className="bgtxt">
+              <strong {...edit("busi_area1_title")} />
+              <span {...edit("busi_area1_desc")} />
+            </div>
           </li>
-          <li className="img02">
-            <i></i>
-            <strong {...edit("busi_area2_title")} />
-            <span {...edit("busi_area2_desc")} />
+          <li className="img02" style={bg("busi_area2_bg")}><Upload onUpload={imgEdit("busi_area2_bg")} />
+            <div className="bgtxt">
+              <strong {...edit("busi_area2_title")} />
+              <span {...edit("busi_area2_desc")} />
+            </div>
           </li>
-          <li className="img03">
-            <i></i>
-            <strong {...edit("busi_area3_title")} />
-            <span {...edit("busi_area3_desc")} />
+          <li className="img03" style={bg("busi_area3_bg")}><Upload onUpload={imgEdit("busi_area3_bg")} />
+            <div className="bgtxt">
+              <strong {...edit("busi_area3_title")} />
+              <span {...edit("busi_area3_desc")} />
+            </div>
           </li>
-          <li className="img04">
-            <i></i>
-            <strong  {...edit("busi_area4_title")} />
-            <span {...edit("busi_area4_desc")} />
+          <li className="img04" style={bg("busi_area4_bg")}><Upload onUpload={imgEdit("busi_area4_bg")} />
+            <div className="bgtxt">
+              <strong  {...edit("busi_area4_title")} />
+              <span {...edit("busi_area4_desc")} />
+            </div>
           </li>
-        </ul>
-      </div>
-    </div>
+        </ul >
+      </div >
+    </div >
 
     <div className="main_con_box4">
       <div className="w100">
