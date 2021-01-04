@@ -175,72 +175,20 @@ const UserInfoForm: React.FC = () => {
                         {isPartner && "개인파트너 정보"}
                     </h4>
 
-                    {isIndi &&
-                        <div>
-                            <div className="ph_wrap">
-                                <label>성별</label>
-                                <span className="er red_font">
-                                    *두개의 성별중 하나를 선택하여 주세요.
-                                </span>
-                                <div className="w100">
-                                    <ul className="gender_check">
-                                        <li className={`female ${data.gender == GENDER.FEMALE ? "on" : ""}`}
-                                            onClick={handleGender(GENDER.FEMALE)}>여</li>
-                                        <li className={`men ${data.gender == GENDER.MAIL ? "on" : ""}`}
-                                            onClick={handleGender(GENDER.MAIL)}>남</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="ph_wrap">
-                                <label>생년월일</label>
-                                <span className={`er red_font ${errDisplay.brith_date && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
-                                <div
-                                    onClick={handleBirthPicker}
-                                    className="w100 join_birthday">
-                                    <input
-                                        type="text"
-                                        name="birthday"
-                                        className="w70"
-                                        placeholder="생년월일을 입력해주세요."
-                                        value={data.brith_date}
-                                        onChange={handleData("brith_date")}
-                                    />
-                                    <i className="calendar">
-                                        <Calendar />
-                                    </i>
-                                    <DayPicker
-                                        className={`join_birthdayPick ${birthdayPicker && `on`}`}
-                                        month={dayPickerMonth}
-                                        fromMonth={fromMonth}
-                                        toMonth={toMonth}
-                                        onDayClick={handleDayClick}
-                                        canChangeMonth={false}
-                                        captionElement={({ date, localeUtils }) => (
-                                            <YearMonthForm
-                                                date={date}
-                                                localeUtils={localeUtils}
-                                                onChange={handleDayPickerMonth}
-                                            />
-                                        )}
-                                    />
-                                </div>
-                            </div>
+                    <div className="ph_wrap">
+                        <label>성별</label>
+                        <span className="er red_font">
+                            *두개의 성별중 하나를 선택하여 주세요.
+                        </span>
+                        <div className="w100">
+                            <ul className="gender_check">
+                                <li className={`female ${data.gender == GENDER.FEMALE ? "on" : ""}`}
+                                    onClick={handleGender(GENDER.FEMALE)}>여</li>
+                                <li className={`men ${data.gender == GENDER.MAIL ? "on" : ""}`}
+                                    onClick={handleGender(GENDER.MAIL)}>남</li>
+                            </ul>
                         </div>
-                    }
-                    {isPartenerB ||
-                        <div className="ph_wrap">
-                            <label>내국인/외국인</label>
-                            <span className="er red_font">*둘중 한개를 선택해 주세요.</span>
-                            <div className="w100">
-                                <ul className="country_check">
-                                    <li className={`c_in ${!data.is_froreginer ? "on" : ""}`}
-                                        onClick={handleNationality(true)}>내국인</li>
-                                    <li className={`c_out ${data.is_froreginer ? "on" : ""}`}
-                                        onClick={handleNationality(false)}>외국인</li>
-                                </ul>
-                            </div>
-                        </div>
-                    }
+                    </div>
                     <div className="ph_wrap daum_addresss_wrap">
                         <label>주소</label>
                         <span className="er red_font">*주소가 정확하지 않습니다.</span>
@@ -268,8 +216,8 @@ const UserInfoForm: React.FC = () => {
                             <div className="ph_wrap">
                                 <label>
                                     <i className="important_icon" />
-                            파트너명(회사명)
-                        </label>
+                                    파트너명(회사명)
+                                </label>
                                 <span className="er red_font">*숫자는 입력이 불가능합니다.</span>
                                 <input
                                     type="text"
@@ -407,6 +355,7 @@ const UserInfoForm: React.FC = () => {
                                     onChange={handleData("account_number")}
                                 />
                             </div>
+
                         </div>
                     }
                 </div>
