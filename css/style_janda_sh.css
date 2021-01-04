@@ -2647,33 +2647,77 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con03 {
-        padding: 146px 5% 0;
-        min-height: 580px;
+        padding: 127px 25% 0;
+        min-height: 370px;
         box-sizing: border-box;
         text-align: center;
-        background-color: #ffebf3;
-        background-image: url(/img/pr_img_29.jpg);
-        background-position: center top;
-        background-size: 140%;
-        background-repeat: no-repeat;
+        background-color: #ffffff;
+        display: flex;
+        position: relative;
+   
     }
-
-        .siteInfo_in .con03:before {
-            top: 0;
-            left: 0;
-            position: absolute;
-            background-size: 100%;
-            opacity: 0.8 !important;
-            filter: alpha(opacity=50);
-            z-index: 0;
-            content: "";
-            width: 100%;
-            height: 100%;
-            background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.87) 100%);
-            background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.87) 100%);
-            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.87) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#deffffff',GradientType=0 );
-        }
+    .siteInfo_in .con03 div[class*="bg0"]{
+        position: absolute;
+        display: block;
+        background-position: center;
+        background-size: 130%;
+        background-repeat: no-repeat;
+       filter: grayscale(100%);
+       background-color: #eee;
+    }
+    .siteInfo_in .con03 div[class*="bg0"]:hover{
+       filter: grayscale(0);
+    }
+    .siteInfo_in .con03 .bg01 {
+        left: 0;
+        top: 0;
+        width: 40%;
+        height: 100px;
+    }
+    .siteInfo_in .con03 .bg02 {
+        left: 40%;
+        top: 0;
+        width: 40%;
+        height: 100px;
+    }
+    .siteInfo_in .con03 .bg03 {
+        left: 80%;
+        top: 0;
+        width: 20%;
+        height: 270px;
+    }
+    .siteInfo_in .con03 .bg04 {
+        left: 0%;
+        top: 100px;
+        width: 20%;
+        height:270px;
+    }
+    .siteInfo_in .con03 .bg05 {
+        left: 20%;
+        top: 270px;
+        width: 40%;
+        height: 100px;
+    }
+    .siteInfo_in .con03 .bg06 {
+        left: 60%;
+        top: 270px;
+        width: 40%;
+        height: 100px;
+    }
+    .siteInfo_in .con03 h4 {
+        text-align: center;
+        font-size: 2em;
+        line-height: 153%;
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+    .siteInfo_in .con03 p {
+        font-size: 1.1em;
+        line-height: 120%;
+        color: #333;
+        text-align: center;
+    }
 
     .siteInfo_in .con04 {
         background-color: #ffffff;
@@ -2687,7 +2731,7 @@ ul.rank_ul {
         text-align: center;
         background-image: url(/img/siteinfo_bg05.jpg);
         background-position: left top;
-        background-size: 380%;
+        background-size: 500%;
         overflow: hidden;
     }
 
@@ -2715,8 +2759,7 @@ ul.rank_ul {
             left: 0;
             position: absolute;
             background-size: 100%;
-            opacity: 0.8 !important;
-            filter: alpha(opacity=50);
+            opacity: 0.5 !important;
             z-index: 1;
             content: "";
             width: 100%;
@@ -3038,27 +3081,11 @@ ul.rank_ul {
         text-align: left;
     }
 
-    .siteInfo_in .con03 h4 {
-        text-align: center;
-        font-size: 40px;
-        line-height: 153%;
-        color: #333;
-        font-weight: 600;
-        margin-bottom: 0;
-    }
-
-    .siteInfo_in .con03 p {
-        font-size: 18px;
-        line-height: 120%;
-        color: #333;
-        text-align: center;
-    }
-
     .siteInfo_in .con04 h4 {
         display: block;
         position: relative;
         border-radius: 500px;
-        padding: 15px 30px 0;
+        padding: 15px 0 0;
         z-index: 2;
         text-align: left;
     }
@@ -3082,7 +3109,7 @@ ul.rank_ul {
         display: block;
         font-weight: 400;
         font-size: 13px;
-        padding: 0 25px 0 30px;
+        padding: 0 ;
     }
 
     .siteInfo_in .con04 ul {
@@ -3116,11 +3143,11 @@ ul.rank_ul {
             position: relative;
             display: inline-block;
             overflow: hidden;
-            width: 80%;
+            width: 100%;
             min-height: unset;
             margin: 0 0 15px 0;
             box-sizing: border-box;
-            padding: 14px 43px 10px;
+            padding: 14px 3% 10px;
             vertical-align: top;
             text-align: left;
             font-size: 15px;
@@ -3129,10 +3156,10 @@ ul.rank_ul {
             .siteInfo_in .con04 .infopp li:before {
                 display: inline-block;
                 content: '';
-                width: 24%;
-                height: 2px;
+                width: 6px;
+                height: 20px;
                 position: absolute;
-                left: -30px;
+                left: 0;
                 background-color: #979797;
                 top: 36px;
             }
@@ -3295,8 +3322,7 @@ ul.rank_ul {
     color: #fff;
     text-align: center;
     box-sizing: border-box;
-    padding: 0 31px;
-    /*border: 6px #fff solid;*/
+    padding: 0 5%;
     background-color: rgba(255, 255, 255, 0.75);
     z-index: 22;
 }
@@ -3337,52 +3363,7 @@ ul.rank_ul {
     vertical-align: middle;
     z-index: 22;
 }
-    .siteInfo_in .con04 .li05::after {
-        content: '';
-        position: absolute;
-        width: calc(100% + 12px);
-        height: calc(100% + 12px);
-        left: -10px;
-        top: -10px;
-        border: dashed 4px #e2e2e2;
-        border-radius: 50%;
-        animation: spin 50s linear infinite;
-        -webkit-animation: spin 50s linear infinite;
-        -ms-animation: spin 50s linear infinite;
-        z-index: 0;
-    }
-    .siteInfo_in .con04 .li05.active::after {
-        transition: all .10s ease;
-    }
-@-moz-keyframes spin {
-    from {
-        -moz-transform: rotate(0deg);
-    }
-
-    to {
-        -moz-transform: rotate(360deg);
-    }
-}
-
-@-webkit-keyframes spin {
-    from {
-        -webkit-transform: rotate(0deg);
-    }
-
-    to {
-        -webkit-transform: rotate(360deg);
-    }
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
+   
 
 .siteInfo_in .con05 > div {
     position: relative;
@@ -3426,11 +3407,12 @@ ul.rank_ul {
 }
 
 .siteInfo_in .con05 .in_txt {
-    width: 55%;
-    margin-left: 109px;
+    width: 100%;
     display: block;
     position: relative;
     text-align: left;
+    padding-left: 105px;
+    box-sizing: border-box;
 }
 
     .siteInfo_in .con05 .in_txt .year {
@@ -3479,16 +3461,15 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con05 .in_txt strong {
-        font-size: 30px;
-        position: absolute;
+        font-size: 2em;
+        position: relative;
         color: #fff;
     }
 
     .siteInfo_in .con05 .in_txt ul {
-        font-size: 14px;
+        font-size: 1em;
         position: relative;
-        left: 80px;
-        top: 10px;
+        top: 0;
         line-height: 200%;
     }
 
@@ -3519,6 +3500,8 @@ ul.rank_ul {
     .siteInfo_in .con05 .in_txt .year li {
         padding-left: 15px;
         color: #fff;
+        font-weight: 100;
+        box-sizing: border-box;
     }
 
         .siteInfo_in .con05 .in_txt .year li:before {
@@ -7562,13 +7545,13 @@ i.calendar {
     }
 
     .portfolio_in .con02 h4 {
-        font-size: 16px;
+        font-size: 1.3em;
         text-align: center;
         width: 100%;
         position: relative;
         display: block;
-        line-height: 34px;
-        font-weight: 600;
+        line-height: 150%;
+        font-weight: 100;
     }
 
         .portfolio_in .con02 h4 strong {
@@ -8192,6 +8175,28 @@ i.calendar {
 
 
 @media (min-width: 768px) {   
+    .siteInfo_in .con05 {
+        background-size: 320%;
+    }
+    
+    .siteInfo_in .con05 .in_txt strong {
+        font-size: 2em;
+        position: absolute;
+        color: #fff;
+    }
+
+    .siteInfo_in .con05 .in_txt ul {
+        font-size: 1em;
+        position: relative;
+        left: 80px;
+        padding-top: 8px;
+        line-height: 200%;
+    }
+    .siteInfo_in .con05 .in_txt .year li {
+        font-size: 1.3em;
+        line-height: 190%;
+    }
+
     .main_con_box5 .ovj {
         right: 10px;
         top: 35px;
@@ -8339,8 +8344,7 @@ i.calendar {
     .siteInfo_in .con04 .infopp .ovj {
         left: 0;
         top: -120px;
-        font-size: 9.1em;
-        font-weight: 400;
+        font-size: 6em;
     }
 
     .siteInfo_in .con02 {
@@ -8482,8 +8486,7 @@ i.calendar {
         }
 
     .siteInfo_in .con04 .infopp {
-        background-size: 270%;
-        padding: 270px 0 90px;
+        padding: 270px 5% 90px;
     }
 
     div.bn_box {
@@ -8618,6 +8621,14 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+    .siteInfo_in .con05 .in_txt {
+        width: 100%;
+        padding-left: 410px;
+        display: block;
+        position: relative;
+        text-align: left;
+    }
+   
     .tour_box {
         padding: 0 0 100px;
     }
@@ -8837,22 +8848,106 @@ i.calendar {
             padding: 10px;
         }
 
+        .siteInfo_in .con04 .li05::after {
+            content: '';
+            position: absolute;
+            width: calc(100% + 12px);
+            height: calc(100% + 12px);
+            left: -10px;
+            top: -10px;
+            border: dashed 4px #e2e2e2;
+            border-radius: 50%;
+            animation: spin 50s linear infinite;
+            -webkit-animation: spin 50s linear infinite;
+            -ms-animation: spin 50s linear infinite;
+            z-index: 0;
+        }
+        .siteInfo_in .con04 .li05.active::after {
+            transition: all .10s ease;
+        }
+    @-moz-keyframes spin {
+        from {
+            -moz-transform: rotate(0deg);
+        }
+    
+        to {
+            -moz-transform: rotate(360deg);
+        }
+    }
+    
+    @-webkit-keyframes spin {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+    
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+    
+        to {
+            transform: rotate(360deg);
+        }
+    }
     .siteInfo_in .con03 {
-        padding: 182px 0 0;
-        min-height: 703px;
+        padding: 310px 25% 0;
+    min-height: 710px;
         background-position: center top;
         background-size: 150%;
     }
-
+    .siteInfo_in .con03 div[class*="bg0"]{
+        background-size: 120%;
+    }
         .siteInfo_in .con03 h4 {
-            font-size: 3em;
+            font-size: 2.7em;
             line-height: 100%;
         }
 
         .siteInfo_in .con03 p {
-            font-size: 22px;
-            line-height: 52px;
+            font-size: 1.3em;
+            line-height: 120%;
+            margin-top: 10px;
         }
+        .siteInfo_in .con03 .bg01 {
+            left: 0;
+            width: 45%;
+            height: 200px;
+        }
+        .siteInfo_in .con03 .bg02 {
+            left: 45%;
+            width: 40%;
+            height: 200px;
+        }
+        .siteInfo_in .con03 .bg03 {
+            left: 80%;
+            width: 20%;
+            height: 500px;
+        }
+        .siteInfo_in .con03 .bg04 {
+            top: 200px;
+            width: 20%;
+            height: 500px;
+        }
+        .siteInfo_in .con03 .bg05 {
+            left: 20%;
+            top: 500px;
+            width: 40%;
+            height: 200px;
+        }
+        .siteInfo_in .con03 .bg06 {
+            left: 60%;
+            top: 500px;
+            width: 40%;
+            height: 200px;
+        }
+
+
+
 
     .siteInfo_in .con04 {
         padding: 0;
@@ -8877,7 +8972,7 @@ i.calendar {
             }
 
                 .siteInfo_in .con04 .infopp li:before {
-                    display: inline-block;
+                    display: none;
                     content: '';
                     width: 4px;
                     height: 67%;
@@ -9013,7 +9108,7 @@ i.calendar {
 
     .siteInfo_in .con05 {
         background-position: 70% center;
-        background-size: 180%;
+        background-size: 230%;
     }
 
         .siteInfo_in .con05 h4 {
@@ -9024,28 +9119,20 @@ i.calendar {
             top: 144px;
             color: #fff;
         }
-
-        .siteInfo_in .con05 .in_txt {
-            width: 50%;
-            margin-left: 432px;
-        }
-
         .siteInfo_in .con05 > div:before {
             width: 25px;
             height: 257%;
             top: -573px;
-            left: 3%;
-            -webkit-transform: rotate(31deg);
-            transform: rotate(31deg);
+            left: -49px;
+            transform: rotate(24deg);
         }
 
         .siteInfo_in .con05 > div:after {
             width: 25px;
             height: 257%;
             top: -582px;
-            left: -2%;
-            -webkit-transform: rotate(31deg);
-            transform: rotate(31deg);
+            left: 0;
+            transform: rotate(24deg);
         }
 
         .siteInfo_in .con05 .in_txt .y2020 {
@@ -9087,9 +9174,9 @@ i.calendar {
         }
 
         .siteInfo_in .con05 .in_txt .year:after {
-            left: -80px;
+            left: -79px;
             top: 16px;
-            width: 79px;
+            width: 72px;
         }
 
     .main_con_box5 .txt h2 {
@@ -9236,6 +9323,9 @@ i.calendar {
     }
     #viewControl .btn_box .link02 {
         width: 60%;
+    }
+    .portfolio_in .con04{
+        top: -38px !important;
     }
     .portfolio_in .con04 .portfolio_box .box{
         text-align: left;
@@ -9496,7 +9586,8 @@ div.alignment .right_div {
         }
 
     .siteInfo_in .con03 {
-        background-size: 120%;
+        padding: 320px 25% 0;
+        min-height: 720px;
     }
 
     .siteInfo_in .con07 span {
@@ -9664,33 +9755,48 @@ div.alignment .right_div {
     .siteInfo_in .con02 li {
         margin: 1%;
     }
+    .siteInfo_in .con03 {
+        min-height: 830px;
+        padding: 365px 25% 0;
+    }
+    .siteInfo_in .con03 h4 {
+        text-align: center;
+        font-size: 40px;
+        line-height: 153%;
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
 
+    .siteInfo_in .con03 p {
+        font-size: 18px;
+        line-height: 120%;
+        color: #333;
+        text-align: center;
+    }
     .siteInfo_in .con05 {
         background-position: center;
-        background-size: 140%;
+        background-size: 160%;
     }
 
         .siteInfo_in .con05 > div:before {
             width: 25px;
             height: 257%;
             top: -573px;
-            left: 9.9%;
-            -webkit-transform: rotate(31deg);
-            transform: rotate(31deg);
+            left: 50px;
+            /* transform: rotate(31deg); */
         }
 
         .siteInfo_in .con05 > div:after {
             width: 25px;
             height: 257%;
             top: -582px;
-            left: 5.9%;
-            -webkit-transform: rotate(31deg);
-            transform: rotate(31deg);
+            left: 0;
+            /* transform: rotate(31deg); */
         }
 
         .siteInfo_in .con05 .in_txt {
-            width: 50%;
-            margin-left: 52%;
+            padding-left: 460px;
         }
 
         .siteInfo_in .con05 > div {
@@ -9698,9 +9804,9 @@ div.alignment .right_div {
         }
 
         .siteInfo_in .con05 .in_txt .year:after {
-            left: -200px;
+            left: -79px;
             top: 16px;
-            width: 200px;
+            width: 72px;
         }
 
     .siteInfo_in .con07 {
@@ -9791,6 +9897,42 @@ div.alignment .right_div {
     .notice_box{
         padding: 0;
     }
+    .siteInfo_in .con03 .bg01 {
+        left: 0;
+        top: 0;
+        width: 40%;
+        height: 220px;
+    }
+    .siteInfo_in .con03 .bg02 {
+        left: 40%;
+        top: 0;
+        width: 40%;
+        height: 220px;
+    }
+    .siteInfo_in .con03 .bg03 {
+        left: 80%;
+        top: 0;
+        width: 20%;
+        height: 600px;
+    }
+    .siteInfo_in .con03 .bg04 {
+        left: 0%;
+        top: 220px;
+        width: 20%;
+        height:600px;
+    }
+    .siteInfo_in .con03 .bg05 {
+        left: 20%;
+        top: 600px;
+        width: 40%;
+        height: 220px;
+    }
+    .siteInfo_in .con03 .bg06 {
+        left: 60%;
+        top: 600px;
+        width: 40%;
+        height: 220px;
+    }
 }
 
 @media (min-width: 1300px) {
@@ -9858,7 +10000,11 @@ div.alignment .right_div {
     .main_con_box1 .main_top_images .btn_list {
         padding-left: 0;
     }
-  
+    
+    .siteInfo_in .con05 {
+        background-size: 170%;
+    }
+    
 }
 
 @media (min-width: 1500px) {
@@ -9906,14 +10052,12 @@ div.alignment .right_div {
         background-size: 156%;
     }
     .siteInfo_in .con03 {
-        padding: 334px 0 0;
-        min-height: 773px;
-        background-position: center top;
-        background-size: 110%;
+        padding: 402px 0 0;
+        min-height: 970px;
     }
 
     .siteInfo_in .con05 {
-        background-size: 110%;
+        background-size: 150%;
     }
 
     .siteInfo_in .top_bg {
@@ -9921,6 +10065,42 @@ div.alignment .right_div {
         padding: 302px 0 0;
         background-position: center 60%;
         background-size: 105%;
+    }
+    .siteInfo_in .con03 .bg01 {
+        left: 0;
+        top: 0;
+        width: 40%;
+        height: 280px;
+    }
+    .siteInfo_in .con03 .bg02 {
+        left: 40%;
+        top: 0;
+        width: 40%;
+        height: 280px;
+    }
+    .siteInfo_in .con03 .bg03 {
+        left: 80%;
+        top: 0;
+        width: 20%;
+        height: 600px;
+    }
+    .siteInfo_in .con03 .bg04 {
+        left: 0%;
+        top: 280px;
+        width: 20%;
+        height:600px;
+    }
+    .siteInfo_in .con03 .bg05 {
+        left: 20%;
+        top: 600px;
+        width: 40%;
+        height: 280px;
+    }
+    .siteInfo_in .con03 .bg06 {
+        left: 60%;
+        top: 600px;
+        width: 40%;
+        height: 280px;
     }
 }
 
@@ -10022,11 +10202,12 @@ div.alignment .right_div {
     }
 
     .siteInfo_in .con06 h4 strong {
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
 
     .siteInfo_in .con06 h4 span {
-        font-size: 0.8em;
+        font-size: 0.6em;
+        font-weight: 100;
     }
 
     .siteInfo_in .con07 {
@@ -10034,11 +10215,15 @@ div.alignment .right_div {
     }
 
         .siteInfo_in .con07 h4 {
-            font-size: 15px;
+            font-size: 0.8em;
+            font-weight: 100;
         }
 
             .siteInfo_in .con07 h4 strong {
-                font-size: 1em;
+                font-size: 1.7em;
+                line-height: 129%;
+                font-weight:600;
+                
             }
 
 
@@ -10162,6 +10347,7 @@ div.alignment .right_div {
         width: 200px;
         margin: 0 auto;
     }
+ 
 }
 
 
@@ -10190,9 +10376,76 @@ div.alignment .right_div {
         .popup_box > div {
             height: 90% !important;
         }
+        .siteInfo_in .con03 {
+            padding: 147px 25% 0;
+        }
+        .siteInfo_in .con03 h4 {
+            font-size: 1.4em;
+        }
+        .siteInfo_in .con03 p {
+            font-size: 0.9em;
+        }
+        .siteInfo_in .con03 div[class*="bg0"] {
+            background-size: 190%;
+        }
+        .siteInfo_in .con04 .infopp .ovj {
+            font-size: 2.8em;
+        }
+        .siteInfo_in .con04 .infopp li {
+            width: 100%;
+        }
+
+        .siteInfo_in .con05{
+           background-size: 670%;
+        }
+        .siteInfo_in .con05 > div:after {
+            width: 9px;
+            left: 7px;
+        }
+        .siteInfo_in .con05 > div:before {
+            width: 9px;
+            left: 21px;
+        }
+        .siteInfo_in .con05 h4 {
+            font-size: 3em;
+            width: 100%;
+            left: 12%;
+        }
+        .siteInfo_in .con05 .in_txt {
+            width: 100%;
+            padding-left: 38px;
+        }
+        .siteInfo_in .con05 .in_txt .year:after{
+            display: none;
+        }
+        .siteInfo_in .con05 .in_txt .year:before {
+            left: 6px;
+            top: 9px;
+            width: 5px;
+            height: 5px;
+        }
+        .siteInfo_in .con05 .in_txt .year {
+            padding-left: 29px;
+        }
+        .siteInfo_in .con06 {
+            padding: 120px 5%;
+        }
+        .siteInfo_in .con06::after {
+            height: 30px;
+        }
+        .siteInfo_in .con06 li {
+            width: 47%;
+        }
+        .siteInfo_in .con06 li a {
+            padding: 15.1px;
+            min-height: 36px;
+        }
 }
 
 .cdx-input.image-tool__caption {
+    display: none; 
+}
+.__react_component_tooltip  {
     display: none; 
 }
 

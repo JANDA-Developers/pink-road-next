@@ -110,9 +110,15 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             </div>
         </div>
         <div className="w100 con03 con_block">
-            <div className="w1200">
+            <div>
                 <h4  {...edit("value_title")} />
                 <p {...edit("value_desc")} />
+                <div className="bg01" style={bg("value_bg01")}><Upload onUpload={imgEdit("value_bg01")} /></div>
+                <div className="bg02" style={bg("value_bg02")}><Upload onUpload={imgEdit("value_bg02")} /></div>
+                <div className="bg03" style={bg("value_bg03")}><Upload onUpload={imgEdit("value_bg03")} /></div>
+                <div className="bg04" style={bg("value_bg04")}><Upload onUpload={imgEdit("value_bg04")} /></div>
+                <div className="bg05" style={bg("value_bg05")}><Upload onUpload={imgEdit("value_bg05")} /></div>
+                <div className="bg06" style={bg("value_bg06")}><Upload onUpload={imgEdit("value_bg06")} /></div>
             </div>
         </div>
         <div className="w100 con04 con_block">

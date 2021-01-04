@@ -40,18 +40,25 @@ const info: TStieInfo = {
     purpose_title: { kr: 'Purpose and Vision' },
     purpose_desc: { kr: '목표로 삼고 나아가는 가치있는 생각 3가지' },
     purpose1_title: { kr: '지속가능한 <br /> 공간을 그리다' },
-    purpose1_bottom: { kr: "sustainable space" },
+    purpose1_bottom: { kr: "Sustainable space" },
     purpose1_bg: { kr: `/img/pr_img_40.jpg` },
     purpose2_title: { kr: '잊히지 않는 <br /> 시대를 그리다' },
-    purpose2_bottom: { kr: "unforgettable period" },
+    purpose2_bottom: { kr: "Unforgettable period" },
     purpose2_bg: { kr: `/img/pr_img_41.jpg` },
     purpose3_title: { kr: '상생하는 <br /> 사람을 그리다' },
-    purpose3_bottom: { kr: "co-prosperity person" },
+    purpose3_bottom: { kr: "Co-prosperity person" },
     purpose3_bg: { kr: `/img/pr_img_42.jpg` },
 
 
     value_title: { kr: '따로, 함께, 맞게' },
     value_desc: { kr: '우리는 사회·지역·사람을 잇는 활동으로 지속가능한 상생의 가치를 만듭니다.' },
+    value_bg01: { kr: '/img/siteinfo_sel01.jpg' },
+    value_bg02: { kr: '/img/siteinfo_sel02.jpg' },
+    value_bg03: { kr: '/img/siteinfo_sel03.jpg' },
+    value_bg04: { kr: '/img/siteinfo_sel04.jpg' },
+    value_bg05: { kr: '/img/siteinfo_sel05.jpg' },
+    value_bg06: { kr: '/img/siteinfo_sel06.jpg' },
+
     value1_title: { kr: '공존하는' },
     value1_en: { kr: "coexist" },
     value1_desc: {
