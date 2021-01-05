@@ -49,7 +49,6 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
     />
 };
 
-
 export const NewsDetailWrap: React.FC<IProp> = () => {
     const { query } = useRouter()
     const id = query.id as string;

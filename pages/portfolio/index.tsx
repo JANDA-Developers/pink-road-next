@@ -16,7 +16,7 @@ interface IProp {
 
 export const PortFolio: React.FC<IProp> = ({ context }) => {
     const { editMode } = useContext(EditContext);
-    const { isAdmin, isManager } = useContext(AppContext);
+    const { isManager } = useContext(AppContext);
     const { items: portfolios = [], sitePageInfo, pcategories, setPage: setPFpage, pageInfo, setFilter, filter, getLoading } = context;
     const original = sitePageInfo || pageInfoDefault;
     const [page, setPage] = useState(original);
