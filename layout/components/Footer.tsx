@@ -47,9 +47,8 @@ export const Footer: React.FC<IProp> = () => {
             </div>
             <div className="f_detail_wrap">
                 <div className="ft_left">
-                    <div className="magency logo_bottom">
+                    <div className="logo_bottom">
                         <img src="/its/logo_2.png" alt="logo" />
-
                     </div>
 
                 </div>
