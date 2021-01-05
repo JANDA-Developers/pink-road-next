@@ -214,7 +214,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                             </div>
                         </div>
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">전체선택</button>
                             </div>
@@ -303,7 +303,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                                 {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                             </div>
 
-                            <div className="fin">
+                            <div className="fin ifMobile">
                                 <div className="float_left">
                                     <button type="submit" className="btn medium">모두선택</button>
                                 </div>
@@ -548,7 +548,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="fin">
+                            <div className="fin ifMobile">
                                 <div className="float_left">
                                     <button type="submit" className="btn medium">탈퇴시키기</button>
                                 </div>

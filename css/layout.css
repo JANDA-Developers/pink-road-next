@@ -284,15 +284,21 @@ i.tooltip{
         border-bottom:1px solid #eee;
         text-align:right;
     }
-        .header .top-menu p {
+        .header .top-menu p.welcome_ms {
+            position: relative;
             display: inline-block;
             width: auto;
-            margin-right: 15px;
             font-size: 11px;
             color: #aaa;
         } 
-        .header .top-menu p strong {
-           
+        .header .top-menu .welcome_ms::after {
+            display: inline-block;
+            content: '·';
+            position: absolute;
+            top:0;
+            right: -12px;
+        } 
+        .header .top-menu p.welcome_ms strong {
             color: #888;
         }   
     .header .top-menu ul {
@@ -1627,9 +1633,13 @@ rect.allmenu_svg {
 
 
 /*footer*/
-
+.footer{
+    width: 100%;
+    position: relative;
+}
 footer .footer_in {
-    padding: 0 3% 57px;
+    width: 100%;
+    padding: 0 0 57px;
     box-sizing: border-box;
     color: #555;
     text-align: center;
@@ -1738,6 +1748,8 @@ footer .footer_in_bottom {
     text-align: center;
     width: 100%;
     margin: 0 auto;
+    padding: 0 3%;
+    box-sizing: border-box;
 }
 
     .footer_in .f_detail_wrap .ft_left {
@@ -3557,7 +3569,7 @@ margin-bottom:0;
         }
 
         .footer_in .bottom_nav ul {
-            padding: 0;
+            padding: 0 3%;
             text-align: left;
         }
 
@@ -3686,6 +3698,12 @@ margin-bottom:0;
     #content .x {
         width: 1200px;
     }
+    footer .footer_in {
+        margin: 0 auto;
+    }
+    .footer_in .bottom_nav ul{
+        padding: 0;
+    }
     .footer-area-bottom .janda_txt p {
         width: 1200px;
     }
@@ -3777,6 +3795,7 @@ margin-bottom:0;
         }
     .footer_in .f_detail_wrap {
         width: 1200px;
+        padding: 0;
     }
     .subtop_nav {
         width: 1200px;
@@ -3845,9 +3864,6 @@ margin-bottom:0;
         font-size: 14px;
     }
 
-    .footer_in .f_detail_wrap strong {
-        font-size: 12px;
-    }
 
     .footer_in {
         padding: 60px 3% 70px;

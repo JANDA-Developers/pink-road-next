@@ -77,7 +77,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
                     <div className="jul">
                         <h5>이용약관</h5>
                         <Editor data={datas.usePolicy} onChange={setPoliicy("usePolicy")} />
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_right">
                                 <button onClick={handleSave("usePolicy")} type="submit" className="btn medium">저장하기</button>
                             </div>

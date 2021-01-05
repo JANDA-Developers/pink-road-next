@@ -3665,7 +3665,8 @@ ul.rank_ul {
         position: relative;
         display: block;
         width: 100%;
-        padding-top: 30px;
+        box-sizing: border-box;
+        padding: 30px 3% 0;
     }
 
         .goods_box .deal_list h4 {
@@ -3679,6 +3680,12 @@ ul.rank_ul {
             clear: both;
         }
 
+        .goods_box .alignment{
+            display: flex;
+        }
+        .goods_box .alignment .right_div{
+            text-align: right;
+        }
 div.bn_box {
     position: relative;
     display: block;
@@ -5148,7 +5155,21 @@ div.bn_box {
                 .join_wrap2 .certified li:hover i {
                     color: #ffffff;
                 }
-
+                .join_wrap2 .certified .icon-email {
+                    display: inline-block;
+                    width: 45px;
+                    height: 27px;
+                    vertical-align: sub;
+                    background-image: url(/img/svg/email-icon.svg);
+                    background-size: 39px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    margin-right: 10px;
+                    margin-top: 12px;
+                }
+                .join_wrap2 .certified li:hover .icon-email {
+                    background-image: url(/img/svg/email-icon_on.svg);
+                }
     .join_wrap2 .wellcom {
         display: block;
         position: relative;
@@ -8621,6 +8642,9 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+    .goods_box .deal_list {
+        padding: 30px 3% 0;
+    }
     .siteInfo_in .con05 .in_txt {
         width: 100%;
         padding-left: 410px;
@@ -9333,9 +9357,7 @@ i.calendar {
     .sign_in .inner .join_address {
         margin-bottom: 79px;
     }
-    .sign_in .inner .join_address ul {
-        width: 1200px;
-    }
+  
     .sign_in .inner .join_address li {
         width: 100px;
         height: 100px;
@@ -9400,13 +9422,23 @@ i.calendar {
         margin: 10px 24px;
         font-weight: 100;
     }
+    .join_wrap2 .certified .icon-email {
+        display: block;
+        width: 100%;
+        height: 45px;
+        background-size: 47px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
     .join_wrap2 .certified li i {
         display: block;
         text-align: center;
         font-size: 54px;
         box-sizing: border-box;
         color: #909090;
+        margin-right: 0;
     }
+
     .join_wrap2 .information_box {
         width: 80%;
         border-radius: 0 0 5px 5px;
@@ -9627,6 +9659,9 @@ div.alignment .right_div {
 }
 
 @media (min-width: 1200px) {
+    .sign_in .inner .join_address ul {
+        width: 1200px;
+    }
     .main_con_box1 .main_top_images::after {
         top: 0;
         left: -111%;
@@ -9637,6 +9672,9 @@ div.alignment .right_div {
         transform: rotate(-56deg);
         z-index: 2;
     }
+    .sign_in .inner{
+        padding: 0;
+    }
         div.popup_bg_full .in_txt {
             padding:50px 20px 20px;
         }
@@ -9645,14 +9683,12 @@ div.alignment .right_div {
         margin: 0 auto;
         position: relative;
     }
-
         .main_con_box1 .ovj:before {
             top: 70px;
             left: 50px;
             width: 700px;
             height: 440px;
         }
-
         .main_con_box1 .ovj:after {
             top: 100px;
             left: 80px;
@@ -9662,7 +9698,6 @@ div.alignment .right_div {
     .findmembers_box {
         padding: 100px 0;
     }
-
     .selectViewList ul.list_ul .list_in .txt2 {
         width: 28%;
         padding: 10px 0 0 50px;
@@ -10114,6 +10149,7 @@ div.alignment .right_div {
     ul.photo_ul li .subTitle{
         text-align: center;
     }
+
     .infolist .pack {
         padding-top: 25px;
     }
@@ -10347,7 +10383,15 @@ div.alignment .right_div {
         width: 200px;
         margin: 0 auto;
     }
- 
+   div.alignment .move-left,
+    div.alignment .move-right {
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+    }
+    div.alignment .move-right {
+        margin-right: 0px;
+    }
 }
 
 

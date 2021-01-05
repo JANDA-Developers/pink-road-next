@@ -310,7 +310,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                         </div>
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
 
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">전체선택</button>
                             </div>
@@ -585,7 +585,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="fin">
+                    <div className="fin ifMobile">
                         <div className="float_left">
                             <button type="submit" className="btn medium">정산완료</button>
                             <button type="submit" className="btn medium">정산대기</button>

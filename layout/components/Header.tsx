@@ -95,15 +95,15 @@ export const Header: React.FC<IProp> = () => {
     return <header className="header" id="header">
         <div className="top-menu">
             <div className="w1200">
-                {isLogin ? <p><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>
+                {isLogin ? <p className="welcome_ms"><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>
                     : <i />}
                 <ul>
-                    <li className="join">
-                        {isLogin ? <i />
-                            : <Link href="/join">
+                    {isLogin ? "" :
+                        <li className="join">
+                            <Link href="/join">
                                 <a>JOIN</a>
-                            </Link>}
-                    </li>
+                            </Link>
+                        </li>}
                     <li className="login">
                         {isLogin ? <a onClick={handleLogOut}>LOGOUT</a>
                             : <Link href="/login">
@@ -320,7 +320,7 @@ export const Header: React.FC<IProp> = () => {
                                 <ul className="depth1">
                                     <li><a href="/login">로그인</a></li>
                                     <li><a href="/join">회원가입</a></li>
-                                    <li><a href="/idpw_find">아이디/비번 찾기</a></li>
+                                    <li><a href="/findmembers">아이디/비번 찾기</a></li>
                                     <li><a href="/member/search">통합검색</a></li>
                                     <li><a href="/member/rule">이용약관</a></li>
                                     <li><a href="/member/privacy-policy">개인정보처리방침</a></li>

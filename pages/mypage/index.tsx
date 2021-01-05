@@ -498,7 +498,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="fin">
+                <div className="fin ifMobile">
                     <div className="float_left">
 
                         <button onClick={handleUpdate} type="submit" className="btn medium">

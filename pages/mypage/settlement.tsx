@@ -565,7 +565,7 @@ export const MySettlement: React.FC<IProp> = () => {
                     </div>
 
 
-                    <div className="fin">
+                    <div className="fin ifMobile">
                         <div className="float_left">
                             <button type="submit" className="btn medium">
                                 예약취소

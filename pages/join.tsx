@@ -237,7 +237,7 @@ const Verification: React.FC = () => {
                     카카오톡 인증
                 </li>
                 <li onClick={handleSelfAuth} className="socialVerify">
-                    <i className="jandaicon-kakaotalk" />
+                    <span className="icon-email"></span>
                     이메일 인증
                 </li>
             </ul>
