@@ -202,3 +202,5 @@ export const Search: React.FC<IProp> = () => {
     </div>
 }
 
+
+export default Search

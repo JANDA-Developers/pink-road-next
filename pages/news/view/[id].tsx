@@ -21,7 +21,7 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
     }
 
 
-    const { newsDelete } = useNewsDelete({
+    const [newsDelete] = useNewsDelete({
         onCompleted: ({ NewsDelete }) => {
             if (NewsDelete.ok) toList();
         }
@@ -30,7 +30,9 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
             newsDelete({
-                id: _id
+                variables: {
+                    id: _id
+                }
             })
     }
 
@@ -51,12 +53,12 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
 export const NewsDetailWrap: React.FC<IProp> = () => {
     const { query } = useRouter()
     const id = query.id as string;
-    const { news, loading } = useNewsFindById(id)
+    const { item, loading } = useNewsFindById(id)
 
     if (loading) return null;
-    if (!news) return <Page404 />;
+    if (!item) return <Page404 />;
 
-    return <NewsDetail item={news} />
+    return <NewsDetail item={item} />
 }
 
 export default NewsDetailWrap;

@@ -13,16 +13,18 @@ import { getItemCount, Storage } from '../utils/Storage';
 interface IProp { }
 
 export const MypageLayout: React.FC<IProp> = ({ children }) => {
-    const { userUpdate } = useUserUpdate()
+    const [updateuser] = useUserUpdate()
     const { signleUpload } = useUpload();
     const { isSeller, isParterB, isParterNonB, myProfile } = useContext(AppContext);
     const hiddenFileInput = useRef<HTMLInputElement>(null);
 
     const changeProfile = (file: Ffile) => {
-        userUpdate({
-            _id: myProfile!._id,
-            params: {
-                profileImg: omits(file)
+        updateuser({
+            variables: {
+                _id: myProfile!._id,
+                params: {
+                    profileImg: omits(file)
+                }
             }
         })
     }

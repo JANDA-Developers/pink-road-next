@@ -11,7 +11,9 @@ export const F_QUESTION = gql`
         isDelete
         title
         contents
-       
+        author {
+          nickName
+        }
         isNotice
         isOpen
         summary

@@ -34,7 +34,7 @@ export const NewsWrite: React.FC<IProp> = ({ news }) => {
         router.push(`/news/view/${id}`)
     }
 
-    const { newsUpdate } = useNewsUpdate({
+    const [newsUpdate] = useNewsUpdate({
         awaitRefetchQueries: true,
         onCompleted: ({ NewsUpdate }) => {
             if (NewsUpdate.ok) {
@@ -44,7 +44,7 @@ export const NewsWrite: React.FC<IProp> = ({ news }) => {
         },
     })
 
-    const { newsCreate } = useNewsCreate({
+    const [newsCreate] = useNewsCreate({
         awaitRefetchQueries: true,
         onCompleted: ({ NewsCreate }) => {
             if (NewsCreate.ok) {
@@ -54,7 +54,7 @@ export const NewsWrite: React.FC<IProp> = ({ news }) => {
         },
     })
 
-    const { newsDelete } = useNewsDelete({
+    const [newsDelete] = useNewsDelete({
         onCompleted: ({ NewsDelete }) => {
             if (NewsDelete.ok)
                 router.push(`/news`)
@@ -77,15 +77,19 @@ export const NewsWrite: React.FC<IProp> = ({ news }) => {
         }
 
         newsUpdate({
-            params: omits(params, ["categoryId", "files"]),
-            id
+            variables: {
+                params: omits(params, ["categoryId", "files"]),
+                id
+            }
         })
     }
 
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
             newsDelete({
-                id
+                variables: {
+                    id
+                }
             })
     }
 
@@ -101,7 +105,9 @@ export const NewsWrite: React.FC<IProp> = ({ news }) => {
         const next = omits(createParams, ["contents", "categoryId"])
 
         newsCreate({
-            params: omits(next, ["categoryId", "files"])
+            variables: {
+                params: omits(next, ["categoryId", "files"])
+            }
         })
     }
 

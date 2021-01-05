@@ -2,7 +2,7 @@ import { GraphQLClient } from "graphql-request";
 import { HOMEPAGE } from "../apollo/gql/homepage";
 import { SERVER_URI } from "../apollo/uri";
 import { usePageInfo } from "../hook/usePageInfo";
-import { Fhomepage, Fpage, homepage } from "../types/api"
+import { Fhomepage, Fpage, homepage, homepage_Homepage, homepage_Homepage_data } from "../types/api"
 import { DEFAULT_HOMEPAGE } from "../types/const";
 import { TPageKeys } from "../types/interface";
 import { Page } from "./generateClientPaging";
@@ -51,5 +51,5 @@ export const getHomepage = async  () => {
 }
 
 export type TGetHomepage = {
-    homepage: Fhomepage
+    homepage:  homepage_Homepage_data
 }

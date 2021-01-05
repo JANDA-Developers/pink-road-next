@@ -1,5 +1,5 @@
 
-const END_POINT = "http://13.125.118.163:4000" + "/graphql";
+const END_POINT = "http://localhost:4000" + "/graphql";
 export const SERVER_URI: string = END_POINT || "";
 
 // "http://localhost:4000/graphql"

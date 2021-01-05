@@ -1,48 +1,10 @@
-import { QueryHookOptions, useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import { PAYMENT_LIST, SETTLEMENT_CAL } from "../apollo/gql/payment";
-import { Fpage,  Fpayment, paymentList, paymentListVariables, settlementCal, settlementCalVariables, _PaymentFilter, _PaymentSort } from "../types/api";
-import { DEFAULT_PAGE } from "../types/const";
-import { useListQuery, ListInitOptions, IListHook } from "./useListQuery";
+import { paymentList_PaymentList_data, paymentList, paymentListVariables, settlementCal, settlementCalVariables, _PaymentFilter, _PaymentSort} from "../types/api";
+import { generateListQueryHook } from "../utils/query";
 
-interface IuseItemListProp extends Partial<ListInitOptions<_PaymentFilter, _PaymentSort>> {
-    options?: QueryHookOptions<paymentList, paymentListVariables>
-}
-export interface IusePaymentList extends IListHook<_PaymentFilter, _PaymentSort> {
-    items: Fpayment[];
-    getLoading: boolean;
-    pageInfo: Fpage;
-}
-
-export const usePaymentList = ({
-    initialPageIndex = 0,
-    initialSort = [_PaymentSort.createdAt_desc],
-    initialFilter = {},
-    initialViewCount = 20,
-    options = {}
-}: IuseItemListProp = {}): IusePaymentList => {
-    const { variables: overrideVariables, ...ops } = options;
-    const { filter, setPage, setFilter, setSort, setViewCount, sort, viewCount, integratedVariable } = useListQuery({
-        initialFilter,
-        initialPageIndex,
-        initialSort,
-        initialViewCount
-    })
-
-    const { data, loading: getLoading } = useQuery<paymentList,paymentListVariables>(PAYMENT_LIST,{
-        fetchPolicy: "network-only",
-        variables: {
-            ...integratedVariable,
-            ...overrideVariables
-        },
-        ...ops
-    })
-
-    const items: Fpayment[] = data?.PaymentList.data || [];
-    const pageInfo: Fpage = data?.PaymentList.page || DEFAULT_PAGE;
-
-    return { pageInfo, filter, setPage, getLoading, setFilter, setSort, setViewCount, sort, viewCount, items }
-}
+export const usePaymentList = generateListQueryHook<_PaymentFilter,_PaymentSort,paymentList,paymentListVariables,paymentList_PaymentList_data>(PAYMENT_LIST)
 
 export const useSettlementCal = ({
     initialFilter
