@@ -1314,6 +1314,274 @@ export interface newsUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: notificationHistory
+// ====================================================
+
+export interface notificationHistory_NotificationHistory_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface notificationHistory_NotificationHistory_data {
+  __typename: "INotificationHistoryItem";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  method: NotificationMethod;
+  sender: string;
+  receivers: string[];
+  title: string | null;
+  /**
+   * Template에서 변수가 치환되지 않은 채로 출력 될 수 있음.
+   */
+  content: string;
+  count: number;
+  successCount: number;
+  errorCount: number;
+  /**
+   * 전송 후 남은 포인트
+   */
+  pointRemains: number;
+  /**
+   * 포인트 소모량
+   */
+  pointConsumed: number;
+}
+
+export interface notificationHistory_NotificationHistory {
+  __typename: "INotificationHistoryItemListResponse";
+  ok: boolean;
+  error: string | null;
+  page: notificationHistory_NotificationHistory_page;
+  data: notificationHistory_NotificationHistory_data[];
+}
+
+export interface notificationHistory {
+  NotificationHistory: notificationHistory_NotificationHistory;
+}
+
+export interface notificationHistoryVariables {
+  sort?: _INotificationHistoryItemSort[] | null;
+  filter?: _INotificationHistoryItemFilter | null;
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: notificationSenderPhoneAddStart
+// ====================================================
+
+export interface notificationSenderPhoneAddStart_NotificationSenderPhoneAddStart {
+  __typename: "VerificationResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface notificationSenderPhoneAddStart {
+  NotificationSenderPhoneAddStart: notificationSenderPhoneAddStart_NotificationSenderPhoneAddStart;
+}
+
+export interface notificationSenderPhoneAddStartVariables {
+  target: VerificationTarget;
+  payload: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: notificationSenderAddComplete
+// ====================================================
+
+export interface notificationSenderAddComplete_NotificationSenderAddComplete {
+  __typename: "VerificationResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface notificationSenderAddComplete {
+  NotificationSenderAddComplete: notificationSenderAddComplete_NotificationSenderAddComplete;
+}
+
+export interface notificationSenderAddCompleteVariables {
+  verificationId: string;
+  target: VerificationTarget;
+  code: string;
+  payload: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: smsTemplateUpdate
+// ====================================================
+
+export interface smsTemplateUpdate_SmsTemplateUpdate {
+  __typename: "SmsTemplateUpdateResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface smsTemplateUpdate {
+  SmsTemplateUpdate: smsTemplateUpdate_SmsTemplateUpdate;
+}
+
+export interface smsTemplateUpdateVariables {
+  input: SmsTemplateUpdateInput;
+  templateId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: smstemplateCreate
+// ====================================================
+
+export interface smstemplateCreate_SmsTemplateCreate {
+  __typename: "SmsTemplateCreateResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface smstemplateCreate {
+  SmsTemplateCreate: smstemplateCreate_SmsTemplateCreate;
+}
+
+export interface smstemplateCreateVariables {
+  input: SmsTemplateCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: smstemplateDelete
+// ====================================================
+
+export interface smstemplateDelete_SmsTemplateDelete {
+  __typename: "SmsTemplateDeleteResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface smstemplateDelete {
+  SmsTemplateDelete: smstemplateDelete_SmsTemplateDelete;
+}
+
+export interface smstemplateDeleteVariables {
+  templateId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: smsSingleMessageSend
+// ====================================================
+
+export interface smsSingleMessageSend_SmsSingleMessageSend {
+  __typename: "SmsSingleMessageSendResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface smsSingleMessageSend {
+  SmsSingleMessageSend: smsSingleMessageSend_SmsSingleMessageSend;
+}
+
+export interface smsSingleMessageSendVariables {
+  input: SmsSendInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: smsTemplateMessageSend
+// ====================================================
+
+export interface smsTemplateMessageSend_SmsTemplateMessageSend {
+  __typename: "SmsTemplateMessageSendResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface smsTemplateMessageSend {
+  SmsTemplateMessageSend: smsTemplateMessageSend_SmsTemplateMessageSend;
+}
+
+export interface smsTemplateMessageSendVariables {
+  input: SmsTemplateMessageSendInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: paymentList
 // ====================================================
 
@@ -3383,57 +3651,29 @@ export interface settlementList_SettlementList_page {
   remainder: number;
 }
 
-export interface settlementList_SettlementList_data_seller {
-  __typename: "User";
-  _id: string;
-  name: string;
-}
-
-export interface settlementList_SettlementList_data_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-}
-
-export interface settlementList_SettlementList_data_feePolicy {
-  __typename: "SettlementPolicy";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  status: SettlementPolicyStatus;
-  niceCardPercent: number;
-  jandaCardPercent: number;
-  cardPercent: number;
-  passbookPercent: number;
-  storePercent: number;
-}
-
 export interface settlementList_SettlementList_data {
   __typename: "Settlement";
   _id: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  seller: settlementList_SettlementList_data_seller;
-  product: settlementList_SettlementList_data_product;
   status: SettlementStatus;
-  feePolicy: settlementList_SettlementList_data_feePolicy;
   totalPrice: number;
-  totalFee: number;
-  jandaFee: number;
-  jandaProfit: number;
-  storeFee: number;
-  storeProfit: number;
-  sellerProfit: number;
   cardPrice: number;
-  cardFee: number;
   passbookPrice: number;
+  settlementPrice: number;
+  totalFee: number;
+  cardFee: number;
+  niceCardFee: number;
+  jandaCardFee: number;
   passbookFee: number;
+  storeFee: number;
+  jandaFee: number;
   cancelReturnPriceTotal: number;
   cancelReturnPrice: number;
+  reserveDiffPrice: number[];
   reserveDiffPriceTotal: number;
-  settlementPrice: number;
+  payReqPrice: number;
   requestDate: any | null;
   acceptDate: any | null;
   completeDate: any | null;
@@ -5084,6 +5324,189 @@ export interface Fnews {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: FnotificationTrigger
+// ====================================================
+
+export interface FnotificationTrigger_tags {
+  __typename: "Tag";
+  key: string;
+  value: string;
+}
+
+export interface FnotificationTrigger {
+  __typename: "NotificationTrigger";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  sender: string;
+  event: string;
+  isEnabled: boolean;
+  tags: FnotificationTrigger_tags[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FsmsTemplate
+// ====================================================
+
+export interface FsmsTemplate_trigger_tags {
+  __typename: "Tag";
+  key: string;
+  value: string;
+}
+
+export interface FsmsTemplate_trigger {
+  __typename: "NotificationTrigger";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  sender: string;
+  event: string;
+  isEnabled: boolean;
+  tags: FsmsTemplate_trigger_tags[];
+}
+
+export interface FsmsTemplate_manager {
+  __typename: "NotificationManager";
+  _id: string;
+}
+
+export interface FsmsTemplate {
+  __typename: "SmsTemplate";
+  name: string;
+  description: string | null;
+  content: string;
+  trigger: FsmsTemplate_trigger[];
+  replacers: string[];
+  manager: FsmsTemplate_manager;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FnotificationManager
+// ====================================================
+
+export interface FnotificationManager_smsPricingTable {
+  __typename: "SMSPricingTable";
+  SMS: number;
+  LMS: number;
+  MMS: number;
+}
+
+export interface FnotificationManager_templates_trigger_tags {
+  __typename: "Tag";
+  key: string;
+  value: string;
+}
+
+export interface FnotificationManager_templates_trigger {
+  __typename: "NotificationTrigger";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  sender: string;
+  event: string;
+  isEnabled: boolean;
+  tags: FnotificationManager_templates_trigger_tags[];
+}
+
+export interface FnotificationManager_templates_manager {
+  __typename: "NotificationManager";
+  _id: string;
+}
+
+export interface FnotificationManager_templates {
+  __typename: "SmsTemplate";
+  name: string;
+  description: string | null;
+  content: string;
+  trigger: FnotificationManager_templates_trigger[];
+  replacers: string[];
+  manager: FnotificationManager_templates_manager;
+}
+
+export interface FnotificationManager {
+  __typename: "NotificationManager";
+  smsPricingTable: FnotificationManager_smsPricingTable;
+  /**
+   * 건당 비용. 단위는 KRW
+   */
+  emailPricing: number;
+  currency: Currency;
+  /**
+   * Email, SMS 뭘로 보내든 포인트 차감
+   */
+  pointRemains: number;
+  templates: FnotificationManager_templates[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FnotificationHistoryItem
+// ====================================================
+
+export interface FnotificationHistoryItem {
+  __typename: "INotificationHistoryItem";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  method: NotificationMethod;
+  sender: string;
+  receivers: string[];
+  title: string | null;
+  /**
+   * Template에서 변수가 치환되지 않은 채로 출력 될 수 있음.
+   */
+  content: string;
+  count: number;
+  successCount: number;
+  errorCount: number;
+  /**
+   * 전송 후 남은 포인트
+   */
+  pointRemains: number;
+  /**
+   * 포인트 소모량
+   */
+  pointConsumed: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FnotificationSender
+// ====================================================
+
+export interface FnotificationSender {
+  __typename: "NotificationSender";
+  type: NotificationMethod;
+  sender: string;
+  isVerified: boolean;
+  isRegisteredToAligo: boolean;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fquestion
 // ====================================================
 
@@ -5184,57 +5607,29 @@ export interface FsettlementPolicy {
 // GraphQL fragment: Fsettlement
 // ====================================================
 
-export interface Fsettlement_seller {
-  __typename: "User";
-  _id: string;
-  name: string;
-}
-
-export interface Fsettlement_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-}
-
-export interface Fsettlement_feePolicy {
-  __typename: "SettlementPolicy";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  status: SettlementPolicyStatus;
-  niceCardPercent: number;
-  jandaCardPercent: number;
-  cardPercent: number;
-  passbookPercent: number;
-  storePercent: number;
-}
-
 export interface Fsettlement {
   __typename: "Settlement";
   _id: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  seller: Fsettlement_seller;
-  product: Fsettlement_product;
   status: SettlementStatus;
-  feePolicy: Fsettlement_feePolicy;
   totalPrice: number;
-  totalFee: number;
-  jandaFee: number;
-  jandaProfit: number;
-  storeFee: number;
-  storeProfit: number;
-  sellerProfit: number;
   cardPrice: number;
-  cardFee: number;
   passbookPrice: number;
+  settlementPrice: number;
+  totalFee: number;
+  cardFee: number;
+  niceCardFee: number;
+  jandaCardFee: number;
   passbookFee: number;
+  storeFee: number;
+  jandaFee: number;
   cancelReturnPriceTotal: number;
   cancelReturnPrice: number;
+  reserveDiffPrice: number[];
   reserveDiffPriceTotal: number;
-  settlementPrice: number;
+  payReqPrice: number;
   requestDate: any | null;
   acceptDate: any | null;
   completeDate: any | null;
@@ -5282,6 +5677,15 @@ export enum BoardType {
 }
 
 /**
+ * 통화
+ */
+export enum Currency {
+  JPY = "JPY",
+  KRW = "KRW",
+  USD = "USD",
+}
+
+/**
  * 성별
  */
 export enum GENDER {
@@ -5299,15 +5703,25 @@ export enum NEWS_TYPE {
 }
 
 /**
+ * 노티 수단...
+ */
+export enum NotificationMethod {
+  EMAIL = "EMAIL",
+  SMS = "SMS",
+}
+
+/**
  * 성별
  */
 export enum ProductStatus {
-  CLOSE = "CLOSE",
+  EXPIRED = "EXPIRED",
   HIDE = "HIDE",
   OPEN = "OPEN",
   READY = "READY",
   REFUSED = "REFUSED",
   SOLD = "SOLD",
+  UPDATE_REQ = "UPDATE_REQ",
+  UPDATE_REQ_REFUSED = "UPDATE_REQ_REFUSED",
 }
 
 /**
@@ -5417,6 +5831,18 @@ export enum _BookingSort {
   createdAt_desc = "createdAt_desc",
   updatedAt_asc = "updatedAt_asc",
   updatedAt_desc = "updatedAt_desc",
+}
+
+/**
+ * Auto generated sort type
+ */
+export enum _INotificationHistoryItemSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  sender_asc = "sender_asc",
+  sender_desc = "sender_desc",
+  successCount_asc = "successCount_asc",
+  successCount_desc = "successCount_desc",
 }
 
 /**
@@ -5797,9 +6223,50 @@ export interface QuestionUpdateInput {
   status?: QuestionStatus | null;
 }
 
+/**
+ * 수신자번호 + 치환문자열 객체 INPUT
+ */
+export interface ReceiverWithReplacementSetsInput {
+  receivers: string[];
+  replacementSets: ReplacementSetInput[];
+}
+
+export interface ReplacementSetInput {
+  key: string;
+  value: string;
+}
+
 export interface ReturnTargetInput {
-  _id: string;
+  returnTargetId: string;
   price: number;
+}
+
+export interface SmsSendInput {
+  sender: string;
+  title?: string | null;
+  content: string;
+  receivers: string[];
+  tempalteId?: string | null;
+  replacements?: ReplacementSetInput | null;
+}
+
+export interface SmsTemplateCreateInput {
+  name: string;
+  content: string;
+  description?: string | null;
+}
+
+export interface SmsTemplateMessageSendInput {
+  templateId?: string | null;
+  content?: string | null;
+  sender: string;
+  replacements: ReceiverWithReplacementSetsInput[];
+}
+
+export interface SmsTemplateUpdateInput {
+  content?: string | null;
+  name?: string | null;
+  description?: string | null;
 }
 
 export interface UserUpdateInput {
@@ -5887,6 +6354,30 @@ export interface _BookingFilter {
   booker_eq?: string | null;
   booker_not_eq?: string | null;
   booker_in?: string[] | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
+}
+
+export interface _INotificationHistoryItemFilter {
+  AND?: _INotificationHistoryItemFilter[] | null;
+  OR?: _INotificationHistoryItemFilter[] | null;
+  method_eq?: NotificationMethod | null;
+  method_not_eq?: NotificationMethod | null;
+  method_in?: NotificationMethod[] | null;
+  method_not_in?: NotificationMethod[] | null;
+  sender_eq?: string | null;
+  sender_not_eq?: string | null;
+  sender_in?: string[] | null;
+  sender_not_in?: string[] | null;
+  sender_contains?: string | null;
+  sender_not_contains?: string | null;
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
@@ -6130,6 +6621,13 @@ export interface _SystemNotiFilter {
 export interface _UserFilter {
   AND?: _UserFilter[] | null;
   OR?: _UserFilter[] | null;
+  keywards_eq?: string | null;
+  keywards_not_eq?: string | null;
+  keywards_in?: string[] | null;
+  keywards_contains?: string | null;
+  keywards_not_in?: string[] | null;
+  keywards_not_contains?: string | null;
+  keywards_all?: string | null;
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;

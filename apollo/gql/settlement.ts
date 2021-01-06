@@ -3,56 +3,46 @@ import { F_PAGE } from "./fragments"
 
 export const F_SETTLEMENT_POLICY = gql`
     fragment FsettlementPolicy on SettlementPolicy {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        status
-        niceCardPercent
-        jandaCardPercent
-        cardPercent
-        passbookPercent
-        storePercent
-    } 
+      _id
+      createdAt
+      updatedAt
+      isDelete
+      status
+      niceCardPercent
+      jandaCardPercent
+      cardPercent
+      passbookPercent
+      storePercent
+    }
 `
 
 export const F_SETTLEMENT = gql`
     fragment Fsettlement on Settlement  {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        seller {
-            _id
-            name
-        }
-        product {
-            _id
-            title
-        }
-        status
-        feePolicy {
-            ...FsettlementPolicy   
-        }
-        totalPrice
-        totalFee
-        jandaFee
-        jandaProfit
-        storeFee
-        storeProfit
-        sellerProfit
-        cardPrice
-        cardFee
-        passbookPrice
-        passbookFee
-        cancelReturnPriceTotal
-        cancelReturnPrice
-        reserveDiffPriceTotal
-        settlementPrice
-        requestDate
-        acceptDate
-        completeDate
-        cancelDate
+      _id
+      createdAt
+      updatedAt
+      isDelete
+      status
+      totalPrice
+      cardPrice
+      passbookPrice
+      settlementPrice
+      totalFee
+      cardFee
+      niceCardFee
+      jandaCardFee
+      passbookFee
+      storeFee
+      jandaFee
+      cancelReturnPriceTotal
+      cancelReturnPrice
+      reserveDiffPrice
+      reserveDiffPriceTotal
+      payReqPrice
+      requestDate
+      acceptDate
+      completeDate
+      cancelDate
     }
     ${F_SETTLEMENT_POLICY}
 `
