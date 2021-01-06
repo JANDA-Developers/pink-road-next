@@ -37,8 +37,8 @@ export const Footer: React.FC<IProp> = () => {
                     <li className="sns">
                         <div>
                             <Link href="/"><a target="_blank"><i className="jandaicon-facebook"></i></a></Link>
-                            <Link href="/"><a target="_blank"><i className="jandaicon-twitter"></i></a></Link>
-                            <Link href="/"><a target="_blank"><i className="jandaicon-instagram2"></i></a></Link>
+                            {/* <Link href="/"><a target="_blank"><i className="jandaicon-twitter"></i></a></Link> */}
+                            <Link href="https://www.instagram.com/itsguide2021/"><a target="_blank"><i className="jandaicon-instagram2"></i></a></Link>
                             {/* <Link href="/"><a target="_blank"><i>N</i></a></Link> */}
                         </div>
                     </li>
@@ -47,9 +47,8 @@ export const Footer: React.FC<IProp> = () => {
             </div>
             <div className="f_detail_wrap">
                 <div className="ft_left">
-                    <div className="magency logo_bottom">
+                    <div className="logo_bottom">
                         <img src="/its/logo_2.png" alt="logo" />
-
                     </div>
 
                 </div>
