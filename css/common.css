@@ -328,6 +328,25 @@ select:focus {
         border: 1px solid #cf3932 ;
         color: #cf3932;
     }
+  .cansel {
+        width: auto !important;
+        display: inline-block;
+        line-height: 122%;
+        padding: 3px 15px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 100px;
+        font-style: unset;
+        border: 1px solid #1c8b00;
+        color: #1c8b00;
+        margin-bottom: 5px;
+  }
+    .cansel.ok {
+    border: 1px solid #2196F3;
+    color: #2196F3;
+}
 
     .color01 {
         border-color: #eee;

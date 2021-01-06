@@ -1070,7 +1070,7 @@
         display: inline-block;
         width: 50%;
         vertical-align: top;
-        text-align: center;
+        text-align: left;
         box-sizing: border-box;
         position: relative;
         font-weight: 100;
@@ -1156,7 +1156,7 @@
         margin-right: 15px;
         
     }
-    .master_box .reservation .cansel {
+    /* .master_box .reservation .cansel {
         width: auto !important;
         display: inline-block;
         line-height: 122%;
@@ -1174,8 +1174,9 @@
     .master_box .reservation .cansel.ok {
         border: 1px solid #1552b6;
         color: #1552b6;
-    }
+    } */
     .master_box .reservation .refund-btn {
+
         display: block;
         width: 100%;
         box-sizing: border-box;
@@ -1183,6 +1184,7 @@
     }
  
     .master_box .reservation .info {
+        position: relative;
         display: block !important;
         width: 100% !important;
         vertical-align: top;
@@ -1193,6 +1195,7 @@
         box-sizing: border-box;
     }
     .master_box .reservation .ct {
+        position: relative;
         width: auto !important;
         display: inline-block;
         line-height: 100%;
@@ -1212,12 +1215,15 @@
         box-sizing: border-box;
         font-size: 10px;
         color: #555;
+        position: relative;
     }
     .master_box .reservation .r-number {
         font-size: 1.1em;
+        position: relative;
     }
     .master_box .reservation .goods-ct {
         font-size: 1.1em;
+        position: relative;
     }
     .master_box .reservation .t02 .goods-ct,
     .master_box .reservation .t02 .r-number,
@@ -3341,6 +3347,7 @@ div.master_popup div.alignment{
     div.tab-nav li a {
         font-size: 12px;
         padding: 0 11px;
+        line-height: 43px;
     }
     .master_box div.alignment .left_div{
         width: 30%;
@@ -3553,6 +3560,7 @@ div.master_popup div.alignment{
     }
     .master_box .reservation_list .tbody div[class*=t0] {
         padding:10px 0;
+        text-align: center;
     }  
     .master_box .reservation_list .thead {
         display: flex;
@@ -4449,9 +4457,62 @@ div.master_popup .info_table .th01,
     }
 }
     
-@media (min-width: 1500px) {
-
-
+@media (max-width: 1000px) {
+    .master_box .reservation_list .tbody div[class*=t0] span{
+        font-size: 1em !important;
+    }
+    .master_box .reservation .reservation_list .t03{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 100% !important;
+    }
+    .master_box .reservation .reservation_list .t04,
+    .master_box .reservation .reservation_list .t05,
+    .master_box .reservation .reservation_list .t06{
+        border-top: 1px solid #eee;
+        padding: 7px 2px !important;
+    }
+    .master_box .reservation .reservation_list .t07{
+        margin-top: 15px;
+    }
+    .master_box .reservation .refund-btn{
+        display: inline-block !important;
+        width: auto !important;
+    }
+    .master_box .reservation .refund-btn br{
+        display: none;
+    }
+    .r-btn{
+        line-height: 149%;
+        padding: 0 6px;
+    }
+    .r-btn.stand{
+        border: 0;
+        background-color: #eeeeee;
+    }
+    .r-btn.yes {
+        border: 0;
+        background-color: #eaf5ff;
+        color: #2196F3;
+    }
+    .r-btn.no {
+        border: 0 ;
+        color: #cf3932;
+        background-color: #ffdedd;
+    }
+    .cansel {
+        background-color: #d8ffcf;
+        border:0;
+        color: #1c8b00;
+        padding: 0 6px !important;
+        line-height: 149%;
+        margin-right: 10px;
+  }
+    .cansel.ok {
+        border:0;
+        color: #2196F3;
+        background-color: #e6f4ff;
+    }
 }
 
 @media (max-width: 767px) {
@@ -4486,6 +4547,7 @@ div.master_popup .info_table .th01,
     .master_box .con.family .td09 { 
         margin-top: 10px;
     }
+   
 }
 
 
