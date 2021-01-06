@@ -34,8 +34,6 @@ export type TContext = {
 }
 
 const defaultContext: TContext = {
-  editMode: false,
-  setEditMode: () => { },
   categories: [],
   role: UserRole.anonymous,
   isAdmin: false,
@@ -67,8 +65,6 @@ function App({ Component, pageProps }: any) {
   const catList = data?.CategoryList?.data || []
   const myProfile = data?.GetProfile?.data || undefined
   const role: UserRole = myProfile?.role || UserRole.anonymous
-
-
 
   const isSeller = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
   const isParterB = [UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
