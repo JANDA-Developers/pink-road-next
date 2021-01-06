@@ -10592,6 +10592,7 @@ i.calendar {
     div.theme_deal .top_02 {
         position: relative;
         right: 0;
+        top:0;
         width: 50%;
         height: 110px;
         padding-top: 0;

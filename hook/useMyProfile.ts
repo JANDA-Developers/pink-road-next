@@ -11,11 +11,14 @@ type TProfile = Pick<getContext_GetProfile_data, TChangeAbleData>;
 
 export const useMyProfile = (defaultData: getContext_GetProfile_data) => {
     const [pw, setPw] = useState("");
-    const [busiRegistration, setBusiRegistration] = useState<Ffile | null>(defaultData.busiRegistration)
+    const [busiRegistration, setBusiRegistration] = useState<Ffile | null>(defaultData?.busiRegistration)
     const [nextPw, setNextPw] = useState({
         password: "",
         passwordCheck: ""
     })
+
+    console.log("defaultData");
+    console.log(defaultData);
 
     const hiddenFileInput = useRef<HTMLInputElement>(null);
     const { signleUpload } = useUpload();

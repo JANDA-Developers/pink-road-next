@@ -64,7 +64,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                 </ul>
             </div>
         </div>
-        <div className="w100">
+        <div className="w100 mypage_in">
             <ul className="subtop_nav">
                 {isSeller || <li className="on"><Link href="/mypage"><a >회원정보</a></Link></li>}{/* 가이드 -*/}
                 <li><Link href="/mypage/notification"><a >알림</a></Link></li>{/* 가이드 -*/}
@@ -82,18 +82,16 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                             <span style={BGprofile(myProfile?.profileImg)} onClick={hiddenFileInput.current?.click} className="img"><i className="jandaicon-setting"></i>프로필이미지</span>
                             <input onChange={handleChangeProfile} ref={hiddenFileInput} hidden type="file" />
                             <span className="name1">
-                                {isParterNonB && <i className="ct_guide">Partner</i>}{/* 개인파트너 -*/}
-                                {isParterB && <i className="ct_partner">Partner</i>}{/* 기업파트너 -*/}
-                                {isSeller && <span><strong>새부산관광</strong>님 어서오세요 :)</span>}{/*기업파트너/개인파트너*/}
-                                {isSeller && <span className="point"><i>포인트</i><strong>10,000,000</strong>원</span>}{/*기업파트너/개인파트너*/}
-                                {isSeller || <span className="name2"><i className="ct_family">Family</i><strong>{myProfile?.name}</strong>님 어서오세요 :)</span>}{/*개인*/}
-                                {isSeller || <span className="time"><i>최근접속시간</i> {dayjs(Storage?.getLocalObj<Date>("lastLogin")).format("YYYY.MM.DD hh:mm")} </span>}{/*개인*/}
+                                {isParterNonB && <i className="ct_guide">Guide</i>}{/* 가이드-*/}
+                                {isParterB && <i className="ct_partner">Guide</i>}{/* 가이드 -*/}
+                                {isSeller && <span><strong>선화</strong>님 어서오세요 :)</span>}{/*가이드*/}
+                                {isSeller && <span className="point"><i>포인트</i><strong>10,000,000</strong>원</span>}{/*가이드*/}
                                 <ul>
-                                    <li><a href="/">알림<i>99+</i></a></li>{/* 개인/기업파트너/개인파트너 -*/}
-                                    {isSeller || <li><a href="/">구매<i>0</i></a></li>}{/* 개인 -*/}
-                                    {isSeller || <li><a href="/">장바구니<i>{getItemCount()}</i></a></li>}{/* 개인 -*/}
-                                    {isSeller && <li><a href="/">예약<i>0</i></a></li>}{/* 기업파트너/개인파트너 -*/}
-                                    {isSeller && <li><a href="/">정산<i>0</i></a></li>}{/* 기업파트너/개인파트너 -*/}
+                                    <li><a href="/">알림<i>99+</i></a></li>{/* 가이드-*/}
+                                    {isSeller || <li><a href="/">구매<i>0</i></a></li>}{/* 가이드 -*/}
+                                    {isSeller || <li><a href="/">장바구니<i>{getItemCount()}</i></a></li>}{/* 가이드 -*/}
+                                    {isSeller && <li><a href="/">예약<i>0</i></a></li>}{/* 가이드-*/}
+                                    {isSeller && <li><a href="/">정산<i>0</i></a></li>}{/* 가이드-*/}
                                 </ul>
                             </span>
                         </div>

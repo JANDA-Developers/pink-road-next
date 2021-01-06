@@ -161,7 +161,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
         }
         <div className="in">
             <h4>회원정보</h4>
-            <div className="mypage_page">
+            <div className="mypage_page  ">
                 <div className="box1">
                     <div className="top_info">
                         <ul className={`line${isSeller ? "5" : "4"}`}>
@@ -187,33 +187,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <li className="ct">
                                     <span>{productsCount}</span>
                                     <p>상품 등록 수</p>
-                                </li>
-                            </>
-                            }
-                            {isSeller || <>
-                                <li className="ct">
-                                    <span>{bookings.length}</span>
-                                    <p>
-                                        총 구매 수 {/* <i className="jandaicon-info2" /> */}
-                                    </p>
-                                </li>
-                                <li className="ct">
-                                    <span>-</span>
-                                    <p>
-                                        총 접속 수
-                                </p>
-                                </li>
-                                <li className="ct">
-                                    <span>-</span>
-                                    <p>
-                                        참여한 이벤트 수
-                                </p>
-                                </li>
-                                <li className="ct">
-                                    <span>{getItemCount()}</span>
-                                    <p>
-                                        장바구니
-                                </p>
                                 </li>
                             </>
                             }
@@ -312,25 +285,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     </button>
                                 </div>
                             </li>
-                            {isSeller ||
-                                <li>
-                                    <div className="title">주소</div>
-                                    <div className="txt line2">
-
-                                        <input onChange={handleTextData("address")} value={address} type="text" className="form-control w70" />
-                                        <button onClick={openModal("#addressFindModal")} type="button" className="btn btn_mini">
-                                            주소찾기
-                                    </button>
-                                        <input
-                                            value={address_detail}
-                                            onChange={handleTextData("address_detail")}
-                                            type="text"
-                                            className="form-control w100"
-                                            placeholder="상세주소"
-                                        />
-                                    </div>
-                                </li>
-                            }
                         </ul>
                     </div>
                 </div>
@@ -338,94 +292,14 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 {isSeller && <div className="box2">
                     <div className="box_left">
                         <div className="title">
-                            <h5>{isPartnerB ? "기업정보" : "개인파트너정보"}</h5>
+                            <h5>{isPartnerB ? "가이드정보" : "가이드정보"}</h5>
                         </div>
                     </div>
                     <div className="box_right">
                         <ul>
-                            {isPartnerB && <li>
-                                <div className="title">파트너명(회사명)</div>
-                                <div className="txt">{busi_name}</div>
-                            </li>}
-                            {isPartnerB && <li>
-                                <div className="title">사업자번호</div>
-                                <div className="txt">
-                                    <select onChange={(e) => {
-                                        const is_priv_corper = e.currentTarget.value === "busi";
-                                        profile.is_priv_corper = is_priv_corper;
-                                        setProfile({ ...profile });
-                                    }} value={is_priv_corper ? "indi" : "busi"} className="w20">
-                                        <option value={"indi"}>개인</option>
-                                        <option value={"busi"} >법인</option>
-                                    </select>
-                                    <input
-                                        value={busi_num}
-                                        type="text"
-                                        className="form-control w70 ml5"
-                                        placeholder="사업자번호를 입력해주세요."
-                                    />
-                                </div>
-                            </li>
-                            }
-                            <li>
-                                <div className="title">대표 전화번호</div>
-                                <div className="txt">
-                                    <input
-                                        value={busi_contact}
-                                        type="text"
-                                        className="form-control w100"
-                                        placeholder="전화번호를 입력해주세요."
-                                    />
-                                </div>
-                            </li>
-                            <li>
-                                <div className="title">주소</div>
-                                <div className="txt line2">
 
-                                    <input onChange={handleTextData("address")} value={address} type="text" className="form-control w70" />
-                                    <button onClick={openModal("#addressFindModal")} type="button" className="btn btn_mini">
-                                        주소찾기
-                                    </button>
-                                    <input
-                                        value={address_detail}
-                                        onChange={handleTextData("address_detail")}
-                                        type="text"
-                                        className="form-control w100"
-                                        placeholder="상세주소"
-                                    />
-                                </div>
-                            </li>
                             <li>
-                                <div className="title">담당자</div>
-                                <div className="txt">
-                                    <input
-                                        value={busi_department}
-                                        onChange={handleTextData("busi_department")}
-                                        type="text"
-                                        className="form-control w20 mr5"
-                                        placeholder="부서명"
-                                    />
-                                    <input
-                                        value={name}
-                                        onChange={handleTextData("name")}
-                                        type="text"
-                                        className="form-control w50"
-                                        placeholder="담당자를 입력해주세요."
-                                    />
-                                </div>
-                            </li>
-                            <li>
-                                <div className="title">담당자 연락처</div>
-                                <div className="txt">
-                                    <span className="w80">{phoneNumber}</span>
-                                    <button onClick={handleChangePhoneNumber} type="button" className="btn btn_mini">
-                                        변경
-                                    </button>
-                                </div>
-                                {/* 변경시 변경아이콘 눌러 popup띄워서 핸드폰번호 인증절차 거치게됨 */}
-                            </li>
-                            <li>
-                                <div className="title">사업자등록증</div>
+                                <div className="title">첨부파일</div>
                                 <div className="txt">
                                     <span className="w80 upload_out_box">
                                         {busiRegistration?.name}
@@ -543,4 +417,4 @@ export const MyPageProfile: React.FC<IProp> = () => {
 
 
 
-export default MyPageProfile;
+export default auth(ONLY_LOGINED)(MyPageProfile);

@@ -120,10 +120,10 @@ export const Header: React.FC<IProp> = () => {
             <div className="w1200">
                 {isLogin && <p className="welcome_ms"><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>}
                 <ul className="top-menu-in">
-                    <li className="join">
-                        {isLogin ? ""
-                            : <Link href="/member/join"><a>JOIN</a></Link>}
-                    </li>
+                    {isLogin ? ""
+                        : <li className="join">
+                            <Link href="/member/join"><a>JOIN</a></Link>
+                        </li>}
                     <li className="login">
                         {isLogin ? <a onClick={handleLogOut}>LOGOUT</a>
                             : <Link href="/member/login">
@@ -131,10 +131,10 @@ export const Header: React.FC<IProp> = () => {
                             </Link>}
                     </li>
                     {isSeller && <li className="mypage">
-                        <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
+                        <Link href="/mypage"><a>My page</a></Link>
                     </li>}
                     {isManager && <li className="master">
-                        <Link href="/master"><a target="_blank">Master<i className="jandaicon-arr4-right"></i></a></Link>
+                        <Link href="/master"><a>Master</a></Link>
                     </li>}
 
                     <li className="language">
@@ -237,11 +237,7 @@ export const Header: React.FC<IProp> = () => {
                         </div>
 
                     </div>
-<<<<<<< HEAD
-                <div id="all_menu">
-=======
                     <div id="all_menu" tabIndex={0}>
->>>>>>> itsMaster
                         <strong>전체메뉴</strong>
                         {isSeller && <div className="m_member">
                             <div className="profile">

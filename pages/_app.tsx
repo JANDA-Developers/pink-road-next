@@ -62,6 +62,7 @@ function App({ Component, pageProps }: any) {
   const homepage = data?.Homepage.data || undefined;
   const catList = data?.CategoryList?.data || []
   const myProfile = data?.GetProfile?.data || undefined
+  console.log(data);
   const role: UserRole = myProfile?.role || UserRole.anonymous
 
   const isSeller = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
