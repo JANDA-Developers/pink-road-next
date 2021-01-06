@@ -121,7 +121,8 @@ export const Header: React.FC<IProp> = () => {
                 {isLogin && <p><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>}
                 <ul className="top-menu-in">
                     <li className="join">
-                        {isLogin && <Link href="/member/join"><a>JOIN</a></Link>}
+                        {isLogin ? ""
+                            : <Link href="/member/join"><a>JOIN</a></Link>}
                     </li>
                     <li className="login">
                         {isLogin ? <a onClick={handleLogOut}>LOGOUT</a>

@@ -10196,6 +10196,7 @@ i.calendar {
         margin-bottom: 10px;
         position: absolute;
         right: 0;
+        top: 0;
         background-position: center;
         background-size: 120%;
     }
