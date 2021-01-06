@@ -97,10 +97,12 @@
 #main .main_con_box2,
 #main .main_con_box3,
 #main .main_con_box4,
-#main .main_con_box5 {
+#main .main_con_box5,
+#main .main_con_box6 {
     position: relative;
     display: block;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .main_con_box1 .main_top_images {
@@ -113,44 +115,18 @@
     position:relative;
     overflow: hidden;
 }
-    .main_con_box1 .ovj {
-        width:100%;
-        margin:0 auto;
-        position:relative;
-    }
-        .main_con_box1 .ovj:before {
-            display: none;
-        }
-        .main_con_box1 .ovj:after {
-            display: none;
-        }
+  
 .main_con_box1 .w1200 {
     padding: 0 5%;
     box-sizing: border-box;
     text-align: center;
   
 }
-.main_con_box1 .w1200::before {
-    top: 0;
-    left: -111%;
-    position: absolute;
-    background-size: 100%;
-    opacity: 0.8 !important;
-    filter: alpha(opacity=50);
-    z-index: 0;
-    content: "";
-    width: 200%;
-    height: 200%;
-    background-color: #000000;
-    transform: rotate(-56deg);
-    z-index: 2;
-}
-
 .main_con_box1 .main_top_images strong {
     position: relative;
     font-weight: 600;
     font-size: 31px;
-    line-height: 100%;
+    line-height: 120%;
     margin-bottom: 15px;
     margin-top: 90px;
     color: #fff;
@@ -159,7 +135,6 @@
     width: 64%;
     z-index: 3;
 }
-
 .main_con_box1 .main_top_images span {
     position: relative;
     font-weight: 100;
@@ -185,19 +160,17 @@
 
     .main_con_box1 .main_top_images .btn_list a {
         display: inline-block;
-        width: 100px;
-        height: 100px;
-        line-height: 100px;
+        width: auto;
+        line-height: 45px;
         text-align: center;
-        color: #333;
+        color: #fff;
         font-weight: 600;
         font-size: 1.3em;
         letter-spacing: 1px;
         border: 2px solid #fff;
-        margin: 5px 10px 5px 0px;
-        padding: 0;
+        margin: 5px 5px 5px 5px;
+        padding: 0 35px;
         border-radius: 100px;
-        background-color: rgba(255, 255, 255, 0.84);
     }
 
         .main_con_box1 .main_top_images .btn_list a:hover {
@@ -207,15 +180,13 @@
         }
 
 .main_con_box2 {
-    background-color: #555;
-    background-image: url(/img/pr_img_23.jpg);
-    background-size: 180%;
-    background-position: center;
+    background-color: rgb(255, 255, 255);
+   
     padding: 20px 3%;
     box-sizing: border-box;
 }
 
-    .main_con_box2:before {
+    /* .main_con_box2:before {
         top: 0;
         left: 0;
         position: absolute;
@@ -227,7 +198,7 @@
         width: 100%;
         height: 100%;
         background-color: #000000;
-    }
+    } */
 
     .main_con_box2 .top_txt {
         text-align: center;
@@ -238,7 +209,7 @@
 
 
         .main_con_box2 .top_txt h2 {
-            color: #fff;
+            color: #333;
             font-weight: 600;
             font-size: 1.7em;
             line-height: 100%;
@@ -247,7 +218,7 @@
 
         .main_con_box2 .top_txt span {
             font-size: 13px;
-            color: #fff;
+            color: #333;
             font-weight: 400;
         }
 
@@ -259,78 +230,73 @@
         text-align: center;
     }
 
-    .main_con_box2 li {
+    .infolist li {
         position: relative;
         display: inline-block;
-        width: 80%;
-        height: 96px;
-        margin: 0 0 4% 0;
-        padding: 10px;
+        width: 100%;
+        height: 100px;
+        margin: 10px 0 0;
         text-align: center;
-        color: #ffffff;
-        border-radius: 900px;
-        border: 2px #fff solid;
+        border-radius: 10px;
         box-sizing: border-box;
         vertical-align: top;
+        border-radius: 10px;
+        overflow: hidden;
+        background-size: 110%;
+        background-position: center;
+          
+    }
+    .infolist li::after {
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-size: 100%;
+        opacity: 0.5 !important;
+        filter: alpha(opacity=50);
+        z-index: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
     }
 
-        .main_con_box2 li i {
-            position: absolute;
-            left: 43px;
-            top: 50%;
-            display: inline-block;
-            width: 110px;
-            height: 58px;
-            margin-top: -29px;
-            background-position: center;
-            background-size: 100%;
-            background-repeat: no-repeat;
-        }
-
-        .main_con_box2 li strong {
+        .infolist li strong {
             display: block;
-            font-size: 15px;
-            margin-top: 5px;
-            padding: 10px 0 0 100px;
-            text-align: left;
+            font-size: 1.2em;
+            padding: 0;
             box-sizing: border-box;
+            color: #ffffff;
+            z-index: 10;
+            position: relative;
         }   
-        .main_con_box2 li strong br {
+        .infolist li strong br {
             display: none;
         }
 
-        .main_con_box2 li span {
+        .infolist li span {
             display: block;
-            font-size: 11px;
+            font-size: 0.9em;
+            font-weight: 100;
             line-height: 20px;
-            margin-top: 0;
-            padding: 0 0 0 100px;
-            text-align: left;
             box-sizing: border-box;
+            color: #ffffff;
+            z-index: 10;
+            position: relative;
+        }
+        .infolist .infolist__01 {
+            background-image: url(/img/pr_img_01.jpg);
+
+        }
+        .infolist .infolist__02 {
+            background-image: url(/img/pr_img_01.jpg);
+
+        }
+        .infolist .infolist__03 {
+            background-image: url(/img/pr_img_01.jpg);
+
         }
 
-        .main_con_box2 li i.icon_01 {
-            width: 30px;
-            left: 54px;
-            background-image: url(/img/svg/siteinfo_svg_01.svg);
-        }
-
-        .main_con_box2 li i.icon_02 {
-            width: 43px;
-            background-image: url(/img/svg/siteinfo_svg_02.svg);
-        }
-
-        .main_con_box2 li i.icon_03 {
-            width: 52px;
-            background-image: url(/img/svg/siteinfo_svg_03.svg);
-        }
-
-.main_con_box3 {
-    background-image: url(/img/pr_img_01.jpg);
-    background-size: 840%;
-    background-position: center 94%;
-    padding: 100px 3%;
-    box-sizing: border-box;
+/* .main_con_box3 {
 }
 
     .main_con_box3:before {
@@ -345,18 +311,20 @@
         width: 100%;
         height: 100%;
         background-color: #ffffff;
-    }
+    } */
 
     .main_con_box3 .top_txt {
         text-align: center;
         position: relative;
         box-sizing: border-box;
+        background-color: #eeeeee;
+        line-height: 145px;
     }
 
         .main_con_box3 .top_txt h2 {
             color: #333;
             font-weight: 600;
-            font-size: 28px;
+            font-size: 1.7em;
         }
 
         .main_con_box3 .top_txt span {
@@ -369,66 +337,59 @@
         position: relative;
         display: block;
         box-sizing: border-box;
-        padding: 35px 0 0;
+        padding:  0;
         text-align: center;
     }
 
 
     .main_con_box3 li {
         position: relative;
-        width: 90%;
-        min-height: 290px;
-        margin: 2%;
-        display: inline-block;
+        width: 100%;
+        display: flex;
         vertical-align: top;
         box-sizing: border-box;
-        padding: 22px 28px 31px;
+        padding: 8%;
         text-align: center;
-        background-color: rgb(255 255 255 / 87%);
-        box-shadow: 2px 2px 4px #0000001c;
+        background-repeat: no-repeat;
+        background-size: 110%;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        /* cursor: pointer; */
     }
 
-        .main_con_box3 li i {
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+    .main_con_box3 li:before {
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-size: 100%;
+        opacity: 0.5 !important;
+        filter: alpha(opacity=50);
+        z-index: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+    }
+        
+       
+.main_con_box3 li strong {
+    display: block;
+    font-size: 1.5em;
+    color: #fff;
+}
 
-        .main_con_box3 li.img01 i {
-            background-size: 80px;
-            background-image: url(/img/svg/main_icon_04.svg);
-        }
+.main_con_box3 li span {
+    display: block;
+    font-size: 0.9em;
+    line-height: 150%;
+    margin-top: 10px;
+    color: #fff;
+}
 
-        .main_con_box3 li.img02 i {
-            background-size: 66px;
-            background-image: url(/img/svg/main_icon_02.svg);
-        }
-
-        .main_con_box3 li.img03 i {
-            background-size: 76px;
-            background-image: url(/img/svg/main_icon_03.svg);
-        }
-
-        .main_con_box3 li.img04 i {
-            background-size: 71px;
-            background-image: url(/img/svg/main_icon_01.svg);
-        }
-
-        .main_con_box3 li strong {
-            display: block;
-            font-size: 22px;
-            margin-top: 10px;
-        }
-
-        .main_con_box3 li span {
-            display: block;
-            font-size: 14px;
-            line-height: 20px;
-            margin-top: 10px;
-        }
-
+.main_con_box3 .bgtxt {
+    z-index: 99;
+}
 .main_con_box4 {
     overflow: hidden;
     padding:50px 3%;
@@ -504,33 +465,33 @@
     }
 
 .main_con_box5 {
-    overflow: hidden;
-    background-color: #000;
+    background: #ed297b;
+    background: -moz-linear-gradient(-45deg,  #ed297b 0%, #e52977 100%);
+    background: -webkit-linear-gradient(-45deg,  #ed297b 0%,#e52977 100%);
+    background: linear-gradient(135deg,  #ed297b 0%,#e52977 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ed297b', endColorstr='#e52977',GradientType=1 );
+    
 }
-
-    .main_con_box5 .main_bg_img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-        background-size: 200%;
-        background-position: center;
-        z-index: 1;
-        opacity: 0.4;
-    }
-
+.main_con_box5 .ovj {
+    position: absolute;
+    right:50%;
+    top: -110px;
+    width: 340px;
+    height: 190px;
+    margin-right: -170px;
+    display: block;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
     .main_con_box5 .txt {
         position: relative;
-        padding: 150px 3%;
+        padding: 70px 3%;
         box-sizing: border-box;
         left: 0;
         top: 0;
-        width: 100%;
         height: 100%;
         display: block;
-        text-align: center;
+        text-align: left;
         color: #fff;
         background-size: 100%;
         background-position: center;
@@ -549,7 +510,7 @@
             }
 
         .main_con_box5 .txt p {
-            font-weight: 400;
+            font-weight: 100;
         }
 
 #Reservation_check,
@@ -2680,56 +2641,83 @@ ul.rank_ul {
 
     .siteInfo_in .con02 {
         position: relative;
-        padding: 150px 0 50px;
+        padding: 100px 0 100px;
         box-sizing: border-box;
-        background-color: #333;
-        background-image: url(/img/pr_img_19.jpg);
-        background-position: center;
-        background-size: 420%;
+        background-color: rgb(252, 252, 252);
     }
-
-        .siteInfo_in .con02:before {
-            top: 0;
-            left: 0;
-            position: absolute;
-            background-size: 100%;
-            opacity: 0.8 !important;
-            filter: alpha(opacity=50);
-            z-index: 0;
-            content: "";
-            width: 100%;
-            height: 100%;
-            background-color: #000000;
-        }
 
     .siteInfo_in .con03 {
-        padding: 146px 5% 0;
-        min-height: 580px;
+        padding: 127px 25% 0;
+        min-height: 370px;
         box-sizing: border-box;
         text-align: center;
-        background-color: #ffebf3;
-        background-image: url(/img/pr_img_29.jpg);
-        background-position: center top;
-        background-size: 140%;
-        background-repeat: no-repeat;
+        background-color: #ffffff;
+        display: flex;
+        position: relative;
+   
     }
-
-        .siteInfo_in .con03:before {
-            top: 0;
-            left: 0;
-            position: absolute;
-            background-size: 100%;
-            opacity: 0.8 !important;
-            filter: alpha(opacity=50);
-            z-index: 0;
-            content: "";
-            width: 100%;
-            height: 100%;
-            background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.87) 100%);
-            background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.87) 100%);
-            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.87) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#deffffff',GradientType=0 );
-        }
+    .siteInfo_in .con03 div[class*="bg0"]{
+        position: absolute;
+        display: block;
+        background-position: center;
+        background-size: 130%;
+        background-repeat: no-repeat;
+       filter: grayscale(100%);
+       background-color: #eee;
+    }
+    .siteInfo_in .con03 div[class*="bg0"]:hover{
+       filter: grayscale(0);
+    }
+    .siteInfo_in .con03 .bg01 {
+        left: 0;
+        top: 0;
+        width: 40%;
+        height: 100px;
+    }
+    .siteInfo_in .con03 .bg02 {
+        left: 40%;
+        top: 0;
+        width: 40%;
+        height: 100px;
+    }
+    .siteInfo_in .con03 .bg03 {
+        left: 80%;
+        top: 0;
+        width: 20%;
+        height: 270px;
+    }
+    .siteInfo_in .con03 .bg04 {
+        left: 0%;
+        top: 100px;
+        width: 20%;
+        height:270px;
+    }
+    .siteInfo_in .con03 .bg05 {
+        left: 20%;
+        top: 270px;
+        width: 40%;
+        height: 100px;
+    }
+    .siteInfo_in .con03 .bg06 {
+        left: 60%;
+        top: 270px;
+        width: 40%;
+        height: 100px;
+    }
+    .siteInfo_in .con03 h4 {
+        text-align: center;
+        font-size: 2em;
+        line-height: 153%;
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+    .siteInfo_in .con03 p {
+        font-size: 1.1em;
+        line-height: 120%;
+        color: #333;
+        text-align: center;
+    }
 
     .siteInfo_in .con04 {
         background-color: #ffffff;
@@ -2743,7 +2731,7 @@ ul.rank_ul {
         text-align: center;
         background-image: url(/img/siteinfo_bg05.jpg);
         background-position: left top;
-        background-size: 380%;
+        background-size: 500%;
         overflow: hidden;
     }
 
@@ -2771,8 +2759,7 @@ ul.rank_ul {
             left: 0;
             position: absolute;
             background-size: 100%;
-            opacity: 0.8 !important;
-            filter: alpha(opacity=50);
+            opacity: 0.5 !important;
             z-index: 1;
             content: "";
             width: 100%;
@@ -2795,7 +2782,7 @@ ul.rank_ul {
     }
 
         .siteInfo_in .con02 .top_txt h4 {
-            color: #fff;
+            color: #333333;
             font-weight: 600;
             font-size: 32px;
             line-height: 65%;
@@ -2803,7 +2790,7 @@ ul.rank_ul {
 
         .siteInfo_in .con02 .top_txt p {
             font-size: 14px;
-            color: #fff;
+            color: #333333;
             font-weight: 400;
         }
 
@@ -2811,7 +2798,7 @@ ul.rank_ul {
         position: relative;
         display: block;
         box-sizing: border-box;
-        padding: 35px 0 150px;
+        padding: 35px 0 0;
         text-align: center;
     }
 
@@ -2819,11 +2806,9 @@ ul.rank_ul {
         width: 88%;
         height: auto;
         display: inline-block;
-        margin: 2%;
+        margin: 1%;
         text-align: center;
-        color: #ffffff;
-        border-radius: 900px;
-        border: 5px #fff solid;
+        color: #333333;
         padding: 10px 10px 20px 10px;
         box-sizing: border-box;
         vertical-align: top;
@@ -2834,76 +2819,45 @@ ul.rank_ul {
             display: none;
         }
 
-        .siteInfo_in .con02 li i {
-            display: inline-block;
-            width: 110px;
-            height: 58px;
-            background-position: center;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            margin-top: 22px;
-            position: absolute;
-            top: 50%;
-            left: 10%;
-        }
-
-            .siteInfo_in .con02 li i.icon_01 {
-                width: 37px;
-                left: 12%;
-                margin-top: -29px;
-                background-image: url(/img/svg/siteinfo_svg_01.svg);
-            }
-
-            .siteInfo_in .con02 li i.icon_02 {
-                width: 51px;
-                margin-top: -29px;
-                background-image: url(/img/svg/siteinfo_svg_02.svg);
-            }
-
-            .siteInfo_in .con02 li i.icon_03 {
-                width: 58px;
-                margin-top: -29px;
-                background-image: url(/img/svg/siteinfo_svg_03.svg);
-            }
 
         .siteInfo_in .con02 li strong {
             display: block;
-            font-size: 17px;
-            margin-top: 10px;
-            text-align: left;
-            padding-left: 28%;
+            font-size: 1.3em;
+            text-align: center;
         }
 
         .siteInfo_in .con02 li p {
             display: block;
-            font-size: 11px;
+            font-size: 0.9em;
             line-height: 20px;
             margin-top: 5px;
-            text-align: left;
-            padding-left: 28%;
+            text-align: center;
         }
 
     .siteInfo_in .con01 {
         position: relative;
         overflow: hidden;
         z-index: 0;
-        padding: 90px 5% 170px;
+        padding: 90px 5% 90px;
         box-sizing: border-box;
         background-color: #f5f5f5;
     }
-
-        .siteInfo_in .con01:before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -340px;
-            margin-top: -500px;
-            width: 1000px;
-            height: 1000px;
-            border-radius: 1000px;
-            background-color: #eeeeee;
-            z-index: -3;
-        }
+    
+    .siteInfo_in .con01:before {
+        content: '';
+        position: absolute;
+        top: 7%;
+        left: -320px;
+        margin-top: -500px;
+        width: 1000px;
+        height: 1000px;
+        border-radius: 1000px;
+        background-color: #eeeeee;
+        z-index: -3;
+    }
+    .siteInfo_in .con01 img{
+        width: 100%;
+    }
 
         .siteInfo_in .con01 .bottom {
             display: block;
@@ -2917,16 +2871,20 @@ ul.rank_ul {
             display: inline-block;
             width: 100%;
             min-height: unset;
-            padding: 53px;
+            padding: 3%;
             box-sizing: border-box;
             vertical-align: top;
-            margin: 0;
+            margin: 0 0 15px;
             text-align: left;
-            font-size: 16px;
-            line-height: 30px;
+            font-size: 1em;
+            font-weight: 100;
+            line-height: 165%;
             z-index: 10;
         }
 
+        .siteInfo_in .con01 .haf_first br {
+            display: none;
+        }
             .siteInfo_in .con01 .haf_first strong {
                 font-size: 25px;
                 color: #333;
@@ -2935,20 +2893,15 @@ ul.rank_ul {
         .siteInfo_in .con01 .haf {
             position: relative;
             display: inline-block;
-            width: 88%;
+            width: 100%;
             min-height: unset;
-            padding: 93px 53px 93px 44px;
-            margin-bottom: 20px;
+            padding: 44px 3% 0 3%;
             box-sizing: border-box;
             vertical-align: top;
-            border-top: 4px solid #333;
-            margin: 0 0 20px 0;
-            background-color: #ffffffeb;
-            box-shadow: 2px 2px 8px #0000000d;
         }
 
             .siteInfo_in .con01 .haf strong {
-                font-size: 31px;
+                font-size: 1.8em;
                 color: #333;
                 display: block;
                 text-align: left;
@@ -2960,17 +2913,17 @@ ul.rank_ul {
             display: block;
             width: 100%;
             text-align: center;
-            margin-top: 50px;
+            margin-top: 19px;
         }
 
         .siteInfo_in .con01 li {
             position: relative;
             width: 100%;
-            /* margin: 0 2%; */
             display: inline-block;
             vertical-align: top;
             text-align: left;
-            font-size: 14px;
+            font-size: 1em;
+            font-weight: 100;
             line-height: 160%;
             margin-bottom: 10px;
             padding-left: 15px;
@@ -2978,15 +2931,16 @@ ul.rank_ul {
         }
 
             .siteInfo_in .con01 li:before {
-                content: '';
                 display: inline-block;
+                position: absolute;
+                left: 3px;
+                top: 9px;
+                content: '';
                 width: 8px;
                 height: 1px;
                 background-color: #555;
                 border-radius: 100px;
-                position: absolute;
-                left: 0px;
-                top: 9px;
+                transform: rotate(-36deg);
             }
 
     .siteInfo_in .con_block {
@@ -3127,27 +3081,11 @@ ul.rank_ul {
         text-align: left;
     }
 
-    .siteInfo_in .con03 h4 {
-        text-align: center;
-        font-size: 40px;
-        line-height: 153%;
-        color: #333;
-        font-weight: 600;
-        margin-bottom: 0;
-    }
-
-    .siteInfo_in .con03 p {
-        font-size: 18px;
-        line-height: 120%;
-        color: #333;
-        text-align: center;
-    }
-
     .siteInfo_in .con04 h4 {
         display: block;
         position: relative;
         border-radius: 500px;
-        padding: 15px 30px 0;
+        padding: 15px 0 0;
         z-index: 2;
         text-align: left;
     }
@@ -3171,7 +3109,7 @@ ul.rank_ul {
         display: block;
         font-weight: 400;
         font-size: 13px;
-        padding: 0 25px 0 30px;
+        padding: 0 ;
     }
 
     .siteInfo_in .con04 ul {
@@ -3205,11 +3143,11 @@ ul.rank_ul {
             position: relative;
             display: inline-block;
             overflow: hidden;
-            width: 80%;
+            width: 100%;
             min-height: unset;
             margin: 0 0 15px 0;
             box-sizing: border-box;
-            padding: 14px 43px 10px;
+            padding: 14px 3% 10px;
             vertical-align: top;
             text-align: left;
             font-size: 15px;
@@ -3218,10 +3156,10 @@ ul.rank_ul {
             .siteInfo_in .con04 .infopp li:before {
                 display: inline-block;
                 content: '';
-                width: 24%;
-                height: 2px;
+                width: 6px;
+                height: 20px;
                 position: absolute;
-                left: -30px;
+                left: 0;
                 background-color: #979797;
                 top: 36px;
             }
@@ -3384,8 +3322,7 @@ ul.rank_ul {
     color: #fff;
     text-align: center;
     box-sizing: border-box;
-    padding: 0 31px;
-    /*border: 6px #fff solid;*/
+    padding: 0 5%;
     background-color: rgba(255, 255, 255, 0.75);
     z-index: 22;
 }
@@ -3426,52 +3363,7 @@ ul.rank_ul {
     vertical-align: middle;
     z-index: 22;
 }
-    .siteInfo_in .con04 .li05::after {
-        content: '';
-        position: absolute;
-        width: calc(100% + 12px);
-        height: calc(100% + 12px);
-        left: -10px;
-        top: -10px;
-        border: dashed 4px #e2e2e2;
-        border-radius: 50%;
-        animation: spin 50s linear infinite;
-        -webkit-animation: spin 50s linear infinite;
-        -ms-animation: spin 50s linear infinite;
-        z-index: 0;
-    }
-    .siteInfo_in .con04 .li05.active::after {
-        transition: all .10s ease;
-    }
-@-moz-keyframes spin {
-    from {
-        -moz-transform: rotate(0deg);
-    }
-
-    to {
-        -moz-transform: rotate(360deg);
-    }
-}
-
-@-webkit-keyframes spin {
-    from {
-        -webkit-transform: rotate(0deg);
-    }
-
-    to {
-        -webkit-transform: rotate(360deg);
-    }
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
+   
 
 .siteInfo_in .con05 > div {
     position: relative;
@@ -3515,11 +3407,12 @@ ul.rank_ul {
 }
 
 .siteInfo_in .con05 .in_txt {
-    width: 55%;
-    margin-left: 109px;
+    width: 100%;
     display: block;
     position: relative;
     text-align: left;
+    padding-left: 105px;
+    box-sizing: border-box;
 }
 
     .siteInfo_in .con05 .in_txt .year {
@@ -3568,16 +3461,15 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con05 .in_txt strong {
-        font-size: 30px;
-        position: absolute;
+        font-size: 2em;
+        position: relative;
         color: #fff;
     }
 
     .siteInfo_in .con05 .in_txt ul {
-        font-size: 14px;
+        font-size: 1em;
         position: relative;
-        left: 80px;
-        top: 10px;
+        top: 0;
         line-height: 200%;
     }
 
@@ -3608,6 +3500,8 @@ ul.rank_ul {
     .siteInfo_in .con05 .in_txt .year li {
         padding-left: 15px;
         color: #fff;
+        font-weight: 100;
+        box-sizing: border-box;
     }
 
         .siteInfo_in .con05 .in_txt .year li:before {
@@ -3771,7 +3665,8 @@ ul.rank_ul {
         position: relative;
         display: block;
         width: 100%;
-        padding-top: 30px;
+        box-sizing: border-box;
+        padding: 30px 3% 0;
     }
 
         .goods_box .deal_list h4 {
@@ -3785,6 +3680,12 @@ ul.rank_ul {
             clear: both;
         }
 
+        .goods_box .alignment{
+            display: flex;
+        }
+        .goods_box .alignment .right_div{
+            text-align: right;
+        }
 div.bn_box {
     position: relative;
     display: block;
@@ -5254,7 +5155,21 @@ div.bn_box {
                 .join_wrap2 .certified li:hover i {
                     color: #ffffff;
                 }
-
+                .join_wrap2 .certified .icon-email {
+                    display: inline-block;
+                    width: 45px;
+                    height: 27px;
+                    vertical-align: sub;
+                    background-image: url(/img/svg/email-icon.svg);
+                    background-size: 39px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    margin-right: 10px;
+                    margin-top: 12px;
+                }
+                .join_wrap2 .certified li:hover .icon-email {
+                    background-image: url(/img/svg/email-icon_on.svg);
+                }
     .join_wrap2 .wellcom {
         display: block;
         position: relative;
@@ -7651,13 +7566,13 @@ i.calendar {
     }
 
     .portfolio_in .con02 h4 {
-        font-size: 16px;
+        font-size: 1.3em;
         text-align: center;
         width: 100%;
         position: relative;
         display: block;
-        line-height: 34px;
-        font-weight: 600;
+        line-height: 150%;
+        font-weight: 100;
     }
 
         .portfolio_in .con02 h4 strong {
@@ -7855,20 +7770,20 @@ i.calendar {
         }
 
             .portfolio_in .con04 .portfolio_box ul li:before {
+                position: absolute;
                 top: 0;
                 left: 0;
-                position: absolute;
                 background-color: #000;
                 opacity: 0 !important;
-                filter: alpha(opacity=50);
                 z-index: 0;
                 content: "";
                 width: 100%;
                 height: 100%;
+                transition: all 0.4s ease-out;
             }
 
             .portfolio_in .con04 .portfolio_box ul li:hover:before {
-                opacity: 0.6 !important;
+                opacity: 0.7 !important;
             }
 
     .portfolio_in .con04 .portfolio_box .box {
@@ -8281,6 +8196,54 @@ i.calendar {
 
 
 @media (min-width: 768px) {   
+    .siteInfo_in .con05 {
+        background-size: 320%;
+    }
+    
+    .siteInfo_in .con05 .in_txt strong {
+        font-size: 2em;
+        position: absolute;
+        color: #fff;
+    }
+
+    .siteInfo_in .con05 .in_txt ul {
+        font-size: 1em;
+        position: relative;
+        left: 80px;
+        padding-top: 8px;
+        line-height: 200%;
+    }
+    .siteInfo_in .con05 .in_txt .year li {
+        font-size: 1.3em;
+        line-height: 190%;
+    }
+
+    .main_con_box5 .ovj {
+        right: 10px;
+        top: 35px;
+        width: 340px;
+        height: 190px;
+        margin-right: -0;
+        display: block;
+    }
+    .main_con_box5 .txt h2 {
+        font-size: 1.5em;
+        line-height: 129%;
+    }
+    .main_con_box1 .main_top_images::after {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        opacity: 0.5 !important;
+        filter: alpha(opacity=50);
+        content: "";
+        width: 200%;
+        height: 140%;
+        background-color: #000000;
+        transform: rotate(-56deg);
+        z-index: 2;
+    
+    }
     .notification_box .right {
     padding-left: 110px;
 }
@@ -8322,7 +8285,7 @@ i.calendar {
         width: 100%;
     }
     .main_con_box1 .w1200 {
-        padding: 0;
+        padding: 0 7%;
         text-align: left;
     }
     .main_con_box1 .main_top_images {
@@ -8341,25 +8304,14 @@ i.calendar {
         z-index: 0;
     }
 
-    .main_con_box1 .ovj:after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 71px;
-        left: 20px;
-        width: 582px;
-        height: 470px;
-        border: 5px solid #fff;
-        z-index: 0;
-    }
 
         .main_con_box1 .main_top_images strong {
-            margin-top: 180px;
-            font-size: 41px;
+            margin-top: 100px;
+            font-size: 2em;
         }
 
         .main_con_box1 .main_top_images span {
-            font-size: 19px;
+            font-size: 1.1em;
         }
         .main_con_box1 .main_top_images .btn_list{
             width: 100%;
@@ -8373,14 +8325,11 @@ i.calendar {
             line-height: normal;
             padding: 10px 62px;
         }
-    .main_con_box2 li strong br {
+    .infolist li strong br {
         display: inline-block;
     }
     .main_con_box3 li {
-        width: 45%;
-        min-height: 340px;
-        margin: 1%;
-        padding: 22px 16px 31px;
+        width: 100%;
     }
 
     .tourstory_box .subtop_nav {
@@ -8416,39 +8365,23 @@ i.calendar {
     .siteInfo_in .con04 .infopp .ovj {
         left: 0;
         top: -120px;
-        font-size: 9.1em;
-        font-weight: 400;
+        font-size: 6em;
     }
 
     .siteInfo_in .con02 {
         background-size: 150%;
     }
 
-        .siteInfo_in .con02 li br {
-            display: inline-block;
-        }
-
         .siteInfo_in .con02 li {
             width: 29%;
-            height: 300px;
             margin: 5px;
-            border: 7px #fff solid;
             padding: 10px;
         }
 
-            .siteInfo_in .con02 li i {
-                width: 110px;
-                height: 100px;
-                margin-top: 22px;
-                position: relative;
-                left: unset;
-                top: unset;
-            }
 
             .siteInfo_in .con02 li strong {
-                font-size: 22px;
-                margin-top: 10px;
-                text-align: center;
+                font-size: 1em;
+                text-align: left;
                 padding-left: 0;
             }
 
@@ -8460,34 +8393,20 @@ i.calendar {
                 padding-left: 0;
             }
 
-            .siteInfo_in .con02 li i.icon_01 {
-                width: 60px;
-                left: unset;
-                margin-top: 22px;
-            }
-
-            .siteInfo_in .con02 li i.icon_02 {
-                width: 80px;
-                margin-top: 22px;
-            }
-
-            .siteInfo_in .con02 li i.icon_03 {
-                width: 110px;
-                margin-top: 22px;
-            }
 
     .siteInfo_in .con01 .haf_first {
         width: 95%;
         min-height: unset;
         padding: 53px;
-        margin: 0 4% 0 1%;
+        margin: 0 0 15px;
+        text-overflow: ellipsis;
+        font-size: 1.15em;
     }
 
     .siteInfo_in .con01 .haf {
-        width: 47%;
-        min-height: 450px;
-        padding: 39px;
-        margin: 0 1%;
+        width: 48%;
+        padding: 0 39px;
+        margin: 0 0;
     }
 
     .siteInfo_in .con07 .ovj {
@@ -8515,17 +8434,13 @@ i.calendar {
         background-size: 120%;
     }
 
-        .main_con_box3 ul {
-            padding: 35px 0 0;
-        }
-
         .main_con_box3 .top_txt h2 {
             color: #333;
             font-size: 38px;
         }
 
     .main_con_box5 .txt {
-        padding: 150px 3%;
+        padding:80px 342px 80px 3%;
     }
 
 
@@ -8544,64 +8459,55 @@ i.calendar {
     }
 
     .main_con_box2 {
-        padding: 35px 3% 20px;
+        padding: 35px 3% 120px;
     }
 
-        .main_con_box2 li {
+        .infolist li {
             width: 28%;
-            height: 226px;
+            height: 166px;
             margin: 2%;
             text-align: center;
-            padding: 10px;
-            border: 5px #fff solid;
+            overflow: initial;
+            padding:0;
+            background-image: none !important;
         }
-
-            .main_con_box2 li i {
-                position: relative;
-                width: 110px;
-                height: 58px;
-                background-position: center;
-                background-size: 100%;
-                margin-top: 22px;
-                left: unset;
-                top: unset;
-            }
-
         .main_con_box2 .top_txt span {
             font-size: 18px;
+          
         }
 
         .main_con_box2 .top_txt h2 {
             font-size: 35px;
         }
-
-        .main_con_box2 li strong {
-            padding: 0;
-            text-align: center;
-            margin-top: 14px;
+        .infolist .img {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 166px;
+            background-size: 150%;
+            background-position: center;
+            border-radius: 10px;
+            overflow: hidden;
         }
-
-        .main_con_box2 li span {
-            padding: 0;
-            text-align: center;
+        .infolist li::after{
+            display: none;
         }
-
-        .main_con_box2 li i.icon_01 {
-            width: 48px;
-            left: unset;
+        .infolist li strong {
+            padding: 0 0 0 3px;
+            color: #333;
+            text-align: left;
         }
-
-        .main_con_box2 li i.icon_02 {
-            width: 65px;
+        .infolist li strong br {
+           display: none;
         }
-
-        .main_con_box2 li i.icon_03 {
-            width: 76px;
+        .infolist li span {
+            padding: 0 0 0 3px;
+            color: #333;
+            text-align: left;
         }
 
     .siteInfo_in .con04 .infopp {
-        background-size: 270%;
-        padding: 270px 0 90px;
+        padding: 270px 5% 90px;
     }
 
     div.bn_box {
@@ -8625,10 +8531,6 @@ i.calendar {
         margin-right: 3px;
     }
 
-    .main_con_box5 .main_bg_img {
-        background-size: 150%;
-        background-position: center;
-    }
 
     .portfolio_in .top_bg {
         background-size: 210%;
@@ -8740,6 +8642,17 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+    .goods_box .deal_list {
+        padding: 30px 3% 0;
+    }
+    .siteInfo_in .con05 .in_txt {
+        width: 100%;
+        padding-left: 410px;
+        display: block;
+        position: relative;
+        text-align: left;
+    }
+   
     .tour_box {
         padding: 0 0 100px;
     }
@@ -8832,28 +8745,25 @@ i.calendar {
         }
 
     .main_con_box1 .w1200 {
-        padding: 0;
+        padding: 0 7%;
         text-align: left;
     }
 
     .main_con_box1 .main_top_images {
         background-size: 130%;
-        min-height: 840px;
+        min-height: 730px;
     }
 
         .main_con_box1 .main_top_images strong {
             margin-bottom: 15px;
-            margin-top: 130px;
-            font-size: 51px;
-            padding-left: 100px;
+            margin-top: 230px;
+            font-size: 3em;
         }
 
         .main_con_box1 .main_top_images span {
             font-size: 16px;
-            padding-left: 100px;
         }
         .main_con_box1 .main_top_images .btn_list {
-            padding-left: 100px;
             text-align: left;
             width: auto;
         }
@@ -8869,45 +8779,23 @@ i.calendar {
             padding: 35px 0 70px;
         }
 
-        .main_con_box2 li {
+        .infolist li {
             width: 300px;
             height: 300px;
             margin: 8px;
-            border: 7px #fff solid;
             padding: 10px;
         }
-
-            .main_con_box2 li i {
-                width: 110px;
-                height: 100px;
-                background-position: center;
-                background-size: 100%;
-                margin-top: 22px;
-            }
-
-                .main_con_box2 li i.icon_01 {
-                    width: 60px;
-                }
-
-                .main_con_box2 li i.icon_02 {
-                    width: 80px;
-                }
-
-                .main_con_box2 li i.icon_03 {
-                    width: 110px;
-                }
-
-            .main_con_box2 li strong {
+               
+            .infolist li strong {
                 display: block;
                 font-size: 22px;
                 margin-top: 10px;
             }
 
-            .main_con_box2 li span {
+            .infolist li span {
                 display: block;
-                font-size: 14px;
+                font-size: 1em;
                 line-height: 20px;
-                margin-top: 10px;
             }
 
     .main_con_box3 .top_txt {
@@ -8915,17 +8803,20 @@ i.calendar {
     }
 
         .main_con_box3 .top_txt h2 {
-            font-size: 56px;
+            font-size: 3em;
         }
 
     .main_con_box2 .top_txt h2 {
-        font-size: 56px;
+        font-size: 3em;
     }
-
+    .main_con_box3 ul{
+        display: flex;
+    }
     .main_con_box3 li {
-        width: 24.3%;
-        margin: 0.3%;
-        min-height: 395px;
+        width: 25%;
+        min-height: 450px;
+        background-size: 350%;
+
     }
 
     .siteInfo_in .top_bg {
@@ -8946,30 +8837,29 @@ i.calendar {
         }
 
     .siteInfo_in .con01 {
-        padding: 200px 0 240px;
+        padding: 80px 0 140px;
     }
 
         .siteInfo_in .con01 .haf {
-            width: 47%;
-            min-height: 450px;
+            width: 48%;
             padding: 53px;
-            margin: 0 1%;
+            margin: 0;
         }
 
             .siteInfo_in .con01 .haf strong {
-                font-size: 44px;
+                font-size: 2em;
             }
 
     .siteInfo_in .con02 {
-        padding: 22px 0;
+        padding: 150px 0 150px;
     }
 
         .siteInfo_in .con02 .top_txt {
-            padding: 150px 0 0;
+            padding: 0;
         }
 
             .siteInfo_in .con02 .top_txt h4 {
-                font-size: 54px;
+                font-size: 3em;
             }
 
             .siteInfo_in .con02 .top_txt p {
@@ -8978,28 +8868,110 @@ i.calendar {
 
         .siteInfo_in .con02 li {
             width: 300px;
-            height: 300px;
-            margin: 15px;
-            border: 7px #fff solid;
+            margin: 1%;
             padding: 10px;
         }
 
+        .siteInfo_in .con04 .li05::after {
+            content: '';
+            position: absolute;
+            width: calc(100% + 12px);
+            height: calc(100% + 12px);
+            left: -10px;
+            top: -10px;
+            border: dashed 4px #e2e2e2;
+            border-radius: 50%;
+            animation: spin 50s linear infinite;
+            -webkit-animation: spin 50s linear infinite;
+            -ms-animation: spin 50s linear infinite;
+            z-index: 0;
+        }
+        .siteInfo_in .con04 .li05.active::after {
+            transition: all .10s ease;
+        }
+    @-moz-keyframes spin {
+        from {
+            -moz-transform: rotate(0deg);
+        }
+    
+        to {
+            -moz-transform: rotate(360deg);
+        }
+    }
+    
+    @-webkit-keyframes spin {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+    
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+    
+        to {
+            transform: rotate(360deg);
+        }
+    }
     .siteInfo_in .con03 {
-        padding: 182px 0 0;
-        min-height: 703px;
+        padding: 310px 25% 0;
+    min-height: 710px;
         background-position: center top;
         background-size: 150%;
     }
-
+    .siteInfo_in .con03 div[class*="bg0"]{
+        background-size: 120%;
+    }
         .siteInfo_in .con03 h4 {
-            font-size: 54px;
+            font-size: 2.7em;
             line-height: 100%;
         }
 
         .siteInfo_in .con03 p {
-            font-size: 22px;
-            line-height: 52px;
+            font-size: 1.3em;
+            line-height: 120%;
+            margin-top: 10px;
         }
+        .siteInfo_in .con03 .bg01 {
+            left: 0;
+            width: 45%;
+            height: 200px;
+        }
+        .siteInfo_in .con03 .bg02 {
+            left: 45%;
+            width: 40%;
+            height: 200px;
+        }
+        .siteInfo_in .con03 .bg03 {
+            left: 80%;
+            width: 20%;
+            height: 500px;
+        }
+        .siteInfo_in .con03 .bg04 {
+            top: 200px;
+            width: 20%;
+            height: 500px;
+        }
+        .siteInfo_in .con03 .bg05 {
+            left: 20%;
+            top: 500px;
+            width: 40%;
+            height: 200px;
+        }
+        .siteInfo_in .con03 .bg06 {
+            left: 60%;
+            top: 500px;
+            width: 40%;
+            height: 200px;
+        }
+
+
+
 
     .siteInfo_in .con04 {
         padding: 0;
@@ -9024,7 +8996,7 @@ i.calendar {
             }
 
                 .siteInfo_in .con04 .infopp li:before {
-                    display: inline-block;
+                    display: none;
                     content: '';
                     width: 4px;
                     height: 67%;
@@ -9160,7 +9132,7 @@ i.calendar {
 
     .siteInfo_in .con05 {
         background-position: 70% center;
-        background-size: 180%;
+        background-size: 230%;
     }
 
         .siteInfo_in .con05 h4 {
@@ -9171,28 +9143,20 @@ i.calendar {
             top: 144px;
             color: #fff;
         }
-
-        .siteInfo_in .con05 .in_txt {
-            width: 50%;
-            margin-left: 432px;
-        }
-
         .siteInfo_in .con05 > div:before {
             width: 25px;
             height: 257%;
             top: -573px;
-            left: 3%;
-            -webkit-transform: rotate(31deg);
-            transform: rotate(31deg);
+            left: -49px;
+            transform: rotate(24deg);
         }
 
         .siteInfo_in .con05 > div:after {
             width: 25px;
             height: 257%;
             top: -582px;
-            left: -2%;
-            -webkit-transform: rotate(31deg);
-            transform: rotate(31deg);
+            left: 0;
+            transform: rotate(24deg);
         }
 
         .siteInfo_in .con05 .in_txt .y2020 {
@@ -9234,17 +9198,14 @@ i.calendar {
         }
 
         .siteInfo_in .con05 .in_txt .year:after {
-            left: -80px;
+            left: -79px;
             top: 16px;
-            width: 79px;
+            width: 72px;
         }
 
-    .main_con_box5 .main_bg_img {
-        background-size: 130%;
-    }
-
     .main_con_box5 .txt h2 {
-        line-height: 62px;
+        line-height: 36px;
+        margin-bottom: 10px;
     }
     .login_wrap .sign_in_form span {
         position: relative;
@@ -9387,15 +9348,16 @@ i.calendar {
     #viewControl .btn_box .link02 {
         width: 60%;
     }
+    .portfolio_in .con04{
+        top: -38px !important;
+    }
     .portfolio_in .con04 .portfolio_box .box{
         text-align: left;
     }
     .sign_in .inner .join_address {
         margin-bottom: 79px;
     }
-    .sign_in .inner .join_address ul {
-        width: 1200px;
-    }
+  
     .sign_in .inner .join_address li {
         width: 100px;
         height: 100px;
@@ -9460,13 +9422,23 @@ i.calendar {
         margin: 10px 24px;
         font-weight: 100;
     }
+    .join_wrap2 .certified .icon-email {
+        display: block;
+        width: 100%;
+        height: 45px;
+        background-size: 47px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
     .join_wrap2 .certified li i {
         display: block;
         text-align: center;
         font-size: 54px;
         box-sizing: border-box;
         color: #909090;
+        margin-right: 0;
     }
+
     .join_wrap2 .information_box {
         width: 80%;
         border-radius: 0 0 5px 5px;
@@ -9531,11 +9503,85 @@ i.calendar {
     .country_check li{
         line-height: 25px !important;
     }
+    
+.main_con_box5 .ovj{
+    position: absolute;
+    right: 0;
+    top: -100px;
+    width: 590px;
+    height: 300px;
+    display: block;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.main_con_box3 li strong {
+    display: block;
+    font-size: 22px;
+    color: #fff;
+    z-index: 105;
+    box-sizing: border-box;
+    padding: 5%;
+}
+
+.main_con_box3 li span {
+    position: absolute;
+    top: 42%;
+    display: none;
+    width: 100%;
+    font-size: 1.1em;
+    line-height: 20px;
+    margin-top: 10px;
+    color: #fff;
+    z-index: 105;
+    transition: all 0.4s ease-out;
+    box-sizing: border-box;
+    padding: 5%;
+}
+.main_con_box3 li .bgtxt{
+    position: absolute;
+    display: flex;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 101;
+    justify-content: center;
+    align-items: center;
+}
+.main_con_box3 li .bgtxt::after{
+    position: absolute;
+    display: flex;
+    content: '';
+    top:100%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 102;
+    background-color: #0000009d;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s ease-out;
+}
+.main_con_box3 li:hover .bgtxt::after{
+    top:0;
+}
+.main_con_box3 li:hover span{
+    display: block;
+    
+}
+.main_con_box3 li:hover strong{
+    margin-top: -70px;
+    
+}
+
 }
 
 @media (min-width: 1100px) {
     div.alignment .left_div {
         width:50%;
+    }
+    .siteInfo_in .con02 li strong {
+        font-size: 1.3em;
     }
 div.alignment .right_div {
         width:50%;
@@ -9550,17 +9596,17 @@ div.alignment .right_div {
     }
 
     .siteInfo_in .con01 .haf_first {
-        width: 30%;
-        min-height: 450px;
+        width: 100%;
         padding: 53px;
-        margin: 0 4% 0 1%;
+        margin: 0;
     }
-
+    .siteInfo_in .con01 .haf_first br {
+        display: inline-block;
+    }
     .siteInfo_in .con01 .haf {
-        width: 27%;
-        min-height: 450px;
-        padding: 39px;
-        margin: 0 1%;
+        width: 48%;
+        padding: 0 39px;
+        margin: 0;
     }
 
     .login_box .login_page {
@@ -9572,7 +9618,8 @@ div.alignment .right_div {
         }
 
     .siteInfo_in .con03 {
-        background-size: 120%;
+        padding: 320px 25% 0;
+        min-height: 720px;
     }
 
     .siteInfo_in .con07 span {
@@ -9612,6 +9659,22 @@ div.alignment .right_div {
 }
 
 @media (min-width: 1200px) {
+    .sign_in .inner .join_address ul {
+        width: 1200px;
+    }
+    .main_con_box1 .main_top_images::after {
+        top: 0;
+        left: -111%;
+        opacity: 0.5 !important;
+        filter: alpha(opacity=50);
+        width: 200%;
+        height: 200%;
+        transform: rotate(-56deg);
+        z-index: 2;
+    }
+    .sign_in .inner{
+        padding: 0;
+    }
         div.popup_bg_full .in_txt {
             padding:50px 20px 20px;
         }
@@ -9620,14 +9683,12 @@ div.alignment .right_div {
         margin: 0 auto;
         position: relative;
     }
-
         .main_con_box1 .ovj:before {
             top: 70px;
             left: 50px;
             width: 700px;
             height: 440px;
         }
-
         .main_con_box1 .ovj:after {
             top: 100px;
             left: 80px;
@@ -9637,7 +9698,6 @@ div.alignment .right_div {
     .findmembers_box {
         padding: 100px 0;
     }
-
     .selectViewList ul.list_ul .list_in .txt2 {
         width: 28%;
         padding: 10px 0 0 50px;
@@ -9652,12 +9712,11 @@ div.alignment .right_div {
         min-height: 650px;
     }
 
-    .main_con_box2 li {
+    .infolist li {
         width: 300px;
-        height: 300px;
+        height: 220px;
         margin: 22px;
-        border: 7px #fff solid;
-        padding: 10px;
+        padding: 38px 10px 10px;
     }
 
     .main_con_box4 .photo_box {
@@ -9729,35 +9788,50 @@ div.alignment .right_div {
         }
 
     .siteInfo_in .con02 li {
-        margin: 40px;
+        margin: 1%;
+    }
+    .siteInfo_in .con03 {
+        min-height: 830px;
+        padding: 365px 25% 0;
+    }
+    .siteInfo_in .con03 h4 {
+        text-align: center;
+        font-size: 40px;
+        line-height: 153%;
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 0;
     }
 
+    .siteInfo_in .con03 p {
+        font-size: 18px;
+        line-height: 120%;
+        color: #333;
+        text-align: center;
+    }
     .siteInfo_in .con05 {
         background-position: center;
-        background-size: 140%;
+        background-size: 160%;
     }
 
         .siteInfo_in .con05 > div:before {
             width: 25px;
             height: 257%;
             top: -573px;
-            left: 9.9%;
-            -webkit-transform: rotate(31deg);
-            transform: rotate(31deg);
+            left: 50px;
+            /* transform: rotate(31deg); */
         }
 
         .siteInfo_in .con05 > div:after {
             width: 25px;
             height: 257%;
             top: -582px;
-            left: 5.9%;
-            -webkit-transform: rotate(31deg);
-            transform: rotate(31deg);
+            left: 0;
+            /* transform: rotate(31deg); */
         }
 
         .siteInfo_in .con05 .in_txt {
-            width: 50%;
-            margin-left: 52%;
+            padding-left: 460px;
         }
 
         .siteInfo_in .con05 > div {
@@ -9765,9 +9839,9 @@ div.alignment .right_div {
         }
 
         .siteInfo_in .con05 .in_txt .year:after {
-            left: -200px;
+            left: -79px;
             top: 16px;
-            width: 200px;
+            width: 72px;
         }
 
     .siteInfo_in .con07 {
@@ -9858,6 +9932,42 @@ div.alignment .right_div {
     .notice_box{
         padding: 0;
     }
+    .siteInfo_in .con03 .bg01 {
+        left: 0;
+        top: 0;
+        width: 40%;
+        height: 220px;
+    }
+    .siteInfo_in .con03 .bg02 {
+        left: 40%;
+        top: 0;
+        width: 40%;
+        height: 220px;
+    }
+    .siteInfo_in .con03 .bg03 {
+        left: 80%;
+        top: 0;
+        width: 20%;
+        height: 600px;
+    }
+    .siteInfo_in .con03 .bg04 {
+        left: 0%;
+        top: 220px;
+        width: 20%;
+        height:600px;
+    }
+    .siteInfo_in .con03 .bg05 {
+        left: 20%;
+        top: 600px;
+        width: 40%;
+        height: 220px;
+    }
+    .siteInfo_in .con03 .bg06 {
+        left: 60%;
+        top: 600px;
+        width: 40%;
+        height: 220px;
+    }
 }
 
 @media (min-width: 1300px) {
@@ -9917,7 +10027,7 @@ div.alignment .right_div {
     }
     .main_con_box1 .main_top_images strong {
         padding-left: 0;
-        width: 50%;
+        width: 58%;
     }
     .main_con_box1 .main_top_images span {
         padding-left: 0;
@@ -9925,7 +10035,11 @@ div.alignment .right_div {
     .main_con_box1 .main_top_images .btn_list {
         padding-left: 0;
     }
-  
+    
+    .siteInfo_in .con05 {
+        background-size: 170%;
+    }
+    
 }
 
 @media (min-width: 1500px) {
@@ -9973,14 +10087,12 @@ div.alignment .right_div {
         background-size: 156%;
     }
     .siteInfo_in .con03 {
-        padding: 334px 0 0;
-        min-height: 773px;
-        background-position: center top;
-        background-size: 110%;
+        padding: 402px 0 0;
+        min-height: 970px;
     }
 
     .siteInfo_in .con05 {
-        background-size: 110%;
+        background-size: 150%;
     }
 
     .siteInfo_in .top_bg {
@@ -9988,6 +10100,42 @@ div.alignment .right_div {
         padding: 302px 0 0;
         background-position: center 60%;
         background-size: 105%;
+    }
+    .siteInfo_in .con03 .bg01 {
+        left: 0;
+        top: 0;
+        width: 40%;
+        height: 280px;
+    }
+    .siteInfo_in .con03 .bg02 {
+        left: 40%;
+        top: 0;
+        width: 40%;
+        height: 280px;
+    }
+    .siteInfo_in .con03 .bg03 {
+        left: 80%;
+        top: 0;
+        width: 20%;
+        height: 600px;
+    }
+    .siteInfo_in .con03 .bg04 {
+        left: 0%;
+        top: 280px;
+        width: 20%;
+        height:600px;
+    }
+    .siteInfo_in .con03 .bg05 {
+        left: 20%;
+        top: 600px;
+        width: 40%;
+        height: 280px;
+    }
+    .siteInfo_in .con03 .bg06 {
+        left: 60%;
+        top: 600px;
+        width: 40%;
+        height: 280px;
     }
 }
 
@@ -10000,6 +10148,10 @@ div.alignment .right_div {
     ul.photo_ul li .title,
     ul.photo_ul li .subTitle{
         text-align: center;
+    }
+
+    .infolist .pack {
+        padding-top: 25px;
     }
     .main_con_box4 .top_txt h2 {
         font-size: 66px;
@@ -10049,6 +10201,9 @@ div.alignment .right_div {
         font-size: 21px;
         line-height: 33px;
     }
+    .main_con_box5 .txt  br {
+       display: none;
+    }
 
     .main_con_box4 .photo_box {
         margin-bottom: 0;
@@ -10057,10 +10212,11 @@ div.alignment .right_div {
     .main_con_box5 {
         padding: 5%;
         box-sizing: border-box;
+        margin-top: 140px;
     }
 
         .main_con_box5 .txt {
-            padding: 80px 3%;
+            padding: 100px 3% 20px;
         }
 
             .main_con_box5 .txt h2 {
@@ -10069,7 +10225,7 @@ div.alignment .right_div {
             }
 
             .main_con_box5 .txt p {
-                font-size: 12px;
+                font-size: 1em;
             }
 
     .siteInfo_in .top_bg h3 {
@@ -10082,11 +10238,12 @@ div.alignment .right_div {
     }
 
     .siteInfo_in .con06 h4 strong {
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
 
     .siteInfo_in .con06 h4 span {
-        font-size: 0.8em;
+        font-size: 0.6em;
+        font-weight: 100;
     }
 
     .siteInfo_in .con07 {
@@ -10094,11 +10251,15 @@ div.alignment .right_div {
     }
 
         .siteInfo_in .con07 h4 {
-            font-size: 15px;
+            font-size: 0.8em;
+            font-weight: 100;
         }
 
             .siteInfo_in .con07 h4 strong {
-                font-size: 1em;
+                font-size: 1.7em;
+                line-height: 129%;
+                font-weight:600;
+                
             }
 
 
@@ -10109,7 +10270,7 @@ div.alignment .right_div {
 
         .main_con_box1 .main_top_images strong {
             width: 100%;
-            font-size: 2.6em;
+            font-size: 2em;
             text-align: center;
             margin-top: 93px;
         }
@@ -10222,15 +10383,27 @@ div.alignment .right_div {
         width: 200px;
         margin: 0 auto;
     }
+   div.alignment .move-left,
+    div.alignment .move-right {
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+    }
+    div.alignment .move-right {
+        margin-right: 0px;
+    }
 }
 
 
 @media (max-width:360px) {
     .main_con_box1 .main_top_images {
-        min-height: 610px;
+        min-height: 400px;
         background-size: 379%;
     }
-
+    .main_con_box1 .main_top_images .btn_list a {
+        font-size: 1em;
+        line-height: 31px;
+}
     .iframe_box,
     .popup_box {
         position: fixed;
@@ -10247,9 +10420,76 @@ div.alignment .right_div {
         .popup_box > div {
             height: 90% !important;
         }
+        .siteInfo_in .con03 {
+            padding: 147px 25% 0;
+        }
+        .siteInfo_in .con03 h4 {
+            font-size: 1.4em;
+        }
+        .siteInfo_in .con03 p {
+            font-size: 0.9em;
+        }
+        .siteInfo_in .con03 div[class*="bg0"] {
+            background-size: 190%;
+        }
+        .siteInfo_in .con04 .infopp .ovj {
+            font-size: 2.8em;
+        }
+        .siteInfo_in .con04 .infopp li {
+            width: 100%;
+        }
+
+        .siteInfo_in .con05{
+           background-size: 670%;
+        }
+        .siteInfo_in .con05 > div:after {
+            width: 9px;
+            left: 7px;
+        }
+        .siteInfo_in .con05 > div:before {
+            width: 9px;
+            left: 21px;
+        }
+        .siteInfo_in .con05 h4 {
+            font-size: 3em;
+            width: 100%;
+            left: 12%;
+        }
+        .siteInfo_in .con05 .in_txt {
+            width: 100%;
+            padding-left: 38px;
+        }
+        .siteInfo_in .con05 .in_txt .year:after{
+            display: none;
+        }
+        .siteInfo_in .con05 .in_txt .year:before {
+            left: 6px;
+            top: 9px;
+            width: 5px;
+            height: 5px;
+        }
+        .siteInfo_in .con05 .in_txt .year {
+            padding-left: 29px;
+        }
+        .siteInfo_in .con06 {
+            padding: 120px 5%;
+        }
+        .siteInfo_in .con06::after {
+            height: 30px;
+        }
+        .siteInfo_in .con06 li {
+            width: 47%;
+        }
+        .siteInfo_in .con06 li a {
+            padding: 15.1px;
+            min-height: 36px;
+        }
 }
 
 .cdx-input.image-tool__caption {
+    display: none; 
+}
+.__react_component_tooltip  {
     display: none; 
 }
 

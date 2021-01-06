@@ -364,6 +364,10 @@ select:focus {
     display: block;
     height: 50px;
 }
+.fin.ifMobile{
+    display: block;
+    text-align: left;
+}
 
 .fin .float_left{
     width: 100%;
@@ -372,6 +376,11 @@ select:focus {
 .fin .float_right{
     width: 100%;
     float: none;
+}
+.fin.ifMobile .float_left,
+.fin.ifMobile .float_right{
+    width: auto;
+    display: inline;
 }
 .xet-acc {
     padding: 10px 15px;

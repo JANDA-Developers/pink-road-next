@@ -179,7 +179,7 @@ export const MsMemberB: React.FC<IProp> = () => {
                             <div className="td09"><button className="btn small" onClick={popupOpen}>상세보기</button></div>
                         </div>
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">전체선택</button>
                             </div>

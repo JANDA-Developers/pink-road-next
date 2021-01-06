@@ -253,7 +253,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
 
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
 
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">신규여행작성</button>
                                 <button type="submit" className="btn medium">여행복사하기</button>
@@ -543,7 +543,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
 
 
 
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">예약취소</button>
                             </div>

@@ -234,7 +234,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                                 <p className="infotxt_gray">80Byte 이하일땐 80Byte 이상시 LMS입니다.</p>
                             </div>
                         </div>
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">생성하기</button>
                                 <button type="submit" className="btn medium">삭제하기</button>

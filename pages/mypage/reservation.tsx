@@ -502,7 +502,7 @@ export const MyReservation: React.FC<IProp> = () => {
                     </div>
 
 
-                    <div className="fin">
+                    <div className="fin ifMobile">
                         <div className="float_left">
                             <button type="submit" className="btn medium">
                                 예약취소 요청하기

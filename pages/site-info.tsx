@@ -57,10 +57,11 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
         </div>
         {/* <div className="bold" title="Bold" onClick={() => { effectDoc('bold') }}>B</div> */}
         <div className="w100 con01 con_block">
-            <div className="">
+            <div className="w1200">
                 <div className="bottom">
                     <div className="haf_first">
-                        <div {...ulEdit("pinkVision")} />
+                        <div className="mb20" {...ulEdit("pinkVision")} />
+                        <img src="/img/pr_img_13.jpg" alt="핑크로더 소개 이미지" />
                     </div>
                     <div className="haf">
                         <strong {...edit("visionBox1_title")} />
@@ -80,35 +81,44 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <h4  {...edit("purpose_title")} />
                     <p  {...edit("purpose_desc")} />
                 </div>
-                <ul>
-                    <li>
-                        <i className="icon_01" style={{
+                <ul className="infolist">
+                    <li className="infolist__01" style={bg("purpose1_bg")}>
+                        <div className="pack">
+                            <div className="img" style={bg("purpose1_bg")}><Upload onUpload={imgEdit("purpose1_bg")} /></div>
+                            <strong  {...edit("purpose1_title")} />
+                            <span {...edit("purpose1_bottom")} />
+                        </div>
 
-                        }} />
-                        <strong {...edit("purpose1_title")} />
-                        <p {...edit("purpose1_bottom")} />
                     </li>
-                    <li>
-                        <i className="icon_02" style={{
+                    <li className="infolist__02" style={bg("purpose2_bg")}>
+                        <div className="pack">
+                            <div className="img" style={bg("purpose2_bg")}><Upload onUpload={imgEdit("purpose2_bg")} /></div>
+                            <strong  {...edit("purpose2_title")} />
+                            <span {...edit("purpose2_bottom")} />
+                        </div>
 
-                        }} />
-                        <strong  {...edit("purpose2_title")} />
-                        <p {...edit("purpose2_bottom")} />
                     </li>
-                    <li>
-                        <i className="icon_03" style={{
+                    <li className="infolist__03" style={bg("purpose3_bg")}>
+                        <div className="pack">
+                            <div className="img" style={bg("purpose3_bg")}><Upload onUpload={imgEdit("purpose3_bg")} /></div>
+                            <strong  {...edit("purpose3_title")} />
+                            <span {...edit("purpose3_bottom")} />
+                        </div>
 
-                        }} />
-                        <strong  {...edit("purpose3_title")} />
-                        <p  {...edit("purpose3_bottom")} />
                     </li>
                 </ul>
             </div>
         </div>
         <div className="w100 con03 con_block">
-            <div className="w1200">
+            <div>
                 <h4  {...edit("value_title")} />
                 <p {...edit("value_desc")} />
+                <div className="bg01" style={bg("value_bg01")}><Upload onUpload={imgEdit("value_bg01")} /></div>
+                <div className="bg02" style={bg("value_bg02")}><Upload onUpload={imgEdit("value_bg02")} /></div>
+                <div className="bg03" style={bg("value_bg03")}><Upload onUpload={imgEdit("value_bg03")} /></div>
+                <div className="bg04" style={bg("value_bg04")}><Upload onUpload={imgEdit("value_bg04")} /></div>
+                <div className="bg05" style={bg("value_bg05")}><Upload onUpload={imgEdit("value_bg05")} /></div>
+                <div className="bg06" style={bg("value_bg06")}><Upload onUpload={imgEdit("value_bg06")} /></div>
             </div>
         </div>
         <div className="w100 con04 con_block">
