@@ -17,7 +17,9 @@ export const F_NOTIFICATION_TRIGGER = gql`
 `
 
 export const F_SMS_TEMPLATE = gql`
-  fragment FsmsTemplate on SmsTemplate {
+  fragment FsmsTemplate on ITemplate  {
+    _id
+    createdAt
     name
     description
     content
@@ -25,9 +27,6 @@ export const F_SMS_TEMPLATE = gql`
       ...FnotificationTrigger
     }
     replacers
-    manager {
-      _id
-    }
   }
   ${F_NOTIFICATION_TRIGGER}
 `
@@ -54,7 +53,6 @@ export const F_NOTIFICATION_HISTORY_ITEM = gql`
     _id
     createdAt
     updatedAt
-    isDelete
     method
     sender
     receivers
@@ -182,10 +180,10 @@ export const SMSTEMPLATE_DELETE = gql`
 `
 
 export const SMS_SIGNLE_MESSAGE_SEND = gql`
-    mutation smsSingleMessageSend(
+    mutation smsSendSingle(
         $input: SmsSendInput!
     ) {
-    SmsSingleMessageSend(
+    SmsSendSingle(
         input: $input
     ) {
         ok
@@ -195,14 +193,39 @@ export const SMS_SIGNLE_MESSAGE_SEND = gql`
 `
 
 export const SMS_TEMPLATE_MESSAGE_SEND = gql`
-    mutation smsTemplateMessageSend(
-        $input: SmsTemplateMessageSendInput!
+    mutation smsSendWithTemplate(
+        $input: SmsSendWithTemplateInput!
     ) {
-    SmsTemplateMessageSend(
+    SmsSendWithTemplate(
         input: $input
     ) {
         ok
         error 
     }
 }
+`
+
+export const TEMPLATE_LIST = gql`
+  query templateList(
+    $sort: [_ITemplateSort!]
+    $filter: _ITemplateFilter
+    $pageInput: pageInput!
+  ) {
+  TemplateList(
+    sort: $sort
+    pageInput: $pageInput
+    filter: $filter
+  ) {
+    ok
+    error
+    page {
+      ...Fpage
+    }
+    data  {
+      ...FsmsTemplate
+    }
+  }
+  }
+  ${F_PAGE}
+  ${F_SMS_TEMPLATE}
 `

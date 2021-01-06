@@ -5,10 +5,11 @@ import { closeModal } from '../../utils/popUp';
 interface IProp extends IDiv {
     id: string;
     title: string;
+    inClassName?: string;
 }
 
 
-export const Modal: React.FC<IProp> = ({ id, children, title, ...props }) => {
+export const Modal: React.FC<IProp> = ({ id, className, inClassName, children, title, ...props }) => {
     return <div className="popup_bg_mini" style={{
         top: 0,
         bottom: 0,
@@ -19,10 +20,9 @@ export const Modal: React.FC<IProp> = ({ id, children, title, ...props }) => {
         justifyContent: "center",
         alignItems: "center"
     }} id={id}  {...props}>
-        <div className="in_txt">
+        <div className={`in_txt ${inClassName}`}>
             <a onClick={closeModal(`#${id}`)} className="close_icon"><i className="flaticon-multiply" /></a>
             <div className="page">
-
                 <h3>{title}</h3>
                 <div className="con">
                     {children}

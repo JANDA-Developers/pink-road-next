@@ -61,3 +61,15 @@ export interface IlistQueryInit<F,S,Q,V> extends Partial<ListInitOptions<F, S>> 
     options?: QueryHookOptions<Q, V>
 }
 
+export enum ReplaceString {
+    //예약자명
+    "BOOKERNMAE" = "[%%BOOKERNMAE%%]",
+    //여행 년월일
+    "TRAVEL_DATE_YMD" = "[%%TRAVEL_DATE_YMD%%]",
+    //여행 총인원
+    "PEOPLE" = "[%%PEOPLE%%]",
+    //여행 총가격
+    "PRICE" = "[%%PRICE%%]",
+    //상품명
+    "PORD_NMAE" = "[%%PORD_NAME%%]"
+}

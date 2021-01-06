@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import 'css/all.css';
 import Layout from '../layout/Layout';
 import { ApolloProvider, useQuery } from '@apollo/client';
@@ -10,6 +10,7 @@ import { ADMINS, DEFAULT_PAGEINFO, FULL_ACCESS, SELLERS } from '../types/const';
 import Toast from '../components/toast/Toast';
 import { GET_CONTEXT } from '../apollo/gql/queries';
 import { bracketVergionChange } from '../utils/Storage';
+import Page404 from './404';
 import PageDeny from './Deny';
 import { IUsePageEdit, usePageEdit } from '../hook/usePageEdit';
 import { HiddenSubmitBtn } from '../components/common/HiddenSubmitBtn';
@@ -31,8 +32,6 @@ export type TContext = {
 }
 
 const defaultContext: TContext = {
-  editMode: false,
-  setEditMode: () => { },
   categories: [],
   role: UserRole.anonymous,
   isAdmin: false,
@@ -64,8 +63,6 @@ function App({ Component, pageProps }: any) {
   const catList = data?.CategoryList?.data || []
   const myProfile = data?.GetProfile?.data || undefined
   const role: UserRole = myProfile?.role || UserRole.anonymous
-
-
 
   const isSeller = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
   const isParterB = [UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);

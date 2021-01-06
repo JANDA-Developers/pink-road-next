@@ -28,8 +28,6 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
         setDatas({ ...datas })
     }
 
-
-
     const textReverse = (key: keyof HomepageUpdateInput) => {
         if (key === "usePolicy") return "이용약관";
         if (key === "PrivacyPolicy") return "개인정보약관";

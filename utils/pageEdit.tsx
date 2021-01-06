@@ -169,7 +169,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         const html = index === undefined ? page[key][lang] : page[key][lang][index];
         return {
             dangerouslySetInnerHTML: {
-                __html: sanitizeHtml(html)
+                __html: html
             }
         }
     }

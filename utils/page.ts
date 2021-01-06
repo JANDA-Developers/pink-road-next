@@ -4,7 +4,6 @@ import { SERVER_URI } from "../apollo/uri";
 import { usePageInfo } from "../hook/usePageInfo";
 import { Fhomepage, Fpage, homepage } from "../types/api"
 import { TPageKeys } from "../types/interface";
-import { Page } from "./generateClientPaging";
 
 export const getQueryIndex = (inPageIndex: number, pageInfo: Fpage) => {
     const { remainder, cntPerPage, totalPageSize } = pageInfo;
@@ -20,14 +19,6 @@ export const useHomepageServerSide = async () => {
         cache: "reload",
     })
 
-<<<<<<< HEAD
-    const {Homepage:{data}} = await graphQLClient.request<homepage>(HOMEPAGE)
-    if(!data) throw Error("homepage is not exsist");
-    return { data };
-}
-
-export const getStaticPageInfo = (key:TPageKeys, defaultPageInfo:any) => async () => {
-=======
     const defaultHomePage = {
         PrivacyPolicy: "",
         __typename: "Homepage",
@@ -52,8 +43,7 @@ export const getStaticPageInfo = (key:TPageKeys, defaultPageInfo:any) => async (
     return { data };
 }
 
-export const getStaticPageInfo = (key: TPageKeys) => async () => {
->>>>>>> origin/design
+export const getStaticPageInfo = (key: TPageKeys,defaultPageInfo:any) => async () => {
     const { data } = await usePageInfo(key);
     const { data: homepage } = await useHomepageServerSide();
     return {
@@ -73,7 +63,7 @@ export const getHomepage = async () => {
     return {
         revalidate: 10,
         props: {
-            homepage: homepage.data
+            homepage: homepage.data as Fhomepage
         }, // will be passed to the page component as props
     }
 }

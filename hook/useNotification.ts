@@ -2,7 +2,7 @@
 // template CRUD
 // History R
 import {SMSTEMPLATE_CREATE, SMSTEMPLATE_UPDATE, SMSTEMPLATE_DELETE, NOTIFICATION_HISTORY} from "../apollo/gql/notification"
-import { notificationHistory, notificationHistoryVariables, notificationHistory_NotificationHistory_data, smstemplateCreate, smstemplateCreateVariables, smstemplateDelete, smstemplateDeleteVariables, smsTemplateUpdate, smsTemplateUpdateVariables, _INotificationHistoryItemFilter, _INotificationHistoryItemSort } from "../types/api";
+import { notificationHistory, notificationHistoryVariables, notificationHistory_NotificationHistory_data, smstemplateCreate, smstemplateCreateVariables, smstemplateDelete, smstemplateDeleteVariables, smsTemplateUpdate, smsTemplateUpdateVariables, templateList, templateListVariables, templateList_TemplateList_data, _INotificationHistoryItemFilter, _INotificationHistoryItemSort, _ITemplateFilter,_ITemplateSort } from "../types/api";
 import { getRefetch } from "../utils/api";
 import { generateListQueryHook, generateMutationHook } from "../utils/query";
 
@@ -18,3 +18,4 @@ export const useSmsTemplateDelete = generateMutationHook<smstemplateDelete,smste
 });
 export const useBookingList = generateListQueryHook<_INotificationHistoryItemFilter,_INotificationHistoryItemSort,notificationHistory,notificationHistoryVariables,notificationHistory_NotificationHistory_data>(NOTIFICATION_HISTORY,{initialSort:[_INotificationHistoryItemSort.createdAt_desc]});
 
+export const useTemplateList = generateListQueryHook<_ITemplateFilter,_ITemplateSort, templateList, templateListVariables,templateList_TemplateList_data>(NOTIFICATION_HISTORY,{initialViewCount:999});

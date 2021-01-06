@@ -9,7 +9,6 @@ import { ViewCount } from '../../components/common/ViewCount';
 import { LastMonthBooking } from '../../components/static/LastMonthBooking';
 import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
 import { ThisMonthPayAmt } from '../../components/static/ThisMonthPayAmt';
-import { IuseBookingList, useBookingList } from '../../hook/useBooking';
 import { ALLOW_SELLERS } from '../../types/const';
 import { autoHypenPhone } from '../../utils/formatter';
 import { auth, compose } from '../../utils/with';

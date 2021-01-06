@@ -1366,11 +1366,10 @@ export interface notificationHistory_NotificationHistory_page {
 }
 
 export interface notificationHistory_NotificationHistory_data {
-  __typename: "INotificationHistoryItem";
+  __typename: "SmsHistoryItem" | "EmailHistoryItem";
   _id: string;
   createdAt: any;
   updatedAt: any;
-  isDelete: boolean;
   method: NotificationMethod;
   sender: string;
   receivers: string[];
@@ -1536,20 +1535,20 @@ export interface smstemplateDeleteVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: smsSingleMessageSend
+// GraphQL mutation operation: smsSendSingle
 // ====================================================
 
-export interface smsSingleMessageSend_SmsSingleMessageSend {
+export interface smsSendSingle_SmsSendSingle {
   __typename: "SmsSingleMessageSendResponse";
   ok: boolean;
   error: string | null;
 }
 
-export interface smsSingleMessageSend {
-  SmsSingleMessageSend: smsSingleMessageSend_SmsSingleMessageSend;
+export interface smsSendSingle {
+  SmsSendSingle: smsSendSingle_SmsSendSingle;
 }
 
-export interface smsSingleMessageSendVariables {
+export interface smsSendSingleVariables {
   input: SmsSendInput;
 }
 
@@ -1559,21 +1558,124 @@ export interface smsSingleMessageSendVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: smsTemplateMessageSend
+// GraphQL mutation operation: smsSendWithTemplate
 // ====================================================
 
-export interface smsTemplateMessageSend_SmsTemplateMessageSend {
+export interface smsSendWithTemplate_SmsSendWithTemplate {
   __typename: "SmsTemplateMessageSendResponse";
   ok: boolean;
   error: string | null;
 }
 
-export interface smsTemplateMessageSend {
-  SmsTemplateMessageSend: smsTemplateMessageSend_SmsTemplateMessageSend;
+export interface smsSendWithTemplate {
+  SmsSendWithTemplate: smsSendWithTemplate_SmsSendWithTemplate;
 }
 
-export interface smsTemplateMessageSendVariables {
-  input: SmsTemplateMessageSendInput;
+export interface smsSendWithTemplateVariables {
+  input: SmsSendWithTemplateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: templateList
+// ====================================================
+
+export interface templateList_TemplateList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface templateList_TemplateList_data_trigger_tags {
+  __typename: "Tag";
+  key: string;
+  value: string;
+}
+
+export interface templateList_TemplateList_data_trigger {
+  __typename: "NotificationTrigger";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  sender: string;
+  event: NotificationTriggerEvent;
+  isEnabled: boolean;
+  tags: templateList_TemplateList_data_trigger_tags[];
+}
+
+export interface templateList_TemplateList_data {
+  __typename: "TemplateSms" | "TemplateEmail";
+  _id: string;
+  createdAt: any;
+  name: string;
+  description: string | null;
+  content: string;
+  trigger: templateList_TemplateList_data_trigger[];
+  replacers: string[];
+}
+
+export interface templateList_TemplateList {
+  __typename: "TemplateListResponse";
+  ok: boolean;
+  error: string | null;
+  page: templateList_TemplateList_page;
+  data: templateList_TemplateList_data[];
+}
+
+export interface templateList {
+  TemplateList: templateList_TemplateList;
+}
+
+export interface templateListVariables {
+  sort?: _ITemplateSort[] | null;
+  filter?: _ITemplateFilter | null;
+  pageInput: pageInput;
 }
 
 /* tslint:disable */
@@ -5339,7 +5441,7 @@ export interface FnotificationTrigger {
   createdAt: any;
   updatedAt: any;
   sender: string;
-  event: string;
+  event: NotificationTriggerEvent;
   isEnabled: boolean;
   tags: FnotificationTrigger_tags[];
 }
@@ -5365,24 +5467,20 @@ export interface FsmsTemplate_trigger {
   createdAt: any;
   updatedAt: any;
   sender: string;
-  event: string;
+  event: NotificationTriggerEvent;
   isEnabled: boolean;
   tags: FsmsTemplate_trigger_tags[];
 }
 
-export interface FsmsTemplate_manager {
-  __typename: "NotificationManager";
-  _id: string;
-}
-
 export interface FsmsTemplate {
-  __typename: "SmsTemplate";
+  __typename: "TemplateSms" | "TemplateEmail";
+  _id: string;
+  createdAt: any;
   name: string;
   description: string | null;
   content: string;
   trigger: FsmsTemplate_trigger[];
   replacers: string[];
-  manager: FsmsTemplate_manager;
 }
 
 /* tslint:disable */
@@ -5413,24 +5511,20 @@ export interface FnotificationManager_templates_trigger {
   createdAt: any;
   updatedAt: any;
   sender: string;
-  event: string;
+  event: NotificationTriggerEvent;
   isEnabled: boolean;
   tags: FnotificationManager_templates_trigger_tags[];
 }
 
-export interface FnotificationManager_templates_manager {
-  __typename: "NotificationManager";
-  _id: string;
-}
-
 export interface FnotificationManager_templates {
-  __typename: "SmsTemplate";
+  __typename: "TemplateSms";
+  _id: string;
+  createdAt: any;
   name: string;
   description: string | null;
   content: string;
   trigger: FnotificationManager_templates_trigger[];
   replacers: string[];
-  manager: FnotificationManager_templates_manager;
 }
 
 export interface FnotificationManager {
@@ -5458,11 +5552,10 @@ export interface FnotificationManager {
 // ====================================================
 
 export interface FnotificationHistoryItem {
-  __typename: "INotificationHistoryItem";
+  __typename: "SmsHistoryItem" | "EmailHistoryItem";
   _id: string;
   createdAt: any;
   updatedAt: any;
-  isDelete: boolean;
   method: NotificationMethod;
   sender: string;
   receivers: string[];
@@ -5710,6 +5803,15 @@ export enum NotificationMethod {
   SMS = "SMS",
 }
 
+export enum NotificationTriggerEvent {
+  BANK_TRANSFER = "BANK_TRANSFER",
+  CALCULATE_REQUEST = "CALCULATE_REQUEST",
+  CANCEL_BOOKING = "CANCEL_BOOKING",
+  COMPLETE_BOOKING = "COMPLETE_BOOKING",
+  PRODUCT_CONFIRM_REQUEST = "PRODUCT_CONFIRM_REQUEST",
+  TRAVEL_UNCONFIRMED = "TRAVEL_UNCONFIRMED",
+}
+
 /**
  * 성별
  */
@@ -5843,6 +5945,16 @@ export enum _INotificationHistoryItemSort {
   sender_desc = "sender_desc",
   successCount_asc = "successCount_asc",
   successCount_desc = "successCount_desc",
+}
+
+/**
+ * Auto generated sort type
+ */
+export enum _ITemplateSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  name_asc = "name_asc",
+  name_desc = "name_desc",
 }
 
 /**
@@ -6036,6 +6148,11 @@ export interface FileUpdateInput {
   owner?: string | null;
 }
 
+export interface GqlTagInput {
+  key: string;
+  value: string;
+}
+
 export interface HomepageUpdateInput {
   logi?: string | null;
   siteDesc?: string | null;
@@ -6103,6 +6220,13 @@ export interface NewsUpdateInput {
   attachFiles?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
   type: NEWS_TYPE;
+}
+
+export interface NotificationTriggerCreateInput {
+  sender: string;
+  event: NotificationTriggerEvent;
+  isEnabled: boolean;
+  tags: GqlTagInput[];
 }
 
 export interface PageInfoCreateInput {
@@ -6250,23 +6374,26 @@ export interface SmsSendInput {
   replacements?: ReplacementSetInput | null;
 }
 
-export interface SmsTemplateCreateInput {
-  name: string;
-  content: string;
-  description?: string | null;
-}
-
-export interface SmsTemplateMessageSendInput {
+export interface SmsSendWithTemplateInput {
   templateId?: string | null;
   content?: string | null;
   sender: string;
   replacements: ReceiverWithReplacementSetsInput[];
 }
 
+export interface SmsTemplateCreateInput {
+  name: string;
+  content: string;
+  description?: string | null;
+  triggers?: NotificationTriggerCreateInput[] | null;
+}
+
 export interface SmsTemplateUpdateInput {
   content?: string | null;
   name?: string | null;
   description?: string | null;
+  triggersAdd?: NotificationTriggerCreateInput[] | null;
+  triggersRemove?: any[] | null;
 }
 
 export interface UserUpdateInput {
@@ -6378,6 +6505,20 @@ export interface _INotificationHistoryItemFilter {
   sender_not_in?: string[] | null;
   sender_contains?: string | null;
   sender_not_contains?: string | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
+}
+
+export interface _ITemplateFilter {
+  AND?: _ITemplateFilter[] | null;
+  OR?: _ITemplateFilter[] | null;
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;

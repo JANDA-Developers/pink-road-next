@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { LocalManager, Storage, initStorage } from 'utils/Storage';
+import { useLazyQuery } from '@apollo/client';
+import { Storage, initStorage } from 'utils/Storage';
 import pageInfo from 'info/login.json'
 import { Upload } from 'components/common/Upload';
 import { getEditUtils } from 'utils/pageEdit';
-import { AppContext } from './_app';
+import { EditContext } from './_app';
 import { BG } from '../types/const';
 import { signIn, signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { SIGN_IN } from '../apollo/gql/queries';
 interface IProp {
