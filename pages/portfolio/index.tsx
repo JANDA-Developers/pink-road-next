@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React, { Fragment, useContext, useState } from 'react';
 import { pcategoryList_pCategoryList_data, UserRole } from 'types/api';
 import { getEditUtils } from 'utils/pageEdit';
-import { AppContext } from '../_app';
+import { AppContext, EditContext } from '../_app';
 import pageInfoDefault from "info/portfolio.json"
 import { TStieInfo } from 'types/interface';
 import { usePcategory } from 'hook/usePcatList';
@@ -15,12 +15,12 @@ interface IProp {
 }
 
 export const PortFolio: React.FC<IProp> = ({ context }) => {
-    const { editMode, isAdmin, isManager } = useContext(AppContext);
+    const { editMode } = useContext(EditContext);
+    const { isManager } = useContext(AppContext);
     const { items: portfolios = [], sitePageInfo, pcategories, setPage: setPFpage, pageInfo, setFilter, filter, getLoading } = context;
     const original = sitePageInfo || pageInfoDefault;
     const [page, setPage] = useState(original);
     const { edit } = getEditUtils(editMode, page, setPage)
-
 
     const handlePrev = () =>
         setPFpage(pageInfo.page - 1)

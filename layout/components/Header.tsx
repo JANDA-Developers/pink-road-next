@@ -198,7 +198,7 @@ export const Header: React.FC<IProp> = () => {
                         <div className="searchtop">
                             <div className="search_btn">
                                 <img src={'/img/svg/search_icon.svg'} alt="search icon" />
-                                <button onClick={handSearch} />
+                                <button onClick={handSearch} tabIndex={0} />
                             </div>
                             <div className="hidden">
                                 <div className="w1200">
@@ -237,7 +237,11 @@ export const Header: React.FC<IProp> = () => {
                         </div>
 
                     </div>
-                    <div id="all_menu">
+<<<<<<< HEAD
+                <div id="all_menu">
+=======
+                    <div id="all_menu" tabIndex={0}>
+>>>>>>> itsMaster
                         <strong>전체메뉴</strong>
                         {isSeller && <div className="m_member">
                             <div className="profile">

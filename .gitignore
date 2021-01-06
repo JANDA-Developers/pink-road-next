@@ -238,4 +238,7 @@ $RECYCLE.BIN/
 
 .github
 workspace.code-workspace
+<<<<<<< HEAD
 components/sms/workspace.code-workspace
+=======
+>>>>>>> itsMaster

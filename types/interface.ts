@@ -8,6 +8,9 @@ export interface IproductFindById extends productFindById_ProductFindById_data {
 export interface IProduct extends productList_ProductList_data { };
 export interface IPortfolio extends portfolioFindById_PortfolioFindById_data { };
 export interface IPageInfo extends productList_ProductList_page { }
+export enum Langs {
+    "kr" = "kr"
+}
 export interface ILi extends React.HTMLAttributes<HTMLLIElement> {
 }
 export declare type TElements = string | JSX.Element | JSX.Element[] | string[];

@@ -1,24 +1,22 @@
+import React, { useState } from 'react';
 import { PhotoNewsView } from 'components/news/PhotoView';
 import SubTopNav from 'layout/components/SubTop';
-import React, { useEffect, useState } from 'react';
 import { LineNewsView } from '../../components/news/LineView';
-import { useNewsList, IUseNewsList } from "hook/useNews"
-import { getFromUrl } from '../../utils/url';
+import { useNewsList } from "hook/useNews"
 import { NEWS_TYPE } from '../../types/api';
 import { getQueryIndex } from '../../utils/page';
 import BoardList from '../../components/board/List';
 import { useRouter } from 'next/router';
 
-
 interface IProp {
 }
 
-export const News: React.FC<IProp> = ({ }) => {
+export const News: React.FC<IProp> = () => {
     const [view, setView] = useState<"line" | "gal">("line");
     const { setSort, sort, filter, setPage, setFilter, pageInfo, viewCount, setViewCount, items: news } = useNewsList();
     const { totalCount } = pageInfo;
     const router = useRouter();
-    const type = filter.type_eq;
+    const type = filter?.type_eq;
 
     const gotoWrite = () => {
         router.push("news/write")
@@ -80,31 +78,6 @@ export const News: React.FC<IProp> = ({ }) => {
                 </div>
             </div>}
         </BoardList>
-        {/* <div className="w1200 board_box news_box">
-            <div>
-
-                <div className="alignment">
-                    <div className="left_div"><span className="infotxt">총 <strong>{autoComma(totalCount)}</strong>개</span></div>
-                    <div className="right_div">
-                        <SortSelect onChange={setSort} sort={sort} />
-                        <ViewCount value={viewCount} onChange={setViewCount} />
-                        <ViewSelect select={view} onChange={setView} />
-                    </div>
-                </div>
-
-                <Paginater pageInfo={pageInfo} />
-                <div className="tl list_bottom">
-                    <div className="btn_footer">
-                        <span className="xet_btn medium gray">상품 등록하기</span>
-                    </div>
-                    <SearchMini onSubmit={(value) => {
-                        setFilter({
-                            title_contains: value ? value : undefined
-                        })
-                    }} />
-                </div>
-            </div>
-        </div> */}
     </div>
 };
 

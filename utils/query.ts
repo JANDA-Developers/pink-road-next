@@ -66,6 +66,9 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             params.page
         ])
 
+        console.log("params");
+        console.log(params);
+
         return { pageInfo,  getLoading, items, ...params,...queryElse }
     }
 

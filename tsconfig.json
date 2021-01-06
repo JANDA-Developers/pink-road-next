@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx", "components/edit/CKE2.jsx", "components/edit/UploadAdapter.js"
-, "components/join/FormPartnerBusi[depreacted].deprecated", "components/join/FormPartnerNormal[derpeacted]"  ],
+, "components/join/FormPartnerBusi[depreacted].deprecated", "components/join/FormPartnerNormal[derpeacted]", "../pink-loader-server/src/types/emails.ts"  ],
   "exclude": [
     "node_modules"
   ]

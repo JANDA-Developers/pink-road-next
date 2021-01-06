@@ -18,6 +18,10 @@ import { whenEnter } from '../../utils/eventValueExtracter';
 import { getFromUrl } from '../../utils/url';
 import Link from 'next/link';
 
+
+//url 인터페이스 
+//판매자::seller=
+//
 interface IProp { }
 
 export const Search: React.FC<IProp> = () => {
@@ -198,3 +202,5 @@ export const Search: React.FC<IProp> = () => {
     </div>
 }
 
+
+export default Search
