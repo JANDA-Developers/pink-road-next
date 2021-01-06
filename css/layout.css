@@ -879,6 +879,12 @@ rect.allmenu_svg {
         height: 27px;
         position: relative;
     }
+    .header .inform_top .inform_icon img {
+        opacity: 0.6;
+    }
+    .header .inform_top .inform_icon:hover img {
+        opacity:1;
+    }
     .header .inform_top .number {
         position: absolute;
         top: -10px;
@@ -3238,6 +3244,14 @@ i.icon_plus {
     background-color: initial;
     cursor: pointer;
 }
+.header .top-menu .welcome_ms::after {
+    display: inline-block;
+    content: '·';
+    position: absolute;
+    top:0;
+    right: -21px;
+}
+
 @media (min-width:768px) {
     .pc {
         display: none;

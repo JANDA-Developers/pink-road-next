@@ -118,7 +118,7 @@ export const Header: React.FC<IProp> = () => {
         </div>
         <div className="top-menu">
             <div className="w1200">
-                {isLogin && <p><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>}
+                {isLogin && <p className="welcome_ms"><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>}
                 <ul className="top-menu-in">
                     <li className="join">
                         {isLogin ? ""
@@ -130,6 +130,13 @@ export const Header: React.FC<IProp> = () => {
                                 <a>LOGIN</a>
                             </Link>}
                     </li>
+                    {isSeller && <li className="mypage">
+                        <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
+                    </li>}
+                    {isManager && <li className="master">
+                        <Link href="/master"><a target="_blank">Master<i className="jandaicon-arr4-right"></i></a></Link>
+                    </li>}
+
                     <li className="language">
                         <button className="btn" onClick={languageOpen}>English<i className="jandaicon-arr4-bottom"></i></button>
                         <ul className="languageBox" onClick={languageClose}>
@@ -191,7 +198,7 @@ export const Header: React.FC<IProp> = () => {
                         <div className="searchtop">
                             <div className="search_btn">
                                 <img src={'/img/svg/search_icon.svg'} alt="search icon" />
-                                <button onClick={handSearch} tabindex="0" />
+                                <button onClick={handSearch} />
                             </div>
                             <div className="hidden">
                                 <div className="w1200">
@@ -230,7 +237,7 @@ export const Header: React.FC<IProp> = () => {
                         </div>
 
                     </div>
-                    <div id="all_menu" tabIndex="0">
+                    <div id="all_menu">
                         <strong>전체메뉴</strong>
                         {isSeller && <div className="m_member">
                             <div className="profile">
@@ -274,7 +281,7 @@ export const Header: React.FC<IProp> = () => {
                             <li className="a_menu_tit deps">
                                 <Link href="/site-info"><a>소개<i className="jandaicon-arr4-right"></i></a></Link>
                             </li>
-                            {isSeller && <li className="a_menu_tit deps hiddennav betatest">
+                            {isAdmin && <li className="a_menu_tit deps hiddennav betatest">
                                 <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
                                     <li><a href="/mypage">회원정보</a></li>
@@ -288,7 +295,7 @@ export const Header: React.FC<IProp> = () => {
                                 </ul>
                             </li>}
 
-                            {isManager && <li className="a_menu_tit deps hiddennav betatest">
+                            {isAdmin && <li className="a_menu_tit deps hiddennav betatest">
                                 <a href="/master">Master<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">
                                     <li><a href="/master/notification">알림</a></li>

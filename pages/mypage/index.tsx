@@ -544,4 +544,4 @@ export const MyPageProfile: React.FC<IProp> = () => {
 
 
 
-export default auth(ONLY_LOGINED)(MyPageProfile);
+export default MyPageProfile;
