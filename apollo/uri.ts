@@ -1,5 +1,5 @@
 
-const END_POINT = "http://its.api.stayjanda.cloud:4000/graphql" + "/graphql";
+const END_POINT = "http://3.35.164.30:4000/graphql" + "/graphql";
 export const SERVER_URI: string = END_POINT || "";
 
 // 개발: http://3.35.164.252:4000/graphql
