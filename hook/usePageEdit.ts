@@ -3,7 +3,7 @@ import { useState } from "react";
 import PinkClient from "../apollo/client";
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from "../apollo/gql/mutations";
 import { pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables } from "../types/api";
-import { ISet } from "../types/interface";
+import { ISet, Langs } from "../types/interface";
 import { cloneObject } from "../utils/clone";
 import {  mergeDeepOnlyExsistProperty } from "../utils/merge";
 import { getEditUtils, IGetEditUtilsResult } from "../utils/pageEdit";
@@ -15,8 +15,8 @@ export interface IUsePageEdit<Page> extends IGetEditUtilsResult<Page> {
     setEditMode: ISet<boolean>;
 }
 
-export const usePageEdit = <Page>(originPage, defaultPage:Page, ln = "kr") => {
-    const [lang, setLang] = useState(ln);
+export const usePageEdit = <Page>(originPage, defaultPage:Page, ln = Langs.kr) => {
+    const [lang, setLang] = useState<Langs>(ln);
     const [editMode, setEditMode] = useState<boolean>(false);
     const [page, setPage] = useState(cloneObject(mergeDeepOnlyExsistProperty(cloneObject(defaultPage), originPage)));
     const editUtils = getEditUtils<Page>(editMode, page, setPage,lang);
@@ -51,5 +51,5 @@ export const usePageEdit = <Page>(originPage, defaultPage:Page, ln = "kr") => {
         })
     }
 
-    return {...editUtils,page,editMode,setPage, setLang, submitEdit, setEditMode}
+    return {...editUtils,page,editMode,setPage, setLang, submitEdit, setEditMode,lang}
 }

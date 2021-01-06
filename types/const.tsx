@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { IPageInfo } from "./interface"
-import { homepage_Homepage, ItineraryCreateInput, ProductStatus, UserRole, } from "./api";
+import { homepage_Homepage, homepage_Homepage_data, ItineraryCreateInput, ProductStatus, UserRole, } from "./api";
 
 export const lastMonthFirstDate = dayjs().add(-1, "m").set("day", 1).toDate();
 export const lastMonthLastDate = dayjs().add(-1, "m").endOf("month").toDate();
@@ -14,7 +14,7 @@ export const DEFAULTS = {
 }
 
 export const BG = (url: string) => ({ backgroundImage: `url(${url})` })
-export const BGprofile = (profileImg: Fquestion_author_profileImg | null | undefined) => {
+export const BGprofile = (profileImg: any | null | undefined) => {
     return BG(profileImg?.uri || DEFAULT_PROFILE_IMG);
 }
 
@@ -75,26 +75,21 @@ export const DEFAULT_PAGEINFO = {
     pageInfo: {}, defaultPageInfo: {}, pageKey: ""
 }
 
-export const DEFAULT_HOMEPAGE: homepage_Homepage = {
-    error: "",
-    ok: true,
-    __typename: "HomepageResponse",
-    data: {
-        PrivacyPolicy: "",
-        __typename: "Homepage",
-        blacklist: [],
-        logi: "",
-        loginOutRedirect: "",
-        loginRedirect: "",
-        marketingPolic: "",
-        partnerBpolicy: "",
-        partnerPolicy: "",
-        signUpRedirect: "",
-        siteDesc: "",
-        siteKeyWards: [""],
-        siteName: "",
-        thirdPolicy: "",
-        travelerPolicy: "",
-        usePolicy: ""
-    }
+export const DEFAULT_HOMEPAGE: homepage_Homepage_data = {
+    PrivacyPolicy: "",
+    __typename: "Homepage",
+    blacklist: [],
+    logi: "",
+    loginOutRedirect: "",
+    loginRedirect: "",
+    marketingPolic: "",
+    partnerBpolicy: "",
+    partnerPolicy: "",
+    signUpRedirect: "",
+    siteDesc: "",
+    siteKeyWards: [""],
+    siteName: "",
+    thirdPolicy: "",
+    travelerPolicy: "",
+    usePolicy: ""
 }

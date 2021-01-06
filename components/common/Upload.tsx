@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react';
-import { AppContext } from 'pages/_app';
+import { AppContext, EditContext } from 'pages/_app';
 import { useUpload } from 'hook/useUpload';
 
 export interface IUploadProps {
@@ -7,7 +7,7 @@ export interface IUploadProps {
 }
 
 export const Upload: React.FC<IUploadProps> = ({ onUpload }) => {
-    const { editMode } = useContext(AppContext);
+    const { editMode } = useContext(EditContext);
     const { signleUpload } = useUpload();
     const hiddenImgInput = useRef<HTMLInputElement>(null);
 

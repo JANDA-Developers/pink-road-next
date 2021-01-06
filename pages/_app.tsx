@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import 'css/all.css';
 import Layout from '../layout/Layout';
-import { ApolloProvider, useMutation, useQuery } from '@apollo/client';
-import { getContext_GetProfile_data as IProfile, categoryList_CategoryList_data, pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables, getContext, UserRole, Fhomepage } from 'types/api';
+import { ApolloProvider, useQuery } from '@apollo/client';
+import { getContext_GetProfile_data as IProfile, categoryList_CategoryList_data, getContext, UserRole, Fhomepage } from 'types/api';
 import PinkClient from "apollo/client"
-import { ISet } from 'types/interface';
 import "dayjs/locale/ko"
 import dayjs from 'dayjs';
 import { ADMINS, DEFAULT_PAGEINFO, FULL_ACCESS, SELLERS } from '../types/const';
 import Toast from '../components/toast/Toast';
 import { GET_CONTEXT } from '../apollo/gql/queries';
-import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from '../apollo/gql/mutations';
 import { bracketVergionChange } from '../utils/Storage';
 import Page404 from './404';
 import PageDeny from './Deny';

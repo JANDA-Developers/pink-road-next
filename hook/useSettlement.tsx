@@ -3,7 +3,7 @@ import { settlementList, settlementListVariables, Fsettlement, _SettlementFilter
 import { getRefetch } from "../utils/api";
 import { generateListQueryHook, generateMutationHook } from "../utils/query";
 
-export const useSettlementList = generateListQueryHook<_SettlementFilter, _SettlementSort, settlementList, settlementListVariables, Fsettlement>(SETTLEMENT_LIST, { defaultSort: [_SettlementSort.createdAt_desc] });
+export const useSettlementList = generateListQueryHook<_SettlementFilter, _SettlementSort, settlementList, settlementListVariables, Fsettlement>(SETTLEMENT_LIST, { initialSort: [_SettlementSort.createdAt_desc] });
 export const useSettlementsRequest = generateMutationHook<settlementRequest, settlementRequestVariables>(SETTLEMENT_REQUEST, {
     ...getRefetch(SETTLEMENT_LIST)
 });

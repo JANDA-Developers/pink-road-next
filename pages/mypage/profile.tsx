@@ -5,7 +5,7 @@ interface IProp { }
 
 export const Profile: React.FC<IProp> = () => {
     //아이프레임으로 가져오자
-    return <iframe src="http://builder.stayjanda.cloud/#/XTHX1X" />
+    return <iframe style={{width:"100%"}} src="http://builder.stayjanda.cloud/#/XTHX1X" />
 };
 
 export default Profile;

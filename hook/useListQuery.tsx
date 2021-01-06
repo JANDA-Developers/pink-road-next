@@ -20,7 +20,7 @@ export interface IListHook<F, S> {
 }
 
 export function useListQuery<F, S>({ initialFilter, initialPageIndex, initialSort, initialViewCount }: ListInitOptions<F, S>) {
-    const [filter, setFilter] = useState<F>(initialFilter);
+    const [filter, setFilter] = useState<F>(initialFilter || {} as F);
     const [sort, setSort] = useState<S[]>(initialSort);
     const [viewCount, setViewCount] = useState(initialViewCount);
     const [page, setPage] = useState(initialPageIndex);

@@ -1,18 +1,16 @@
 import CalendarIcon from 'components/common/icon/CalendarIcon';
-import { Paginater } from 'components/common/Paginator';
-import { PurChasedItem } from 'components/mypage/PurchasedItem';
 import dayjs from 'dayjs';
 import { MypageLayout } from 'layout/MypageLayout';
-import React, { useContext } from 'react';
+import React from 'react';
 import SortSelect from '../../components/common/SortMethod';
 import { ViewCount } from '../../components/common/ViewCount';
 import { LastMonthBooking } from '../../components/static/LastMonthBooking';
 import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
 import { ThisMonthPayAmt } from '../../components/static/ThisMonthPayAmt';
-import { IuseBookingList, useBookingList } from '../../hook/useBooking';
+import { useSettlementList } from '../../hook/useSettlement';
 import { ALLOW_SELLERS } from '../../types/const';
 import { autoHypenPhone } from '../../utils/formatter';
-import { auth, compose } from '../../utils/with';
+import { auth } from '../../utils/with';
 
 interface IProp { }
 
@@ -40,6 +38,7 @@ const popupClose2 = () => {
 }
 
 export const MySettlement: React.FC<IProp> = () => {
+    const { items, setSort, sort, viewCount, setViewCount } = useSettlementList();
     return <MypageLayout>
         <div className="in mypage_purchase">
             <h4>매출/정산관리</h4>
@@ -158,11 +157,11 @@ export const MySettlement: React.FC<IProp> = () => {
                             <div className="tbody">
                                 <ul>
                                     {items.map(item =>
-                                        <li>
+                                        <li key={item._id}>
                                             <div className="th01"><input type="checkbox" /></div>
-                                            <div className="th02">{item.code}</div>
+                                            <div className="th02">{item._id}</div>
                                             <div className="th03">{item.product.title}</div>
-                                            <div className="th04">{item.name}<br />{autoHypenPhone(item.phoneNumber)}</div>
+                                            <div className="th04">{item._id}<br />{autoHypenPhone(item._id)}</div>
                                             <div className="th05">{dayjs(item.createdAt).format("YYYY.MM.DD")}</div>
                                             <div className="th06">{item}</div>
                                             <div className="th07"><strong className="ok">예약완료</strong></div>

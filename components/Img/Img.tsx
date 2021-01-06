@@ -1,6 +1,6 @@
-import { IDiv } from '@janda-com/front/dist/types/interface';
 import React from 'react';
-import { Upload } from './Upload';
+import { IDiv } from '../../types/interface';
+import { Upload } from '../common/Upload';
 
 export interface IEditKit<Page = any> {
     upload: (url: string) => void;
