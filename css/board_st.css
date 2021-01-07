@@ -949,6 +949,8 @@ ul.photo_ul li .category {
 .board_box {
     position: relative;
     display: block;
+    box-sizing: border-box;
+    padding: 0 3%;
 }
 
     .board_box .xe_content {
@@ -986,27 +988,15 @@ ul.photo_ul li .category {
                 vertical-align: bottom;
             }
 
-            /*.board_box .xe_content .xe_top .ct_01 {
-                color: #ed297b;
-                border: 1px solid #ed297b;
-            }
-
-            .board_box .xe_content .xe_top .ct_02 {
-                color: #002faa;
-                border: 1px solid #002faa;
-            }*/
-
             .board_box .xe_content .xe_top h3 {
                 position: relative;
                 display: block;
                 font-weight: 600;
-                font-size: 40px;
-                line-height:1.6em;
+                font-size: 3em;
+                line-height: 111%;
                 text-align: center;
                 margin-bottom: 7px;
             }
-
-       
             .board_box .xe_content .xe_top .menu {
                 display: inline-block;
                 width: 20px;
@@ -1019,7 +1009,6 @@ ul.photo_ul li .category {
                 font-size: 21px;
                 font-weight: 600;
             }
-
                 .board_box .xe_content .xe_top .menu > ul {
                     display: none;
                     position: absolute;
@@ -1086,6 +1075,7 @@ ul.photo_ul li .category {
             display: block;
             overflow: hidden;
             padding: 50px 15px;
+            box-sizing: border-box;
             border-top: 2px solid #333;
         }
 
@@ -2448,6 +2438,15 @@ div.sum_div {
 }
 
 @media (max-width:767px) {
+    .board_box .xe_content {
+        margin-top: 50px;
+    }
+    .board_box .xe_content .in_box{
+        padding: 30px 15px 50px;
+    }
+    .board_box .xe_content .xe_top h3 {
+        font-size: 2em;
+    }
     .photo_ul.line4 li {
         height: 185px;
     }

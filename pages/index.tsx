@@ -41,12 +41,12 @@ export const Main: React.FC = () => {
               <strong {...edit("m_01_title1")} />
               <span {...edit('m_01_subtitle1')}>
               </span>
-              <div className="btn_list">
+              <div className="btn_list onepick2">
                 <Link href="/guide">
-                  <a className="tourLink" {...edit("m_01_mainLink1_1")} />
+                  <a className="link" {...edit("m_01_mainLink1_1")} />
                 </Link>
                 <Link href="/tour">
-                  <a  {...edit("m_01_mainLink1_2")} />
+                  <a className="link" {...edit("m_01_mainLink1_2")} />
                 </Link>
               </div>
             </div>
@@ -59,9 +59,9 @@ export const Main: React.FC = () => {
               <strong {...edit("m_01_title2")} />
               <span {...edit('m_01_subtitle2')}>
               </span>
-              <div className="btn_list">
-                <Link href="/guide">
-                  <a className="/pinkroader_company_introduction_letter.pdf" {...edit("m_01_mainLink2_1")} />
+              <div className="btn_list onepick">
+                <Link href="/pinkroader_company_introduction_letter.pdf">
+                  <a className="link" {...edit("m_01_mainLink2_1")} />
                 </Link>
               </div>
             </div>

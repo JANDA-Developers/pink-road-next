@@ -156,12 +156,15 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
             </div>
         </div>
         <div className="w100 con05 con_block">
-            <div className="w1200">
+            <div className="w1200 onepick2">
                 <div className="txt">
                     <h4>핑크로더 홈페이지는</h4>
                     <span>사회적경제 혁신성장사업[비R&D] 사회적경제기업 경쟁력 강화 사업화지원 프로그램의 지원을 받아 일부 제작 되었습니다.</span>
                 </div>
-                <a target="_blank" className="link" href="/pinkroader_company_introduction_letter.pdf">회사소개서<br />다운로드</a>
+                <div className="link">
+                    <a target="_blank" className="" href="/pinkroader_company_introduction_letter.pdf">회사소개서<br />다운로드</a>
+
+                </div>
             </div>
         </div>
     </div>;
