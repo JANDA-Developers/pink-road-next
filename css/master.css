@@ -390,7 +390,7 @@
     .master_box .main_paper_div .hang.div09 span{
         width:22px;display: inline-block;
      }
-    .master_box .main_paper_div .hang.div09 object{
+    .master_box .main_paper_div .hang.div09 img{
         width:100%;
      }
      .master_box .main_paper_div .hang.div01 .view li{
@@ -1960,7 +1960,7 @@
             border: 1px solid #ccc;
             margin-right:10px;
         }
-        .master_box .notification_box .ovj  object {
+        .master_box .notification_box .ovj img {
             fill:#fff;
             width: 100%;
         }

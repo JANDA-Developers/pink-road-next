@@ -206,7 +206,7 @@ export const Header: React.FC<IProp> = () => {
 
                                         <input onKeyPress={whenEnter(goToSearchPage)} value={search} onChange={setVal(setSearch)} type="text" placeholder="검색어를 입력해주세요" />
                                         <div className="search_btn">
-                                            <img src={'/img/svg/search_icon.svg'} />
+                                            <img src={'/img/svg/search_icon.svg'} alt="search icon" />
                                             <button className="btt1" />
                                         </div>
                                         <div className="close_btn" onClick={handSearchClose}>
@@ -225,14 +225,14 @@ export const Header: React.FC<IProp> = () => {
                         {isLogin &&
                             <div className="inform_top">
                                 <div className="inform_icon">
-                                    <img src={'/img/svg/inform_icon4.svg'} />
+                                    <img src={'/img/svg/inform_icon4.svg'} alt="notification icon" />
                                     <button />
                                     <span className="number">99+</span>
                                 </div>
                             </div>
                         }
                         <div onClick={handleAllMenu} className="all_menu_btn">
-                            <img src={'/img/svg/allmenu_icon.svg'} />
+                            <img src={'/img/svg/allmenu_icon.svg'} alt="All menu" />
                             <button />
                         </div>
 
@@ -251,21 +251,21 @@ export const Header: React.FC<IProp> = () => {
 
                         <div className="m_all_menu_in">
                             {isLogin ? <span><a onClick={handleLogOut}>LOGOUT</a></span>
-                                : <span><Link href="/login"><a>LOGIN</a></Link></span>}
+                                : <span><Link href="/member/login"><a>LOGIN</a></Link></span>}
                             {isLogin && <span><Link href="/mypage"><a>MY PAGE</a></Link></span>}
                             {isLogin && <span><Link href="/mypage/notification"><a>알림</a></Link></span>}
                             {isLogin ? ""
                                 : <span><Link href="/member/join"><a>JOIN</a></Link></span>}
-                            <span><Link href="/member/inquiry"><a>문의하기</a></Link></span>
-                            <span><Link href="/member/event"><a>이벤트</a></Link></span>
+                            <span><Link href="/service/inquiry"><a>문의하기</a></Link></span>
+                            <span><Link href="/service/event"><a>이벤트</a></Link></span>
                             {/* <span><Link href="https://booking-app.stayjanda.cloud/#/"><a>예약관리시스템</a></Link></span> */}
                         </div>
                         <ul>
                             <li className="a_menu_tit deps solo_nav">
-                                <Link href=""><a>It's가이드<i className="jandaicon-arr4-right"></i></a></Link>
+                                <Link href="/guide"><a>It's가이드<i className="jandaicon-arr4-right"></i></a></Link>
                             </li>
                             <li className="a_menu_tit deps solo_nav">
-                                <Link href="/portfolio"><a>It's투어<i className="jandaicon-arr4-right"></i></a></Link>
+                                <Link href="/tour"><a>It's투어<i className="jandaicon-arr4-right"></i></a></Link>
                             </li>
                             <li className="a_menu_tit deps">
                                 <Link href="/service/notice"><a>서비스<i className="jandaicon-arr4-right"></i></a></Link>

@@ -2333,7 +2333,8 @@ div.sum_div {
 @media (min-width:1000px) {
   
     .new {
-        width: 16px;
+        width: 12px;
+        vertical-align: baseline;
     }
 .board_list .ct_01 {
     padding: 3px 13px;

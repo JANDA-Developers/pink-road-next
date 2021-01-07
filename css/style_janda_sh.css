@@ -1,3 +1,13 @@
+/* 이거 해결해주세요 ㅠㅠ tooltip 에러 */
+.ta120a8ea-d38b-4fb8-8b13-9ed06226ca52.place-top{
+    display: none !important;
+    margin-top: 0 !important;
+
+}
+.t479698b9-cde4-41a7-baec-0dcf5dd51efc{
+    border: 0;
+
+}
 /* svg */
 .svg_calendar {
     width: 30px;
@@ -821,22 +831,22 @@ div.goods_list {
             margin-left: 2px;
         }
             .main_con_box7 .box01 .sidetxt:after {
-                content: '';
-                position: absolute;
-                top: 11px;
-                right: -100%;
+                position: relative;
+                top: -5px;
+                right: -6px;
                 display: inline-block;
+                content: '';
                 width: 150px;
                 height: 1px;
                 background-color: #5dace9;
             }
         .main_con_box7 .box01 .link {
-            display: inline-block;
-            width: 150px;
-            height: 150px;
             position: absolute;
             top: 50%;
             right: 0;
+            display: inline-block;
+            width: 150px;
+            height: 150px;
             margin-top: -75px;
             border-radius: 500px;
             background-color: #ffffff;
@@ -2953,6 +2963,7 @@ ul.rank_ul {
 
             .sign_in .inner h4.join_title img {
                 display: inline-block;
+                width: 200px;
             }
 
         .sign_in .inner .login_info {
@@ -5536,7 +5547,7 @@ div.bn_box {
             position: relative;
             font-size: 0.9em;
             font-weight: 300;
-            line-height: 35px;
+            line-height: 150%;
             color: #757575;
         }
 
@@ -5590,14 +5601,14 @@ div.bn_box {
 
                 .join_wrap2 .choice_box li.li01 strong {
                     text-align: left;
-                    font-size: 33px;
+                    font-size: 2.2em;
                     color: #0d4c6e;
                 }
 
                 .join_wrap2 .choice_box li.li01 span {
                     text-align: left;
                     font-size: 13px;
-                    line-height: 19px;
+                    line-height: 120%;
                     color: #0d4c6e;
                 }
 
@@ -9286,6 +9297,9 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+    .sign_in .inner{
+        padding: 0;
+    }
     .tour_box {
         padding: 0 0 100px;
     }
@@ -9837,9 +9851,6 @@ i.calendar {
     .sign_in .inner .join_address {
         margin-bottom: 79px;
     }
-    .sign_in .inner .join_address ul {
-        width: 1200px;
-    }
     .sign_in .inner .join_address li {
         width: 100px;
         height: 100px;
@@ -10119,7 +10130,9 @@ i.calendar {
         right: 9%;
         bottom: -256px;
     }
- 
+    .sign_in .inner .join_address ul {
+        width: 1200px;
+    }
     .main_con_box3 .top_txt {
         padding: 120px 0 120px;
     }
@@ -10465,6 +10478,18 @@ i.calendar {
 }
 
 @media (max-width: 767px) {
+    .sign_in {
+        margin: 38px 0 50px;
+    }
+    .sign_in .inner {
+        margin-bottom: 70px;
+    }
+    .sign_in .inner .join_address li:after{
+        display: none;
+    }
+    .join_wrap2 .choice_box li.li01 strong {
+        font-size: 1.5em;
+    }
     .main_con_box2{
         box-sizing: border-box;
         padding-top: 30px;

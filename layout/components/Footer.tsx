@@ -22,7 +22,7 @@ export const Footer: React.FC<IProp> = () => {
                 <a className="top"><i className="jandaicon-arr4-top" /></a>
             </Link>
             {isLogin && <Link href="/mypage/basket">
-                <a className="basket"><object type="image/svg+xml" data="/img/svg/basket.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object><button /></a>
+                <a className="basket"><img src="/img/svg/basket.svg" alt="basket icon" /><button /></a>
             </Link>}
             <Link href="#footer">
                 <a className="down"><i className="jandaicon-arr4-bottom" /></a>
@@ -36,7 +36,7 @@ export const Footer: React.FC<IProp> = () => {
                     <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
                     <li className="sns">
                         <div>
-                            <Link href="/"><a target="_blank"><i className="jandaicon-facebook"></i></a></Link>
+                            <Link href="https://www.facebook.com/profile.php?id=100061223413851"><a target="_blank"><i className="jandaicon-facebook"></i></a></Link>
                             {/* <Link href="/"><a target="_blank"><i className="jandaicon-twitter"></i></a></Link> */}
                             <Link href="https://www.instagram.com/itsguide2021/"><a target="_blank"><i className="jandaicon-instagram2"></i></a></Link>
                             {/* <Link href="/"><a target="_blank"><i>N</i></a></Link> */}
@@ -48,7 +48,7 @@ export const Footer: React.FC<IProp> = () => {
             <div className="f_detail_wrap">
                 <div className="ft_left">
                     <div className="logo_bottom">
-                        <img src="/its/logo_2.png" alt="logo" />
+                        <img src="/its/logo_1.png" alt="logo" />
                     </div>
 
                 </div>
@@ -95,7 +95,7 @@ export const Footer: React.FC<IProp> = () => {
 
                         <li>
                             <strong>주소</strong>
-                            <span>부산광역시 영도구 봉래나루로 33, 306-27<a target="_blank" href="http://naver.me/GjR8uKKb" className="icon" title="지도로 새창띄우기"><img src="/img/svg/map.svg" /></a></span>
+                            <span>부산광역시 영도구 봉래나루로 33, 306-27<a target="_blank" href="http://naver.me/GjR8uKKb" className="icon" title="지도로 새창띄우기"><img src="/img/svg/map.svg" alt="지도바로가기" /></a></span>
                         </li>
                         <li>
                             <strong>계좌번호</strong>
