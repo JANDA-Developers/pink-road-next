@@ -17,7 +17,7 @@ import { useProductFindById } from "../../../hook/useProduct";
 import { changeVal } from "../../../utils/eventValueExtracter";
 import PageLoading from "../../Loading";
 import { auth } from "../../../utils/with";
-import { ADMINS, ALLOW_SELLERS } from "../../../types/const";
+import { ALLOW_ADMINS, ALLOW_ALLOW_SELLERS } from "../../../types/const";
 import { EditorLoading } from "../../../components/edit/EdiotrLoading";
 
 
@@ -245,9 +245,10 @@ export const TourWrite: React.FC<IProp> = () => {
                         <ul>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sale" value={ProductStatus.OPEN} checked={status === ProductStatus.OPEN} className="radio" /><label htmlFor="status-sale">판매중</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sold" value={ProductStatus.SOLD} checked={status === ProductStatus.SOLD} className="radio" /><label htmlFor="status-sold">완판</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-close" value={ProductStatus.CLOSE} checked={status === ProductStatus.CLOSE} className="radio" /><label htmlFor="status-close">판매종료</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-refused">거절됨</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.HIDE} checked={status === ProductStatus.HIDE} className="radio" /><label htmlFor="status-hide">숨겨짐</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.HIDE} checked={status === ProductStatus.UPDATE_REQ} className="radio" /><label htmlFor="status-hide">업데이트 요청</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.HIDE} checked={status === ProductStatus.UPDATE_REQ_REFUSED} className="radio" /><label htmlFor="status-hide">거절됨</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-ready" value={ProductStatus.READY} checked={status === ProductStatus.READY} className="radio" /><label htmlFor="status-ready">준비중</label></li>
                         </ul>
                     </div>
@@ -344,4 +345,4 @@ export const TourWrite: React.FC<IProp> = () => {
     </div>
 };
 
-export default auth(ALLOW_SELLERS)(TourWrite);
+export default auth(ALLOW_ALLOW_SELLERS)(TourWrite);

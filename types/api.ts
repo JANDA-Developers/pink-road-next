@@ -494,6 +494,7 @@ export interface categoryFindById_CategoryFindById_data {
   updatedAt: any;
   isDelete: boolean;
   label: string;
+  type: CategoryType;
 }
 
 export interface categoryFindById_CategoryFindById {
@@ -527,6 +528,7 @@ export interface categoryList_CategoryList_data {
   updatedAt: any;
   isDelete: boolean;
   label: string;
+  type: CategoryType;
 }
 
 export interface categoryList_CategoryList {
@@ -556,6 +558,7 @@ export interface categoryCreate_CategoryCreate_data {
   updatedAt: any;
   isDelete: boolean;
   label: string;
+  type: CategoryType;
 }
 
 export interface categoryCreate_CategoryCreate {
@@ -589,6 +592,7 @@ export interface categoryDelete_CategoryDelete_data {
   updatedAt: any;
   isDelete: boolean;
   label: string;
+  type: CategoryType;
 }
 
 export interface categoryDelete_CategoryDelete {
@@ -622,6 +626,7 @@ export interface categoryUpdate_CategoryUpdate_data {
   updatedAt: any;
   isDelete: boolean;
   label: string;
+  type: CategoryType;
 }
 
 export interface categoryUpdate_CategoryUpdate {
@@ -720,76 +725,6 @@ export interface homepageUpdate {
 
 export interface homepageUpdateVariables {
   params: HomepageUpdateInput;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: pcategoryCreate
-// ====================================================
-
-export interface pcategoryCreate_pCategoryCreate {
-  __typename: "pCategoryCreateResponse";
-  ok: boolean;
-  error: string | null;
-}
-
-export interface pcategoryCreate {
-  pCategoryCreate: pcategoryCreate_pCategoryCreate;
-}
-
-export interface pcategoryCreateVariables {
-  params: pCategoryCreateInput;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: pcategoryDelete
-// ====================================================
-
-export interface pcategoryDelete_pCategoryDelete {
-  __typename: "pCategoryDeleteResponse";
-  ok: boolean;
-  error: string | null;
-}
-
-export interface pcategoryDelete {
-  pCategoryDelete: pcategoryDelete_pCategoryDelete;
-}
-
-export interface pcategoryDeleteVariables {
-  _id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: pcategoryUpdate
-// ====================================================
-
-export interface pcategoryUpdate_pCategoryUpdate {
-  __typename: "pCategoryUpdateResponse";
-  ok: boolean;
-  error: string | null;
-}
-
-export interface pcategoryUpdate {
-  pCategoryUpdate: pcategoryUpdate_pCategoryUpdate;
-}
-
-export interface pcategoryUpdateVariables {
-  params: pCategoryUpdateInput;
-  id: string;
 }
 
 /* tslint:disable */
@@ -1632,31 +1567,39 @@ export interface templateList_TemplateList_page {
   remainder: number;
 }
 
-export interface templateList_TemplateList_data_trigger_tags {
+export interface templateList_TemplateList_data_triggers_tags {
   __typename: "Tag";
   key: string;
   value: string;
 }
 
-export interface templateList_TemplateList_data_trigger {
+export interface templateList_TemplateList_data_triggers {
   __typename: "NotificationTrigger";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
   sender: string;
   event: NotificationTriggerEvent;
   isEnabled: boolean;
-  tags: templateList_TemplateList_data_trigger_tags[];
+  tags: templateList_TemplateList_data_triggers_tags[];
+}
+
+export interface templateList_TemplateList_data_tags {
+  __typename: "Tag";
+  key: string;
+  value: string;
 }
 
 export interface templateList_TemplateList_data {
-  __typename: "TemplateSms" | "TemplateEmail";
+  __typename: "TemplateSms";
   _id: string;
   createdAt: any;
   name: string;
   description: string | null;
   content: string;
-  trigger: templateList_TemplateList_data_trigger[];
+  /**
+   * 코드겐용
+   */
+  _replaceEnum: ReplaceString | null;
+  triggers: templateList_TemplateList_data_triggers[];
+  tags: templateList_TemplateList_data_tags[];
   replacers: string[];
 }
 
@@ -1909,8 +1852,8 @@ export interface portfolioFindById_PortfolioFindById_data_thumb {
   owner: string;
 }
 
-export interface portfolioFindById_PortfolioFindById_data_pCategory {
-  __typename: "pCategory";
+export interface portfolioFindById_PortfolioFindById_data_category {
+  __typename: "Category";
   _id: string;
   label: string;
 }
@@ -1929,7 +1872,7 @@ export interface portfolioFindById_PortfolioFindById_data {
   contents: string;
   author: portfolioFindById_PortfolioFindById_data_author | null;
   thumb: portfolioFindById_PortfolioFindById_data_thumb | null;
-  pCategory: portfolioFindById_PortfolioFindById_data_pCategory | null;
+  category: portfolioFindById_PortfolioFindById_data_category | null;
 }
 
 export interface portfolioFindById_PortfolioFindById {
@@ -2084,8 +2027,8 @@ export interface portfolioList_PortfolioList_data_thumb {
   owner: string;
 }
 
-export interface portfolioList_PortfolioList_data_pCategory {
-  __typename: "pCategory";
+export interface portfolioList_PortfolioList_data_category {
+  __typename: "Category";
   _id: string;
   label: string;
 }
@@ -2104,7 +2047,7 @@ export interface portfolioList_PortfolioList_data {
   contents: string;
   author: portfolioList_PortfolioList_data_author | null;
   thumb: portfolioList_PortfolioList_data_thumb | null;
-  pCategory: portfolioList_PortfolioList_data_pCategory | null;
+  category: portfolioList_PortfolioList_data_category | null;
 }
 
 export interface portfolioList_PortfolioList {
@@ -2800,6 +2743,25 @@ export interface productFindById_ProductFindById_data_questions_thumb {
   owner: string;
 }
 
+export interface productFindById_ProductFindById_data_questions_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface productFindById_ProductFindById_data_questions_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  email: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: productFindById_ProductFindById_data_questions_author_profileImg | null;
+}
+
 export interface productFindById_ProductFindById_data_questions {
   __typename: "Question";
   _id: string;
@@ -2820,6 +2782,7 @@ export interface productFindById_ProductFindById_data_questions {
   viewCount: number;
   likeCount: number;
   no: number;
+  author: productFindById_ProductFindById_data_questions_author | null;
 }
 
 export interface productFindById_ProductFindById_data {
@@ -2870,35 +2833,6 @@ export interface productFindById {
 
 export interface productFindByIdVariables {
   _id: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: pcategoryList
-// ====================================================
-
-export interface pcategoryList_pCategoryList_data {
-  __typename: "pCategory";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  label: string;
-}
-
-export interface pcategoryList_pCategoryList {
-  __typename: "pCategoryListResponse";
-  ok: boolean;
-  error: string | null;
-  data: pcategoryList_pCategoryList_data[] | null;
-}
-
-export interface pcategoryList {
-  pCategoryList: pcategoryList_pCategoryList;
 }
 
 /* tslint:disable */
@@ -3268,6 +3202,7 @@ export interface getContext_CategoryList_data {
   updatedAt: any;
   isDelete: boolean;
   label: string;
+  type: CategoryType;
 }
 
 export interface getContext_CategoryList {
@@ -4766,6 +4701,7 @@ export interface Fcategory {
   updatedAt: any;
   isDelete: boolean;
   label: string;
+  type: CategoryType;
 }
 
 /* tslint:disable */
@@ -5002,8 +4938,8 @@ export interface Fportfolio_thumb {
   owner: string;
 }
 
-export interface Fportfolio_pCategory {
-  __typename: "pCategory";
+export interface Fportfolio_category {
+  __typename: "Category";
   _id: string;
   label: string;
 }
@@ -5022,7 +4958,7 @@ export interface Fportfolio {
   contents: string;
   author: Fportfolio_author | null;
   thumb: Fportfolio_thumb | null;
-  pCategory: Fportfolio_pCategory | null;
+  category: Fportfolio_category | null;
 }
 
 /* tslint:disable */
@@ -5437,9 +5373,6 @@ export interface FnotificationTrigger_tags {
 
 export interface FnotificationTrigger {
   __typename: "NotificationTrigger";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
   sender: string;
   event: NotificationTriggerEvent;
   isEnabled: boolean;
@@ -5455,31 +5388,39 @@ export interface FnotificationTrigger {
 // GraphQL fragment: FsmsTemplate
 // ====================================================
 
-export interface FsmsTemplate_trigger_tags {
+export interface FsmsTemplate_triggers_tags {
   __typename: "Tag";
   key: string;
   value: string;
 }
 
-export interface FsmsTemplate_trigger {
+export interface FsmsTemplate_triggers {
   __typename: "NotificationTrigger";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
   sender: string;
   event: NotificationTriggerEvent;
   isEnabled: boolean;
-  tags: FsmsTemplate_trigger_tags[];
+  tags: FsmsTemplate_triggers_tags[];
+}
+
+export interface FsmsTemplate_tags {
+  __typename: "Tag";
+  key: string;
+  value: string;
 }
 
 export interface FsmsTemplate {
-  __typename: "TemplateSms" | "TemplateEmail";
+  __typename: "TemplateSms";
   _id: string;
   createdAt: any;
   name: string;
   description: string | null;
   content: string;
-  trigger: FsmsTemplate_trigger[];
+  /**
+   * 코드겐용
+   */
+  _replaceEnum: ReplaceString | null;
+  triggers: FsmsTemplate_triggers[];
+  tags: FsmsTemplate_tags[];
   replacers: string[];
 }
 
@@ -5499,21 +5440,24 @@ export interface FnotificationManager_smsPricingTable {
   MMS: number;
 }
 
-export interface FnotificationManager_templates_trigger_tags {
+export interface FnotificationManager_templates_triggers_tags {
   __typename: "Tag";
   key: string;
   value: string;
 }
 
-export interface FnotificationManager_templates_trigger {
+export interface FnotificationManager_templates_triggers {
   __typename: "NotificationTrigger";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
   sender: string;
   event: NotificationTriggerEvent;
   isEnabled: boolean;
-  tags: FnotificationManager_templates_trigger_tags[];
+  tags: FnotificationManager_templates_triggers_tags[];
+}
+
+export interface FnotificationManager_templates_tags {
+  __typename: "Tag";
+  key: string;
+  value: string;
 }
 
 export interface FnotificationManager_templates {
@@ -5523,7 +5467,12 @@ export interface FnotificationManager_templates {
   name: string;
   description: string | null;
   content: string;
-  trigger: FnotificationManager_templates_trigger[];
+  /**
+   * 코드겐용
+   */
+  _replaceEnum: ReplaceString | null;
+  triggers: FnotificationManager_templates_triggers[];
+  tags: FnotificationManager_templates_tags[];
   replacers: string[];
 }
 
@@ -5646,6 +5595,25 @@ export interface Fquestion_thumb {
   owner: string;
 }
 
+export interface Fquestion_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface Fquestion_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  email: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: Fquestion_author_profileImg | null;
+}
+
 export interface Fquestion {
   __typename: "Question";
   _id: string;
@@ -5666,6 +5634,7 @@ export interface Fquestion {
   viewCount: number;
   likeCount: number;
   no: number;
+  author: Fquestion_author | null;
 }
 
 /* tslint:disable */
@@ -5770,6 +5739,15 @@ export enum BoardType {
 }
 
 /**
+ * 카테고리 타입
+ */
+export enum CategoryType {
+  CUSTOMER_QNA = "CUSTOMER_QNA",
+  PORTPOLIO = "PORTPOLIO",
+  QNA = "QNA",
+}
+
+/**
  * 통화
  */
 export enum Currency {
@@ -5804,12 +5782,21 @@ export enum NotificationMethod {
 }
 
 export enum NotificationTriggerEvent {
-  BANK_TRANSFER = "BANK_TRANSFER",
-  CALCULATE_REQUEST = "CALCULATE_REQUEST",
-  CANCEL_BOOKING = "CANCEL_BOOKING",
-  COMPLETE_BOOKING = "COMPLETE_BOOKING",
+  BANK_TRANSFER_BOOKER = "BANK_TRANSFER_BOOKER",
+  BANK_TRANSFER_SELLER = "BANK_TRANSFER_SELLER",
+  CANCEL_BOOKING_BOOKER = "CANCEL_BOOKING_BOOKER",
+  CANCEL_BOOKING_SELLER = "CANCEL_BOOKING_SELLER",
+  COMPLETE_BOOKING_BOOKER = "COMPLETE_BOOKING_BOOKER",
+  COMPLETE_BOOKING_SELLER = "COMPLETE_BOOKING_SELLER",
   PRODUCT_CONFIRM_REQUEST = "PRODUCT_CONFIRM_REQUEST",
-  TRAVEL_UNCONFIRMED = "TRAVEL_UNCONFIRMED",
+  SETTLEMENT_REQUEST = "SETTLEMENT_REQUEST",
+  SIGNUP_INDI_USER = "SIGNUP_INDI_USER",
+  SIGNUP_PARNTER_B_USER = "SIGNUP_PARNTER_B_USER",
+  SIGNUP_PARTNER_USER = "SIGNUP_PARTNER_USER",
+  TRAVEL_CANCELED_BOOKER = "TRAVEL_CANCELED_BOOKER",
+  TRAVEL_CANCELED_SELLER = "TRAVEL_CANCELED_SELLER",
+  TRAVEL_CONFIRMED_BOOKER = "TRAVEL_CONFIRMED_BOOKER",
+  TRAVEL_CONFIRMED_SELLER = "TRAVEL_CONFIRMED_SELLER",
 }
 
 /**
@@ -5840,6 +5827,21 @@ export enum ProductType {
 export enum QuestionStatus {
   COMPLETE = "COMPLETE",
   READY = "READY",
+}
+
+export enum ReplaceString {
+  BOOKERNMAE = "BOOKERNMAE",
+  BOOKING_STATUS = "BOOKING_STATUS",
+  INTERGRATED_PRODUCT_INFO = "INTERGRATED_PRODUCT_INFO",
+  PARTNERNAME = "PARTNERNAME",
+  PEOPLE = "PEOPLE",
+  PORD_NAME = "PORD_NAME",
+  PRICE = "PRICE",
+  REFUND_AMT = "REFUND_AMT",
+  REQUEST_DATE = "REQUEST_DATE",
+  TRAVEL_CONFIRMED = "TRAVEL_CONFIRMED",
+  TRAVEL_DATE_YMD = "TRAVEL_DATE_YMD",
+  USERNAME = "USERNAME",
 }
 
 /**
@@ -6124,6 +6126,7 @@ export interface BookingsCreateInput {
 
 export interface CategoryCreateInput {
   label: string;
+  type: CategoryType;
 }
 
 export interface CategoryUpdateInput {
@@ -6249,7 +6252,7 @@ export interface PortfolioCreateInput {
   keyWards?: string[] | null;
   attachFiles?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
-  pCategoryId: string;
+  categoryId: string;
 }
 
 export interface PortfolioUpdateInput {
@@ -6262,7 +6265,7 @@ export interface PortfolioUpdateInput {
   keyWards?: string[] | null;
   attachFiles?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
-  pCategoryId?: string | null;
+  categoryId?: string | null;
 }
 
 export interface ProductCreateInput {
@@ -6386,14 +6389,15 @@ export interface SmsTemplateCreateInput {
   content: string;
   description?: string | null;
   triggers?: NotificationTriggerCreateInput[] | null;
+  tags?: GqlTagInput[] | null;
 }
 
 export interface SmsTemplateUpdateInput {
   content?: string | null;
   name?: string | null;
   description?: string | null;
-  triggersAdd?: NotificationTriggerCreateInput[] | null;
-  triggersRemove?: any[] | null;
+  triggers?: NotificationTriggerCreateInput[] | null;
+  tags?: GqlTagInput[] | null;
 }
 
 export interface UserUpdateInput {
@@ -6593,9 +6597,9 @@ export interface _PaymentFilter {
 export interface _PortfolioFilter {
   AND?: _PortfolioFilter[] | null;
   OR?: _PortfolioFilter[] | null;
-  pCategoryId_eq?: string | null;
-  pCategoryId_not_eq?: string | null;
-  pCategoryId_in?: string[] | null;
+  categoryId_eq?: string | null;
+  categoryId_not_eq?: string | null;
+  categoryId_in?: string[] | null;
   title_eq?: string | null;
   title_not_eq?: string | null;
   title_contains?: string | null;
@@ -6778,14 +6782,6 @@ export interface _UserFilter {
   createdAt_lt?: any | null;
   createdAt_gte?: any | null;
   createdAt_gt?: any | null;
-}
-
-export interface pCategoryCreateInput {
-  label: string;
-}
-
-export interface pCategoryUpdateInput {
-  label?: string | null;
 }
 
 export interface pageInput {

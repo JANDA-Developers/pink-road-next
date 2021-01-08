@@ -7,7 +7,7 @@ import { useHomepageUpdate } from '../../../hook/useHomepage';
 import { HomepageUpdateInput } from '../../../types/api';
 import { LoadEditor } from '../../../components/edit/EdiotrLoading';
 import { auth } from '../../../utils/with';
-import { ADMINS } from '../../../types/const';
+import { ALLOW_ADMINS } from '../../../types/const';
 const Editor = LoadEditor();
 
 interface IProp { }
@@ -150,4 +150,4 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
     </MasterLayout >
 };
 
-export default auth(ADMINS)(MsHomepageA);
+export default auth(ALLOW_ADMINS)(MsHomepageA);

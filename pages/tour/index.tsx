@@ -3,29 +3,21 @@ import SubTopNav from 'layout/components/SubTop';
 import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import pageInfoDefault from "info/tourMain.json";
-import { useRouter } from 'next/router'
-import { Fcategory, productList_ProductList_data_category } from 'types/api';
-import { IProduct } from 'types/interface';
-import { BG } from '../../types/const';
 import { InferGetStaticPropsType } from 'next';
-import { getEditUtils } from '../../utils/pageEdit';
-import { AppContext } from '../_app';
+import { AppContext, EditContext } from '../_app';
 import { getStaticPageInfo } from '../../utils/page';
-import { IuseProductList, useProductList } from '../../hook/useProduct';
-import { checkIsExp, getTypeFilterByUrl } from '../../utils/product';
-import { useCategoryList } from '../../hook/useCategory';
+import { checkIsExp } from '../../utils/product';
 import { TourMainBoard } from '../../components/tour/TourMainBoard';
+import TOUR_MAIN_INFO from "info/tourMain.json";
 
 interface IProp extends InferGetStaticPropsType<typeof getStaticProps> { }
 
-export const getStaticProps = getStaticPageInfo("tourMain");
+export const getStaticProps = getStaticPageInfo("tourMain", TOUR_MAIN_INFO);
 export const TourMain: React.FC<IProp> = ({ pageInfo: sitePageInfo }) => {
     const isExp = checkIsExp();
-    const original = sitePageInfo || pageInfoDefault;
-    const { editMode } = useContext(AppContext);
-    const [pageInfo, setPageInfo] = useState(original);
-    const { items: cats } = useCategoryList();
-    const { edit, imgEdit, bg } = getEditUtils(editMode, pageInfo, setPageInfo)
+    const { categoriesMap } = useContext(AppContext);
+    const { edit, imgEdit, bg } = useContext(EditContext);
+    const cats = categoriesMap?.PORTPOLIO || []
 
     return <div >
         <Meta />

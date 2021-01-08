@@ -31,6 +31,14 @@ export const F_QUESTION = gql`
         likeCount
         status
         no
+        author {
+            _id
+            nickName
+            email
+            profileImg {
+              uri
+            }
+        }
     }
     ${F_ANSWER}
     ${F_FILE}
@@ -55,28 +63,20 @@ export const QUESTION_LIST = gql`
     }
     data  {
       ...Fquestion,
-      author {
-            _id
-            nickName
-            email
-            profileImg {
-              uri
-            }
-        }
-        product {
+      product {
+        _id
+        title
+        author {
           _id
-          title
-          author {
-            _id
-            name
-            nickName
-          }
+          name
+          nickName
+        }
       }
     }
   }
-  }
-  ${F_PAGE}
-  ${F_QUESTION}
+}
+${F_PAGE}
+${F_QUESTION}
 `
 
 export const QUESTION_CREATE = gql`

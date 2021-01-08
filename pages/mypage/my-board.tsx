@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { MypageLayout } from '../../layout/MypageLayout';
-import { lastMonthFirstDate, lastMonthLastDate, ONLY_LOGINED, thisMonthFirstDate, thisMonthLastDate } from '../../types/const';
+import { lastMonthFirstDate, lastMonthLastDate, ALLOW_LOGINED, thisMonthFirstDate, thisMonthLastDate } from '../../types/const';
 import { AppContext } from '../_app';
 import { auth } from '../../utils/with';
 import { boardFindByEmail_BoardFindByEmail_data } from '../../types/api';
@@ -165,4 +165,4 @@ export const MypageBoardWrap = () => {
     return <MyPageBoard boardWrapContext={mypageBoardWrapContext} />
 }
 
-export default auth(ONLY_LOGINED)(MypageBoardWrap);
+export default auth(ALLOW_LOGINED)(MypageBoardWrap);

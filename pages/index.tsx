@@ -9,19 +9,22 @@ import { useRouter } from 'next/router';
 import { getStaticPageInfo } from '../utils/page';
 import { EditContext } from './_app';
 import Slider from "react-slick";
+import { IUsePageEdit } from '../hook/usePageEdit';
 
 export const Main: React.FC = () => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
-  const { imgEdit, edit, bg } = useContext<IEditPage<typeof pageInfoDefault>>(EditContext as any);
+  const { imgEdit, edit, bg } = useContext<IUsePageEdit<typeof pageInfoDefault>>(EditContext);
   const router = useRouter()
-
 
   const toProductBoard = (id: string) => {
     router.push(id);
   }
 
+  edit
+
   return <div className="body main" id="main" >
     <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
+
 
 
     <div className="main_con_box1 Slider_box">

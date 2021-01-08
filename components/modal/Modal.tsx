@@ -10,7 +10,7 @@ interface IProp extends IDiv {
 
 
 export const Modal: React.FC<IProp> = ({ id, className, inClassName, children, title, ...props }) => {
-    return <div className="popup_bg_mini" style={{
+    return <div className={className || `popup_bg_mini`} style={{
         top: 0,
         bottom: 0,
         right: 0,

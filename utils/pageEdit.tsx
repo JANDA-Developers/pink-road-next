@@ -1,5 +1,6 @@
 import { CSSProperties } from "react";
 import $ from "jquery"
+import { ISet } from "../types/interface";
 interface Style {
     style?: CSSProperties,
 }
@@ -55,16 +56,13 @@ export const effectDoc = (command: TCommand) => {
 export interface IGetEditUtilsResult<Page> {
     page: Page;
     setPage: React.Dispatch<any>;
-    lang: Langs;
+    lang: "kr";
     edit: (key: keyof Page, index?: number) => any;
     ulEdit: (key: keyof Page) => any;
     imgEdit: (key: keyof Page) => (url: string) => void;
     editArray: (key: keyof Page, index: number, value: any) => void;
     addArray: (key: keyof Page, value: any) => void;
     removeArray: (key: keyof Page, index: number) => void
-    arrAddKit: (key: keyof Page, modalHook: IUseModal) => {
-        onClick: () => void;
-    },
     bg: (key: keyof Page) => {
         backgroundImage: string;
     } | undefined;
@@ -73,22 +71,7 @@ export interface IGetEditUtilsResult<Page> {
         "data-imgkey": keyof Page;
         "data-img": string;
     } | undefined;
-    imgKit: (key: keyof Page) => IEditKit
     get: (key: keyof Page) => any
-    linkEdit: (key: keyof Page) => ILinkEditProps
-    arrayEditModalKit: (key: keyof Page, modalHook: IUseModal) => {
-        onSubmit: (data: any) => void;
-        onDelete: (index: number) => void;
-        key: string;
-        modalHook: IUseModal
-    },
-    editObjArr: (key: keyof Page, index: number, modalHook: IUseModal) => {
-        onClick: () => void;
-        "data-edit": string;
-        key: string
-    } | {
-        key: string
-    }
 }
 
 
@@ -122,23 +105,6 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
     const editable: "true" | undefined = editMode === true ? "true" : undefined;
 
     const singleBlur = onSingleBlur.bind(onSingleBlur);
-
-    const arrayEditModalKit = (key: keyof T, tourModalHook: IUseModal) => {
-        return {
-            onSubmit: (data: any, index?: number) => {
-                if (index !== undefined) {
-                    editArray(key, data.index, data)
-                } else {
-                    addArray(key, data)
-                }
-            },
-            onDelete: (index: number) => {
-                removeArray(key, index)
-            },
-            modalHook: tourModalHook,
-            key: key + tourModalHook.info?.index + tourModalHook.info?.key
-        }
-    }
 
     const editArray = (key: keyof T, index: number, value: any) => {
         validateKey(key, index)
@@ -234,7 +200,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         return page[key][lang]
     }
 
-    const linkEdit = (key: keyof T): ILinkEditProps => {
+    const linkEdit = (key: keyof T) => {
         validateKey(key);
         const link = get(key);
 
@@ -247,41 +213,6 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         }
     }
 
-    const editObjArr = (key: keyof T, index: number, modalHook: IUseModal) => {
-        validateKey(key, index);
-        if (!page[key].META) throw Error(`${key} on page META dose not exsit`);
-
-        const _key = `${key}${index}EditArr`;
-
-        if (editMode) {
-            return {
-                onClick: (e: React.MouseEvent) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    modalHook.openModal(
-                        { META: page[key].META, origin: page[key][lang][index], index }
-                    )
-                },
-                "data-edit": "array",
-                key: _key,
-            }
-        }
-
-        return {
-            key: _key
-        }
-    }
-
-    const arrAddKit = (key: keyof T, modalHook: IUseModal) => {
-        validateKey(key);
-        if (!page[key].META) throw Error(`${key} on page META dose not exsit`);
-
-        return {
-            onClick: () => {
-                modalHook.openModal({ META: page[key].META, key: "create" })
-            }
-        }
-    }
 
     // 에디터 모드이거나 값이 있으면 출력함
     const view = (key: keyof T) => editMode || get(key)
@@ -297,9 +228,6 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         editArray,
         addArray,
         removeArray,
-        arrayEditModalKit,
-        arrAddKit,
-        editObjArr,
         bg,
         src,
         view,

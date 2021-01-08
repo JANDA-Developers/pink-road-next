@@ -2,18 +2,31 @@ import { MasterLayout } from 'layout/MasterLayout';
 import React, { useState } from 'react';
 import Link from "next/link";
 import { useSmsTemplateCreate, useSmsTemplateDelete, useSmsTemplateUpdate, useTemplateList } from '../../../hook/useNotification';
-import { FsmsTemplate } from '../../../types/api';
+import { FsmsTemplate, _ITemplateSort } from '../../../types/api';
 import { openModal } from '../../../utils/popUp';
-import { SMSmodal } from '../../../components/sms/SMSmodal';
+import { SMSmodal, SMStemplateTagKr, TSMStemplateTag } from '../../../components/sms/SMSmodal';
+import { ALLOW_ALLOW_SELLERS } from '../../../types/const';
+import { auth } from '../../../utils/with';
+import SortSelect from '../../../components/common/SortMethod';
+import { SortSelecter } from '../../../components/common/SortSelect';
 
-export const MsHomepageA: React.FC<IProp> = () => {
-    const { items: templates } = useTemplateList()
+
+export const MsHomepageA: React.FC = () => {
+    const { items: templates, setSort, sort } = useTemplateList()
     const [template, setTemplate] = useState<FsmsTemplate>();
 
     const handleOpenSmsModal = (template: FsmsTemplate) => () => {
         setTemplate(template);
-        openModal("SMSmodal")();
+        openModal("#SMSmodal")();
     }
+
+    const handleOpenCreateModal = () => () => {
+        setTemplate(undefined)
+        openModal("#SMSmodal")();
+    }
+
+    console.log("templates");
+    console.log(templates);
 
     return <MasterLayout>
         <div className="in ">
@@ -40,10 +53,10 @@ export const MsHomepageA: React.FC<IProp> = () => {
                             </ul>
                         </div>
                         <div className="right_div">
-                            <select className="sel01">
-                                <option>최신순 &uarr;</option>
-                                <option>최신순 &darr;</option>
-                            </select>
+                            <SortSelecter onChange={setSort} sort={sort}>
+                                <option value={_ITemplateSort.createdAt_desc}>최신순 &uarr;</option>
+                                <option value={_ITemplateSort.createdAt_asc}>최신순 &darr;</option>
+                            </SortSelecter>
                         </div>
                     </div>
                     <div className="sms-list">
@@ -53,8 +66,8 @@ export const MsHomepageA: React.FC<IProp> = () => {
                                     <div className="title">
                                         <h5>{template.name}</h5>
                                         <div className="tag">
-                                            <span className="ct">회원</span>
-                                            {template.trigger?.[0] && <span className="auto">자동</span>}
+                                            {template.tags[0] && <span className="ct">{SMStemplateTagKr[template.tags[0].value as TSMStemplateTag]}</span>}
+                                            {template.triggers?.[0] && <span className="auto">자동</span>}
                                         </div>
                                     </div>
                                     <div>
@@ -65,7 +78,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                                     <div onClick={handleOpenSmsModal(template)} className="mouseover"><span><i className="jandaicon-setting"></i>수정</span></div>
                                 </li>
                             )}
-                            <li className="add" onClick={openModal("SMSmodal")}>
+                            <li className="add" onClick={handleOpenCreateModal()}>
                                 <button><i className="flaticon-add"></i>템플릿 생성</button>
                             </li>
                         </ul>
@@ -79,4 +92,4 @@ export const MsHomepageA: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsHomepageA;
+export default auth(ALLOW_ALLOW_SELLERS)(MsHomepageA);

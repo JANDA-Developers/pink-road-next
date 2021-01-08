@@ -1,10 +1,52 @@
 import { MasterLayout } from 'layout/MasterLayout';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import Link from "next/link";
+import { AppContext } from '../../_app';
+import { useCategoryCreate, useCategoryDelete, useCategoryList, useCategoryUpdate } from '../../../hook/useCategory';
+import { CategoryType, Fcategory } from '../../../types/api';
+import { CategoryEitdor } from '../../../components/categoryEditor/CategoryEdiotr';
+import { categoryMap } from '../../../utils/categoryMap';
 
 interface IProp { }
 
 export const MsHomepageA: React.FC<IProp> = () => {
+    const { data } = useCategoryList();
+    const categoriesMap = categoryMap(data || []);
+    const [deleteMu] = useCategoryDelete();
+    const [create] = useCategoryCreate();
+    const [update] = useCategoryUpdate();
+
+
+
+    if (!categoriesMap) throw Error("categoriesMap is not exsist");
+    const cats = Object.entries(categoriesMap);
+
+    const categoryToKR: Record<CategoryType, string> = {
+        CUSTOMER_QNA: "유저QNA",
+        PORTPOLIO: "포트폴리오",
+        QNA: "QNA"
+    }
+
+    const handleAdd = (type: CategoryType) => (label: string) => {
+        create({
+            variables: {
+                params: {
+                    label: label, type
+                }
+            }
+        })
+    }
+
+    const handleDelete = (cat: Fcategory) => {
+        if (confirm(`정말로 카테고리 ${cat.label}을 삭제 하시겠습니까?`))
+            deleteMu({ variables: { id: cat._id } })
+    }
+
+    const handleUpdate = (cat: Fcategory, label: string) => {
+        update({ variables: { id: cat._id, params: { label } } })
+
+    }
+
     return <MasterLayout>
         <div className="in ">
             <h4>홈페이지 설정</h4>
@@ -20,82 +62,18 @@ export const MsHomepageA: React.FC<IProp> = () => {
                     </ul>
                 </div>
                 <div className="con homepage board">
-                    <div className="fin">
-                        <div className="float_left">
-                        </div>
-                        <div className="float_right">
-                            <button type="submit" className="btn medium">저장하기</button>
-                        </div>
-                    </div>
+
                     <div className="design_table">
                         <div className="block_box">
                             <h5>게시판 카테고리 설정</h5>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">공지사항</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <ul className="list">
-                                            <li>공지<i className="del"></i></li>
-                                            <li>안내<i className="del"></i></li>
-                                        </ul>
-                                        <input className="w30" placeholder="" type="text" />
-                                        <button className="btn">추가</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">QnA</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <ul className="list">
-                                            <li>여행<i className="del"></i></li>
-                                            <li>체험<i className="del"></i></li>
-                                            <li>파트너<i className="del"></i></li>
-                                            <li>예약<i className="del"></i></li>
-                                        </ul>
-                                        <input className="w30" placeholder="" type="text" />
-                                        <button className="btn">추가</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">고객문의</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <ul className="list">
-                                            <li>예약<i className="del"></i></li>
-                                            <li>체험<i className="del"></i></li>
-                                            <li>여향<i className="del"></i></li>
-                                            <li>취소/환불<i className="del"></i></li>
-                                            <li>정산<i className="del"></i></li>
-                                        </ul>
-                                        <input className="w30" placeholder="" type="text" />
-                                        <button className="btn">추가</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div className="fin">
-                        <div className="float_left">
-                        </div>
-                        <div className="float_right">
-                            <button type="submit" className="btn medium">저장하기</button>
+                            {cats.map((catWrap) =>
+                                <CategoryEitdor onDelete={handleDelete} onEdit={handleUpdate} key={catWrap[0]} onAdd={handleAdd(catWrap[0] as CategoryType)} wrapLabel={categoryToKR[catWrap[0] as CategoryType]} categories={catWrap[1]} />
+                            )}
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </MasterLayout >
 };
 

@@ -51,6 +51,7 @@ export const F_CATEGORY = gql`
         updatedAt
         isDelete
         label
+        type
     }
 `
 export const F_FILE = gql`
@@ -135,34 +136,6 @@ export const F_BOOKING = gql`
         phoneNumber
         isPaid
     }
-`
-
-
-export const F_PORTFOLIO = gql`
-    fragment Fportfolio on Portfolio {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        title
-        isOpen
-        keyWards
-        summary
-        subTitle
-        contents
-        author {
-            ...Fuser
-        }
-        thumb {
-            ...Ffile
-        }
-        pCategory {
-            _id
-            label
-        }
-    }
-    ${F_FILE}
-    ${F_USER}
 `
 
 export const F_PAGE_INFO = gql`

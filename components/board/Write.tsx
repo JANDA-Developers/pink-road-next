@@ -17,7 +17,7 @@ export interface IBoardOpen {
     open: boolean;
 }
 
-type TCategory = { _id: string, label: string };
+export type TCategory = { _id: string, label: string };
 interface IProps {
     boardHook: IUseBoard
     categoryList?: TCategory[]

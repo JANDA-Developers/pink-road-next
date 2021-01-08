@@ -3,9 +3,6 @@ import { F_PAGE, F_PAGE_INFO } from "./fragments";
 
 export const F_NOTIFICATION_TRIGGER = gql`
   fragment FnotificationTrigger on NotificationTrigger  {
-    _id
-    createdAt
-    updatedAt
     sender
     event
     isEnabled
@@ -23,8 +20,13 @@ export const F_SMS_TEMPLATE = gql`
     name
     description
     content
-    trigger {
+    _replaceEnum
+    triggers {
       ...FnotificationTrigger
+    }
+    tags {
+      key
+      value
     }
     replacers
   }
@@ -222,10 +224,25 @@ export const TEMPLATE_LIST = gql`
       ...Fpage
     }
     data  {
-      ...FsmsTemplate
+      ... on TemplateSms {
+        _id
+        createdAt
+        name
+        description
+        content
+        _replaceEnum
+        triggers {
+          ...FnotificationTrigger
+        }
+        tags {
+      key
+      value
+    }
+        replacers
+      }
     }
   }
   }
+  ${F_NOTIFICATION_TRIGGER}
   ${F_PAGE}
-  ${F_SMS_TEMPLATE}
 `

@@ -5,7 +5,7 @@ import { BoardWrite } from "components/board/Write";
 import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
 import { omits } from "../../../utils/omit";
 import { auth, compose } from "../../../utils/with";
-import { ONLY_LOGINED } from "../../../types/const";
+import { ALLOW_LOGINED } from "../../../types/const";
 import { Fnews, NEWS_TYPE } from '../../../types/api';
 import { useNewsCreate, useNewsDelete, useNewsUpdate } from "../../../hook/useNews";
 
@@ -152,7 +152,7 @@ export const NewsWrite: React.FC<IProp> = ({ news }) => {
 };
 
 
-export default auth(ONLY_LOGINED)(NewsWrite)
+export default auth(ALLOW_LOGINED)(NewsWrite)
 
 
 

@@ -9,7 +9,7 @@ import { autoHypenPhone, cc_format } from "../../utils/formatter";
 import { useUserUpdate } from '../../hook/useUserUpdate';
 import { useMyProfile } from '../../hook/useMyProfile';
 import { auth } from '../../utils/with';
-import { ONLY_LOGINED } from '../../types/const';
+import { ALLOW_LOGINED } from '../../types/const';
 import DaumPostcode from 'react-daum-postcode';
 import { Modal } from '../../components/modal/Modal';
 import { openModal } from '../../utils/popUp';
@@ -544,4 +544,4 @@ export const MyPageProfile: React.FC<IProp> = () => {
 
 
 
-export default auth(ONLY_LOGINED)(MyPageProfile);
+export default auth(ALLOW_LOGINED)(MyPageProfile);

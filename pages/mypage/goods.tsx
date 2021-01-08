@@ -2,7 +2,7 @@ import React from 'react';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import { MypageLayout } from 'layout/MypageLayout';
 import { auth } from "../../utils/with";
-import { ONLY_LOGINED } from '../../types/const';
+import { ALLOW_LOGINED } from '../../types/const';
 
 interface IProp { }
 
@@ -211,4 +211,4 @@ export const MyGoods: React.FC<IProp> = () => {
     </MypageLayout>
 };
 
-export default auth(ONLY_LOGINED)(MyGoods);
+export default auth(ALLOW_LOGINED)(MyGoods);

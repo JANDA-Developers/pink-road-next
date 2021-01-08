@@ -15,7 +15,7 @@ export interface IUsePageEdit<Page> extends IGetEditUtilsResult<Page> {
     setEditMode: ISet<boolean>;
 }
 
-export const usePageEdit = <Page>(originPage, defaultPage:Page, ln = "kr") => {
+export const usePageEdit = <Page>(originPage:any, defaultPage:Page, ln = "kr") => {
     const [lang, setLang] = useState(ln);
     const [editMode, setEditMode] = useState<boolean>(false);
     const [page, setPage] = useState(cloneObject(mergeDeepOnlyExsistProperty(cloneObject(defaultPage), originPage)));
@@ -53,3 +53,5 @@ export const usePageEdit = <Page>(originPage, defaultPage:Page, ln = "kr") => {
 
     return {...editUtils,page,editMode,setPage, setLang, submitEdit, setEditMode}
 }
+
+export interface IEditPage<T> extends IUsePageEdit<T> { }

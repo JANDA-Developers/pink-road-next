@@ -9,22 +9,6 @@ import { F_SYSTEMNOTI } from "./systemNoti";
   
 :::::::::::::::::::::::::::::::::::::: */
 
-export const PCAT_LIST = gql`
-  query pcategoryList {
-    pCategoryList {
-      ok
-      error
-      data {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        label
-      }
-    }
-  }
-`
-
 export const SIGN_IN = gql`
   query signIn(
     $email: Email!

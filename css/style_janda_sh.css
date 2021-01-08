@@ -868,7 +868,8 @@ div.popup_bg_full .fin{
         line-height: 40px;
         font-weight: 600;
         position: fixed;
-        top: 10px;
+        /* top: 10px; */
+        margin-top: -60px;
     }    
     div.popup_bg_full h3 strong {
         color: #2196F3;
@@ -8739,7 +8740,7 @@ i.calendar {
         font-weight: 600;
     }
         div.popup_bg_full h3 {
-            top: 35px;
+            /* top: 35px; */
         }
      
     div.popup_bg_full .close_icon {

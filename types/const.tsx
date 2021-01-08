@@ -64,11 +64,12 @@ export const DEFAULT_IT: ItineraryCreateInput = {
 }
 
 
-export const SELLERS = [UserRole.partner, UserRole.partnerB];
-export const ADMINS = [UserRole.admin, UserRole.manager];
-export const ONLY_LOGINED = [UserRole.admin, UserRole.individual, UserRole.manager, UserRole.partner, UserRole.partnerB];
-export const FULL_ACCESS = [...ONLY_LOGINED, UserRole.anonymous];
-export const ALLOW_SELLERS = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin];
+export const ALLOW_SELLERS = [UserRole.partner, UserRole.partnerB];
+export const ALLOW_ADMINS = [UserRole.admin, UserRole.manager];
+export const ALLOW_LOGINED = [UserRole.admin, UserRole.individual, UserRole.manager, UserRole.partner, UserRole.partnerB];
+export const ALLOW_FULLESS = [...ALLOW_LOGINED, UserRole.anonymous];
+export const ALLOW_ALLOW_SELLERS = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin];
+
 export const DEFAULT_PROFILE_IMG = "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png";
 
 export const DEFAULT_PAGEINFO = {
