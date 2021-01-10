@@ -7,12 +7,14 @@ import { IPopup, PopupBox, Tpos, Tszie } from './PopupBox';
 interface IProp {
     views: IPopup[]
     setViews: (views: IPopup[]) => void;
+    onBoxDoubleClick: (view: IPopup, index: number) => void;
+    selectedIndex?: number;
 }
 
 //이 컴포넌트의 역할은 무엇인가요? 
 //이 컴포넌트는 위치를 그려주고  좌표값을 계산하고 상위로 돌려줌
 //상대좌표는 어떻게 찾지? 바로 hook으로 
-export const PopupConfigViewBox: React.FC<IProp> = ({ views, setViews }) => {
+export const PopupConfigViewBox: React.FC<IProp> = ({ views, setViews, selectedIndex, onBoxDoubleClick }) => {
 
     const handleMove = (index: number) => (pos: Tpos) => {
         const target = views[index];
@@ -33,9 +35,13 @@ export const PopupConfigViewBox: React.FC<IProp> = ({ views, setViews }) => {
     // 모바일일때 끄기 옵션 
 
 
+    const handleBoxDoubleClick = (view: IPopup, index: number) => () => {
+        onBoxDoubleClick(view, index);
+    }
+
     return <div style={{ width: "500px", height: "500px", border: "1px solid red" }} className="hang_view">
         {views.map((view, index) =>
-            <PopupBox key={index + "PopUpBox"} {...view} onMove={handleMove(index)} onResize={handleResize(index)} />
+            <PopupBox seleted={selectedIndex === index} onDoubleClick={handleBoxDoubleClick(view, index)} key={index + "PopUpBox"} {...view} onMove={handleMove(index)} onResize={handleResize(index)} />
         )}
     </div>;
 };

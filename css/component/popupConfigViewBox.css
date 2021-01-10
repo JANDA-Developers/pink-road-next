@@ -1,0 +1,8 @@
+.popupConfigViewBox {
+    
+}
+
+.dragBox {}
+.dragBox--selected {
+    border-color: red!important;
+}
