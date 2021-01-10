@@ -19,9 +19,16 @@ export const F_HOMEPAGE = gql`
         partnerPolicy
         marketingPolic
         thirdPolicy
+        modal {
+          link
+          startDate
+          endDate
+          content
+          linkBehavior
+          style
+        }
     }
 `
-
 
 export const HOMEPAGE = gql`
   query homepage {

@@ -226,7 +226,7 @@ export interface bookingList_BookingList_data_product {
 export interface bookingList_BookingList_data_payment {
   __typename: "Payment";
   Amt: number | null;
-  PayMethod: string | null;
+  PayMethod: PayMethod | null;
   CardNo: string | null;
   AuthDate: string | null;
 }
@@ -251,6 +251,9 @@ export interface bookingList_BookingList_data {
   name: string;
   email: string;
   phoneNumber: string;
+  /**
+   * 결제가 되었는지
+   */
   isPaid: boolean | null;
 }
 
@@ -320,7 +323,7 @@ export interface bookingsCreate_BookingsCreate_data_product {
 export interface bookingsCreate_BookingsCreate_data_payment {
   __typename: "Payment";
   Amt: number | null;
-  PayMethod: string | null;
+  PayMethod: PayMethod | null;
   CardNo: string | null;
   AuthDate: string | null;
 }
@@ -345,6 +348,9 @@ export interface bookingsCreate_BookingsCreate_data {
   name: string;
   email: string;
   phoneNumber: string;
+  /**
+   * 결제가 되었는지
+   */
   isPaid: boolean | null;
 }
 
@@ -435,7 +441,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
 export interface bookingFindByCode_BookingFindByCode_data_payment {
   __typename: "Payment";
   Amt: number | null;
-  PayMethod: string | null;
+  PayMethod: PayMethod | null;
   CardNo: string | null;
   AuthDate: string | null;
 }
@@ -460,6 +466,9 @@ export interface bookingFindByCode_BookingFindByCode_data {
   name: string;
   email: string;
   phoneNumber: string;
+  /**
+   * 결제가 되었는지
+   */
   isPaid: boolean | null;
 }
 
@@ -654,6 +663,16 @@ export interface categoryUpdateVariables {
 // GraphQL query operation: homepage
 // ====================================================
 
+export interface homepage_Homepage_data_modal {
+  __typename: "Modal";
+  link: string | null;
+  startDate: any;
+  endDate: any;
+  content: string | null;
+  linkBehavior: LinkBehavior | null;
+  style: any;
+}
+
 export interface homepage_Homepage_data {
   __typename: "Homepage";
   logi: string;
@@ -671,6 +690,7 @@ export interface homepage_Homepage_data {
   partnerPolicy: string;
   marketingPolic: string;
   thirdPolicy: string;
+  modal: homepage_Homepage_data_modal[];
 }
 
 export interface homepage_Homepage {
@@ -693,6 +713,16 @@ export interface homepage {
 // GraphQL mutation operation: homepageUpdate
 // ====================================================
 
+export interface homepageUpdate_HomepageUpdate_data_modal {
+  __typename: "Modal";
+  link: string | null;
+  startDate: any;
+  endDate: any;
+  content: string | null;
+  linkBehavior: LinkBehavior | null;
+  style: any;
+}
+
 export interface homepageUpdate_HomepageUpdate_data {
   __typename: "Homepage";
   logi: string;
@@ -710,6 +740,7 @@ export interface homepageUpdate_HomepageUpdate_data {
   partnerPolicy: string;
   marketingPolic: string;
   thirdPolicy: string;
+  modal: homepageUpdate_HomepageUpdate_data_modal[];
 }
 
 export interface homepageUpdate_HomepageUpdate {
@@ -1692,7 +1723,7 @@ export interface paymentList_PaymentList_data {
   TID: string | null;
   AuthCode: string | null;
   AuthDate: string | null;
-  PayMethod: string | null;
+  PayMethod: PayMethod | null;
   CartData: string | null;
   Signature: string | null;
   MallReserved: string | null;
@@ -2943,7 +2974,7 @@ export interface getContext_GetProfile_data_bookings_product {
 export interface getContext_GetProfile_data_bookings_payment {
   __typename: "Payment";
   Amt: number | null;
-  PayMethod: string | null;
+  PayMethod: PayMethod | null;
   CardNo: string | null;
   AuthDate: string | null;
 }
@@ -2974,6 +3005,9 @@ export interface getContext_GetProfile_data_bookings {
   name: string;
   email: string;
   phoneNumber: string;
+  /**
+   * 결제가 되었는지
+   */
   isPaid: boolean | null;
   seller: getContext_GetProfile_data_bookings_seller;
 }
@@ -3212,6 +3246,16 @@ export interface getContext_CategoryList {
   data: getContext_CategoryList_data[] | null;
 }
 
+export interface getContext_Homepage_data_modal {
+  __typename: "Modal";
+  link: string | null;
+  startDate: any;
+  endDate: any;
+  content: string | null;
+  linkBehavior: LinkBehavior | null;
+  style: any;
+}
+
 export interface getContext_Homepage_data {
   __typename: "Homepage";
   logi: string;
@@ -3229,6 +3273,7 @@ export interface getContext_Homepage_data {
   partnerPolicy: string;
   marketingPolic: string;
   thirdPolicy: string;
+  modal: getContext_Homepage_data_modal[];
 }
 
 export interface getContext_Homepage {
@@ -4576,7 +4621,7 @@ export interface FbookingByCode_product {
 export interface FbookingByCode_payment {
   __typename: "Payment";
   Amt: number | null;
-  PayMethod: string | null;
+  PayMethod: PayMethod | null;
   CardNo: string | null;
   AuthDate: string | null;
   ResultCode: string | null;
@@ -4633,6 +4678,9 @@ export interface FbookingByCode {
   name: string;
   email: string;
   phoneNumber: string;
+  /**
+   * 결제가 되었는지
+   */
   isPaid: boolean | null;
 }
 
@@ -4659,7 +4707,7 @@ export interface Fpayment {
   TID: string | null;
   AuthCode: string | null;
   AuthDate: string | null;
-  PayMethod: string | null;
+  PayMethod: PayMethod | null;
   CartData: string | null;
   Signature: string | null;
   MallReserved: string | null;
@@ -4821,7 +4869,7 @@ export interface Fbooking_product {
 export interface Fbooking_payment {
   __typename: "Payment";
   Amt: number | null;
-  PayMethod: string | null;
+  PayMethod: PayMethod | null;
   CardNo: string | null;
   AuthDate: string | null;
 }
@@ -4846,119 +4894,10 @@ export interface Fbooking {
   name: string;
   email: string;
   phoneNumber: string;
+  /**
+   * 결제가 되었는지
+   */
   isPaid: boolean | null;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL fragment: Fportfolio
-// ====================================================
-
-export interface Fportfolio_author_busiRegistration {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
-}
-
-export interface Fportfolio_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
-export interface Fportfolio_author {
-  __typename: "User";
-  _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
-  role: UserRole;
-  brith_date: string;
-  address: string;
-  address_detail: string;
-  acceptSms: boolean;
-  acceptEamil: boolean;
-  is_froreginer: boolean;
-  /**
-   * 기업 전화번호
-   */
-  busi_contact: string;
-  /**
-   * 담당자 연락처
-   */
-  manageContact: string;
-  gender: GENDER;
-  busi_num: string;
-  /**
-   * 부서명
-   */
-  busi_department: string;
-  isVerifiedManager: boolean;
-  isVerifiedPhoneNumber: boolean;
-  /**
-   * 사업자 등록증
-   */
-  busiRegistration: Fportfolio_author_busiRegistration | null;
-  /**
-   * 개인 법인인지 아닌지 체크함 True = 법인
-   */
-  is_priv_corper: boolean;
-  /**
-   * 사업자명
-   */
-  busi_name: string;
-  busi_address: string;
-  account_number: string;
-  name: string;
-  bank_name: string;
-  phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: Fportfolio_author_profileImg | null;
-}
-
-export interface Fportfolio_thumb {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
-}
-
-export interface Fportfolio_category {
-  __typename: "Category";
-  _id: string;
-  label: string;
-}
-
-export interface Fportfolio {
-  __typename: "Portfolio";
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  title: string;
-  isOpen: boolean | null;
-  keyWards: string[] | null;
-  summary: string | null;
-  subTitle: string | null;
-  contents: string;
-  author: Fportfolio_author | null;
-  thumb: Fportfolio_thumb | null;
-  category: Fportfolio_category | null;
 }
 
 /* tslint:disable */
@@ -5221,6 +5160,16 @@ export interface Fproduct {
 // GraphQL fragment: Fhomepage
 // ====================================================
 
+export interface Fhomepage_modal {
+  __typename: "Modal";
+  link: string | null;
+  startDate: any;
+  endDate: any;
+  content: string | null;
+  linkBehavior: LinkBehavior | null;
+  style: any;
+}
+
 export interface Fhomepage {
   __typename: "Homepage";
   logi: string;
@@ -5238,6 +5187,7 @@ export interface Fhomepage {
   partnerPolicy: string;
   marketingPolic: string;
   thirdPolicy: string;
+  modal: Fhomepage_modal[];
 }
 
 /* tslint:disable */
@@ -5549,6 +5499,118 @@ export interface FnotificationSender {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: Fportfolio
+// ====================================================
+
+export interface Fportfolio_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fportfolio_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface Fportfolio_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: Fportfolio_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: Fportfolio_author_profileImg | null;
+}
+
+export interface Fportfolio_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fportfolio_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface Fportfolio {
+  __typename: "Portfolio";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  isOpen: boolean | null;
+  keyWards: string[] | null;
+  summary: string | null;
+  subTitle: string | null;
+  contents: string;
+  author: Fportfolio_author | null;
+  thumb: Fportfolio_thumb | null;
+  category: Fportfolio_category | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fquestion
 // ====================================================
 
@@ -5643,16 +5705,16 @@ export interface Fquestion {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: FsettlementPolicy
+// GraphQL fragment: Ffeepolicy
 // ====================================================
 
-export interface FsettlementPolicy {
-  __typename: "SettlementPolicy";
+export interface Ffeepolicy {
+  __typename: "FeePolicy";
   _id: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  status: SettlementPolicyStatus;
+  status: FeePolicyStatus;
   niceCardPercent: number;
   jandaCardPercent: number;
   cardPercent: number;
@@ -5743,8 +5805,10 @@ export enum BoardType {
  */
 export enum CategoryType {
   CUSTOMER_QNA = "CUSTOMER_QNA",
+  EXPERIENCE = "EXPERIENCE",
   PORTPOLIO = "PORTPOLIO",
   QNA = "QNA",
+  TOUR = "TOUR",
 }
 
 /**
@@ -5757,11 +5821,27 @@ export enum Currency {
 }
 
 /**
+ * 질문 상태
+ */
+export enum FeePolicyStatus {
+  APPLY = "APPLY",
+  WAIT = "WAIT",
+}
+
+/**
  * 성별
  */
 export enum GENDER {
   FEMALE = "FEMALE",
   MAIL = "MAIL",
+}
+
+/**
+ * 링크 행동설정
+ */
+export enum LinkBehavior {
+  blank = "blank",
+  individual = "individual",
 }
 
 /**
@@ -5797,14 +5877,24 @@ export enum NotificationTriggerEvent {
   TRAVEL_CANCELED_SELLER = "TRAVEL_CANCELED_SELLER",
   TRAVEL_CONFIRMED_BOOKER = "TRAVEL_CONFIRMED_BOOKER",
   TRAVEL_CONFIRMED_SELLER = "TRAVEL_CONFIRMED_SELLER",
+  TRAVEL_WITDRWAL_BOOKER = "TRAVEL_WITDRWAL_BOOKER",
+  TRAVEL_WITDRWAL_SELLER = "TRAVEL_WITDRWAL_SELLER",
+}
+
+/**
+ * 고객 결제에대한 수단
+ */
+export enum PayMethod {
+  BANKTRANSFER = "BANKTRANSFER",
+  CARD = "CARD",
 }
 
 /**
  * 성별
  */
 export enum ProductStatus {
+  CANCELD = "CANCELD",
   EXPIRED = "EXPIRED",
-  HIDE = "HIDE",
   OPEN = "OPEN",
   READY = "READY",
   REFUSED = "REFUSED",
@@ -5832,24 +5922,20 @@ export enum QuestionStatus {
 export enum ReplaceString {
   BOOKERNMAE = "BOOKERNMAE",
   BOOKING_STATUS = "BOOKING_STATUS",
+  BOOK_DAY = "BOOK_DAY",
+  CANCEL_REASON = "CANCEL_REASON",
+  CONFRIM_MESSAGE = "CONFRIM_MESSAGE",
+  D_DAY = "D_DAY",
   INTERGRATED_PRODUCT_INFO = "INTERGRATED_PRODUCT_INFO",
   PARTNERNAME = "PARTNERNAME",
   PEOPLE = "PEOPLE",
-  PORD_NAME = "PORD_NAME",
   PRICE = "PRICE",
+  PROD_NAME = "PROD_NAME",
   REFUND_AMT = "REFUND_AMT",
   REQUEST_DATE = "REQUEST_DATE",
   TRAVEL_CONFIRMED = "TRAVEL_CONFIRMED",
   TRAVEL_DATE_YMD = "TRAVEL_DATE_YMD",
   USERNAME = "USERNAME",
-}
-
-/**
- * 질문 상태
- */
-export enum SettlementPolicyStatus {
-  APPLY = "APPLY",
-  WAIT = "WAIT",
 }
 
 /**
@@ -6172,6 +6258,7 @@ export interface HomepageUpdateInput {
   partnerPolicy?: string | null;
   marketingPolic?: string | null;
   thirdPolicy?: string | null;
+  modal?: ModalInput[] | null;
 }
 
 export interface ItineraryCreateInput {
@@ -6197,6 +6284,15 @@ export interface ItineraryUpdateInput {
   thumb?: FileUpdateInput | null;
   images?: FileUpdateInput[] | null;
   date?: any | null;
+}
+
+export interface ModalInput {
+  link?: string | null;
+  startDate: any;
+  endDate: any;
+  content?: string | null;
+  linkBehavior?: LinkBehavior | null;
+  style: any;
 }
 
 export interface NewsCreateInput {
@@ -6279,7 +6375,6 @@ export interface ProductCreateInput {
   attachFiles?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   categoryId: string;
-  status?: ProductStatus | null;
   itinerary: ItineraryCreateInput[];
   inOrNor: string;
   info: string;
@@ -6637,6 +6732,8 @@ export interface _PortfolioFilter {
 export interface _ProductFilter {
   AND?: _ProductFilter[] | null;
   OR?: _ProductFilter[] | null;
+  determined_eq?: boolean | null;
+  determined_not_eq?: boolean | null;
   code_eq?: string | null;
   code_not_eq?: string | null;
   code_contains?: string | null;

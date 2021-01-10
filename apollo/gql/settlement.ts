@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client"
 import { F_PAGE } from "./fragments"
 
-export const F_SETTLEMENT_POLICY = gql`
-    fragment FsettlementPolicy on SettlementPolicy {
+export const F_FEEPOLICY = gql`
+    fragment Ffeepolicy on FeePolicy {
       _id
       createdAt
       updatedAt
@@ -44,7 +44,7 @@ export const F_SETTLEMENT = gql`
       completeDate
       cancelDate
     }
-    ${F_SETTLEMENT_POLICY}
+    ${F_FEEPOLICY}
 `
 
 export const SETTLEMENT_LIST = gql`

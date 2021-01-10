@@ -324,3 +324,8 @@ figure:after {
     border: none;
     height: 100px;
 }
+
+
+.editor_box {
+    display: none;
+}

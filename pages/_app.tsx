@@ -60,7 +60,7 @@ function App({ Component, pageProps }: any) {
 
   const { data, loading } = useQuery<getContext>(GET_CONTEXT, {
     client: PinkClient,
-    nextFetchPolicy: "cache-and-network"
+    nextFetchPolicy: "network-only"
   })
 
   const homepage = data?.Homepage.data || undefined;

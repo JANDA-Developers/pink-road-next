@@ -30,6 +30,8 @@ export const MsHomepageMain: React.FC<IProp> = () => {
                     <div className="design_table">
                         <div className="block_box">
 
+                            <h1>전반적으로 여기 내용은 의미없을 듯 합니다. (다음 홈페이지 템플릿을 굳히기 할때 제대로 사용하겠음.)</h1>
+
                             <h5>검색 최적화 설정(SEO)</h5>
                             <div className="tbody">
                                 <div className="t01">

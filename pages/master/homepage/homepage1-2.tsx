@@ -25,9 +25,6 @@ export const MsHomepageA: React.FC = () => {
         openModal("#SMSmodal")();
     }
 
-    console.log("templates");
-    console.log(templates);
-
     return <MasterLayout>
         <div className="in ">
             <h4>홈페이지 설정</h4>

@@ -135,7 +135,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
 
     const [state, setState] = useState<UserRole>(role);
 
-    const isPartnerB = state === "partnerB" || role === UserRole.manager || UserRole.admin;
+    const isPartnerB = state === "partnerB" || role === UserRole.manager || role === UserRole.admin;
     const isPartner = state === UserRole.partner
     const isBuyer = state === UserRole.individual;
     const isSeller = isPartnerB || isPartner;

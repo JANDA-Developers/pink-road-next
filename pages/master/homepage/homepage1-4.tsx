@@ -8,6 +8,7 @@ import { HomepageUpdateInput } from '../../../types/api';
 import { LoadEditor } from '../../../components/edit/EdiotrLoading';
 import { auth } from '../../../utils/with';
 import { ALLOW_ADMINS } from '../../../types/const';
+
 const Editor = LoadEditor();
 
 interface IProp { }

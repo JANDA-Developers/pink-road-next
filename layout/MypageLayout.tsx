@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import { userInfo } from 'os';
 import React, { useContext, useRef } from 'react';
+import { useUnReadSystemNotiFind } from '../hook/useSystemNoti';
 import { useUpload } from '../hook/useUpload';
 import { useUserUpdate } from '../hook/useUser';
 import { AppContext } from '../pages/_app';
@@ -15,7 +16,8 @@ interface IProp { }
 export const MypageLayout: React.FC<IProp> = ({ children }) => {
     const { userUpdate } = useUserUpdate()
     const { signleUpload } = useUpload();
-    const { isSeller, isParterB, isParterNonB, myProfile } = useContext(AppContext);
+    const { items } = useUnReadSystemNotiFind();
+    const { isSeller, isParterB, isParterNonB, myProfile, } = useContext(AppContext);
     const hiddenFileInput = useRef<HTMLInputElement>(null);
 
     const changeProfile = (file: Ffile) => {
@@ -88,8 +90,9 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                 {isSeller && <span className="point"><i>포인트</i><strong>10,000,000</strong>원</span>}{/*기업파트너/개인파트너*/}
                                 {isSeller || <span className="name2"><i className="ct_family">Family</i><strong>{myProfile?.name}</strong>님 어서오세요 :)</span>}{/*개인*/}
                                 {isSeller || <span className="time"><i>최근접속시간</i> {dayjs(Storage?.getLocalObj<Date>("lastLogin")).format("YYYY.MM.DD hh:mm")} </span>}{/*개인*/}
+                                //최근접속시간은
                                 <ul>
-                                    <li><a href="/">알림<i>99+</i></a></li>{/* 개인/기업파트너/개인파트너 -*/}
+                                    <li><a href="/">알림<i>{items.length}+</i></a></li>{/* 개인/기업파트너/개인파트너 -*/}
                                     {isSeller || <li><a href="/">구매<i>0</i></a></li>}{/* 개인 -*/}
                                     {isSeller || <li><a href="/">장바구니<i>{getItemCount()}</i></a></li>}{/* 개인 -*/}
                                     {isSeller && <li><a href="/">예약<i>0</i></a></li>}{/* 기업파트너/개인파트너 -*/}

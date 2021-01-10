@@ -72,7 +72,7 @@ export const ReplaceKr:ReplaceKR = {
     "INTERGRATED_PRODUCT_INFO": "(상품명/예약인원/예약금/출발일자)",
     "PARTNERNAME": "파트너명",
     "PEOPLE": "예약인원",
-    "PORD_NAME": "상품명",
+    "PROD_NAME": "상품명",
     "PRICE": "예약가격",
     "TRAVEL_CONFIRMED": "출발 확정/미확정",
     "TRAVEL_DATE_YMD": "출발일자"
