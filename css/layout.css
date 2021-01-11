@@ -655,7 +655,7 @@ rect.allmenu_svg {
             width: 104px;
             background-color: #fff;
             padding: 10px 0;
-            border-radius: 5px;
+            border-radius: 3px;
             top: 40px;
             border: 1px solid #ccc;
             left: -35px;
@@ -911,6 +911,10 @@ rect.allmenu_svg {
     }
 .header .inform_icon img{
     width:100%;
+    opacity: 0.6;
+}
+.header .inform_icon:hover img{
+    opacity: 1;
 }
 .header .user {
     display: flex;
@@ -1080,7 +1084,7 @@ rect.allmenu_svg {
                         opacity: 0.9;
                         font-weight: 100;
                         letter-spacing: -1px;
-                        padding-bottom: 14px;
+                        padding-bottom: 4px;
                     }
 
                         #all_menu ul .a_menu_tit .depth1 li a:hover {
@@ -2227,7 +2231,7 @@ i.icon_plus {
     font-size: 5px;
     font-weight: 500;
     line-height: 10px;
-    border-radius: 5px;
+    border-radius: 3px;
     padding: 5px;
     position: absolute;
     right: 11px;
@@ -2515,7 +2519,7 @@ i.icon_plus {
         }
 
         .search_box .text select {
-            border-radius: 5px;
+            border-radius: 3px;
             height: 32px;
             padding-left: 5px;
             box-sizing: border-box;
@@ -2527,7 +2531,7 @@ i.icon_plus {
         text-align: center;
     }
         .search_box .jul1 .option {
-            border-radius: 5px;
+            border-radius: 3px;
             height: 40px;
             width: 100%;
         }
@@ -2545,7 +2549,7 @@ i.icon_plus {
             width: 100%;
             margin: 0 auto;
             display: inline-block;
-            border-radius: 5px;
+            border-radius: 3px;
             height: 40px;
             padding: 0 15px;
             box-sizing: border-box;
@@ -2682,7 +2686,7 @@ i.icon_plus {
         width: 100%;
         display: flex;
         vertical-align: middle;
-        border-radius: 5px;
+        border-radius: 3px;
         text-align: center;
         overflow: hidden;
         box-sizing: border-box;
@@ -2788,7 +2792,7 @@ i.icon_plus {
         letter-spacing: -1px;
         text-transform: uppercase;
         text-align: center;
-        border-radius: 5px;
+        border-radius: 3px;
         cursor: pointer;
         margin-right: 5px;
         padding: 0px 21px;
@@ -3045,7 +3049,7 @@ i.icon_plus {
         }
 
     .search_in .alignment select {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 32px;
         padding: 0 10px;
         box-sizing: border-box;
@@ -3113,7 +3117,7 @@ i.icon_plus {
         }
 
         .search_in .search_box .in input[type*=text] {
-            border-radius: 5px;
+            border-radius: 3px;
             height: 32px;
             padding-left: 10px;
             box-sizing: border-box;
@@ -3121,7 +3125,7 @@ i.icon_plus {
         }
 
         .search_in .search_box .in select {
-            border-radius: 5px;
+            border-radius: 3px;
             height: 32px;
             padding-left: 5px;
             box-sizing: border-box;
@@ -3388,7 +3392,7 @@ margin-top:0;
     }
 
 .search_box .jul1 .option {
-            border-radius: 5px;
+            border-radius: 3px;
             height: 40px;
             width: 18%;
             font-size: 13px;
@@ -3409,7 +3413,7 @@ margin-bottom:0;
         }
 
 .search_box .text input[type*=text] {
-    border-radius: 5px;
+    border-radius: 3px;
     height: 32px;
     padding-left: 10px;
     box-sizing: border-box;
@@ -3544,7 +3548,7 @@ margin-bottom:0;
         background-image: url(/its/allmenu_bg.jpg);
         min-height: 600px;
         top: -2400px;
-        background-size: 110%;
+        background-size: 150%;
         padding: 193px 0 0;
     }
         #all_menu .m_all_menu_in {
@@ -3624,8 +3628,9 @@ margin-bottom:0;
             padding-bottom: 3px !important;
         }
         .top_visual .sub_bg {
-            background-size: 170%;
+            background-size: 180%;
             padding: 70px 0 0;
+            background-position: left center;
         }
         .top_visual {
             height:232px;
@@ -3838,7 +3843,7 @@ margin-bottom:0;
         min-width: 1200px;
         padding: 190px 0 0;
         background-position: center top;
-        background-size: 100%;
+        background-size: 110%;
     }
 
         #all_menu ul .a_menu_tit {

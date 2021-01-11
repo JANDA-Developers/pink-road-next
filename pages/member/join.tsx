@@ -170,7 +170,7 @@ const Join = () => {
 const JoinResult = () => {
     return (
         <div className="wellcom" id="con03">
-            <img src="/its/logo_01.png" alt="환영합니다 이미지" />
+            <img src="/its/join_img01.png" alt="환영합니다 이미지" />
             <h5>회원가입을 축하드립니다!</h5>
             <p>
                 가이드는 가입승인 후에 서비스를 이용할 수 있습니다. <br className="no" />
@@ -238,7 +238,7 @@ const Verification: React.FC = () => {
                     카카오톡 인증
                 </li>
                 <li onClick={handleSelfAuth} className="socialVerify">
-                    <i className="jandaicon-kakaotalk" />
+                    <span className="icon-email"></span>
                     이메일 인증
                 </li>
             </ul>

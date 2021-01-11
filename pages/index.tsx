@@ -42,10 +42,10 @@ export const Main: React.FC = () => {
               <span {...edit('m_01_subtitle')}>
               </span>
               <div className="btn_list">
-                <Link href="/guide">
+                <Link href="/tour">
                   <a className="tourLink" {...edit("m_01_mainLink1")} />
                 </Link>
-                <Link href="/tour">
+                <Link href="/guide">
                   <a  {...edit("m_01_mainLink2")} />
                 </Link>
               </div>

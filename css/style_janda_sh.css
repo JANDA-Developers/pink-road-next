@@ -1626,7 +1626,7 @@ div.alignment {
             color: #999;
             display: inline-block;
             vertical-align: bottom;
-            line-height: 41px;
+            line-height: 31px;
             padding-right: 5px;
         }
 
@@ -1640,6 +1640,7 @@ div.alignment {
         display: inline-block;
         vertical-align: bottom;
         font-weight: 600;
+        font-size: 1.5em;
         line-height: inherit;
     }
 
@@ -1695,7 +1696,7 @@ div.alignment {
     }
 
     div.alignment select {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 32px;
         width: 49%;
         font-size: 12px;
@@ -4973,7 +4974,7 @@ div.bn_box {
 
     .login_wrap input {
         width: 100%;
-        border-radius: 5px;
+        border-radius: 3px;
         height: 42px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -5120,7 +5121,7 @@ div.bn_box {
         border-color: #5bace9;
         border-width: 0;
         color: #fff;
-        border-radius: 5px;
+        border-radius: 3px;
         box-shadow: 0 3px 0px #4194d3 !important;
     }
 
@@ -5178,7 +5179,7 @@ div.bn_box {
                 display: block;
                 text-align: left;
                 border: 1px solid #e7e7e7;
-                border-radius: 5px;
+                border-radius: 3px;
                 color: #555;
                 box-sizing: border-box;
                 padding: 16px 10px;
@@ -5231,7 +5232,7 @@ div.bn_box {
         margin-left: 0;
         width: 100%;
         background: #ffffff;
-        border-radius: 5px;
+        border-radius: 3px;
         padding: 15% 10% 5% 10%;
         box-sizing: border-box;
         border: 1px solid #e2e2e2;
@@ -5360,7 +5361,7 @@ div.bn_box {
         box-sizing: border-box;
         border: 15px #f5f5f5 solid;
         padding: 50px 5%;
-        border-radius: 5px;
+        border-radius: 3px;
         margin-top: 18px;
         margin-bottom: 55px;
     }
@@ -5521,7 +5522,7 @@ div.bn_box {
     .join_wrap2 .choice_box {
         position: relative;
         width: 100%;
-        border-radius: 5px;
+        border-radius: 3px;
         margin: 0 auto;
         padding: 50px 5%;
         background-color: #f5f5f5;
@@ -5623,7 +5624,7 @@ div.bn_box {
     .join_wrap2 .certified {
         position: relative;
         width: 100%;
-        border-radius: 5px;
+        border-radius: 3px;
         margin: 0 auto;
         padding: 50px 5%;
         background-color: #f5f5f5;
@@ -5708,7 +5709,7 @@ div.bn_box {
         display: block;
         position: relative;
         width: 80%;
-        border-radius: 5px;
+        border-radius: 3px;
         margin: 0 auto 50px;
         background-color: #f3f3f3;
         box-sizing: border-box;
@@ -5777,7 +5778,7 @@ div.bn_box {
         padding-left: 10px;
         box-sizing: border-box;
         vertical-align: middle;
-        border-radius: 5px;
+        border-radius: 3px;
         background-color: #ffffff;
         border: #d2d2d2 1px solid;
         margin-right: 0px;
@@ -5791,7 +5792,7 @@ div.bn_box {
         padding-left: 10px;
         box-sizing: border-box;
         vertical-align: middle;
-        border-radius: 5px;
+        border-radius: 3px;
         background-color: #fbfbfb;
         border: 1px solid #d2d2d2;
         margin-right: 3px;
@@ -5800,7 +5801,7 @@ div.bn_box {
     }
 
     .join_wrap2 input {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 42px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -5978,7 +5979,7 @@ div.bn_box {
     .join_wrap2 .input_wrap select {
         background-color: #fff8e6;
         width: 100%;
-        border-radius: 5px;
+        border-radius: 3px;
         height: 42px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -6730,7 +6731,7 @@ i.important_icon {
     }
 
     .option_tb input[type*=text] {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 32px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -7291,12 +7292,13 @@ div.gallery_lightbox .thumbList {
     display: inline-block;
     vertical-align: middle;
     margin-left: 5px;
-    max-width: 100px;
-    text-align: center;
+    max-width: 140px;
+    text-align: left;
     cursor: pointer;
 }
 
     .gender_check li {
+        position: relative;
         line-height: 40px !important;
         display: inline-block !important;
         border: 2px solid #e5e5e5 !important;
@@ -7304,31 +7306,40 @@ div.gallery_lightbox .thumbList {
         padding: 0 16px;
         color: #999;
         font-weight: 600;
+        text-align: center;
         box-sizing: border-box;
         margin-left: -1px;
-        float: left;
         width: 50% !important;
         font-size: 12px;
+        z-index: 1;
     }
 
     .gender_check .female.on {
         border: 2px solid #5bace9 !important;
         background-color: #5bace9;
         color: #ffffff;
+        z-index: 2;
+        margin-right: -25px;
+        padding: 0 16px !important;
     }
 
     .gender_check .men.on {
         border: 2px solid #2196F3 !important;
         background-color: #2196F3;
         color: #ffffff;
+        z-index: 2;
+        margin-left: -25px;
+        padding: 0 16px !important;
     }
 
     .gender_check .female {
-        border-radius: 5px 0 0 5px;
+        border-radius: 50px;
+        padding: 0 36px 0 16px !important;
     }
 
     .gender_check .men {
-        border-radius: 0 5px 5px 0;
+        border-radius: 50px;
+        padding: 0 16px 0 36px !important;
     }
 
 .country_check {
@@ -7338,11 +7349,12 @@ div.gallery_lightbox .thumbList {
     vertical-align: middle;
     margin-left: 5px;
     max-width: 200px;
-    text-align: center;
+    text-align: left;
     cursor: pointer;
 }
 
     .country_check li {
+        position: relative;
         line-height: 40px !important;
         display: inline-block !important;
         border: 2px solid #e5e5e5 !important;
@@ -7352,29 +7364,37 @@ div.gallery_lightbox .thumbList {
         font-weight: 600;
         box-sizing: border-box;
         margin-left: -1px;
-        float: left;
+        text-align: center;
         width: 50% !important;
         font-size: 12px;
+        z-index: 1;
     }
 
     .country_check .c_in {
-        border-radius: 5px 0 0 5px;
+        border-radius: 50px ;
+        padding: 0 36px 0 16px !important;
     }
-
     .country_check .c_out {
-        border-radius: 0 5px 5px 0;
+        border-radius: 50px ;
+        padding: 0 16px 0 36px !important;
     }
 
     .country_check .c_in.on {
         border: 2px solid #757575 !important;
         background-color: #757575;
         color: #ffffff;
+        z-index: 2;
+        margin-right: -25px;
+        padding: 0 16px!important;
     }
 
     .country_check .c_out.on {
         border: 2px solid #757575 !important;
         background-color: #757575;
         color: #ffffff;
+        z-index: 2;
+        margin-left: -25px;
+        padding: 0 16px!important;
     }
 /* count */
 .count_div .top_box {
@@ -8736,7 +8756,7 @@ i.calendar {
         }
 
         .findmembers_box .in_box input[type*=text] {
-            border-radius: 5px;
+            border-radius: 3px;
             height: 32px;
             width: 100%;
             padding-left: 10px;
@@ -9378,7 +9398,7 @@ i.calendar {
             top: 50px;
             margin-left: -400px;
             width: 800px;
-            border-radius: 5px;
+            border-radius: 3px;
             padding: 100px 180px 110px 180px;
         }
 
@@ -9779,7 +9799,7 @@ i.calendar {
         }
 
     div.alignment select {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 32px;
         width:auto;
         margin-top:0;
@@ -9860,7 +9880,7 @@ i.calendar {
     }
     .join_wrap2 .choice_box {
         width: 80%;
-        border-radius: 5px;
+        border-radius: 3px;
         padding: 100px 50px;
         margin-bottom: 20px;
     }
@@ -9893,7 +9913,7 @@ i.calendar {
     .join_wrap2 .certified {
         position: relative;
         width: 80%;
-        border-radius: 5px;
+        border-radius: 3px;
         margin: 0 auto;
         padding: 100px 50px;
         background-color: #f5f5f5;
@@ -9939,7 +9959,7 @@ i.calendar {
         box-sizing: border-box;
         border: 15px #f5f5f5 solid;
         padding: 100px 210px;
-        border-radius: 5px;
+        border-radius: 3px;
         margin-top: 18px;
         margin-bottom: 55px;
     }
@@ -9973,7 +9993,7 @@ i.calendar {
         border-radius: 20px;
     }
     .gender_check  {
-       margin-left: 10px;
+       margin-left: 0px;
 
     }
     .gender_check li {
@@ -9981,7 +10001,7 @@ i.calendar {
     }
     .country_check  {
         margin-left: 10px;
-        max-width: 161px;
+        max-width: 184px;
      }
     .country_check li{
         line-height: 25px !important;
@@ -10828,7 +10848,7 @@ i.calendar {
             width:auto;
             height: auto;
             padding:  0 20px;
-            border-radius: 5px;
+            border-radius: 3px;
             line-height: 40px;
             font-size: 1em;
         }

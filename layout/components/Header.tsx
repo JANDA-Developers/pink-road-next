@@ -131,10 +131,10 @@ export const Header: React.FC<IProp> = () => {
                             </Link>}
                     </li>
                     {isSeller && <li className="mypage">
-                        <Link href="/mypage"><a>My page</a></Link>
+                        <Link href="/mypage"><a>MY PAGE</a></Link>
                     </li>}
                     {isManager && <li className="master">
-                        <Link href="/master"><a>Master</a></Link>
+                        <Link href="/master"><a>MASTERr</a></Link>
                     </li>}
 
                     <li className="language">
@@ -281,8 +281,8 @@ export const Header: React.FC<IProp> = () => {
                             <li className="a_menu_tit deps">
                                 <Link href="/site-info"><a>소개<i className="jandaicon-arr4-right"></i></a></Link>
                             </li>
-                            {isAdmin && <li className="a_menu_tit deps hiddennav betatest">
-                                <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
+                            {isLogin && <li className="a_menu_tit deps">
+                                <Link href="/mypage"><a target="_blank">MY PAGE<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
                                     <li><a href="/mypage">회원정보</a></li>
                                     <li><a href="/mypage/notification">알림</a></li>
