@@ -9,6 +9,18 @@ export const EditBtn: React.FC<IProp> = () => {
     const { isManager, } = useContext(AppContext)
     const { editMode, setEditMode } = useContext(EditContext)
 
+<<<<<<< HEAD
+=======
+    //useEffect(() => {
+    //    if (editMode)
+    //        window.onbeforeunload = function () {
+    //            return '편집중인 데이터가 저장되지 않을 수 있습니다. 정말로 페이지를 이동하시겠습니까?';
+    //        };
+    //    elseW
+    //        window.onbeforeunload = () => { }
+    //}, [editMode])
+
+>>>>>>> origin/design
     if (!isManager) return null;
 
     return <div onClick={() => {
@@ -18,5 +30,5 @@ export const EditBtn: React.FC<IProp> = () => {
             document.getElementById("PageSubmitBtn")?.click();
         else
             document.getElementById("PageRestBtn")?.click();
-    }} id="setting_link"><i><object type="image/svg+xml" data="/img/svg/setting_icon.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object></i>{editMode ? "편집모드" : "편집종료"}</div>
+    }} id="setting_link"><i><img src="/img/svg/setting_icon.svg" alt="icon" /></i>{editMode ? "편집모드" : "편집종료"}</div>
 };

@@ -1995,7 +1995,7 @@ div.reservation_popup .tr select {
             border: 1px solid #ccc;
             margin-right:10px;
         }
-        .notification_box .ovj  object {
+        .notification_box .ovj  img {
             fill:#fff;
             width: 100%;
         }
@@ -3307,7 +3307,7 @@ div.reservation_popup .tr select {
         height: 130px;
     }
     .mypage_in .subtop_nav {
-        top: -53px;
+        top: -57px;
     }
     .mypage_in .lnb .profile_box .welcome ul li i {
         display:block;

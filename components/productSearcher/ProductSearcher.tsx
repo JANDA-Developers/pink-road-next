@@ -37,7 +37,7 @@ export const ProductSearcher: React.FC<IProp> = ({ defaultSearch, onSelectProduc
             <div className="title">상품검색</div>
             <div className="input_form">
                 <input placeholder="검색어를 입력해주세요" onKeyPress={whenEnter(getData)} onChange={setVal(setSearch)} value={search} type="text" name="title" className="inputText w100" />
-                <div className="productSearcher__searchIcon search_btn"><object type="image/svg+xml" data="/img/svg/search_icon.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object><button className="btt1"></button></div>
+                <div className="productSearcher__searchIcon search_btn"><img src="/img/svg/search_icon.svg" alt="icon" /><button className="btt1"></button></div>
             </div>
         </div>
         {isEmpty(items) ||
