@@ -139,7 +139,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
                     <div className="jul">
                         <h5>비지니스 파트너 이용 약관동의</h5>
                         <Editor data={datas.partnerBpolicy} onChange={setPoliicy("partnerBpolicy")} />
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_right">
                                 <button onClick={handleSave("partnerBpolicy")} type="submit" className="btn medium">저장하기</button>
                             </div>

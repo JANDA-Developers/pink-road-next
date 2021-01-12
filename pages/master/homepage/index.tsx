@@ -20,7 +20,7 @@ export const MsHomepageMain: React.FC<IProp> = () => {
                     </ul>
                 </div>
                 <div className="con homepage">
-                    <div className="fin">
+                    <div className="fin ifMobile">
                         <div className="float_left">
                         </div>
                         <div className="float_right">
@@ -128,7 +128,7 @@ export const MsHomepageMain: React.FC<IProp> = () => {
                             <h5>회원 가입</h5>
                             <div className="tbody">
                                 <div className="t01">
-                                    <div className="title">회원 가입 후 이동할 페이지</div>
+                                    <div className="title">회원가입 후 이동할 페이지</div>
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
@@ -185,7 +185,7 @@ export const MsHomepageMain: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="fin">
+                    <div className="fin ifMobile">
                         <div className="float_left">
                         </div>
                         <div className="float_right">

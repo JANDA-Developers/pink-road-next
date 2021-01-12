@@ -25,7 +25,7 @@ interface IProp extends IDiv {
 }
 
 export const BoardList: React.FC<IProp> = ({ setPage, setViewCount, children, Categories, onWrite: handleWrite, onSearch: handleSearch, pageInfo, totalCount, addBtnLabel, setSort, setView, sort, view, viewCount, ...props }) => {
-  return <div {...props} className={`w1200 board_box ${props.className}`} >
+  return <div {...props} className={`w1200 ${props.className}`} >
     <div>
       {Categories}
       <div className="alignment">

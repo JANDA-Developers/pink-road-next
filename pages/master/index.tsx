@@ -66,7 +66,7 @@ export const MsIndex: React.FC<IProp> = () => {
                                 <strong>(주)행복나라</strong>
                                 <span>(개인파트너)</span>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
                         <li className="body">
                             <div className="td01">
@@ -83,7 +83,7 @@ export const MsIndex: React.FC<IProp> = () => {
                                 <strong>(주)행복나라</strong>
                                 <span>(개인파트너)</span>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
                         <li className="body">
                             <div className="td01">
@@ -100,7 +100,7 @@ export const MsIndex: React.FC<IProp> = () => {
                                 <strong>(주)행복나라</strong>
                                 <span>(개인파트너)</span>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
                     </ul>
 
@@ -158,7 +158,7 @@ export const MsIndex: React.FC<IProp> = () => {
                                 <strong>예약완료</strong>
                                 <span>(결제완료)</span>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
 
                         <li className="body">
@@ -175,7 +175,7 @@ export const MsIndex: React.FC<IProp> = () => {
                                 <strong>예약완료</strong>
                                 <span>(결제완료)</span>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
                         <li className="body">
                             <div className="td01">
@@ -191,7 +191,7 @@ export const MsIndex: React.FC<IProp> = () => {
                                 <strong>예약완료</strong>
                                 <span>(결제완료)</span>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
                     </ul>
                 </div>
@@ -240,7 +240,7 @@ export const MsIndex: React.FC<IProp> = () => {
                                 <strong>예약완료</strong>
                                 <span>(결제완료)</span>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
 
                         <li className="body">
@@ -257,7 +257,7 @@ export const MsIndex: React.FC<IProp> = () => {
                                 <strong>예약완료</strong>
                                 <span>(결제완료)</span>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
                         <li className="body">
                             <div className="td01">
@@ -273,7 +273,7 @@ export const MsIndex: React.FC<IProp> = () => {
                                 <strong>예약완료</strong>
                                 <span>(결제완료)</span>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
                     </ul>
                 </div>
@@ -324,7 +324,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <div className="td04">
                                 <strong>완료</strong>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
 
                         <li className="body">
@@ -339,7 +339,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <div className="td04">
                                 <strong>완료</strong>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
                         <li className="body">
                             <div className="td01">
@@ -353,7 +353,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <div className="td04">
                                 <strong>완료</strong>
                             </div>
-                            <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                            <div className="td05"><Link href="/"><a className="btn small">상세보기</a></Link></div>
                         </li>
                     </ul>
                 </div>
@@ -604,12 +604,12 @@ export const MsIndex: React.FC<IProp> = () => {
 
                 <div className="hang div09">
                     <ul>
-                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>사업자입점매뉴얼</strong></a></Link></li>
-                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>상세페이지기본폼</strong></a></Link></li>
-                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>스마트스토어</strong></a></Link></li>
-                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>맞춤견적관리</strong></a></Link></li>
-                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>카페24 SMS관리</strong></a></Link></li>
-                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>카카오비즈톡관리</strong></a></Link></li>
+                        <li><Link href="/"><a><strong>사업자입점매뉴얼</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
+                        <li><Link href="/"><a><strong>상세페이지기본폼</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
+                        <li><Link href="/"><a><strong>스마트스토어</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
+                        <li><Link href="/"><a><strong>맞춤견적관리</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
+                        <li><Link href="/"><a><strong>카페24 SMS관리</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
+                        <li><Link href="/"><a><strong>카카오비즈톡관리</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
 
                     </ul>
                 </div>

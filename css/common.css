@@ -825,8 +825,51 @@ br.no {
     }
 
 }
+@media (max-width: 1000px) {
+    .state_icon {
+        font-size: 12px;
+
+    }
+    .state_icon.plainning-yes {
+        color: #059600;
+        border: 0;
+        background-color: #daf7da;
+        padding: 2px 8px;
+        border-radius: 2px;
+    }
+    .state_icon.plainning-no {
+        color: #f38721;
+        border: 0;
+        background-color: #fff3e9;
+        padding: 2px 8px;
+        border-radius: 2px;
+    }
+    .state_icon.tour-no {
+        color: #f32121;
+        border: 0;
+        background-color: #ffe4e4;
+        padding: 2px 8px;
+        border-radius: 2px;
+    }
+    .state_icon.tour-ok {
+        color: #2196F3;
+        border: 0;
+        background-color: #eaf6ff;
+        padding: 2px 8px;
+        border-radius: 2px;
+    }
+    .state_icon.tour-yes {
+        color: #005394;
+        border: 0;
+        background-color: #e1f2ff;
+        padding: 2px 8px;
+        border-radius: 2px;
+    }
+}
 @media (max-width: 767px) {
     br.no {
         display: none;
     }
+
+    
 }

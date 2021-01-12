@@ -154,7 +154,12 @@
         box-sizing: border-box;
         box-shadow: 0px 0px 3px rgb(0 0 0 / 22%)
     }
-    .master_box .main_paper_div .hang .head{
+    .master_box .main_paper_div .head{
+        position: relative;
+        width: 100%;
+        display: block;
+    }
+    .master_box .main_paper_div .table .head{
         position: relative;
         width: 100%;
         display: block;
@@ -314,7 +319,7 @@
     .master_box .main_paper_div .hang .more{
         position: absolute;
         right: 0;
-        top: 18px;
+        top: 28px;
         font-size: 0.8em;
     }
     .master_box .main_paper_div .hang.div05 .more,
@@ -383,12 +388,19 @@
      }
     .master_box .main_paper_div .hang.div09 strong,
     .master_box .main_paper_div .hang.div09 span{
-        width:100%;
+        width:auto;
         text-align: center;
-        display: block;
+        display: inline-block;
+        font-weight:600;
      }
     .master_box .main_paper_div .hang.div09 span{
-        width:22px;display: inline-block;
+        width:22px;
+        display: inline-block;
+     }
+    .master_box .main_paper_div .hang.div09 i.jandaicon-arr4-right{
+        font-size: 12px;
+        margin-left: 5px;
+        color: #999;
      }
     .master_box .main_paper_div .hang.div09 img{
         width:100%;
@@ -3869,6 +3881,7 @@ div.master_popup div.alignment{
         height: 77px;
     }
   
+  
     .master_box .homepage.sms .sms-list li {
         width: 262px;
         margin: 15px;
@@ -4556,7 +4569,21 @@ div.master_popup .info_table .th01,
     .master_box .con.family .td09 { 
         margin-top: 10px;
     }
-   
+    /* .master_box .fin.ifMobile {
+        padding: 20px 0;
+    } */
+    .master_box .homepage .design_table .tbody .t01{
+        padding: 20px 10px 0 10px;
+    }
+    .master_box .homepage .design_table .tbody .t02 {
+        padding: 9px 10px 20px 10px;
+    }
+    .master_box .homepage .design_table .tbody .txt span{
+        vertical-align: middle;
+    }
+    .master_box .search_top .search_div input{
+        margin-top: 5px;
+    }
 }
 
 
