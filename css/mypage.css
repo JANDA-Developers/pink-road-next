@@ -3256,16 +3256,16 @@ div.reservation_popup .tr select {
   .notification_box .right .hang:before {
         width: 5px;
         height: 5px;
-        left: -98px;
+        left: -28px;
         top: 15px;
     }
   .notification_box .right .hang:after {
         position: absolute;
         content: '';
         display: inline-block;
-        width: 85px;
+        width: 15px;
         height: 1px;
-        left: -85px;
+        left: -15px;
         top: 22px;
     }
     
