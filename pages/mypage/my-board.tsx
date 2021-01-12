@@ -1,46 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MypageLayout } from '../../layout/MypageLayout';
-import { lastMonthFirstDate, lastMonthLastDate, ALLOW_LOGINED, thisMonthFirstDate, thisMonthLastDate } from '../../types/const';
+import { ALLOW_LOGINED } from '../../types/const';
 import { auth } from '../../utils/with';
 import dayjs from 'dayjs';
 import isEmpty from '../../utils/isEmpty';
 import { ViewCount } from '../../components/common/ViewCount';
-import { SortSelect } from '../../components/common/SortSelect';
+import { SingleSortSelect } from '../../components/common/SortSelect';
 import { autoComma } from '../../utils/formatter';
-import { generateClientPaging } from '../../utils/generateClientPaging';
+import { SearchBar } from '../../components/searchBar/SearchBar';
+import { useMyBoardList } from '../../hook/useMyBoardList';
+import { useDateFilter } from '../../hook/useSearch';
+import { useSingleSort } from '../../hook/useSort';
 
 interface IProp { }
 
 export const MyPageBoard: React.FC<IProp> = () => {
-    const { boards = [], loading, setFilter, setSort, sort, filter } = boardWrapContext;
-    const [view, setView] = useState(4);
-    const paging = generateClientPaging(boards || [], view);
+    const { items, filter, setFilter, sort, setSort, viewCount, setViewCount } = useMyBoardList()
 
-    const handleThisMonth = () => {
+    const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({ filter, setFilter })
+
+    const singoeSort = useSingleSort(sort, setSort);
+
+    const doSearch = (search: string) => {
+        const _filter = {
+            ...filter
+        }
+
+        _filter["title_contains"] = search ? search : undefined;
         setFilter({
-            createdAt_gte: thisMonthFirstDate,
-            createdAt_lte: thisMonthLastDate
+            ..._filter,
         })
     }
 
-    const handleLastMonth = () => {
-        setFilter({
-            createdAt_gte: lastMonthFirstDate,
-            createdAt_lte: lastMonthLastDate
-        })
-    }
-
-    const handleHalfYesr = () => {
-
-    }
-
-    const handleYear = () => {
-
-    }
-
-    const handleSortChange = () => {
-
-    }
 
     return <MypageLayout>
         <div className="in myboard_box">
@@ -48,64 +39,27 @@ export const MyPageBoard: React.FC<IProp> = () => {
             <div className="paper_div">
                 <div className="con_top">
                     <h6>상세검색</h6>
-                    <div className="search_box">
-                        <div className="jul4">
-                            <div className="title">날짜</div>
-                            <div className="text">
-                                <ul className="day_ul">
-                                    <li onClick={setThisMonth} >
-                                        <span>이번달</span>
-                                    </li>
-                                    <li onClick={setLastMonth} >
-                                        <span>저번달</span>
-                                    </li>
-                                    <li onClick={sixMonth}>
-                                        <span>6개월</span>
-                                    </li>
-                                    <li onClick={oneYear}>
-                                        <span>1년</span>
-                                    </li>
-                                </ul>
-                                <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <span className="calendar">
-                                        <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
-                                        <button />
-                                    </span>
-                                </div>
-                                ~
-                                 <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <span className="calendar">
-                                        <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
-                                        <button />
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="jul1">
-                            <div>
-                                <select className="option">
-                                    <option>제목</option>
-                                    <option>게시판</option>
-                                </select>
-                                <div className="search_div">
-                                    <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
-                                    <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
-                                        <button />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <SearchBar
+                        defaultRange={{
+                            from: filterStart,
+                            to: filterEnd
+                        }}
+                        filterStart={filterStart}
+                        filterEnd={filterEnd}
+                        doSearch={doSearch}
+                        onDateChange={hanldeCreateDateChange}
+                        SearchSelect={
+                            <select className="option">
+                                <option>제목</option>
+                            </select>}
+                    />
 
                     <div className="con_bottom">
                         <div className="alignment">
-                            <div className="left_div">총 <strong>{autoComma(boards.length)}</strong>개</div>
+                            <div className="left_div">총 <strong>{autoComma(items.length)}</strong>개</div>
                             <div className="right_div">
-                                <SortSelect onChange={handleSortChange} sort={sort} />
-                                <ViewCount value={view} onChange={setView} />
+                                <SingleSortSelect {...singoeSort} />
+                                <ViewCount value={viewCount} onChange={setViewCount} />
                             </div>
                         </div>
 
@@ -119,15 +73,15 @@ export const MyPageBoard: React.FC<IProp> = () => {
                             </div>
                             <div className="tbody">
                                 <ul>
-                                    {boards.map((board, index) =>
-                                        <li key={board._id}>
-                                            <div className="th02">{board.boardType}</div>
+                                    {items.map((item, index) =>
+                                        <li key={item._id}>
+                                            <div className="th02">{item.boardType}</div>
                                             <div className="th03">{index}</div>
-                                            <div className="th04"><a href="/">{board.title}<i className="q_ok">{board.questionStatus}</i></a></div>
-                                            <div className="th05">{dayjs(board.createdAt).format("YYYY.MM.DD hh:mm")}</div>
+                                            <div className="th04"><a href="/">{item.title}<i className="q_ok">{item.questionStatus}</i></a></div>
+                                            <div className="th05">{dayjs(item.createdAt).format("YYYY.MM.DD hh:mm")}</div>
                                         </li>
                                     )}
-                                    {isEmpty(boards) &&
+                                    {isEmpty(items) &&
                                         <li className="no_data">
                                             {/*게시글이 없을때*/}
                                             <i className="jandaicon-info3" />

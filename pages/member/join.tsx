@@ -99,7 +99,7 @@ const Join = () => {
 
 
     useEffect(() => {
-        window.onpopstate = function (event:any) {
+        window.onpopstate = function (event: any) {
             joinSet(event.state.joinProcess);
         };
     }, [])
@@ -250,7 +250,6 @@ const Verification: React.FC = () => {
             }} verifiHook={{
                 ...verifiHook
             }} />
-
         </div>
     )
 }

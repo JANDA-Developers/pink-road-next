@@ -1,6 +1,6 @@
-import { BOOKINGS_CREATE, BOOKING_DELETE, BOOKING_FIND_BY_CODE, BOOKING_LIST, BOOKING_UPDAET } from "../apollo/gql/booking";
-import {  bookingDelete, bookingDeleteVariables, bookingFindByCode, bookingFindByCodeVariables, bookingFindByCode_BookingFindByCode_data, bookingList, bookingListVariables, bookingList_BookingList_data, bookingsCreate, bookingsCreateVariables, bookingUpdate, bookingUpdateVariables, Fbooking, FbookingByCode,  _BookingFilter, _BookingSort } from "../types/api";
-import { getRefetch } from "../utils/api";
+import {  BOOKINGS_CREATE, BOOKING_CANCEL, BOOKING_DELETE, BOOKING_FIND_BY_CODE, BOOKING_LIST, BOOKING_UPDAET } from "../apollo/gql/booking";
+import {  bookingCancel, bookingDelete, bookingDeleteVariables, bookingCancelVariables,bookingFindByCode, bookingFindByCodeVariables, bookingFindByCode_BookingFindByCode_data, bookingList, bookingListVariables, bookingList_BookingList_data, bookingsCancel, bookingsCreate, bookingsCreateVariables, bookingUpdate, bookingUpdateVariables, Fbooking, FbookingByCode,  _BookingFilter, _BookingSort } from "../types/api";
+import { getRefetch , } from "../utils/api";
 import { generateFindQuery, generateListQueryHook, generateMutationHook } from "../utils/query";
 
 export const useBookingFindByCode = generateFindQuery<bookingFindByCode,bookingFindByCodeVariables,bookingFindByCode_BookingFindByCode_data>("code",BOOKING_FIND_BY_CODE)
@@ -12,5 +12,8 @@ export const useBookingUpdate = generateMutationHook<bookingUpdate,bookingUpdate
     ...getRefetch(BOOKING_LIST)
 });
 export const useBookingDelete = generateMutationHook<bookingDelete,bookingDeleteVariables>(BOOKING_DELETE, {
+    ...getRefetch(BOOKING_LIST)
+});
+export const useBookingCancel = generateMutationHook<bookingCancel,bookingCancelVariables>(BOOKING_CANCEL, {
     ...getRefetch(BOOKING_LIST)
 });

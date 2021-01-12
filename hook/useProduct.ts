@@ -1,6 +1,6 @@
 import { MutationHookOptions, useLazyQuery, useMutation, useQuery } from "@apollo/client";
-import { PRODUCT_POST_DELETE, PRODUCT_POST_LIST } from "../apollo/gql/product";
-import { bookingList, bookingListVariables, productDelete, productDeleteVariables } from "../types/api";
+import { PRODUCT_FIND_BY_ID_FOR_SELLER, PRODUCT_POST_DELETE, PRODUCT_LIST } from "../apollo/gql/product";
+import { bookingList, bookingListVariables, bookingList_BookingList_data, productDelete, productDeleteVariables, productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data, productFindById_ProductFindById_data, productList_ProductList_data, _BookingFilter, _BookingSort, _PortfolioFilter } from "../types/api";
 import { productFindById, productFindByIdVariables } from "../types/api";
 import { IlistQueryInit, IproductFindById } from "../types/interface";
 import { QueryHookOptions } from "@apollo/client"
@@ -12,10 +12,12 @@ import { PRODUCT_POST_UPDATE } from "../apollo/gql/product";
 import { productUpdate, productUpdateVariables } from "../types/api";
 import { getRefetch } from "../utils/api";
 import { useEffect } from "react";
+import { generateFindQuery, generateListQueryHook } from "../utils/query";
+import { BOOKING_LIST } from "../apollo/gql/booking";
 
 export const useProductDelete = (options?: MutationHookOptions<productDelete,productDeleteVariables>) => {
     const [productUpdateMu, { loading: deleteLoading }] = useMutation<productDelete, productDeleteVariables>(PRODUCT_POST_DELETE, {
-        ...getRefetch(PRODUCT_POST_LIST, PRODUCT_FIND_BY_ID),
+        ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
         ...options
     });
     
@@ -32,38 +34,8 @@ export const useProductDelete = (options?: MutationHookOptions<productDelete,pro
     return {productDelete, deleteLoading}
 }
 
-export interface IUseProductFindById {
-    product?: IproductFindById;
-    loading: boolean;
-}
-export interface IuseProductFindByIdProp extends QueryHookOptions<productFindById,productFindByIdVariables> {
-}
-
-export const useProductFindById = (id?:string,{
-    ...options
-}:IuseProductFindByIdProp = {}):IUseProductFindById => {
-    const [getData ,{ data, loading }] = useLazyQuery<productFindById, productFindByIdVariables>(PRODUCT_FIND_BY_ID, {
-        ...options,
-        nextFetchPolicy: "network-only",
-        onCompleted: ({ProductFindById})=> {
-            if(!ProductFindById.ok) {
-                console.error(data?.ProductFindById.error);
-                alert("잘못된 접근 입니다.");
-            }
-        },
-        variables: {
-            _id: id!
-        }
-    })
-
-    useEffect(()=>{
-        getData();
-    },[id])
-
-    const product = data?.ProductFindById?.data || undefined
-    
-    return { product, loading }
-}
+export const useProductFindById = generateFindQuery<productFindById, productFindByIdVariables, productFindById_ProductFindById_data>("_id",PRODUCT_FIND_BY_ID);
+export const useProductFindByIdForSeller = generateFindQuery<productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data>("_id", PRODUCT_FIND_BY_ID_FOR_SELLER);
 
 export interface IproductListInit extends IlistQueryInit<_ProductFilter,_ProductSort,productList,productListVariables> {}
 export interface IuseProductList extends IListHook<_ProductFilter, _ProductSort> {
@@ -72,47 +44,12 @@ export interface IuseProductList extends IListHook<_ProductFilter, _ProductSort>
     pageInfo: Fpage;
 }
 
-export const useProductList = ({
-    initialPageIndex = 1,
-    initialSort = [_ProductSort.createdAt_desc],
-    initialFilter = {},
-    initialViewCount = 20,
-    options = {}
-}:IproductListInit = {}):IuseProductList => {
-    const { variables: overrideVariables, ...ops } = options;
-    const {filter,integratedVariable,setFilter, page,setPage,setSort,setViewCount,sort,viewCount} = useListQuery({
-        initialFilter,
-        initialPageIndex,
-        initialSort,
-        initialViewCount
-    });
-
-    const variables = {
-        ...integratedVariable,
-        ...overrideVariables
-    }
-
-    const [getData, { data, loading:getLoading }] = useLazyQuery<productList, productListVariables>(PRODUCT_POST_LIST, {
-        nextFetchPolicy: "cache-and-network",
-        variables,
-        ...ops
-    })
-    
-    const items = data?.ProductList.data || [];
-    const pageInfo = data?.ProductList.page || DEFAULT_PAGE;
-
-    useEffect(()=>{
-        getData();
-    },[filter,page,sort])
-
-    return { pageInfo, filter, setPage, page, getLoading, setFilter, setSort, setViewCount, sort, viewCount, items }
-}
-
+export const useProductList = generateListQueryHook<_PortfolioFilter, _ProductSort, productList, productListVariables, productList_ProductList_data>(PRODUCT_LIST,{initialSort: [_ProductSort.createdAt_desc]});
 
 export const useProductUpdate = (options?: MutationHookOptions<productUpdate,productUpdateVariables>) => {
     const [productUpdateMu, { loading: updateLoading }] = useMutation<productUpdate, productUpdateVariables>(PRODUCT_POST_UPDATE, {
         awaitRefetchQueries:true,
-        ...getRefetch(PRODUCT_POST_LIST,PRODUCT_FIND_BY_ID),
+        ...getRefetch(PRODUCT_LIST,PRODUCT_FIND_BY_ID),
         ...options
     });
     

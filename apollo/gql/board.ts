@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { F_PAGE } from "./fragments";
 
 export const MY_BOARD_LIST = gql`
     query myBoardList($pageInput: pageInput!, $filter:_BoardFilter, $sort: [_BoardSort!]
@@ -10,6 +11,9 @@ export const MY_BOARD_LIST = gql`
         ) {
         ok
         error
+        page {
+            ...Fpage
+        }
         data {
             _id
             createdAt
@@ -33,4 +37,5 @@ export const MY_BOARD_LIST = gql`
         }
        } 
    }
+   ${F_PAGE}
 `

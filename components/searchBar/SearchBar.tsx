@@ -8,7 +8,7 @@ import CalendarIcon from '../common/icon/CalendarIcon';
 import { DayPickerModal, IDayPickerModal } from '../dayPickerModal/DayPickerModal';
 import { TRange } from '../tourWrite/helper';
 
-interface IProp extends IDayPickerModal {
+interface IProp extends Omit<IDayPickerModal, "onSubmit"> {
     Status?: TElements;
     filterStart?: Date
     filterEnd?: Date

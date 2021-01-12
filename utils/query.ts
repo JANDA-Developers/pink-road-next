@@ -6,8 +6,12 @@ import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
 
 
-const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["data","page"]) => {
+interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
+    queryName?: string;
+};
 
+const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["data","page"]) => {
+    try {
     if(data?.hasOwnProperty(operationName) === false) {
         throw Error(`result data object dose not have property ${operationName} look this above object ↑ `)
     }
@@ -18,12 +22,16 @@ const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["da
             throw Error(`result data object dose not have property ${p} look this above object ↑ `)
         }
     })
+    } catch (e){
+    console.error("==========FATAL ERROR==========");
+    console.error(e);
+    }
 }
 
 export const generateListQueryHook = <F,S,Q,V,R>(
     QUERY: DocumentNode,
     queryInit: Partial<ListInitOptions<F, S>> = {},
-    defaultOptions?: QueryHookOptions<Q,V>
+    defaultOptions?: genrateOption<Q,V>
 ) => {
     const listQueryHook = (
         {
@@ -52,7 +60,8 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             ...ops
         })
 
-        const operationName = getQueryName(QUERY);
+        const operationName = defaultOptions?.queryName || getQueryName(QUERY);
+
         dataCheck(data,operationName)
         // @ts-ignore
         const items: R[] = data?.[operationName]?.data || []
@@ -77,17 +86,17 @@ export const generateListQueryHook = <F,S,Q,V,R>(
 
 export const gnerateQueryHook = <Q, R, V = undefined>(
     QUERY:DocumentNode,
-    initOptions?: QueryHookOptions<Q,V>
+    initOptions?: genrateOption<Q,V>
 ) => {
 
     const queryHook  = (defaultOptions?: QueryHookOptions<Q,V>) => {
         const [getData, { data:_data, loading:getLoading }] = useLazyQuery<Q,V>(QUERY, {
             nextFetchPolicy: "cache-first",
             ...initOptions,
-            ...defaultOptions
+            ...defaultOptions,
         })
         
-        const operationName = getQueryName(QUERY);
+        const operationName = initOptions?.queryName || getQueryName(QUERY);
         dataCheck(_data,operationName,["data"])
 
         type Result = R extends Array<any> ? R : R | undefined 
@@ -153,6 +162,7 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V | null, QU
 
 export const getQueryName = (QUERY:DocumentNode) => {
     const operation = QUERY.definitions[0];
+
     // @ts-ignore
     const operationName = operation && operation.name.value;
 

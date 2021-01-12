@@ -248,7 +248,7 @@ const UserInfoForm: React.FC = () => {
                             <input type="text" className="w80" name="address"
                                 value={data.address}
                                 onChange={handleData("address")} />
-                            <button type="button" className="btn btn_mini" >
+                            <button style={{ lineHeight: "100%" }} type="button" className="btn btn_mini" >
                                 찾기
                             </button>
                         </div>
@@ -345,15 +345,12 @@ const UserInfoForm: React.FC = () => {
                                 <div className="w100">
                                     <input
                                         type="text"
-                                        className="w80"
+                                        className="w100"
                                         name="incharge_number"
                                         placeholder="-를 제외한 휴대폰 번호를 입력해주세요"
                                         value={autoHypenPhone(data.manageContact || "")}
                                         onChange={handleData("manageContact")}
                                     />
-                                    <button type="button" className="btn btn_mini">
-                                        인증
-                                    </button>
                                 </div>
                             </div>
                             <div className="ph_wrap">

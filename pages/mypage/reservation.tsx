@@ -1,7 +1,14 @@
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import { MypageLayout } from 'layout/MypageLayout';
 import { Paginater } from 'components/common/Paginator';
-import React from 'react';
+import React, { useState } from 'react';
+import { SearchBar } from '../../components/searchBar/SearchBar';
+import { useDateFilter } from '../../hook/useSearch';
+import { createOrSearch } from '../../utils/genFilter';
+import { BookingStatus, _BookingFilter } from '../../types/api';
+import { useBookingList } from '../../hook/useBooking';
+import Excel from '../../components/excel/Execel';
+import { useIdSelecter } from '../../hook/useIdSelecter';
 
 interface IProp { }
 
@@ -16,82 +23,73 @@ const popupClose = () => {
         'display': 'none'
     });
 }
+
 export const MyReservation: React.FC<IProp> = () => {
+    const { items, filter, setFilter } = useBookingList();
+    const [searchType, setSearchType] = useState<"code" | "title" | "name">("code");
+    const { check, isChecked, selectedIds } = useIdSelecter(items.map(i => i._id));
+
+    const { hanldeCreateDateChange, filterEnd, filterStart } = useDateFilter({
+        filter,
+        setFilter,
+        dateKey: "createdAt",
+    });
+
+    const doSearch = (search: string) => {
+        const OR = createOrSearch<_BookingFilter>(["porductName_contains", "porductKeywards_in"], search);
+        setFilter({
+            ...filter,
+            OR,
+        })
+    }
+
+    const handleSatus = (status?: BookingStatus) => () => {
+        setFilter({
+            status_eq: status
+        })
+    }
+
+    const checkStatusOn = (status?: BookingStatus) => filter.status_eq === status ? "check on" : ""
+
     return <MypageLayout>
         <div className="in reservation_div">
             <h4>예약관리</h4>
             <div className="paper_div">
                 <div className="con_top">
                     <h6>상세검색</h6>
-                    <div className="search_box">
-                        <div className="jul2">
-                            <div className="title">상태</div>
+                    <SearchBar
+                        defaultRange={{}}
+                        filterStart={filterStart}
+                        filterEnd={filterEnd}
+                        doSearch={doSearch} Status={
                             <div className="text">
-                                <span className="check on">전체</span>
-                                <span className="check">예약대기</span>
-                                <span className="check">예약완료</span>
-                                <span className="check">예약취소</span>
-                            </div>
-                        </div>
-                        <div className="jul4">
-                            <div className="title">날짜</div>
-                            <div className="text">
-                                <ul className="day_ul">
-                                    <li className="on">
-                                        <span>이번달</span>
-                                    </li>
-                                    <li className="on">
-                                        <span>저번달</span>
-                                    </li>
-                                    <li>
-                                        <span>6개월</span>
-                                    </li>
-                                    <li>
-                                        <span>1년</span>
-                                    </li>
-                                </ul>
-                                <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                                ~
-                                 <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="jul1">
-                            <div>
-                                <select className="option">
-                                    <option>상품코드</option>
-                                    <option>상품명</option>
-                                    <option>예약자</option>
-                                </select>
-                                <div className="search_div">
-                                    <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
-                                    <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
-                                        <button />
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                                <span onClick={handleSatus(undefined)} className={checkStatusOn(undefined)}>전체</span>
+                                <span onClick={handleSatus(BookingStatus.READY)} className={checkStatusOn(BookingStatus.READY)}>예약대기</span>
+                                <span onClick={handleSatus(BookingStatus.COMPLETE)} className={checkStatusOn(BookingStatus.COMPLETE)}>예약완료</span>
+                                <span onClick={handleSatus(BookingStatus.CANCEL)} className={checkStatusOn(BookingStatus.CANCEL)}>예약취소</span>
+                            </div>}
+                        SearchSelect={
+                            <select value={searchType} onChange={(e) => {
+                                const val = e.currentTarget.value;
+                                setSearchType(val as any);
+                            }} className="option">
+                                <option value={"code"}>상품코드</option>
+                                <option value={"title"}>상품명</option>
+                                <option value={"name"}>예약자</option>
+                            </select>
+                        }
+                        onDateChange={hanldeCreateDateChange}
+                    />
                 </div>
                 <div className="con_bottom">
-
                     <div className="con_box">
                         <div className="alignment">
                             <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>건</span></div>
                             <div className="right_div">
                                 <ul className="board_option">
-                                    <li><a href="/">모두선택</a></li>
-                                    <li><a href="/">모두선택 해제</a></li>
-                                    <li><a href="/">엑셀파일</a></li>
-
+                                    <li><a>모두선택</a></li>
+                                    <li><a>모두선택 해제</a></li>
+                                    <li><Excel data={[]} element={<a>엑셀파일</a>} /></li>
                                 </ul>
                                 <select className="sel01">
                                     <option>출발일 &uarr;</option>

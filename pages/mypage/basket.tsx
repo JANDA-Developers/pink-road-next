@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Basket } from '../../components/basket/Basket';
 import { IUseBasket, useBasket } from '../../hook/useBasket';
@@ -10,12 +11,15 @@ interface IProp {
 }
 
 export const MyPageBasket: React.FC<IProp> = ({ context }) => {
-    const { items, totalPrice, updateComponent } = context;
-    const [popUpProduct, setPopProduct] = useState<Fproduct & IBasketItem>();
-    const [selectedIds, setSelecteds] = useState<string[]>([]);
+    const { items, updateComponent } = context;
+    const router = useRouter()
 
     const handleOrder = () => {
-        // 결제페이지로 보내버림 ㄱ
+        router.push("/payment")
+    }
+
+    const goToShop = () => {
+        router.back();
     }
 
 
@@ -35,7 +39,7 @@ export const MyPageBasket: React.FC<IProp> = ({ context }) => {
                     Buttons={
                         <div className="baket_btn">
                             <div className="left">
-                                <button className="btn">쇼핑 계속하기</button>
+                                <button onClick={goToShop} className="btn">쇼핑 계속하기</button>
                                 <button onClick={handleOrder} className="btn orders">주문하기</button>
                             </div>
                         </div>

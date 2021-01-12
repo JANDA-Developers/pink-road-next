@@ -34,6 +34,9 @@ export const BOOKING_LIST = gql`
     }
     data  {
       ...Fbooking
+      payment {
+        status
+      }
       product {
         _id
         createdAt
@@ -53,6 +56,7 @@ export const BOOKING_LIST = gql`
         images {
             ...Ffile
         }
+        peopleCount
         keyWards
         address
         startPoint
@@ -99,13 +103,32 @@ export const BOOKING_COUNT = gql`
 }
 `
 
-
+export const BOOKING_CANCEL = gql`
+  mutation bookingCancel(
+    $reason: String!
+    $bookingId: String!
+  ) {
+    BookingCancel(
+      reason: $reason
+      bookingId:$bookingId
+    ) {
+    ok
+    error
+    data {
+      ...Fbooking
+    }
+  }
+}
+${F_BOOKING}
+`
 
 export const BOOKINGS_CREATE = gql`
   mutation bookingsCreate(
     $params: [BookingsCreateInput!]!
+    $payMethod: PayMethod!
   ) {
     BookingsCreate(
+      payMethod: $payMethod
       params:$params
     ) {
     ok
@@ -117,6 +140,7 @@ export const BOOKINGS_CREATE = gql`
 }
 ${F_BOOKING}
 `
+
 export const BOOKING_DELETE = gql`
   mutation bookingDelete(
     $id: String!

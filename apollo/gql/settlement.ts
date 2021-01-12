@@ -11,9 +11,9 @@ export const F_FEEPOLICY = gql`
       niceCardPercent
       jandaCardPercent
       cardPercent
-      passbookPercent
+      bankPercent
       storePercent
-    }
+}
 `
 
 export const F_SETTLEMENT = gql`
@@ -25,14 +25,15 @@ export const F_SETTLEMENT = gql`
       status
       totalPrice
       cardPrice
-      passbookPrice
+      bankPrice
       settlementPrice
       totalFee
       cardFee
       niceCardFee
       jandaCardFee
-      passbookFee
+      bankFee
       storeFee
+      additionFeeSum
       jandaFee
       cancelReturnPriceTotal
       cancelReturnPrice
@@ -43,8 +44,14 @@ export const F_SETTLEMENT = gql`
       acceptDate
       completeDate
       cancelDate
+      product {
+        _id
+        title
+        adult_price
+        kids_price
+        baby_price
+      }
     }
-    ${F_FEEPOLICY}
 `
 
 export const SETTLEMENT_LIST = gql`

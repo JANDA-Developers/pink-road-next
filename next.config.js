@@ -3,7 +3,12 @@ const withCSS = require("@zeit/next-css");
 
 module.exports = withCSS(
     withImages({
-        webpack(config, options) {
+        webpack(config, {isServer}) {
+            if (!isServer) {
+                config.node = {
+                    fs: 'empty',
+                }
+            }
             return config;
         }
     })

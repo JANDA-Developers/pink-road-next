@@ -10,9 +10,11 @@ import { DayPickerModal } from '../../components/dayPickerModal/DayPickerModal';
 import { SearchBar } from '../../components/searchBar/SearchBar';
 import { TRange } from '../../components/tourWrite/helper';
 import { useBookingList } from '../../hook/useBooking';
-import { BookingStatus } from '../../types/api';
+import { useDateFilter } from '../../hook/useSearch';
+import { BookingStatus, _BookingFilter } from '../../types/api';
 import { lastMonthFirstDate, lastMonthLastDate, thisMonthFirstDate, thisMonthLastDate } from '../../types/const';
 import { filterToRange, rangeToFilter } from '../../utils/filter';
+import { createOrSearch } from '../../utils/genFilter';
 import { onKeyPressEnter } from '../../utils/onKeyPress';
 import { closeModal, openModal } from '../../utils/popUp';
 
@@ -20,10 +22,12 @@ interface IProp { }
 
 export const MyPagePurchase: React.FC<IProp> = () => {
     const { items, setFilter, setPage, page, filter, sort, setSort, viewCount, setViewCount } = useBookingList()
-
     const [filterType, setFilterType] = useState<"keywards" | "productName">("keywards");
-    const filterStart = filter.createdAt_gte ? dayjs(filter.createdAt_gte).format("YYYY.MM.DD") : "";
-    const filterEnd = filter.createdAt_lte ? dayjs(filter.createdAt_lte).format("YYYY.MM.DD") : "";
+    const { hanldeCreateDateChange } = useDateFilter({
+        filter,
+        setFilter,
+        dateKey: "createdAt",
+    });
 
     const setType = (status?: BookingStatus) => () => {
         filter.status_eq = status;
@@ -31,27 +35,14 @@ export const MyPagePurchase: React.FC<IProp> = () => {
     }
 
     const doSearch = (search: string) => {
-        const _filter = {
-            ...filter
-        }
-        _filter["porductName_contains"] = search ? search : undefined;
-        _filter["porductKeywards_in"] = search ? [search] : undefined
+        const OR = createOrSearch<_BookingFilter>(["porductName_contains", "porductKeywards_in"], search);
         setFilter({
             ...filter,
-            porductName_contains: search ? search : undefined
+            OR,
         })
     }
 
-    const setCreatedRange = (range: TRange) => {
-        setFilter({
-            ...filter,
-            createdAt_gte: range.from,
-            createdAt_lte: range.to
-        })
-
-    }
     const checkOnStatus = (status?: BookingStatus) => status === filter.status_eq ? "check on" : "check";
-
 
     return <MypageLayout>
         <div className="in mypage_purchase">
@@ -59,22 +50,32 @@ export const MyPagePurchase: React.FC<IProp> = () => {
             <div className="paper_div">
                 <div className="con_top">
                     <h6>상세검색</h6>
-                    <SearchBar onSubmit={() => { }} filterStart={filter.createdAt_gte} filterEnd={filter.createdAt_lte} Status={<div className="jul2">
-                        <div className="title">상태</div>
-                        <div className="text">
-                            <span onClick={setType(undefined)} className={checkOnStatus(undefined)}>전체</span>
-                            <span onClick={setType(BookingStatus.COMPLETE)} className={checkOnStatus(BookingStatus.COMPLETE)}>예약완료</span>
-                            <span onClick={setType(BookingStatus.CANCEL)} className={checkOnStatus(BookingStatus.CANCEL)}>취소예약</span>
-                        </div>
-                    </div>} SearchSelect={
-                        <select onChange={(e) => {
-                            const val = e.currentTarget.value;
-                            setFilterType(val as any)
-                        }} value={filterType} className="option">
-                            <option value={"productName"}>상품명</option>
-                            <option value={"keywards"}>키워드</option>
-                        </select>
-                    } onDateChange={setCreatedRange} defaultRange={{}} doSearch={doSearch} />
+                    <SearchBar
+                        filterStart={filter.createdAt_gte}
+                        filterEnd={filter.createdAt_lte}
+                        Status={
+                            <div className="jul2">
+                                <div className="title">상태</div>
+                                <div className="text">
+                                    <span onClick={setType(undefined)} className={checkOnStatus(undefined)}>전체</span>
+                                    <span onClick={setType(BookingStatus.COMPLETE)} className={checkOnStatus(BookingStatus.COMPLETE)}>예약완료</span>
+                                    <span onClick={setType(BookingStatus.CANCEL)} className={checkOnStatus(BookingStatus.CANCEL)}>취소예약</span>
+                                </div>
+                            </div>
+                        }
+                        SearchSelect={
+                            <select onChange={(e) => {
+                                const val = e.currentTarget.value;
+                                setFilterType(val as any)
+                            }} value={filterType} className="option">
+                                <option value={"productName"}>상품명</option>
+                                <option value={"keywards"}>키워드</option>
+                            </select>
+                        }
+                        onDateChange={hanldeCreateDateChange}
+                        defaultRange={{}}
+                        doSearch={doSearch}
+                    />
                 </div>
                 <div className="con_bottom">
 

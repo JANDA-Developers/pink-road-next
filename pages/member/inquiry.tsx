@@ -64,7 +64,7 @@ export const QnaTable: React.FC<IProp> = () => {
                                 <div className="td01">221</div>
                                 <div className="td02"><Link href="/"><a>PINK-99930</a></Link></div>
                                 <div className="td03">
-                                    문의합니다 :)
+                                    문의합니다
                                     <object className="new" type="image/svg+xml" data="../img/svg/new.svg">new</object>
                                     <i className="q_no">미답변</i>
                                 </div>
