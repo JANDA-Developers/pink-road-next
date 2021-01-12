@@ -113,15 +113,15 @@ export interface answerUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: boardFindByEmail
+// GraphQL query operation: myBoardList
 // ====================================================
 
-export interface boardFindByEmail_BoardFindByEmail_data_thumb {
+export interface myBoardList_MyBoardList_data_thumb {
   __typename: "File";
   uri: string;
 }
 
-export interface boardFindByEmail_BoardFindByEmail_data {
+export interface myBoardList_MyBoardList_data {
   __typename: "IntegratedBoard";
   _id: string;
   createdAt: any;
@@ -134,7 +134,7 @@ export interface boardFindByEmail_BoardFindByEmail_data {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  thumb: boardFindByEmail_BoardFindByEmail_data_thumb | null;
+  thumb: myBoardList_MyBoardList_data_thumb | null;
   viewCount: number;
   likeCount: number;
   slug: string;
@@ -142,19 +142,19 @@ export interface boardFindByEmail_BoardFindByEmail_data {
   boardType: BoardType;
 }
 
-export interface boardFindByEmail_BoardFindByEmail {
+export interface myBoardList_MyBoardList {
   __typename: "IntegratedBoardResponse";
   ok: boolean;
   error: string | null;
-  data: boardFindByEmail_BoardFindByEmail_data[] | null;
+  data: myBoardList_MyBoardList_data[];
 }
 
-export interface boardFindByEmail {
-  BoardFindByEmail: boardFindByEmail_BoardFindByEmail;
+export interface myBoardList {
+  MyBoardList: myBoardList_MyBoardList;
 }
 
-export interface boardFindByEmailVariables {
-  email: string;
+export interface myBoardListVariables {
+  pageInput: pageInput;
   filter?: _BoardFilter | null;
   sort?: _BoardSort[] | null;
 }
@@ -216,11 +216,50 @@ export interface bookingList_BookingList_page {
   remainder: number;
 }
 
+export interface bookingList_BookingList_data_product_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface bookingList_BookingList_data_product_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface bookingList_BookingList_data_product {
   __typename: "Product";
   _id: string;
   title: string;
   code: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  contents: string;
+  category: bookingList_BookingList_data_product_category | null;
+  status: ProductStatus;
+  inOrNor: string;
+  info: string;
+  caution: string;
+  images: bookingList_BookingList_data_product_images[] | null;
+  keyWards: string[] | null;
+  address: string;
+  startPoint: string;
+  maxMember: number;
+  minMember: number;
+  subTitle: string | null;
+  adult_price: number;
+  bookingCount: number;
+  dateRange: number;
+  kids_price: number;
+  baby_price: number;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  type: ProductType;
+  startDate: any;
+  Dday: number;
 }
 
 export interface bookingList_BookingList_data_payment {
@@ -242,7 +281,8 @@ export interface bookingList_BookingList_data {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: string | null;
+  bookingPrice: number;
+  status: BookingStatus | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -339,7 +379,8 @@ export interface bookingsCreate_BookingsCreate_data {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: string | null;
+  bookingPrice: number;
+  status: BookingStatus | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -457,7 +498,8 @@ export interface bookingFindByCode_BookingFindByCode_data {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: string | null;
+  bookingPrice: number;
+  status: BookingStatus | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -660,17 +702,69 @@ export interface categoryUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: count
+// ====================================================
+
+export interface count_Count_data {
+  __typename: "Count";
+  /**
+   * 나의 총 구매갯수
+   */
+  buyTotalCount: number;
+  salesTotalCount: number | null;
+  settleUnsolvedRequestCount: number | null;
+  productRegistCount: number | null;
+  /**
+   * 이번달 판매 횟수
+   */
+  salesOfThisMonth: number;
+  /**
+   * 저번달 판매 횟수
+   */
+  salesofLastMonth: number;
+  /**
+   * 전체 판매 횟수
+   */
+  totalSalesCount: number;
+  /**
+   * 판매자가 현재 받을 수 있는 돈
+   */
+  settleAvaiableAmount: number;
+}
+
+export interface count_Count {
+  __typename: "CountResponse";
+  ok: boolean;
+  error: string | null;
+  data: count_Count_data | null;
+}
+
+export interface count {
+  Count: count_Count;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: homepage
 // ====================================================
 
 export interface homepage_Homepage_data_modal {
   __typename: "Modal";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
   link: string | null;
   startDate: any;
   endDate: any;
   content: string | null;
   linkBehavior: LinkBehavior | null;
   style: any;
+  title: string;
 }
 
 export interface homepage_Homepage_data {
@@ -715,12 +809,17 @@ export interface homepage {
 
 export interface homepageUpdate_HomepageUpdate_data_modal {
   __typename: "Modal";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
   link: string | null;
   startDate: any;
   endDate: any;
   content: string | null;
   linkBehavior: LinkBehavior | null;
   style: any;
+  title: string;
 }
 
 export interface homepageUpdate_HomepageUpdate_data {
@@ -2996,7 +3095,8 @@ export interface getContext_GetProfile_data_bookings {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: string | null;
+  bookingPrice: number;
+  status: BookingStatus | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -3248,12 +3348,17 @@ export interface getContext_CategoryList {
 
 export interface getContext_Homepage_data_modal {
   __typename: "Modal";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
   link: string | null;
   startDate: any;
   endDate: any;
   content: string | null;
   linkBehavior: LinkBehavior | null;
   style: any;
+  title: string;
 }
 
 export interface getContext_Homepage_data {
@@ -4669,7 +4774,8 @@ export interface FbookingByCode {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: string | null;
+  bookingPrice: number;
+  status: BookingStatus | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -4885,7 +4991,8 @@ export interface Fbooking {
   babyCount: number;
   totalCount: number;
   message: string | null;
-  status: string | null;
+  bookingPrice: number;
+  status: BookingStatus | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -5157,17 +5264,46 @@ export interface Fproduct {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: Fhomepage
+// GraphQL fragment: Fmodal
 // ====================================================
 
-export interface Fhomepage_modal {
+export interface Fmodal {
   __typename: "Modal";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
   link: string | null;
   startDate: any;
   endDate: any;
   content: string | null;
   linkBehavior: LinkBehavior | null;
   style: any;
+  title: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: Fhomepage
+// ====================================================
+
+export interface Fhomepage_modal {
+  __typename: "Modal";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  link: string | null;
+  startDate: any;
+  endDate: any;
+  content: string | null;
+  linkBehavior: LinkBehavior | null;
+  style: any;
+  title: string;
 }
 
 export interface Fhomepage {
@@ -5798,6 +5934,15 @@ export interface FsystemNoti {
 export enum BoardType {
   PRODUCT = "PRODUCT",
   QUESTION = "QUESTION",
+}
+
+/**
+ * 예약상태
+ */
+export enum BookingStatus {
+  CANCEL = "CANCEL",
+  COMPLETE = "COMPLETE",
+  READY = "READY",
 }
 
 /**
@@ -6565,6 +6710,13 @@ export interface _BoardFilter {
 export interface _BookingFilter {
   AND?: _BookingFilter[] | null;
   OR?: _BookingFilter[] | null;
+  porductName_eq?: string | null;
+  porductName_not_eq?: string | null;
+  porductName_in?: string[] | null;
+  porductName_contains?: string | null;
+  porductKeywards_eq?: string | null;
+  porductKeywards_not_eq?: string | null;
+  porductKeywards_in?: string[] | null;
   status_eq?: string | null;
   status_not_eq?: string | null;
   status_in?: string[] | null;

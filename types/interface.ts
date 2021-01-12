@@ -1,7 +1,8 @@
 import { QueryHookOptions } from "@apollo/client";
 import { CSSProperties, Dispatch } from "react";
+import { IPopupStyle } from "../components/popupconfig/PopupBox";
 import { ListInitOptions } from "../hook/useListQuery";
-import {  NotificationTriggerEvent, portfolioFindById_PortfolioFindById_data, productFindById_ProductFindById_data, productFindById_ProductFindById_data_itinerary, productList_ProductList_data, productList_ProductList_page, ReplaceString} from "../types/api";
+import {  Fmodal, NotificationTriggerEvent, portfolioFindById_PortfolioFindById_data, productFindById_ProductFindById_data, productFindById_ProductFindById_data_itinerary, productList_ProductList_data, productList_ProductList_page, ReplaceString} from "../types/api";
 
 export interface Iitineraries extends productFindById_ProductFindById_data_itinerary {}
 export interface IproductFindById  extends productFindById_ProductFindById_data {}
@@ -76,4 +77,8 @@ export const ReplaceKr:ReplaceKR = {
     "PRICE": "예약가격",
     "TRAVEL_CONFIRMED": "출발 확정/미확정",
     "TRAVEL_DATE_YMD": "출발일자"
+}
+
+export interface Ipopup extends Fmodal {
+    style: IPopupStyle
 }

@@ -1,62 +1,50 @@
 import React, { useState } from 'react';
-import { IPopup, PopupBox, Tpos, Tszie } from './PopupBox';
+import { useResizeDetector } from 'react-resize-detector';
+import { IUsePopups } from '../../hook/usePopups';
+import { Ipopup } from '../../types/interface';
+import { IPopupStyle, PopupBox, Tpos, Tszie } from './PopupBox';
 
 
 
 
-interface IProp {
-    views: IPopup[]
-    setViews: (views: IPopup[]) => void;
-    onBoxDoubleClick: (view: IPopup, index: number) => void;
-    selectedIndex?: number;
+interface IProp extends IUsePopups {
+    height: number;
+    onBoxClick: (popup: Ipopup, index: number) => void;
 }
 
 //이 컴포넌트의 역할은 무엇인가요? 
 //이 컴포넌트는 위치를 그려주고  좌표값을 계산하고 상위로 돌려줌
 //상대좌표는 어떻게 찾지? 바로 hook으로 
-export const PopupConfigViewBox: React.FC<IProp> = ({ views, setViews, selectedIndex, onBoxDoubleClick }) => {
+export const PopupConfigViewBox: React.FC<IProp> = ({ popups, height, hideIds, setPopups, selectedIndex, onBoxClick }) => {
 
     const handleMove = (index: number) => (pos: Tpos) => {
-        const target = views[index];
+        const target = popups[index].style;
         target.left = pos.x;
         target.top = pos.y;
-        setViews([...views]);
+        setPopups([...popups]);
     }
 
-    const handleResize = (index: number) => (size: Tszie) => {
-        const target = views[index];
-        target.width = size.width;
-        target.height = size.height;
-        if (size.height !== undefined && size.width !== undefined) {
-            setViews([...views]);
+    const handleResize = (index: number) => (width: number, height: number) => {
+        const target = popups[index].style;
+        target.width = width;
+        target.height = height;
+        if (height !== undefined && width !== undefined) {
+            setPopups([...popups]);
         }
     }
     //모바일에서는 항상 가득차게 나오게 그리고
     // 모바일일때 끄기 옵션 
 
 
-    const handleBoxDoubleClick = (view: IPopup, index: number) => () => {
-        onBoxDoubleClick(view, index);
+    const handleClick = (popup: Ipopup, index: number) => () => {
+        onBoxClick(popup, index);
     }
 
-    return <div style={{ width: "500px", height: "500px", border: "1px solid red" }} className="hang_view">
-        {views.map((view, index) =>
-            <PopupBox seleted={selectedIndex === index} onDoubleClick={handleBoxDoubleClick(view, index)} key={index + "PopUpBox"} {...view} onMove={handleMove(index)} onResize={handleResize(index)} />
+    const filtedPopups = popups.filter(pop => !hideIds.includes(pop._id));
+
+    return <div className="popupConfigBox" id="POPWRAP" style={{ position: "relative", width: "100%", height }} >
+        {filtedPopups.map((popup, index) =>
+            <PopupBox {...popup} wrapHeight={height} seleted={selectedIndex === index} onClick={handleClick(popup, index)} key={index + "PopUpBox"} {...popup} onMove={handleMove(index)} onResize={handleResize(index)} />
         )}
     </div>;
 };
-
-
-const HeadDeco = <div className="head">
-    <ul className="top">
-        <li><i className="flaticon-multiply"></i></li>
-    </ul>
-    <div className="bottomnav">
-        <div className="tap"></div>
-        <div className="input">
-            <i className="flaticon-menu"></i>
-            <i className="flaticon-menu-1"></i>
-            <span></span>
-        </div>
-    </div>
-</div>

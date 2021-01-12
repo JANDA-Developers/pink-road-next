@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import { title } from 'process';
+import React, { useEffect, useState } from 'react';
 import Draggable, { DraggableEventHandler } from 'react-draggable';
 import ResizeObserver, { useResizeDetector } from 'react-resize-detector';
+import { BG } from '../../types/const';
+import { Ipopup } from '../../types/interface';
 
 
-export interface IPopup {
+export interface IPopupStyle {
     left: number;
     top: number;
-    name: string;
     width: number;
     height: number;
     backgroundImage?: string;
-    content?: string // html
 }
 
 export type Tpos = {
@@ -23,23 +24,35 @@ export type Tszie = {
     height: number;
 }
 
-interface IProp extends IPopup {
+interface IProp extends Ipopup {
+    wrapHeight: number;
     onMove: (pos: Tpos) => void;
     onResize: (width: number, height: number) => void;
     seleted: boolean;
-    onDoubleClick: () => void;
+    onClick: () => void;
 }
 
 // 이동과 리사이즈만함, 비례 거리는  부모가 계산함
-export const PopupBox: React.FC<IProp> = ({ height, onDoubleClick, left, onMove, onResize, top, width, seleted, backgroundImage, content }) => {
-    const { ref } = useResizeDetector({ onResize });
+export const PopupBox: React.FC<IProp> = ({ wrapHeight, onClick, onMove, onResize, seleted, content, style }) => {
+    const { height, top, width, left, backgroundImage } = style;
+    const maxHeight = wrapHeight - top;
+
+    const { ref, height: _height, width: _width } = useResizeDetector();
+
     const handleDrag: DraggableEventHandler = (e, ui) => {
         onMove({ x: ui.x, y: ui.y })
     }
 
-    return <Draggable defaultClassName={`dragBox ${seleted && "dragBox--selected"}`} handle=".dragBox__handle" position={{ x: left, y: top }} onStop={handleDrag} bounds="parent">
-        <div onDoubleClick={onDoubleClick} ref={ref as any} style={{ border: "1px solid blue", left, top, width: width + "px", height: height + "px", resize: "both", overflow: "auto" }} className="box">
-            <div className="dragBox__handle">나를당기시오</div>
+    useEffect(() => {
+        if (_width && _height)
+            onResize(_width, _height);
+    }, [_width, _height])
+
+
+    return <Draggable scale={1} defaultClassName={`dragBox ${seleted && "dragBox--selected"}`} handle=".dragBox__handle" position={{ x: left, y: top }} onStop={handleDrag} bounds="parent">
+        <div className="dragBox__in" onClick={onClick} ref={ref as any} style={{ minWidth: 100 + "px", minHeight: 100 + "px", width: width + "px", maxHeight: maxHeight + "px", height: height + "px", resize: "both", overflow: "auto", position: "absolute", ...BG(backgroundImage || "") }}>
+            <div className="dragBox__handle">{title}</div>
+
         </div>
     </Draggable>
 };

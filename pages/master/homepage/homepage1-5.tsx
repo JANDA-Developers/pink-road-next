@@ -62,7 +62,6 @@ export const MsHomepageA: React.FC<IProp> = () => {
                     </ul>
                 </div>
                 <div className="con homepage board">
-
                     <div className="design_table">
                         <div className="block_box">
                             <h5>게시판 카테고리 설정</h5>

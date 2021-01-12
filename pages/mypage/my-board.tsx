@@ -1,23 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { MypageLayout } from '../../layout/MypageLayout';
 import { lastMonthFirstDate, lastMonthLastDate, ALLOW_LOGINED, thisMonthFirstDate, thisMonthLastDate } from '../../types/const';
-import { AppContext } from '../_app';
 import { auth } from '../../utils/with';
-import { boardFindByEmail_BoardFindByEmail_data } from '../../types/api';
 import dayjs from 'dayjs';
 import isEmpty from '../../utils/isEmpty';
 import { ViewCount } from '../../components/common/ViewCount';
 import { SortSelect } from '../../components/common/SortSelect';
 import { autoComma } from '../../utils/formatter';
-import { changeVal } from '../../utils/eventValueExtracter';
 import { generateClientPaging } from '../../utils/generateClientPaging';
-import { IuseBoardFindByEmail, useBoardFindByEmail } from '../../hook/useBoardFindByEmail';
 
-interface IProp {
-    boardWrapContext: IuseBoardFindByEmail;
-}
+interface IProp { }
 
-export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
+export const MyPageBoard: React.FC<IProp> = () => {
     const { boards = [], loading, setFilter, setSort, sort, filter } = boardWrapContext;
     const [view, setView] = useState(4);
     const paging = generateClientPaging(boards || [], view);
@@ -59,16 +53,16 @@ export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
                             <div className="title">날짜</div>
                             <div className="text">
                                 <ul className="day_ul">
-                                    <li onClick={handleThisMonth} className="on">
+                                    <li onClick={setThisMonth} >
                                         <span>이번달</span>
                                     </li>
-                                    <li onClick={handleLastMonth} className="on">
+                                    <li onClick={setLastMonth} >
                                         <span>저번달</span>
                                     </li>
-                                    <li onClick={handleHalfYesr}>
+                                    <li onClick={sixMonth}>
                                         <span>6개월</span>
                                     </li>
-                                    <li onClick={handleYear}>
+                                    <li onClick={oneYear}>
                                         <span>1년</span>
                                     </li>
                                 </ul>
@@ -101,9 +95,7 @@ export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
                                         <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
                                         <button />
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -155,14 +147,4 @@ export const MyPageBoard: React.FC<IProp> = ({ boardWrapContext }) => {
     </MypageLayout>
 };
 
-
-export const MypageBoardWrap = () => {
-    const { myProfile } = useContext(AppContext)
-    const { email } = myProfile!;
-    const boardFindByEmailHook = useBoardFindByEmail(email);
-    const mypageBoardWrapContext = boardFindByEmailHook;
-
-    return <MyPageBoard boardWrapContext={mypageBoardWrapContext} />
-}
-
-export default auth(ALLOW_LOGINED)(MypageBoardWrap);
+export default auth(ALLOW_LOGINED)(MyPageBoard);

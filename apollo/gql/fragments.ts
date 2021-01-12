@@ -116,6 +116,7 @@ export const F_BOOKING = gql`
         babyCount
         totalCount
         message
+        bookingPrice
         status
         memo
         code

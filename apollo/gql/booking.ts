@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client"
-import { F_PAGE, F_BOOKING, F_PAYMENT, F_PRODUCT } from "./fragments"
+import { F_PAGE, F_BOOKING, F_PAYMENT, F_PRODUCT, F_FILE } from "./fragments"
 
 export const F_BOOKING_BY_CODE  = gql`
     fragment FbookingByCode on Booking {
@@ -34,10 +34,47 @@ export const BOOKING_LIST = gql`
     }
     data  {
       ...Fbooking
+      product {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        title
+        code
+        contents
+        category {
+            _id
+            label
+        }
+        status
+        inOrNor
+        info
+        caution
+        images {
+            ...Ffile
+        }
+        keyWards
+        address
+        startPoint
+        maxMember
+        minMember
+        subTitle
+        adult_price
+        bookingCount
+        dateRange
+        kids_price
+        baby_price
+        isNotice
+        isOpen
+        type
+        startDate
+        Dday
+      }
     }
   }
   }
   ${F_PAGE}
+  ${F_FILE}
   ${F_BOOKING}
 `
 

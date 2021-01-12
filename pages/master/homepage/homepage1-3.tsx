@@ -33,7 +33,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
 
                             <select className="sel01">
                                 <option>최신순 &uarr;</option>
-                                <option>최신순 &darr;</option>
+                            <option>최신순 &darr;</option>
                             </select>
                         </div>
                     </div>

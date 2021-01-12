@@ -299,7 +299,6 @@ figure:after {
 #dayPickerModal {
     max-height: 100vh;
     width: auto;
-    height: auto;
 }
 
 .modal {
@@ -309,7 +308,6 @@ figure:after {
     max-width: 400px;
 }
 .ck-reset_all {
-    overflow: hidden;
 }
 
 

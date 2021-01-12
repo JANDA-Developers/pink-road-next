@@ -3,12 +3,12 @@ import DayRangePicker from '../dayPicker/DayRangePicker';
 import { Modal } from '../modal/Modal';
 import { TRange } from '../tourWrite/helper';
 
-interface IProp {
+export interface IDayPickerModal {
     onSubmit: (range: TRange) => void;
     defaultRange: TRange;
 }
 
-export const DayPickerModal: React.FC<IProp> = ({ onSubmit, defaultRange }) => {
+export const DayPickerModal: React.FC<IDayPickerModal> = ({ onSubmit, defaultRange }) => {
     const [{ from, to }, setRange] = useState<TRange>(defaultRange);
 
     const handleSubmit = () => {

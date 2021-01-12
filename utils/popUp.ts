@@ -7,3 +7,5 @@ import $ from "jquery";
     export const openModal = (selecter:string) => ()=> {
         $(selecter).css("display","flex");
     }
+
+    

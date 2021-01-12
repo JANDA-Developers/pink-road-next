@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { IuseProductList, useProductList } from '../../hook/useProduct';
+import { handSearchClose } from '../../layout/components/Header';
 import { Fproduct } from '../../types/api';
 import { setVal, whenEnter } from '../../utils/eventValueExtracter';
 import { integratedProductSearch } from '../../utils/genFilter';
@@ -23,6 +24,7 @@ export const ProductSearcher: React.FC<IProp> = ({ defaultSearch, onSelectProduc
 
     const getData = () => {
         setFilter(integratedProductSearch(search || "____"));
+        handSearchClose()
     }
 
     const handleSelectProduct = (product: Fproduct) => () => {

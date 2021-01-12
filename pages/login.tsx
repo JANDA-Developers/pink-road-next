@@ -202,7 +202,7 @@ export const Login: React.FC<IProp> = () => {
                             </button>
                             <div className="sign_in_form">
                                 <span>
-                                    <Link href="/join">
+                                    <Link href="/member/join">
                                         <a>회원가입<i className="jandaicon-arr4-right"></i></a>
                                     </Link>
                                 </span>

@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { useContext, useState } from "react";
 import { DayModifiers } from "react-day-picker";
-import { JoinContext } from "../pages/join";
+import { JoinContext } from "../pages/member/join";
 import { AddUserInput, GENDER, VerificationEvent, VerificationTarget } from "../types/api";
 import { E_INPUT } from "../types/interface";
 import { useUpload } from "./useUpload";

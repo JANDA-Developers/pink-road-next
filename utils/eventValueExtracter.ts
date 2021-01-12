@@ -6,9 +6,9 @@ export const setVal = (callBack:(foo:any) => void) => (e:E_INPUT) => {
     callBack(e.currentTarget.value);
 }
 
-export const whenEnter = (callBack:()=>void) => (e:React.KeyboardEvent<HTMLInputElement>) => {
+export const whenEnter = (callBack:(e:React.KeyboardEvent<HTMLInputElement>)=>void) => (e:React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-        callBack()
+        callBack(e)
     }
 }
 

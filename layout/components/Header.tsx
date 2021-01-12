@@ -11,6 +11,19 @@ import { NotiIcon } from "./NotiIcon";
 
 interface IProp { }
 
+export const handSearchClose = () => {
+    $('.search_bg').css({
+        'display': 'none'
+    });
+
+    $('.search_wrap').animate({
+        'top': '-100px'
+    });
+    $('.hidden').css({
+        'display': 'none'
+    });
+}
+
 export const Header: React.FC<IProp> = () => {
     const [search, setSearch] = useState("");
     const rotuer = useRouter()
@@ -38,18 +51,7 @@ export const Header: React.FC<IProp> = () => {
         });
 
     }
-    const handSearchClose = () => {
-        $('.search_bg').css({
-            'display': 'none'
-        });
 
-        $('.search_wrap').animate({
-            'top': '-100px'
-        });
-        $('.hidden').css({
-            'display': 'none'
-        });
-    }
 
     const handleAllMenu = () => {
         $('#all_menu').animate({
@@ -100,7 +102,7 @@ export const Header: React.FC<IProp> = () => {
                 <ul>
                     {isLogin ? "" :
                         <li className="join">
-                            <Link href="/join">
+                            <Link href="/member/join">
                                 <a>JOIN</a>
                             </Link>
                         </li>}
@@ -217,7 +219,11 @@ export const Header: React.FC<IProp> = () => {
                         </div>
                         {isLogin ?
                             <div className="inform_top">
-                                <NotiIcon />
+                                <Link href="/mypage/notification">
+                                    <a>
+                                        <NotiIcon />
+                                    </a>
+                                </Link>
                             </div>
                             : <i />}
                         <div onClick={handleAllMenu} className="all_menu_btn">
@@ -247,7 +253,7 @@ export const Header: React.FC<IProp> = () => {
                             {isLogin ? <span><Link href="/mypage/notification"><a>알림</a></Link></span>
                                 : <i />}
                             {isLogin ? <i />
-                                : <span><Link href="/join"><a>JOIN</a></Link></span>}
+                                : <span><Link href="/member/join"><a>JOIN</a></Link></span>}
                             <span><Link href="/member/inquiry"><a>고객문의</a></Link></span>
                             <span><Link href="/member/qna"><a>자주하는 질문</a></Link></span>
                             {/* <span><Link href="https://booking-app.stayjanda.cloud/#/"><a>예약관리시스템</a></Link></span> */}
@@ -319,7 +325,7 @@ export const Header: React.FC<IProp> = () => {
                                 <a href="../login">Member<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">
                                     <li><a href="/login">로그인</a></li>
-                                    <li><a href="/join">회원가입</a></li>
+                                    <li><a href="/member/join">회원가입</a></li>
                                     <li><a href="/findmembers">아이디/비번 찾기</a></li>
                                     <li><a href="/member/search">통합검색</a></li>
                                     <li><a href="/member/rule">이용약관</a></li>

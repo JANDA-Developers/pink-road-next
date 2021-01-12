@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
-import { IPageInfo } from "./interface"
-import { Fquestion_author_profileImg, ItineraryCreateInput, ProductStatus, UserRole, } from "./api";
+import { IPageInfo, Ipopup } from "./interface"
+import { Fquestion_author_profileImg, ItineraryCreateInput, LinkBehavior, ProductStatus, UserRole, } from "./api";
+import { generateRandomStringCode } from "../utils/codeGenerator";
 
 export const lastMonthFirstDate = dayjs().add(-1, "m").set("day", 1).toDate();
 export const lastMonthLastDate = dayjs().add(-1, "m").endOf("month").toDate();
@@ -76,3 +77,22 @@ export const DEFAULT_PAGEINFO = {
     pageInfo: {}, defaultPageInfo: {}, pageKey: ""
 }
 
+export const defaultModalGet: () => Ipopup = () => ({
+    __typename: "Modal",
+    isDelete: false,
+    _id: generateRandomStringCode(4),
+    content: "",
+    createdAt: new Date(),
+    endDate: new Date(),
+    link: "",
+    linkBehavior: LinkBehavior.blank,
+    startDate: new Date(),
+    style: {
+        height: 100,
+        left: 0,
+        top: 0,
+        width: 100,
+    },
+    title: "",
+    updatedAt: new Date()
+})

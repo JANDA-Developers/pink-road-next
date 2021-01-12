@@ -3,7 +3,7 @@ import { AddUserInput, UserRole } from '../../types/api';
 import { isEmail, isPhone, isPassword, isName } from 'utils/validation';
 import { useSignUp } from '../../hook/useUser';
 import { Validater } from '../../utils/validate';
-import { JoinContext } from '../../pages/join';
+import { JoinContext } from '../../pages/member/join';
 import { openModal } from '../../utils/popUp';
 import { ISignUpInput } from '../../hook/useJoin';
 import { omits } from '../../utils/omit';
@@ -42,7 +42,9 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         alert("회원가입 완료")
         setJoinProcess('registered');
       } else {
-        alert(SignUp.error);
+        if (SignUp.error?.includes("keyValue")) {
+          alert("중복된 전화번호 입니다.");
+        }
         alert("회원가입에 실패 했습니다. 관리자 문의 바랍니다.");
       }
     }
