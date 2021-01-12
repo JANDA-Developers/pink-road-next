@@ -47,10 +47,12 @@ i.tooltip{
 
     #setting_link i {
         display: inline-block;
-        width: 14px;
-        height: 14px;
+        width: 19px;
        margin-right:3px;
         vertical-align: text-top;
+    }
+    #setting_link img{
+       width: 100%;
     }
 #gotop {
     position: fixed;
@@ -97,11 +99,13 @@ i.tooltip{
         color: #8b8b8b;
         border-bottom: 1px #e2e2e2 solid;
     }
-        #gotop .basket object {
-            width:55%;
-            opacity:0.8;
+        #gotop .basket img {
+            width: 55%;
+            opacity: 0.8;
+            display: inline-block;
+            vertical-align: baseline;
         }   
-        #gotop .basket:hover object {
+        #gotop .basket:hover img {
             opacity:1;
         }        
         #gotop .basket button {
@@ -632,17 +636,17 @@ rect.allmenu_svg {
             position: relative;
             display: inline-block;
             vertical-align: middle;
-            width: 24px;
+            width: 27px;
             padding-top: 4px;
         }
 
-            .header .searchtop .search_btn object {
+            .header .searchtop .search_btn img {
                 cursor: pointer;
                 display: inline-block;
                 vertical-align: middle;
                 opacity: 0.8;
             }
-            .header .searchtop .search_btn:hover object {
+            .header .searchtop .search_btn:hover img {
                 opacity: 1;
             }
 
@@ -721,11 +725,11 @@ rect.allmenu_svg {
         margin-top: -11px;
     }
 
-            .header .search_wrap .search_btn object {
+            .header .search_wrap .search_btn img {
                 width: 21px;
                 opacity: 0.3;
             }
-            .header .search_wrap .search_btn:hover object {
+            .header .search_wrap .search_btn:hover img {
          
                 opacity: 0.9;
             }
@@ -782,11 +786,11 @@ rect.allmenu_svg {
 
     }
 
-        .header .all_menu_btn object {
+        .header .all_menu_btn img {
             width: 100%;
             opacity: 0.8;
         }
-        .header .all_menu_btn:hover object {
+        .header .all_menu_btn:hover img {
             opacity:1;
         }
 
@@ -809,9 +813,14 @@ rect.allmenu_svg {
 }
     .header .inform_top .inform_icon {
         cursor: pointer;
-        width: 25px;
-        height: 27px;
+        width: 27px;
         position: relative;
+    }
+    .header .inform_top .inform_icon img {
+        opacity: 0.8;
+    }
+    .header .inform_top .inform_icon:hover img {
+        opacity:1;
     }
     .header .inform_top .number {
         position: absolute;
@@ -836,7 +845,7 @@ rect.allmenu_svg {
         top: 0;
         right: 0;
     }
-.header .inform_icon object{
+.header .inform_icon img{
     width:100%;
 }
 .header .user {
@@ -1015,7 +1024,7 @@ rect.allmenu_svg {
                             opacity: 1;
                         }
 
-            #all_menu ul .a_menu_tit a {
+            #all_menu ul .a_menu_tit > a {
                 font-size: 22px;
                 font-weight: 600;
                 display: block;
@@ -1023,7 +1032,7 @@ rect.allmenu_svg {
                 padding-bottom: 3px;
                 border-bottom: 0;
             }    
-            #all_menu ul .a_menu_tit a i {
+            #all_menu ul .a_menu_tit > a i {
                 font-size:10px;
                 display:inline-block;
                 margin-left:5px;
@@ -3445,7 +3454,7 @@ margin-bottom:0;
             right: -70%;
             padding: 15px;
         }
-            .header .search_wrap .search_btn object {
+            .header .search_wrap .search_btn img {
                 width: 19px;
             }
             .header .search_wrap .search_btn {
@@ -3475,39 +3484,62 @@ margin-bottom:0;
         }
         #all_menu ul {
             padding: 3% 8%;
-            text-align:center;
+            text-align:left;
         }
             #all_menu ul .a_menu_tit {
                 border-top: 0;
                 padding: 0;
                 padding-right: 2%;
-                width: 30%;
+                width: 33%;
                 margin-bottom: 20px;
                 min-width: 100px;
+                border-bottom: 0;
             }
-                #all_menu ul .a_menu_tit a {
-                    font-size: 19px;
-                    font-weight: 500;
-                    display: block;
-                    color: #ffffff;
-                    padding-bottom: 3px;
-                    text-align:left;
-                    border-bottom: 2px solid #ffffff;
-                }
+            #all_menu ul .a_menu_tit > a {
+                position: relative;
+                display: block;
+                padding: 8px;
+                box-sizing: border-box;
+                text-align: left;
+                font-size: 16px;
+                font-weight: 500;
+                color: #ffffff;
+                border: 1px solid #878787;
+                background-color: #ffffff1a;
+            }
 
-                    #all_menu ul .a_menu_tit a i {
-                        display: none;
+                    #all_menu ul .a_menu_tit > a i {
+                        display: inline-block;
+                        position: absolute;
+                        right: 10px;
+                        top: 11px;
                     }
     #all_menu ul .a_menu_tit .depth1 {
-        padding: 5%;
+        padding: 2%;
     }
         #all_menu ul .a_menu_tit .depth1 li {
-            width: 100%;
+            position: relative;
+            width: auto;
+            margin-right: 10px;
+        }
+        #all_menu ul .a_menu_tit .depth1 li::after {
+            display: inline-block;
+            content: '\B7';
+            position: absolute;
+            top: -3px;
+            right: -7px;
+            color: #ffffff;
+            font-size: 10px;
+            line-height: 30px;
+        }
+        #all_menu ul .a_menu_tit .depth1 li:last-child::after {
+            display: none;
         }
           
         #all_menu ul .a_menu_tit .depth1 li a {
             border-bottom: none;
             font-size: 13px;
+            line-height: 27px;
             font-weight: normal;
             color: #ffffff;
             opacity: 0.9;
@@ -3649,9 +3681,7 @@ margin-bottom:0;
     .footer_in .copyright .footer_homepage_info .m {
         display: none;
     }
-    #all_menu ul .a_menu_tit{
-        border-bottom: 0;
-    }
+  
 
 }
 
@@ -3729,7 +3759,61 @@ margin-bottom:0;
         right: -70%;
         padding: 15px;
     }
-    
+    /* #all_menu ul .a_menu_tit {
+        border-top: 0;
+        padding: 0;
+        padding-right: 2%;
+        width: 30%;
+        margin-bottom: 20px;
+        min-width: 100px;
+    }
+        #all_menu ul .a_menu_tit > a {
+            font-size: 19px;
+            font-weight: 500;
+            display: block;
+            color: #ffffff;
+            padding-bottom: 3px;
+            text-align:left;
+            border-bottom: 2px solid #ffffff;
+        }
+
+            #all_menu ul .a_menu_tit > a i {
+                display: none;
+            }
+#all_menu ul .a_menu_tit .depth1 {
+padding: 5%;
+}
+#all_menu ul .a_menu_tit .depth1 li {
+    width: 100%;
+}
+  
+#all_menu ul .a_menu_tit .depth1 li a {
+    border-bottom: none;
+    font-size: 13px;
+    font-weight: normal;
+    color: #ffffff;
+    opacity: 0.9;
+    letter-spacing: -1px;
+} 
+#all_menu {
+    min-width: 1200px;
+    padding: 190px 0 0;
+    background-position: center top;
+    background-size: 100%;
+}
+
+    #all_menu ul .a_menu_tit {
+        width: 10%;
+        min-width: 167px;
+    }
+
+        #all_menu ul .a_menu_tit .depth1 {
+            margin: 0px 0 40px;
+        }
+        #all_menu ul .hiddennav .depth1{
+            padding: 0 !important;
+            margin: 0 0 10px !important;
+        }*/
     .search_box {
         padding: 50px 49px;
     }
@@ -3758,25 +3842,7 @@ margin-bottom:0;
         .search_in .search_box .in .inf {
             width: 24%;
         }
-    #all_menu {
-        min-width: 1200px;
-        padding: 190px 0 0;
-        background-position: center top;
-        background-size: 100%;
-    }
-
-        #all_menu ul .a_menu_tit {
-            width: 10%;
-            min-width: 167px;
-        }
-
-            #all_menu ul .a_menu_tit .depth1 {
-                margin: 0px 0 40px;
-            }
-            #all_menu ul .hiddennav .depth1{
-                padding: 0 !important;
-                margin: 0 0 10px !important;
-            }
+  
     .top_visual .sub_bg {
         background-size: 100%;
     }
@@ -3814,11 +3880,11 @@ margin-bottom:0;
         #all_menu ul {
             display: block;
         }
-
+/* 
             #all_menu ul .a_menu_tit {
                 width: 10%;
-                min-width: 180px;
-            }
+                min-width: 168px;
+            } */
     .header .hd_center .nav_wrap .deps1 > li > a {
         font-size: 19px;
     }

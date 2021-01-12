@@ -604,12 +604,12 @@ export const MsIndex: React.FC<IProp> = () => {
 
                 <div className="hang div09">
                     <ul>
-                        <li><Link href="/"><a><span><object type="image/svg+xml" data="/img/svg/search_icon.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object></span><strong>사업자입점매뉴얼</strong></a></Link></li>
-                        <li><Link href="/"><a><span><object type="image/svg+xml" data="/img/svg/search_icon.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object></span><strong>상세페이지기본폼</strong></a></Link></li>
-                        <li><Link href="/"><a><span><object type="image/svg+xml" data="/img/svg/search_icon.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object></span><strong>스마트스토어</strong></a></Link></li>
-                        <li><Link href="/"><a><span><object type="image/svg+xml" data="/img/svg/search_icon.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object></span><strong>맞춤견적관리</strong></a></Link></li>
-                        <li><Link href="/"><a><span><object type="image/svg+xml" data="/img/svg/search_icon.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object></span><strong>카페24 SMS관리</strong></a></Link></li>
-                        <li><Link href="/"><a><span><object type="image/svg+xml" data="/img/svg/search_icon.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object></span><strong>카카오비즈톡관리</strong></a></Link></li>
+                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>사업자입점매뉴얼</strong></a></Link></li>
+                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>상세페이지기본폼</strong></a></Link></li>
+                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>스마트스토어</strong></a></Link></li>
+                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>맞춤견적관리</strong></a></Link></li>
+                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>카페24 SMS관리</strong></a></Link></li>
+                        <li><Link href="/"><a><span><img src="/img/svg/search_icon.svg" alt="icon" /></span><strong>카카오비즈톡관리</strong></a></Link></li>
 
                     </ul>
                 </div>

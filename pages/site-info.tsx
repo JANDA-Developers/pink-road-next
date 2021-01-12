@@ -264,7 +264,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
             </div>
         </div>
-        <div className="w100 con07 con_block onepick">
+        <div className="w100 con07 con_block onepick2">
             <div className="w1200">
                 <h4>
                     <strong>우리는 쉬운 길보다 옳은 길을 만들고 걸어갑니다.</strong>

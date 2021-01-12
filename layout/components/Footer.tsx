@@ -22,7 +22,7 @@ export const Footer: React.FC<IProp> = () => {
                 <a className="top"><i className="jandaicon-arr4-top" /></a>
             </Link>
             {isLogin && <Link href="/mypage/basket">
-                <a className="basket"><object type="image/svg+xml" data="/img/svg/basket.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object><button /></a>
+                <a className="basket"><img src="/img/svg/basket.svg" alt="basket icon" /><button /></a>
             </Link>}
             <Link href="#footer">
                 <a className="down"><i className="jandaicon-arr4-bottom" /></a>
@@ -90,14 +90,14 @@ export const Footer: React.FC<IProp> = () => {
 
                         <li>
                             <strong>주소</strong>
-                            <span>부산광역시 중구 40계단길 10, 3F<a target="_blank" href="https://map.naver.com/v5/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010/address/14364152.250451025,4178003.4322139453,%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010,new?c=14364121.5911725,4178009.4229934,19,0,0,0,dh" className="icon" title="지도로 새창띄우기"><object type="image/svg+xml" data="/img/svg/map.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object><button /></a></span>
+                            <span>부산광역시 중구 40계단길 10, 3F<a target="_blank" href="https://map.naver.com/v5/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010/address/14364152.250451025,4178003.4322139453,%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010,new?c=14364121.5911725,4178009.4229934,19,0,0,0,dh" className="icon" title="지도로 새창띄우기"><img src="/img/svg/map.svg" alt="map icon" /><button /></a></span>
                         </li>
                         <li>
                             <strong>계좌번호</strong>
                             <span>신한은행 100-031-819617/예금주:주식회사 핑크로더</span>
                         </li>
                         <li className="bottom_txt m">
-                            Copyright © 2020 PINKROADER Co., Ltd. All rights reserved
+                            Copyright © 2021 PINKROADER Co., Ltd. All rights reserved
                          </li>
                     </ul>
                     <div className="bottom_bn">

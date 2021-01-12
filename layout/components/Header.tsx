@@ -188,9 +188,7 @@ export const Header: React.FC<IProp> = () => {
                         </div> */}
                         <div className="searchtop">
                             <div className="search_btn">
-                                <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>
-                                    현재 브라우저는 iframe을 지원하지 않습니다.
-                            </object>
+                                <img src="/img/svg/search_icon.svg" alt="search icon" />
                                 <button onClick={handSearch} />
                             </div>
                             <div className="hidden">
@@ -199,7 +197,7 @@ export const Header: React.FC<IProp> = () => {
 
                                         <input onKeyPress={whenEnter(goToSearchPage)} value={search} onChange={setVal(setSearch)} type="text" placeholder="검색어를 입력해주세요" />
                                         <div className="search_btn">
-                                            <object type="image/svg+xml" data={'/img/svg/search_icon.svg'}>현재 브라우저는 iframe을 지원하지 않습니다.</object>
+                                            <img src="/img/svg/search_icon.svg" alt="search icon" />
                                             <button className="btt1" />
                                         </div>
                                         <div className="close_btn" onClick={handSearchClose}>
@@ -221,7 +219,7 @@ export const Header: React.FC<IProp> = () => {
                             </div>
                             : <i />}
                         <div onClick={handleAllMenu} className="all_menu_btn">
-                            <object type="image/svg+xml" data={'/img/svg/allmenu_icon.svg'}>현재 브라우저는 iframe을 지원하지 않습니다.</object>
+                            <img src="/img/svg/allmenu_icon.svg" alt="allmenu icon" />
                             <button />
                         </div>
 
@@ -250,7 +248,6 @@ export const Header: React.FC<IProp> = () => {
                                 : <span><Link href="/join"><a>JOIN</a></Link></span>}
                             <span><Link href="/member/inquiry"><a>고객문의</a></Link></span>
                             <span><Link href="/member/qna"><a>자주하는 질문</a></Link></span>
-                            {/* <span><Link href="https://booking-app.stayjanda.cloud/#/"><a>예약관리시스템</a></Link></span> */}
                         </div>
                         <ul>
                             <li className="a_menu_tit deps solo_nav">
@@ -261,21 +258,11 @@ export const Header: React.FC<IProp> = () => {
                             </li>
                             <li className="a_menu_tit deps">
                                 <Link href="/tour/list"><a>Tour<i className="jandaicon-arr4-right"></i></a></Link>
-                                <ul className="depth1">
-                                    <li onClick={handleAllClose} className="betatest"><Link href="/tour/list"><a>Tour - list</a></Link></li>
-                                    <li onClick={handleAllClose} className="betatest"><Link href="/tour/list"><a>Tour - veiw</a></Link></li>
-                                    <li onClick={handleAllClose} className="betatest"><Link href="/tour/list"><a>Tour - correction+writing</a></Link></li>
 
-                                </ul>
                             </li>
                             <li className="a_menu_tit deps">
                                 <Link href="/tour?type=exp"><a>Experience<i className="jandaicon-arr4-right"></i></a></Link>
-                                <ul className="depth1">
-                                    <li onClick={handleAllClose} className="betatest"><Link href="/"><a>Experience - list</a></Link></li>
-                                    <li onClick={handleAllClose} className="betatest"><Link href="/"><a>Experience - veiw</a></Link></li>
-                                    <li onClick={handleAllClose} className="betatest"><Link href="/"><a>Experience - correction+writing</a></Link></li>
 
-                                </ul>
                             </li>
                             <li className="a_menu_tit deps solo_nav">
                                 <Link href="/"><a target="_blank">Design Goods<i className="jandaicon-arr4-right"></i></a></Link>
@@ -288,7 +275,7 @@ export const Header: React.FC<IProp> = () => {
                                     <li onClick={handleAllClose}><Link href="/news"><a>언론보도</a></Link></li>
                                 </ul>
                             </li>
-                            <li className="a_menu_tit deps hiddennav betatest">
+                            <li className="a_menu_tit deps">
                                 <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
                                     <li><a href="/mypage">회원정보</a></li>
@@ -302,7 +289,7 @@ export const Header: React.FC<IProp> = () => {
                                     <li><a href="/mypage/settlement">매출/정산관리</a></li>
                                 </ul>
                             </li>
-                            <li className="a_menu_tit deps hiddennav betatest">
+                            <li className="a_menu_tit deps">
 
                                 <a href="/master">Master<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">

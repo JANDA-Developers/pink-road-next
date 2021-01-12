@@ -26,7 +26,7 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   }
 
   return <div className="body main" id="main" >
-    <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
+    <Meta title="Pinkroader" description="사람과 시간이 공존하는 여행플랫폼 핑크로더입니다." />
 
 
     <div className="main_con_box1 Slider_box">
