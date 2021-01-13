@@ -230,7 +230,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                     <div className="box_right">
                         <ul>
                             <li>
-                                <div className="title">별칭</div>
+                                <div className="title">닉네임</div>
                                 <div className="txt">
                                     <div className="input_relative">
                                         <input

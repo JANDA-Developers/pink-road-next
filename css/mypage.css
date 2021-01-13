@@ -24,7 +24,7 @@
     line-height: 28px;
     margin: 3px;
     border: 1px solid #cfcfcf;
-    border-radius: 5px;
+    border-radius: 3px;
     color: #999;
 }
 .mypage_in .fuction_list_mini .thead {
@@ -500,7 +500,6 @@
         margin: 16px 0;
         letter-spacing: 0;
         border-radius: 3px;
-        float: right;
     }
 
     .mypage_in .box_right input {
@@ -509,7 +508,7 @@
         box-sizing: border-box;
         border: 0;
         vertical-align: middle;
-        border-radius: 5px;
+        border-radius: 3px;
     }
 
         .mypage_in .box_right input[type=password] {
@@ -582,7 +581,7 @@
         color: #7a7a7a !important;
         border-color: #a5a5a552 !important;
         font-size: 12px !important;
-        border-radius: 5px !important;
+        border-radius: 3px !important;
         line-height: 16px;
     }
 
@@ -3305,7 +3304,7 @@ div.reservation_popup .tr select {
         height: 130px;
     }
     .mypage_in .subtop_nav {
-        top: -57px;
+        top: -53px;
     }
     .mypage_in .lnb .profile_box .welcome ul li i {
         display:block;
@@ -3607,9 +3606,64 @@ div.reservation_popup .tr select {
 @media (min-width: 1200px) {
 }
     
-@media (min-width: 1500px) {
+@media (max-width: 1000px) {
+    .country_check{
+        margin-left: 16px;
+    }
+    .country_check li {
+        line-height: 30px !important;
+    }
+    .country_check .c_in {
+        position: relative;
+        border-radius: 50px;
+        z-index: 1;
+        padding: 0 32px 0 10px !important;
+    }
+    .country_check .c_in.on {
+        margin-right: -32px;
+        z-index: 2;
+        padding: 0 10px 0 10px !important;
+    }
+    .country_check .c_out {
+        position: relative;
+        border-radius: 50px;
+        z-index: 1;
+        padding: 0 10px 0 32px !important;
+    }
+    .country_check .c_out.on {
+        margin-left: -32px;
+        padding: 0 10px 0 10px !important;
+        z-index: 2;
+    }
 
-
+    .gender_check {
+        max-width: 200px;
+    }
+    .gender_check li {
+        line-height: 30px !important;
+    }
+    .gender_check .men {
+        position: relative;
+        border-radius: 50px;
+        z-index: 1;
+        padding: 0 10px 0 32px !important;
+    }
+    .gender_check .men.on {
+        margin-left: -32px;
+        padding: 0 10px 0 10px !important;
+        z-index: 2;
+    }
+    .gender_check .female {
+        position: relative;
+        border-radius: 50px;
+        z-index: 1;
+        padding: 0 32px 0 10px !important;
+    }
+    .gender_check .female.on {
+        margin-right: -32px;
+        padding: 0 10px 0 10px !important;
+        z-index: 2;
+    }
 }
 
 @media (max-width: 767px) {
@@ -3617,7 +3671,7 @@ div.reservation_popup .tr select {
         display: none;
     }
     .mypage_in .subtop_nav {
-        top: -34px;
+        top: -39px;
     }
     .basket_box .basket_list .td{
         display: block !important;

@@ -97,6 +97,7 @@ const info: TStieInfo = {
     info_img3_desc: { kr: `개인역량강화<br />일자리연계` },
     info_img4_title: { kr: "디자인" },
     info_img4_desc: { kr: `지역 예술가 발굴<br />지역브랜딩` },
+    info_img5_title: { kr: `지역경제활성화` },
     partners: {
         kr: [{
             alt: "파트너사",
@@ -124,6 +125,8 @@ const info: TStieInfo = {
             link: "협력사6"
         }]
     },
+    history_title: { kr: `Company history` },
+    historybg: { kr: `/img/siteinfo_bg05.jpg` },
     history2020: {
         kr: `<li>벤처기업인증</li>
     <li>(기술평가보증기업)</li>
@@ -154,6 +157,10 @@ const info: TStieInfo = {
     history2012: { kr: `<li>사회적기업 육성사업 2기</li>` },
     pink_supporter_title: { kr: '핑크로더와 함께 세상을 바꾸는 이들' },
     pink_supporter_sub: { kr: `Pinkroader partner` },
+    con07_title: { kr: `우리는 쉬운 길보다 옳은 길을 만들고 걸어갑니다.` },
+    con07_txt: { kr: `We walk the right path rather than the easy one` },
+    con07_bg: { kr: `/img/pr_img_20.jpg` },
+    con07_link: { kr: `제휴문의` },
 }
 
 export default info;

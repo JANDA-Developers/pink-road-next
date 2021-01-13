@@ -178,7 +178,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <div className="li04">
                         <img src={'/img/svg/siteinfo_svg04.svg'} alt="화살표" />
                     </div>
-                    <div className="li05">지역경제활성화</div>
+                    <div className="li05" {...edit("info_img5_title")} />
                 </div>
                 <div className="wave_animation_wrap">
                     <div className="figure_wrap">
@@ -189,9 +189,10 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                 </div>
             </div>
         </div>
-        <div className="w100 con05 con_block">
+        <div className="w100 con05 con_block" style={bg("historybg")}>
+            <Upload onUpload={imgEdit("historybg")} />
             <div className="w1200">
-                <h4>Company history</h4>
+                <h4 {...edit("history_title")} />
                 <div className="in_txt">
                     <div className="year y2020">
                         <strong>2020</strong>
@@ -264,13 +265,14 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
             </div>
         </div>
-        <div className="w100 con07 con_block onepick2">
+        <div className="w100 con07 con_block onepick2" style={bg("con07_bg")}>
+            <Upload onUpload={imgEdit("con07_bg")} />
             <div className="w1200">
                 <h4>
-                    <strong>우리는 쉬운 길보다 옳은 길을 만들고 걸어갑니다.</strong>
-                    We walk the right path rather than the easy one
+                    <strong {...edit("con07_title")} />
+                    <p {...edit("con07_txt")} />
                 </h4>
-                <span className="link"><a href="mailto:pinkroader@gmail.com">제휴문의</a></span>
+                <span className="link"><a href="mailto:pinkroader@gmail.com" {...edit("con07_link")}></a></span>
 
             </div>
             <div className="ovj"></div>

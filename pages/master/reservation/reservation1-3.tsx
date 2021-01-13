@@ -42,11 +42,11 @@ export const MsReservationB: React.FC<IProp> = () => {
                                 </li>
                                 <li>
                                     <strong>234</strong>
-                                    <span>환불요청</span>
+                                    <span>정산요청</span>
                                 </li>
                                 <li>
                                     <strong>234</strong>
-                                    <span>환불완료</span>
+                                    <span>정산완료</span>
                                 </li>
                             </ul>
                         </div>
@@ -175,8 +175,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                             <div className="t06">
                                 <div className="align">
                                     <strong className="money"><i className="m_title">합계금액:</i>920,000원</strong>
-                                    <span className="sum01">매출금액(+) 400,000원</span>
-                                    <span className="sum02">매입금액(-) 400,000원</span>
+                                    <span className="sum01">공제금액(-) 400,000원</span>
                                     <span className="sum03">정산금액: 830,000원</span>
                                 </div>
                             </div>
@@ -209,7 +208,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                             <div className="t03">
                                 <div className="align">
-                                    <span className="bank">(부산은행)<br /><i className="m_title"> / </i>203-2323-2324<br /><i className="m_title"> / </i>예금주:김김김</span>
+                                    <span className="bank">(부산은행)<br /> 203-2323-2324<br /> <i className="m_title"> / </i> 예금주:김김김</span>
                                 </div>
                             </div>
                             <div className="t04">
@@ -232,8 +231,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                             <div className="t06">
                                 <div className="align">
                                     <strong className="money"><i className="m_title">합계금액:</i>920,000원</strong>
-                                    <span className="sum01">매출금액(+) 400,000원</span>
-                                    <span className="sum02">매입금액(-) 400,000원</span>
+                                    <span className="sum01">공제금액(-) 400,000원</span>
                                     <span className="sum03">정산금액: 830,000원</span>
                                 </div>
                             </div>
@@ -265,7 +263,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                             <div className="t03">
                                 <div className="align">
-                                    <span className="bank">(부산은행)<br /><i className="m_title"> / </i>203-2323-2324<br /><i className="m_title"> / </i>예금주:김김김</span>
+                                    <span className="bank">(부산은행)<br /> 203-2323-2324<br /> <i className="m_title"> / </i> 예금주:김김김</span>
                                 </div>
                             </div>
                             <div className="t04">
@@ -289,8 +287,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                             <div className="t06">
                                 <div className="align">
                                     <strong className="money"><i className="m_title">합계금액:</i>920,000원</strong>
-                                    <span className="sum01">매출금액(+) 400,000원</span>
-                                    <span className="sum02">매입금액(-) 400,000원</span>
+                                    <span className="sum01">공제금액(-) 400,000원</span>
                                     <span className="sum03">정산금액: 830,000원</span>
                                 </div>
                             </div>

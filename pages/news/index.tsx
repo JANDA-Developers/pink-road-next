@@ -40,6 +40,7 @@ export const News: React.FC<IProp> = ({ }) => {
             <li className="homedeps2"><a href="/news">언론보도</a></li>
         </SubTopNav>
         <BoardList
+            // 게시판은 board_box class필수 추가요소
             className="board_box"
             setPage={setPage}
             Categories={

@@ -167,7 +167,7 @@
         text-align: center;
         color: #fff;
         font-weight: 600;
-        font-size: 1.3em;
+        font-size: 1em;
         letter-spacing: 1px;
         border: 2px solid #fff;
         margin: 5px 5px 5px 5px;
@@ -1204,13 +1204,11 @@ div.alignment {
     div.alignment .right_div li {
         width: auto;
         display: inline-block;
-        float: left;
         color: #999999;
         cursor: pointer;
     }
 
     div.alignment select {
-        border-radius: 5px;
         height: 32px;
         width: 49%;
         font-size: 12px;
@@ -2729,6 +2727,7 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con05 {
+        position: relative;
         text-align: center;
         background-image: url(/img/siteinfo_bg05.jpg);
         background-position: left top;
@@ -3256,7 +3255,6 @@ ul.rank_ul {
     display: block;
     width: 492px;
     height: 55px;
-    vertical-align: middle;
 }
 
 .siteInfo_in .con04 .li03 {
@@ -3268,7 +3266,6 @@ ul.rank_ul {
 .siteInfo_in .con04 .li04 {
     display: block;
     width: 100%;
-    vertical-align: middle;
     padding-left: 0;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -3366,12 +3363,12 @@ ul.rank_ul {
 }
    
 
-.siteInfo_in .con05 > div {
+.siteInfo_in .con05 .w1200 {
     position: relative;
     padding: 260px 0 150px 0;
 }
 
-    .siteInfo_in .con05 > div:before {
+    .siteInfo_in .con05 .w1200:before {
         content: '';
         width: 19px;
         height: 257%;
@@ -3383,7 +3380,7 @@ ul.rank_ul {
         transform: rotate(0deg);
     }
 
-    .siteInfo_in .con05 > div:after {
+    .siteInfo_in .con05 .w1200:after {
         content: '';
         width: 19px;
         height: 257%;
@@ -7524,6 +7521,7 @@ i.calendar {
     .portfolio_in .top_bg .w1200 {
         z-index: 10;
         position: relative;
+        top: 210px;
     }
 
 
@@ -7532,7 +7530,6 @@ i.calendar {
         display: block;
         font-size: 44px;
         text-align: center;
-        padding-top: 210px;
         font-weight: 600;
         z-index: 10;
     }
@@ -7599,6 +7596,7 @@ i.calendar {
     }
 
         .portfolio_in .con02 ul li .img {
+            position: relative;
             display: inline-block;
             width: 170px;
             height: 100px;
@@ -9209,7 +9207,7 @@ i.calendar {
             top: 144px;
             color: #fff;
         }
-        .siteInfo_in .con05 > div:before {
+        .siteInfo_in .con05 .w1200:before {
             width: 25px;
             height: 257%;
             top: -573px;
@@ -9217,7 +9215,7 @@ i.calendar {
             transform: rotate(24deg);
         }
 
-        .siteInfo_in .con05 > div:after {
+        .siteInfo_in .con05 .w1200:after {
             width: 25px;
             height: 257%;
             top: -582px;
@@ -9345,7 +9343,6 @@ i.calendar {
         }
 
     div.alignment select {
-        border-radius: 5px;
         height: 32px;
         width:auto;
         margin-top:0;
@@ -9880,7 +9877,7 @@ div.alignment .right_div {
         background-size: 160%;
     }
 
-        .siteInfo_in .con05 > div:before {
+        .siteInfo_in .con05 .w1200:before {
             width: 25px;
             height: 257%;
             top: -573px;
@@ -9888,7 +9885,7 @@ div.alignment .right_div {
             /* transform: rotate(31deg); */
         }
 
-        .siteInfo_in .con05 > div:after {
+        .siteInfo_in .con05 .w1200:after {
             width: 25px;
             height: 257%;
             top: -582px;
@@ -9900,7 +9897,7 @@ div.alignment .right_div {
             padding-left: 460px;
         }
 
-        .siteInfo_in .con05 > div {
+        .siteInfo_in .con05 .w1200 {
             padding: 150px 0;
         }
 
@@ -9955,9 +9952,13 @@ div.alignment .right_div {
         background-position: left bottom;
         background-size: 164%;
     }
+        .portfolio_in .top_bg .w1200 {
+            top: 258px;
+            
+        }
         .portfolio_in .top_bg h3 {
             font-size: 94px;
-            padding-top: 232px;
+            
         }
         .portfolio_in .con02 ul li {
             width: 22%;
@@ -10113,8 +10114,8 @@ div.alignment .right_div {
     .master_box .subtop_nav {
         top: -56px;
     }
-    .portfolio_in .top_bg h3 {
-        padding-top: 312px;
+    .portfolio_in .top_bg .w1200 {
+        top: 312px;
     }
     .main_con_box1 .main_top_images {
         background-size: 140%;
@@ -10338,7 +10339,7 @@ div.alignment .right_div {
             width: 100%;
             font-size: 2em;
             text-align: center;
-            margin-top: 93px;
+            margin-top: 123px;
         }
 
         .main_con_box1 .main_top_images span {
@@ -10508,11 +10509,11 @@ div.alignment .right_div {
         .siteInfo_in .con05{
            background-size: 670%;
         }
-        .siteInfo_in .con05 > div:after {
+        .siteInfo_in .con05 .w1200:after {
             width: 9px;
             left: 7px;
         }
-        .siteInfo_in .con05 > div:before {
+        .siteInfo_in .con05 .w1200:before {
             width: 9px;
             left: 21px;
         }

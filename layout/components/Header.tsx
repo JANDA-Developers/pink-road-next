@@ -308,7 +308,7 @@ export const Header: React.FC<IProp> = () => {
                                     <li><a href="/login">로그인</a></li>
                                     <li><a href="/join">회원가입</a></li>
                                     <li><a href="/findmembers">아이디/비번 찾기</a></li>
-                                    <li><a href="/member/search">통합검색</a></li>
+                                    <li><a href="search">통합검색</a></li>
                                     <li><a href="/member/rule">이용약관</a></li>
                                     <li><a href="/member/privacy-policy">개인정보처리방침</a></li>
                                     <li><a href="/member/electron-terms">전자상거래이용약관</a></li>

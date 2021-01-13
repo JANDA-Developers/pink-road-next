@@ -179,7 +179,7 @@ select:focus {
     .btn.small {
         color: #999;
         border: 1px solid #cfcfcf;
-        border-radius: 5px;
+        border-radius: 3px;
         box-sizing: border-box;
         padding: 0 15px;
         font-size: 12px;
@@ -194,7 +194,7 @@ select:focus {
     .btn.medium {
         color: #999;
         border: 1px solid #cfcfcf;
-        border-radius: 5px;
+        border-radius: 3px;
         box-sizing: border-box;
         padding: 0 15px;
         font-size: 12px;
@@ -434,7 +434,7 @@ input[type="checkbox"] {
 }
 input[type="text"],
 input[type="email"] {
-    border-radius: 5px;
+    border-radius: 3px;
     height: 34px;
     padding-left: 10px;
     box-sizing: border-box;
@@ -442,7 +442,7 @@ input[type="email"] {
     font-weight: 100;
 }
 select {
-    border-radius: 5px;
+    border-radius: 3px;
     height: 34px;
     width: 100%;
     font-size: 0.9em;
@@ -864,6 +864,63 @@ br.no {
         background-color: #e1f2ff;
         padding: 2px 8px;
         border-radius: 2px;
+    }
+    .sel.ok {
+        border: 0 ;
+        color: #2196F3 ;
+        background-color: #eaf6ff;
+        padding: 2px 8px;
+        border-radius: 2px;
+    }
+    .sel.stand {
+        border: 0 ;
+        color: #616161 ;
+        background-color: #e2e2e2;
+        padding: 2px 8px;
+        border-radius: 2px;
+    }
+    .sel.no {
+        border: 0;
+        color: #cf3932 ;
+        background-color: #ffe4e4;
+        padding: 2px 8px;
+        border-radius: 2px;
+    }
+    .r-btn{
+        line-height: 149%;
+        padding: 0 6px;
+    }
+    .r-btn.stand{
+        border: 0;
+        background-color: #eeeeee;
+        border-radius: 3px;
+    }
+    .r-btn.yes {
+        border: 0;
+        background-color: #eaf5ff;
+        color: #2196F3;
+        border-radius: 3px;
+    }
+    .r-btn.no {
+        border: 0 ;
+        color: #cf3932;
+        background-color: #ffdedd;
+        border-radius: 3px;
+    }
+    .cansel {
+        background-color: #d8ffcf;
+        border:0;
+        color: #1c8b00;
+        padding: 0 6px !important;
+        line-height: 149%;
+        margin-right: 10px;
+        border-radius: 3px;
+  }
+    .cansel.ok {
+        border:0;
+        color: #2196F3;
+        background-color: #e6f4ff;
+        border-radius: 3px;
     }
 }
 @media (max-width: 767px) {
