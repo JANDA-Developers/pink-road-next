@@ -3709,36 +3709,6 @@ export interface productFindByIdForSellerVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: signIn
-// ====================================================
-
-export interface signIn_SignIn_data {
-  __typename: "SignIn";
-  token: string;
-}
-
-export interface signIn_SignIn {
-  __typename: "SiginResponse";
-  ok: boolean;
-  error: string | null;
-  data: signIn_SignIn_data | null;
-}
-
-export interface signIn {
-  SignIn: signIn_SignIn;
-}
-
-export interface signInVariables {
-  email: any;
-  pw: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: pageInfoRead
 // ====================================================
 
@@ -5446,6 +5416,37 @@ export interface userResign {
 export interface userResignVariables {
   _id: string;
   pw: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: signIn
+// ====================================================
+
+export interface signIn_SignIn_data {
+  __typename: "SignIn";
+  token: string;
+}
+
+export interface signIn_SignIn {
+  __typename: "SiginResponse";
+  ok: boolean;
+  error: string | null;
+  data: signIn_SignIn_data | null;
+}
+
+export interface signIn {
+  SignIn: signIn_SignIn;
+}
+
+export interface signInVariables {
+  email: any;
+  pw: string;
+  hopeRole?: UserRole | null;
 }
 
 /* tslint:disable */
@@ -7360,6 +7361,7 @@ export enum NotificationTriggerEvent {
   TRAVEL_CONFIRMED_SELLER = "TRAVEL_CONFIRMED_SELLER",
   TRAVEL_WITDRWAL_BOOKER = "TRAVEL_WITDRWAL_BOOKER",
   TRAVEL_WITDRWAL_SELLER = "TRAVEL_WITDRWAL_SELLER",
+  WHEN_D_DAY1_BOOKER = "WHEN_D_DAY1_BOOKER",
 }
 
 /**
@@ -8200,6 +8202,9 @@ export interface _PortfolioFilter {
   categoryId_eq?: string | null;
   categoryId_not_eq?: string | null;
   categoryId_in?: string[] | null;
+  pCategoryId_eq?: string | null;
+  pCategoryId_not_eq?: string | null;
+  pCategoryId_in?: string[] | null;
   title_eq?: string | null;
   title_not_eq?: string | null;
   title_contains?: string | null;

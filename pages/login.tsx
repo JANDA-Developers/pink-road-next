@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLazyQuery } from '@apollo/client';
 import { Storage, initStorage } from 'utils/Storage';
 import pageInfo from 'info/login.json'
 import { Upload } from 'components/common/Upload';
 import { getEditUtils } from 'utils/pageEdit';
 import { EditContext } from './_app';
 import { BG } from '../types/const';
-import { signIn, signInVariables, UserRole } from 'types/api';
+import { signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { SIGN_IN } from '../apollo/gql/queries';
+import { useLogin } from '../hook/useUser';
+import { Validater } from '../utils/validate';
+import { isEmail } from '../utils/validation';
 interface IProp {
-
 }
 
 export const Login: React.FC<IProp> = () => {
@@ -23,6 +23,18 @@ export const Login: React.FC<IProp> = () => {
     const [userType, setUserType] = useState<UserRole>(UserRole.individual)
     const [page, setPage] = useState(pageInfo);
     const { edit, ulEdit, imgEdit } = getEditUtils(editMode, page, setPage);
+    const { getData } = useLogin({
+        onCompleted: ({ SignIn }) => {
+            alert("?");
+            if (SignIn.ok) {
+                Storage?.saveLocal("jwt", SignIn.data?.token || "");
+                location.href = "/"
+                alert("환영합니다.")
+            } else {
+                alert(SignIn.error)
+            }
+        },
+    })
     const router = useRouter();
 
     const sessionSave = () => {
@@ -59,25 +71,24 @@ export const Login: React.FC<IProp> = () => {
         setPw(pw);
     }
 
-    const [LoginQu, { loading: create_loading }] = useLazyQuery<signIn, signInVariables>(SIGN_IN, {
-        fetchPolicy: "network-only",
-        onCompleted: ({ SignIn }) => {
-            if (SignIn.ok) {
-                Storage?.saveLocal("jwt", SignIn.data?.token || "");
-                location.href = "/"
-            } else {
-                alert(SignIn.error)
-            }
-        },
-    })
+
+    const { validate } = new Validater([{
+        value: isEmail(userId),
+        failMsg: "이메일을 입력 해주세요"
+    }, {
+        value: userPw.length > 4,
+        failMsg: "패스워드를 입력 해주세요"
+    }])
 
     const handleLogin = () => {
-        LoginQu({
-            variables: {
-                email: userId,
-                pw: userPw,
-            }
-        })
+        if (!validate()) return;
+        const signInvar: signInVariables = {
+            email: userId,
+            pw: userPw,
+            hopeRole: userType
+        }
+
+        getData({ variables: signInvar as any });
     }
 
     return <div >
@@ -159,6 +170,7 @@ export const Login: React.FC<IProp> = () => {
                             </h3>
                             <div className="form-group">
                                 <input
+                                    value={userId}
                                     type="text"
                                     name="user_id"
                                     id="uid"
@@ -171,6 +183,7 @@ export const Login: React.FC<IProp> = () => {
                             </div>
                             <div className="form-group">
                                 <input
+                                    value={userPw}
                                     type="password"
                                     name="password"
                                     id="upw"

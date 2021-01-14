@@ -7,12 +7,14 @@ import pageInfoDefault from "info/portfolio.json"
 import { TStieInfo } from 'types/interface';
 import { getStaticPageInfo } from '../../utils/page';
 import { Upload } from '../../components/common/Upload';
-import { BG } from '../../types/const';
+import { Img } from '../../components/Img/img';
+import { IUsePageEdit } from '../../hook/usePageEdit';
 
 export const PortFolio: React.FC = () => {
     const { isManager, categoriesMap } = useContext(AppContext);
-    const { edit, imgEdit } = useContext(EditContext);
+    const { edit, imgEdit, bg } = useContext<IUsePageEdit<typeof pageInfoDefault>>(EditContext);
     const { items: portfolioes, getLoading, setPage, pageInfo, setFilter, filter } = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8, initialFilter: { isOpen_eq: isManager ? undefined : true } })
+
 
     const categories = categoriesMap?.PORTPOLIO || [];
     const handlePrev = () => {
@@ -42,7 +44,7 @@ export const PortFolio: React.FC = () => {
     const viewCat = filter.categoryId_eq || "";
 
     return <div className="portfolio_in">
-        <div className="top_bg w100" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} />
+        <div className="top_bg w100" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} />
             <div className="w1200">
                 <h3 {...edit("mainTitle")} />
                 <span {...edit("subTitle")} />
@@ -58,22 +60,23 @@ export const PortFolio: React.FC = () => {
                 </h4> */}
                 <ul>
                     <li className="img01">
-                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <div className="img" style={bg("con2_img1_icon")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        {/* <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div> */}
                         <h5 {...edit("con2_img1_title")} />
                         <span {...edit("con2_img1_title_kr")} />
                     </li>
                     <li className="img02">
-                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
                         <h5 {...edit("con2_img2_title")} />
                         <span {...edit("con2_img2_title_kr")} />
                     </li>
                     <li className="img03">
-                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
                         <h5 {...edit("con2_img3_title")} />
                         <span {...edit("con2_img3_title_kr")} />
                     </li>
                     <li className="img04">
-                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
                         <h5 {...edit("con2_img4_title")}></h5>
                         <span {...edit("con2_img4_title_kr")} />
                     </li>

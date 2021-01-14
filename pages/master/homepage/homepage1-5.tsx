@@ -7,6 +7,7 @@ import { CategoryType, Fcategory } from '../../../types/api';
 import { CategoryEitdor } from '../../../components/categoryEditor/CategoryEdiotr';
 import { categoryMap } from '../../../utils/categoryMap';
 import { categoryToKR } from '../../../utils/enumToKr';
+import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
 
 interface IProp { }
 
@@ -47,16 +48,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
         <div className="in ">
             <h4>홈페이지 설정</h4>
             <div className="in_content">
-                <div className="tab-nav">
-                    <ul>
-                        <li><Link href="/master/homepage"><a>기본설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-2"><a>SMS설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-3"><a>카카오비즈톡</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-4"><a>약관설정</a></Link></li>
-                        <li className="on"><Link href="/master/homepage/homepage1-5"><a>게시판설정리</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-6"><a>정산설정</a></Link></li>
-                    </ul>
-                </div>
+                <HomepageTopNav />
                 <div className="con homepage board">
                     <div className="design_table">
                         <div className="block_box">

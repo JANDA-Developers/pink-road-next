@@ -9,23 +9,6 @@ import { F_SYSTEMNOTI } from "./systemNoti";
   
 :::::::::::::::::::::::::::::::::::::: */
 
-export const SIGN_IN = gql`
-  query signIn(
-    $email: Email!
-    $pw: String!
-    ) {
-    SignIn(
-      email:$email,
-      pw:$pw
-      )  {
-        ok
-        error
-        data {
-          token
-        }
-      }
-  }
-`;
 
 
 export const PAGE_INFO_READ = gql`

@@ -7,22 +7,21 @@ export interface IUploadProps {
 }
 
 export const Upload: React.FC<IUploadProps> = ({ onUpload }) => {
-    const { editMode } = useContext(AppContext);
     const { signleUpload } = useUpload();
     const hiddenImgInput = useRef<HTMLInputElement>(null);
 
-    return <div className="img_edit" style={{
-        position: "absolute",
-        top: 0,
-        right: 0,
-        display: editMode ? "block" : "none"
-    }} onClick={() => {
-        hiddenImgInput.current?.click()
-    }}>  <input ref={hiddenImgInput} onChange={() => {
+    const handleUpload = () => {
         const file = hiddenImgInput.current?.files;
         if (!file) return;
-        signleUpload(file, (url, data) => {
+        signleUpload(file, (url) => {
             onUpload(url);
         })
-    }} hidden type="file" /></div>;
+    }
+
+    return <div className="imgEdit" onClick={() => {
+        hiddenImgInput.current?.click()
+    }}>
+        이미지교체+
+        <input ref={hiddenImgInput} onChange={handleUpload} hidden type="file" />
+    </div>;
 };

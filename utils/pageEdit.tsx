@@ -2,6 +2,7 @@ import { CSSProperties } from "react";
 import $ from "jquery"
 import { ISet } from "../types/interface";
 import isEmpty from "./isEmpty";
+import { IEditKit } from "../components/Img/img";
 interface Style {
     style?: CSSProperties,
 }
@@ -72,7 +73,17 @@ export interface IGetEditUtilsResult<Page> {
         "data-imgkey": keyof Page;
         "data-img": string;
     } | undefined;
-    get: (key: keyof Page) => any
+    get: (key: keyof Page) => any;
+    imgKit: (key: keyof Page) => IEditKit<Page>;
+    arrayImgKit: (index: number, key: keyof Page, arrayOrigin: any) => {
+        "data-edit": string;
+        src: {
+            "data-img": string;
+            "data-imgkey": string;
+            src: any;
+        };
+        upload: (url: string) => void;
+    }
 }
 
 
@@ -82,6 +93,8 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
     class EditError extends Error {
         constructor(message: string) {
+            console.log("pagepagepagepagepage");
+            console.log(page);
             // Pass remaining arguments (including vendor specific ones) to parent constructor
             super(message)
 
@@ -91,10 +104,18 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
             }
 
             this.name = 'EditError'
-
             // 핵 ... 조사를 깊게 해봐야함
             if (isEmpty(page)) {
                 location.reload();
+            }
+            const retry = localStorage.getItem("ERR_RE_TRY");
+            if (retry !== "T") {
+                console.error("ERR")
+                localStorage.setItem("ERR_RE_TRY", "T");
+                location.reload();
+            } else {
+                console.error("ERR")
+                localStorage.removeItem("ERR_RE_TRY");
             }
         }
     }
@@ -200,9 +221,10 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         validateKey(key)
         return ({ backgroundImage: `url(${page[key][lang]})`, "data-edit": editable ? "bg" : "" })
     }
+
     const src = (key: keyof T) => {
         validateKey(key)
-        return ({ src: page[key][lang], "data-imgkey": key, "data-img": "img" })
+        return ({ "data-edit": editable ? "img" : "", src: page[key][lang], "data-imgkey": key, "data-img": "img", })
     }
 
     const imgKit = (key: string) => {
@@ -215,6 +237,23 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
             upload,
             bg: _bg,
             src: _src
+        }
+    }
+
+    const arrayImgKit = (index: number, key: keyof T, arrayOrigin: any) => {
+        validateKey(key, index);
+        const src = page[key][lang][index]["img"];
+        if (!src) throw Error(`img proeprty not exsit ${key}`);
+        return {
+            src: {
+                "data-edit": editable ? "img" : "",
+                "data-img": "img",
+                "data-imgkey": "partner",
+                src: page[key][lang][index]["img"]
+            },
+            upload: (url: string) => {
+                editArray("partners", index, { ...arrayOrigin, img: url })
+            },
         }
     }
 
@@ -251,6 +290,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         editArray,
         addArray,
         removeArray,
+        arrayImgKit,
         bg,
         src,
         view,

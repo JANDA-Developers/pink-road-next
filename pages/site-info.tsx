@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { getEditUtils } from '../utils/pageEdit';
-import { AppContext, EditContext } from "./_app";
+import { EditContext } from "./_app";
 import pageInfoDefault from 'info/siteInfo.json';
-import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { Upload } from 'components/common/Upload';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { getStaticPageInfo } from '../utils/page';
 import defaultPageInfo from "../info/siteInfo.json";
+import { Bg, Img } from '../components/Img/img';
+import { IUsePageEdit } from '../hook/usePageEdit';
 
 
 type TGetProps = {
@@ -15,7 +15,7 @@ type TGetProps = {
 
 export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("site-info", defaultPageInfo);
 export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = () => {
-    const { edit, imgEdit, ulEdit, bg, removeArray, editMode, editArray, addArray, page } = useContext(EditContext);
+    const { edit, src, arrayImgKit, imgEdit, ulEdit, bg, removeArray, editMode, editArray, addArray, page, imgKit } = useContext<IUsePageEdit<typeof pageInfoDefault>>(EditContext);
 
     const [open, setOpen] = useState(true);
     const [addInfo, setAddInfo] = useState({
@@ -45,22 +45,22 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
 
     return <div className="siteInfo_in">
-        <div style={{
-            ...bg("mainBg")
-        }} className="top_bg w100">
-            <div className="w1200">
-                <h3  {...edit("mainTitle")} />
-                <span  {...edit("secondTitle")} />
+        <Bg {...imgKit("mainBg")}>
+            <div className="top_bg w100">
+                <div className="w1200">
+                    <h3  {...edit("mainTitle")} />
+                    <span  {...edit("secondTitle")} />
+                </div>
+                {/* <Upload onUpload={imgEdit("mainBg")} /> */}
             </div>
-            <Upload onUpload={imgEdit("mainBg")} />
-        </div>
+        </Bg>
         {/* <div className="bold" title="Bold" onClick={() => { effectDoc('bold') }}>B</div> */}
         <div className="w100 con01 con_block">
             <div className="w1200">
                 <div className="bottom">
                     <div className="haf_first">
                         <div className="mb20" {...ulEdit("pinkVision")} />
-                        <img src="/img/pr_img_13.jpg" alt="핑크로더 소개 이미지" />
+                        <Img {...imgKit("pinkload_intro")} />
                     </div>
                     <div className="haf">
                         <strong {...edit("visionBox1_title")} />
@@ -81,25 +81,25 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <p  {...edit("purpose_desc")} />
                 </div>
                 <ul className="infolist">
-                    <li className="infolist__01" style={bg("purpose1_bg")}>
+                    <li className="infolist__01" >
                         <div className="pack">
-                            <div className="img" style={bg("purpose1_bg")}><Upload onUpload={imgEdit("purpose1_bg")} /></div>
+                            <Bg className="img" {...imgKit("purpose1_bg")} />
                             <strong  {...edit("purpose1_title")} />
                             <span {...edit("purpose1_bottom")} />
                         </div>
 
                     </li>
-                    <li className="infolist__02" style={bg("purpose2_bg")}>
+                    <li className="infolist__02" >
                         <div className="pack">
-                            <div className="img" style={bg("purpose2_bg")}><Upload onUpload={imgEdit("purpose2_bg")} /></div>
+                            <Bg className="img" {...imgKit("purpose2_bg")} />
                             <strong  {...edit("purpose2_title")} />
                             <span {...edit("purpose2_bottom")} />
                         </div>
 
                     </li>
-                    <li className="infolist__03" style={bg("purpose3_bg")}>
+                    <li className="infolist__03" >
                         <div className="pack">
-                            <div className="img" style={bg("purpose3_bg")}><Upload onUpload={imgEdit("purpose3_bg")} /></div>
+                            <Bg className="img" {...imgKit("purpose3_bg")} />
                             <strong  {...edit("purpose3_title")} />
                             <span {...edit("purpose3_bottom")} />
                         </div>
@@ -112,12 +112,12 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             <div>
                 <h4  {...edit("value_title")} />
                 <p {...edit("value_desc")} />
-                <div className="bg01" style={bg("value_bg01")}><Upload onUpload={imgEdit("value_bg01")} /></div>
-                <div className="bg02" style={bg("value_bg02")}><Upload onUpload={imgEdit("value_bg02")} /></div>
-                <div className="bg03" style={bg("value_bg03")}><Upload onUpload={imgEdit("value_bg03")} /></div>
-                <div className="bg04" style={bg("value_bg04")}><Upload onUpload={imgEdit("value_bg04")} /></div>
-                <div className="bg05" style={bg("value_bg05")}><Upload onUpload={imgEdit("value_bg05")} /></div>
-                <div className="bg06" style={bg("value_bg06")}><Upload onUpload={imgEdit("value_bg06")} /></div>
+                <Bg className="bg01" {...imgKit("value_bg01")} />
+                <Bg className="bg02" {...imgKit("value_bg02")} />
+                <Bg className="bg03" {...imgKit("value_bg03")} />
+                <Bg className="bg04" {...imgKit("value_bg04")} />
+                <Bg className="bg05" {...imgKit("value_bg05")} />
+                <Bg className="bg06" {...imgKit("value_bg06")} />
             </div>
         </div>
         <div className="w100 con04 con_block">
@@ -151,7 +151,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             </div>
             <div className="infoimg">
                 <div className="w1200">
-                    <div {...edit("info_img_title")} className="li01" />
+                    <div className="li01" ><span {...edit("info_img_title")} /></div>
                     <div className="li03">
                         <div className="dong01">
                             <strong>01</strong>
@@ -242,30 +242,30 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     {partners.kr.map((partner: any, index: number) => {
                         const { alt, img, link } = partner;
                         return <li key={index + "partner"}>
-                            <a href={editMode ? undefined : link}>
-                                <img src={img} alt={alt} />
+                            <a>
+                                <Img {...arrayImgKit(index, "partners", partner)} />
                                 {editMode &&
                                     <span className="del" onClick={() => {
                                         removeArray("partners", index);
                                     }}><i className="flaticon-multiply"></i></span>
                                 }
-                                <Upload onUpload={(url) => {
-                                    editArray("partners", index, { ...partner, img: url })
-                                }} />
                             </a>
                         </li>
                     })}
                     {editMode &&
                         <li className="add" onClick={() => {
-                            addArray("partners", {})
+                            addArray("partners", ({
+                                alt: "",
+                                img: "/img/ptn_01.jpg",
+                                link: "샘플",
+                            }))
                         }}><i className="flaticon-add"></i>추가</li>
                     }
                 </ul>
 
             </div>
         </div>
-        <div className="w100 con07 con_block onepick2" style={bg("con07_bg")}>
-            <Upload onUpload={imgEdit("con07_bg")} />
+        <Bg {...imgKit("con07_bg")} className="w100 con07 con_block onepick2" >
             <div className="w1200">
                 <h4>
                     <strong {...edit("con07_title")} />
@@ -276,7 +276,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             </div>
             <div className="ovj"></div>
             <div className="bg" />
-        </div>
+        </Bg>
         {open && <div style={{
             opacity: 0,
             position: "fixed",
@@ -296,8 +296,10 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             <input />
             <input onChange={() => { }} value={addInfo.link} />
         </div>}
+
+
         {/* popup은 언제나 class fade와 함께 있어야 한다. */}
-        <div className="popup_bg_mini" style={{ display: 'none' }}>
+        {/* <div className="popup_bg_mini" style={{ display: 'none' }}>
             <a className="close_icon"><i className="flaticon-multiply" /></a>
             <div className="in_txt">
                 <h3>이미지 업로드</h3>
@@ -312,7 +314,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                 </div>
             </div>
         </div>
-        <div className="fade"></div>
+        <div className="fade"></div> */}
     </div>;
 };
 

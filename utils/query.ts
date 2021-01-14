@@ -7,6 +7,7 @@ import { DEFAULT_PAGE } from "../types/const";
 import { Fpage } from "../types/api";
 interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
+    skipInit?: boolean;
 };
 
 const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["data","page"]) => {
@@ -84,11 +85,11 @@ export const generateListQueryHook = <F,S,Q,V,R>(
 
 export const generateQueryHook = <Q, R, V = undefined>(
     QUERY:DocumentNode,
-    initOptions?: genrateOption<Q,V>
+    {skipInit,...initOptions}: genrateOption<Q,V> | undefined = {}
 ) => {
 
     const queryHook  = (defaultOptions?: QueryHookOptions<Q,V>) => {
-        const [getData, { data:_data, loading:getLoading }] = useLazyQuery<Q,V>(QUERY, {
+        const [getData, { data:_data, loading:getLoading,...context }] = useLazyQuery<Q,V>(QUERY, {
             nextFetchPolicy: "cache-first",
             ...initOptions,
             ...defaultOptions,
@@ -102,10 +103,11 @@ export const generateQueryHook = <Q, R, V = undefined>(
         const data: Result = _data?.[operationName]?.data || undefined;
 
         useEffect(()=>{
-            getData();
+            if(!skipInit)
+                getData();
         },[])
         
-        return {  getLoading, data }
+        return {  getData, getLoading, data,...context }
     }
     return queryHook
 }

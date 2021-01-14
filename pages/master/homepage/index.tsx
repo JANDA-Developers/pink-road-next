@@ -31,15 +31,23 @@ export const MsHomepageA: React.FC = () => {
             <h4>홈페이지 설정</h4>
             <div className="in_content">
                 <HomepageTopNav />
-                <div className="con homepage">
+                <div className="con homepage sms">
                     <div className="fin ifMobile">
-                        <div className="float_left">
-                        </div>
-                        <div className="right_div">
-                            <SortSelecter onChange={setSort} sort={sort}>
-                                <option value={_ITemplateSort.createdAt_desc}>최신순 &uarr;</option>
-                                <option value={_ITemplateSort.createdAt_asc}>최신순 &darr;</option>
-                            </SortSelecter>
+                        <div className="alignment">
+                            <div className="left_div">
+                                <ul className="board_option">
+                                    <li className="on"><a href="/">전체<strong>46</strong></a></li>
+                                    <li><a href="/">예약<strong>23</strong></a></li>
+                                    <li><a href="/">회원<strong>23</strong></a></li>
+                                    <li><a href="/">정산<strong>23</strong></a></li>
+                                </ul>
+                            </div>
+                            <div className="right_div">
+                                <SortSelecter onChange={setSort} sort={sort}>
+                                    <option value={_ITemplateSort.createdAt_desc}>최신순 &uarr;</option>
+                                    <option value={_ITemplateSort.createdAt_asc}>최신순 &darr;</option>
+                                </SortSelecter>
+                            </div>
                         </div>
                     </div>
                     <div className="sms-list">
