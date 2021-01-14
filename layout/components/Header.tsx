@@ -110,6 +110,12 @@ export const Header: React.FC<IProp> = () => {
                                 <a>LOGIN</a>
                             </Link>}
                     </li>
+                    {isSeller && <li className="mypage">
+                        <Link href="/mypage"><a>MY PAGE</a></Link>
+                    </li>}
+                    {isManager && <li className="master">
+                        <Link href="/master"><a>MASTERr</a></Link>
+                    </li>}
 
                 </ul>
             </div>
