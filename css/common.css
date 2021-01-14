@@ -6,6 +6,7 @@ html, body {
     font-weight: 400;
     letter-spacing: 0;
     font-size: 14px;
+    min-width: 330px;
 }
 
 table {
