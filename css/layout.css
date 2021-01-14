@@ -734,7 +734,6 @@ rect.allmenu_svg {
     right: 0;
     display: block;
     background-color: #ffffff;
-    vertical-align: middle;
     z-index: 50;
     padding: 9px;
     box-sizing: border-box;
@@ -1060,7 +1059,7 @@ rect.allmenu_svg {
             vertical-align: top;
             padding: 3% 3%;
             box-sizing: border-box;
-            border-bottom: 1px solid #ffffff0a;
+            border-bottom:1px solid #8bbfe757;
         }
 
             #all_menu ul .a_menu_tit .depth1 {
@@ -1091,7 +1090,7 @@ rect.allmenu_svg {
                             opacity: 1;
                         }
 
-            #all_menu ul .a_menu_tit a {
+            #all_menu ul .a_menu_tit > a {
                 font-size: 22px;
                 font-weight: 600;
                 display: block;
@@ -1099,7 +1098,7 @@ rect.allmenu_svg {
                 padding-bottom: 3px;
                 border-bottom: 0;
             }    
-            #all_menu ul .a_menu_tit a i {
+            #all_menu ul .a_menu_tit > a i {
                 font-size:10px;
                 display:inline-block;
                 margin-left:5px;
@@ -1955,7 +1954,7 @@ footer .footer_in_bottom {
     width: 200px;
     height: auto;
     display: inline-block;
-    float: unset;
+    float: none;
     position: relative;
     overflow: hidden;
     padding-bottom: 0;
@@ -2502,7 +2501,6 @@ i.icon_plus {
         width: 100%;
         font-size: 14px;
         font-weight: 600;
-        vertical-align: top;
         line-height: 31px;
         padding: 0;
     }
@@ -2510,7 +2508,6 @@ i.icon_plus {
     .search_box .text {
         display: block;
         width: 100%;
-        vertical-align: top;
     }
 
         .search_box .text input[type*=text] {
@@ -2696,7 +2693,6 @@ i.icon_plus {
         .search_box .day_ul li {
             display: inline-block;
             padding:12px 10px;
-            float: left;
             width: 25%;
             border-right: 1px solid #ccc;
             cursor: pointer;
@@ -2994,20 +2990,18 @@ i.icon_plus {
         }
 
     .search_in .search_box .check {
-        margin-right: 5px;
         position: relative;
-        display: inline-block;
+        display: block;
+        height: 30px;
         background: #fff;
         border: 1px solid #ccc;
+        color: #777;
         font-size: 13px;
         line-height: 32px;
-        height: 30px;
         position: relative;
         padding: 0px 21px;
+        margin-right: 5px;
         margin-bottom: 6px;
-        float: left;
-        display: block;
-        color: #777;
         letter-spacing: 1px;
         text-transform: uppercase;
         text-align: center;
@@ -3170,7 +3164,6 @@ i.icon_plus {
     display: inline-block;
     padding: 3px 10px;
     box-sizing: border-box;
-    float: left;
     border-right: 1px solid #ccc;   
      background-color: #eaeaea;
     cursor: pointer;
@@ -3367,7 +3360,6 @@ i.icon_plus {
         display: inline-block;
         height: 30px;
         color: #777;
-        float: left;
         font-size: 14px;
         font-weight: 600;
         line-height: 32px;
@@ -3448,7 +3440,6 @@ margin-bottom:0;
 .search_box .day_ul li {
             display: inline-block;
             padding: 7px 10px;
-            float: left;
             width: auto;
             border-right: 1px solid #ccc;
             cursor: pointer;
@@ -3484,15 +3475,12 @@ margin-bottom:0;
         width: 200px;
     }
     #gotop {
-       
         width: 35px;
     }
-
         #gotop .top {
             height: 35px;
             font-size: 14px;
         }
-
         #gotop .down {
             height: 35px;
             font-size: 14px;
@@ -3559,36 +3547,58 @@ margin-bottom:0;
         }
         #all_menu ul {
             padding: 3% 8%;
-            text-align:center;
         }
             #all_menu ul .a_menu_tit {
                 border-top: 0;
                 border-bottom: 0;
                 padding: 0;
                 padding-right: 2%;
-                width: 30%;
+                width: 23%;
                 margin-bottom: 20px;
                 min-width: 100px;
+                
 
             }
-                #all_menu ul .a_menu_tit a {
-                    font-size: 19px;
-                    font-weight: 500;
+                #all_menu ul .a_menu_tit > a {
+                    position: relative;
                     display: block;
+                    padding: 8px;
+                    box-sizing: border-box;
+                    text-align: left;
+                    font-size: 16px;
                     color: #ffffff;
-                    padding-bottom: 3px;
-                    text-align:left;
-                    border-bottom: 2px solid #ffffff;
+                    border: 1px solid #cfeaff;
+                    background-color: #ffffff1a;
                 }
 
-                    #all_menu ul .a_menu_tit a i {
-                        display: none;
+                    #all_menu ul .a_menu_tit > a i {
+                        display: inline-block;
+                        position: absolute;
+                        top: 50%;
+                        margin-top: -6px;
+                        right: 10px;
                     }
     #all_menu ul .a_menu_tit .depth1 {
-        padding: 5%;
+        padding: 5% 0;
     }
         #all_menu ul .a_menu_tit .depth1 li {
-            width: 100%;
+            width: auto;
+            position: relative;
+            display: inline-block;
+            margin-right: 15px;
+        }
+        #all_menu ul .a_menu_tit .depth1 li::after {
+            display: inline-block;
+            content: '·';
+            position: absolute;
+            top:0;
+            font-size: 10px;
+            color: #ffffff;
+            right: -10px;
+            line-height: 160%;
+        }
+        #all_menu ul .a_menu_tit .depth1 li:last-child::after {
+            display: none
         }
           
         #all_menu ul .a_menu_tit .depth1 li a {
@@ -3596,6 +3606,7 @@ margin-bottom:0;
             font-size: 13px;
             font-weight: normal;
             color: #ffffff;
+            line-height: 150%;
             opacity: 0.9;
             letter-spacing: -1px;
         }
@@ -3847,7 +3858,7 @@ margin-bottom:0;
     }
 
         #all_menu ul .a_menu_tit {
-            width: 10%;
+            width: 23%;
             min-width: 167px;
         }
 
@@ -3924,7 +3935,7 @@ margin-bottom:0;
         }
 
             #all_menu ul .a_menu_tit {
-                width: 10%;
+                width: 23%;
                 min-width: 180px;
             }
     .header .hd_center .nav_wrap .deps1 > li > a {
@@ -3951,7 +3962,12 @@ margin-bottom:0;
     .m {
         display: inline-block;
     }
-
+    .footer_in .bottom_nav .cs {
+        width: 70%;
+    }
+    .footer_in .bottom_nav .cs a {
+        width: 100%;
+    }
     #content .x {
         width: 100%;
     }

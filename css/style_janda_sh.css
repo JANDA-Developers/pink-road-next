@@ -818,6 +818,7 @@ div.goods_list {
 
         .main_con_box7 .box01 .w1200 {
             position: relative;
+            z-index: 1;
         }
 
         .main_con_box7 .box01 .sidetxt {
@@ -884,6 +885,7 @@ div.goods_list {
             letter-spacing: -7px;
             color: #06304f;
             font-variant: small-caps;
+            z-index: 0;
         }
     .main_con_box7 .box02 {
         position: relative;
@@ -1628,6 +1630,11 @@ div.alignment {
             vertical-align: bottom;
             line-height: 31px;
             padding-right: 5px;
+            opacity: 0.5;
+        }
+
+        div.alignment .right_div .goto_page:hover {
+            opacity:1;
         }
 
             div.alignment .right_div .goto_page i {
@@ -3224,12 +3231,11 @@ ul.rank_ul {
                 height: 150px;
                 line-height: 19px;
                 border-radius: 300px;
-                border: 3px solid #dbdbdb;
-                background: #ededed;
+                border: 3px solid #ffffff;
                 text-align: center;
                 display: inline-block;
                 font-size: 15px;
-                color: #a9a9a9;
+                color: #ffffff;
                 margin: 0 40px 0;
                 padding: 53px 0 0 0;
                 box-sizing: border-box;
@@ -3262,9 +3268,8 @@ ul.rank_ul {
 
 
                 .siteInfo_in .con03 .info_address li.on {
-                    background: #fff;
-                    color: #333;
-                    border: 3px solid #9f9f9f;
+                    color: #ffffff;
+                    border: 3px solid #ffffff;
                 }
 
     .siteInfo_in .con04 {
@@ -4075,7 +4080,7 @@ ul.rank_ul {
         }
 
             .guide_box .guide_top_bn .txt h3 {
-                font-size: 40px;
+                font-size:3em;
                 color: #fff;
             }
 
@@ -4118,6 +4123,8 @@ ul.rank_ul {
         top: -100px;
         background-color: #fff;
         border-radius: 20px 20px 0 0;
+        box-sizing: border-box;
+        padding: 0 3%;
     }
 
         .guide_box .guide_content .con01 {
@@ -4142,7 +4149,7 @@ ul.rank_ul {
                 }
 
                 .guide_box .guide_content .con01 .top_txt strong {
-                    font-size: 63px;
+                    font-size: 4.3em;
                     color: #039ce0;
                     font-weight: 600;
                 }
@@ -4151,13 +4158,13 @@ ul.rank_ul {
                 position: absolute;
                 display: inline-block;
                 box-sizing: border-box;
-                padding: 38px 0 0;
+                padding: 70px 0 0;
                 text-align: left;
             }
 
             .guide_box .guide_content .con01 li {
-                width: 130px;
-                height: 130px;
+                width: 100px;
+                height: 100px;
                 display: inline-block;
                 margin: 0 0 0 -16px;
                 text-align: center;
@@ -9454,7 +9461,7 @@ i.calendar {
         height: 460px;
     padding: 370px 0 0;
         background-position: center;
-        background-size: 180%;
+        background-size: 200%;
     }
 
         .siteInfo_in .top_bg h3 {
@@ -9792,7 +9799,7 @@ i.calendar {
             position: absolute;
         }
     div.alignment {
-        width: 94%;
+        width:100%;
         margin: 0 auto;
         display: flex;
         position: relative;
@@ -10403,6 +10410,9 @@ i.calendar {
             top: 9px;
             right: 11px;
         }
+        /* .siteInfo_in .top_bg {
+            background-size: 180%;
+        } */
     div.bn_box {
         width: 100%;
     }
@@ -10422,6 +10432,13 @@ i.calendar {
     }
     .notice_box{
         padding: 0;
+    }
+    .guide_box .guide_content .con01 li {
+        width: 120px;
+        height: 120px;
+    }
+    .guide_box .guide_content .con01 ul {
+        padding: 59px 0 0;
     }
 }
 
@@ -10523,7 +10540,91 @@ i.calendar {
     }
 }
 
+@media (max-width: 1000px) {
+    .footer_in .bottom_nav ul {
+        padding: 1%;
+    }
+    .guide_box .guide_top_bn .txt h3{
+        font-size: 2em;
+    }
+ 
+    .guide_box .guide_top_bn{
+        padding: 100px 3% 180px;
+    }
+    .guide_box .guide_top_bn .txt {
+        position: relative;
+        display: block;
+        padding-left: 0;
+    }
+    .guide_box .guide_top_bn .btn_list li a {
+        padding: 10px 19px;
+    font-size: 1em;
+    }
+    .guide_box .guide_content .con01 {
+        padding: 0;
+    }
+    .guide_box .guide_content .con01 .top_txt {
+        display: inline-block;
+        width: 100%;
+        padding: 78px 0 20px;
+    }
+    .guide_box .guide_content .con01 .top_txt h2 {
+        display: block;
+        text-align: center;
+    }
+    .guide_box .guide_content .con01 .top_txt strong {
+        font-size: 3.3em;
+        display: block;
+        text-align: center;
+    }
+    .guide_box .guide_content .con01 ul {
+        width: 100%;
+        position: relative;
+        padding: 0;
+        text-align: center;
+    }
+    .guide_box .guide_content .con01 li {
+        width: 110px;
+        height: 110px;
+    }
+    .guide_box .guide_content .con01 li.plus {
+        width: 70px;
+        height: 100px;
+        line-height: 100px;
+    }
+    .main_con_box5 .alignment,
+    .deal_list .alignment{
+        display: flex;
+        padding: 40px 0 5px;
+    }
+    .main_con_box5 .alignment .right_div,
+    .deal_list .alignment .right_div{
+       text-align: right;
+    }
+}
 @media (max-width: 767px) {
+    .guide_box .guide_content .con01 li {
+        width: 50px;
+        height: 50px;
+    }
+    .guide_box .guide_content .con01 li.plus {
+        width: 70px;
+        height: 31px;
+        line-height: 31px;
+    }
+    .footer_in .bottom_nav ul {
+        padding: 3%;
+    }
+    .guide_box .guide_top_bn .txt h3{
+        font-size: 1.7em;
+    }
+    .guide_box .guide_top_bn .txt h3 br{
+        display: none;
+    }
+    .guide_box .guide_top_bn .btn_list li a {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
     .sign_in {
         margin: 38px 0 50px;
     }
@@ -10947,12 +11048,7 @@ i.calendar {
     .review_board ul.list_ul.line4 li .img {
         height: 240px;
     }
-    .footer_in .bottom_nav .cs {
-        width: 70%;
-    }
-    .footer_in .bottom_nav .cs a {
-        width: 100%;
-    }
+ 
 }
 
 
