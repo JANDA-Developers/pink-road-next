@@ -475,7 +475,7 @@ export const MsDesignC: React.FC<IProp> = () => {
                         <div className="search_div">
                             <input className="w100" type="text" placeholder="검색할 상품명을 입력해주세요." />
                             <div className="svg_img">
-                                <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                <img src="/img/svg/search_icon.svg" alt="search icon" />
                                 <button />
                             </div>
                         </div>

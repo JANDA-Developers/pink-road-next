@@ -236,7 +236,6 @@
             line-height: 130%;
             text-align: center;
             font-weight: 600;
-            vertical-align: top;
             display: inline-block;
             padding: 13px 15px 13px;
         }
@@ -535,7 +534,7 @@
         padding-left: 10px;
         box-sizing: border-box;
         vertical-align: middle;
-        border-radius: 5px;
+        border-radius: 3px;
         background-color: #ffffff;
         border: #e3e3e3 1px solid;
         margin-right: 0px;
@@ -800,7 +799,6 @@
     display: block;
     text-align: left;
     width: 100%;
-    vertical-align: top;
     position: relative;
 }
 .goods_div span.s-day {
@@ -1012,10 +1010,6 @@
             top: 50%;
             margin-top: -16px;
         }
-    /* .reservation_div .td .t01 .checkbox {
-        top: 50%;
-        margin-top: -8px;
-    } */
     .reservation_div .align {
         display: inline-block;
         width: 100%;
@@ -1064,7 +1058,6 @@
     .reservation_div .t04 .info {
         display: block !important;
         width: 100% !important;
-        vertical-align: top;
         text-align: left;
         position: relative;
         padding-left: 120px;
@@ -1095,7 +1088,6 @@
         display: block;
         text-align: left;
         width: 100%;
-        vertical-align: top;
         position: relative;
     }
 
@@ -1462,7 +1454,6 @@
      div.reservation_popup .info_table .info {
         display: block !important;
         width: 100% !important;
-        vertical-align: top;
         text-align: center;
         position: relative;
         padding-left: 0;
@@ -1570,7 +1561,6 @@
     line-height: 127%;
     font-size: 1.3em;
     color: #ed297b;
-    vertical-align: middle;
 }
  div.reservation_popup .state {
     width: auto !important;
@@ -1640,7 +1630,6 @@
     display: block;
     text-align: center;
     width: 100%;
-    vertical-align: top;
     position: relative;
 }
  div.reservation_popup .info_page .left_div {
@@ -1666,7 +1655,7 @@
  div.reservation_popup .info_page .right_div {
     position: relative;
     top: 0;
-    width: 100;
+    width: 100%;
     height: 100%;
     display: block;
     box-sizing: border-box;
@@ -2363,7 +2352,6 @@ div.reservation_popup .tr select {
         font-size: 0.9em;
         color: #333;
         padding-top: 0px !important;
-        vertical-align: middle;
         border-bottom: 1px dotted #e4e4e4;
     }
 
@@ -2380,7 +2368,6 @@ div.reservation_popup .tr select {
         font-size: 0.9em;
         color: #333;
         padding-top: 0px !important;
-        vertical-align: middle;
     }
 
     .basket_box .basket_list .tour_mode {
@@ -2392,7 +2379,6 @@ div.reservation_popup .tr select {
         font-size: 0.9em;
         color: #333;
         padding-top: 0px !important;
-        vertical-align: middle;
     }
 
     .basket_box .basket_list .men {
@@ -2404,7 +2390,6 @@ div.reservation_popup .tr select {
         font-size: 0.9em;
         color: #333;
         padding-top: 0px !important;
-        vertical-align: middle;
     }
 
     .basket_box .basket_list .money {
@@ -2415,7 +2400,6 @@ div.reservation_popup .tr select {
         font-size: 1.3em;
         color: #ed297b;
         padding-top: 22px !important;
-        vertical-align: middle;
     }
 
     .basket_box .basket_list .day_cunt {
@@ -2426,7 +2410,6 @@ div.reservation_popup .tr select {
         font-size: 0.9em;
         color: #333;
         padding-top: 23px !important;
-        vertical-align: middle;
     }
 
     .basket_box .basket_list .men_cunt {
@@ -2437,7 +2420,6 @@ div.reservation_popup .tr select {
         font-size: 0.9em;
         color: #333;
         padding-top: 0px !important;
-        vertical-align: middle;
     }
 
     .basket_box .basket_list .state {
@@ -2616,7 +2598,7 @@ div.reservation_popup .tr select {
     color: #777;
     text-transform: uppercase;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 3px;
     background: #fff;
     cursor: pointer;
 }
@@ -3120,7 +3102,6 @@ div.reservation_popup .tr select {
         font-size: 1em;
         color: #333;
         padding-top: 0px !important;
-        vertical-align: middle;
         margin-right: 10px;
     }
     div.reservation_popup .where {
@@ -3131,7 +3112,6 @@ div.reservation_popup .tr select {
         font-size: 1em;
         color: #333;
         padding-top: 0px !important;
-        vertical-align: middle;
     }
     div.reservation_popup .top03 .align {
         text-align: left;
@@ -3149,7 +3129,6 @@ div.reservation_popup .tr select {
     div.reservation_popup .info_table .info {
             display: block !important;
             width: 100% !important;
-            vertical-align: top;
             text-align: left;
             position: relative;
             padding-left: 170px;
@@ -3161,7 +3140,6 @@ div.reservation_popup .tr select {
         display: block;
         text-align: left;
         width: 100%;
-        vertical-align: top;
         position: relative;
     }
     div.reservation_popup .info_page .left_div {

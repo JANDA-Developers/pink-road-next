@@ -4422,7 +4422,7 @@ div.bn_box {
 
     .login_wrap input {
         width: 100%;
-        border-radius: 5px;
+        border-radius: 3px;
         height: 42px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -4627,7 +4627,7 @@ div.bn_box {
                 display: block;
                 text-align: left;
                 border: 1px solid #e7e7e7;
-                border-radius: 5px;
+                border-radius: 3px;
                 color: #555;
                 box-sizing: border-box;
                 padding: 16px 10px;
@@ -5240,7 +5240,7 @@ div.bn_box {
         padding-left: 10px;
         box-sizing: border-box;
         vertical-align: middle;
-        border-radius: 5px;
+        border-radius: 3px;
         background-color: #ffffff;
         border: #d2d2d2 1px solid;
         margin-right: 0px;
@@ -5263,7 +5263,7 @@ div.bn_box {
     }
 
     .join_wrap2 input {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 42px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -5441,7 +5441,7 @@ div.bn_box {
     .join_wrap2 .input_wrap select {
         background-color: #fff8e6;
         width: 100%;
-        border-radius: 5px;
+        border-radius: 3px;
         height: 42px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -6193,7 +6193,7 @@ i.important_icon {
     }
 
     .option_tb input[type*=text] {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 32px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -7992,7 +7992,7 @@ i.calendar {
         }
 
         .findmembers_box .in_box input[type*=text] {
-            border-radius: 5px;
+            border-radius: 3px;
             height: 32px;
             width: 100%;
             padding-left: 10px;
@@ -8048,6 +8048,9 @@ i.calendar {
     .findmembers_box .certification_sec {
         margin-top: 25px;
         display: block;
+    }
+    .findmembers_box .certification_sec .btn {
+       border-radius: 3px;
     }
 
 
@@ -9881,7 +9884,7 @@ div.alignment .right_div {
             width: 25px;
             height: 257%;
             top: -573px;
-            left: 50px;
+            left: 170px;
             /* transform: rotate(31deg); */
         }
 
@@ -9889,12 +9892,12 @@ div.alignment .right_div {
             width: 25px;
             height: 257%;
             top: -582px;
-            left: 0;
+            left: 121px;
             /* transform: rotate(31deg); */
         }
 
         .siteInfo_in .con05 .in_txt {
-            padding-left: 460px;
+            padding-left: 570px;
         }
 
         .siteInfo_in .con05 .w1200 {

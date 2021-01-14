@@ -96,7 +96,7 @@ export const Header: React.FC<IProp> = () => {
         <div className="top-menu">
             <div className="w1200">
                 {isLogin ? <p className="welcome_ms"><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>
-                    : <i />}
+                    : ""}
                 <ul>
                     {isLogin ? "" :
                         <li className="join">
@@ -117,8 +117,8 @@ export const Header: React.FC<IProp> = () => {
         <div className="main_menu">
             <div className="w1200">
                 <div className="u_skip">
-                    <a href="#nav-bar" onClick={handleNav}><span>상단메뉴 바로가기</span></a>
-                    <a href="#main" onClick={handleMain}><span>본문 바로가기</span></a>
+                    <Link href="#nav-bar"><a onClick={handleNav}><span>상단메뉴 바로가기</span></a></Link>
+                    <Link href="#main"><a onClick={handleMain}><span>본문 바로가기</span></a></Link>
                 </div>
                 <div className="hd_size">
                     <div className="hd_left">
@@ -132,7 +132,7 @@ export const Header: React.FC<IProp> = () => {
                     </div>
                     <div className="hd_center">
                         <div className="nav_wrap">
-                            <ul className="deps1">
+                            <ul className="deps1" id="nav-bar">
                                 <li className="deps">
 
                                     <Link href="/site-info">
@@ -217,7 +217,7 @@ export const Header: React.FC<IProp> = () => {
                             <div className="inform_top">
                                 <NotiIcon />
                             </div>
-                            : <i />}
+                            : ""}
                         <div onClick={handleAllMenu} className="all_menu_btn">
                             <img src="/img/svg/allmenu_icon.svg" alt="allmenu icon" />
                             <button />
@@ -235,16 +235,16 @@ export const Header: React.FC<IProp> = () => {
                                 <span className="text02">0원</span>
                             </div>
                         </div>
-                            : <i />}
+                            : ""}
 
                         <div className="m_all_menu_in">
                             {isLogin ? <span><a onClick={handleLogOut}>LOGOUT</a></span>
                                 : <span><Link href="/login"><a>LOGIN</a></Link></span>}
                             {isLogin ? <span><Link href="/mypage"><a>MY PAGE</a></Link></span>
-                                : <i />}
+                                : ""}
                             {isLogin ? <span><Link href="/mypage/notification"><a>알림</a></Link></span>
-                                : <i />}
-                            {isLogin ? <i />
+                                : ""}
+                            {isLogin ? ""
                                 : <span><Link href="/join"><a>JOIN</a></Link></span>}
                             <span><Link href="/member/inquiry"><a>고객문의</a></Link></span>
                             <span><Link href="/member/qna"><a>자주하는 질문</a></Link></span>
@@ -278,44 +278,44 @@ export const Header: React.FC<IProp> = () => {
                             <li className="a_menu_tit deps">
                                 <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
-                                    <li><a href="/mypage">회원정보</a></li>
-                                    <li><a href="/mypage/notification">알림</a></li>
-                                    <li><a href="/mypage/purchase">구매내역</a></li>
-                                    <li><a href="/mypage/basket">장바구니</a></li>
-                                    <li><a href="/mypage/write">나의 게시글</a></li>
-                                    <li><a href="/mypage/reservation">예약관리</a></li>
-                                    <li><a href="/mypage/goods">상품관리</a></li>
-                                    <li><a href="/mypage/plainning">기획관리</a></li>
-                                    <li><a href="/mypage/settlement">매출/정산관리</a></li>
+                                    <li><Link href="/mypage"><a>회원정보</a></Link></li>
+                                    <li><Link href="/mypage/notification"><a>알림</a></Link></li>
+                                    <li><Link href="/mypage/purchase"><a>구매내역</a></Link></li>
+                                    <li><Link href="/mypage/basket"><a>장바구니</a></Link></li>
+                                    <li><Link href="/mypage/write"><a>나의 게시글</a></Link></li>
+                                    <li><Link href="/mypage/reservation"><a>예약관리</a></Link></li>
+                                    <li><Link href="/mypage/goods"><a>상품관리</a></Link></li>
+                                    <li><Link href="/mypage/plainning"><a>기획관리</a></Link></li>
+                                    <li><Link href="/mypage/settlement"><a>매출/정산관리</a></Link></li>
                                 </ul>
                             </li>
                             <li className="a_menu_tit deps">
 
-                                <a href="/master">Master<i className="jandaicon-arr4-right"></i></a>
+                                <Link href="/master"><a>Master<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
-                                    <li><a href="/master/notification">알림</a></li>
-                                    <li><a href="/master/member">회원관리</a></li>
-                                    <li><a href="/master/goods">상품관리</a></li>
-                                    <li><a href="/master/reservation">예약관리</a></li>
-                                    <li><a href="/master/design">디자인 설정</a></li>
-                                    <li><a href="/master/homepage">홈페이지 설정</a></li>
+                                    <li><Link href="/master/notification"><a>알림</a></Link></li>
+                                    <li><Link href="/master/member"><a>회원관리</a></Link></li>
+                                    <li><Link href="/master/goods"><a>상품관리</a></Link></li>
+                                    <li><Link href="/master/reservation"><a>예약관리</a></Link></li>
+                                    <li><Link href="/master/design"><a>디자인 설정</a></Link></li>
+                                    <li><Link href="/master/homepage"><a>홈페이지 설정</a></Link></li>
                                 </ul>
 
                             </li>
                             <li className="a_menu_tit deps hiddennav betatest">
-                                <a href="../login">Member<i className="jandaicon-arr4-right"></i></a>
+                                <Link href="/login"><a>Member<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
-                                    <li><a href="/login">로그인</a></li>
-                                    <li><a href="/join">회원가입</a></li>
-                                    <li><a href="/findmembers">아이디/비번 찾기</a></li>
-                                    <li><a href="search">통합검색</a></li>
-                                    <li><a href="/member/rule">이용약관</a></li>
-                                    <li><a href="/member/privacy-policy">개인정보처리방침</a></li>
-                                    <li><a href="/member/electron-terms">전자상거래이용약관</a></li>
-                                    <li><a href="/member/kr-terms">국내여행약관</a></li>
-                                    <li><a href="/member/inquiry">고객문의</a></li>
-                                    <li><a href="/member/notice">공지사항</a></li>
-                                    <li><a href="/member/qna">자주하는질문</a></li>
+                                    <li><Link href="/login"><a>로그인</a></Link></li>
+                                    <li><Link href="/join"><a>회원가입</a></Link></li>
+                                    <li><Link href="/findmembers"><a>아이디/비번 찾기</a></Link></li>
+                                    <li><Link href="/search"><a>통합검색</a></Link></li>
+                                    <li><Link href="/member/rule"><a>이용약관</a></Link></li>
+                                    <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
+                                    <li><Link href="/member/electron-terms"><a>전자상거래이용약관</a></Link></li>
+                                    <li><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
+                                    <li><Link href="/member/inquiry"><a>고객문의</a></Link></li>
+                                    <li><Link href="/member/notice"><a>공지사항</a></Link></li>
+                                    <li><Link href="/member/qna"><a>자주하는질문</a></Link></li>
                                 </ul>
                             </li>
                         </ul>

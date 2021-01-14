@@ -671,7 +671,6 @@ rect.allmenu_svg {
     right: 0;
     display: block;
     background-color: #ffffff;
-    vertical-align: middle;
     z-index: 50;
     padding: 9px;
     box-sizing: border-box;
@@ -1899,7 +1898,7 @@ footer .footer_in_bottom {
             height: 100%;
             display: block;
             background-repeat: no-repeat;
-            background-position: center;
+            background-position: center 58%;
             background-size: 60%;
         }
 
@@ -1907,7 +1906,7 @@ footer .footer_in_bottom {
     width: 200px;
     height: auto;
     display: inline-block;
-    float: unset;
+    float: none;
     position: relative;
     overflow: hidden;
     padding-bottom: 0;
@@ -2038,7 +2037,7 @@ footer .footer_in_bottom {
 
     .footer_in .copyright .name {
         display:block;
-        font-size: 15px;
+        font-size: 1.7em;
         font-weight: 600;
         letter-spacing: -1px;
     }
@@ -2450,7 +2449,6 @@ i.icon_plus {
         width: 100%;
         font-size: 14px;
         font-weight: 600;
-        vertical-align: top;
         line-height: 31px;
         padding: 0;
     }
@@ -2458,7 +2456,6 @@ i.icon_plus {
     .search_box .text {
         display: block;
         width: 100%;
-        vertical-align: top;
     }
 
         .search_box .text input[type*=text] {
@@ -2467,7 +2464,7 @@ i.icon_plus {
         }
 
         .search_box .text select {
-            border-radius: 5px;
+            border-radius: 3px;
             height: 32px;
             padding-left: 5px;
             box-sizing: border-box;
@@ -2497,7 +2494,7 @@ i.icon_plus {
             width: 100%;
             margin: 0 auto;
             display: inline-block;
-            border-radius: 5px;
+            border-radius: 3px;
             height: 40px;
             padding: 0 15px;
             box-sizing: border-box;
@@ -2644,7 +2641,6 @@ i.icon_plus {
         .search_box .day_ul li {
             display: inline-block;
             padding:12px 10px;
-            float: left;
             width: 25%;
             border-right: 1px solid #ccc;
             cursor: pointer;
@@ -2953,7 +2949,6 @@ i.icon_plus {
         position: relative;
         padding: 0px 21px;
         margin-bottom: 6px;
-        float: left;
         display: block;
         color: #777;
         letter-spacing: 1px;
@@ -2997,7 +2992,7 @@ i.icon_plus {
         }
 
     .search_in .alignment select {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 32px;
         padding: 0 10px;
         box-sizing: border-box;
@@ -3065,7 +3060,7 @@ i.icon_plus {
         }
 
         .search_in .search_box .in input[type*=text] {
-            border-radius: 5px;
+            border-radius: 3px;
             height: 32px;
             padding-left: 10px;
             box-sizing: border-box;
@@ -3119,7 +3114,6 @@ i.icon_plus {
     display: inline-block;
     padding: 3px 10px;
     box-sizing: border-box;
-    float: left;
     border-right: 1px solid #ccc;   
      background-color: #eaeaea;
     cursor: pointer;
@@ -3304,7 +3298,6 @@ i.icon_plus {
         display: inline-block;
         height: 30px;
         color: #777;
-        float: left;
         font-size: 14px;
         font-weight: 600;
         line-height: 32px;
@@ -3319,16 +3312,16 @@ i.icon_plus {
         border: 1px solid #ccc;
     }
 
-.search_box .input_box {
+    .search_box .input_box {
         display: inline-block;
         vertical-align: middle;
         position: relative;
         width: 200px;
         margin-right: 5px;
-margin-top:0;
+        margin-top:0;
     }
 
-.search_box .jul1 .option {
+        .search_box .jul1 .option {
             border-radius: 5px;
             height: 40px;
             width: 18%;
@@ -3339,25 +3332,25 @@ margin-top:0;
             border: 1px solid #d2d2d2;
             display: inline-block;
             margin-right: 10px;
-margin-bottom:0;
+            margin-bottom:0;
         }
 
-.search_box .jul1 .search_div {
+        .search_box .jul1 .search_div {
             position:relative;
             display:inline-block;
             width: 80%;
             box-sizing: border-box;
         }
 
-.search_box .text input[type*=text] {
-    border-radius: 5px;
-    height: 32px;
-    padding-left: 10px;
-    box-sizing: border-box;
-    border: 1px solid #d2d2d2;
-}
+        .search_box .text input[type*=text] {
+            border-radius: 3px;
+            height: 32px;
+            padding-left: 10px;
+            box-sizing: border-box;
+            border: 1px solid #d2d2d2;
+        }
 
-.search_box .calendar {
+    .search_box .calendar {
         width: 26px;
         height: 26px;
         vertical-align: middle;
@@ -3385,7 +3378,6 @@ margin-bottom:0;
 .search_box .day_ul li {
             display: inline-block;
             padding: 7px 10px;
-            float: left;
             width: auto;
             border-right: 1px solid #ccc;
             cursor: pointer;

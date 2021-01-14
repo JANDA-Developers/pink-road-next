@@ -63,7 +63,7 @@ export const MyPlanning: React.FC<IProp> = () => {
                                 <div className="search_div">
                                     <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
                                     <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                        <img src="/img/svg/search_icon.svg" alt="search icon" />
                                         <button />
                                     </div>
 

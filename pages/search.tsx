@@ -131,7 +131,7 @@ export const Search: React.FC<IProp> = () => {
                                 setSearch(e.currentTarget.value);
                             }} value={search} type="text" placeholder="검색 내용을 입력해주세요." />
                             <div onClick={doSearch} className="svg_img">
-                                <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                <img src="/img/svg/search_icon.svg" alt="search icon" />
                                 <button />
                             </div>
                         </div>

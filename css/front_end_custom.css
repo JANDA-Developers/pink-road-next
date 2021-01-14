@@ -286,7 +286,7 @@ figure {
 }
 figure:after {
     content: "";
-    display:"block";
+    display:block;
     clear: both;
 }
 
