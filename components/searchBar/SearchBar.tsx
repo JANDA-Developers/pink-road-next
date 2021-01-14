@@ -18,10 +18,7 @@ interface IProp extends Omit<IDayPickerModal, "onSubmit"> {
 }
 
 export const SearchBar: React.FC<IProp> = ({ Status, SearchSelect, onDateChange, defaultRange, filterEnd, filterStart, doSearch }) => {
-
     const [search, setSearch] = useState("")
-
-
 
     const openDayPicker = () => {
         openModal("#dayPickerModal")()

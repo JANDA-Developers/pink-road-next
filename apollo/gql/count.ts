@@ -38,6 +38,7 @@ export const COUNT_MANAGER = gql`
                 totalExpCount
                 totalProdCount
                 buyerCount
+                todayBookingCount
                 busiPartnerBCountMaster
                 busiPartnerCountMaster
                 totalBookingCountMaster
@@ -51,6 +52,7 @@ export const COUNT_MANAGER = gql`
                 undeterMinedProductCountMaster
                 cancelRequestCountMaster
                 createRequestCountMaster
+                cancelReturnPrice
                 settlementRequestCountMaster
                 compeltedProductCountMaster
                 tourBookingCountMaster
@@ -69,6 +71,8 @@ export const COUNT_MANAGER = gql`
                 totalPartnerMemberCount
                 answeredQuestionCount
                 unAnsweredQuestionCount   
+                countOfTourBooking
+                countOfExpBooking
             }
         }
     }

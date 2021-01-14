@@ -5,6 +5,7 @@ import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
 import ReactTooltip from 'react-tooltip';
+import { ResvTopNav } from '../../../components/topNav/ResvTopNav';
 
 interface IProp { }
 
@@ -24,115 +25,9 @@ export const MsReservationMain: React.FC<IProp> = () => {
         <div className="in ">
             <h4>예약관리</h4>
             <div className="in_content">
-                <div className="tab-nav">
-                    <ul>
-                        <li className="on"><Link href="/master/reservation"><a>예약·결제관리</a></Link></li>
-                        <li><Link href="/master/reservation/reservation1-2"><a>취소·환불관리</a></Link></li>
-                        <li><Link href="/master/reservation/reservation1-3"><a>매출·정산관리</a></Link></li>
-                        {/* <li><Link href="/master/reservation/reservation1-4"><a>예약수기등록관리</a></Link></li> */}
-                    </ul>
-                </div>
+                <ResvTopNav />
                 <div className="con reservation">
-                    <div className="con_box_top pb5">
-                        <div className="top_info_number">
-                            <ul className="ln3">
-                                <li>
-                                    <strong>234</strong>
-                                    <span>전체</span>
-                                </li>
-                                <li>
-                                    <strong>234</strong>
-                                    <span>예약대기</span>
-                                </li>
-                                <li>
-                                    <strong>234</strong>
-                                    <span>예약완료</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="search_top">
-                            <div className="hang">
-                                <ul className="day_ul">
-                                    <li className="on">
-                                        <span>이번달</span>
-                                    </li>
-                                    <li className="on">
-                                        <span>저번달</span>
-                                    </li>
-                                    <li>
-                                        <span>6개월</span>
-                                    </li>
-                                    <li>
-                                        <span>1년</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="hang">
-                                <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                                    ~
-                                    <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                            </div>
-                            <div className="hang fr">
-                                <select className="option">
-                                    <option>전체</option>
-                                    <option>상품명</option>
-                                    <option>상품번호</option>
-                                    <option>예약번호</option>
-                                    <option>예약자명</option>
-                                    <option>실여행자명</option>
-                                    <option>휴대번호</option>
-                                    <option>파트너명</option>
-                                    <option>상품상태</option>
-                                    <option>진행여부</option>
-                                </select>
-                                <div className="search_div">
-                                    <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
-                                    <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
-                                        <button />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="alignment">
-                            <div className="left_div">
-                                <ul className="board_option">
-                                    <li className="on"><a href="/">전체<strong>46</strong></a></li>
-                                    <li><a href="/">여행<strong>23</strong></a></li>
-                                    <li><a href="/">체험<strong>23</strong></a></li>
-                                </ul>
-                                <ul className="board_option">
-                                    <li className="on"><a href="/">전체<strong>46</strong></a></li>
-                                    <li><a href="/">온라인예약<strong>46</strong></a></li>
-                                    <li><a href="/">수기등록<strong>46</strong></a></li>
-                                </ul>
-                            </div>
-                            <div className="right_div">
-                                <ul className="board_option">
-                                    <li><a href="/">전체선택</a></li>
-                                    <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a></li>
-
-                                </ul>
-                                <select className="sel01">
-                                    <option>출발일 &uarr;</option>
-                                    <option>출발일 &darr;</option>
-                                    <option>등록일 &uarr;</option>
-                                    <option>등록일 &darr;</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div className="reservation_list ln07">
                         <div className="thead">
                             <div className="t01">
@@ -169,7 +64,6 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                     <div className="txt">
                                         <span className="s-day">출발일: 2020.9.9</span>
                                         <span className="where">출발장소: 부산대학교 앞</span>
-
                                         <span className="men">인원: 총 10명 (성인:3/소아:3/유아:4)</span>
                                     </div>
                                 </div>

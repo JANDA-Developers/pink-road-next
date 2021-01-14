@@ -19,9 +19,6 @@ interface Iintegrated extends IPopupStyle {
 
 const getOpenParam = (left: number, top: number, width: number, height: number) => `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=${width},height=${height},left=${left},top=${top}`
 
-
-
-
 export interface IUsePopups extends ReturnType<typeof usePopups> { }
 //뭐가 필요한지 알았으니 구조에 대해서 다시 생각해 봐야겠다.
 export const usePopups = (defaultModals: Ipopup[], wrapperId: string) => {
@@ -55,7 +52,7 @@ export const usePopups = (defaultModals: Ipopup[], wrapperId: string) => {
             <title>{popup.title}</title>
             <link rel="icon" href="/favicon.ico" />
             <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
-            <link rel="stylesheet" href="http://localhost:3000/popup.css" />
+            <link rel="stylesheet" href={location.origin + "/popup.css"} />
         </head>
         <body>
             <div className="ck-content" dangerouslySetInnerHTML={{ __html: popup.content || "" }} style={{ ...BG(popup.style.backgroundImage || ""), backgroundSize: "cover", height: "100%" }} />

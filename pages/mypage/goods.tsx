@@ -2,79 +2,74 @@ import React from 'react';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import { MypageLayout } from 'layout/MypageLayout';
 import { auth } from "../../utils/with";
-import { ALLOW_LOGINED } from '../../types/const';
+import { ALLOW_LOGINED, BG } from '../../types/const';
+import { SearchBar } from '../../components/searchBar/SearchBar';
+import { useProductList } from '../../hook/useProduct';
+import { useDateFilter } from '../../hook/useSearch';
+import { useIdSelecter } from '../../hook/useIdSelecter';
+import { itemTypeToKr } from '../../utils/enumToKr';
+import { yyyymmdd } from '../../utils/yyyymmdd';
+import Link from 'next/link';
+import { useCustomCount } from '../../hook/useCount';
 
 interface IProp { }
 
 export const MyGoods: React.FC<IProp> = () => {
+    const { items, filter, setFilter, sort, setSort, viewCount, setViewCount } = useProductList()
+    const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({ filter, setFilter })
+    const { check, isChecked, reverse, selecteAll, selectedIds, setSelectedIds, unCheck, unSelectAll } = useIdSelecter(items.map(i => i._id));
+
+
+    const doSearch = (search: string) => {
+        const _filter = {
+            ...filter
+        }
+
+        _filter["title_contains"] = search ? search : undefined;
+        setFilter({
+            ..._filter,
+        })
+    }
+
+
     return <MypageLayout>
         <div className="in goods_div">
             <h4>상품관리</h4>
             <div className="paper_div">
                 <div className="con_top">
                     <h6>상세검색</h6>
-                    <div className="search_box">
-                        <div className="jul2">
-                            <div className="title">상태</div>
-                            <div className="text">
-                                <span className="check on">전체</span>
-                                <span className="check">예약완료</span>
-                                <span className="check">사용완료</span>
-                            </div>
-                        </div>
-                        <div className="jul4">
-                            <div className="title">날짜</div>
-                            <div className="text">
-                                <ul className="day_ul">
-                                    <li className="on">
-                                        <span>이번달</span>
-                                    </li>
-                                    <li className="on">
-                                        <span>저번달</span>
-                                    </li>
-                                    <li>
-                                        <span>6개월</span>
-                                    </li>
-                                    <li>
-                                        <span>1년</span>
-                                    </li>
-                                </ul>
-                                <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                                ~
-                                 <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="jul1">
-                            <div>
-                                <select className="option">
-                                    <option>상품코드</option>
-                                    <option>상품명</option>
-                                </select>
-                                <div className="search_div">
-                                    <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
-                                    <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
-                                        <button />
-                                    </div>
+                    <SearchBar
+                        Status={
 
+                            <div className="jul2">
+                                <div className="title">상태</div>
+                                <div className="text">
+                                    <span className="check on">전체</span>
+                                    <span className="check">예약완료</span>
+                                    <span className="check">사용완료</span>
                                 </div>
-
                             </div>
-                        </div>
-                    </div>
+                        }
+                        defaultRange={{
+                            from: filterStart,
+                            to: filterEnd
+                        }}
+                        filterStart={filterStart}
+                        filterEnd={filterEnd}
+                        doSearch={doSearch}
+                        onDateChange={hanldeCreateDateChange}
+                        SearchSelect={
+                            <select className="option">
+                                <option>제목</option>
+                            </select>}
+                    />
                 </div>
                 <div className="con_bottom">
 
                     <div className="con_box">
                         <div className="alignment">
                             <div className="left_div">
-                                <span className="infotxt">총 <strong>22,222</strong>건</span>
+                                <span className="infotxt">총 <strong>{ }</strong>건</span>
                             </div>
                             <div className="right_div">
                                 <select className="sel01">
@@ -93,7 +88,7 @@ export const MyGoods: React.FC<IProp> = () => {
                         <div className="fuction_list_mini ln08">
                             <div className="thead">
                                 <div className="th01">
-                                    <span className="checkbox check2">
+                                    <span onClick={selecteAll} className="checkbox check2">
                                         <input type="checkbox" name="agree" id="agree0" title="전체선택" />
                                         <label htmlFor="agree0" />
                                     </span>
@@ -108,90 +103,50 @@ export const MyGoods: React.FC<IProp> = () => {
                             </div>
                             <div className="tbody">
                                 <ul>
-                                    <li>
-                                        <div className="th01">
-                                            <span className="checkbox check2">
-                                                <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                                <label htmlFor="agree1" />
-                                            </span>
-                                        </div>
-                                        <div className="th02"><span className="m_title">유형: </span>여행</div>
-                                        <div className="th03"><span className="m_title">개시일: </span>2020.03.03</div>
-                                        <div className="th04">
-                                            <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
-                                            <div className="info">
-                                                <span className="ct">문화</span><span className="g-number">상품번호: PK-034982</span>
-                                                <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
+                                    {items.map(item =>
+                                        <li key={item._id}>
+                                            <div className="th01">
+                                                <span className="checkbox check2">
+                                                    <input checked={isChecked(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                                    <label htmlFor="agree1" />
+                                                </span>
                                             </div>
-                                        </div>
-                                        <div className="th05"><span className="m_title">출발일: </span>2020.02.02</div>
-                                        <div className="th06">
-                                            {/* 단위 : 명 */}
-                                            <span className="m_title">누적: </span>
-                                            <span className="people">성인 2</span>
-                                            <span className="m_title"> / </span>
-                                            <span className="people">소아 0</span>
-                                            <span className="m_title"> / </span>
-                                            <span className="people">유아 4</span>
-                                        </div>
-                                        <div className="th07">
-                                            {/* 단위 : 건 */}
-                                            <span className="m_title">상태: </span>
-                                            <span className="present">예약 0</span>
-                                            <span className="m_title"> / </span>
-                                            <span className="present">취소 0</span>
-                                            <span className="m_title"> / </span>
-                                            <span className="present">환불 0</span>
-                                        </div>
-                                        <div className="th08">
-                                            <i className="btn">상품수정</i>{/*글수정으로 가기 */}
-                                            <i className="btn">예약자명단</i>{/* POPUP */}
-                                            <i className="btn">예약등록</i>{/* POPUP */}
-                                            <i className="btn">정산신청</i>{/* POPUP */}
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="th01">
-                                            <span className="checkbox check2">
-                                                <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                                <label htmlFor="agree1" />
-                                            </span>
-                                        </div>
-                                        <div className="th02"><span className="m_title">유형: </span>여행</div>
-                                        <div className="th03"><span className="m_title">개시일: </span>2020.03.03</div>
-                                        <div className="th04">
-                                            <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
-                                            <div className="info">
-                                                <span className="ct">문화</span><span className="g-number">상품번호: PK-034982</span>
-                                                <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
+                                            <div className="th02"><span className="m_title">유형: </span>{itemTypeToKr(item.type)}</div>
+                                            <div className="th03"><span className="m_title">개시일: </span>{yyyymmdd(item.createdAt)}</div>
+                                            <div className="th04">
+                                                <div className="img" style={BG(item?.images?.[0]?.uri || "")} ></div>
+                                                <div className="info">
+                                                    <span className="ct">{item.category?.label}</span><span className="g-number">상품번호: {item.code}</span>
+                                                    <strong className="title">{item.title}</strong>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="th05"><span className="m_title">출발일: </span>2020.02.02</div>
-                                        <div className="th06">
-                                            {/* 단위 : 명 */}
-                                            <span className="m_title">누적: </span>
-                                            <span className="people">성인 2</span>
-                                            <span className="m_title"> / </span>
-                                            <span className="people">소아 0</span>
-                                            <span className="m_title"> / </span>
-                                            <span className="people">유아 4</span>
-                                        </div>
-                                        <div className="th07">
-                                            {/* 단위 : 건 */}
-                                            <span className="m_title">상태: </span>
-                                            <span className="present">예약 0</span>
-                                            <span className="m_title"> / </span>
-                                            <span className="present">취소 0</span>
-                                            <span className="m_title"> / </span>
-                                            <span className="present">환불 0</span>
-                                        </div>
-                                        <div className="th08">
-                                            <i className="btn">상품수정</i>{/*글수정으로 가기 */}
-                                            <i className="btn">예약자명단</i>{/* POPUP */}
-                                            <i className="btn">예약등록</i>{/* POPUP */}
-                                            <i className="btn">정산신청</i>{/* POPUP */}
-                                        </div>
-                                    </li>
+                                            <div className="th05"><span className="m_title">출발일: </span>{yyyymmdd(item.startDate)}</div>
+                                            <div className="th06">
+                                                {/* 단위 : 명 */}
+                                                <span className="m_title">누적: </span>
+                                                <span className="people">성인 {item.bookerSummary.adultCount}</span>
+                                                <span className="m_title"> / </span>
+                                                <span className="people">소아 {item.bookerSummary.kidsCount}</span>
+                                                <span className="m_title"> / </span>
+                                                <span className="people">유아 {item.bookerSummary.babyCount}</span>
+                                            </div>
+                                            <div className="th07">
+                                                {/* 단위 : 건 */}
+                                                <span className="m_title">상태: </span>
+                                                <span className="present">예약 {item.bookerSummary.completePeople}</span>
+                                                <span className="m_title"> / </span>
+                                                <span className="present">취소 {item.bookerSummary.cancelPeople}</span>
+                                                <span className="m_title"> / </span>
+                                                <span className="present">환불 {item.bookerSummary.cancelCompletePeople}</span>
+                                            </div>
+                                            <div className="th08">
+                                                <i className="btn"><Link href={`/tour/write/${item._id}`}><a>상품수정</a></Link></i>{/*글수정으로 가기 */}
+                                                <i className="btn">예약자명단</i>{/* POPUP */}
+                                                <i className="btn">예약등록</i>{/* POPUP */}
+                                                <i className="btn">정산신청</i>{/* POPUP */}
+                                            </div>
+                                        </li>
+                                    )}
                                 </ul>
                             </div>
                             {/* <Paginater pageNumber={10} totalPageCount={20} /> */}

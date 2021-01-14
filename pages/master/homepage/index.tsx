@@ -36,7 +36,7 @@ export const MsHomepageA: React.FC = () => {
                         {/* <li><Link href="/master/homepage/homepage1-3"><a>카카오비즈톡</a></Link></li> */}
                         <li><Link href="/master/homepage/homepage1-4"><a>약관설정</a></Link></li>
                         <li><Link href="/master/homepage/homepage1-5"><a>게시판설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-6"><a>정산설정</a></Link></li>
+                        {/* <li><Link href="/master/homepage/homepage1-6"><a>정산설정</a></Link></li> */}
                     </ul>
                 </div>
                 <div className="con homepage sms">

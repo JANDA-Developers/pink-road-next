@@ -1,4 +1,4 @@
-import { BookingStatus, PaymentStatus, ProductStatus, QuestionStatus, SettlementStatus } from "../types/api";
+import { BookingStatus, PaymentStatus, ProductStatus, ProductType, QuestionStatus, SettlementStatus } from "../types/api";
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if(status === BookingStatus.CANCEL) return "예약취소" 
@@ -7,7 +7,7 @@ export const bookingStatus = (status?: BookingStatus | null) => {
     return "";
 }
 
-export const productStatus = (status: ProductStatus) => {
+export const productStatus = (status?: ProductStatus | null) => {
     if(status === ProductStatus.CANCELD) return "취소" 
     if(status === ProductStatus.EXPIRED) return "만료" 
     if(status === ProductStatus.OPEN) return "판매중" 
@@ -16,7 +16,7 @@ export const productStatus = (status: ProductStatus) => {
     if(status === ProductStatus.SOLD) return "완판" 
     if(status === ProductStatus.UPDATE_REQ) return "업데이트요청" 
     if(status === ProductStatus.UPDATE_REQ_REFUSED) return "업데이트요청거절" 
-    return status;
+    return status || "";
 }
 
 export const paymentStatus = (status?:PaymentStatus | null ) => {
@@ -47,4 +47,10 @@ export const questionSatus = (status: QuestionStatus) => {
     if(status === QuestionStatus.COMPLETE) return "답변" 
     if(status === QuestionStatus.READY) return "미답변" 
     return ""
+}
+
+export const itemTypeToKr = (type: ProductType) => {
+     if(type === ProductType.EXPERIENCE) return "체험" 
+     if(type === ProductType.TOUR) return "체험"
+     return "" 
 }

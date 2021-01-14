@@ -9,18 +9,6 @@ export const EditBtn: React.FC<IProp> = () => {
     const { isManager, } = useContext(AppContext)
     const { editMode, setEditMode } = useContext(EditContext)
 
-<<<<<<< HEAD
-=======
-    //useEffect(() => {
-    //    if (editMode)
-    //        window.onbeforeunload = function () {
-    //            return '편집중인 데이터가 저장되지 않을 수 있습니다. 정말로 페이지를 이동하시겠습니까?';
-    //        };
-    //    elseW
-    //        window.onbeforeunload = () => { }
-    //}, [editMode])
-
->>>>>>> origin/design
     if (!isManager) return null;
 
     return <div onClick={() => {

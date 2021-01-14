@@ -52,6 +52,7 @@ export const F_USER = gql`
         isDelete
         email
         manageName
+        connectionCount
         role
         brith_date
         address
@@ -172,6 +173,15 @@ export const F_PRODUCT = gql`
         contents
         dateRange
         adminMemo
+        bookerSummary {
+            adultCount
+            babyCount
+            kidsCount
+            completePeople
+            readyPoeple
+            cancelCompletePeople
+            cancelPeople
+        }
         author {
             ...Fuser
         }

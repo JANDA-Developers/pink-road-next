@@ -194,10 +194,7 @@ export const MsHomepageMain: React.FC<IProp> = () => {
                             <button type="submit" className="btn medium">저장하기</button>
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </MasterLayout >

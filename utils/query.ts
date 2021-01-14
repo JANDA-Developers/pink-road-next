@@ -4,8 +4,6 @@ import { ListInitOptions, useListQuery } from "../hook/useListQuery";
 import { useEffect } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
-
-
 interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
 };
@@ -84,7 +82,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
     return listQueryHook
 }
 
-export const gnerateQueryHook = <Q, R, V = undefined>(
+export const generateQueryHook = <Q, R, V = undefined>(
     QUERY:DocumentNode,
     initOptions?: genrateOption<Q,V>
 ) => {
@@ -111,6 +109,7 @@ export const gnerateQueryHook = <Q, R, V = undefined>(
     }
     return queryHook
 }
+
 
 // refetchQueries: [getOperationName(BOOKING_LIST) || ""],
 

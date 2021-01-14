@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client"
-import { F_PAGE } from "./fragments"
+import { F_BOOKING, F_PAGE, F_PAYMENT } from "./fragments"
 
 export const F_FEEPOLICY = gql`
     fragment Ffeepolicy on FeePolicy {
@@ -46,12 +46,44 @@ export const F_SETTLEMENT = gql`
       cancelDate
       product {
         _id
+        code
         title
+        status
         adult_price
         kids_price
         baby_price
       }
     }
+`
+
+
+export const SETTLEMENT_FIND_BY_ID = gql`
+  query settlementFindById(
+    $_id: String!
+  ) {
+  SettlementFindById(
+    _id: $_id
+  ) {
+    ok
+    error
+    data  {
+      ...Fsettlement
+      product {
+        ...Fproduct
+        bookings {
+          ...Fbooking
+          payment {
+            ...Fpayment
+          }
+        }
+      }
+    }
+  }
+  }
+  ${F_BOOKING}
+  ${F_PAYMENT}
+  ${F_PAGE}
+  ${F_SETTLEMENT}
 `
 
 export const SETTLEMENT_LIST = gql`

@@ -4,7 +4,7 @@ import { useBookingCancel } from '../../hook/useBooking';
 import { usePaymentList } from '../../hook/usePayment';
 import { useProductFindById, useProductFindByIdForSeller, useProductUpdate } from '../../hook/useProduct';
 import { generateSearchLink } from '../../pages/search';
-import { Fbooking, PayMethodStatus, BookingStatus } from '../../types/api';
+import { Fbooking, PaymentStatus, BookingStatus } from '../../types/api';
 import { BG } from '../../types/const';
 import { bookingStatus, productStatus } from '../../utils/enumToKr';
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
@@ -14,7 +14,6 @@ import { closeModal, openModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import { BookingCancelModal } from '../cacnelModal/BookingCancelModal';
 import Excel from '../excel/Execel';
-import { Modal } from '../modal/Modal';
 import { SmsSendModal } from '../smsSnedModal/SmsSendModal';
 
 interface IProp {
@@ -34,8 +33,8 @@ export const DetailproductModal: React.FC<IProp> = ({ id }) => {
     const cancelBookings = bookings.filter(bk => bk.status === BookingStatus.CANCEL);
     const completeBookings = bookings.filter(bk => bk.status === BookingStatus.COMPLETE);
     const payments = bookings.map(b => b.payment);
-    const completes = payments.filter(p => p?.status === PayMethodStatus.COMPLETE);
-    const cancles = payments.filter(p => p?.status === PayMethodStatus.CANCEL);
+    const completes = payments.filter(p => p?.status === PaymentStatus.COMPLETE);
+    const cancles = payments.filter(p => p?.status === PaymentStatus.CANCEL);
     const payCount = completes.length;
     const payAmt = completes.map(c => c?.price || 0);
     const cancelCount = cancles.length;
