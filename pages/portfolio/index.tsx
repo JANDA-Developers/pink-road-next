@@ -6,10 +6,12 @@ import { AppContext, EditContext } from '../_app';
 import pageInfoDefault from "info/portfolio.json"
 import { TStieInfo } from 'types/interface';
 import { getStaticPageInfo } from '../../utils/page';
+import { Upload } from '../../components/common/Upload';
+import { BG } from '../../types/const';
 
 export const PortFolio: React.FC = () => {
     const { isManager, categoriesMap } = useContext(AppContext);
-    const { edit } = useContext(EditContext);
+    const { edit, imgEdit } = useContext(EditContext);
     const { items: portfolioes, getLoading, setPage, pageInfo, setFilter, filter } = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8, initialFilter: { isOpen_eq: isManager ? undefined : true } })
 
     const categories = categoriesMap?.PORTPOLIO || [];
@@ -40,7 +42,7 @@ export const PortFolio: React.FC = () => {
     const viewCat = filter.categoryId_eq || "";
 
     return <div className="portfolio_in">
-        <div className="top_bg w100">
+        <div className="top_bg w100" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} />
             <div className="w1200">
                 <h3 {...edit("mainTitle")} />
                 <span {...edit("subTitle")} />
@@ -49,29 +51,29 @@ export const PortFolio: React.FC = () => {
 
         <div className="con02 con_block">
             <div className="w1200">
-                <h4>
-                    핑크로더는 사라져가는 가치 있는 것들을 되살리는 일을 하고 있습니다.<br />
+                <h4 {...edit("con02_desc")} />
+                {/* 핑크로더는 사라져가는 가치 있는 것들을 되살리는 일을 하고 있습니다.<br />
                     사람과 상생할 수 있는 지역콘텐츠를 개발하며 여행/디자인/ 교육등의
                 다양한 방식으로 소통하는법을 <br className="no" />창출하고 더 나은 새로운 것을 제안합니다.
-                </h4>
+                </h4> */}
                 <ul>
                     <li className="img01">
-                        <div className="img"></div>
+                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
                         <h5 {...edit("con2_img1_title")} />
                         <span {...edit("con2_img1_title_kr")} />
                     </li>
                     <li className="img02">
-                        <div className="img"></div>
+                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
                         <h5 {...edit("con2_img2_title")} />
                         <span {...edit("con2_img2_title_kr")} />
                     </li>
                     <li className="img03">
-                        <div className="img"></div>
+                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
                         <h5 {...edit("con2_img3_title")} />
                         <span {...edit("con2_img3_title_kr")} />
                     </li>
                     <li className="img04">
-                        <div className="img"></div>
+                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
                         <h5 {...edit("con2_img4_title")}></h5>
                         <span {...edit("con2_img4_title_kr")} />
                     </li>
@@ -149,11 +151,11 @@ export const PortFolio: React.FC = () => {
         <div className="w100 con05 con_block">
             <div className="w1200 onepick2">
                 <div className="txt">
-                    <h4>핑크로더 홈페이지는</h4>
-                    <span>사회적경제 혁신성장사업[비R&D] 사회적경제기업 경쟁력 강화 사업화지원 프로그램의 지원을 받아 일부 제작 되었습니다.</span>
+                    <h4 {...edit("con5_title")} />
+                    <span {...edit("con5_subTitle")} />
                 </div>
                 <div className="link">
-                    <a target="_blank" className="" href="/pinkroader_company_introduction_letter.pdf">회사소개서<br />다운로드</a>
+                    <a target="_blank" className="" href="/pinkroader_company_introduction_letter.pdf" {...edit("con5_link")}></a>
 
                 </div>
             </div>

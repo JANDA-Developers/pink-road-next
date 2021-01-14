@@ -15,6 +15,7 @@ import PageDeny from './Deny';
 import { IUsePageEdit, usePageEdit } from '../hook/usePageEdit';
 import { HiddenSubmitBtn } from '../components/common/HiddenSubmitBtn';
 import { categoryMap } from '../utils/categoryMap';
+import isEmpty from '../utils/isEmpty';
 
 
 dayjs.locale('ko')

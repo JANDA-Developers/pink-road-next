@@ -6,6 +6,7 @@ import { useCategoryCreate, useCategoryDelete, useCategoryList, useCategoryUpdat
 import { CategoryType, Fcategory } from '../../../types/api';
 import { CategoryEitdor } from '../../../components/categoryEditor/CategoryEdiotr';
 import { categoryMap } from '../../../utils/categoryMap';
+import { categoryToKR } from '../../../utils/enumToKr';
 
 interface IProp { }
 
@@ -21,11 +22,6 @@ export const MsHomepageA: React.FC<IProp> = () => {
     if (!categoriesMap) throw Error("categoriesMap is not exsist");
     const cats = Object.entries(categoriesMap);
 
-    const categoryToKR: Record<CategoryType, string> = {
-        CUSTOMER_QNA: "유저QNA",
-        PORTPOLIO: "포트폴리오",
-        QNA: "QNA"
-    }
 
     const handleAdd = (type: CategoryType) => (label: string) => {
         create({
@@ -66,7 +62,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                         <div className="block_box">
                             <h5>게시판 카테고리 설정</h5>
                             {cats.map((catWrap) =>
-                                <CategoryEitdor onDelete={handleDelete} onEdit={handleUpdate} key={catWrap[0]} onAdd={handleAdd(catWrap[0] as CategoryType)} wrapLabel={categoryToKR[catWrap[0] as CategoryType]} categories={catWrap[1]} />
+                                <CategoryEitdor onDelete={handleDelete} onEdit={handleUpdate} key={catWrap[0]} onAdd={handleAdd(catWrap[0] as CategoryType)} wrapLabel={categoryToKR(catWrap[0] as CategoryType)} categories={catWrap[1]} />
                             )}
                         </div>
                     </div>

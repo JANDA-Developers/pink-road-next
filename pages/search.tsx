@@ -23,7 +23,7 @@ type TSearchParam = {
     title?: string;
 }
 export const generateSearchLink = (param: TSearchParam) => {
-    let link = `/search?`
+    let link = `/search`
 
     const attach = (key: string, value: string) => {
         if (!link.includes("?")) {

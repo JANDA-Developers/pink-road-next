@@ -44,7 +44,7 @@ export interface IuseProductList extends IListHook<_ProductFilter, _ProductSort>
     pageInfo: Fpage;
 }
 
-export const useProductList = generateListQueryHook<_PortfolioFilter, _ProductSort, productList, productListVariables, productList_ProductList_data>(PRODUCT_LIST,{initialSort: [_ProductSort.createdAt_desc]});
+export const useProductList = generateListQueryHook<_ProductFilter, _ProductSort, productList, productListVariables, productList_ProductList_data>(PRODUCT_LIST,{initialSort: [_ProductSort.createdAt_desc]});
 
 export const useProductUpdate = (options?: MutationHookOptions<productUpdate,productUpdateVariables>) => {
     const [productUpdateMu, { loading: updateLoading }] = useMutation<productUpdate, productUpdateVariables>(PRODUCT_POST_UPDATE, {

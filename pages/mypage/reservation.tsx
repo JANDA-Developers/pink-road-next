@@ -45,6 +45,7 @@ export const MyReservation: React.FC<IProp> = () => {
 
     const handleSatus = (status?: BookingStatus) => () => {
         setFilter({
+            ...filter,
             status_eq: status
         })
     }

@@ -11,6 +11,10 @@ import { yyyymmdd } from '../../../utils/yyyymmdd';
 import { generateSearchLink } from '../../search';
 import { getTypeTextOfProduct } from '../../../utils/product';
 import { StatusBadege } from '../../../components/Status/StatusBadge';
+import { useCustomCount } from '../../../hook/useCount';
+import { SearchBar } from '../../../components/searchBar/SearchBar';
+import { useDateFilter } from '../../../hook/useSearch';
+import { MasterSearchBar } from '../../../components/master/MasterSearchBar';
 
 interface IProp { }
 
@@ -50,6 +54,15 @@ const popupClose2 = () => {
 }
 export const MsGoodsMain: React.FC<IProp> = () => {
     const { items, filter, setFilter, setSort, sort, viewCount, setViewCount } = useProductList();
+    const {filterEnd, filterStart, hanldeCreateDateChange} = useDateFilter({filter, setFilter});
+
+    const {
+        totalProductCountMaster,
+        cancelProductCountMaster,
+        compeltedProductCountMaster,
+        openProductCountMaster
+    } = useCustomCount(["totalProductCountMaster", "cancelProductCountMaster", "compeltedProductCountMaster"]);
+
     return <MasterLayout>
         <div className="in ">
             <h4>상품관리</h4>
@@ -66,23 +79,29 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                         <div className="top_info_number">
                             <ul className="ln4">
                                 <li>
-                                    <strong>234</strong>
+                                    <strong>{totalProductCountMaster}</strong>
                                     <span>전체</span>
                                 </li>
                                 <li>
-                                    <strong>234</strong>
+                                    <strong>{openProductCountMaster }</strong>
                                     <span>판매중</span>
                                 </li>
                                 <li>
-                                    <strong>234</strong>
+                                    <strong>{cancelProductCountMaster}</strong>
                                     <span>판매중지</span>
                                 </li>
                                 <li>
-                                    <strong>234</strong>
+                                    <strong>{ compeltedProductCountMaster}</strong>
                                     <span>판매완료</span>
                                 </li>
                             </ul>
                         </div>
+                        <MasterSearchBar onDateChange={hanldeCreateDateChange} Option={
+                            <select className="option">
+                            <option>상품명</option>
+                            <option>상품번호</option>
+                        </select>
+                        } defaultRange={{}} doSearch={doSearch}  filterEnd={filterEnd} filterStart={filterStart}  />
                         <div className="search_top">
                             <div className="hang">
                                 <ul className="day_ul">
@@ -112,10 +131,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                 </div>
                             </div>
                             <div className="hang fr">
-                                <select className="option">
-                                    <option>상품명</option>
-                                    <option>상품번호</option>
-                                </select>
+                                
                                 <div className="search_div">
                                     <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
                                     <div className="svg_img">

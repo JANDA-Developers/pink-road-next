@@ -32,12 +32,14 @@ export const News: React.FC<IProp> = () => {
         })
     }
 
-    return <div>
+    return <div className="">
         <SubTopNav title="언론보도" desc="업데이트되는 최신 정보를 확인하세요." >
-            <li className="homedeps1"><a href="../sub/experience_main.html">Experience</a></li>
-            <li className="homedeps2"><a href="../sub/experience_list.html">상품리스트</a></li>
+            <li className="homedeps1">News</li>
+            <li className="homedeps2"><a href="/news">언론보도</a></li>
         </SubTopNav>
         <BoardList
+            // 게시판은 board_box class필수 추가요소
+            className="board_box"
             setPage={setPage}
             Categories={
                 <div id="sub_tap_nav" className="subtop_nav">
@@ -59,7 +61,7 @@ export const News: React.FC<IProp> = () => {
             pageInfo={pageInfo}
             addBtnLabel="뉴스 등록하기"
         >
-            {view === "gal" && <div className="tourstory_box  betatest">
+            {view === "gal" && <div className="news_box">
                 <div className="board_list st02">
                     <ul className="boardlist_ul line3">
                         {news.map((n) =>
@@ -68,7 +70,7 @@ export const News: React.FC<IProp> = () => {
                     </ul>
                 </div>
             </div>}
-            {view === "line" && <div className="board_list st03   betatest">
+            {view === "line" && <div className="board_list st03">
                 <div className="tbody">
                     <ul>
                         {news.map((n, index) =>

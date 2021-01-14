@@ -5,7 +5,7 @@ import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
 import ReactTooltip from 'react-tooltip';
-import { ResvTopNav } from '../../../components/topNav/ResvTopNav';
+import { ResvTopNav } from '../../../components/topNav/MasterTopNav';
 
 interface IProp { }
 

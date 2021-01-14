@@ -2,7 +2,7 @@ import { MasterLayout } from 'layout/MasterLayout';
 import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
-import { ResvTopNav } from '../../../components/topNav/ResvTopNav';
+import { ResvTopNav } from '../../../components/topNav/MasterTopNav';
 
 interface IProp { }
 const popupOpen = () => {

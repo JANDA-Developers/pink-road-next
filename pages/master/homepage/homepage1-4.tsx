@@ -8,6 +8,7 @@ import { HomepageUpdateInput } from '../../../types/api';
 import { LoadEditor } from '../../../components/edit/EdiotrLoading';
 import { auth } from '../../../utils/with';
 import { ALLOW_ADMINS } from '../../../types/const';
+import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
 
 const Editor = LoadEditor();
 
@@ -62,16 +63,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
         <div className="in ">
             <h4>홈페이지 설정</h4>
             <div className="in_content">
-                <div className="tab-nav">
-                    <ul>
-                        <li><Link href="/master/homepage"><a>기본설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-2"><a>SMS설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-3"><a>카카오비즈톡</a></Link></li>
-                        <li className="on"><Link href="/master/homepage/homepage1-4"><a>약관설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-5"><a>게시판설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-6"><a>정산설정</a></Link></li>
-                    </ul>
-                </div>
+                <HomepageTopNav />
                 <div className="con terms">
                     <div className="jul">
                         <h5>이용약관</h5>
@@ -138,7 +130,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
                     <div className="jul">
                         <h5>비지니스 파트너 이용 약관동의</h5>
                         <Editor data={datas.partnerBpolicy} onChange={setPoliicy("partnerBpolicy")} />
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_right">
                                 <button onClick={handleSave("partnerBpolicy")} type="submit" className="btn medium">저장하기</button>
                             </div>

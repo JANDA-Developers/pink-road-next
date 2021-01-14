@@ -1028,6 +1028,10 @@ export interface countManager_Count_data {
    */
   answeredQuestionCount: number;
   /**
+   * 마스터용::전체중 판매중 상품수
+   */
+  openProductCountMaster: number;
+  /**
    * 마스터용::미답변 질문수
    */
   unAnsweredQuestionCount: number;
@@ -4866,6 +4870,123 @@ export interface settlementList_SettlementList_page {
   remainder: number;
 }
 
+export interface settlementList_SettlementList_data_product_bookerSummary {
+  __typename: "BookerSummary";
+  adultCount: number;
+  babyCount: number;
+  kidsCount: number;
+  completePeople: number;
+  readyPoeple: number;
+  cancelCompletePeople: number;
+  cancelPeople: number;
+}
+
+export interface settlementList_SettlementList_data_product_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface settlementList_SettlementList_data_product_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface settlementList_SettlementList_data_product_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: settlementList_SettlementList_data_product_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: settlementList_SettlementList_data_product_author_profileImg | null;
+}
+
+export interface settlementList_SettlementList_data_product_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface settlementList_SettlementList_data_product_itinerary_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface settlementList_SettlementList_data_product_itinerary {
+  __typename: "Itinerary";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string[];
+  images: settlementList_SettlementList_data_product_itinerary_images[];
+  date: any;
+}
+
+export interface settlementList_SettlementList_data_product_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface settlementList_SettlementList_data_product {
   __typename: "Product";
   _id: string;
@@ -4875,6 +4996,113 @@ export interface settlementList_SettlementList_data_product {
   adult_price: number;
   kids_price: number;
   baby_price: number;
+  /**
+   * 예약인원에 대한 요약
+   */
+  bookerSummary: settlementList_SettlementList_data_product_bookerSummary;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  contents: string;
+  dateRange: number;
+  adminMemo: string;
+  author: settlementList_SettlementList_data_product_author | null;
+  category: settlementList_SettlementList_data_product_category | null;
+  itinerary: settlementList_SettlementList_data_product_itinerary[];
+  inOrNor: string;
+  info: string;
+  caution: string;
+  images: settlementList_SettlementList_data_product_images[] | null;
+  keyWards: string[] | null;
+  address: string;
+  startPoint: string;
+  maxMember: number;
+  minMember: number;
+  subTitle: string | null;
+  bookingCount: number;
+  /**
+   * 상품 하나에 대한 결제완료된 예약 총 인원
+   */
+  compeltePeopleCnt: number;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  type: ProductType;
+  startDate: any;
+  Dday: number;
+}
+
+export interface settlementList_SettlementList_data_seller_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface settlementList_SettlementList_data_seller_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface settlementList_SettlementList_data_seller {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: settlementList_SettlementList_data_seller_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: settlementList_SettlementList_data_seller_profileImg | null;
 }
 
 export interface settlementList_SettlementList_data {
@@ -4906,6 +5134,7 @@ export interface settlementList_SettlementList_data {
   completeDate: any | null;
   cancelDate: any | null;
   product: settlementList_SettlementList_data_product;
+  seller: settlementList_SettlementList_data_seller;
 }
 
 export interface settlementList_SettlementList {
@@ -8022,6 +8251,9 @@ export interface _ProductFilter {
   settlemtId_eq?: string | null;
   settlemtId_not_eq?: string | null;
   settlemtId_in?: string[] | null;
+  status_eq?: string | null;
+  status_not_eq?: string | null;
+  status_in?: string[] | null;
   address_eq?: string | null;
   address_not_eq?: string | null;
   address_contains?: string | null;
@@ -8111,6 +8343,19 @@ export interface _QuestionFilter {
 export interface _SettlementFilter {
   AND?: _SettlementFilter[] | null;
   OR?: _SettlementFilter[] | null;
+  productName_eq?: string | null;
+  productName_not_eq?: string | null;
+  productName_in?: string[] | null;
+  productName_contains?: string | null;
+  productCode_eq?: string | null;
+  productCode_not_eq?: string | null;
+  productCode_in?: string[] | null;
+  sellerName_eq?: string | null;
+  sellerName_not_eq?: string | null;
+  sellerName_contains?: string | null;
+  status_eq?: string | null;
+  status_not_eq?: string | null;
+  status_in?: string[] | null;
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;

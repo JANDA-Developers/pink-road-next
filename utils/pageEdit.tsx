@@ -1,6 +1,7 @@
 import { CSSProperties } from "react";
 import $ from "jquery"
 import { ISet } from "../types/interface";
+import isEmpty from "./isEmpty";
 interface Style {
     style?: CSSProperties,
 }
@@ -75,9 +76,31 @@ export interface IGetEditUtilsResult<Page> {
 }
 
 
+
+
 export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean, page: T, setPage: ISet<any>, lang = "kr") => {
+
+    class EditError extends Error {
+        constructor(message: string) {
+            // Pass remaining arguments (including vendor specific ones) to parent constructor
+            super(message)
+
+            // Maintains proper stack trace for where our error was thrown (only available on V8)
+            if (Error.captureStackTrace) {
+                Error.captureStackTrace(this, EditError)
+            }
+
+            this.name = 'EditError'
+
+            // 핵 ... 조사를 깊게 해봐야함
+            if (isEmpty(page)) {
+                location.reload();
+            }
+        }
+    }
+
     const validateKey = (key: string | keyof T, array?: number | true) => {
-        if (!page[key]) throw Error(`키값 ${key}은 존재하지 않습니다.`);
+        if (!page[key]) throw new EditError(`키값 ${key}은 존재하지 않습니다.`);
         if (page[key][lang] === undefined) throw Error(`언어 ${lang}은 ${key}에 존재하지 않습니다.`);
 
         if (array !== undefined) {

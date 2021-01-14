@@ -70,6 +70,7 @@ export const COUNT_MANAGER = gql`
                 settlementCompleteCountMaster
                 totalPartnerMemberCount
                 answeredQuestionCount
+                openProductCountMaster
                 unAnsweredQuestionCount   
                 countOfTourBooking
                 countOfExpBooking

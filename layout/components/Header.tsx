@@ -8,6 +8,7 @@ import { setVal, whenEnter } from "../../utils/eventValueExtracter";
 import { useRouter } from "next/router";
 import cache from "../../apollo/cache";
 import { NotiIcon } from "./NotiIcon";
+import { generateSearchLink } from "../../pages/search";
 
 interface IProp { }
 
@@ -51,8 +52,6 @@ export const Header: React.FC<IProp> = () => {
         });
 
     }
-
-
     const handleAllMenu = () => {
         $('#all_menu').animate({
             'top': '0'
@@ -83,7 +82,10 @@ export const Header: React.FC<IProp> = () => {
     }
 
     const goToSearchPage = () => {
-        rotuer.push(`/search?search=${search}#ProductViewer`)
+        rotuer.push(generateSearchLink({ title: search }))
+        $('.search_bg').css({
+            'display': 'none'
+        });
     }
 
     useEffect(() => {
@@ -314,7 +316,7 @@ export const Header: React.FC<IProp> = () => {
                                     <li><a href="/login">로그인</a></li>
                                     <li><a href="/member/join">회원가입</a></li>
                                     <li><a href="/findmembers">아이디/비번 찾기</a></li>
-                                    <li><a href="/member/search">통합검색</a></li>
+                                    <li><a href="search">통합검색</a></li>
                                     <li><a href="/member/rule">이용약관</a></li>
                                     <li><a href="/member/privacy-policy">개인정보처리방침</a></li>
                                     <li><a href="/member/electron-terms">전자상거래이용약관</a></li>

@@ -24,10 +24,11 @@ export const DetailproductModal: React.FC<IProp> = ({ id }) => {
     const { item: product } = useProductFindByIdForSeller(id);
     const { productUpdate } = useProductUpdate()
     if (!product) return <div />
-
     const { title, code, createdAt, keyWards, status, bookings, _id, adminMemo: _adminMemo } = product;
     const [selectedBookings, setSelectedBookings] = useState<Fbooking[]>([]);
     const [adminMemo, setAdminMemo] = useState(_adminMemo);
+
+    const seller = product.author;
 
     const readyBookings = bookings.filter(bk => bk.status === BookingStatus.READY);
     const cancelBookings = bookings.filter(bk => bk.status === BookingStatus.CANCEL);
@@ -71,6 +72,14 @@ export const DetailproductModal: React.FC<IProp> = ({ id }) => {
                 adminMemo
             }
         })
+    }
+
+    const handleSettlementReject = () => {
+
+    }
+
+    const handleSettlementComplete = () => {
+
     }
 
 
@@ -147,7 +156,7 @@ export const DetailproductModal: React.FC<IProp> = ({ id }) => {
                             <div className="tr">
                                 <div className="th01">
                                     환불건수
-                        </div>
+                                </div>
                                 <div className="td01">
                                     <span>{cancelCount}</span>
                                 </div>
@@ -156,6 +165,42 @@ export const DetailproductModal: React.FC<IProp> = ({ id }) => {
                                 </div>
                                 <div className="td02">
                                     <span className="red_font">- {autoComma(arraySum(cancelAmt))}원</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div className="info_page">
+                    <div className="full_div">
+                        <h4>
+                            파트너 정보
+                        </h4>
+                        <div className="info_table partnerinfo">
+                            <div className="tr">
+                                <div className="th01">
+                                    파트너명
+                                    </div>
+                                <div className="td01">
+                                    <span>{seller?.nickName}</span>
+                                </div>
+                                <div className="th02">
+                                    아이디
+                                </div>
+                                <div className="td02">
+                                    <span>{seller?.email}</span>
+                                </div>
+                                <div className="th03">
+                                    담당자
+                                </div>
+                                <div className="td03">
+                                    <span>{seller?.busi_name || seller?.name} (<a href="tel:">{autoHypenPhone(seller?.phoneNumber)}</a> )</span>
+                                </div>
+                                <div className="th04">
+                                    정산계좌
+                                </div>
+                                <div className="td04">
+                                    <span>({seller?.bank_name}){seller?.account_number} / {seller.name}</span>
                                 </div>
                             </div>
 
@@ -183,7 +228,7 @@ export const DetailproductModal: React.FC<IProp> = ({ id }) => {
                                 <div key={bk._id} className="tr first">
                                     <div className="pp01">
                                         <span className="checkbox">
-                                            <input type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                            <input checked={ } type="checkbox" name="agree" id="agree1" title="개별선택" />
                                             <label htmlFor="agree1" />
                                         </span>
                                     </div>
@@ -232,6 +277,9 @@ export const DetailproductModal: React.FC<IProp> = ({ id }) => {
 
                 <div className="fin ifMobile">
                     <div className="float_left">
+                        <button onClick={handleSettlementComplete} type="submit" className="btn medium">정산완료</button>
+                        <button onClick={handleSettlementReject} type="submit" className="btn medium">지급보류</button>
+
                         <button disabled={selectedBookings.length !== 1} type="submit" onClick={handleCancel} className="btn medium">예약취소</button>
                     </div>
                     <div className="float_right">

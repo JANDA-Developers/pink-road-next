@@ -5,7 +5,13 @@ import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
 import ReactTooltip from 'react-tooltip';
-import { ResvTopNav } from '../../../components/topNav/ResvTopNav';
+import { useBookingList } from '../../../hook/useBooking';
+import { useDateFilter } from '../../../hook/useSearch';
+import { useIdSelecter } from '../../../hook/useIdSelecter';
+import { useSingleSort } from '../../../hook/useSort';
+import { getUniqFilter } from '../../../utils/filter';
+import { BookingStatus } from '../../../types/api';
+import { ResvTopNav } from '../../../components/topNav/MasterTopNav';
 
 interface IProp { }
 
@@ -21,13 +27,42 @@ const popupClose = () => {
     });
 }
 export const MsReservationMain: React.FC<IProp> = () => {
+
+    const { items, filter, setFilter, pageInfo, sort, setSort, viewCount, setViewCount, page, setPage } = useBookingList()
+    const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({ filter, setFilter })
+    const { check, isChecked, selecteAll, selectedIds, setSelectedIds, unCheck, unSelectAll } = useIdSelecter(items.map(i => i._id));
+    const singleSort = useSingleSort(sort, setSort);
+
+    const doSearch = (search: string) => {
+        const _filter = getUniqFilter(
+            filter,
+            "porductName_contains",
+            ["porductName_contains"],
+            search
+        )
+
+        setFilter({
+            ..._filter
+        })
+    }
+
+    const handleSatus = (status?: BookingStatus) => () => {
+        setFilter({
+            ...filter,
+            status_eq: status
+        })
+    }
+
+    const checkStatusOn = (status?: BookingStatus) => filter.status_eq === status ? "check on" : ""
+
+
     return <MasterLayout>
         <div className="in ">
             <h4>예약관리</h4>
             <div className="in_content">
                 <ResvTopNav />
                 <div className="con reservation">
-                    
+
                     <div className="reservation_list ln07">
                         <div className="thead">
                             <div className="t01">
@@ -85,59 +120,6 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                     <strong className="money"><i className="m_title">금액:</i>40,000원</strong>
                                     <span className="pay-option"><i className="m_title">결제종류:</i>신용카드</span>
                                     <span className="r-btn stand"><i className="m_title">예약상태:</i>예약대기</span>
-                                </div>
-                            </div>
-                            <div className="t07">
-                                <div className="align">
-                                    <button className="btn small" onClick={popupOpen}>상세보기</button>
-                                    <button className="btn small">예약취소</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="tbody">
-                            <div className="t01">
-                                <span className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                    <label htmlFor="agree1" />
-                                </span>
-                            </div>
-                            <div className="t02">
-                                <div className="align">
-                                    <strong className="r-number"><i className="m_title">예약번호:</i>R-34252</strong>
-                                    <span className="pay-day"><i className="m_title">결제일:</i>2020.02.03</span>
-                                    <span className="goods-ct"><i className="m_title">유형:</i>여행</span>
-                                </div>
-                            </div>
-                            <div className="t03">
-                                <div className="info">
-                                    <span className="ct">문화</span>  <span className="g-number">상품번호: PINK-034982</span>
-                                    <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
-                                    <div className="txt">
-                                        <span className="s-day">출발일: 2020.9.9</span>
-                                        <span className="where">출발장소: 부산대학교 앞</span>
-
-                                        <span className="men">인원: 총 10명 (성인:3/소아:3/유아:4)</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="t04">
-                                <div className="align">
-                                    <strong className="name"><i className="m_title">예약자명:</i>홍언니</strong>
-                                    <span className="patner-name"><i className="m_title">파트너명:</i>( (주)하나하나 )</span>
-                                </div>
-                            </div>
-                            <div className="t05">
-                                <div className="align">
-                                    <strong><i className="m_title">상품상태:</i>진행중</strong>
-                                    <span className="member"><i className="m_title">진행여부:</i>출발미확정<br />(인원 : 10/10 )</span>
-                                </div>
-                            </div>
-                            <div className="t06">
-                                <div className="align">
-                                    <strong className="money"><i className="m_title">금액:</i>40,000원</strong>
-                                    <span className="pay-option"><i className="m_title">결제종류:</i>신용카드</span>
-                                    <span className="r-btn yes"><i className="m_title">예약상태:</i>예약완료</span>
                                 </div>
                             </div>
                             <div className="t07">

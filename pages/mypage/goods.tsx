@@ -11,25 +11,42 @@ import { itemTypeToKr } from '../../utils/enumToKr';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import Link from 'next/link';
 import { useCustomCount } from '../../hook/useCount';
+import { getUniqFilter } from '../../utils/filter';
+import { MasterAlignMent } from '../../components/master/MasterAlignMent';
+import { Paginater } from '../../components/common/Paginator';
+import { SingleSortSelect } from '../../components/common/SortSelect';
+import { useSingleSort } from '../../hook/useSort';
+import { ProductStatus } from '../../types/api';
 
 interface IProp { }
 
 export const MyGoods: React.FC<IProp> = () => {
-    const { items, filter, setFilter, sort, setSort, viewCount, setViewCount } = useProductList()
+    const { items, filter, setFilter, pageInfo, sort, setSort, viewCount, setViewCount, page, setPage } = useProductList()
     const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({ filter, setFilter })
-    const { check, isChecked, reverse, selecteAll, selectedIds, setSelectedIds, unCheck, unSelectAll } = useIdSelecter(items.map(i => i._id));
-
+    const { check, isChecked, selecteAll, selectedIds, setSelectedIds, unCheck, unSelectAll } = useIdSelecter(items.map(i => i._id));
+    const singleSort = useSingleSort(sort, setSort);
 
     const doSearch = (search: string) => {
-        const _filter = {
-            ...filter
-        }
+        const _filter = getUniqFilter(
+            filter,
+            "title_contains",
+            ["title_contains"],
+            search
+        )
 
-        _filter["title_contains"] = search ? search : undefined;
         setFilter({
-            ..._filter,
+            ..._filter
         })
     }
+
+    const handleSatus = (status?: ProductStatus) => () => {
+        setFilter({
+            ...filter,
+            status_eq: status
+        })
+    }
+
+    const checkStatusOn = (status?: ProductStatus) => filter.status_eq === status ? "check on" : ""
 
 
     return <MypageLayout>
@@ -40,13 +57,12 @@ export const MyGoods: React.FC<IProp> = () => {
                     <h6>상세검색</h6>
                     <SearchBar
                         Status={
-
                             <div className="jul2">
                                 <div className="title">상태</div>
                                 <div className="text">
-                                    <span className="check on">전체</span>
-                                    <span className="check">예약완료</span>
-                                    <span className="check">사용완료</span>
+                                    <span onClick={handleSatus(undefined)} className={checkStatusOn(undefined)}>전체</span>
+                                    <span onClick={handleSatus(ProductStatus.UPDATE_REQ)} className={checkStatusOn(undefined)}>수정요청</span>
+                                    <span onClick={handleSatus(ProductStatus.READY)} className="check">대기</span>
                                 </div>
                             </div>
                         }
@@ -65,26 +81,12 @@ export const MyGoods: React.FC<IProp> = () => {
                     />
                 </div>
                 <div className="con_bottom">
-
                     <div className="con_box">
-                        <div className="alignment">
-                            <div className="left_div">
-                                <span className="infotxt">총 <strong>{ }</strong>건</span>
-                            </div>
-                            <div className="right_div">
-                                <select className="sel01">
-                                    <option>출발일 &uarr;</option>
-                                    <option>출발일 &darr;</option>
-                                    <option>개시일 &uarr;</option>
-                                    <option>개시일 &darr;</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
+                        <MasterAlignMent handleSelectAll={selecteAll} LeftDiv={
+                            <span className="infotxt">총 <strong>{pageInfo.totalCount}</strong>건</span>
+                        } Sort={
+                            <SingleSortSelect {...singleSort} />
+                        } setViewCount={setViewCount} viewCount={viewCount} />
                         <div className="fuction_list_mini ln08">
                             <div className="thead">
                                 <div className="th01">
@@ -149,7 +151,7 @@ export const MyGoods: React.FC<IProp> = () => {
                                     )}
                                 </ul>
                             </div>
-                            {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
+                            <Paginater setPage={setPage} pageInfo={pageInfo} />
                         </div>
                         <div className="boardNavigation">
                             <div className="float_left">

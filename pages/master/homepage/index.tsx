@@ -9,6 +9,7 @@ import { ALLOW_ALLOW_SELLERS } from '../../../types/const';
 import { auth } from '../../../utils/with';
 import SortSelect from '../../../components/common/SortMethod';
 import { SortSelecter } from '../../../components/common/SortSelect';
+import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
 
 
 export const MsHomepageA: React.FC = () => {
@@ -29,25 +30,10 @@ export const MsHomepageA: React.FC = () => {
         <div className="in ">
             <h4>홈페이지 설정</h4>
             <div className="in_content">
-                <div className="tab-nav">
-                    <ul>
-                        {/* <li><Link href="/master/homepage"><a>기본설정</a></Link></li> */}
-                        <li className="on"><Link href="/master/homepage/homepage1-2"><a>SMS설정</a></Link></li>
-                        {/* <li><Link href="/master/homepage/homepage1-3"><a>카카오비즈톡</a></Link></li> */}
-                        <li><Link href="/master/homepage/homepage1-4"><a>약관설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-5"><a>게시판설정</a></Link></li>
-                        {/* <li><Link href="/master/homepage/homepage1-6"><a>정산설정</a></Link></li> */}
-                    </ul>
-                </div>
-                <div className="con homepage sms">
-                    <div className="alignment">
-                        <div className="left_div">
-                            <ul className="board_option">
-                                <li className="on"><a href="/">전체<strong>46</strong></a></li>
-                                <li><a href="/">예약<strong>23</strong></a></li>
-                                <li><a href="/">회원<strong>23</strong></a></li>
-                                <li><a href="/">정산<strong>23</strong></a></li>
-                            </ul>
+                <HomepageTopNav />
+                <div className="con homepage">
+                    <div className="fin ifMobile">
+                        <div className="float_left">
                         </div>
                         <div className="right_div">
                             <SortSelecter onChange={setSort} sort={sort}>

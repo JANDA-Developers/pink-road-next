@@ -119,6 +119,9 @@ export const PRODUCT_FIND_BY_ID_FOR_SELLER = gql`
       error
       data {
         ...Fproduct
+        author {
+          ...Fuser
+        }
         peopleCount
         bookings {
           booker {

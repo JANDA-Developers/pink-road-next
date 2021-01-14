@@ -1,21 +1,22 @@
 import React, { useContext, useState } from 'react';
 import { getEditUtils } from '../utils/pageEdit';
-import { AppContext } from "./_app";
+import { AppContext, EditContext } from "./_app";
 import pageInfoDefault from 'info/siteInfo.json';
 import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
 import { Upload } from 'components/common/Upload';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { getStaticPageInfo } from '../utils/page';
+import defaultPageInfo from "../info/siteInfo.json";
+
 
 type TGetProps = {
     pageInfo: typeof pageInfoDefault | "",
 }
 
-export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("site-info");
-export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
-    const original = pageInfo || pageInfoDefault;
-    const { editMode, role } = useContext(AppContext)
-    const [page, setPage] = useState<typeof pageInfoDefault>(original)
+export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("site-info", defaultPageInfo);
+export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = () => {
+    const { edit, imgEdit, ulEdit, bg, removeArray, editMode, editArray, addArray, page } = useContext(EditContext);
+
     const [open, setOpen] = useState(true);
     const [addInfo, setAddInfo] = useState({
         alt: "",
@@ -23,7 +24,6 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
         link: "",
     })
 
-    const { edit, ulEdit, imgEdit, editArray, addArray, removeArray, bg } = getEditUtils(editMode, page, setPage);
     const { partners } = page;
 
     const changePartner = (key: string) => (e: any) => {
@@ -45,7 +45,6 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
 
     return <div className="siteInfo_in">
-        <HiddenSubmitBtn setData={setPage} original={original} path="site-info" data={page} />
         <div style={{
             ...bg("mainBg")
         }} className="top_bg w100">
@@ -178,7 +177,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <div className="li04">
                         <img src={'/img/svg/siteinfo_svg04.svg'} alt="화살표" />
                     </div>
-                    <div className="li05">지역경제활성화</div>
+                    <div className="li05" {...edit("info_img5_title")} />
                 </div>
                 <div className="wave_animation_wrap">
                     <div className="figure_wrap">
@@ -189,9 +188,10 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                 </div>
             </div>
         </div>
-        <div className="w100 con05 con_block">
+        <div className="w100 con05 con_block" style={bg("historybg")}>
+            <Upload onUpload={imgEdit("historybg")} />
             <div className="w1200">
-                <h4>Company history</h4>
+                <h4 {...edit("history_title")} />
                 <div className="in_txt">
                     <div className="year y2020">
                         <strong>2020</strong>
@@ -264,13 +264,14 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
             </div>
         </div>
-        <div className="w100 con07 con_block onepick2">
+        <div className="w100 con07 con_block onepick2" style={bg("con07_bg")}>
+            <Upload onUpload={imgEdit("con07_bg")} />
             <div className="w1200">
                 <h4>
-                    <strong>우리는 쉬운 길보다 옳은 길을 만들고 걸어갑니다.</strong>
-                    We walk the right path rather than the easy one
+                    <strong {...edit("con07_title")} />
+                    <p {...edit("con07_txt")} />
                 </h4>
-                <span className="link"><a href="mailto:pinkroader@gmail.com">제휴문의</a></span>
+                <span className="link"><a href="mailto:pinkroader@gmail.com" {...edit("con07_link")}></a></span>
 
             </div>
             <div className="ovj"></div>

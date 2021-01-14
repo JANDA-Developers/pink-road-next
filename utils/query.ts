@@ -4,6 +4,7 @@ import { ListInitOptions, useListQuery } from "../hook/useListQuery";
 import { useEffect } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
+import { Fpage } from "../types/api";
 interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
 };
@@ -63,8 +64,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
         dataCheck(data,operationName)
         // @ts-ignore
         const items: R[] = data?.[operationName]?.data || []
-        // @ts-ignore
-        const pageInfo: Fpage = data?.[operationName]?.page || DEFAULT_PAGE
+        const pageInfo: Fpage = (data as any)?.[operationName]?.page || DEFAULT_PAGE
 
 
         useEffect(()=>{

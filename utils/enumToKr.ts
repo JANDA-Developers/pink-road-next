@@ -1,4 +1,4 @@
-import { BookingStatus, PaymentStatus, ProductStatus, ProductType, QuestionStatus, SettlementStatus } from "../types/api";
+import { BookingStatus, CategoryType, PaymentStatus, ProductStatus, ProductType, QuestionStatus, SettlementStatus } from "../types/api";
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if(status === BookingStatus.CANCEL) return "예약취소" 
@@ -53,4 +53,14 @@ export const itemTypeToKr = (type: ProductType) => {
      if(type === ProductType.EXPERIENCE) return "체험" 
      if(type === ProductType.TOUR) return "체험"
      return "" 
+}
+
+
+export const categoryToKR = (catType?:CategoryType | null) => {
+    if(catType === CategoryType.CUSTOMER_QNA) return "유저QNA"
+    if(catType === CategoryType.PORTPOLIO) return "포트폴리오"
+    if(catType === CategoryType.QNA) return "QNA"
+    if(catType === CategoryType.TOUR) return "투어"
+    if(catType === CategoryType.EXPERIENCE) return "체험"
+    return ""
 }

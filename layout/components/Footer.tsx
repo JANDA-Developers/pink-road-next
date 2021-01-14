@@ -40,7 +40,7 @@ export const Footer: React.FC<IProp> = () => {
                             <Link href="https://www.facebook.com/PinkRoader"><a target="_blank"><i className="jandaicon-facebook"></i></a></Link>
                             <Link href="https://twitter.com/PinkRoader"><a target="_blank"><i className="jandaicon-twitter"></i></a></Link>
                             <Link href="https://www.instagram.com/pinkroader_"><a target="_blank"><i className="jandaicon-instagram2"></i></a></Link>
-                            <Link href="http://blog.naver.com/pinkroader"><a target="_blank"><i>N</i></a></Link>
+                            <Link href="http://blog.naver.com/pinkroader"><a target="_blank"><i className="icon_blog"></i></a></Link>
                         </div>
                     </li>
                     <li className="cs"> <Link href="mailto:pinkroader@gmail.com"><a>CONTACT</a></Link></li>
@@ -75,7 +75,7 @@ export const Footer: React.FC<IProp> = () => {
                             <span>5천만원 가입</span>
                         </li>
                         <li className="bottom_txt pc">
-                            Copyright © 2020 PINKROADER Co., Ltd. All rights reserved
+                            Copyright © 2021 PINKROADER Co., Ltd. All rights reserved
                          </li>
                     </ul>
                     <ul className="footer_homepage_info mt">

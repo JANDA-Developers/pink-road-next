@@ -20,7 +20,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                     </ul>
                 </div>
                 <div className="con homepage terms">
-                    <div className="fin">
+                    <div className="fin ifMobile">
                         <div className="float_left">
                         </div>
                         <div className="float_right">
@@ -188,7 +188,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
 
 
                     </div>
-                    <div className="fin">
+                    <div className="fin ifMobile">
                         <div className="float_left">
                         </div>
                         <div className="float_right">

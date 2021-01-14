@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client"
-import { F_BOOKING, F_PAGE, F_PAYMENT } from "./fragments"
+import { F_BOOKING, F_PAGE, F_PAYMENT, F_PRODUCT, F_USER } from "./fragments"
 
 export const F_FEEPOLICY = gql`
     fragment Ffeepolicy on FeePolicy {
@@ -104,9 +104,26 @@ export const SETTLEMENT_LIST = gql`
     }
     data  {
       ...Fsettlement
+      seller {
+        ...Fuser
+    }
+      product {
+        bookerSummary {
+          adultCount
+          babyCount
+          kidsCount
+          completePeople
+          readyPoeple
+          cancelCompletePeople
+          cancelPeople 
+        }
+        ...Fproduct
+      }
     }
   }
   }
+  ${F_USER}
+  ${F_PRODUCT}
   ${F_PAGE}
   ${F_SETTLEMENT}
 `
