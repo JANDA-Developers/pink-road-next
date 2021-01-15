@@ -9,23 +9,32 @@ import { autoHypenPhone, cc_format } from "../../utils/formatter";
 import { useUserUpdate } from '../../hook/useUserUpdate';
 import { useMyProfile } from '../../hook/useMyProfile';
 import { auth } from '../../utils/with';
-import { ONLY_LOGINED } from '../../types/const';
+import { ALLOW_LOGINED } from '../../types/const';
 import DaumPostcode from 'react-daum-postcode';
 import { Modal } from '../../components/modal/Modal';
 import { openModal } from '../../utils/popUp';
 import { useVerification } from '../../hook/useVerification';
-import { toast } from 'react-toastify';
 import { GET_CONTEXT } from '../../apollo/gql/queries';
 import { getOperationName } from '@apollo/client/utilities';
-import { LastMonthBooking } from '../../components/static/LastMonthBooking';
-import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
-import { useBookingList } from '../../hook/useBooking';
+import { useCustomCount } from '../../hook/useCount';
 
 let SEND_LIMIT = 3;
 interface IProp { }
 export const MyPageProfile: React.FC<IProp> = () => {
+    const { salesOfThisMonth, todayBookingCount, salesofLastMonth, countOfTourBooking, countOfExpBooking } = useCustomCount([
+        "salesofLastMonth",
+        "salesOfThisMonth",
+        "countOfTourBooking",
+        "countOfExpBooking",
+        "todayBookingCount"
+    ]);
     const { userUpdate } = useUserUpdate({
         refetchQueries: [getOperationName(GET_CONTEXT) || ""],
+        onCompleted: ({ UserUpdate }) => {
+            if (UserUpdate.ok) {
+                alert("업데이트가 완료 되었습니다.");
+            }
+        }
     });
     const { myProfile: defaultProfile, role, isAdmin } = useContext(AppContext);
     const { code, setCode } = useVerification();
@@ -53,18 +62,21 @@ export const MyPageProfile: React.FC<IProp> = () => {
         busi_department,
         bank_name,
         busi_contact,
+        busi_address,
+        gender,
+        is_froreginer,
+        is_priv_corper,
         account_number } = profile;
     const {
         _id,
         products,
-        gender,
         bookings,
-        is_froreginer,
         email,
         phoneNumber,
         isVerifiedPhoneNumber,
         busi_name,
-        is_priv_corper } = defaultProfile!;
+        connectionCount,
+    } = defaultProfile!;
 
     const productsCount = products.length;
     const sellCounts = arraySum(products.map(p => p.bookings.length));
@@ -134,32 +146,12 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const pwSameCheck = () => nextPw.password && nextPw.password === nextPw.passwordCheck;
 
     const [state, setState] = useState<UserRole>(role);
-
-    const isPartnerB = state === "partnerB" || role === UserRole.manager || UserRole.admin;
+    const isPartnerB = state === "partnerB" || role === UserRole.manager || role === UserRole.admin;
     const isPartner = state === UserRole.partner
     const isBuyer = state === UserRole.individual;
     const isSeller = isPartnerB || isPartner;
 
-
     return <MypageLayout >
-        {isAdmin && <div>
-            <button style={{
-                color: isPartnerB ? "red" : undefined
-            }} onClick={() => {
-                setState(UserRole.partnerB)
-            }}>파트너B</button>
-            <button style={{
-                color: isPartner ? "red" : undefined
-            }} onClick={() => {
-                setState(UserRole.partner)
-            }}>파트너</button>
-            <button style={{
-                color: isBuyer ? "red" : undefined
-            }} onClick={() => {
-                setState(UserRole.individual)
-            }}>구매자</button>
-        </div>
-        }
         <div className="in">
             <h4>회원정보</h4>
             <div className="mypage_page">
@@ -168,16 +160,16 @@ export const MyPageProfile: React.FC<IProp> = () => {
                         <ul className={`line${isSeller ? "5" : "4"}`}>
                             {isSeller && <>
                                 <li className="ct">
-                                    <LastMonthBooking />
-                                    <p>저번달 총 매량</p>
+                                    <span id="SellCount">{salesofLastMonth}</span>
+                                    <p>저번달 총 예약</p>
                                 </li>
                                 <li className="ct">
-                                    <span id="SellCount">234</span>
-                                    <p>이번달 총 판매량</p>
+                                    <span id="SellCount">{salesOfThisMonth}</span>
+                                    <p>이번달 총 예약</p>
                                 </li>
                                 <li className="ct">
-                                    <ThisMonthBooking />
-                                    <p>이번달 총 매량</p>
+                                    <span id="SellCount">{todayBookingCount}</span>
+                                    <p>오늘 총 예약</p>
                                 </li>
                                 <li className="ct">
                                     <span>{sellCounts}</span>
@@ -199,15 +191,15 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     </p>
                                 </li>
                                 <li className="ct">
-                                    <span>-</span>
+                                    <span>{connectionCount}</span>
                                     <p>
                                         총 접속 수
                                 </p>
                                 </li>
                                 <li className="ct">
-                                    <span>-</span>
+                                    <span>{countOfExpBooking}</span>
                                     <p>
-                                        참여한 이벤트 수
+                                        총 체험 수
                                 </p>
                                 </li>
                                 <li className="ct">
@@ -234,6 +226,9 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="txt">
                                     <div className="input_relative">
                                         <input
+                                            style={{
+                                                border: "1px solid #e3e3e3"
+                                            }}
                                             value={nickName}
                                             onChange={(e) => {
                                                 const nickName = e.currentTarget.value
@@ -287,8 +282,15 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     <div className="txt">
                                         <strong>{name || ""}</strong>
                                         <ul className="country_check">
-                                            <li className={`c_in ${is_froreginer || "on"}`}>내국인</li>
-                                            <li className={`c_out ${is_froreginer && "on"}`}>외국인</li>
+                                            <li onClick={() => {
+                                                profile.is_froreginer = false;
+                                                setProfile({ ...profile })
+                                            }} className={`c_in ${is_froreginer || "on"}`}>내국인</li>
+                                            <li onClick={() => {
+                                                profile.is_froreginer = true;
+                                                setProfile({ ...profile })
+                                            }}
+                                                className={`c_out ${is_froreginer && "on"}`}>외국인</li>
                                         </ul>
                                     </div>
                                 </li> : ""
@@ -298,8 +300,18 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     <div className="title">성별</div>
                                     <div className="txt">
                                         <ul className="gender_check">
-                                            <li className={`${isFemale && "on"} female`}>여</li>
-                                            <li className={`${isFemale || "on"} men`}>남</li>
+                                            <li onClick={() => {
+                                                profile.gender = GENDER.FEMALE
+                                                setProfile({
+                                                    ...profile
+                                                })
+                                            }} className={`${isFemale && "on"} female`}>여</li>
+                                            <li onClick={() => {
+                                                profile.gender = GENDER.MAIL
+                                                setProfile({
+                                                    ...profile
+                                                })
+                                            }} className={`${isFemale || "on"} men`}>남</li>
                                         </ul>
                                     </div>
                                 </li> : ""
@@ -307,10 +319,10 @@ export const MyPageProfile: React.FC<IProp> = () => {
                             <li>
                                 <div className="title">연락처</div>
                                 <div className="txt">
-                                    <span className="w80">{autoHypenPhone(phoneNumber)}</span>
-                                    <button onClick={isVerifiedPhoneNumber ? handleChangePhoneNumber : handleVerifiPhoneNumber} type="button" className="btn btn_mini">
+                                    <span className="w100">{autoHypenPhone(phoneNumber)}</span>
+                                    {/* <button onClick={isVerifiedPhoneNumber ? handleChangePhoneNumber : handleVerifiPhoneNumber} type="button" className="btn btn_mini">
                                         {isVerifiedPhoneNumber ? "변경" : "인증"}
-                                    </button>
+                                    </button> */}
                                 </div>
                             </li>
                             {isSeller ||
@@ -353,13 +365,17 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="txt">
                                     <select onChange={(e) => {
                                         const is_priv_corper = e.currentTarget.value === "busi";
-                                        profile.is_priv_corper = is_priv_corper;
+                                        profile.is_priv_corper = is_priv_corper ? true : false;
                                         setProfile({ ...profile });
-                                    }} value={is_priv_corper ? "indi" : "busi"} className="w20">
+                                    }} value={is_priv_corper ? "busi" : "indi"} className="w20">
                                         <option value={"indi"}>개인</option>
-                                        <option value={"busi"} >법인</option>
+                                        <option value={"busi"}>법인</option>
                                     </select>
                                     <input
+                                        onChange={(e) => {
+                                            const val = e.currentTarget.value;
+                                            setProfile({ ...profile, busi_num: val })
+                                        }}
                                         value={busi_num}
                                         type="text"
                                         className="form-control w70 ml5"
@@ -372,7 +388,11 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="title">대표 전화번호</div>
                                 <div className="txt">
                                     <input
-                                        value={busi_contact}
+                                        onChange={(e) => {
+                                            const val = e.currentTarget.value;
+                                            setProfile({ ...profile, busi_contact: val })
+                                        }}
+                                        value={autoHypenPhone(busi_contact)}
                                         type="text"
                                         className="form-control w100"
                                         placeholder="전화번호를 입력해주세요."
@@ -382,7 +402,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
                             <li>
                                 <div className="title">주소</div>
                                 <div className="txt line2">
-
                                     <input onChange={handleTextData("address")} value={address} type="text" className="form-control w70" />
                                     <button onClick={openModal("#addressFindModal")} type="button" className="btn btn_mini">
                                         주소찾기
@@ -442,6 +461,10 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="txt">
                                     <div className="line_first">
                                         <input
+                                            onChange={(e) => {
+                                                const val = e.currentTarget.value
+                                                setProfile({ ...profile, bank_name: val })
+                                            }}
                                             value={bank_name}
                                             type="text"
                                             className="form-control w20 mr5"
@@ -544,4 +567,4 @@ export const MyPageProfile: React.FC<IProp> = () => {
 
 
 
-export default auth(ONLY_LOGINED)(MyPageProfile);
+export default auth(ALLOW_LOGINED)(MyPageProfile);

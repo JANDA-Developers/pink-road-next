@@ -1,6 +1,6 @@
-import { TStieInfo } from "types/interface";
+import { TStieInfo } from "../types/interface";
 
-const info: TStieInfo = {
+const info = {
     m_01_mainBg1: {
         kr: `/img/pr_img_43.jpg`,
     },

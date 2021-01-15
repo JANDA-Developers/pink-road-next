@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import SubTopNav from 'layout/components/SubTop';
-import { useVerification } from '../hook/useVerification';
-import { ISet } from '../types/interface';
-import { UserRole } from '../types/api';
-import { getFromUrl } from '../utils/url';
-import { closeModal, openModal } from '../utils/popUp';
-import { VerifiEamilModal } from '../components/verifiModal/VerifiEmailModal';
-import { Storage } from '../utils/Storage';
+import { useVerification } from '../../hook/useVerification';
+import { ISet } from '../../types/interface';
+import { UserRole } from '../../types/api';
+import { getFromUrl } from '../../utils/url';
+import { closeModal, openModal } from '../../utils/popUp';
+import { VerifiEamilModal } from '../../components/verifiModal/VerifiEmailModal';
+import { Storage } from '../../utils/Storage';
 import UserInfoForm from 'components/join/UserInfoForm';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -27,7 +27,7 @@ export const ContextPolicyChk = createContext<IchkPolocy | null>(null);
 type TJoinProcess = "userType" | "verification" | "userInfo" | "registered"
 interface IjoinContext extends ReturnType<typeof useVerification> {
     joinProcess: TJoinProcess;
-    setJoinProcess: ISet<TJoinProcess>
+    setJoinProcess: ISet<TJoinProcess> | any
     userType: UserRole,
     setUserType: ISet<UserRole>
     isPartenerB: boolean,
@@ -99,7 +99,7 @@ const Join = () => {
 
 
     useEffect(() => {
-        window.onpopstate = function (event) {
+        window.onpopstate = function (event: any) {
             joinSet(event.state.joinProcess);
         };
     }, [])
@@ -250,7 +250,6 @@ const Verification: React.FC = () => {
             }} verifiHook={{
                 ...verifiHook
             }} />
-
         </div>
     )
 }

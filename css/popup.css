@@ -1,0 +1,14 @@
+@import "./all.css";
+
+body {
+    overflow: hidden!important;
+}
+
+
+img {
+    max-width: 100%!important;
+}
+
+figure {
+    margin: 0!important;
+}

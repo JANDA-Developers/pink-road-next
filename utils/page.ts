@@ -43,12 +43,15 @@ export const useHomepageServerSide = async () => {
     return { data };
 }
 
-export const getStaticPageInfo = (key: TPageKeys) => async () => {
+export const getStaticPageInfo = (key: TPageKeys,defaultPageInfo:any) => async () => {
     const { data } = await usePageInfo(key);
     const { data: homepage } = await useHomepageServerSide();
+
     return {
         revalidate: 1,
         props: {
+            defaultPageInfo,
+            pageKey: key,
             pageInfo: data?.value || "",
             homepage
         }, // will be passed to the page component as props
@@ -61,7 +64,7 @@ export const getHomepage = async () => {
     return {
         revalidate: 10,
         props: {
-            homepage: homepage.data
+            homepage: homepage.data as Fhomepage
         }, // will be passed to the page component as props
     }
 }

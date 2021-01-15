@@ -1,21 +1,13 @@
 import React, { useContext, useEffect } from 'react';
-import { AppContext } from 'pages/_app';
+import { AppContext, EditContext } from 'pages/_app';
 import { UserRole } from 'types/api';
 import { roleCheck } from 'utils/roleCheck';
 
 interface IProp { }
 
 export const EditBtn: React.FC<IProp> = () => {
-    const { editMode, setEditMode, isManager, } = useContext(AppContext)
-
-    //useEffect(() => {
-    //    if (editMode)
-    //        window.onbeforeunload = function () {
-    //            return '편집중인 데이터가 저장되지 않을 수 있습니다. 정말로 페이지를 이동하시겠습니까?';
-    //        };
-    //    elseW
-    //        window.onbeforeunload = () => { }
-    //}, [editMode])
+    const { isManager, } = useContext(AppContext)
+    const { editMode, setEditMode } = useContext(EditContext)
 
     if (!isManager) return null;
 

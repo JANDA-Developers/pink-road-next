@@ -1,11 +1,19 @@
 import { gql } from "@apollo/client";
+import { F_PAGE } from "./fragments";
 
-export const BOARD_FIND_BY_EMAIL = gql`
-    query boardFindByEmail($email:String!, $filter:_BoardFilter, $sort: [_BoardSort!]
+export const MY_BOARD_LIST = gql`
+    query myBoardList($pageInput: pageInput!, $filter:_BoardFilter, $sort: [_BoardSort!]
 ){
-        BoardFindByEmail(email: $email, filter:$filter, sort:$sort) {
+        MyBoardList(
+            sort: $sort
+            pageInput: $pageInput
+            filter: $filter
+        ) {
         ok
         error
+        page {
+            ...Fpage
+        }
         data {
             _id
             createdAt
@@ -29,4 +37,5 @@ export const BOARD_FIND_BY_EMAIL = gql`
         }
        } 
    }
+   ${F_PAGE}
 `

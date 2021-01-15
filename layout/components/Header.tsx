@@ -8,8 +8,22 @@ import { setVal, whenEnter } from "../../utils/eventValueExtracter";
 import { useRouter } from "next/router";
 import cache from "../../apollo/cache";
 import { NotiIcon } from "./NotiIcon";
+import { generateSearchLink } from "../../pages/search";
 
 interface IProp { }
+
+export const handSearchClose = () => {
+    $('.search_bg').css({
+        'display': 'none'
+    });
+
+    $('.search_wrap').animate({
+        'top': '-100px'
+    });
+    $('.hidden').css({
+        'display': 'none'
+    });
+}
 
 export const Header: React.FC<IProp> = () => {
     const [search, setSearch] = useState("");
@@ -38,19 +52,6 @@ export const Header: React.FC<IProp> = () => {
         });
 
     }
-    const handSearchClose = () => {
-        $('.search_bg').css({
-            'display': 'none'
-        });
-
-        $('.search_wrap').animate({
-            'top': '-100px'
-        });
-        $('.hidden').css({
-            'display': 'none'
-        });
-    }
-
     const handleAllMenu = () => {
         $('#all_menu').animate({
             'top': '0'
@@ -81,7 +82,10 @@ export const Header: React.FC<IProp> = () => {
     }
 
     const goToSearchPage = () => {
-        rotuer.push(`/search?search=${search}#ProductViewer`)
+        rotuer.push(generateSearchLink({ title: search }))
+        $('.search_bg').css({
+            'display': 'none'
+        });
     }
 
     useEffect(() => {
@@ -100,7 +104,7 @@ export const Header: React.FC<IProp> = () => {
                 <ul>
                     {isLogin ? "" :
                         <li className="join">
-                            <Link href="/join">
+                            <Link href="/member/join">
                                 <a>JOIN</a>
                             </Link>
                         </li>}
@@ -221,7 +225,11 @@ export const Header: React.FC<IProp> = () => {
                         </div>
                         {isLogin ?
                             <div className="inform_top">
-                                <NotiIcon />
+                                <Link href="/mypage/notification">
+                                    <a>
+                                        <NotiIcon />
+                                    </a>
+                                </Link>
                             </div>
                             : ""}
                         <div onClick={handleAllMenu} className="all_menu_btn">

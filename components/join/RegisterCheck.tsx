@@ -3,7 +3,7 @@ import { AddUserInput, UserRole } from '../../types/api';
 import { isEmail, isPhone, isPassword, isName } from 'utils/validation';
 import { useSignUp } from '../../hook/useUser';
 import { Validater } from '../../utils/validate';
-import { JoinContext } from '../../pages/join';
+import { JoinContext } from '../../pages/member/join';
 import { openModal } from '../../utils/popUp';
 import { ISignUpInput } from '../../hook/useJoin';
 import { omits } from '../../utils/omit';
@@ -42,7 +42,13 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         alert("회원가입 완료")
         setJoinProcess('registered');
       } else {
-        alert(SignUp.error);
+
+        if (SignUp.error?.includes("keyValue")) {
+          alert("중복된 전화번호 입니다.");
+        }
+        if (SignUp.error?.includes("존재하는 닉네임")) {
+          alert("이미 존재하는 닉네임 입니다.");
+        } else { }
         alert("회원가입에 실패 했습니다. 관리자 문의 바랍니다.");
       }
     }
@@ -183,14 +189,6 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
     {
       value: isPhone(registerInfo.manageContact || ""),
       failMsg: "담당자 연락처가 올바르지 않습니다."
-    },
-    {
-      value: registerInfo.busi_address,
-      failMsg: "주소값을 입력 해주세요."
-    },
-    {
-      value: registerInfo.busi_address_detail,
-      failMsg: "상세 주소값을 입력 해주세요."
     },
     ...sharedValidate
   ])
@@ -446,8 +444,8 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         <Policy type="thirdPolicy" />
       </Modal>
       <div className="fin">
-        <a href="/" className="cancel btn">취소</a>
-        <button type="submit" className="sum btn"
+        <a href="/" className="joinWrapBtn cancel btn">취소</a>
+        <button type="submit" className="joinWrapBtn sum btn"
           onClick={() => {
             if (validate()) {
               handleRegister()

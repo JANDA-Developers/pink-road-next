@@ -1,60 +1,89 @@
 import { gql } from "@apollo/client"
-import { F_PAGE } from "./fragments"
+import { F_BOOKING, F_PAGE, F_PAYMENT, F_PRODUCT, F_USER } from "./fragments"
 
-export const F_SETTLEMENT_POLICY = gql`
-    fragment FsettlementPolicy on SettlementPolicy {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        status
-        niceCardPercent
-        jandaCardPercent
-        cardPercent
-        passbookPercent
-        storePercent
-    } 
+export const F_FEEPOLICY = gql`
+    fragment Ffeepolicy on FeePolicy {
+      _id
+      createdAt
+      updatedAt
+      isDelete
+      status
+      niceCardPercent
+      jandaCardPercent
+      cardPercent
+      bankPercent
+      storePercent
+}
 `
 
 export const F_SETTLEMENT = gql`
     fragment Fsettlement on Settlement  {
+      _id
+      createdAt
+      updatedAt
+      isDelete
+      status
+      totalPrice
+      cardPrice
+      bankPrice
+      settlementPrice
+      totalFee
+      cardFee
+      niceCardFee
+      jandaCardFee
+      bankFee
+      storeFee
+      additionFeeSum
+      jandaFee
+      cancelReturnPriceTotal
+      cancelReturnPrice
+      reserveDiffPrice
+      reserveDiffPriceTotal
+      payReqPrice
+      requestDate
+      acceptDate
+      completeDate
+      cancelDate
+      product {
         _id
-        createdAt
-        updatedAt
-        isDelete
-        seller {
-            _id
-            name
-        }
-        product {
-            _id
-            title
-        }
+        code
+        title
         status
-        feePolicy {
-            ...FsettlementPolicy   
-        }
-        totalPrice
-        totalFee
-        jandaFee
-        jandaProfit
-        storeFee
-        storeProfit
-        sellerProfit
-        cardPrice
-        cardFee
-        passbookPrice
-        passbookFee
-        cancelReturnPriceTotal
-        cancelReturnPrice
-        reserveDiffPriceTotal
-        settlementPrice
-        requestDate
-        acceptDate
-        completeDate
-        cancelDate
+        adult_price
+        kids_price
+        baby_price
+      }
     }
-    ${F_SETTLEMENT_POLICY}
+`
+
+
+export const SETTLEMENT_FIND_BY_ID = gql`
+  query settlementFindById(
+    $_id: String!
+  ) {
+  SettlementFindById(
+    _id: $_id
+  ) {
+    ok
+    error
+    data  {
+      ...Fsettlement
+      product {
+        ...Fproduct
+        bookings {
+          ...Fbooking
+          payment {
+            ...Fpayment
+          }
+        }
+      }
+    }
+  }
+  }
+  ${F_BOOKING}
+  ${F_PAYMENT}
+  ${F_PAGE}
+  ${F_SETTLEMENT}
 `
 
 export const SETTLEMENT_LIST = gql`
@@ -75,9 +104,26 @@ export const SETTLEMENT_LIST = gql`
     }
     data  {
       ...Fsettlement
+      seller {
+        ...Fuser
+    }
+      product {
+        bookerSummary {
+          adultCount
+          babyCount
+          kidsCount
+          completePeople
+          readyPoeple
+          cancelCompletePeople
+          cancelPeople 
+        }
+        ...Fproduct
+      }
     }
   }
   }
+  ${F_USER}
+  ${F_PRODUCT}
   ${F_PAGE}
   ${F_SETTLEMENT}
 `

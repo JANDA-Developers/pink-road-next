@@ -1,32 +1,30 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import pageInfoDefault from 'info/main.json';
-import { getEditUtils } from 'utils/pageEdit';
-import { AppContext } from './_app'
 import { Meta } from 'components/common/meta/Meta';
 import { Upload } from 'components/common/Upload';
 import Link from 'next/link';
-import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetStaticProps } from 'next';
 import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
 import { getStaticPageInfo } from '../utils/page';
+import { EditContext } from './_app';
 import Slider from "react-slick";
+import { IUsePageEdit } from '../hook/usePageEdit';
 
-export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+export const Main: React.FC = () => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
-  const { editMode } = useContext(AppContext);
-  const original = pageInfo || pageInfoDefault;
-  const [page, setPage] = useState(original);
-  const { edit, imgEdit, bg } = getEditUtils(editMode, page, setPage)
+  const { imgEdit, edit, bg } = useContext<IUsePageEdit<typeof pageInfoDefault>>(EditContext);
   const router = useRouter()
-
 
   const toProductBoard = (id: string) => {
     router.push(id);
   }
 
+  edit
+
   return <div className="body main" id="main" >
     <Meta title="Pinkroader" description="사람과 시간이 공존하는 여행플랫폼 핑크로더입니다." />
+
 
 
     <div className="main_con_box1 Slider_box">
@@ -202,7 +200,6 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
       />
       <Upload onUpload={imgEdit("bottom_bg_img")} /> */}
     </div>
-    <HiddenSubmitBtn original={original} setData={setPage} path="main" data={page} />
     <div>
       <div className="col-md-6">
         <div ui-view></div>
@@ -211,9 +208,10 @@ export const Main: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   </div >
 };
 
-
 interface IGetProps {
   pageInfo: typeof pageInfoDefault | "",
 }
-export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("tourMain");
+
+
+export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("main", pageInfoDefault);
 export default Main;

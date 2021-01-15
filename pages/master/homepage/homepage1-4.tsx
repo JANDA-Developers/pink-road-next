@@ -7,7 +7,9 @@ import { useHomepageUpdate } from '../../../hook/useHomepage';
 import { HomepageUpdateInput } from '../../../types/api';
 import { LoadEditor } from '../../../components/edit/EdiotrLoading';
 import { auth } from '../../../utils/with';
-import { ADMINS } from '../../../types/const';
+import { ALLOW_ADMINS } from '../../../types/const';
+import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
+
 const Editor = LoadEditor();
 
 interface IProp { }
@@ -27,8 +29,6 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
         datas[key] = data;
         setDatas({ ...datas })
     }
-
-
 
     const textReverse = (key: keyof HomepageUpdateInput) => {
         if (key === "usePolicy") return "이용약관";
@@ -63,16 +63,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
         <div className="in ">
             <h4>홈페이지 설정</h4>
             <div className="in_content">
-                <div className="tab-nav">
-                    <ul>
-                        <li><Link href="/master/homepage"><a>기본설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-2"><a>SMS설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-3"><a>카카오비즈톡</a></Link></li>
-                        <li className="on"><Link href="/master/homepage/homepage1-4"><a>약관설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-5"><a>게시판설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-6"><a>정산설정</a></Link></li>
-                    </ul>
-                </div>
+                <HomepageTopNav />
                 <div className="con terms">
                     <div className="jul">
                         <h5>이용약관</h5>
@@ -152,4 +143,4 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
     </MasterLayout >
 };
 
-export default auth(ADMINS)(MsHomepageA);
+export default auth(ALLOW_ADMINS)(MsHomepageA);

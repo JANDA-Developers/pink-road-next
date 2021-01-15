@@ -21,8 +21,6 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => 
             alert("올바른 이메일이 아닙니다.");
             return;
         }
-        console.log("verifiStart");
-        console.log(verifiStart);
         verifiStart({
             event: VerificationEvent.UserVerifyEmail,
             target: VerificationTarget.EMAIL,
@@ -62,13 +60,13 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => 
 
     return <Modal title="이메일 인증" id="emailVerifi" >
         <h6>
-            인증번호를 입력 해주세요.
+            이메일을 입력 해주세요.
                 </h6>
-        <input value={email} onChange={(e) => {
+        <input className="emailVerifi__input" value={email} onChange={(e) => {
             setEmail(e.currentTarget.value)
         }} />
         {sendEmailCount ?
-            <div>
+            <div className="emailVerifi__underBox">
                 <h6>
                     인증번호를 입력 해주세요.
             </h6>
@@ -77,7 +75,7 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => 
                 }} />
             </div> : ""
         }
-        {!sendCountOver ? <button onClick={handleSendEmail}>{sendEmailCount ? "인증이메일 발송" : "인증메일 재발송"}</button> : <button>재발송 횟수를 초과하였습니다.</button>}
-        {sendEmailCount ? <button onClick={handleComplete}>인증 완료</button> : ""}
+        {!sendCountOver ? <button className="btn small" onClick={handleSendEmail}>{sendEmailCount ? "인증이메일 발송" : "인증메일 재발송"}</button> : <button>재발송 횟수를 초과하였습니다.</button>}
+        {sendEmailCount ? <button className="btn small" onClick={handleComplete}>인증 완료</button> : ""}
     </Modal>;
 };

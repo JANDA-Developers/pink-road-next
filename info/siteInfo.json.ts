@@ -1,6 +1,4 @@
-import { TStieInfo } from "types/interface";
-
-const info: TStieInfo = {
+const info = {
     mainTitle: {
         kr: "핑크빛 희망의 길을 만들어 가는 사람들"
     },
@@ -8,6 +6,7 @@ const info: TStieInfo = {
         kr: "We are making a path of pink hope"
     },
     mainBg: { kr: '/img/pr_img_16.jpg' },
+    pinkload_intro: { kr: '/img/pr_img_13.jpg' },
     pinkVision: {
         kr: `<strong>핑크로더(PinkRoader)</strong>는 <br> ‘핑크빛 희망의 길을 만들어가는
     사람들’이라는 뜻을 가지고 사람-시간-공간의 상생을
@@ -21,7 +20,7 @@ const info: TStieInfo = {
     visionBox1_cotnent: {
         kr: `<li >새로운 라이프스타일의 창조(creat new life style)와 공유</li>
         <li >
-        지역의 문화적 가치 재발견과 사회적 공유 숨겨져 있는 지역문화에서
+    지역의 문화적 가치 재발견과 사회적 공유 숨겨져 있는 지역문화에서
         새로운 가치를 발견하고, 이를 널리 공유하는 기회를 제공함으로써
         사회적으로는 문화적 다양성을 제고하고, 개인들에게는 새로운 라이프
         스타일 모색의 기회를 제공하는 데 기여함

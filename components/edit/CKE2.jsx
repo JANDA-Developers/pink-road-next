@@ -18,7 +18,7 @@ export class UploadAdapter {
 
     _initRequest() {
         const xhr = this.xhr = new XMLHttpRequest();
-        xhr.open('POST', SERVER_URI +'/upload', true);
+        xhr.open('POST', SERVER_URI.replace("/graphql",'') +'/upload', true);
         xhr.responseType = 'json';
     }
 
@@ -152,18 +152,14 @@ const editorConfiguration = {
                   data={data}
                   onReady={ editor => {
                       // You can store the "editor" and use when it is needed.
-                      console.log( 'Editor is ready to use!', editor );
                   } }
                   onChange={ ( event, editor ) => {
                       const data = editor.getData();
                       onChange(data);
-                      console.log(data);
                   } }
                   onBlur={ ( event, editor ) => {
-                      console.log( 'Blur.', editor );
                   } }
                   onFocus={ ( event, editor ) => {
-                      console.log( 'Focus.', editor );
                   } }
               />
           </div>

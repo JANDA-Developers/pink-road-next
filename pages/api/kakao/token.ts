@@ -26,5 +26,5 @@ const cors = Cors({
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     await runMiddleware(req, res, cors)
-    res.redirect("http://localhost:3000/")
+    res.redirect(process.env.ORIGIN || "http://lcoalhost:3000")
 }

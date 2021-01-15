@@ -1,58 +1,50 @@
-import { usePageInfo } from 'hook/usePageInfo';
-import { usePortfolioList, IusePortfolioList } from 'hook/usePortfolioList';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { usePortfolioList } from 'hook/usePortfolio';
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import React, { Fragment, useContext, useState } from 'react';
-import { pcategoryList_pCategoryList_data, UserRole } from 'types/api';
-import { getEditUtils } from 'utils/pageEdit';
-import { AppContext } from '../_app';
+import React, { Fragment, useContext } from 'react';
+import { AppContext, EditContext } from '../_app';
 import pageInfoDefault from "info/portfolio.json"
 import { TStieInfo } from 'types/interface';
-import { usePcategory } from 'hook/usePcatList';
-import { Upload } from 'components/common/Upload';
-import { BG } from 'types/const';
+import { getStaticPageInfo } from '../../utils/page';
+import { Upload } from '../../components/common/Upload';
+import { Img } from '../../components/Img/img';
+import { IUsePageEdit } from '../../hook/usePageEdit';
 
-interface IProp {
-    context: IPortfolioWrapContext
-}
+export const PortFolio: React.FC = () => {
+    const { isManager, categoriesMap } = useContext(AppContext);
+    const { edit, imgEdit, bg } = useContext<IUsePageEdit<typeof pageInfoDefault>>(EditContext);
+    const { items: portfolioes, getLoading, setPage, pageInfo, setFilter, filter } = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8, initialFilter: { isOpen_eq: isManager ? undefined : true } })
 
-export const PortFolio: React.FC<IProp> = ({ context }) => {
-    const { editMode, isAdmin, isManager } = useContext(AppContext);
-    const { items: portfolios = [], sitePageInfo, pcategories, setPage: setPFpage, pageInfo, setFilter, filter, getLoading } = context;
-    const original = sitePageInfo || pageInfoDefault;
-    const [page, setPage] = useState(original);
-    const { edit, imgEdit } = getEditUtils(editMode, page, setPage)
 
-    const handlePrev = () =>
-        setPFpage(pageInfo.page - 1)
-
+    const categories = categoriesMap?.PORTPOLIO || [];
+    const handlePrev = () => {
+        setPage(pageInfo.page - 1)
+    }
     const handleNext = () => {
-        setPFpage(pageInfo.page + 1)
+        setPage(pageInfo.page + 1)
     }
 
     const handleCatChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const pCategoryId_eq = event.currentTarget.value;
-        setPFpage(1);
+        const categoryId_eq = event.currentTarget.value;
+        setPage(1);
         setFilter({
             ...filter,
-            pCategoryId_eq,
+            categoryId_eq,
         });
     }
 
-    console.log("portfolios.length");
-    console.log(portfolios.length);
 
     const handleAllCat = () => {
-        setPFpage(1);
+        setPage(1);
         setFilter({
             ...filter,
-            pCategoryId_eq: undefined
+            categoryId_eq: undefined
         });
     }
-    const viewCat = filter.pCategoryId_eq || "";
+    const viewCat = filter.categoryId_eq || "";
 
     return <div className="portfolio_in">
-        <div className="top_bg w100" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} />
+        <div className="top_bg w100" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} />
             <div className="w1200">
                 <h3 {...edit("mainTitle")} />
                 <span {...edit("subTitle")} />
@@ -68,22 +60,23 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                 </h4> */}
                 <ul>
                     <li className="img01">
-                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <div className="img" style={bg("con2_img1_icon")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        {/* <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div> */}
                         <h5 {...edit("con2_img1_title")} />
                         <span {...edit("con2_img1_title_kr")} />
                     </li>
                     <li className="img02">
-                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
                         <h5 {...edit("con2_img2_title")} />
                         <span {...edit("con2_img2_title_kr")} />
                     </li>
                     <li className="img03">
-                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
                         <h5 {...edit("con2_img3_title")} />
                         <span {...edit("con2_img3_title_kr")} />
                     </li>
                     <li className="img04">
-                        <div className="img" style={BG("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
                         <h5 {...edit("con2_img4_title")}></h5>
                         <span {...edit("con2_img4_title_kr")} />
                     </li>
@@ -100,10 +93,10 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                 <input value="" onChange={handleAllCat} id="tab-00" type="radio" name="radio-set" className="tab-selector-1" checked={viewCat === ""}></input>
                 <label htmlFor="tab-00" className="tab-label-1 photo_tap">ALL</label>
 
-                {pcategories.map((pc, i) =>
-                    <Fragment key={pc._id}>
-                        <input value={pc._id} onChange={handleCatChange} id={`tab-${i}`} type="radio" name="radio-set" className="tab-selector-1" checked={pc._id === viewCat}></input>
-                        <label htmlFor={`tab-${i}`} className="tab-label-1 photo_tap">{pc.label}</label>
+                {categories.map((c, i) =>
+                    <Fragment key={c._id}>
+                        <input value={c._id} onChange={handleCatChange} id={`tab-${i}`} type="radio" name="radio-set" className="tab-selector-1" checked={c._id === viewCat}></input>
+                        <label htmlFor={`tab-${i}`} className="tab-label-1 photo_tap">{c.label}</label>
                     </Fragment>
                 )}
                 <div className="tap_nav_bg"></div>
@@ -122,11 +115,11 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
                         </ul>
                     ) :
                         <ul>
-                            {portfolios.map((portfolio) =>
+                            {portfolioes.map((portfolio) =>
                                 <Link key={portfolio._id} href={`/portfolio/view/${portfolio._id}`}>
                                     <li style={{ backgroundImage: `url(${portfolio.thumb?.uri})` }}>
                                         <div className="box">
-                                            {portfolio?.pCategory && <i className="category">{portfolio.pCategory.label}</i>}
+                                            {portfolio?.category && <i className="category">{portfolio.category.label}</i>}
                                             {portfolio?.isOpen || <i className="category">비공개</i>}
                                             <strong className="title">{portfolio.title}</strong>
                                             <span className="txt">{portfolio.summary}</span>
@@ -174,38 +167,10 @@ export const PortFolio: React.FC<IProp> = ({ context }) => {
     ;
 };
 
-interface IPortfolioWrapContext extends IusePortfolioList {
-    sitePageInfo: TStieInfo | "",
-    pcategories: pcategoryList_pCategoryList_data[]
-}
-
 type TGetProps = {
     pageInfo: TStieInfo,
 }
-
-export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
-    const { data } = await usePageInfo("portfolio");
-    return {
-        revalidate: 1,
-        props: {
-            pageInfo: data?.value || "",
-        }, // will be passed to the page component as props
-    }
-}
-
-const PortFolioWrap: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
-    const { isManager } = useContext(AppContext);
-    const { pcategories } = usePcategory()
-    const portfolioList = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8, initialFilter: { isOpen_eq: isManager ? undefined : true } })
-
-    const context: IPortfolioWrapContext = {
-        ...portfolioList,
-        sitePageInfo: pageInfo,
-        pcategories
-    }
+export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("portfolio", pageInfoDefault)
 
 
-    return <PortFolio context={context} />
-}
-
-export default PortFolioWrap;
+export default PortFolio

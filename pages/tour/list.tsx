@@ -13,7 +13,7 @@ interface IProp { }
 export const TourList: React.FC<IProp> = () => {
     const isExp = checkIsExp()
     const { initialFilter } = getTypeFilterByUrl(isExp);
-    const { items: cats } = useCategoryList();
+    const { data: cats } = useCategoryList();
     const [view, setView] = useState<"line" | "gal">("line");
     const {
         items,

@@ -1,6 +1,7 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import React from 'react';
 import Link from "next/link";
+import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
 
 interface IProp { }
 
@@ -9,16 +10,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
         <div className="in ">
             <h4>홈페이지 설정</h4>
             <div className="in_content">
-                <div className="tab-nav">
-                    <ul>
-                        <li><Link href="/master/homepage"><a>기본설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-2"><a>SMS설정</a></Link></li>
-                        <li className="on"><Link href="/master/homepage/homepage1-3"><a>카카오비즈톡</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-4"><a>약관설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-5"><a>게시판설정</a></Link></li>
-                        <li><Link href="/master/homepage/homepage1-6"><a>정산설정</a></Link></li>
-                    </ul>
-                </div>
+                <HomepageTopNav />
                 <div className="con homepage kakaobiztalk">
                     <div className="alignment">
                         <div className="left_div">
@@ -40,15 +32,9 @@ export const MsHomepageA: React.FC<IProp> = () => {
                     <div className="talk-list">
 
                     </div>
-
-
                 </div>
-
             </div>
-
-
         </div>
-
     </MasterLayout >
 };
 

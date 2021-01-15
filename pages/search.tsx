@@ -17,6 +17,32 @@ import { ProductType } from '../types/api';
 import { whenEnter } from '../utils/eventValueExtracter';
 import { getFromUrl } from '../utils/url';
 
+
+type TSearchParam = {
+    keyward?: string;
+    title?: string;
+}
+export const generateSearchLink = (param: TSearchParam) => {
+    let link = `/search`
+
+    const attach = (key: string, value: string) => {
+        if (!link.includes("?")) {
+            link = link + "?" + key + "=" + value
+        }
+        if (!link.endsWith("&")) {
+            link = link + "&" + key + "=" + value
+        }
+    }
+
+    for (let key in param) {
+        // @ts-ignore
+        const val = param[key];
+        attach(key, val);
+    }
+
+    return link;
+}
+
 interface IProp { }
 
 export const Search: React.FC<IProp> = () => {
@@ -188,7 +214,7 @@ export const Search: React.FC<IProp> = () => {
         </div>
         <DayPickerModal defaultRange={filterToRange(filter, "startDate")} onSubmit={(range) => {
             closeModal("#dayPickerModal")()
-            const data = rangeToFilter(range)
+            const data = rangeToFilter(range, "startDate")
             setFilter({
                 ...filter,
                 ...data,
@@ -197,3 +223,5 @@ export const Search: React.FC<IProp> = () => {
     </div>
 }
 
+
+export default Search;

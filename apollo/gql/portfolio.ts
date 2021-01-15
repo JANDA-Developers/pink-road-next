@@ -1,5 +1,33 @@
 import { gql } from "@apollo/client"
-import { F_PAGE, F_PORTFOLIO } from "./fragments"
+import { F_FILE, F_PAGE, F_USER } from "./fragments"
+
+
+export const F_PORTFOLIO = gql`
+    fragment Fportfolio on Portfolio {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        title
+        isOpen
+        keyWards
+        summary
+        subTitle
+        contents
+        author {
+            ...Fuser
+        }
+        thumb {
+            ...Ffile
+        }
+        category {
+            _id
+            label
+        }
+    }
+    ${F_FILE}
+    ${F_USER}
+`
 
 export const PORTFOLIO_FIND_BY_ID = gql`
 query portfolioFindById(
@@ -12,7 +40,6 @@ query portfolioFindById(
   error 
   data {
     ...Fportfolio
-
   }
 }
 }
@@ -36,7 +63,7 @@ filter: $filter
   }
   data  {
     ...Fportfolio
-    pCategory {
+    category {
       _id
       label
     }

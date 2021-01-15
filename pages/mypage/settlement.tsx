@@ -3,15 +3,20 @@ import { Paginater } from 'components/common/Paginator';
 import { PurChasedItem } from 'components/mypage/PurchasedItem';
 import dayjs from 'dayjs';
 import { MypageLayout } from 'layout/MypageLayout';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import SortSelect from '../../components/common/SortMethod';
 import { ViewCount } from '../../components/common/ViewCount';
+import { SearchBar } from '../../components/searchBar/SearchBar';
 import { LastMonthBooking } from '../../components/static/LastMonthBooking';
 import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
 import { ThisMonthPayAmt } from '../../components/static/ThisMonthPayAmt';
-import { IuseBookingList, useBookingList } from '../../hook/useBooking';
-import { ALLOW_SELLERS } from '../../types/const';
-import { autoHypenPhone } from '../../utils/formatter';
+import { useCustomCount } from '../../hook/useCount';
+import { useDateFilter } from '../../hook/useSearch';
+import { useSettlementList } from '../../hook/useSettlement';
+import { Fsettlement } from '../../types/api';
+import { ALLOW_ALLOW_SELLERS } from '../../types/const';
+import { productStatus } from '../../utils/enumToKr';
+import { autoComma, autoHypenPhone } from '../../utils/formatter';
 import { auth, compose } from '../../utils/with';
 
 interface IProp { }
@@ -40,6 +45,27 @@ const popupClose2 = () => {
 }
 
 export const MySettlement: React.FC<IProp> = () => {
+    const { items, filter, setFilter } = useSettlementList()
+    const [target] = useState<Fsettlement | null>(null);
+    const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({
+        filter,
+        setFilter
+    });
+
+    const { salesofLastMonth, salesOfThisMonth, settleAvaiableAmount, cancelReturnPrice } = useCustomCount(["salesofLastMonth", "salesofLastMonth", "settleAvaiableAmount", "cancelReturnPrice"])
+
+    const doSearch = (search: string) => {
+        const _filter = {
+            ...filter
+        }
+
+        // _filter["title_contains"] = search ? search : undefined;
+        setFilter({
+            ..._filter,
+        })
+    }
+
+
     return <MypageLayout>
         <div className="in mypage_purchase">
             <h4>매출/정산관리</h4>
@@ -51,34 +77,42 @@ export const MySettlement: React.FC<IProp> = () => {
                     <ul>
                         <li>
                             <strong>저번달 예약</strong>
-                            <div><strong><LastMonthBooking /></strong>건</div>
+                            <div><strong>{salesofLastMonth}</strong>건</div>
                         </li>
                         <li>
                             <strong>이번달 예약</strong>
-                            <div><strong><ThisMonthBooking /></strong>건</div>
+                            <div><strong>{salesOfThisMonth}</strong>건</div>
                         </li>
                         <li>
-                            <strong>이번달 정산 예정금</strong>
-                            <div><strong><ThisMonthPayAmt /></strong>원</div>
+                            <strong>정산 가능 금액 (받을 수 있는 금액) </strong>
+                            {/* 계산법: 상태가 Ready인 Settlement들의 정산금액 */}
+                            <div><strong>{autoComma(settleAvaiableAmount)}</strong>원</div>
                         </li>
                         <li>
-                            <strong>이번달 취소 환수금</strong>
-                            <div><strong>55,555</strong>원</div>
+                            <strong>취소 환수금</strong>
+                            {/* 계산법: Settlement의 취소 환수금들의 합산  */}
+                            <div><strong>{autoComma(cancelReturnPrice)}</strong>원</div>
                             <strong>예약취소 환수금</strong>
                         </li>
                     </ul>
                 </div>
                 <div className="con_top">
                     <h6>상세검색</h6>
-                    <div className="search_box">
-                        <div className="jul2">
-                            <div className="title">상태</div>
-                            <div className="text">
-                                <span className="check on">전체</span>
-                                <span className="check">예약완료</span>
-                                <span className="check">예약취소</span>
+                    <SearchBar
+                        filterStart={filterStart}
+                        filterEnd={filterEnd}
+                        doSearch={ }
+                        Status={
+                            <div className="jul2">
+                                <div className="title">상태</div>
+                                <div className="text">
+                                    <span className="check on">전체</span>
+                                    <span className="check">예약완료</span>
+                                    <span className="check">예약취소</span>
+                                </div>
                             </div>
-                        </div>
+                        } onDateChange={() => { }} defaultRange={{}} />
+                    <div className="search_box">
                         <div className="jul4">
                             <div className="title">날짜</div>
                             <div className="text">
@@ -149,8 +183,8 @@ export const MySettlement: React.FC<IProp> = () => {
                                 </div>
                                 <div className="th02">상품코드</div>
                                 <div className="th03">상품명</div>
-                                <div className="th04">예약자</div>
-                                <div className="th05">예약날짜</div>
+                                <div className="th04">상품상태</div>
+                                <div className="th05">정산날짜</div>
                                 <div className="th06">금액</div>
                                 <div className="th07">상태</div>
                                 <div className="th08">상세보기</div>
@@ -160,13 +194,13 @@ export const MySettlement: React.FC<IProp> = () => {
                                     {items.map(item =>
                                         <li>
                                             <div className="th01"><input type="checkbox" /></div>
-                                            <div className="th02">{item.code}</div>
+                                            <div className="th02">{item.product.code}</div>
                                             <div className="th03">{item.product.title}</div>
-                                            <div className="th04">{item.name}<br />{autoHypenPhone(item.phoneNumber)}</div>
-                                            <div className="th05">{dayjs(item.createdAt).format("YYYY.MM.DD")}</div>
+                                            <div className="th04">{productStatus(item.product.stauts)}</div>
+                                            <div className="th05">{dayjs(item.requestDate).format("YYYY.MM.DD")}</div>
                                             <div className="th06">{item}</div>
-                                            <div className="th07"><strong className="ok">예약완료</strong></div>
-                                            <div className="th08"><i className="btn">상세보기</i></div>
+                                            <div className="th07"><strong className="ok">{settlementStatus(item.status)}</strong></div>
+                                            <div onClick={} className="th08"><i className="btn">상세보기</i></div>
                                         </li>
                                     )}
                                 </ul>
@@ -195,155 +229,7 @@ export const MySettlement: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-        {/* popup - 정산 계산하기 */}
-        <div id="Popup01" className="popup_bg_full">
-            <div className="in_txt statement_popup">
-                <a className="close_icon" onClick={popupClose}>
-                    <i className="flaticon-multiply"></i>
-                </a>
-                <div className="page">
-                    <h3>정산계산</h3>
-                    <div className="alignment">
-                        <div className="left_div"><span className="infotxt"><i>2020.10.1 ~ 2020.10.30 예약</i>이 총 <strong>5</strong>건</span></div>
-                    </div>
-                    <div className="fuction_list_mini">
-                        <div className="thead">
-                            <div className="th02">상품코드</div>
-                            <div className="th03">상품명</div>
-                            <div className="th04">예약자</div>
-                            <div className="th05">예약날짜</div>
-                            <div className="th06">예약금</div>
-                            <div className="th07">상태</div>
-                        </div>
-                        <div className="tbody">
-                            <ul>
-                                <li>
-                                    <div className="th02">PINK-01230</div>
-                                    <div className="th03">제주도로 떠나요~ </div>
-                                    <div className="th04">홍나리</div>
-                                    <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000원</div>
-                                    <div className="th07"><strong className="ok">예약완료</strong></div>
-                                </li>
-                                <li>
-                                    <div className="th02">PINK-01230</div>
-                                    <div className="th03">제주도로 떠나요~ </div>
-                                    <div className="th04">홍나리</div>
-                                    <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000원</div>
-                                    <div className="th07"><strong className="ok">예약완료</strong></div>
-                                </li>
-                                <li>
-                                    <div className="th02">PINK-01230</div>
-                                    <div className="th03">제주도로 떠나요~ </div>
-                                    <div className="th04">홍나리</div>
-                                    <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000원</div>
-                                    <div className="th07"><strong className="ok">예약완료</strong></div>
-                                </li>
-                                <li>
-                                    <div className="th02">PINK-01230</div>
-                                    <div className="th03">제주도로 떠나요~ </div>
-                                    <div className="th04">홍나리</div>
-                                    <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000원</div>
-                                    <div className="th07"><strong className="ok">예약완료</strong></div>
-                                </li>
-                                <li>
-                                    <div className="th02">PINK-01230</div>
-                                    <div className="th03">제주도로 떠나요~ </div>
-                                    <div className="th04">홍나리</div>
-                                    <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000원</div>
-                                    <div className="th07"><strong className="ok">예약완료</strong></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="alignment ">
-                        <div className="left_div"><span className="infotxt"><i>예약취소 환수금</i>이 총 <strong>2</strong>건</span></div>
-                    </div>
-                    <div className="fuction_list_mini">
-                        <div className="thead">
-                            <div className="th02">상품코드</div>
-                            <div className="th03">상품명</div>
-                            <div className="th04">예약자</div>
-                            <div className="th05">예약날짜</div>
-                            <div className="th06">예약금</div>
-                            <div className="th07">상태</div>
-                        </div>
-                        <div className="tbody">
-                            <ul>
-                                <li>
-                                    <div className="th02">PINK-01230</div>
-                                    <div className="th03">제주도로 떠나요~ </div>
-                                    <div className="th04">홍나리</div>
-                                    <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000원</div>
-                                    <div className="th07"><strong className="no">예약취소</strong></div>
-                                </li>
-                                <li>
-                                    <div className="th02">PINK-01230</div>
-                                    <div className="th03">제주도로 떠나요~ </div>
-                                    <div className="th04">홍나리</div>
-                                    <div className="th05">2020.02.02</div>
-                                    <div className="th06">50,000원</div>
-                                    <div className="th07"><strong className="no">예약취소</strong></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="sum_div mt50">
-                        <ul className="first_ul">
-                            <li>
-                                <div className="title"><strong>실 판매금액</strong> : </div>
-                                <div className="body">
-                                    <div>20,000,349원</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="title"><strong>수수료공제(5%)</strong> : </div>
-                                <div className="body">
-
-                                    <div>(-) 1,000,017원</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="title"><strong>세금공제(3.3%)</strong> : </div>
-                                <div className="body">
-
-                                    <div>(-) 660,011원</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="title"><strong>기타 공제금</strong> : </div>
-                                <div className="body">
-                                    <div>(-) 0원</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="title"><strong>예약취소 환급금</strong> : </div>
-                                <div className="body">
-                                    <div>(-) 20원</div>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul className="last_ul">
-                            <li>
-                                <div><i>=</i>총 정산 예상금 : <strong>18,340,321</strong>원</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="in_fin mt30">
-                        <div className="float_left">
-                        </div>
-                        <div className="float_right">
-                            <button type="submit" className="btn strong">정산 신청하기</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
 
         {/* popup-상세보기 */}
@@ -589,4 +475,4 @@ export const MySettlement: React.FC<IProp> = () => {
 
 
 
-export default auth(ALLOW_SELLERS)(MySettlement)
+export default auth(ALLOW_ALLOW_SELLERS)(MySettlement)

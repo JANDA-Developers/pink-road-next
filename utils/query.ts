@@ -4,32 +4,40 @@ import { ListInitOptions, useListQuery } from "../hook/useListQuery";
 import { useEffect } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
-
+import { Fpage } from "../types/api";
+interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
+    queryName?: string;
+    skipInit?: boolean;
+};
 
 const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["data","page"]) => {
+    try {
     if(data?.hasOwnProperty(operationName) === false) {
-        console.log(data)
         throw Error(`result data object dose not have property ${operationName} look this above object ↑ `)
     }
 
     checkProperty.forEach(p => {
         if(data?.[operationName].hasOwnProperty(p) === false) {
-            console.log(data[operationName])
+            console.error(p);
             throw Error(`result data object dose not have property ${p} look this above object ↑ `)
         }
     })
+    } catch (e){
+    console.error("==========FATAL ERROR==========");
+    console.error(e);
+    }
 }
 
 export const generateListQueryHook = <F,S,Q,V,R>(
     QUERY: DocumentNode,
     queryInit: Partial<ListInitOptions<F, S>> = {},
-    defaultOptions?: QueryHookOptions<Q,V>
+    defaultOptions?: genrateOption<Q,V>
 ) => {
     const listQueryHook = (
         {
             initialPageIndex = 1,
             initialSort = [],
-            initialFilter,
+            initialFilter = {} as F,
             initialViewCount = 20,
         }: Partial<ListInitOptions<F, S>> = {...queryInit},
         options: QueryHookOptions<Q, V> = {...defaultOptions}
@@ -43,7 +51,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
         })
         
         const [getData, { data, loading: getLoading,...queryElse }] = useLazyQuery<Q,V>(QUERY,{
-            fetchPolicy: "network-only",
+            fetchPolicy: "cache-first",
             // @ts-ignore
             variables: {
                 ...integratedVariable,
@@ -52,12 +60,13 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             ...ops
         })
 
-        const operationName = getQueryName(QUERY);
+        const operationName = defaultOptions?.queryName || getQueryName(QUERY);
+
         dataCheck(data,operationName)
         // @ts-ignore
         const items: R[] = data?.[operationName]?.data || []
-        // @ts-ignore
-        const pageInfo: Fpage = data?.[operationName]?.page || DEFAULT_PAGE
+        const pageInfo: Fpage = (data as any)?.[operationName]?.page || DEFAULT_PAGE
+
 
         useEffect(()=>{
             getData()
@@ -74,6 +83,36 @@ export const generateListQueryHook = <F,S,Q,V,R>(
     return listQueryHook
 }
 
+export const generateQueryHook = <Q, R, V = undefined>(
+    QUERY:DocumentNode,
+    {skipInit,...initOptions}: genrateOption<Q,V> | undefined = {}
+) => {
+
+    const queryHook  = (defaultOptions?: QueryHookOptions<Q,V>) => {
+        const [getData, { data:_data, loading:getLoading,...context }] = useLazyQuery<Q,V>(QUERY, {
+            nextFetchPolicy: "cache-first",
+            ...initOptions,
+            ...defaultOptions,
+        })
+        
+        const operationName = initOptions?.queryName || getQueryName(QUERY);
+        dataCheck(_data,operationName,["data"])
+
+        type Result = R extends Array<any> ? R : R | undefined 
+        // @ts-ignore
+        const data: Result = _data?.[operationName]?.data || undefined;
+
+        useEffect(()=>{
+            if(!skipInit)
+                getData();
+        },[])
+        
+        return {  getData, getLoading, data,...context }
+    }
+    return queryHook
+}
+
+
 // refetchQueries: [getOperationName(BOOKING_LIST) || ""],
 
 export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?: MutationHookOptions<M,V>) => {
@@ -86,7 +125,6 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
     }
     return mutationHook
 }
-
 
 
 export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V | null, QUERY:DocumentNode) => {
@@ -125,6 +163,7 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V | null, QU
 
 export const getQueryName = (QUERY:DocumentNode) => {
     const operation = QUERY.definitions[0];
+
     // @ts-ignore
     const operationName = operation && operation.name.value;
 

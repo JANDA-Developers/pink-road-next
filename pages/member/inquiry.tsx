@@ -127,12 +127,7 @@ export const QnaTable: React.FC<IProp> = () => {
                             </svg>
                         </div>
                     </div>
-
                 </div>
-
-
-
-
             </div>
         </div>
     </div >;

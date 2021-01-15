@@ -4,42 +4,22 @@ import { gql } from "@apollo/client";
 
 export const F_PAYMENT = gql`
     fragment Fpayment  on Payment  {
-        ResultCode
-        ResultMsg
-        Amt
-        MID
-        Moid
-        BuyerEmail
-        BuyerTel
-        BuyerName
-        GoodsName
-        TID
-        AuthCode
-        AuthDate
-        PayMethod
-        CartData
-        Signature
-        MallReserved
-        CardCode
-        CardName
-        CardNo
-        CardQuota
-        CardInterest
-        AcquCardCode
-        AcquCardName
-        CardCl
-        CcPartCl
-        CouponAmt
-        CouponMinAmt
-        PointAppAmt
-        ClickpayCl
-        MultiCl
-        MultiCardAcquAmt
-        MultiPointAmt
-        MultiCouponAmt
-        RcptType
-        RcptTID
-        RcptAuthCode
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        payMethod
+        status
+        price
+        totalCancelPrice
+        groupCode
+        history {
+            status
+            price
+            metadata
+            createdAt
+            updatedAt
+        }
     }
 `
 
@@ -51,6 +31,7 @@ export const F_CATEGORY = gql`
         updatedAt
         isDelete
         label
+        type
     }
 `
 export const F_FILE = gql`
@@ -71,6 +52,7 @@ export const F_USER = gql`
         isDelete
         email
         manageName
+        connectionCount
         role
         brith_date
         address
@@ -115,6 +97,7 @@ export const F_BOOKING = gql`
         babyCount
         totalCount
         message
+        bookingPrice
         status
         memo
         code
@@ -125,44 +108,13 @@ export const F_BOOKING = gql`
             code
         }
         payment {
-            Amt
-            PayMethod
-            CardNo
-            AuthDate
+            payMethod
         }
         name
         email
         phoneNumber
         isPaid
     }
-`
-
-
-export const F_PORTFOLIO = gql`
-    fragment Fportfolio on Portfolio {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        title
-        isOpen
-        keyWards
-        summary
-        subTitle
-        contents
-        author {
-            ...Fuser
-        }
-        thumb {
-            ...Ffile
-        }
-        pCategory {
-            _id
-            label
-        }
-    }
-    ${F_FILE}
-    ${F_USER}
 `
 
 export const F_PAGE_INFO = gql`
@@ -219,6 +171,17 @@ export const F_PRODUCT = gql`
         title
         code
         contents
+        dateRange
+        adminMemo
+        bookerSummary {
+            adultCount
+            babyCount
+            kidsCount
+            completePeople
+            readyPoeple
+            cancelCompletePeople
+            cancelPeople
+        }
         author {
             ...Fuser
         }
@@ -245,7 +208,7 @@ export const F_PRODUCT = gql`
         adult_price
         bookingCount
         kids_price
-
+        compeltePeopleCnt
         baby_price
         isNotice
         isOpen

@@ -869,7 +869,8 @@ div.popup_bg_full .fin{
         line-height: 40px;
         font-weight: 600;
         position: fixed;
-        top: 10px;
+        /* top: 10px; */
+        margin-top: -60px;
     }    
     div.popup_bg_full h3 strong {
         color: #2196F3;
@@ -2760,7 +2761,7 @@ ul.rank_ul {
             position: absolute;
             background-size: 100%;
             opacity: 0.5 !important;
-            z-index: 1;
+            z-index: 0;
             content: "";
             width: 100%;
             height: 100%;
@@ -5197,7 +5198,7 @@ div.bn_box {
             padding: 30px 0;
         }
 
-    .join_wrap2 .btn {
+    .join_wrap2 .joinWrapBtn {
         width: 50%;
         padding: 13px 12px !important;
         text-align: center;
@@ -8751,7 +8752,7 @@ i.calendar {
         font-weight: 600;
     }
         div.popup_bg_full h3 {
-            top: 35px;
+            /* top: 35px; */
         }
      
     div.popup_bg_full .close_icon {
@@ -9649,7 +9650,7 @@ i.calendar {
     .siteInfo_in .con02 li strong {
         font-size: 1.3em;
     }
-div.alignment .right_div {
+    div.alignment .right_div {
         width:50%;
     }
     .selectViewList ul.list_ul .list_in .txt1 {
@@ -9679,9 +9680,9 @@ div.alignment .right_div {
         width: 70%;
     }
 
-        .login_box .login_page .login_tap.tab-label-1 {
-            margin-left: 35px;
-        }
+    .login_box .login_page .login_tap.tab-label-1 {
+        margin-left: 75px;
+    }
 
     .siteInfo_in .con03 {
         padding: 320px 25% 0;

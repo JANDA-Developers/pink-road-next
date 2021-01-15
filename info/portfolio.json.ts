@@ -1,6 +1,5 @@
-import { TStieInfo } from "types/interface";
 
-const info: TStieInfo = {
+const info = {
     mainBg: {
         kr: `/img/portfolio_top_bg.jpg`,
     },

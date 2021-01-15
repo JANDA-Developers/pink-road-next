@@ -1,4 +1,5 @@
 *[contenteditable="true"]{
+    line-height: normal!important;
     display: inline-block;
     outline: 1px dashed;
 }
@@ -74,6 +75,44 @@ td {
 
 
 /* 이미지교체 아이콘 */
+
+
+.imgEdit {
+    position: absolute;
+    left: 0;
+    top:0;
+    right:0;
+    bottom:0;
+    cursor: pointer;
+    background-color: rgba(0,0,0,.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+[data-edit="bg"] { 
+    position: relative;
+}
+[data-edit="img"] {
+    position: relative;
+}
+[data-edit="bg"] .imgEdit{
+    display: flex;
+}
+[data-edit="img"] .imgEdit {
+    display: flex;
+}
+
+[data-edit="img"] [contenteditable="true"] {
+    position: relative;
+    z-index: 10;
+}
+
+[data-edit="bg"] [contenteditable="true"] {
+    position: relative;
+    z-index: 10;
+}
 .img_edit {
     z-index: 9999;
     position:relative;
@@ -299,7 +338,6 @@ figure:after {
 #dayPickerModal {
     max-height: 100vh;
     width: auto;
-    height: auto;
 }
 
 .modal {
@@ -309,5 +347,22 @@ figure:after {
     max-width: 400px;
 }
 .ck-reset_all {
-    overflow: hidden;
+}
+
+
+#SMSmodal .sms__textarea-wrap {
+    width: 100%;
+    box-sizing: border-box;
+}
+#SMSmodal .sms__textarea {
+    outline: none;
+    resize: none;
+    width: 100%;
+    border: none;
+    height: 100px;
+}
+
+
+.editor_box {
+    display: none;
 }

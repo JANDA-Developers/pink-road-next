@@ -71,7 +71,6 @@ const NiceElments: React.FC<INiceElementProp> = ({
                 display: "none",
             }}
             onSubmit={(e) => {
-                console.log(e.currentTarget)
                 alert(e.currentTarget)
             }}
         >

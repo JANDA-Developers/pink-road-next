@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import {  F_PAGE, F_PRODUCT } from "./fragments";
+import {  F_BOOKING, F_PAGE, F_PAYMENT, F_PRODUCT, F_USER } from "./fragments";
 import { F_QUESTION } from "./question";
 
 export const PRODUCTS_CREATE = gql`
@@ -56,7 +56,7 @@ export const PRODUCT_POST_DELETE = gql`
 `;
 
 
-export const PRODUCT_POST_LIST = gql`
+export const PRODUCT_LIST = gql`
 query productList(
     $sort: [_ProductSort!]
     $filter: _ProductFilter
@@ -74,6 +74,10 @@ query productList(
     }
     data  {
       ...Fproduct
+      bookings {
+        _id
+        status
+      }
     }
   }
 }
@@ -99,6 +103,41 @@ export const PRODUCT_FIND_BY_ID = gql`
     }
   }
   ${F_QUESTION}
+  ${F_PRODUCT}
+`;
+
+
+
+export const PRODUCT_FIND_BY_ID_FOR_SELLER = gql`
+  query productFindByIdForSeller(
+      $_id:String!
+    ) {
+      ProductFindByIdForSeller(
+        _id: $_id
+      ) {
+      ok
+      error
+      data {
+        ...Fproduct
+        author {
+          ...Fuser
+        }
+        peopleCount
+        bookings {
+          booker {
+            ...Fuser
+          }
+          ...Fbooking
+          payment {
+           ...Fpayment 
+          }
+        }
+      }
+    }
+  }
+  ${F_USER}
+  ${F_PAYMENT}
+  ${F_BOOKING}
   ${F_PRODUCT}
 `;
 

@@ -4,7 +4,7 @@ import { BoardWrite } from "components/board/Write";
 import { useBoard } from "hook/useBoard";
 import { omits } from "../../../utils/omit";
 import { auth } from "../../../utils/with";
-import { ONLY_LOGINED } from "../../../types/const";
+import { ALLOW_LOGINED } from "../../../types/const";
 import { ProductSearcher } from "../../../components/productSearcher/ProductSearcher";
 import { Validater } from "../../../utils/validate";
 import { useQuestionCreate, useQuestionDelete, useQuestionFindById, useQuestionUpdate } from "../../../hook/useQuestion";
@@ -150,4 +150,5 @@ export const QuestionWrite: React.FC<IProp> = () => {
 
 
 
-export default auth(ONLY_LOGINED)(QuestionWrite)
+
+export default auth(ALLOW_LOGINED)(QuestionWrite)

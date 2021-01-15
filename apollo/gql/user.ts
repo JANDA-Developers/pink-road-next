@@ -36,6 +36,27 @@ export const RESIGN = gql`
   }
 `;
 
+export const SIGN_IN = gql`
+  query signIn(
+    $email: Email!
+    $pw: String!
+    $hopeRole: UserRole
+    ) {
+    SignIn(
+      email:$email,
+      pw:$pw
+      hopeRole: $hopeRole
+      )  {
+        ok
+        error
+        data {
+          token
+        }
+      }
+  }
+`;
+
+
 
 export const USER_UPDATE = gql`
     mutation userUpdate($params:UserUpdateInput!,$_id: String!, $pw: String) {
