@@ -3549,15 +3549,14 @@ margin-bottom:0;
             padding: 3% 8%;
         }
             #all_menu ul .a_menu_tit {
+                width: 25%;
                 border-top: 0;
                 border-bottom: 0;
                 padding: 0;
                 padding-right: 2%;
-                width: 23%;
                 margin-bottom: 20px;
                 min-width: 100px;
                 
-
             }
                 #all_menu ul .a_menu_tit > a {
                     position: relative;
@@ -4059,6 +4058,9 @@ margin-bottom:0;
 
     #all_menu ul .a_menu_tit .depth1 {
         padding: 0;
+    }
+    #all_menu ul .a_menu_tit .depth1 li {
+        margin-bottom:10px;
     }
         #all_menu ul .a_menu_tit .depth1 li:first-child {
             margin-top:15px;

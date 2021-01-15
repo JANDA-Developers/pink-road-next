@@ -254,6 +254,7 @@
             border: 0;
             background-image: none;
             position: relative;
+            padding: 0;
         }
 
             .main_con_box2 li.plus a {
@@ -4054,10 +4055,12 @@ ul.rank_ul {
         position: relative;
         display: block;
         width: 100%;
-        background-color: #000;
         padding: 161px 0 206px;
         box-sizing: border-box;
-        background-size: 100%;
+        background-color: #000;
+        background-size: 150%;
+        background-position: center;
+        background-repeat: no-repeat;
     }
     .guide_box .guide_top_bn:before {
         top: 0;
@@ -9768,6 +9771,14 @@ i.calendar {
             top: 16px;
             width: 79px;
         }
+        .main_con_box2 li {
+            width: 110px;
+            height: 110px;
+        }
+        .main_con_box2 li.plus {
+            font-size: 55px;
+            line-height: 110px;
+        }
     .login_wrap .sign_in_form span {
         position: relative;
         font-size: 14px;
@@ -10174,7 +10185,7 @@ i.calendar {
         height: 130px;
     }
     .main_con_box2 li.plus {
-        line-height: 97px;
+        line-height: 120px;
     }
     .main_con_box2 .top_txt {
         width: 250px;
@@ -10484,6 +10495,9 @@ i.calendar {
     .main_con_box7 .box03 .right h3{
         font-size: 1.8em;
     }
+    .guide_box .guide_top_bn{
+        background-size: 110%;
+    }
 }
 
 @media (min-width: 1500px) {
@@ -10550,6 +10564,7 @@ i.calendar {
  
     .guide_box .guide_top_bn{
         padding: 100px 3% 180px;
+        background-size: 230%;
     }
     .guide_box .guide_top_bn .txt {
         position: relative;
@@ -10601,6 +10616,7 @@ i.calendar {
     .deal_list .alignment .right_div{
        text-align: right;
     }
+   
 }
 @media (max-width: 767px) {
     .guide_box .guide_content .con01 li {
@@ -10644,22 +10660,24 @@ i.calendar {
     .main_con_box2 ul {
         position: relative;
         width: 100%;
-        padding: 15px 0 ;
+        padding: 15px 0 60px;
         text-align: center;
     }
     .main_con_box2 li {
-        width: 70px;
-        height: 70px;
+        width: 50px;
+        height: 50px;
     }
     .main_con_box2 li.plus {
-        width: 100%;
+        width: auto;
         height: auto;
         line-height: 50px;
+        box-sizing: border-box;
+        padding: 0 0 0 16px;
     }
     .main_con_box2 .top_txt {
         width: 100%;
         text-align: center;
-        padding: 22px 0;
+        padding: 22px 0 0px;
     }
     .main_con_box3:before {
         width: 600px;
@@ -10719,14 +10737,13 @@ i.calendar {
         transform: rotate(-45deg);
     }
     .main_con_box4 .alignment .left_div{
-    text-align: center;
-    font-size: 1em;
-    line-height: 380%;
+        text-align: center;
+        font-size: 1em;
+        line-height: 380%;
     }
     .main_con_box4 .alignment .right_div{
-    display: none;
+        display: none;
     }
-
     .main_con_box5 {
         padding: 80px 3% 30px;
     }
@@ -10737,8 +10754,9 @@ i.calendar {
         text-align: center;
         display: block;
     }
-  
-   
+    .main_con_box5 .man_box li {
+        width: 150px;
+    }
     .main_con_box5 div.goods_list .line4 li{
         width:48.6%;
     }
@@ -10751,6 +10769,10 @@ i.calendar {
     }
     .main_con_box6 h2{
         text-align: center;
+    }
+    .main_con_box5 .man_box .photo {
+        width: 90px;
+        height: 90px;
     }
     div.theme_deal .top_01 {
         position: relative;
