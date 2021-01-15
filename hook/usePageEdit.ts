@@ -5,7 +5,6 @@ import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from "../apollo/gql/mutations";
 import { pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables } from "../types/api";
 import { ISet } from "../types/interface";
 import { cloneObject } from "../utils/clone";
-import isEmpty from "../utils/isEmpty";
 import {  mergeDeepOnlyExsistProperty } from "../utils/merge";
 import { getEditUtils, IGetEditUtilsResult } from "../utils/pageEdit";
 export interface IUsePageEdit<Page> extends IGetEditUtilsResult<Page> {
@@ -14,6 +13,7 @@ export interface IUsePageEdit<Page> extends IGetEditUtilsResult<Page> {
     submitEdit: (key: string, value: any) => void
     editMode: boolean;
     setEditMode: ISet<boolean>;
+    originPage:any
 }
 
 export const usePageEdit = <Page>(originPage:any, defaultPage:Page, ln = "kr") => {
@@ -65,7 +65,7 @@ export const usePageEdit = <Page>(originPage:any, defaultPage:Page, ln = "kr") =
     }
 
 
-    return {...editUtils,page,editMode,setPage, setLang, submitEdit, setEditMode}
+    return {...editUtils,page,editMode,setPage, setLang, submitEdit, setEditMode,originPage}
 }
 
 export interface IEditPage<T> extends IUsePageEdit<T> { }

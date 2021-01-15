@@ -6,16 +6,11 @@ import { getContext_GetProfile_data as IProfile, categoryList_CategoryList_data,
 import PinkClient from "apollo/client"
 import "dayjs/locale/ko"
 import dayjs from 'dayjs';
-import { ALLOW_ADMINS, DEFAULT_PAGEINFO, ALLOW_FULLESS, ALLOW_SELLERS } from '../types/const';
-import Toast from '../components/toast/Toast';
+import { ALLOW_ADMINS, ALLOW_FULLESS, ALLOW_SELLERS } from '../types/const';
 import { GET_CONTEXT } from '../apollo/gql/queries';
 import { bracketVergionChange } from '../utils/Storage';
-import Page404 from './404';
 import PageDeny from './Deny';
-import { IUsePageEdit, usePageEdit } from '../hook/usePageEdit';
-import { HiddenSubmitBtn } from '../components/common/HiddenSubmitBtn';
 import { categoryMap } from '../utils/categoryMap';
-import isEmpty from '../utils/isEmpty';
 import { useRouter } from 'next/router';
 
 
@@ -47,7 +42,7 @@ const defaultContext: TContext = {
   isLogin: false,
   isParterB: false,
   isParterNonB: false,
-  categoriesMap: undefined
+  categoriesMap: undefined,
 }
 
 export const AppContext = React.createContext<TContext>(defaultContext);
@@ -114,13 +109,10 @@ function App({ Component, pageProps }: any) {
           isLogin: !!myProfile,
           isParterNonB,
           homepage,
-          editMode,
-          setEditMode
         }}>
           <ComponentLayout>
             <Component {...pageProps} />
           </ComponentLayout>
-          <HiddenSubmitBtn path={pageProps?.pageKey} />
         </AppContext.Provider>
       </ApolloProvider>
     </div>

@@ -58,8 +58,15 @@ export const getStaticPageInfo = (key: TPageKeys,defaultPageInfo:any) => async (
             homepage,
             fallback: true
         }, // will be passed to the page component as props
-
     }
+}
+
+export TPageProps = {
+        defaultPageInfo,
+        pageKey: key,
+        pageInfo: isEmpty(data?.value) ? defaultPageInfo : data?.value,
+        homepage,
+        fallback: true
 }
 
 

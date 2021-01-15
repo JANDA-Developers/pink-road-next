@@ -14,7 +14,7 @@ type TGetProps = {
 
 export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("site-info", defaultPageInfo);
 export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
-    const { edit, src, arrayImgKit, imgEdit, ulEdit, bg, removeArray, editMode, editArray, addArray, page, imgKit } = usePageEdit(pageInfo, defaultPageInfo)
+    const { edit, arrayImgKit, imgEdit, ulEdit, bg, removeArray, editMode, addArray, page, imgKit } = usePageEdit(pageInfo, defaultPageInfo)
 
     const [open, setOpen] = useState(true);
     const [addInfo, setAddInfo] = useState({
