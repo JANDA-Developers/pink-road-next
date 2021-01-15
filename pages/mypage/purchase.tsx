@@ -62,6 +62,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                                     <span onClick={setType(BookingStatus.CANCEL)} className={checkOnStatus(BookingStatus.CANCEL)}>취소예약</span>
                                 </div>
                             </div>
+<<<<<<< HEAD
                         }
                         SearchSelect={
                             <select onChange={(e) => {
@@ -76,6 +77,27 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                         defaultRange={{}}
                         doSearch={doSearch}
                     />
+=======
+                        </div>
+                        <div className="jul1">
+                            <div>
+                                <select className="option">
+                                    <option>상품명</option>
+                                    <option>키워드</option>
+                                </select>
+                                <div className="search_div">
+                                    <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
+                                    <div className="svg_img">
+                                        <img src="/img/svg/search_icon.svg" alt="search icon" />
+                                        <button />
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> origin/design
                 </div>
                 <div className="con_bottom">
 

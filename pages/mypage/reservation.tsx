@@ -64,6 +64,7 @@ export const MyReservation: React.FC<IProp> = () => {
                         filterEnd={filterEnd}
                         doSearch={doSearch} Status={
                             <div className="text">
+<<<<<<< HEAD
                                 <span onClick={handleSatus(undefined)} className={checkStatusOn(undefined)}>전체</span>
                                 <span onClick={handleSatus(BookingStatus.READY)} className={checkStatusOn(BookingStatus.READY)}>예약대기</span>
                                 <span onClick={handleSatus(BookingStatus.COMPLETE)} className={checkStatusOn(BookingStatus.COMPLETE)}>예약완료</span>
@@ -81,6 +82,61 @@ export const MyReservation: React.FC<IProp> = () => {
                         }
                         onDateChange={hanldeCreateDateChange}
                     />
+=======
+                                <span className="check on">전체</span>
+                                <span className="check">예약대기</span>
+                                <span className="check">예약완료</span>
+                                <span className="check">예약취소</span>
+                            </div>
+                        </div>
+                        <div className="jul4">
+                            <div className="title">날짜</div>
+                            <div className="text">
+                                <ul className="day_ul">
+                                    <li className="on">
+                                        <span>이번달</span>
+                                    </li>
+                                    <li className="on">
+                                        <span>저번달</span>
+                                    </li>
+                                    <li>
+                                        <span>6개월</span>
+                                    </li>
+                                    <li>
+                                        <span>1년</span>
+                                    </li>
+                                </ul>
+                                <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                                ~
+                                 <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="jul1">
+                            <div>
+                                <select className="option">
+                                    <option>상품코드</option>
+                                    <option>상품명</option>
+                                    <option>예약자</option>
+                                </select>
+                                <div className="search_div">
+                                    <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
+                                    <div className="svg_img">
+                                        <img src="/img/svg/search_icon.svg" alt="search icon" />
+                                        <button />
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> origin/design
                 </div>
                 <div className="con_bottom">
                     <div className="con_box">

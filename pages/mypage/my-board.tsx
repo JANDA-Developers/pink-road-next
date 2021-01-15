@@ -39,6 +39,7 @@ export const MyPageBoard: React.FC<IProp> = () => {
             <div className="paper_div">
                 <div className="con_top">
                     <h6>상세검색</h6>
+<<<<<<< HEAD
                     <SearchBar
                         defaultRange={{
                             from: filterStart,
@@ -53,6 +54,61 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                 <option>제목</option>
                             </select>}
                     />
+=======
+                    <div className="search_box">
+                        <div className="jul4">
+                            <div className="title">날짜</div>
+                            <div className="text">
+                                <ul className="day_ul">
+                                    <li onClick={handleThisMonth} className="on">
+                                        <span>이번달</span>
+                                    </li>
+                                    <li onClick={handleLastMonth} className="on">
+                                        <span>저번달</span>
+                                    </li>
+                                    <li onClick={handleHalfYesr}>
+                                        <span>6개월</span>
+                                    </li>
+                                    <li onClick={handleYear}>
+                                        <span>1년</span>
+                                    </li>
+                                </ul>
+                                <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <span className="calendar">
+                                        <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
+                                        <button />
+                                    </span>
+                                </div>
+                                ~
+                                 <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <span className="calendar">
+                                        <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
+                                        <button />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="jul1">
+                            <div>
+                                <select className="option">
+                                    <option>제목</option>
+                                    <option>게시판</option>
+                                </select>
+                                <div className="search_div">
+                                    <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
+                                    <div className="svg_img">
+                                        <img src="/img/svg/search_icon.svg" alt="search icon" />
+                                        <button />
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> origin/design
 
                     <div className="con_bottom">
                         <div className="alignment">

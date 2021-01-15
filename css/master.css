@@ -46,7 +46,6 @@
     display: block;
     padding:50px;
     box-sizing: border-box;
-    vertical-align: top;
     background-color: #ffffff;
     border: 1px solid #d0d0d0;
     margin-top: 30px;
@@ -1241,7 +1240,6 @@
         display: block;
         text-align: left;
         width: 100%;
-        vertical-align: top;
         position: relative;
     }
     .master_box .reservation .s-day {
@@ -1451,12 +1449,11 @@
     }
     .master_box .reservation.calculate .btn {
         border: 1px solid #cfcfcf;
-        border-radius: 5px;
+        border-radius: 3px;
     }
     .master_box .calculate .info {
         display: block !important;
         width: 100% !important;
-        vertical-align: top;
         text-align: left;
         position: relative;
         box-sizing: border-box;
@@ -1506,7 +1503,6 @@
         display: block;
         text-align: left;
         width: 100%;
-        vertical-align: top;
         position: relative;
     }
     .master_box .calculate .s-day {
@@ -1571,7 +1567,7 @@
         border-bottom: 3px solid #333;
     }
     .master_box .design input[type*=text] {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 34px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -1579,7 +1575,7 @@
         font-weight: 100;
     }
     .master_box .design select {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 34px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -2427,7 +2423,7 @@
     }
 
     .popup_bg_full .homepage_popup input[type*=text] {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 34px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -2435,7 +2431,7 @@
         font-weight: 100;
     }
     .popup_bg_full .homepage_popup select {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 34px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -2753,7 +2749,6 @@ div.master_popup .board_list_mini .tt05  {
      div.master_popup .info_table .info {
         display: block !important;
         width: 100% !important;
-        vertical-align: top;
         text-align: center;
         position: relative;
         padding-left: 0;
@@ -2872,7 +2867,6 @@ div.master_popup .people{
     line-height: 127%;
     font-size: 1.3em;
     color: #ed297b;
-    vertical-align: middle;
 }
  div.master_popup .state {
     width: auto !important;
@@ -2944,13 +2938,11 @@ div.master_popup .people{
     display: block;
     text-align: center;
     width: 100%;
-    vertical-align: top;
     position: relative;
 }
  div.master_popup .info_table .tag {
     display: block;
     width: 100%;
-    vertical-align: top;
     position: relative;
 }
  div.master_popup .info_table .subTitle {
@@ -2958,7 +2950,6 @@ div.master_popup .people{
     width: 100%;
     font-weight: 600;
     font-size: 1.1em;
-    vertical-align: top;
     position: relative;
     color: #999;
     margin-bottom: 10px;
@@ -3992,7 +3983,6 @@ div.master_popup .s-day {
     font-size: 1em;
     color: #333;
     padding-top: 0px !important;
-    vertical-align: middle;
     margin-right: 10px;
 }
 div.master_popup .where {
@@ -4003,7 +3993,6 @@ div.master_popup .where {
     font-size: 1em;
     color: #333;
     padding-top: 0px !important;
-    vertical-align: middle;
 }
 div.master_popup .top02 .align {
     margin-top: 30px;
@@ -4024,7 +4013,6 @@ div.master_popup .info_table .img {
 div.master_popup .info_table .info {
         display: block !important;
         width: 100% !important;
-        vertical-align: top;
         text-align: left;
         position: relative;
         padding-left: 280px;
@@ -4036,7 +4024,6 @@ div.master_popup .info_table .info {
     display: block;
     text-align: left;
     width: 100%;
-    vertical-align: top;
     position: relative;
 }
 .master_box .design .block_box .head,
@@ -4175,7 +4162,6 @@ div.master_popup .info_table .th01,
     margin-bottom: 0;
 }
  div.master_popup .info_table .top_info .float_right {
-        float: right;
         line-height: 45px;
         padding-left: 0px;
         display: inline-block;

@@ -55,6 +55,7 @@ export const MyGoods: React.FC<IProp> = () => {
             <div className="paper_div">
                 <div className="con_top">
                     <h6>상세검색</h6>
+<<<<<<< HEAD
                     <SearchBar
                         Status={
                             <div className="jul2">
@@ -63,6 +64,58 @@ export const MyGoods: React.FC<IProp> = () => {
                                     <span onClick={handleSatus(undefined)} className={checkStatusOn(undefined)}>전체</span>
                                     <span onClick={handleSatus(ProductStatus.UPDATE_REQ)} className={checkStatusOn(undefined)}>수정요청</span>
                                     <span onClick={handleSatus(ProductStatus.READY)} className="check">대기</span>
+=======
+                    <div className="search_box">
+                        <div className="jul2">
+                            <div className="title">상태</div>
+                            <div className="text">
+                                <span className="check on">전체</span>
+                                <span className="check">예약완료</span>
+                                <span className="check">사용완료</span>
+                            </div>
+                        </div>
+                        <div className="jul4">
+                            <div className="title">날짜</div>
+                            <div className="text">
+                                <ul className="day_ul">
+                                    <li className="on">
+                                        <span>이번달</span>
+                                    </li>
+                                    <li className="on">
+                                        <span>저번달</span>
+                                    </li>
+                                    <li>
+                                        <span>6개월</span>
+                                    </li>
+                                    <li>
+                                        <span>1년</span>
+                                    </li>
+                                </ul>
+                                <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                                ~
+                                 <div className="input_box">
+                                    <input type="text" className="day w100" />
+                                    <CalendarIcon />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="jul1">
+                            <div>
+                                <select className="option">
+                                    <option>상품코드</option>
+                                    <option>상품명</option>
+                                </select>
+                                <div className="search_div">
+                                    <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
+                                    <div className="svg_img">
+                                        <img src="/img/svg/search_icon.svg" alt="search icon" />
+                                        <button />
+                                    </div>
+
+>>>>>>> origin/design
                                 </div>
                             </div>
                         }
