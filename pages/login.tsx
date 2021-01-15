@@ -3,7 +3,6 @@ import { Storage, initStorage } from 'utils/Storage';
 import pageInfo from 'info/login.json'
 import { Upload } from 'components/common/Upload';
 import { getEditUtils } from 'utils/pageEdit';
-import { EditContext } from './_app';
 import { BG } from '../types/const';
 import { signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';
@@ -11,11 +10,11 @@ import Link from 'next/link';
 import { useLogin } from '../hook/useUser';
 import { Validater } from '../utils/validate';
 import { isEmail } from '../utils/validation';
+import isEmpty from '../utils/isEmpty';
 interface IProp {
 }
 
 export const Login: React.FC<IProp> = () => {
-    const { editMode } = useContext(EditContext)
     const [saveId, setSaveId] = useState(false);
     const [saveSession, setSaveSession] = useState(false);
     const [userId, setId] = useState("");

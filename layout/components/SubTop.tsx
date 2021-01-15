@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import { Bg } from '../../components/Img/img';
 import { usePageEdit } from '../../hook/usePageEdit';
-import { EditContext } from '../../pages/_app';
+import { z } from '../../pages/_app';
 
 interface IProp {
 }
@@ -11,7 +11,6 @@ interface IProp {
 //subTop_title
 //subTop_img
 export const SubTopNav: React.FC<IProp> = ({ children }) => {
-    const { edit, imgKit } = useContext(EditContext);
     return <div className="top_visual">
         <Bg
             className="sub_header sub_bg"

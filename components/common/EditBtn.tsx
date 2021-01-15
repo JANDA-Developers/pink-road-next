@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { AppContext, EditContext } from 'pages/_app';
+import { AppContext } from 'pages/_app';
 import { UserRole } from 'types/api';
 import { roleCheck } from 'utils/roleCheck';
 
@@ -7,7 +7,6 @@ interface IProp { }
 
 export const EditBtn: React.FC<IProp> = () => {
     const { isManager, } = useContext(AppContext)
-    const { editMode, setEditMode } = useContext(EditContext)
 
     if (!isManager) return null;
 

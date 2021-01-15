@@ -1,6 +1,13 @@
-import { TStieInfo } from "types/interface";
-
-const tourMain = {
+export const tourMain = {
+    subTop_title: {
+        kr: ""
+    },
+    subTop_desc: {
+        kr: ""
+    },
+    subTop_img: {
+        kr: ""
+    }
 }
 
 //html edit 기능에 의존하지말고  style 오브젝트를 넣으면 안될까? 

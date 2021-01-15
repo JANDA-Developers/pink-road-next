@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'css/all.css';
 import Layout from '../layout/Layout';
 import { ApolloProvider, useQuery } from '@apollo/client';
@@ -50,11 +50,11 @@ const defaultContext: TContext = {
   categoriesMap: undefined
 }
 
-export const EditContext: React.Context<IUsePageEdit<any>> = React.createContext<any>({})
 export const AppContext = React.createContext<TContext>(defaultContext);
 
 //APp파일은 서버사이드 렌더링만함
 function App({ Component, pageProps }: any) {
+  const [editMode, setEditMode] = useState(false);
   const router = useRouter()
 
   if (router.isFallback) {
@@ -113,7 +113,9 @@ function App({ Component, pageProps }: any) {
           isManager: ALLOW_ADMINS.includes(role),
           isLogin: !!myProfile,
           isParterNonB,
-          homepage
+          homepage,
+          editMode,
+          setEditMode
         }}>
           <ComponentLayout>
             <Component {...pageProps} />

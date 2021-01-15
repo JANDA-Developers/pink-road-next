@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { EditContext } from "./_app";
 import pageInfoDefault from 'info/siteInfo.json';
 import { Upload } from 'components/common/Upload';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';

@@ -20,6 +20,13 @@ import { generateClientPaging } from "../../../utils/generateClientPaging";
 import { Paginater } from "../../../components/common/Paginator";
 import { QnaLi } from "../../../components/qna/QnaLi";
 import PageLoading from "../../Loading";
+import { InferGetStaticPropsType } from "next";
+import { getStaticPageInfo } from "../../../utils/page";
+import TOUR_MAIN_INFO from "info/tourView.json";
+
+
+interface IProp extends InferGetStaticPropsType<typeof getStaticProps> { }
+export const getStaticProps = getStaticPageInfo("tourMain", TOUR_MAIN_INFO);
 
 const TourDetail: React.FC = () => {
 

@@ -7,7 +7,6 @@ import { GetStaticProps } from 'next';
 import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
 import { getStaticPageInfo } from '../utils/page';
-import { EditContext } from './_app';
 import Slider from "react-slick";
 import { IUsePageEdit, usePageEdit } from '../hook/usePageEdit';
 import { Bg } from '../components/Img/img';

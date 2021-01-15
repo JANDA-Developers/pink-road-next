@@ -2,7 +2,7 @@ import { usePortfolioList } from 'hook/usePortfolio';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React, { Fragment, useContext } from 'react';
-import { AppContext, EditContext } from '../_app';
+import { AppContext } from '../_app';
 import defaultPageInfo from "info/portfolio.json"
 import { TStieInfo } from 'types/interface';
 import { getStaticPageInfo } from '../../utils/page';

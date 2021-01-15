@@ -1,7 +1,7 @@
 import { CATEGORY_CREATE, CATEGORY_DELETE, CATEGORY_FIND_BY_ID, CATEGORY_LIST, CATEGORY_UPDATE,  } from "../apollo/gql/category";
 import { categoryCreate, categoryCreateVariables,  categoryDelete, categoryDeleteVariables, categoryFindById, categoryFindByIdVariables, categoryFindById_CategoryFindById_data, categoryList, categoryList_CategoryList_data, categoryUpdate, categoryUpdateVariables, } from "../types/api";
 import { getRefetch } from "../utils/api";
-import { generateFindQuery, generateListQueryHook, generateMutationHook, generateQueryHook } from "../utils/query";
+import { generateFindQuery, generateMutationHook, generateQueryHook } from "../utils/query";
 
 export const useCategoryList = generateQueryHook<categoryList, categoryList_CategoryList_data[], categoryList_CategoryList_data>(CATEGORY_LIST);
 export const useCategoryFind = generateFindQuery<categoryFindById,categoryFindByIdVariables,categoryFindById_CategoryFindById_data>("id",CATEGORY_FIND_BY_ID)

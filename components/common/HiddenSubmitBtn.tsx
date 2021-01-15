@@ -1,12 +1,10 @@
 import React, { useContext } from 'react';
-import { EditContext } from '../../pages/_app';
 
 interface IProp {
     path: string
 }
 
 export const HiddenSubmitBtn: React.FC<IProp> = ({ path }) => {
-    const { submitEdit, setPage, page } = useContext(EditContext);
 
     const submit = () => {
         console.log("submitEdit");

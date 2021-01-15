@@ -1,10 +1,9 @@
 import { Meta } from 'components/common/meta/Meta';
 import SubTopNav from 'layout/components/SubTop';
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
-import pageInfoDefault from "info/tourMain.json";
+import React, { useContext } from 'react';
 import { InferGetStaticPropsType } from 'next';
-import { AppContext, EditContext } from '../_app';
+import { AppContext } from '../_app';
 import { getStaticPageInfo } from '../../utils/page';
 import { checkIsExp } from '../../utils/product';
 import { TourMainBoard } from '../../components/tour/TourMainBoard';
@@ -13,10 +12,9 @@ import TOUR_MAIN_INFO from "info/tourMain.json";
 interface IProp extends InferGetStaticPropsType<typeof getStaticProps> { }
 
 export const getStaticProps = getStaticPageInfo("tourMain", TOUR_MAIN_INFO);
-export const TourMain: React.FC<IProp> = ({ pageInfo: sitePageInfo }) => {
+export const TourMain: React.FC<IProp> = () => {
     const isExp = checkIsExp();
     const { categoriesMap } = useContext(AppContext);
-    const { edit, imgEdit, bg } = useContext(EditContext);
     const cats = categoriesMap?.PORTPOLIO || []
 
     return <div >
