@@ -3,9 +3,10 @@ import { useState } from "react";
 import PinkClient from "../apollo/client";
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from "../apollo/gql/mutations";
 import { pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables } from "../types/api";
-import { ISet } from "../types/interface";
+import { ISet, TPageKeys } from "../types/interface";
 import { cloneObject } from "../utils/clone";
 import {  mergeDeepOnlyExsistProperty } from "../utils/merge";
+import { Ipage } from "../utils/page";
 import { getEditUtils, IGetEditUtilsResult } from "../utils/pageEdit";
 export interface IUsePageEdit<Page> extends IGetEditUtilsResult<Page> {
     setPage: ISet<Page>
@@ -14,11 +15,13 @@ export interface IUsePageEdit<Page> extends IGetEditUtilsResult<Page> {
     editMode: boolean;
     setEditMode: ISet<boolean>;
     originPage:any
+    pageKey: TPageKeys
 }
 
-export const usePageEdit = <Page>(originPage:any, defaultPage:Page, ln = "kr") => {
+export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultPage:Page, ln = "kr") => {
     const [lang, setLang] = useState(ln);
     const [editMode, setEditMode] = useState<boolean>(false);
+    
     const [page, setPage] = useState(cloneObject(mergeDeepOnlyExsistProperty(cloneObject(defaultPage), originPage)));
  
     //page는 이전 값을 조회하고있음 왜 ? => state니까 
@@ -65,7 +68,7 @@ export const usePageEdit = <Page>(originPage:any, defaultPage:Page, ln = "kr") =
     }
 
 
-    return {...editUtils,page,editMode,setPage, setLang, submitEdit, setEditMode,originPage}
+    return {...editUtils,page,editMode,setPage, setLang, submitEdit, setEditMode,originPage,pageKey}
 }
 
 export interface IEditPage<T> extends IUsePageEdit<T> { }

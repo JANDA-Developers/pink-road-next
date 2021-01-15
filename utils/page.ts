@@ -1,4 +1,5 @@
 import { GraphQLClient } from "graphql-request";
+import { GetServerSideProps, GetStaticProps } from "next";
 import { HOMEPAGE } from "../apollo/gql/homepage";
 import { SERVER_URI } from "../apollo/uri";
 import { usePageInfo } from "../hook/usePageInfo";
@@ -44,33 +45,26 @@ export const useHomepageServerSide = async () => {
     return { data };
 }
 
-export const getStaticPageInfo = (key: TPageKeys,defaultPageInfo:any) => async () => {
+export const getStaticPageInfo = (key: TPageKeys):GetStaticProps => async () => {
     const { data } = await usePageInfo(key);
     const { data: homepage } = await useHomepageServerSide();
-
 
     return {
         revalidate: 1,
         props: {
-            defaultPageInfo,
             pageKey: key,
-            pageInfo: isEmpty(data?.value) ? defaultPageInfo : data?.value,
+            pageInfo: data?.value,
             homepage,
-            fallback: true
         }, // will be passed to the page component as props
     }
 }
 
-export TPageProps = {
-        defaultPageInfo,
-        pageKey: key,
-        pageInfo: isEmpty(data?.value) ? defaultPageInfo : data?.value,
-        homepage,
-        fallback: true
+export interface Ipage {
+    pageKey: TPageKeys,
+    pageInfo: any
 }
 
-
-export const getHomepage = async () => {
+export const getHomepage:GetServerSideProps = async () => {
     const homepage = await useHomepageServerSide();
     return {
         revalidate: 10,

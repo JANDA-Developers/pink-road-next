@@ -6,12 +6,12 @@ import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
-import { getStaticPageInfo } from '../utils/page';
+import { getStaticPageInfo, Ipage } from '../utils/page';
 import Slider from "react-slick";
-import { IUsePageEdit, usePageEdit } from '../hook/usePageEdit';
+import { usePageEdit } from '../hook/usePageEdit';
 import { Bg } from '../components/Img/img';
 
-export const Main: React.FC = ({ pageInfo }: any) => {
+export const Main: React.FC<Ipage> = (pageInfo) => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
   const { edit, imgKit } = usePageEdit(pageInfo, defaultPageInfo);
   const router = useRouter()
