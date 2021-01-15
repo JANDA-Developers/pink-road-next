@@ -20,13 +20,12 @@ import { generateClientPaging } from "../../../utils/generateClientPaging";
 import { Paginater } from "../../../components/common/Paginator";
 import { QnaLi } from "../../../components/qna/QnaLi";
 import PageLoading from "../../Loading";
-import { CommentWrite } from "../../../components/comment/CommentWrite";
 
 const TourDetail: React.FC = () => {
 
   const router = useRouter();
   const id = router.query.id as string;
-  const { loading, product } = useProductFindById(id);
+  const { loading, item: product } = useProductFindById(id);
   const { isManager, isAdmin, myProfile } = useContext(AppContext);
   const isMyProduct = product?.author?._id === myProfile?._id;
 

@@ -5,7 +5,9 @@ export const categoryMap = (catList:Fcategory[]) => {
   const catsMap: Record<CategoryType, Fcategory[]> = {
     CUSTOMER_QNA: [],
     PORTPOLIO: [],
-    QNA: []
+    QNA: [],
+    EXPERIENCE: [],
+    TOUR: []
   }
 
   catList.forEach(cat => {

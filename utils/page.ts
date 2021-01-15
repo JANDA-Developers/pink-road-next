@@ -4,6 +4,7 @@ import { SERVER_URI } from "../apollo/uri";
 import { usePageInfo } from "../hook/usePageInfo";
 import { Fhomepage, Fpage, homepage } from "../types/api"
 import { TPageKeys } from "../types/interface";
+import isEmpty from "./isEmpty";
 
 export const getQueryIndex = (inPageIndex: number, pageInfo: Fpage) => {
     const { remainder, cntPerPage, totalPageSize } = pageInfo;
@@ -47,14 +48,17 @@ export const getStaticPageInfo = (key: TPageKeys,defaultPageInfo:any) => async (
     const { data } = await usePageInfo(key);
     const { data: homepage } = await useHomepageServerSide();
 
+
     return {
         revalidate: 1,
         props: {
             defaultPageInfo,
             pageKey: key,
-            pageInfo: data?.value || "",
-            homepage
+            pageInfo: isEmpty(data?.value) ? defaultPageInfo : data?.value,
+            homepage,
+            fallback: true
         }, // will be passed to the page component as props
+
     }
 }
 

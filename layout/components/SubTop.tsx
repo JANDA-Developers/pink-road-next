@@ -1,27 +1,33 @@
-import React from 'react';
+import Link from 'next/link';
+import React, { useContext } from 'react';
+import { Bg } from '../../components/Img/img';
+import { usePageEdit } from '../../hook/usePageEdit';
+import { EditContext } from '../../pages/_app';
 
 interface IProp {
-    title: string;
-    desc: string;
-    subTopBg?: string;
 }
-//TODO edit 으로 바꾸기
-export const SubTopNav: React.FC<IProp> = ({ children, desc, title, subTopBg = "/img/pr_img_16.jpg" }) => {
+
+//subTop_desc
+//subTop_title
+//subTop_img
+export const SubTopNav: React.FC<IProp> = ({ children }) => {
+    const { edit, imgKit } = useContext(EditContext);
     return <div className="top_visual">
-        <div
+        <Bg
             className="sub_header sub_bg"
-            style={{ backgroundImage: `url(${subTopBg})` }}
+            {...imgKit("subTop_img")}
         >
             <div className="w1200">
-                <h2 className="title">{title}</h2>
-                <p className="text">{desc}</p>
+                <h2 {...edit("subTop_title")} className="title" />
+                <p {...edit("subTop_desc")} className="text" />
             </div>
-        </div>
+        </Bg>
         <div className="header_nav">
             <ul>
                 <li className="home">
-                    <a href="/">
-                    </a>
+                    <Link href="/">
+                        <a />
+                    </Link>
                 </li>
                 {children}
             </ul>

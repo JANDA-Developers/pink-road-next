@@ -17,21 +17,32 @@ import { useProductFindById } from "../../../hook/useProduct";
 import { changeVal } from "../../../utils/eventValueExtracter";
 import PageLoading from "../../Loading";
 import { auth } from "../../../utils/with";
-import { ALLOW_ADMINS, ALLOW_ALLOW_SELLERS } from "../../../types/const";
+import { ALLOW_ALLOW_SELLERS } from "../../../types/const";
 import { EditorLoading } from "../../../components/edit/EdiotrLoading";
-
+import pageInfoDefault from "info/tourWrite.json"
+import { getStaticPageInfo } from "../../../utils/page";
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
 interface IProp {
 }
 
+
+export async function getStaticPaths() {
+    return {
+        paths: [
+            { params: { id: [] } }
+        ],
+        fallback: false
+    };
+}
+export const getStaticProps = getStaticPageInfo("tourWrite", pageInfoDefault)
 export const TourWrite: React.FC<IProp> = () => {
     const router = useRouter();
     const { query } = router;
     const id = query.id?.[0] as string | undefined;
     const isCreateMode = id ? "edit" : "create";
-    const { product, loading } = useProductFindById(id);
-    const { categories } = useContext(AppContext);
+    const { item: product, loading } = useProductFindById(id);
+    const { categoriesMap, isAdmin } = useContext(AppContext);
     const {
         tourSets, tourData,
         loadKey, validater: { validate },
@@ -129,6 +140,11 @@ export const TourWrite: React.FC<IProp> = () => {
         initStorage()
     }, [])
 
+
+
+    const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.EXPERIENCE;
+
+
     if (loading) return <PageLoading />
     return <div key={loadKey} className="tour_box w100 board_write">
         <SubTopNav children={
@@ -143,7 +159,7 @@ export const TourWrite: React.FC<IProp> = () => {
                     </Link>
                 </li>
             </>
-        } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/work_top_bg2.jpg'} />
+        } />
         <div className="w1200 con_bottom">
             <div className="write_box">
                 <div className="write_type">
@@ -239,20 +255,21 @@ export const TourWrite: React.FC<IProp> = () => {
                     </div>
                 </div>
 
-                <div className="write_type">
-                    <div className="title">판매여부</div>
+                {/* 아래는 오직 관리자만 적용할 수 있음 */}
+                {isAdmin && <div className="write_type">
+                    <div className="title">상태관리</div>
                     <div className="input_form">
                         <ul>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sale" value={ProductStatus.OPEN} checked={status === ProductStatus.OPEN} className="radio" /><label htmlFor="status-sale">판매중</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sold" value={ProductStatus.SOLD} checked={status === ProductStatus.SOLD} className="radio" /><label htmlFor="status-sold">완판</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-refused">거절됨</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.HIDE} checked={status === ProductStatus.HIDE} className="radio" /><label htmlFor="status-hide">숨겨짐</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.HIDE} checked={status === ProductStatus.UPDATE_REQ} className="radio" /><label htmlFor="status-hide">업데이트 요청</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.HIDE} checked={status === ProductStatus.UPDATE_REQ_REFUSED} className="radio" /><label htmlFor="status-hide">거절됨</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.UPDATE_REQ} checked={status === ProductStatus.UPDATE_REQ} className="radio" /><label htmlFor="status-hide">업데이트 요청</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-hide">거절됨</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-ready" value={ProductStatus.READY} checked={status === ProductStatus.READY} className="radio" /><label htmlFor="status-ready">준비중</label></li>
                         </ul>
                     </div>
                 </div>
+                }
 
                 <div className="write_type">
                     <div className="title">키워드</div>
@@ -335,10 +352,10 @@ export const TourWrite: React.FC<IProp> = () => {
                     <button onClick={handleLoad} type="button" className="btn medium">불러오기</button>
                 </div>
                 <div className="float_right">
-                    {isCreateMode || <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
+                    {!isCreateMode && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
                     {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
                     <button onClick={handleCancel} type="button" className="btn medium impact">취소</button>
-                    {isCreateMode || <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>}
+                    {!isCreateMode && <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>}
                 </div>
             </div>
         </div>

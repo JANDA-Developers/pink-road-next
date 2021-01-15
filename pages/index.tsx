@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import pageInfoDefault from 'info/main.json';
+import defaultPageInfo from 'info/main.json';
 import { Meta } from 'components/common/meta/Meta';
 import { Upload } from 'components/common/Upload';
 import Link from 'next/link';
@@ -9,18 +9,19 @@ import { useRouter } from 'next/router';
 import { getStaticPageInfo } from '../utils/page';
 import { EditContext } from './_app';
 import Slider from "react-slick";
-import { IUsePageEdit } from '../hook/usePageEdit';
+import { IUsePageEdit, usePageEdit } from '../hook/usePageEdit';
+import { Bg } from '../components/Img/img';
 
-export const Main: React.FC = () => {
+export const Main: React.FC = ({ pageInfo }: any) => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
-  const { imgEdit, edit, bg } = useContext<IUsePageEdit<typeof pageInfoDefault>>(EditContext);
+  const { edit, imgKit } = usePageEdit(pageInfo, defaultPageInfo);
   const router = useRouter()
 
   const toProductBoard = (id: string) => {
     router.push(id);
   }
 
-  edit
+  console.log("!!MAIN fun occured");
 
   return <div className="body main" id="main" >
     <Meta title="Pinkroader" description="사람과 시간이 공존하는 여행플랫폼 핑크로더입니다." />
@@ -38,8 +39,7 @@ export const Main: React.FC = () => {
         infinite={true}
         className="">
         <div>
-          <div className="main_top_images" style={bg("m_01_mainBg1")}>
-            <Upload onUpload={imgEdit("m_01_mainBg1")} />
+          <Bg className="main_top_images"  {...imgKit("m_01_mainBg1")}>
             <div className="w1200">
               <strong {...edit("m_01_title1")} />
               <span {...edit('m_01_subtitle1')}>
@@ -53,11 +53,10 @@ export const Main: React.FC = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </Bg>
         </div>
         <div>
-          <div className="main_top_images img2" style={bg("m_01_mainBg2")}>
-            <Upload onUpload={imgEdit("m_01_mainBg2")} />
+          <Bg className="main_top_images img2" {...imgKit("m_01_mainBg2")}>
             <div className="w1200">
               <strong {...edit("m_01_title2")} />
               <span {...edit('m_01_subtitle2')}>
@@ -68,7 +67,7 @@ export const Main: React.FC = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </Bg>
 
         </div>
       </Slider>
@@ -83,25 +82,24 @@ export const Main: React.FC = () => {
           <span {...edit("purposeSubTitle")}></span>
         </div>
         <ul className="infolist">
-          <li className="infolist__01" style={bg("purposeCircle1_bg")}>
+          <li className="infolist__01" >
             <div className="pack">
-              <div className="img" style={bg("purposeCircle1_bg")}><Upload onUpload={imgEdit("purposeCircle1_bg")} /></div>
+              <Bg className="img"  {...imgKit("purposeCircle1_bg")} />
               <strong  {...edit("purposeCircle1")} />
               <span {...edit("purposeCircle1_en")} />
             </div>
 
           </li>
-          <li className="infolist__02" style={bg("purposeCircle2_bg")}>
+          <li className="infolist__02" >
             <div className="pack">
-
-              <div className="img" style={bg("purposeCircle2_bg")}><Upload onUpload={imgEdit("purposeCircle2_bg")} /></div>
+              <Bg className="img" {...imgKit("purposeCircle2_bg")} />
               <strong  {...edit("purposeCircle2")} />
               <span {...edit("purposeCircle2_en")} />
             </div>
           </li>
-          <li className="infolist__03" style={bg("purposeCircle3_bg")}>
+          <li className="infolist__03">
             <div className="pack">
-              <div className="img" style={bg("purposeCircle3_bg")}><Upload onUpload={imgEdit("purposeCircle3_bg")} /></div>
+              <Bg className="img" {...imgKit("purposeCircle3_bg")} />
               <strong  {...edit("purposeCircle3")} />
               <span {...edit("purposeCircle3_en")} />
             </div>
@@ -125,31 +123,31 @@ export const Main: React.FC = () => {
         <div className="top_txt">
           <h2 {...edit("busi_area_title")} />
         </div>
-        <ul>
-          <li className="img01" style={bg("busi_area1_bg")}><Upload onUpload={imgEdit("busi_area1_bg")} />
+        <ul className="busiAreaList">
+          <Bg tag="li" className="img01 busiAreaList__li" {...imgKit("busi_area1_bg")} >
             <div className="bgtxt">
               <strong {...edit("busi_area1_title")} />
-              <span {...edit("busi_area1_desc")} />
+              <span style={{ position: "absolute" }} {...edit("busi_area1_desc")} />
             </div>
-          </li>
-          <li className="img02" style={bg("busi_area2_bg")}><Upload onUpload={imgEdit("busi_area2_bg")} />
+          </Bg>
+          <Bg tag="li" className="img02 busiAreaList__li" {...imgKit("busi_area2_bg")}>
             <div className="bgtxt">
               <strong {...edit("busi_area2_title")} />
-              <span {...edit("busi_area2_desc")} />
+              <span style={{ position: "absolute" }} {...edit("busi_area2_desc")} />
             </div>
-          </li>
-          <li className="img03" style={bg("busi_area3_bg")}><Upload onUpload={imgEdit("busi_area3_bg")} />
+          </Bg>
+          <Bg tag="li" className="img03 busiAreaList__li" {...imgKit("busi_area3_bg")}>
             <div className="bgtxt">
               <strong {...edit("busi_area3_title")} />
-              <span {...edit("busi_area3_desc")} />
+              <span style={{ position: "absolute" }} {...edit("busi_area3_desc")} />
             </div>
-          </li>
-          <li className="img04" style={bg("busi_area4_bg")}><Upload onUpload={imgEdit("busi_area4_bg")} />
+          </Bg>
+          <Bg tag="li" className="img04 busiAreaList__li" {...imgKit("busi_area4_bg")}>
             <div className="bgtxt">
               <strong  {...edit("busi_area4_title")} />
-              <span {...edit("busi_area4_desc")} />
+              <span style={{ position: "absolute" }} {...edit("busi_area4_desc")} />
             </div>
-          </li>
+          </Bg>
         </ul >
       </div >
     </div >
@@ -192,7 +190,7 @@ export const Main: React.FC = () => {
       <div className="txt w1200">
         <h2 {...edit('bottom_title')} />
         <p {...edit('bottom_desc')} />
-        <div className="ovj" style={bg("bottom_ovj")}><Upload onUpload={imgEdit("bottom_ovj")} /></div>
+        <Bg className="ovj" {...imgKit("bottom_ovj")} />
       </div>
       {/* <div
         className="main_bg_img"
@@ -209,9 +207,9 @@ export const Main: React.FC = () => {
 };
 
 interface IGetProps {
-  pageInfo: typeof pageInfoDefault | "",
+  pageInfo: typeof defaultPageInfo | "",
 }
 
 
-export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("main", pageInfoDefault);
+export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("main", defaultPageInfo);
 export default Main;

@@ -89,6 +89,7 @@ td {
     align-items: center;
     justify-content: center;
     color: white;
+    z-index: 5;
 }
 
 [data-edit="bg"] { 
@@ -256,6 +257,7 @@ td {
 }
 
 .JDtagInput__tag {
+    white-space: nowrap;
     display: inline-block;
     padding: 2px 19px;
     font-size: 14px;
@@ -365,4 +367,36 @@ figure:after {
 
 .editor_box {
     display: none;
+}
+
+.busiAreaList__li .imgEdit {
+    width: 100px;
+    height: 100px;
+}
+
+.portfolio__topbg .imgEdit {
+    align-items: flex-start;
+    
+}
+
+.portfolio__topbg  .imgEdit__text {
+    padding-top: 2rem;
+}
+
+.imgEdit__text {
+ font-size: initial;
+ color: white;   
+}
+
+.portfolio__values {
+
+}
+
+.portfolio__bottomWrap .imgEdit {
+    align-items: flex-start;
+}
+
+
+.portfolio__bottomWrap  .imgEdit__text {
+    padding-top: 1rem;
 }

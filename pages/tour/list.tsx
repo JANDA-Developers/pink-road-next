@@ -7,13 +7,15 @@ import { ProductListBlock } from '../../components/list/ProductList';
 import { useProductList } from '../../hook/useProduct';
 import { getTypeFilterByUrl, checkIsExp } from '../../utils/product';
 import { useCategoryList } from '../../hook/useCategory';
-
+import { getStaticPageInfo } from '../../utils/page';
+import pageInfoDefault from "info/tourList.json"
 interface IProp { }
 
+export const getStaticProps = getStaticPageInfo("tourList", pageInfoDefault)
 export const TourList: React.FC<IProp> = () => {
     const isExp = checkIsExp()
     const { initialFilter } = getTypeFilterByUrl(isExp);
-    const { data: cats } = useCategoryList();
+    const { data: cats = [] } = useCategoryList();
     const [view, setView] = useState<"line" | "gal">("line");
     const {
         items,

@@ -40,7 +40,7 @@ export enum QStatus {
 export declare type ISet<T> = Dispatch<React.SetStateAction<T>>;
 
 
-export type TPageKeys = "site-info" | "main" | "portfolio" | "tourMain"
+export type TPageKeys = "site-info" | "main" | "portfolio" | "tourMain" | "tourWrite" | "tourList" 
 
 
 export type TLangs = "kr" | "en" | string

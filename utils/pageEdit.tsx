@@ -106,13 +106,13 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
             this.name = 'EditError'
             // 핵 ... 조사를 깊게 해봐야함
             if (isEmpty(page)) {
-                location.reload();
+                // location.reload();
             }
             const retry = localStorage.getItem("ERR_RE_TRY");
             if (retry !== "T") {
                 console.error("ERR")
                 localStorage.setItem("ERR_RE_TRY", "T");
-                location.reload();
+                // location.reload();
             } else {
                 console.error("ERR")
                 localStorage.removeItem("ERR_RE_TRY");

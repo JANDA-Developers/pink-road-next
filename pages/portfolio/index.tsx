@@ -3,16 +3,15 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React, { Fragment, useContext } from 'react';
 import { AppContext, EditContext } from '../_app';
-import pageInfoDefault from "info/portfolio.json"
+import defaultPageInfo from "info/portfolio.json"
 import { TStieInfo } from 'types/interface';
 import { getStaticPageInfo } from '../../utils/page';
-import { Upload } from '../../components/common/Upload';
-import { Img } from '../../components/Img/img';
-import { IUsePageEdit } from '../../hook/usePageEdit';
+import { IUsePageEdit, usePageEdit } from '../../hook/usePageEdit';
+import { Bg } from '../../components/Img/img';
 
-export const PortFolio: React.FC = () => {
+export const PortFolio: React.FC = ({ pageInfo: _pageInfo }: any) => {
     const { isManager, categoriesMap } = useContext(AppContext);
-    const { edit, imgEdit, bg } = useContext<IUsePageEdit<typeof pageInfoDefault>>(EditContext);
+    const { edit, imgEdit, imgKit, bg } = usePageEdit(_pageInfo, defaultPageInfo);
     const { items: portfolioes, getLoading, setPage, pageInfo, setFilter, filter } = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8, initialFilter: { isOpen_eq: isManager ? undefined : true } })
 
 
@@ -44,12 +43,12 @@ export const PortFolio: React.FC = () => {
     const viewCat = filter.categoryId_eq || "";
 
     return <div className="portfolio_in">
-        <div className="top_bg w100" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} />
+        <Bg className="top_bg w100 portfolio__topbg" {...imgKit("mainBg")}>
             <div className="w1200">
                 <h3 {...edit("mainTitle")} />
                 <span {...edit("subTitle")} />
             </div>
-        </div>
+        </Bg>
 
         <div className="con02 con_block">
             <div className="w1200">
@@ -58,25 +57,25 @@ export const PortFolio: React.FC = () => {
                     사람과 상생할 수 있는 지역콘텐츠를 개발하며 여행/디자인/ 교육등의
                 다양한 방식으로 소통하는법을 <br className="no" />창출하고 더 나은 새로운 것을 제안합니다.
                 </h4> */}
-                <ul>
+                <ul className="portfolio__values">
                     <li className="img01">
-                        <div className="img" style={bg("con2_img1_icon")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <Bg className="img" {...imgKit("con2_img1_icon")} />
                         {/* <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div> */}
                         <h5 {...edit("con2_img1_title")} />
                         <span {...edit("con2_img1_title_kr")} />
                     </li>
                     <li className="img02">
-                        <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <Bg className="img" {...imgKit("con2_img2_icon")} />
                         <h5 {...edit("con2_img2_title")} />
                         <span {...edit("con2_img2_title_kr")} />
                     </li>
                     <li className="img03">
-                        <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <Bg className="img" {...imgKit("con2_img3_icon")} />
                         <h5 {...edit("con2_img3_title")} />
                         <span {...edit("con2_img3_title_kr")} />
                     </li>
                     <li className="img04">
-                        <div className="img" style={bg("mainBg")}><Upload onUpload={imgEdit("mainBg")} /></div>
+                        <Bg className="img" {...imgKit("con2_img4_icon")} />
                         <h5 {...edit("con2_img4_title")}></h5>
                         <span {...edit("con2_img4_title_kr")} />
                     </li>
@@ -151,7 +150,7 @@ export const PortFolio: React.FC = () => {
                 </div>
             </div>
         </div>
-        <div className="w100 con05 con_block">
+        <Bg {...imgKit("bottomBg")} className="portfolio__bottomWrap w100 con05 con_block">
             <div className="w1200 onepick2">
                 <div className="txt">
                     <h4 {...edit("con5_title")} />
@@ -159,18 +158,14 @@ export const PortFolio: React.FC = () => {
                 </div>
                 <div className="link">
                     <a target="_blank" className="" href="/pinkroader_company_introduction_letter.pdf" {...edit("con5_link")}></a>
-
                 </div>
             </div>
-        </div>
+        </Bg>
     </div>;
     ;
 };
 
-type TGetProps = {
-    pageInfo: TStieInfo,
-}
-export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("portfolio", pageInfoDefault)
+export const getStaticProps = getStaticPageInfo("portfolio", defaultPageInfo)
 
 
 export default PortFolio

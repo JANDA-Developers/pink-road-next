@@ -1,6 +1,6 @@
 import { TStieInfo } from "types/interface";
 
-const tourMain:TStieInfo = {
+const tourMain = {
 }
 
 //html edit 기능에 의존하지말고  style 오브젝트를 넣으면 안될까? 

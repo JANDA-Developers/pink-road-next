@@ -16,6 +16,7 @@ import { IUsePageEdit, usePageEdit } from '../hook/usePageEdit';
 import { HiddenSubmitBtn } from '../components/common/HiddenSubmitBtn';
 import { categoryMap } from '../utils/categoryMap';
 import isEmpty from '../utils/isEmpty';
+import { useRouter } from 'next/router';
 
 
 dayjs.locale('ko')
@@ -52,12 +53,17 @@ const defaultContext: TContext = {
 export const EditContext: React.Context<IUsePageEdit<any>> = React.createContext<any>({})
 export const AppContext = React.createContext<TContext>(defaultContext);
 
+//APp파일은 서버사이드 렌더링만함
 function App({ Component, pageProps }: any) {
-  const { pageInfo, defaultPageInfo, pageKey } = pageProps ? pageProps : DEFAULT_PAGEINFO;
+  const router = useRouter()
+
+  if (router.isFallback) {
+    console.log("cachefallback");
+    return <div>Loading...</div>
+  }
+
   const ComponentLayout = Component.Layout ? Component.Layout : Layout;
   const ComponentAuth = Component.Auth ? Component.Auth : ALLOW_FULLESS;
-
-  const editorTools = usePageEdit(pageInfo, defaultPageInfo);
 
   const { data, loading } = useQuery<getContext>(GET_CONTEXT, {
     client: PinkClient,
@@ -72,8 +78,6 @@ function App({ Component, pageProps }: any) {
   const isSeller = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
   const isParterB = [UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
   const isParterNonB = [UserRole.partner, UserRole.manager, UserRole.admin].includes(role);
-  console.log(role)
-  console.log(isParterNonB)
   {/* <DaumPostcode autoResize autoClose onSearch={() => { }} onComplete={(asd) => { }} /> */ }
 
   useEffect(() => { bracketVergionChange() }, [])
@@ -111,15 +115,12 @@ function App({ Component, pageProps }: any) {
           isParterNonB,
           homepage
         }}>
-          <EditContext.Provider value={editorTools as any}>
-            <ComponentLayout>
-              <Component {...pageProps} />
-            </ComponentLayout>
-            <HiddenSubmitBtn path={pageKey} />
-          </EditContext.Provider>
+          <ComponentLayout>
+            <Component {...pageProps} />
+          </ComponentLayout>
+          <HiddenSubmitBtn path={pageProps?.pageKey} />
         </AppContext.Provider>
       </ApolloProvider>
-      <Toast />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { getStaticPageInfo } from '../utils/page';
 import defaultPageInfo from "../info/siteInfo.json";
 import { Bg, Img } from '../components/Img/img';
-import { IUsePageEdit } from '../hook/usePageEdit';
+import { IUsePageEdit, usePageEdit } from '../hook/usePageEdit';
 
 
 type TGetProps = {
@@ -14,8 +14,8 @@ type TGetProps = {
 }
 
 export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("site-info", defaultPageInfo);
-export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = () => {
-    const { edit, src, arrayImgKit, imgEdit, ulEdit, bg, removeArray, editMode, editArray, addArray, page, imgKit } = useContext<IUsePageEdit<typeof pageInfoDefault>>(EditContext);
+export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+    const { edit, src, arrayImgKit, imgEdit, ulEdit, bg, removeArray, editMode, editArray, addArray, page, imgKit } = usePageEdit(pageInfo, defaultPageInfo)
 
     const [open, setOpen] = useState(true);
     const [addInfo, setAddInfo] = useState({

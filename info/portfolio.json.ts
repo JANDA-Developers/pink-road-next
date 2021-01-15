@@ -65,7 +65,9 @@ const info = {
     con5_link: {
         kr: '회사소개서<br />다운로드'
     },
-
+    bottomBg: {
+        kr: '/img/pr_img_09.jpg' 
+    }
 }
 
 //html edit 기능에 의존하지말고  style 오브젝트를 넣으면 안될까? 
