@@ -466,11 +466,11 @@
     }
 
 .main_con_box5 {
-    background: #ed297b;
-    background: -moz-linear-gradient(-45deg,  #ed297b 0%, #e52977 100%);
+    background: #ffe5ad;
+    /* background: -moz-linear-gradient(-45deg,  #ed297b 0%, #e52977 100%);
     background: -webkit-linear-gradient(-45deg,  #ed297b 0%,#e52977 100%);
     background: linear-gradient(135deg,  #ed297b 0%,#e52977 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ed297b', endColorstr='#e52977',GradientType=1 );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ed297b', endColorstr='#e52977',GradientType=1 ); */
     
 }
 .main_con_box5 .ovj {
@@ -493,14 +493,14 @@
         height: 100%;
         display: block;
         text-align: left;
-        color: #fff;
+        color: #333333;
         background-size: 100%;
         background-position: center;
         z-index: 2;
     }
 
         .main_con_box5 .txt h2 {
-            color: #fff;
+            color: #333333;
             font-weight: 400;
             font-size: 27px;
             line-height: 36px;
@@ -5812,6 +5812,7 @@ i.important_icon {
                 color: #333;
                 line-height: 40px;
                 margin-top: 15px;
+                margin-bottom: 15px;
             }
 
         .tour_details_in .boardReadBody .tour_list {
