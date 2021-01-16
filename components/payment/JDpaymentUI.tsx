@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AppContext } from '../../pages/_app';
 import { Fbooking, PayMethod } from '../../types/api';
 import { TElements } from '../../types/interface';
 import { setVal } from '../../utils/eventValueExtracter';
@@ -22,6 +23,7 @@ interface IProp {
 
 {/* TODO 독립처리 => 나중에 시간나면 */ }
 export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
+    const { isLogin } = useContext(AppContext);
     const urlPhone = getFromUrl("phone") || "";
     const urlName = getFromUrl("name") || "";
     const [payMethod, setPayMethod] = useState<PayMethod>(PayMethod.BANK);
@@ -69,10 +71,39 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                     setPayMethod(PayMethod.BANK)
                 }}>무통장입금</div>
             </div>
-            {payMethod === PayMethod.BANK &&
+
+            {isLogin ||
                 <div>
-                    <input onChange={setVal(set("phone"))} readOnly={!!urlPhone} placeholder="구매자 연락처" />
-                    <input onChange={setVal(set("name"))} readOnly={!!urlName} placeholder="구매자명" />
+                    <div className="write_type">
+                        <div className="title">구매자성함</div>
+                        <div className="input_form">
+                            <input readOnly type="text" name="title" className="inputText w50 fix" />{/* 자동출력 고정 */}
+                        </div>
+                    </div>
+                    <div className="write_type">
+                        <div className="title">연락처</div>
+                        <div className="input_form">
+                            <input id="title" onChange={(e) => {
+                                // setTitle(e.currentTarget.value)
+                            }} type="text" name="title" className="inputText w100" />
+                        </div>
+                    </div>
+                    <div className="write_type">
+                        <div className="title">이메일</div>
+                        <div className="input_form">
+                            <input id="title" onChange={(e) => {
+                                // setTitle(e.currentTarget.value)
+                            }} type="text" name="title" className="inputText w100" />
+                        </div>
+                    </div>
+                    <div className="write_type">
+                        <div className="write_con">
+                            <div className="title">예약자메모</div>
+                            <div className="input_form">
+                                <textarea className="inputText input_box w100" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             }
 
