@@ -16,6 +16,10 @@ import SortSelect from '../components/common/SortMethod';
 import { ProductType } from '../types/api';
 import { whenEnter } from '../utils/eventValueExtracter';
 import { getFromUrl } from '../utils/url';
+import { getStaticPageInfo, Ipage } from '../utils/page';
+import { usePageEdit } from '../hook/usePageEdit';
+import pageInfoDefault from "info/search.json";
+import { PageEditor } from '../components/common/PageEditer';
 
 
 type TSearchParam = {
@@ -45,7 +49,9 @@ export const generateSearchLink = (param: TSearchParam) => {
 
 interface IProp { }
 
-export const Search: React.FC<IProp> = () => {
+export const getStaticProps = getStaticPageInfo("search");
+export const Search: React.FC<Ipage> = (_pageInfo) => {
+    const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
     const defaultSearch = getFromUrl("search") || "";
     const initialFilter = {
         initialFilter: integratedProductSearch(defaultSearch)
@@ -96,13 +102,13 @@ export const Search: React.FC<IProp> = () => {
 
     const noProduct = isEmpty(products);
     return <div>
-        <SubTopNav subTopBg={'/img/pr_img_05.jpg'} title="통합검색" desc="지금 여행을 떠나세요~!~~!!!!!" >
+        <SubTopNav pageTools={pageTools} >
             <li className="homedeps1">Member</li>
             <li className="homedeps2">
                 <a href="/">통합검색</a>
             </li>
         </SubTopNav>
-
+        <PageEditor pageTools={pageTools} />
         <div className="search_in w1200">
             <div className="con_top">
                 <h4>상세검색</h4>

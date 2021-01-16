@@ -3,6 +3,8 @@ import { IPageInfo, Ipopup } from "./interface"
 import { Fquestion_author_profileImg, ItineraryCreateInput, LinkBehavior, ProductStatus, UserRole, } from "./api";
 import { generateRandomStringCode } from "../utils/codeGenerator";
 
+export const DEFAULT_LOGO = "/img/logo_1.png";
+
 export const lastMonthFirstDate = dayjs().add(-1, "m").set("day", 1).toDate();
 export const lastMonthLastDate = dayjs().add(-1, "m").endOf("month").toDate();
 export const thisMonthLastDate = dayjs().endOf("month").toDate();

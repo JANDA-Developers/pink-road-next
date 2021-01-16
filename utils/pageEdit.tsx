@@ -58,7 +58,7 @@ export const effectDoc = (command: TCommand) => {
 export interface IGetEditUtilsResult<Page> {
     page: Page;
     setPage: React.Dispatch<any>;
-    lang: "kr";
+    lang: string;
     edit: (key: keyof Page, index?: number) => any;
     ulEdit: (key: keyof Page) => any;
     imgEdit: (key: keyof Page) => (url: string) => void;
@@ -76,8 +76,8 @@ export interface IGetEditUtilsResult<Page> {
     get: (key: keyof Page) => any;
     imgKit: (key: keyof Page) => IEditKit<Page>;
     arrayImgKit: (index: number, key: keyof Page, arrayOrigin: any) => {
-        "data-edit": string;
         src: {
+            "data-edit": string;
             "data-img": string;
             "data-imgkey": string;
             src: any;
@@ -89,7 +89,7 @@ export interface IGetEditUtilsResult<Page> {
 
 
 
-export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean, page: T, setPage: ISet<any>, lang = "kr") => {
+export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean, page: T, setPage: ISet<any>, lang = "kr"): IGetEditUtilsResult<T> => {
 
     class EditError extends Error {
         constructor(message: string) {
@@ -279,6 +279,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
     // 에디터 모드이거나 값이 있으면 출력함
     const view = (key: keyof T) => editMode || get(key)
 
+    arrayImgKit
     return {
         get,
         page,
@@ -293,8 +294,6 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         arrayImgKit,
         bg,
         src,
-        view,
         imgKit,
-        linkEdit
     }
 }

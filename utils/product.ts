@@ -30,7 +30,7 @@ export const getRangeString = (product:Fproduct) => {
 
 
 
-export const checkIsExp = () => getFromUrl("exp") === "ture";
+export const checkIsExp = () => !!getFromUrl("exp");
 export const getTypeFilterByUrl = (isExp:boolean) => {
     const typeFilter = isExp ? ProductType.EXPERIENCE : ProductType.TOUR;
     const productFilter = { initialFilter: { type_eq: typeFilter } };

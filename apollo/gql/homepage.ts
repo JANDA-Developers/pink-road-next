@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { F_FILE } from "./fragments";
 
 
 export const F_MODAL = gql`
@@ -19,7 +20,9 @@ export const F_MODAL = gql`
 
 export const F_HOMEPAGE = gql`
     fragment Fhomepage  on Homepage  {
-        logi
+        logo {
+          ...Ffile
+        }
         siteDesc
         siteKeyWards
         siteName
@@ -38,6 +41,7 @@ export const F_HOMEPAGE = gql`
           ...Fmodal
         }
     }
+    ${F_FILE}
     ${F_MODAL}
 `
 

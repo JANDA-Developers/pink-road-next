@@ -1062,18 +1062,19 @@ export interface countManager {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: feePilicyFindOne
+// GraphQL query operation: feePolicyFindOne
 // ====================================================
 
-export interface feePilicyFindOne_FeePolicyFindOne_data_addtionalFees {
+export interface feePolicyFindOne_FeePolicyFindOne_data_addtionalFees {
   __typename: "AddtionalFees";
   feeName: string;
+  target: TargetStatus;
   type: AddtionalFeesStatus;
   feePercent: number;
   fee: number;
 }
 
-export interface feePilicyFindOne_FeePolicyFindOne_data {
+export interface feePolicyFindOne_FeePolicyFindOne_data {
   __typename: "FeePolicy";
   _id: string;
   createdAt: any;
@@ -1085,18 +1086,66 @@ export interface feePilicyFindOne_FeePolicyFindOne_data {
   cardPercent: number;
   bankPercent: number;
   storePercent: number;
-  addtionalFees: feePilicyFindOne_FeePolicyFindOne_data_addtionalFees[];
+  addtionalFees: feePolicyFindOne_FeePolicyFindOne_data_addtionalFees[];
 }
 
-export interface feePilicyFindOne_FeePolicyFindOne {
+export interface feePolicyFindOne_FeePolicyFindOne {
   __typename: "FeePolicyFindOneResponse";
   ok: boolean;
   error: string | null;
-  data: feePilicyFindOne_FeePolicyFindOne_data | null;
+  data: feePolicyFindOne_FeePolicyFindOne_data | null;
 }
 
-export interface feePilicyFindOne {
-  FeePolicyFindOne: feePilicyFindOne_FeePolicyFindOne;
+export interface feePolicyFindOne {
+  FeePolicyFindOne: feePolicyFindOne_FeePolicyFindOne;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: feePolicyUpdate
+// ====================================================
+
+export interface feePolicyUpdate_FeePolicyUpdate_data_addtionalFees {
+  __typename: "AddtionalFees";
+  feeName: string;
+  target: TargetStatus;
+  type: AddtionalFeesStatus;
+  feePercent: number;
+  fee: number;
+}
+
+export interface feePolicyUpdate_FeePolicyUpdate_data {
+  __typename: "FeePolicy";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  status: FeePolicyStatus;
+  niceCardPercent: number;
+  jandaCardPercent: number;
+  cardPercent: number;
+  bankPercent: number;
+  storePercent: number;
+  addtionalFees: feePolicyUpdate_FeePolicyUpdate_data_addtionalFees[];
+}
+
+export interface feePolicyUpdate_FeePolicyUpdate {
+  __typename: "FeePolicyUpdateResponse";
+  ok: boolean;
+  error: string | null;
+  data: feePolicyUpdate_FeePolicyUpdate_data | null;
+}
+
+export interface feePolicyUpdate {
+  FeePolicyUpdate: feePolicyUpdate_FeePolicyUpdate;
+}
+
+export interface feePolicyUpdateVariables {
+  params: FeePolicyUpdateInput;
 }
 
 /* tslint:disable */
@@ -1107,6 +1156,13 @@ export interface feePilicyFindOne {
 // ====================================================
 // GraphQL query operation: homepage
 // ====================================================
+
+export interface homepage_Homepage_data_logo {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
 
 export interface homepage_Homepage_data_modal {
   __typename: "Modal";
@@ -1125,7 +1181,7 @@ export interface homepage_Homepage_data_modal {
 
 export interface homepage_Homepage_data {
   __typename: "Homepage";
-  logi: string;
+  logo: homepage_Homepage_data_logo;
   siteDesc: string;
   siteKeyWards: string[];
   siteName: string;
@@ -1163,6 +1219,13 @@ export interface homepage {
 // GraphQL mutation operation: homepageUpdate
 // ====================================================
 
+export interface homepageUpdate_HomepageUpdate_data_logo {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface homepageUpdate_HomepageUpdate_data_modal {
   __typename: "Modal";
   _id: string;
@@ -1180,7 +1243,7 @@ export interface homepageUpdate_HomepageUpdate_data_modal {
 
 export interface homepageUpdate_HomepageUpdate_data {
   __typename: "Homepage";
-  logi: string;
+  logo: homepageUpdate_HomepageUpdate_data_logo;
   siteDesc: string;
   siteKeyWards: string[];
   siteName: string;
@@ -4074,6 +4137,13 @@ export interface getContext_CategoryList {
   data: getContext_CategoryList_data[] | null;
 }
 
+export interface getContext_Homepage_data_logo {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface getContext_Homepage_data_modal {
   __typename: "Modal";
   _id: string;
@@ -4091,7 +4161,7 @@ export interface getContext_Homepage_data_modal {
 
 export interface getContext_Homepage_data {
   __typename: "Homepage";
-  logi: string;
+  logo: getContext_Homepage_data_logo;
   siteDesc: string;
   siteKeyWards: string[];
   siteName: string;
@@ -6080,6 +6150,7 @@ export interface FbookingByCode {
 export interface FfeePolicy_addtionalFees {
   __typename: "AddtionalFees";
   feeName: string;
+  target: TargetStatus;
   type: AddtionalFeesStatus;
   feePercent: number;
   fee: number;
@@ -6604,6 +6675,13 @@ export interface Fmodal {
 // GraphQL fragment: Fhomepage
 // ====================================================
 
+export interface Fhomepage_logo {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface Fhomepage_modal {
   __typename: "Modal";
   _id: string;
@@ -6621,7 +6699,7 @@ export interface Fhomepage_modal {
 
 export interface Fhomepage {
   __typename: "Homepage";
-  logi: string;
+  logo: Fhomepage_logo;
   siteDesc: string;
   siteKeyWards: string[];
   siteName: string;
@@ -7452,6 +7530,14 @@ export enum SystemNotiType {
 }
 
 /**
+ * 공제 대상
+ */
+export enum TargetStatus {
+  BUSINESS = "BUSINESS",
+  PERSONAL = "PERSONAL",
+}
+
+/**
  * 유저 역할!
  */
 export enum UserRole {
@@ -7672,6 +7758,14 @@ export interface AddUserInput {
   manageName?: string | null;
 }
 
+export interface AddtionalFeesUpdateInput {
+  feeName: string;
+  target: TargetStatus;
+  type: AddtionalFeesStatus;
+  feePercent?: number | null;
+  fee?: number | null;
+}
+
 export interface AnswerCreateInput {
   content: string;
 }
@@ -7710,6 +7804,15 @@ export interface CategoryCreateInput {
 
 export interface CategoryUpdateInput {
   label?: string | null;
+}
+
+export interface FeePolicyUpdateInput {
+  niceCardPercent?: number | null;
+  jandaCardPercent?: number | null;
+  cardPercent?: number | null;
+  bankPercent?: number | null;
+  storePercent?: number | null;
+  addtionalFees?: AddtionalFeesUpdateInput[] | null;
 }
 
 export interface FileCreateInput {

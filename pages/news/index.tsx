@@ -4,16 +4,20 @@ import SubTopNav from 'layout/components/SubTop';
 import { LineNewsView } from '../../components/news/LineView';
 import { useNewsList } from "hook/useNews"
 import { NEWS_TYPE } from '../../types/api';
-import { getQueryIndex } from '../../utils/page';
+import { getQueryIndex, getStaticPageInfo, Ipage } from '../../utils/page';
 import BoardList from '../../components/board/List';
+import pageInfoDefault from "info/news.json";
 import { useRouter } from 'next/router';
+import { usePageEdit } from '../../hook/usePageEdit';
+import { PageEditor } from '../../components/common/PageEditer';
+import { getFromUrl } from '../../utils/url';
 
-interface IProp {
-}
-
-export const News: React.FC<IProp> = () => {
+export const getStaticProps = getStaticPageInfo("news");
+export const News: React.FC<Ipage> = (_pageInfo) => {
+    const urlType = getFromUrl("type") as NEWS_TYPE;
     const [view, setView] = useState<"line" | "gal">("line");
-    const { setSort, sort, filter, setPage, setFilter, pageInfo, viewCount, setViewCount, items: news } = useNewsList();
+    const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
+    const { setSort, sort, filter, setPage, setFilter, pageInfo, viewCount, setViewCount, items: news } = useNewsList({ initialFilter: { type_eq: urlType } });
     const { totalCount } = pageInfo;
     const router = useRouter();
     const type = filter?.type_eq;
@@ -32,13 +36,14 @@ export const News: React.FC<IProp> = () => {
         })
     }
 
+
     return <div className="">
-        <SubTopNav title="언론보도" desc="업데이트되는 최신 정보를 확인하세요." >
+        <SubTopNav pageTools={pageTools} >
             <li className="homedeps1">News</li>
             <li className="homedeps2"><a href="/news">언론보도</a></li>
         </SubTopNav>
+        <PageEditor pageTools={pageTools} />
         <BoardList
-            // 게시판은 board_box class필수 추가요소
             className="board_box"
             setPage={setPage}
             Categories={

@@ -13,7 +13,7 @@ import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
 const Editor = LoadEditor();
 
 interface IProp { }
-export const getStaticProps: GetStaticProps<TGetHomepage> = getHomepage;
+export const getStaticProps = getHomepage;
 export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ homepage }) => {
 
     const [homepageUpdateMu] = useHomepageUpdate();

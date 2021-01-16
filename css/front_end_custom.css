@@ -400,3 +400,20 @@ figure:after {
 .portfolio__bottomWrap  .imgEdit__text {
     padding-top: 1rem;
 }
+
+
+.siteInfo__bottom .imgEdit {
+    align-items: flex-start;
+}
+
+.siteInfo__bottom .imgEdit__text {
+    padding-top: 2rem;
+}
+
+.siteInfo__top .imgEdit {
+    align-items: flex-start;
+}
+
+.siteInfo__top .imgEdit__text {
+    padding-top: 4rem;
+}

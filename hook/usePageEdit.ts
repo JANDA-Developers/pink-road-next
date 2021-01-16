@@ -8,18 +8,21 @@ import { cloneObject } from "../utils/clone";
 import {  mergeDeepOnlyExsistProperty } from "../utils/merge";
 import { Ipage } from "../utils/page";
 import { getEditUtils, IGetEditUtilsResult } from "../utils/pageEdit";
-export interface IUsePageEdit<Page> extends IGetEditUtilsResult<Page> {
+
+export interface IUsePageEdit<Page = any> extends IGetEditUtilsResult<Page> {
     setPage: ISet<Page>
-    page: Page
-    submitEdit: (key: string, value: any) => void
+    setLang: any;
+    page: Page;
+    submitEdit: () => void
     editMode: boolean;
     setEditMode: ISet<boolean>;
-    originPage:any
-    pageKey: TPageKeys
+    originPage:any;
+    pageKey: TPageKeys;
+    reset: () => void;
 }
 
-export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultPage:Page, ln = "kr") => {
-    const [lang, setLang] = useState(ln);
+export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultPage:Page, ln = "kr"):IUsePageEdit<Page> => {
+    const [lang, setLang] = useState<any>(ln);
     const [editMode, setEditMode] = useState<boolean>(false);
     
     const [page, setPage] = useState(cloneObject(mergeDeepOnlyExsistProperty(cloneObject(defaultPage), originPage)));
@@ -45,10 +48,10 @@ export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultP
     client: PinkClient
     })
 
-    const submitEdit = (key: string, value: any) => {
+    const submitEdit = () => {
         const params = {
-            key,
-            value
+            key: pageKey,
+            value: page
         };
         pageInfoCreateMu({
             variables: {
@@ -57,18 +60,19 @@ export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultP
         }).then((data) => {
             pageInfoUpdateMu({
             variables: {
-                key,
-                params: {
-                    key,
-                    value
-                }
+                key: pageKey,
+                params
             }
             })
         })
     }
 
+    
+    const reset = () => {
+        setPage(originPage || defaultPage);
+    }
 
-    return {...editUtils,page,editMode,setPage, setLang, submitEdit, setEditMode,originPage,pageKey}
+    return {...editUtils,reset,page,editMode,setPage, setLang, submitEdit, setEditMode,originPage,pageKey}
 }
 
 export interface IEditPage<T> extends IUsePageEdit<T> { }

@@ -1,20 +1,15 @@
-import React, { useContext, useState } from 'react';
-import pageInfoDefault from 'info/siteInfo.json';
+import React, { useState } from 'react';
 import { Upload } from 'components/common/Upload';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { getStaticPageInfo } from '../utils/page';
+import { getStaticPageInfo, Ipage } from '../utils/page';
 import defaultPageInfo from "../info/siteInfo.json";
 import { Bg, Img } from '../components/Img/img';
-import { IUsePageEdit, usePageEdit } from '../hook/usePageEdit';
+import { usePageEdit } from '../hook/usePageEdit';
+import { PageEditor } from '../components/common/PageEditer';
 
-
-type TGetProps = {
-    pageInfo: typeof pageInfoDefault | "",
-}
-
-export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("site-info", defaultPageInfo);
-export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
-    const { edit, arrayImgKit, imgEdit, ulEdit, bg, removeArray, editMode, addArray, page, imgKit } = usePageEdit(pageInfo, defaultPageInfo)
+export const getStaticProps = getStaticPageInfo("site-info");
+export const StieInfo: React.FC<Ipage> = (pageInfo) => {
+    const editorTools = usePageEdit(pageInfo, defaultPageInfo)
+    const { edit, arrayImgKit, imgEdit, ulEdit, bg, removeArray, editMode, addArray, page, imgKit } = editorTools;
 
     const [open, setOpen] = useState(true);
     const [addInfo, setAddInfo] = useState({
@@ -44,7 +39,8 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
 
     return <div className="siteInfo_in">
-        <Bg {...imgKit("mainBg")}>
+        <PageEditor pageTools={editorTools} />
+        <Bg className="siteInfo__top" {...imgKit("mainBg")}>
             <div className="top_bg w100">
                 <div className="w1200">
                     <h3  {...edit("mainTitle")} />
@@ -264,8 +260,8 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
             </div>
         </div>
-        <Bg {...imgKit("con07_bg")} className="w100 con07 con_block onepick2" >
-            <div className="w1200">
+        <Bg {...imgKit("con07_bg")} className="siteInfo__bottom w100 con07 con_block onepick2" >
+            <div className="w1200 ">
                 <h4>
                     <strong {...edit("con07_title")} />
                     <p {...edit("con07_txt")} />

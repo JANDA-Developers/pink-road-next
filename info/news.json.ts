@@ -1,22 +1,14 @@
+
 export const tourMain = {
     subTop_title: {
-        kr: "Tour"
+        kr: "언론보도"
     },
     subTop_desc: {
-        kr: "지금 여행을 떠나세요~!~~!!!!!"
+        kr: "업데이트되는 최신 정보를 확인하세요."
     },
     subTop_img: {
         kr: "/img/work_top_bg2.jpg"
     },
-    exp_subTop_title: {
-        kr: "Exp"
-    },
-    exp_subTop_desc: {
-        kr: "지금 여행을 떠나세요~!~~!!!!!"
-    },
-    exp_subTop_img: {
-        kr: "/img/work_top_bg2.jpg"
-    }
 }
 
 //html edit 기능에 의존하지말고  style 오브젝트를 넣으면 안될까? 

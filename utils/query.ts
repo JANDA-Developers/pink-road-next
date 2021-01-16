@@ -89,18 +89,22 @@ export const generateQueryHook = <Q, R, V = undefined>(
 ) => {
 
     const queryHook  = (defaultOptions?: QueryHookOptions<Q,V>) => {
-        const [getData, { data:_data, loading:getLoading,...context }] = useLazyQuery<Q,V>(QUERY, {
-            nextFetchPolicy: "cache-first",
+        const [getData, { data:_data,error, loading:getLoading,...context }] = useLazyQuery<Q,V>(QUERY, {
+            nextFetchPolicy: "network-only",
             ...initOptions,
             ...defaultOptions,
         })
+
         
         const operationName = initOptions?.queryName || getQueryName(QUERY);
-        dataCheck(_data,operationName,["data"])
+        dataCheck(_data, operationName,["data"])
 
         type Result = R extends Array<any> ? R : R | undefined 
         // @ts-ignore
         const data: Result = _data?.[operationName]?.data || undefined;
+
+        console.log(_data);
+        console.log(_data);
 
         useEffect(()=>{
             if(!skipInit)
@@ -127,7 +131,7 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
 }
 
 
-export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V | null, QUERY:DocumentNode) => {
+export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:DocumentNode) => {
     const findQueryHook = (key?:any, options:QueryHookOptions<Q, V> = {}) => {
         const [getData, { data, loading, error:apolloError }] = useLazyQuery<Q, V>(QUERY, {
             skip: !key,

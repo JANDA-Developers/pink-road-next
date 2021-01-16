@@ -10,25 +10,22 @@ import { getStaticPageInfo, Ipage } from '../utils/page';
 import Slider from "react-slick";
 import { usePageEdit } from '../hook/usePageEdit';
 import { Bg } from '../components/Img/img';
+import { PageEditor } from '../components/common/PageEditer';
 
 export const Main: React.FC<Ipage> = (pageInfo) => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
-  const { edit, imgKit } = usePageEdit(pageInfo, defaultPageInfo);
+  const pageTools = usePageEdit(pageInfo, defaultPageInfo);
+  const { imgKit, edit } = pageTools;
   const router = useRouter()
 
   const toProductBoard = (id: string) => {
     router.push(id);
   }
 
-  console.log("!!MAIN fun occured");
-
   return <div className="body main" id="main" >
+    <PageEditor pageTools={pageTools} />
     <Meta title="Pinkroader" description="사람과 시간이 공존하는 여행플랫폼 핑크로더입니다." />
-
-
-
     <div className="main_con_box1 Slider_box">
-
       <Slider
         autoplay
         prevArrow={<div className="rev"><img src="/img/svg/arr_left_w.svg" alt="이전" /></div>}
@@ -205,10 +202,5 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
   </div >
 };
 
-interface IGetProps {
-  pageInfo: typeof defaultPageInfo | "",
-}
-
-
-export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("main", defaultPageInfo);
+export const getStaticProps = getStaticPageInfo("main");
 export default Main;

@@ -3604,7 +3604,7 @@ ul.rank_ul {
     font-size: 17px;
     line-height: 100%;
     color: #ffffff;
-    z-index: 5;
+    z-index: 11;
     width: 100%;
     text-align: center;
 }
@@ -3627,7 +3627,7 @@ ul.rank_ul {
     margin-top: 15px;
     cursor: pointer;
     color: #fff;
-    z-index: 5;
+    z-index: 11;
     border: 1px #fff solid;
 }
 .siteInfo_in .con07 span a {

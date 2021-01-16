@@ -21,7 +21,6 @@ export const Login: React.FC<IProp> = () => {
     const [userPw, setPw] = useState("");
     const [userType, setUserType] = useState<UserRole>(UserRole.individual)
     const [page, setPage] = useState(pageInfo);
-    const { edit, ulEdit, imgEdit } = getEditUtils(editMode, page, setPage);
     const { getData } = useLogin({
         onCompleted: ({ SignIn }) => {
             alert("?");

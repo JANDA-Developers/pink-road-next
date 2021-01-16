@@ -3,8 +3,13 @@ import React from 'react';
 
 interface IProp { }
 
-const check = (key: string) => window.location.pathname.includes(key);
-const checkOn = (key: string) => check(key) ? "on" : ""
+const check = (key: string, exact?: boolean) => {
+    if (typeof window === "undefined") return false;
+    const pathname = window.location.pathname;
+    return exact ? pathname === key : pathname.includes(key);
+}
+
+const checkOn = (key: string, exact?: boolean) => check(key, exact) ? "on" : ""
 
 export const ResvTopNav: React.FC<IProp> = () => {
     return <div className="tab-nav">
@@ -19,7 +24,7 @@ export const ResvTopNav: React.FC<IProp> = () => {
 export const HomepageTopNav = () => {
     return <div className="tab-nav">
         <ul>
-            {/* <li><Link href="/master/homepage"><a>기본설정</a></Link></li> */}
+            <li className={checkOn("/master/homepage", true)}><Link href="/master/homepage"><a>기본설정</a></Link></li>
             <li className={checkOn("homepage1-2")}><Link href="/master/homepage/homepage1-2"><a>SMS설정</a></Link></li>
             {/* <li><Link href="/master/homepage/homepage1-3"><a>카카오비즈톡</a></Link></li> */}
             <li className={checkOn("homepage1-4")}><Link href="/master/homepage/homepage1-4"><a>약관설정</a></Link></li>

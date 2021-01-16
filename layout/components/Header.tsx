@@ -1,12 +1,10 @@
 import Link from "next/link"
-import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
-import { EditBtn } from 'components/common/EditBtn';
+import React, { useContext, useEffect, useState } from 'react';
 import $ from "jquery";
 import { AppContext } from "pages/_app";
 import { NEWS_TYPE } from "../../types/api";
 import { setVal, whenEnter } from "../../utils/eventValueExtracter";
-import { useRouter } from "next/router";
-import cache from "../../apollo/cache";
+import { Router, useRouter } from "next/router";
 import { NotiIcon } from "./NotiIcon";
 import { generateSearchLink } from "../../pages/search";
 
@@ -28,6 +26,7 @@ export const handSearchClose = () => {
 export const Header: React.FC<IProp> = () => {
     const [search, setSearch] = useState("");
     const rotuer = useRouter()
+
 
     const { isLogin, myProfile } = useContext(AppContext);
 
@@ -60,6 +59,8 @@ export const Header: React.FC<IProp> = () => {
             'display': 'block'
         });
     }
+
+
     const handleAllClose = () => {
         const target = document.getElementById('all_menu_right');
         if (target)
@@ -92,16 +93,15 @@ export const Header: React.FC<IProp> = () => {
         $('.nav_wrap ul li').on("hover", function () {
             $(this).find("ul").stop().fadeToggle(300);
         });
-
+        rotuer.events.on('routeChangeStart', handleAllClose)
     }, [])
-
 
     return <header className="header" id="header">
         <div className="top-menu">
             <div className="w1200">
                 {isLogin ? <p className="welcome_ms"><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>
                     : ""}
-                <ul>
+                <ul onClick={handleAllClose}>
                     {isLogin ? "" :
                         <li className="join">
                             <Link href="/member/join">
@@ -284,9 +284,9 @@ export const Header: React.FC<IProp> = () => {
                             <li className="a_menu_tit deps">
                                 <Link href="/news"><a target="_blank">News<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
-                                    <li onClick={handleAllClose}><Link href="/tourstory"><a>여행이야기</a></Link></li>
-                                    <li onClick={handleAllClose}><Link href="/culture"><a>문화이야기</a></Link></li>
-                                    <li onClick={handleAllClose}><Link href="/news"><a>언론보도</a></Link></li>
+                                    <li onClick={handleAllClose}><Link href={`/news?type=${NEWS_TYPE.TRAVEL}`}><a>여행이야기</a></Link></li>
+                                    <li onClick={handleAllClose}><Link href={`/news?type=${NEWS_TYPE.CULTURE}`}><a>문화이야기</a></Link></li>
+                                    <li onClick={handleAllClose}><Link href={`/news?type=${NEWS_TYPE.MEDIA}`}><a>언론보도</a></Link></li>
                                 </ul>
                             </li>
                             <li className="a_menu_tit deps">
@@ -341,7 +341,6 @@ export const Header: React.FC<IProp> = () => {
                         </button>
                     </div>
                     <div className="m_bg" />
-                    <EditBtn />
                 </div>
             </div>
         </div>

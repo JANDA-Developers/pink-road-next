@@ -26,7 +26,7 @@ import TOUR_MAIN_INFO from "info/tourView.json";
 
 
 interface IProp extends InferGetStaticPropsType<typeof getStaticProps> { }
-export const getStaticProps = getStaticPageInfo("tourMain", TOUR_MAIN_INFO);
+export const getStaticProps = getStaticPageInfo("tourMain");
 
 const TourDetail: React.FC = () => {
 

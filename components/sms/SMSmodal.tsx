@@ -6,7 +6,7 @@ import { E_INPUT, ReplaceKr } from "../../types/interface";
 import { closeModal } from "../../utils/popUp";
 import { Modal } from "../modal/Modal";
 import { bite } from "../../utils/bite";
-import { getReplaceListByEvent } from "../../types/sms";
+import { getReplaceListByEvent, replaceObj } from "../../types/sms";
 
 
 interface ITriggerDefault extends Omit<NotificationTriggerCreateInput, "event"> {
@@ -194,7 +194,7 @@ export const SMSmodal: React.FC<IProps> = ({ template }) => {
                             <div className="th">자동메시지</div>
                             <div className="td">
                                 <ul className="text_ul">
-                                    {(getReplaceListByEvent(trigger.event) as ReplaceString[]).map((r) =>
+                                    {trigger.event && (replaceObj[trigger.event] as ReplaceString[]).map((r) =>
                                         <li key={r} onClick={hanldeReplaceString(r)}><span>{ReplaceKr[r]}</span></li>
                                     )}
                                 </ul>

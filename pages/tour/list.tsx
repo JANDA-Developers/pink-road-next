@@ -7,13 +7,17 @@ import { ProductListBlock } from '../../components/list/ProductList';
 import { useProductList } from '../../hook/useProduct';
 import { getTypeFilterByUrl, checkIsExp } from '../../utils/product';
 import { useCategoryList } from '../../hook/useCategory';
-import { getStaticPageInfo } from '../../utils/page';
+import { getStaticPageInfo, Ipage } from '../../utils/page';
 import pageInfoDefault from "info/tourList.json"
-interface IProp { }
+import { usePageEdit } from '../../hook/usePageEdit';
+import { PageEditor } from '../../components/common/PageEditer';
+import { categoryList_CategoryList_data } from '../../types/api';
+import { getFromUrl } from '../../utils/url';
 
-export const getStaticProps = getStaticPageInfo("tourList", pageInfoDefault)
-export const TourList: React.FC<IProp> = () => {
-    const isExp = checkIsExp()
+export const getStaticProps = getStaticPageInfo("tourList")
+export const TourList: React.FC<Ipage> = (_pageInfo) => {
+    const isExp = checkIsExp();
+    const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
     const { initialFilter } = getTypeFilterByUrl(isExp);
     const { data: cats = [] } = useCategoryList();
     const [view, setView] = useState<"line" | "gal">("line");
@@ -43,15 +47,24 @@ export const TourList: React.FC<IProp> = () => {
         })
     }
 
+    const checkCatOn = (cat: categoryList_CategoryList_data) => cat._id === filter.categoryId_eq ? "on" : "";
+
+    const subTopInfo = {
+        imgKey: isExp ? "exp_subTop_img" : "subTop_img",
+        titleKey: isExp ? "exp_subTop_title" : "subTop_title",
+        descKey: isExp ? "exp_subTop_desc" : "subTop_desc"
+    }
+
     return <div>
-        <SubTopNav title={isExp ? "Tour" : "Exp"} desc={"지금 투어를 떠나세요~!~~!!!!!"} />
+        <SubTopNav {...subTopInfo} pageTools={pageTools} />
+        <PageEditor pageTools={pageTools} />
         <div className="tour_box deal_list">
             <BoardList
                 Categories={
                     <div className="search">
                         <ul>
                             {cats.map(cat =>
-                                <li onClick={handleCatFilter(cat._id)} key={cat._id} className="on"><a>{cat.label}</a></li>
+                                <li onClick={handleCatFilter(cat._id)} key={cat._id} className={checkCatOn(cat)}><a>{cat.label}</a></li>
                             )}
                         </ul>
                     </div>

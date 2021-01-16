@@ -4,22 +4,30 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import { InferGetStaticPropsType } from 'next';
 import { AppContext } from '../_app';
-import { getStaticPageInfo } from '../../utils/page';
+import { getStaticPageInfo, Ipage } from '../../utils/page';
 import { checkIsExp } from '../../utils/product';
 import { TourMainBoard } from '../../components/tour/TourMainBoard';
-import TOUR_MAIN_INFO from "info/tourMain.json";
+import pageInfoDefault from "info/tourMain.json";
+import { usePageEdit } from '../../hook/usePageEdit';
 
 interface IProp extends InferGetStaticPropsType<typeof getStaticProps> { }
 
-export const getStaticProps = getStaticPageInfo("tourMain", TOUR_MAIN_INFO);
-export const TourMain: React.FC<IProp> = () => {
+export const getStaticProps = getStaticPageInfo("tourMain");
+export const TourMain: React.FC<Ipage> = (pageInfo) => {
     const isExp = checkIsExp();
+    const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const { categoriesMap } = useContext(AppContext);
     const cats = categoriesMap?.PORTPOLIO || []
 
+    const subTopInfo = {
+        imgKey: isExp ? "exp_subTop_img" : "subTop_img",
+        titleKey: isExp ? "exp_subTop_title" : "subTop_title",
+        descKey: isExp ? "exp_subTop_desc" : "subTop_desc"
+    }
+
     return <div >
         <Meta />
-        <SubTopNav title="temp" desc="temp" >
+        <SubTopNav {...subTopInfo} pageTools={pageTools}  >
             <li className="homedeps1">
                 {isExp ?
                     <Link href="/tour">

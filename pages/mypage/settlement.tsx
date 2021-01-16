@@ -101,7 +101,7 @@ export const MySettlement: React.FC<IProp> = () => {
                     <SearchBar
                         filterStart={filterStart}
                         filterEnd={filterEnd}
-                        doSearch={ }
+                        doSearch={doSearch}
                         Status={
                             <div className="jul2">
                                 <div className="title">상태</div>
@@ -200,7 +200,7 @@ export const MySettlement: React.FC<IProp> = () => {
                                             <div className="th05">{dayjs(item.requestDate).format("YYYY.MM.DD")}</div>
                                             <div className="th06">{item}</div>
                                             <div className="th07"><strong className="ok">{settlementStatus(item.status)}</strong></div>
-                                            <div onClick={} className="th08"><i className="btn">상세보기</i></div>
+                                            <div onClick={ } className="th08"><i className="btn">상세보기</i></div>
                                         </li>
                                     )}
                                 </ul>
@@ -229,7 +229,7 @@ export const MySettlement: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-        
+
 
 
         {/* popup-상세보기 */}

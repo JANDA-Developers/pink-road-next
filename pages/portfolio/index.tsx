@@ -1,18 +1,18 @@
 import { usePortfolioList } from 'hook/usePortfolio';
-import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React, { Fragment, useContext } from 'react';
 import { AppContext } from '../_app';
 import defaultPageInfo from "info/portfolio.json"
-import { TStieInfo } from 'types/interface';
-import { getStaticPageInfo } from '../../utils/page';
-import { IUsePageEdit, usePageEdit } from '../../hook/usePageEdit';
+import { getStaticPageInfo, Ipage } from '../../utils/page';
+import { usePageEdit } from '../../hook/usePageEdit';
 import { Bg } from '../../components/Img/img';
+import { PageEditor } from '../../components/common/PageEditer';
 
-export const PortFolio: React.FC = ({ pageInfo: _pageInfo }: any) => {
+export const PortFolio: React.FC<Ipage> = (_pageInfo) => {
     const { isManager, categoriesMap } = useContext(AppContext);
-    const { edit, imgEdit, imgKit, bg } = usePageEdit(_pageInfo, defaultPageInfo);
+    const editTools = usePageEdit(_pageInfo, defaultPageInfo);
     const { items: portfolioes, getLoading, setPage, pageInfo, setFilter, filter } = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8, initialFilter: { isOpen_eq: isManager ? undefined : true } })
+    const { edit, imgKit } = editTools;
 
 
     const categories = categoriesMap?.PORTPOLIO || [];
@@ -43,6 +43,7 @@ export const PortFolio: React.FC = ({ pageInfo: _pageInfo }: any) => {
     const viewCat = filter.categoryId_eq || "";
 
     return <div className="portfolio_in">
+        <PageEditor pageTools={editTools} />
         <Bg className="top_bg w100 portfolio__topbg" {...imgKit("mainBg")}>
             <div className="w1200">
                 <h3 {...edit("mainTitle")} />
@@ -161,11 +162,10 @@ export const PortFolio: React.FC = ({ pageInfo: _pageInfo }: any) => {
                 </div>
             </div>
         </Bg>
-    </div>;
-    ;
+    </div>
 };
 
-export const getStaticProps = getStaticPageInfo("portfolio", defaultPageInfo)
+export const getStaticProps = getStaticPageInfo("portfolio")
 
 
 export default PortFolio

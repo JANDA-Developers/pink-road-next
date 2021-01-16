@@ -14,16 +14,31 @@ export const F_FEEPOLICY = gql`
         storePercent
         addtionalFees {
             feeName
+            target
             type
             feePercent
             fee
+            target
         }
     }
 `
 
 export const FEE_POLIY_FIND_ONE = gql`
-    query feePilicyFindOne {
+    query feePolicyFindOne {
         FeePolicyFindOne {
+        ok
+        error
+        data {
+            ...FfeePolicy
+        }
+    }
+}
+${F_FEEPOLICY}
+`;
+
+export const FEE_POLICY_UPDATE = gql`
+    mutation feePolicyUpdate($params: FeePolicyUpdateInput!) {
+        FeePolicyUpdate(params: $params) {
         ok
         error
         data {
