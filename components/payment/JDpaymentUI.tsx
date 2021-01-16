@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Fbooking } from '../../types/api';
+import { Fbooking, PayMethod } from '../../types/api';
 import { TElements } from '../../types/interface';
 import { setVal } from '../../utils/eventValueExtracter';
 import { getFromUrl } from '../../utils/url';
@@ -10,7 +10,7 @@ export type TPaySubmitInfo = {
         phone: string;
         name: string;
     };
-    payMethod: "card" | "bankTransfer";
+    payMethod: PayMethod;
 }
 
 
@@ -24,7 +24,7 @@ interface IProp {
 export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
     const urlPhone = getFromUrl("phone") || "";
     const urlName = getFromUrl("name") || "";
-    const [payMethod, setPayMethod] = useState<"card" | "bankTransfer">("card");
+    const [payMethod, setPayMethod] = useState<PayMethod>(PayMethod.BANK);
     const [buyerInfo, setBuyerInfo] = useState({
         phone: "",
         name: "",
@@ -63,13 +63,13 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
             <div>
                 결제수단 선택
                         <div onClick={() => {
-                    setPayMethod("card")
+                    setPayMethod(PayMethod.NICEPAY_CARD)
                 }}>카드결제</div>
                 <div onClick={() => {
-                    setPayMethod("bankTransfer")
+                    setPayMethod(PayMethod.BANK)
                 }}>무통장입금</div>
             </div>
-            {payMethod === "bankTransfer" &&
+            {payMethod === PayMethod.BANK &&
                 <div>
                     <input onChange={setVal(set("phone"))} readOnly={!!urlPhone} placeholder="구매자 연락처" />
                     <input onChange={setVal(set("name"))} readOnly={!!urlName} placeholder="구매자명" />

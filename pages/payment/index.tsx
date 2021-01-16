@@ -8,7 +8,7 @@ import { JDpaymentUI, TPaySubmitInfo } from "../../components/payment/JDpaymentU
 import { IUseBasket, useBasket } from "../../hook/useBasket";
 import { useBookingFindByCode, useBookingsCreate } from "../../hook/useBooking";
 import PaymentLayout from "../../layout/PaymentLayout";
-import { BookingsCreateInput, Fbooking } from "../../types/api";
+import { BookingsCreateInput, Fbooking, PayMethod } from "../../types/api";
 import { getFromUrl } from "../../utils/url";
 
 interface IcustomParams {
@@ -27,6 +27,7 @@ export const Payment: React.FC<IProp> = ({ }) => {
     const { item: findBooking } = useBookingFindByCode(urlBKcode);
     const [bookingCreate] = useBookingsCreate();
     const { items, totalPrice, updateComponent, getLoading }: IUseBasket = useBasket()
+    const [payMethod, setPayMethod] = useState(PayMethod.NICEPAY_CARD);
 
     const startPay = () => {
         auth(totalPrice)
@@ -41,12 +42,14 @@ export const Payment: React.FC<IProp> = ({ }) => {
             name: param.buyerInfo.name,
             phoneNumber: param.buyerInfo.phone,
             message: "",
-            product: item._id
+            product: item._id,
+            payMethod: param.payMethod
         }))
 
         bookingCreate({
             variables: {
-                params
+                params,
+                payMethod
             }
         }).then(result => {
             if (result.data?.BookingsCreate.ok) {

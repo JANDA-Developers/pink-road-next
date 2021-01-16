@@ -52,10 +52,6 @@ function App({ Component, pageProps }: any) {
   const [editMode, setEditMode] = useState(false);
   const router = useRouter()
 
-  if (router.isFallback) {
-    console.log("cachefallback");
-    return <div>Loading...</div>
-  }
 
   const ComponentLayout = Component.Layout ? Component.Layout : Layout;
   const ComponentAuth = Component.Auth ? Component.Auth : ALLOW_FULLESS;
@@ -91,6 +87,11 @@ function App({ Component, pageProps }: any) {
     !ComponentAuth.includes(UserRole.individual)
   ) {
     Component = () => <PageDeny msg="인증되지 않은 판매자 입니다. 인증 소요시간은 평균 24시간 입니다." />
+  }
+
+  if (router.isFallback) {
+    console.log("cachefallback");
+    return <div>Loading...</div>
   }
 
   if (loading) return <div />

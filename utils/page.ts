@@ -65,7 +65,7 @@ export interface Ipage {
     pageInfo: any
 }
 
-export const getHomepage:GetServerSideProps = async () => {
+export const getHomepage:GetServerSideProps<TGetHomepage> = async () => {
     const homepage = await useHomepageServerSide();
     return {
         revalidate: 10,

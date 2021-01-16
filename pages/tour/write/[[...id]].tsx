@@ -35,7 +35,7 @@ export async function getStaticPaths() {
         fallback: false
     };
 }
-export const getStaticProps = getStaticPageInfo("tourWrite", pageInfoDefault)
+export const getStaticProps = getStaticPageInfo("tourWrite")
 export const TourWrite: React.FC<IProp> = () => {
     const router = useRouter();
     const { query } = router;

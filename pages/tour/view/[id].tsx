@@ -20,17 +20,23 @@ import { generateClientPaging } from "../../../utils/generateClientPaging";
 import { Paginater } from "../../../components/common/Paginator";
 import { QnaLi } from "../../../components/qna/QnaLi";
 import PageLoading from "../../Loading";
-import { InferGetStaticPropsType } from "next";
-import { getStaticPageInfo } from "../../../utils/page";
-import TOUR_MAIN_INFO from "info/tourView.json";
+import { getStaticPageInfo, Ipage } from "../../../utils/page";
+import { usePageEdit } from "../../../hook/usePageEdit";
+import defaultPageInfo from 'info/tourView.json';
 
 
-interface IProp extends InferGetStaticPropsType<typeof getStaticProps> { }
-export const getStaticProps = getStaticPageInfo("tourMain");
-
-const TourDetail: React.FC = () => {
-
+export const getStaticProps = getStaticPageInfo("tourView");
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { id: ".." } }
+    ],
+    fallback: true
+  };
+}
+const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const router = useRouter();
+  const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const id = router.query.id as string;
   const { loading, item: product } = useProductFindById(id);
   const { isManager, isAdmin, myProfile } = useContext(AppContext);
@@ -141,19 +147,22 @@ const TourDetail: React.FC = () => {
 
 
   return <div className="edtiorView">
-    <SubTopNav children={
-      <>
-        <li className="homedeps1">
-          <Link href="/tour/">
-            <a>Tour</a>
-          </Link></li>
-        <li className="homedeps2">
-          <Link href="/tour/list">
-            <a >상품리스트</a>
-          </Link>
-        </li>
-      </>
-    } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/work_top_bg2.jpg'} />
+    <SubTopNav
+      pageTools={pageTools}
+      children={
+        <>
+          <li className="homedeps1">
+            <Link href="/tour/">
+              <a>Tour</a>
+            </Link></li>
+          <li className="homedeps2">
+            <Link href="/tour/list">
+              <a >상품리스트</a>
+            </Link>
+          </li>
+        </>
+      }
+    />
     <div className="tour_details_in w1200">
 
       <div className="Document">
