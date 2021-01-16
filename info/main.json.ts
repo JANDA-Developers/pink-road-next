@@ -79,7 +79,7 @@ const info = {
     만듭니다. 자연을 보전하며 커뮤니티를
     통해 사람과 지역 모두가 상생합니다.`},
     busi_area4_title: { kr: `Social Design` },
-    busi_area4_bg: { kr: `/img/pr_img_21.jpg` },
+    busi_area4_bg: { kr: `/img/pr_img_33.jpg` },
     busi_area4_desc: {
         kr: `
     사회와 지역을 중심으로 한 디자인
