@@ -246,7 +246,7 @@
         position: relative;
         display: none;
         width: 100%;
-        border-bottom: 2px solid #ccc;
+        border-bottom: 1px solid #ccc;
         background-color: #f4f4f4;
     }
 
@@ -440,7 +440,7 @@ ul.list_ul li:hover .img {
 }
 
 ul.list_ul.line3 li .img {
-    height: 222px;
+    height: 218px;
 }
 
 ul.list_ul.line4 li .img {
@@ -476,6 +476,8 @@ ul.list_ul li .tag2 {
     display: block;
     text-align: left;
     font-size: 12px;
+    font-weight: 100;
+    margin-top: 10px;
 }
 
     ul.list_ul li .tag2 span {
@@ -2419,7 +2421,7 @@ div.sum_div {
         width: 100%;
     }
         ul.list_ul li .box {
-            padding: 0 5px 5px;
+            padding: 0 0 5px;
         }
     ul.photo_ul {
         display: flex;
