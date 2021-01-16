@@ -976,13 +976,7 @@
     .reservation_div .t02 .align{
       position: unset !important;
     }
-    .reservation_div .t02 .btn {
-        width:90%;
-        position: absolute;
-        bottom: 10px;
-        left: 5%;
-        line-height: 35px !important;
-    }
+   
     .reservation_div .t03 {
         width: auto !important;
         padding:0;
@@ -1046,6 +1040,11 @@
         font-size: 12px;
         padding: 0 15px;
         margin-top:5px;
+        width:90%;
+        position: absolute;
+        bottom: 10px;
+        left: 5%;
+        line-height: 35px !important;
     }
     .reservation_div .t04 .img {
         display:inline-block !important;
@@ -2795,6 +2794,14 @@ div.reservation_popup .tr select {
 
     
 @media (min-width: 1000px) {  
+
+    .reservation_div .t02 .btn {
+        width:auto;
+        position: relative;
+        bottom: unset;
+        left: unset;
+        line-height: 35px !important;
+    }
     .mypage_in h6{
         display: block;
     }
@@ -3467,12 +3474,14 @@ div.reservation_popup .tr select {
     .reservation_div .t01 {
         width: 5% !important;
         padding:10px 0;
+        text-align: center !important;
     }
     .reservation_div .t02 {
         width: 10% !important;
         padding: 10px 0;
         border-left: 1px #eee solid;
         margin-bottom: 0;
+        text-align: center !important;
     }
     .reservation_div .t03 {
         width: 13% !important;
@@ -3488,16 +3497,19 @@ div.reservation_popup .tr select {
         width: 13% !important;
         padding: 10px 0;
         border-left: 1px #eee solid;
+        text-align: center !important;
     }
     .reservation_div .t06 {
         width: 15% !important;
         padding: 10px 0;
         border-left: 1px #eee solid;
+        text-align: center !important;
     }
     .reservation_div .t07 {
         width: 13% !important;
         padding: 10px 0;
         border-left: 1px #eee solid;
+        text-align: center !important;
     } 
     .reservation_div .td .t01 .checkbox {
         top: 50%;
@@ -3509,7 +3521,7 @@ div.reservation_popup .tr select {
     }    
     .reservation_div .t02 .align {
         top: 50%;
-        margin-top: -60px;
+        margin-top: 4px;
     }  
     .reservation_div .t06 .align {
         top: 50%;
@@ -3534,7 +3546,7 @@ div.reservation_popup .tr select {
         color: #333;
         margin-top: 30px;
         vertical-align: middle;
-        margin-right: 10px;
+        margin-right: 0;
     }
     .reservation_div .t04 .info {
         padding-left: 170px;
