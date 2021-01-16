@@ -129,7 +129,6 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <div className="t02">
                                     <div className="align">
                                         <span className="r-number"><i className="m_title">예약번호:</i>R-34252</span>
-                                        <button className="btn" onClick={popupOpen}>상세정보</button>
                                     </div>
                                 </div>
                                 <div className="t04">
@@ -180,7 +179,6 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <div className="t02">
                                     <div className="align">
                                         <span className="r-number"><i className="m_title">예약번호:</i>R-34252</span>
-                                        <button className="btn" onClick={popupOpen}>상세정보</button>
                                     </div>
                                 </div>
                                 <div className="t04">
@@ -232,7 +230,6 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <div className="t02">
                                     <div className="align">
                                         <span className="r-number"><i className="m_title">예약번호:</i>R-34252</span>
-                                        <button className="btn" onClick={popupOpen}>상세정보</button>
                                     </div>
                                 </div>
                                 <div className="t04">
