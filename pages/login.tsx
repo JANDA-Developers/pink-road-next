@@ -1,29 +1,31 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Storage, initStorage } from 'utils/Storage';
-import pageInfo from 'info/login.json'
-import { Upload } from 'components/common/Upload';
-import { getEditUtils } from 'utils/pageEdit';
-import { BG } from '../types/const';
 import { signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useLogin } from '../hook/useUser';
 import { Validater } from '../utils/validate';
 import { isEmail } from '../utils/validation';
-import isEmpty from '../utils/isEmpty';
-interface IProp {
-}
+import { useLogin } from "../hook/useUser";
+import SubTopNav from '../layout/components/SubTop';
+import defaultPageInfo from "../info/login.json"
+import { usePageEdit } from '../hook/usePageEdit';
+import { getStaticPageInfo, Ipage } from '../utils/page';
 
-export const Login: React.FC<IProp> = () => {
+export const getStaticProps = getStaticPageInfo("login")
+export const Login: React.FC<Ipage> = (pageInfo) => {
     const [saveId, setSaveId] = useState(false);
     const [saveSession, setSaveSession] = useState(false);
     const [userId, setId] = useState("");
     const [userPw, setPw] = useState("");
     const [userType, setUserType] = useState<UserRole>(UserRole.individual)
-    const [page, setPage] = useState(pageInfo);
+    console.log(pageInfo);
+    console.log(pageInfo);
+    console.log(pageInfo);
+    console.log(pageInfo);
+    console.log(pageInfo);
+    const editTools = usePageEdit(pageInfo, defaultPageInfo)
     const { getData } = useLogin({
         onCompleted: ({ SignIn }) => {
-            alert("?");
             if (SignIn.ok) {
                 Storage?.saveLocal("jwt", SignIn.data?.token || "");
                 location.href = "/"
@@ -91,16 +93,7 @@ export const Login: React.FC<IProp> = () => {
 
     return <div >
         <div className="top_visual">
-            <div
-                className="sub_header sub_bg"
-                style={BG(page.top_bg)}
-            >
-                <div className="w1200">
-                    <h2 className="title">로그인</h2>
-                    <p className="text">지금 여행을 떠나세요~!~~!!!!!</p>
-                </div>
-                <Upload onUpload={imgEdit("top_bg")} />
-            </div>
+            <SubTopNav pageTools={editTools} />
             <div className="header_nav">
                 <ul>
                     <li className="home">

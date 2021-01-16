@@ -10,6 +10,9 @@ import { Storage } from '../../utils/Storage';
 import UserInfoForm from 'components/join/UserInfoForm';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { getStaticPageInfo, Ipage } from '../../utils/page';
+import { usePageEdit } from '../../hook/usePageEdit';
+import defaultPageInfo from "../../info/join.json"
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -21,8 +24,6 @@ interface IchkPolocy {
 }
 
 export const ContextPolicyChk = createContext<IchkPolocy | null>(null);
-
-
 
 type TJoinProcess = "userType" | "verification" | "userInfo" | "registered"
 interface IjoinContext extends ReturnType<typeof useVerification> {
@@ -36,13 +37,14 @@ interface IjoinContext extends ReturnType<typeof useVerification> {
     verificationId?: string
     verifiedEmail?: string
     oauth?: string
-
 }
 
 export const JoinContext = React.createContext<null | IjoinContext>(null);
 
-const Join = () => {
+export const getStaticProps = getStaticPageInfo("join")
+const Join: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
+    const editTools = usePageEdit(pageInfo, defaultPageInfo);
     const verificationId = getFromUrl("vid") || undefined;
     const verifiedEmail = getFromUrl("email") || undefined;
     const oauth = getFromUrl("oauth") || undefined;
@@ -107,7 +109,7 @@ const Join = () => {
     return (
         <div>
             <div >
-                <SubTopNav title="as" desc="asd" />
+                <SubTopNav pageTools={editTools} />
                 {/* 개인 */}
                 <div className="sign_in famile">
                     <div className="inner ">
