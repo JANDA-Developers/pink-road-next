@@ -45,16 +45,12 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
 
     return <div className="siteInfo_in">
-        <Bg {...imgKit("mainBg")}>
-            <div className="top_bg w100">
-                <div className="w1200">
-                    <h3  {...edit("mainTitle")} />
-                    <span  {...edit("secondTitle")} />
-                </div>
-                {/* <Upload onUpload={imgEdit("mainBg")} /> */}
+        <Bg {...imgKit("mainBg")} className="top_bg w100">
+            <div className="w1200">
+                <h3  {...edit("mainTitle")} />
+                <span  {...edit("secondTitle")} />
             </div>
         </Bg>
-        {/* <div className="bold" title="Bold" onClick={() => { effectDoc('bold') }}>B</div> */}
         <div className="w100 con01 con_block">
             <div className="w1200">
                 <div className="bottom">
@@ -105,6 +101,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                         </div>
 
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -277,25 +274,27 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             <div className="ovj"></div>
             <div className="bg" />
         </Bg>
-        {open && <div style={{
-            opacity: 0,
-            position: "fixed",
-            width: "1px",
-            height: "1px",
-            top: 0,
-            left: 0,
-            overflow: "hidden"
-        }}>
-            {/* <input onChange={changePartner} value={addInfo.alt} /> */}
-            <Upload onUpload={(url) => {
-                setAddInfo({
-                    ...addInfo,
-                    img: url
-                })
-            }} />
-            <input />
-            <input onChange={() => { }} value={addInfo.link} />
-        </div>}
+        {
+            open && <div style={{
+                opacity: 0,
+                position: "fixed",
+                width: "1px",
+                height: "1px",
+                top: 0,
+                left: 0,
+                overflow: "hidden"
+            }}>
+                {/* <input onChange={changePartner} value={addInfo.alt} /> */}
+                <Upload onUpload={(url) => {
+                    setAddInfo({
+                        ...addInfo,
+                        img: url
+                    })
+                }} />
+                <input />
+                <input onChange={() => { }} value={addInfo.link} />
+            </div>
+        }
 
 
         {/* popup은 언제나 class fade와 함께 있어야 한다. */}
@@ -315,7 +314,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             </div>
         </div>
         <div className="fade"></div> */}
-    </div>;
+    </div >;
 };
 
 export default StieInfo
