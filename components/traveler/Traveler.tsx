@@ -26,7 +26,7 @@ export const Traveler: React.FC<IProp> = ({ traveler, onChange }) => {
                 const val = e.currentTarget.value
                 traveler.name = val;
                 onChange(traveler);
-            }} value={traveler.name)} /></span>
+            }} value={traveler.name} /></span>
         </div>
         <div className="re04">
             연락처

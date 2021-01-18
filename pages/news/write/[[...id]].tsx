@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import { BoardWrite } from "components/board/Write";
 import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
@@ -7,7 +7,9 @@ import { omits } from "../../../utils/omit";
 import { auth, compose } from "../../../utils/with";
 import { ALLOW_LOGINED } from "../../../types/const";
 import { Fnews, NEWS_TYPE } from '../../../types/api';
-import { useNewsCreate, useNewsDelete, useNewsUpdate } from "../../../hook/useNews";
+import { useNewsCreate, useNewsDelete, useNewsFindById, useNewsUpdate } from "../../../hook/useNews";
+import { usePortfolioFind } from "../../../hook/usePortfolio";
+import { AppContext } from "../../_app";
 
 const categoryOps = [{
     label: "여행이야기",
@@ -25,10 +27,12 @@ interface IProp {
     news: Fnews
 }
 
-export const NewsWrite: React.FC<IProp> = ({ news }) => {
-    const id = news._id
+export const NewsWrite: React.FC<IProp> = () => {
     const router = useRouter();
-    const mode = id ? "create" : "edit";
+    const id = router.query.id?.[0] as string | undefined;
+    const { item: news } = useNewsFindById(id);
+    const mode = id ? "edit" : "create";
+
 
     const goToView = (id: string) => {
         router.push(`/news/view/${id}`)

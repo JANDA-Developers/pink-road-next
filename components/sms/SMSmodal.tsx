@@ -6,8 +6,7 @@ import { E_INPUT, ReplaceKr } from "../../types/interface";
 import { closeModal } from "../../utils/popUp";
 import { Modal } from "../modal/Modal";
 import { bite } from "../../utils/bite";
-import { getReplaceListByEvent, replaceObj } from "../../types/sms";
-
+import { replaceObj } from "../../types/sms";
 
 interface ITriggerDefault extends Omit<NotificationTriggerCreateInput, "event"> {
     event: null

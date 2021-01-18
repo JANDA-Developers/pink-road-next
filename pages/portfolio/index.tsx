@@ -17,6 +17,11 @@ export const PortFolio: React.FC<Ipage> = (_pageInfo) => {
 
 
     const categories = categoriesMap?.PORTPOLIO || [];
+
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2");
+    console.log(categories);
+    console.log(categories);
+    console.log(categories);
     const handlePrev = () => {
         setPage(pageInfo.page - 1)
     }

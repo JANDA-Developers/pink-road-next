@@ -20,7 +20,7 @@ export const usePaymentList = ({
     initialFilter = {},
     initialViewCount = 20,
     options = {}
-}: IuseItemListProp = {}): IusePaymentList => {
+}: IuseItemListProp = {}) => {
     const { variables: overrideVariables, ...ops } = options;
     const { filter, setPage, setFilter, setSort, setViewCount, sort, viewCount, integratedVariable } = useListQuery({
         initialFilter,

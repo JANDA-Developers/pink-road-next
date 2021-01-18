@@ -8,12 +8,10 @@ export const useIdSelecter = (list:string[], defaultIds:string[] = []) => {
     }
 
     const unCheck = (_id:string) => {
-        alert("uncheck");
         setSelectedIds([...selectedIds.filter(id => id !== _id)]);
     }
     
     const check =(id:string) => {
-        alert("check");
         const filtered = selectedIds.filter(_id => _id === id)
         setSelectedIds([...filtered,id]);
     }

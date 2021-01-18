@@ -56,7 +56,7 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">사이트명</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input value={homepage.} className="w50" placeholder="" type="text" /></div>
+                                    <div className="txt"><input value={homepage.siteName} className="w50" placeholder="" type="text" /></div>
                                 </div>
                             </div>
                             <div className="tbody">

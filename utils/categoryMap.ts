@@ -1,4 +1,5 @@
 import { CategoryType, Fcategory } from "../types/api";
+import { cloneObject } from "./clone";
 
 export const defaultCatsMap = {
   CUSTOMER_QNA: [],
@@ -9,10 +10,10 @@ export const defaultCatsMap = {
 }
 
 export const categoryMap = (catList:Fcategory[]) => {
-  const catsMap: Record<CategoryType, Fcategory[]> = defaultCatsMap
+  const catsMap: Record<CategoryType, Fcategory[]> = cloneObject(defaultCatsMap)
 
   catList.forEach(cat => {
-    catsMap[cat.type].push(cat);
+     catsMap[cat.type].push(cat);
   })
 
   return catsMap;

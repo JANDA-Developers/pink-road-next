@@ -3,15 +3,14 @@ import Link from 'next/link';
 import React from 'react';
 import { MaseterBookingLi } from '../../components/bookingLi/MasterBookingLi';
 import { useBookingList } from '../../hook/useBooking';
-import { useCount, useCountManager } from '../../hook/useCount';
-import { useMyBoardList } from '../../hook/useMyBoardList';
+import { useCountManager } from '../../hook/useCount';
 import { useProductList } from '../../hook/useProduct';
 import { useQuestionList } from '../../hook/useQuestion';
 import { useSettlementList } from '../../hook/useSettlement';
 import { useUserList } from '../../hook/useUser';
-import { BookingStatus, ProductStatus, UserRole } from '../../types/api';
+import { BookingStatus, UserRole } from '../../types/api';
 import { ALLOW_ADMINS } from '../../types/const';
-import { bookingStatus, confirmKr, paymentStatus, productStatus, questionSatus, settlementStatus } from '../../utils/enumToKr';
+import { confirmKr, productStatus, questionSatus, settlementStatus } from '../../utils/enumToKr';
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
 import { auth } from '../../utils/with';
 import { yyyymmdd } from '../../utils/yyyymmdd';
@@ -410,18 +409,9 @@ export const MsIndex: React.FC<IProp> = () => {
                             </li>)}
                     </ul>
                 </div>
-
-                {/* <div className="hang div09">
-                    <ul>
-                        <li><Link href="/"><a><strong>사업자입점매뉴얼</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
-                        <li><Link href="/"><a><strong>상세페이지기본폼</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
-                        <li><Link href="/"><a><strong>스마트스토어</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
-                        <li><Link href="/"><a><strong>맞춤견적관리</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
-                        <li><Link href="/"><a><strong>카페24 SMS관리</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
-                        <li><Link href="/"><a><strong>카카오비즈톡관리</strong><i className="jandaicon-arr4-right"></i></a></Link></li>
-
-                    </ul>
-                </div> */}
+                {/* <UserModal /> */}
+                {/* <BookingModal code={""} /> */}
+                {/* <MasterModal productId={} /> */}
             </div>
         </div>
 

@@ -113,9 +113,9 @@ export const MsReservationB: React.FC<IProp> = () => {
                         handleSelectAll={selecteAll}
                         LeftDiv={
                             <ul className="board_option">
-                                <li className="on"><a href="/">전체<strong>46</strong></a></li>
-                                <li><a href="/">여행<strong>23</strong></a></li>
-                                <li><a href="/">체험<strong>23</strong></a></li>
+                                <li className="on"><a >전체<strong>46</strong></a></li>
+                                <li><a >여행<strong>23</strong></a></li>
+                                <li><a >체험<strong>23</strong></a></li>
                             </ul>
                         }
                     />
@@ -175,13 +175,13 @@ export const MsReservationB: React.FC<IProp> = () => {
                             <div className="t06">
                                 <div className="align">
                                     <strong className="money"><i className="m_title">합계금액:{autoComma(item.totalPrice)}</i>원</strong>
-                                    <span className="sum01">수수료 및 공제(-) {autoComma(item.totalFee)}}원</span>
-                                    <span className="sum03">정산금액: {autoComma(item.settlementPrice)}}원</span>
+                                    <span className="sum01">수수료 및 공제(-) {autoComma(item.totalFee)}원</span>
+                                    <span className="sum03">정산금액: {autoComma(item.settlementPrice)}원</span>
                                 </div>
                             </div>
                             <div className="t07">
                                 <div className="align">
-                                    <strong onClick={ }><span className="sel no">지급보류</span></strong>
+                                    <strong onClick={() => { }}><span className="sel no">지급보류</span></strong>
                                 </div>
                             </div>
                             <div className="t08">

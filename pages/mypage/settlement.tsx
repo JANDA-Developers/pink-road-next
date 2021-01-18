@@ -4,8 +4,10 @@ import { PurChasedItem } from 'components/mypage/PurchasedItem';
 import dayjs from 'dayjs';
 import { MypageLayout } from 'layout/MypageLayout';
 import React, { useContext, useState } from 'react';
+import { BookingModal } from '../../components/bookingModal/BookingModal';
 import SortSelect from '../../components/common/SortMethod';
 import { ViewCount } from '../../components/common/ViewCount';
+import { MasterModal } from '../../components/masterModal/MasterModal';
 import { SearchBar } from '../../components/searchBar/SearchBar';
 import { LastMonthBooking } from '../../components/static/LastMonthBooking';
 import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
@@ -13,10 +15,11 @@ import { ThisMonthPayAmt } from '../../components/static/ThisMonthPayAmt';
 import { useCustomCount } from '../../hook/useCount';
 import { useDateFilter } from '../../hook/useSearch';
 import { useSettlementList } from '../../hook/useSettlement';
-import { Fsettlement } from '../../types/api';
+import { Fsettlement, ProductStatus } from '../../types/api';
 import { ALLOW_ALLOW_SELLERS } from '../../types/const';
-import { productStatus } from '../../utils/enumToKr';
+import { productStatus, settlementStatus } from '../../utils/enumToKr';
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
+import { openModal } from '../../utils/popUp';
 import { auth, compose } from '../../utils/with';
 
 interface IProp { }
@@ -45,12 +48,15 @@ const popupClose2 = () => {
 }
 
 export const MySettlement: React.FC<IProp> = () => {
-    const { items, filter, setFilter } = useSettlementList()
+    const { items, filter, setFilter, viewCount, setViewCount, setSort, sort, pageInfo } = useSettlementList()
     const [target] = useState<Fsettlement | null>(null);
     const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({
         filter,
         setFilter
     });
+
+    const [code, setCode] = useState("");
+    const [productId, setProductId] = useState("");
 
     const { salesofLastMonth, salesOfThisMonth, settleAvaiableAmount, cancelReturnPrice } = useCustomCount(["salesofLastMonth", "salesofLastMonth", "settleAvaiableAmount", "cancelReturnPrice"])
 
@@ -63,6 +69,13 @@ export const MySettlement: React.FC<IProp> = () => {
         setFilter({
             ..._filter,
         })
+    }
+
+    const handleOpenModal = (_id: string) => () => {
+        setProductId(_id);
+        setTimeout(() => {
+            openModal("#BookingModal")()
+        }, 1000)
     }
 
 
@@ -166,7 +179,7 @@ export const MySettlement: React.FC<IProp> = () => {
                     <div className="con_box">
                         <div className="alignment">
                             <div className="left_div">
-                                총 <strong>22,222</strong>개
+                                총 <strong>{pageInfo.totalCount}</strong>개
                             </div>
                             <div className="right_div">
                                 <SortSelect onChange={setSort} sort={sort} />
@@ -196,11 +209,11 @@ export const MySettlement: React.FC<IProp> = () => {
                                             <div className="th01"><input type="checkbox" /></div>
                                             <div className="th02">{item.product.code}</div>
                                             <div className="th03">{item.product.title}</div>
-                                            <div className="th04">{productStatus(item.product.stauts)}</div>
+                                            <div className="th04">{productStatus(item.product?.status)}</div>
                                             <div className="th05">{dayjs(item.requestDate).format("YYYY.MM.DD")}</div>
                                             <div className="th06">{item}</div>
                                             <div className="th07"><strong className="ok">{settlementStatus(item.status)}</strong></div>
-                                            <div onClick={ } className="th08"><i className="btn">상세보기</i></div>
+                                            <div onClick={handleOpenModal(item.product._id)} className="th08"><i className="btn">상세보기</i></div>
                                         </li>
                                     )}
                                 </ul>
@@ -231,9 +244,10 @@ export const MySettlement: React.FC<IProp> = () => {
         </div>
 
 
-
         {/* popup-상세보기 */}
-        {/* !!!부킹모달!!!! */}
+        <BookingModal code={code} />
+        {/* 마스터모달 */}
+        <MasterModal productId={productId} />
     </MypageLayout >
 };
 

@@ -27,7 +27,9 @@ export const useCustomCount = <K extends keyof countManager_Count_data>(requires
         }
     }`
 
+    if(wantedString.replaceAll) {
     wantedString.replaceAll(",","\n");
+    }
 
     const queryString = gql`${wantedString}`;
     const result = useQuery(queryString)

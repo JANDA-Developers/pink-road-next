@@ -23,13 +23,13 @@ import PageLoading from "../../Loading";
 import { getStaticPageInfo, Ipage } from "../../../utils/page";
 import { usePageEdit } from "../../../hook/usePageEdit";
 import defaultPageInfo from 'info/tourView.json';
-
+import "slick-carousel/slick/slick.css";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { id: ".." } }
+      { params: { id: "1" } }
     ],
     fallback: true
   };

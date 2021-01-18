@@ -16,6 +16,11 @@ export const getQueryIndex = (inPageIndex: number, pageInfo: Fpage) => {
 }
 
 export const useHomepageServerSide = async () => {
+    console.log(SERVER_URI);
+    console.log(SERVER_URI);
+    console.log(SERVER_URI);
+    console.log(SERVER_URI);
+    console.log(SERVER_URI);
     const graphQLClient = new GraphQLClient(SERVER_URI, {
         credentials: 'include',
         mode: 'cors',

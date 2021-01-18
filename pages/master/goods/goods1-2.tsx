@@ -10,7 +10,6 @@ interface IProp { }
 export const MsGoodsct: React.FC<IProp> = () => {
     return <MasterLayout>
         <div>
-            <h1 style={{ color: "red" }}>해당 내역은 홈페이지 -카테고리에서 설정하도록 합니다. (여유되면 옴김) 옴길떄도 같은 컴포넌트로 재사용</h1>
             <div className="in ">
                 <h4>상품관리</h4>
                 <div className="in_content">

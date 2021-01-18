@@ -40,7 +40,7 @@ export const PopupConfigViewBox: React.FC<IProp> = ({ popups, height, hideIds, s
         onBoxClick(popup, index);
     }
 
-    const filtedPopups = popups.filter(pop => !hideIds.includes(pop._id));
+    const filtedPopups = popups;
 
     return <div className="popupConfigBox" id="POPWRAP" style={{ position: "relative", width: "100%", height }} >
         {filtedPopups.map((popup, index) =>

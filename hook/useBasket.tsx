@@ -77,9 +77,6 @@ export const useBasket = () => {
     }
 
     const items: (IBasketItem & Fproduct)[] = getLoading ? [] : mappingItemWithProduct();
-
     const totalPrice = arraySum(items.map(item => item.price));
-
-
     return { updateComponent, totalPrice, items, getLoading }
 }

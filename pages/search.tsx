@@ -87,7 +87,6 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     }
 
     const openDayPicker = () => {
-        alert("?");
         openModal("#dayPickerModal")()
     }
 

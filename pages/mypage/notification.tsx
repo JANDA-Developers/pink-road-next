@@ -6,6 +6,7 @@ import { MypageLayout } from '../../layout/MypageLayout';
 import { ALLOW_LOGINED } from '../../types/const';
 import { groupDateArray } from '../../utils/group';
 import { auth } from '../../utils/with';
+import { yyyymmdd } from '../../utils/yyyymmdd';
 
 interface IProp { }
 
@@ -50,7 +51,7 @@ export const Notification: React.FC<IProp> = () => {
                     {groupItems.map((group, index) =>
                         <div key={"notificationDateGroup" + index} className="date_fom">
                             <div className="ovj">
-                                <span><i className="svg"><img src="/img/svg/inform_icon4.svg" alt="" /></i>오늘</span>
+                                <span><i className="svg"><img src="/img/svg/inform_icon4.svg" alt="" /></i>{group.date}</span>
                             </div>
                             <div className="right">
                                 {group.items.map(item =>

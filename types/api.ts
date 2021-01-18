@@ -1377,6 +1377,20 @@ export interface homepage_Homepage_data_logo {
   owner: string;
 }
 
+export interface homepage_Homepage_data_bannerA {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface homepage_Homepage_data_bannerB {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface homepage_Homepage_data_modal {
   __typename: "Modal";
   link: string | null;
@@ -1404,6 +1418,10 @@ export interface homepage_Homepage_data {
   travelerPolicy: string;
   partnerPolicy: string;
   marketingPolic: string;
+  bannerA: homepage_Homepage_data_bannerA | null;
+  bannerB: homepage_Homepage_data_bannerB | null;
+  bannerBlink: string | null;
+  bannerAlink: string | null;
   thirdPolicy: string;
   modal: homepage_Homepage_data_modal[];
 }
@@ -1429,6 +1447,20 @@ export interface homepage {
 // ====================================================
 
 export interface homepageUpdate_HomepageUpdate_data_logo {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface homepageUpdate_HomepageUpdate_data_bannerA {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface homepageUpdate_HomepageUpdate_data_bannerB {
   __typename: "File";
   name: string;
   uri: string;
@@ -1462,6 +1494,10 @@ export interface homepageUpdate_HomepageUpdate_data {
   travelerPolicy: string;
   partnerPolicy: string;
   marketingPolic: string;
+  bannerA: homepageUpdate_HomepageUpdate_data_bannerA | null;
+  bannerB: homepageUpdate_HomepageUpdate_data_bannerB | null;
+  bannerBlink: string | null;
+  bannerAlink: string | null;
   thirdPolicy: string;
   modal: homepageUpdate_HomepageUpdate_data_modal[];
 }
@@ -4392,6 +4428,20 @@ export interface getContext_Homepage_data_logo {
   owner: string;
 }
 
+export interface getContext_Homepage_data_bannerA {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface getContext_Homepage_data_bannerB {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface getContext_Homepage_data_modal {
   __typename: "Modal";
   link: string | null;
@@ -4419,6 +4469,10 @@ export interface getContext_Homepage_data {
   travelerPolicy: string;
   partnerPolicy: string;
   marketingPolic: string;
+  bannerA: getContext_Homepage_data_bannerA | null;
+  bannerB: getContext_Homepage_data_bannerB | null;
+  bannerBlink: string | null;
+  bannerAlink: string | null;
   thirdPolicy: string;
   modal: getContext_Homepage_data_modal[];
 }
@@ -6952,6 +7006,20 @@ export interface Fhomepage_logo {
   owner: string;
 }
 
+export interface Fhomepage_bannerA {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fhomepage_bannerB {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface Fhomepage_modal {
   __typename: "Modal";
   link: string | null;
@@ -6979,6 +7047,10 @@ export interface Fhomepage {
   travelerPolicy: string;
   partnerPolicy: string;
   marketingPolic: string;
+  bannerA: Fhomepage_bannerA | null;
+  bannerB: Fhomepage_bannerB | null;
+  bannerBlink: string | null;
+  bannerAlink: string | null;
   thirdPolicy: string;
   modal: Fhomepage_modal[];
 }

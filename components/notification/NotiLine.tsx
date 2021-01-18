@@ -12,10 +12,10 @@ export const getDiffTimeString = (time: Date) => {
     const diffMins = dayjs().diff(time, "m");
     let diffString = diffMins + "분전"
     if (diffMins > 60) {
-        diffString = diffMins / 60 + "시간전"
+        diffString = Math.floor(diffMins / 60) + "시간전"
     }
     if (diffMins > 1440) {
-        diffString = diffMins / 1440 + "일전"
+        diffString = Math.floor(diffMins / 1440) + "일전"
     }
     return diffString
 

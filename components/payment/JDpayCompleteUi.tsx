@@ -48,7 +48,7 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
                 </div>
                         <div className="payment_td">
                             <span>결제수단</span>
-                            <span>{booking.payment?.payMethod}{` `}{card_hypen(booking.payment?. || "")}</span>
+                            <span>{booking.payment?.payMethod}{` `}</span>
                             <span>일시불</span>
                             <span>승인일시:{dayjs(booking.payment?.createdAt || undefined).format("YYYY.MM.DD")}</span>
                         </div>

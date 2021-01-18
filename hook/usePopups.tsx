@@ -59,24 +59,24 @@ export const usePopups = (defaultModals: Ipopup[], wrapperId: string) => {
         </body>
     </html>
 
-    const view = (popup: Fmodal) => {
-        const hides = hideIds.filter(id => id !== popup._id);
-        setHideIds([...hides])
-    }
+    // const view = (popup: Fmodal) => {
+    //     const hides = hideIds.filter(id => id !== popup._id);
+    //     setHideIds([...hides])
+    // }
 
-    const hide = (popup: Fmodal) => {
-        hideIds.push(popup._id);
-        setHideIds([...hideIds]);
-    }
+    // const hide = (popup: Fmodal) => {
+    //     hideIds.push(popup._id);
+    //     setHideIds([...hideIds]);
+    // }
 
-    const handleHideToggle = (popup: Fmodal) => () => {
+    // const handleHideToggle = (popup: Fmodal) => () => {
 
-        if (hideIds.includes(popup._id)) {
-            view(popup);
-        } else {
-            hide(popup);
-        }
-    }
+    //     if (hideIds.includes(popup._id)) {
+    //         view(popup);
+    //     } else {
+    //         hide(popup);
+    //     }
+    // }
 
 
 
@@ -114,5 +114,5 @@ export const usePopups = (defaultModals: Ipopup[], wrapperId: string) => {
         })
     }
 
-    return { hideIds, setHideIds, handleHideToggle, selectedIndex, selectedPopup, setSelcetedIndex, popups, setPopups, openAll, open, changeToPercentage, openAllPecentage, openPercentage }
+    return { hideIds, setHideIds, selectedIndex, selectedPopup, setSelcetedIndex, popups, setPopups, openAll, open, changeToPercentage, openAllPecentage, openPercentage }
 }

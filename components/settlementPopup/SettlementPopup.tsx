@@ -22,7 +22,7 @@ export const SettlementPopup: React.FC<IProp> = ({ targetId }) => {
 
     const { product, bankFee, cancelReturnPrice, cardFee, acceptDate, cancelDate, storeFee, totalFee, totalPrice, payReqPrice, jandaFee, niceCardFee, jandaCardFee, cardPrice, requestDate, bankPrice, additionFeeSum } = settlement;
     const { bookings } = product;
-    const canceldBooking = bookings.filter(bk => bk.status === BookingStatus.CANCEL || bk.status === BookingStatus.CANCEL_COMPLETED);
+    const canceldBooking = bookings.filter(bk => bk.status === BookingStatus.CANCEL);
 
 
 

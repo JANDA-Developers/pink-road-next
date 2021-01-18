@@ -10,8 +10,9 @@ import { useDateFilter } from '../../../hook/useSearch';
 import { useIdSelecter } from '../../../hook/useIdSelecter';
 import { useSingleSort } from '../../../hook/useSort';
 import { getUniqFilter } from '../../../utils/filter';
-import { BookingStatus } from '../../../types/api';
+import { BookingStatus, _ProductFilter } from '../../../types/api';
 import { ResvTopNav } from '../../../components/topNav/MasterTopNav';
+import { useQueryFilter } from '../../../hook/useQueryFilter';
 
 
 interface IProp { }
@@ -29,22 +30,19 @@ const popupClose = () => {
 }
 export const MsReservationMain: React.FC<IProp> = () => {
 
+
     const { items, filter, setFilter, pageInfo, sort, setSort, viewCount, setViewCount, page, setPage } = useBookingList()
+    const { setUniqFilter } = useQueryFilter<_ProductFilter>({})
     const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({ filter, setFilter })
     const { check, isChecked, selecteAll, selectedIds, setSelectedIds, unCheck, unSelectAll } = useIdSelecter(items.map(i => i._id));
     const singleSort = useSingleSort(sort, setSort);
 
     const doSearch = (search: string) => {
-        const _filter = getUniqFilter(
-            filter,
-            "porductName_contains",
-            ["porductName_contains"],
+        const _filter = setUniqFilter(
+            "title_contains",
+            ["title_contains"],
             search
         )
-
-        setFilter({
-            ..._filter
-        })
     }
 
     const handleSatus = (status?: BookingStatus) => () => {

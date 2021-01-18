@@ -10,7 +10,6 @@ export const PageEditor: React.FC<IProp> = ({ pageTools }) => {
     const { editMode, reset, submitEdit, setEditMode } = pageTools;
 
     const submit = () => {
-        alert(editMode);
         if (editMode) {
             if (confirm("변경내용을 저장 하시겠습니까? (취소시 초기화됨)")) {
                 submitEdit()

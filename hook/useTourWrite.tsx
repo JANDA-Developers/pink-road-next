@@ -109,7 +109,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const [its, setits] = useState<ItineraryCreateInput[]>(deepCopy(defaults.its || []));
     const [simpleData, setSimpleData] = useState<TSimpleTypePart>(defaults.simpleData || DEFAULT_SIMPLE_TOUR_DATA)
     const [categoryId, setCategoryId] = useState<string>(defaults.categoryId || "");
-    const [status, setStatus] = useState<ProductStatus>(defaults.status || ProductStatus.CLOSE);
+    const [status, setStatus] = useState<ProductStatus>(defaults.status || ProductStatus.READY);
     const [thumbs, setThumbs] = useState<Ffile[]>(Array.from(defaults.thumbs || []))
     const [keyWards, setkeyWards] = useState<string[]>(Array.from(defaults.keyWards || []));
     const [loadKey, setLoadKey] = useState<number>(0);
@@ -259,7 +259,6 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         const createData: ProductCreateInput = {
             categoryId,
             keyWards,
-            status,
             address,
             adult_price: toNumber(adult_price),
             baby_price: toNumber(baby_price),

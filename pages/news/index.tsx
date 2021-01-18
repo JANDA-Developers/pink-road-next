@@ -17,7 +17,7 @@ export const News: React.FC<Ipage> = (_pageInfo) => {
     const urlType = getFromUrl("type") as NEWS_TYPE;
     const [view, setView] = useState<"line" | "gal">("line");
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
-    const { setSort, sort, filter, setPage, setFilter, pageInfo, viewCount, setViewCount, items: news } = useNewsList({ initialFilter: { type_eq: urlType } });
+    const { setSort, sort, filter, setPage, setFilter, pageInfo, viewCount, setViewCount, items: news } = useNewsList({ initialFilter: { type_eq: urlType || undefined } });
     const { totalCount } = pageInfo;
     const router = useRouter();
     const type = filter?.type_eq;
@@ -32,7 +32,7 @@ export const News: React.FC<Ipage> = (_pageInfo) => {
 
     const handleType = (type: NEWS_TYPE) => () => {
         setFilter({
-            type_eq: type
+            type_eq: type || undefined
         })
     }
 

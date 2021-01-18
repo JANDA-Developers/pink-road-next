@@ -24,6 +24,8 @@ const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["da
         }
     })
     } catch (e){
+        console.log(operationName);
+        console.log(operationName);
     console.error("==========FATAL ERROR==========");
     console.error(e);
     }
@@ -151,7 +153,7 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:Doc
         const item:ResultFragment | undefined = data?.[operationName]?.data || undefined;
         // @ts-ignore
         const errorFromServer:string = data?.[operationName]?.error;
-        dataCheck(data,operationName)
+        dataCheck(data,operationName,["data"])
    
         useEffect(()=>{
             if(key)

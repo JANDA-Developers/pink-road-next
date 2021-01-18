@@ -2,8 +2,7 @@ import { QueryHookOptions } from "@apollo/client";
 import { CSSProperties, Dispatch } from "react";
 import { IPopupStyle } from "../components/popupconfig/PopupBox";
 import { ListInitOptions } from "../hook/useListQuery";
-import {  Fmodal, NotificationTriggerEvent, portfolioFindById_PortfolioFindById_data, productFindById_ProductFindById_data, productFindById_ProductFindById_data_itinerary, productList_ProductList_data, productList_ProductList_page, ReplaceString} from "../types/api";
-
+import {  Fmodal, NotificationTriggerEvent, portfolioFindById_PortfolioFindById_data, productFindById_ProductFindById_data, productFindById_ProductFindById_data_itinerary, productList_ProductList_data, productList_ProductList_page, ReplaceString, _UserFilter} from "../types/api";
 export interface Iitineraries extends productFindById_ProductFindById_data_itinerary {}
 export interface IproductFindById  extends productFindById_ProductFindById_data {}
 export interface IProduct extends productList_ProductList_data { };
@@ -15,6 +14,7 @@ export declare type TElements = string | JSX.Element | JSX.Element[] | string[];
 export interface IDiv extends React.HTMLAttributes<HTMLDivElement> {
 }
 
+export type TUserFilterKeys = keyof _UserFilter;
 export type TCount = {
     name: string;
     value: number

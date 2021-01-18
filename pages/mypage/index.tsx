@@ -3,7 +3,6 @@ import { MypageLayout } from 'layout/MypageLayout';
 import { AppContext } from '../_app';
 import { getItemCount } from '../../utils/Storage';
 import { arraySum } from '../../utils/math';
-import { setLastMonthCount, setThisMonthCount } from '../../components/mypage/countSetter';
 import { GENDER, UserRole } from '../../types/api';
 import { autoHypenPhone, cc_format } from "../../utils/formatter";
 import { useUserUpdate } from '../../hook/useUserUpdate';

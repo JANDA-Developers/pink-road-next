@@ -15,18 +15,17 @@ import Excel from '../excel/Execel';
 import { SmsSendModal } from '../smsSnedModal/SmsSendModal';
 
 interface IProp {
-    id: string;
+    productId: string;
 }
 
-export const DetailproductModal: React.FC<IProp> = ({ id }) => {
-    const { item: product } = useProductFindByIdForSeller(id);
+export const MasterModal: React.FC<IProp> = ({ productId }) => {
+    const { item: product } = useProductFindByIdForSeller(productId);
     const { productUpdate } = useProductUpdate()
-    if (!product) return <div />
-    const { title, code, createdAt, keyWards, status, bookings, _id, adminMemo: _adminMemo } = product;
+    const { title, code, createdAt, keyWards, status, bookings = [], _id, adminMemo: _adminMemo } = product || {};
     const [selectedBookings, setSelectedBookings] = useState<Fbooking[]>([]);
     const [adminMemo, setAdminMemo] = useState(_adminMemo);
 
-    const seller = product.author;
+    const seller = product?.author;
 
     const readyBookings = bookings.filter(bk => bk.status === BookingStatus.READY);
     const cancelBookings = bookings.filter(bk => bk.status === BookingStatus.CANCEL);
@@ -78,12 +77,15 @@ export const DetailproductModal: React.FC<IProp> = ({ id }) => {
 
     const handleSettlementComplete = () => {
 
+
     }
 
+    if (!product) return <div />
 
-    return < div id="Popup01" className="popup_bg_full" >
+
+    return < div id="MasterModal" className="popup_bg_full" >
         <div className="in_txt master_popup">
-            <a className="close_icon" onClick={closeModal("#Popup01")}>
+            <a className="close_icon" onClick={closeModal("#MasterModal")}>
                 <i className="flaticon-multiply"></i>
             </a>
             <div className="page">
@@ -226,7 +228,7 @@ export const DetailproductModal: React.FC<IProp> = ({ id }) => {
                                 <div key={bk._id} className="tr first">
                                     <div className="pp01">
                                         <span className="checkbox">
-                                            <input checked={ } type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                            <input checked={false} type="checkbox" name="agree" id="agree1" title="개별선택" />
                                             <label htmlFor="agree1" />
                                         </span>
                                     </div>

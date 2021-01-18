@@ -1,7 +1,8 @@
+import { END_POINT, SEVER } from "../../apollo/uri";
 import { INiceElementProp } from "./NiceElement";
-export const NICE_GET_URI = process.env.NEXT_PUBLIC_SERVER_URI + "/payment"
-export const NICE_MOBILE_AFTER_PAY = process.env.NEXT_PUBLIC_SERVER_URI + "/authReq"
-export const NICE_CANCLE = process.env.NEXT_PUBLIC_SERVER_URI + "/authReq"
+export const NICE_GET_URI = SEVER + "/payment"
+export const NICE_MOBILE_AFTER_PAY = SEVER + "/authReq"
+export const NICE_CANCLE = SEVER + "/authReq"
 
 // requirePorp: Record<AUTH, string> & Partial<INiceElementProp>
 

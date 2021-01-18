@@ -1,11 +1,37 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from "next/link";
+import { useHomepage, useHomepageUpdate } from '../../../hook/useHomepage';
+import { useUpload } from '../../../hook/useUpload';
+import { Fhomepage } from '../../../types/api';
+import { omits } from '../../../utils/omit';
+import { cloneObject } from '../../../utils/clone';
 
 interface IProp { }
 
 export const MsDesignA: React.FC<IProp> = () => {
+    const { signleUpload } = useUpload();
+    const { data: defaultHomepage } = useHomepage()
+    const [homeapgeUpdate] = useHomepageUpdate();
+    const [homepage, setHomepage] = useState<null | Fhomepage>(null);
+
+    const handleSave = () => {
+        homeapgeUpdate({
+            variables: {
+                params: {
+                    ...omits(homepage)
+                }
+            }
+        })
+    }
+
+    useEffect(() => {
+        if (defaultHomepage)
+            setHomepage(cloneObject(defaultHomepage));
+    }, [defaultHomepage])
+
+    if (!homepage) return null;
     return <MasterLayout>
         <div className="in ">
             <h4>디자인 설정</h4>
@@ -49,7 +75,15 @@ export const MsDesignA: React.FC<IProp> = () => {
                                     </div>
                                     <div className="t02">
                                         <div className="txt">
-                                            <input className="w50" type="file" />
+                                            <input onChange={(e) => {
+                                                if (!e.currentTarget.files) return;
+                                                signleUpload(e.currentTarget.files, (url, data) => {
+                                                    homepage.logo = data
+                                                    setHomepage({
+                                                        ...homepage
+                                                    })
+                                                })
+                                            }} className="w50" type="file" />
                                             <p className="infotxt_gray">images size : 500px * 134px</p>
                                         </div>
                                     </div>
@@ -102,7 +136,7 @@ export const MsDesignA: React.FC<IProp> = () => {
                         <div className="float_left">
                         </div>
                         <div className="float_right">
-                            <button type="submit" className="btn medium">저장하기</button>
+                            <button onClick={handleSave} type="submit" className="btn medium">저장하기</button>
                         </div>
                     </div>
                 </div>

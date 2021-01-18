@@ -8,6 +8,7 @@ import { autoHypenPhone } from '../../utils/formatter';
 import { generateClientPaging } from '../../utils/generateClientPaging';
 import { closeModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
+import { Paginater } from '../common/Paginator';
 import { UserModalResvList } from './UserModalResvList';
 
 interface IProp {
@@ -191,7 +192,7 @@ export const UserModal: React.FC<IProp> = ({ id }) => {
                                 </div>
                             </div>
                         </div>
-                        <Paginater pageNumber={10} totalPageCount={20} />
+                        {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                     </div>
                 </div>
             </div>

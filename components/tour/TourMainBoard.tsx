@@ -37,7 +37,7 @@ export const TourMainBoard: React.FC<IProp> = ({ cat }) => {
             {items.map(data =>
                 <Link key={data._id} href={`/tour/view/${data._id}`}>
                     <li className="list_in" >
-                        <div className="img" style={BG(data.images[0].uri)}>상품이미지</div>
+                        <div className="img" style={BG(data.images?.[0]?.uri || "")}>상품이미지</div>
                         <div className="box">
                             <div className="category"><span>{data.category?.label}</span></div>
                             <div className="title">{data.title}</div>

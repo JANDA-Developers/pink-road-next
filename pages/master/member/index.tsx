@@ -112,83 +112,86 @@ export const MsMemberA: React.FC<IProp> = () => {
                                 </select>
                             }
                         />
+
+                        <MasterAlignMent
+                            Sort={
+                                <SingleSortSelect {...singleSort} >
+                                    <option>가입일 &uarr;</option>
+                                    <option>가입일 &darr;</option>
+                                    <option>접속일 &uarr;</option>
+                                    <option>접속일 &darr;</option>
+                                    <option>이름 오름순</option>
+                                    <option>이름 내림순</option>
+                                </SingleSortSelect>
+                            }
+                            setViewCount={setViewCount}
+                            viewCount={viewCount}
+                            handleSelectAll={selecteAll}
+                            LeftDiv={
+                                <ul className="board_option">
+                                    <li className="on"><a >전체<strong>{totalIndiMemeberCount}</strong></a></li>
+                                    <li><a >내국인<strong>{koreanMemberCount}</strong></a></li>
+                                    <li><a >외국인<strong>{foreginMemeberCount}</strong></a></li>
+                                </ul>
+                            }
+                        />
                     </div>
-                    <MasterAlignMent
-                        Sort={
-                            <SingleSortSelect {...singleSort} >
-                                <option>가입일 &uarr;</option>
-                                <option>가입일 &darr;</option>
-                                <option>접속일 &uarr;</option>
-                                <option>접속일 &darr;</option>
-                                <option>이름 오름순</option>
-                                <option>이름 내림순</option>
-                            </SingleSortSelect>
-                        }
-                        setViewCount={setViewCount}
-                        viewCount={viewCount}
-                        handleSelectAll={selecteAll}
-                        LeftDiv={
-                            <ul className="board_option">
-                                <li className="on"><a >전체<strong>{totalIndiMemeberCount}</strong></a></li>
-                                <li><a >내국인<strong>{koreanMemberCount}</strong></a></li>
-                                <li><a >외국인<strong>{foreginMemeberCount}</strong></a></li>
-                            </ul>
-                        }
-                    />
-                </div>
-                <div className="con_box_body">
-                    <div className="list_head">
-                        <div className="td01">
-                            <i className="checkbox">
-                                <input type="checkbox" name="agree" id="agree0" title="전체선택" />
-                                <label htmlFor="agree0" />
-                            </i>
-                        </div>
-                        <div className="td02">이름</div>
-                        <div className="td03">아이디</div>
-                        <div className="td04">휴대폰</div>
-                        <div className="td05">성별</div>
-                        <div className="td06">국적</div>
-                        <div className="td07">가입일</div>
-                        <div className="td08">가입방법</div>
-                        <div className="td09">상세보기</div>
-                    </div>
-                    {users.map(user =>
-                        <div className="list_line">
+
+                    <div className="con_box_body">
+                        <div className="list_head">
                             <div className="td01">
                                 <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                    <input type="checkbox" name="agree" id="agree0" title="전체선택" />
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
-                            <div className="td02">{user.nickName}</div>
-                            <div className="td03">{user.email}</div>
-                            <div className="td04"><i className="m_title">휴대폰:</i><a href={`tel:${user.phoneNumber}`}>{autoComma(user.phoneNumber)}</a></div>
-                            <div className="td05"><i className="m_title">성별:</i>{genderToKR(user.gender)}</div>
-                            <div className="td06"><i className="m_title">국적:</i>{foreginKR(user.is_froreginer)}</div>
-                            <div className="td07"><i className="m_title">가입일:</i>{yyyymmdd(user.createdAt)}</div>
-                            <div className="td08"><i className="m_title">주소:</i>{user.address.slice(0, 10) + "..."}</div>
-                            <div className="td09">
-                                <i className="btn small" onClick={handleViewDetailUser(user._id)}>상세보기</i>
-                                <i className="btn small" onClick={handleViewUserBoard(user.email)}>작성한 게시글</i>
+                            <div className="td02">이름</div>
+                            <div className="td03">아이디</div>
+                            <div className="td04">휴대폰</div>
+                            <div className="td05">성별</div>
+                            <div className="td06">국적</div>
+                            <div className="td07">가입일</div>
+                            <div className="td08">가입경로</div>
+                            <div className="td09">상세보기</div>
+                        </div>
+                        {users.map(user =>
+                            <div className="list_line">
+                                <div className="td01">
+                                    <i className="checkbox">
+                                        <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                        <label htmlFor="agree0" />
+                                    </i>
+                                </div>
+                                <div className="td02">{user.nickName}</div>
+                                <div className="td03">{user.email}</div>
+                                <div className="td04"><i className="m_title">휴대폰:</i><a href={`tel:${user.phoneNumber}`}>{autoComma(user.phoneNumber)}</a></div>
+                                <div className="td05"><i className="m_title">성별:</i>{genderToKR(user.gender)}</div>
+                                <div className="td06"><i className="m_title">국적:</i>{foreginKR(user.is_froreginer)}</div>
+                                <div className="td07"><i className="m_title">가입일:</i>{yyyymmdd(user.createdAt)}</div>
+                                <div className="td08"><i className="m_title">주소:</i>{user.address.slice(0, 10) + "..."}</div>
+                                <div className="td09">
+                                    <i className="btn small" onClick={handleViewDetailUser(user._id)}>상세보기</i>
+                                    <i className="btn small" onClick={handleViewUserBoard(user.email)}>작성한 게시글</i>
+                                </div>
                             </div>
-                        </div>
-                    )}
-                    <Paginater setPage={setPage} pageInfo={userPageInfo} />
-                    <div className="fin ifMobile">
-                        <div className="float_left">
-                            <button type="submit" className="btn medium">전체선택</button>
-                        </div>
-                        <div className="float_right">
-                            <button type="submit" className="btn medium mr5">탈퇴</button>
-                            <button type="submit" className="btn medium">활동정지</button>
+                        )}
+                        <Paginater setPage={setPage} pageInfo={userPageInfo} />
+                        <div className="fin ifMobile">
+                            <div className="float_left">
+                                <button type="submit" className="btn medium">전체선택</button>
+                            </div>
+                            <div className="float_right">
+                                <button type="submit" className="btn medium mr5">탈퇴</button>
+                                <button type="submit" className="btn medium">활동정지</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <SearcfInfoBox />
-                {/* popup-작성한 게시글 보기 */}
-                <BoardModal email={popupEmail} />
             </div>
+
+            <SearcfInfoBox />
+            {/* popup-작성한 게시글 보기 */}
+            <BoardModal email={popupEmail} />
         </div>
     </MasterLayout >
 };

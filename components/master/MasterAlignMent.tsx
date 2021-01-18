@@ -8,7 +8,7 @@ interface IProps {
     handleSelectAll: () => void;
     LeftDiv?: TElements;
     viewCount?: number;
-    setViewCount?: ISet<number>;
+    setViewCount: ISet<number>;
     excelData?: any[]
 }
 
@@ -39,7 +39,7 @@ export const MasterAlignMent: React.FC<IProps> = ({ excelData, handleSelectAll, 
             <option>등록일 &uarr;</option>
             <option>등록일 &darr;</option>
         </select> */}
-            <ViewCount value={viewCount} onChange={setViewCount} />
+            <ViewCount value={viewCount || 0} onChange={setViewCount} />
         </div>
     </div>
 }

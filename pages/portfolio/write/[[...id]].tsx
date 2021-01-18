@@ -8,6 +8,9 @@ import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
 import { usePortfolioFind, useProtfolioCreate, useProtfolioDelete, useProtfolioUpdate } from "../../../hook/usePortfolio";
 import { IProps } from "../../../components/toast/Toast";
 import { AppContext } from "../../_app";
+import { omits } from "../../../utils/omit";
+import { auth } from "../../../utils/with";
+import { ALLOW_ADMINS } from "../../../types/const";
 
 
 export const PortFolioWrite: React.FC<IProps> = () => {
@@ -15,7 +18,7 @@ export const PortFolioWrite: React.FC<IProps> = () => {
     const id = router.query.id?.[0] as string | undefined;
     const { item: portfolio } = usePortfolioFind(id);
     const { categoriesMap } = useContext(AppContext);
-    const mode = id ? "create" : "edit";
+    const mode = id ? "edit" : "create";
 
 
     const categoryList = categoriesMap?.PORTPOLIO.map((cat): TCategory => ({
@@ -41,7 +44,7 @@ export const PortFolioWrite: React.FC<IProps> = () => {
                 variables: {
                     id: id!,
                     params: {
-                        ...boardData
+                        ...omits(boardData)
                     }
                 }
             })
@@ -61,7 +64,7 @@ export const PortFolioWrite: React.FC<IProps> = () => {
             create({
                 variables: {
                     params: {
-                        ...boardData
+                        ...omits(boardData, ["files" as any])
                     }
                 }
             })
@@ -107,4 +110,4 @@ export const PortFolioWrite: React.FC<IProps> = () => {
         }} />
 };
 
-export default PortFolioWrite;
+export default auth(ALLOW_ADMINS)(PortFolioWrite);

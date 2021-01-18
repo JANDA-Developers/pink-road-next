@@ -9,12 +9,14 @@ import { checkIsExp } from '../../utils/product';
 import { TourMainBoard } from '../../components/tour/TourMainBoard';
 import pageInfoDefault from "info/tourMain.json";
 import { usePageEdit } from '../../hook/usePageEdit';
+import { useHomepage } from '../../hook/useHomepage';
 
 interface IProp extends InferGetStaticPropsType<typeof getStaticProps> { }
 
 export const getStaticProps = getStaticPageInfo("tourMain");
 export const TourMain: React.FC<Ipage> = (pageInfo) => {
     const isExp = checkIsExp();
+    const { data } = useHomepage();
     const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const { categoriesMap } = useContext(AppContext);
     const cats = categoriesMap?.PORTPOLIO || []
@@ -25,6 +27,9 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
         descKey: isExp ? "exp_subTop_desc" : "subTop_desc"
     }
 
+
+    if (!data) return null;
+    const { bannerA, bannerB, bannerAlink, bannerBlink } = data;
     return <div >
         <Meta />
         <SubTopNav {...subTopInfo} pageTools={pageTools}  >
@@ -42,8 +47,8 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
         <div className="goods_box">
             <div className="w1200">
                 <div className="bn_box line2">
-                    <a href="/"><img src={'/img/bn_02.png'} alt="여행할인이벤트" /></a>
-                    <a href="/"><img src={'/img/bn_02.png'} alt="여행할인이벤트" /></a>
+                    <a href={bannerAlink || "/#/"}><img src={bannerA?.uri || "'/img/bn_02.png'"} alt="여행할인이벤트" /></a>
+                    <a href={bannerBlink || "/#/"}><img src={bannerB?.uri || "'/img/bn_02.png'"} alt="여행할인이벤트" /></a>
                 </div>
                 {cats.map(cat =>
                     <TourMainBoard key={cat._id} cat={cat} />

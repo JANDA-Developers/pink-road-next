@@ -16,7 +16,7 @@ export const Paginater: React.FC<IProp> = ({ pageInfo: {
 
     const disabled = (flag: boolean) => flag ? {
         style: {
-            pointerEvents: "none"
+            pointerEvents: "none" as "none"
         }
     } : undefined;
 

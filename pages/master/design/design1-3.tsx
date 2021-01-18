@@ -14,7 +14,6 @@ import { Ipopup } from '../../../types/interface';
 import { omits } from '../../../utils/omit';
 import dynamic from 'next/dynamic';
 import { defaultModalGet } from '../../../types/const';
-import { deepCopy } from '../../../utils/formatter';
 import { cloneObject } from '../../../utils/clone';
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 
@@ -30,8 +29,7 @@ export const MsDesignB: React.FC<IProp> = () => {
         selectedIndex,
         setSelcetedIndex,
         hideIds,
-        setHideIds,
-        handleHideToggle
+        setHideIds
     } = popupHook;
 
     const handleUpdate = () => {
@@ -40,7 +38,7 @@ export const MsDesignB: React.FC<IProp> = () => {
             variables: {
                 params: {
                     ...omits(homepage),
-                    modal: omits(popupHook.popups, ['_id', '__typename'])
+                    modal: omits(popupHook.popups, ['_id' as any, '__typename'])
                 }
             }
         })
@@ -63,7 +61,7 @@ export const MsDesignB: React.FC<IProp> = () => {
     }
 
     const handleCollapesToggle = (popup: Fmodal) => () => {
-        setCollapseList([popup._id]);
+        // setCollapseList([popup._id]);
     }
     const handleOpenDayPicker = (popup: Fmodal) => () => {
         setPopModal(popup);
@@ -113,12 +111,12 @@ export const MsDesignB: React.FC<IProp> = () => {
                             <div className="hang_list">
                                 <ul className="list_setting">
                                     {popupHook.popups.map((modal, index) =>
-                                        <li key={modal._id} className="con_toggle">
+                                        <li key={`modalLi${index}`} className="con_toggle">
                                             <div className="title">
                                                 <h5>
                                                     <span>{modal.title}</span>
                                                     <div className="switch">
-                                                        <input onChange={handleHideToggle(modal)} checked={!hideIds.includes(modal._id)} className="tgl tgl-skewed" id={`cb${index}`} type="checkbox" />
+                                                        <input onChange={() => { }} className="tgl tgl-skewed" id={`cb${index}`} type="checkbox" />
                                                         <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor={`cb${index}`} />
                                                     </div>
                                                 </h5>
@@ -201,7 +199,7 @@ export const MsDesignB: React.FC<IProp> = () => {
                                     <p className="infotxt_gray">각 팝업의 사이즈와 위치는 전체화면에 대한 비례 위치 입니다.</p>
                                     <p className="infotxt_gray">각 팝업을 더블클릭하여 편집 할 수 있습니다.</p>
                                 </div>
-                                {selectedModal && <Editor key={selectedModal._id} onChange={handleContentChange} data={selectedModal.content} />}
+                                {selectedModal && <Editor key={selectedIndex + "editor"} onChange={handleContentChange} data={selectedModal.content} />}
                             </div>
                         </div>
                         <div className="fin">

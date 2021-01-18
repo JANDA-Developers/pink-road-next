@@ -1,20 +1,17 @@
 import { MasterLayout } from 'layout/MasterLayout';
-import { Paginater } from 'components/common/Paginator';
 import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
-import CalendarIcon from 'components/common/icon/CalendarIcon';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from "next/link";
-import ReactTooltip from 'react-tooltip';
 import { useProductList } from '../../../hook/useProduct';
-import dayjs from 'dayjs';
 import { yyyymmdd } from '../../../utils/yyyymmdd';
 import { generateSearchLink } from '../../search';
 import { getTypeTextOfProduct } from '../../../utils/product';
 import { PordStatusBadge } from '../../../components/Status/StatusBadge';
 import { useCustomCount } from '../../../hook/useCount';
-import { SearchBar } from '../../../components/searchBar/SearchBar';
 import { useDateFilter } from '../../../hook/useSearch';
 import { MasterSearchBar } from '../../../components/master/MasterSearchBar';
+import { MasterModal } from '../../../components/masterModal/MasterModal';
+import { openModal } from '../../../utils/popUp';
 
 interface IProp { }
 
@@ -56,12 +53,25 @@ export const MsGoodsMain: React.FC<IProp> = () => {
     const { items, filter, setFilter, setSort, sort, viewCount, setViewCount } = useProductList();
     const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({ filter, setFilter });
 
+    const [popProductId, setPopProductId] = useState("");
+
     const {
         totalProductCountMaster,
         cancelProductCountMaster,
         compeltedProductCountMaster,
         openProductCountMaster
     } = useCustomCount(["totalProductCountMaster", "cancelProductCountMaster", "compeltedProductCountMaster"]);
+
+    const handleOpen = (id: string) => () => {
+        setPopProductId(id);
+        setTimeout(() => {
+            openModal("#MasterModal")()
+        }, 1000)
+    }
+
+    const doSearch = () => {
+
+    }
 
     return <MasterLayout>
         <div className="in ">
@@ -71,7 +81,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                 <div className="tab-nav">
                     <ul>
                         <li className="on"><Link href="/master/goods"><a>상품관리</a></Link></li>
-                        <li><Link href="/master/goods/goods1-2"><a>카테고리설정</a></Link></li>
+                        {/* <li><Link href="/master/goods/goods1-2"><a>카테고리설정</a></Link></li> */}
                     </ul>
                 </div>
                 <div className="con goods">
@@ -83,7 +93,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <span>전체</span>
                                 </li>
                                 <li>
-                                    <strong>{openProductCountMaster}</strong>
+                                    <strong>{openProductCountMaster || 0}</strong>
                                     <span>판매중</span>
                                 </li>
                                 <li>
@@ -102,45 +112,6 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                 <option>상품번호</option>
                             </select>
                         } defaultRange={{}} doSearch={doSearch} filterEnd={filterEnd} filterStart={filterStart} />
-                        <div className="search_top">
-                            <div className="hang">
-                                <ul className="day_ul">
-                                    <li className="on">
-                                        <span>이번달</span>
-                                    </li>
-                                    <li className="on">
-                                        <span>저번달</span>
-                                    </li>
-                                    <li>
-                                        <span>6개월</span>
-                                    </li>
-                                    <li>
-                                        <span>1년</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="hang">
-                                <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                                    ~
-                                    <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                            </div>
-                            <div className="hang fr">
-
-                                <div className="search_div">
-                                    <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
-                                    <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="search icon" />
-                                        <button />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div className="alignment">
                             <div className="left_div">
                                 <ul className="board_option">
@@ -199,19 +170,20 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     </i>
                                 </div>
                                 <div className="td02"><i className="m_title">카테고리:</i>{item.category?.label}</div>
-                                <div className="td03"><i className="m_title">상품번호:</i>PK-{item.code}</div>
+                                <div className="td03"><i className="m_title">상품번호:</i>{item.code.slice(0, 6)}</div>
                                 <div className="td04"><Link href={generateSearchLink({ title: item.title })}><a> {item.title}</a></Link></div>
                                 <div className="td05"><i className="m_title">여행일:</i>{yyyymmdd(item.createdAt)}</div>
                                 <div className="td06"><i className="m_title">인원:</i> {item.compeltePeopleCnt}/{item.maxMember}</div>
                                 <div className="td07"><i className="m_title">형태:</i>{getTypeTextOfProduct(item.type, item.dateRange)}</div>
                                 <div className="td08"><PordStatusBadge status={item.status} /> </div>
-                                <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
+                                <div className="td09"><button onClick={handleOpen(item._id)} className="btn small">상세보기</button></div>
                             </div>
                         )}
                     </div>
                 </div>
             </div>
             <SearcfInfoBox />
+            <MasterModal productId={popProductId} />
 
 
             {/* popup-기획반려 사유 */}

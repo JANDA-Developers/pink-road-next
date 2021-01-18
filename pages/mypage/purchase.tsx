@@ -49,7 +49,6 @@ export const MyPagePurchase: React.FC<IProp> = () => {
     }
 
     const handleDetail = (code: string) => () => {
-        alert("?");
         setDetailCode(code);
         setTimeout(() => {
             openModal("#BookingModal")()

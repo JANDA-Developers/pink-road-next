@@ -32,6 +32,14 @@ export const F_HOMEPAGE = gql`
         travelerPolicy
         partnerPolicy
         marketingPolic
+        bannerA {
+          ...Ffile
+        }
+        bannerB {
+          ...Ffile
+        }
+        bannerBlink
+        bannerAlink
         thirdPolicy
         modal {
           ...Fmodal
