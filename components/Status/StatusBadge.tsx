@@ -1,12 +1,12 @@
 import React from 'react';
-import { ProductStatus } from '../../types/api';
-import { productStatus } from "../../utils/enumToKr";
+import { BookingStatus, ProductStatus } from '../../types/api';
+import { bookingStatus, productStatus } from "../../utils/enumToKr";
 
 interface IProp {
     status: ProductStatus;
 }
 
-export const StatusBadege: React.FC<IProp> = ({ status }) => {
+export const PordStatusBadge: React.FC<IProp> = ({ status }) => {
 
     const getClass = () => {
         if (status === ProductStatus.CANCELD) return "tour-no"
@@ -22,6 +22,21 @@ export const StatusBadege: React.FC<IProp> = ({ status }) => {
     // <span> </span>
     const _class = getClass();
     return <span className={`state_icon ${_class}`}>{productStatus(status)}</span>
+};
+
+interface IBookingStatusBadgeProp {
+    status: BookingStatus;
+}
+
+export const BookingStatusBadge: React.FC<IBookingStatusBadgeProp> = ({ status }) => {
+
+    const getClass = () => {
+        if (status === BookingStatus.COMPLETE) return "re-ok"
+        if (status === BookingStatus.READY) return "re-stay"
+        if (status === BookingStatus.CANCEL) return "re-refund"
+    }
+
+    return <i className={`state ${getClass()}`}>{bookingStatus(status)}</i>
 };
 
 

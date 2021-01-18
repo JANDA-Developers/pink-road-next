@@ -8,6 +8,7 @@ import { Fpage } from "../types/api";
 interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
     skipInit?: boolean;
+    overrideVariables?: Partial<V>
 };
 
 const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["data","page"]) => {
@@ -40,9 +41,9 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             initialFilter = {} as F,
             initialViewCount = 20,
         }: Partial<ListInitOptions<F, S>> = {...queryInit},
-        options: QueryHookOptions<Q, V> = {...defaultOptions}
+        options: genrateOption<Q, V> = {...defaultOptions}
     )=> {
-        const { variables: overrideVariables, ...ops } = options;
+        const { variables, overrideVariables, ...ops } = options;
         const { integratedVariable,...params } = useListQuery({
             initialFilter,
             initialPageIndex,
@@ -55,6 +56,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             // @ts-ignore
             variables: {
                 ...integratedVariable,
+                ...variables,
                 ...overrideVariables
             },
             ...ops

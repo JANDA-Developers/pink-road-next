@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { useBookingCancel } from '../../hook/useBooking';
-import { usePaymentList } from '../../hook/usePayment';
-import { useProductFindById, useProductFindByIdForSeller, useProductUpdate } from '../../hook/useProduct';
+import { useProductFindByIdForSeller, useProductUpdate } from '../../hook/useProduct';
 import { generateSearchLink } from '../../pages/search';
 import { Fbooking, PaymentStatus, BookingStatus } from '../../types/api';
 import { BG } from '../../types/const';
@@ -200,7 +198,7 @@ export const DetailproductModal: React.FC<IProp> = ({ id }) => {
                                     정산계좌
                                 </div>
                                 <div className="td04">
-                                    <span>({seller?.bank_name}){seller?.account_number} / {seller.name}</span>
+                                    <span>({seller?.bank_name}){seller?.account_number} / {seller?.name}</span>
                                 </div>
                             </div>
 

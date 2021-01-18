@@ -8,6 +8,7 @@ import { usePageEdit } from '../../hook/usePageEdit';
 import { Bg } from '../../components/Img/img';
 import { PageEditor } from '../../components/common/PageEditer';
 
+
 export const PortFolio: React.FC<Ipage> = (_pageInfo) => {
     const { isManager, categoriesMap } = useContext(AppContext);
     const editTools = usePageEdit(_pageInfo, defaultPageInfo);

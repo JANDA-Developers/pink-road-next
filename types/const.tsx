@@ -8,7 +8,7 @@ export const DEFAULT_LOGO = "/img/logo_1.png";
 export const lastMonthFirstDate = dayjs().add(-1, "m").set("day", 1).toDate();
 export const lastMonthLastDate = dayjs().add(-1, "m").endOf("month").toDate();
 export const thisMonthLastDate = dayjs().endOf("month").toDate();
-export const thisMonthFirstDate = dayjs().set("day", 1).toDate();
+export const thisMonthFirstDate = dayjs().startOf("month").toDate();
 
 
 export const DEFAULTS = {

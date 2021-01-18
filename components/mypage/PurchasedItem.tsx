@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import Link from 'next/link';
 import React from 'react';
 import { generateSearchLink } from '../../pages/search';
@@ -6,15 +7,18 @@ import { BG } from '../../types/const';
 import { bookingStatus } from '../../utils/enumToKr';
 import { autoComma } from '../../utils/formatter';
 import { getTypeTextOfProduct } from '../../utils/product';
+import { yyyymmdd } from '../../utils/yyyymmdd';
 
 interface IProp {
     item: bookingList_BookingList_data
+    onDetail: () => void;
 }
 
-export const PurChasedItem: React.FC<IProp> = ({ item }) => {
-    const { product, bookingPrice, _id, status, adultCount, babyCount, kidCount } = item;
+export const PurChasedItem: React.FC<IProp> = ({ item, onDetail: handleDetail }) => {
+    const { product, bookingPrice, _id, status, adultCount, babyCount, kidCount, createdAt } = item;
     const { images, title, keyWards, status: productStauts } = product;
     const img = images?.[0]?.uri || "";
+
 
     return <li className="list_in">
         <div
@@ -47,17 +51,14 @@ export const PurChasedItem: React.FC<IProp> = ({ item }) => {
         </div>
         <div className="txt2">
             {/* 투두! */}
-            <span>결제일 : 2020.01.16</span>
-            <span>예약일 : 2020.01.16</span>
+            <span>결제일 : {yyyymmdd(item.payment?.createdAt)}</span>
+            <span>예약일 : {yyyymmdd(item.createdAt)}</span>
             <span>집합장소 : {product.startPoint}</span>
             <span>여행방식 : {getTypeTextOfProduct(product.type, product.dateRange)}</span>
             <span>선택인원 : 성인{adultCount}, 소인{kidCount}, 유아{babyCount}</span>
             <span
                 className="btn"
-                onClick={() => {
-                    document.getElementById('detail_box')!.style.display = 'block';
-                    document.getElementById('fade')!.style.display = 'block'
-                }}
+                onClick={handleDetail}
             >
                 결제 및 상세내역
         </span>

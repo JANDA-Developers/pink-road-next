@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_FILE, F_PAGE, F_USER } from "./fragments";
+import { F_BOOKING, F_FILE, F_PAGE, F_PRODUCT, F_USER } from "./fragments";
 
 
 export const SIGN_UP = gql`
@@ -149,8 +149,16 @@ export const USER_FIND_BY_ID = gql`
       error
       data {
         ...Fuser
+        products {
+          ...Fproduct
+        }
+        bookings {
+          ...Fbooking
+        }
       }
     }
   }
+  ${F_PRODUCT}
+  ${F_BOOKING}
   ${F_USER}
 `;

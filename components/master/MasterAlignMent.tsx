@@ -30,7 +30,7 @@ export const MasterAlignMent: React.FC<IProps> = ({ excelData, handleSelectAll, 
         <div className="right_div">
             <ul className="board_option">
                 <li onClick={handleSelectAll}><a>전체선택</a></li>
-                <li><Excel data={excelData || []} element={<a>엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a>} /></li>
+                {excelData && <li><Excel data={excelData || []} element={<a>엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a>} /></li>}
             </ul>
             {Sort}
             {/* <select onChange={()=>{}} className="sel01">

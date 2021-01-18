@@ -259,7 +259,7 @@ export const Header: React.FC<IProp> = () => {
                             {isLogin ? <span><Link href="/mypage/notification"><a>알림</a></Link></span>
                                 : ""}
                             {isLogin ? ""
-                                : <span><Link href="/join"><a>JOIN</a></Link></span>}
+                                : <span><Link href="member/join"><a>JOIN</a></Link></span>}
                             <span><Link href="/member/inquiry"><a>고객문의</a></Link></span>
                             <span><Link href="/member/qna"><a>자주하는 질문</a></Link></span>
                         </div>
@@ -320,7 +320,7 @@ export const Header: React.FC<IProp> = () => {
                                 <Link href="/login"><a>Member<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
                                     <li><Link href="/login"><a>로그인</a></Link></li>
-                                    <li><Link href="/join"><a>회원가입</a></Link></li>
+                                    <li><Link href="member/join"><a>회원가입</a></Link></li>
                                     <li><Link href="/findmembers"><a>아이디/비번 찾기</a></Link></li>
                                     <li><Link href="/search"><a>통합검색</a></Link></li>
                                     <li><Link href="/member/rule"><a>이용약관</a></Link></li>

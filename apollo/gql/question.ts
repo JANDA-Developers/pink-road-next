@@ -35,6 +35,7 @@ export const F_QUESTION = gql`
             _id
             nickName
             email
+            phoneNumber
             profileImg {
               uri
             }

@@ -690,7 +690,7 @@
         box-sizing: border-box;
         line-height: 0;
         border-top: 1px solid #ccc;
-        background-color: #fff;
+        background-color: #fff!important;
         z-index: 50;
     }
     .master_box .con.family .td01 { 

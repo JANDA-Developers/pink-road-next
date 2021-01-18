@@ -23,13 +23,13 @@ interface IProp {
 
 {/* TODO 독립처리 => 나중에 시간나면 */ }
 export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
-    const { isLogin } = useContext(AppContext);
+    const { isLogin, myProfile } = useContext(AppContext);
     const urlPhone = getFromUrl("phone") || "";
     const urlName = getFromUrl("name") || "";
     const [payMethod, setPayMethod] = useState<PayMethod>(PayMethod.BANK);
     const [buyerInfo, setBuyerInfo] = useState({
-        phone: "",
-        name: "",
+        phone: myProfile?.phoneNumber || "",
+        name: myProfile?.name || "",
     })
 
     const { validate } = new Validater([{
@@ -59,28 +59,36 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
         }
     }
 
-    return <div className="payment_box">
+    return <div className="payment_box ">
         <div className="head">
             {Preview}
-            <div>
-                결제수단 선택
-                        <div onClick={() => {
-                    setPayMethod(PayMethod.NICEPAY_CARD)
-                }}>카드결제</div>
-                <div onClick={() => {
-                    setPayMethod(PayMethod.BANK)
-                }}>무통장입금</div>
+            <div className="write_type mb20 mt20">
+                <div className="title">결제수단 선택</div>
+                <div className="input_form">
+                    <span id="category" className="category r3">
+                        <select onChange={(e) => {
+                            const val = e.currentTarget.value;
+                            setPayMethod(val as PayMethod)
+                        }} value={payMethod} name="category_srl">
+                            <option value={PayMethod.BANK}>
+                                카드결제
+                            </option>
+                            <option value={PayMethod.NICEPAY_CARD} >
+                                무통장입금
+                            </option>
+                        </select>
+                    </span>
+                </div>
             </div>
-
             {isLogin ||
                 <div>
-                    <div className="write_type">
+                    <div className="write_type mb10">
                         <div className="title">구매자성함</div>
                         <div className="input_form">
-                            <input readOnly type="text" name="title" className="inputText w50 fix" />{/* 자동출력 고정 */}
+                            <input readOnly type="text" name="title" className="inputText w100 fix" />{/* 자동출력 고정 */}
                         </div>
                     </div>
-                    <div className="write_type">
+                    <div className="write_type mb10">
                         <div className="title">연락처</div>
                         <div className="input_form">
                             <input id="title" onChange={(e) => {
@@ -88,7 +96,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                             }} type="text" name="title" className="inputText w100" />
                         </div>
                     </div>
-                    <div className="write_type">
+                    <div className="write_type mb10">
                         <div className="title">이메일</div>
                         <div className="input_form">
                             <input id="title" onChange={(e) => {
@@ -96,7 +104,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                             }} type="text" name="title" className="inputText w100" />
                         </div>
                     </div>
-                    <div className="write_type">
+                    <div className="write_type mb10">
                         <div className="write_con">
                             <div className="title">예약자메모</div>
                             <div className="input_form">
@@ -107,7 +115,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                 </div>
             }
 
-            <a onClick={handlePayment} className="btn">결제하기</a>
+            <a onClick={handlePayment} className="paymentBtn">결제하기</a>
         </div>
     </div>
 };

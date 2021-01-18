@@ -40,7 +40,7 @@ export enum QStatus {
 export declare type ISet<T> = Dispatch<React.SetStateAction<T>>;
 
 
-export type TPageKeys =  "join" | "login"| "tourView" | "tourWrite" | "search" | "news" | "site-info" | "main" | "portfolio" | "tourMain" | "tourWrite" | "tourList" 
+export type TPageKeys =  "portfolio" | "join" | "login"| "tourView" | "tourWrite" | "search" | "news" | "site-info" | "main" | "portfolio" | "tourMain" | "tourWrite" | "tourList" 
 
 
 export type TLangs = "kr" | "en" | string
@@ -65,6 +65,10 @@ export interface IlistQueryInit<F,S,Q,V> extends Partial<ListInitOptions<F, S>> 
 
 type ReplaceKR = Record<ReplaceString, string>;
 export const ReplaceKr:ReplaceKR = {
+    BOOK_DAY: "예약일",
+    CANCEL_REASON: "취소사유",
+    CONFRIM_MESSAGE: "확인메세지",
+    D_DAY: "출발 N일전",
     "BOOKERNMAE": "예약자명",
     REFUND_AMT: "환불금액",
     REQUEST_DATE: "요청일",

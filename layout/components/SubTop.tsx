@@ -1,8 +1,7 @@
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Bg } from '../../components/Img/img';
-import { IUsePageEdit, usePageEdit } from '../../hook/usePageEdit';
-import { z } from '../../pages/_app';
+import { IUsePageEdit } from '../../hook/usePageEdit';
 
 interface IProp {
     pageTools: IUsePageEdit;

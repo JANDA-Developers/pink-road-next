@@ -6,10 +6,11 @@ import { ISet } from "../types/interface";
 export interface IUseQueryFilter<F> {
     filter: F;
     setFilter: ISet<F>;
-    setUniqFilter: <T extends keyof F>(target: T, uniq: (keyof F)[], value: F[T]) => void;
+    setOR: (keys: (keyof F)[], value: string) => void;
+    setUniqFilter: <T extends keyof F>(target: T, uniq: (keyof F)[], value: any) => void;
     filterToRange: (key: keyof F) => TRange
     setRange: (date: TRange, key: string) => {
-        [x: string]: Date;
+        [x: string]: Date | undefined;
     }
 }
 
@@ -25,11 +26,25 @@ export const useQueryFilter = <F>(defaultFilter:F):IUseQueryFilter<F> => {
         const _key = (key as string).split("_")[0]
 
         const range = {
+            // @ts-ignore
             from: filter[_key + "_gte"] ? dayjs((filter as any).startDate_gte).toDate() : undefined,
+            // @ts-ignore
             to: filter[_key + "_lte"] ? dayjs((filter as any).startDate_lte).toDate() : undefined
         }
 
         return range;
+    }
+
+    //반은 인자들로 Or 
+    const setOR = (keys: (keyof F)[],value: string) => {
+        const OR = keys.map(key => ({
+            [key]: (key as string).includes("_in") ? [value] : value
+        }))
+
+        setFilter({
+            ...filter,
+            OR
+        })
     }
 
 
@@ -72,6 +87,6 @@ export const useQueryFilter = <F>(defaultFilter:F):IUseQueryFilter<F> => {
     const foo = {
         filterToRange,setRange
     }
-    return {filter,setFilter,setUniqFilter,filterToRange,setRange}
+    return {filter,setFilter,setUniqFilter,filterToRange,setRange,setOR}
 }
 

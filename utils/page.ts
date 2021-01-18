@@ -49,7 +49,7 @@ export const useHomepageServerSide = async () => {
 export const getStaticPageInfo = (key: TPageKeys):GetStaticProps => async () => {
     const { data } = await usePageInfo(key);
     const { data: homepage } = await useHomepageServerSide();
-
+    
     return {
         revalidate: 1,
         props: {

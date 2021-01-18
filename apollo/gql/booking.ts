@@ -1,19 +1,14 @@
 import { gql } from "@apollo/client"
 import { F_PAGE, F_BOOKING, F_PAYMENT, F_PRODUCT, F_FILE } from "./fragments"
 
-export const F_BOOKING_BY_CODE  = gql`
-    fragment FbookingByCode on Booking {
-        ...Fbooking
-        payment {
-          ...Fpayment
-        }
-        product {
-          ...Fproduct
-        }
+
+export const F_TRAVELER = gql`
+    fragment Ftraveler on Traveler {
+      name
+      phoneNumber
+      gender
+      age
     }
-    ${F_BOOKING}
-    ${F_PAYMENT}
-    ${F_PRODUCT}
 `
 
 export const BOOKING_LIST = gql`
@@ -21,11 +16,13 @@ export const BOOKING_LIST = gql`
     $sort: [_BookingSort!]
     $filter: _BookingFilter
     $pageInput: pageInput!
+    $productFilter: _ProductFilter
   ) {
   BookingList(
     sort: $sort
     pageInput: $pageInput
     filter: $filter
+    productFilter: $productFilter
   ) {
     ok
     error
@@ -35,7 +32,7 @@ export const BOOKING_LIST = gql`
     data  {
       ...Fbooking
       payment {
-        status
+        ...Fpayment
       }
       product {
         _id
@@ -44,6 +41,7 @@ export const BOOKING_LIST = gql`
         isDelete
         title
         code
+        determined
         contents
         category {
             _id
@@ -56,6 +54,7 @@ export const BOOKING_LIST = gql`
         images {
             ...Ffile
         }
+        compeltePeopleCnt
         peopleCount
         keyWards
         address
@@ -77,6 +76,7 @@ export const BOOKING_LIST = gql`
     }
   }
   }
+  ${F_PAYMENT}
   ${F_PAGE}
   ${F_FILE}
   ${F_BOOKING}
@@ -181,8 +181,21 @@ export const BOOKING_FIND_BY_CODE = gql`
     error 
     data {
       ...Fbooking
+      travelers {
+        ...Ftraveler
+      }
+      product {
+        ...Fproduct
+      }
+      payment {
+        ...Fpayment
+      }
     }
   }
 }
+${F_TRAVELER}
 ${F_BOOKING}
+${F_PAYMENT}
+${F_PRODUCT}
 `
+

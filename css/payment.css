@@ -76,7 +76,7 @@
         color: #acacac;
         vertical-align: top;
     }
-    #payment .payment_box .payemnt_td {
+    #payment .payment_box .payment_td {
         width: 80%;
         text-align: left;
         display: inline-block;
@@ -88,7 +88,7 @@
         font-family: '����';
         vertical-align: top;
     }
-        #payment .payment_box .payemnt_td span {
+        #payment .payment_box .payment_td span {
             display: block;
             margin-right: 0;
         }
@@ -180,13 +180,13 @@
             text-align:left;
         }
 
-        #payment .payment_box .payemnt_td {
+        #payment .payment_box .payment_td {
             width: 70%;
         } 
-        #payment .payment_box .payemnt_td tr {
+        #payment .payment_box .payment_td tr {
             display:none;
         }  
-        #payment .payment_box .payemnt_td span {
+        #payment .payment_box .payment_td span {
             display:inline-block;
             margin-right:10px;
         }

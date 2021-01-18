@@ -45,8 +45,8 @@ export const COUNT_MANAGER = gql`
                 readyBookingCountMaster
                 determiendProductCountMaster
                 totalProductCountMaster
+                totalCancelCompleteCount
                 cancelBookingCountMaster
-                cancelBookingCompleteCount
                 compeltedBookingCountMaster
                 cancelProductCountMaster
                 undeterMinedProductCountMaster

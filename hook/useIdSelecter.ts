@@ -8,14 +8,16 @@ export const useIdSelecter = (list:string[], defaultIds:string[] = []) => {
     }
 
     const unCheck = (_id:string) => {
+        alert("uncheck");
         setSelectedIds([...selectedIds.filter(id => id !== _id)]);
     }
-
+    
     const check =(id:string) => {
-        selectedIds.push(id);
-        setSelectedIds([...selectedIds]);
+        alert("check");
+        const filtered = selectedIds.filter(_id => _id === id)
+        setSelectedIds([...filtered,id]);
     }
-
+    
     const isChecked = (id:string) => selectedIds.includes(id);
     
     const unSelectAll = () => {
@@ -29,8 +31,22 @@ export const useIdSelecter = (list:string[], defaultIds:string[] = []) => {
     
     const toggle = (id:string) => {
         if(isChecked(id)) unCheck(id);
-        check(id);
+        else check(id);
     }
 
-    return {selectedIds,setSelectedIds, toggle, selecteAll, unCheck, check, isChecked, unSelectAll, reverseAll};
+    const isAllSelected =  list.length === selectedIds.length;
+    const tooggleAll = () => {
+        if(isAllSelected) {
+            unSelectAll();
+        } else {
+            selecteAll()
+        }
+    }
+
+
+    console.log("selectedIds");
+    console.log(selectedIds);
+    console.log(selectedIds);
+
+    return {selectedIds,setSelectedIds, toggle, selecteAll, unCheck, check, isChecked, unSelectAll, reverseAll, isAllSelected,tooggleAll};
 }

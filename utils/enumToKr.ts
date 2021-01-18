@@ -1,4 +1,4 @@
-import { BookingStatus, CategoryType, PaymentStatus, ProductStatus, ProductType, QuestionStatus, SettlementStatus } from "../types/api";
+import { BookingStatus, CategoryType, GENDER, PaymentStatus, PayMethod, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole } from "../types/api";
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if(status === BookingStatus.CANCEL) return "예약취소" 
@@ -35,7 +35,7 @@ export const settlementStatus = (status?:SettlementStatus | null ) => {
     return "";
 }
 
-export const isForegin = (isForegin:boolean) => {
+export const foreginKR = (isForegin:boolean) => {
     return isForegin ?  "외국인" : "내국인"
 }
 
@@ -55,6 +55,12 @@ export const itemTypeToKr = (type: ProductType) => {
      return "" 
 }
 
+export const determinedKr = (isDetermined: boolean) => {
+    if(isDetermined) return "출발확정" 
+    if(!isDetermined) return "미확정"
+    return "" 
+}
+
 
 export const categoryToKR = (catType?:CategoryType | null) => {
     if(catType === CategoryType.CUSTOMER_QNA) return "유저QNA"
@@ -62,5 +68,24 @@ export const categoryToKR = (catType?:CategoryType | null) => {
     if(catType === CategoryType.QNA) return "QNA"
     if(catType === CategoryType.TOUR) return "투어"
     if(catType === CategoryType.EXPERIENCE) return "체험"
+    return ""
+}
+
+export const payMethodToKR = (paymethod?:PayMethod) => {
+    if(paymethod === PayMethod.BANK) return "무통장입금"
+    if(paymethod === PayMethod.NICEPAY_CARD) return "카드결제"
+    return ""
+}
+
+export const userRoleToKR = (role?:UserRole) => {
+    if(role === UserRole.partner) return "일반파트너"
+    if(role === UserRole.partnerB) return "비지니스파트너"
+    if(role === UserRole.individual) return "개인유저"
+    return ""
+}
+
+export const genderToKR = (gender?:GENDER | null) => {
+    if(gender === GENDER.FEMALE) return "여성"
+    if(gender === GENDER.MAIL) return "남성"
     return ""
 }

@@ -20,7 +20,8 @@ import { auth } from "../../../utils/with";
 import { ALLOW_ALLOW_SELLERS } from "../../../types/const";
 import { EditorLoading } from "../../../components/edit/EdiotrLoading";
 import pageInfoDefault from "info/tourWrite.json"
-import { getStaticPageInfo } from "../../../utils/page";
+import { getStaticPageInfo, Ipage } from "../../../utils/page";
+import { usePageEdit } from "../../../hook/usePageEdit";
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
 interface IProp {
@@ -36,9 +37,10 @@ export async function getStaticPaths() {
     };
 }
 export const getStaticProps = getStaticPageInfo("tourWrite")
-export const TourWrite: React.FC<IProp> = () => {
+export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
     const { query } = router;
+    const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const id = query.id?.[0] as string | undefined;
     const isCreateMode = id ? "edit" : "create";
     const { item: product, loading } = useProductFindById(id);
@@ -147,7 +149,7 @@ export const TourWrite: React.FC<IProp> = () => {
 
     if (loading) return <PageLoading />
     return <div key={loadKey} className="tour_box w100 board_write">
-        <SubTopNav children={
+        <SubTopNav pageTools={pageTools} children={
             <>
                 <li className="homedeps1">
                     <Link href="/tour/">

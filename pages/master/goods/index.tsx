@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import { yyyymmdd } from '../../../utils/yyyymmdd';
 import { generateSearchLink } from '../../search';
 import { getTypeTextOfProduct } from '../../../utils/product';
-import { StatusBadege } from '../../../components/Status/StatusBadge';
+import { PordStatusBadge } from '../../../components/Status/StatusBadge';
 import { useCustomCount } from '../../../hook/useCount';
 import { SearchBar } from '../../../components/searchBar/SearchBar';
 import { useDateFilter } from '../../../hook/useSearch';
@@ -54,7 +54,7 @@ const popupClose2 = () => {
 }
 export const MsGoodsMain: React.FC<IProp> = () => {
     const { items, filter, setFilter, setSort, sort, viewCount, setViewCount } = useProductList();
-    const {filterEnd, filterStart, hanldeCreateDateChange} = useDateFilter({filter, setFilter});
+    const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({ filter, setFilter });
 
     const {
         totalProductCountMaster,
@@ -83,7 +83,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <span>전체</span>
                                 </li>
                                 <li>
-                                    <strong>{openProductCountMaster }</strong>
+                                    <strong>{openProductCountMaster}</strong>
                                     <span>판매중</span>
                                 </li>
                                 <li>
@@ -91,17 +91,17 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <span>판매중지</span>
                                 </li>
                                 <li>
-                                    <strong>{ compeltedProductCountMaster}</strong>
+                                    <strong>{compeltedProductCountMaster}</strong>
                                     <span>판매완료</span>
                                 </li>
                             </ul>
                         </div>
                         <MasterSearchBar onDateChange={hanldeCreateDateChange} Option={
                             <select className="option">
-                            <option>상품명</option>
-                            <option>상품번호</option>
-                        </select>
-                        } defaultRange={{}} doSearch={doSearch}  filterEnd={filterEnd} filterStart={filterStart}  />
+                                <option>상품명</option>
+                                <option>상품번호</option>
+                            </select>
+                        } defaultRange={{}} doSearch={doSearch} filterEnd={filterEnd} filterStart={filterStart} />
                         <div className="search_top">
                             <div className="hang">
                                 <ul className="day_ul">
@@ -131,7 +131,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                 </div>
                             </div>
                             <div className="hang fr">
-                                
+
                                 <div className="search_div">
                                     <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
                                     <div className="svg_img">
@@ -204,7 +204,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                 <div className="td05"><i className="m_title">여행일:</i>{yyyymmdd(item.createdAt)}</div>
                                 <div className="td06"><i className="m_title">인원:</i> {item.compeltePeopleCnt}/{item.maxMember}</div>
                                 <div className="td07"><i className="m_title">형태:</i>{getTypeTextOfProduct(item.type, item.dateRange)}</div>
-                                <div className="td08"><StatusBadege status={item.status} /> </div>
+                                <div className="td08"><PordStatusBadge status={item.status} /> </div>
                                 <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
                             </div>
                         )}

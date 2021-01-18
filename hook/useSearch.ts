@@ -19,8 +19,8 @@ export const useDateFilter = <T>(param: IUseDateFilterParam<T>) => {
     // const filterEnd = end ? dayjs(end).format("YYYY.MM.DD") : "";
 
     const hanldeCreateDateChange = (range: TRange) => {
-        filter[`${dateKey}_lte` as keyof T] = range.from as any;
-        filter[`${dateKey}_gte` as keyof T] = range.to as any;
+        filter[`${dateKey}_lte` as keyof T] = range.to as any;
+        filter[`${dateKey}_gte` as keyof T] = range.from as any;
 
         setFilter({
             ...filter,

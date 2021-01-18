@@ -4,10 +4,6 @@ import { F_FILE } from "./fragments";
 
 export const F_MODAL = gql`
   fragment Fmodal on Modal {
-    _id
-    createdAt
-    updatedAt
-    isDelete
     link
     startDate
     endDate

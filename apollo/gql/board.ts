@@ -2,9 +2,10 @@ import { gql } from "@apollo/client";
 import { F_PAGE } from "./fragments";
 
 export const MY_BOARD_LIST = gql`
-    query myBoardList($pageInput: pageInput!, $filter:_BoardFilter, $sort: [_BoardSort!]
+    query myBoardList($pageInput: pageInput!, $filter:_BoardFilter, $sort: [_BoardSort!], $email: String
 ){
         MyBoardList(
+            email: $email
             sort: $sort
             pageInput: $pageInput
             filter: $filter

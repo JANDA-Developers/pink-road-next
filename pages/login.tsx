@@ -93,18 +93,8 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
 
     return <div >
         <div className="top_visual">
-            <SubTopNav pageTools={editTools} />
-            <div className="header_nav">
-                <ul>
-                    <li className="home">
-                        <a href="/main."></a>
-                    </li>
-                    <li className="homedeps1">Member</li>
-                    <li className="homedeps2">
-                        <a href="../login">로그인</a>
-                    </li>
-                </ul>
-            </div>
+            <SubTopNav pageTools={editTools} >
+            </SubTopNav>
         </div>
         <div className="login_box">
             <div className="sign_in w1200">

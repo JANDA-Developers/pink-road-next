@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import 'css/all.css';
+import "dayjs/locale/ko"
+import dayjs from 'dayjs';
 import Layout from '../layout/Layout';
 import { ApolloProvider, useQuery } from '@apollo/client';
 import { getContext_GetProfile_data as IProfile, categoryList_CategoryList_data, getContext, UserRole, Fhomepage, Fcategory, CategoryType } from 'types/api';
 import PinkClient from "apollo/client"
-import "dayjs/locale/ko"
-import dayjs from 'dayjs';
 import { ALLOW_ADMINS, ALLOW_FULLESS, ALLOW_SELLERS } from '../types/const';
 import { GET_CONTEXT } from '../apollo/gql/queries';
 import { bracketVergionChange } from '../utils/Storage';
 import PageDeny from './Deny';
-import { categoryMap } from '../utils/categoryMap';
+import { categoryMap, defaultCatsMap } from '../utils/categoryMap';
 import { useRouter } from 'next/router';
 
 
@@ -27,7 +27,7 @@ export type TContext = {
   isParterB?: boolean;
   homepage?: Fhomepage;
   isParterNonB?: boolean;
-  categoriesMap?: Record<CategoryType, Fcategory[]>
+  categoriesMap: Record<CategoryType, Fcategory[]>
 }
 
 
@@ -42,7 +42,7 @@ const defaultContext: TContext = {
   isLogin: false,
   isParterB: false,
   isParterNonB: false,
-  categoriesMap: undefined,
+  categoriesMap: defaultCatsMap,
 }
 
 export const AppContext = React.createContext<TContext>(defaultContext);
@@ -94,7 +94,7 @@ function App({ Component, pageProps }: any) {
     return <div>Loading...</div>
   }
 
-  if (loading) return <div />
+  if (loading) return <div >...loading</div>
   return (
     <div className="App">
       <ApolloProvider client={PinkClient}>

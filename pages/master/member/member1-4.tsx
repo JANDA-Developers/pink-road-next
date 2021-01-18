@@ -124,7 +124,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="td08">탈퇴사유</div>
                         </div>
                         <div className="list_line">
-                        <div className="td01">
+                            <div className="td01">
                                 <i className="checkbox">
                                     <input type="checkbox" name="agree" id="agree0" title="선택" />
                                     <label htmlFor="agree0" />
@@ -140,7 +140,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                         </div>
 
                         <div className="list_line">
-                        <div className="td01">
+                            <div className="td01">
                                 <i className="checkbox">
                                     <input type="checkbox" name="agree" id="agree0" title="선택" />
                                     <label htmlFor="agree0" />
@@ -155,7 +155,7 @@ export const MsMemberD: React.FC<IProp> = () => {
                             <div className="td08"><button className="btn small" onClick={popupOpen}>상세보기</button></div>
                         </div>
                         <div className="list_line">
-                        <div className="td01">
+                            <div className="td01">
                                 <i className="checkbox">
                                     <input type="checkbox" name="agree" id="agree0" title="선택" />
                                     <label htmlFor="agree0" />
@@ -181,248 +181,10 @@ export const MsMemberD: React.FC<IProp> = () => {
                     </div>
                 </div>
             </div>
-                    <SearcfInfoBox />
+            <SearcfInfoBox />
 
             {/* popup-상세보기--------------- 탈퇴에서는 회원정보를 수정할 수없음. input박스제거 */}
-            <div id="Popup01" className="popup_bg_full">
-              
-                <div className="in_txt master_popup">
-                <a className="close_icon" onClick={popupClose}>
-                    <i className="flaticon-multiply"></i>
-                </a>
-                <div className="page">
-                    <h3>상세정보</h3>
-                    <div className="info_txt">
-                        <span className="start-day">탈퇴일: 2020.08.26</span>
-                        <button className="btn"><i className="flaticon-print mr5"></i>프린터</button>
-                        <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
-                    </div>
-                    {/* 가입 */}
-                    <div className="info_page">
-                        <div className="full_div">
-                            <h4>탈퇴정보</h4>
-                            <div className="info_table line2 w50">
-                                <div className="tr">
-                                    <div className="th01">탈퇴사유</div>
-                                    <div className="td01">
-                                        <span>기타(수수료가 너무......)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* 회원정보 */}
-                    <div className="info_page">
-                        <div className="full_div">
-                            <h4>회원정보</h4>
-                            <div className="info_table line8 w50">
-                                {/* 개인 */}
-                                <div className="tr">
-                                    <div className="th01">이름</div>
-                                    <div className="td01"><span>김홍이</span></div>
-                                    <div className="th02">아이디</div>
-                                    <div className="td02"><a href="mailto:gggg@naver.com">gggg@naver.com</a></div>
-                                    <div className="th03">휴대폰</div>
-                                    <div className="td03">051-0000-0000</div>
-                                    <div className="th04">성별</div>
-                                    <div className="td04">
-                                        <select>
-                                            <option>여성</option>
-                                            <option>남성</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="tr">
-                                    <div className="th01">주소</div>
-                                    <div className="td01"><span>부산시 부산구 부산로12번길11 302-231</span></div>
-                                    <div className="th02">가입방법</div>
-                                    <div className="td02"><span>카카오톡연동</span></div>
-                                    <div className="th03">휴대폰</div>
-                                    <div className="td03"><span>010-2222-2222</span></div>
-                                    <div className="th04">국적</div>
-                                    <div className="td04"><span>내국인</span></div>
-                                </div>
-                                {/* 파트너 */}
-                                <div className="tr">
-                                    <div className="th01">파트너명</div>
-                                    <div className="td01"><span>김홍이</span></div>
-                                    <div className="th02">아이디</div>
-                                    <div className="td02"><a href="mailto:gggg@naver.com">gggg@naver.com</a></div>
-                                    <div className="th03">연락처</div>
-                                    <div className="td03"><span>051-0000-0000</span></div>
-                                    <div className="th04"></div>
-                                    <div className="td04"></div>
-                                </div>
-                                <div className="tr">
-
-                                    <div className="th01">업체주소</div>
-                                    <div className="td01"><span>-</span></div>
-                                    <div className="th02">담당자</div>
-                                    <div className="td02"><span>-</span></div>
-                                    <div className="th03">휴대폰</div>
-                                    <div className="td03"><span>010-0000-0000</span></div>
-                                    <div className="th04">가입방법</div>
-                                    <div className="td04"><span>카카오톡연동</span></div>
-                                </div>
-                                <div className="tr">
-                                    <div className="th01">계좌번호</div>
-                                    <div className="td01"><span>부산은행-3342-234325-12321</span></div>
-                                    <div className="th02">통장사본</div>
-                                    <div className="td02"><span>사본사본_ㄹㄹ.jpg<button className="btn dwonload">다운로드</button></span></div>
-                                    <div className="th03">사업자등록증</div>
-                                    <div className="td03"><span>사본사본_ㄹㄹ.jpg<button className="btn dwonload">다운로드</button></span></div>
-                                    <div className="th04"></div>
-                                    <div className="td04"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {/* 파트너 */}
-                    {/* 사업자회원 주의사항 */}
-                    <div className="info_page">
-                        <div className="full_div">
-                            <h4>사업자회원 주의사항</h4>
-                            <div className="textareabox">더이상입력불가너ㅏ유ㅚㅏ너후나ㅣㅎ</div>
-                        </div>
-                    </div>
-                    {/* 파트너 */}
-                    {/* 예약 및 결제 */}
-                    <div className="info_page">
-                        <div className="full_div">
-                            <h4>예약 및 결제<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i>
-                            <span className="full_div__right"><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
-                            <div className="info_table reservationlist">
-
-                                <div className="tr">
-                                    <div className="re01">
-                                        예약번호
-                                        <a href="R-398234">(R-398234)</a>
-                                    </div>
-                                    <div className="re02">
-                                        상품
-                                    </div>
-                                    <div className="re03">
-                                        <a href="/">[PK-098328] 떠나요~!!! 제주도~!!! </a>
-                                    </div>
-                                    <div className="re04">
-                                        예약일/결제일
-                                    </div>
-                                    <div className="re05">
-                                        <span>2020.12.12/2020.12.12</span>
-                                    </div>
-                                    <div className="re06">
-                                        인원
-                                     </div>
-                                    <div className="re07">
-                                        <span>4명</span>
-                                    </div>
-                                    <div className="re08">
-                                        금액
-                                    </div>
-                                    <div className="re09">
-                                        <span>30,000원</span>
-                                    </div>
-                                </div>
-                                <div className="tr">
-                                    <div className="re01">
-                                        예약번호
-                                        <a href="R-398234">(R-398234)</a>
-                                    </div>
-                                    <div className="re02">
-                                        상품
-                                    </div>
-                                    <div className="re03">
-                                        <a href="/">[PK-098328] 떠나요~!!! 제주도~!!! </a>
-                                    </div>
-                                    <div className="re04">
-                                        예약일/결제일
-                                    </div>
-                                    <div className="re05">
-                                        <span>2020.12.12/2020.12.12</span>
-                                    </div>
-                                    <div className="re06">
-                                        인원
-                                     </div>
-                                    <div className="re07">
-                                        <span>4명</span>
-                                    </div>
-                                    <div className="re08">
-                                        금액
-                                    </div>
-                                    <div className="re09">
-                                        <span>30,000원</span>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
-                        </div>
-                    </div>
-                    {/* 파트너 */}
-                    {/* 취소 및 환불내역 */}
-                    <div className="info_page">
-                        <div className="full_div">
-                            <h4>취소 및 환불내역<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i>
-                            <span className="full_div__right"><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
-                            <div className="info_table reservationlist">
-                                <div className="tr">
-                                    <div className="re01">
-                                        예약번호
-                                        <a href="R-398234">(R-398234)</a>
-                                    </div>
-                                    <div className="re02">
-                                        상품
-                                    </div>
-                                    <div className="re03">
-                                        <a href="/">[PK-098328] 떠나요~!!! 제주도~!!! </a>
-                                    </div>
-                                    <div className="re04">
-                                        예약일/결제일
-                                    </div>
-                                    <div className="re05">
-                                        <span>2020.12.12/2020.12.12</span>
-                                    </div>
-                                    <div className="re06">
-                                        환불일
-                                     </div>
-                                    <div className="re07">
-                                        <span>2020.12.12</span>
-                                    </div>
-                                    <div className="re08">
-                                        환불금액
-                                    </div>
-                                    <div className="re09">
-                                        <span>30,000원</span>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
-                        </div>
-                    </div>
-
-
-                    {/* 메모 */}
-                    <div className="info_page">
-                        <h4>메모</h4>
-                        <div className="write_comment">
-                            <div className="comment_layout">
-                                <ul className="text_box">
-                                    <li>
-                                        <div className="txta w100">
-                                            메모는 탈퇴후에 더이상 입력불가!!!ㅁㅇㄴㄲ허ㅢ아허ㅢ;
-                                            
-                                            </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
+            {/* 회원모달 */}
         </div>
     </MasterLayout >
 };

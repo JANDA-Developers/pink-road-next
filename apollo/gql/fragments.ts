@@ -12,6 +12,8 @@ export const F_PAYMENT = gql`
         status
         price
         totalCancelPrice
+        cancelDate
+        isPartialCancel
         groupCode
         history {
             status
@@ -62,6 +64,7 @@ export const F_USER = gql`
         is_froreginer
         busi_contact
         manageContact
+        resignDate
         gender
         busi_num
         busi_department
@@ -76,6 +79,8 @@ export const F_USER = gql`
         account_number
         name
         bank_name
+        resignReason
+        isResigned
         phoneNumber
         manageName
         profileImg {
@@ -90,6 +95,9 @@ export const F_BOOKING = gql`
     fragment Fbooking on Booking {
         _id
         createdAt
+        cancelDate
+        gender
+        age
         updatedAt
         isDelete
         adultCount
@@ -106,9 +114,6 @@ export const F_BOOKING = gql`
             _id
             title
             code
-        }
-        payment {
-            payMethod
         }
         name
         email
@@ -171,6 +176,7 @@ export const F_PRODUCT = gql`
         title
         code
         contents
+        determined
         dateRange
         adminMemo
         bookerSummary {

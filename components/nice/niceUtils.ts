@@ -1,8 +1,7 @@
 import { INiceElementProp } from "./NiceElement";
-const TEMP = "http://10.159.6.11:4000"
-export const NICE_GET_KEY = TEMP + "/payment"
-export const NICE_MOBILE_AFTER_PAY = TEMP + "/authReq"
-export const NICE_CANCLE = TEMP + "/authReq"
+export const NICE_GET_URI = process.env.NEXT_PUBLIC_SERVER_URI + "/payment"
+export const NICE_MOBILE_AFTER_PAY = process.env.NEXT_PUBLIC_SERVER_URI + "/authReq"
+export const NICE_CANCLE = process.env.NEXT_PUBLIC_SERVER_URI + "/authReq"
 
 // requirePorp: Record<AUTH, string> & Partial<INiceElementProp>
 

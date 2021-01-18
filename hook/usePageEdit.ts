@@ -24,8 +24,8 @@ export interface IUsePageEdit<Page = any> extends IGetEditUtilsResult<Page> {
 export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultPage:Page, ln = "kr"):IUsePageEdit<Page> => {
     const [lang, setLang] = useState<any>(ln);
     const [editMode, setEditMode] = useState<boolean>(false);
-    
-    const [page, setPage] = useState(cloneObject(mergeDeepOnlyExsistProperty(cloneObject(defaultPage), originPage)));
+
+    const [page, setPage] = useState(cloneObject(mergeDeepOnlyExsistProperty(cloneObject(defaultPage), originPage || {})));
  
     //page는 이전 값을 조회하고있음 왜 ? => state니까 
     //페이지가 바뀌면 setPage는 초기화 되어야함. 

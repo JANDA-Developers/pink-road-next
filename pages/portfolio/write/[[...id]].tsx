@@ -5,7 +5,6 @@ import { initStorage, Storage } from '../../../utils/Storage';
 import "react-day-picker/lib/style.css";
 import { BoardWrite, TCategory } from "components/board/Write";
 import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
-import PortFolio from "..";
 import { usePortfolioFind, useProtfolioCreate, useProtfolioDelete, useProtfolioUpdate } from "../../../hook/usePortfolio";
 import { IProps } from "../../../components/toast/Toast";
 import { AppContext } from "../../_app";
@@ -17,6 +16,7 @@ export const PortFolioWrite: React.FC<IProps> = () => {
     const { item: portfolio } = usePortfolioFind(id);
     const { categoriesMap } = useContext(AppContext);
     const mode = id ? "create" : "edit";
+
 
     const categoryList = categoriesMap?.PORTPOLIO.map((cat): TCategory => ({
         _id: cat._id,
@@ -107,4 +107,4 @@ export const PortFolioWrite: React.FC<IProps> = () => {
         }} />
 };
 
-export default PortFolio;
+export default PortFolioWrite;

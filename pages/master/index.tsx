@@ -52,8 +52,8 @@ export const MsIndex: React.FC<IProp> = () => {
         undeterMinedProductCountMaster,
         cancelProductCountMaster,
         compeltedProductCountMaster,
+        totalCancelCompleteCount,
         totalProductCountMaster,
-        cancelBookingCompleteCount,
         cancelBookingCountMaster,
         compeltedBookingCountMaster,
         confimedBusiPartnerCount,
@@ -98,7 +98,7 @@ export const MsIndex: React.FC<IProp> = () => {
                     </div>
                     <ul className="view">
                         <li>
-                            <strong>{totalProdCount}</strong>
+                            <strong>{totalProductCountMaster}</strong>
                             <span>전체</span>
                         </li>
                         <li>
@@ -192,7 +192,7 @@ export const MsIndex: React.FC<IProp> = () => {
                     </div>
                     <ul className="view">
                         <li>
-                            <strong>{cancelBookingCountMaster! + cancelBookingCompleteCount!}</strong>
+                            <strong>{cancelBookingCountMaster! + totalCancelCompleteCount!}</strong>
                             <span>전체</span>
                         </li>
                         <li>
@@ -200,7 +200,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <span>취소요청</span>
                         </li>
                         <li>
-                            <strong>{cancelBookingCompleteCount}</strong>
+                            <strong>{totalCancelCompleteCount}</strong>
                             <span>취소완료</span>
                         </li>
                     </ul>
