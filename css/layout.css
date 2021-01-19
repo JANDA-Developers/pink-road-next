@@ -1872,7 +1872,7 @@ footer .footer_in_bottom {
         width: 25px;
         height: 25px;
         text-align: center;
-        line-height: 25px;
+        line-height: 26px;
         background-color: #acacac;
         color: #f6f6f6;
         font-weight: 500;
@@ -2500,9 +2500,9 @@ i.icon_plus {
             box-sizing: border-box;
         }
 
-            .search_box .jul1 input:focus {
+            /* .search_box .jul1 input:focus {
                 border: 2px solid #333;
-            }
+            } */
 
         .search_box .jul1 .svg_img {
             width: 20px;
@@ -2527,9 +2527,9 @@ i.icon_plus {
                 background-color: initial;
             }
 
-        .search_box .jul1 input:focus ~ .svg_img {
+        /* .search_box .jul1 input:focus ~ .svg_img {
             opacity: 1;
-        }
+        } */
 
     .search_box .jul2 {
         padding: 0 0 10px;

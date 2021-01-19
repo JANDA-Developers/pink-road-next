@@ -19,6 +19,7 @@
 .board_option {
     position: relative;
     display: inline-block;
+    width: 100%;
     background-color: #ffffff;
     border-radius: 3px;
     line-height: 10px;
@@ -2268,6 +2269,9 @@ div.sum_div {
 @media (min-width:1000px) {
     .new {
         width: 16px;
+    }
+    .board_option{
+        width: auto;
     }
 .board_list .ct_01 {
     padding: 3px 13px;

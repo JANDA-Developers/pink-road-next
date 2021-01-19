@@ -7811,7 +7811,7 @@ i.calendar {
     }
 
     .portfolio_in .con04 .portfolio_box li:hover .box {
-        display: flex;
+        display: block;
     }
 
     .portfolio_in .con04 .portfolio_box .category {
@@ -9276,6 +9276,7 @@ i.calendar {
     .main_con_box5 .txt h2 {
         line-height: 28px;
         margin-bottom: 10px;
+        width: 49%;
     }
     .login_wrap .sign_in_form span {
         position: relative;
@@ -9681,7 +9682,7 @@ i.calendar {
     }
 
     .login_box .login_page .login_tap.tab-label-1 {
-        margin-left: 75px;
+        margin-left: 35px;
     }
 
     .siteInfo_in .con03 {

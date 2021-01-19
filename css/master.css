@@ -3586,6 +3586,8 @@ div.master_popup div.alignment{
     .master_box .reservation .reservation_list .t05 {
         width: 13% !important;
         border-left: 1px #eee solid;
+        margin-bottom: 0;
+        border-bottom: 0;
     }
     .master_box .reservation .reservation_list .t05 .align {
         padding-top: 17px;

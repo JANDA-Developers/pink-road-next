@@ -147,8 +147,9 @@
                 background-color: #f5f5f5;
                 border: 1px solid #ccc;
                 border-radius: 300px;
-                background-size: "cover";
+                background-size: 100%;
                 background-position: center center;
+                background-image: url(/img/pr_base_img.png);
                 cursor: pointer;
                 z-index: 50;
             }
@@ -3291,7 +3292,7 @@ div.reservation_popup .tr select {
         height: 130px;
     }
     .mypage_in .subtop_nav {
-        top: -53px;
+        top: -56px;
     }
     .mypage_in .lnb .profile_box .welcome ul li i {
         display:block;
