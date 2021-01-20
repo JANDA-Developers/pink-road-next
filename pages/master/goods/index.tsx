@@ -54,7 +54,7 @@ const popupClose2 = () => {
 }
 export const MsGoodsMain: React.FC<IProp> = () => {
     const { items, filter, setFilter, setSort, sort, viewCount, setViewCount } = useProductList();
-    const {filterEnd, filterStart, hanldeCreateDateChange} = useDateFilter({filter, setFilter});
+    const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({ filter, setFilter });
 
     const {
         totalProductCountMaster,
@@ -83,7 +83,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <span>전체</span>
                                 </li>
                                 <li>
-                                    <strong>{openProductCountMaster }</strong>
+                                    <strong>{openProductCountMaster}</strong>
                                     <span>판매중</span>
                                 </li>
                                 <li>
@@ -91,17 +91,17 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <span>판매중지</span>
                                 </li>
                                 <li>
-                                    <strong>{ compeltedProductCountMaster}</strong>
+                                    <strong>{compeltedProductCountMaster}</strong>
                                     <span>판매완료</span>
                                 </li>
                             </ul>
                         </div>
                         <MasterSearchBar onDateChange={hanldeCreateDateChange} Option={
                             <select className="option">
-                            <option>상품명</option>
-                            <option>상품번호</option>
-                        </select>
-                        } defaultRange={{}} doSearch={doSearch}  filterEnd={filterEnd} filterStart={filterStart}  />
+                                <option>상품명</option>
+                                <option>상품번호</option>
+                            </select>
+                        } defaultRange={{}} doSearch={doSearch} filterEnd={filterEnd} filterStart={filterStart} />
                         <div className="search_top">
                             <div className="hang">
                                 <ul className="day_ul">
@@ -131,7 +131,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                 </div>
                             </div>
                             <div className="hang fr">
-                                
+
                                 <div className="search_div">
                                     <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
                                     <div className="svg_img">
@@ -172,7 +172,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="con_box_body">
+                    <div className="con_box_body master__table">
                         <div className="list_head">
                             <div className="td01">
                                 <i className="checkbox">

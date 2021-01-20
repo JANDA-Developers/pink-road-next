@@ -111,7 +111,7 @@ export const MsMemberB: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="con_box_body">
+                    <div className="con_box_body master__table">
                         <div className="list_head">
                             <div className="td01">
                                 <i className="checkbox">

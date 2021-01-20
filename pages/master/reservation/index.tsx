@@ -147,7 +147,7 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                     <li><a href="/">전체선택</a></li>
                                     <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a></li>
 
-                                    <div className="reservation_list ln07">
+                                    <div className="master__table">
                                         <div className="thead">
                                             <div className="t01">
                                                 <span className="checkbox">

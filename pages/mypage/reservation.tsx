@@ -109,7 +109,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                 </select>
                             </div>
                         </div>
-                        <div className="reservation_list">
+                        <div className="master__table">
                             <div className="th">
                                 <div className="t01">
                                     <span className="checkbox">

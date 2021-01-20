@@ -258,6 +258,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                             className={`form-control w100`}
                                             placeholder="변경할 비밀번호를 입력 해주세요"
                                         />
+                                        <i className="jandaicon-check btn_in" />
                                     </div>
                                 </div>
                             </li>

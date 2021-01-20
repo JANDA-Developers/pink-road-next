@@ -31,10 +31,10 @@ export const Footer: React.FC<IProp> = () => {
         <div className="footer_in">
             <div className="bottom_nav">
                 <ul className="w1200">
-                    <li><Link href="/site-info"><a>회사소개</a></Link></li>
-                    <li><Link href="/member/rule"><a>이용약관</a></Link></li>
-                    <li><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
-                    <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
+                    <li className="link"><Link href="/site-info"><a>회사소개</a></Link></li>
+                    <li className="link"><Link href="/member/rule"><a>이용약관</a></Link></li>
+                    <li className="link"><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
+                    <li className="link"><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
                     <li className="sns">
                         <div>
                             <Link href="https://www.facebook.com/PinkRoader"><a target="_blank"><i className="jandaicon-facebook"></i></a></Link>

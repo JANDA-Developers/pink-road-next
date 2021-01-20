@@ -1027,7 +1027,7 @@ div.popup_bg_mini .page{
         position: relative;
         font-size: 1.6em;
         letter-spacing: -2px;
-        padding: 0 31px;
+        padding: 0 7%;
         box-sizing: border-box;
     }
 
@@ -1191,10 +1191,11 @@ div.alignment {
 
     div.alignment .view_icon {
         margin-left: 15px;
-        width: 20px;
-        height: 20px;
+        width: 27px;
+        height: 27px;
         vertical-align: middle;
-        margin-top: 7px;
+        margin-top: 9px;
+        overflow: hidden;
     }
 
         div.alignment .view_icon.on svg,
@@ -6762,6 +6763,7 @@ div.gallery_lightbox .thumbList {
 }
 
     .gender_check li {
+        position: relative;
         line-height: 40px !important;
         display: inline-block !important;
         border: 2px solid #e5e5e5 !important;
@@ -6771,29 +6773,37 @@ div.gallery_lightbox .thumbList {
         font-weight: 600;
         box-sizing: border-box;
         margin-left: -1px;
-        float: left;
         width: 50% !important;
         font-size: 12px;
+        z-index: 1;
     }
 
-    .gender_check .female.on {
+    
+    .gender_check .female {
+        border-radius: 50px;
+        padding: 0 26px 0 16px !important;
+    }
+    
+    .gender_check .men {
+        border-radius: 50px;
+        padding: 0 16px 0 26px !important;
+    }
+    .gender_check .on.female {
         border: 2px solid #ed297b !important;
         background-color: #ed297b;
         color: #ffffff;
+        padding: 0 16px !important;
+        margin-right: -20px;
+        z-index: 2;
     }
 
-    .gender_check .men.on {
+    .gender_check .on.men {
         border: 2px solid #2196F3 !important;
         background-color: #2196F3;
+        padding: 0 16px !important;
+        margin-left: -20px;
         color: #ffffff;
-    }
-
-    .gender_check .female {
-        border-radius: 5px 0 0 5px;
-    }
-
-    .gender_check .men {
-        border-radius: 0 5px 5px 0;
+        z-index: 2;
     }
 
 .country_check {
@@ -6808,38 +6818,48 @@ div.gallery_lightbox .thumbList {
 }
 
     .country_check li {
-        line-height: 40px !important;
+        position: relative;
         display: inline-block !important;
+        width: 50% !important;
+        line-height: 40px !important;
+        color: #999;
+        font-size: 12px;
+        font-weight: 600;
+        box-sizing: border-box;
         border: 2px solid #e5e5e5 !important;
         background-color: #e5e5e5;
         padding: 0 16px;
-        color: #999;
-        font-weight: 600;
-        box-sizing: border-box;
         margin-left: -1px;
-        float: left;
-        width: 50% !important;
-        font-size: 12px;
     }
 
     .country_check .c_in {
-        border-radius: 5px 0 0 5px;
+        border-radius: 50px;
+        padding: 0 26px 0 16px !important;
+        z-index: 1;
     }
 
     .country_check .c_out {
-        border-radius: 0 5px 5px 0;
+        border-radius: 50px;
+        padding: 0 16px 0 26px !important;
+        z-index: 1;
     }
 
     .country_check .c_in.on {
         border: 2px solid #757575 !important;
         background-color: #757575;
         color: #ffffff;
+        z-index: 2;
+        padding: 0 16px !important;
+        margin-right: -20px;
     }
 
     .country_check .c_out.on {
         border: 2px solid #757575 !important;
         background-color: #757575;
         color: #ffffff;
+        padding: 0 16px !important;
+        margin-left: -20px;
+        z-index: 2;
     }
 
 
@@ -8218,7 +8238,7 @@ i.calendar {
 }
 .inquiry_box .board_list.st01 .tbody .td05 {
     width: auto;
-    text-align: right;
+    text-align: center;
 }
 
 .onepick .link {
@@ -8712,6 +8732,13 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+    div.alignment .view_icon {
+        margin-left: 15px;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        margin-top: 7px;
+    }
     .goods_box .deal_list {
         padding: 30px 3% 0;
     }
@@ -9359,15 +9386,24 @@ i.calendar {
         box-sizing: border-box;
         border: 1px solid #d2d2d2;
     }
-    .inquiry_box .board_list.st01 .tbody .td03 {
-        width: 57%;
+    .inquiry_box .board_list.st01 .tbody .td01{
+        max-width: 100px;
     }
+    .inquiry_box .board_list.st01 .tbody .td02 {
+        max-width: 150px;
+    }
+    .inquiry_box .board_list.st01 .tbody .td03 {
+        width: auto;
+    }
+  
     .inquiry_box .board_list.st01 .tbody .td04 {
-        width: 10%;
+        width: auto;
         margin-right: 0;
+        max-width: 200px;
     }
     .inquiry_box .board_list.st01 .tbody .td05 {
-        width: 12%;
+        width: auto;
+        max-width: 200px;
     }
     .selectViewList ul.list_ul .bottom_info span {
         display: inline-block;
@@ -9558,15 +9594,15 @@ i.calendar {
         border-radius: 20px;
     }
     .gender_check  {
-       margin-left: 10px;
-
+       margin-left: 0;
+       max-width: 180px;
     }
     .gender_check li {
         line-height: 25px !important;
     }
     .country_check  {
         margin-left: 10px;
-        max-width: 161px;
+        max-width: 180px;
      }
     .country_check li{
         line-height: 25px !important;
