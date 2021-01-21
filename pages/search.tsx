@@ -156,7 +156,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
 
                     </div>
                     <div className="jul1">
-                        <div>
+                        <div className="srearch__input search_div">
                             <input onKeyPress={whenEnter(doSearch)} onChange={(e) => {
                                 setSearch(e.currentTarget.value);
                             }} value={search} type="text" placeholder="검색 내용을 입력해주세요." />

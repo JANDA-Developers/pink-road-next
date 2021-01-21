@@ -23,7 +23,6 @@ i.tooltip{
 }
 
 /* 편집모드 활성화 아이콘 */
-
 #setting_link {
     position: fixed;
     display: inline-block;
@@ -34,7 +33,7 @@ i.tooltip{
     background-color: #2196F3;
     color: #fff;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 1.2em;
     border-radius: 100px;
     cursor: pointer;
     z-index: 1000;
@@ -1813,6 +1812,10 @@ footer .footer_in_bottom {
         padding:0 15px 0 0;
         font-size: 14px;
         position: relative;
+        vertical-align: middle;
+    }
+    .footer_in .bottom_nav .link {
+        margin-top: 13px;
     }
 
         .footer_in .bottom_nav li a {
@@ -1833,7 +1836,7 @@ footer .footer_in_bottom {
         top: 0;
         margin-left: 0;
         width: auto;
-        margin-top: 20px;
+        margin-top: 13px;
     }
 
         .footer_in .bottom_nav .cs a {
@@ -1869,10 +1872,10 @@ footer .footer_in_bottom {
 
     .footer_in .sns a {
         display: inline-block;
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
         text-align: center;
-        line-height: 25px;
+        line-height: 30px;
         background-color: #acacac;
         color: #f6f6f6;
         font-weight: 500;
@@ -2500,9 +2503,9 @@ i.icon_plus {
             box-sizing: border-box;
         }
 
-            .search_box .jul1 input:focus {
+            /* .search_box .jul1 input:focus {
                 border: 2px solid #333;
-            }
+            } */
 
         .search_box .jul1 .svg_img {
             width: 20px;
@@ -2527,9 +2530,9 @@ i.icon_plus {
                 background-color: initial;
             }
 
-        .search_box .jul1 input:focus ~ .svg_img {
+        /* .search_box .jul1 input:focus ~ .svg_img {
             opacity: 1;
-        }
+        } */
 
     .search_box .jul2 {
         padding: 0 0 10px;
@@ -2800,9 +2803,9 @@ i.icon_plus {
         box-sizing: border-box
     }
 
-        .search_in .search_box .jul1 input:focus {
+        /* .search_in .search_box .jul1 input:focus {
             border: 2px solid #333
-        }
+        } */
 
     .search_in .search_box .jul1 svg {
         width: 20px;
@@ -2814,9 +2817,9 @@ i.icon_plus {
         opacity: 0.5;
     }
 
-    .search_in .search_box .jul1 input:focus ~ svg {
+    /* .search_in .search_box .jul1 input:focus ~ svg {
         opacity: 1;
-    }
+    } */
 
     .search_in .search_box .jul2 {
         padding: 10px 0 10px;
@@ -2949,7 +2952,6 @@ i.icon_plus {
         position: relative;
         padding: 0px 21px;
         margin-bottom: 6px;
-        display: block;
         color: #777;
         letter-spacing: 1px;
         text-transform: uppercase;
@@ -2994,6 +2996,7 @@ i.icon_plus {
     .search_in .alignment select {
         border-radius: 3px;
         height: 32px;
+        width: 30%;
         padding: 0 10px;
         box-sizing: border-box;
         border: 1px solid #d2d2d2;
@@ -3030,6 +3033,7 @@ i.icon_plus {
                 text-align: center;
                 display: block;
                 color: #919191;
+                opacity: 0.5;
             }
 
             .search_in .con_box .no_search div {
@@ -3257,9 +3261,16 @@ i.icon_plus {
     .footer_in .copyright .bottom_bn {
         margin-top: 35px;
     }
+    .footer_in .sns a {
+        width: 25px;
+        height: 25px;
+        line-height: 26px;
+        font-size: 11px !important;
+    }
 }
 
 @media (min-width:1000px) {
+   
     .search_box {
         padding: 50px 49px;
     }
@@ -3792,6 +3803,9 @@ i.icon_plus {
         .search_in .search_box .in .inf {
             width: 24%;
         }
+        .search_in .search_box .jul1 .search_div {
+            width: 90%;
+        }
   
     .top_visual .sub_bg {
         background-size: 100%;
@@ -3850,6 +3864,17 @@ i.icon_plus {
         top: 50%;
         right: 13px;
         margin-top: -6px;
+    }
+    #setting_link{
+        padding: 5px 20px;
+        font-size: 1em;
+    }
+    #setting_link i{
+        width: 14px;
+        vertical-align: middle;
+    }
+    #gotop{
+        bottom: 10%;
     }
 }
 @media (max-width:767px) {

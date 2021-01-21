@@ -801,6 +801,10 @@ br.no {
         text-align: right;
         float: right;
     }
+    .fin.ifMobile .float_left, 
+    .fin.ifMobile .float_right {
+        width: 50%;
+    }
     .btn.topside {
         padding: 0 15px;
     }

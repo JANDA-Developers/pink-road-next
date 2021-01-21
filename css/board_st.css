@@ -19,6 +19,7 @@
 .board_option {
     position: relative;
     display: inline-block;
+    width: 100%;
     background-color: #ffffff;
     border-radius: 3px;
     line-height: 10px;
@@ -356,13 +357,18 @@
 ul.list_ul {
     width:100%;
     margin:0 auto;
+    display: flex;
+    align-items: center;
 }
 ul.list_ul li {
     display: inline-block;
     cursor: pointer;
+    width: auto;
+    flex: 1 1;
+    flex-grow: 1;
 }
 
-ul.list_ul.line3 li {
+/* ul.list_ul.line3 li {
     width: 31.7%;
 }
 ul.list_ul.line3 li:last-child {
@@ -370,7 +376,7 @@ ul.list_ul.line3 li:last-child {
 }
 ul.list_ul.line4 li {
     width: 23.3%;
-}
+} */
 
 ul.list_ul .list_in {
     vertical-align: top;
@@ -391,13 +397,13 @@ ul.list_ul .list_in {
         border: 0;
         border-bottom: 1px solid #e6e6e6;
     }
-ul.list_ul.line3 li:nth-child(3n+3) {
+/* ul.list_ul.line3 li:nth-child(3n+3) {
     margin-right: 0;
 }
 
 ul.list_ul.line4 li:nth-child(4n+4) {
     margin-right: 0;
-}
+} */
 
 ul.list_ul li .box {
     width: 100%;
@@ -438,14 +444,14 @@ ul.list_ul li:hover .img {
    transition: background 0.8s ease;
     background-size: 105%;
 }
-
+/* 
 ul.list_ul.line3 li .img {
     height: 218px;
 }
 
 ul.list_ul.line4 li .img {
     height: 160px;
-}
+} */
 
 ul.list_ul li .category {
     width: 100%;
@@ -689,6 +695,7 @@ ul.boardlist_ul li .cash {
 
         .board_list.st01 .tbody li {
             display: block;
+            align-items: center;
             width: 100%;
             line-height: 25px;
             border-bottom: 1px solid #ccc;
@@ -701,15 +708,18 @@ ul.boardlist_ul li .cash {
             .board_list.st01 .tbody li > div {
                 display: inline-block;
                 padding: 0px;
+                width: auto;
+                flex: 1 1;
+                flex-grow: 1;
                 font-size: 13px;
                 box-sizing: border-box;
                 font-weight: 100;
             }
 
         .board_list.st01 .tbody .td01 {
-            width: auto;
             text-align: center;
             margin-right: 15px;
+           
         }
 
         .board_list.st01 .tbody .td02 {
@@ -1906,7 +1916,9 @@ div.comment_box {
 
     .fuction_list_mini .thead > div {
         display: inline-block;
-        width: 24.5%;
+        width: auto;
+        flex: 1 1;
+        flex-grow: 1;
         text-align: center;
         font-size: 1em;
         font-weight: 600;
@@ -2055,14 +2067,14 @@ div.sum_div {
             font-size: 13px;
             vertical-align: top;
         }
-.reservation_list {
+.master__table {
     position: relative;
     width: 100%;
     margin-top: 0;
     display: block;
     border-top: 2px solid #555;
 }
-    .reservation_list .th {
+    .master__table .th {
         position: relative;
         width: 100%;
         display: none;
@@ -2072,7 +2084,7 @@ div.sum_div {
         padding-top: 10px;
         padding-bottom: 11px;
     }
-    .reservation_list .td {
+    .master__table .td {
         position: relative;
         width: 100%;
         display: block;
@@ -2081,17 +2093,21 @@ div.sum_div {
         box-sizing: border-box;
         padding: 5% 5% 80px 5%;
     }
-    .reservation_list .th div[class*=t0] {
+    .master__table .th div[class*=t0] {
         display: inline-block;
-        width: 50%;
+        width:auto;
+        flex: 1 1;
+        flex-grow: 1;
         vertical-align: top;
         text-align: center;
         font-weight: 600;
         border-left: 0 !important;
     }
-    .reservation_list .td div[class*=t0] {
+    .master__table .td div[class*=t0] {
         display: inline-block;
-        width: 50%;
+        width:auto;
+        flex: 1 1;
+        flex-grow: 1;
         vertical-align: top;
         text-align: center;
         box-sizing: border-box;
@@ -2107,8 +2123,7 @@ div.sum_div {
     width: 100%;
     border-top: 2px solid #666;
     text-align: center;
-    border-spacing: 0
-    ;
+    border-spacing: 0;
     margin-bottom:5px;
     margin-top:5px;
 }
@@ -2251,26 +2266,33 @@ div.sum_div {
 
 @media (min-width:768px) {
     ul .list_ul.line3 li {
-        width: 31.7%;
+        width: auto;
     }
 
         ul.list_ul.line3 li:last-child {
             display: inline-block;
         }
     .photo_ul.line4 li {
-        width: 50%;
+        width: auto;
+        flex: 1 1;
+        flex-grow: 1;
         height: 280px;
         margin: 0;
     }
     .photo_ul.line3 li {
-        width: 50%;
+        width: auto;
+        flex: 1 1;
+        flex-grow: 1;
         height: 300px;
         margin:0;
     }
 }
 @media (min-width:1000px) {
     .new {
-        width: 16px;
+        width: 14px;
+    }
+    .board_option{
+        width: auto;
     }
 .board_list .ct_01 {
     padding: 3px 13px;
@@ -2283,6 +2305,7 @@ div.sum_div {
 }
     .board_list_mini .thead{
         display: flex;
+        align-items: center;
     }
     .m_title{
         display: none !important;
@@ -2292,10 +2315,12 @@ div.sum_div {
     }
     .board_list.st03 .tbody li {
         display: flex;
-        
+        width: auto;
+        flex: 1 1;
+        flex-grow: 1;
     }
     
-    .board_list.st03 .tbody .td01 {
+    /* .board_list.st03 .tbody .td01 {
         width: 10%;
     }
     .board_list.st03 .tbody .td02 {
@@ -2313,8 +2338,8 @@ div.sum_div {
         width: 19%;
         text-align: right;
         font-size:14px;
-    }
-    .photo_ul.line4 li {
+    } */
+    /* .photo_ul.line4 li {
         width: 25%;
         height: 238px;
         margin: 0;
@@ -2322,55 +2347,65 @@ div.sum_div {
     .photo_ul.line3 li {
         width: 33%;
         height: 300px;
-    }
+    } */
     ul.list_ul li {
         margin-right: 2%;
+        width: auto;
+        flex: 1 1;
+        flex-grow: 1;
     }
     ul.list_ul .list_in:hover {
         border: 2px solid #ed297b;
     }
     .fuction_list_mini .tbody li{
         padding: 0;
+        width: auto;
+        flex: 1 1;
+        flex-grow: 1;
     }
     .fuction_list_mini .tbody li > div {
         display: inline-block;
-        width: 24.5%;
+        width: auto;
+        flex: 1 1;
+        flex-grow: 1;
         text-align: center;
         font-size: 12px;
         padding: 13px 10px 10px;
     }
     .board_list.st01 .tbody li {
         display: flex;
+        
         padding: 0;
         line-height: 55px;
     }
     .board_list.st01 .tbody li > div{
+        width: auto;
+        flex: 1 1;
+        flex-grow: 1;
         padding: 10px;
     }
     .board_list.st01 .tbody .td01 {
-        width: 10%;
-        text-align: center;
         margin-right: 0;
+        max-width: 100px;
     }
 
     .board_list.st01 .tbody .td02 {
-        width: 10%;
         text-align: center;
+        max-width: 100px;
     }
 
     .board_list.st01 .tbody .td03 {
-        width: 64%;
         text-align: left;
-        padding-left: 34px;
+        padding-left: 10px;
         font-weight: 600;
         font-size: 1em;
     }
 
     .board_list.st01 .tbody .td04 {
-        width: 15%;
-        text-align: right;
+        text-align: center;
         color: #555555;
         font-weight: 100;
+        max-width: 150px;
     }
     .board_list_mini .tbody li{
         display: flex;
@@ -2378,43 +2413,43 @@ div.sum_div {
     }
     .board_list_mini .tbody li > div{
         padding: 10px 10px 10px;
+        width: auto;
+        flex: 1 1;
+        flex-grow: 1;
     }
     .board_list_mini.ln05 .th01 {
-        width: 10%;
-        text-align: center;
+       max-width: 70px;
     }
     div.board_list_mini li {
         line-height: 35px;
         padding: 0;
     }
     .board_list_mini.ln04 .th01 {
-        width: 15%;
         text-align: center;
     }
     .board_list_mini.ln04 .th02 {
-        width: 45%;
         text-align: left;
         font-size: 0.9em;
     }
     .board_list_mini.ln04 .th03 {
-        width: 20%;
         text-align: center;
         margin-right: 0;
     }
     .board_list_mini.ln04 .th04 {
-        width: 20%;
         text-align: center;
     }
     div.sum_div li {
         width: 43%;
         margin: 0 3%;
     }
-    .reservation_list .th {
+    .master__table .th {
         display: flex;
+        align-items: center;
     }
-    .reservation_list .td{
+    .master__table .td{
         display: flex;
         padding: 0;
+        align-items: center;
     }
 
 }

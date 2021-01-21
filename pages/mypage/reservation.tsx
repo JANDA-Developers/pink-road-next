@@ -75,12 +75,16 @@ export const MyReservation: React.FC<IProp> = () => {
                         filterStart={filterStart}
                         filterEnd={filterEnd}
                         doSearch={doSearch} Status={
-                            <div className="text">
-                                <span onClick={handleSatus(undefined)} className={checkStatusOn(undefined)}>전체</span>
-                                <span onClick={handleSatus(BookingStatus.READY)} className={checkStatusOn(BookingStatus.READY)}>예약대기</span>
-                                <span onClick={handleSatus(BookingStatus.COMPLETE)} className={checkStatusOn(BookingStatus.COMPLETE)}>예약완료</span>
-                                <span onClick={handleSatus(BookingStatus.CANCEL)} className={checkStatusOn(BookingStatus.CANCEL)}>예약취소</span>
-                            </div>}
+                            <div className="jul4">
+                                <div className="title">상태</div>
+                                <div className="text">
+                                    <span onClick={handleSatus(undefined)} className={checkStatusOn(undefined)}>전체</span>
+                                    <span onClick={handleSatus(BookingStatus.READY)} className={checkStatusOn(BookingStatus.READY)}>예약대기</span>
+                                    <span onClick={handleSatus(BookingStatus.COMPLETE)} className={checkStatusOn(BookingStatus.COMPLETE)}>예약완료</span>
+                                    <span onClick={handleSatus(BookingStatus.CANCEL)} className={checkStatusOn(BookingStatus.CANCEL)}>예약취소</span>
+                                </div>
+                            </div>
+                        }
                         SearchSelect={
                             <select value={searchType} onChange={(e) => {
                                 const val = e.currentTarget.value;
@@ -111,7 +115,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <ViewCount onChange={setViewCount} value={viewCount} />
                             </div>
                         </div>
-                        <div className="reservation_list">
+                        <div className="master__table">
                             <div className="th">
                                 <div className="t01">
                                     <span className="checkbox">

@@ -49,7 +49,6 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                 {/* <Upload onUpload={imgEdit("mainBg")} /> */}
             </div>
         </Bg>
-        {/* <div className="bold" title="Bold" onClick={() => { effectDoc('bold') }}>B</div> */}
         <div className="w100 con01 con_block">
             <div className="w1200">
                 <div className="bottom">
@@ -100,6 +99,7 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                         </div>
 
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -272,25 +272,27 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
             <div className="ovj"></div>
             <div className="bg" />
         </Bg>
-        {open && <div style={{
-            opacity: 0,
-            position: "fixed",
-            width: "1px",
-            height: "1px",
-            top: 0,
-            left: 0,
-            overflow: "hidden"
-        }}>
-            {/* <input onChange={changePartner} value={addInfo.alt} /> */}
-            <Upload onUpload={(url) => {
-                setAddInfo({
-                    ...addInfo,
-                    img: url
-                })
-            }} />
-            <input />
-            <input onChange={() => { }} value={addInfo.link} />
-        </div>}
+        {
+            open && <div style={{
+                opacity: 0,
+                position: "fixed",
+                width: "1px",
+                height: "1px",
+                top: 0,
+                left: 0,
+                overflow: "hidden"
+            }}>
+                {/* <input onChange={changePartner} value={addInfo.alt} /> */}
+                <Upload onUpload={(url) => {
+                    setAddInfo({
+                        ...addInfo,
+                        img: url
+                    })
+                }} />
+                <input />
+                <input onChange={() => { }} value={addInfo.link} />
+            </div>
+        }
 
 
         {/* popup은 언제나 class fade와 함께 있어야 한다. */}
@@ -310,7 +312,7 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
             </div>
         </div>
         <div className="fade"></div> */}
-    </div>;
+    </div >;
 };
 
 export default StieInfo

@@ -113,7 +113,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                         }
                     />
                 </div>
-                <div className="reservation_list ln07">
+                <div className="master__table">
                     <div className="thead">
                         <div className="t01">
                             <span className="checkbox">

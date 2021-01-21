@@ -80,7 +80,11 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                     <li className="home">
                         <Link href="/" ><a /></Link>
                     </li>
-                    <li className="homedeps1">My page</li>
+                    <li className="homedeps1">
+                        <Link href="/mypage">
+                            <a >My page</a>
+                        </Link>
+                    </li>
                     <li className="homedeps2">
                         <Link href="/mypage">
                             <a >회원정보</a>
@@ -113,11 +117,11 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                             }} className="img"><i className="jandaicon-setting"></i>프로필이미지</span>
                             <input onChange={handleChangeProfile} ref={hiddenFileInput} hidden type="file" />
                             <span className="name1">
-                                {isParterNonB && <i className="ct_guide">Partner</i>}{/* 개인파트너 -*/}
-                                {isParterB && <i className="ct_partner">Partner</i>}{/* 기업파트너 -*/}
-                                {isSeller && <span><strong>{myProfile?.nickName}</strong>님 어서오세요</span>}{/*기업파트너/개인파트너*/}
-                                {isSeller && <span className="point"><i>정산금</i><strong>{autoComma(settleAvaiableAmount)}</strong>원</span>}{/*기업파트너/개인파트너*/}
-                                {isSeller || <span className="name2"><i className="ct_family">Family</i><strong>{myProfile?.name}</strong>님 어서오세요</span>}{/*개인*/}
+                                {isParterNonB && <i className="ct_partner">Personal Partner</i>}{/* 개인파트너 Personal Partner -*/}
+                                {isParterB && <i className="ct_guide">Corporation Partner</i>}{/* 기업파트너 Corporation Partner -*/}
+                                {isSeller && <span><strong>{myProfile?.nickName}</strong>님 어서오세요 :)</span>}{/*기업파트너/개인파트너*/}
+                                {isSeller && <span className="point"><i>Point</i><strong>{autoComma(settleAvaiableAmount)}</strong>원</span>}{/*기업파트너/개인파트너*/}
+                                {isSeller || <span className="name2"><i className="ct_family">Family</i><strong>{myProfile?.name}</strong>님 어서오세요 :)</span>}{/*개인*/}
                                 {isSeller || <span className="time"><i>최근 살펴본 여행</i>{Storage?.getLocal("lastProd", "")}</span>}{/*개인*/}
                                 {/* //최근접속시간은 최근에 본 상품으로 변경함 */}
                                 <ul>
