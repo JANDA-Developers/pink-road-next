@@ -16,8 +16,9 @@ import { payMethodToKR, productStatus } from '../../utils/enumToKr';
 import { useSingleSort } from '../../hook/useSort';
 import { autoComma } from '../../utils/formatter';
 import { useQueryFilter } from '../../hook/useQueryFilter';
-import { ALLOW_LOGINED } from '../../types/const';
+import { ALLOW_LOGINED, BG } from '../../types/const';
 import { auth } from '../../utils/with';
+import { getExcelByBookings } from '../../utils/getExcelData';
 
 interface IProp { }
 
@@ -41,7 +42,7 @@ export const MyReservation: React.FC<IProp> = () => {
         }
     });
     const [searchType, setSearchType] = useState<"code" | "title" | "name">("code");
-    const { isChecked, check, selecteAll, unSelectAll } = useIdSelecter(items.map(item => item._id));
+    const { isChecked, check, selectAll, unSelectAll, isAllSelected } = useIdSelecter(items.map(item => item._id));
     const singleSortHook = useSingleSort(sort, setSort)
 
     const { hanldeCreateDateChange, filterEnd, filterStart } = useDateFilter({
@@ -61,7 +62,7 @@ export const MyReservation: React.FC<IProp> = () => {
         })
     }
 
-    const checkStatusOn = (status?: BookingStatus) => filter.status_eq === status ? "check on" : ""
+    const checkStatusOn = (status?: BookingStatus) => filter.status_eq === status ? "check on" : "check"
 
     return <MypageLayout>
         <div className="in reservation_div">
@@ -99,9 +100,9 @@ export const MyReservation: React.FC<IProp> = () => {
                             <div className="left_div"><span className="infotxt">총 <strong>{pageInfo.totalCount}</strong>건</span></div>
                             <div className="right_div">
                                 <ul className="board_option">
-                                    <li onClick={selecteAll}><a>모두선택</a></li>
-                                    <li><a>모두선택 해제</a></li>
-                                    <li><Excel data={[]} element={<a>엑셀파일</a>} /></li>
+                                    <li onClick={selectAll}><a>모두선택</a></li>
+                                    <li onClick={unSelectAll}><a>모두선택 해제</a></li>
+                                    <li><Excel data={getExcelByBookings(items)} element={<a>엑셀파일</a>} /></li>
                                 </ul>
                                 <SingleSortSelect {...singleSortHook} >
                                     <option value={_BookingSort.productStartDate_desc}>출발일 &uarr;</option>
@@ -114,7 +115,7 @@ export const MyReservation: React.FC<IProp> = () => {
                             <div className="th">
                                 <div className="t01">
                                     <span className="checkbox">
-                                        <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                        <input checked={isAllSelected} onClick={selectAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
                                         <label htmlFor="agree0" />
                                     </span>
                                 </div>
@@ -138,7 +139,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                         </div>
                                     </div>
                                     <div className="t04">
-                                        <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
+                                        <div className="img" style={BG(item?.product?.images?.[0]?.uri || "")} ></div>
                                         <div className="info">
                                             <span className="ct">{item.product.title}</span><span className="g-number">상품번호: {item.product.code}</span>
                                             <strong className="title">{item.product.title}</strong>

@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client"
-import { F_PAGE, F_BOOKING, F_PAYMENT, F_PRODUCT, F_FILE } from "./fragments"
-
+import { F_PAGE, F_PAYMENT, F_FILE, F_USER, F_PRODUCT, F_BOOKING } from "./fragments"
 
 export const F_TRAVELER = gql`
     fragment Ftraveler on Traveler {
@@ -34,6 +33,7 @@ export const BOOKING_LIST = gql`
       payment {
         ...Fpayment
       }
+
       product {
         _id
         createdAt
@@ -72,6 +72,9 @@ export const BOOKING_LIST = gql`
         type
         startDate
         Dday
+        author {
+          name
+        }
       }
     }
   }
@@ -115,6 +118,11 @@ export const BOOKING_CANCEL = gql`
     ok
     error
     data {
+      product {
+            _id
+            title
+            code
+        }
       ...Fbooking
     }
   }
@@ -135,6 +143,9 @@ export const BOOKINGS_CREATE = gql`
     error
     data {
       ...Fbooking
+      product {
+        title
+      }
     }
   }
 }
@@ -180,12 +191,24 @@ export const BOOKING_FIND_BY_CODE = gql`
     ok
     error 
     data {
+      product {
+            _id
+            title
+            code
+      }
       ...Fbooking
       travelers {
         ...Ftraveler
       }
       product {
         ...Fproduct
+        author {
+            ...Fuser
+        }
+        category {
+            _id
+            label
+        }
       }
       payment {
         ...Fpayment
@@ -193,6 +216,7 @@ export const BOOKING_FIND_BY_CODE = gql`
     }
   }
 }
+${F_USER}
 ${F_TRAVELER}
 ${F_BOOKING}
 ${F_PAYMENT}

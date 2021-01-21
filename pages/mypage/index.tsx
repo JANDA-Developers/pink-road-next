@@ -16,6 +16,7 @@ import { useVerification } from '../../hook/useVerification';
 import { GET_CONTEXT } from '../../apollo/gql/queries';
 import { getOperationName } from '@apollo/client/utilities';
 import { useCustomCount } from '../../hook/useCount';
+import { useUserResign } from '../../hook/useUser';
 
 let SEND_LIMIT = 3;
 interface IProp { }
@@ -35,6 +36,8 @@ export const MyPageProfile: React.FC<IProp> = () => {
             }
         }
     });
+
+    const [resign] = useUserResign();
     const { myProfile: defaultProfile, role, isAdmin } = useContext(AppContext);
     const { code, setCode } = useVerification();
     const [nextPhoneNum, setNextPhoneNum] = useState("");
@@ -101,7 +104,17 @@ export const MyPageProfile: React.FC<IProp> = () => {
         })
     }
 
-    const handleRetire = () => {
+    const handleReSign = () => {
+        if (confirm(`
+        정말로 회원탈퇴를 하시겠습니까?
+        회원탈퇴후 데이터는 7일 이내에 문의를 통해서 복구가 가능합니다. 
+         `))
+            resign({
+                variables: {
+                    _id,
+                    pw: prompt("비밀번호를 입력 해주세요.", "") || ""
+                }
+            })
     }
 
     let verifyTemplate = (verificationId: string) => {
@@ -139,7 +152,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
     }
 
     const handleFindAdress = () => {
-
     }
 
     const pwSameCheck = () => nextPw.password && nextPw.password === nextPw.passwordCheck;
@@ -528,7 +540,8 @@ export const MyPageProfile: React.FC<IProp> = () => {
                         </button>
                     </div>
                     <div className="float_right">
-                        <button onClick={handleRetire} type="submit" className="btn medium color01">
+                        <button onClick={handleReSign} type="submit"
+                            className="btn medium color01">
                             회원탈퇴
                         </button>
                     </div>
@@ -561,7 +574,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
         <Modal id="addressFindModal" title="주소찾기">
             <DaumPostcode onComplete={handleCompleteFindAddress} />
         </Modal>
-    </MypageLayout>;
+    </MypageLayout >;
 };
 
 

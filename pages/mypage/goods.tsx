@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import { MypageLayout } from 'layout/MypageLayout';
 import { auth } from "../../utils/with";
@@ -17,14 +17,21 @@ import { Paginater } from '../../components/common/Paginator';
 import { SingleSortSelect } from '../../components/common/SortSelect';
 import { useSingleSort } from '../../hook/useSort';
 import { ProductStatus } from '../../types/api';
+import { ProductModal } from '../../components/productModal/ProductModal';
+import { openModalTimeSet } from '../../utils/popUp';
+import { useSettlementsRequest } from '../../hook/useSettlement';
 
 interface IProp { }
+
+
 
 export const MyGoods: React.FC<IProp> = () => {
     const { items, filter, setFilter, pageInfo, sort, setSort, viewCount, setViewCount, page, setPage } = useProductList()
     const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({ filter, setFilter })
-    const { check, isChecked, selecteAll, selectedIds, setSelectedIds, unCheck, unSelectAll } = useIdSelecter(items.map(i => i._id));
+    const { check, isChecked, selectAll, toggleAll, toggle, selectedIds, setSelectedIds, unCheck, unSelectAll } = useIdSelecter(items.map(i => i._id));
     const singleSort = useSingleSort(sort, setSort);
+    const [settlementRquest] = useSettlementsRequest();
+    const [popupProductId, setPopupProductId] = useState("");
 
     const doSearch = (search: string) => {
         const _filter = getUniqFilter(
@@ -47,6 +54,23 @@ export const MyGoods: React.FC<IProp> = () => {
     }
 
     const checkStatusOn = (status?: ProductStatus) => filter.status_eq === status ? "check on" : ""
+
+    const handleOpenRegist = () => {
+    }
+
+    // const handleRequestSettlement = (productId:string) => () => {
+    //     settlementRquest({
+    //         variables: {
+    //             params: [],
+    //             settlementId
+    //         }
+    //     })
+    // }
+
+    const handleOpenProductModal = (productId: string) => () => {
+        setPopupProductId(productId)
+        openModalTimeSet("#ProductModal")
+    }
 
 
     return <MypageLayout>
@@ -83,7 +107,7 @@ export const MyGoods: React.FC<IProp> = () => {
                 </div>
                 <div className="con_bottom">
                     <div className="con_box">
-                        <MasterAlignMent handleSelectAll={selecteAll} LeftDiv={
+                        <MasterAlignMent handleSelectAll={toggleAll} LeftDiv={
                             <span className="infotxt">총 <strong>{pageInfo.totalCount}</strong>건</span>
                         } Sort={
                             <SingleSortSelect {...singleSort} />
@@ -91,7 +115,7 @@ export const MyGoods: React.FC<IProp> = () => {
                         <div className="fuction_list_mini ln08">
                             <div className="thead">
                                 <div className="th01">
-                                    <span onClick={selecteAll} className="checkbox check2">
+                                    <span onClick={selectAll} className="checkbox check2">
                                         <input type="checkbox" name="agree" id="agree0" title="전체선택" />
                                         <label htmlFor="agree0" />
                                     </span>
@@ -110,7 +134,7 @@ export const MyGoods: React.FC<IProp> = () => {
                                         <li key={item._id}>
                                             <div className="th01">
                                                 <span className="checkbox check2">
-                                                    <input checked={isChecked(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                                    <input onChange={() => { toggle(item._id) }} checked={isChecked(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
                                                     <label htmlFor="agree1" />
                                                 </span>
                                             </div>
@@ -144,9 +168,9 @@ export const MyGoods: React.FC<IProp> = () => {
                                             </div>
                                             <div className="th08">
                                                 <i className="btn"><Link href={`/tour/write/${item._id}`}><a>상품수정</a></Link></i>{/*글수정으로 가기 */}
-                                                <i className="btn">예약자명단</i>{/* POPUP */}
-                                                <i className="btn">예약등록</i>{/* POPUP */}
-                                                <i className="btn">정산신청</i>{/* POPUP */}
+                                                <i onClick={handleOpenProductModal(item._id)} className="btn">상세보기</i>{/* POPUP */}
+                                                <i onClick={handleOpenRegist} className="btn">예약등록</i>{/* POPUP */}
+                                                {/* <i onClick={handleRequestSettlement()} className="btn">정산신청</i>POPUP */}
                                             </div>
                                         </li>
                                     )}
@@ -166,6 +190,7 @@ export const MyGoods: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
+        <ProductModal productId={popupProductId} />
     </MypageLayout>
 };
 

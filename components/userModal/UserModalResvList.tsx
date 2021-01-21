@@ -16,7 +16,6 @@ export const UserModalResvList: React.FC<IProp> = ({ id }) => {
         initialViewCount: 4
     })
 
-
     return <div className="info_table reservationlist">
         {bookings.map(bk =>
             <div className="tr">
@@ -32,19 +31,20 @@ export const UserModalResvList: React.FC<IProp> = ({ id }) => {
                 </div>
                 <div className="re04">
                     예약일/결제일
-            </div>
+                </div>
                 <div className="re05">
                     <span>{yyyymmdd(bk.createdAt)}/{yyyymmdd(bk.payment?.createdAt)}</span>
                 </div>
+
                 <div className="re06">
                     인원
-            </div>
+                </div>
                 <div className="re07">
                     <span>{bk.totalCount}명</span>
                 </div>
                 <div className="re08">
                     금액
-            </div>
+                </div>
                 <div className="re09">
                     <span>{autoComma(bk.bookingPrice)}원</span>
                 </div>

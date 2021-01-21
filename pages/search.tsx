@@ -21,7 +21,6 @@ import { usePageEdit } from '../hook/usePageEdit';
 import pageInfoDefault from "info/search.json";
 import { PageEditor } from '../components/common/PageEditer';
 
-
 type TSearchParam = {
     keyward?: string;
     title?: string;

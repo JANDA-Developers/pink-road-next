@@ -40,17 +40,12 @@ export const MsIndex: React.FC<IProp> = () => {
     const { data: count, getLoading } = useCountManager()
     const {
         totalExpCount,
-        totalProdCount,
         totalTourCount,
         readyBookingCountMaster,
-        cancelRequestCountMaster,
-        productRegistCount,
         totalBookingCountMaster,
-        createRequestCountMaster,
         determiendProductCountMaster,
         undeterMinedProductCountMaster,
         cancelProductCountMaster,
-        compeltedProductCountMaster,
         totalCancelCompleteCount,
         totalProductCountMaster,
         cancelBookingCountMaster,
@@ -411,7 +406,7 @@ export const MsIndex: React.FC<IProp> = () => {
                 </div>
                 {/* <UserModal /> */}
                 {/* <BookingModal code={""} /> */}
-                {/* <MasterModal productId={} /> */}
+                {/* <ProductModal productId={} /> */}
             </div>
         </div>
 

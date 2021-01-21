@@ -15,6 +15,7 @@ import { omits } from '../../../utils/omit';
 import dynamic from 'next/dynamic';
 import { defaultModalGet } from '../../../types/const';
 import { cloneObject } from '../../../utils/clone';
+import { DesignTopNav, ResvTopNav } from '../../../components/topNav/MasterTopNav';
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 
 interface IProp { }
@@ -78,8 +79,8 @@ export const MsDesignB: React.FC<IProp> = () => {
     return <div>
 
         {popModal && <DayPickerModal defaultRange={{
-            from: popModal.startDate,
-            to: popModal.endDate
+            from: popModal.startDate ? dayjs(popModal.startDate).toDate() : undefined,
+            to: popModal.endDate ? dayjs(popModal.endDate).toDate() : undefined
         }} onSubmit={(range) => {
             closeModal("#dayPickerModal")()
             popModal.startDate = range.from;
@@ -91,14 +92,7 @@ export const MsDesignB: React.FC<IProp> = () => {
             <div className="in ">
                 <h4>디자인 설정</h4>
                 <div className="in_content">
-                    <div className="tab-nav">
-                        <ul>
-                            <li><Link href="/master/design"><a>기본설정</a></Link></li>
-                            <li><Link href="/master/design/design1-2"><a>배너관리</a></Link></li>
-                            <li className="on"><Link href="/master/design/design1-3"><a>팝업관리</a></Link></li>
-                            <li><Link href="/master/design/design1-4"><a>노출상품관리</a></Link></li>
-                        </ul>
-                    </div>
+                    <DesignTopNav />
                     <div className="con design popup_setting">
                         <div className="fin">
                             <div className="float_left">
@@ -129,13 +123,16 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                 <div className="line">
                                                     <h6>우선순서</h6>
                                                     <div className="txt">
-                                                        <select className="w50">
-                                                            <option>0</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
+                                                        <select onChange={(e) => {
+                                                            const order = e.currentTarget.value;
+
+                                                        }} className="w50">
+                                                            <option value={0}>0</option>
+                                                            <option value={1}>1</option>
+                                                            <option value={2}>2</option>
+                                                            <option value={3}>3</option>
+                                                            <option value={4}>4</option>
+                                                            <option value={5}>5</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -152,7 +149,6 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                             <CalendarIcon />
                                                         </div>
                                                     </div>
-
                                                 </div>
                                                 <div className="line">
                                                     <h6>링크연결</h6>

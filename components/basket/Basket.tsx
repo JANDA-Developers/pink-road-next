@@ -22,7 +22,7 @@ interface IProp {
 export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => {
     const [popUpProduct, setPopProduct] = useState<Fproduct & IBasketItem>();
     const allIds = items.map(i => i._id);
-    const { reverseAll, tooggleAll, selectedIds, check, isChecked, isAllSelected, toggle } = useIdSelecter(allIds);
+    const { reverseAll, toggleAll, selectedIds, check, isChecked, isAllSelected, toggle } = useIdSelecter(allIds);
 
 
     const totalPrice = arraySum(items.map(item => item.price));
@@ -53,7 +53,7 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
         <div className="th">
             <div className="t01">
                 <span className="checkbox">
-                    <input onChange={tooggleAll} checked={isAllSelected} type="checkbox" name="agree" id="agree0" title="전체선택" />
+                    <input onChange={toggleAll} checked={isAllSelected} type="checkbox" name="agree" id="agree0" title="전체선택" />
                     <label htmlFor="agree0" />
                 </span>
             </div>
@@ -73,7 +73,7 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
                 <div className="t02">
                     <div className="img" style={BG(item.images?.[0]?.uri || "")}></div>
                     <div className="right">
-                        <div className="ct">{item.category?.label}</div><div className="code">{item.code}</div>
+                        <div className="ct">{item?.category?.label}</div><div className="code">{item.code}</div>
                         <div className="title"><a href="/">{item.title}</a></div>
                         <div className="subtitle">{item.subTitle}</div>
                     </div>

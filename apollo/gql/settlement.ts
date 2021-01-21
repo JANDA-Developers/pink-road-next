@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client"
-import { F_BOOKING, F_PAGE, F_PAYMENT, F_PRODUCT, F_USER } from "./fragments"
+import {  F_BOOKING, F_PAGE, F_PAYMENT, F_PRODUCT, F_USER } from "./fragments"
 
 export const F_FEEPOLICY = gql`
     fragment Ffeepolicy on FeePolicy {
@@ -44,15 +44,6 @@ export const F_SETTLEMENT = gql`
       acceptDate
       completeDate
       cancelDate
-      product {
-        _id
-        code
-        title
-        status
-        adult_price
-        kids_price
-        baby_price
-      }
     }
 `
 
@@ -70,6 +61,13 @@ export const SETTLEMENT_FIND_BY_ID = gql`
       ...Fsettlement
       product {
         ...Fproduct
+        author {
+            ...Fuser
+        }
+        category {
+            _id
+            label
+        }
         bookings {
           ...Fbooking
           payment {
@@ -80,9 +78,10 @@ export const SETTLEMENT_FIND_BY_ID = gql`
     }
   }
   }
+  ${F_PRODUCT}
+  ${F_USER}
   ${F_BOOKING}
   ${F_PAYMENT}
-  ${F_PAGE}
   ${F_SETTLEMENT}
 `
 
@@ -106,7 +105,7 @@ export const SETTLEMENT_LIST = gql`
       ...Fsettlement
       seller {
         ...Fuser
-    }
+      }
       product {
         bookerSummary {
           adultCount
@@ -118,6 +117,13 @@ export const SETTLEMENT_LIST = gql`
           cancelPeople 
         }
         ...Fproduct
+        author {
+            ...Fuser
+        }
+        category {
+            _id
+            label
+        }
       }
     }
   }
@@ -144,11 +150,11 @@ export const SETTLEMENT_REQUEST = gql`
 `;
 
 
-export const SETTLEMENT_ACCEPT = gql`
-  mutation settlementAccept(
+export const SETTLEMENT_COMPLETE = gql`
+  mutation settlementComplete(
       $settlementId: String!
     ) {
-    SettlementAccept(
+    SettlementComplete(
         settlementId: $settlementId
       ) {
         ok
@@ -157,12 +163,14 @@ export const SETTLEMENT_ACCEPT = gql`
   }
 `;
 
-export const SETTLEMENT_COMPLETE = gql`
-  mutation settlementComplete(
+export const SETTLEMENT_REJECT = gql`
+  mutation settlementReject(
       $settlementId: String!
+      $reason:String!
     ) {
-    SettlementComplete(
+      SettlementReject(
         settlementId: $settlementId
+        reason: $reason
       ) {
         ok
         error 

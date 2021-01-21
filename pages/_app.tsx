@@ -12,6 +12,7 @@ import { bracketVergionChange } from '../utils/Storage';
 import PageDeny from './Deny';
 import { categoryMap, defaultCatsMap } from '../utils/categoryMap';
 import { useRouter } from 'next/router';
+import PageLoading from './Loading';
 
 
 dayjs.locale('ko')
@@ -94,7 +95,7 @@ function App({ Component, pageProps }: any) {
     return <div>Loading...</div>
   }
 
-  if (loading) return <div >...loading</div>
+  if (loading) return <PageLoading />
   return (
     <div className="App">
       <ApolloProvider client={PinkClient}>
@@ -116,6 +117,7 @@ function App({ Component, pageProps }: any) {
           </ComponentLayout>
         </AppContext.Provider>
       </ApolloProvider>
+      <div id="portal" />
     </div>
   );
 }

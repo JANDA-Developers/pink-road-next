@@ -8,7 +8,7 @@ import { JDpaymentUI, TPaySubmitInfo } from "../../components/payment/JDpaymentU
 import { IUseBasket, useBasket } from "../../hook/useBasket";
 import { useBookingFindByCode, useBookingsCreate } from "../../hook/useBooking";
 import PaymentLayout from "../../layout/PaymentLayout";
-import { BookingsCreateInput, Fbooking, PayMethod } from "../../types/api";
+import { bookingFindByCode_BookingFindByCode_data, BookingsCreateInput, bookingsCreate_BookingsCreate_data, Fbooking, PayMethod } from "../../types/api";
 import { getFromUrl } from "../../utils/url";
 
 interface IcustomParams {
@@ -22,7 +22,7 @@ interface IProp {
 export const Payment: React.FC<IProp> = ({ }) => {
     const urlBKcode = getFromUrl("code") || "";
     const [authData, setAuthData] = useState<IAuthInfo>();
-    const [createdBookings, setCreatedBookings] = useState<Fbooking[]>([]);
+    const [createdBookings, setCreatedBookings] = useState<bookingsCreate_BookingsCreate_data[]>([]);
     const [customParams, setCustomParams] = useState<IcustomParams>();
     const { item: findBooking } = useBookingFindByCode(urlBKcode);
     const [bookingCreate] = useBookingsCreate();
@@ -88,7 +88,7 @@ export const Payment: React.FC<IProp> = ({ }) => {
         BuyerEmail: createdBookings[0]?.email || "",
         BuyerName: createdBookings[0]?.name || "",
         BuyerTel: createdBookings[0]?.phoneNumber || "",
-        GoodsName: createdBookings?.map(bk => bk.product.title).join(" | ") || "",
+        GoodsName: "예약상품",
     }
 
     return <PaymentLayout>

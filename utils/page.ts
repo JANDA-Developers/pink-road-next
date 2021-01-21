@@ -15,17 +15,18 @@ export const getQueryIndex = (inPageIndex: number, pageInfo: Fpage) => {
     return ((pageInfo.totalPageSize - 2) * pageInfo.cntPerPage) + inPageReverse + diff;
 }
 
+const graphQLClient = new GraphQLClient(SERVER_URI, {
+    credentials: 'include',
+    mode: 'cors',
+    cache: "reload",
+})
+
 export const useHomepageServerSide = async () => {
     console.log(SERVER_URI);
     console.log(SERVER_URI);
     console.log(SERVER_URI);
     console.log(SERVER_URI);
     console.log(SERVER_URI);
-    const graphQLClient = new GraphQLClient(SERVER_URI, {
-        credentials: 'include',
-        mode: 'cors',
-        cache: "reload",
-    })
 
     const defaultHomePage = {
         PrivacyPolicy: "",

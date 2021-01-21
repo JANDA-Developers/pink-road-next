@@ -9,7 +9,7 @@ export const useSystemNotiList = generateListQueryHook<_SystemNotiFilter,_System
 export const useSystemNotiRead = generateMutationHook<systemNotiRead,systemNotiReadVariables>(SYSTEMNOTI_READ,{...getRefetch(SYSTEMNOTI_LIST,UNREAD_SYSTEMNOTIS)});
 export const useSystemNotiHide = generateMutationHook<systemNotiHide,systemNotiHideVariables>(SYSTEMNOTI_HIDE,{...getRefetch(SYSTEMNOTI_LIST,UNREAD_SYSTEMNOTIS)});
 export const useUnReadSystemNotiFind = () => {
-    const {data} = useQuery<unReadSystemNotiFind>(UNREAD_SYSTEMNOTIS,{pollInterval:10000});
+    const {data} = useQuery<unReadSystemNotiFind>(UNREAD_SYSTEMNOTIS,{pollInterval:60000});
     const items = data?.UnReadSystemNotiFind.data || []
     return {items};
 }

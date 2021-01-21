@@ -22,6 +22,7 @@ export const useUpload = (options?: MutationHookOptions<multiUpload, multiUpload
         })
     }
 
+
     return {signleUpload, uploadLoading}
 }
 

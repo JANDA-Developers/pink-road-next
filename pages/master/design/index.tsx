@@ -113,7 +113,7 @@ export const MsDesignMain: React.FC<IProp> = () => {
                             </div>
 
                         </div>
-                        <div className="block_box">
+                        {/* <div className="block_box">
 
                             <h5>하단 바로가기 링크</h5>
                             <div className="tbody">
@@ -161,8 +161,8 @@ export const MsDesignMain: React.FC<IProp> = () => {
                                 </div>
                             </div>
 
-                        </div>
-                        <div className="block_box">
+                        </div> */}
+                        {/* <div className="block_box">
                             <h5>커스텀 디자인 설정</h5>
                             <div className="tbody">
                                 <div className="t01">
@@ -201,7 +201,7 @@ export const MsDesignMain: React.FC<IProp> = () => {
                                 </div>
 
                             </div>
-                        </div>
+                        </div> */}
 
 
 

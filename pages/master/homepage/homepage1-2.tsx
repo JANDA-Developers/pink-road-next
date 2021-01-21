@@ -5,7 +5,7 @@ import { useSmsTemplateCreate, useSmsTemplateDelete, useSmsTemplateUpdate, useTe
 import { FsmsTemplate, _ITemplateSort } from '../../../types/api';
 import { openModal } from '../../../utils/popUp';
 import { SMSmodal, SMStemplateTagKr, TSMStemplateTag } from '../../../components/sms/SMSmodal';
-import { ALLOW_ALLOW_SELLERS } from '../../../types/const';
+import { ALLOW_SELLERS } from '../../../types/const';
 import { auth } from '../../../utils/with';
 import SortSelect from '../../../components/common/SortMethod';
 import { SortSelecter } from '../../../components/common/SortSelect';
@@ -98,4 +98,4 @@ export const MsHomepageA: React.FC = () => {
     </MasterLayout >
 };
 
-export default auth(ALLOW_ALLOW_SELLERS)(MsHomepageA);
+export default auth(ALLOW_SELLERS)(MsHomepageA);

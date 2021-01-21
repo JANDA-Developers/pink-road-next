@@ -43,16 +43,16 @@ export const MsHomepageA: React.FC<IProp> = () => {
 
     const { addtionalFees = [] } = feePolicy || {}
 
-    console.log("!!feePolicy!!!!");
-    console.log(feePolicy);
-
     const handleAddtionFeeChange = (addtionFee: AddtionalFeesUpdateInput, index: number) => <_, T extends keyof AddtionalFeesUpdateInput>(value: AddtionalFeesUpdateInput[T], key: T) => {
-        addtionFee[key as any] = value;
+        if (!feePolicy) throw Error
+        addtionFee[key] = value;
+        // @ts-ignore
         feePolicy.addtionalFees[index] = { ...addtionFee }
         setFeePolicy({ ...feePolicy });
     }
 
     const handleAddPolicy = (target: TargetStatus) => () => {
+        if (!feePolicy) throw Error
         const defaultPolicy = { feeName: "", target, type: AddtionalFeesStatus.DEFAULT, fee: 0, feePercent: 0 };
         feePolicy.addtionalFees = [...(feePolicy.addtionalFees || []), defaultPolicy]
         setFeePolicy({
@@ -61,8 +61,8 @@ export const MsHomepageA: React.FC<IProp> = () => {
     }
 
     const handleDelete = (index: number) => () => {
-        console.log("deetlet: feePolicy.addtionalFees");
-        console.log(feePolicy.addtionalFees);
+        if (!feePolicy) throw Error
+        // @ts-ignore
         feePolicy.addtionalFees.splice(index, 1);
         setFeePolicy({
             ...feePolicy
@@ -86,16 +86,16 @@ export const MsHomepageA: React.FC<IProp> = () => {
                     </div>
                     <div className="design_table">
                         <div className="block_box">
-                            <h5>기업파트너 - 공제금액<button onClick={handleAddPolicy(TargetStatus.BUSINESS)} className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
-                            {addtionalFees.map((bpp, index) => {
+                            <h5>기업파트너 - 추가금액<button onClick={handleAddPolicy(TargetStatus.BUSINESS)} className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
+                            {(addtionalFees || []).map((bpp, index) => {
                                 if (bpp.target !== TargetStatus.BUSINESS) return null;
                                 return <AdditionFeePolicyBlock onDelete={handleDelete(index)} addtionPolicy={bpp} onChange={handleAddtionFeeChange(bpp, index)} key={"businessFeePolicy" + index} />
                             })}
                         </div>
 
                         <div className="block_box">
-                            <h5>개인파트너 - 공제금액<button onClick={handleAddPolicy(TargetStatus.PERSONAL)} className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
-                            {addtionalFees.map((bpp, index) => {
+                            <h5>개인파트너 - 추가금액<button onClick={handleAddPolicy(TargetStatus.PERSONAL)} className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
+                            {(addtionalFees || []).map((bpp, index) => {
                                 if (bpp.target !== TargetStatus.PERSONAL) return null;
                                 return <AdditionFeePolicyBlock onDelete={handleDelete(index)} addtionPolicy={bpp} onChange={handleAddtionFeeChange(bpp, index)} key={"indiPartner" + index} />
                             })}

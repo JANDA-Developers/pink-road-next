@@ -22,7 +22,7 @@ export const AdditionFeePolicyBlock: React.FC<IProp> = ({ addtionPolicy: bpp, on
                 <input onChange={e => {
                     const val = e.currentTarget.value;
                     onChange(parseInt(val), isPer ? "fee" : "feePercent");
-                }} value={isPer ? bpp.fee : bpp.feePercent} className="w30 mr5" placeholder="숫자만 입력해 주세요." type="text" />
+                }} value={isPer ? (bpp.fee || 0) : (bpp.feePercent || 0)} className="w30 mr5" placeholder="숫자만 입력해 주세요." type="text" />
                 <select onChange={(e) => {
                     const val = e.currentTarget.value as any;
                     onChange(val, "type");

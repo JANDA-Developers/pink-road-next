@@ -1417,6 +1417,9 @@ div.comment_box {
         box-sizing: border-box;
         text-align: left;
     }  
+    div.board_list_mini .pagenate {
+        width: 100%;
+    }
     div.board_list_mini div.w100 {
         width: 100%;
         display: inline-block;

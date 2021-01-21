@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_BOOKING, F_CATEGORY,  F_PAGE_INFO, F_PRODUCT,F_USER } from "./fragments";
+import {  F_BOOKING, F_CATEGORY,  F_PAGE_INFO,F_USER } from "./fragments";
 import { F_HOMEPAGE } from "./homepage";
 import { F_SYSTEMNOTI } from "./systemNoti";
 
@@ -50,7 +50,13 @@ export const GET_CONTEXT = gql`
             }
           }
           products {
-            ...Fproduct
+            author {
+            ...Fuser
+          }
+          category {
+              _id
+              label
+          }
             bookings {
               _id
               name
@@ -75,7 +81,6 @@ export const GET_CONTEXT = gql`
     }
   ${F_SYSTEMNOTI}
   ${F_HOMEPAGE}
-  ${F_PRODUCT}
   ${F_BOOKING}
   ${F_CATEGORY}
   ${F_USER}

@@ -33,7 +33,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
 
   const { userType, setJoinProcess, verifiData } = useContext(JoinContext)!;
 
-  const { _id: verificationId } = verifiData;
+  const { _id: verificationId } = verifiData!;
 
 
   const [signUpMu] = useSignUp({
@@ -132,8 +132,8 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
 
   if (userType === UserRole.partnerB) {
     //네이밍 얼라이어스
-    registerInfo.name = registerInfo.manageName;
-    registerInfo.phoneNumber = registerInfo.manageContact;
+    registerInfo.name = registerInfo.manageName || "";
+    registerInfo.phoneNumber = registerInfo.manageContact || "";
     registerInfo.address = registerInfo.address;
     registerInfo.address_detail = registerInfo.address_detail;
   }

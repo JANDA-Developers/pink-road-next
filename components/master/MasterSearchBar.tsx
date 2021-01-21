@@ -1,11 +1,12 @@
 import dayjs from "dayjs"
 import { useState } from "react"
-import { lastMonthFirstDate, lastMonthLastDate, thisMonthFirstDate, thisMonthLastDate } from "../../types/const"
+import { lastMonthFirstDate, lastMonthLastDate, oneYearBefore, sixMonthBefore, thisMonthFirstDate, thisMonthLastDate } from "../../types/const"
 import { ISet, TElements } from "../../types/interface"
 import { onKeyPressEnter } from "../../utils/onKeyPress"
 import { closeModal, openModal } from "../../utils/popUp"
 import CalendarIcon from "../common/icon/CalendarIcon"
 import { DayPickerModal, IDayPickerModal } from "../dayPickerModal/DayPickerModal"
+import { TDateShortCut } from "../searchBar/SearchBar"
 import { TRange } from "../tourWrite/helper"
 
 interface IProp extends Omit<IDayPickerModal, "onSubmit"> {
@@ -16,8 +17,26 @@ interface IProp extends Omit<IDayPickerModal, "onSubmit"> {
     doSearch: (search: string) => void;
 }
 
-export const MasterSearchBar: React.FC<IProp> = ({ doSearch, filterStart, filterEnd, onDateChange,  Option }) => {
+export const MasterSearchBar: React.FC<IProp> = ({ doSearch, filterStart, filterEnd, onDateChange, Option }) => {
     const [search, setSearch] = useState("")
+
+    function check(should: TDateShortCut): boolean {
+        const checkDay = (start: Date, end: Date) => dayjs(filterStart).isSame(start, "day") && dayjs(filterEnd).isSame(end, "day")
+        if (should === "thisMonth") {
+            return checkDay(thisMonthFirstDate, thisMonthLastDate)
+        } else if (should === "oneYear") {
+            return checkDay(oneYearBefore, new Date())
+        } else if (should === "lastMonth") {
+            return checkDay(lastMonthFirstDate, lastMonthLastDate)
+        } else if (should === "sixMonth") {
+            return checkDay(sixMonthBefore, new Date())
+        };
+        return false
+    }
+
+    const checkOn = (should: TDateShortCut) => {
+        return check(should) ? "on" : "";
+    }
 
     const openDayPicker = () => {
         openModal("#dayPickerModal")()
@@ -63,16 +82,16 @@ export const MasterSearchBar: React.FC<IProp> = ({ doSearch, filterStart, filter
     return <div className="search_top">
         <div className="hang">
             <ul className="day_ul">
-                <li onClick={setThisMonth} >
+                <li className={checkOn("thisMonth")} onClick={setThisMonth} >
                     <span>이번달</span>
                 </li>
-                <li onClick={setLastMonth} >
+                <li className={checkOn("lastMonth")} onClick={setLastMonth} >
                     <span>저번달</span>
                 </li>
-                <li onClick={sixMonth}>
+                <li className={checkOn("sixMonth")} onClick={sixMonth}>
                     <span>6개월</span>
                 </li>
-                <li onClick={oneYear}>
+                <li className={checkOn("oneYear")} onClick={oneYear}>
                     <span>1년</span>
                 </li>
             </ul>

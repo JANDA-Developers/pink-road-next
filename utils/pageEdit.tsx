@@ -227,7 +227,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         return ({ "data-edit": editable ? "img" : "", src: page[key][lang], "data-imgkey": key, "data-img": "img", })
     }
 
-    const imgKit = (key: string) => {
+    const imgKit = (key: string): IEditKit<any> => {
         validateKey(key)
         const upload = imgEdit.bind(imgEdit, key)();
         const _bg = bg.bind(bg, key)();
@@ -294,6 +294,6 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         arrayImgKit,
         bg,
         src,
-        imgKit,
+        imgKit: imgKit as any,
     }
 }

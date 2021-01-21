@@ -18,6 +18,7 @@ import { SingleSortSelect } from "../../../components/common/SortSelect";
 import settlement from "../../mypage/settlement";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
 import { autoComma } from "../../../utils/formatter";
+import { GoodsTopNav } from "../../../components/topNav/MasterTopNav";
 
 interface IProp { }
 
@@ -41,9 +42,8 @@ export const MsReservationB: React.FC<IProp> = () => {
     const { items, filter, setFilter, viewCount, setViewCount, sort, setSort } = useSettlementList();
     const { settlementRequestCountMaster, settlementReadyCountMater, settlementCompleteCountMaster, totalSettlementCount } = useCustomCount(["settlementRequestCountMaster", "settlementReadyCountMater", "settlementCompleteCountMaster", "totalSettlementCount"]);
     const { filterEnd, filterStart, hanldeCreateDateChange, setDateKey } = useDateFilter({ filter, setFilter });
-    const { selecteAll, isChecked } = useIdSelecter(items.map(item => item._id));
+    const { selectAll, isChecked } = useIdSelecter(items.map(item => item._id));
     const singleSort = useSingleSort(sort, setSort);
-
 
     const doSearch = (search: string) => {
         const _filter = getUniqFilter(
@@ -61,14 +61,7 @@ export const MsReservationB: React.FC<IProp> = () => {
         <div className="in ">
             <h4>예약관리</h4>
             <div className="in_content">
-                <div className="tab-nav">
-                    <ul>
-                        <li><Link href="/master/reservation"><a>예약·결제관리</a></Link></li>
-                        <li><Link href="/master/reservation/reservation1-2"><a>취소·환불관리</a></Link></li>
-                        <li className="on"><Link href="/master/reservation/reservation1-3"><a>매출·정산관리</a></Link></li>
-                        {/* <li><Link href="/master/reservation/reservation1-4"><a>예약수기등록관리</a></Link></li> */}
-                    </ul>
-                </div>
+                <GoodsTopNav />
                 <div className="con reservation calculate">
                     <div className="con_box_top pb5">
                         <div className="top_info_number">
@@ -110,7 +103,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                         }
                         setViewCount={setViewCount}
                         viewCount={viewCount}
-                        handleSelectAll={selecteAll}
+                        handleSelectAll={selectAll}
                         LeftDiv={
                             <ul className="board_option">
                                 <li className="on"><a >전체<strong>46</strong></a></li>
@@ -187,7 +180,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                             <div className="t08">
                                 <div className="align">
                                     <button className="btn small" onClick={popupOpen}>상세보기</button>
-                                    <button className="btn small">정산완료</button>
+                                    <button className="btn small" >정산완료</button>
                                     <button className="btn small off">지급보류</button>
                                     <button className="btn small off">정산대기</button>
                                 </div>
@@ -198,7 +191,7 @@ export const MsReservationB: React.FC<IProp> = () => {
 
                     <div className="fin ifMobile">
                         <div className="float_left">
-                            <button type="submit" className="btn medium">전체선택</button>
+                            <button onClick={selectAll} type="submit" className="btn medium">전체선택</button>
                         </div>
                         <div className="float_right">
                             <button type="submit" className="btn medium">정산완료</button>

@@ -209,15 +209,15 @@ export const BookingModal: React.FC<IProp> = ({ code }) => {
                     <div className="float_left">
                         <button type="submit" className="btn medium">
                             예약취소 요청하기
-                </button>
+                        </button>
                     </div>
                     <div className="float_right">
                         <button type="submit" className="btn medium mr5">
                             수정하기
-                </button>
+                                </button>
                         <button type="submit" className="btn medium">
                             저장하기
-                </button>
+                        </button>
                     </div>
                 </div>
             </div>

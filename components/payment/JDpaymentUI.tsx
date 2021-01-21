@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useHomepage } from '../../hook/useHomepage';
 import { AppContext } from '../../pages/_app';
 import { Fbooking, PayMethod } from '../../types/api';
 import { TElements } from '../../types/interface';
@@ -26,6 +27,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
     const { isLogin, myProfile } = useContext(AppContext);
     const urlPhone = getFromUrl("phone") || "";
     const urlName = getFromUrl("name") || "";
+    const { data: item } = useHomepage()
     const [payMethod, setPayMethod] = useState<PayMethod>(PayMethod.BANK);
     const [buyerInfo, setBuyerInfo] = useState({
         phone: myProfile?.phoneNumber || "",
@@ -59,6 +61,8 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
         }
     }
 
+    // const { } = item;
+
     return <div className="payment_box ">
         <div className="head">
             {Preview}
@@ -85,7 +89,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                     <div className="write_type mb10">
                         <div className="title">구매자성함</div>
                         <div className="input_form">
-                            <input readOnly type="text" name="title" className="inputText w100 fix" />{/* 자동출력 고정 */}
+                            <input readOnly type="text" name="title" className="inputText w100 fix" />
                         </div>
                     </div>
                     <div className="write_type mb10">

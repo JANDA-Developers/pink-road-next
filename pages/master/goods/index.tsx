@@ -10,8 +10,15 @@ import { PordStatusBadge } from '../../../components/Status/StatusBadge';
 import { useCustomCount } from '../../../hook/useCount';
 import { useDateFilter } from '../../../hook/useSearch';
 import { MasterSearchBar } from '../../../components/master/MasterSearchBar';
-import { MasterModal } from '../../../components/masterModal/MasterModal';
 import { openModal } from '../../../utils/popUp';
+import { MasterAlignMent } from '../../../components/master/MasterAlignMent';
+import { useIdSelecter } from '../../../hook/useIdSelecter';
+import { getExcelByProduct } from '../../../utils/getExcelData';
+import { ProductModal } from '../../../components/productModal/ProductModal';
+import { GoodsTopNav } from '../../../components/topNav/MasterTopNav';
+import { BookingStatus, ProductStatus } from '../../../types/api';
+import { SingleSortSelect } from '../../../components/common/SortSelect';
+import { useSingleSort } from '../../../hook/useSort';
 
 interface IProp { }
 
@@ -50,40 +57,70 @@ const popupClose2 = () => {
     });
 }
 export const MsGoodsMain: React.FC<IProp> = () => {
-    const { items, filter, setFilter, setSort, sort, viewCount, setViewCount } = useProductList();
+    const { items, filter, setFilter, setSort, sort, viewCount, setViewCount, setUniqFilter } = useProductList();
     const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({ filter, setFilter });
+    const { selectAll, toggleAll, isAllSelected, isChecked, toggle } = useIdSelecter(items.map(item => item._id));
+    const singleSort = useSingleSort(sort, setSort)
 
     const [popProductId, setPopProductId] = useState("");
 
     const {
         totalProductCountMaster,
+        openProductCountMaster,
         cancelProductCountMaster,
         compeltedProductCountMaster,
-        openProductCountMaster
-    } = useCustomCount(["totalProductCountMaster", "cancelProductCountMaster", "compeltedProductCountMaster"]);
+        refusedCountMaster,
+        productRegistCount,
+        updateRequestRefuseCountMaster,
+        compeltedBookingCountMaster,
+        undeterMinedProductCountMaster,
+        determiendProductCountMaster,
+        createRequestCountMaster,
+        updateRequestCountMaster
+    } = useCustomCount([
+        "createRequestCountMaster",
+        "totalProductCountMaster",
+        "refusedCountMaster",
+        "compeltedProductCountMaster",
+        "totalProductCountMaster",
+        "openProductCountMaster",
+        "cancelProductCountMaster",
+        "compeltedProductCountMaster",
+        "updateRequestCountMaster",
+        "updateRequestRefuseCountMaster"
+    ]);
 
     const handleOpen = (id: string) => () => {
         setPopProductId(id);
         setTimeout(() => {
-            openModal("#MasterModal")()
+            openModal("#ProductModal")()
         }, 1000)
+    }
+
+    const handleOpenWrite = () => {
+
     }
 
     const doSearch = () => {
 
     }
 
+    const setType = (status?: ProductStatus) => () => {
+        setUniqFilter("status_eq", ["status_eq", "determined_eq"], status)
+    }
+
+    const setDetermine = (isDetermined: boolean) => () => {
+        setUniqFilter("determined_eq", ["status_eq", "determined_eq"], isDetermined)
+    }
+
+    const checkOnDetermined = (isDetermined: boolean) => isDetermined === filter.determined_eq ? "on" : "";
+    const checkOnStatus = (status?: ProductStatus) => status === filter.status_eq ? "on" : "";
+
     return <MasterLayout>
         <div className="in ">
             <h4>상품관리</h4>
             <div className="in_content">
-
-                <div className="tab-nav">
-                    <ul>
-                        <li className="on"><Link href="/master/goods"><a>상품관리</a></Link></li>
-                        {/* <li><Link href="/master/goods/goods1-2"><a>카테고리설정</a></Link></li> */}
-                    </ul>
-                </div>
+                <GoodsTopNav />
                 <div className="con goods">
                     <div className="con_box_top pb5">
                         <div className="top_info_number">
@@ -112,42 +149,37 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                 <option>상품번호</option>
                             </select>
                         } defaultRange={{}} doSearch={doSearch} filterEnd={filterEnd} filterStart={filterStart} />
-                        <div className="alignment">
-                            <div className="left_div">
+                        <MasterAlignMent
+                            LeftDiv={
                                 <ul className="board_option">
-                                    <li className="on"><a href="/">전체<strong>46</strong></a></li>
-                                    <li><a href="/">출발확정<strong>23</strong></a></li>
-                                    <li><a href="/">출발미확정<strong>23</strong></a></li>
-                                    <li><a href="/">여행취소<strong>23</strong></a></li>
-                                    <li><a href="/">기획요청<strong>23</strong></a></li>
-                                    <li><a href="/">기획반려<strong>23</strong></a></li>
+                                    <li onClick={setType(undefined)} className={checkOnStatus(undefined)}><a>전체<strong>{totalProductCountMaster}</strong></a></li>
+                                    <li onClick={setDetermine(true)} className={checkOnDetermined(true)}><a>출발확정<strong>{determiendProductCountMaster}</strong></a></li>
+                                    <li onClick={setDetermine(false)} className={checkOnDetermined(false)}><a>미확정<strong>{undeterMinedProductCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.OPEN)} className={checkOnStatus(ProductStatus.OPEN)}><a>판매중<strong>{openProductCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.CANCELD)} className={checkOnStatus(ProductStatus.CANCELD)}><a>여행취소<strong>{cancelProductCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.READY)} className={checkOnStatus(ProductStatus.READY)}><a>기획요청<strong>{createRequestCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.REFUSED)} className={checkOnStatus(ProductStatus.REFUSED)}><a>기획반려<strong>{refusedCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.UPDATE_REQ)} className={checkOnStatus(ProductStatus.UPDATE_REQ)}><a>수정요청<strong>{updateRequestCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.UPDATE_REQ_REFUSED)} className={checkOnStatus(ProductStatus.UPDATE_REQ_REFUSED)}><a>수정반려<strong>{updateRequestCountMaster}</strong></a></li>
                                 </ul>
-                            </div>
-                            <div className="right_div">
-                                <ul className="board_option">
-                                    <li><a href="/">전체선택</a></li>
-                                    <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a></li>
-                                    <li><a href="/">신규여행작성</a></li>
-                                </ul>
-                                <select className="sel01">
-                                    <option>출발일 &uarr;</option>
-                                    <option>출발일 &darr;</option>
-                                    <option>등록일 &uarr;</option>
-                                    <option>등록일 &darr;</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
+                            }
+                            Sort={
+                                <SingleSortSelect {...singleSort} />
+                            }
+                            excelData={getExcelByProduct(items)}
+                            viewCount={viewCount}
+                            setViewCount={setViewCount}
+                            handleSelectAll={selectAll}
+                            rightDiv={
+                                <li onClick={handleOpenWrite}><a>신규여행작성</a></li>
+                            }
+                        />
                     </div>
                     <div className="con_box_body">
                         <div className="list_head">
                             <div className="td01">
                                 <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                    <input onChange={toggleAll} checked={isAllSelected} type="checkbox" name="agree" id="agree0" title="전체선택" />
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
@@ -165,12 +197,12 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             <div key={item._id} className="list_line">
                                 <div className="td01">
                                     <i className="checkbox">
-                                        <input type="checkbox" name="agree" id="agree0" title="선택" />
+                                        <input onChange={() => { toggle(item._id) }} checked={isChecked(item._id)} type="checkbox" name="agree" id="agree0" title="선택" />
                                         <label htmlFor="agree0" />
                                     </i>
                                 </div>
                                 <div className="td02"><i className="m_title">카테고리:</i>{item.category?.label}</div>
-                                <div className="td03"><i className="m_title">상품번호:</i>{item.code.slice(0, 6)}</div>
+                                <div className="td03"><i className="m_title">상품번호:</i>{item.code}</div>
                                 <div className="td04"><Link href={generateSearchLink({ title: item.title })}><a> {item.title}</a></Link></div>
                                 <div className="td05"><i className="m_title">여행일:</i>{yyyymmdd(item.createdAt)}</div>
                                 <div className="td06"><i className="m_title">인원:</i> {item.compeltePeopleCnt}/{item.maxMember}</div>
@@ -183,34 +215,8 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                 </div>
             </div>
             <SearcfInfoBox />
-            <MasterModal productId={popProductId} />
-
-
+            <ProductModal productId={popProductId} />
             {/* popup-기획반려 사유 */}
-            <div className="popup_bg_mini" id="MiniPopup01">
-                <div className="in_txt master_popup_mini">
-                    <a className="close_icon" onClick={popupClose1}><i className="flaticon-multiply" /></a>
-                    <div className="page">
-                        <h3>기획반려 사유</h3>
-                        <div className="con">
-                            <div className="input_box">
-                                <textarea></textarea>
-                            </div>
-                            <div className="info">
-                                <p><i className="flaticon-flag-1" /> 기획서의 어떤 부분을 보완하기를 원하는지 사유를 적어주세요.</p>
-                            </div>
-                            <div className="fin">
-                                <div className="float_left">
-
-                                </div>
-                                <div className="float_right">
-                                    <button type="submit" className="btn medium">기획반려</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </MasterLayout >
 };

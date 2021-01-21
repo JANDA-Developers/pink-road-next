@@ -3,7 +3,7 @@ import { useState } from "react";
 export const useIdSelecter = (list:string[], defaultIds:string[] = []) => {
     const [selectedIds, setSelectedIds] = useState(defaultIds);
 
-    const selecteAll = () => {
+    const selectAll = () => {
         setSelectedIds([...list]);
     }
 
@@ -12,16 +12,18 @@ export const useIdSelecter = (list:string[], defaultIds:string[] = []) => {
     }
     
     const check =(id:string) => {
-        const filtered = selectedIds.filter(_id => _id === id)
-        setSelectedIds([...filtered,id]);
+        const filtered = selectedIds.filter(_id => _id !== id)
+        setSelectedIds([...filtered, id]);
     }
+    
+    const handleCheck = (id:string) => () => check(id);
     
     const isChecked = (id:string) => selectedIds.includes(id);
     
     const unSelectAll = () => {
         setSelectedIds([]);
     }
-
+    
     const reverseAll = () => {
         const unchecked = list.filter((id)=> !isChecked(id));
         setSelectedIds(unchecked);
@@ -33,18 +35,32 @@ export const useIdSelecter = (list:string[], defaultIds:string[] = []) => {
     }
 
     const isAllSelected =  list.length === selectedIds.length;
-    const tooggleAll = () => {
+    const toggleAll = () => {
         if(isAllSelected) {
             unSelectAll();
         } else {
-            selecteAll()
+            selectAll()
         }
     }
 
-
     console.log("selectedIds");
     console.log(selectedIds);
-    console.log(selectedIds);
 
-    return {selectedIds,setSelectedIds, toggle, selecteAll, unCheck, check, isChecked, unSelectAll, reverseAll, isAllSelected,tooggleAll};
+    const selectLength = selectedIds.length;
+
+    return {
+        selectedIds,
+        setSelectedIds, 
+        handleCheck, 
+        toggle, 
+        selectAll, 
+        unCheck,
+        check,
+        isChecked,
+        unSelectAll,
+        reverseAll,
+        isAllSelected,
+        toggleAll,
+        selectLength
+    };
 }

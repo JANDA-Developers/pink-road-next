@@ -1,26 +1,24 @@
 import CalendarIcon from 'components/common/icon/CalendarIcon';
-import { Paginater } from 'components/common/Paginator';
-import { PurChasedItem } from 'components/mypage/PurchasedItem';
 import dayjs from 'dayjs';
 import { MypageLayout } from 'layout/MypageLayout';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { BookingModal } from '../../components/bookingModal/BookingModal';
+import { Paginater } from '../../components/common/Paginator';
 import SortSelect from '../../components/common/SortMethod';
 import { ViewCount } from '../../components/common/ViewCount';
-import { MasterModal } from '../../components/masterModal/MasterModal';
+import { ProductModal } from '../../components/productModal/ProductModal';
 import { SearchBar } from '../../components/searchBar/SearchBar';
-import { LastMonthBooking } from '../../components/static/LastMonthBooking';
-import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
-import { ThisMonthPayAmt } from '../../components/static/ThisMonthPayAmt';
+import { SettlementModal } from '../../components/settlementModal/SettlementModal';
 import { useCustomCount } from '../../hook/useCount';
+import { useIdSelecter } from '../../hook/useIdSelecter';
 import { useDateFilter } from '../../hook/useSearch';
 import { useSettlementList } from '../../hook/useSettlement';
-import { Fsettlement, ProductStatus } from '../../types/api';
-import { ALLOW_ALLOW_SELLERS } from '../../types/const';
+import { Fsettlement } from '../../types/api';
+import { ALLOW_SELLERS } from '../../types/const';
 import { productStatus, settlementStatus } from '../../utils/enumToKr';
-import { autoComma, autoHypenPhone } from '../../utils/formatter';
-import { openModal } from '../../utils/popUp';
-import { auth, compose } from '../../utils/with';
+import { autoComma } from '../../utils/formatter';
+import { openModal, openModalTimeSet } from '../../utils/popUp';
+import { auth } from '../../utils/with';
 
 interface IProp { }
 
@@ -48,17 +46,17 @@ const popupClose2 = () => {
 }
 
 export const MySettlement: React.FC<IProp> = () => {
-    const { items, filter, setFilter, viewCount, setViewCount, setSort, sort, pageInfo } = useSettlementList()
+    const { items, filter, setFilter, viewCount, setViewCount, setSort, sort, pageInfo, setPage } = useSettlementList()
     const [target] = useState<Fsettlement | null>(null);
     const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({
         filter,
         setFilter
     });
-
+    const { selectAll, isAllSelected } = useIdSelecter(items.map(item => item._id));
     const [code, setCode] = useState("");
-    const [productId, setProductId] = useState("");
+    const [settlementId, setSettlementId] = useState("");
 
-    const { salesofLastMonth, salesOfThisMonth, settleAvaiableAmount, cancelReturnPrice } = useCustomCount(["salesofLastMonth", "salesofLastMonth", "settleAvaiableAmount", "cancelReturnPrice"])
+    const { salesofLastMonth, salesOfThisMonth, settleAvaiableAmount, cancelReturnPrice } = useCustomCount(["salesofLastMonth", "salesofLastMonth", "salesOfThisMonth", "settleAvaiableAmount", "cancelReturnPrice"])
 
     const doSearch = (search: string) => {
         const _filter = {
@@ -72,10 +70,8 @@ export const MySettlement: React.FC<IProp> = () => {
     }
 
     const handleOpenModal = (_id: string) => () => {
-        setProductId(_id);
-        setTimeout(() => {
-            openModal("#BookingModal")()
-        }, 1000)
+        setSettlementId(_id);
+        openModalTimeSet("#SettlementModal")
     }
 
 
@@ -97,7 +93,7 @@ export const MySettlement: React.FC<IProp> = () => {
                             <div><strong>{salesOfThisMonth}</strong>건</div>
                         </li>
                         <li>
-                            <strong>정산 가능 금액 (받을 수 있는 금액) </strong>
+                            <strong>정산 가능 금액</strong>
                             {/* 계산법: 상태가 Ready인 Settlement들의 정산금액 */}
                             <div><strong>{autoComma(settleAvaiableAmount)}</strong>원</div>
                         </li>
@@ -105,7 +101,6 @@ export const MySettlement: React.FC<IProp> = () => {
                             <strong>취소 환수금</strong>
                             {/* 계산법: Settlement의 취소 환수금들의 합산  */}
                             <div><strong>{autoComma(cancelReturnPrice)}</strong>원</div>
-                            <strong>예약취소 환수금</strong>
                         </li>
                     </ul>
                 </div>
@@ -124,58 +119,17 @@ export const MySettlement: React.FC<IProp> = () => {
                                     <span className="check">예약취소</span>
                                 </div>
                             </div>
-                        } onDateChange={() => { }} defaultRange={{}} />
-                    <div className="search_box">
-                        <div className="jul4">
-                            <div className="title">날짜</div>
-                            <div className="text">
-                                <ul className="day_ul">
-                                    <li className="on">
-                                        <span>이번달</span>
-                                    </li>
-                                    <li className="on">
-                                        <span>저번달</span>
-                                    </li>
-                                    <li>
-                                        <span>6개월</span>
-                                    </li>
-                                    <li>
-                                        <span>1년</span>
-                                    </li>
-                                </ul>
-                                <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                                ~
-                                 <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="jul1">
-                            <div>
-                                <select className="option">
-                                    <option>상품코드</option>
-                                    <option>상품명</option>
-                                    <option>예약자</option>
-                                </select>
-                                <div className="search_div">
-                                    <input className="" type="text" placeholder="검색 내용을 입력해주세요." />
-                                    <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="search icon" />
-                                        <button />
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                        }
+                        SearchSelect={
+                            <select className="option">
+                                <option>상품코드</option>
+                                <option>상품명</option>
+                                <option>예약자</option>
+                            </select>
+                        }
+                        onDateChange={() => { }} defaultRange={{}} />
                 </div>
                 <div className="con_bottom">
-
                     <div className="con_box">
                         <div className="alignment">
                             <div className="left_div">
@@ -190,7 +144,7 @@ export const MySettlement: React.FC<IProp> = () => {
                             <div className="thead">
                                 <div className="th01">
                                     <span className="checkbox">
-                                        <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                        <input checked={isAllSelected} onClick={selectAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
                                         <label htmlFor="agree0" />
                                     </span>
                                 </div>
@@ -210,23 +164,16 @@ export const MySettlement: React.FC<IProp> = () => {
                                             <div className="th02">{item.product.code}</div>
                                             <div className="th03">{item.product.title}</div>
                                             <div className="th04">{productStatus(item.product?.status)}</div>
-                                            <div className="th05">{dayjs(item.requestDate).format("YYYY.MM.DD")}</div>
-                                            <div className="th06">{item}</div>
+                                            <div className="th05">{item.completeDate ? dayjs(item.completeDate).format("YYYY.MM.DD") : undefined}</div>
+                                            <div className="th06">{autoComma(item.totalPrice)}</div>
                                             <div className="th07"><strong className="ok">{settlementStatus(item.status)}</strong></div>
-                                            <div onClick={handleOpenModal(item.product._id)} className="th08"><i className="btn">상세보기</i></div>
+                                            <div onClick={handleOpenModal(item._id)} className="th08"><i className="btn">상세보기</i></div>
                                         </li>
                                     )}
                                 </ul>
                             </div>
                             <div className="boardNavigation">
-                                <div className="float_left">
-                                    <div className="pagenate_mini">
-                                        <div className="page_btn first"><i className="jandaicon-arr4-left"></i></div>
-                                        <div className="count"><strong>1</strong> / 10</div>
-                                        <div className="page_btn end"><i className="jandaicon-arr4-right"></i></div>
-                                    </div>
-                                </div>
-
+                                <Paginater setPage={setPage} pageInfo={pageInfo} isMini />
                             </div>
                         </div>
 
@@ -242,15 +189,11 @@ export const MySettlement: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-
-
-        {/* popup-상세보기 */}
-        <BookingModal code={code} />
-        {/* 마스터모달 */}
-        <MasterModal productId={productId} />
+        {/* 정산모달 */}
+        <SettlementModal settlementId={settlementId} />
     </MypageLayout >
 };
 
 
 
-export default auth(ALLOW_ALLOW_SELLERS)(MySettlement)
+export default auth(ALLOW_SELLERS)(MySettlement)

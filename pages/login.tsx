@@ -10,6 +10,7 @@ import SubTopNav from '../layout/components/SubTop';
 import defaultPageInfo from "../info/login.json"
 import { usePageEdit } from '../hook/usePageEdit';
 import { getStaticPageInfo, Ipage } from '../utils/page';
+import { PageEditor } from '../components/common/PageEditer';
 
 export const getStaticProps = getStaticPageInfo("login")
 export const Login: React.FC<Ipage> = (pageInfo) => {
@@ -18,11 +19,6 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
     const [userId, setId] = useState("");
     const [userPw, setPw] = useState("");
     const [userType, setUserType] = useState<UserRole>(UserRole.individual)
-    console.log(pageInfo);
-    console.log(pageInfo);
-    console.log(pageInfo);
-    console.log(pageInfo);
-    console.log(pageInfo);
     const editTools = usePageEdit(pageInfo, defaultPageInfo)
     const { getData } = useLogin({
         onCompleted: ({ SignIn }) => {
@@ -96,6 +92,7 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
             <SubTopNav pageTools={editTools} >
             </SubTopNav>
         </div>
+        <PageEditor pageTools={editTools} />
         <div className="login_box">
             <div className="sign_in w1200">
                 <div className="inner">

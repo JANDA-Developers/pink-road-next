@@ -17,7 +17,7 @@ import { useProductFindById } from "../../../hook/useProduct";
 import { changeVal } from "../../../utils/eventValueExtracter";
 import PageLoading from "../../Loading";
 import { auth } from "../../../utils/with";
-import { ALLOW_ALLOW_SELLERS } from "../../../types/const";
+import { ALLOW_SELLERS } from "../../../types/const";
 import { EditorLoading } from "../../../components/edit/EdiotrLoading";
 import pageInfoDefault from "info/tourWrite.json"
 import { getStaticPageInfo, Ipage } from "../../../utils/page";
@@ -29,11 +29,26 @@ interface IProp {
 
 
 export async function getStaticPaths() {
+
+
+    // Call an external API endpoint to get posts
+    //   const res = await fetch('https://.../posts')
+    //   const posts = await res.json()
+
+    // Get the paths we want to pre-render based on posts
+    //   const paths = posts.map((post) => ({
+    //     params: { id: post.id },
+    //   }))
+
+    // We'll pre-render only these paths at build time.
+    // { fallback: false } means other routes should 404.
+    //   return { paths, fallback: false }
+
     return {
         paths: [
             { params: { id: [] } }
         ],
-        fallback: false
+        fallback: true
     };
 }
 export const getStaticProps = getStaticPageInfo("tourWrite")
@@ -364,4 +379,4 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     </div>
 };
 
-export default auth(ALLOW_ALLOW_SELLERS)(TourWrite);
+export default auth(ALLOW_SELLERS)(TourWrite);

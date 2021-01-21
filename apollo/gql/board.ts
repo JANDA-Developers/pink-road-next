@@ -40,3 +40,19 @@ export const MY_BOARD_LIST = gql`
    }
    ${F_PAGE}
 `
+
+export const BOARD_CONTROl_MASTER = gql`
+    mutation boardControlMaster(
+    $action: BoardAction!
+    $targets: [BoardTarget!]!
+){
+        BoardControlMaster(
+            action: $action
+            targets: $targets
+        ) {
+        ok
+        error
+       } 
+   }
+   ${F_PAGE}
+`

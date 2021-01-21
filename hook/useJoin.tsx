@@ -52,7 +52,7 @@ export const useJoin = () => {
         setErrDisplay({ ...errDisplay })
     }
 
-    const { verifiData: { payload } } = useContext(JoinContext)!;
+    const { verifiData: { payload } = {} } = useContext(JoinContext)!;
     const [data, setData] = useState<ISignUpInput>({ email: payload })
     const [daumAddress, setDaumAddress] = useState(false);
     const { signleUpload } = useUpload();

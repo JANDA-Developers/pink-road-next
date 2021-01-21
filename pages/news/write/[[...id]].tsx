@@ -83,7 +83,7 @@ export const NewsWrite: React.FC<IProp> = () => {
         newsUpdate({
             variables: {
                 params: omits(params, ["categoryId", "files"]),
-                id
+                id: id!
             }
         })
     }
@@ -92,7 +92,7 @@ export const NewsWrite: React.FC<IProp> = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
             newsDelete({
                 variables: {
-                    id
+                    id: id!
                 }
             })
     }

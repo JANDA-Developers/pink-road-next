@@ -10,9 +10,10 @@ interface IProps {
     viewCount?: number;
     setViewCount: ISet<number>;
     excelData?: any[]
+    rightDiv?: TElements;
 }
 
-export const MasterAlignMent: React.FC<IProps> = ({ excelData, handleSelectAll, Sort, LeftDiv, viewCount, setViewCount }) => {
+export const MasterAlignMent: React.FC<IProps> = ({ excelData, handleSelectAll, Sort, LeftDiv, viewCount, setViewCount, rightDiv }) => {
     return <div className="alignment">
         <div className="left_div">
             {LeftDiv}
@@ -31,6 +32,7 @@ export const MasterAlignMent: React.FC<IProps> = ({ excelData, handleSelectAll, 
             <ul className="board_option">
                 <li onClick={handleSelectAll}><a>전체선택</a></li>
                 {excelData && <li><Excel data={excelData || []} element={<a>엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a>} /></li>}
+                {rightDiv}
             </ul>
             {Sort}
             {/* <select onChange={()=>{}} className="sel01">

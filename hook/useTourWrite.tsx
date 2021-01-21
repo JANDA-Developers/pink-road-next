@@ -467,7 +467,7 @@ export const getDefault = (product: IproductFindById | undefined): Partial<IUseT
         keyWards: keyWards || [],
         simpleData,
         status,
-        thumbs,
+        thumbs: thumbs || [],
     }
 
 }

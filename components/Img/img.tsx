@@ -22,7 +22,7 @@ interface IHtmlTag {
 }
 
 //태그를 리턴해주는 것
-const HtmlTag: React.FC<IHtmlTag> = ({ tag = "div", ...props }) => {
+export const HtmlTag: React.FC<IHtmlTag> = ({ tag = "div", ...props }) => {
     if (tag === "div") return <div {...props} />
     if (tag === "li") return <li {...props} />
     return <div {...props} />

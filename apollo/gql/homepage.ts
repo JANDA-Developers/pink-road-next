@@ -11,6 +11,7 @@ export const F_MODAL = gql`
     linkBehavior
     style
     title
+    priority
   }
 `
 
@@ -19,11 +20,19 @@ export const F_HOMEPAGE = gql`
         logo {
           ...Ffile
         }
+        ceoName
+        address
+        addressUrl
         siteDesc
         siteKeyWards
+        contact
         siteName
         signUpRedirect
         blacklist
+        busiNumber
+        email
+        ceoName
+        openTime
         loginRedirect
         loginOutRedirect
         PrivacyPolicy
@@ -32,11 +41,24 @@ export const F_HOMEPAGE = gql`
         travelerPolicy
         partnerPolicy
         marketingPolic
+        logoTop {
+          ...Ffile
+        }
+        logoBottom {
+          ...Ffile
+        }
         bannerA {
           ...Ffile
         }
         bannerB {
           ...Ffile
+        }
+        degitalSalesNumber
+        copyRight
+        bankInfo {
+          accountHolder
+          accountNumber
+          bankName          
         }
         bannerBlink
         bannerAlink

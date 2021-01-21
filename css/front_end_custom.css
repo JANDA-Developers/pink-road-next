@@ -417,3 +417,9 @@ figure:after {
 .siteInfo__top .imgEdit__text {
     padding-top: 4rem;
 }
+
+
+.mainSlider .imgEdit {
+    width: 100px;
+    height: 100px;
+}

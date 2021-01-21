@@ -1,22 +1,39 @@
 import dayjs from 'dayjs';
-import React, { useState } from 'react';
-import { useMyBoardList } from '../../hook/useMyBoardList';
+import React from 'react';
+import { useIdSelecter } from '../../hook/useIdSelecter';
+import { useBoardControl, useMyBoardList } from '../../hook/useMyBoardList';
+import { BoardAction, Fuser } from '../../types/api';
 import isEmpty from '../../utils/isEmpty';
 import { closeModal } from '../../utils/popUp';
 import { Paginater } from '../common/Paginator';
-import { UserModal } from '../userModal/UserModal';
 
 interface IProp {
-    email: string;
+    user: Fuser;
 }
 
-export const BoardModal: React.FC<IProp> = ({ email }) => {
-
-    const { items: boards, pageInfo, setPage } = useMyBoardList({}, {
+export const BoardModal: React.FC<IProp> = ({ user }) => {
+    const { email, nickName } = user;
+    const [boardControl] = useBoardControl();
+    const { items: boards, pageInfo, setPage, } = useMyBoardList({}, {
         overrideVariables: {
             email
         }
     })
+    const { selectAll, selectedIds, toggle, isChecked } = useIdSelecter(boards.map(bd => bd._id));
+
+    const handleBoardChange = (action: BoardAction) => () => {
+
+        const selectedBoards = boards.filter(bd => selectedIds.includes(bd._id))
+        boardControl({
+            variables: {
+                action,
+                targets: selectedBoards.map(sb => ({
+                    id: sb._id,
+                    type: sb.boardType
+                }))
+            }
+        })
+    }
 
     if (!email) return null;
     return <div id="BoardModal" className="popup_bg_full">
@@ -25,7 +42,7 @@ export const BoardModal: React.FC<IProp> = ({ email }) => {
                 <i className="flaticon-multiply"></i>
             </a>
             <div className="page">
-                <h3><strong>김홍홍</strong>님이 작성한 글 </h3>
+                <h3><strong>{nickName}</strong>님이 작성한 글 </h3>
                 {/* 작성한글 */}
                 <div className="info_page">
                     <div className="alignment">
@@ -49,7 +66,7 @@ export const BoardModal: React.FC<IProp> = ({ email }) => {
                     <div className="board_list_mini ln05">
                         <div className="thead">
                             <div className="tt01 checkbox">
-                                <input type="checkbox" name="agree" id="agree-popup-0" title="모두선택" />
+                                <input onClick={selectAll} type="checkbox" name="agree" id="agree-popup-0" title="모두선택" />
                                 <label htmlFor="agree-popup-0" />
                             </div>
                             <div className="tt02">게시판</div>
@@ -62,8 +79,10 @@ export const BoardModal: React.FC<IProp> = ({ email }) => {
                                 {boards.map(board =>
                                     <li key={board._id}>
                                         <div className="tt01 checkbox">
-                                            <i className="checkbox">
-                                                <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                            <i onClick={() => {
+                                                toggle(board._id)
+                                            }} className="checkbox">
+                                                <input checked={isChecked(board._id)} type="checkbox" name="agree" id="agree0" title="전체선택" />
                                                 <label htmlFor="agree0" />
                                             </i>
                                         </div>
@@ -88,12 +107,12 @@ export const BoardModal: React.FC<IProp> = ({ email }) => {
 
                     <div className="fin ifMobile">
                         <div className="float_left">
-                            <button type="submit" className="btn medium">모두선택</button>
+                            <button onClick={selectAll} type="submit" className="btn medium">모두선택</button>
                         </div>
                         <div className="float_right">
-                            <button type="submit" className="btn medium mr5">삭제</button>
-                            <button type="submit" className="btn medium mr5">비공개전환</button>
-                            <button type="submit" className="btn medium">공개전환</button>
+                            <button onClick={handleBoardChange(BoardAction.delete)} type="submit" className="btn medium mr5">삭제</button>
+                            <button onClick={handleBoardChange(BoardAction.hide)} type="submit" className="btn medium mr5">비공개전환</button>
+                            <button onClick={handleBoardChange(BoardAction.open)} type="submit" className="btn medium">공개전환</button>
                         </div>
                     </div>
                 </div>

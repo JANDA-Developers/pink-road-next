@@ -33,7 +33,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
         arrows={true}
         dots={false}
         infinite={true}
-        className="">
+        className="mainSlider">
         <div>
           <Bg className="main_top_images"  {...imgKit("m_01_mainBg1")}>
             <div className="w1200">

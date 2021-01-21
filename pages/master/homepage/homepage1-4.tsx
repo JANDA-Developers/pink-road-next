@@ -18,7 +18,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
 
     const [homepageUpdateMu] = useHomepageUpdate();
 
-    const defaults = homepage;
+    const defaults = homepage as any;
 
     const [datas, setDatas] = useState<HomepageUpdateInput>({
         ...defaults
@@ -143,4 +143,4 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
     </MasterLayout >
 };
 
-export default auth(ALLOW_ADMINS)(MsHomepageA);
+export default auth(ALLOW_ADMINS)(MsHomepageA as any);

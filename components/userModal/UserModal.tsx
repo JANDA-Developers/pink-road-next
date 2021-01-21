@@ -5,31 +5,22 @@ import { BookingStatus, GENDER } from '../../types/api';
 import { ALLOW_SELLERS } from '../../types/const';
 import { foreginKR, userRoleToKR } from '../../utils/enumToKr';
 import { autoHypenPhone } from '../../utils/formatter';
-import { generateClientPaging } from '../../utils/generateClientPaging';
 import { closeModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
-import { Paginater } from '../common/Paginator';
+import { UserModalResvCancelList } from './UserModalResvCacnelList';
 import { UserModalResvList } from './UserModalResvList';
 
 interface IProp {
-    id: string;
+    userId: string;
 }
 
-export const UserModal: React.FC<IProp> = ({ id }) => {
-    const { item } = useUserFindById(id);
-    const { items: bookings } = useBookingList({
-        initialFilter: {
-            OR: [{ seller_eq: id }, { booker_eq: id }]
-        }
-    })
-
-
+export const UserModal: React.FC<IProp> = ({ userId }) => {
+    const { item } = useUserFindById(userId);
     if (!item) return null;
-    const { isResigned, name, email, phoneNumber, resignDate, resignReason, gender, role } = item;
+    const { isResigned, name, email, phoneNumber, resignReason, gender, role } = item;
 
     const isSeller = ALLOW_SELLERS.includes(role);
 
-    const cancledBookings = bookings.filter(bk => bk.status === BookingStatus.CANCEL);
 
     const print = () => {
         window.print();
@@ -101,7 +92,7 @@ export const UserModal: React.FC<IProp> = ({ id }) => {
                             {isSeller && <>
                                 <div className="tr">
                                     <div className="th01">파트너명</div>
-                                    <div className="td01"><span>{item}</span></div>
+                                    <div className="td01"><span>{item.busi_name}</span></div>
                                     <div className="th02">아이디</div>
                                     <div className="td02"><a href={`mailto:${item.email}`}>{item.email}</a></div>
                                     <div className="th03">연락처</div>
@@ -151,7 +142,7 @@ export const UserModal: React.FC<IProp> = ({ id }) => {
                     <div className="full_div">
                         <h4>예약 및 결제<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i>
                             <span className="full_div__right"><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
-                        <UserModalResvList id={id} />
+                        <UserModalResvList id={userId} />
                     </div>
                 </div>
                 {/* 파트너 */}
@@ -160,38 +151,7 @@ export const UserModal: React.FC<IProp> = ({ id }) => {
                     <div className="full_div">
                         <h4>취소 및 환불내역<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i>
                             <span className="full_div__right"><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
-                        <div className="info_table reservationlist">
-                            <div className="tr">
-                                <div className="re01">
-                                    예약번호
-                            <a href="R-398234">(R-398234)</a>
-                                </div>
-                                <div className="re02">
-                                    상품
-                        </div>
-                                <div className="re03">
-                                    <a href="/">[PK-098328] 떠나요~!!! 제주도~!!! </a>
-                                </div>
-                                <div className="re04">
-                                    예약일/결제일
-                        </div>
-                                <div className="re05">
-                                    <span>2020.12.12/2020.12.12</span>
-                                </div>
-                                <div className="re06">
-                                    환불일
-                         </div>
-                                <div className="re07">
-                                    <span>2020.12.12</span>
-                                </div>
-                                <div className="re08">
-                                    환불금액
-                        </div>
-                                <div className="re09">
-                                    <span>30,000원</span>
-                                </div>
-                            </div>
-                        </div>
+                        <UserModalResvCancelList id={userId} />
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                     </div>
                 </div>

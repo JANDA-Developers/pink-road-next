@@ -1,21 +1,24 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import React, { useEffect, useRef, useState } from 'react';
-import Link from "next/link";
 import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
 import { useHomepage, useHomepageUpdate } from '../../../hook/useHomepage';
-import { Fhomepage } from '../../../types/api';
+import { Fhomepage, Fhomepage_bankInfo } from '../../../types/api';
 import { cloneObject } from '../../../utils/clone';
 import { omits } from '../../../utils/omit';
-import { Upload } from '../../../components/common/Upload';
 import { useUpload } from '../../../hook/useUpload';
 import { DEFAULT_LOGO } from '../../../types/const';
+import PageLoading from '../../Loading';
 
 interface IProps { }
 
 export const MsHomepageMain: React.FC<IProps> = ({ }) => {
     const { data: defaultHomepage } = useHomepage();
     const { signleUpload } = useUpload();
-    const [homeapgeUpdate] = useHomepageUpdate();
+    const [homeapgeUpdate] = useHomepageUpdate({
+        onCompleted: ({ HomepageUpdate }) => {
+            if (HomepageUpdate.ok) alert("업데이트 완료");
+        }
+    });
     const [homepage, setHomepage] = useState<null | Fhomepage>(null);
 
     const handleSave = () => {
@@ -34,7 +37,39 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
     }, [defaultHomepage])
 
 
-    if (!homepage) return <div>...loading</div>
+    const upload = (key: keyof Fhomepage) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.currentTarget.files;
+        if (!file || !homepage) return;
+
+        signleUpload(e.currentTarget.files!, (url, data) => {
+            homepage[key] = data as any;
+            setHomepage({
+                ...homepage
+            })
+        })
+    }
+
+    function set<T extends keyof Fhomepage>(key: T, value: any) {
+        if (!homepage) return;
+        homepage[key] = value;
+        setHomepage({ ...homepage })
+    }
+
+    function setBankInfo<T extends keyof Fhomepage_bankInfo>(key: T, value: any) {
+        if (!homepage!.bankInfo) {
+            // @ts-ignore
+            homepage.bankInfo = {}
+        }
+        // @ts-ignore
+        homepage.bankInfo[key] = value;
+        // @ts-ignore
+        setHomepage({ ...homepage })
+    }
+
+
+    if (!homepage) return <PageLoading />
+    const { ceoName, bankInfo, copyRight, logo, logoBottom, logoTop, contact, degitalSalesNumber, address, addressUrl, busiNumber, email, openTime } = homepage;
+    const { accountHolder, accountNumber, bankName } = bankInfo || {}
     return <MasterLayout>
         <div className="in ">
             <h4>홈페이지 설정</h4>
@@ -56,7 +91,11 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">사이트명</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input value={homepage.siteName} className="w50" placeholder="" type="text" /></div>
+                                    <div className="txt"><input
+                                        onChange={(e) => {
+                                            const val = e.currentTarget.value;
+                                            set("siteName", val);
+                                        }} value={homepage.siteName} className="w50" placeholder="" type="text" /></div>
                                 </div>
                             </div>
                             <div className="tbody">
@@ -64,7 +103,8 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">사이트로고</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input className="w50" type="file" /></div>
+                                    <p>{logoTop?.name}</p>
+                                    <div className="txt"><input onChange={upload("logoTop")} className="w50" type="file" /></div>
                                 </div>
                             </div>
                             <div className="tbody">
@@ -72,7 +112,8 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">사이트로고(하단)</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input className="w50" type="file" /></div>
+                                    <p>{logoBottom?.name}</p>
+                                    <div className="txt"><input onChange={upload("logoBottom")} className="w50" type="file" /></div>
                                 </div>
                             </div>
                             <div className="tbody">
@@ -80,7 +121,10 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">대표자</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                                    <div className="txt"><input onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        set("ceoName", val);
+                                    }} value={ceoName} className="w50" placeholder="" type="text" /></div>
                                 </div>
                             </div>
                             <div className="tbody">
@@ -88,7 +132,10 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">사업자등록번호</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                                    <div className="txt"><input onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        set("busiNumber", val);
+                                    }} value={busiNumber} className="w50" placeholder="" type="text" /></div>
                                 </div>
                             </div>
                             <div className="tbody">
@@ -96,7 +143,10 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">통신판매신고번호</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                                    <div className="txt"><input onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        set("degitalSalesNumber", val);
+                                    }} value={degitalSalesNumber || ""} className="w50" placeholder="" type="text" /></div>
                                 </div>
                             </div>
                             <div className="tbody">
@@ -105,8 +155,14 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
-                                        <input className="w50 mr5" placeholder="주소" type="text" />
-                                        <input className="w40" placeholder="지도바로가기 URL" type=" text" />
+                                        <input onChange={(e) => {
+                                            const val = e.currentTarget.value;
+                                            set("address", val)
+                                        }} value={address} className="w50 mr5" placeholder="주소" type="text" />
+                                        <input onChange={(e) => {
+                                            const val = e.currentTarget.value;
+                                            set("addressUrl", val)
+                                        }} value={addressUrl} className="w40" placeholder="지도바로가기 URL" type=" text" />
                                     </div>
                                 </div>
                             </div>
@@ -116,9 +172,18 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
-                                        <input className="w10 mr5" placeholder="은행" type="text" />
-                                        <input className="w50 mr5" placeholder="계좌번호" type="text" />
-                                        <input className="w20" placeholder="예금주" type="text" />
+                                        <input onChange={(e) => {
+                                            const account = e.currentTarget.value;
+                                            setBankInfo("bankName", account)
+                                        }} value={bankName} className="w10 mr5" placeholder="은행" type="text" />
+                                        <input onChange={(e) => {
+                                            const accountNumber = e.currentTarget.value;
+                                            setBankInfo("accountNumber", accountNumber)
+                                        }} value={accountNumber} className="w50 mr5" placeholder="계좌번호" type="text" />
+                                        <input onChange={(e) => {
+                                            const accountHolder = e.currentTarget.value;
+                                            setBankInfo("accountHolder", accountHolder)
+                                        }} value={accountHolder || ""} className="w20" placeholder="예금주" type="text" />
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +192,11 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">이메일</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                                    <div className="txt">
+                                        <input onChange={(e) => {
+                                            const email = e.currentTarget.value;
+                                            set("email", email)
+                                        }} value={email} className="w50" placeholder="" type="text" /></div>
                                 </div>
                             </div>
                             <div className="tbody">
@@ -135,7 +204,10 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">연락처</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                                    <div className="txt"><input onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        set("contact", val)
+                                    }} value={contact} className="w50" placeholder="" type="text" /></div>
                                 </div>
                             </div>
                             <div className="tbody">
@@ -143,7 +215,10 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">영업시간(콜센터)</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input className="w50" placeholder="" type="text" /></div>
+                                    <div className="txt"><input onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        set("openTime", val)
+                                    }} value={openTime} className="w50" placeholder="" type="text" /></div>
                                 </div>
                             </div>
                             <div className="tbody">
@@ -151,7 +226,10 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">카피라이터</div>
                                 </div>
                                 <div className="t02">
-                                    <div className="txt"><input className="w90" placeholder="Copyright © 2020 PINKROADER Co., Ltd. All rights reserved" type="text" /></div>
+                                    <div className="txt"><input onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        set("copyRight", val)
+                                    }} value={copyRight || ""} className="w90" placeholder="Copyright © 2020 PINKROADER Co., Ltd. All rights reserved" type="text" /></div>
                                 </div>
                             </div>
                         </div>
@@ -163,15 +241,8 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
-                                        <input onChange={(e) => {
-                                            if (!e.currentTarget.files) return;
-                                            signleUpload(e.currentTarget.files, (url, data) => {
-                                                homepage.logo = data
-                                                setHomepage({
-                                                    ...homepage
-                                                })
-                                            })
-                                        }} className="w50" type="file" />
+                                        <p>{logo?.name}</p>
+                                        <input onChange={upload("logo")} className="w50" type="file" />
                                         <p className="infotxt_gray">페이스북 공유 시 문서에 이미지가 없으면 기본 이미지로 사용됩니다. (추천 : 1200x600, 600x315, 200x200)</p>
                                         {/* 첨부파일 미리보기 이미지 */}
                                         <img className="mt15 w50" src={homepage?.logo?.uri || DEFAULT_LOGO} alt="첨부파일 미리보기" />

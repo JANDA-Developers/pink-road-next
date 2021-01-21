@@ -39,9 +39,9 @@ export const useVerification = (defaultData?:TVerifiData) =>  {
         return await verifyCompleteMu({
             variables: {
                 code: _code || code,
-                payload: verifiData.payload,
-                target: verifiData.target,
-                verificationId: verifiData._id
+                payload: verifiData?.payload || "",
+                target: verifiData?.target || VerificationTarget.EMAIL,
+                verificationId: verifiData?._id || ""
             }
         }).then(result => {
             return {...result?.data?.VerificationComplete};

@@ -1,7 +1,16 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from "next/link";
+import { useGroupCreate, useGroupDelete, useGroupList, useGroupUpdate } from '../../../hook/useGroup';
+import { ProductGroup } from '../../../components/group/ProductGroup';
+import { Fgroup, Fproduct } from '../../../types/api';
+import { openModal } from '../../../utils/popUp';
+import { DesignTopNav } from '../../../components/topNav/MasterTopNav';
+import { generateRandomStringCode } from '../../../utils/codeGenerator';
+import { ProductSelectModal } from '../../../components/ProductSelectModal';
+import { cloneObject } from '../../../utils/clone';
+import { omits } from '../../../utils/omit';
 
 interface IProp { }
 
@@ -16,506 +25,98 @@ const popupClose = () => {
     });
 }
 export const MsDesignC: React.FC<IProp> = () => {
+    const { data: defaultGrupList } = useGroupList()
+    const [groupList, setGroupList] = useState<Fgroup[]>([]);
+    const [popupGroup, setPopGroup] = useState<Fgroup>();
+    const [groupCreate] = useGroupCreate()
+    const [groupUpdate] = useGroupUpdate({
+        onCompleted: ({ GroupUpdate }) => {
+            if (GroupUpdate.ok) alert("업데이트 완료")
+        }
+    })
+
+    const [groupDelete] = useGroupDelete()
+
+    const openProductSearchModal = (group: Fgroup) => () => {
+        setPopGroup(group);
+        openModal("#ProductSearchModal")();
+    }
+
+    const handleSave = (group: Fgroup) => {
+        groupUpdate({
+            variables: {
+                key: group.key,
+                params: omits(group, ["key", "target"])
+            }
+        })
+    }
+    const handleAddGroup = () => {
+        groupCreate({
+            variables: {
+                params: {
+                    key: generateRandomStringCode(),
+                    label: "",
+                    members: [],
+                    target: "Product",
+                }
+            }
+        })
+    }
+
+    const handleExtract = (index: number) => {
+        groupList.splice(index, 1);
+        setGroupList([...groupList]);
+    }
+
+    const handleProductSelect = (product: Fproduct) => {
+        popupGroup?.members.push(product._id)
+        setGroupList([...groupList]);
+        console.log(groupList);
+    }
+    const handleDeleteGroup = (g: Fgroup) => () => {
+        groupDelete({
+            variables: {
+                key: g.key
+            }
+        })
+    }
+
+    const handleTitleChange = (g: Fgroup) => (nextLabel: string) => {
+        g.label = nextLabel;
+        setGroupList([...groupList])
+    }
+
+    useEffect(() => {
+        if (defaultGrupList) {
+            setGroupList(cloneObject(defaultGrupList));
+        }
+    }, [defaultGrupList?.length])
+
     return <MasterLayout>
         <div className="in ">
             <h4>디자인 설정</h4>
             <div className="in_content">
-                <div className="tab-nav">
-                    <ul>
-                        <li><Link href="/master/design"><a>기본설정</a></Link></li>
-                        <li><Link href="/master/design/design1-2"><a>배너관리</a></Link></li>
-                        <li><Link href="/master/design/design1-3"><a>팝업관리</a></Link></li>
-                        <li className="on"><Link href="/master/design/design1-4"><a>노출상품관리</a></Link></li>
-                    </ul>
-                </div>
+                <DesignTopNav />
                 <div className="con design goodslist_setting">
-                    <div className="fin">
-                        <div className="float_left">
-                        </div>
-                        <div className="float_right">
-                            <button type="submit" className="btn medium">저장하기</button>
-                        </div>
-                    </div>
-
-
                     {/* 메인화면 상품진열 */}
-                    <div className="block_box">
-                        <div className="head">
-                            <h5>메인화면 상품진열</h5>
-                            <div className="float_right">
-                                <div className="switch">
-                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
-                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="body">
-                            <div className="body-list">
-                                <ul>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Tour 문화·예술여행 */}
-                    <div className="block_box">
-                        <div className="head">
-                            <h5>Tour-상품진열1</h5>
-                            <div className="float_right">
-                                <div className="switch">
-                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
-                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="body">
-                            <div className="body-title">
-                                <div className="th">타이틀</div>
-                                <div className="td"><input type="text" className="w50" placeholder="문화·예술여행" /></div>
-                            </div>
-                            <div className="body-list">
-                                <ul>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Tour 교육·답사여행 */}
-                    <div className="block_box">
-                        <div className="head">
-                            <h5>Tour-상품진열2</h5>
-                            <div className="float_right">
-                                <div className="switch">
-                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
-                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="body">
-                            <div className="body-title">
-                                <div className="th">타이틀</div>
-                                <div className="td"><input type="text" className="w50" placeholder="교육·답사여행" /></div>
-                            </div>
-                            <div className="body-list">
-                                <ul>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {/* Tour 역사여행 */}
-                    <div className="block_box">
-                        <div className="head">
-                            <h5>Tour-상품진열3</h5>
-                            <div className="float_right">
-                                <div className="switch">
-                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
-                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="body">
-                            <div className="body-title">
-                                <div className="th">타이틀</div>
-                                <div className="td"><input type="text" className="w50" placeholder="역사여행" /></div>
-                            </div>
-                            <div className="body-list">
-                                <ul>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {/* Tour 팸투어 */}
-                    <div className="block_box">
-                        <div className="head">
-                            <h5>Tour-상품진열4</h5>
-                            <div className="float_right">
-                                <div className="switch">
-                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
-                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="body">
-                            <div className="body-title">
-                                <div className="th">타이틀</div>
-                                <div className="td"><input type="text" className="w50" placeholder="팸투어" /></div>
-                            </div>
-                            <div className="body-list">
-                                <ul>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {/* Experience 원데이클래스 */}
-                    <div className="block_box">
-                        <div className="head">
-                            <h5>Experience-상품진열1</h5>
-                            <div className="float_right">
-                                <div className="switch">
-                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
-                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="body">
-                            <div className="body-title">
-                                <div className="th">타이틀</div>
-                                <div className="td"><input type="text" className="w50" placeholder="원데이클래스" /></div>
-                            </div>
-                            <div className="body-list">
-                                <ul>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Experience 체험학습 */}
-                    <div className="block_box">
-                        <div className="head">
-                            <h5>Experience-상품진열2</h5>
-                            <div className="float_right">
-                                <div className="switch">
-                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
-                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="body">
-                            <div className="body-title">
-                                <div className="th">타이틀</div>
-                                <div className="td"><input type="text" className="w50" placeholder="체험학습" /></div>
-                            </div>
-                            <div className="body-list">
-                                <ul>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {/* Experience 한달살기 */}
-                    <div className="block_box">
-                        <div className="head">
-                            <h5>Experience-상품진열3</h5>
-                            <div className="float_right">
-                                <div className="switch">
-                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
-                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="body">
-                            <div className="body-title">
-                                <div className="th">타이틀</div>
-                                <div className="td"><input type="text" className="w50" placeholder="한달살기" /></div>
-                            </div>
-                            <div className="body-list">
-                                <ul>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {/* Experience 두달살기 */}
-                    <div className="block_box">
-                        <div className="head">
-                            <h5>Experience-상품진열4</h5>
-                            <div className="float_right">
-                                <div className="switch">
-                                    <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
-                                    <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="body">
-                            <div className="body-title">
-                                <div className="th">타이틀</div>
-                                <div className="td"><input type="text" className="w50" placeholder="두달살기" /></div>
-                            </div>
-                            <div className="body-list">
-                                <ul>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="img" style={{ backgroundImage: "url(/img/sample_01.gif)" }}></div>
-                                        <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                        <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                    </li>
-                                    <li onClick={popupOpen}>
-                                        <div className="add"><button><i className="flaticon-add"></i>추가</button></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
+                    {groupList.map(g =>
+                        <ProductGroup onExtract={handleExtract} onSave={() => { handleSave(g) }} onDelete={handleDeleteGroup(g)} onChangeTitle={handleTitleChange(g)} key={g.members.length + g._id} onAdd={openProductSearchModal(g)} group={g} />
+                    )}
                     <div className="fin">
                         <div className="float_left">
                         </div>
                         <div className="float_right">
-                            <button type="submit" className="btn medium">저장하기</button>
+                            <button onClick={handleAddGroup} type="submit" className="btn medium">추가하기</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <ProductSelectModal onSelect={handleProductSelect} />
         </div>
-
-        {/* popup-상세보기 */}
-        <div id="Popup01" className="popup_bg">
-            <div className="in_txt master_popup">
-                <a className="close_icon" onClick={popupClose}>
-                    <i className="flaticon-multiply"></i>
-                </a>
-                <div className="goodsall">
-                    <h3>상품선택</h3>
-                    <div className="goodsall__search search_top">
-                        <div className="search_div">
-                            <input className="w100" type="text" placeholder="검색할 상품명을 입력해주세요." />
-                            <div className="svg_img">
-                                <img src="/img/svg/search_icon.svg" alt="search icon" />
-                                <button />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="goodsall__list">
-                        <p>검색결과 <strong>22건</strong></p>
-                        <ul>
-                            <li>
-                                <div className="goodsall__list__img">
-                                    <img src="/img/sample_01.gif" alt="상품이미지" />
-                                </div>
-                                <div className="goodsall__list__text">
-                                    <div className="title">떠나요~제떠나요~제떠나요~제떠나요~제떠나요~제주도~~~!!!~!~#@!#</div>
-                                    <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="goodsall__list__img">
-                                    <img src="/img/sample_01.gif" alt="상품이미지" />
-                                </div>
-                                <div className="goodsall__list__text">
-                                    <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                    <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="goodsall__list__img">
-                                    <img src="/img/sample_01.gif" alt="상품이미지" />
-                                </div>
-                                <div className="goodsall__list__text">
-                                    <div className="title">떠나요~제주도~~~!!!~!~#@!#</div>
-                                    <div className="date">2020.03.13 ~ 2020.03.15</div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        {/* <ProductSelectModal onSelect={(product) => {
+            popupGroup?.members.push(product._id);
+            setGroupList([...groupList])
+        }} /> */}
     </MasterLayout >
 };
 

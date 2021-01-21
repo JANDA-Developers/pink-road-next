@@ -188,7 +188,6 @@ export const SMSmodal: React.FC<IProps> = ({ template }) => {
                             </div>
                         </li>
                         }
-
                         <li>
                             <div className="th">자동메시지</div>
                             <div className="td">
@@ -199,7 +198,6 @@ export const SMSmodal: React.FC<IProps> = ({ template }) => {
                                 </ul>
                             </div>
                         </li>
-
                     </ul>
                 </div>
                 <div className="form right">

@@ -1,6 +1,114 @@
 import { gql } from "@apollo/client";
 
 
+export const F_FILE = gql`
+    fragment Ffile on File {
+        name
+        uri
+        owner
+    }
+`
+
+
+export const F_BOOKING = gql`
+    fragment Fbooking on Booking {
+        _id
+        createdAt
+        cancelDate
+        gender
+        age
+        updatedAt
+        isDelete
+        adultCount
+        kidCount
+        babyCount
+        totalCount
+        message
+        bookingPrice
+        status
+        memo
+        code
+        groupCode
+        name
+        email
+        phoneNumber
+        isPaid
+    }
+`
+
+export const F_ITINERARY = gql`
+    fragment Fitinerary on Itinerary  {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        title
+        contents
+        images {
+            ...Ffile
+        }
+        date
+    }
+    ${F_FILE}
+`
+
+
+export const F_PRODUCT = gql`
+    fragment Fproduct on Product {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        title
+        code
+        contents
+        determined
+        endDate
+        dateRange
+        adminMemo
+        category {
+            _id
+            label
+        }
+        bookerSummary {
+            adultCount
+            babyCount
+            kidsCount
+            completePeople
+            readyPoeple
+            cancelCompletePeople
+            cancelPeople
+        }
+        status
+        itinerary {
+            ...Fitinerary
+        }
+        inOrNor
+        info
+        caution
+        images {
+            ...Ffile
+        }
+        keyWards
+        address
+        startPoint
+        maxMember
+        minMember
+        subTitle
+        adult_price
+        bookingCount
+        kids_price
+        compeltePeopleCnt
+        baby_price
+        isNotice
+        isOpen
+        type
+        startDate
+        Dday
+    }
+    ${F_FILE}
+    ${F_ITINERARY}
+`
 
 export const F_PAYMENT = gql`
     fragment Fpayment  on Payment  {
@@ -34,13 +142,6 @@ export const F_CATEGORY = gql`
         isDelete
         label
         type
-    }
-`
-export const F_FILE = gql`
-    fragment Ffile on File {
-        name
-        uri
-        owner
     }
 `
 
@@ -91,37 +192,6 @@ export const F_USER = gql`
     ${F_FILE}
 `
 
-export const F_BOOKING = gql`
-    fragment Fbooking on Booking {
-        _id
-        createdAt
-        cancelDate
-        gender
-        age
-        updatedAt
-        isDelete
-        adultCount
-        kidCount
-        babyCount
-        totalCount
-        message
-        bookingPrice
-        status
-        memo
-        code
-        groupCode
-        product {
-            _id
-            title
-            code
-        }
-        name
-        email
-        phoneNumber
-        isPaid
-    }
-`
-
 export const F_PAGE_INFO = gql`
     fragment FpageInfo on PageInfo {
         _id
@@ -149,80 +219,19 @@ export const F_PAGE = gql`
     }
 `
 
-
-
-export const F_ITINERARY = gql`
-    fragment Fitinerary on Itinerary  {
+export const F_GROUP = gql`
+    fragment Fgroup on Group {
         _id
         createdAt
         updatedAt
         isDelete
-        title
-        contents
-        images {
-            ...Ffile
+        target
+        key
+        label
+        members
+        tags {
+            key
+            value
         }
-        date
     }
-    ${F_FILE}
-`
-
-export const F_PRODUCT = gql`
-    fragment Fproduct on Product {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        title
-        code
-        contents
-        determined
-        dateRange
-        adminMemo
-        bookerSummary {
-            adultCount
-            babyCount
-            kidsCount
-            completePeople
-            readyPoeple
-            cancelCompletePeople
-            cancelPeople
-        }
-        author {
-            ...Fuser
-        }
-        category {
-            _id
-            label
-        }
-        status
-        itinerary {
-            ...Fitinerary
-        }
-        inOrNor
-        info
-        caution
-        images {
-            ...Ffile
-        }
-        keyWards
-        address
-        startPoint
-        maxMember
-        minMember
-        subTitle
-        adult_price
-        bookingCount
-        kids_price
-        compeltePeopleCnt
-        baby_price
-        isNotice
-        isOpen
-        type
-        startDate
-        Dday
-    }
-    ${F_FILE}
-    ${F_USER}
-    ${F_ITINERARY}
 `

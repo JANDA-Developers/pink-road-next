@@ -202,7 +202,7 @@ const UserInfoForm: React.FC = () => {
                                         name="birthday"
                                         className="w70"
                                         placeholder="생년월일을 입력해주세요."
-                                        value={data.brith_date}
+                                        value={data.brith_date || ""}
                                         onChange={handleData("brith_date")}
                                     />
                                     <i className="calendar">

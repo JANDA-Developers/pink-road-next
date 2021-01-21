@@ -30,8 +30,8 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) =>
     }
 
     const handleOnChange = (i: number) => (value: string) => {
-        if (typeof itinery.contents[index] === undefined) return;
-        itinery.contents[i] = value;
+        if (typeof itinery.contents?.[index] === undefined) return;
+        itinery.contents![i] = value;
         setits([...its])
     }
 

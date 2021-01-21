@@ -13,6 +13,6 @@ export const useSignUp = generateMutationHook<signUp,signUpVariables>(SIGN_UP, {
 export const useUserUpdate = generateMutationHook<userUpdate,userUpdateVariables>(USER_UPDATE, {
     ...getRefetch(USER_LIST, GET_CONTEXT)
 });
-export const useUserDelete = generateMutationHook<userResign,userResignVariables>(RESIGN, {
+export const useUserResign = generateMutationHook<userResign,userResignVariables>(RESIGN, {
     ...getRefetch(USER_LIST, GET_CONTEXT)
 });
