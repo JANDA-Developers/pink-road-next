@@ -75,7 +75,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                                 <div className="search_div">
                                     <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
                                     <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                        <img src="/img/svg/search_icon.svg" alt="search icon" />
                                         <button />
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="con_box_body">
+                    <div className="con_box_body master__table">
                         <div className="list_head">
                             <div className="td01">
                                 <i className="checkbox">
@@ -177,7 +177,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                         </div>
 
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">전체선택</button>
                             </div>
@@ -305,8 +305,9 @@ export const MsMemberC: React.FC<IProp> = () => {
                         {/* 예약 및 결제 */}
                         <div className="info_page">
                             <div className="full_div">
-                                <h4>예약 및 결제<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i><span><strong>11월</strong> - 예약<strong> 23건</strong> / 실적<strong className="sky_font"> 2,000,000원</strong><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
-                                <div className="info_table w50">
+                                <h4>예약 및 결제<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i>
+                                    <span className="full_div__right"><strong>11월</strong> - 예약<strong> 23건</strong> / 실적<strong className="sky_font"> 2,000,000원</strong><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
+                                <div className="info_table reservationlist">
 
                                     <div className="tr">
                                         <div className="re01">
@@ -376,8 +377,9 @@ export const MsMemberC: React.FC<IProp> = () => {
                         {/* 취소 및 환불내역 */}
                         <div className="info_page">
                             <div className="full_div">
-                                <h4>취소 및 환불내역<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i><span><strong>11월</strong> - 취소예약<strong> 23건</strong> / 환수<strong className="red_font"> -1,000,000원</strong><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
-                                <div className="info_table w50">
+                                <h4>취소 및 환불내역<i className="jandaicon-info2 tooltip" data-tip="자세한 예약조회는 '예약관리'메뉴를 이용 해주세요." ></i>
+                                    <span className="full_div__right"><strong>11월</strong> - 취소예약<strong> 23건</strong> / 환수<strong className="red_font"> -1,000,000원</strong><a className="btn" href="/master/reservation">예약관리 바로가기</a></span></h4>
+                                <div className="info_table reservationlist">
                                     <div className="tr">
                                         <div className="re01">
                                             예약번호

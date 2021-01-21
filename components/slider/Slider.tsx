@@ -27,7 +27,6 @@ export const Slider: React.ForwardRefRenderFunction<SLIDER, TJDsliderProp> = ({
         speed: 300,
         slidesToShow: 1,
         slidesToScroll: 1,
-        slideCount: 1,
         nextArrow: undefined,
         prevArrow: undefined,
         draggable,

@@ -1,30 +1,16 @@
-import React, { useContext, useState } from 'react';
-import { getEditUtils } from '../utils/pageEdit';
-import { AppContext } from "./_app";
-import pageInfoDefault from 'info/siteInfo.json';
-import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
+import React, { useState } from 'react';
 import { Upload } from 'components/common/Upload';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { usePageInfo } from 'hook/usePageInfo';
-import { UserRole } from 'types/api';
+import { getStaticPageInfo, Ipage } from '../utils/page';
+import defaultPageInfo from "../info/siteInfo.json";
+import { Bg, Img } from '../components/Img/img';
+import { usePageEdit } from '../hook/usePageEdit';
+import { PageEditor } from '../components/common/PageEditer';
 
-type TGetProps = {
-    pageInfo: typeof pageInfoDefault | "",
-}
-export const getStaticProps: GetStaticProps<TGetProps> = async (context) => {
-    const { data } = await usePageInfo("site-info");
-    return {
-        revalidate: 1,
-        props: {
-            pageInfo: data?.value || "",
-        }, // will be passed to the page component as props
-    }
-}
+export const getStaticProps = getStaticPageInfo("site-info");
+export const StieInfo: React.FC<Ipage> = (pageInfo) => {
+    const editorTools = usePageEdit(pageInfo, defaultPageInfo)
+    const { edit, arrayImgKit, imgEdit, ulEdit, bg, removeArray, editMode, addArray, page, imgKit } = editorTools;
 
-export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
-    const original = pageInfo || pageInfoDefault;
-    const { editMode, role } = useContext(AppContext)
-    const [page, setPage] = useState<typeof pageInfoDefault>(original)
     const [open, setOpen] = useState(true);
     const [addInfo, setAddInfo] = useState({
         alt: "",
@@ -32,7 +18,6 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
         link: "",
     })
 
-    const { edit, ulEdit, imgEdit, editArray, addArray, removeArray, bg } = getEditUtils(editMode, page, setPage);
     const { partners } = page;
 
     const changePartner = (key: string) => (e: any) => {
@@ -54,22 +39,22 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
 
     return <div className="siteInfo_in">
-        <HiddenSubmitBtn setData={setPage} original={original} path="site-info" data={page} />
-        <div style={{
-            ...bg("mainBg")
-        }} className="top_bg w100">
-            <div className="w1200">
-                <h3  {...edit("mainTitle")} />
-                <span  {...edit("secondTitle")} />
+        <PageEditor pageTools={editorTools} />
+        <Bg className="siteInfo__top" {...imgKit("mainBg")}>
+            <div className="top_bg w100">
+                <div className="w1200">
+                    <h3  {...edit("mainTitle")} />
+                    <span  {...edit("secondTitle")} />
+                </div>
+                {/* <Upload onUpload={imgEdit("mainBg")} /> */}
             </div>
-            <Upload onUpload={imgEdit("mainBg")} />
-        </div>
-        {/* <div className="bold" title="Bold" onClick={() => { effectDoc('bold') }}>B</div> */}
+        </Bg>
         <div className="w100 con01 con_block">
-            <div className="">
+            <div className="w1200">
                 <div className="bottom">
                     <div className="haf_first">
-                        <div {...ulEdit("pinkVision")} />
+                        <div className="mb20" {...ulEdit("pinkVision")} />
+                        <Img {...imgKit("pinkload_intro")} />
                     </div>
                     <div className="haf">
                         <strong {...edit("visionBox1_title")} />
@@ -89,35 +74,45 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <h4  {...edit("purpose_title")} />
                     <p  {...edit("purpose_desc")} />
                 </div>
-                <ul>
-                    <li>
-                        <i className="icon_01" style={{
+                <ul className="infolist">
+                    <li className="infolist__01" >
+                        <div className="pack">
+                            <Bg className="img" {...imgKit("purpose1_bg")} />
+                            <strong  {...edit("purpose1_title")} />
+                            <span {...edit("purpose1_bottom")} />
+                        </div>
 
-                        }} />
-                        <strong {...edit("purpose1_title")} />
-                        <p {...edit("purpose1_bottom")} />
                     </li>
-                    <li>
-                        <i className="icon_02" style={{
+                    <li className="infolist__02" >
+                        <div className="pack">
+                            <Bg className="img" {...imgKit("purpose2_bg")} />
+                            <strong  {...edit("purpose2_title")} />
+                            <span {...edit("purpose2_bottom")} />
+                        </div>
 
-                        }} />
-                        <strong  {...edit("purpose2_title")} />
-                        <p {...edit("purpose2_bottom")} />
                     </li>
-                    <li>
-                        <i className="icon_03" style={{
+                    <li className="infolist__03" >
+                        <div className="pack">
+                            <Bg className="img" {...imgKit("purpose3_bg")} />
+                            <strong  {...edit("purpose3_title")} />
+                            <span {...edit("purpose3_bottom")} />
+                        </div>
 
-                        }} />
-                        <strong  {...edit("purpose3_title")} />
-                        <p  {...edit("purpose3_bottom")} />
                     </li>
+
                 </ul>
             </div>
         </div>
         <div className="w100 con03 con_block">
-            <div className="w1200">
+            <div>
                 <h4  {...edit("value_title")} />
                 <p {...edit("value_desc")} />
+                <Bg className="bg01" {...imgKit("value_bg01")} />
+                <Bg className="bg02" {...imgKit("value_bg02")} />
+                <Bg className="bg03" {...imgKit("value_bg03")} />
+                <Bg className="bg04" {...imgKit("value_bg04")} />
+                <Bg className="bg05" {...imgKit("value_bg05")} />
+                <Bg className="bg06" {...imgKit("value_bg06")} />
             </div>
         </div>
         <div className="w100 con04 con_block">
@@ -151,7 +146,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             </div>
             <div className="infoimg">
                 <div className="w1200">
-                    <div {...edit("info_img_title")} className="li01" />
+                    <div className="li01" ><span {...edit("info_img_title")} /></div>
                     <div className="li03">
                         <div className="dong01">
                             <strong>01</strong>
@@ -177,7 +172,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <div className="li04">
                         <img src={'/img/svg/siteinfo_svg04.svg'} alt="화살표" />
                     </div>
-                    <div className="li05">지역경제활성화</div>
+                    <div className="li05" {...edit("info_img5_title")} />
                 </div>
                 <div className="wave_animation_wrap">
                     <div className="figure_wrap">
@@ -188,9 +183,10 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                 </div>
             </div>
         </div>
-        <div className="w100 con05 con_block">
+        <div className="w100 con05 con_block" style={bg("historybg")}>
+            <Upload onUpload={imgEdit("historybg")} />
             <div className="w1200">
-                <h4>Company history</h4>
+                <h4 {...edit("history_title")} />
                 <div className="in_txt">
                     <div className="year y2020">
                         <strong>2020</strong>
@@ -238,74 +234,69 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <span {...edit("pink_supporter_sub")} />
                 </h4>
                 <ul>
-                    {partners.kr.map((partner, index) => {
+                    {partners.kr.map((partner: any, index: number) => {
                         const { alt, img, link } = partner;
                         return <li key={index + "partner"}>
-                            <a href={editMode ? undefined : link}>
-                                <img src={img} alt={alt} />
+                            <a>
+                                <Img {...arrayImgKit(index, "partners", partner)} />
                                 {editMode &&
                                     <span className="del" onClick={() => {
                                         removeArray("partners", index);
                                     }}><i className="flaticon-multiply"></i></span>
                                 }
-                                <Upload onUpload={(url) => {
-                                    editArray("partners", index, { ...partner, img: url })
-                                }} />
                             </a>
                         </li>
                     })}
                     {editMode &&
                         <li className="add" onClick={() => {
-                            addArray("partners", {})
+                            addArray("partners", ({
+                                alt: "",
+                                img: "/img/ptn_01.jpg",
+                                link: "샘플",
+                            }))
                         }}><i className="flaticon-add"></i>추가</li>
                     }
                 </ul>
 
             </div>
         </div>
-        <div className="w100 con07 con_block">
-            <div className="w1200">
+        <Bg {...imgKit("con07_bg")} className="siteInfo__bottom w100 con07 con_block onepick2" >
+            <div className="w1200 ">
                 <h4>
-                    <strong>우리는 쉬운 길보다 옳은 길을 만들고 걸어갑니다.</strong>
-                    We walk the right path rather than the easy one
+                    <strong {...edit("con07_title")} />
+                    <p {...edit("con07_txt")} />
                 </h4>
-                <span><a href="mailto:pinkroader@gmail.com">제휴문의</a></span>
+                <span className="link"><a href="mailto:pinkroader@gmail.com" {...edit("con07_link")}></a></span>
 
             </div>
             <div className="ovj"></div>
             <div className="bg" />
-        </div>
-        {open && <div style={{
-            opacity: 0,
-            position: "fixed",
-            width: "1px",
-            height: "1px",
-            top: 0,
-            left: 0,
-            overflow: "hidden"
-        }}>
-            {/* <input onChange={changePartner} value={addInfo.alt} /> */}
-            <Upload onUpload={(url) => {
-                setAddInfo({
-                    ...addInfo,
-                    img: url
-                })
-            }} />
-            <input />
-            <input onChange={() => { }} value={addInfo.link} />
-        </div>}
-
-
-
-
-
-
-
-
+        </Bg>
+        {
+            open && <div style={{
+                opacity: 0,
+                position: "fixed",
+                width: "1px",
+                height: "1px",
+                top: 0,
+                left: 0,
+                overflow: "hidden"
+            }}>
+                {/* <input onChange={changePartner} value={addInfo.alt} /> */}
+                <Upload onUpload={(url) => {
+                    setAddInfo({
+                        ...addInfo,
+                        img: url
+                    })
+                }} />
+                <input />
+                <input onChange={() => { }} value={addInfo.link} />
+            </div>
+        }
 
 
         {/* popup은 언제나 class fade와 함께 있어야 한다. */}
-        <div className="popup_bg_mini" style={{ display: 'none' }}>
+        {/* <div className="popup_bg_mini" style={{ display: 'none' }}>
             <a className="close_icon"><i className="flaticon-multiply" /></a>
             <div className="in_txt">
                 <h3>이미지 업로드</h3>
@@ -320,14 +311,8 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                 </div>
             </div>
         </div>
-        <div className="fade"></div>
-
-
-
-
-
-
-    </div>;
+        <div className="fade"></div> */}
+    </div >;
 };
 
 export default StieInfo

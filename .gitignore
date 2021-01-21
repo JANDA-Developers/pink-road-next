@@ -237,3 +237,4 @@ $RECYCLE.BIN/
 *.msp
 
 .github
+workspace.code-workspace

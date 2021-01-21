@@ -1,15 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\css",
-    "\\layout",
-    "\\layout\\components",
-    "\\pages",
-    "\\pages\\portfolio",
-    "\\pages\\tour",
-    "\\pages\\tour\\write",
-    "\\public"
+    ""
   ],
-  "SelectedNode": "\\public\\normal.js",
   "PreviewInSolutionExplorer": false
 }

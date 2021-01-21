@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import dynamic from "next/dynamic";
 import React from "react";
 import { Ffile } from "types/api"
+import { TElements } from "../../types/interface";
 import { ContentViewer } from "../contentViewer/ContentViewer";
 
 interface IProps {
@@ -14,7 +15,7 @@ interface IProps {
         count: 0,
     }
     viewCount?: number
-    summary?: string;
+    subTitle?: string | null;
     files?: Ffile[]
     onNext?: () => void;
     onPrev?: () => void;
@@ -22,11 +23,12 @@ interface IProps {
     onEdit?: () => void;
     onDelete?: () => void;
     content?: string;
+    Buttons?: TElements
 }
 
 
 export const BoardView: React.FC<IProps> = (data) => {
-    const { catName, createAt, title = "", writer, comments, files, summary, viewCount, thumb, content = "", onEdit, onList, onNext, onPrev, onDelete } = data;
+    const { catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, onNext, onPrev, onDelete, subTitle, Buttons } = data;
 
 
     const handlePrev = () => {
@@ -67,10 +69,8 @@ export const BoardView: React.FC<IProps> = (data) => {
                 <div className="in_box">
 
                     {/*본문시작*/}
-                    {summary && <>{summary}
-                        <br /><br />
-                    </>
-                    }
+                    {subTitle && subTitle}
+                    <br /><br />
                     {/*thumb && <img src={thumb.uri} alt={thumb.name} /> 섬네일이미지 안보여줘도됨...*/}
                     <ContentViewer data={content} />
                     {files &&
@@ -92,6 +92,7 @@ export const BoardView: React.FC<IProps> = (data) => {
                     <div className="float_right">
                         <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>
                         <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>
+                        {Buttons}
                     </div>
                 </div>
                 {(onPrev || onNext) && <div className="board_list_mini">

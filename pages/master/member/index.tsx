@@ -1,15 +1,31 @@
 import { MasterLayout } from 'layout/MasterLayout';
-import { Paginater } from 'components/common/Paginator';
 import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
-import CalendarIcon from 'components/common/icon/CalendarIcon';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from "next/link";
-import ReactTooltip from 'react-tooltip';
+import { UserModal } from '../../../components/userModal/UserModal';
+import { useUserList, useUserResign, useUserUpdate } from '../../../hook/useUser';
+import { MasterAlignMent } from '../../../components/master/MasterAlignMent';
+import { MasterSearchBar } from '../../../components/master/MasterSearchBar';
+import { useIdSelecter } from '../../../hook/useIdSelecter';
+import { useSingleSort } from '../../../hook/useSort';
+import { useDateFilter } from '../../../hook/useSearch';
+import { useCustomCount } from '../../../hook/useCount';
+import { Fuser, GENDER, UserStatus, _UserFilter, _UserSort } from "../../../types/api";
+import { SingleSortSelect } from '../../../components/common/SortSelect';
+import { autoComma } from '../../../utils/formatter';
+import { foreginKR, genderToKR } from '../../../utils/enumToKr';
+import { yyyymmdd } from '../../../utils/yyyymmdd';
+import { BoardModal } from '../../../components/boardModal/BoardModal';
+import { openModal } from '../../../utils/popUp';
+import { Paginater } from '../../../components/common/Paginator';
+import { MemberTopNav } from '../../../components/topNav/MasterTopNav';
+import { Gender } from 'aws-sdk/clients/polly';
+
 
 interface IProp { }
 
 
-const popupOpen1 = () => {
+export const popupOpen1 = () => {
     $('#Popup01').css({
         'display': 'flex'
     });
@@ -30,101 +46,141 @@ const popupClose3 = () => {
     });
 }
 
+type TuniqSearch = keyof Pick<_UserFilter, "name_eq" | "email_eq" | "phoneNumber_eq">
+
+
 export const MsMemberA: React.FC<IProp> = () => {
+    const [popupUser, setPopupUser] = useState<Fuser>();
+    const { totalIndiMemeberCount, koreanMemberCount, foreginMemeberCount } = useCustomCount(["totalPartnerMemberCount", "koreanMemberCount", "foreginMemeberCount", "totalIndiMemeberCount"])
+    const [searchType, setSearchType] = useState<TuniqSearch>("name_eq");
+    const { items: users, filter, setFilter, viewCount, setViewCount, sort, setSort, setUniqFilter, pageInfo: userPageInfo, setPage } = useUserList();
+    const { filterEnd, filterStart, hanldeCreateDateChange, setDateKey } = useDateFilter({ filter, setFilter });
+    const { selectAll, isChecked, toggle, toggleAll, selectedIds, isAllSelected } = useIdSelecter(users.map(user => user._id));
+    const singleSort = useSingleSort(sort, setSort);
+    const [popupId, setPopUserId] = useState("");
+    const [resignUser] = useUserResign();
+    const [updateUser] = useUserUpdate();
+
+    const setIsForeginer = (foreginer: boolean) => () => {
+        filter.is_froreginer_eq = foreginer;
+        setFilter({ ...filter })
+    }
+
+    const setGenderFilter = (gender: Gender) => () => {
+        filter.gender_eq = gender;
+        setFilter({ ...filter });
+    }
+
+    const selected = selectedIds[0];
+
+    const handleResignUser = () => {
+        if (selectedIds.length > 1) alert("한번에 하나의 유저만 선택 해주세요.")
+        else if (selectedIds.length < 1) alert("유저를 선택 해주세요.");
+        resignUser({
+            variables: {
+                _id: selected,
+                pw: "" //마스터 일때는 안넣어도됨
+            }
+        })
+    }
+
+    const handleStopUser = () => {
+        if (selectedIds.length > 1) alert("한번에 하나의 유저만 선택 해주세요.")
+        else if (selectedIds.length < 1) alert("유저를 선택 해주세요.");
+        updateUser({
+            variables: {
+                _id: selected,
+                params: {
+                    status: UserStatus.stop
+                },
+            }
+        }).then(({ data }) => {
+            if (data?.UserUpdate.ok) alert("해당 유저를 정지 하였습니다.");
+        })
+    }
+
+    const handleViewDetailUser = (id: string) => () => {
+        setPopUserId(id)
+        setTimeout(() => {
+            openModal("#UserModal")();
+        }, 100)
+    }
+
+    const handleViewUserBoard = (user: Fuser) => () => {
+        setPopupUser(user);
+        setTimeout(() => {
+            openModal("#BoardModal")();
+        }, 100)
+    }
+
+    const doSearch = (search: string) => {
+        setUniqFilter(searchType, ["name_eq", "email_eq", "phoneNumber_eq"], search);
+    }
+    const checkOnGender = (gender?: Gender) => gender === filter.gender_eq ? "on" : "";
+    const checkOnForeginer = (isForeginer?: boolean) => isForeginer === filter.is_froreginer_eq ? "on" : "";
+    const checkOnAllGender = () => filter.gender_eq === undefined ? "on" : "";
+    const checkOnAllForgien = () => filter.is_froreginer_eq === undefined ? "on" : "";
+
     return <MasterLayout>
-        <div className="in ">
+        <div className="in partner">
             <h4>회원관리</h4>
             <div className="in_content">
-                <div className="tab-nav">
-                    <ul>
-                        <li className="on"><Link href="/master/member"><a>개인회원</a></Link></li>
-                        <li><Link href="/master/member/member1-2"><a>기업파트너 회원</a></Link></li>
-                        <li><Link href="/master/member/member1-3"><a>개인파트너 회원</a></Link></li>
-                        <li><Link href="/master/member/member1-4"><a>탈퇴회원</a></Link></li>
-                    </ul>
-                </div>
+                <MemberTopNav />
                 <div className="con family">
                     <div className="con_box_top pb5">
-                        <div className="search_top">
-                            <div className="hang">
-                                <ul className="day_ul">
-                                    <li className="on">
-                                        <span>이번달</span>
-                                    </li>
-                                    <li className="on">
-                                        <span>저번달</span>
-                                    </li>
-                                    <li>
-                                        <span>6개월</span>
-                                    </li>
-                                    <li>
-                                        <span>1년</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="hang">
-                                <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                                    ~
-                                    <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                            </div>
-                            <div className="hang fr">
-                                <select className="option">
-                                    <option>전체</option>
-                                    <option>이름</option>
-                                    <option>아이디</option>
-                                    <option>휴대폰</option>
+                        <MasterSearchBar
+                            filterEnd={filterEnd}
+                            filterStart={filterStart}
+                            onDateChange={hanldeCreateDateChange}
+                            defaultRange={{}}
+                            doSearch={doSearch}
+                            Option={
+                                <select value={searchType} onChange={(e) => {
+                                    const type = e.currentTarget.value;
+                                    setSearchType(type as TuniqSearch);
+                                }} className="option">
+                                    <option value={undefined}>전체</option>
+                                    <option value={"name_eq" as TuniqSearch}>이름</option>
+                                    <option value={"email_eq" as TuniqSearch}>아이디</option>
+                                    <option value={"phoneNumber_eq" as TuniqSearch}>휴대폰</option>
                                 </select>
-                                <div className="search_div">
-                                    <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
-                                    <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
-                                        <button />
-                                    </div>
+                            }
+                        />
+                        <MasterAlignMent
+                            Sort={
+                                <SingleSortSelect {...singleSort} >
+                                    <option value={_UserSort.createdAt_asc}>가입일 &uarr;</option>
+                                    <option value={_UserSort.createdAt_desc}>가입일 &darr;</option>
+                                    <option value={_UserSort.name_asc}>이름 오름순</option>
+                                    <option value={_UserSort.name_desc}>이름 내림순</option>
+                                </SingleSortSelect>
+                            }
+                            setViewCount={setViewCount}
+                            viewCount={viewCount}
+                            handleSelectAll={selectAll}
+                            LeftDiv={
+                                <div>
+                                    <ul className="board_option">
+                                        <li className={checkOnAllForgien()}><a >전체<strong>{totalIndiMemeberCount}</strong></a></li>
+                                        <li onClick={setIsForeginer(false)} className={checkOnForeginer(false)}><a>내국인<strong>{koreanMemberCount}</strong></a></li>
+                                        <li onClick={setIsForeginer(true)} className={checkOnForeginer(true)}><a >외국인<strong>{foreginMemeberCount}</strong></a></li>
+                                    </ul>
+                                    <ul className="board_option">
+                                        <li className={checkOnAllGender()}><a >전체<strong>{totalIndiMemeberCount}</strong></a></li>
+                                        <li onClick={setGenderFilter(GENDER.MAIL)} className={checkOnGender(GENDER.MAIL)}><a>남<strong>{koreanMemberCount}</strong></a></li>
+                                        <li onClick={setGenderFilter(GENDER.FEMALE)} className={checkOnGender(GENDER.FEMALE)}><a>녀<strong>{foreginMemeberCount}</strong></a></li>
+                                    </ul>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="alignment">
-                            <div className="left_div">
-                                <ul className="board_option">
-                                    <li className="on"><a href="/">전체<strong>46</strong></a></li>
-                                    <li><a href="/">내국인<strong>23</strong></a></li>
-                                    <li><a href="/">외국인<strong>23</strong></a></li>
-                                </ul>
-                            </div>
-                            <div className="right_div">
-                                <ul className="board_option">
-                                    <li><a href="/">전체선택</a></li>
-                                    <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a></li>
-                                    <li><a href="/">신규회원등록</a></li>
-                                </ul>
-                                <select className="sel01">
-                                    <option>가입일 &uarr;</option>
-                                    <option>가입일 &darr;</option>
-                                    <option>접속일 &uarr;</option>
-                                    <option>접속일 &darr;</option>
-                                    <option>이름 오름순</option>
-                                    <option>이름 내림순</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
+                            }
+                        />
                     </div>
+
                     <div className="con_box_body">
                         <div className="list_head">
                             <div className="td01">
                                 <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="전체선택" />
-                                    <label htmlFor="agree0" />
+                                    <input checked={isAllSelected} type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                    <label onClick={toggleAll} htmlFor="agree0" />
                                 </i>
                             </div>
                             <div className="td02">이름</div>
@@ -133,434 +189,50 @@ export const MsMemberA: React.FC<IProp> = () => {
                             <div className="td05">성별</div>
                             <div className="td06">국적</div>
                             <div className="td07">가입일</div>
-                            <div className="td08">가입방법</div>
+                            <div className="td08">가입경로</div>
                             <div className="td09">상세보기</div>
                         </div>
-                        <div className="list_line">
-                            <div className="td01">
-                                <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                    <label htmlFor="agree0" />
-                                </i>
+                        {users.map(user =>
+                            <div key={user._id} className="list_line">
+                                <div className="td01">
+                                    <i onClick={() => {
+                                        toggle(user._id)
+                                    }} className="checkbox">
+                                        <input onChange={() => { }} checked={isChecked(user._id)} type="checkbox" name="agree" id="agree0" title="선택" />
+                                        <label htmlFor="agree0" />
+                                    </i>
+                                </div>
+                                <div className="td02">{user.name}</div>
+                                <div className="td03">{user.email}</div>
+                                <div className="td04"><i className="m_title">휴대폰:</i><a href={`tel:${user.phoneNumber}`}>{autoComma(user.phoneNumber)}</a></div>
+                                <div className="td05"><i className="m_title">성별:</i>{genderToKR(user.gender)}</div>
+                                <div className="td06"><i className="m_title">국적:</i>{foreginKR(user.is_froreginer)}</div>
+                                <div className="td07"><i className="m_title">가입일:</i>{yyyymmdd(user.createdAt)}</div>
+                                <div className="td08"><i className="m_title">주소:</i>{user.address.slice(0, 10) + "..."}</div>
+                                <div className="td09">
+                                    <i className="btn small" onClick={handleViewDetailUser(user._id)}>상세보기</i>
+                                    <i className="btn small" onClick={handleViewUserBoard(user)}>작성한 게시글</i>
+                                </div>
                             </div>
-                            <div className="td02">김옥자</div>
-                            <div className="td03">gogo@gamail.com</div>
-                            <div className="td04"><i className="m_title">휴대폰:</i><a href="tel:">010-2222-2222</a></div>
-                            <div className="td05"><i className="m_title">성별:</i>여성</div>
-                            <div className="td06"><i className="m_title">국적:</i>외국인</div>
-                            <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
-                            <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
-                            <div className="td09">
-                                <i className="btn small" onClick={popupOpen3}>상세보기</i>
-                                <i className="btn small" onClick={popupOpen1}>작성한 게시글</i>
-                            </div>
-                        </div>
-
-                        <div className="list_line">
-                            <div className="td01">
-                                <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                    <label htmlFor="agree0" />
-                                </i>
-                            </div>
-                            <div className="td02">김옥자</div>
-                            <div className="td03">gogo@gamail.com</div>
-                            <div className="td04"><i className="m_title">휴대폰:</i><a href="tel:">010-2222-2222</a></div>
-                            <div className="td05"><i className="m_title">성별:</i>여성</div>
-                            <div className="td06"><i className="m_title">국적:</i>외국인</div>
-                            <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
-                            <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
-                            <div className="td09">
-                                <i className="btn small" onClick={popupOpen3}>상세보기</i>
-                                <i className="btn small" onClick={popupOpen1}>작성한 게시글</i>
-                            </div>
-                        </div>
-                        <div className="list_line">
-                            <div className="td01">
-                                <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                    <label htmlFor="agree0" />
-                                </i>
-                            </div>
-                            <div className="td02">김옥자</div>
-                            <div className="td03">gogo@gamail.com</div>
-                            <div className="td04"><i className="m_title">휴대폰:</i><a href="tel:">010-2222-2222</a></div>
-                            <div className="td05"><i className="m_title">성별:</i>여성</div>
-                            <div className="td06"><i className="m_title">국적:</i>외국인</div>
-                            <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
-                            <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
-                            <div className="td09">
-                                <i className="btn small" onClick={popupOpen3}>상세보기</i>
-                                <i className="btn small" onClick={popupOpen1}>작성한 게시글</i>
-                            </div>
-                        </div>
-                        <div className="list_line">
-                            <div className="td01">
-                                <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                    <label htmlFor="agree0" />
-                                </i>
-                            </div>
-                            <div className="td02">김옥자</div>
-                            <div className="td03">gogo@gamail.com</div>
-                            <div className="td04"><i className="m_title">형태:</i><a href="tel:">010-2222-2222</a></div>
-                            <div className="td05"><i className="m_title">성별:</i>여성</div>
-                            <div className="td06"><i className="m_title">국적:</i>외국인</div>
-                            <div className="td07"><i className="m_title">가입일:</i>2020.10.01</div>
-                            <div className="td08"><i className="m_title">가입방법:</i>카카오연동</div>
-                            <div className="td09">
-                                <i className="btn small" onClick={popupOpen3}>상세보기</i>
-                                <i className="btn small" onClick={popupOpen1}>작성한 게시글</i>
-                            </div>
-                        </div>
-                        {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
-                        <div className="fin">
+                        )}
+                        <Paginater setPage={setPage} pageInfo={userPageInfo} />
+                        <div className="fin ifMobile">
                             <div className="float_left">
-                                <button type="submit" className="btn medium">전체선택</button>
+                                <button onClick={selectAll} type="submit" className="btn medium">전체선택</button>
                             </div>
                             <div className="float_right">
-                                <button type="submit" className="btn medium mr5">탈퇴</button>
-                                <button type="submit" className="btn medium">활동정지</button>
+                                <button onClick={handleResignUser} type="submit" className="btn medium mr5">탈퇴</button>
+                                <button onClick={handleStopUser} type="submit" className="btn medium">활동정지</button>
+                                <button onClick={handleStopUser} type="submit" className="btn medium">활동재개</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <SearcfInfoBox />
-
             {/* popup-작성한 게시글 보기 */}
-            <div id="Popup01" className="popup_bg_full">
-                <div className="in_txt master_popup">
-                    <a className="close_icon" onClick={popupClose1}>
-                        <i className="flaticon-multiply"></i>
-                    </a>
-                    <div className="page">
-                        <h3><strong>김홍홍</strong>님이 작성한 글 </h3>
-                        {/* 작성한글 */}
-                        <div className="info_page">
-                            <div className="alignment">
-                                <div className="left_div"><span className="infotxt">총 <strong>22,222</strong>건</span></div>
-                                <div className="right_div">
-                                    <select className="sel01">
-                                        <option>작성일 &uarr;</option>
-                                        <option>작성일 &darr;</option>
-                                        <option>조회수 &uarr;</option>
-                                        <option>조회수 &darr;</option>
-                                    </select>
-                                    <select className="sel02">
-                                        <option>10개 보기</option>
-                                        <option>50개 보기</option>
-                                        <option>100개 보기</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div className="board_list_mini ln05">
-                                <div className="thead">
-                                    <div className="tt01 checkbox">
-                                        <input type="checkbox" name="agree" id="agree-popup-0" title="모두선택" />
-                                        <label htmlFor="agree-popup-0" />
-                                    </div>
-                                    <div className="tt02">게시판</div>
-                                    <div className="tt03">번호</div>
-                                    <div className="tt04">제목</div>
-                                    <div className="tt05">날짜</div>
-                                </div>
-                                <div className="tbody">
-                                    <ul>
-                                        <li>
-                                            <div className="tt01 checkbox">
-                                                <i className="checkbox">
-                                                    <input type="checkbox" name="agree" id="agree0" title="전체선택" />
-                                                    <label htmlFor="agree0" />
-                                                </i>
-                                            </div>
-                                            <div className="tt02">문의하기</div>
-                                            <div className="tt03">23</div>
-                                            <div className="tt04"><a href="/">궁금한게 있어요 :) <i className="q_ok">답변완료</i></a></div>
-                                            <div className="tt05">2020.02.02 11:00</div>
-                                        </li>
-                                        <li>
-                                            <div className="tt01 checkbox">
-                                                <i className="checkbox">
-                                                    <input type="checkbox" name="agree" id="agree0" title="전체선택" />
-                                                    <label htmlFor="agree0" />
-                                                </i>
-                                            </div>
-                                            <div className="tt02">문의하기</div>
-                                            <div className="tt03">23</div>
-                                            <div className="tt04"><a href="/">궁금한게 있어요 :) <i className="q_no">답변중</i></a></div>
-                                            <div className="tt05">2020.02.02 11:00</div>
-                                        </li>
-                                        <li className="no_data">
-                                            {/*게시글이 없을때*/}
-                                            <i className="jandaicon-info3" />
-                                            <span>게시글이 없습니다.</span>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                                {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
-                            </div>
-
-                            <div className="fin">
-                                <div className="float_left">
-                                    <button type="submit" className="btn medium">모두선택</button>
-                                </div>
-                                <div className="float_right">
-                                    <button type="submit" className="btn medium mr5">삭제</button>
-                                    <button type="submit" className="btn medium mr5">비공개전환</button>
-                                    <button type="submit" className="btn medium">공개전환</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* popup-상세보기 */}
-                <div id="Popup02" className="popup_bg_full">
-                    <div className="in_txt master_popup">
-                        <a className="close_icon" onClick={popupClose3}>
-                            <i className="flaticon-multiply"></i>
-                        </a>
-                        <div className="page">
-                            <h3>회원 상세정보</h3>
-                            <div className="info_txt">
-                                <span className="start-day">가입일: 2020.08.26</span>
-                                <span className="recently-day">최근접속: 2020.08.26 12:12</span>
-                                <button className="btn"><i className="flaticon-print mr5"></i>프린터</button>
-                                <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
-                                <button className="btn mr5">작성한 게시글</button>
-                            </div>
-                            {/* 회원정보 */}
-                            <div className="info_page">
-                                <div className="full_div">
-                                    <h4>회원정보</h4>
-                                    <div className="info_table line8 w50">
-                                        <div className="tr">
-                                            <div className="th01">이름</div>
-                                            <div className="td01"><span>김김김</span></div>
-                                            <div className="th02">아이디</div>
-                                            <div className="td02"><a href="mailto:gggg@naver.com">gggg@naver.com</a></div>
-                                            <div className="th03">생년월일</div>
-                                            <div className="td03"><input type="text" className="w100" /></div>
-                                            <div className="th04">성별</div>
-                                            <div className="td04">
-                                                <select>
-                                                    <option>여성</option>
-                                                    <option>남성</option>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div className="tr">
-                                            <div className="th01">주소</div>
-                                            <div className="td01"><input type="text" className="w100" /></div>
-                                            <div className="th02">가입방법</div>
-                                            <div className="td02">
-                                                <select>
-                                                    <option>네이버연동</option>
-                                                    <option>카카오톡연동</option>
-                                                    <option>홈페이지</option>
-                                                </select>
-                                            </div>
-                                            <div className="th03">휴대폰</div>
-                                            <div className="td03"><input type="text" className="w100" /></div>
-                                            <div className="th04">국적</div>
-                                            <div className="td04">
-                                                <select>
-                                                    <option>내국인</option>
-                                                    <option>외국인</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            {/* 약관동의 */}
-                            <div className="info_page">
-                                <div className="full_div">
-                                    <h4>약관동의</h4>
-                                    <div className="info_table checkline">
-                                        <div className="tr">
-                                            <div className="th01">마케팅 정보수신동의</div>
-                                            <div className="td01">
-                                                <span className="check no">동의안함</span>
-                                            </div>
-                                            <div className="th02">개인정보수집 및 이용</div>
-                                            <div className="td02">
-                                                <span className="check no">동의안함</span>
-                                            </div>
-                                        </div>
-                                        <div className="tr">
-                                            <div className="th01">이용약관</div>
-                                            <div className="td01">
-                                                <span className="check ok">동의함</span>
-                                            </div>
-                                            <div className="th02">여행자약관</div>
-                                            <div className="td02">
-                                                <span className="check ok">동의함</span>
-                                            </div>
-                                        </div>
-                                        <div className="tr">
-                                            <div className="th01">개인정보 제3자 제공</div>
-                                            <div className="td01">
-                                                <span className="check no">동의안함</span>
-                                            </div>
-                                            <div className="th02"></div>
-                                            <div className="td02">
-                                                <span className="check"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* 예약 및 결제 */}
-                            <div className="info_page">
-                                <div className="full_div">
-                                    <h4>예약 및 결제</h4>
-                                    <div className="info_table w50">
-
-                                        <div className="tr">
-                                            <div className="re01">
-                                                예약번호
-                                        <a href="R-398234">(R-398234)</a>
-                                            </div>
-                                            <div className="re02">
-                                                상품
-                                    </div>
-                                            <div className="re03">
-                                                <a href="/">[PK-098328] 떠나요~!!! 제주도~!!! </a>
-                                            </div>
-                                            <div className="re04">
-                                                예약일/결제일
-                                    </div>
-                                            <div className="re05">
-                                                <span>2020.12.12/2020.12.12</span>
-                                            </div>
-                                            <div className="re06">
-                                                인원
-                                     </div>
-                                            <div className="re07">
-                                                <span>4명</span>
-                                            </div>
-                                            <div className="re08">
-                                                금액
-                                    </div>
-                                            <div className="re09">
-                                                <span>30,000원</span>
-                                            </div>
-                                        </div>
-                                        <div className="tr">
-                                            <div className="re01">
-                                                예약번호
-                                        <a href="R-398234">(R-398234)</a>
-                                            </div>
-                                            <div className="re02">
-                                                상품
-                                             </div>
-                                            <div className="re03">
-                                                <a href="/">[PK-098328] 떠나요~!!! 제주도~!!! </a>
-                                            </div>
-                                            <div className="re04">
-                                                예약일/결제일
-                                            </div>
-                                            <div className="re05">
-                                                <span>2020.12.12/2020.12.12</span>
-                                            </div>
-                                            <div className="re06">
-                                                인원
-                                             </div>
-                                            <div className="re07">
-                                                <span>4명</span>
-                                            </div>
-                                            <div className="re08">
-                                                금액
-                                            </div>
-                                            <div className="re09">
-                                                <span>30,000원</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* 취소 및 환불내역 */}
-                            <div className="info_page">
-                                <div className="full_div">
-                                    <h4>취소 및 환불내역</h4>
-                                    <div className="info_table w50">
-                                        <div className="tr">
-                                            <div className="re01">
-                                                예약번호
-                                        <a href="R-398234">(R-398234)</a>
-                                            </div>
-                                            <div className="re02">
-                                                상품
-                                    </div>
-                                            <div className="re03">
-                                                <a href="/">[PK-098328] 떠나요~!!! 제주도~!!! </a>
-                                            </div>
-                                            <div className="re04">
-                                                예약일/결제일
-                                    </div>
-                                            <div className="re05">
-                                                <span>2020.12.12/2020.12.12</span>
-                                            </div>
-                                            <div className="re06">
-                                                환불일
-                                     </div>
-                                            <div className="re07">
-                                                <span>2020.12.12</span>
-                                            </div>
-                                            <div className="re08">
-                                                환불금액
-                                    </div>
-                                            <div className="re09">
-                                                <span>30,000원</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* 메모 */}
-                            <div className="info_page">
-                                <h4>메모</h4>
-                                <div className="write_comment">
-                                    <div className="comment_layout">
-                                        <ul className="text_box">
-                                            <li>
-                                                <div className="txta w100">
-                                                    <textarea style={{ height: "100px;" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
-                                                </div>
-                                            </li>
-                                            <li className="tr count">0/3000</li>
-                                        </ul>
-                                        <div className="text_box_bottom">
-                                            <div className="float_left w50">
-                                                <span><i className="jandaicon-info2"></i>기존의 메모를 삭제하시면 되돌릴 수 없습니다. 신중하게 입력해 주세요.</span>
-                                            </div>
-                                            <div className="btn_send float_right"><button className="comment_btn">저장</button> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="fin">
-                                <div className="float_left">
-                                    <button type="submit" className="btn medium">탈퇴시키기</button>
-                                </div>
-                                <div className="float_right">
-                                    <button type="submit" className="btn medium">저장하기</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {popupUser && <BoardModal user={popupUser} />}
+            <UserModal userId={popupId} />
         </div>
     </MasterLayout >
 };

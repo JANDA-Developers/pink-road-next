@@ -3,6 +3,20 @@ import React from 'react';
 interface IProp { }
 
 export const MasterLayout: React.FC<IProp> = ({ children }) => {
+
+
+
+    let current = ""
+    if (typeof window !== "undefined") {
+        current = window.location.href.split('/master/')[1] || "";
+    }
+
+    const isTapOn = (value?: string) => {
+        if (!value) return current === "" ? "on" : ""
+        return current.includes(value) ? "on" : "";
+    }
+
+
     return <div>
         <div className="top_visual">
             <div
@@ -11,7 +25,7 @@ export const MasterLayout: React.FC<IProp> = ({ children }) => {
             >
                 <div className="w1200">
                     <h2 className="title">Master</h2>
-                    <p className="text">지금 여행을 떠나세요~!~~!!!!!</p>
+                    <p className="text">예약．상품．회원．알림．홈페이지</p>
                 </div>
             </div>
             <div className="header_nav">
@@ -28,11 +42,11 @@ export const MasterLayout: React.FC<IProp> = ({ children }) => {
         </div>
         <div className="master_box w100">
             <ul className="subtop_nav">
-                <li><a href="/master/notification">알림</a></li>
-                <li className="on"><a href="/master/member">회원관리</a></li>
-                <li><a href="/master/goods">상품관리</a></li>
-                <li><a href="/master/reservation">예약관리</a></li>
-                <li><a href="/master/design">디자인 설정</a></li>
+                <li className={isTapOn("notification")}><a href="/master/notification">알림</a></li>
+                <li className={isTapOn("member")}><a href="/master/member">회원관리</a></li>
+                <li className={isTapOn("goods")}><a href="/master/goods">상품관리</a></li>
+                <li className={isTapOn("reservation")}><a href="/master/reservation">예약관리</a></li>
+                <li className={isTapOn("design")}><a href="/master/design">디자인 설정</a></li>
                 <li><a href="/master/homepage">홈페이지 설정</a></li>
             </ul>
             <div className="w1200">

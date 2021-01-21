@@ -30,9 +30,9 @@ export const Search: React.FC<IProp> = () => {
         <div className="findmembers_box w1200">
             <div className="con_box">
                 <div className="left">
-                <h3>아이디 찾기</h3> 
-                <span className="info">아이디가 기억나지 않으신가요? 가입 시 입력한 개인 정보로 인증 절차를 거치면 확인이 가능합니다.</span>
-               
+                    <h3>아이디 찾기</h3>
+                    <span className="info">아이디가 기억나지 않으신가요? 가입 시 입력한 개인 정보로 인증 절차를 거치면 확인이 가능합니다.</span>
+
                     <div className="idfind_box in_box">
                         <h4>이름</h4>
                         <div className="input_box"><input type="text" placeholder="이름을 입력해 주세요." /></div>
@@ -48,7 +48,7 @@ export const Search: React.FC<IProp> = () => {
                         <h4>아이디</h4>
                         <div className="input_box"><input type="text" placeholder="아이디를 입력해 주세요." /></div>
                         <div className="certification_sec">
-                            <button className="btn">임시 비밀번호 SNS로 받기</button>
+                            <button className="btn">임시 비밀번호 문자로 받기</button>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ export const Search: React.FC<IProp> = () => {
             </div>
         </div>
     </div>
-   
+
 }
 
 export default Search

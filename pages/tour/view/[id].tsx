@@ -4,65 +4,63 @@ import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { IHumanCount, IproductFindById } from "types/interface";
 import { autoComma } from "utils/formatter";
 import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
 import { useProductDelete } from "hook/useProduct";
-import { IAuthInfo } from "../../../components/nice/type";
-import { getAuth } from "../../../components/nice/getAuth";
-import NiceElments from "../../../components/nice/NiceElement";
-import { getNiceElementForTest } from "../../../components/nice/niceUtils";
 import Slider, { Slide } from "../../../components/slider/Slider";
 import SLIDER from "react-slick";
 import { useScroll } from "../../../hook/useScroll";
-import { handleTab, getTab, tabCheck } from "../../../components/tourView/tabUtils";
+import { handleTab, tabCheck } from "../../../components/tourView/tabUtils";
 import { toast } from "react-toastify";
 import { addItem } from "../../../utils/Storage";
-import { useBasket } from "../../../hook/useBasket";
-import { useUpdate } from "../../../hook/useUpdater";
+import { useBasketCount } from "../../../hook/useBasket";
 import { getRangeString } from "../../../utils/product";
+import { generateClientPaging } from "../../../utils/generateClientPaging";
+import { Paginater } from "../../../components/common/Paginator";
+import { QnaLi } from "../../../components/qna/QnaLi";
+import PageLoading from "../../Loading";
+import { getStaticPageInfo, Ipage } from "../../../utils/page";
+import { usePageEdit } from "../../../hook/usePageEdit";
+import defaultPageInfo from 'info/tourView.json';
+import "slick-carousel/slick/slick.css";
 
-interface IProps {
-  product: IproductFindById;
+export const getStaticProps = getStaticPageInfo("tourView");
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { id: "1" } }
+    ],
+    fallback: true
+  };
 }
+const TourDetail: React.FC<Ipage> = (pageInfo) => {
+  const router = useRouter();
+  const pageTools = usePageEdit(pageInfo, defaultPageInfo);
+  const id = router.query.id as string;
+  const { loading, item: product } = useProductFindById(id);
+  const { isManager, isAdmin, myProfile } = useContext(AppContext);
+  const isMyProduct = product?.author?._id === myProfile?._id;
 
-const TourDetail: React.FC<IProps> = ({ product }) => {
-  const { isManager, isAdmin } = useContext(AppContext);
-  const {
-    _id,
-    adult_price,
-    baby_price,
-    caution,
-    contents,
-    images,
-    inOrNor,
-    itinerary,
-    keyWards,
-    kids_price,
-    maxMember,
-    minMember,
-    startPoint,
-    subTitle,
-    title,
-    startDate,
-    info
-  } = product;
+  const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
+
 
   const sliderRef = useRef<SLIDER>(null);
-  const { count, handleCount, totalPrice } = useBasket({
-    adult_price,
-    baby_price,
-    kids_price
+  const { count, handleCount, totalPrice } = useBasketCount({
+    adult_price: product?.adult_price,
+    baby_price: product?.baby_price,
+    kids_price: product?.kids_price,
+    defaultCount: {
+      adult: 0,
+      baby: 0,
+      kids: 0
+    }
   });
-  const [authData, setAuthData] = useState<IAuthInfo>();
+
   const [sliderIndex, setSlideIndex] = useState(0);
   const { scrollY } = useScroll();
-  const { upKey, updateComponent } = useUpdate()
-  const [updateKey, setupdateKey] = useState(0);
   const tabOnCheck = tabCheck.bind(tabCheck, scrollY);
 
-  const router = useRouter();
 
   const { productDelete } = useProductDelete({
     onCompleted: ({
@@ -75,7 +73,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
     }
   })
 
-  const toWrite = () => router.push(`/tour/write/${_id}`)
+  const toWrite = () => router.push(`/tour/write/${product?._id}`)
 
   const handleEdit = () => {
     toWrite();
@@ -83,17 +81,8 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
 
   const handleDelete = () => {
     productDelete({
-      id: _id
+      id: product!._id
     })
-  }
-
-  const handleAuth = async () => {
-    const authInfo = await getAuth(1000);
-    setAuthData(authInfo);
-  }
-
-  const handlePay = () => {
-    window.jdPayStart();
   }
 
   const handleSliderMove = (index: number) => () => {
@@ -109,8 +98,8 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
     addItem({
       count,
       price: totalPrice,
-      name: title,
-      _id
+      name: product!.title,
+      _id: product!._id
     })
 
     if (count.adult + count.baby + count.kids === 0) {
@@ -120,29 +109,60 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
     }
   }
 
+  const handleQnaClick = (id: string) => () => {
+    router.push("/qna/view/" + id);
+  }
+
+  const handleDoPay = () => {
+    handleAddBracket()
+    router.push("/payment/")
+  }
+
+  useEffect(() => {
+    if (!product) return;
+  }, [product])
+
+
+  if (loading) return <PageLoading />
+  if (!product) return <Page404 />
+
+  const {
+    images,
+    keyWards,
+    adult_price,
+    baby_price,
+    kids_price,
+    title,
+    subTitle,
+    info,
+    startDate,
+    minMember,
+    maxMember,
+    startPoint,
+    itinerary,
+    contents,
+    inOrNor,
+    caution
+  } = product;
+
+
   return <div className="edtiorView">
-    <div style={{ display: "none" }}>
-      <button onClick={handleAuth}>AUTH</button>
-      {authData && <NiceElments {...getNiceElementForTest({
-        EdiDate: authData.ediDate,
-        MID: authData.mid,
-        hex: authData.hashString,
-      })} />}
-      {authData && <button onClick={handlePay}>COM</button>}
-    </div>
-    <SubTopNav children={
-      <>
-        <li className="homedeps1">
-          <Link href="/tour/">
-            <a>Tour</a>
-          </Link></li>
-        <li className="homedeps2">
-          <Link href="/tour/list">
-            <a >상품리스트</a>
-          </Link>
-        </li>
-      </>
-    } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/work_top_bg2.jpg'} />
+    <SubTopNav
+      pageTools={pageTools}
+      children={
+        <>
+          <li className="homedeps1">
+            <Link href="/tour/">
+              <a>Tour</a>
+            </Link></li>
+          <li className="homedeps2">
+            <Link href="/tour/list">
+              <a >상품리스트</a>
+            </Link>
+          </li>
+        </>
+      }
+    />
     <div className="tour_details_in w1200">
 
       <div className="Document">
@@ -154,7 +174,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                   <Slide key={i + "sliderImg"} >
                     <img src={img?.uri} alt={img.name} />
                   </Slide>
-                )}
+                ) || ""}
               </Slider>
             </div>
             <ul className="photo_list">
@@ -277,7 +297,7 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
                   </a>
                 </div>
                 <div className="link02">
-                  <a href="/">
+                  <a onClick={handleDoPay}>
                     예약하기
                   </a>
                 </div>
@@ -349,42 +369,17 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
               </div>
               <div className="tbody">
                 <ul>
-                  <li>
-                    <div className="th01">221</div>
-                    <div className="th02">궁금한게 있어요 :) <i className="q_ok">답변완료</i></div>
-                    <div className="th03">뀨이뀨이</div>
-                    <div className="th04">2020.02.02 11:00</div>
-                  </li>
-                  <li>
-                    <div className="th01">221</div>
-                    <div className="th02">궁금한게 있어요 :)<i className="q_no">답변중</i></div>
-                    <div className="th03">뀨이뀨이</div>
-                    <div className="th04">2020.02.02 11:00</div>
-                  </li>
-                  <li>
-                    <div className="th01">221</div>
-                    <div className="th02">궁금한게 있어요 :)<i className="q_ok">답변완료</i></div>
-                    <div className="th03">뀨이뀨이</div>
-                    <div className="th04">2020.02.02 11:00</div>
-                  </li>
-                  <li>
-                    <div className="th01">221</div>
-                    <div className="th02">궁금한게 있어요 :)<i className="q_ok">답변완료</i></div>
-                    <div className="th03">뀨이뀨이</div>
-                    <div className="th04">2020.02.02 11:00</div>
-                  </li>
+                  {questionSliced.map(qs =>
+                    <QnaLi onClick={handleQnaClick(qs._id)} key={qs._id} question={qs} />
+                  )}
                 </ul>
               </div>
               <div className="boardNavigation">
-                <div className="float_left">
-                  <div className="pagenate_mini">
-                    <div className="page_btn first"><i className="jandaicon-arr4-left" /></div>
-                    <div className="count"><strong>1</strong> / 10</div>
-                    <div className="page_btn end"><i className="jandaicon-arr4-right" /></div>
-                  </div>
-                </div>
+                <Paginater pageInfo={questionPageInfo} isMini setPage={setQuestionPage} />
                 <div className="float_right">
-                  <a href="" className="mini_btn small">고객센터 문의하기</a>
+                  <Link href={`/qna/write?pid=${id}&name=${title}`}>
+                    <a className="mini_btn small">고객센터 문의하기</a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -459,20 +454,6 @@ const TourDetail: React.FC<IProps> = ({ product }) => {
   </div >
 }
 
-const TourDetailWrap = () => {
-  const { query } = useRouter();
-  const id = query.id as string;
-  const { loading, product } = useProductFindById({
-    variables: {
-      _id: id
-    },
-    skip: !id
-  });
 
-  if (loading) return null
-  if (!product) return <Page404 />
 
-  return <TourDetail product={product} />
-}
-
-export default TourDetailWrap;
+export default TourDetail;

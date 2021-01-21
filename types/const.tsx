@@ -1,5 +1,17 @@
-import { IPageInfo } from "./interface"
-import { ItineraryCreateInput, ProductStatus, UserRole, } from "./api";
+import dayjs from "dayjs";
+import { IPageInfo, Ipopup } from "./interface"
+import { Fquestion_author_profileImg, ItineraryCreateInput, LinkBehavior, ProductStatus, UserRole, } from "./api";
+import { generateRandomStringCode } from "../utils/codeGenerator";
+
+export const DEFAULT_LOGO = "/img/logo_1.png";
+
+export const lastMonthFirstDate = dayjs().add(-1, "m").set("day", 1).toDate();
+export const lastMonthLastDate = dayjs().add(-1, "m").endOf("month").toDate();
+export const thisMonthLastDate = dayjs().endOf("month").toDate();
+export const thisMonthFirstDate = dayjs().startOf("month").toDate();
+export const oneYearBefore = dayjs().add(-1, "y").toDate();
+export const sixMonthBefore = dayjs().add(-6, "month").toDate();
+
 
 export const DEFAULTS = {
     logo: "src/img/logo_1.png",
@@ -7,6 +19,9 @@ export const DEFAULTS = {
 }
 
 export const BG = (url: string) => ({ backgroundImage: `url(${url})` })
+export const BGprofile = (profileImg: Fquestion_author_profileImg | null | undefined) => {
+    return BG(profileImg?.uri || DEFAULT_PROFILE_IMG);
+}
 
 export const Econvert = (status: ProductStatus) => {
 
@@ -54,7 +69,34 @@ export const DEFAULT_IT: ItineraryCreateInput = {
 }
 
 
-export const ADMINS = [UserRole.admin, UserRole.manager];
+export const ALLOW_ADMINS = [UserRole.admin, UserRole.manager];
+export const ALLOW_LOGINED = [UserRole.admin, UserRole.individual, UserRole.manager, UserRole.partner, UserRole.partnerB];
+export const ALLOW_FULLESS = [...ALLOW_LOGINED, UserRole.anonymous];
+export const ALLOW_SELLERS = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin];
 
-export const ONLY_LOGINED = [UserRole.admin, UserRole.individual, UserRole.manager, UserRole.partner, UserRole.partnerB];
-export const FULL_ACCESS = [...ONLY_LOGINED, UserRole.anonymous];
+export const DEFAULT_PROFILE_IMG = "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png";
+
+export const DEFAULT_PAGEINFO = {
+    pageInfo: {}, defaultPageInfo: {}, pageKey: ""
+}
+
+export const defaultModalGet: () => Ipopup = () => ({
+    __typename: "Modal",
+    isDelete: false,
+    _id: generateRandomStringCode(4),
+    content: "",
+    createdAt: new Date(),
+    endDate: new Date(),
+    link: "",
+    linkBehavior: LinkBehavior.blank,
+    startDate: new Date(),
+    style: {
+        height: 100,
+        left: 0,
+        top: 0,
+        width: 100,
+    },
+    title: "",
+    updatedAt: new Date(),
+    priority: 1
+})

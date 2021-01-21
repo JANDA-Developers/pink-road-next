@@ -13,3 +13,9 @@
 @import "./master.css";
 @import "./mypage.css";
 @import  "./editor.css";
+@import "./productSearcher.css";
+@import "./slider.css";
+@import "./component/categoryEditor.css";
+@import "./component/popupConfigViewBox.css";
+@import "./component/emailVerifi.css";
+@import "./paymentBtn.css";

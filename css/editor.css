@@ -331,6 +331,10 @@
     }
 }
 
+.ck-editor__editable {
+    line-height: initial;
+    min-height: 250px;
+}
 .ck-content:after {
     content: "";
     clear: both;

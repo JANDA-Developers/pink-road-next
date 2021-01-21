@@ -1,21 +1,33 @@
-import { TStieInfo } from "types/interface";
+import { TStieInfo } from "../types/interface";
 
-const info: TStieInfo = {
-    mainBg: {
+const info = {
+    m_01_mainBg1: {
         kr: `/img/pr_img_43.jpg`,
     },
-    mainLink1: {
+    m_01_mainLink1_1: {
         kr: `투어`,
     },
-    mainLink2: {
+    m_01_mainLink1_2: {
         kr: `체험`,
     },
-    title: {
+    m_01_title1: {
         kr: `PINKRODER ALLOWS PEOPLE, TIME, AND SPACE TO COESIST.`,
     },
-    subtitle: {
+    m_01_subtitle1: {
         kr: `사람과 시간과 공간들의 공존<br class="no" />
         핑크로더는 사라져가는 가치 있는 것 들을 위해 컨텐츠를 개발하고 소통합니다.`
+    },
+    m_01_mainBg2: {
+        kr: `/img/pr_img_40.jpg`,
+    },
+    m_01_mainLink2_1: {
+        kr: `회사소개서 다운로드`,
+    },
+    m_01_title2: {
+        kr: `THE COEXISTENCE OF PEOPLE, TIME AND SPACE. PINKROAD`,
+    },
+    m_01_subtitle2: {
+        kr: `PINKROADER 2021`
     },
     homedeps1: {
         kr: `Experience`
@@ -27,13 +39,17 @@ const info: TStieInfo = {
         kr: `목표로 삼고 나아가는 가치있는 생각 3가지`
     },
     purposeCircle1: { kr: `지속 가능한 <br class="no" />공간을 그리다` },
+    purposeCircle1_bg: { kr: `/img/pr_img_40.jpg` },
     purposeCircle1_en: { kr: `sustainable space` },
     purposeCircle2: { kr: `잊히지 않는 <br class="no" />시대를 그리다` },
+    purposeCircle2_bg: { kr: `/img/pr_img_41.jpg` },
     purposeCircle2_en: { kr: `unforgettable period` },
     purposeCircle3: { kr: `상생하는 <br class="no" />사람을 그리다 ` },
+    purposeCircle3_bg: { kr: `/img/pr_img_42.jpg` },
     purposeCircle3_en: { kr: `co-prosperity person` },
     busi_area_title: { kr: `Business Area` },
     busi_area1_title: { kr: `Brand Consulting` },
+    busi_area1_bg: { kr: `/img/pr_img_20.jpg` },
     busi_area1_desc: {
         kr: `진정성 있고 마음으로 공감할 수 있는
     브랜드 컨텐츠 스토리를 만듭니다.
@@ -43,6 +59,7 @@ const info: TStieInfo = {
     으로 공감할 수 있는 스토리텔링 기반
     종합 브랜드 컨설팅을 진행합니다.`},
     busi_area2_title: { kr: `Content R&D` },
+    busi_area2_bg: { kr: `/img/pr_img_23.jpg` },
     busi_area2_desc: {
         kr: `지역의 가치있는 문화를 발굴하고 연구
     하여 그에 맞는 새로운 컨텐츠를 개발
@@ -52,6 +69,7 @@ const info: TStieInfo = {
     고민합니다. 나아가 보존과 응용을 통해
     컨 텐 츠 에 비 전 을 담 습 니 다 .`},
     busi_area3_title: { kr: `Co-prosperity` },
+    busi_area3_bg: { kr: `/img/pr_img_22.jpg` },
     busi_area3_desc: {
         kr: `경제적, 환경적, 사회문화적 지속
     가능성을 모두 충족하는 여행컨텐츠를
@@ -61,6 +79,7 @@ const info: TStieInfo = {
     만듭니다. 자연을 보전하며 커뮤니티를
     통해 사람과 지역 모두가 상생합니다.`},
     busi_area4_title: { kr: `Social Design` },
+    busi_area4_bg: { kr: `/img/pr_img_33.jpg` },
     busi_area4_desc: {
         kr: `
     사회와 지역을 중심으로 한 디자인
@@ -72,9 +91,10 @@ const info: TStieInfo = {
 `},
     valuable_exp: { kr: `FAIR<br />TOUR` },
     valuable_exp_sub: { kr: `가치있는 체험` },
-    bottom_title: { kr: `<strong>우리는</strong>새로운 변화속에서 <strong>사회적 가치</strong>를 지키며 서로 <strong>상생</strong>하는 일을 합니다.` },
+    bottom_title: { kr: `<strong>우리는</strong>새로운 변화속에서 <strong>사회적 가치</strong>를<br/> 지키며 서로 <strong>상생</strong>하는 일을 합니다.` },
     bottom_desc: { kr: `We keep our social values in new changes and work together` },
-    bottom_bg_img: { kr: `/img/pr_img_12.jpg` },
+    bottom_bg_img: { kr: `/img/main_con_box5_bg.gif` },
+    bottom_ovj: { kr: `/img/main_con_box5_ovj.png` },
 }
 
 //html edit 기능에 의존하지말고  style 오브젝트를 넣으면 안될까? 

@@ -1,29 +1,36 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { LocalManager, Storage, initStorage } from 'utils/Storage';
-import pageInfo from 'info/login.json'
-import { Upload } from 'components/common/Upload';
-import { getEditUtils } from 'utils/pageEdit';
-import { AppContext } from './_app';
-import { BG } from '../types/const';
-import { signIn, signInVariables, UserRole } from 'types/api';
+import { Storage, initStorage } from 'utils/Storage';
+import { signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
 import Link from 'next/link';
-import { SIGN_IN } from '../apollo/gql/queries';
-interface IProp {
+import { Validater } from '../utils/validate';
+import { isEmail } from '../utils/validation';
+import { useLogin } from "../hook/useUser";
+import SubTopNav from '../layout/components/SubTop';
+import defaultPageInfo from "../info/login.json"
+import { usePageEdit } from '../hook/usePageEdit';
+import { getStaticPageInfo, Ipage } from '../utils/page';
+import { PageEditor } from '../components/common/PageEditer';
 
-}
-
-export const Login: React.FC<IProp> = () => {
-    const { editMode } = useContext(AppContext)
+export const getStaticProps = getStaticPageInfo("login")
+export const Login: React.FC<Ipage> = (pageInfo) => {
     const [saveId, setSaveId] = useState(false);
     const [saveSession, setSaveSession] = useState(false);
     const [userId, setId] = useState("");
     const [userPw, setPw] = useState("");
     const [userType, setUserType] = useState<UserRole>(UserRole.individual)
-    const [page, setPage] = useState(pageInfo);
-    const { edit, ulEdit, imgEdit } = getEditUtils(editMode, page, setPage);
+    const editTools = usePageEdit(pageInfo, defaultPageInfo)
+    const { getData } = useLogin({
+        onCompleted: ({ SignIn }) => {
+            if (SignIn.ok) {
+                Storage?.saveLocal("jwt", SignIn.data?.token || "");
+                location.href = "/"
+                alert("환영합니다.")
+            } else {
+                alert(SignIn.error)
+            }
+        },
+    })
     const router = useRouter();
 
     const sessionSave = () => {
@@ -36,15 +43,15 @@ export const Login: React.FC<IProp> = () => {
     // saveLocal("saveid", id);
     useEffect(() => {
         initStorage()
-        setId(Storage.getLocal("saveid", ""))
-        setSaveId(!!Storage.getLocal("saveId?", ""))
-        setSaveSession(!!Storage.getLocal("saveSession?", ""))
+        setId(Storage!.getLocal("saveid", ""))
+        setSaveId(!!Storage!.getLocal("saveId?", ""))
+        setSaveSession(!!Storage!.getLocal("saveSession?", ""))
     }, [])
 
 
     useEffect(() => {
-        Storage.saveLocal("saveid", saveId)
-        Storage.saveLocal("saveSession?", saveSession)
+        Storage?.saveLocal("saveid", saveId)
+        Storage?.saveLocal("saveSession?", saveSession)
 
     }, [saveId, saveSession])
 
@@ -54,60 +61,38 @@ export const Login: React.FC<IProp> = () => {
 
     const handleId = (id: string) => {
         setId(id);
-        console.log(userId);
     }
 
     const handlePw = (pw: string) => {
         setPw(pw);
-        console.log(userPw);
     }
 
-    const [LoginQu, { loading: create_loading }] = useLazyQuery<signIn, signInVariables>(SIGN_IN, {
-        fetchPolicy: "network-only",
-        onCompleted: ({ SignIn }) => {
-            if (SignIn.ok) {
-                Storage.saveLocal("jwt", SignIn.data.token);
-                toast.info("환영합니다.");
-                location.href = "/"
-            } else {
-                alert(SignIn.error)
-            }
-        },
-    })
+
+    const { validate } = new Validater([{
+        value: isEmail(userId),
+        failMsg: "이메일을 입력 해주세요"
+    }, {
+        value: userPw.length > 4,
+        failMsg: "패스워드를 입력 해주세요"
+    }])
 
     const handleLogin = () => {
-        LoginQu({
-            variables: {
-                email: userId,
-                pw: userPw,
-            }
-        })
+        if (!validate()) return;
+        const signInvar: signInVariables = {
+            email: userId,
+            pw: userPw,
+            hopeRole: userType
+        }
+
+        getData({ variables: signInvar as any });
     }
 
     return <div >
         <div className="top_visual">
-            <div
-                className="sub_header sub_bg"
-                style={BG(page.top_bg)}
-            >
-                <div className="w1200">
-                    <h2 className="title">로그인</h2>
-                    <p className="text">지금 여행을 떠나세요~!~~!!!!!</p>
-                </div>
-                <Upload onUpload={imgEdit("top_bg")} />
-            </div>
-            <div className="header_nav">
-                <ul>
-                    <li className="home">
-                        <a href="/main."></a>
-                    </li>
-                    <li className="homedeps1">Member</li>
-                    <li className="homedeps2">
-                        <a href="../login">로그인</a>
-                    </li>
-                </ul>
-            </div>
+            <SubTopNav pageTools={editTools} >
+            </SubTopNav>
         </div>
+        <PageEditor pageTools={editTools} />
         <div className="login_box">
             <div className="sign_in w1200">
                 <div className="inner">
@@ -163,6 +148,7 @@ export const Login: React.FC<IProp> = () => {
                             </h3>
                             <div className="form-group">
                                 <input
+                                    value={userId}
                                     type="text"
                                     name="user_id"
                                     id="uid"
@@ -175,6 +161,7 @@ export const Login: React.FC<IProp> = () => {
                             </div>
                             <div className="form-group">
                                 <input
+                                    value={userPw}
                                     type="password"
                                     name="password"
                                     id="upw"
@@ -206,13 +193,13 @@ export const Login: React.FC<IProp> = () => {
                             </button>
                             <div className="sign_in_form">
                                 <span>
-                                    <Link href="/join">
-                                        <a>회원가입</a>
+                                    <Link href="/member/join">
+                                        <a>회원가입<i className="jandaicon-arr4-right"></i></a>
                                     </Link>
                                 </span>
                                 <span>
                                     <Link href="/findmembers">
-                                        <a>아이디/비번찾기</a>
+                                        <a>아이디/비번찾기<i className="jandaicon-arr4-right"></i></a>
                                     </Link>
                                 </span>
                             </div>

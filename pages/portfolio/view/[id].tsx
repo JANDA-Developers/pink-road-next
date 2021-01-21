@@ -1,4 +1,3 @@
-import { usePortfolioFind } from 'hook/usePortfolioFind';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { IPortfolio } from 'types/interface';
@@ -7,6 +6,7 @@ import { useMutation } from '@apollo/client';
 import { portfolioDelete, portfolioDeleteVariables } from 'types/api';
 import Page404 from 'pages/404';
 import { PORTFOLIO_DELETE } from '../../../apollo/gql/portfolio';
+import { usePortfolioFind } from '../../../hook/usePortfolio';
 
 interface IProp {
     item: IPortfolio
@@ -14,7 +14,7 @@ interface IProp {
 
 export const PorfolioDetail: React.FC<IProp> = ({ item }) => {
     const router = useRouter();
-    const { title, subTitle, thumb, createdAt, updatedAt, contents, pCategory, summary, isDelete, _id } = item;
+    const { title, subTitle, thumb, createdAt, updatedAt, contents, category, summary, isDelete, _id } = item;
 
     const toDetail = () => {
         router.push(`/portfolio/write/${_id}`)
@@ -47,11 +47,10 @@ export const PorfolioDetail: React.FC<IProp> = ({ item }) => {
         content={contents}
         writer={"관리자"}
         title={title}
-        summary={summary || ""}
         onDelete={handleDelete}
         onEdit={toDetail}
         createAt={createdAt}
-        catName={pCategory?.label} />
+        catName={category?.label} />
 };
 
 

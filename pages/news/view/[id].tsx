@@ -11,7 +11,7 @@ interface IProp {
 
 export const NewsDetail: React.FC<IProp> = ({ item }) => {
     const router = useRouter();
-    const { title, thumb, createdAt, contents, summary, _id } = item;
+    const { title, thumb, createdAt, contents, _id, subTitle } = item;
 
     const toDetail = () => {
         router.push(`/news/write/${_id}`)
@@ -21,7 +21,7 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
     }
 
 
-    const { newsDelete } = useNewsDelete({
+    const [newsDelete] = useNewsDelete({
         onCompleted: ({ NewsDelete }) => {
             if (NewsDelete.ok) toList();
         }
@@ -30,7 +30,9 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
             newsDelete({
-                id: _id
+                variables: {
+                    id: _id
+                }
             })
     }
 
@@ -40,23 +42,22 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
         content={contents}
         writer={"관리자"}
         title={title}
-        summary={summary || ""}
+        subTitle={subTitle || ""}
         onDelete={handleDelete}
         onEdit={toDetail}
         createAt={createdAt}
     />
 };
 
-
 export const NewsDetailWrap: React.FC<IProp> = () => {
     const { query } = useRouter()
     const id = query.id as string;
-    const { news, loading } = useNewsFindById(id)
+    const { item, loading } = useNewsFindById(id)
 
     if (loading) return null;
-    if (!news) return <Page404 />;
+    if (!item) return <Page404 />;
 
-    return <NewsDetail item={news} />
+    return <NewsDetail item={item} />
 }
 
 export default NewsDetailWrap;

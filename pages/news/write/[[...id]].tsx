@@ -1,59 +1,118 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
-import {
-    NewsCreateInput,
-    pcategoryList_pCategoryList_data,
-    NewsUpdateInput,
-    NEWS_TYPE,
-    Fnews
-} from '../../../types/api';
-import { usePcategory } from "hook/usePcatList";
 import { BoardWrite } from "components/board/Write";
 import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
-import { toOps } from "../../../utils/formatter";
 import { omits } from "../../../utils/omit";
-import { useNewsCreate, useNewsDelete, useNewsUpdate, useNewsFindById } from "../../../hook/useNews";
-import { auth } from "../../../utils/with";
-import { ONLY_LOGINED } from "../../../types/const";
-import { getFromUrl } from "../../../utils/url";
-import Page404 from "../../404";
+import { auth, compose } from "../../../utils/with";
+import { ALLOW_LOGINED } from "../../../types/const";
+import { Fnews, NEWS_TYPE } from '../../../types/api';
+import { useNewsCreate, useNewsDelete, useNewsFindById, useNewsUpdate } from "../../../hook/useNews";
+import { usePortfolioFind } from "../../../hook/usePortfolio";
+import { AppContext } from "../../_app";
 
+const categoryOps = [{
+    label: "여행이야기",
+    _id: NEWS_TYPE.TRAVEL
+},
+{
+    label: "뉴스보도",
+    _id: NEWS_TYPE.MEDIA
+},
+{
+    label: "문화이야기",
+    _id: NEWS_TYPE.CULTURE
+}]
 interface IProp {
-    type: NEWS_TYPE;
-    context: ITourWriteWrapContext;
+    news: Fnews
 }
 
-export const NewsWrite: React.FC<IProp> = ({ context, type }) => {
+export const NewsWrite: React.FC<IProp> = () => {
     const router = useRouter();
-    const { createFn, news, mode, pcategories, updateFn, id, deleteFn } = context;;
+    const id = router.query.id?.[0] as string | undefined;
+    const { item: news } = useNewsFindById(id);
+    const mode = id ? "edit" : "create";
+
+
+    const goToView = (id: string) => {
+        router.push(`/news/view/${id}`)
+    }
+
+    const [newsUpdate] = useNewsUpdate({
+        awaitRefetchQueries: true,
+        onCompleted: ({ NewsUpdate }) => {
+            if (NewsUpdate.ok) {
+                const id = NewsUpdate.data!._id;
+                goToView(id)
+            }
+        },
+    })
+
+    const [newsCreate] = useNewsCreate({
+        awaitRefetchQueries: true,
+        onCompleted: ({ NewsCreate }) => {
+            if (NewsCreate.ok) {
+                const id = NewsCreate.data!._id;
+                goToView(id)
+            }
+        },
+    })
+
+    const [newsDelete] = useNewsDelete({
+        onCompleted: ({ NewsDelete }) => {
+            if (NewsDelete.ok)
+                router.push(`/news`)
+        },
+    })
+
     const boardHook = useBoard({
         ...news,
+        categoryId: news?.type
     });
+
     const { boardData, loadKey, loadKeyAdd, setBoardData, validater: { validate } } = boardHook
-    const categoryList = toOps(pcategories, "_id", "label");
 
     const handleUpdate = () => {
-        if (validate())
-            updateFn(id!, {
-                ...boardData,
-                type
-            })
+        if (!validate()) return;
+
+        const params = {
+            ...boardData,
+            type: boardData.categoryId as NEWS_TYPE
+        }
+
+        newsUpdate({
+            variables: {
+                params: omits(params, ["categoryId", "files"]),
+                id: id!
+            }
+        })
     }
 
     const handleDelete = () => {
-        deleteFn(id!);
+        if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
+            newsDelete({
+                variables: {
+                    id: id!
+                }
+            })
     }
 
     const handleCreate = () => {
-        if (validate()) {
-            const next = omits({
-                ...boardData,
-                content: boardData.contents,
-                type
-            }, ["content", "categoryId"])
-            createFn(next)
+        if (!validate()) return;
+
+        const createParams = {
+            ...boardData,
+            content: boardData.contents,
+            type: boardData.categoryId as NEWS_TYPE
         }
+
+        const next = omits(createParams, ["contents", "categoryId"])
+
+        newsCreate({
+            variables: {
+                params: omits(next, ["categoryId", "files"])
+            }
+        })
     }
 
     const handleTempSave = () => {
@@ -81,13 +140,14 @@ export const NewsWrite: React.FC<IProp> = ({ context, type }) => {
         key={loadKey}
         mode={mode}
         onCancel={handleCancel}
-        categoryList={categoryList}
+        categoryList={categoryOps}
         onCreate={handleCreate}
         onDelete={handleDelete}
         onEdit={handleUpdate}
         onSave={handleTempSave}
         onLoad={handleLoad}
         opens={{
+            category: true,
             summary: true,
             thumb: true,
             title: true
@@ -96,103 +156,13 @@ export const NewsWrite: React.FC<IProp> = ({ context, type }) => {
 };
 
 
-export type TCreateFn = (params: NewsCreateInput) => void;
-export type TUpdateFn = (id: string, params: NewsUpdateInput) => void;
-export type TDeleteFn = (id: string) => void;
-
-interface IProp {
-    mode?: "edit" | "create"
-}
-
-interface ITourWriteWrapContext {
-    createFn: TCreateFn;
-    updateFn: TUpdateFn;
-    deleteFn: TDeleteFn;
-    news?: Fnews;
-    pcategories: pcategoryList_pCategoryList_data[];
-    findLoading: boolean;
-    createLoading: boolean;
-    mode: "create" | "edit"
-    id?: string;
-}
+export default auth(ALLOW_LOGINED)(NewsWrite)
 
 
-//수정하고 나면 수정한 내용을 그대로 덮어버리면 안됨. 핑크로드의 승인이 필요함.
-export const NewsWriteWrap: React.FC<IProp> = () => {
-    const router = useRouter(); // => 넥스트에서는 변경
-    const id = router.query.id?.[0] as string | undefined;
-    const type = getFromUrl("type")?.toUpperCase();
-    if (!type) return <Page404 />
 
 
-    const { newsUpdate, updateLoading } = useNewsUpdate({
-        onCompleted: ({ NewsUpdate }) => {
-            if (NewsUpdate.ok) {
-                const id = NewsUpdate.data!._id;
-                router.push(`/news/view/${id}`)
-            }
-        },
-        awaitRefetchQueries: true
-    })
-
-    const { newsCreate, createLoading } = useNewsCreate({
-        onCompleted: ({ NewsCreate }) => {
-            if (NewsCreate.ok) {
-                const id = NewsCreate.data!._id;
-                router.push(`/news/view/${id}`)
-            }
-        },
-        awaitRefetchQueries: true
-    })
-
-    const { newsDelete } = useNewsDelete({
-        onCompleted: ({ NewsDelete }) => {
-            if (NewsDelete.ok)
-                router.push(`/news`)
-        },
-    })
-
-    const { news, loading: findLoading } = useNewsFindById(id);
-
-    const { pcategories, loading: pcategoryLoading } = usePcategory();
-
-    const createFn: TCreateFn = (params: NewsCreateInput) => {
-        newsCreate({
-            params: omits(params, ["categoryId", "files"])
-        })
-    }
-
-    const deleteFn: TDeleteFn = (id: string) => {
-        if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
-            newsDelete({
-                id
-            })
-    }
-
-    const updateFn = (id: string, params: NewsUpdateInput) => {
-        newsUpdate({
-            params: omits(params, ["categoryId", "files"]),
-            id
-        })
-    }
-
-    if (createLoading || findLoading) return null;
-
-    const context: ITourWriteWrapContext = {
-        createFn,
-        updateFn,
-        deleteFn,
-        news,
-        findLoading,
-        createLoading,
-        pcategories,
-        mode: !id ? "create" : "edit",
-        id
-    }
-
-    if (findLoading || pcategoryLoading) return null;
-    return <NewsWrite type={type as NEWS_TYPE} context={context} />;
-};
-
-
-export default auth(NewsWriteWrap)(ONLY_LOGINED);
+// UI 컴포넌트 문제 => 지금은 해결이 불가능함, 다음 작업이 생기면 예기를 해서 구조화를 잡아야할것
+// 게시판문제 => 지금 형식이 아예 단점만 있는건 아니므로 유지
+// 문제 복사형태 지금 맡은 2개의 프로젝트는 어차피 도화지였음!! 내가 결국에는 하나씩 맞춰 주는 수 밖에 없음
+// 배포문제 : 지금 하고있잖음 ㅋ 
+2

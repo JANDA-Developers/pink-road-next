@@ -1,38 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const F_QUESTION = gql`
-    fragment Fcategory on Question {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        title
-        contents
-        author
-        isNotice
-        isOpen
-        summary
-        subTitle
-        keyWards
-        attachFiles
-        thumb
-        viewCount
-        likeCount
-        ProductId
-        status
-        no
-    }
-`
 
-export const F_CATEGORY = gql`
-    fragment Fcategory on Category {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        label
-    }
-`
 export const F_FILE = gql`
     fragment Ffile on File {
         name
@@ -41,10 +9,14 @@ export const F_FILE = gql`
     }
 `
 
+
 export const F_BOOKING = gql`
     fragment Fbooking on Booking {
         _id
         createdAt
+        cancelDate
+        gender
+        age
         updatedAt
         isDelete
         adultCount
@@ -52,18 +24,127 @@ export const F_BOOKING = gql`
         babyCount
         totalCount
         message
+        bookingPrice
         status
         memo
         code
-        product {
-            _id
-            title
-        }
+        groupCode
         name
         email
         phoneNumber
+        isPaid
     }
 `
+
+export const F_ITINERARY = gql`
+    fragment Fitinerary on Itinerary  {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        title
+        contents
+        images {
+            ...Ffile
+        }
+        date
+    }
+    ${F_FILE}
+`
+
+
+export const F_PRODUCT = gql`
+    fragment Fproduct on Product {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        title
+        code
+        contents
+        determined
+        endDate
+        dateRange
+        adminMemo
+        category {
+            _id
+            label
+        }
+        bookerSummary {
+            adultCount
+            babyCount
+            kidsCount
+            completePeople
+            readyPoeple
+            cancelCompletePeople
+            cancelPeople
+        }
+        status
+        itinerary {
+            ...Fitinerary
+        }
+        inOrNor
+        info
+        caution
+        images {
+            ...Ffile
+        }
+        keyWards
+        address
+        startPoint
+        maxMember
+        minMember
+        subTitle
+        adult_price
+        bookingCount
+        kids_price
+        compeltePeopleCnt
+        baby_price
+        isNotice
+        isOpen
+        type
+        startDate
+        Dday
+    }
+    ${F_FILE}
+    ${F_ITINERARY}
+`
+
+export const F_PAYMENT = gql`
+    fragment Fpayment  on Payment  {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        payMethod
+        status
+        price
+        totalCancelPrice
+        cancelDate
+        isPartialCancel
+        groupCode
+        history {
+            status
+            price
+            metadata
+            createdAt
+            updatedAt
+        }
+    }
+`
+
+
+export const F_CATEGORY = gql`
+    fragment Fcategory on Category {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        label
+        type
+    }
+`
+
 
 export const F_USER = gql`
     fragment Fuser  on User  {
@@ -73,6 +154,8 @@ export const F_USER = gql`
         updatedAt
         isDelete
         email
+        manageName
+        connectionCount
         role
         brith_date
         address
@@ -81,10 +164,13 @@ export const F_USER = gql`
         acceptEamil
         is_froreginer
         busi_contact
+        manageContact
+        resignDate
         gender
         busi_num
         busi_department
-        isVerifiedPhoneNumber,
+        isVerifiedManager
+        isVerifiedPhoneNumber
         busiRegistration {
             ...Ffile
         },
@@ -94,36 +180,16 @@ export const F_USER = gql`
         account_number
         name
         bank_name
+        resignReason
+        isResigned
         phoneNumber
+        manageName
+        profileImg {
+            uri
+        }
+        busi_department
     }
     ${F_FILE}
-`
-
-export const F_PORTFOLIO = gql`
-    fragment Fportfolio on Portfolio {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        title
-        isOpen
-        keyWards
-        summary
-        subTitle
-        contents
-        author {
-            ...Fuser
-        }
-        thumb {
-            ...Ffile
-        }
-        pCategory {
-            _id
-            label
-        }
-    }
-    ${F_FILE}
-    ${F_USER}
 `
 
 export const F_PAGE_INFO = gql`
@@ -153,68 +219,19 @@ export const F_PAGE = gql`
     }
 `
 
-
-
-export const F_ITINERARY = gql`
-    fragment Fitinerary on Itinerary  {
+export const F_GROUP = gql`
+    fragment Fgroup on Group {
         _id
         createdAt
         updatedAt
         isDelete
-        title
-        contents
-        images {
-            ...Ffile
+        target
+        key
+        label
+        members
+        tags {
+            key
+            value
         }
-        date
     }
-    ${F_FILE}
-`
-
-export const F_PRODUCT = gql`
-    fragment Fproduct on Product {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        title
-        code
-        contents
-        author {
-            ...Fuser
-        }
-        category {
-            _id
-            label
-        }
-        status
-        itinerary {
-            ...Fitinerary
-        }
-        inOrNor
-        info
-        caution
-        images {
-            ...Ffile
-        }
-        keyWards
-        address
-        startPoint
-        maxMember
-        minMember
-        subTitle
-        adult_price
-        bookingCount
-        kids_price
-
-        baby_price
-        isNotice
-        isOpen
-        type
-        startDate
-        Dday
-    }
-    ${F_FILE}
-    ${F_USER}
-    ${F_ITINERARY}
 `

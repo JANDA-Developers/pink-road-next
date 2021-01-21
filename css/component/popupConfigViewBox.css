@@ -1,0 +1,29 @@
+.popupConfigViewBox {
+    
+}
+
+.dragBox__in {
+    border: 2px solid #ddd;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 1px 0 0 hsl(0, 0%, 77%);
+    background-color: white;
+}
+
+.dragBox__handle {
+    height: 14px;
+    line-height: 1;
+    color: white;
+    padding: 4px;
+    background-color: black;
+    cursor: move;
+}
+
+.dragBox--selected {
+}
+/* 
+.dragBox__content {
+    position: absolute;
+    transform: scale(.5);
+    transform-origin: 0% 0%;
+} */

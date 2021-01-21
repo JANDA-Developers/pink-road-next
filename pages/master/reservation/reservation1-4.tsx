@@ -5,6 +5,7 @@ import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
 import ReactTooltip from 'react-tooltip';
+import { ResvTopNav } from '../../../components/topNav/MasterTopNav';
 
 interface IProp { }
 
@@ -24,14 +25,7 @@ export const MsReservationC: React.FC<IProp> = () => {
         <div className="in ">
             <h4>예약관리</h4>
             <div className="in_content">
-                <div className="tab-nav">
-                    <ul>
-                        <li><Link href="/master/reservation"><a>예약·결제관리</a></Link></li>
-                        <li><Link href="/master/reservation/reservation1-2"><a>취소·환불관리</a></Link></li>
-                        <li><Link href="/master/reservation/reservation1-3"><a>매출·정산관리</a></Link></li>
-                        <li className="on"><Link href="/master/reservation/reservation1-4"><a>예약수기등록관리</a></Link></li>
-                    </ul>
-                </div>
+                <ResvTopNav />
                 <div className="con reservation add">
                     <div className="con_box_top pb5">
                         <div className="top_info_number">
@@ -95,7 +89,7 @@ export const MsReservationC: React.FC<IProp> = () => {
                                 <div className="search_div">
                                     <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
                                     <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                        <img src="/img/svg/search_icon.svg" alt="search icon" />
                                         <button />
                                     </div>
                                 </div>
@@ -129,7 +123,7 @@ export const MsReservationC: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="reservation_list ln07">
+                    <div className="master__table">
                         <div className="thead">
                             <div className="t01">
                                 <span className="checkbox">
@@ -253,7 +247,7 @@ export const MsReservationC: React.FC<IProp> = () => {
 
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
 
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">전체선택</button>
                             </div>

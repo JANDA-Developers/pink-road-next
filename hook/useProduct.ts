@@ -1,21 +1,23 @@
-import { MutationHookOptions, useMutation } from "@apollo/client";
-import { getOperationName } from "@apollo/client/utilities";
-import { PRODUCT_POST_DELETE, PRODUCT_POST_LIST } from "../apollo/gql/product";
-import { productDelete, productDeleteVariables } from "../types/api";
+import { MutationHookOptions, useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import { PRODUCT_FIND_BY_ID_FOR_SELLER, PRODUCT_POST_DELETE, PRODUCT_LIST, ACCEPT_PRODUCT_CREATE, ACCEPT_PRODUCT_UPDATE, REJECT_PRODUCT_UPDATE, REJECT_PRODUCT_CREATE } from "../apollo/gql/product";
+import { acceptProductCreate, acceptProductCreateVariables, acceptProductUpdate, acceptProductUpdateVariables, bookingList, bookingListVariables, bookingList_BookingList_data, productDelete, productDeleteVariables, productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data, productFindById_ProductFindById_data, productList_ProductList_data, rejectProductCreate, rejectProductCreateVariables, rejectProductUpdate, rejectProductUpdateVariables, _BookingFilter, _BookingSort, _PortfolioFilter } from "../types/api";
 import { productFindById, productFindByIdVariables } from "../types/api";
-import { IproductFindById } from "../types/interface";
-import { QueryHookOptions, useQuery } from "@apollo/client"
+import { IlistQueryInit, IproductFindById } from "../types/interface";
+import { QueryHookOptions } from "@apollo/client"
 import { PRODUCT_FIND_BY_ID } from "../apollo/gql/product";
 import { Fpage, Fproduct, productList, productListVariables, _PortfolioSort, _ProductFilter, _ProductSort } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
-import { IListHook, ListInitOptions, useListQuery } from "./useListQuery";
+import { IListHook, useListQuery } from "./useListQuery";
 import { PRODUCT_POST_UPDATE } from "../apollo/gql/product";
 import { productUpdate, productUpdateVariables } from "../types/api";
-
+import { getRefetch } from "../utils/api";
+import { useEffect } from "react";
+import { generateFindQuery, generateListQueryHook, generateMutationHook } from "../utils/query";
+import { BOOKING_LIST } from "../apollo/gql/booking";
 
 export const useProductDelete = (options?: MutationHookOptions<productDelete,productDeleteVariables>) => {
     const [productUpdateMu, { loading: deleteLoading }] = useMutation<productDelete, productDeleteVariables>(PRODUCT_POST_DELETE, {
-        refetchQueries: [getOperationName(PRODUCT_POST_LIST), getOperationName(PRODUCT_FIND_BY_ID) || ""],
+        ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
         ...options
     });
     
@@ -32,79 +34,22 @@ export const useProductDelete = (options?: MutationHookOptions<productDelete,pro
     return {productDelete, deleteLoading}
 }
 
+export const useProductFindById = generateFindQuery<productFindById, productFindByIdVariables, productFindById_ProductFindById_data>("_id",PRODUCT_FIND_BY_ID);
+export const useProductFindByIdForSeller = generateFindQuery<productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data>("_id", PRODUCT_FIND_BY_ID_FOR_SELLER);
 
-
-export interface IUseProductFindById {
-    product?: IproductFindById;
-    loading: boolean;
-}
-export interface IuseProductFindByIdProp extends QueryHookOptions<productFindById,productFindByIdVariables> {
-}
-
-export const useProductFindById = ({
-    ...options
-}:IuseProductFindByIdProp):IUseProductFindById => {
-    const { data, loading } = useQuery<productFindById, productFindByIdVariables>(PRODUCT_FIND_BY_ID, {
-        ...options,
-        nextFetchPolicy: "network-only",
-        onCompleted: ({ProductFindById})=> {
-            if(!ProductFindById.ok) {
-                console.error(data?.ProductFindById.error);
-                alert("잘못된 접근 입니다.");
-            }
-        }
-    })
-
-    const product = data?.ProductFindById?.data || undefined
-    
-    return { product, loading }
-}
-
-interface IuseItemListProp extends Partial<ListInitOptions<_ProductFilter, _ProductSort>> {
-    options?: QueryHookOptions<productList, productListVariables>
-}
-
+export interface IproductListInit extends IlistQueryInit<_ProductFilter,_ProductSort,productList,productListVariables> {}
 export interface IuseProductList extends IListHook<_ProductFilter, _ProductSort> {
     items: Fproduct[];
     getLoading: boolean;
     pageInfo: Fpage;
 }
 
-
-export const useProductList = ({
-    initialPageIndex = 1,
-    initialSort = [_ProductSort.createdAt_desc],
-    initialFilter = {},
-    initialViewCount = 20,
-    options = {}
-}:IuseItemListProp = {}):IuseProductList => {
-    const { variables: overrideVariables, ...ops } = options;
-    const {filter,integratedVariable,setFilter,setPage,setSort,setViewCount,sort,viewCount} = useListQuery({
-        initialFilter,
-        initialPageIndex,
-        initialSort,
-        initialViewCount
-    });
-    const { data, loading:getLoading } = useQuery<productList, productListVariables>(PRODUCT_POST_LIST, {
-        nextFetchPolicy: "cache-and-network",
-        variables: {
-            ...integratedVariable,
-            ...overrideVariables
-        },
-        ...ops
-    })
-    
-    const items = data?.ProductList.data || [];
-    const pageInfo = data?.ProductList.page || DEFAULT_PAGE;
-    
-    return { pageInfo, filter, setPage, getLoading, setFilter, setSort, setViewCount, sort, viewCount, items }
-}
-
+export const useProductList = generateListQueryHook<_ProductFilter, _ProductSort, productList, productListVariables, productList_ProductList_data>(PRODUCT_LIST,{initialSort: [_ProductSort.createdAt_desc]});
 
 export const useProductUpdate = (options?: MutationHookOptions<productUpdate,productUpdateVariables>) => {
     const [productUpdateMu, { loading: updateLoading }] = useMutation<productUpdate, productUpdateVariables>(PRODUCT_POST_UPDATE, {
-        refetchQueries: [getOperationName(PRODUCT_POST_LIST), getOperationName(PRODUCT_FIND_BY_ID)],
         awaitRefetchQueries:true,
+        ...getRefetch(PRODUCT_LIST,PRODUCT_FIND_BY_ID),
         ...options
     });
     
@@ -120,3 +65,8 @@ export const useProductUpdate = (options?: MutationHookOptions<productUpdate,pro
 
     return {productUpdate, updateLoading}
 }
+
+export const useAcceptCreateProduct = generateMutationHook<acceptProductCreate,acceptProductCreateVariables>(ACCEPT_PRODUCT_CREATE);
+export const useAcceptUpdateProduct = generateMutationHook<acceptProductUpdate,acceptProductUpdateVariables>(ACCEPT_PRODUCT_UPDATE);
+export const useRejectCreateProduct = generateMutationHook<rejectProductCreate,rejectProductCreateVariables>(REJECT_PRODUCT_CREATE);
+export const useRejectUpdateProduct = generateMutationHook<rejectProductUpdate,rejectProductUpdateVariables>(REJECT_PRODUCT_UPDATE);

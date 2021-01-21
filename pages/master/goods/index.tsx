@@ -1,10 +1,24 @@
 import { MasterLayout } from 'layout/MasterLayout';
-import { Paginater } from 'components/common/Paginator';
 import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
-import CalendarIcon from 'components/common/icon/CalendarIcon';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from "next/link";
-import ReactTooltip from 'react-tooltip';
+import { useProductList } from '../../../hook/useProduct';
+import { yyyymmdd } from '../../../utils/yyyymmdd';
+import { generateSearchLink } from '../../search';
+import { getTypeTextOfProduct } from '../../../utils/product';
+import { PordStatusBadge } from '../../../components/Status/StatusBadge';
+import { useCustomCount } from '../../../hook/useCount';
+import { useDateFilter } from '../../../hook/useSearch';
+import { MasterSearchBar } from '../../../components/master/MasterSearchBar';
+import { openModal } from '../../../utils/popUp';
+import { MasterAlignMent } from '../../../components/master/MasterAlignMent';
+import { useIdSelecter } from '../../../hook/useIdSelecter';
+import { getExcelByProduct } from '../../../utils/getExcelData';
+import { ProductModal } from '../../../components/productModal/ProductModal';
+import { GoodsTopNav } from '../../../components/topNav/MasterTopNav';
+import { BookingStatus, ProductStatus } from '../../../types/api';
+import { SingleSortSelect } from '../../../components/common/SortSelect';
+import { useSingleSort } from '../../../hook/useSort';
 
 interface IProp { }
 
@@ -43,118 +57,129 @@ const popupClose2 = () => {
     });
 }
 export const MsGoodsMain: React.FC<IProp> = () => {
+    const { items, filter, setFilter, setSort, sort, viewCount, setViewCount, setUniqFilter } = useProductList();
+    const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({ filter, setFilter });
+    const { selectAll, toggleAll, isAllSelected, isChecked, toggle } = useIdSelecter(items.map(item => item._id));
+    const singleSort = useSingleSort(sort, setSort)
+
+    const [popProductId, setPopProductId] = useState("");
+
+    const {
+        totalProductCountMaster,
+        openProductCountMaster,
+        cancelProductCountMaster,
+        compeltedProductCountMaster,
+        refusedCountMaster,
+        productRegistCount,
+        updateRequestRefuseCountMaster,
+        compeltedBookingCountMaster,
+        undeterMinedProductCountMaster,
+        determiendProductCountMaster,
+        createRequestCountMaster,
+        updateRequestCountMaster
+    } = useCustomCount([
+        "createRequestCountMaster",
+        "totalProductCountMaster",
+        "refusedCountMaster",
+        "compeltedProductCountMaster",
+        "totalProductCountMaster",
+        "openProductCountMaster",
+        "cancelProductCountMaster",
+        "compeltedProductCountMaster",
+        "updateRequestCountMaster",
+        "updateRequestRefuseCountMaster"
+    ]);
+
+    const handleOpen = (id: string) => () => {
+        setPopProductId(id);
+        setTimeout(() => {
+            openModal("#ProductModal")()
+        }, 1000)
+    }
+
+    const handleOpenWrite = () => {
+
+    }
+
+    const doSearch = () => {
+
+    }
+
+    const setType = (status?: ProductStatus) => () => {
+        setUniqFilter("status_eq", ["status_eq", "determined_eq"], status)
+    }
+
+    const setDetermine = (isDetermined: boolean) => () => {
+        setUniqFilter("determined_eq", ["status_eq", "determined_eq"], isDetermined)
+    }
+
+    const checkOnDetermined = (isDetermined: boolean) => isDetermined === filter.determined_eq ? "on" : "";
+    const checkOnStatus = (status?: ProductStatus) => status === filter.status_eq ? "on" : "";
+
     return <MasterLayout>
         <div className="in ">
             <h4>상품관리</h4>
             <div className="in_content">
-
-                <div className="tab-nav">
-                    <ul>
-                        <li className="on"><Link href="/master/goods"><a>상품관리</a></Link></li>
-                        <li><Link href="/master/goods/goods1-2"><a>카테고리설정</a></Link></li>
-
-                    </ul>
-                </div>
+                <GoodsTopNav />
                 <div className="con goods">
                     <div className="con_box_top pb5">
                         <div className="top_info_number">
                             <ul className="ln4">
                                 <li>
-                                    <strong>234</strong>
+                                    <strong>{totalProductCountMaster}</strong>
                                     <span>전체</span>
                                 </li>
                                 <li>
-                                    <strong>234</strong>
+                                    <strong>{openProductCountMaster || 0}</strong>
                                     <span>판매중</span>
                                 </li>
                                 <li>
-                                    <strong>234</strong>
+                                    <strong>{cancelProductCountMaster}</strong>
                                     <span>판매중지</span>
                                 </li>
                                 <li>
-                                    <strong>234</strong>
+                                    <strong>{compeltedProductCountMaster}</strong>
                                     <span>판매완료</span>
                                 </li>
                             </ul>
                         </div>
-                        <div className="search_top">
-                            <div className="hang">
-                                <ul className="day_ul">
-                                    <li className="on">
-                                        <span>이번달</span>
-                                    </li>
-                                    <li className="on">
-                                        <span>저번달</span>
-                                    </li>
-                                    <li>
-                                        <span>6개월</span>
-                                    </li>
-                                    <li>
-                                        <span>1년</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="hang">
-                                <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                                    ~
-                                    <div className="input_box">
-                                    <input type="text" className="day w100" />
-                                    <CalendarIcon />
-                                </div>
-                            </div>
-                            <div className="hang fr">
-                                <select className="option">
-                                    <option>상품명</option>
-                                    <option>상품번호</option>
-                                </select>
-                                <div className="search_div">
-                                    <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
-                                    <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
-                                        <button />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="alignment">
-                            <div className="left_div">
+                        <MasterSearchBar onDateChange={hanldeCreateDateChange} Option={
+                            <select className="option">
+                                <option>상품명</option>
+                                <option>상품번호</option>
+                            </select>
+                        } defaultRange={{}} doSearch={doSearch} filterEnd={filterEnd} filterStart={filterStart} />
+                        <MasterAlignMent
+                            LeftDiv={
                                 <ul className="board_option">
-                                    <li className="on"><a href="/">전체<strong>46</strong></a></li>
-                                    <li><a href="/">출발확정<strong>23</strong></a></li>
-                                    <li><a href="/">출발미확정<strong>23</strong></a></li>
-                                    <li><a href="/">여행취소<strong>23</strong></a></li>
-                                    <li><a href="/">기획요청<strong>23</strong></a></li>
-                                    <li><a href="/">기획반려<strong>23</strong></a></li>
+                                    <li onClick={setType(undefined)} className={checkOnStatus(undefined)}><a>전체<strong>{totalProductCountMaster}</strong></a></li>
+                                    <li onClick={setDetermine(true)} className={checkOnDetermined(true)}><a>출발확정<strong>{determiendProductCountMaster}</strong></a></li>
+                                    <li onClick={setDetermine(false)} className={checkOnDetermined(false)}><a>미확정<strong>{undeterMinedProductCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.OPEN)} className={checkOnStatus(ProductStatus.OPEN)}><a>판매중<strong>{openProductCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.CANCELD)} className={checkOnStatus(ProductStatus.CANCELD)}><a>여행취소<strong>{cancelProductCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.READY)} className={checkOnStatus(ProductStatus.READY)}><a>기획요청<strong>{createRequestCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.REFUSED)} className={checkOnStatus(ProductStatus.REFUSED)}><a>기획반려<strong>{refusedCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.UPDATE_REQ)} className={checkOnStatus(ProductStatus.UPDATE_REQ)}><a>수정요청<strong>{updateRequestCountMaster}</strong></a></li>
+                                    <li onClick={setType(ProductStatus.UPDATE_REQ_REFUSED)} className={checkOnStatus(ProductStatus.UPDATE_REQ_REFUSED)}><a>수정반려<strong>{updateRequestCountMaster}</strong></a></li>
                                 </ul>
-                            </div>
-                            <div className="right_div">
-                                <ul className="board_option">
-                                    <li><a href="/">전체선택</a></li>
-                                    <li><a href="/">엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a></li>
-                                    <li><a href="/">신규여행작성</a></li>
-                                </ul>
-                                <select className="sel01">
-                                    <option>출발일 &uarr;</option>
-                                    <option>출발일 &darr;</option>
-                                    <option>등록일 &uarr;</option>
-                                    <option>등록일 &darr;</option>
-                                </select>
-                                <select className="sel02">
-                                    <option>10개 보기</option>
-                                    <option>50개 보기</option>
-                                    <option>100개 보기</option>
-                                </select>
-                            </div>
-                        </div>
+                            }
+                            Sort={
+                                <SingleSortSelect {...singleSort} />
+                            }
+                            excelData={getExcelByProduct(items)}
+                            viewCount={viewCount}
+                            setViewCount={setViewCount}
+                            handleSelectAll={selectAll}
+                            rightDiv={
+                                <li onClick={handleOpenWrite}><a>신규여행작성</a></li>
+                            }
+                        />
                     </div>
-                    <div className="con_box_body">
+                    <div className="con_box_body master__table">
                         <div className="list_head">
                             <div className="td01">
                                 <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                    <input onChange={toggleAll} checked={isAllSelected} type="checkbox" name="agree" id="agree0" title="전체선택" />
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
@@ -167,394 +192,31 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             <div className="td08">상태</div>
                             <div className="td09">상세보기</div>
                         </div>
-                        <div className="list_line">
-                            <div className="td01">
-                                <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                    <label htmlFor="agree0" />
-                                </i>
-                            </div>
-                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
-                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
-                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
-                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
-                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
-                            <div className="td08"><span className="state_icon tour-ok">출발확정</span></div>
-                            <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
-                        </div>
-                        <div className="list_line">
-                            <div className="td01">
-                                <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                    <label htmlFor="agree0" />
-                                </i>
-                            </div>
-                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
-                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
-                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
-                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
-                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
-                            <div className="td08"><span className="state_icon tour-yes">출발미확정</span></div>
-                            <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
-                        </div>
 
-                        <div className="list_line">
-                            <div className="td01">
-                                <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                    <label htmlFor="agree0" />
-                                </i>
+                        {items.map((item) =>
+                            <div key={item._id} className="list_line">
+                                <div className="td01">
+                                    <i className="checkbox">
+                                        <input onChange={() => { toggle(item._id) }} checked={isChecked(item._id)} type="checkbox" name="agree" id="agree0" title="선택" />
+                                        <label htmlFor="agree0" />
+                                    </i>
+                                </div>
+                                <div className="td02"><i className="m_title">카테고리:</i>{item.category?.label}</div>
+                                <div className="td03"><i className="m_title">상품번호:</i>{item.code}</div>
+                                <div className="td04"><Link href={generateSearchLink({ title: item.title })}><a> {item.title}</a></Link></div>
+                                <div className="td05"><i className="m_title">여행일:</i>{yyyymmdd(item.createdAt)}</div>
+                                <div className="td06"><i className="m_title">인원:</i> {item.compeltePeopleCnt}/{item.maxMember}</div>
+                                <div className="td07"><i className="m_title">형태:</i>{getTypeTextOfProduct(item.type, item.dateRange)}</div>
+                                <div className="td08"><PordStatusBadge status={item.status} /> </div>
+                                <div className="td09"><button onClick={handleOpen(item._id)} className="btn small">상세보기</button></div>
                             </div>
-                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
-                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
-                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
-                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
-                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
-                            <div className="td08"><span data-tip="사유: 태풍이 옴" className="state_icon tour-no">여행취소</span></div>
-                            <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
-                        </div>
-
-                        <div className="list_line">
-                            <div className="td01">
-                                <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                    <label htmlFor="agree0" />
-                                </i>
-                            </div>
-                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
-                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
-                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
-                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
-                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
-                            <div className="td08"><span data-tip="사유: 사진이 깨짐" className="state_icon plainning-no">기획반려</span></div>
-                            <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
-                        </div>
-
-                        <div className="list_line">
-                            <div className="td01">
-                                <i className="checkbox">
-                                    <input type="checkbox" name="agree" id="agree0" title="선택" />
-                                    <label htmlFor="agree0" />
-                                </i>
-                            </div>
-                            <div className="td02"><i className="m_title">카테고리:</i>문화/체험</div>
-                            <div className="td03"><i className="m_title">상품번호:</i>PK-34234</div>
-                            <div className="td04">떠나요~ 거제도~ 둘이서~~~!!!~~~~~~~~!!~!!!~!!!!!!~~!!!!~~!!~!!~!!~!</div>
-                            <div className="td05"><i className="m_title">여행일:</i>2020.01.03</div>
-                            <div className="td06"><i className="m_title">인원:</i>10/22</div>
-                            <div className="td07"><i className="m_title">형태:</i>당일여행(1일)</div>
-                            <div className="td08"><span className="state_icon plainning-yes">기획요청</span></div>
-                            <div className="td09"><button onClick={popupOpen} className="btn small">상세보기</button></div>
-                        </div>
-
-                        {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
-
-                        <div className="fin">
-                            <div className="float_left">
-                                <button type="submit" className="btn medium">신규여행작성</button>
-                                <button type="submit" className="btn medium">여행복사하기</button>
-                            </div>
-                            <div className="float_right">
-                                <button type="submit" className="btn medium" onClick={popupOpen1}>기획반려</button>
-                                <button type="submit" className="btn medium">기획승인</button>
-                                <button type="submit" className="btn medium" onClick={popupOpen2}>여행취소</button>
-                                <button type="submit" className="btn medium">여행확정</button>
-                            </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>
             <SearcfInfoBox />
-
-            {/* popup-여행취소 사유 */}
-            <div className="popup_bg_mini" id="MiniPopup02">
-                <div className="in_txt">
-                    <a className="close_icon" onClick={popupClose2}><i className="flaticon-multiply" /></a>
-                    <div className="page">
-                        <h3>여행취소 사유</h3>
-                        <div className="con">
-                            <div className="input_box">
-                                <textarea></textarea>
-                            </div>
-                            <div className="info">
-                                <p><i className="flaticon-flag-1" /> 한번 여행취소시 다시 되돌릴 수 없습니다. 취소는 신중하게 부탁드립니다.</p>
-                            </div>
-                            <div className="fin">
-                                <div className="float_left">
-
-                                </div>
-                                <div className="float_right">
-                                    <button type="submit" className="btn medium">여행취소</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <ProductModal productId={popProductId} />
             {/* popup-기획반려 사유 */}
-            <div className="popup_bg_mini" id="MiniPopup01">
-                <div className="in_txt master_popup_mini">
-                    <a className="close_icon" onClick={popupClose1}><i className="flaticon-multiply" /></a>
-                    <div className="page">
-                        <h3>기획반려 사유</h3>
-                        <div className="con">
-                            <div className="input_box">
-                                <textarea></textarea>
-                            </div>
-                            <div className="info">
-                                <p><i className="flaticon-flag-1" /> 기획서의 어떤 부분을 보완하기를 원하는지 사유를 적어주세요.</p>
-                            </div>
-                            <div className="fin">
-                                <div className="float_left">
-
-                                </div>
-                                <div className="float_right">
-                                    <button type="submit" className="btn medium">기획반려</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* popup-상세보기  */}
-            <div id="Popup01" className="popup_bg_full">
-                <div className="in_txt master_popup">
-                    <a className="close_icon" onClick={popupClose}>
-                        <i className="flaticon-multiply"></i>
-                    </a>
-                    <div className="page">
-                        <h3>예약 상세정보</h3>
-                        <div className="info_txt">
-                            <span className="g-number">상품번호: PK-034982</span>
-                            <span className="goods-state1 st01">확정여부: <i>출발확정</i></span>{/* 출발확정/출발미정 */}
-                            <span className="r-day">출발일: 2020.08.26</span>
-                            <span className="goods-state2">상품상태: 예약진행중</span>
-                            <button className="btn"><i className="flaticon-print mr5"></i>프린터</button>
-                            <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
-                        </div>
-
-                        <div className="info_table">
-                            <div className="tr">
-                                <div className="top04">
-                                    <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
-                                    <div className="info">
-                                        <span className="ct">문화</span>
-                                        <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
-                                        <div className="txt">
-                                            <div className="subTitle">대가야의 역사를 체험하고 느껴보는 여행</div>
-                                            <ul className="tag">
-                                                <li>#거제도</li>
-                                                <li>#1박2일</li>
-                                                <li>#꽃나들이</li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="top05">
-                                    <div className="align">
-                                        <span className="s-day">출발일: 2020.9.9</span>
-                                        <span className="where">출발장소: 부산대학교 앞</span>
-                                        <span className="people">인원: 40명 (성인30/유아10/소아0)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="info_page">
-                            <div className="left_div">
-                                <h4>결제 정보</h4>
-                                <div className="info_table w50">
-                                    <div className="tr">
-                                        <div className="th01">
-                                            결제건수
-                                </div>
-                                        <div className="td01">
-                                            <span>43</span>
-                                        </div>
-                                        <div className="th02">
-                                            결제금액
-                                </div>
-                                        <div className="td02">
-                                            <span className="blue_font">43,444,3333원</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div className="right_div">
-                                <h4>환불 정보</h4>
-                                <div className="info_table w50">
-                                    <div className="tr">
-                                        <div className="th01">
-                                            환불건수
-                                </div>
-                                        <div className="td01">
-                                            <span>3</span>
-                                        </div>
-                                        <div className="th02">
-                                            환불금액
-                                </div>
-                                        <div className="td02">
-                                            <span className="red_font">- 45,433,000원</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="info_page">
-                            <div className="full_div">
-                                <h4>
-                                    예약자 정보
-                            <span>
-                                        <button className="btn topside">전체선택</button>
-                                        <button className="btn topside">예약완료 선택</button>
-                                        <button className="btn topside">SMS보내기</button>
-                                    </span>
-                                </h4>
-                                <div className="info_table">
-                                    <div className="top_info">
-                                        <span className="tt">예약인원</span>
-                                        <span>총 40명 ( 성인30 / 소아10 / 유아0 )</span>
-                                        <span className="float_right">예약완료 38명 / 예약취소 10명 / 예약대기 2명</span>
-                                    </div>
-                                    <div className="tr">
-                                        <div className="pp01">
-                                            <span className="checkbox">
-                                                <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                                <label htmlFor="agree1" />
-                                            </span>
-                                        </div>
-                                        <div className="th">예약번호</div>
-                                        <div className="td"><span>R-83729</span></div>
-                                        <div className="th">예약상태</div>
-                                        <div className="td"><span className="blue_font">예약완료</span></div>
-                                        <div className="th">예약자명</div>
-                                        <div className="td"><span>홍언니</span></div>
-                                        <div className="th">연락처</div>
-                                        <div className="td"><a href="tel:010-0000-0000">010-0000-0000</a></div>
-                                        <div className="th">성별</div>
-                                        <div className="td"><span>여성</span></div>
-                                        <div className="th">나이</div>
-                                        <div className="td"><span>1988-03-03 (만 32세)</span></div>
-                                        <div className="th">메모</div>
-                                        <div className="td"><span>------------------------------------------------</span></div>
-                                    </div>
-                                    <div className="tr">
-                                        <div className="pp01">
-                                            <span className="checkbox">
-                                                <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                                <label htmlFor="agree1" />
-                                            </span>
-                                        </div>
-                                        <div className="th">예약번호</div>
-                                        <div className="td"><span>R-83729</span></div>
-                                        <div className="th">예약상태</div>
-                                        <div className="td"><span className="red_font">예약취소</span></div>
-                                        <div className="th">예약자명</div>
-                                        <div className="td"><span>홍언니</span></div>
-                                        <div className="th">연락처</div>
-                                        <div className="td"><a href="tel:010-0000-0000">010-0000-0000</a></div>
-                                        <div className="th">성별</div>
-                                        <div className="td"><span>여성</span></div>
-                                        <div className="th">나이</div>
-                                        <div className="td"><span>1988-03-03 (만 32세)</span></div>
-                                        <div className="th">메모</div>
-                                        <div className="td"><span>------------------------------------------------</span></div>
-                                    </div>
-                                    <div className="tr">
-                                        <div className="pp01">
-                                            <span className="checkbox">
-                                                <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                                <label htmlFor="agree1" />
-                                            </span>
-                                        </div>
-                                        <div className="th">예약번호</div>
-                                        <div className="td"><span>R-83729</span></div>
-                                        <div className="th">예약상태</div>
-                                        <div className="td"><span>예약대기</span></div>
-                                        <div className="th">예약자명</div>
-                                        <div className="td"><span>홍언니</span></div>
-                                        <div className="th">연락처</div>
-                                        <div className="td"><a href="tel:010-0000-0000">010-0000-0000</a></div>
-                                        <div className="th">성별</div>
-                                        <div className="td"><span>여성</span></div>
-                                        <div className="th">나이</div>
-                                        <div className="td"><span>1988-03-03 (만 32세)</span></div>
-                                        <div className="th">메모</div>
-                                        <div className="td"><span>------------------------------------------------</span></div>
-                                    </div>
-                                    <div className="tr">
-                                        <div className="pp01">
-                                            <span className="checkbox">
-                                                <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                                <label htmlFor="agree1" />
-                                            </span>
-                                        </div>
-                                        <div className="th">예약번호</div>
-                                        <div className="td"><span>R-83729</span></div>
-                                        <div className="th">예약상태</div>
-                                        <div className="td"><span className="blue_font">예약완료</span></div>
-                                        <div className="th">예약자명</div>
-                                        <div className="td"><span>홍언니</span></div>
-                                        <div className="th">연락처</div>
-                                        <div className="td"><a href="tel:010-0000-0000">010-0000-0000</a></div>
-                                        <div className="th">성별</div>
-                                        <div className="td"><span>여성</span></div>
-                                        <div className="th">나이</div>
-                                        <div className="td"><span>1988-03-03 (만 32세)</span></div>
-                                        <div className="th">메모</div>
-                                        <div className="td"><span>------------------------------------------------</span></div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                        <div className="info_page">
-                            <h4>메모</h4>
-                            <div className="write_comment">
-                                <div className="comment_layout">
-                                    <ul className="text_box">
-                                        <li>
-                                            <div className="txta w100">
-                                                <textarea style={{ height: "100px;" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
-                                            </div>
-                                        </li>
-                                        <li className="tr count">0/3000</li>
-                                    </ul>
-                                    <div className="text_box_bottom">
-                                        <div className="float_left w50">
-                                            <span><i className="jandaicon-info2"></i>기존의 메모를 삭제하시면 되돌릴 수 없습니다. 신중하게 입력해 주세요.</span>
-                                        </div>
-                                        <div className="btn_send float_right"><button className="comment_btn">저장</button> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div className="fin">
-                            <div className="float_left">
-                                <button type="submit" className="btn medium">예약취소</button>
-                            </div>
-                            <div className="float_right">
-                                <Link href=""><a className="btn medium">상품수정 하러가기</a></Link>{/* 상품수정폼 가기 */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </MasterLayout >
 };

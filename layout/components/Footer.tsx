@@ -22,7 +22,7 @@ export const Footer: React.FC<IProp> = () => {
                 <a className="top"><i className="jandaicon-arr4-top" /></a>
             </Link>
             {isLogin && <Link href="/mypage/basket">
-                <a className="basket"><object type="image/svg+xml" data="/img/svg/basket.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object><button /></a>
+                <a className="basket"><img src="/img/svg/basket.svg" alt="basket icon" /><button /></a>
             </Link>}
             <Link href="#footer">
                 <a className="down"><i className="jandaicon-arr4-bottom" /></a>
@@ -31,16 +31,16 @@ export const Footer: React.FC<IProp> = () => {
         <div className="footer_in">
             <div className="bottom_nav">
                 <ul className="w1200">
-                    <li><Link href="/site-info"><a>회사소개</a></Link></li>
-                    <li><Link href="/member/rule"><a>이용약관</a></Link></li>
-                    <li><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
-                    <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
+                    <li className="link"><Link href="/site-info"><a>회사소개</a></Link></li>
+                    <li className="link"><Link href="/member/rule"><a>이용약관</a></Link></li>
+                    <li className="link"><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
+                    <li className="link"><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
                     <li className="sns">
                         <div>
                             <Link href="https://www.facebook.com/PinkRoader"><a target="_blank"><i className="jandaicon-facebook"></i></a></Link>
                             <Link href="https://twitter.com/PinkRoader"><a target="_blank"><i className="jandaicon-twitter"></i></a></Link>
                             <Link href="https://www.instagram.com/pinkroader_"><a target="_blank"><i className="jandaicon-instagram2"></i></a></Link>
-                            <Link href="http://blog.naver.com/pinkroader"><a target="_blank"><i>N</i></a></Link>
+                            <Link href="http://blog.naver.com/pinkroader"><a target="_blank"><i className="icon_blog"></i></a></Link>
                         </div>
                     </li>
                     <li className="cs"> <Link href="mailto:pinkroader@gmail.com"><a>CONTACT</a></Link></li>
@@ -74,8 +74,8 @@ export const Footer: React.FC<IProp> = () => {
                             <strong>영업보증보험</strong>
                             <span>5천만원 가입</span>
                         </li>
-                        <li className="bottom_txt">
-                            Copyright © 2020 PINKROADER Co., Ltd. All rights reserved
+                        <li className="bottom_txt pc">
+                            Copyright © 2021 PINKROADER Co., Ltd. All rights reserved
                          </li>
                     </ul>
                     <ul className="footer_homepage_info mt">
@@ -90,12 +90,15 @@ export const Footer: React.FC<IProp> = () => {
 
                         <li>
                             <strong>주소</strong>
-                            <span>부산광역시 중구 40계단길 10, 3F<a target="_blank" href="https://map.naver.com/v5/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010/address/14364152.250451025,4178003.4322139453,%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010,new?c=14364121.5911725,4178009.4229934,19,0,0,0,dh" className="icon" title="지도로 새창띄우기"><object type="image/svg+xml" data="/img/svg/map.svg">현재 브라우저는 iframe을 지원하지 않습니다.</object><button /></a></span>
+                            <span>부산광역시 중구 40계단길 10, 3F<a target="_blank" href="https://map.naver.com/v5/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010/address/14364152.250451025,4178003.4322139453,%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010,new?c=14364121.5911725,4178009.4229934,19,0,0,0,dh" className="icon" title="지도로 새창띄우기"><img src="/img/svg/map.svg" alt="map icon" /><button /></a></span>
                         </li>
                         <li>
                             <strong>계좌번호</strong>
                             <span>신한은행 100-031-819617/예금주:주식회사 핑크로더</span>
                         </li>
+                        <li className="bottom_txt m">
+                            Copyright © 2021 PINKROADER Co., Ltd. All rights reserved
+                         </li>
                     </ul>
                     <div className="bottom_bn">
                         <div className="partner">
@@ -118,7 +121,7 @@ export const Footer: React.FC<IProp> = () => {
                     <p>
                         <a href="https://stayjanda.com/" target="_blank" rel="noopener">
                             <i className="jandaicon-janda"></i>
-                            대한민국 1등 온·오프라인 숙소운영 및 통합예약 솔루션
+                            대한민국 1등 클라우드·핀테크 기반 예약솔루션
                         </a>
                     </p>
                 </div>
