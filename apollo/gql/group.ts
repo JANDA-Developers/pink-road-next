@@ -9,7 +9,12 @@ query groupFindByKey(
       key: $key
     ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     data {
       ...Fgroup
     }
@@ -23,7 +28,12 @@ export const GROUP_LIST = gql`
 query groupList {
     GroupList  {
       ok
-      error
+      error {
+      location
+      severity
+      code
+      message
+    }
       data {
         ...Fgroup
       }
@@ -40,7 +50,12 @@ export const GROUP_CREATE = gql`
         params:$params
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
           ...Fgroup
       }
@@ -57,7 +72,12 @@ export const GROUP_DELETE = gql`
         key:$key
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
           ...Fgroup
       }
@@ -76,7 +96,12 @@ export const GROUP_UPDATE = gql`
             key: $key
          ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
           ...Fgroup
       }

@@ -27,7 +27,12 @@ export const FEE_POLIY_FIND_ONE = gql`
     query feePolicyFindOne {
         FeePolicyFindOne {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
             ...FfeePolicy
         }
@@ -40,7 +45,12 @@ export const FEE_POLICY_UPDATE = gql`
     mutation feePolicyUpdate($params: FeePolicyUpdateInput!) {
         FeePolicyUpdate(params: $params) {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
             ...FfeePolicy
         }

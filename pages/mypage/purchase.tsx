@@ -1,7 +1,4 @@
-import CalendarIcon from 'components/common/icon/CalendarIcon';
-import { Paginater } from 'components/common/Paginator';
 import { PurChasedItem } from 'components/mypage/PurchasedItem';
-import dayjs from 'dayjs';
 import { MypageLayout } from 'layout/MypageLayout';
 import React, { useState } from 'react';
 import { BookingModal } from '../../components/bookingModal/BookingModal';
@@ -9,15 +6,11 @@ import SortSelect from '../../components/common/SortMethod';
 import { ViewCount } from '../../components/common/ViewCount';
 import { DayPickerModal } from '../../components/dayPickerModal/DayPickerModal';
 import { SearchBar } from '../../components/searchBar/SearchBar';
-import { TRange } from '../../components/tourWrite/helper';
 import { useBookingList } from '../../hook/useBooking';
 import { useQueryFilter } from '../../hook/useQueryFilter';
 import { useDateFilter } from '../../hook/useSearch';
 import { BookingStatus, _BookingFilter, _ProductFilter } from '../../types/api';
-import { lastMonthFirstDate, lastMonthLastDate, thisMonthFirstDate, thisMonthLastDate } from '../../types/const';
 import { filterToRange, rangeToFilter } from '../../utils/filter';
-import { createOrSearch } from '../../utils/genFilter';
-import { onKeyPressEnter } from '../../utils/onKeyPress';
 import { closeModal, openModal } from '../../utils/popUp';
 
 interface IProp { }

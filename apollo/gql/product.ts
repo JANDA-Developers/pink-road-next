@@ -12,7 +12,12 @@ export const PRODUCTS_CREATE = gql`
         params: $params  
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       }
@@ -28,7 +33,12 @@ export const ACCEPT_PRODUCT_CREATE = gql`
         ProductId: $ProductId  
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       }
@@ -44,7 +54,12 @@ export const ACCEPT_PRODUCT_UPDATE = gql`
       ProductId: $ProductId
     ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       }
@@ -63,7 +78,12 @@ export const REJECT_PRODUCT_CREATE = gql`
         reason: $reason 
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       }
@@ -82,7 +102,12 @@ export const REJECT_PRODUCT_UPDATE = gql`
         reason: $reason
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       }
@@ -103,7 +128,12 @@ export const PRODUCT_POST_UPDATE = gql`
         _id: $_id 
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       } 
@@ -120,7 +150,12 @@ export const PRODUCT_POST_DELETE = gql`
         id:$id
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
           ...Fproduct
       }
@@ -142,7 +177,12 @@ query productList(
     filter: $filter
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     page {
       ...Fpage
     }
@@ -175,7 +215,12 @@ export const PRODUCT_FIND_BY_ID = gql`
         _id: $_id
       ) {
       ok
-      error
+      error {
+      location
+      severity
+      code
+      message
+    }
       data {
         ...Fproduct
         author {
@@ -206,7 +251,12 @@ export const PRODUCT_FIND_BY_ID_FOR_SELLER = gql`
         _id: $_id
       ) {
       ok
-      error
+      error {
+      location
+      severity
+      code
+      message
+    }
       data {
         ...Fproduct
         author {

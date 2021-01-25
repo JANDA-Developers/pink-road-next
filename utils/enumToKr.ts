@@ -20,7 +20,7 @@ export const productStatus = (status?: ProductStatus | null) => {
 }
 
 export const paymentStatus = (status?:PaymentStatus | null ) => {
-    if(status === PaymentStatus.CANCEL) return "취소" 
+    if(status === PaymentStatus.CANCEL) return "환불완료" 
     if(status === PaymentStatus.COMPLETE) return "완료" 
     if(status === PaymentStatus.READY) return "대기중" 
     return "";

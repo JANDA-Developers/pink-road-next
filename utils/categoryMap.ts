@@ -1,16 +1,17 @@
 import { CategoryType, Fcategory } from "../types/api";
 import { cloneObject } from "./clone";
 
-export const defaultCatsMap = {
+export const defaultCatsMap:Record<CategoryType, Fcategory[]> = {
   CUSTOMER_QNA: [],
   PORTPOLIO: [],
   QNA: [],
   EXPERIENCE: [],
-  TOUR: []
+  TOUR: [],
+  REGION: []
 }
 
 export const categoryMap = (catList:Fcategory[]) => {
-  const catsMap: Record<CategoryType, Fcategory[]> = cloneObject(defaultCatsMap)
+  const catsMap = cloneObject(defaultCatsMap)
 
   catList.forEach(cat => {
      catsMap[cat.type].push(cat);

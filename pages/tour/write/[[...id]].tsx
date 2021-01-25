@@ -160,6 +160,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
 
 
     const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.EXPERIENCE;
+    const regionCategories = categoriesMap.REGION;
 
 
     if (loading) return <PageLoading />
@@ -255,10 +256,29 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 </div>
 
                 <div className="write_type">
+                    <div className="title">지역</div>
+                    <div className="input_form">
+                        <div>
+                            <select onChange={handleCatChange} value={categoryId} name="category_srl">
+                                {regionCategories.map(cat =>
+                                    <option value={cat._id} key={cat._id}>
+                                        {cat.label}
+                                    </option>
+                                )}
+                                <option value="">
+                                    선택없음
+                                </option>
+                            </select>
+                            <input onChange={handleInputChange("address")} value={address} type="text" className="text w100" />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="write_type">
                     <div className="title">장소</div>
                     <div className="input_form">
                         <div>
-                            <input onChange={handleInputChange("address")} value={address} type="text" className="text w100" />
+                            <input onChange={handleInputChange("regionId")} value={address} type="text" className="text w100" />
                         </div>
                     </div>
                 </div>

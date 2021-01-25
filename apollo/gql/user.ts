@@ -12,7 +12,12 @@ export const SIGN_UP = gql`
         verificationId: $verificationId
       ) {
       ok
-      error 
+      error {
+      location
+              severity
+              code
+              message
+      }
       data {
           email
       }
@@ -31,9 +36,14 @@ export const RESIGN = gql`
         pw: $pw
       ) {
         ok
-        error 
+        error {
+        location
+          severity
+          code
+          message
+        }
+      }
     }
-  }
 `;
 
 export const SIGN_IN = gql`
@@ -48,7 +58,12 @@ export const SIGN_IN = gql`
       hopeRole: $hopeRole
       )  {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
           token
         }
@@ -62,7 +77,12 @@ export const USER_UPDATE = gql`
     mutation userUpdate($params:UserUpdateInput!,$_id: String!, $pw: String) {
         UserUpdate(params:$params, pw:$pw, _id:$_id) {
             ok
-            error
+            error {
+      location
+      severity
+      code
+      message
+    }
             data {
                 _id
             createdAt
@@ -75,7 +95,12 @@ export const VERIFICATION_START =gql`
 mutation verificationStart($target: VerificationTarget!, $payload: String!, $event: VerificationEvent!){
     VerificationStart(target : $target, payload : $payload, event : $event){
       ok
-      error
+      error {
+      location
+      severity
+      code
+      message
+    }
       data {
         _id
         payload
@@ -95,7 +120,12 @@ mutation verificationComplete(
     ) {
         VerificationComplete(verificationId:$verificationId, target:$target,code:$code,payload:$payload) {
             ok
-            error
+            error {
+      location
+      severity
+      code
+      message
+    }
             data {
                 _id
                 createdAt
@@ -125,7 +155,12 @@ query userList(
     filter: $filter
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     page {
       ...Fpage
     }
@@ -146,7 +181,12 @@ export const USER_FIND_BY_ID = gql`
         id: $id
       ) {
       ok
-      error
+      error {
+      location
+      severity
+      code
+      message
+    }
       data {
         ...Fuser
         products {

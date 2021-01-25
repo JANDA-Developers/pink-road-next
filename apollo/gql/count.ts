@@ -6,7 +6,12 @@ export const COUNT = gql`
     query count {
         Count {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data  {
             buyTotalCount
             salesTotalCount
@@ -24,7 +29,12 @@ export const COUNT_MANAGER = gql`
     query countManager {
         Count {
             ok
-            error
+            error {
+      location
+      severity
+      code
+      message
+    }
             data  {
                 buyTotalCount
                 salesTotalCount

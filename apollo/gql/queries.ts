@@ -19,7 +19,12 @@ export const PAGE_INFO_READ = gql`
       key: $key
       )  {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
             ...FpageInfo
         }
@@ -32,7 +37,12 @@ export const GET_CONTEXT = gql`
   query getContext {
       GetProfile {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
           ...Fuser
           unReadNoties {
@@ -66,14 +76,24 @@ export const GET_CONTEXT = gql`
       }
       CategoryList {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
           ...Fcategory
         }
       }
       Homepage {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
             ...Fhomepage
         }

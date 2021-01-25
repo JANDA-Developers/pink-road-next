@@ -58,7 +58,12 @@ export const QUESTION_LIST = gql`
     filter: $filter
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     page {
       ...Fpage
     }
@@ -88,7 +93,12 @@ export const QUESTION_CREATE = gql`
       params: $params
     ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     data {
       _id
     }
@@ -103,7 +113,12 @@ export const QUESTION_DELETE = gql`
       id:$id
     ) {
     ok
-    error 
+    error {
+location
+        severity
+        code
+        message
+}
   }
 }
 `
@@ -117,7 +132,12 @@ export const QUESTION_UPDAET = gql`
       id: $id
     ) {
     ok
-    error 
+    error {
+location
+        severity
+        code
+        message
+}
     data {
       _id
     }
@@ -134,7 +154,12 @@ query questionFindById(
     id:$id
   ) {
   ok
-  error 
+  error {
+location
+        severity
+        code
+        message
+}
   data {
     ...Fquestion
     author {

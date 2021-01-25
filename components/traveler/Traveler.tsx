@@ -40,7 +40,7 @@ export const Traveler: React.FC<IProp> = ({ traveler, onChange }) => {
         </div>
         <div className="re06">
             성별
-    </div>
+        </div>
         <div className="re07">
             <select>
                 <option>여성</option>
@@ -49,7 +49,7 @@ export const Traveler: React.FC<IProp> = ({ traveler, onChange }) => {
         </div>
         <div className="re08">
             나이
-    </div>
+        </div>
         <div className="re09">
             <span><input type="text" /> (만 --세)</span>{/*input박스 클릭시 달력이 나와야 함, 우측 나이 계산은 자동으로 출력*/}
         </div>

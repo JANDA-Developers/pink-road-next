@@ -32,7 +32,6 @@ export const F_SETTLEMENT = gql`
       niceCardFee
       jandaCardFee
       bankFee
-      storeFee
       additionFeeSum
       jandaFee
       cancelReturnPriceTotal
@@ -56,7 +55,12 @@ export const SETTLEMENT_FIND_BY_ID = gql`
     _id: $_id
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     data  {
       ...Fsettlement
       product {
@@ -97,7 +101,12 @@ export const SETTLEMENT_LIST = gql`
     filter: $filter
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     page {
       ...Fpage
     }
@@ -144,7 +153,12 @@ export const SETTLEMENT_REQUEST = gql`
         settlementId: $settlementId
       ) {
         ok
-        error 
+        error {
+location
+        severity
+        code
+        message
+}
     }
   }
 `;
@@ -158,7 +172,12 @@ export const SETTLEMENT_COMPLETE = gql`
         settlementId: $settlementId
       ) {
         ok
-        error 
+        error {
+location
+        severity
+        code
+        message
+}
     }
   }
 `;
@@ -173,7 +192,12 @@ export const SETTLEMENT_REJECT = gql`
         reason: $reason
       ) {
         ok
-        error 
+        error {
+location
+        severity
+        code
+        message
+}
     }
   }
 `;

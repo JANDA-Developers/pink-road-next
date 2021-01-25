@@ -24,7 +24,12 @@ export const BOOKING_LIST = gql`
     productFilter: $productFilter
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     page {
       ...Fpage
     }
@@ -98,7 +103,12 @@ export const BOOKING_COUNT = gql`
         filter: $filter
     ) {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data  {
             _id
         }
@@ -116,7 +126,12 @@ export const BOOKING_CANCEL = gql`
       bookingId:$bookingId
     ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     data {
       product {
             _id
@@ -140,7 +155,12 @@ export const BOOKINGS_CREATE = gql`
       params:$params
     ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     data {
       ...Fbooking
       product {
@@ -160,7 +180,12 @@ export const BOOKING_DELETE = gql`
       id:$id
     ) {
     ok
-    error 
+    error {
+      location
+      severity
+      code
+      message
+    }
   }
 }
 `
@@ -174,7 +199,12 @@ export const BOOKING_UPDAET = gql`
       _id: $id
     ) {
     ok
-    error 
+    error {
+location
+        severity
+        code
+        message
+}
     data {
       _id
     }
@@ -189,7 +219,12 @@ export const BOOKING_FIND_BY_CODE = gql`
       code: $code
     ) {
     ok
-    error 
+    error {
+location
+        severity
+        code
+        message
+}
     data {
       product {
             _id

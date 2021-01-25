@@ -3559,6 +3559,7 @@ div.master_popup div.alignment{
         width: auto !important;
     }
     .master_box .master__table .thead {
+        justify-content: space-around;
         display: flex;
         align-items: center;
     }
@@ -3577,7 +3578,6 @@ div.master_popup div.alignment{
     .master_box .reservation .master__table .t01 {
         width: auto !important;
         max-width: 70px;
-        padding: 10px 0;
         text-align: center !important;
     }
     .master_box .reservation .master__table .t02 {

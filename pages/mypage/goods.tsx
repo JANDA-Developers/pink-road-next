@@ -30,7 +30,6 @@ export const MyGoods: React.FC<IProp> = () => {
     const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({ filter, setFilter })
     const { check, isChecked, selectAll, toggleAll, toggle, selectedIds, setSelectedIds, unCheck, unSelectAll } = useIdSelecter(items.map(i => i._id));
     const singleSort = useSingleSort(sort, setSort);
-    const [settlementRquest] = useSettlementsRequest();
     const [popupProductId, setPopupProductId] = useState("");
 
     const doSearch = (search: string) => {
@@ -169,8 +168,6 @@ export const MyGoods: React.FC<IProp> = () => {
                                             <div className="th08">
                                                 <i className="btn"><Link href={`/tour/write/${item._id}`}><a>상품수정</a></Link></i>{/*글수정으로 가기 */}
                                                 <i onClick={handleOpenProductModal(item._id)} className="btn">상세보기</i>{/* POPUP */}
-                                                <i onClick={handleOpenRegist} className="btn">예약등록</i>{/* POPUP */}
-                                                {/* <i onClick={handleRequestSettlement()} className="btn">정산신청</i>POPUP */}
                                             </div>
                                         </li>
                                     )}

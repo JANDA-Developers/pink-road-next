@@ -15,7 +15,7 @@ import { useMutation } from "@apollo/client";
 import { PRODUCTS_CREATE } from "../apollo/gql/product";
 import { useRouter } from "next/router";
 
-type SimpleTypePart = "isOpen" | "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "contents" | "inOrNor" | "isNotice"
+type SimpleTypePart = "regionId" | "isOpen" | "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "contents" | "inOrNor" | "isNotice"
 export type TSimpleTypePart = Pick<Required<ProductCreateInput>, SimpleTypePart>
 
 export const DEFAULT_SIMPLE_TOUR_DATA: TSimpleTypePart = {
@@ -32,6 +32,7 @@ export const DEFAULT_SIMPLE_TOUR_DATA: TSimpleTypePart = {
     caution: "",
     contents: "",
     inOrNor: "",
+    regionId: "",
     isNotice: false,
     isOpen: false
 }
@@ -51,6 +52,7 @@ interface IUseTourDefaultData {
     categoryId: string;
     files: Ffile[]
     thumbs: Ffile[];
+    regionId: string;
     contents: string
     status: ProductStatus;
     its: ItineraryCreateInput[];
@@ -109,6 +111,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const [its, setits] = useState<ItineraryCreateInput[]>(deepCopy(defaults.its || []));
     const [simpleData, setSimpleData] = useState<TSimpleTypePart>(defaults.simpleData || DEFAULT_SIMPLE_TOUR_DATA)
     const [categoryId, setCategoryId] = useState<string>(defaults.categoryId || "");
+    const [regionId, setRegionId] = useState<string>(defaults.regionId || "");
     const [status, setStatus] = useState<ProductStatus>(defaults.status || ProductStatus.READY);
     const [thumbs, setThumbs] = useState<Ffile[]>(Array.from(defaults.thumbs || []))
     const [keyWards, setkeyWards] = useState<string[]>(Array.from(defaults.keyWards || []));
@@ -438,12 +441,14 @@ export const getDefault = (product: IproductFindById | undefined): Partial<IUseT
         startPoint,
         status,
         subTitle,
+        region,
         title,
         isOpen
     } = product;
 
     const simpleData: TSimpleTypePart = {
         address,
+        regionId: region?._id || "",
         adult_price,
         baby_price,
         caution,

@@ -87,7 +87,6 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
         })
     }
 
-
     const handleOpenRejct = () => {
         openModal("#RejectModal")();
     }
