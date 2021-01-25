@@ -1,3 +1,4 @@
+import { openModal } from "utils/popUp"
 import { ISet, TElements } from "../../types/interface"
 import { ViewCount } from "../common/ViewCount"
 import Excel from "../excel/Execel"
@@ -30,6 +31,7 @@ export const MasterAlignMent: React.FC<IProps> = ({ excelData, handleSelectAll, 
         </div>
         <div className="right_div">
             <ul className="board_option">
+                <li onClick={openModal('#HandwrittenRegistration')}><a>수기등록</a></li>
                 <li onClick={handleSelectAll}><a>전체선택</a></li>
                 {excelData && <li><Excel data={excelData || []} element={<a>엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a>} /></li>}
                 {rightDiv}

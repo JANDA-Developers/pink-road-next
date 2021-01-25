@@ -869,8 +869,7 @@ div.popup_bg_full .fin{
         line-height: 40px;
         font-weight: 600;
         position: fixed;
-        /* top: 10px; */
-        margin-top: -60px;
+        top: 14px;
     }    
     div.popup_bg_full h3 strong {
         color: #2196F3;
@@ -889,7 +888,7 @@ div.popup_bg_full .fin{
         position: relative;
         line-height: 9px;
     }
-    div.popup_bg_full h4 span.full_div__right__btn {
+    div.popup_bg_full h4 .full_div__right__btn {
         font-size: 0.9em;
         line-height: 25px;
         font-weight: 400;
@@ -900,7 +899,7 @@ div.popup_bg_full .fin{
         width: 100%;
         display: block;
     }
-    div.popup_bg_full h4 span.full_div__right {
+    div.popup_bg_full h4 .full_div__right {
         font-size: 0.9em;
         line-height: 25px;
         font-weight: 400;
@@ -911,7 +910,7 @@ div.popup_bg_full .fin{
         width: 100%;
         display: block;
     }
-    div.popup_bg_full h4 span.full_div__right .btn {
+    div.popup_bg_full h4 .full_div__right .btn {
         padding: 0px 15px;
         margin-left: 5px;
         font-size: 0.8em;
@@ -920,7 +919,7 @@ div.popup_bg_full .fin{
         top: -34px;
         line-height: 24px;
     }
-    div.popup_bg_full h4 span.full_div__right strong {
+    div.popup_bg_full h4 .full_div__right strong {
         font-weight: 600;
     }
 
@@ -8760,7 +8759,7 @@ i.calendar {
         padding: 50px 20px 20px;
     }
 
-    div.popup_bg_full h4 span.full_div__right {
+    div.popup_bg_full h4 .full_div__right {
         font-size: 0.9em;
         line-height: 40px;
         font-weight: 400;
@@ -8770,19 +8769,16 @@ i.calendar {
         left: unset;
         width: auto;
     }
-    div.popup_bg_full h4 span.full_div__right .btn {
+    div.popup_bg_full h4 .full_div__right .btn {
         padding: 4px 10px;
         margin-left: 5px;
         font-size: 0.8em;
         position: relative;
         top: unset;
     }
-    div.popup_bg_full h4 span.full_div__right strong {
+    div.popup_bg_full h4 .full_div__right strong {
         font-weight: 600;
     }
-        div.popup_bg_full h3 {
-            /* top: 35px; */
-        }
      
     div.popup_bg_full .close_icon {
             position: absolute;
