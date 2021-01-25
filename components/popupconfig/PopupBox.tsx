@@ -37,7 +37,7 @@ export const PopupBox: React.FC<IProp> = ({ wrapHeight, onClick, onMove, onResiz
     const { height, top, width, left, backgroundImage } = style;
     const maxHeight = wrapHeight - top;
 
-    const { ref, height: _height, width: _width } = useResizeDetector();
+    const { ref, height: _height, width: _width } = useResizeDetector({ refreshOptions: { leading: true } });
 
     const handleDrag: DraggableEventHandler = (e, ui) => {
         onMove({ x: ui.x, y: ui.y })
