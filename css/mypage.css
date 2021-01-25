@@ -2843,25 +2843,7 @@ div.reservation_popup .tr select {
     .myplanning_box .paper_div{
         padding: 30px;
     }
-    .portfolio_in .con04 .photo_tap_div .photo_tap {
-        line-height: 33px;
-        height: 35px;
-        margin: 3px;
-        padding: 0 14px;
-        font-size: 14px;
-    }
   
-    .portfolio_in .con04 {
-        min-height: 590px;
-        padding: 0 50px 120px;
-        top: -46px;
-    }
-
-        .portfolio_in .con04 .portfolio_box ul li {
-            width: 23%;
-            height: 211px;
-            margin: 1%;
-        }
 
     .mypage_in .lnb .profile_box {
         text-align: left;

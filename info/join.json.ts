@@ -6,7 +6,7 @@ const info = {
         kr: "핑크로드의 멤버가 되어주세요."
     },
     subTop_img: {
-        kr: "/img/work_top_bg2.jpg"
+        kr: "/img/pr_img_06.jpg"
     }
 }
 
