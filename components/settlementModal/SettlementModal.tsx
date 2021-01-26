@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useBookingCancel } from '../../hook/useBooking';
+import { useFeePolicy } from '../../hook/useFeePolicy';
 import { useSettlementFindById, useSettlementsRequest } from '../../hook/useSettlement';
 import { BookingStatus, SettlementStatus } from '../../types/api';
-import { bookingStatus } from '../../utils/enumToKr';
+import { bookingStatus, feePresent } from '../../utils/enumToKr';
 import { autoComma } from '../../utils/formatter';
 import { closeModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
@@ -23,9 +24,10 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
 
 
     if (!settlement) return <div />
-    const { product, bankFee, cancelReturnPrice, cardFee, acceptDate, cancelDate, storeFee, totalFee, totalPrice, payReqPrice, jandaFee, niceCardFee, jandaCardFee, cardPrice, requestDate, bankPrice, additionFeeSum } = settlement;
+    const { product, bankFee, cancelReturnPrice, cardFee, acceptDate, cancelDate, totalFee, totalPrice, payReqPrice, jandaFee, niceCardFee, jandaCardFee, cardPrice, requestDate, bankPrice, additionFeeSum } = settlement;
     const { bookings, createdAt, startDate } = product;
     const canceldBooking = bookings.filter(bk => bk.status === BookingStatus.CANCEL);
+    const { data: policy } = useFeePolicy();
 
     const handleCancelBooking = (bookingId: string) => {
         confirm("정말로 예약을 취소 하시겠습니까?")
@@ -132,30 +134,19 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                                 </div>
                             </li>
                             <li>
-                                <div className="title"><strong>수수료공제(5%)</strong> : </div>
-                                <div className="body">
-
-                                    <div>(-) {autoComma(settlement.storeFee)}</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="title"><strong>세금공제(3.3%)</strong> : </div>
+                                <div className="title"><strong>카드수수료</strong> : </div>
                                 <div className="body">
                                     <div>(-) {autoComma(settlement.cardFee)}원</div>
                                 </div>
                             </li>
-                            <li>
-                                <div className="title"><strong>기타 공제금</strong> : </div>
-                                <div className="body">
-                                    <div>(-) {autoComma(settlement.additionFeeSum)}원</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="title"><strong>예약취소 환급금</strong> : </div>
-                                <div className="body">
-                                    <div>(-) {autoComma(settlement.cancelReturnPriceTotal)}원</div>
-                                </div>
-                            </li>
+                            {policy?.addtionalFees.map((addFee, i) =>
+                                <li key={"FeePolicy" + i}>
+                                    <div className="title"><strong>{addFee.feeName}</strong> : </div>
+                                    <div className="body">
+                                        <div>(-) {feePresent(addFee)}원</div>
+                                    </div>
+                                </li>
+                            )}
                         </ul>
                         <ul className="last_ul">
                             <li>

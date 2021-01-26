@@ -1,4 +1,4 @@
-import { BookingStatus, CategoryType, GENDER, PaymentStatus, PayMethod, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole } from "../types/api";
+import { AddtionalFeesStatus, BookingStatus, CategoryType, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, GENDER, PaymentStatus, PayMethod, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole } from "../types/api";
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if(status === BookingStatus.CANCEL) return "예약취소" 
@@ -90,4 +90,10 @@ export const genderToKR = (gender?:GENDER | null) => {
     if(gender === GENDER.FEMALE) return "여성"
     if(gender === GENDER.MAIL) return "남성"
     return ""
+}
+
+export const feePresent = (addFee:feePolicyFindOne_FeePolicyFindOne_data_addtionalFees) => {
+    let unit = addFee.type  === AddtionalFeesStatus.DEFAULT ? "(원)" : "(%)"; 
+    let amt = addFee.type  === AddtionalFeesStatus.DEFAULT ? addFee.fee : addFee.feePercent; 
+    return amt + unit;
 }
