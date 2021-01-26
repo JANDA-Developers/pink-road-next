@@ -40,7 +40,7 @@ export const BookingModal: React.FC<IProp> = ({ code }) => {
                     <div className="tr">
                         <div className="top01">
                             <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
-                            <div className="info">
+                            <div className="info goods__info_title">
                                 <span className="ct">{product.category?.label}</span><span className="g-number">상품번호: {product.code}</span>
                                 <strong className="title">{product.title}</strong>
                                 <div className="txt">

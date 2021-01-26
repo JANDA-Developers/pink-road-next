@@ -253,12 +253,14 @@
 
         .board_list_mini .thead > div {
             display: inline-block;
-            width: 24.5%;
+            width: auto;
+            flex: 1 1;
+            flex-grow: 1;
             text-align: center;
             font-size: 14px;
             font-weight: 600;
             line-height: 37px;
-            padding: 10px;
+            padding: 0;
         }
 
     .board_list_mini .tbody {
@@ -284,7 +286,9 @@
 
             .board_list_mini .tbody li > div {
                 display: inline-block;
-                width: 24.5%;
+                width: auto;
+                flex: 1 1;
+                flex-grow: 1;
                 text-align: center;
                 font-size: 12px;
                 padding: 0;
@@ -304,11 +308,12 @@
         font-weight: 100;
     }
 
-    .board_list_mini.ln04 .thead .th01 .checkbox {
+    /* .board_list_mini.ln04 .thead .th01 .checkbox {
         top:10px;
-    }    .board_list_mini.ln04 .tbody .th01 .checkbox {
+    }   
+     .board_list_mini.ln04 .tbody .th01 .checkbox {
         top:10px;
-    }
+    } */
 
     .board_list_mini.ln04 .th02 {
         text-align: left;
@@ -357,7 +362,7 @@
 ul.list_ul {
     width:100%;
     margin:0 auto;
-    display: flex;
+    display: block;
     align-items: center;
 }
 ul.list_ul li {
@@ -804,6 +809,11 @@ ul.boardlist_ul li .cash {
             .board_list.st03 .tbody li > div {
                 display: inline-block;
                 line-height:33px;
+                width: auto;
+                flex: 1 1 ;
+                flex-grow: 1;
+                align-self: center;
+                font-weight: 100;
             }
 
         .board_list.st03 .tbody .td01 {
@@ -836,6 +846,7 @@ ul.boardlist_ul li .cash {
             line-height: initial;
             padding: 0 0 0 1%;
             box-sizing: border-box;
+            align-items: center;
         }
 
             .board_list.st03 .tbody .td03 .title {
@@ -865,7 +876,7 @@ ul.boardlist_ul li .cash {
             .board_list.st03 .tbody .td03 .count {
                 display: inline-block;
                 line-height: 27px;
-                font-weight: 400;
+                font-weight: 100;
                 margin-left: 15px;
                 color: #999;
                 font-size: 14px;
@@ -874,7 +885,7 @@ ul.boardlist_ul li .cash {
         .board_list.st03 .tbody .td04 {
             width: auto;
             color: #969696;
-            font-weight: 400;
+            font-weight: 100;
             text-align: right;
             padding: 0 0 0 1%;
             box-sizing:border-box;
@@ -2310,35 +2321,39 @@ div.sum_div {
     .m_title{
         display: none !important;
     }
-    .board_list.st03 .tbody li > div {
-        line-height: 80px;
-    }
     .board_list.st03 .tbody li {
         display: flex;
         width: auto;
         flex: 1 1;
         flex-grow: 1;
     }
-    
-    /* .board_list.st03 .tbody .td01 {
-        width: 10%;
+    .board_list.st03 .tbody .td01 {
+        width: auto;
+        max-width: 10%;
     }
     .board_list.st03 .tbody .td02 {
-        width: 112px;
+        width: auto;
+        max-width: 112px;
     }
         .board_list.st03 .tbody .td02 .img {
-           
-            height: 82px;
+            width: 80px;
+            height: 62px;
         }
     .board_list.st03 .tbody .td03 {
-        width: 60%;
-        padding: 14px 0 0 33px;
+        width: auto;
+        max-width: 60%;
+        padding: 0;
     }
     .board_list.st03 .tbody .td04 {
-        width: 19%;
+        width: auto;
+        max-width: 19%;
         text-align: right;
         font-size:14px;
-    } */
+        padding: 0;
+    } 
+    .board_list.st03 .tbody .td03 .title{
+        display: inline-block;
+    }
     /* .photo_ul.line4 li {
         width: 25%;
         height: 238px;
@@ -2409,6 +2424,7 @@ div.sum_div {
     }
     .board_list_mini .tbody li{
         display: flex;
+        align-items: center;
         padding: 0;
     }
     .board_list_mini .tbody li > div{

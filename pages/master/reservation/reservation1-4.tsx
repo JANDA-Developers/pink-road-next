@@ -66,8 +66,8 @@ export const MsReservationC: React.FC<IProp> = () => {
                                     <input type="text" className="day w100" />
                                     <CalendarIcon />
                                 </div>
-                                    ~
-                                    <div className="input_box">
+                                <span className="pc"> ~ </span>
+                                <div className="input_box">
                                     <input type="text" className="day w100" />
                                     <CalendarIcon />
                                 </div>
@@ -153,7 +153,7 @@ export const MsReservationC: React.FC<IProp> = () => {
                                 </div>
                             </div>
                             <div className="t03">
-                                <div className="info">
+                                <div className="info goods__info_title">
                                     <span className="ct">문화</span> <span className="g-number">상품번호: PINK-034982</span>
                                     <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                     <div className="txt">
@@ -206,7 +206,7 @@ export const MsReservationC: React.FC<IProp> = () => {
                                 </div>
                             </div>
                             <div className="t03">
-                                <div className="info">
+                                <div className="info goods__info_title">
                                     <span className="ct">문화</span> <span className="g-number">상품번호: PINK-034982</span>
                                     <strong className="title">떠나요~거제도~!!!!!!!!!!!!!!!!</strong>
                                     <div className="txt">

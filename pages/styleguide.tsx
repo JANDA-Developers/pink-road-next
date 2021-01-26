@@ -213,8 +213,8 @@ export const StyleGuide: React.FC<IProp> = () => {
                                 <input type="text" className="day w100" />
                                 <CalendarIcon />
                             </div>
-                                    ~
-                                    <div className="input_box">
+                            <span className="pc"> ~ </span>
+                            <div className="input_box">
                                 <input type="text" className="day w100" />
                                 <CalendarIcon />
                             </div>

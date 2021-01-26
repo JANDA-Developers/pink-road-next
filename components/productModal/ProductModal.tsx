@@ -149,7 +149,7 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                         <div className="tr">
                             <div className="top04">
                                 <div className="img" style={BG(product?.images?.[0]?.uri || "")} ></div>
-                                <div className="info">
+                                <div className="info goods__info_title">
                                     <span className="ct">{product.category?.label}</span>
                                     <strong className="title"><Link href={generateSearchLink({ title: product.title })}><a>{product.title}</a></Link></strong>
                                     <div className="txt">

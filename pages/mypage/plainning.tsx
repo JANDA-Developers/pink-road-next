@@ -43,8 +43,8 @@ export const MyPlanning: React.FC<IProp> = () => {
                                         <button />
                                     </span>
                                 </div>
-                                ~
-                                 <div className="input_box">
+                                <span className="pc"> ~ </span>
+                                <div className="input_box">
                                     <input type="text" className="day w100" />
                                     <span className="calendar">
                                         <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
@@ -122,7 +122,12 @@ export const MyPlanning: React.FC<IProp> = () => {
                                                 </span>
                                             </div>
                                             <div className="th02"><span className="m_title">상품코드: </span>PINK-01230</div>
-                                            <div className="th03">제주도로 떠나요~ 제주도로 떠나요~제주도로 떠나요~</div>
+                                            <div className="th03">
+                                                <div className="goods__info_title">
+                                                    <span className="ct">문화·예술여행</span>
+                                                    <strong className="title">섬따라 바다따라, 부산 섬섬예술여행</strong>
+                                                </div>
+                                            </div>
                                             <div className="th04"><span className="m_title">출발일: </span>2020.02.02</div>
                                             <div className="th05">
                                                 <span className="m_title">금액: </span>
@@ -133,7 +138,7 @@ export const MyPlanning: React.FC<IProp> = () => {
                                                 <span className="people">유아 0</span>
                                             </div>
                                             <div className="th06"><span className="m_title">인원수: </span>22</div>
-                                            <div className="th07"><span className="m_title">상태: </span><strong className="no">기획반려</strong></div>
+                                            <div className="th07"><span className="m_title">상태: </span><strong className="state_icon plainning-no">기획반려</strong></div>
                                             <div className="th08"><i className="btn">수정하기</i></div>
                                         </li>
                                         <li>
@@ -144,7 +149,12 @@ export const MyPlanning: React.FC<IProp> = () => {
                                                 </span>
                                             </div>
                                             <div className="th02"><span className="m_title">상품코드: </span>PINK-01230</div>
-                                            <div className="th03">제주도로 떠나요~ 제주도로 떠나요~제주도로 떠나요~</div>
+                                            <div className="th03">
+                                                <div className="goods__info_title">
+                                                    <span className="ct">문화·예술여행</span>
+                                                    <strong className="title">섬따라 바다따라, 부산 섬섬예술여행</strong>
+                                                </div>
+                                            </div>
                                             <div className="th04"><span className="m_title">출발일: </span>2020.02.02</div>
                                             <div className="th05">
                                                 {/* 단위 : 원 */}
@@ -156,7 +166,7 @@ export const MyPlanning: React.FC<IProp> = () => {
                                                 <span className="people">유아 0</span>
                                             </div>
                                             <div className="th06"><span className="m_title">인원수: </span>22</div>
-                                            <div className="th07"><span className="m_title">상태: </span><strong className="ok">기획요청</strong></div>
+                                            <div className="th07"><span className="m_title">상태: </span><strong className="state_icon plainning-yes">기획요청</strong></div>
                                             <div className="th08"><i className="btn">수정하기</i></div>
                                         </li>
                                     </ul>

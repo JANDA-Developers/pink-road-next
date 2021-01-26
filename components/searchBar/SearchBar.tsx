@@ -103,8 +103,8 @@ export const SearchBar: React.FC<IProp> = ({ Status, SearchSelect, onDateChange,
                     <input readOnly value={_filterStart} onFocus={openDayPicker} type="text" className="day w100" />
                     <CalendarIcon />
                 </div>
-                                 ~
-                                 <div className="input_box">
+                <span className="pc"> ~ </span>
+                <div className="input_box">
                     <input readOnly value={_filterEnd} onFocus={openDayPicker} type="text" className="day w100" />
                     <CalendarIcon />
                 </div>

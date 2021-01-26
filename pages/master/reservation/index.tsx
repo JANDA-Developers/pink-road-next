@@ -15,11 +15,13 @@ import { MasterAlignMent } from '../../../components/master/MasterAlignMent';
 import { yyyymmdd } from '../../../utils/yyyymmdd';
 import { bookingStatus, determinedKr, itemTypeToKr, payMethodToKR, productStatus } from '../../../utils/enumToKr';
 import { autoComma } from '../../../utils/formatter';
-import { bookingList_BookingList_data, BookingStatus, ProductStatus, _BookingFilter, _ProductFilter } from '../../../types/api';
+import { bookingList_BookingList_data, BookingStatus, Fproduct, ProductStatus, _BookingFilter, _ProductFilter } from '../../../types/api';
 import { Prompt } from '../../../components/promptModal/Prompt';
 import { openModal, openModalTimeSet } from '../../../utils/popUp';
 import { Change } from '../../../components/loadingList/LoadingList';
 import { Modal } from 'components/modal/Modal';
+import ProductSearcher from 'components/productSearcher/ProductSearcher2';
+import { ProductSelectModal } from 'components/ProductSelectModal';
 
 
 interface IProp { }
@@ -171,7 +173,7 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                         </div>
                                     </div>
                                     <div className="t03">
-                                        <div className="info">
+                                        <div className="info goods__info_title">
                                             <span className="ct">문화</span>   <span className="g-number">상품번호: {item.product.code}</span>
                                             <strong className="title">{item.product.title}</strong>
                                             <div className="txt">
@@ -233,46 +235,74 @@ export const MsReservationMain: React.FC<IProp> = () => {
                 <h3>예약 수기등록</h3>
                 <div className="info_page">
                     <div className="full_div">
-                        <h4>회원정보</h4>
-                        <div className="info_table w100">
-                            <div className="tr">
-                                <div className="th01">회원</div>
-                                <div className="td01">
-                                    <select className="w30">
-                                        <option>개인</option>
-                                        <option>기업파트너</option>
-                                        <option>개인파트너</option>
-                                    </select>
+                        <h4>상품선택</h4>
+                        <div className="goodsall__choice">
+                            {/* 상품 선택시에 아래 goodsall__choice_info 노출됨 */}
+                            <div className="goodsall__choice_touch">
+                                <button><i className="flaticon-add"></i>추가</button>
+                            </div>
+                            {/* goodsall__choice_info 노출됨과 동시에 goodsall__choice_touch 숨김*/}
+                            <div className="goodsall__choice_info">
+                                <a className="close_icon"><i className="flaticon-multiply"></i></a>
+                                <div className="goodsall__list__img">
+                                    <img src="https://pink-loader-storage.s3.amazonaws.com/1606957945551_thum_01.jpg" alt="상품이미지" />
+                                </div>
+                                <div className="goodsall__list__text">
+                                    <div className="title">선진지 답사, 순천-담양편 1박2일</div>
+                                    <div className="date">2020.12.30 ~ 2020.12.31</div>
                                 </div>
                             </div>
+                        </div>
+
+                        <h4>상품 정보</h4>
+                        <div className="info_table w100">
                             <div className="tr">
-                                <div className="th01">이메일</div>
-                                <div className="td01"><input type="text" className="w80" placeholder="이메일을 입력해주세요." /></div>
-                                <div className="th02">닉네임</div>
-                                <div className="td02"><input type="text" className="w50" placeholder="" /></div>
+                                <div className="th01">상품타입</div>
+                                <div className="td01">투어(연일)</div>
+                                <div className="th02">카테고리</div>
+                                <div className="td02">교육·답사여행</div>
                             </div>
                             <div className="tr">
-                                <div className="th01">비밀번호</div>
+                                <div className="th01">상품명</div>
+                                <div className="td01">선진지 답사, 순천-담양편 1박2일</div>
+                                <div className="th02">부제목</div>
+                                <div className="td02">순천과 담양의 도시재생사례를 알아보는 여행</div>
+                            </div>
+                            <div className="tr">
+                                <div className="th01">최소인원/최대인원</div>
+                                <div className="td01">20/40</div>
+                                <div className="th02">장소</div>
+                                <div className="td02">순천/ 담양</div>
+                            </div>
+                            <div className="tr">
+                                <div className="th01">출발장소</div>
+                                <div className="td01">부산지하철1호선 부산역 4번출구</div>
+                                <div className="th02">여행기간</div>
+                                <div className="td02">
+                                    2020.12.30 ~ 2020.12.31 (1박2일)
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4>예약 정보</h4>
+                        <div className="info_table w100">
+                            <div className="tr">
+                                <div className="th01">예약자명</div>
                                 <div className="td01"><input type="text" className="w80" placeholder="" /></div>
-                                <div className="th02">비밀번호 확인</div>
+                                <div className="th02">연락처</div>
                                 <div className="td02"><input type="text" className="w80" placeholder="" /></div>
                             </div>
                             <div className="tr">
-                                <div className="th01">이름</div>
-                                <div className="td01"><input type="text" className="w50" placeholder="" /></div>
-                                <div className="th02">국적</div>
-                                <div className="td02">
-                                    {/* <ul className="country_check">
-                                        <li className={`c_in ${!data.is_froreginer ? "on" : ""}`}
-                                            onClick={handleNationality(true)}>내국인</li>
-                                        <li className={`c_out ${data.is_froreginer ? "on" : ""}`}
-                                            onClick={handleNationality(false)}>외국인</li>
-                                    </ul> */}
-                                </div>
+                                <div className="th01">예약자명</div>
+                                <div className="td01"><input type="text" className="w80" placeholder="" /></div>
+                                <div className="th02">연락처</div>
+                                <div className="td02"><input type="text" className="w80" placeholder="" /></div>
                             </div>
                             <div className="tr">
-                                <div className="th01">성별</div>
-                                <div className="td01">
+                                <div className="th01">이메일</div>
+                                <div className="td01"><input type="text" className="w80" placeholder="" /></div>
+                                <div className="th02">성별</div>
+                                <div className="td02">
                                     {/* <ul className="gender_check">
                                         <li className={`female ${data.gender == GENDER.FEMALE ? "on" : ""}`}
                                             onClick={handleGender(GENDER.FEMALE)}>여</li>
@@ -280,145 +310,85 @@ export const MsReservationMain: React.FC<IProp> = () => {
                                             onClick={handleGender(GENDER.MAIL)}>남</li>
                                     </ul> */}
                                 </div>
-                                <div className="th02">연락처</div>
-                                <div className="td02"><input type="text" className="w80" placeholder="'-'없이 입력해주세요." /></div>
-                            </div>
-                        </div>
-
-                        <h4>파트너 정보</h4>
-                        <div className="info_table w100">
-                            <div className="tr">
-                                <div className="th01">파트너명(회사명)</div>
-                                <div className="td01"><input type="text" className="w50" placeholder="" /></div>
-                                <div className="th02">사업자번호</div>
-                                <div className="td02">
-                                    <select className="w20 mr10">
-                                        <option>개인</option>
-                                        <option>법인</option>
-                                    </select>
-                                    <input type="text" className="w50" placeholder="" />
-                                </div>
                             </div>
                             <div className="tr">
-                                <div className="th01">대표 전화번호</div>
-                                <div className="td01"><input type="text" className="w80" placeholder="" /></div>
-                                <div className="th02">사업자등록증</div>
-                                <div className="td02"><input type="text" className="w50" placeholder="" /><button type="button" className="btn small">업로드</button></div>
-                            </div>
-                            <div className="tr">
-                                <div className="th01">주소</div>
-                                <div className="td01 full">
-                                    <input type="text" className="w50" placeholder="" /><button type="button" className="btn small">주소찾기</button><br />
-                                    <input type="text" className="w80" placeholder="상세주소를 입력해주세요." />
-                                </div>
-                            </div>
-                            <div className="tr">
-                                <div className="th01">담당자</div>
-                                <div className="td01"><input type="text" className="w50" placeholder="" /></div>
-                                <div className="th02">담당자 연락처</div>
-                                <div className="td02"><input type="text" className="w50" placeholder="" /></div>
-                            </div>
-                            <div className="tr">
-                                <div className="th01">정산계좌</div>
-                                <div className="td01">
-                                    <select className="w20 mr10">
-                                        <option>=은행명=</option>
-                                        <option>부산은행</option>
-                                    </select>
-                                    <input type="text" className="w50" placeholder="" />
-                                </div>
-
+                                <div className="th01">메모</div>
+                                <div className="td01"><input type="text" className="w100" placeholder="" /></div>
                             </div>
                         </div>
 
 
-                        <h4>
-                            기타 정보
-                            <div className="full_div__right">
-                                <span className="checkbox mr5">
-                                    <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
-                                </span>
-                                모두 동의합니다.
-                            </div>
-                        </h4>
+                        <h4>결제 정보</h4>
                         <div className="info_table w100">
                             <div className="tr">
-                                <div className="th01">SNS 수신동의</div>
+                                <div className="th01">인원선택</div>
                                 <div className="td01">
-                                    <span className="checkbox mr5">
-                                        <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
-                                    </span>
-                                    동의합니다.
+                                    <div className="option__div">
+                                        <div className="option__div_people">
+                                            <strong>대인</strong>
+                                            <span>30,000원</span>
+                                            <div className="Number__box">
+                                                <span className="left_btn">
+                                                    <i className="flaticon-substract"></i>
+                                                </span><span className="number">0</span>
+                                                <span className="right_btn">
+                                                    <i className="flaticon-add"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="option__div_people">
+                                            <strong>소인</strong>
+                                            <span>30,000원</span>
+                                            <div className="Number__box">
+                                                <span className="left_btn">
+                                                    <i className="flaticon-substract"></i>
+                                                </span><span className="number">0</span>
+                                                <span className="right_btn">
+                                                    <i className="flaticon-add"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="option__div_people">
+                                            <strong>유아</strong>
+                                            <span>30,000원</span>
+                                            <div className="Number__box">
+                                                <span className="left_btn">
+                                                    <i className="flaticon-substract"></i>
+                                                </span><span className="number">0</span>
+                                                <span className="right_btn">
+                                                    <i className="flaticon-add"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div className="th02">E-mail 수신동의</div>
+
+                            </div>
+                            <div className="tr">
+                                <div className="th01">합계금액</div>
+                                <div className="td01">
+                                    <strong className="color02">30,000</strong>원
+                                </div>
+                                <div className="th02">결제방법</div>
                                 <div className="td02">
-                                    <span className="checkbox mr5">
-                                        <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
-                                    </span>
-                                    동의합니다.
+                                    <select className="w50">
+                                        <option>
+                                            가상계좌
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div className="tr">
-                                <div className="th01">개인정보 수집 및 이용 동의</div>
-                                <div className="td01">
-                                    <span className="checkbox mr5">
-                                        <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
-                                    </span>
-                                    동의합니다.
-                                </div>
-                                <div className="th02">개인정보처리 위탁</div>
-                                <div className="td02">
-                                    <span className="checkbox mr5">
-                                        <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
-                                    </span>
-                                    동의합니다.
-                                </div>
+                                <div className="th01">메모</div>
+                                <div className="td01"><input type="text" className="w100" placeholder="" /></div>
                             </div>
-                            <div className="tr">
-                                <div className="th01">여행자약관</div>
-                                <div className="td01">
-                                    <span className="checkbox mr5">
-                                        <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
-                                    </span>
-                                    동의합니다.
-                                </div>
-                                <div className="th02">개인정보 제3자 제공</div>
-                                <div className="td02">
-                                    <span className="checkbox mr5">
-                                        <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
-                                    </span>
-                                    동의합니다.
-                                </div>
-                            </div>
-                            <div className="tr">
-                                <div className="th01">마케팅정보 수신동의</div>
-                                <div className="td01">
-                                    <span className="checkbox mr5">
-                                        <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
-                                    </span>
-                                    동의합니다.
-                                </div>
-                                <div className="th02">파트너약관</div>
-                                <div className="td02">
-                                    <span className="checkbox mr5">
-                                        <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
-                                    </span>
-                                    동의합니다.
-                                </div>
-                            </div>
-                            <div className="tr">
-                                <div className="th01">이용약관</div>
-                                <div className="td01">
-                                    <span className="checkbox mr5">
-                                        <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
-                                    </span>
-                                    동의합니다.
-                                </div>
-                            </div>
+
+
                         </div>
                     </div>
                 </div>
-                <button className="btn">수기 등록하기</button>
+                <button className="btn">등록하기</button>
             </div>
         </Modal>
     </MasterLayout >
