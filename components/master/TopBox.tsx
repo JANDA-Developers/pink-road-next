@@ -94,7 +94,7 @@ export const TopBox: React.FC<IProp> = ({ doSearch, filterStart, filterEnd, onDa
                     <input value={_filterStart} onFocus={openDayPicker} type="text" className="day w100" />
                     <CalendarIcon />
                 </div>
-                                 ~
+                <span className="pc"> ~ </span>
                 <div className="input_box">
                     <input value={_filterEnd} onFocus={openDayPicker} type="text" className="day w100" />
                     <CalendarIcon />

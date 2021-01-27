@@ -1080,6 +1080,8 @@
         font-weight: 600;
         border-left: 0 !important;
         padding: 0;
+        flex: 1 1;
+        flex-grow: 1;
     }
     
     .master__table .tbody div[class*=t0] {
@@ -1161,13 +1163,13 @@
         padding: 25px 20px 20px;
         box-sizing: border-box;
     }
-     .master_box .master__table .t01 .checkbox {
+     /* .master_box .master__table .t01 .checkbox {
         top: 50%;
         margin-top: -8px;
      }
      .master_box .master__table .thead .t01 .checkbox {
         margin-top: -10px;
-    }
+    } */
     .master_box .reservation .master__table .t05 strong {
         width:auto !important;
         display: inline-block !important;
