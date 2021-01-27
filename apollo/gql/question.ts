@@ -11,7 +11,7 @@ export const F_QUESTION = gql`
         isDelete
         title
         contents
-       
+        code
         isNotice
         isOpen
         summary

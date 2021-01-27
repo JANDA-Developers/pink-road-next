@@ -2,13 +2,13 @@ import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
 import { BoardView } from "components/board/View";
 import { Fanswer, Fquestion } from 'types/api';
-import { useQuestionDelete, useQuestionFindById } from '../../../hook/useQuestion';
-import PageLoading from '../../Loading';
-import Page404 from '../../404';
-import { CommentWrite } from '../../../components/comment/CommentWrite';
-import { AppContext } from '../../_app';
-import Comment from '../../../components/comment/Comment';
-import { useAnswerCreate, useAnswerDelete, useAnswerUpdate } from '../../../hook/useAnswer';
+import { useQuestionDelete, useQuestionFindById } from '../../../../hook/useQuestion';
+import PageLoading from '../../../Loading';
+import Page404 from '../../../404';
+import { CommentWrite } from '../../../../components/comment/CommentWrite';
+import { AppContext } from '../../../_app';
+import Comment from '../../../../components/comment/Comment';
+import { useAnswerCreate, useAnswerDelete, useAnswerUpdate } from '../../../../hook/useAnswer';
 
 interface IProp {
 }
@@ -38,7 +38,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
     }
 
     const toList = () => {
-        router.push(`/member/inquiry/`)
+        router.push(`/tour/${product._id}`)
     }
 
     const handleDelete = () => {
@@ -86,7 +86,6 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
     return <div>
         <BoardView
-            className={"qnaView"}
             onList={toList}
             thumb={thumb}
             content={contents}
@@ -96,6 +95,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
             onDelete={handleDelete}
             onEdit={toDetail}
             createAt={createdAt}
+
         />
         <div className="w1200">
             <div className="comment_box">

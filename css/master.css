@@ -1601,6 +1601,7 @@
         box-sizing: border-box;
         border-bottom: 1px solid #ccc;
         text-align: left;
+        align-items: center;
     }
     .master_box .design .design_table .tbody .t01{
         position: relative;
@@ -2650,7 +2651,7 @@ div.master_popup .info_page h4 {
      div.master_popup .peoplelist .tr.first > div {
         margin-bottom: 5px;
         text-align: left !important;
-        width: auto !important;
+        width: 100% !important;
     }
     div.master_popup .peoplelist .tr.first .re01 {
         width: 100% !important;
@@ -2978,13 +2979,10 @@ div.master_popup .reservationlist .tr{
     box-sizing: border-box;
     padding: 5px;
 }
-     /* div.master_popup .info_page .info_table .tr {
-        display: block;
-        text-align: left;
-        width: 100%;
-        position: relative;
-        padding:0;
-    }  */
+div.master_popup .btn.small{
+    line-height: 33px;
+}
+   
      div.master_popup .info_page .info_table .td span {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -2998,7 +2996,7 @@ div.master_popup .reservationlist .tr{
         vertical-align: top;
         text-align: center;
         font-weight: 600;
-        line-height: 52px;
+        line-height: 32px;
         padding:0;
         box-sizing:border-box;
     }
@@ -3043,34 +3041,37 @@ div.master_popup .reservationlist .tr{
    margin-right: 3px;
     font-weight: 600;
    }
-
+   div.master_popup .info_page .tr > div {
+    width:auto;
+    flex: 1 1;
+    flex-grow: 1;
+}
  div.master_popup .info_page div[class*=th0] {
     text-align: left !important;
-    width:30% !important;
+    width:100% !important;
+    max-width: 100%;
+    font-size: 1.2em;
     font-weight: 600 !important;
     padding-left: 10px !important;
-    padding-bottom: 10px !important;
     padding-top: 10px !important;
-    border-bottom: 1px solid #c4c4c4;
 }
  div.master_popup .info_page div[class*=td0] {
     text-align: left !important;
     font-weight: 500 !important;
-    width: 70% !important;
+    width: 100% !important;
     font-family: '돋음';
     font-size: 1.1em;
+    padding-left: 10px !important;
     padding-bottom: 10px !important;
-    padding-top: 10px !important;
     border-bottom: 1px solid #c4c4c4;
 }
  div.master_popup .info_page .line8 div[class*=th0] {
-    width:30% !important;
+    width:100% !important;
     text-align: left !important;
     padding-left: 10px !important;
-    border-bottom: 1px solid #c4c4c4;
 }
  div.master_popup .info_page .line8 div[class*=td0]{
-    width: 70% !important;
+    width: 100% !important;
     text-align: left !important;
     font-weight: 500 !important;
     font-family: '돋음';
@@ -3208,6 +3209,12 @@ div.master_popup .tr select {
     box-sizing: border-box;
     padding: 4px;
     font-size: 12px;
+}
+div.master_popup .tr select.w30 {
+    width: 30% !important;
+}
+div.master_popup .tr select.w20 {
+    width: 20% !important;
 }
 div.master_popup .tr .select2 {
     width: 30%;
@@ -3357,8 +3364,26 @@ div.master_popup div.alignment{
 
     
 @media (min-width: 1000px) {    
+    div.master_popup .info_page div[class*=th0] {
+        width:auto !important;
+        max-width: 30%;
+        border-bottom: 1px solid #c4c4c4;
+    }
+     div.master_popup .info_page div[class*=td0] {
+        font-weight: 500 !important;
+        width: auto !important;
+    }
+    div.master_popup .info_page .line8 div[class*=th0] {
+        width:30% !important;
+        padding-left: 10px !important;
+        border-bottom: 1px solid #c4c4c4;
+    }
+     div.master_popup .info_page .line8 div[class*=td0]{
+        width: 70% !important;
+        border-bottom: 1px solid #c4c4c4;
+    }
    .master_box div.popup_bg_full h3 {
-        top: 47px;
+        top: 31px;
     }
     .master_box .btn.small{
         line-height: 28px;
@@ -4068,7 +4093,7 @@ div.master_popup .info_page .info_table .tr > div {
     font-weight: 100;
     padding: 10px 0;
     font-size: 1em;
-    line-height: 22px;
+    line-height: 34px;
     margin-bottom: 0;
 }
 
@@ -4084,6 +4109,10 @@ div.master_popup .info_page div[class*=th0] {
     width: 32% !important;
     font-size: 1.1em;
     border-bottom:0;
+}
+
+div.master_popup.handwritten_registration .info_page div[class*=th0]{
+    max-width: 15% !important;
 }
   .master_box .partner .td01 {
         width:auto !important;

@@ -423,3 +423,14 @@ figure:after {
     width: 100px;
     height: 100px;
 }
+
+.overflowEllipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: min-content;
+}
+.header {
+    position: sticky;
+    top: 0;
+}

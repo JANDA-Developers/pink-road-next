@@ -7,7 +7,7 @@ export const tourMain = {
         kr: "업데이트되는 최신 정보를 확인하세요."
     },
     subTop_img: {
-        kr: "/img/work_top_bg2.jpg"
+        kr: "/img/pr_img_06.jpg"
     },
 }
 

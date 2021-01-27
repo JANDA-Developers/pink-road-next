@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
 import { Fpage } from "../types/api";
+import { CustomErrorResponse } from "aws-sdk/clients/cloudfront";
+import { ErrorCode } from "./enumToKr";
 interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
     skipInit?: boolean;
@@ -107,8 +109,6 @@ export const generateQueryHook = <Q, R, V = undefined>(
         // @ts-ignore
         const data: Result = _data?.[operationName]?.data || undefined;
 
-        console.log(_data);
-        console.log(_data);
 
         useEffect(()=>{
             if(!skipInit)
@@ -127,7 +127,20 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
     const mutationHook = (options?: MutationHookOptions<M,V>) => {
         const muHook = useMutation<M, V>(MUTATION, {
             ...defaultOptions,
-            ...options
+            ...options,
+            onCompleted: (result) => {
+                const operationName = getQueryName(MUTATION);
+                // @ts-ignore
+                const err:CustomErrorResponse = result[operationName]?.error;
+                if(err) {
+                    // @ts-ignore
+                    const msg = ErrorCode[err.ErrorCode]
+                    if(msg) {
+                        alert(msg);
+                    }
+                }
+                options?.onCompleted?.(result) || defaultOptions?.onCompleted?.(result)
+            }
         });
         return muHook
     }

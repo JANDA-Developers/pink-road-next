@@ -865,7 +865,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   code: string;
   createdAt: any;
   updatedAt: any;
-  regionLabel: string;
+  regionLabel: string | null;
   isDelete: boolean;
   contents: string;
   determined: boolean;
@@ -1895,6 +1895,13 @@ export interface homepage_Homepage_data_logo {
   owner: string;
 }
 
+export interface homepage_Homepage_data_partnerFooter {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface homepage_Homepage_data_logoTop {
   __typename: "File";
   name: string;
@@ -1953,6 +1960,11 @@ export interface homepage_Homepage_data {
   siteName: string;
   signUpRedirect: string;
   blacklist: string[];
+  partnerFooter: homepage_Homepage_data_partnerFooter[] | null;
+  instaLink: string | null;
+  blogLink: string | null;
+  facebookLink: string | null;
+  twitterLink: string | null;
   busiNumber: string;
   email: string;
   ceoName: string;
@@ -2019,6 +2031,13 @@ export interface homepageUpdate_HomepageUpdate_data_logo {
   owner: string;
 }
 
+export interface homepageUpdate_HomepageUpdate_data_partnerFooter {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface homepageUpdate_HomepageUpdate_data_logoTop {
   __typename: "File";
   name: string;
@@ -2077,6 +2096,11 @@ export interface homepageUpdate_HomepageUpdate_data {
   siteName: string;
   signUpRedirect: string;
   blacklist: string[];
+  partnerFooter: homepageUpdate_HomepageUpdate_data_partnerFooter[] | null;
+  instaLink: string | null;
+  blogLink: string | null;
+  facebookLink: string | null;
+  twitterLink: string | null;
   busiNumber: string;
   email: string;
   ceoName: string;
@@ -4100,7 +4124,7 @@ export interface productDelete_ProductDelete_data {
   _id: string;
   createdAt: any;
   updatedAt: any;
-  regionLabel: string;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -4359,7 +4383,7 @@ export interface productList_ProductList_data {
   _id: string;
   createdAt: any;
   updatedAt: any;
-  regionLabel: string;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -4635,6 +4659,7 @@ export interface productFindById_ProductFindById_data_questions {
   isDelete: boolean;
   title: string;
   contents: string;
+  code: string;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -4655,7 +4680,7 @@ export interface productFindById_ProductFindById_data {
   _id: string;
   createdAt: any;
   updatedAt: any;
-  regionLabel: string;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -5023,7 +5048,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   _id: string;
   createdAt: any;
   updatedAt: any;
-  regionLabel: string;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -5424,6 +5449,13 @@ export interface getContext_Homepage_data_logo {
   owner: string;
 }
 
+export interface getContext_Homepage_data_partnerFooter {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface getContext_Homepage_data_logoTop {
   __typename: "File";
   name: string;
@@ -5482,6 +5514,11 @@ export interface getContext_Homepage_data {
   siteName: string;
   signUpRedirect: string;
   blacklist: string[];
+  partnerFooter: getContext_Homepage_data_partnerFooter[] | null;
+  instaLink: string | null;
+  blogLink: string | null;
+  facebookLink: string | null;
+  twitterLink: string | null;
   busiNumber: string;
   email: string;
   ceoName: string;
@@ -5679,6 +5716,7 @@ export interface questionList_QuestionList_data {
   isDelete: boolean;
   title: string;
   contents: string;
+  code: string;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -5924,6 +5962,7 @@ export interface questionFindById_QuestionFindById_data {
   isDelete: boolean;
   title: string;
   contents: string;
+  code: string;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -6157,7 +6196,7 @@ export interface settlementFindById_SettlementFindById_data_product {
   _id: string;
   createdAt: any;
   updatedAt: any;
-  regionLabel: string;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -6523,7 +6562,7 @@ export interface settlementList_SettlementList_data_product {
   _id: string;
   createdAt: any;
   updatedAt: any;
-  regionLabel: string;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -7474,7 +7513,7 @@ export interface userFindById_UserFindById_data_products {
   _id: string;
   createdAt: any;
   updatedAt: any;
-  regionLabel: string;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -7859,7 +7898,7 @@ export interface Fproduct {
   _id: string;
   createdAt: any;
   updatedAt: any;
-  regionLabel: string;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -8189,6 +8228,13 @@ export interface Fhomepage_logo {
   owner: string;
 }
 
+export interface Fhomepage_partnerFooter {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface Fhomepage_logoTop {
   __typename: "File";
   name: string;
@@ -8247,6 +8293,11 @@ export interface Fhomepage {
   siteName: string;
   signUpRedirect: string;
   blacklist: string[];
+  partnerFooter: Fhomepage_partnerFooter[] | null;
+  instaLink: string | null;
+  blogLink: string | null;
+  facebookLink: string | null;
+  twitterLink: string | null;
   busiNumber: string;
   email: string;
   ceoName: string;
@@ -8781,6 +8832,7 @@ export interface Fquestion {
   isDelete: boolean;
   title: string;
   contents: string;
+  code: string;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -9501,9 +9553,14 @@ export interface HomepageUpdateInput {
   copyRight?: string | null;
   bannerAlink?: string | null;
   bannerBlink?: string | null;
+  instaLink?: string | null;
+  facebookLink?: string | null;
+  twitterLink?: string | null;
+  blogLink?: string | null;
   bannerA?: FileUpdateInput | null;
   bannerB?: FileUpdateInput | null;
   modal?: ModalInput[] | null;
+  partnerFooter?: FileUpdateInput[] | null;
   bankInfo?: BankInfoInput | null;
 }
 
@@ -10089,6 +10146,12 @@ export interface _ProductFilter {
 export interface _QuestionFilter {
   AND?: _QuestionFilter[] | null;
   OR?: _QuestionFilter[] | null;
+  code_eq?: string | null;
+  code_not_eq?: string | null;
+  status_eq?: string | null;
+  status_not_eq?: string | null;
+  no_eq?: string | null;
+  no_not_eq?: string | null;
   title_eq?: string | null;
   title_not_eq?: string | null;
   title_contains?: string | null;

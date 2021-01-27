@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "..\\.."
+		},
+		{
+			"path": "..\\..\\..\\pink-loader-server"
+		}
+	],
+	"settings": {
+		"workbench.colorTheme": "Community Material Theme"
+	}
+}

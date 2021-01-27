@@ -1,9 +1,9 @@
 const info = {
     subTop_title: {
-        kr: "회원가입"
+        kr: "자주하는질문"
     },
     subTop_desc: {
-        kr: "핑크로드의 멤버가 되어주세요."
+        kr: ""
     },
     subTop_img: {
         kr: "/img/pr_img_06.jpg"

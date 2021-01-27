@@ -4,7 +4,6 @@ import { ReservationTable } from '../../../components/reservation/ReservationTab
 
 interface IProp { }
 export const MsReservationMain: React.FC<IProp> = () => {
-
     return <ReservationMaster
         Table={ReservationTable}
         FilterBtn={({ handlers: { checkOnByhand, byhandFilter } }) => <ul className="board_option">

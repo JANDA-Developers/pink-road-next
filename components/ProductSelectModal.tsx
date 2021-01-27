@@ -9,7 +9,6 @@ interface IProp {
 }
 
 export const ProductSelectModal: React.FC<IProp> = ({ onSelect }) => {
-
     return <Modal title="상품선택" id="ProductSearchModal" className="popup_bg" inClassName="master_popup">
         <ProductSearcher onSelectProduct={(product) => {
             onSelect(product);

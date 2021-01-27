@@ -19,7 +19,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
     const [userUpdate] = useUserUpdate()
     const { signleUpload } = useUpload();
     const { items } = useUnReadSystemNotiFind();
-    const { isSeller, isParterB, isParterNonB, myProfile } = useContext(AppContext);
+    const { isSeller, isParterB, isParterNonB, myProfile, isLogin } = useContext(AppContext);
     const { data: count } = useCount();
     const hiddenFileInput = useRef<HTMLInputElement>(null);
 
@@ -85,16 +85,18 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                             <a >My page</a>
                         </Link>
                     </li>
-                    <li className="homedeps2">
-                        <Link href="/mypage">
-                            <a >회원정보</a>
-                        </Link>
-                    </li>
+                    {isLogin &&
+                        <li className="homedeps2">
+                            <Link href="/mypage">
+                                <a >회원정보</a>
+                            </Link>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
         <div className="mypage_in w100">
-            <ul className="subtop_nav">
+            {isLogin && <ul className="subtop_nav">
                 {isSeller || <li className={isTapOn(undefined)}><Link href="/mypage"><a >회원정보</a></Link></li>}{/* 개인 -*/}
                 <li className={isTapOn("notification")}><Link href="/mypage/notification"><a >알림</a></Link></li>{/* 개인/기업파트너/개인파트너 -*/}
                 {isSeller || <li className={isTapOn("purchase")}><Link href="/mypage/purchase"><a >구매내역</a></Link></li>}{/* 개인 -*/}
@@ -105,9 +107,10 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                 {isSeller && !isParterB && <li className={isTapOn("plainning")}><Link href="/mypage/plainning"><a >기획관리</a></Link></li>}{/* 개인파트너 -*/}
                 {isSeller && <li className={isTapOn("settlement")}><Link href="/mypage/settlement"><a >매출/정산관리</a></Link></li>}{/* 기업파트너/개인파트너 -*/}
             </ul>
+            }
             <div className="w1200">
 
-                <div className="lnb">
+                {isLogin && <div className="lnb">
                     <div className="profile_box">
                         <div className="welcome">
                             <span style={BGprofile(myProfile?.profileImg)} onClick={() => {
@@ -135,6 +138,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                         </div>
                     </div>
                 </div>
+                }
                 {children}
             </div>
         </div>

@@ -1,47 +1,38 @@
 import React from 'react';
 import Link from "next/link";
+import { getStaticPageInfo, Ipage } from '../../../utils/page';
+import { usePageEdit } from '../../../hook/usePageEdit';
+import defaultPageInfo from "../../../info/notice.json"
+import SubTopNav from '../../../layout/components/SubTop';
 
 interface IProp { }
 
-export const QnaTable: React.FC<IProp> = () => {
+export const getStaticProps = getStaticPageInfo("notice");
+export const Notice: React.FC<Ipage> = (pageInfo) => {
+    const pageTools = usePageEdit(pageInfo, defaultPageInfo);
+
     return <div>
-        <div className="top_visual">
-            <div
-                className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/pr_img_06.jpg)` }}
-            >
-                <div className="w1200">
-                    <h2 className="title">고객문의</h2>
-                    {/*<p className="text">지금 여행을 떠나세요~!~~!!!!!</p>*/}
-                </div>
-            </div>
-            <div className="header_nav">
-                <ul>
-                    <li className="home">
-                        <a href="../main/main.html"></a>
-                    </li>
-                    <li className="homedeps1">Member</li>
-                    <li className="homedeps2">
-                        <Link href="/member/inquiry"><a>고객문의</a></Link>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div className="inquiry_box w1200">
+        <SubTopNav pageTools={pageTools}>
+            <li className="home">
+                <Link href="/">
+                    <a />
+                </Link>
+            </li>
+            <li className="homedeps1">Member</li>
+            <li className="homedeps2">
+                <Link href="/member/inquiry"><a>공지사항</a></Link>
+            </li>
+        </SubTopNav>
+        <div className="notice_box w1200">
             <ul className="subtop_nav">
-                <li><Link href="/member/notice"><a>공지사항</a></Link></li>
+                <li className="on"><Link href="/member/notice"><a>공지사항</a></Link></li>
                 <li><Link href="/member/qna"><a>자주하는 질문</a></Link></li>
-                <li className="on"><Link href="/member/inquiry"><a>고객문의</a></Link></li>
+                <li><Link href="/member/inquiry"><a>고객문의</a></Link></li>
             </ul>
             <div>
-
                 <div className="alignment">
                     <div className="left_div">
-                        <ul className="board_option">
-                            <li className="on"><a href="/">전체<strong>46</strong></a></li>
-                            <li><a href="/">미답변<strong>23</strong></a></li>
-                            <li><a href="/">답변완료<strong>23</strong></a></li>
-                        </ul>
+                        <span className="infotxt">총 <strong>0</strong>개</span>
                     </div>
                     <div className="right_div">
                         <select className="sel01">
@@ -62,35 +53,30 @@ export const QnaTable: React.FC<IProp> = () => {
                         <ul>
                             <li>
                                 <div className="td01">221</div>
-                                <div className="td02"><Link href="/"><a>PINK-99930</a></Link></div>
+                                <div className="td02"><span className="ct_01">공지</span></div>
                                 <div className="td03">
-                                    문의합니다 :)
-                                    <img className="new" src="../img/svg/new.svg" alt="new" />
-                                    <i className="q_no">미답변</i>
+                                    10월의 여행일정 미리 공지
+                                    <img className="new" src="/img/svg/new.svg" />
                                 </div>
-                                <div className="td04">홀리홀리</div>
-                                <div className="td05">2020.02.02 11:00</div>
+                                <div className="td04">2020.02.02 11:00</div>
                             </li>
                             <li>
                                 <div className="td01">221</div>
-                                <div className="td02"><Link href="/"><a>PINK-99930</a></Link></div>
-                                <div className="td03">문의합니다 :)<i className="q_no">미답변</i></div>
-                                <div className="td04">홀리홀리</div>
-                                <div className="td05">2020.02.02 11:00</div>
+                                <div className="td02"><span className="ct_02">안내</span></div>
+                                <div className="td03">10월의 여행일정 미리 공지</div>
+                                <div className="td04">2020.02.02 11:00</div>
                             </li>
                             <li>
                                 <div className="td01">221</div>
-                                <div className="td02"><Link href="/"><a>PINK-99930</a></Link></div>
-                                <div className="td03">문의합니다 :)<i className="q_ok">답변완료</i></div>
-                                <div className="td04">홀리홀리</div>
-                                <div className="td05">2020.02.02 11:00</div>
+                                <div className="td02"><span className="ct_01">공지</span></div>
+                                <div className="td03">10월의 여행일정 미리 공지</div>
+                                <div className="td04">2020.02.02 11:00</div>
                             </li>
                             <li>
                                 <div className="td01">221</div>
-                                <div className="td02">-</div>
-                                <div className="td03">문의합니다 :)</div>
-                                <div className="td04">홀리홀리</div>
-                                <div className="td05">2020.02.02 11:00</div>
+                                <div className="td02"><span className="ct_01">공지</span></div>
+                                <div className="td03">10월의 여행일정 미리 공지</div>
+                                <div className="td04">2020.02.02 11:00</div>
                             </li>
                         </ul>
 
@@ -127,10 +113,11 @@ export const QnaTable: React.FC<IProp> = () => {
                             </svg>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div >;
 };
 
-export default QnaTable;
+export default Notice;

@@ -1,32 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from "next/link";
+import SubTopNav from '../../../layout/components/SubTop';
+import { usePageEdit } from '../../../hook/usePageEdit';
+import { getStaticPageInfo, Ipage } from '../../../utils/page';
+import defaultPageInfo from "../../../info/qna.json"
+import { AppContext } from '../../_app';
+import { useRouter } from 'next/router';
 
-interface IProp { }
 
-export const QnaTable: React.FC<IProp> = () => {
+export const getStaticProps = getStaticPageInfo("main");
+export const Qna: React.FC<Ipage> = (pageInfo) => {
+    const router = useRouter();
+    const { isManager } = useContext(AppContext)
+    const pageTools = usePageEdit(pageInfo, defaultPageInfo);
+
+    const handleGoTo = () => {
+        router.push("/")
+    }
     return <div>
-        <div className="top_visual">
-            <div
-                className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/pr_img_06.jpg)` }}
-            >
-                <div className="w1200">
-                    <h2 className="title">자주하는 질문</h2>
-                    {/*<p className="text">지금 여행을 떠나세요~!~~!!!!!</p>*/}
-                </div>
-            </div>
-            <div className="header_nav">
-                <ul>
-                    <li className="home">
-                        <a href="../main/main.html"></a>
-                    </li>
-                    <li className="homedeps1">Member</li>
-                    <li className="homedeps2">
-                        <Link href="/member/qna"><a>자주하는 질문</a></Link>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <SubTopNav pageTools={pageTools} >
+            <li><Link href="/member/notice"><a>공지사항</a></Link></li>
+            <li className="on"><Link href="/member/qna"><a>자주하는 질문</a></Link></li>
+            <li><Link href="/member/inquiry"><a>고객문의</a></Link></li>
+        </SubTopNav>
         <div className="qna_box w1200">
             <ul className="subtop_nav">
                 <li><Link href="/member/notice"><a>공지사항</a></Link></li>
@@ -34,7 +30,6 @@ export const QnaTable: React.FC<IProp> = () => {
                 <li><Link href="/member/inquiry"><a>고객문의</a></Link></li>
             </ul>
             <div className="board_qna">
-
                 <div className="alignment">
                     <div className="left_div">
                         <ul className="board_option">
@@ -47,7 +42,6 @@ export const QnaTable: React.FC<IProp> = () => {
                     <div className="right_div">
                     </div>
                 </div>
-
                 <div className="dl">
                     <div className="dt"><span><i className="Q"></i>여행</span>문의는 어디서 하죠? <i className="jandaicon-arr4-bottom"></i></div>
                     <div className="dd panel-collapse collapse in">
@@ -67,25 +61,18 @@ export const QnaTable: React.FC<IProp> = () => {
                         </div>
                     </div>
                 </div>
-
-
-
-
-
             </div>
 
             <div className="fin mt30 mb100">
                 <div className="float_left">
-                    <button type="submit" className="btn medium">새글쓰기</button>
+                    {isManager && <button onClick={handleGoTo} type="submit" className="btn medium">새글쓰기</button>}
                 </div>
                 <div className="float_right">
-                    <button type="submit" className="btn medium">새글쓰기</button>
                 </div>
             </div>
-
-
         </div>
-    </div >;
-};
+    </div>
+}
 
-export default QnaTable;
+
+export default Qna; usePageEdit

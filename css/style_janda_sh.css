@@ -869,8 +869,7 @@ div.popup_bg_full .fin{
         line-height: 40px;
         font-weight: 600;
         position: fixed;
-        /* top: 10px; */
-        margin-top: -60px;
+        top: 14px;
     }    
     div.popup_bg_full h3 strong {
         color: #2196F3;
@@ -889,7 +888,7 @@ div.popup_bg_full .fin{
         position: relative;
         line-height: 9px;
     }
-    div.popup_bg_full h4 span.full_div__right__btn {
+    div.popup_bg_full h4 .full_div__right__btn {
         font-size: 0.9em;
         line-height: 25px;
         font-weight: 400;
@@ -900,7 +899,7 @@ div.popup_bg_full .fin{
         width: 100%;
         display: block;
     }
-    div.popup_bg_full h4 span.full_div__right {
+    div.popup_bg_full h4 .full_div__right {
         font-size: 0.9em;
         line-height: 25px;
         font-weight: 400;
@@ -911,7 +910,7 @@ div.popup_bg_full .fin{
         width: 100%;
         display: block;
     }
-    div.popup_bg_full h4 span.full_div__right .btn {
+    div.popup_bg_full h4 .full_div__right .btn {
         padding: 0px 15px;
         margin-left: 5px;
         font-size: 0.8em;
@@ -920,7 +919,7 @@ div.popup_bg_full .fin{
         top: -34px;
         line-height: 24px;
     }
-    div.popup_bg_full h4 span.full_div__right strong {
+    div.popup_bg_full h4 .full_div__right strong {
         font-weight: 600;
     }
 
@@ -7661,7 +7660,7 @@ i.calendar {
     }
 
 .portfolio_in .con03 {
-    padding: 100px 0 150px;
+    padding: 100px 0 100px;
     text-align: center;
     box-sizing: border-box;
     background-color: #a6a6a6;
@@ -7686,7 +7685,7 @@ i.calendar {
     min-height: 590px;
     padding: 0 3% 120px;
     box-sizing: border-box;
-    top: -39px;
+    top: -38px;
 }
 
     .portfolio_in .con04 .photo_tap_div {
@@ -7780,8 +7779,6 @@ i.calendar {
         position: relative;
         width: 100%;
         text-align: left;
-        margin-bottom: 50px;
-        margin-top: 50px;
     }
 
         .portfolio_in .con04 .portfolio_box ul li {
@@ -7888,7 +7885,7 @@ i.calendar {
 
     .portfolio_in .con05 .link {
         display: inline-block;
-        right: -10px;
+        right: -10%;
         height: 45px;
         position: relative;
         width: 80%;
@@ -8732,6 +8729,24 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+
+    .portfolio_in .con04 {
+        min-height: 590px;
+        padding: 0 50px 120px;
+        top: -38px;
+    }
+    .portfolio_in .con04 .photo_tap_div .photo_tap {
+        line-height: 33px;
+        height: 35px;
+        margin: 3px;
+        padding: 0 14px;
+        font-size: 14px;
+    }
+        .portfolio_in .con04 .portfolio_box ul li {
+            width: 23%;
+            height: 211px;
+            margin: 1%;
+        }
     div.alignment .view_icon {
         margin-left: 15px;
         width: 20px;
@@ -8760,7 +8775,7 @@ i.calendar {
         padding: 50px 20px 20px;
     }
 
-    div.popup_bg_full h4 span.full_div__right {
+    div.popup_bg_full h4 .full_div__right {
         font-size: 0.9em;
         line-height: 40px;
         font-weight: 400;
@@ -8770,19 +8785,16 @@ i.calendar {
         left: unset;
         width: auto;
     }
-    div.popup_bg_full h4 span.full_div__right .btn {
+    div.popup_bg_full h4 .full_div__right .btn {
         padding: 4px 10px;
         margin-left: 5px;
         font-size: 0.8em;
         position: relative;
         top: unset;
     }
-    div.popup_bg_full h4 span.full_div__right strong {
+    div.popup_bg_full h4 .full_div__right strong {
         font-weight: 600;
     }
-        div.popup_bg_full h3 {
-            /* top: 35px; */
-        }
      
     div.popup_bg_full .close_icon {
             position: absolute;
@@ -9868,13 +9880,13 @@ i.calendar {
     .portfolio_in .con04 {
         min-height: 590px;
         padding: 0 50px 50px;
-        top: -38px;
+        top: -58px;
     }
         .portfolio_in .con04 .photo_tap_div .photo_tap {
             line-height: 53px;
             height: 53px;
             margin: 5px;
-            padding: 0 42px;
+            padding: 0 22px;
             font-size: 17px;
         }
 
@@ -10084,7 +10096,7 @@ i.calendar {
 
 @media (min-width: 1300px) {
     .portfolio_in .con04 {
-        top: -38px;
+        top: -46px;
     }
 
         .portfolio_in .con04 .photo_tap_div {

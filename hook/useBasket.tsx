@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Fproduct } from "../types/api";
 import { IHumanCount } from "../types/interface";
 import { arraySum } from "../utils/math";
-import { getBracket, IBasketItem, removeItem } from "../utils/Storage";
+import { bracketVergionChange, deleteExpireBracket, getBracket, IBasketItem, removeItem } from "../utils/Storage";
 import { useProductList } from "./useProduct";
 import { useUpdate } from "./useUpdater";
 
@@ -78,5 +78,11 @@ export const useBasket = () => {
 
     const items: (IBasketItem & Fproduct)[] = getLoading ? [] : mappingItemWithProduct();
     const totalPrice = arraySum(items.map(item => item.price));
+
+    useEffect(() => {
+        deleteExpireBracket();
+        bracketVergionChange();
+    }, [])
+
     return { updateComponent, totalPrice, items, getLoading }
 }

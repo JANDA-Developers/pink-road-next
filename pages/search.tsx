@@ -56,6 +56,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     const initialFilter = {
         initialFilter: integratedProductSearch(defaultSearch)
     }
+    const {} = useBoard
     const productListHook = useProductList(initialFilter)
     const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = productListHook;
     const { categoriesMap } = useContext(AppContext);
@@ -182,9 +183,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                         </div>
                         <div className="right_div">
                             <SortSelect onChange={setSort} sort={sort} />
-                            <ViewCount value={viewCount} onChange={(val) => {
-                                setViewCount(val);
-                            }} />
+                            <ViewCount value={viewCount} onChange={setViewCount} />
                             <ViewSelect select={view} onChange={setView} />
                         </div>
                     </div>

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const PrivacyPolicy = () => {
@@ -16,7 +17,9 @@ const PrivacyPolicy = () => {
                 <div className="header_nav">
                     <ul>
                         <li className="home">
-                            <a href="../main/main.html"></a>
+                            <Link href="/">
+                              <a/>
+                            </Link>
                         </li>
                         <li className="homedeps1">Member</li>
                         <li className="homedeps2">

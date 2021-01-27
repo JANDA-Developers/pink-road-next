@@ -28,7 +28,7 @@ export const HomepageTopNav = () => {
             <li className={checkOn("sms")}><Link href="/master/homepage/sms"><a>SMS설정</a></Link></li>
             {/* <li><Link href="/master/homepage/homepage1-3"><a>카카오비즈톡</a></Link></li> */}
             <li className={checkOn("terms")}><Link href="/master/homepage/terms"><a>약관설정</a></Link></li>
-            {/* <li className={checkOn("homepage1-5")}><Link href="/master/homepage/homepage1-5"><a>게시판설정</a></Link></li> */}
+            <li className={checkOn("category")}><Link href="/master/homepage/category"><a>게시판설정</a></Link></li>
             <li className={checkOn("settlement")}><Link href="/master/homepage/settlement"><a>정산설정</a></Link></li>
         </ul>
     </div>

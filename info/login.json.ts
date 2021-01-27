@@ -6,7 +6,7 @@ const info = {
         kr: "지금바로 여행을 떠나보세요."
     },
     subTop_img: {
-        kr: "/img/work_top_bg2.jpg"
+        kr: "/img/pr_img_06.jpg"
     }
 }
 

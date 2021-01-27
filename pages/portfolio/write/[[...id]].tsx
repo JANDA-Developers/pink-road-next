@@ -34,7 +34,14 @@ export const PortFolioWrite: React.FC<IProps> = () => {
 
     const { boardData, loadKey, loadKeyAdd, setBoardData, validater: { validate } } = boardHook
 
-    const [create] = useProtfolioCreate();
+    const [create] = useProtfolioCreate({
+        onCompleted: ({PortfolioCreate}) => {
+            if (NewsUpdate.ok) {
+                const id = NewsUpdate.data!._id;
+                goToView(id)
+            }
+        }
+    });
     const [deleteMu] = useProtfolioDelete();
     const [update] = useProtfolioUpdate();
 
@@ -88,6 +95,12 @@ export const PortFolioWrite: React.FC<IProps> = () => {
 
     useEffect(() => {
         initStorage()
+    }, [])
+
+    useEffect(() => {
+        if (portfolio) {
+            setBoardData({ ...portfolio as any })
+        }
     }, [])
 
     return <BoardWrite

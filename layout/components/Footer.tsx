@@ -8,7 +8,25 @@ interface IProp { }
 
 export const Footer: React.FC<IProp> = () => {
 
-    const { isLogin } = useContext(AppContext);
+    const { isLogin, homepage } = useContext(AppContext);
+
+    const {
+        openTime,
+        ceoName,
+        siteName,
+        contact,
+        copyRight,
+        address,
+        addressUrl,
+        bankInfo,
+        email,
+        busiNumber,
+        degitalSalesNumber,
+        logoBottom,
+        partnerFooter
+    } = homepage || {};
+
+    const { accountHolder, accountNumber, bankName } = bankInfo || {}
 
     const handleFadeClick = () => {
         $('family_site_select').css("display", 'none');
@@ -49,65 +67,62 @@ export const Footer: React.FC<IProp> = () => {
             <div className="f_detail_wrap">
                 <div className="ft_left">
                     <div className="magency logo_bottom">
-                        <img src="/img/logo_2.png" alt="logo" />
+                        <img src={logoBottom?.uri || ""} alt="logo" />
                     </div>
                 </div>
                 <div className="copyright">
                     <ul className="footer_homepage_info">
                         <li>
-                            <strong className="name">주식회사 핑크로더</strong>
+                            <strong className="name">{siteName}</strong>
                         </li>
                         <li>
                             <strong>대표</strong>
-                            <span>양화니</span>
+                            <span>{ceoName}</span>
                         </li>
 
                         <li>
                             <strong>사업자등록번호</strong>
-                            <span>603-81-87668<a href="http://www.ftc.go.kr/www/bizCommList.do?key=232" className="url" target="_blank" title="사업자정보확인확인 새창띄우기">사업자정보확인</a></span>
+                            <span>{busiNumber}<a href="http://www.ftc.go.kr/www/bizCommList.do?key=232" className="url" target="_blank" title="사업자정보확인확인 새창띄우기">사업자정보확인</a></span>
                         </li>
                         <li>
                             <strong>통신판매업신고번호</strong>
-                            <span>제 2017-부산중구-0167호</span>
+                            <span>{degitalSalesNumber}</span>
                         </li>
                         <li>
                             <strong>영업보증보험</strong>
                             <span>5천만원 가입</span>
                         </li>
                         <li className="bottom_txt pc">
-                            Copyright © 2021 PINKROADER Co., Ltd. All rights reserved
-                         </li>
+                            {copyRight}
+                        </li>
                     </ul>
                     <ul className="footer_homepage_info mt">
                         <li>
                             <strong>이메일</strong>
-                            <span>pinkroader@gmail.com</span>
+                            <span>{email}</span>
                         </li>
                         <li>
-                            <strong>전화번호</strong>
-                            <span>051-254-2420 Am 10:00 ~ pm 5:00</span>
+                            <strong>영업시간</strong>
+                            <span>{openTime}</span>
                         </li>
 
                         <li>
                             <strong>주소</strong>
-                            <span>부산광역시 중구 40계단길 10, 3F<a target="_blank" href="https://map.naver.com/v5/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010/address/14364152.250451025,4178003.4322139453,%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%A4%91%EA%B5%AC%2040%EA%B3%84%EB%8B%A8%EA%B8%B8%2010,new?c=14364121.5911725,4178009.4229934,19,0,0,0,dh" className="icon" title="지도로 새창띄우기"><img src="/img/svg/map.svg" alt="map icon" /><button /></a></span>
+                            <span>{address}<a target="_blank" href={addressUrl} className="icon" title="지도로 새창띄우기"><img src="/img/svg/map.svg" alt="map icon" /><button /></a></span>
                         </li>
                         <li>
                             <strong>계좌번호</strong>
-                            <span>신한은행 100-031-819617/예금주:주식회사 핑크로더</span>
+                            <span>{bankName} {accountNumber}/예금주:{accountHolder}</span>
                         </li>
                         <li className="bottom_txt m">
-                            Copyright © 2021 PINKROADER Co., Ltd. All rights reserved
-                         </li>
+                            {copyRight}
+                        </li>
                     </ul>
                     <div className="bottom_bn">
                         <div className="partner">
-
-                            <span className="link" style={{ width: "114px" }}><img src="/img/pt_logo_01.png" alt="중소벤처기업로고" /></span>
-                            <span className="link" style={{ width: "90px" }}><img src="/img/pt_logo_02.png" alt="여성기업" /></span>
-                            <span className="link" style={{ width: "90px" }}><img src="/img/pt_logo_03.png" alt="사회적기업" /></span>
-                            <span className="link"><img src="/img/pt_logo_04.png" alt="공유경제부산" /></span>
-                            <span className="link" style={{ width: "88px" }}><img src="/img/pt_logo_05.png" alt="벤처기업인증" /></span>
+                            {partnerFooter?.map(pt =>
+                                <span className="link" ><img src={pt.uri} alt="중소벤처기업로고" /></span>
+                            )}
                         </div>
                     </div>
                 </div>

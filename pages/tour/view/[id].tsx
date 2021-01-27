@@ -377,7 +377,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               <div className="boardNavigation">
                 <Paginater pageInfo={questionPageInfo} isMini setPage={setQuestionPage} />
                 <div className="float_right">
-                  <Link href={`/qna/write?pid=${id}&name=${title}`}>
+                  <Link href={`/member/qna/write?pid=${id}&name=${title}`}>
                     <a className="mini_btn small">고객센터 문의하기</a>
                   </Link>
                 </div>

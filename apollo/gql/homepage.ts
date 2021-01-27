@@ -28,6 +28,13 @@ export const F_HOMEPAGE = gql`
         siteName
         signUpRedirect
         blacklist
+        partnerFooter {
+          ...Ffile
+        }
+        instaLink
+        blogLink
+        facebookLink
+        twitterLink
         busiNumber
         email
         ceoName

@@ -58,9 +58,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
               <span {...edit('m_01_subtitle2')}>
               </span>
               <div className="btn_list onepick">
-                <Link href="/pinkroader_company_introduction_letter.pdf">
-                  <a className="link" {...edit("m_01_mainLink2_1")} />
-                </Link>
+                  <a  target="_blank" href="/pinkroader_company_introduction_letter.pdf" className="link" {...edit("m_01_mainLink2_1")} />
               </div>
             </div>
           </Bg>

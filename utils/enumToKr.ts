@@ -1,4 +1,4 @@
-import { AddtionalFeesStatus, BookingStatus, CategoryType, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, GENDER, PaymentStatus, PayMethod, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole } from "../types/api";
+import { AddtionalFeesStatus, BookingStatus, CategoryType, ERR_CODE, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, GENDER, PaymentStatus, PayMethod, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole } from "../types/api";
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if(status === BookingStatus.CANCEL) return "예약취소" 
@@ -96,4 +96,19 @@ export const feePresent = (addFee:feePolicyFindOne_FeePolicyFindOne_data_addtion
     let unit = addFee.type  === AddtionalFeesStatus.DEFAULT ? "(원)" : "(%)"; 
     let amt = addFee.type  === AddtionalFeesStatus.DEFAULT ? addFee.fee : addFee.feePercent; 
     return amt + unit;
+}
+
+
+export const ErrorCode: Partial<Record<ERR_CODE, string>> = {
+    ALEADY_SAME_DATA: "중복 데이터가 존재합니다.",
+    AUTHORIZATION: "권한이 없습니다.",
+    BOOKING_MEMBER_OVER: "인원이 초과되었습니다.",
+    DOC_ALEADY_EXIST:"이미 존재하는 데이터 입니다.",
+    DOC_NOT_FOUND:"해당 데이터를 찾을 수 없습니다",
+    DOC_RELATED_INVALID: "잘못된 데이터 입니다.",
+    EXPECTED_STATUS_NOT: "잘못된 요청입니다.",
+    EXPECTED_VALUE_RANGE_NOT: "요청값이 올바르지 않습니다.",
+    INVALID_PARAMS: "잘못된 요청입니다.",
+    NICKNAME_ALEADY_EXIST: "닉네임",
+    PAY_TIME_OVER: "시간이 경과했습니다.",
 }
