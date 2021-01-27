@@ -144,7 +144,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                     </div>
                                     <div className="t04">
                                         <div className="img" style={BG(item?.product?.images?.[0]?.uri || "")} ></div>
-                                        <div className="info">
+                                        <div className="info goods__info_title">
                                             <span className="ct">{item.product.title}</span><span className="g-number">상품번호: {item.product.code}</span>
                                             <strong className="title">{item.product.title}</strong>
                                             <div className="txt">

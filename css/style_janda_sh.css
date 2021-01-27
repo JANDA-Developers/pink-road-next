@@ -723,7 +723,57 @@ div.search_mini {
         height: 100%;
         width: 100%;
     }
-    
+    .goodsall__choice{
+        position: relative;
+        display: block;
+        margin-bottom: 10px;
+        
+    }
+    .goodsall__choice .goodsall__choice_touch{
+        border-radius: 5px;
+        width: 100%;
+        height: 80px;
+        border: 1px dotted #999;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        opacity: 0.5;
+        box-sizing: border-box;
+    }
+    .goodsall__choice .goodsall__choice_touch:hover{
+        opacity: 1;
+    }
+    .goodsall__choice .goodsall__choice_touch button{
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: #888;
+    }
+    .goodsall__choice .goodsall__choice_touch i{
+        font-size: 11px;
+        margin-right: 5px;
+    }
+    .goodsall__choice .goodsall__choice_info{
+        position: relative;
+        border: 5px solid rgb(210 210 210);
+        padding: 15px;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+    .goodsall__choice .goodsall__choice_info .goodsall__list__img {
+        width: 10%;
+    }
+    .goodsall__choice .goodsall__list__text  {
+       
+    }
+    .goodsall__choice .goodsall__list__text .title {
+        font-size: 1.9em;
+    }
+    .goodsall__choice .goodsall__list__text .date {
+        font-size: 1.2em;
+    }
 
     .goodsall__search .search_div{
         width: 100% !important;
@@ -977,7 +1027,7 @@ div.popup_bg_mini .page{
             margin-bottom: 0;
         }
 
-        div.popup_bg_mini .in_txt .chash_box {
+        div.popup_bg_mini .in_txt .Chash__box {
             background-color: #f5f5f5;
             border: 1px solid #ccc;
             padding: 5px 15px;
@@ -985,7 +1035,7 @@ div.popup_bg_mini .page{
             margin-top: 5px;
         }
 
-            div.popup_bg_mini .in_txt .chash_box td {
+            div.popup_bg_mini .in_txt .Chash__box td {
                 text-align: right;
                 font-size: 1.2em;
             }
@@ -5942,7 +5992,7 @@ i.important_icon {
         box-sizing: border-box;
     }
 
-    #viewControl .chash_tb {
+    .Chash__box .chash_tb {
         width: 100%;
         margin: 10px 0 0;
         border-collapse: collapse;
@@ -5950,42 +6000,45 @@ i.important_icon {
         background-color: #f5f5f5;
     }
 
-        #viewControl .chash_tb th,
-        #viewControl .chash_tb td {
+    .Chash__box .chash_tb th,
+    .Chash__box .chash_tb td {
             padding: 13px 15px;
+            box-sizing: border-box;
             text-align: left;
             color: #555;
         }
 
-        #viewControl .chash_tb th {
+        .Chash__box .chash_tb th {
             white-space: nowrap;
             font-weight: 600;
             font-size: 14px;
             text-align: left;
         }
 
-            #viewControl .chash_tb th span {
+        .Chash__box .chash_tb th span {
                 font-size: 12px;
                 color: #818181;
             }
 
-        #viewControl .chash_tb td {
+            .Chash__box .chash_tb td {
             width: 100%;
             text-align: right;
             font-size: 14px;
         }
 
-            #viewControl .chash_tb td strong {
+        .Chash__box .chash_tb td strong {
                 font-size: 20px;
                 color: #ed297b;
                 vertical-align: baseline;
                 letter-spacing: 0;
             }
 
-            #viewControl .chash_tb td * {
+            .Chash__box .chash_tb td * {
                 vertical-align: middle;
             }
-
+.option__div_sum .Chash__box .chash_tb{
+    border-top: 0;
+}
     #viewControl .btn_box {
         display: block;
         position: relative;
@@ -6284,16 +6337,19 @@ i.important_icon {
         background-color: #f5f5f5;
     }
 
-    .option_tb .number_box {
+    .Number__box {
         vertical-align: middle;
         display: inline-block;
         text-align: center;
         width: 108px;
         margin-left: 15px;
     }
+    .Number__box > span{
+        vertical-align: middle;
+        display: inline-block;
+    }
 
-        .option_tb .number_box .left_btn {
-            display: inline-block;
+        .Number__box .left_btn {
             width: 30%;
             height: 28px;
             text-align: center;
@@ -6306,8 +6362,7 @@ i.important_icon {
             cursor: pointer;
         }
 
-        .option_tb .number_box .right_btn {
-            display: inline-block;
+       .Number__box .right_btn {
             width: 30%;
             height: 28px;
             text-align: center;
@@ -6320,8 +6375,7 @@ i.important_icon {
             cursor: pointer;
         }
 
-        .option_tb .number_box .number {
-            display: inline-block;
+        .Number__box .number {
             width: 38%;
             height: 28px;
             text-align: center;
@@ -7884,58 +7938,51 @@ i.calendar {
     }
 
     .portfolio_in .con05 .link {
+        position: relative;
         display: inline-block;
         right: -10%;
         height: 45px;
-        position: relative;
         width: 80%;
         top: 15px;
         border-radius: 20px;
         margin-top: 0;
         padding-top: 11px;
         box-sizing: border-box;
-        text-align: center;
+        text-align: center; 
         font-weight: 600;
         font-size: 14px;
         border: 1px solid #ffffff;
         overflow: hidden;
-        /* background-color: #ffffff;
-        box-shadow: 2px 2px 2px #0000001c; */
     }
     .portfolio_in .con05 .link a {
-       z-index: 2;
-        color: #ffffff;
         position: relative;
         display: inline-block;
+        color: #ffffff;
         width: 100%;
         height: 100%;
         overflow: hidden;
+        z-index: 2;
     }
     .portfolio_in .con05 .link:before {
        z-index: 0 !important;
     }
-
         .portfolio_in .con05 .link br {
             display: none;
         }
-
         .portfolio_in .con05 .link:hover a {
             color: #333;
         }
-
     .portfolio_in .con05 .txt {
         color: #fff;
         position: relative;
         top: 0;
         padding-top: 75px;
     }
-
         .portfolio_in .con05 .txt h4 {
             color: #fff;
             font-size: 29px;
             text-align: center;
         }
-
         .portfolio_in .con05 .txt span {
             color: #f5f5f5;
             font-size: 14px;
@@ -8185,13 +8232,11 @@ i.calendar {
 .myplanning_box .fuction_list_mini .th01 {
     width:5%;
 }
-    .myplanning_box .fuction_list_mini .thead .th01 .checkbox {
-        top:0;
-    }
-.myplanning_box .fuction_list_mini .tbody .th01 .checkbox {
+
+/* .myplanning_box .fuction_list_mini .tbody .th01 .checkbox {
     top: 50%;
     margin-top: -8px;
-}
+} */
 
 
 
@@ -8282,7 +8327,31 @@ i.calendar {
         left: -4px;
         content: '';
         } 
-
+        .tag__list{
+            display: block;
+            position: relative;
+            width: 100%;
+            text-align: left;
+        }
+        .tag__list li{
+            display: inline-block;
+            font-weight: 100;
+            margin-right: 10px;
+        }
+.option__div{
+    position: relative;
+    display: block;
+    text-align: left;
+}
+.option__div .option__div_people{
+   display: inline-block;
+   margin-right: 35px;
+}
+.option__div .option__div_people strong{
+   font-weight: 600;
+   font-size: 1em;
+   margin-right: 7px;
+}
 @media (min-width: 768px) {   
     .siteInfo_in .con05 {
         background-size: 320%;
@@ -8729,7 +8798,10 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+    .selectViewList ul.list_ul li {
+        width: 100%;
 
+    }
     .portfolio_in .con04 {
         min-height: 590px;
         padding: 0 50px 120px;

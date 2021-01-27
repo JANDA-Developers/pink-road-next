@@ -1192,7 +1192,7 @@
         padding-left: 0px;
         box-sizing: border-box;
     }
-    .master_box .reservation .ct {
+    /* .master_box .reservation .ct {
         position: relative;
         width: auto !important;
         display: inline-block;
@@ -1203,7 +1203,7 @@
         box-sizing: border-box;
         font-size: 10px;
         color: #555;
-    }
+    } */
     .master_box .reservation .pay-day {
         width: auto !important;
         display: inline-block;
@@ -1268,7 +1268,7 @@
         margin-right: 10px;
         vertical-align: middle;
     }
-    .master_box .reservation .g-number {
+    /* .master_box .reservation .g-number {
         width: auto !important;
         display: inline-block !important;
         text-align: left !important;
@@ -1278,7 +1278,7 @@
         padding-top: 0px !important;
         vertical-align: middle;
         margin-right: 10px;
-    }
+    } */
     .master_box .reservation .pay-option {
         width: auto !important;
         display: inline-block !important;
@@ -1472,7 +1472,7 @@
         padding-top: 0px !important;
         vertical-align: middle;
     }
-    .master_box .calculate .ct {
+    /* .master_box .calculate .ct {
         width: auto !important;
         display: inline-block;
         line-height: 100%;
@@ -1482,7 +1482,7 @@
         box-sizing: border-box;
         font-size: 10px;
         color: #555;
-    }
+    } */
     .master_box .calculate .pay-day {
         width: auto !important;
         display: inline-block;
@@ -1532,7 +1532,7 @@
         margin-right: 10px;
         vertical-align: middle;
     }
-    .master_box .calculate .g-number {
+    /* .master_box .calculate .g-number {
         width: auto !important;
         display: inline-block !important;
         text-align: left !important;
@@ -1542,7 +1542,7 @@
         padding-top: 0px !important;
         vertical-align: middle;
         margin-right: 10px;
-    }
+    } */
     .master_box .calculate .total_men{
         width: auto !important;
         display: inline-block !important;
@@ -2740,7 +2740,7 @@ div.master_popup .board_list_mini .tt05  {
         padding-bottom: 3px;
         margin-bottom: 5px;
     }
-     div.master_popup .info_table .ct {
+     /* div.master_popup .info_table .ct {
         width: auto !important;
         display: inline-block;
         line-height: 100%;
@@ -2751,7 +2751,7 @@ div.master_popup .board_list_mini .tt05  {
         font-size: 10px;
         color: #555;
         margin-right:8px;
-    }
+    } */
      div.master_popup .info_table .info {
         display: block !important;
         width: 100% !important;
@@ -3195,7 +3195,7 @@ div.master_popup .tr input[type=text] {
     background-color: #fff;
     border:1px solid #eee;
     box-sizing: border-box;
-    padding: 4px;
+    padding: 4px 10px;
     font-size:12px;
 }
 div.master_popup .tr .re09 input[type=text] {
@@ -3207,7 +3207,7 @@ div.master_popup .tr select {
     background-color: #fff;
     border: 1px solid #eee;
     box-sizing: border-box;
-    padding: 4px;
+    padding: 4px 10px;
     font-size: 12px;
 }
 div.master_popup .tr select.w30 {
@@ -3540,15 +3540,17 @@ div.master_popup div.alignment{
 
     .master_box .con.goods .td01 {
         width:auto !important;
-        max-width: 70px;
+        max-width: 5%;
         text-align: center !important;
     }
     .master_box .con.goods .td02 {
         width: auto !important;
+        max-width: 10%;
         margin-right: 0;
     }
     .master_box .con.goods .td03 {
         width: auto !important;
+        max-width: 10%;
     }
     .master_box .con.goods .td04 {
         width: auto !important;
@@ -3563,22 +3565,27 @@ div.master_popup div.alignment{
     }
     .master_box .con.goods .td05 {
         width:auto!important;
+        max-width: 10%;
         margin-right: 0;
     }
     .master_box .con.goods .td06 {
         width:auto !important;
         margin-right: 0;
+        max-width: 5%;
     }
     .master_box .con.goods .td07 {
         width: auto !important;
         margin-right: 0;
+        max-width: 10%;
     }
     .master_box .con.goods .td08 {
         width: auto !important;
+        max-width: 10%;
     }
     .master_box .con.goods .td09 {
         width: auto !important;
         margin-top: 0;
+        max-width: 10%;
     }
     .master_box .con.goods .td09 .btn {
         width: auto !important;
@@ -4525,6 +4532,9 @@ div.master_popup .info_table .th01,
 }
     
 @media (max-width: 1000px) {
+    .master_box .goods .alignment{
+        height: 156px;
+    }
     .master__table .tbody div[class*=t0] span{
         font-size: 1em !important;
     }

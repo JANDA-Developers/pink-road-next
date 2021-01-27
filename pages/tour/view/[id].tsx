@@ -244,7 +244,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     <th>대인</th>
                     <td>
                       <strong>{autoComma(adult_price)}</strong>원
-                  <div className="number_box">
+                  <div className="Number__box">
                         <span onClick={handleCount("adult", false)} className="left_btn"><i className="flaticon-substract" /></span>
                         <span className="number">{count.adult}</span>
                         <span onClick={handleCount("adult", true)} className="right_btn"><i className="flaticon-add" /></span>
@@ -255,7 +255,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     <th>소인</th>
                     <td>
                       <strong>{autoComma(kids_price)}</strong>원
-                  <div className="number_box">
+                  <div className="Number__box">
                         <span onClick={handleCount("kids", false)} className="left_btn"><i className="flaticon-substract" /></span>
                         <span className="number">{count.kids}</span>
                         <span onClick={handleCount("kids", true)} className="right_btn"><i className="flaticon-add" /></span>
@@ -266,7 +266,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     <th>유아</th>
                     <td>
                       <strong>{autoComma(baby_price)}</strong>원
-                  <div className="number_box">
+                  <div className="Number__box">
                         <span onClick={handleCount("baby", false)} className="left_btn"><i className="flaticon-substract" /></span>
                         <span className="number">{count.baby}</span>
                         <span onClick={handleCount("baby", true)} className="right_btn"><i className="flaticon-add" /></span>
@@ -275,7 +275,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                   </tr>
                 </tbody>
               </table>
-              <div className="chash_box">
+              <div className="Chash__box">
                 <table cellSpacing={0} summary="Extra Form" className="chash_tb">
                   <tbody>
                     <tr>

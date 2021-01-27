@@ -143,8 +143,8 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                             <input onClick={handleOpenDayPicker(modal)} value={dayjs(modal.startDate).format("YYYY.MM.DD")} type="text" className="day w100" />
                                                             <CalendarIcon />
                                                         </div>
-                                                ~
-                                                <div className="input_box ml5">
+                                                        <span className="pc"> ~ </span>
+                                                        <div className="input_box ml5">
                                                             <input onClick={handleOpenDayPicker(modal)} value={dayjs(modal.endDate).format("YYYY.MM.DD")} type="text" className="day w100" />
                                                             <CalendarIcon />
                                                         </div>
