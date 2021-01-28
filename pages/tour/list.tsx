@@ -61,10 +61,10 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
         <div className="tour_box deal_list">
             <BoardList
                 Categories={
-                    <div className="search">
-                        <ul>
+                    <div className="BoardCategories search">
+                        <ul className="BoardCategories__ul">
                             {cats.map(cat =>
-                                <li onClick={handleCatFilter(cat._id)} key={cat._id} className={checkCatOn(cat)}><a>{cat.label}</a></li>
+                                <li onClick={handleCatFilter(cat._id)} key={cat._id} className={"BoardCategories__li " + checkCatOn(cat)}><a>{cat.label}</a></li>
                             )}
                         </ul>
                     </div>
@@ -94,11 +94,11 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
                         {items.map(item =>
                             <ProductPhotoBlock key={item._id} item={item} />
                         )}
-                    </ul>}
+                    </ul>
+                }
             </BoardList>
         </div>
     </div>
-
 };
 
 export default TourList;

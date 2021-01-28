@@ -120,8 +120,8 @@ export const Footer: React.FC<IProp> = () => {
                     </ul>
                     <div className="bottom_bn">
                         <div className="partner">
-                            {partnerFooter?.map(pt =>
-                                <span className="link" ><img src={pt.uri} alt="중소벤처기업로고" /></span>
+                            {partnerFooter?.map((pt, i) =>
+                                <span key={"footerpartner" + i} className="link" ><img src={pt.uri} alt="중소벤처기업로고" /></span>
                             )}
                         </div>
                     </div>

@@ -27,6 +27,7 @@ interface IUseBoardDefaultData {
     thumb: Ffile | null;
     contents: string
     loadKey: number;
+    [key: string]: any
 }
 
 
@@ -165,7 +166,7 @@ export const saveMessage = () => {
     alert("임시 저장이 완료되었습니다. 로드시 같은 디바이스로 접근 바랍니다.")
 }
 
-export const isUnLoaded = (data: any): data is null | undefined | "" | void => {
+export const nullcehck = (data: any): data is null | undefined | "" | void => {
     if (data) return true;
     alert("저장된 데이터가 없습니다")
     return false;

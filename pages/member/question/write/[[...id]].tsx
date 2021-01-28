@@ -24,7 +24,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
         onCompleted: ({ QuestionUpdate }) => {
             if (QuestionUpdate.ok) {
                 const id = QuestionUpdate.data!._id;
-                router.push(`/qna/view/${id}`)
+                router.push(`/member/qna/view/${id}`)
             }
         },
         awaitRefetchQueries: true
@@ -34,7 +34,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
         onCompleted: ({ QuestionCreate }) => {
             if (QuestionCreate.ok) {
                 const id = QuestionCreate.data!._id;
-                router.push(`/qna/view/${id}`)
+                router.push(`/member/qna/view/${id}`)
             }
         },
         awaitRefetchQueries: true
@@ -43,7 +43,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
     const [questionDeleteMu] = useQuestionDelete({
         onCompleted: ({ QuestionDelete }) => {
             if (QuestionDelete.ok)
-                router.push(`/qna`)
+                router.push(`/member/qna`)
         },
     })
 
@@ -110,7 +110,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
             title: question?.title,
             contents: question?.contents,
         })
-        setProductId(question?.product._id || "")
+        setProductId(question?.product?._id || "")
     }, [question?._id])
 
 
@@ -125,7 +125,6 @@ export const QuestionWrite: React.FC<IProp> = () => {
                 <ProductSearcher
                     selectProductId={productId}
                     onSelectProduct={(product: any) => {
-                        alert(product._id);
                         setProductId(product._id);
                     }}
                 />

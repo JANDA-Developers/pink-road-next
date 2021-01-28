@@ -94,7 +94,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
         setPopProductId(id);
         setTimeout(() => {
             openModal("#ProductModal")()
-        }, 1000)
+        }, 100)
     }
 
     const handleOpenWrite = () => {

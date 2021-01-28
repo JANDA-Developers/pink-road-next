@@ -12,7 +12,6 @@ export const F_FEEPOLICY = gql`
       jandaCardPercent
       cardPercent
       bankPercent
-      storePercent
 }
 `
 

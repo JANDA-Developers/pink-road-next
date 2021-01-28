@@ -40,7 +40,7 @@ export const ProductSearcher: React.FC<IProp> = ({ selectProductId, onSelectProd
                 <input placeholder="검색어를 입력해주세요" onKeyPress={whenEnter(getData)} onChange={setVal(setSearch)} value={search} type="text" name="title" className="inputText w100" />
                 <div onClick={getData} className="productSearcher__searchIcon search_btn"><img src="/img/svg/search_icon.svg" alt="icon" /><button className="btt1"></button></div>
             </div>
-        </div>2
+        </div>
         <div className="searchList">
             <Change change={!getLoading} >
                 <div className={`searchList__wrap`}>

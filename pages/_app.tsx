@@ -14,6 +14,7 @@ import { categoryMap, defaultCatsMap } from '../utils/categoryMap';
 import { useRouter } from 'next/router';
 import PageLoading from './Loading';
 import { arrayEquals } from '../utils/filter';
+import "slick-carousel/slick/slick.css";
 
 
 dayjs.locale('ko')

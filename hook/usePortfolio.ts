@@ -3,7 +3,7 @@ import { portfolioCreate, portfolioCreateVariables,  portfolioDelete, portfolioD
 import { getRefetch } from "../utils/api";
 import { generateFindQuery, generateListQueryHook, generateMutationHook } from "../utils/query";
 
-export const usePortfolioList = generateListQueryHook<_PortfolioFilter,_PortfolioSort,portfolioList,portfolioListVariables, portfolioList_PortfolioList_data>(PORT_FOLIO_LIST);
+export const usePortfolioList = generateListQueryHook<_PortfolioFilter,_PortfolioSort,portfolioList,portfolioListVariables, portfolioList_PortfolioList_data>(PORT_FOLIO_LIST,{ initialSort:[_PortfolioSort.createdAt_desc]});
 export const usePortfolioFind = generateFindQuery<portfolioFindById,portfolioFindByIdVariables,portfolioFindById_PortfolioFindById_data>("id",PORTFOLIO_FIND_BY_ID)
 export const useProtfolioCreate = generateMutationHook<portfolioCreate, portfolioCreateVariables>(PORTFOLIO_CREATE,{...getRefetch(PORT_FOLIO_LIST)})
 export const useProtfolioDelete = generateMutationHook<portfolioDelete, portfolioDeleteVariables>(PORTFOLIO_DELETE,{...getRefetch(PORT_FOLIO_LIST)})

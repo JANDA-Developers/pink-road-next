@@ -13,7 +13,7 @@ import { useCustomCount } from '../../hook/useCount';
 import { useIdSelecter } from '../../hook/useIdSelecter';
 import { useDateFilter } from '../../hook/useSearch';
 import { useSettlementList } from '../../hook/useSettlement';
-import { Fsettlement } from '../../types/api';
+import { Fsettlement, SettlementStatus, _ProductFilter, _SettlementFilter } from '../../types/api';
 import { ALLOW_SELLERS } from '../../types/const';
 import { productStatus, settlementStatus } from '../../utils/enumToKr';
 import { autoComma } from '../../utils/formatter';
@@ -45,13 +45,17 @@ const popupClose2 = () => {
     });
 }
 
+type TsearchType = keyof _SettlementFilter;
+
+
 export const MySettlement: React.FC<IProp> = () => {
-    const { items, filter, setFilter, viewCount, setViewCount, setSort, sort, pageInfo, setPage } = useSettlementList()
+    const { items, filter, setFilter, viewCount, setViewCount, setUniqFilter, setSort, sort, pageInfo, setPage } = useSettlementList()
     const [target] = useState<Fsettlement | null>(null);
     const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({
         filter,
         setFilter
     });
+    const [searchType, setSearchType] = useState<TsearchType>("productCode_eq");
     const { selectAll, isAllSelected } = useIdSelecter(items.map(item => item._id));
     const [code, setCode] = useState("");
     const [settlementId, setSettlementId] = useState("");
@@ -59,14 +63,7 @@ export const MySettlement: React.FC<IProp> = () => {
     const { salesofLastMonth, salesOfThisMonth, settleAvaiableAmount, cancelReturnPrice } = useCustomCount(["salesofLastMonth", "salesofLastMonth", "salesOfThisMonth", "settleAvaiableAmount", "cancelReturnPrice"])
 
     const doSearch = (search: string) => {
-        const _filter = {
-            ...filter
-        }
-
-        // _filter["title_contains"] = search ? search : undefined;
-        setFilter({
-            ..._filter,
-        })
+        // setUniqFilter("")
     }
 
     const handleOpenModal = (_id: string) => () => {
@@ -74,6 +71,15 @@ export const MySettlement: React.FC<IProp> = () => {
         openModalTimeSet("#SettlementModal")
     }
 
+    const handleStatus = (status?: SettlementStatus) => () => {
+        filter.status_eq = status;
+        setFilter({
+            ...filter
+        })
+    }
+    const checkStatusOn = (status?: SettlementStatus) => {
+        return filter.status_eq === status ? "check on" : "check";
+    }
 
     return <MypageLayout>
         <div className="in mypage_purchase">
@@ -114,16 +120,21 @@ export const MySettlement: React.FC<IProp> = () => {
                             <div className="jul2">
                                 <div className="title">상태</div>
                                 <div className="text">
-                                    <span className="check on">전체</span>
-                                    <span className="check">예약완료</span>
-                                    <span className="check">예약취소</span>
+                                    <span onClick={handleStatus(undefined)} className={checkStatusOn(undefined)}>전체</span>
+                                    <span onClick={handleStatus(SettlementStatus.COMPLETE)} className={checkStatusOn(SettlementStatus.COMPLETE)}>정산완료</span>
+                                    <span onClick={handleStatus(SettlementStatus.CANCELED)} className={checkStatusOn(SettlementStatus.ACCEPT)}>정산수락</span>
+                                    <span onClick={handleStatus(SettlementStatus.CANCELED)} className={checkStatusOn(SettlementStatus.READY)}>정산요청</span>
+                                    <span onClick={handleStatus(SettlementStatus.CANCELED)} className={checkStatusOn(SettlementStatus.CANCELED)}>정산취소</span>
                                 </div>
                             </div>
                         }
                         SearchSelect={
-                            <select className="option">
-                                <option>상품코드</option>
-                                <option>상품명</option>
+                            <select value={searchType} onChange={(e) => {
+                                const val = e.currentTarget.value;
+                                setSearchType(val as any);
+                            }} className="option">
+                                <option value={"code_eq" as TsearchType}>상품코드</option>
+                                <option >상품명</option>
                                 <option>예약자</option>
                             </select>
                         }

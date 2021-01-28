@@ -159,6 +159,9 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
 
 
 
+    console.log("categoriesMap");
+    console.log(categoriesMap);
+
     const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.EXPERIENCE;
     const regionCategories = categoriesMap.REGION;
 

@@ -45,7 +45,7 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
     const role_eq = type !== "signOut" ? type : undefined;
     const isResigned_eq = type === "signOut" ? true : false;
     const fixedFilter: _UserFilter = { role_eq, isResigned_eq };
-    const { totalIndiMemeberCount, koreanMemberCount, foreginMemeberCount } = useCustomCount(["totalPartnerMemberCount", "koreanMemberCount", "foreginMemeberCount", "totalIndiMemeberCount"])
+    const { totalIndiMemberCount, koreanMemberCount, foreginMemberCount } = useCustomCount(["totalPartnerMemberCount", "koreanMemberCount", "foreginMemberCount", "totalIndiMemberCount"])
     const [searchType, setSearchType] = useState<TuniqSearch>("name_eq");
     const [popupUser, setPopupUser] = useState<Fuser>();
     const useHook = useUserList({ initialFilter: fixedFilter });
@@ -167,14 +167,14 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
                             LeftDiv={
                                 <div>
                                     <ul className="board_option">
-                                        <li className={checkOnAllForgien()}><a >전체<strong>{totalIndiMemeberCount}</strong></a></li>
+                                        <li className={checkOnAllForgien()}><a >전체<strong>{totalIndiMemberCount}</strong></a></li>
                                         <li onClick={setIsForeginer(false)} className={checkOnForeginer(false)}><a>내국인<strong>{koreanMemberCount}</strong></a></li>
-                                        <li onClick={setIsForeginer(true)} className={checkOnForeginer(true)}><a >외국인<strong>{foreginMemeberCount}</strong></a></li>
+                                        <li onClick={setIsForeginer(true)} className={checkOnForeginer(true)}><a >외국인<strong>{foreginMemberCount}</strong></a></li>
                                     </ul>
                                     <ul className="board_option">
-                                        <li className={checkOnAllGender()}><a >전체<strong>{totalIndiMemeberCount}</strong></a></li>
+                                        <li className={checkOnAllGender()}><a >전체<strong>{totalIndiMemberCount}</strong></a></li>
                                         <li onClick={setGenderFilter(GENDER.MAIL)} className={checkOnGender(GENDER.MAIL)}><a>남<strong>{koreanMemberCount}</strong></a></li>
-                                        <li onClick={setGenderFilter(GENDER.FEMALE)} className={checkOnGender(GENDER.FEMALE)}><a>녀<strong>{foreginMemeberCount}</strong></a></li>
+                                        <li onClick={setGenderFilter(GENDER.FEMALE)} className={checkOnGender(GENDER.FEMALE)}><a>녀<strong>{foreginMemberCount}</strong></a></li>
                                     </ul>
                                 </div>
                             }

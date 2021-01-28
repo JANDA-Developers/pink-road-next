@@ -19,7 +19,7 @@ export const usePaymentList = ({
     initialPageIndex = 0,
     initialSort = [_PaymentSort.createdAt_desc],
     initialFilter = {},
-    initialViewCount = 20,
+    initialViewCount = 10,
     options = {}
 }: IuseItemListProp = {}) => {
     const { variables: overrideVariables, ...ops } = options;

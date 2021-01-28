@@ -5,7 +5,7 @@ import { F_SETTLEMENT } from "./settlement";
 
 
 export const PRODUCTS_CREATE = gql`
-  mutation ProductCreate(
+  mutation productCreate(
         $params: ProductCreateInput!
     ) {
     ProductCreate(
@@ -26,10 +26,10 @@ location
 `;
 
 export const ACCEPT_PRODUCT_CREATE = gql`
-  mutation acceptProductCreate(
+  mutation productCreateAccept(
         $ProductId: String!
     ) {
-    AcceptProductCreate(
+    ProductCreateAccept(
         ProductId: $ProductId  
       ) {
       ok
@@ -47,10 +47,10 @@ location
 `;
 
 export const ACCEPT_PRODUCT_UPDATE = gql`
-  mutation acceptProductUpdate(
+  mutation productUpdateAccept(
       $ProductId: String!
     ) {
-    AcceptProductUpdate(
+    ProductUpdateAccept(
       ProductId: $ProductId
     ) {
       ok
@@ -69,11 +69,11 @@ location
 
 
 export const REJECT_PRODUCT_CREATE = gql`
-  mutation rejectProductCreate(
+  mutation productCreateReject(
         $ProductId: String!
         $reason: String!
     ) {
-    RejectProductCreate(
+      ProductCreateReject(
         ProductId: $ProductId,
         reason: $reason 
       ) {
@@ -93,11 +93,11 @@ location
 
 
 export const REJECT_PRODUCT_UPDATE = gql`
-  mutation rejectProductUpdate(
+  mutation productUpdateReject(
         $ProductId: String!
         $reason: String!
     ) {
-    RejectProductUpdate(
+    ProductUpdateReject(
         ProductId: $ProductId
         reason: $reason
       ) {
@@ -216,11 +216,11 @@ export const PRODUCT_FIND_BY_ID = gql`
       ) {
       ok
       error {
-      location
-      severity
-      code
-      message
-    }
+        location
+        severity
+        code
+        message
+      }
       data {
         ...Fproduct
         author {
@@ -252,11 +252,11 @@ export const PRODUCT_FIND_BY_ID_FOR_SELLER = gql`
       ) {
       ok
       error {
-      location
-      severity
-      code
-      message
-    }
+        location
+        severity
+        code
+        message
+      }
       data {
         ...Fproduct
         author {

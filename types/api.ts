@@ -4,6 +4,451 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: announceFindById
+// ====================================================
+
+export interface announceFindById_AnnounceFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface announceFindById_AnnounceFindById_data_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceFindById_AnnounceFindById_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface announceFindById_AnnounceFindById_data_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: announceFindById_AnnounceFindById_data_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: announceFindById_AnnounceFindById_data_author_profileImg | null;
+}
+
+export interface announceFindById_AnnounceFindById_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceFindById_AnnounceFindById_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceFindById_AnnounceFindById_data {
+  __typename: "Announce";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  no: number;
+  contents: string;
+  author: announceFindById_AnnounceFindById_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: announceFindById_AnnounceFindById_data_attachFiles[] | null;
+  thumb: announceFindById_AnnounceFindById_data_thumb | null;
+  viewCount: number;
+  type: AnnounceType;
+}
+
+export interface announceFindById_AnnounceFindById {
+  __typename: "AnnounceFindByIdResponse";
+  ok: boolean;
+  error: announceFindById_AnnounceFindById_error | null;
+  data: announceFindById_AnnounceFindById_data | null;
+}
+
+export interface announceFindById {
+  AnnounceFindById: announceFindById_AnnounceFindById;
+}
+
+export interface announceFindByIdVariables {
+  _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: announceList
+// ====================================================
+
+export interface announceList_AnnounceList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface announceList_AnnounceList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface announceList_AnnounceList_data_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceList_AnnounceList_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface announceList_AnnounceList_data_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: announceList_AnnounceList_data_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: announceList_AnnounceList_data_author_profileImg | null;
+}
+
+export interface announceList_AnnounceList_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceList_AnnounceList_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceList_AnnounceList_data {
+  __typename: "Announce";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  no: number;
+  contents: string;
+  author: announceList_AnnounceList_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: announceList_AnnounceList_data_attachFiles[] | null;
+  thumb: announceList_AnnounceList_data_thumb | null;
+  viewCount: number;
+  type: AnnounceType;
+}
+
+export interface announceList_AnnounceList {
+  __typename: "AnnounceListResponse";
+  ok: boolean;
+  error: announceList_AnnounceList_error | null;
+  page: announceList_AnnounceList_page;
+  data: announceList_AnnounceList_data[];
+}
+
+export interface announceList {
+  AnnounceList: announceList_AnnounceList;
+}
+
+export interface announceListVariables {
+  sort?: _AnnounceSort[] | null;
+  filter?: _AnnounceFilter | null;
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: announceCreate
+// ====================================================
+
+export interface announceCreate_AnnounceCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface announceCreate_AnnounceCreate_data {
+  __typename: "Announce";
+  _id: string;
+}
+
+export interface announceCreate_AnnounceCreate {
+  __typename: "AnnounceCreateResponse";
+  ok: boolean;
+  error: announceCreate_AnnounceCreate_error | null;
+  data: announceCreate_AnnounceCreate_data | null;
+}
+
+export interface announceCreate {
+  AnnounceCreate: announceCreate_AnnounceCreate;
+}
+
+export interface announceCreateVariables {
+  params: AnnounceCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: announceDelete
+// ====================================================
+
+export interface announceDelete_AnnounceDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface announceDelete_AnnounceDelete {
+  __typename: "AnnounceDeleteResponse";
+  ok: boolean;
+  error: announceDelete_AnnounceDelete_error | null;
+}
+
+export interface announceDelete {
+  AnnounceDelete: announceDelete_AnnounceDelete;
+}
+
+export interface announceDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: announceUpdate
+// ====================================================
+
+export interface announceUpdate_AnnounceUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface announceUpdate_AnnounceUpdate_data {
+  __typename: "Announce";
+  _id: string;
+}
+
+export interface announceUpdate_AnnounceUpdate {
+  __typename: "AnnounceUpdateResponse";
+  ok: boolean;
+  error: announceUpdate_AnnounceUpdate_error | null;
+  data: announceUpdate_AnnounceUpdate_data | null;
+}
+
+export interface announceUpdate {
+  AnnounceUpdate: announceUpdate_AnnounceUpdate;
+}
+
+export interface announceUpdateVariables {
+  params: AnnounceUpdateInput;
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: answerCreate
 // ====================================================
 
@@ -470,7 +915,7 @@ export interface bookingListVariables {
   sort?: _BookingSort[] | null;
   filter?: _BookingFilter | null;
   pageInput: pageInput;
-  productFilter?: _ProductFilter | null;
+  filterProduct?: _ProductFilter | null;
 }
 
 /* tslint:disable */
@@ -516,10 +961,10 @@ export interface bookingCountVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: bookingCancel
+// GraphQL mutation operation: bookingCancelReq
 // ====================================================
 
-export interface bookingCancel_BookingCancel_error {
+export interface bookingCancelReq_BookingCancelReq_error {
   __typename: "CustomError";
   location: string;
   severity: ERR_SEVERITY;
@@ -527,16 +972,16 @@ export interface bookingCancel_BookingCancel_error {
   message: string;
 }
 
-export interface bookingCancel_BookingCancel_data_product {
+export interface bookingCancelReq_BookingCancelReq_data_product {
   __typename: "Product";
   _id: string;
   title: string;
   code: string;
 }
 
-export interface bookingCancel_BookingCancel_data {
+export interface bookingCancelReq_BookingCancelReq_data {
   __typename: "Booking";
-  product: bookingCancel_BookingCancel_data_product;
+  product: bookingCancelReq_BookingCancelReq_data_product;
   _id: string;
   createdAt: any;
   cancelDate: any | null;
@@ -563,19 +1008,18 @@ export interface bookingCancel_BookingCancel_data {
   isPaid: boolean | null;
 }
 
-export interface bookingCancel_BookingCancel {
-  __typename: "BookingCancelResponse";
+export interface bookingCancelReq_BookingCancelReq {
+  __typename: "BookingCancelReqResponse";
   ok: boolean;
-  error: bookingCancel_BookingCancel_error | null;
-  data: bookingCancel_BookingCancel_data | null;
+  error: bookingCancelReq_BookingCancelReq_error | null;
+  data: bookingCancelReq_BookingCancelReq_data | null;
 }
 
-export interface bookingCancel {
-  BookingCancel: bookingCancel_BookingCancel;
+export interface bookingCancelReq {
+  BookingCancelReq: bookingCancelReq_BookingCancelReq;
 }
 
-export interface bookingCancelVariables {
-  reason: string;
+export interface bookingCancelReqVariables {
   bookingId: string;
 }
 
@@ -1392,7 +1836,7 @@ export interface countManager_Count_data {
   /**
    * 마스터용::멤버 외국인 수
    */
-  foreginMemeberCount: number;
+  foreginMemberCount: number;
   /**
    * 마스터용::내국인 멤버 수
    */
@@ -1400,7 +1844,7 @@ export interface countManager_Count_data {
   /**
    * 마스터용::일반 회원 수
    */
-  totalIndiMemeberCount: number;
+  totalIndiMemberCount: number;
   /**
    * 마스터용::비지니스 파트너 유저증 승인 유저수
    */
@@ -1453,6 +1897,10 @@ export interface countManager_Count_data {
    * 구매자(나)의 체험 횟수
    */
   countOfExpBooking: number;
+  /**
+   * 공지사항 수
+   */
+  announceCount: number;
 }
 
 export interface countManager_Count {
@@ -1503,7 +1951,6 @@ export interface feePolicyFindOne_FeePolicyFindOne_data {
   jandaCardPercent: number;
   cardPercent: number;
   bankPercent: number;
-  storePercent: number;
   addtionalFees: feePolicyFindOne_FeePolicyFindOne_data_addtionalFees[];
 }
 
@@ -1555,7 +2002,6 @@ export interface feePolicyUpdate_FeePolicyUpdate_data {
   jandaCardPercent: number;
   cardPercent: number;
   bankPercent: number;
-  storePercent: number;
   addtionalFees: feePolicyUpdate_FeePolicyUpdate_data_addtionalFees[];
 }
 
@@ -3834,10 +4280,10 @@ export interface portfolioUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: ProductCreate
+// GraphQL mutation operation: productCreate
 // ====================================================
 
-export interface ProductCreate_ProductCreate_error {
+export interface productCreate_ProductCreate_error {
   __typename: "CustomError";
   location: string;
   severity: ERR_SEVERITY;
@@ -3845,23 +4291,23 @@ export interface ProductCreate_ProductCreate_error {
   message: string;
 }
 
-export interface ProductCreate_ProductCreate_data {
+export interface productCreate_ProductCreate_data {
   __typename: "Product";
   _id: string;
 }
 
-export interface ProductCreate_ProductCreate {
+export interface productCreate_ProductCreate {
   __typename: "ProductCreateResponse";
   ok: boolean;
-  error: ProductCreate_ProductCreate_error | null;
-  data: ProductCreate_ProductCreate_data | null;
+  error: productCreate_ProductCreate_error | null;
+  data: productCreate_ProductCreate_data | null;
 }
 
-export interface ProductCreate {
-  ProductCreate: ProductCreate_ProductCreate;
+export interface productCreate {
+  ProductCreate: productCreate_ProductCreate;
 }
 
-export interface ProductCreateVariables {
+export interface productCreateVariables {
   params: ProductCreateInput;
 }
 
@@ -3871,10 +4317,10 @@ export interface ProductCreateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: acceptProductCreate
+// GraphQL mutation operation: productCreateAccept
 // ====================================================
 
-export interface acceptProductCreate_AcceptProductCreate_error {
+export interface productCreateAccept_ProductCreateAccept_error {
   __typename: "CustomError";
   location: string;
   severity: ERR_SEVERITY;
@@ -3882,23 +4328,23 @@ export interface acceptProductCreate_AcceptProductCreate_error {
   message: string;
 }
 
-export interface acceptProductCreate_AcceptProductCreate_data {
+export interface productCreateAccept_ProductCreateAccept_data {
   __typename: "Product";
   _id: string;
 }
 
-export interface acceptProductCreate_AcceptProductCreate {
-  __typename: "AcceptProductCreateResponse";
+export interface productCreateAccept_ProductCreateAccept {
+  __typename: "ProductCreateAcceptResponse";
   ok: boolean;
-  error: acceptProductCreate_AcceptProductCreate_error | null;
-  data: acceptProductCreate_AcceptProductCreate_data | null;
+  error: productCreateAccept_ProductCreateAccept_error | null;
+  data: productCreateAccept_ProductCreateAccept_data | null;
 }
 
-export interface acceptProductCreate {
-  AcceptProductCreate: acceptProductCreate_AcceptProductCreate;
+export interface productCreateAccept {
+  ProductCreateAccept: productCreateAccept_ProductCreateAccept;
 }
 
-export interface acceptProductCreateVariables {
+export interface productCreateAcceptVariables {
   ProductId: string;
 }
 
@@ -3908,10 +4354,10 @@ export interface acceptProductCreateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: acceptProductUpdate
+// GraphQL mutation operation: productUpdateAccept
 // ====================================================
 
-export interface acceptProductUpdate_AcceptProductUpdate_error {
+export interface productUpdateAccept_ProductUpdateAccept_error {
   __typename: "CustomError";
   location: string;
   severity: ERR_SEVERITY;
@@ -3919,23 +4365,23 @@ export interface acceptProductUpdate_AcceptProductUpdate_error {
   message: string;
 }
 
-export interface acceptProductUpdate_AcceptProductUpdate_data {
+export interface productUpdateAccept_ProductUpdateAccept_data {
   __typename: "Product";
   _id: string;
 }
 
-export interface acceptProductUpdate_AcceptProductUpdate {
-  __typename: "AcceptProductUpdateResponse";
+export interface productUpdateAccept_ProductUpdateAccept {
+  __typename: "ProductUpdateAcceptResponse";
   ok: boolean;
-  error: acceptProductUpdate_AcceptProductUpdate_error | null;
-  data: acceptProductUpdate_AcceptProductUpdate_data | null;
+  error: productUpdateAccept_ProductUpdateAccept_error | null;
+  data: productUpdateAccept_ProductUpdateAccept_data | null;
 }
 
-export interface acceptProductUpdate {
-  AcceptProductUpdate: acceptProductUpdate_AcceptProductUpdate;
+export interface productUpdateAccept {
+  ProductUpdateAccept: productUpdateAccept_ProductUpdateAccept;
 }
 
-export interface acceptProductUpdateVariables {
+export interface productUpdateAcceptVariables {
   ProductId: string;
 }
 
@@ -3945,10 +4391,10 @@ export interface acceptProductUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: rejectProductCreate
+// GraphQL mutation operation: productCreateReject
 // ====================================================
 
-export interface rejectProductCreate_RejectProductCreate_error {
+export interface productCreateReject_ProductCreateReject_error {
   __typename: "CustomError";
   location: string;
   severity: ERR_SEVERITY;
@@ -3956,23 +4402,23 @@ export interface rejectProductCreate_RejectProductCreate_error {
   message: string;
 }
 
-export interface rejectProductCreate_RejectProductCreate_data {
+export interface productCreateReject_ProductCreateReject_data {
   __typename: "Product";
   _id: string;
 }
 
-export interface rejectProductCreate_RejectProductCreate {
-  __typename: "RejectProductCreateResponse";
+export interface productCreateReject_ProductCreateReject {
+  __typename: "ProductCreateRejectResponse";
   ok: boolean;
-  error: rejectProductCreate_RejectProductCreate_error | null;
-  data: rejectProductCreate_RejectProductCreate_data | null;
+  error: productCreateReject_ProductCreateReject_error | null;
+  data: productCreateReject_ProductCreateReject_data | null;
 }
 
-export interface rejectProductCreate {
-  RejectProductCreate: rejectProductCreate_RejectProductCreate;
+export interface productCreateReject {
+  ProductCreateReject: productCreateReject_ProductCreateReject;
 }
 
-export interface rejectProductCreateVariables {
+export interface productCreateRejectVariables {
   ProductId: string;
   reason: string;
 }
@@ -3983,10 +4429,10 @@ export interface rejectProductCreateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: rejectProductUpdate
+// GraphQL mutation operation: productUpdateReject
 // ====================================================
 
-export interface rejectProductUpdate_RejectProductUpdate_error {
+export interface productUpdateReject_ProductUpdateReject_error {
   __typename: "CustomError";
   location: string;
   severity: ERR_SEVERITY;
@@ -3994,23 +4440,23 @@ export interface rejectProductUpdate_RejectProductUpdate_error {
   message: string;
 }
 
-export interface rejectProductUpdate_RejectProductUpdate_data {
+export interface productUpdateReject_ProductUpdateReject_data {
   __typename: "Product";
   _id: string;
 }
 
-export interface rejectProductUpdate_RejectProductUpdate {
-  __typename: "RejectProductUpdateResponse";
+export interface productUpdateReject_ProductUpdateReject {
+  __typename: "ProductUpdateRejectResponse";
   ok: boolean;
-  error: rejectProductUpdate_RejectProductUpdate_error | null;
-  data: rejectProductUpdate_RejectProductUpdate_data | null;
+  error: productUpdateReject_ProductUpdateReject_error | null;
+  data: productUpdateReject_ProductUpdateReject_data | null;
 }
 
-export interface rejectProductUpdate {
-  RejectProductUpdate: rejectProductUpdate_RejectProductUpdate;
+export interface productUpdateReject {
+  ProductUpdateReject: productUpdateReject_ProductUpdateReject;
 }
 
-export interface rejectProductUpdateVariables {
+export interface productUpdateRejectVariables {
   ProductId: string;
   reason: string;
 }
@@ -5118,6 +5564,461 @@ export interface productFindByIdForSellerVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: qnaFindById
+// ====================================================
+
+export interface qnaFindById_QnaFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface qnaFindById_QnaFindById_data_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaFindById_QnaFindById_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface qnaFindById_QnaFindById_data_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: qnaFindById_QnaFindById_data_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: qnaFindById_QnaFindById_data_author_profileImg | null;
+}
+
+export interface qnaFindById_QnaFindById_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaFindById_QnaFindById_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaFindById_QnaFindById_data_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface qnaFindById_QnaFindById_data {
+  __typename: "Qna";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: qnaFindById_QnaFindById_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: qnaFindById_QnaFindById_data_attachFiles[] | null;
+  thumb: qnaFindById_QnaFindById_data_thumb | null;
+  viewCount: number;
+  category: qnaFindById_QnaFindById_data_category | null;
+}
+
+export interface qnaFindById_QnaFindById {
+  __typename: "QnaFindByIdResponse";
+  ok: boolean;
+  error: qnaFindById_QnaFindById_error | null;
+  data: qnaFindById_QnaFindById_data | null;
+}
+
+export interface qnaFindById {
+  QnaFindById: qnaFindById_QnaFindById;
+}
+
+export interface qnaFindByIdVariables {
+  _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: qnaList
+// ====================================================
+
+export interface qnaList_QnaList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface qnaList_QnaList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface qnaList_QnaList_data_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaList_QnaList_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface qnaList_QnaList_data_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: qnaList_QnaList_data_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: qnaList_QnaList_data_author_profileImg | null;
+}
+
+export interface qnaList_QnaList_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaList_QnaList_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaList_QnaList_data_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface qnaList_QnaList_data {
+  __typename: "Qna";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: qnaList_QnaList_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: qnaList_QnaList_data_attachFiles[] | null;
+  thumb: qnaList_QnaList_data_thumb | null;
+  viewCount: number;
+  category: qnaList_QnaList_data_category | null;
+}
+
+export interface qnaList_QnaList {
+  __typename: "QnaListResponse";
+  ok: boolean;
+  error: qnaList_QnaList_error | null;
+  page: qnaList_QnaList_page;
+  data: qnaList_QnaList_data[];
+}
+
+export interface qnaList {
+  QnaList: qnaList_QnaList;
+}
+
+export interface qnaListVariables {
+  sort?: _QnaSort[] | null;
+  filter?: _QnaFilter | null;
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: qnaCreate
+// ====================================================
+
+export interface qnaCreate_QnaCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface qnaCreate_QnaCreate_data {
+  __typename: "Qna";
+  _id: string;
+}
+
+export interface qnaCreate_QnaCreate {
+  __typename: "QnaCreateResponse";
+  ok: boolean;
+  error: qnaCreate_QnaCreate_error | null;
+  data: qnaCreate_QnaCreate_data | null;
+}
+
+export interface qnaCreate {
+  QnaCreate: qnaCreate_QnaCreate;
+}
+
+export interface qnaCreateVariables {
+  params: QnaCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: qnaDelete
+// ====================================================
+
+export interface qnaDelete_QnaDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface qnaDelete_QnaDelete {
+  __typename: "QnaDeleteResponse";
+  ok: boolean;
+  error: qnaDelete_QnaDelete_error | null;
+}
+
+export interface qnaDelete {
+  QnaDelete: qnaDelete_QnaDelete;
+}
+
+export interface qnaDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: qnaUpdate
+// ====================================================
+
+export interface qnaUpdate_QnaUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface qnaUpdate_QnaUpdate_data {
+  __typename: "Qna";
+  _id: string;
+}
+
+export interface qnaUpdate_QnaUpdate {
+  __typename: "QnaUpdateResponse";
+  ok: boolean;
+  error: qnaUpdate_QnaUpdate_error | null;
+  data: qnaUpdate_QnaUpdate_data | null;
+}
+
+export interface qnaUpdate {
+  QnaUpdate: qnaUpdate_QnaUpdate;
+}
+
+export interface qnaUpdateVariables {
+  params: QnaUpdateInput;
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: pageInfoRead
 // ====================================================
 
@@ -5730,7 +6631,7 @@ export interface questionList_QuestionList_data {
   likeCount: number;
   no: number;
   author: questionList_QuestionList_data_author | null;
-  product: questionList_QuestionList_data_product;
+  product: questionList_QuestionList_data_product | null;
 }
 
 export interface questionList_QuestionList {
@@ -5976,7 +6877,7 @@ export interface questionFindById_QuestionFindById_data {
   likeCount: number;
   no: number;
   author: questionFindById_QuestionFindById_data_author | null;
-  product: questionFindById_QuestionFindById_data_product;
+  product: questionFindById_QuestionFindById_data_product | null;
 }
 
 export interface questionFindById_QuestionFindById {
@@ -7672,6 +8573,127 @@ export interface userFindByIdVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: Fannounce
+// ====================================================
+
+export interface Fannounce_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fannounce_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface Fannounce_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: Fannounce_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: Fannounce_author_profileImg | null;
+}
+
+export interface Fannounce_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fannounce_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fannounce {
+  __typename: "Announce";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  no: number;
+  contents: string;
+  author: Fannounce_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: Fannounce_attachFiles[] | null;
+  thumb: Fannounce_thumb | null;
+  viewCount: number;
+  type: AnnounceType;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fanswer
 // ====================================================
 
@@ -7750,7 +8772,6 @@ export interface FfeePolicy {
   jandaCardPercent: number;
   cardPercent: number;
   bankPercent: number;
-  storePercent: number;
   addtionalFees: FfeePolicy_addtionalFees[];
 }
 
@@ -8758,6 +9779,125 @@ export interface Fportfolio {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: Fqna
+// ====================================================
+
+export interface Fqna_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fqna_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface Fqna_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: Fqna_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: Fqna_author_profileImg | null;
+}
+
+export interface Fqna_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fqna_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fqna {
+  __typename: "Qna";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: Fqna_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: Fqna_attachFiles[] | null;
+  thumb: Fqna_thumb | null;
+  viewCount: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fquestion
 // ====================================================
 
@@ -8868,7 +10008,6 @@ export interface Ffeepolicy {
   jandaCardPercent: number;
   cardPercent: number;
   bankPercent: number;
-  storePercent: number;
 }
 
 /* tslint:disable */
@@ -8950,6 +10089,14 @@ export enum AddtionalFeesStatus {
 }
 
 /**
+ * 공고문 타입
+ */
+export enum AnnounceType {
+  ACCOUNCE = "ACCOUNCE",
+  NOICE = "NOICE",
+}
+
+/**
  * 보드 공통 컨트롤 값
  */
 export enum BoardAction {
@@ -8971,6 +10118,7 @@ export enum BoardType {
  */
 export enum BookingStatus {
   CANCEL = "CANCEL",
+  CANCEL_REQ = "CANCEL_REQ",
   COMPLETE = "COMPLETE",
   READY = "READY",
 }
@@ -8979,10 +10127,10 @@ export enum BookingStatus {
  * 카테고리 타입
  */
 export enum CategoryType {
-  CUSTOMER_QNA = "CUSTOMER_QNA",
   EXPERIENCE = "EXPERIENCE",
   PORTPOLIO = "PORTPOLIO",
   QNA = "QNA",
+  QUESTION = "QUESTION",
   REGION = "REGION",
   TOUR = "TOUR",
 }
@@ -9172,7 +10320,7 @@ export enum SettlementStatus {
 export enum SystemNotiType {
   booking = "booking",
   cancel = "cancel",
-  memeber = "memeber",
+  member = "member",
   payment = "payment",
   system = "system",
 }
@@ -9227,6 +10375,24 @@ export enum VerificationEvent {
 export enum VerificationTarget {
   EMAIL = "EMAIL",
   PHONE = "PHONE",
+}
+
+/**
+ * Auto generated sort type
+ */
+export enum _AnnounceSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  isNotice_asc = "isNotice_asc",
+  isNotice_desc = "isNotice_desc",
+  likeCount_asc = "likeCount_asc",
+  likeCount_desc = "likeCount_desc",
+  subTitle_asc = "subTitle_asc",
+  subTitle_desc = "subTitle_desc",
+  title_asc = "title_asc",
+  title_desc = "title_desc",
+  viewCount_asc = "viewCount_asc",
+  viewCount_desc = "viewCount_desc",
 }
 
 /**
@@ -9348,6 +10514,24 @@ export enum _ProductSort {
 /**
  * Auto generated sort type
  */
+export enum _QnaSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  isNotice_asc = "isNotice_asc",
+  isNotice_desc = "isNotice_desc",
+  likeCount_asc = "likeCount_asc",
+  likeCount_desc = "likeCount_desc",
+  subTitle_asc = "subTitle_asc",
+  subTitle_desc = "subTitle_desc",
+  title_asc = "title_asc",
+  title_desc = "title_desc",
+  viewCount_asc = "viewCount_asc",
+  viewCount_desc = "viewCount_desc",
+}
+
+/**
+ * Auto generated sort type
+ */
 export enum _QuestionSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
@@ -9424,6 +10608,31 @@ export interface AddtionalFeesUpdateInput {
   type: AddtionalFeesStatus;
   feePercent?: number | null;
   fee?: number | null;
+}
+
+export interface AnnounceCreateInput {
+  title: string;
+  contents?: string | null;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileCreateInput[] | null;
+  thumb?: FileCreateInput | null;
+  type: AnnounceType;
+}
+
+export interface AnnounceUpdateInput {
+  title?: string | null;
+  contents?: string | null;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileUpdateInput[] | null;
+  thumb?: FileUpdateInput | null;
 }
 
 export interface AnswerCreateInput {
@@ -9726,6 +10935,32 @@ export interface ProductUpdateInput {
   regionId?: string | null;
 }
 
+export interface QnaCreateInput {
+  title: string;
+  contents?: string | null;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileCreateInput[] | null;
+  thumb?: FileCreateInput | null;
+  categoryId: string;
+}
+
+export interface QnaUpdateInput {
+  title?: string | null;
+  contents?: string | null;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileUpdateInput[] | null;
+  thumb?: FileUpdateInput | null;
+  categoryId?: string | null;
+}
+
 export interface QuestionCreateInput {
   title: string;
   contents?: string | null;
@@ -9736,7 +10971,7 @@ export interface QuestionCreateInput {
   keyWards?: string[] | null;
   attachFiles?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
-  productId: string;
+  productId?: string | null;
 }
 
 export interface QuestionUpdateInput {
@@ -9838,6 +11073,45 @@ export interface UserUpdateInput {
   manageContact?: string | null;
   isVerifiedManager?: boolean | null;
   status?: UserStatus | null;
+}
+
+export interface _AnnounceFilter {
+  AND?: _AnnounceFilter[] | null;
+  OR?: _AnnounceFilter[] | null;
+  no_eq?: string | null;
+  no_not_eq?: string | null;
+  title_eq?: string | null;
+  title_not_eq?: string | null;
+  title_contains?: string | null;
+  title_not_contains?: string | null;
+  title_in?: string[] | null;
+  title_not_in?: string[] | null;
+  authorEmail_eq?: string | null;
+  authorEmail_not_eq?: string | null;
+  authorEmail_in?: string[] | null;
+  isNotice_eq?: boolean | null;
+  isNotice_not_eq?: boolean | null;
+  isOpen_eq?: boolean | null;
+  isOpen_not_eq?: boolean | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
+  keyWards_eq?: string | null;
+  keyWards_not_eq?: string | null;
+  keyWards_in?: string[] | null;
+  keyWards_contains?: string | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
 }
 
 export interface _BoardFilter {
@@ -10143,6 +11417,46 @@ export interface _ProductFilter {
   createdAt_gt?: any | null;
 }
 
+export interface _QnaFilter {
+  AND?: _QnaFilter[] | null;
+  OR?: _QnaFilter[] | null;
+  categoryId_eq?: string | null;
+  categoryId_not_eq?: string | null;
+  categoryId_in?: string[] | null;
+  title_eq?: string | null;
+  title_not_eq?: string | null;
+  title_contains?: string | null;
+  title_not_contains?: string | null;
+  title_in?: string[] | null;
+  title_not_in?: string[] | null;
+  authorEmail_eq?: string | null;
+  authorEmail_not_eq?: string | null;
+  authorEmail_in?: string[] | null;
+  isNotice_eq?: boolean | null;
+  isNotice_not_eq?: boolean | null;
+  isOpen_eq?: boolean | null;
+  isOpen_not_eq?: boolean | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
+  keyWards_eq?: string | null;
+  keyWards_not_eq?: string | null;
+  keyWards_in?: string[] | null;
+  keyWards_contains?: string | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
+}
+
 export interface _QuestionFilter {
   AND?: _QuestionFilter[] | null;
   OR?: _QuestionFilter[] | null;
@@ -10189,16 +11503,6 @@ export interface _QuestionFilter {
 export interface _SettlementFilter {
   AND?: _SettlementFilter[] | null;
   OR?: _SettlementFilter[] | null;
-  productName_eq?: string | null;
-  productName_not_eq?: string | null;
-  productName_in?: string[] | null;
-  productName_contains?: string | null;
-  productCode_eq?: string | null;
-  productCode_not_eq?: string | null;
-  productCode_in?: string[] | null;
-  sellerName_eq?: string | null;
-  sellerName_not_eq?: string | null;
-  sellerName_contains?: string | null;
   status_eq?: string | null;
   status_not_eq?: string | null;
   status_in?: string[] | null;

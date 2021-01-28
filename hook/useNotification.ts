@@ -18,6 +18,6 @@ export const useSmsTemplateDelete = generateMutationHook<smstemplateDelete,smste
 });
 export const useNotificationHistoryList = generateListQueryHook<_INotificationHistoryItemFilter,_INotificationHistoryItemSort,notificationHistory,notificationHistoryVariables,notificationHistory_NotificationHistory_data>(NOTIFICATION_HISTORY,{initialSort:[_INotificationHistoryItemSort.createdAt_desc]});
 
-export const  useTemplateList = generateListQueryHook<_ITemplateFilter,_ITemplateSort, templateList, templateListVariables,templateList_TemplateList_data>(TEMPLATE_LIST,{initialViewCount:999});
+export const  useTemplateList = generateListQueryHook<_ITemplateFilter,_ITemplateSort, templateList, templateListVariables,templateList_TemplateList_data>(TEMPLATE_LIST,{initialViewCount:999, initialSort: [_ITemplateSort.createdAt_desc]});
 
 export const useSingleSmsSend = generateMutationHook<smsSendSingle,smsSendSingleVariables>(SMS_SIGNLE_MESSAGE_SEND);

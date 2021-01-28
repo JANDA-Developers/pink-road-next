@@ -19,6 +19,7 @@ import settlement from "../../mypage/settlement";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
 import { autoComma } from "../../../utils/formatter";
 import { GoodsTopNav } from "../../../components/topNav/MasterTopNav";
+import { SettlementStatus } from "../../../types/api";
 
 interface IProp { }
 
@@ -39,7 +40,11 @@ type TuniqSearch = "sellerName_eq" | "productCode_eq" | "productName_contains";
 
 export const MsReservationB: React.FC<IProp> = () => {
     const [searchType, setSearchType] = useState<TuniqSearch>("productName_contains");
-    const { items, filter, setFilter, viewCount, setViewCount, sort, setSort } = useSettlementList();
+    const { items, filter, setFilter, viewCount, setViewCount, sort, setSort } = useSettlementList({
+        initialFilter: {
+            status_not_eq: SettlementStatus.READY //레디인것은 아직 판매되지 않은 상품일 가능성이 높다.
+        }
+    });
     const { settlementRequestCountMaster, settlementReadyCountMater, settlementCompleteCountMaster, totalSettlementCount } = useCustomCount(["settlementRequestCountMaster", "settlementReadyCountMater", "settlementCompleteCountMaster", "totalSettlementCount"]);
     const { filterEnd, filterStart, hanldeCreateDateChange, setDateKey } = useDateFilter({ filter, setFilter });
     const { selectAll, isChecked } = useIdSelecter(items.map(item => item._id));
@@ -55,6 +60,10 @@ export const MsReservationB: React.FC<IProp> = () => {
         setFilter({
             ..._filter
         })
+    }
+
+    const handleReject = () => {
+
     }
 
     return <MasterLayout>
@@ -106,9 +115,9 @@ export const MsReservationB: React.FC<IProp> = () => {
                         handleSelectAll={selectAll}
                         LeftDiv={
                             <ul className="board_option">
-                                <li className="on"><a >전체<strong>46</strong></a></li>
-                                <li><a >여행<strong>23</strong></a></li>
-                                <li><a >체험<strong>23</strong></a></li>
+                                <li className="on"><a>전체</a></li>
+                                <li><a>여행</a></li>
+                                <li><a>체험</a></li>
                             </ul>
                         }
                     />
@@ -149,7 +158,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                             <div className="t04">
                                 <div className="info">
-                                    <span className="ct goods__info_title">문화</span> <span className="g-number">상품번호: PINK-{item.product.code}</span>
+                                    <span className="ct goods__info_title">문화</span> <span className="g-number">상품번호: {item.product.code}</span>
                                     <strong className="title">{item.product.title}</strong>
                                     <div className="txt">
                                         <span className="s-day">출발일: {yyyymmdd(item.product.startDate)}</span>
@@ -174,7 +183,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                             </div>
                             <div className="t07">
                                 <div className="align">
-                                    <strong onClick={() => { }}><span className="sel no">지급보류</span></strong>
+                                    {item.status === SettlementStatus.REQUEST && <strong onClick={handleReject}><span className="sel no">지급보류</span></strong>}
                                 </div>
                             </div>
                             <div className="t08">

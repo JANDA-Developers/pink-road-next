@@ -7,11 +7,14 @@ import { getStaticPageInfo, Ipage } from '../../utils/page';
 import { usePageEdit } from '../../hook/usePageEdit';
 import { Bg } from '../../components/Img/img';
 import { PageEditor } from '../../components/common/PageEditer';
+import { Change } from '../../components/loadingList/LoadingList';
+import { getFromUrl } from '../../utils/url';
 
 
 export const PortFolio: React.FC<Ipage> = (_pageInfo) => {
     const { isManager, categoriesMap } = useContext(AppContext);
     const editTools = usePageEdit(_pageInfo, defaultPageInfo);
+
     const { items: portfolioes, getLoading, setPage, pageInfo, setFilter, filter } = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8, initialFilter: { isOpen_eq: isManager ? undefined : true } })
     const { edit, imgKit } = editTools;
 
@@ -104,18 +107,7 @@ export const PortFolio: React.FC<Ipage> = (_pageInfo) => {
                 <div className="tap_nav_bg"></div>
 
                 <div className="portfolio_box box01" id="portfolio_box_1">
-                    {getLoading ? (
-                        <ul>
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                            <li />
-                        </ul>
-                    ) :
+                    <Change change={!getLoading}>
                         <ul>
                             {portfolioes.map((portfolio) =>
                                 <Link key={portfolio._id} href={`/portfolio/view/${portfolio._id}`}>
@@ -130,17 +122,16 @@ export const PortFolio: React.FC<Ipage> = (_pageInfo) => {
                                 </Link>
                             )}
                         </ul>
-                    }
-
-                    <div className="boardNavigation">
-                        <div className="center">
-                            <div className="pagenate_mini">
-                                <div onClick={handlePrev} className={`${pageInfo.page === 1 && 'disabled-btn'} page_btn first`}><i className="jandaicon-arr4-left"></i></div>
-                                <div className="count"><strong>{pageInfo.page}</strong> / {pageInfo.totalPageSize}</div>
-                                <div onClick={handleNext} className={`${pageInfo.page === pageInfo.totalPageSize && 'disabled-btn'} page_btn end`}><i className="jandaicon-arr4-right"></i></div>
+                        <div className="boardNavigation">
+                            <div className="center">
+                                <div className="pagenate_mini">
+                                    <div onClick={handlePrev} className={`${pageInfo.page === 1 && 'disabled-btn'} page_btn first`}><i className="jandaicon-arr4-left"></i></div>
+                                    <div className="count"><strong>{pageInfo.page}</strong> / {pageInfo.totalPageSize}</div>
+                                    <div onClick={handleNext} className={`${pageInfo.page === pageInfo.totalPageSize && 'disabled-btn'} page_btn end`}><i className="jandaicon-arr4-right"></i></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </Change>
                     <div className="boardNavigation">
                         <div className="float_left">
                         </div>

@@ -34,11 +34,11 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
 
     const toDetail = () => {
-        router.push(`/member/qna/write/${_id}`)
+        router.push(`/member/question/write/${_id}`)
     }
 
     const toList = () => {
-        router.push(`/tour/${product._id}`)
+        router.push(`/question/`)
     }
 
     const handleDelete = () => {

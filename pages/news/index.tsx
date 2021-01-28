@@ -11,11 +11,13 @@ import { useRouter } from 'next/router';
 import { usePageEdit } from '../../hook/usePageEdit';
 import { PageEditor } from '../../components/common/PageEditer';
 import { getFromUrl } from '../../utils/url';
+import { AppContext } from '../_app';
 
 export const getStaticProps = getStaticPageInfo("news");
 export const News: React.FC<Ipage> = (_pageInfo) => {
     const urlType = getFromUrl("type") as NEWS_TYPE;
     const [view, setView] = useState<"line" | "gal">("line");
+    const { isManager } = useContext(AppContext);
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
     const { setSort, sort, filter, setPage, setFilter, pageInfo, viewCount, setViewCount, items: news } = useNewsList({ initialFilter: { type_eq: urlType || undefined } });
     const { totalCount } = pageInfo;
@@ -64,7 +66,7 @@ export const News: React.FC<Ipage> = (_pageInfo) => {
             viewCount={viewCount}
             onWrite={gotoWrite}
             pageInfo={pageInfo}
-            addBtnLabel="뉴스 등록하기"
+            addBtnLabel={isManager ? "뉴스 등록하기" : undefined}
         >
             {view === "gal" && <div >
                 <div className="board_list st02">

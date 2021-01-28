@@ -1,7 +1,8 @@
 const withImages = require("next-images");
 const withCSS = require("@zeit/next-css");
 
-module.exports = withCSS(
+module.exports = {
+    ...withCSS(
     withImages({
         webpack(config, {isServer}) {
             if (!isServer) {
@@ -12,7 +13,17 @@ module.exports = withCSS(
             return config;
         }
     })
-);
+    ),
+    async redirects() {
+        return [
+          {
+            source: '/member',
+            destination: '/member/announce', // Matched parameters can be used in the destination
+            permanent: true,
+          },
+        ]
+      },
+}
 
 
 

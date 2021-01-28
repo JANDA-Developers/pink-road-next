@@ -69,9 +69,9 @@ export const COUNT_MANAGER = gql`
                 compeltedProductCountMaster
                 tourBookingCountMaster
                 expBookingCountMaster
-                foreginMemeberCount
+                foreginMemberCount
                 koreanMemberCount
-                totalIndiMemeberCount
+                totalIndiMemberCount
                 busiPartnerCountMaster
                 confimedBusiPartnerCount
                 unConfimedBusiPartnerCount
@@ -86,6 +86,7 @@ export const COUNT_MANAGER = gql`
                 unAnsweredQuestionCount 
                 countOfTourBooking
                 countOfExpBooking
+                announceCount
             }
         }
     }

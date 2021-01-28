@@ -3,13 +3,13 @@ import React from 'react';
 
 interface IProp { }
 
-const check = (key: string, exact?: boolean) => {
+export const check = (key: string, exact?: boolean) => {
     if (typeof window === "undefined") return false;
     const pathname = window.location.pathname;
     return exact ? pathname === key : pathname.includes(key);
 }
 
-const checkOn = (key: string, exact?: boolean) => check(key, exact) ? "on" : ""
+export const checkOn = (key: string, exact?: boolean) => check(key, exact) ? "on" : ""
 
 export const ResvTopNav: React.FC<IProp> = () => {
     return <div className="tab-nav">
@@ -64,3 +64,4 @@ export const DesignTopNav = () => {
         </ul>
     </div>
 }
+

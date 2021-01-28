@@ -2,7 +2,7 @@ import { CategoryType, Fcategory } from "../types/api";
 import { cloneObject } from "./clone";
 
 export const defaultCatsMap:Record<CategoryType, Fcategory[]> = {
-  CUSTOMER_QNA: [],
+  QUESTION: [],
   PORTPOLIO: [],
   QNA: [],
   EXPERIENCE: [],

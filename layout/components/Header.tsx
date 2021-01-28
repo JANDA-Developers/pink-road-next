@@ -263,7 +263,7 @@ export const Header: React.FC<IProp> = () => {
                             {isLogin && <span><Link href="/mypage"><a>MY PAGE</a></Link></span>}
                             {isLogin && <span><Link href="/mypage/notification"><a>알림</a></Link></span>}
                             {!isLogin && <span><a href="member/join">JOIN</a></span>}
-                            <span><Link href="/member/inquiry"><a>고객문의</a></Link></span>
+                            <span><Link href="/member/question"><a>고객문의</a></Link></span>
                             <span><Link href="/member/qna"><a>자주하는 질문</a></Link></span>
                         </div>
                         <ul>
@@ -330,8 +330,8 @@ export const Header: React.FC<IProp> = () => {
                                     <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
                                     <li><Link href="/member/electron-terms"><a>전자상거래이용약관</a></Link></li>
                                     <li><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
-                                    <li><Link href="/member/inquiry"><a>고객문의</a></Link></li>
-                                    <li><Link href="/member/notice"><a>공지사항</a></Link></li>
+                                    <li><Link href="/member/question"><a>고객문의</a></Link></li>
+                                    <li><Link href="/member/announce"><a>공지사항</a></Link></li>
                                     <li><Link href="/member/qna"><a>자주하는질문</a></Link></li>
                                 </ul>
                             </li>

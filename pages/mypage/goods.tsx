@@ -26,23 +26,14 @@ interface IProp { }
 
 
 export const MyGoods: React.FC<IProp> = () => {
-    const { items, filter, setFilter, pageInfo, sort, setSort, viewCount, setViewCount, page, setPage } = useProductList()
+    const { items, setUniqFilter, filter, setFilter, pageInfo, sort, setSort, viewCount, setViewCount, page, setPage } = useProductList()
     const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({ filter, setFilter })
     const { check, isChecked, selectAll, toggleAll, toggle, selectedIds, setSelectedIds, unCheck, unSelectAll } = useIdSelecter(items.map(i => i._id));
     const singleSort = useSingleSort(sort, setSort);
     const [popupProductId, setPopupProductId] = useState("");
 
     const doSearch = (search: string) => {
-        const _filter = getUniqFilter(
-            filter,
-            "title_contains",
-            ["title_contains"],
-            search
-        )
-
-        setFilter({
-            ..._filter
-        })
+        setUniqFilter("title_contains", [])
     }
 
     const handleSatus = (status?: ProductStatus) => () => {

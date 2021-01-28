@@ -37,7 +37,7 @@ export const NotiLine: React.FC<IProp> = ({ systemNoti }) => {
     const typeToString = () => {
         if (type === SystemNotiType.booking) return "예약알림"
         if (type === SystemNotiType.cancel) return "예약취소"
-        if (type === SystemNotiType.memeber) return "멤버아림"
+        if (type === SystemNotiType.member) return "멤버아림"
         if (type === SystemNotiType.system) return "시스템알림"
         if (type === SystemNotiType.payment) return "결제알림"
         return ""

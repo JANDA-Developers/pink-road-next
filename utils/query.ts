@@ -1,16 +1,19 @@
 import { DocumentNode, MutationHookOptions, QueryHookOptions, useMutation } from "@apollo/client";
 import { capitalize } from "./stirng";
 import { ListInitOptions, useListQuery } from "../hook/useListQuery";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
 import { Fpage } from "../types/api";
 import { CustomErrorResponse } from "aws-sdk/clients/cloudfront";
 import { ErrorCode } from "./enumToKr";
+import { getFromUrl } from "./url";
+import { cloneObject } from "./clone";
 interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
     skipInit?: boolean;
     overrideVariables?: Partial<V>
+    getEditableobject?: boolean;
 };
 
 const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["data","page"]) => {
@@ -33,28 +36,34 @@ const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["da
     }
 }
 
+
+const getPageNumber = () => {
+    const pageNum = getFromUrl("pageNum");
+    return pageNum ? parseInt(pageNum) : 1 
+}
+
 export const generateListQueryHook = <F,S,Q,V,R>(
     QUERY: DocumentNode,
-    queryInit: Partial<ListInitOptions<F, S>> = {},
+    queryInitDefault: Partial<ListInitOptions<F, S>> = {},
     defaultOptions?: genrateOption<Q,V>
 ) => {
+
+    //집어넣은 옵션에 오버라드가 안되고있음
+    //좌항이 우선순위 더 높음
+    // 우항 오브젝트에 좌학 객체를 덮어 넣으면됨
     const listQueryHook = (
-        {
-            initialPageIndex = 1,
-            initialSort = [],
-            initialFilter = {} as F,
-            initialViewCount = 20,
-        }: Partial<ListInitOptions<F, S>> = {...queryInit},
+        initialOption: Partial<ListInitOptions<F, S>> = {},
         options: genrateOption<Q, V> = {...defaultOptions}
     )=> {
+        const defaultInitData = {
+            initialPageIndex: getPageNumber(),
+            initialSort: [],
+            initialFilter: {} as F,
+            initialViewCount: 20
+        }
+        const initialData = Object.assign(defaultInitData, queryInitDefault, initialOption); 
         const { variables, overrideVariables, ...ops } = options;
-        const { integratedVariable,...params } = useListQuery({
-            initialFilter,
-            initialPageIndex,
-            initialSort,
-            initialViewCount
-        })
-        
+        const { integratedVariable,...params } = useListQuery(initialData)
         const [getData, { data, loading: getLoading,...queryElse }] = useLazyQuery<Q,V>(QUERY,{
             fetchPolicy: "cache-first",
             // @ts-ignore

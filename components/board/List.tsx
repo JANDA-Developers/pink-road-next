@@ -41,7 +41,7 @@ export const BoardList: React.FC<IProp> = ({ setPage, setViewCount, children, Ca
       <div className="tl list_bottom">
         {/* member/상품 등록하기 */}
         <div className="btn_footer">
-          <span onClick={handleWrite} className="xet_btn medium gray">{addBtnLabel}</span>
+          {addBtnLabel && <span onClick={handleWrite} className="xet_btn medium gray">{addBtnLabel}</span>}
         </div>
         {handleSearch && <SearchMini onSubmit={handleSearch} />}
       </div>

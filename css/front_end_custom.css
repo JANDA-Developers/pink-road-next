@@ -434,3 +434,41 @@ figure:after {
     position: sticky;
     top: 0;
 }
+
+.tourMianListUl {
+    display: flex!important;
+    overflow: hidden;
+}
+
+.tourMianListUl__li {
+    overflow: hidden;
+    max-width: 32%;
+    min-width: 32%;
+    flex-grow: 0;
+    margin-right: 2%!important;
+}
+
+.tourMianListUl__img {
+    height: 100%;
+    background-size: cover!important;
+    transform: scale(1);
+}
+
+.tourMianListUl__li:hover .tourMianListUl__img {
+    transition: transform .3s;
+    transform: scale(1.1);
+}
+
+.category__cat {
+    margin-right: .5rem;
+}
+
+.master_box .subtop_nav {
+    bottom: 100%!important;
+    top: auto!important;
+}
+
+.memberTopNav {
+    top: auto!important;
+    bottom: 100%!important;
+}

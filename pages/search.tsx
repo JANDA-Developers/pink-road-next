@@ -56,7 +56,6 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     const initialFilter = {
         initialFilter: integratedProductSearch(defaultSearch)
     }
-    const {} = useBoard
     const productListHook = useProductList(initialFilter)
     const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = productListHook;
     const { categoriesMap } = useContext(AppContext);

@@ -15,13 +15,13 @@ export const BOOKING_LIST = gql`
     $sort: [_BookingSort!]
     $filter: _BookingFilter
     $pageInput: pageInput!
-    $productFilter: _ProductFilter
+    $filterProduct: _ProductFilter
   ) {
   BookingList(
     sort: $sort
     pageInput: $pageInput
     filter: $filter
-    productFilter: $productFilter
+    filterProduct: $filterProduct
   ) {
     ok
     error {
@@ -117,13 +117,11 @@ export const BOOKING_COUNT = gql`
 `
 
 export const BOOKING_CANCEL = gql`
-  mutation bookingCancel(
-    $reason: String!
+  mutation bookingCancelReq(
     $bookingId: String!
   ) {
-    BookingCancel(
-      reason: $reason
-      bookingId:$bookingId
+    BookingCancelReq(
+      bookingId: $bookingId
     ) {
     ok
     error {

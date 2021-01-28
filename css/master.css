@@ -1166,7 +1166,7 @@
         margin-top: -8px;
      }
      .master_box .master__table .thead .t01 .checkbox {
-        margin-top: -10px;
+        margin-top: 0px;
     }
     .master_box .reservation .master__table .t05 strong {
         width:auto !important;
@@ -2309,6 +2309,7 @@
     .master_box .homepage .design_table .tbody .t02{
         position: relative;
         display: inline-block;
+        line-height: 2;
         width: 100%;
         padding:20px 10px;
         box-sizing: border-box;

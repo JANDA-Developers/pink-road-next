@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import { BoardWrite } from "components/board/Write";
-import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
+import { IUseBoardData, nullcehck, useBoard } from "hook/useBoard";
 import { omits } from "../../../utils/omit";
 import { auth } from "../../../utils/with";
 import { ALLOW_LOGINED } from "../../../types/const";
@@ -123,10 +123,13 @@ export const NewsWrite: React.FC<IProp> = () => {
 
     const handleLoad = () => {
         const saveData = Storage?.getLocalObj<IUseBoardData>("newsWrite");
-        if (!isUnLoaded(saveData)) {
-            setBoardData(saveData);
-            loadKeyAdd();
+
+        if (!saveData) {
+            alert("저장된 데이터가 없습니다.");
+            return;
         }
+        setBoardData(saveData);
+        loadKeyAdd();
     }
 
     useEffect(() => {

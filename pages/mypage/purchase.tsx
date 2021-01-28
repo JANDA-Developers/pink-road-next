@@ -16,10 +16,10 @@ import { closeModal, openModal } from '../../utils/popUp';
 interface IProp { }
 
 export const MyPagePurchase: React.FC<IProp> = () => {
-    const { filter: productFilter, setOR: setProductOR, setFilter: setProductFilter } = useQueryFilter<_ProductFilter>({})
+    const { filter: filterProduct, setOR: setProductOR, setFilter: setProductFilter } = useQueryFilter<_ProductFilter>({})
     const { items = [], setFilter, setPage, page, filter, sort, setSort, viewCount, setViewCount } = useBookingList({}, {
         overrideVariables: {
-            productFilter
+            filterProduct
         }
     })
     const [detailCode, setDetailCode] = useState("")

@@ -1,14 +1,10 @@
 import { MasterLayout } from 'layout/MasterLayout';
-import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React, { useEffect, useState } from 'react';
-import Link from "next/link";
 import { useGroupCreate, useGroupDelete, useGroupList, useGroupUpdate } from '../../../hook/useGroup';
 import { ProductGroup } from '../../../components/group/ProductGroup';
-import { Fgroup, Fproduct } from '../../../types/api';
-import { openModal } from '../../../utils/popUp';
+import { Fgroup } from '../../../types/api';
 import { DesignTopNav } from '../../../components/topNav/MasterTopNav';
 import { generateRandomStringCode } from '../../../utils/codeGenerator';
-import { ProductSelectModal } from '../../../components/ProductSelectModal';
 import { cloneObject } from '../../../utils/clone';
 import { omits } from '../../../utils/omit';
 
@@ -27,8 +23,7 @@ const popupClose = () => {
 export const MsDesignC: React.FC<IProp> = () => {
     const { data: defaultGrupList } = useGroupList()
     const [groupList, setGroupList] = useState<Fgroup[]>([]);
-    const [popupGroup, setPopGroup] = useState<Fgroup>();
-    const [groupCreate] = useGroupCreate()
+    const [groupCreate] = useGroupCreate();
     const [groupUpdate] = useGroupUpdate({
         onCompleted: ({ GroupUpdate }) => {
             if (GroupUpdate.ok) alert("업데이트 완료")
@@ -37,10 +32,7 @@ export const MsDesignC: React.FC<IProp> = () => {
 
     const [groupDelete] = useGroupDelete()
 
-    const openProductSearchModal = (group: Fgroup) => () => {
-        setPopGroup(group);
-        openModal("#ProductSearchModal")();
-    }
+
 
     const handleSave = (group: Fgroup) => {
         groupUpdate({
@@ -50,6 +42,8 @@ export const MsDesignC: React.FC<IProp> = () => {
             }
         })
     }
+
+
     const handleAddGroup = () => {
         groupCreate({
             variables: {
@@ -63,16 +57,6 @@ export const MsDesignC: React.FC<IProp> = () => {
         })
     }
 
-    const handleExtract = (index: number) => {
-        groupList.splice(index, 1);
-        setGroupList([...groupList]);
-    }
-
-    const handleProductSelect = (product: Fproduct) => {
-        popupGroup?.members.push(product._id)
-        setGroupList([...groupList]);
-        console.log(groupList);
-    }
     const handleDeleteGroup = (g: Fgroup) => () => {
         groupDelete({
             variables: {
@@ -100,7 +84,7 @@ export const MsDesignC: React.FC<IProp> = () => {
                 <div className="con design goodslist_setting">
                     {/* 메인화면 상품진열 */}
                     {groupList.map(g =>
-                        <ProductGroup onExtract={handleExtract} onSave={() => { handleSave(g) }} onDelete={handleDeleteGroup(g)} onChangeTitle={handleTitleChange(g)} key={g.members.length + g._id} onAdd={openProductSearchModal(g)} group={g} />
+                        <ProductGroup onSave={() => { handleSave(g) }} onDelete={handleDeleteGroup(g)} onChangeTitle={handleTitleChange(g)} key={g.members.length + g._id} group={g} />
                     )}
                     <div className="fin">
                         <div className="float_left">
@@ -111,7 +95,6 @@ export const MsDesignC: React.FC<IProp> = () => {
                     </div>
                 </div>
             </div>
-            <ProductSelectModal onSelect={handleProductSelect} />
         </div>
         {/* <ProductSelectModal onSelect={(product) => {
             popupGroup?.members.push(product._id);
