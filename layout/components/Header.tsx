@@ -103,7 +103,7 @@ export const Header: React.FC<IProp> = () => {
                     : ""}
                 <ul onClick={handleAllClose}>
                     <li >
-                        {!isLogin && <Link href="/login">
+                        {!isLogin && <Link href="/member/inquiry">
                             <a>고객센터</a>
                         </Link>}
                     </li>

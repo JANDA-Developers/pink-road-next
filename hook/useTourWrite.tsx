@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { RefObject, useRef, useState } from "react";
 import { generateitinery, TRange } from "../components/tourWrite/helper";
-import { Ffile, ItineraryCreateInput, ProductCreate, ProductCreateInput, ProductCreateVariables, ProductStatus, ProductType, ProductUpdateInput } from "../types/api";
+import { Ffile, ItineraryCreateInput, productCreate, ProductCreateInput, productCreateVariables, ProductStatus, ProductType, ProductUpdateInput } from "../types/api";
 import { IproductFindById, ISet } from "../types/interface";
 import isEmpty from "../utils/isEmpty";
 import { omits } from "../utils/omit";
@@ -136,7 +136,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         }
     })
 
-    const [ProductCreateMu, { loading: createLoading }] = useMutation<ProductCreate, ProductCreateVariables>(PRODUCTS_CREATE, {
+    const [ProductCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCTS_CREATE, {
         onCompleted: ({ ProductCreate }) => {
             if (ProductCreate.ok)
                 router.push(`/tour/view/${ProductCreate!.data!._id}`)

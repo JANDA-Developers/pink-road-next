@@ -119,9 +119,11 @@ export const BOOKING_COUNT = gql`
 export const BOOKING_CANCEL = gql`
   mutation bookingCancelReq(
     $bookingId: String!
+    $reason: String!
   ) {
     BookingCancelReq(
       bookingId: $bookingId
+      reason: $reason
     ) {
     ok
     error {

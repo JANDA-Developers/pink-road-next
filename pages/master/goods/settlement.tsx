@@ -10,7 +10,6 @@ import { useSettlementList } from '../../../hook/useSettlement';
 import { useCustomCount } from '../../../hook/useCount';
 import { MasterSearchBar } from '../../../components/master/MasterSearchBar';
 import { useDateFilter } from '../../../hook/useSearch';
-import { getUniqFilter } from "../../../utils/filter";
 import { MasterAlignMent } from "../../../components/master/MasterAlignMent";
 import { useIdSelecter } from "../../../hook/useIdSelecter";
 import { useSingleSort } from "../../../hook/useSort";
@@ -36,11 +35,10 @@ const popupClose = () => {
     });
 }
 
-type TuniqSearch = "sellerName_eq" | "productCode_eq" | "productName_contains";
 
 export const MsReservationB: React.FC<IProp> = () => {
-    const [searchType, setSearchType] = useState<TuniqSearch>("productName_contains");
-    const { items, filter, setFilter, viewCount, setViewCount, sort, setSort } = useSettlementList({
+    const [searchType, setSearchType] = useState("status_eq");
+    const { items, filter, setFilter, viewCount, setViewCount, sort, setSort, setUniqFilter } = useSettlementList({
         initialFilter: {
             status_not_eq: SettlementStatus.READY //레디인것은 아직 판매되지 않은 상품일 가능성이 높다.
         }
@@ -51,15 +49,11 @@ export const MsReservationB: React.FC<IProp> = () => {
     const singleSort = useSingleSort(sort, setSort);
 
     const doSearch = (search: string) => {
-        const _filter = getUniqFilter(
-            filter,
-            searchType,
-            ["sellerName_eq", "productCode_eq", "productName_contains"],
+        setUniqFilter(
+            searchType as any,
+            ["status_eq"],
             search
         )
-        setFilter({
-            ..._filter
-        })
     }
 
     const handleReject = () => {
@@ -98,7 +92,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                             Option={
                                 <select value={searchType} onChange={(e) => {
                                     const type = e.currentTarget.value;
-                                    setSearchType(type as TuniqSearch);
+                                    setSearchType(type as any);
                                 }} className="option">
                                     <option value={"productName_contain"}>상품명</option>
                                     <option value={"productCode_eq"}>상품번호</option>

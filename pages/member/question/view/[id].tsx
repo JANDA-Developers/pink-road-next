@@ -30,7 +30,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
     if (error) return <Page404 />
     if (!question) return <PageLoading />
     const { title, thumb, createdAt, contents, subTitle, _id, product } = question;
-    const isMyProduct = myProfile?._id === product.author?._id;
+    const isMyProduct = myProfile?._id === product?.author?._id;
 
 
     const toDetail = () => {

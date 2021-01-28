@@ -33,7 +33,7 @@ export const MyGoods: React.FC<IProp> = () => {
     const [popupProductId, setPopupProductId] = useState("");
 
     const doSearch = (search: string) => {
-        setUniqFilter("title_contains", [])
+        setUniqFilter("title_contains", ["title_contains"], search);
     }
 
     const handleSatus = (status?: ProductStatus) => () => {

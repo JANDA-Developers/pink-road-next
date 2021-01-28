@@ -55,7 +55,7 @@ export const MySettlement: React.FC<IProp> = () => {
         filter,
         setFilter
     });
-    const [searchType, setSearchType] = useState<TsearchType>("productCode_eq");
+    const [searchType, setSearchType] = useState<TsearchType>("status_eq");
     const { selectAll, isAllSelected } = useIdSelecter(items.map(item => item._id));
     const [code, setCode] = useState("");
     const [settlementId, setSettlementId] = useState("");

@@ -1021,6 +1021,7 @@ export interface bookingCancelReq {
 
 export interface bookingCancelReqVariables {
   bookingId: string;
+  reason: string;
 }
 
 /* tslint:disable */
@@ -10633,6 +10634,7 @@ export interface AnnounceUpdateInput {
   keyWards?: string[] | null;
   attachFiles?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
+  type?: AnnounceType | null;
 }
 
 export interface AnswerCreateInput {
