@@ -193,14 +193,16 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                             <button type="submit" className="sum" onClick={handleLogin}>
                                 <span >로그인</span>
                             </button>
-                            <div className="login__snslink">
-                                <img className="m" src="/img/google_logo.png" alt="google logo" />
-                                <img className="m" src="/img/kakao_logo.png" alt="kakao logo" />
-                                <ul>
-                                    <li className="login__snslink_k"><Link href=""><a><span className="login__snslink_icon"><i className="jandaicon-kakaotalk"></i></span><span className="login__snslink_txt">카카오톡 로그인</span></a></Link></li>
-                                    <li className="login__snslink_g"><Link href=""><a><span className="login__snslink_icon"><i className="jandaicon-google1"></i></span><span className="login__snslink_txt">구글 로그인</span></a></Link></li>
-                                </ul>
-                            </div>
+                            {userType &&
+                                <div className="login__snslink">
+                                    <img className="m" src="/img/google_logo.png" alt="google logo" />
+                                    <img className="m" src="/img/kakao_logo.png" alt="kakao logo" />
+                                    <ul>
+                                        <li className="login__snslink_k"><Link href=""><a><span className="login__snslink_icon"><i className="jandaicon-kakaotalk"></i></span><span className="login__snslink_txt">카카오톡 로그인</span></a></Link></li>
+                                        <li className="login__snslink_g"><Link href=""><a><span className="login__snslink_icon"><i className="jandaicon-google1"></i></span><span className="login__snslink_txt">구글 로그인</span></a></Link></li>
+                                    </ul>
+                                </div>
+                            }
                             <div className="sign_in_form">
                                 <span>
                                     <Link href="/member/join">
@@ -214,18 +216,27 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                                 </span>
                             </div>
 
-                            <div className="join__snslink">
-                                <ul>
-                                    <li className="join__snslink_k"><Link href=""><a>
-                                        <span className="join__snslink_icon"><i className="jandaicon-kakaotalk"></i></span>
-                                        <span className="join__snslink_txt">카카오 계정으로 회원가입</span>
-                                    </a></Link></li>
-                                    <li className="join__snslink_g"><Link href=""><a>
-                                        <span className="join__snslink_icon"><i className="jandaicon-google1"></i></span>
-                                        <span className="join__snslink_txt">구글 계정으로 회원가입</span>
-                                    </a></Link></li>
-                                </ul>
-                            </div>
+                            {userType &&
+                                <div className="join__snslink">
+                                    <ul>
+                                        <li className="join__snslink_k">
+                                            <Link href="">
+                                                <a>
+                                                    <span className="join__snslink_icon"><i className="jandaicon-kakaotalk"></i></span>
+                                                    <span className="join__snslink_txt">카카오 계정으로 회원가입</span>
+                                                </a>
+                                            </Link></li>
+                                        <li className="join__snslink_g">
+                                            <Link href="">
+                                                <a>
+                                                    <span className="join__snslink_icon"><i className="jandaicon-google1"></i></span>
+                                                    <span className="join__snslink_txt">구글 계정으로 회원가입</span>
+                                                </a>
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
