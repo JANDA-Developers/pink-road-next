@@ -14,7 +14,7 @@ export const categoryMap = (catList:Fcategory[]) => {
   const catsMap = cloneObject(defaultCatsMap)
 
   catList.forEach(cat => {
-     catsMap[cat.type].push(cat);
+     catsMap[cat.type]?.push(cat);
   })
 
   return catsMap;
