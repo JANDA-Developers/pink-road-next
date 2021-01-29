@@ -1174,6 +1174,7 @@ div.alignment {
 
         div.alignment .left_div strong {
             color: #2196F3;
+            display: none;
         }
 
         div.alignment .left_div .infotxt {
@@ -2732,13 +2733,12 @@ span.join__snslink_txt{
     text-align: center;
 }
 .login__snslink_k{
-    background-color: #feea00;
-    border-color: #feea00 !important;
+    background-color: #fbea26;
+    border-color: #fbea26 !important;
 }
 .login__snslink_g{
     background-color: #e04a32;
     border-color: #e04a32 !important;
-  
 }
 .login__snslink_k i{
     font-size: 1.2em;

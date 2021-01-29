@@ -83,7 +83,7 @@ export default CustomerMemberMaster;
 //                                     <input type="text" className="day w100" />
 //                                     <CalendarIcon />
 //                                 </div>
-//                                     ~
+//                                     <span className="pc"> ~ </span>
 //                                     <div className="input_box">
 //                                     <input type="text" className="day w100" />
 //                                     <CalendarIcon />
