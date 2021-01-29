@@ -110,7 +110,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   }
 
   const handleQnaClick = (id: string) => () => {
-    router.push("/qna/view/" + id);
+    router.push("/member/qna/view/" + id);
   }
 
   const handleDoPay = () => {
@@ -142,7 +142,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     itinerary,
     contents,
     inOrNor,
-    caution
+    caution,
+    code
   } = product;
 
 
@@ -195,7 +196,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                   <tr>
                     <td colSpan={2} className="category bt_no">
                       <span className="pnt">문화/예술</span>
-                      <span className="code">상품코드 PINK-0001</span>
+                      <span className="code">상품코드 {code}</span>
                     </td>
                   </tr>
                   <tr>
@@ -377,7 +378,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               <div className="boardNavigation">
                 <Paginater pageInfo={questionPageInfo} isMini setPage={setQuestionPage} />
                 <div className="float_right">
-                  <Link href={`/qna/write?pid=${id}&name=${title}`}>
+                  <Link href={`/member/qna/write?pid=${id}&name=${title}`}>
                     <a className="mini_btn small">고객센터 문의하기</a>
                   </Link>
                 </div>

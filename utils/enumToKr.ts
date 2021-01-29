@@ -1,4 +1,4 @@
-import { BookingStatus, CategoryType, GENDER, PaymentStatus, PayMethod, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole } from "../types/api";
+import { AddtionalFeesStatus, AnnounceType, BookingStatus, CategoryType, ERR_CODE, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, GENDER, PaymentStatus, PayMethod, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole } from "../types/api";
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if(status === BookingStatus.CANCEL) return "예약취소" 
@@ -20,7 +20,7 @@ export const productStatus = (status?: ProductStatus | null) => {
 }
 
 export const paymentStatus = (status?:PaymentStatus | null ) => {
-    if(status === PaymentStatus.CANCEL) return "취소" 
+    if(status === PaymentStatus.CANCEL) return "환불완료" 
     if(status === PaymentStatus.COMPLETE) return "완료" 
     if(status === PaymentStatus.READY) return "대기중" 
     return "";
@@ -63,11 +63,12 @@ export const determinedKr = (isDetermined: boolean) => {
 
 
 export const categoryToKR = (catType?:CategoryType | null) => {
-    if(catType === CategoryType.CUSTOMER_QNA) return "유저QNA"
+    if(catType === CategoryType.QUESTION) return "문의글"
     if(catType === CategoryType.PORTPOLIO) return "포트폴리오"
     if(catType === CategoryType.QNA) return "QNA"
     if(catType === CategoryType.TOUR) return "투어"
     if(catType === CategoryType.EXPERIENCE) return "체험"
+    if(catType === CategoryType.REGION) return "지역"
     return ""
 }
 
@@ -90,4 +91,40 @@ export const genderToKR = (gender?:GENDER | null) => {
     if(gender === GENDER.FEMALE) return "여성"
     if(gender === GENDER.MAIL) return "남성"
     return ""
+}
+
+export const announceTypeKR = (type?:AnnounceType) => {
+    if(type === AnnounceType.ACCOUNCE) return "알림"
+    if(type === AnnounceType.NOICE) return "공지"
+    return ""
+}
+
+export const feePresent = (addFee:feePolicyFindOne_FeePolicyFindOne_data_addtionalFees) => {
+    let unit = addFee.type  === AddtionalFeesStatus.DEFAULT ? "(원)" : "(%)"; 
+    let amt = addFee.type  === AddtionalFeesStatus.DEFAULT ? addFee.fee : addFee.feePercent; 
+    return amt + unit;
+}
+
+
+export const ErrorCode: Partial<Record<ERR_CODE, string>> = {
+    ALEADY_SAME_DATA: "중복 데이터가 존재합니다.",
+    AUTHORIZATION: "권한이 없습니다.",
+    BOOKING_MEMBER_OVER: "인원이 초과되었습니다.",
+    DOC_ALEADY_EXIST:"이미 존재하는 데이터 입니다.",
+    DOC_NOT_FOUND:"해당 데이터를 찾을 수 없습니다",
+    DOC_RELATED_INVALID: "잘못된 데이터 입니다.",
+    EXPECTED_STATUS_NOT: "잘못된 요청입니다.",
+    EXPECTED_VALUE_RANGE_NOT: "요청값이 올바르지 않습니다.",
+    INVALID_PARAMS: "잘못된 요청입니다.",
+    NICKNAME_ALEADY_EXIST: "닉네임",
+    PAY_TIME_OVER: "시간이 경과했습니다.",
+}
+
+
+export const errorMessage = (code?: ERR_CODE | string)  => {
+    const result = ErrorCode[code as ERR_CODE];
+    if(result) {
+        alert (result)
+    } else {
+    }
 }

@@ -3,6 +3,7 @@ import SLIDER, { Settings } from 'react-slick';
 import classnames from 'classnames';
 import "../../css/slider.css"
 import { TElements } from '../../types/interface';
+
 interface IProps extends Settings {
     /** 화살표를 출력함*/
     className?: string;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Fcategory } from '../../types/api';
+import { whenEnter } from '../../utils/eventValueExtracter';
 
 interface IProp {
     wrapLabel: string;
@@ -50,7 +51,7 @@ export const CategoryEitdor: React.FC<IProp> = ({ categories, onAdd, onDelete, o
                     )}
                     <li className={`categoryEditer__cat ${selelcted ? undefined : "categoryEditer__cat--selected"}`} onClick={handleUnSelect} >추가</li>
                 </ul>
-                <input value={label} onChange={(e) => {
+                <input onKeyPress={selelcted ? handleUpdate : handleAdd} value={label} onChange={(e) => {
                     setLabel(e.currentTarget.value)
                 }} className="w30" placeholder="" type="text" />
                 <button onClick={selelcted ? handleUpdate : handleAdd} className="btn">{selelcted ? "업데이트" : "추가"}</button>

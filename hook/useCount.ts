@@ -20,7 +20,6 @@ export const useCustomCount = <K extends keyof countManager_Count_data>(requires
     query countCustom {
         Count {
             ok
-            error
             data  {
                 ${requires}
             }

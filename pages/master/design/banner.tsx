@@ -39,9 +39,9 @@ export const MsDesignA: React.FC<IProp> = () => {
                 <div className="tab-nav">
                     <ul>
                         <li><Link href="/master/design"><a>기본설정</a></Link></li>
-                        <li className="on"><Link href="/master/design/design1-2"><a>배너관리</a></Link></li>
-                        <li><Link href="/master/design/design1-3"><a>팝업관리</a></Link></li>
-                        <li><Link href="/master/design/design1-4"><a>노출상품관리</a></Link></li>
+                        <li className="on"><Link href="/master/design/banner"><a>배너관리</a></Link></li>
+                        <li><Link href="/master/design/popup"><a>팝업관리</a></Link></li>
+                        <li><Link href="/master/design/display"><a>노출상품관리</a></Link></li>
                     </ul>
                 </div>
                 <div className="con design banner_setting">

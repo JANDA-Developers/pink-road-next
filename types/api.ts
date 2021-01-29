@@ -4,8 +4,461 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: announceFindById
+// ====================================================
+
+export interface announceFindById_AnnounceFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface announceFindById_AnnounceFindById_data_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceFindById_AnnounceFindById_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface announceFindById_AnnounceFindById_data_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: announceFindById_AnnounceFindById_data_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: announceFindById_AnnounceFindById_data_author_profileImg | null;
+}
+
+export interface announceFindById_AnnounceFindById_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceFindById_AnnounceFindById_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceFindById_AnnounceFindById_data {
+  __typename: "Announce";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  no: number;
+  contents: string;
+  author: announceFindById_AnnounceFindById_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: announceFindById_AnnounceFindById_data_attachFiles[] | null;
+  thumb: announceFindById_AnnounceFindById_data_thumb | null;
+  viewCount: number;
+  type: AnnounceType;
+}
+
+export interface announceFindById_AnnounceFindById {
+  __typename: "AnnounceFindByIdResponse";
+  ok: boolean;
+  error: announceFindById_AnnounceFindById_error | null;
+  data: announceFindById_AnnounceFindById_data | null;
+}
+
+export interface announceFindById {
+  AnnounceFindById: announceFindById_AnnounceFindById;
+}
+
+export interface announceFindByIdVariables {
+  _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: announceList
+// ====================================================
+
+export interface announceList_AnnounceList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface announceList_AnnounceList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface announceList_AnnounceList_data_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceList_AnnounceList_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface announceList_AnnounceList_data_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: announceList_AnnounceList_data_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: announceList_AnnounceList_data_author_profileImg | null;
+}
+
+export interface announceList_AnnounceList_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceList_AnnounceList_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface announceList_AnnounceList_data {
+  __typename: "Announce";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  no: number;
+  contents: string;
+  author: announceList_AnnounceList_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: announceList_AnnounceList_data_attachFiles[] | null;
+  thumb: announceList_AnnounceList_data_thumb | null;
+  viewCount: number;
+  type: AnnounceType;
+}
+
+export interface announceList_AnnounceList {
+  __typename: "AnnounceListResponse";
+  ok: boolean;
+  error: announceList_AnnounceList_error | null;
+  page: announceList_AnnounceList_page;
+  data: announceList_AnnounceList_data[];
+}
+
+export interface announceList {
+  AnnounceList: announceList_AnnounceList;
+}
+
+export interface announceListVariables {
+  sort?: _AnnounceSort[] | null;
+  filter?: _AnnounceFilter | null;
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: announceCreate
+// ====================================================
+
+export interface announceCreate_AnnounceCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface announceCreate_AnnounceCreate_data {
+  __typename: "Announce";
+  _id: string;
+}
+
+export interface announceCreate_AnnounceCreate {
+  __typename: "AnnounceCreateResponse";
+  ok: boolean;
+  error: announceCreate_AnnounceCreate_error | null;
+  data: announceCreate_AnnounceCreate_data | null;
+}
+
+export interface announceCreate {
+  AnnounceCreate: announceCreate_AnnounceCreate;
+}
+
+export interface announceCreateVariables {
+  params: AnnounceCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: announceDelete
+// ====================================================
+
+export interface announceDelete_AnnounceDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface announceDelete_AnnounceDelete {
+  __typename: "AnnounceDeleteResponse";
+  ok: boolean;
+  error: announceDelete_AnnounceDelete_error | null;
+}
+
+export interface announceDelete {
+  AnnounceDelete: announceDelete_AnnounceDelete;
+}
+
+export interface announceDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: announceUpdate
+// ====================================================
+
+export interface announceUpdate_AnnounceUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface announceUpdate_AnnounceUpdate_data {
+  __typename: "Announce";
+  _id: string;
+}
+
+export interface announceUpdate_AnnounceUpdate {
+  __typename: "AnnounceUpdateResponse";
+  ok: boolean;
+  error: announceUpdate_AnnounceUpdate_error | null;
+  data: announceUpdate_AnnounceUpdate_data | null;
+}
+
+export interface announceUpdate {
+  AnnounceUpdate: announceUpdate_AnnounceUpdate;
+}
+
+export interface announceUpdateVariables {
+  params: AnnounceUpdateInput;
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: answerCreate
 // ====================================================
+
+export interface answerCreate_AnswerCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface answerCreate_AnswerCreate_data_author_profileImg {
   __typename: "File";
@@ -39,7 +492,7 @@ export interface answerCreate_AnswerCreate_data {
 export interface answerCreate_AnswerCreate {
   __typename: "AnswerCreateResponse";
   ok: boolean;
-  error: string | null;
+  error: answerCreate_AnswerCreate_error | null;
   data: answerCreate_AnswerCreate_data | null;
 }
 
@@ -61,10 +514,18 @@ export interface answerCreateVariables {
 // GraphQL mutation operation: answerDelete
 // ====================================================
 
+export interface answerDelete_AnswerDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface answerDelete_AnswerDelete {
   __typename: "AnswerDeleteResponse";
   ok: boolean;
-  error: string | null;
+  error: answerDelete_AnswerDelete_error | null;
 }
 
 export interface answerDelete {
@@ -85,6 +546,14 @@ export interface answerDeleteVariables {
 // GraphQL mutation operation: answerUpdate
 // ====================================================
 
+export interface answerUpdate_AnswerUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface answerUpdate_AnswerUpdate_data {
   __typename: "Answer";
   _id: string;
@@ -93,7 +562,7 @@ export interface answerUpdate_AnswerUpdate_data {
 export interface answerUpdate_AnswerUpdate {
   __typename: "AnswerUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: answerUpdate_AnswerUpdate_error | null;
   data: answerUpdate_AnswerUpdate_data | null;
 }
 
@@ -115,6 +584,14 @@ export interface answerUpdateVariables {
 // ====================================================
 // GraphQL query operation: myBoardList
 // ====================================================
+
+export interface myBoardList_MyBoardList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface myBoardList_MyBoardList_page {
   __typename: "Page";
@@ -193,7 +670,7 @@ export interface myBoardList_MyBoardList_data {
 export interface myBoardList_MyBoardList {
   __typename: "IntegratedBoardResponse";
   ok: boolean;
-  error: string | null;
+  error: myBoardList_MyBoardList_error | null;
   page: myBoardList_MyBoardList_page;
   data: myBoardList_MyBoardList_data[];
 }
@@ -218,10 +695,18 @@ export interface myBoardListVariables {
 // GraphQL mutation operation: boardControlMaster
 // ====================================================
 
+export interface boardControlMaster_BoardControlMaster_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface boardControlMaster_BoardControlMaster {
   __typename: "Response";
   ok: boolean;
-  error: string | null;
+  error: boardControlMaster_BoardControlMaster_error | null;
 }
 
 export interface boardControlMaster {
@@ -241,6 +726,14 @@ export interface boardControlMasterVariables {
 // ====================================================
 // GraphQL query operation: bookingList
 // ====================================================
+
+export interface bookingList_BookingList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface bookingList_BookingList_page {
   __typename: "Page";
@@ -409,7 +902,7 @@ export interface bookingList_BookingList_data {
 export interface bookingList_BookingList {
   __typename: "BookingListResponse";
   ok: boolean;
-  error: string | null;
+  error: bookingList_BookingList_error | null;
   page: bookingList_BookingList_page;
   data: bookingList_BookingList_data[];
 }
@@ -422,7 +915,7 @@ export interface bookingListVariables {
   sort?: _BookingSort[] | null;
   filter?: _BookingFilter | null;
   pageInput: pageInput;
-  productFilter?: _ProductFilter | null;
+  filterProduct?: _ProductFilter | null;
 }
 
 /* tslint:disable */
@@ -434,6 +927,14 @@ export interface bookingListVariables {
 // GraphQL query operation: bookingCount
 // ====================================================
 
+export interface bookingCount_BookingList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface bookingCount_BookingList_data {
   __typename: "Booking";
   _id: string;
@@ -442,7 +943,7 @@ export interface bookingCount_BookingList_data {
 export interface bookingCount_BookingList {
   __typename: "BookingListResponse";
   ok: boolean;
-  error: string | null;
+  error: bookingCount_BookingList_error | null;
   data: bookingCount_BookingList_data[];
 }
 
@@ -460,19 +961,27 @@ export interface bookingCountVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: bookingCancel
+// GraphQL mutation operation: bookingCancelReq
 // ====================================================
 
-export interface bookingCancel_BookingCancel_data_product {
+export interface bookingCancelReq_BookingCancelReq_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface bookingCancelReq_BookingCancelReq_data_product {
   __typename: "Product";
   _id: string;
   title: string;
   code: string;
 }
 
-export interface bookingCancel_BookingCancel_data {
+export interface bookingCancelReq_BookingCancelReq_data {
   __typename: "Booking";
-  product: bookingCancel_BookingCancel_data_product;
+  product: bookingCancelReq_BookingCancelReq_data_product;
   _id: string;
   createdAt: any;
   cancelDate: any | null;
@@ -499,20 +1008,20 @@ export interface bookingCancel_BookingCancel_data {
   isPaid: boolean | null;
 }
 
-export interface bookingCancel_BookingCancel {
-  __typename: "BookingCancelResponse";
+export interface bookingCancelReq_BookingCancelReq {
+  __typename: "BookingCancelReqResponse";
   ok: boolean;
-  error: string | null;
-  data: bookingCancel_BookingCancel_data | null;
+  error: bookingCancelReq_BookingCancelReq_error | null;
+  data: bookingCancelReq_BookingCancelReq_data | null;
 }
 
-export interface bookingCancel {
-  BookingCancel: bookingCancel_BookingCancel;
+export interface bookingCancelReq {
+  BookingCancelReq: bookingCancelReq_BookingCancelReq;
 }
 
-export interface bookingCancelVariables {
-  reason: string;
+export interface bookingCancelReqVariables {
   bookingId: string;
+  reason: string;
 }
 
 /* tslint:disable */
@@ -523,6 +1032,14 @@ export interface bookingCancelVariables {
 // ====================================================
 // GraphQL mutation operation: bookingsCreate
 // ====================================================
+
+export interface bookingsCreate_BookingsCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface bookingsCreate_BookingsCreate_data_product {
   __typename: "Product";
@@ -561,7 +1078,7 @@ export interface bookingsCreate_BookingsCreate_data {
 export interface bookingsCreate_BookingsCreate {
   __typename: "BookingsCreateResponse";
   ok: boolean;
-  error: string | null;
+  error: bookingsCreate_BookingsCreate_error | null;
   data: bookingsCreate_BookingsCreate_data[] | null;
 }
 
@@ -583,10 +1100,18 @@ export interface bookingsCreateVariables {
 // GraphQL mutation operation: bookingDelete
 // ====================================================
 
+export interface bookingDelete_BookingDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface bookingDelete_BookingDelete {
   __typename: "BookingDeleteResponse";
   ok: boolean;
-  error: string | null;
+  error: bookingDelete_BookingDelete_error | null;
 }
 
 export interface bookingDelete {
@@ -606,6 +1131,14 @@ export interface bookingDeleteVariables {
 // GraphQL mutation operation: bookingUpdate
 // ====================================================
 
+export interface bookingUpdate_BookingUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface bookingUpdate_BookingUpdate_data {
   __typename: "Booking";
   _id: string;
@@ -614,7 +1147,7 @@ export interface bookingUpdate_BookingUpdate_data {
 export interface bookingUpdate_BookingUpdate {
   __typename: "BookingUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: bookingUpdate_BookingUpdate_error | null;
   data: bookingUpdate_BookingUpdate_data | null;
 }
 
@@ -635,6 +1168,20 @@ export interface bookingUpdateVariables {
 // ====================================================
 // GraphQL query operation: bookingFindByCode
 // ====================================================
+
+export interface bookingFindByCode_BookingFindByCode_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface bookingFindByCode_BookingFindByCode_data_product_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
+}
 
 export interface bookingFindByCode_BookingFindByCode_data_product_category {
   __typename: "Category";
@@ -763,12 +1310,14 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   code: string;
   createdAt: any;
   updatedAt: any;
+  regionLabel: string | null;
   isDelete: boolean;
   contents: string;
   determined: boolean;
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  region: bookingFindByCode_BookingFindByCode_data_product_region | null;
   category: bookingFindByCode_BookingFindByCode_data_product_category | null;
   /**
    * 예약인원에 대한 요약
@@ -869,7 +1418,7 @@ export interface bookingFindByCode_BookingFindByCode_data {
 export interface bookingFindByCode_BookingFindByCode {
   __typename: "BookingFindByCodeResponse";
   ok: boolean;
-  error: string | null;
+  error: bookingFindByCode_BookingFindByCode_error | null;
   data: bookingFindByCode_BookingFindByCode_data | null;
 }
 
@@ -890,6 +1439,14 @@ export interface bookingFindByCodeVariables {
 // GraphQL query operation: categoryFindById
 // ====================================================
 
+export interface categoryFindById_CategoryFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface categoryFindById_CategoryFindById_data {
   __typename: "Category";
   _id: string;
@@ -903,7 +1460,7 @@ export interface categoryFindById_CategoryFindById_data {
 export interface categoryFindById_CategoryFindById {
   __typename: "CategoryFindByIdResponse";
   ok: boolean;
-  error: string | null;
+  error: categoryFindById_CategoryFindById_error | null;
   data: categoryFindById_CategoryFindById_data | null;
 }
 
@@ -924,6 +1481,14 @@ export interface categoryFindByIdVariables {
 // GraphQL query operation: categoryList
 // ====================================================
 
+export interface categoryList_CategoryList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface categoryList_CategoryList_data {
   __typename: "Category";
   _id: string;
@@ -937,7 +1502,7 @@ export interface categoryList_CategoryList_data {
 export interface categoryList_CategoryList {
   __typename: "CategoryListResponse";
   ok: boolean;
-  error: string | null;
+  error: categoryList_CategoryList_error | null;
   data: categoryList_CategoryList_data[] | null;
 }
 
@@ -954,6 +1519,14 @@ export interface categoryList {
 // GraphQL mutation operation: categoryCreate
 // ====================================================
 
+export interface categoryCreate_CategoryCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface categoryCreate_CategoryCreate_data {
   __typename: "Category";
   _id: string;
@@ -967,7 +1540,7 @@ export interface categoryCreate_CategoryCreate_data {
 export interface categoryCreate_CategoryCreate {
   __typename: "CategoryCreateResponse";
   ok: boolean;
-  error: string | null;
+  error: categoryCreate_CategoryCreate_error | null;
   data: categoryCreate_CategoryCreate_data | null;
 }
 
@@ -988,6 +1561,14 @@ export interface categoryCreateVariables {
 // GraphQL mutation operation: categoryDelete
 // ====================================================
 
+export interface categoryDelete_CategoryDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface categoryDelete_CategoryDelete_data {
   __typename: "Category";
   _id: string;
@@ -1001,7 +1582,7 @@ export interface categoryDelete_CategoryDelete_data {
 export interface categoryDelete_CategoryDelete {
   __typename: "CategoryDeleteResponse";
   ok: boolean;
-  error: string | null;
+  error: categoryDelete_CategoryDelete_error | null;
   data: categoryDelete_CategoryDelete_data | null;
 }
 
@@ -1022,6 +1603,14 @@ export interface categoryDeleteVariables {
 // GraphQL mutation operation: categoryUpdate
 // ====================================================
 
+export interface categoryUpdate_CategoryUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface categoryUpdate_CategoryUpdate_data {
   __typename: "Category";
   _id: string;
@@ -1035,7 +1624,7 @@ export interface categoryUpdate_CategoryUpdate_data {
 export interface categoryUpdate_CategoryUpdate {
   __typename: "CategoryUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: categoryUpdate_CategoryUpdate_error | null;
   data: categoryUpdate_CategoryUpdate_data | null;
 }
 
@@ -1056,6 +1645,14 @@ export interface categoryUpdateVariables {
 // ====================================================
 // GraphQL query operation: count
 // ====================================================
+
+export interface count_Count_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface count_Count_data {
   __typename: "Count";
@@ -1087,7 +1684,7 @@ export interface count_Count_data {
 export interface count_Count {
   __typename: "CountResponse";
   ok: boolean;
-  error: string | null;
+  error: count_Count_error | null;
   data: count_Count_data | null;
 }
 
@@ -1103,6 +1700,14 @@ export interface count {
 // ====================================================
 // GraphQL query operation: countManager
 // ====================================================
+
+export interface countManager_Count_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface countManager_Count_data {
   __typename: "Count";
@@ -1232,7 +1837,7 @@ export interface countManager_Count_data {
   /**
    * 마스터용::멤버 외국인 수
    */
-  foreginMemeberCount: number;
+  foreginMemberCount: number;
   /**
    * 마스터용::내국인 멤버 수
    */
@@ -1240,7 +1845,7 @@ export interface countManager_Count_data {
   /**
    * 마스터용::일반 회원 수
    */
-  totalIndiMemeberCount: number;
+  totalIndiMemberCount: number;
   /**
    * 마스터용::비지니스 파트너 유저증 승인 유저수
    */
@@ -1293,12 +1898,16 @@ export interface countManager_Count_data {
    * 구매자(나)의 체험 횟수
    */
   countOfExpBooking: number;
+  /**
+   * 공지사항 수
+   */
+  announceCount: number;
 }
 
 export interface countManager_Count {
   __typename: "CountResponse";
   ok: boolean;
-  error: string | null;
+  error: countManager_Count_error | null;
   data: countManager_Count_data | null;
 }
 
@@ -1314,6 +1923,14 @@ export interface countManager {
 // ====================================================
 // GraphQL query operation: feePolicyFindOne
 // ====================================================
+
+export interface feePolicyFindOne_FeePolicyFindOne_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface feePolicyFindOne_FeePolicyFindOne_data_addtionalFees {
   __typename: "AddtionalFees";
@@ -1335,14 +1952,13 @@ export interface feePolicyFindOne_FeePolicyFindOne_data {
   jandaCardPercent: number;
   cardPercent: number;
   bankPercent: number;
-  storePercent: number;
   addtionalFees: feePolicyFindOne_FeePolicyFindOne_data_addtionalFees[];
 }
 
 export interface feePolicyFindOne_FeePolicyFindOne {
   __typename: "FeePolicyFindOneResponse";
   ok: boolean;
-  error: string | null;
+  error: feePolicyFindOne_FeePolicyFindOne_error | null;
   data: feePolicyFindOne_FeePolicyFindOne_data | null;
 }
 
@@ -1358,6 +1974,14 @@ export interface feePolicyFindOne {
 // ====================================================
 // GraphQL mutation operation: feePolicyUpdate
 // ====================================================
+
+export interface feePolicyUpdate_FeePolicyUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface feePolicyUpdate_FeePolicyUpdate_data_addtionalFees {
   __typename: "AddtionalFees";
@@ -1379,14 +2003,13 @@ export interface feePolicyUpdate_FeePolicyUpdate_data {
   jandaCardPercent: number;
   cardPercent: number;
   bankPercent: number;
-  storePercent: number;
   addtionalFees: feePolicyUpdate_FeePolicyUpdate_data_addtionalFees[];
 }
 
 export interface feePolicyUpdate_FeePolicyUpdate {
   __typename: "FeePolicyUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: feePolicyUpdate_FeePolicyUpdate_error | null;
   data: feePolicyUpdate_FeePolicyUpdate_data | null;
 }
 
@@ -1406,6 +2029,14 @@ export interface feePolicyUpdateVariables {
 // ====================================================
 // GraphQL query operation: groupFindByKey
 // ====================================================
+
+export interface groupFindByKey_GroupFindByKey_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface groupFindByKey_GroupFindByKey_data_tags {
   __typename: "Tag";
@@ -1438,7 +2069,7 @@ export interface groupFindByKey_GroupFindByKey_data {
 export interface groupFindByKey_GroupFindByKey {
   __typename: "GroupFindByKeyResponse";
   ok: boolean;
-  error: string | null;
+  error: groupFindByKey_GroupFindByKey_error | null;
   data: groupFindByKey_GroupFindByKey_data | null;
 }
 
@@ -1458,6 +2089,14 @@ export interface groupFindByKeyVariables {
 // ====================================================
 // GraphQL query operation: groupList
 // ====================================================
+
+export interface groupList_GroupList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface groupList_GroupList_data_tags {
   __typename: "Tag";
@@ -1490,7 +2129,7 @@ export interface groupList_GroupList_data {
 export interface groupList_GroupList {
   __typename: "GroupListResponse";
   ok: boolean;
-  error: string | null;
+  error: groupList_GroupList_error | null;
   data: groupList_GroupList_data[] | null;
 }
 
@@ -1506,6 +2145,14 @@ export interface groupList {
 // ====================================================
 // GraphQL mutation operation: groupCreate
 // ====================================================
+
+export interface groupCreate_GroupCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface groupCreate_GroupCreate_data_tags {
   __typename: "Tag";
@@ -1538,7 +2185,7 @@ export interface groupCreate_GroupCreate_data {
 export interface groupCreate_GroupCreate {
   __typename: "GroupCreateResponse";
   ok: boolean;
-  error: string | null;
+  error: groupCreate_GroupCreate_error | null;
   data: groupCreate_GroupCreate_data | null;
 }
 
@@ -1558,6 +2205,14 @@ export interface groupCreateVariables {
 // ====================================================
 // GraphQL mutation operation: groupDelete
 // ====================================================
+
+export interface groupDelete_GroupDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface groupDelete_GroupDelete_data_tags {
   __typename: "Tag";
@@ -1590,7 +2245,7 @@ export interface groupDelete_GroupDelete_data {
 export interface groupDelete_GroupDelete {
   __typename: "GroupDeleteResponse";
   ok: boolean;
-  error: string | null;
+  error: groupDelete_GroupDelete_error | null;
   data: groupDelete_GroupDelete_data | null;
 }
 
@@ -1610,6 +2265,14 @@ export interface groupDeleteVariables {
 // ====================================================
 // GraphQL mutation operation: groupUpdate
 // ====================================================
+
+export interface groupUpdate_GroupUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface groupUpdate_GroupUpdate_data_tags {
   __typename: "Tag";
@@ -1642,7 +2305,7 @@ export interface groupUpdate_GroupUpdate_data {
 export interface groupUpdate_GroupUpdate {
   __typename: "GroupUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: groupUpdate_GroupUpdate_error | null;
   data: groupUpdate_GroupUpdate_data | null;
 }
 
@@ -1664,7 +2327,22 @@ export interface groupUpdateVariables {
 // GraphQL query operation: homepage
 // ====================================================
 
+export interface homepage_Homepage_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface homepage_Homepage_data_logo {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface homepage_Homepage_data_partnerFooter {
   __typename: "File";
   name: string;
   uri: string;
@@ -1721,7 +2399,6 @@ export interface homepage_Homepage_data_modal {
 export interface homepage_Homepage_data {
   __typename: "Homepage";
   logo: homepage_Homepage_data_logo | null;
-  ceoName: string;
   address: string;
   addressUrl: string;
   siteDesc: string;
@@ -1730,8 +2407,14 @@ export interface homepage_Homepage_data {
   siteName: string;
   signUpRedirect: string;
   blacklist: string[];
+  partnerFooter: homepage_Homepage_data_partnerFooter[] | null;
+  instaLink: string | null;
+  blogLink: string | null;
+  facebookLink: string | null;
+  twitterLink: string | null;
   busiNumber: string;
   email: string;
+  ceoName: string;
   /**
    * 영업시간
    */
@@ -1763,7 +2446,7 @@ export interface homepage_Homepage_data {
 export interface homepage_Homepage {
   __typename: "HomepageResponse";
   ok: boolean;
-  error: string | null;
+  error: homepage_Homepage_error | null;
   data: homepage_Homepage_data | null;
 }
 
@@ -1780,7 +2463,22 @@ export interface homepage {
 // GraphQL mutation operation: homepageUpdate
 // ====================================================
 
+export interface homepageUpdate_HomepageUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface homepageUpdate_HomepageUpdate_data_logo {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface homepageUpdate_HomepageUpdate_data_partnerFooter {
   __typename: "File";
   name: string;
   uri: string;
@@ -1837,7 +2535,6 @@ export interface homepageUpdate_HomepageUpdate_data_modal {
 export interface homepageUpdate_HomepageUpdate_data {
   __typename: "Homepage";
   logo: homepageUpdate_HomepageUpdate_data_logo | null;
-  ceoName: string;
   address: string;
   addressUrl: string;
   siteDesc: string;
@@ -1846,8 +2543,14 @@ export interface homepageUpdate_HomepageUpdate_data {
   siteName: string;
   signUpRedirect: string;
   blacklist: string[];
+  partnerFooter: homepageUpdate_HomepageUpdate_data_partnerFooter[] | null;
+  instaLink: string | null;
+  blogLink: string | null;
+  facebookLink: string | null;
+  twitterLink: string | null;
   busiNumber: string;
   email: string;
+  ceoName: string;
   /**
    * 영업시간
    */
@@ -1879,7 +2582,7 @@ export interface homepageUpdate_HomepageUpdate_data {
 export interface homepageUpdate_HomepageUpdate {
   __typename: "HomepageUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: homepageUpdate_HomepageUpdate_error | null;
   data: homepageUpdate_HomepageUpdate_data | null;
 }
 
@@ -1900,10 +2603,18 @@ export interface homepageUpdateVariables {
 // GraphQL mutation operation: pageInfoCreate
 // ====================================================
 
+export interface pageInfoCreate_PageInfoCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface pageInfoCreate_PageInfoCreate {
   __typename: "PageInfoCreateResponse";
   ok: boolean;
-  error: string | null;
+  error: pageInfoCreate_PageInfoCreate_error | null;
 }
 
 export interface pageInfoCreate {
@@ -1923,6 +2634,14 @@ export interface pageInfoCreateVariables {
 // GraphQL mutation operation: multiUpload
 // ====================================================
 
+export interface multiUpload_MultiUpload_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface multiUpload_MultiUpload_data {
   __typename: "File";
   name: string;
@@ -1933,7 +2652,7 @@ export interface multiUpload_MultiUpload_data {
 export interface multiUpload_MultiUpload {
   __typename: "FileUploadsResponse";
   ok: boolean;
-  error: string | null;
+  error: multiUpload_MultiUpload_error | null;
   data: multiUpload_MultiUpload_data[] | null;
 }
 
@@ -1954,6 +2673,14 @@ export interface multiUploadVariables {
 // GraphQL mutation operation: pageInfoDelete
 // ====================================================
 
+export interface pageInfoDelete_PageInfoDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface pageInfoDelete_PageInfoDelete_data {
   __typename: "PageInfo";
   _id: string;
@@ -1966,7 +2693,7 @@ export interface pageInfoDelete_PageInfoDelete_data {
 export interface pageInfoDelete_PageInfoDelete {
   __typename: "PageInfoDeleteResponse";
   ok: boolean;
-  error: string | null;
+  error: pageInfoDelete_PageInfoDelete_error | null;
   data: pageInfoDelete_PageInfoDelete_data | null;
 }
 
@@ -1987,6 +2714,14 @@ export interface pageInfoDeleteVariables {
 // GraphQL mutation operation: pageInfoUpdate
 // ====================================================
 
+export interface pageInfoUpdate_PageInfoUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface pageInfoUpdate_PageInfoUpdate_data {
   __typename: "PageInfo";
   _id: string;
@@ -1999,7 +2734,7 @@ export interface pageInfoUpdate_PageInfoUpdate_data {
 export interface pageInfoUpdate_PageInfoUpdate {
   __typename: "PageInfoUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: pageInfoUpdate_PageInfoUpdate_error | null;
   data: pageInfoUpdate_PageInfoUpdate_data | null;
 }
 
@@ -2020,6 +2755,14 @@ export interface pageInfoUpdateVariables {
 // ====================================================
 // GraphQL query operation: newsFindById
 // ====================================================
+
+export interface newsFindById_NewsFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface newsFindById_NewsFindById_data_author_busiRegistration {
   __typename: "File";
@@ -2135,7 +2878,7 @@ export interface newsFindById_NewsFindById_data {
 export interface newsFindById_NewsFindById {
   __typename: "NewsFindByIdResponse";
   ok: boolean;
-  error: string | null;
+  error: newsFindById_NewsFindById_error | null;
   data: newsFindById_NewsFindById_data | null;
 }
 
@@ -2155,6 +2898,14 @@ export interface newsFindByIdVariables {
 // ====================================================
 // GraphQL query operation: newsList
 // ====================================================
+
+export interface newsList_NewsList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface newsList_NewsList_page {
   __typename: "Page";
@@ -2318,7 +3069,7 @@ export interface newsList_NewsList_data {
 export interface newsList_NewsList {
   __typename: "NewsListResponse";
   ok: boolean;
-  error: string | null;
+  error: newsList_NewsList_error | null;
   page: newsList_NewsList_page;
   data: newsList_NewsList_data[];
 }
@@ -2342,6 +3093,14 @@ export interface newsListVariables {
 // GraphQL mutation operation: newsCreate
 // ====================================================
 
+export interface newsCreate_NewsCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface newsCreate_NewsCreate_data {
   __typename: "News";
   _id: string;
@@ -2350,7 +3109,7 @@ export interface newsCreate_NewsCreate_data {
 export interface newsCreate_NewsCreate {
   __typename: "NewsCreateResponse";
   ok: boolean;
-  error: string | null;
+  error: newsCreate_NewsCreate_error | null;
   data: newsCreate_NewsCreate_data | null;
 }
 
@@ -2371,10 +3130,18 @@ export interface newsCreateVariables {
 // GraphQL mutation operation: newsDelete
 // ====================================================
 
+export interface newsDelete_NewsDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface newsDelete_NewsDelete {
-  __typename: "NewsDeleteResponse";
+  __typename: "NewsDeleteResponseResponse";
   ok: boolean;
-  error: string | null;
+  error: newsDelete_NewsDelete_error | null;
 }
 
 export interface newsDelete {
@@ -2394,6 +3161,14 @@ export interface newsDeleteVariables {
 // GraphQL mutation operation: newsUpdate
 // ====================================================
 
+export interface newsUpdate_NewsUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface newsUpdate_NewsUpdate_data {
   __typename: "News";
   _id: string;
@@ -2402,7 +3177,7 @@ export interface newsUpdate_NewsUpdate_data {
 export interface newsUpdate_NewsUpdate {
   __typename: "NewsUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: newsUpdate_NewsUpdate_error | null;
   data: newsUpdate_NewsUpdate_data | null;
 }
 
@@ -2423,6 +3198,14 @@ export interface newsUpdateVariables {
 // ====================================================
 // GraphQL query operation: notificationHistory
 // ====================================================
+
+export interface notificationHistory_NotificationHistory_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface notificationHistory_NotificationHistory_page {
   __typename: "Page";
@@ -2501,7 +3284,7 @@ export interface notificationHistory_NotificationHistory_data {
 export interface notificationHistory_NotificationHistory {
   __typename: "INotificationHistoryItemListResponse";
   ok: boolean;
-  error: string | null;
+  error: notificationHistory_NotificationHistory_error | null;
   page: notificationHistory_NotificationHistory_page;
   data: notificationHistory_NotificationHistory_data[];
 }
@@ -2525,10 +3308,18 @@ export interface notificationHistoryVariables {
 // GraphQL mutation operation: notificationSenderPhoneAddStart
 // ====================================================
 
+export interface notificationSenderPhoneAddStart_NotificationSenderPhoneAddStart_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface notificationSenderPhoneAddStart_NotificationSenderPhoneAddStart {
   __typename: "VerificationResponse";
   ok: boolean;
-  error: string | null;
+  error: notificationSenderPhoneAddStart_NotificationSenderPhoneAddStart_error | null;
 }
 
 export interface notificationSenderPhoneAddStart {
@@ -2549,10 +3340,18 @@ export interface notificationSenderPhoneAddStartVariables {
 // GraphQL mutation operation: notificationSenderAddComplete
 // ====================================================
 
+export interface notificationSenderAddComplete_NotificationSenderAddComplete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface notificationSenderAddComplete_NotificationSenderAddComplete {
   __typename: "VerificationResponse";
   ok: boolean;
-  error: string | null;
+  error: notificationSenderAddComplete_NotificationSenderAddComplete_error | null;
 }
 
 export interface notificationSenderAddComplete {
@@ -2575,10 +3374,18 @@ export interface notificationSenderAddCompleteVariables {
 // GraphQL mutation operation: smsTemplateUpdate
 // ====================================================
 
+export interface smsTemplateUpdate_SmsTemplateUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface smsTemplateUpdate_SmsTemplateUpdate {
   __typename: "SmsTemplateUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: smsTemplateUpdate_SmsTemplateUpdate_error | null;
 }
 
 export interface smsTemplateUpdate {
@@ -2599,10 +3406,18 @@ export interface smsTemplateUpdateVariables {
 // GraphQL mutation operation: smstemplateCreate
 // ====================================================
 
+export interface smstemplateCreate_SmsTemplateCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface smstemplateCreate_SmsTemplateCreate {
   __typename: "SmsTemplateCreateResponse";
   ok: boolean;
-  error: string | null;
+  error: smstemplateCreate_SmsTemplateCreate_error | null;
 }
 
 export interface smstemplateCreate {
@@ -2622,10 +3437,18 @@ export interface smstemplateCreateVariables {
 // GraphQL mutation operation: smstemplateDelete
 // ====================================================
 
+export interface smstemplateDelete_SmsTemplateDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface smstemplateDelete_SmsTemplateDelete {
   __typename: "SmsTemplateDeleteResponse";
   ok: boolean;
-  error: string | null;
+  error: smstemplateDelete_SmsTemplateDelete_error | null;
 }
 
 export interface smstemplateDelete {
@@ -2645,10 +3468,18 @@ export interface smstemplateDeleteVariables {
 // GraphQL mutation operation: smsSendSingle
 // ====================================================
 
+export interface smsSendSingle_SmsSendSingle_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface smsSendSingle_SmsSendSingle {
   __typename: "SmsSingleMessageSendResponse";
   ok: boolean;
-  error: string | null;
+  error: smsSendSingle_SmsSendSingle_error | null;
 }
 
 export interface smsSendSingle {
@@ -2668,10 +3499,18 @@ export interface smsSendSingleVariables {
 // GraphQL mutation operation: smsSendWithTemplate
 // ====================================================
 
+export interface smsSendWithTemplate_SmsSendWithTemplate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface smsSendWithTemplate_SmsSendWithTemplate {
   __typename: "SmsTemplateMessageSendResponse";
   ok: boolean;
-  error: string | null;
+  error: smsSendWithTemplate_SmsSendWithTemplate_error | null;
 }
 
 export interface smsSendWithTemplate {
@@ -2690,6 +3529,14 @@ export interface smsSendWithTemplateVariables {
 // ====================================================
 // GraphQL query operation: templateList
 // ====================================================
+
+export interface templateList_TemplateList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface templateList_TemplateList_page {
   __typename: "Page";
@@ -2778,7 +3625,7 @@ export interface templateList_TemplateList_data {
 export interface templateList_TemplateList {
   __typename: "TemplateListResponse";
   ok: boolean;
-  error: string | null;
+  error: templateList_TemplateList_error | null;
   page: templateList_TemplateList_page;
   data: templateList_TemplateList_data[];
 }
@@ -2801,6 +3648,14 @@ export interface templateListVariables {
 // ====================================================
 // GraphQL query operation: paymentList
 // ====================================================
+
+export interface paymentList_PaymentList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface paymentList_PaymentList_page {
   __typename: "Page";
@@ -2878,7 +3733,7 @@ export interface paymentList_PaymentList_data {
 export interface paymentList_PaymentList {
   __typename: "PaymentListResponse";
   ok: boolean;
-  error: string | null;
+  error: paymentList_PaymentList_error | null;
   page: paymentList_PaymentList_page;
   data: paymentList_PaymentList_data[];
 }
@@ -2902,10 +3757,18 @@ export interface paymentListVariables {
 // GraphQL query operation: settlementCal
 // ====================================================
 
+export interface settlementCal_SettlementCal_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface settlementCal_SettlementCal {
   __typename: "SettlementCalResponse";
   ok: boolean;
-  error: string | null;
+  error: settlementCal_SettlementCal_error | null;
   amt: number;
 }
 
@@ -2926,8 +3789,73 @@ export interface settlementCalVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: bankDepositConfirm
+// ====================================================
+
+export interface bankDepositConfirm_BankDepositConfirm_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface bankDepositConfirm_BankDepositConfirm_data_history {
+  __typename: "TxHistory";
+  status: string;
+  price: number;
+  metadata: any | null;
+  createdAt: any;
+  updatedAt: any;
+}
+
+export interface bankDepositConfirm_BankDepositConfirm_data {
+  __typename: "Payment";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  payMethod: PayMethod;
+  status: PaymentStatus;
+  price: number;
+  totalCancelPrice: number;
+  cancelDate: any | null;
+  isPartialCancel: number;
+  groupCode: string | null;
+  history: bankDepositConfirm_BankDepositConfirm_data_history[];
+}
+
+export interface bankDepositConfirm_BankDepositConfirm {
+  __typename: "BankDepositConfirmResponse";
+  ok: boolean;
+  error: bankDepositConfirm_BankDepositConfirm_error | null;
+  data: bankDepositConfirm_BankDepositConfirm_data[] | null;
+}
+
+export interface bankDepositConfirm {
+  BankDepositConfirm: bankDepositConfirm_BankDepositConfirm;
+}
+
+export interface bankDepositConfirmVariables {
+  paymentIds: string[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: portfolioFindById
 // ====================================================
+
+export interface portfolioFindById_PortfolioFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface portfolioFindById_PortfolioFindById_data_author_busiRegistration {
   __typename: "File";
@@ -3039,7 +3967,7 @@ export interface portfolioFindById_PortfolioFindById_data {
 export interface portfolioFindById_PortfolioFindById {
   __typename: "PortfolioFindByIdResponse";
   ok: boolean;
-  error: string | null;
+  error: portfolioFindById_PortfolioFindById_error | null;
   data: portfolioFindById_PortfolioFindById_data | null;
 }
 
@@ -3059,6 +3987,14 @@ export interface portfolioFindByIdVariables {
 // ====================================================
 // GraphQL query operation: portfolioList
 // ====================================================
+
+export interface portfolioList_PortfolioList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface portfolioList_PortfolioList_page {
   __typename: "Page";
@@ -3218,7 +4154,7 @@ export interface portfolioList_PortfolioList_data {
 export interface portfolioList_PortfolioList {
   __typename: "PortfolioListResponse";
   ok: boolean;
-  error: string | null;
+  error: portfolioList_PortfolioList_error | null;
   page: portfolioList_PortfolioList_page;
   data: portfolioList_PortfolioList_data[];
 }
@@ -3242,6 +4178,14 @@ export interface portfolioListVariables {
 // GraphQL mutation operation: portfolioCreate
 // ====================================================
 
+export interface portfolioCreate_PortfolioCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface portfolioCreate_PortfolioCreate_data {
   __typename: "Portfolio";
   _id: string;
@@ -3250,7 +4194,7 @@ export interface portfolioCreate_PortfolioCreate_data {
 export interface portfolioCreate_PortfolioCreate {
   __typename: "PortfolioCreateResponse";
   ok: boolean;
-  error: string | null;
+  error: portfolioCreate_PortfolioCreate_error | null;
   data: portfolioCreate_PortfolioCreate_data | null;
 }
 
@@ -3271,10 +4215,18 @@ export interface portfolioCreateVariables {
 // GraphQL mutation operation: portfolioDelete
 // ====================================================
 
+export interface portfolioDelete_PortfolioDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface portfolioDelete_PortfolioDelete {
   __typename: "PortfolioDeleteResponse";
   ok: boolean;
-  error: string | null;
+  error: portfolioDelete_PortfolioDelete_error | null;
 }
 
 export interface portfolioDelete {
@@ -3294,6 +4246,14 @@ export interface portfolioDeleteVariables {
 // GraphQL mutation operation: portfolioUpdate
 // ====================================================
 
+export interface portfolioUpdate_PortfolioUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface portfolioUpdate_PortfolioUpdate_data {
   __typename: "Portfolio";
   _id: string;
@@ -3302,7 +4262,7 @@ export interface portfolioUpdate_PortfolioUpdate_data {
 export interface portfolioUpdate_PortfolioUpdate {
   __typename: "PortfolioUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: portfolioUpdate_PortfolioUpdate_error | null;
   data: portfolioUpdate_PortfolioUpdate_data | null;
 }
 
@@ -3321,26 +4281,34 @@ export interface portfolioUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: ProductCreate
+// GraphQL mutation operation: productCreate
 // ====================================================
 
-export interface ProductCreate_ProductCreate_data {
+export interface productCreate_ProductCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productCreate_ProductCreate_data {
   __typename: "Product";
   _id: string;
 }
 
-export interface ProductCreate_ProductCreate {
+export interface productCreate_ProductCreate {
   __typename: "ProductCreateResponse";
   ok: boolean;
-  error: string | null;
-  data: ProductCreate_ProductCreate_data | null;
+  error: productCreate_ProductCreate_error | null;
+  data: productCreate_ProductCreate_data | null;
 }
 
-export interface ProductCreate {
-  ProductCreate: ProductCreate_ProductCreate;
+export interface productCreate {
+  ProductCreate: productCreate_ProductCreate;
 }
 
-export interface ProductCreateVariables {
+export interface productCreateVariables {
   params: ProductCreateInput;
 }
 
@@ -3350,26 +4318,34 @@ export interface ProductCreateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: acceptProductCreate
+// GraphQL mutation operation: productCreateAccept
 // ====================================================
 
-export interface acceptProductCreate_AcceptProductCreate_data {
+export interface productCreateAccept_ProductCreateAccept_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productCreateAccept_ProductCreateAccept_data {
   __typename: "Product";
   _id: string;
 }
 
-export interface acceptProductCreate_AcceptProductCreate {
-  __typename: "AcceptProductCreateResponse";
+export interface productCreateAccept_ProductCreateAccept {
+  __typename: "ProductCreateAcceptResponse";
   ok: boolean;
-  error: string | null;
-  data: acceptProductCreate_AcceptProductCreate_data | null;
+  error: productCreateAccept_ProductCreateAccept_error | null;
+  data: productCreateAccept_ProductCreateAccept_data | null;
 }
 
-export interface acceptProductCreate {
-  AcceptProductCreate: acceptProductCreate_AcceptProductCreate;
+export interface productCreateAccept {
+  ProductCreateAccept: productCreateAccept_ProductCreateAccept;
 }
 
-export interface acceptProductCreateVariables {
+export interface productCreateAcceptVariables {
   ProductId: string;
 }
 
@@ -3379,26 +4355,34 @@ export interface acceptProductCreateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: acceptProductUpdate
+// GraphQL mutation operation: productUpdateAccept
 // ====================================================
 
-export interface acceptProductUpdate_AcceptProductUpdate_data {
+export interface productUpdateAccept_ProductUpdateAccept_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productUpdateAccept_ProductUpdateAccept_data {
   __typename: "Product";
   _id: string;
 }
 
-export interface acceptProductUpdate_AcceptProductUpdate {
-  __typename: "AcceptProductUpdateResponse";
+export interface productUpdateAccept_ProductUpdateAccept {
+  __typename: "ProductUpdateAcceptResponse";
   ok: boolean;
-  error: string | null;
-  data: acceptProductUpdate_AcceptProductUpdate_data | null;
+  error: productUpdateAccept_ProductUpdateAccept_error | null;
+  data: productUpdateAccept_ProductUpdateAccept_data | null;
 }
 
-export interface acceptProductUpdate {
-  AcceptProductUpdate: acceptProductUpdate_AcceptProductUpdate;
+export interface productUpdateAccept {
+  ProductUpdateAccept: productUpdateAccept_ProductUpdateAccept;
 }
 
-export interface acceptProductUpdateVariables {
+export interface productUpdateAcceptVariables {
   ProductId: string;
 }
 
@@ -3408,26 +4392,34 @@ export interface acceptProductUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: rejectProductCreate
+// GraphQL mutation operation: productCreateReject
 // ====================================================
 
-export interface rejectProductCreate_RejectProductCreate_data {
+export interface productCreateReject_ProductCreateReject_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productCreateReject_ProductCreateReject_data {
   __typename: "Product";
   _id: string;
 }
 
-export interface rejectProductCreate_RejectProductCreate {
-  __typename: "RejectProductCreateResponse";
+export interface productCreateReject_ProductCreateReject {
+  __typename: "ProductCreateRejectResponse";
   ok: boolean;
-  error: string | null;
-  data: rejectProductCreate_RejectProductCreate_data | null;
+  error: productCreateReject_ProductCreateReject_error | null;
+  data: productCreateReject_ProductCreateReject_data | null;
 }
 
-export interface rejectProductCreate {
-  RejectProductCreate: rejectProductCreate_RejectProductCreate;
+export interface productCreateReject {
+  ProductCreateReject: productCreateReject_ProductCreateReject;
 }
 
-export interface rejectProductCreateVariables {
+export interface productCreateRejectVariables {
   ProductId: string;
   reason: string;
 }
@@ -3438,26 +4430,34 @@ export interface rejectProductCreateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: rejectProductUpdate
+// GraphQL mutation operation: productUpdateReject
 // ====================================================
 
-export interface rejectProductUpdate_RejectProductUpdate_data {
+export interface productUpdateReject_ProductUpdateReject_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productUpdateReject_ProductUpdateReject_data {
   __typename: "Product";
   _id: string;
 }
 
-export interface rejectProductUpdate_RejectProductUpdate {
-  __typename: "RejectProductUpdateResponse";
+export interface productUpdateReject_ProductUpdateReject {
+  __typename: "ProductUpdateRejectResponse";
   ok: boolean;
-  error: string | null;
-  data: rejectProductUpdate_RejectProductUpdate_data | null;
+  error: productUpdateReject_ProductUpdateReject_error | null;
+  data: productUpdateReject_ProductUpdateReject_data | null;
 }
 
-export interface rejectProductUpdate {
-  RejectProductUpdate: rejectProductUpdate_RejectProductUpdate;
+export interface productUpdateReject {
+  ProductUpdateReject: productUpdateReject_ProductUpdateReject;
 }
 
-export interface rejectProductUpdateVariables {
+export interface productUpdateRejectVariables {
   ProductId: string;
   reason: string;
 }
@@ -3471,6 +4471,14 @@ export interface rejectProductUpdateVariables {
 // GraphQL mutation operation: productUpdate
 // ====================================================
 
+export interface productUpdate_ProductUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface productUpdate_ProductUpdate_data {
   __typename: "Product";
   _id: string;
@@ -3479,7 +4487,7 @@ export interface productUpdate_ProductUpdate_data {
 export interface productUpdate_ProductUpdate {
   __typename: "ProductUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: productUpdate_ProductUpdate_error | null;
   data: productUpdate_ProductUpdate_data | null;
 }
 
@@ -3500,6 +4508,20 @@ export interface productUpdateVariables {
 // ====================================================
 // GraphQL mutation operation: productDelete
 // ====================================================
+
+export interface productDelete_ProductDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productDelete_ProductDelete_data_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
+}
 
 export interface productDelete_ProductDelete_data_category {
   __typename: "Category";
@@ -3549,6 +4571,7 @@ export interface productDelete_ProductDelete_data {
   _id: string;
   createdAt: any;
   updatedAt: any;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -3557,6 +4580,7 @@ export interface productDelete_ProductDelete_data {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  region: productDelete_ProductDelete_data_region | null;
   category: productDelete_ProductDelete_data_category | null;
   /**
    * 예약인원에 대한 요약
@@ -3592,7 +4616,7 @@ export interface productDelete_ProductDelete_data {
 export interface productDelete_ProductDelete {
   __typename: "ProductDeleteResponse";
   ok: boolean;
-  error: string | null;
+  error: productDelete_ProductDelete_error | null;
   data: productDelete_ProductDelete_data | null;
 }
 
@@ -3612,6 +4636,14 @@ export interface productDeleteVariables {
 // ====================================================
 // GraphQL query operation: productList
 // ====================================================
+
+export interface productList_ProductList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface productList_ProductList_page {
   __typename: "Page";
@@ -3659,6 +4691,12 @@ export interface productList_ProductList_page {
    * 마지막 패이지의 갯수 (index계산 하는데 사용함)
    */
   remainder: number;
+}
+
+export interface productList_ProductList_data_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
 }
 
 export interface productList_ProductList_data_category {
@@ -3792,6 +4830,7 @@ export interface productList_ProductList_data {
   _id: string;
   createdAt: any;
   updatedAt: any;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -3800,6 +4839,7 @@ export interface productList_ProductList_data {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  region: productList_ProductList_data_region | null;
   category: productList_ProductList_data_category | null;
   /**
    * 예약인원에 대한 요약
@@ -3837,7 +4877,7 @@ export interface productList_ProductList_data {
 export interface productList_ProductList {
   __typename: "ProductListResponse";
   ok: boolean;
-  error: string | null;
+  error: productList_ProductList_error | null;
   page: productList_ProductList_page;
   data: productList_ProductList_data[];
 }
@@ -3860,6 +4900,20 @@ export interface productListVariables {
 // ====================================================
 // GraphQL query operation: productFindById
 // ====================================================
+
+export interface productFindById_ProductFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productFindById_ProductFindById_data_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
+}
 
 export interface productFindById_ProductFindById_data_category {
   __typename: "Category";
@@ -4052,6 +5106,7 @@ export interface productFindById_ProductFindById_data_questions {
   isDelete: boolean;
   title: string;
   contents: string;
+  code: string;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -4072,6 +5127,7 @@ export interface productFindById_ProductFindById_data {
   _id: string;
   createdAt: any;
   updatedAt: any;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -4080,6 +5136,7 @@ export interface productFindById_ProductFindById_data {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  region: productFindById_ProductFindById_data_region | null;
   category: productFindById_ProductFindById_data_category | null;
   /**
    * 예약인원에 대한 요약
@@ -4117,7 +5174,7 @@ export interface productFindById_ProductFindById_data {
 export interface productFindById_ProductFindById {
   __typename: "ProductFindByIdResponse";
   ok: boolean;
-  error: string | null;
+  error: productFindById_ProductFindById_error | null;
   data: productFindById_ProductFindById_data | null;
 }
 
@@ -4137,6 +5194,20 @@ export interface productFindByIdVariables {
 // ====================================================
 // GraphQL query operation: productFindByIdForSeller
 // ====================================================
+
+export interface productFindByIdForSeller_ProductFindByIdForSeller_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productFindByIdForSeller_ProductFindByIdForSeller_data_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
+}
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_category {
   __typename: "Category";
@@ -4274,7 +5345,6 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_settleme
   niceCardFee: number;
   jandaCardFee: number;
   bankFee: number;
-  storeFee: number;
   additionFeeSum: number;
   jandaFee: number;
   cancelReturnPriceTotal: number;
@@ -4425,6 +5495,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   _id: string;
   createdAt: any;
   updatedAt: any;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -4433,6 +5504,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  region: productFindByIdForSeller_ProductFindByIdForSeller_data_region | null;
   category: productFindByIdForSeller_ProductFindByIdForSeller_data_category | null;
   /**
    * 예약인원에 대한 요약
@@ -4475,7 +5547,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
 export interface productFindByIdForSeller_ProductFindByIdForSeller {
   __typename: "ProductFindByIdForSellerResponse";
   ok: boolean;
-  error: string | null;
+  error: productFindByIdForSeller_ProductFindByIdForSeller_error | null;
   data: productFindByIdForSeller_ProductFindByIdForSeller_data | null;
 }
 
@@ -4493,8 +5565,471 @@ export interface productFindByIdForSellerVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: qnaFindById
+// ====================================================
+
+export interface qnaFindById_QnaFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface qnaFindById_QnaFindById_data_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaFindById_QnaFindById_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface qnaFindById_QnaFindById_data_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: qnaFindById_QnaFindById_data_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: qnaFindById_QnaFindById_data_author_profileImg | null;
+}
+
+export interface qnaFindById_QnaFindById_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaFindById_QnaFindById_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaFindById_QnaFindById_data_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface qnaFindById_QnaFindById_data {
+  __typename: "Qna";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: qnaFindById_QnaFindById_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: qnaFindById_QnaFindById_data_attachFiles[] | null;
+  thumb: qnaFindById_QnaFindById_data_thumb | null;
+  viewCount: number;
+  category: qnaFindById_QnaFindById_data_category | null;
+}
+
+export interface qnaFindById_QnaFindById {
+  __typename: "QnaFindByIdResponse";
+  ok: boolean;
+  error: qnaFindById_QnaFindById_error | null;
+  data: qnaFindById_QnaFindById_data | null;
+}
+
+export interface qnaFindById {
+  QnaFindById: qnaFindById_QnaFindById;
+}
+
+export interface qnaFindByIdVariables {
+  _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: qnaList
+// ====================================================
+
+export interface qnaList_QnaList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface qnaList_QnaList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface qnaList_QnaList_data_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaList_QnaList_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface qnaList_QnaList_data_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: qnaList_QnaList_data_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: qnaList_QnaList_data_author_profileImg | null;
+}
+
+export interface qnaList_QnaList_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaList_QnaList_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface qnaList_QnaList_data_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface qnaList_QnaList_data {
+  __typename: "Qna";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: qnaList_QnaList_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: qnaList_QnaList_data_attachFiles[] | null;
+  thumb: qnaList_QnaList_data_thumb | null;
+  viewCount: number;
+  category: qnaList_QnaList_data_category | null;
+}
+
+export interface qnaList_QnaList {
+  __typename: "QnaListResponse";
+  ok: boolean;
+  error: qnaList_QnaList_error | null;
+  page: qnaList_QnaList_page;
+  data: qnaList_QnaList_data[];
+}
+
+export interface qnaList {
+  QnaList: qnaList_QnaList;
+}
+
+export interface qnaListVariables {
+  sort?: _QnaSort[] | null;
+  filter?: _QnaFilter | null;
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: qnaCreate
+// ====================================================
+
+export interface qnaCreate_QnaCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface qnaCreate_QnaCreate_data {
+  __typename: "Qna";
+  _id: string;
+}
+
+export interface qnaCreate_QnaCreate {
+  __typename: "QnaCreateResponse";
+  ok: boolean;
+  error: qnaCreate_QnaCreate_error | null;
+  data: qnaCreate_QnaCreate_data | null;
+}
+
+export interface qnaCreate {
+  QnaCreate: qnaCreate_QnaCreate;
+}
+
+export interface qnaCreateVariables {
+  params: QnaCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: qnaDelete
+// ====================================================
+
+export interface qnaDelete_QnaDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface qnaDelete_QnaDelete {
+  __typename: "QnaDeleteResponse";
+  ok: boolean;
+  error: qnaDelete_QnaDelete_error | null;
+}
+
+export interface qnaDelete {
+  QnaDelete: qnaDelete_QnaDelete;
+}
+
+export interface qnaDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: qnaUpdate
+// ====================================================
+
+export interface qnaUpdate_QnaUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface qnaUpdate_QnaUpdate_data {
+  __typename: "Qna";
+  _id: string;
+}
+
+export interface qnaUpdate_QnaUpdate {
+  __typename: "QnaUpdateResponse";
+  ok: boolean;
+  error: qnaUpdate_QnaUpdate_error | null;
+  data: qnaUpdate_QnaUpdate_data | null;
+}
+
+export interface qnaUpdate {
+  QnaUpdate: qnaUpdate_QnaUpdate;
+}
+
+export interface qnaUpdateVariables {
+  params: QnaUpdateInput;
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: pageInfoRead
 // ====================================================
+
+export interface pageInfoRead_PageInfoRead_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface pageInfoRead_PageInfoRead_data {
   __typename: "PageInfo";
@@ -4508,7 +6043,7 @@ export interface pageInfoRead_PageInfoRead_data {
 export interface pageInfoRead_PageInfoRead {
   __typename: "PageInfoReadResponse";
   ok: boolean;
-  error: string | null;
+  error: pageInfoRead_PageInfoRead_error | null;
   data: pageInfoRead_PageInfoRead_data | null;
 }
 
@@ -4528,6 +6063,14 @@ export interface pageInfoReadVariables {
 // ====================================================
 // GraphQL query operation: getContext
 // ====================================================
+
+export interface getContext_GetProfile_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface getContext_GetProfile_data_busiRegistration {
   __typename: "File";
@@ -4764,8 +6307,16 @@ export interface getContext_GetProfile_data {
 export interface getContext_GetProfile {
   __typename: "MeResponse";
   ok: boolean;
-  error: string | null;
+  error: getContext_GetProfile_error | null;
   data: getContext_GetProfile_data | null;
+}
+
+export interface getContext_CategoryList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
 }
 
 export interface getContext_CategoryList_data {
@@ -4781,11 +6332,26 @@ export interface getContext_CategoryList_data {
 export interface getContext_CategoryList {
   __typename: "CategoryListResponse";
   ok: boolean;
-  error: string | null;
+  error: getContext_CategoryList_error | null;
   data: getContext_CategoryList_data[] | null;
 }
 
+export interface getContext_Homepage_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface getContext_Homepage_data_logo {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface getContext_Homepage_data_partnerFooter {
   __typename: "File";
   name: string;
   uri: string;
@@ -4842,7 +6408,6 @@ export interface getContext_Homepage_data_modal {
 export interface getContext_Homepage_data {
   __typename: "Homepage";
   logo: getContext_Homepage_data_logo | null;
-  ceoName: string;
   address: string;
   addressUrl: string;
   siteDesc: string;
@@ -4851,8 +6416,14 @@ export interface getContext_Homepage_data {
   siteName: string;
   signUpRedirect: string;
   blacklist: string[];
+  partnerFooter: getContext_Homepage_data_partnerFooter[] | null;
+  instaLink: string | null;
+  blogLink: string | null;
+  facebookLink: string | null;
+  twitterLink: string | null;
   busiNumber: string;
   email: string;
+  ceoName: string;
   /**
    * 영업시간
    */
@@ -4884,7 +6455,7 @@ export interface getContext_Homepage_data {
 export interface getContext_Homepage {
   __typename: "HomepageResponse";
   ok: boolean;
-  error: string | null;
+  error: getContext_Homepage_error | null;
   data: getContext_Homepage_data | null;
 }
 
@@ -4902,6 +6473,14 @@ export interface getContext {
 // ====================================================
 // GraphQL query operation: questionList
 // ====================================================
+
+export interface questionList_QuestionList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface questionList_QuestionList_page {
   __typename: "Page";
@@ -5039,6 +6618,7 @@ export interface questionList_QuestionList_data {
   isDelete: boolean;
   title: string;
   contents: string;
+  code: string;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -5052,13 +6632,13 @@ export interface questionList_QuestionList_data {
   likeCount: number;
   no: number;
   author: questionList_QuestionList_data_author | null;
-  product: questionList_QuestionList_data_product;
+  product: questionList_QuestionList_data_product | null;
 }
 
 export interface questionList_QuestionList {
   __typename: "QuestionListResponse";
   ok: boolean;
-  error: string | null;
+  error: questionList_QuestionList_error | null;
   page: questionList_QuestionList_page;
   data: questionList_QuestionList_data[];
 }
@@ -5082,6 +6662,14 @@ export interface questionListVariables {
 // GraphQL mutation operation: questionCreate
 // ====================================================
 
+export interface questionCreate_QuestionCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface questionCreate_QuestionCreate_data {
   __typename: "Question";
   _id: string;
@@ -5090,7 +6678,7 @@ export interface questionCreate_QuestionCreate_data {
 export interface questionCreate_QuestionCreate {
   __typename: "QuestionCreateResponse";
   ok: boolean;
-  error: string | null;
+  error: questionCreate_QuestionCreate_error | null;
   data: questionCreate_QuestionCreate_data | null;
 }
 
@@ -5111,10 +6699,18 @@ export interface questionCreateVariables {
 // GraphQL mutation operation: questionDelete
 // ====================================================
 
+export interface questionDelete_QuestionDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface questionDelete_QuestionDelete {
   __typename: "QuestionDeleteResponse";
   ok: boolean;
-  error: string | null;
+  error: questionDelete_QuestionDelete_error | null;
 }
 
 export interface questionDelete {
@@ -5134,6 +6730,14 @@ export interface questionDeleteVariables {
 // GraphQL mutation operation: questionUpdate
 // ====================================================
 
+export interface questionUpdate_QuestionUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface questionUpdate_QuestionUpdate_data {
   __typename: "Question";
   _id: string;
@@ -5142,7 +6746,7 @@ export interface questionUpdate_QuestionUpdate_data {
 export interface questionUpdate_QuestionUpdate {
   __typename: "QuestionUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: questionUpdate_QuestionUpdate_error | null;
   data: questionUpdate_QuestionUpdate_data | null;
 }
 
@@ -5163,6 +6767,14 @@ export interface questionUpdateVariables {
 // ====================================================
 // GraphQL query operation: questionFindById
 // ====================================================
+
+export interface questionFindById_QuestionFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface questionFindById_QuestionFindById_data_answers_author_profileImg {
   __typename: "File";
@@ -5252,6 +6864,7 @@ export interface questionFindById_QuestionFindById_data {
   isDelete: boolean;
   title: string;
   contents: string;
+  code: string;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -5265,13 +6878,13 @@ export interface questionFindById_QuestionFindById_data {
   likeCount: number;
   no: number;
   author: questionFindById_QuestionFindById_data_author | null;
-  product: questionFindById_QuestionFindById_data_product;
+  product: questionFindById_QuestionFindById_data_product | null;
 }
 
 export interface questionFindById_QuestionFindById {
   __typename: "QuestionFindByIdResponse";
   ok: boolean;
-  error: string | null;
+  error: questionFindById_QuestionFindById_error | null;
   data: questionFindById_QuestionFindById_data | null;
 }
 
@@ -5291,6 +6904,20 @@ export interface questionFindByIdVariables {
 // ====================================================
 // GraphQL query operation: settlementFindById
 // ====================================================
+
+export interface settlementFindById_SettlementFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface settlementFindById_SettlementFindById_data_product_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
+}
 
 export interface settlementFindById_SettlementFindById_data_product_category {
   __typename: "Category";
@@ -5471,6 +7098,7 @@ export interface settlementFindById_SettlementFindById_data_product {
   _id: string;
   createdAt: any;
   updatedAt: any;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -5479,6 +7107,7 @@ export interface settlementFindById_SettlementFindById_data_product {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  region: settlementFindById_SettlementFindById_data_product_region | null;
   category: settlementFindById_SettlementFindById_data_product_category | null;
   /**
    * 예약인원에 대한 요약
@@ -5529,7 +7158,6 @@ export interface settlementFindById_SettlementFindById_data {
   niceCardFee: number;
   jandaCardFee: number;
   bankFee: number;
-  storeFee: number;
   additionFeeSum: number;
   jandaFee: number;
   cancelReturnPriceTotal: number;
@@ -5547,7 +7175,7 @@ export interface settlementFindById_SettlementFindById_data {
 export interface settlementFindById_SettlementFindById {
   __typename: "SettlementFindByIdResponse";
   ok: boolean;
-  error: string | null;
+  error: settlementFindById_SettlementFindById_error | null;
   data: settlementFindById_SettlementFindById_data | null;
 }
 
@@ -5567,6 +7195,14 @@ export interface settlementFindByIdVariables {
 // ====================================================
 // GraphQL query operation: settlementList
 // ====================================================
+
+export interface settlementList_SettlementList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface settlementList_SettlementList_page {
   __typename: "Page";
@@ -5704,6 +7340,12 @@ export interface settlementList_SettlementList_data_product_bookerSummary {
   cancelPeople: number;
 }
 
+export interface settlementList_SettlementList_data_product_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
+}
+
 export interface settlementList_SettlementList_data_product_category {
   __typename: "Category";
   _id: string;
@@ -5822,6 +7464,7 @@ export interface settlementList_SettlementList_data_product {
   _id: string;
   createdAt: any;
   updatedAt: any;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -5830,6 +7473,7 @@ export interface settlementList_SettlementList_data_product {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  region: settlementList_SettlementList_data_product_region | null;
   category: settlementList_SettlementList_data_product_category | null;
   status: ProductStatus;
   itinerary: settlementList_SettlementList_data_product_itinerary[];
@@ -5875,7 +7519,6 @@ export interface settlementList_SettlementList_data {
   niceCardFee: number;
   jandaCardFee: number;
   bankFee: number;
-  storeFee: number;
   additionFeeSum: number;
   jandaFee: number;
   cancelReturnPriceTotal: number;
@@ -5894,7 +7537,7 @@ export interface settlementList_SettlementList_data {
 export interface settlementList_SettlementList {
   __typename: "SettlementListResponse";
   ok: boolean;
-  error: string | null;
+  error: settlementList_SettlementList_error | null;
   page: settlementList_SettlementList_page;
   data: settlementList_SettlementList_data[];
 }
@@ -5918,10 +7561,18 @@ export interface settlementListVariables {
 // GraphQL mutation operation: settlementRequest
 // ====================================================
 
+export interface settlementRequest_SettlementRequest_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface settlementRequest_SettlementRequest {
   __typename: "SettlementRequestResponse";
   ok: boolean;
-  error: string | null;
+  error: settlementRequest_SettlementRequest_error | null;
 }
 
 export interface settlementRequest {
@@ -5942,10 +7593,18 @@ export interface settlementRequestVariables {
 // GraphQL mutation operation: settlementComplete
 // ====================================================
 
+export interface settlementComplete_SettlementComplete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface settlementComplete_SettlementComplete {
   __typename: "SettlementCompleteResponse";
   ok: boolean;
-  error: string | null;
+  error: settlementComplete_SettlementComplete_error | null;
 }
 
 export interface settlementComplete {
@@ -5965,10 +7624,18 @@ export interface settlementCompleteVariables {
 // GraphQL mutation operation: settlementReject
 // ====================================================
 
+export interface settlementReject_SettlementReject_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface settlementReject_SettlementReject {
   __typename: "SettlementRejectResponse";
   ok: boolean;
-  error: string | null;
+  error: settlementReject_SettlementReject_error | null;
 }
 
 export interface settlementReject {
@@ -5989,6 +7656,14 @@ export interface settlementRejectVariables {
 // GraphQL query operation: unReadSystemNotiFind
 // ====================================================
 
+export interface unReadSystemNotiFind_UnReadSystemNotiFind_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface unReadSystemNotiFind_UnReadSystemNotiFind_data {
   __typename: "SystemNoti";
   _id: string;
@@ -6006,7 +7681,7 @@ export interface unReadSystemNotiFind_UnReadSystemNotiFind_data {
 export interface unReadSystemNotiFind_UnReadSystemNotiFind {
   __typename: "UnReadSystemNotiFindResponse";
   ok: boolean;
-  error: string | null;
+  error: unReadSystemNotiFind_UnReadSystemNotiFind_error | null;
   data: unReadSystemNotiFind_UnReadSystemNotiFind_data[] | null;
 }
 
@@ -6022,6 +7697,14 @@ export interface unReadSystemNotiFind {
 // ====================================================
 // GraphQL query operation: systemNotiList
 // ====================================================
+
+export interface systemNotiList_SystemNotiList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface systemNotiList_SystemNotiList_page {
   __typename: "Page";
@@ -6088,7 +7771,7 @@ export interface systemNotiList_SystemNotiList_data {
 export interface systemNotiList_SystemNotiList {
   __typename: "SystemNotiListResponse";
   ok: boolean;
-  error: string | null;
+  error: systemNotiList_SystemNotiList_error | null;
   page: systemNotiList_SystemNotiList_page;
   data: systemNotiList_SystemNotiList_data[];
 }
@@ -6112,10 +7795,18 @@ export interface systemNotiListVariables {
 // GraphQL mutation operation: systemNotiRead
 // ====================================================
 
+export interface systemNotiRead_SystemNotiRead_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface systemNotiRead_SystemNotiRead {
   __typename: "SystemNotiReadResponse";
   ok: boolean;
-  error: string | null;
+  error: systemNotiRead_SystemNotiRead_error | null;
 }
 
 export interface systemNotiRead {
@@ -6135,10 +7826,18 @@ export interface systemNotiReadVariables {
 // GraphQL mutation operation: systemNotiHide
 // ====================================================
 
+export interface systemNotiHide_SystemNotiHide_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface systemNotiHide_SystemNotiHide {
   __typename: "SystemNotiHideResponse";
   ok: boolean;
-  error: string | null;
+  error: systemNotiHide_SystemNotiHide_error | null;
 }
 
 export interface systemNotiHide {
@@ -6158,6 +7857,14 @@ export interface systemNotiHideVariables {
 // GraphQL mutation operation: signUp
 // ====================================================
 
+export interface signUp_SignUp_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface signUp_SignUp_data {
   __typename: "SignUpResult";
   email: string;
@@ -6166,7 +7873,7 @@ export interface signUp_SignUp_data {
 export interface signUp_SignUp {
   __typename: "SignUpResponse";
   ok: boolean;
-  error: string | null;
+  error: signUp_SignUp_error | null;
   data: signUp_SignUp_data | null;
 }
 
@@ -6188,10 +7895,18 @@ export interface signUpVariables {
 // GraphQL mutation operation: userResign
 // ====================================================
 
+export interface userResign_UserResign_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface userResign_UserResign {
   __typename: "UserResignResponse";
   ok: boolean;
-  error: string | null;
+  error: userResign_UserResign_error | null;
 }
 
 export interface userResign {
@@ -6212,6 +7927,14 @@ export interface userResignVariables {
 // GraphQL query operation: signIn
 // ====================================================
 
+export interface signIn_SignIn_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface signIn_SignIn_data {
   __typename: "SignIn";
   token: string;
@@ -6220,7 +7943,7 @@ export interface signIn_SignIn_data {
 export interface signIn_SignIn {
   __typename: "SiginResponse";
   ok: boolean;
-  error: string | null;
+  error: signIn_SignIn_error | null;
   data: signIn_SignIn_data | null;
 }
 
@@ -6243,6 +7966,14 @@ export interface signInVariables {
 // GraphQL mutation operation: userUpdate
 // ====================================================
 
+export interface userUpdate_UserUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface userUpdate_UserUpdate_data {
   __typename: "User";
   _id: string;
@@ -6252,7 +7983,7 @@ export interface userUpdate_UserUpdate_data {
 export interface userUpdate_UserUpdate {
   __typename: "UserUpdateResponse";
   ok: boolean;
-  error: string | null;
+  error: userUpdate_UserUpdate_error | null;
   data: userUpdate_UserUpdate_data | null;
 }
 
@@ -6275,6 +8006,14 @@ export interface userUpdateVariables {
 // GraphQL mutation operation: verificationStart
 // ====================================================
 
+export interface verificationStart_VerificationStart_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface verificationStart_VerificationStart_data {
   __typename: "Verification";
   _id: string;
@@ -6286,7 +8025,7 @@ export interface verificationStart_VerificationStart_data {
 export interface verificationStart_VerificationStart {
   __typename: "VerificationResponse";
   ok: boolean;
-  error: string | null;
+  error: verificationStart_VerificationStart_error | null;
   data: verificationStart_VerificationStart_data | null;
 }
 
@@ -6312,6 +8051,14 @@ export interface verificationStartVariables {
 // GraphQL mutation operation: verificationComplete
 // ====================================================
 
+export interface verificationComplete_VerificationComplete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface verificationComplete_VerificationComplete_data {
   __typename: "Verification";
   _id: string;
@@ -6333,7 +8080,7 @@ export interface verificationComplete_VerificationComplete_data {
 export interface verificationComplete_VerificationComplete {
   __typename: "VerificationResponse";
   ok: boolean;
-  error: string | null;
+  error: verificationComplete_VerificationComplete_error | null;
   data: verificationComplete_VerificationComplete_data | null;
 }
 
@@ -6356,6 +8103,14 @@ export interface verificationCompleteVariables {
 // ====================================================
 // GraphQL query operation: userList
 // ====================================================
+
+export interface userList_UserList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
 
 export interface userList_UserList_page {
   __typename: "Page";
@@ -6485,7 +8240,7 @@ export interface userList_UserList_data {
 export interface userList_UserList {
   __typename: "UserListResponse";
   ok: boolean;
-  error: string | null;
+  error: userList_UserList_error | null;
   page: userList_UserList_page;
   data: userList_UserList_data[];
 }
@@ -6509,6 +8264,14 @@ export interface userListVariables {
 // GraphQL query operation: userFindById
 // ====================================================
 
+export interface userFindById_UserFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
 export interface userFindById_UserFindById_data_busiRegistration {
   __typename: "File";
   name: string;
@@ -6519,6 +8282,12 @@ export interface userFindById_UserFindById_data_busiRegistration {
 export interface userFindById_UserFindById_data_profileImg {
   __typename: "File";
   uri: string;
+}
+
+export interface userFindById_UserFindById_data_products_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
 }
 
 export interface userFindById_UserFindById_data_products_category {
@@ -6646,6 +8415,7 @@ export interface userFindById_UserFindById_data_products {
   _id: string;
   createdAt: any;
   updatedAt: any;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -6654,6 +8424,7 @@ export interface userFindById_UserFindById_data_products {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  region: userFindById_UserFindById_data_products_region | null;
   category: userFindById_UserFindById_data_products_category | null;
   /**
    * 예약인원에 대한 요약
@@ -6785,7 +8556,7 @@ export interface userFindById_UserFindById_data {
 export interface userFindById_UserFindById {
   __typename: "UserFindByIdResponse";
   ok: boolean;
-  error: string | null;
+  error: userFindById_UserFindById_error | null;
   data: userFindById_UserFindById_data | null;
 }
 
@@ -6795,6 +8566,127 @@ export interface userFindById {
 
 export interface userFindByIdVariables {
   id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: Fannounce
+// ====================================================
+
+export interface Fannounce_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fannounce_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface Fannounce_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: Fannounce_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: Fannounce_author_profileImg | null;
+}
+
+export interface Fannounce_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fannounce_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fannounce {
+  __typename: "Announce";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  no: number;
+  contents: string;
+  author: Fannounce_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: Fannounce_attachFiles[] | null;
+  thumb: Fannounce_thumb | null;
+  viewCount: number;
+  type: AnnounceType;
 }
 
 /* tslint:disable */
@@ -6881,7 +8773,6 @@ export interface FfeePolicy {
   jandaCardPercent: number;
   cardPercent: number;
   bankPercent: number;
-  storePercent: number;
   addtionalFees: FfeePolicy_addtionalFees[];
 }
 
@@ -6975,6 +8866,12 @@ export interface Fitinerary {
 // GraphQL fragment: Fproduct
 // ====================================================
 
+export interface Fproduct_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
+}
+
 export interface Fproduct_category {
   __typename: "Category";
   _id: string;
@@ -7023,6 +8920,7 @@ export interface Fproduct {
   _id: string;
   createdAt: any;
   updatedAt: any;
+  regionLabel: string | null;
   isDelete: boolean;
   title: string;
   code: string;
@@ -7031,6 +8929,7 @@ export interface Fproduct {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  region: Fproduct_region | null;
   category: Fproduct_category | null;
   /**
    * 예약인원에 대한 요약
@@ -7351,6 +9250,13 @@ export interface Fhomepage_logo {
   owner: string;
 }
 
+export interface Fhomepage_partnerFooter {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface Fhomepage_logoTop {
   __typename: "File";
   name: string;
@@ -7401,7 +9307,6 @@ export interface Fhomepage_modal {
 export interface Fhomepage {
   __typename: "Homepage";
   logo: Fhomepage_logo | null;
-  ceoName: string;
   address: string;
   addressUrl: string;
   siteDesc: string;
@@ -7410,8 +9315,14 @@ export interface Fhomepage {
   siteName: string;
   signUpRedirect: string;
   blacklist: string[];
+  partnerFooter: Fhomepage_partnerFooter[] | null;
+  instaLink: string | null;
+  blogLink: string | null;
+  facebookLink: string | null;
+  twitterLink: string | null;
   busiNumber: string;
   email: string;
+  ceoName: string;
   /**
    * 영업시간
    */
@@ -7869,6 +9780,125 @@ export interface Fportfolio {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: Fqna
+// ====================================================
+
+export interface Fqna_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fqna_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface Fqna_author {
+  __typename: "User";
+  _id: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  acceptEamil: boolean;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  busi_num: string;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: Fqna_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: Fqna_author_profileImg | null;
+}
+
+export interface Fqna_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fqna_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fqna {
+  __typename: "Qna";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: Fqna_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  attachFiles: Fqna_attachFiles[] | null;
+  thumb: Fqna_thumb | null;
+  viewCount: number;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fquestion
 // ====================================================
 
@@ -7943,6 +9973,7 @@ export interface Fquestion {
   isDelete: boolean;
   title: string;
   contents: string;
+  code: string;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
@@ -7978,7 +10009,6 @@ export interface Ffeepolicy {
   jandaCardPercent: number;
   cardPercent: number;
   bankPercent: number;
-  storePercent: number;
 }
 
 /* tslint:disable */
@@ -8006,7 +10036,6 @@ export interface Fsettlement {
   niceCardFee: number;
   jandaCardFee: number;
   bankFee: number;
-  storeFee: number;
   additionFeeSum: number;
   jandaFee: number;
   cancelReturnPriceTotal: number;
@@ -8061,6 +10090,14 @@ export enum AddtionalFeesStatus {
 }
 
 /**
+ * 공고문 타입
+ */
+export enum AnnounceType {
+  ACCOUNCE = "ACCOUNCE",
+  NOICE = "NOICE",
+}
+
+/**
  * 보드 공통 컨트롤 값
  */
 export enum BoardAction {
@@ -8082,6 +10119,7 @@ export enum BoardType {
  */
 export enum BookingStatus {
   CANCEL = "CANCEL",
+  CANCEL_REQ = "CANCEL_REQ",
   COMPLETE = "COMPLETE",
   READY = "READY",
 }
@@ -8090,10 +10128,11 @@ export enum BookingStatus {
  * 카테고리 타입
  */
 export enum CategoryType {
-  CUSTOMER_QNA = "CUSTOMER_QNA",
   EXPERIENCE = "EXPERIENCE",
   PORTPOLIO = "PORTPOLIO",
   QNA = "QNA",
+  QUESTION = "QUESTION",
+  REGION = "REGION",
   TOUR = "TOUR",
 }
 
@@ -8104,6 +10143,36 @@ export enum Currency {
   JPY = "JPY",
   KRW = "KRW",
   USD = "USD",
+}
+
+/**
+ * 에러가 발생한 함수 위치
+ */
+export enum ERR_CODE {
+  ALEADY_SAME_DATA = "ALEADY_SAME_DATA",
+  AUTHORIZATION = "AUTHORIZATION",
+  BOOKING_MEMBER_OVER = "BOOKING_MEMBER_OVER",
+  DOC_ALEADY_EXIST = "DOC_ALEADY_EXIST",
+  DOC_NOT_FOUND = "DOC_NOT_FOUND",
+  DOC_RELATED_INVALID = "DOC_RELATED_INVALID",
+  EXPECTED_STATUS_NOT = "EXPECTED_STATUS_NOT",
+  EXPECTED_VALUE_RANGE_NOT = "EXPECTED_VALUE_RANGE_NOT",
+  GENERAL = "GENERAL",
+  INVALID_DOC = "INVALID_DOC",
+  INVALID_PARAMS = "INVALID_PARAMS",
+  NICKNAME_ALEADY_EXIST = "NICKNAME_ALEADY_EXIST",
+  PASSWORD_NOT_EQUAL = "PASSWORD_NOT_EQUAL",
+  PAY_TIME_OVER = "PAY_TIME_OVER",
+  POPULATED_DOC_INVALID = "POPULATED_DOC_INVALID",
+  SYSTEM_ERROR = "SYSTEM_ERROR",
+}
+
+/**
+ * 에러가 발생한 함수 위치
+ */
+export enum ERR_SEVERITY {
+  ERROR = "ERROR",
+  INFO = "INFO",
 }
 
 /**
@@ -8252,7 +10321,7 @@ export enum SettlementStatus {
 export enum SystemNotiType {
   booking = "booking",
   cancel = "cancel",
-  memeber = "memeber",
+  member = "member",
   payment = "payment",
   system = "system",
 }
@@ -8307,6 +10376,24 @@ export enum VerificationEvent {
 export enum VerificationTarget {
   EMAIL = "EMAIL",
   PHONE = "PHONE",
+}
+
+/**
+ * Auto generated sort type
+ */
+export enum _AnnounceSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  isNotice_asc = "isNotice_asc",
+  isNotice_desc = "isNotice_desc",
+  likeCount_asc = "likeCount_asc",
+  likeCount_desc = "likeCount_desc",
+  subTitle_asc = "subTitle_asc",
+  subTitle_desc = "subTitle_desc",
+  title_asc = "title_asc",
+  title_desc = "title_desc",
+  viewCount_asc = "viewCount_asc",
+  viewCount_desc = "viewCount_desc",
 }
 
 /**
@@ -8428,6 +10515,24 @@ export enum _ProductSort {
 /**
  * Auto generated sort type
  */
+export enum _QnaSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  isNotice_asc = "isNotice_asc",
+  isNotice_desc = "isNotice_desc",
+  likeCount_asc = "likeCount_asc",
+  likeCount_desc = "likeCount_desc",
+  subTitle_asc = "subTitle_asc",
+  subTitle_desc = "subTitle_desc",
+  title_asc = "title_asc",
+  title_desc = "title_desc",
+  viewCount_asc = "viewCount_asc",
+  viewCount_desc = "viewCount_desc",
+}
+
+/**
+ * Auto generated sort type
+ */
 export enum _QuestionSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
@@ -8504,6 +10609,32 @@ export interface AddtionalFeesUpdateInput {
   type: AddtionalFeesStatus;
   feePercent?: number | null;
   fee?: number | null;
+}
+
+export interface AnnounceCreateInput {
+  title: string;
+  contents?: string | null;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileCreateInput[] | null;
+  thumb?: FileCreateInput | null;
+  type: AnnounceType;
+}
+
+export interface AnnounceUpdateInput {
+  title?: string | null;
+  contents?: string | null;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileUpdateInput[] | null;
+  thumb?: FileUpdateInput | null;
+  type?: AnnounceType | null;
 }
 
 export interface AnswerCreateInput {
@@ -8633,9 +10764,14 @@ export interface HomepageUpdateInput {
   copyRight?: string | null;
   bannerAlink?: string | null;
   bannerBlink?: string | null;
+  instaLink?: string | null;
+  facebookLink?: string | null;
+  twitterLink?: string | null;
+  blogLink?: string | null;
   bannerA?: FileUpdateInput | null;
   bannerB?: FileUpdateInput | null;
   modal?: ModalInput[] | null;
+  partnerFooter?: FileUpdateInput[] | null;
   bankInfo?: BankInfoInput | null;
 }
 
@@ -8761,6 +10897,7 @@ export interface ProductCreateInput {
   caution: string;
   images?: FileCreateInput[] | null;
   address: string;
+  regionId?: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -8797,6 +10934,33 @@ export interface ProductUpdateInput {
   baby_price?: number | null;
   type?: ProductType | null;
   adminMemo?: string | null;
+  regionId?: string | null;
+}
+
+export interface QnaCreateInput {
+  title: string;
+  contents?: string | null;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileCreateInput[] | null;
+  thumb?: FileCreateInput | null;
+  categoryId: string;
+}
+
+export interface QnaUpdateInput {
+  title?: string | null;
+  contents?: string | null;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileUpdateInput[] | null;
+  thumb?: FileUpdateInput | null;
+  categoryId?: string | null;
 }
 
 export interface QuestionCreateInput {
@@ -8809,7 +10973,7 @@ export interface QuestionCreateInput {
   keyWards?: string[] | null;
   attachFiles?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
-  productId: string;
+  productId?: string | null;
 }
 
 export interface QuestionUpdateInput {
@@ -8913,6 +11077,45 @@ export interface UserUpdateInput {
   status?: UserStatus | null;
 }
 
+export interface _AnnounceFilter {
+  AND?: _AnnounceFilter[] | null;
+  OR?: _AnnounceFilter[] | null;
+  no_eq?: string | null;
+  no_not_eq?: string | null;
+  title_eq?: string | null;
+  title_not_eq?: string | null;
+  title_contains?: string | null;
+  title_not_contains?: string | null;
+  title_in?: string[] | null;
+  title_not_in?: string[] | null;
+  authorEmail_eq?: string | null;
+  authorEmail_not_eq?: string | null;
+  authorEmail_in?: string[] | null;
+  isNotice_eq?: boolean | null;
+  isNotice_not_eq?: boolean | null;
+  isOpen_eq?: boolean | null;
+  isOpen_not_eq?: boolean | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
+  keyWards_eq?: string | null;
+  keyWards_not_eq?: string | null;
+  keyWards_in?: string[] | null;
+  keyWards_contains?: string | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
+}
+
 export interface _BoardFilter {
   AND?: _BoardFilter[] | null;
   OR?: _BoardFilter[] | null;
@@ -8974,6 +11177,8 @@ export interface _BookingFilter {
   name_not_eq?: string | null;
   name_in?: string[] | null;
   name_contains?: string | null;
+  byHand_eq?: boolean | null;
+  byHand_not_eq?: boolean | null;
   phoneNumber_eq?: string | null;
   phoneNumber_not_eq?: string | null;
   phoneNumber_in?: string[] | null;
@@ -9150,6 +11355,9 @@ export interface _ProductFilter {
   categoryId_eq?: string | null;
   categoryId_not_eq?: string | null;
   categoryId_in?: string[] | null;
+  regionLabel_eq?: string | null;
+  regionLabel_not_eq?: string | null;
+  regionLabel_in?: string[] | null;
   settlementId_eq?: string | null;
   settlementId_not_eq?: string | null;
   settlementId_in?: string[] | null;
@@ -9211,9 +11419,55 @@ export interface _ProductFilter {
   createdAt_gt?: any | null;
 }
 
+export interface _QnaFilter {
+  AND?: _QnaFilter[] | null;
+  OR?: _QnaFilter[] | null;
+  categoryId_eq?: string | null;
+  categoryId_not_eq?: string | null;
+  categoryId_in?: string[] | null;
+  title_eq?: string | null;
+  title_not_eq?: string | null;
+  title_contains?: string | null;
+  title_not_contains?: string | null;
+  title_in?: string[] | null;
+  title_not_in?: string[] | null;
+  authorEmail_eq?: string | null;
+  authorEmail_not_eq?: string | null;
+  authorEmail_in?: string[] | null;
+  isNotice_eq?: boolean | null;
+  isNotice_not_eq?: boolean | null;
+  isOpen_eq?: boolean | null;
+  isOpen_not_eq?: boolean | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
+  keyWards_eq?: string | null;
+  keyWards_not_eq?: string | null;
+  keyWards_in?: string[] | null;
+  keyWards_contains?: string | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
+}
+
 export interface _QuestionFilter {
   AND?: _QuestionFilter[] | null;
   OR?: _QuestionFilter[] | null;
+  code_eq?: string | null;
+  code_not_eq?: string | null;
+  status_eq?: string | null;
+  status_not_eq?: string | null;
+  no_eq?: string | null;
+  no_not_eq?: string | null;
   title_eq?: string | null;
   title_not_eq?: string | null;
   title_contains?: string | null;
@@ -9251,16 +11505,6 @@ export interface _QuestionFilter {
 export interface _SettlementFilter {
   AND?: _SettlementFilter[] | null;
   OR?: _SettlementFilter[] | null;
-  productName_eq?: string | null;
-  productName_not_eq?: string | null;
-  productName_in?: string[] | null;
-  productName_contains?: string | null;
-  productCode_eq?: string | null;
-  productCode_not_eq?: string | null;
-  productCode_in?: string[] | null;
-  sellerName_eq?: string | null;
-  sellerName_not_eq?: string | null;
-  sellerName_contains?: string | null;
   status_eq?: string | null;
   status_not_eq?: string | null;
   status_in?: string[] | null;
@@ -9301,6 +11545,8 @@ export interface _UserFilter {
   status_eq?: string | null;
   status_not_eq?: string | null;
   status_contains?: string | null;
+  isResigned_eq?: boolean | null;
+  isResigned_not_eq?: boolean | null;
   role_eq?: string | null;
   role_not_eq?: string | null;
   is_froreginer_eq?: boolean | null;

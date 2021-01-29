@@ -1,12 +1,10 @@
 import { GraphQLClient } from "graphql-request";
 import { GetServerSideProps, GetStaticProps } from "next";
-import { useRouter } from "next/router";
 import { HOMEPAGE } from "../apollo/gql/homepage";
 import { SERVER_URI } from "../apollo/uri";
 import { usePageInfo } from "../hook/usePageInfo";
 import { Fhomepage, Fpage, homepage } from "../types/api"
 import { TPageKeys } from "../types/interface";
-import isEmpty from "./isEmpty";
 
 export const getQueryIndex = (inPageIndex: number, pageInfo: Fpage) => {
     const { remainder, cntPerPage, totalPageSize } = pageInfo;

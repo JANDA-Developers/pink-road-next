@@ -11,6 +11,7 @@ import defaultPageInfo from "../info/login.json"
 import { usePageEdit } from '../hook/usePageEdit';
 import { getStaticPageInfo, Ipage } from '../utils/page';
 import { PageEditor } from '../components/common/PageEditer';
+import { ErrorCode, errorMessage } from '../utils/enumToKr';
 
 export const getStaticProps = getStaticPageInfo("login")
 export const Login: React.FC<Ipage> = (pageInfo) => {
@@ -27,7 +28,7 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                 location.href = "/"
                 alert("환영합니다.")
             } else {
-                alert(SignIn.error)
+                errorMessage(SignIn.error?.code)
             }
         },
     })

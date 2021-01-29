@@ -1,11 +1,10 @@
 import dayjs from "dayjs";
-import dynamic from "next/dynamic";
 import React from "react";
 import { Ffile } from "types/api"
-import { TElements } from "../../types/interface";
+import { IDiv, TElements } from "../../types/interface";
 import { ContentViewer } from "../contentViewer/ContentViewer";
 
-interface IProps {
+interface IProps extends IDiv {
     catName?: string;
     title: string;
     writer: string;
@@ -28,7 +27,7 @@ interface IProps {
 
 
 export const BoardView: React.FC<IProps> = (data) => {
-    const { catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, onNext, onPrev, onDelete, subTitle, Buttons } = data;
+    const { className, catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, onNext, onPrev, onDelete, subTitle, Buttons } = data;
 
 
     const handlePrev = () => {
@@ -51,7 +50,7 @@ export const BoardView: React.FC<IProps> = (data) => {
         onDelete?.();
     }
 
-    return <div className="board_box edtiorView">
+    return <div className={`board_box edtiorView ${className}`}>
         <div className="w1200">
             <div className="xe_content">
                 <div className="xe_top">

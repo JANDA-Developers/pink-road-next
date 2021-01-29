@@ -19,7 +19,12 @@ export const UNREAD_SYSTEMNOTIS = gql`
   query unReadSystemNotiFind {
     UnReadSystemNotiFind {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     data  {
       ...FsystemNoti
     }
@@ -40,7 +45,12 @@ export const SYSTEMNOTI_LIST = gql`
     filter: $filter
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     page {
       ...Fpage
     }
@@ -61,7 +71,12 @@ export const SYSTEMNOTI_READ = gql`
        ids: $ids
     ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
   }
 }
 `
@@ -74,7 +89,12 @@ export const SYSTEMNOTI_HIDE = gql`
        ids: $ids
     ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
   }
 }
 `

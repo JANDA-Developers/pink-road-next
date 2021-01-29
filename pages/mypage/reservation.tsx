@@ -35,10 +35,10 @@ const popupClose = () => {
 }
 
 export const MyReservation: React.FC<IProp> = () => {
-    const { filter: productFilter, setOR: setProductOR } = useQueryFilter<_ProductFilter>({})
+    const { filter: filterProduct, setOR: setProductOR } = useQueryFilter<_ProductFilter>({})
     const { items, viewCount, setViewCount, filter, setFilter, setOR, sort, setSort, pageInfo, setPage } = useBookingList(undefined, {
         overrideVariables: {
-            productFilter
+            filterProduct
         }
     });
     const [searchType, setSearchType] = useState<"code" | "title" | "name">("code");

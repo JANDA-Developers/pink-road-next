@@ -11,7 +11,12 @@ export const MY_BOARD_LIST = gql`
             filter: $filter
         ) {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         page {
             ...Fpage
         }
@@ -51,7 +56,12 @@ export const BOARD_CONTROl_MASTER = gql`
             targets: $targets
         ) {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
        } 
    }
    ${F_PAGE}

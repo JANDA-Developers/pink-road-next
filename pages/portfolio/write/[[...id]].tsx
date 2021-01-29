@@ -4,7 +4,7 @@ import React, { useContext, useEffect } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import "react-day-picker/lib/style.css";
 import { BoardWrite, TCategory } from "components/board/Write";
-import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
+import { IUseBoardData, nullcehck, useBoard } from "hook/useBoard";
 import { usePortfolioFind, useProtfolioCreate, useProtfolioDelete, useProtfolioUpdate } from "../../../hook/usePortfolio";
 import { IProps } from "../../../components/toast/Toast";
 import { AppContext } from "../../_app";
@@ -31,12 +31,39 @@ export const PortFolioWrite: React.FC<IProps> = () => {
         categoryId: portfolio?.category?._id
     })
 
+    const goToView = (id: string) => {
+        router.push(`/portfolio/view/${id}`)
+    }
 
     const { boardData, loadKey, loadKeyAdd, setBoardData, validater: { validate } } = boardHook
 
-    const [create] = useProtfolioCreate();
-    const [deleteMu] = useProtfolioDelete();
-    const [update] = useProtfolioUpdate();
+    const [create] = useProtfolioCreate({
+        onCompleted: ({ PortfolioCreate }) => {
+            if (PortfolioCreate.ok) {
+                const id = PortfolioCreate.data!._id;
+                goToView(id)
+            }
+        }
+    });
+
+    const [deleteMu] = useProtfolioDelete({
+        onCompleted: ({ PortfolioDelete }) => {
+            if (PortfolioDelete.ok) {
+                router.push("/portfolio")
+            }
+
+        }
+    });
+    const [update] = useProtfolioUpdate(
+        {
+            onCompleted: ({ PortfolioUpdate }) => {
+                if (PortfolioUpdate.ok) {
+                    const id = PortfolioUpdate.data!._id;
+                    goToView(id)
+                }
+            }
+        }
+    );
 
     const handleUpdate = () => {
         if (validate())
@@ -44,7 +71,7 @@ export const PortFolioWrite: React.FC<IProps> = () => {
                 variables: {
                     id: id!,
                     params: {
-                        ...omits(boardData)
+                        ...omits(boardData, ["files" as any])
                     }
                 }
             })
@@ -80,15 +107,24 @@ export const PortFolioWrite: React.FC<IProps> = () => {
 
     const handleLoad = () => {
         const saveData = Storage?.getLocalObj<IUseBoardData>("portfolioWrite");
-        if (!isUnLoaded(saveData)) {
-            setBoardData(saveData);
-            loadKeyAdd();
+
+        if (!saveData) {
+            alert("저장된 데이터가 없습니다.");
+            return;
         }
+        setBoardData(saveData);
+        loadKeyAdd();
     }
 
     useEffect(() => {
         initStorage()
     }, [])
+
+    useEffect(() => {
+        if (portfolio) {
+            setBoardData({ ...portfolio as any, categoryId: portfolio.category?._id })
+        }
+    }, [portfolio])
 
     return <BoardWrite
         boardHook={boardHook}

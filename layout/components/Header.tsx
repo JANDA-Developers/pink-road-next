@@ -102,24 +102,30 @@ export const Header: React.FC<IProp> = () => {
                 {isLogin ? <p className="welcome_ms"><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>
                     : ""}
                 <ul onClick={handleAllClose}>
-                    {isLogin ? "" :
+                    <li >
+                        {!isLogin && <Link href="/member/inquiry">
+                            <a>고객센터</a>
+                        </Link>}
+                    </li>
+                    <li >
+                        {!isLogin && <Link href="/login">
+                            <a>장바구니 </a>
+                        </Link>}
+                    </li>
+
+                    {!isLogin ? "" :
                         <li className="join">
                             <Link href="/member/join">
                                 <a>JOIN</a>
                             </Link>
-                        </li>}
+                        </li>
+                    }
                     <li className="login">
                         {isLogin ? <a onClick={handleLogOut}>LOGOUT</a>
                             : <Link href="/login">
                                 <a>LOGIN</a>
                             </Link>}
                     </li>
-                    {/* {isSeller && <li className="mypage">
-                        <Link href="/mypage"><a>MY PAGE</a></Link>
-                    </li>}
-                    {isManager && <li className="master">
-                        <Link href="/master"><a>MASTERr</a></Link>
-                    </li>} */}
 
                 </ul>
             </div>
@@ -254,13 +260,10 @@ export const Header: React.FC<IProp> = () => {
                         <div className="m_all_menu_in">
                             {isLogin ? <span><a onClick={handleLogOut}>LOGOUT</a></span>
                                 : <span><Link href="/login"><a>LOGIN</a></Link></span>}
-                            {isLogin ? <span><Link href="/mypage"><a>MY PAGE</a></Link></span>
-                                : ""}
-                            {isLogin ? <span><Link href="/mypage/notification"><a>알림</a></Link></span>
-                                : ""}
-                            {isLogin ? ""
-                                : <span><Link href="member/join"><a>JOIN</a></Link></span>}
-                            <span><Link href="/member/inquiry"><a>고객문의</a></Link></span>
+                            {isLogin && <span><Link href="/mypage"><a>MY PAGE</a></Link></span>}
+                            {isLogin && <span><Link href="/mypage/notification"><a>알림</a></Link></span>}
+                            {!isLogin && <span><a href="member/join">JOIN</a></span>}
+                            <span><Link href="/member/question"><a>고객문의</a></Link></span>
                             <span><Link href="/member/qna"><a>자주하는 질문</a></Link></span>
                         </div>
                         <ul>
@@ -327,8 +330,8 @@ export const Header: React.FC<IProp> = () => {
                                     <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
                                     <li><Link href="/member/electron-terms"><a>전자상거래이용약관</a></Link></li>
                                     <li><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
-                                    <li><Link href="/member/inquiry"><a>고객문의</a></Link></li>
-                                    <li><Link href="/member/notice"><a>공지사항</a></Link></li>
+                                    <li><Link href="/member/question"><a>고객문의</a></Link></li>
+                                    <li><Link href="/member/announce"><a>공지사항</a></Link></li>
                                     <li><Link href="/member/qna"><a>자주하는질문</a></Link></li>
                                 </ul>
                             </li>

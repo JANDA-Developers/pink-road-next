@@ -13,7 +13,12 @@ export const PAYMENT_LIST = gql`
     filter: $filter
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     page {
       ...Fpage
     }
@@ -31,8 +36,31 @@ export const SETTLEMENT_CAL = gql`
   query settlementCal($filter:_PaymentFilter!) {
     SettlementCal(filter:$filter) {
       ok
-      error
+      error {
+      location
+      severity
+      code
+      message
+    }
       amt
     } 
   }
+`
+
+export const BANK_DEPOSIT_CONFIRM = gql`
+  mutation bankDepositConfirm($paymentIds: [String!]!) {
+    BankDepositConfirm(paymentIds: $paymentIds) {
+      ok
+      error {
+        location
+        severity
+        code
+        message
+      }
+      data {
+        ...Fpayment
+      }
+  }
+}
+${F_PAYMENT}
 `

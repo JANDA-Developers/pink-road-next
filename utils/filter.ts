@@ -1,6 +1,16 @@
 import dayjs from "dayjs";
 import { TRange } from "../components/tourWrite/helper";
 
+
+export function arrayEquals(a:any[], b:any[]) {
+
+    console.log("array Eqal triggered");
+    return Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((val, index) => val === b[index]);
+  }
+  
 export const filterToRange = (filter:any, key:string):TRange => {
     const range = {
         from: filter[key + "_gte"] ? dayjs(filter.startDate_gte).toDate() : undefined,

@@ -9,7 +9,12 @@ export const PAGE_INFO_CREATE = gql`
       params:$params
       )  {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
       }
   }
 `;
@@ -28,7 +33,7 @@ export const PAGE_INFO_CREATE = gql`
 //         id: id
 //       ) {
 //       ok
-//       error 
+//       error {
 //       data {
 //           ...Fitinery
 //       }
@@ -46,7 +51,12 @@ export const MULTI_UPLOAD = gql`
         file:$file
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         ...Ffile
       }
@@ -66,7 +76,12 @@ export const PAGE_INFO_DELETE = gql`
       key: $key
       )  {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
             ...FpageInfo
         }
@@ -85,7 +100,12 @@ export const PAGE_INFO_UPDATE = gql`
       params: $params
       )  {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
             ...FpageInfo
         }

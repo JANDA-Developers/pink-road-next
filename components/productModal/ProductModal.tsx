@@ -24,7 +24,15 @@ interface IProp {
 
 export const ProductModal: React.FC<IProp> = ({ productId }) => {
     const { isManager } = useContext(AppContext);
-    const { item: product } = useProductFindByIdForSeller(productId);
+    const { item: product } = useProductFindByIdForSeller(productId, {
+        onCompleted: ({ ProductFindByIdForSeller }) => {
+            if (!ProductFindByIdForSeller.ok) {
+                alert("해당 상품을 조회 할 수 없습니다.");
+                closeModal("#ProductModal")()
+            }
+
+        }
+    });
     const { productUpdate } = useProductUpdate({
         onCompleted: ({ ProductUpdate }) => {
             if (ProductUpdate.ok) {
@@ -86,7 +94,6 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
             }
         })
     }
-
 
     const handleOpenRejct = () => {
         openModal("#RejectModal")();

@@ -15,16 +15,21 @@ export const BOOKING_LIST = gql`
     $sort: [_BookingSort!]
     $filter: _BookingFilter
     $pageInput: pageInput!
-    $productFilter: _ProductFilter
+    $filterProduct: _ProductFilter
   ) {
   BookingList(
     sort: $sort
     pageInput: $pageInput
     filter: $filter
-    productFilter: $productFilter
+    filterProduct: $filterProduct
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     page {
       ...Fpage
     }
@@ -98,7 +103,12 @@ export const BOOKING_COUNT = gql`
         filter: $filter
     ) {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data  {
             _id
         }
@@ -107,16 +117,21 @@ export const BOOKING_COUNT = gql`
 `
 
 export const BOOKING_CANCEL = gql`
-  mutation bookingCancel(
-    $reason: String!
+  mutation bookingCancelReq(
     $bookingId: String!
+    $reason: String!
   ) {
-    BookingCancel(
+    BookingCancelReq(
+      bookingId: $bookingId
       reason: $reason
-      bookingId:$bookingId
     ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     data {
       product {
             _id
@@ -140,7 +155,12 @@ export const BOOKINGS_CREATE = gql`
       params:$params
     ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     data {
       ...Fbooking
       product {
@@ -160,7 +180,12 @@ export const BOOKING_DELETE = gql`
       id:$id
     ) {
     ok
-    error 
+    error {
+      location
+      severity
+      code
+      message
+    }
   }
 }
 `
@@ -174,7 +199,12 @@ export const BOOKING_UPDAET = gql`
       _id: $id
     ) {
     ok
-    error 
+    error {
+location
+        severity
+        code
+        message
+}
     data {
       _id
     }
@@ -189,7 +219,12 @@ export const BOOKING_FIND_BY_CODE = gql`
       code: $code
     ) {
     ok
-    error 
+    error {
+location
+        severity
+        code
+        message
+}
     data {
       product {
             _id

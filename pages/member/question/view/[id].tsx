@@ -2,13 +2,13 @@ import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
 import { BoardView } from "components/board/View";
 import { Fanswer, Fquestion } from 'types/api';
-import { useQuestionDelete, useQuestionFindById } from '../../../hook/useQuestion';
-import PageLoading from '../../Loading';
-import Page404 from '../../404';
-import { CommentWrite } from '../../../components/comment/CommentWrite';
-import { AppContext } from '../../_app';
-import Comment from '../../../components/comment/Comment';
-import { useAnswerCreate, useAnswerDelete, useAnswerUpdate } from '../../../hook/useAnswer';
+import { useQuestionDelete, useQuestionFindById } from '../../../../hook/useQuestion';
+import PageLoading from '../../../Loading';
+import Page404 from '../../../404';
+import { CommentWrite } from '../../../../components/comment/CommentWrite';
+import { AppContext } from '../../../_app';
+import Comment from '../../../../components/comment/Comment';
+import { useAnswerCreate, useAnswerDelete, useAnswerUpdate } from '../../../../hook/useAnswer';
 
 interface IProp {
 }
@@ -30,15 +30,15 @@ export const QuestionDetail: React.FC<IProp> = () => {
     if (error) return <Page404 />
     if (!question) return <PageLoading />
     const { title, thumb, createdAt, contents, subTitle, _id, product } = question;
-    const isMyProduct = myProfile?._id === product.author?._id;
+    const isMyProduct = myProfile?._id === product?.author?._id;
 
 
     const toDetail = () => {
-        router.push(`/qna/write/${_id}`)
+        router.push(`/member/question/write/${_id}`)
     }
 
     const toList = () => {
-        router.push(`/tour/${product._id}`)
+        router.push(`/question/`)
     }
 
     const handleDelete = () => {

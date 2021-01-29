@@ -1,15 +1,13 @@
 import { useRouter } from "next/router";
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import { BoardWrite } from "components/board/Write";
-import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
+import { IUseBoardData, nullcehck, useBoard } from "hook/useBoard";
 import { omits } from "../../../utils/omit";
-import { auth, compose } from "../../../utils/with";
+import { auth } from "../../../utils/with";
 import { ALLOW_LOGINED } from "../../../types/const";
 import { Fnews, NEWS_TYPE } from '../../../types/api';
 import { useNewsCreate, useNewsDelete, useNewsFindById, useNewsUpdate } from "../../../hook/useNews";
-import { usePortfolioFind } from "../../../hook/usePortfolio";
-import { AppContext } from "../../_app";
 
 const categoryOps = [{
     label: "여행이야기",
@@ -125,10 +123,13 @@ export const NewsWrite: React.FC<IProp> = () => {
 
     const handleLoad = () => {
         const saveData = Storage?.getLocalObj<IUseBoardData>("newsWrite");
-        if (!isUnLoaded(saveData)) {
-            setBoardData(saveData);
-            loadKeyAdd();
+
+        if (!saveData) {
+            alert("저장된 데이터가 없습니다.");
+            return;
         }
+        setBoardData(saveData);
+        loadKeyAdd();
     }
 
     useEffect(() => {

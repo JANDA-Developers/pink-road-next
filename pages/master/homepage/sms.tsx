@@ -32,7 +32,7 @@ export const MsHomepageA: React.FC = () => {
 
     const count = templates.length;
     const resvCount = tagCount("RESERVATION");
-    const memeberCount = tagCount("MEMBER");
+    const memberCount = tagCount("MEMBER");
     const settlementCount = tagCount("SETTLEMENT");
 
     const handleFilterType = (type: TSMStemplateTag | null) => () => {
@@ -53,7 +53,7 @@ export const MsHomepageA: React.FC = () => {
                                 <ul className="board_option">
                                     <li onClick={handleFilterType(null)} className={checkOn(null)}><a>전체<strong>{count}</strong></a></li>
                                     <li onClick={handleFilterType("RESERVATION")} className={checkOn("RESERVATION")}><a>예약<strong>{resvCount}</strong></a></li>
-                                    <li onClick={handleFilterType("MEMBER")} className={checkOn("MEMBER")}><a >회원<strong>{memeberCount}</strong></a></li>
+                                    <li onClick={handleFilterType("MEMBER")} className={checkOn("MEMBER")}><a >회원<strong>{memberCount}</strong></a></li>
                                     <li onClick={handleFilterType("SETTLEMENT")} className={checkOn("SETTLEMENT")}><a >정산<strong>{settlementCount}</strong></a></li>
                                 </ul>
                             </div>

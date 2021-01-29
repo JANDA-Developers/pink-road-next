@@ -47,7 +47,7 @@ export const MasterLayout: React.FC<IProp> = ({ children }) => {
                 <li className={isTapOn("goods")}><a href="/master/goods">상품관리</a></li>
                 <li className={isTapOn("reservation")}><a href="/master/reservation">예약관리</a></li>
                 <li className={isTapOn("design")}><a href="/master/design">디자인 설정</a></li>
-                <li><a href="/master/homepage">홈페이지 설정</a></li>
+                <li className={isTapOn("homepage")}><a href="/master/homepage">홈페이지 설정</a></li>
             </ul>
             <div className="w1200">
                 {children}

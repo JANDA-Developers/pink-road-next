@@ -42,14 +42,6 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         alert("회원가입 완료")
         setJoinProcess('registered');
       } else {
-
-        if (SignUp.error?.includes("keyValue")) {
-          alert("중복된 전화번호 입니다.");
-        }
-        if (SignUp.error?.includes("존재하는 닉네임")) {
-          alert("이미 존재하는 닉네임 입니다.");
-        } else { }
-        alert("회원가입에 실패 했습니다. 관리자 문의 바랍니다.");
       }
     }
   });

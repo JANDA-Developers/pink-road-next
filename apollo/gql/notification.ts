@@ -90,7 +90,12 @@ export const NOTIFICATION_HISTORY = gql`
         filter: $filter
     ) {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         page {
             ...Fpage
         }
@@ -114,7 +119,12 @@ export const NOTIFICATION_SENDER_PHONE_ADD_START = gql`
         payload: $payload
     ) {
         ok
-        error 
+        error {
+location
+        severity
+        code
+        message
+}
     }
   }
 `
@@ -134,7 +144,12 @@ export const NOTIFICATION_SENDER_ADD_COMPLETE = gql`
         payload: $payload
     ) {
         ok
-        error 
+        error {
+location
+        severity
+        code
+        message
+}
     }
   }
 `
@@ -150,7 +165,12 @@ export const SMSTEMPLATE_UPDATE = gql`
         templateId: $templateId
     ) {
         ok
-        error 
+        error {
+location
+        severity
+        code
+        message
+}
     }
     }
 `
@@ -163,7 +183,12 @@ export const SMSTEMPLATE_CREATE = gql`
             input:$input
         ) {
             ok
-            error 
+            error {
+location
+        severity
+        code
+        message
+}
         }
     }
 `
@@ -176,7 +201,12 @@ export const SMSTEMPLATE_DELETE = gql`
         templateId:$templateId
     ) {
         ok
-        error 
+        error {
+location
+        severity
+        code
+        message
+}
     }
 }
 `
@@ -189,7 +219,12 @@ export const SMS_SIGNLE_MESSAGE_SEND = gql`
         input: $input
     ) {
         ok
-        error 
+        error {
+location
+        severity
+        code
+        message
+}
     }
 }
 `
@@ -202,7 +237,12 @@ export const SMS_TEMPLATE_MESSAGE_SEND = gql`
         input: $input
     ) {
         ok
-        error 
+        error {
+location
+        severity
+        code
+        message
+}
     }
 }
 `
@@ -219,7 +259,12 @@ export const TEMPLATE_LIST = gql`
     filter: $filter
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     page {
       ...Fpage
     }

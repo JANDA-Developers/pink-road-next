@@ -27,9 +27,9 @@ export const MsReservationB: React.FC<IProp> = () => {
                 <div className="tab-nav">
                     <ul>
                         <li><Link href="/master/reservation"><a>예약·결제관리</a></Link></li>
-                        <li><Link href="/master/reservation/reservation1-2"><a>취소·환불관리</a></Link></li>
-                        <li className="on"><Link href="/master/reservation/reservation1-3"><a>매출·정산관리</a></Link></li>
-                        {/* <li><Link href="/master/reservation/reservation1-4"><a>예약수기등록관리</a></Link></li> */}
+                        <li><Link href="/master/reservation/cancel"><a>취소·환불관리</a></Link></li>
+                        {/* <li className="on"><Link href="/master/reservation/reservation1-3"><a>매출·정산관리</a></Link></li> */}
+                        <li><Link href="/master/reservation/byhand"><a>예약수기등록관리</a></Link></li>
                     </ul>
                 </div>
                 <div className="con reservation calculate">

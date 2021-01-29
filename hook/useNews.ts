@@ -8,7 +8,7 @@ import { getRefetch } from "../utils/api";
 import { generateFindQuery, generateListQueryHook, generateMutationHook } from "../utils/query";
 
 export const useNewsFindById = generateFindQuery<newsFindById,newsFindByIdVariables,newsFindById_NewsFindById_data>("id",NEWS_FIND_BY_ID);
-export const useNewsList = generateListQueryHook<_NewsFilter,_NewsSort,newsList,newsListVariables,newsList_NewsList_data>(NEWS_LIST);
+export const useNewsList = generateListQueryHook<_NewsFilter,_NewsSort,newsList,newsListVariables,newsList_NewsList_data>(NEWS_LIST, {initialSort: [_NewsSort.createdAt_desc]});
 export const useNewsCreate = generateMutationHook<newsCreate,newsCreateVariables>(NEWS_CREATE,{...getRefetch(NEWS_FIND_BY_ID,NEWS_LIST)});
 export const useNewsDelete = generateMutationHook<newsDelete,newsDeleteVariables>(NEWS_DELETE,{...getRefetch(NEWS_FIND_BY_ID,NEWS_LIST)});
 export const useNewsUpdate = generateMutationHook<newsUpdate, newsUpdateVariables>(NEWS_UPDAET,{...getRefetch(NEWS_FIND_BY_ID,NEWS_LIST)});

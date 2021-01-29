@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Paginater } from '../components/common/Paginator';
 import { DayPickerModal } from '../components/dayPickerModal/DayPickerModal';
 import { ProductPhotoBlock } from '../components/list/ProductPhoto';
@@ -20,6 +20,7 @@ import { getStaticPageInfo, Ipage } from '../utils/page';
 import { usePageEdit } from '../hook/usePageEdit';
 import pageInfoDefault from "info/search.json";
 import { PageEditor } from '../components/common/PageEditer';
+import { AppContext } from './_app';
 
 type TSearchParam = {
     keyward?: string;
@@ -57,18 +58,20 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     }
     const productListHook = useProductList(initialFilter)
     const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = productListHook;
+    const { categoriesMap } = useContext(AppContext);
+
     const [view, setView] = useState<"line" | "gal">("line");
     const [search, setSearch] = useState(defaultSearch);
     const { totalCount } = pageInfo;
 
-    const onClickDistrict = (district?: string) => () => {
+    const onClickDistrict = (regionLabel?: string) => () => {
         setFilter({
-            address_contains: district
+            regionLabel_eq: regionLabel
         })
     }
 
-    const districtOn = (district?: string) => {
-        return filter.address_contains === district ? "on" : "";
+    const districtOn = (region?: string) => {
+        return filter.regionLabel_eq === region ? "on" : "";
     }
 
     const handleTypeFilter = (type?: ProductType) => () => {
@@ -126,13 +129,9 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                         <div className="title">지역</div>
                         <div className="in">
                             <span onClick={onClickDistrict()} className={`check ${districtOn()}`}>전국</span>
-                            <span onClick={onClickDistrict('부산')} className={`check ${districtOn('부산')}`}>부산</span>
-                            <span onClick={onClickDistrict('제주')} className={`check ${districtOn('제주')}`}>제주</span>
-                            <span onClick={onClickDistrict('경기')} className={`check ${districtOn('경기')}`}>경기도</span>
-                            <span onClick={onClickDistrict('강원')} className={`check ${districtOn('강원')}`}>강원도</span>
-                            <span onClick={onClickDistrict('충청')} className={`check ${districtOn('충청')}`}>충청도</span>
-                            <span onClick={onClickDistrict('전라')} className={`check ${districtOn('전라')}`}>전라도</span>
-                            <span onClick={onClickDistrict('경상')} className={`check ${districtOn('경상')}`}>경상도</span>
+                            {categoriesMap.REGION.map(region =>
+                                <span key={region._id} onClick={onClickDistrict(region.label)} className={`check ${districtOn(region.label)}`}>{region.label}</span>
+                            )}
                         </div>
                     </div>
                     <div className="jul4">
@@ -183,9 +182,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                         </div>
                         <div className="right_div">
                             <SortSelect onChange={setSort} sort={sort} />
-                            <ViewCount value={viewCount} onChange={(val) => {
-                                setViewCount(val);
-                            }} />
+                            <ViewCount value={viewCount} onChange={setViewCount} />
                             <ViewSelect select={view} onChange={setView} />
                         </div>
                     </div>

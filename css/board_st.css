@@ -1295,6 +1295,10 @@ div.comment_box {
         line-height: 30px;
     }
 
+    .write_comment textarea {
+        resize: none;
+    }
+
         div.comment_box .write_comment .title .profile {
             display: inline-block;
             width: 22px;
@@ -1455,8 +1459,10 @@ div.comment_box {
     display: block;
 }
 .board_write {
-   
-}.board_write .con_bottom {
+    padding-top: 100px;
+   padding-bottom: 100px;
+}
+.board_write .con_bottom {
     padding-bottom: 100px;
     padding-top: 50px;
     box-sizing:border-box;

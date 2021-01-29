@@ -9,7 +9,12 @@ query categoryFindById(
       id: $id
     ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     data {
       ...Fcategory
     }
@@ -23,7 +28,12 @@ export const CATEGORY_LIST = gql`
 query categoryList {
     CategoryList  {
       ok
-      error
+      error {
+      location
+      severity
+      code
+      message
+    }
       data {
         ...Fcategory
       }
@@ -41,7 +51,12 @@ export const CATEGORY_CREATE = gql`
         params:$params
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
           ...Fcategory
       }
@@ -58,7 +73,12 @@ export const CATEGORY_DELETE = gql`
         _id:$id
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
           ...Fcategory
       }
@@ -77,7 +97,12 @@ export const CATEGORY_UPDATE = gql`
             id: $id
          ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
           ...Fcategory
       }

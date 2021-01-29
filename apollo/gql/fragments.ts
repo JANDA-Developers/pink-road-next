@@ -58,6 +58,7 @@ export const F_PRODUCT = gql`
         _id
         createdAt
         updatedAt
+        regionLabel
         isDelete
         title
         code
@@ -66,6 +67,10 @@ export const F_PRODUCT = gql`
         endDate
         dateRange
         adminMemo
+        region {
+            label
+            _id
+        }
         category {
             _id
             label

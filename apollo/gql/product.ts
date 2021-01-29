@@ -5,14 +5,19 @@ import { F_SETTLEMENT } from "./settlement";
 
 
 export const PRODUCTS_CREATE = gql`
-  mutation ProductCreate(
+  mutation productCreate(
         $params: ProductCreateInput!
     ) {
     ProductCreate(
         params: $params  
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       }
@@ -21,14 +26,19 @@ export const PRODUCTS_CREATE = gql`
 `;
 
 export const ACCEPT_PRODUCT_CREATE = gql`
-  mutation acceptProductCreate(
+  mutation productCreateAccept(
         $ProductId: String!
     ) {
-    AcceptProductCreate(
+    ProductCreateAccept(
         ProductId: $ProductId  
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       }
@@ -37,14 +47,19 @@ export const ACCEPT_PRODUCT_CREATE = gql`
 `;
 
 export const ACCEPT_PRODUCT_UPDATE = gql`
-  mutation acceptProductUpdate(
+  mutation productUpdateAccept(
       $ProductId: String!
     ) {
-    AcceptProductUpdate(
+    ProductUpdateAccept(
       ProductId: $ProductId
     ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       }
@@ -54,16 +69,21 @@ export const ACCEPT_PRODUCT_UPDATE = gql`
 
 
 export const REJECT_PRODUCT_CREATE = gql`
-  mutation rejectProductCreate(
+  mutation productCreateReject(
         $ProductId: String!
         $reason: String!
     ) {
-    RejectProductCreate(
+      ProductCreateReject(
         ProductId: $ProductId,
         reason: $reason 
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       }
@@ -73,16 +93,21 @@ export const REJECT_PRODUCT_CREATE = gql`
 
 
 export const REJECT_PRODUCT_UPDATE = gql`
-  mutation rejectProductUpdate(
+  mutation productUpdateReject(
         $ProductId: String!
         $reason: String!
     ) {
-    RejectProductUpdate(
+    ProductUpdateReject(
         ProductId: $ProductId
         reason: $reason
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       }
@@ -103,7 +128,12 @@ export const PRODUCT_POST_UPDATE = gql`
         _id: $_id 
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         _id
       } 
@@ -120,7 +150,12 @@ export const PRODUCT_POST_DELETE = gql`
         id:$id
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
           ...Fproduct
       }
@@ -142,7 +177,12 @@ query productList(
     filter: $filter
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     page {
       ...Fpage
     }
@@ -175,7 +215,12 @@ export const PRODUCT_FIND_BY_ID = gql`
         _id: $_id
       ) {
       ok
-      error
+      error {
+        location
+        severity
+        code
+        message
+      }
       data {
         ...Fproduct
         author {
@@ -206,7 +251,12 @@ export const PRODUCT_FIND_BY_ID_FOR_SELLER = gql`
         _id: $_id
       ) {
       ok
-      error
+      error {
+        location
+        severity
+        code
+        message
+      }
       data {
         ...Fproduct
         author {

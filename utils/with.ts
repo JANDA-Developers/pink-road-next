@@ -2,16 +2,14 @@ import { UserRole } from "../types/api";
 
 export const layout = (Layout: any = undefined) => {
     return (Component: React.FC<any>) => {
-        // @ts-ignore
-        Component.Layout = Layout;
+        Object.assign(Component,{Layout})
         return Component
     };
 }
 
 export const auth = (Auth?: UserRole[]) => {
     return (Component: React.FC<any>) => {
-        // @ts-ignore
-        Component.Auth = Auth;
+        Object.assign(Component,{Auth})
         return Component
     };
 }

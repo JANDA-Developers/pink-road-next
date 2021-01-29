@@ -6,13 +6,15 @@ import Layout from '../layout/Layout';
 import { ApolloProvider, useQuery } from '@apollo/client';
 import { getContext_GetProfile_data as IProfile, categoryList_CategoryList_data, getContext, UserRole, Fhomepage, Fcategory, CategoryType } from 'types/api';
 import PinkClient from "apollo/client"
-import { ALLOW_ADMINS, ALLOW_FULLESS, ALLOW_SELLERS } from '../types/const';
+import { ALLOW_ADMINS, ALLOW_FULLESS, ALLOW_LOGINED, ALLOW_SELLERS } from '../types/const';
 import { GET_CONTEXT } from '../apollo/gql/queries';
 import { bracketVergionChange } from '../utils/Storage';
 import PageDeny from './Deny';
 import { categoryMap, defaultCatsMap } from '../utils/categoryMap';
 import { useRouter } from 'next/router';
 import PageLoading from './Loading';
+import { arrayEquals } from '../utils/filter';
+import "slick-carousel/slick/slick.css";
 
 
 dayjs.locale('ko')
@@ -72,13 +74,18 @@ function App({ Component, pageProps }: any) {
   const isParterNonB = [UserRole.partner, UserRole.manager, UserRole.admin].includes(role);
   {/* <DaumPostcode autoResize autoClose onSearch={() => { }} onComplete={(asd) => { }} /> */ }
 
-  useEffect(() => { bracketVergionChange() }, [])
-
   const catsMap = categoryMap(catList);
 
+
   if (!ComponentAuth.includes(role || null)) {
-    Component = PageDeny
+
+    if (arrayEquals(ComponentAuth, ALLOW_LOGINED)) {
+      Component = () => <PageDeny msg="해당 페이지는 로그인후 이용 가능합니다." />
+    } else
+      Component = () => <PageDeny />
   }
+
+
 
   if (
     //인증 받지 않았으며 일반 권한은 아닌경우

@@ -20,7 +20,6 @@ export const F_HOMEPAGE = gql`
         logo {
           ...Ffile
         }
-        ceoName
         address
         addressUrl
         siteDesc
@@ -29,6 +28,13 @@ export const F_HOMEPAGE = gql`
         siteName
         signUpRedirect
         blacklist
+        partnerFooter {
+          ...Ffile
+        }
+        instaLink
+        blogLink
+        facebookLink
+        twitterLink
         busiNumber
         email
         ceoName
@@ -75,7 +81,12 @@ export const HOMEPAGE = gql`
   query homepage {
     Homepage {
       ok
-      error
+      error {
+      location
+      severity
+      code
+      message
+    }
       data {
           ...Fhomepage
       }
@@ -91,7 +102,12 @@ export const HOMEPAGE_UPDATE = gql`
     ) {
     HomepageUpdate(params:$params) {
       ok
-      error
+      error {
+      location
+      severity
+      code
+      message
+    }
       data {
           ...Fhomepage
       }

@@ -60,14 +60,14 @@ export const MsIndex: React.FC<IProp> = () => {
         settlementCompleteCountMaster,
         settlementReadyCountMater,
         koreanMemberCount,
-        foreginMemeberCount,
+        foreginMemberCount,
         buyTotalCount,
         totalSettlementCount,
         tourBookingCountMaster,
         busiPartnerBCountMaster,
         totalPartnerMemberCount,
         busiPartnerCountMaster,
-        totalIndiMemeberCount,
+        totalIndiMemberCount,
         answeredQuestionCount,
         unAnsweredQuestionCount
     } = count || {};
@@ -269,9 +269,9 @@ export const MsIndex: React.FC<IProp> = () => {
                     <div className="head">
                         <h5>개인회원</h5>
                         <ul className="board_option">
-                            <li className="on"><a href="/">전체<strong>{totalIndiMemeberCount}</strong></a></li>
+                            <li className="on"><a href="/">전체<strong>{totalIndiMemberCount}</strong></a></li>
                             <li><a href="/">내국인<strong>{koreanMemberCount}</strong></a></li>
-                            <li><a href="/">외국인<strong>{foreginMemeberCount}</strong></a></li>
+                            <li><a href="/">외국인<strong>{foreginMemberCount}</strong></a></li>
                         </ul>
                         <Link href="/master/member"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
                     </div>
@@ -374,7 +374,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <li><a href="/">답변<strong>{answeredQuestionCount}</strong></a></li>
                             <li><a href="/">미답변<strong>{unAnsweredQuestionCount}</strong></a></li>
                         </ul>
-                        <Link href="/member/inquirylist"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
+                        <Link href="/member/questionlist"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
                     </div>
                     <ul className="table typeD">
                         <li className="head">

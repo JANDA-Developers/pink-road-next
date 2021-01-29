@@ -46,7 +46,6 @@ export const MyPageBasket: React.FC<IProp> = ({ context }) => {
                     }
                 />
             </div>
-
         </div>
     </MypageLayout>
 };

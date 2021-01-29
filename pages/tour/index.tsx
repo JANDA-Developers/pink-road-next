@@ -19,14 +19,13 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
     const { data } = useHomepage();
     const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const { categoriesMap } = useContext(AppContext);
-    const cats = categoriesMap?.PORTPOLIO || []
+    const cats = isExp ? categoriesMap?.EXPERIENCE || [] : categoriesMap?.TOUR || [];
 
     const subTopInfo = {
         imgKey: isExp ? "exp_subTop_img" : "subTop_img",
         titleKey: isExp ? "exp_subTop_title" : "subTop_title",
         descKey: isExp ? "exp_subTop_desc" : "subTop_desc"
     }
-
 
     if (!data) return null;
     const { bannerA, bannerB, bannerAlink, bannerBlink } = data;

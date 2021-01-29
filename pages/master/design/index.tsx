@@ -1,10 +1,71 @@
 import { MasterLayout } from 'layout/MasterLayout';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from "next/link";
+import { useHomepage, useHomepageUpdate } from '../../../hook/useHomepage';
+import { Fhomepage, homepage_Homepage_data } from '../../../types/api';
+import { useUpload } from '../../../hook/useUpload';
+import { omits } from '../../../utils/omit';
+import { cloneObject } from '../../../utils/clone';
 
 interface IProp { }
 
 export const MsDesignMain: React.FC<IProp> = () => {
+    const [homepageUpdate] = useHomepageUpdate();
+    const { data: defaultHomepage } = useHomepage();
+    const { signleUpload } = useUpload();
+    const [homepage, setHomepage] = useState<homepage_Homepage_data>();
+
+    const handleSave = () => {
+        homepageUpdate({
+            variables: {
+                params: {
+                    ...omits(homepage)
+                }
+            }
+        })
+    }
+
+    const upload = (key: keyof Fhomepage) => (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.currentTarget.files;
+        if (!file || !homepage) return;
+
+        signleUpload(e.currentTarget.files!, (url, data) => {
+            homepage[key] = data as any;
+            setHomepage({
+                ...homepage
+            })
+        })
+    }
+
+    const uploadPartnerFooter = (e: React.ChangeEvent<HTMLInputElement>) => {
+        signleUpload(e.currentTarget.files!, (url, data) => {
+            const target = homepage?.["partnerFooter"];
+            target ? target.push(data) : [data];
+            setHomepage({
+                ...homepage as any
+            })
+        })
+    }
+
+    const removePartnerFooter = (index: number) => () => {
+        homepage?.partnerFooter?.splice(index, 1);
+        setHomepage({
+            ...homepage as any
+        })
+    }
+
+    function set<T extends keyof Fhomepage>(key: T, value: any) {
+        if (!homepage) return;
+        homepage[key] = value;
+        setHomepage({ ...homepage })
+    }
+
+
+    useEffect(() => {
+        if (defaultHomepage)
+            setHomepage(cloneObject(defaultHomepage));
+    }, [defaultHomepage])
+
     return <MasterLayout>
         <div className="in ">
             <h4>디자인 설정</h4>
@@ -12,9 +73,9 @@ export const MsDesignMain: React.FC<IProp> = () => {
                 <div className="tab-nav">
                     <ul>
                         <li className="on"><Link href="/master/design"><a>기본설정</a></Link></li>
-                        <li><Link href="/master/design/design1-2"><a>배너관리</a></Link></li>
-                        <li><Link href="/master/design/design1-3"><a>팝업관리</a></Link></li>
-                        <li><Link href="/master/design/design1-4"><a>노출상품관리</a></Link></li>
+                        <li><Link href="/master/design/banner"><a>배너관리</a></Link></li>
+                        <li><Link href="/master/design/popup"><a>팝업관리</a></Link></li>
+                        <li><Link href="/master/design/display"><a>노출상품관리</a></Link></li>
                     </ul>
                 </div>
                 <div className="con design">
@@ -22,49 +83,35 @@ export const MsDesignMain: React.FC<IProp> = () => {
                         <div className="float_left">
                         </div>
                         <div className="float_right">
-                            <button type="submit" className="btn medium">저장하기</button>
+                            <button onClick={handleSave} type="submit" className="btn medium">저장하기</button>
                         </div>
                     </div>
-                    <div className="design_table">
+                    <div className="design_table ">
                         <div className="block_box">
                             <h5>하단 로고</h5>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">하단-로고01</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <input className="w50" type="file" />
+                            {homepage?.partnerFooter?.map(({ name }, index) =>
+                                <div className="tbody">
+                                    <div className="t01">
+                                        <div className="title overflowEllipsis">{name}</div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">하단-로고02</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <input className="w50" type="file" />
+                                    <div className="t02">
+                                        <div className="txt">
+                                            <input onChange={uploadPartnerFooter} className="w50" type="file" />
+                                        </div>
                                     </div>
+                                    <button style={{
+                                        height: "min-content",
+                                        whiteSpace: "nowrap"
+                                    }} onClick={removePartnerFooter(index)} type="submit" className="btn medium">삭제하기</button>
                                 </div>
-                            </div>
+                            )}
                             <div className="tbody">
                                 <div className="t01">
-                                    <div className="title">하단-로고03</div>
+                                    <div className="title">로고추가</div>
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
-                                        <input className="w50" type="file" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">하단-로고04</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <input className="w50" type="file" />
+                                        <input onChange={uploadPartnerFooter} className="w50" type="file" />
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +124,10 @@ export const MsDesignMain: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
-                                        <input className="w80" placeholder="주소" type="text" />
+                                        <input value={homepage?.facebookLink || ""} onChange={(e) => {
+                                            const val = e.currentTarget.value
+                                            set("facebookLink", val);
+                                        }} className="w80" placeholder="주소" type="text" />
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +137,10 @@ export const MsDesignMain: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
-                                        <input className="w80" placeholder="주소" type="text" />
+                                        <input value={homepage?.twitterLink || ""} onChange={(e) => {
+                                            const val = e.currentTarget.value
+                                            set("twitterLink", val);
+                                        }} className="w80" placeholder="주소" type="text" />
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +150,10 @@ export const MsDesignMain: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
-                                        <input className="w80" placeholder="주소" type="text" />
+                                        <input value={homepage?.instaLink || ""} onChange={(e) => {
+                                            const val = e.currentTarget.value
+                                            set("instaLink", val);
+                                        }} className="w80" placeholder="주소" type="text" />
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +163,10 @@ export const MsDesignMain: React.FC<IProp> = () => {
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
-                                        <input className="w80" placeholder="주소" type="text" />
+                                        <input value={homepage?.blogLink || ""} onChange={(e) => {
+                                            const val = e.currentTarget.value
+                                            set("blogLink", val);
+                                        }} className="w80" placeholder="주소" type="text" />
                                     </div>
                                 </div>
                             </div>

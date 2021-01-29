@@ -1331,7 +1331,7 @@ div.search {
     position: relative;
     margin-bottom: 10px;
     background-color: #f5f5f5;
-    padding: 40px 3% 40px;
+    padding: 20px 3% 20px;
     text-align: center;
     box-sizing: border-box;
     margin-top: 100px;
@@ -7599,7 +7599,8 @@ i.calendar {
 }
 
     .news_box .subtop_nav {
-        top: -57px
+        top:auto!important;
+        bottom: 100%;
     }
 /* culture */
 .culture_box {
@@ -7609,7 +7610,6 @@ i.calendar {
 }
 
     .culture_box .subtop_nav {
-        top: -57px
     }
 /* rule */
 .rule_box {
@@ -8363,25 +8363,25 @@ i.calendar {
    padding: 30px 0 0;
 }
 
-/*inquiry_box*/
-.inquiry_box{
+/*question_box*/
+.question_box{
     margin: 0 auto;
     margin-top: 60px !important;
     margin-bottom: 100px !important;
     box-sizing: border-box;
     padding: 0 3%;
 }
-.inquiry_box .board_list.st01 .tbody .td03 {
+.question_box .board_list.st01 .tbody .td03 {
     width: 100%;
     overflow-wrap: anywhere;
 }
 
-.inquiry_box .board_list.st01 .tbody .td04 {
+.question_box .board_list.st01 .tbody .td04 {
     width: auto;
     text-align: center;
     margin-right: 15px;
 }
-.inquiry_box .board_list.st01 .tbody .td05 {
+.question_box .board_list.st01 .tbody .td05 {
     width: auto;
     text-align: center;
 }
@@ -8597,7 +8597,6 @@ i.calendar {
     }
 
     .news_box .subtop_nav {
-        top: -54px
     }
 
     .culture_box .subtop_nav {
@@ -9573,22 +9572,22 @@ i.calendar {
         box-sizing: border-box;
         border: 1px solid #d2d2d2;
     }
-    .inquiry_box .board_list.st01 .tbody .td01{
+    .question_box .board_list.st01 .tbody .td01{
         max-width: 100px;
     }
-    .inquiry_box .board_list.st01 .tbody .td02 {
+    .question_box .board_list.st01 .tbody .td02 {
         max-width: 150px;
     }
-    .inquiry_box .board_list.st01 .tbody .td03 {
+    .question_box .board_list.st01 .tbody .td03 {
         width: auto;
     }
   
-    .inquiry_box .board_list.st01 .tbody .td04 {
+    .question_box .board_list.st01 .tbody .td04 {
         width: auto;
         margin-right: 0;
         max-width: 200px;
     }
-    .inquiry_box .board_list.st01 .tbody .td05 {
+    .question_box .board_list.st01 .tbody .td05 {
         width: auto;
         max-width: 200px;
     }
@@ -10225,7 +10224,7 @@ i.calendar {
         padding: 0;
     }
 
-    .inquiry_box{
+    .question_box{
         padding: 0;
     }
     .notice_box{
