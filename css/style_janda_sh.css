@@ -8350,7 +8350,7 @@ i.calendar {
 /*qna_box*/
 .qna_box {
     margin: 0 auto;
-    margin-top: 60px !important;
+    margin-top: 0px !important;
     margin-bottom: 100px !important;
     box-sizing: border-box;
     padding: 0 3%;
@@ -8362,7 +8362,7 @@ i.calendar {
 /*question_box*/
 .question_box{
     margin: 0 auto;
-    margin-top: 60px !important;
+    margin-top: 0px !important;
     margin-bottom: 100px !important;
     box-sizing: border-box;
     padding: 0 3%;
