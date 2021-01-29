@@ -2649,7 +2649,7 @@ ul.rank_ul {
 .join__snslink{
     position: relative;
     display: block;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 
 .join__snslink li{
@@ -2658,11 +2658,11 @@ ul.rank_ul {
     line-height: 40px;
     width: 100%;
     text-align: left;
-    border: 1px solid rgb(141, 141, 141);
+    border: 1px solid rgb(201 201 201);
     box-sizing: border-box;
     border-radius: 5px;
     margin-bottom: 5px;  
-    opacity: 0.8;
+    opacity: 0.5;
 }
 .join__snslink li:hover{
     opacity:1;
@@ -2732,19 +2732,23 @@ span.join__snslink_txt{
     text-align: center;
 }
 .login__snslink_k{
-    background-color: #f2bd10;
-    border-color: #f2bd10 !important;
+    background-color: #feea00;
+    border-color: #feea00 !important;
 }
 .login__snslink_g{
-    background-color: #dd2e2e;
-    border-color: #dd2e2e !important;
+    background-color: #e04a32;
+    border-color: #e04a32 !important;
   
 }
 .login__snslink_k i{
     font-size: 1.2em;
 }
+.login__snslink_k a{
+    color: #3f211f;
+}
 .login__snslink_txt{
     font-weight: 600;
+    font-size: 0.9em;
 }
 /* siteInfo_ */
 

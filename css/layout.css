@@ -452,6 +452,7 @@ i.tooltip{
                 box-sizing: border-box;
                 border-top: 5px solid #ed297b;
                 background-color: rgba(255, 255, 255, 0.856);
+                box-shadow: 0px 0px 5px #0000005e;
                 z-index: 70;
             }
             .header .hd_center .nav_wrap > .deps1 .deps_nav li {
