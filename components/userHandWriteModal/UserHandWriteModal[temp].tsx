@@ -3,7 +3,8 @@ import { Modal } from '../modal/Modal';
 
 interface IProp { }
 
-export const HandWriteModal: React.FC<IProp> = () => {
+export const UserHandWriteModal: React.FC<IProp> = () => {
+
 
     return <Modal title="예약 수기등록" inClassName="master_popup handwritten_registration" className="popup_bg_full" id="HandwrittenRegistration">
         <div className="box">

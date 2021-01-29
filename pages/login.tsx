@@ -193,13 +193,14 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                             <button type="submit" className="sum" onClick={handleLogin}>
                                 <span >로그인</span>
                             </button>
-                            {userType &&
+                            {userType === UserRole.individual &&
                                 <div className="login__snslink">
                                     <img className="m" src="/img/google_logo.png" alt="google logo" />
                                     <img className="m" src="/img/kakao_logo.png" alt="kakao logo" />
                                     <ul>
-                                        <li className="login__snslink_k"><Link href=""><a><span className="login__snslink_icon"><i className="jandaicon-kakaotalk"></i></span><span className="login__snslink_txt">카카오톡 로그인</span></a></Link></li>
-                                        <li className="login__snslink_g"><Link href=""><a><span className="login__snslink_icon"><i className="jandaicon-google1"></i></span><span className="login__snslink_txt">구글 로그인</span></a></Link></li>
+                                        <li className="login__snslink_k"><a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/kakao"}><span className="login__snslink_icon"><i className="jandaicon-kakaotalk"></i></span><span className="login__snslink_txt">카카오 로그인</span></a></li>
+                                        <li className="login__snslink_g"><a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/google"}><span className="login__snslink_icon"><i className="jandaicon-google1"></i></span><span className="login__snslink_txt">구글 로그인</span></a></li>
+                                        <li className="login__snslink_n"><a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/naver"}><span className="login__snslink_icon"><i className="jandaicon-google1"></i></span><span className="login__snslink_txt">네이버 로그인</span></a></li>
                                     </ul>
                                 </div>
                             }
@@ -216,23 +217,26 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                                 </span>
                             </div>
 
-                            {userType &&
+                            {userType === UserRole.individual &&
                                 <div className="join__snslink">
                                     <ul>
                                         <li className="join__snslink_k">
-                                            <Link href="">
-                                                <a>
-                                                    <span className="join__snslink_icon"><i className="jandaicon-kakaotalk"></i></span>
-                                                    <span className="join__snslink_txt">카카오 계정으로 회원가입</span>
-                                                </a>
-                                            </Link></li>
+                                            <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/kakao"}>
+                                                <span className="join__snslink_icon"><i className="jandaicon-kakaotalk"></i></span>
+                                                <span className="join__snslink_txt">카카오 계정으로 회원가입</span>
+                                            </a>
+                                        </li>
                                         <li className="join__snslink_g">
-                                            <Link href="">
-                                                <a>
-                                                    <span className="join__snslink_icon"><i className="jandaicon-google1"></i></span>
-                                                    <span className="join__snslink_txt">구글 계정으로 회원가입</span>
-                                                </a>
-                                            </Link>
+                                            <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/google"}>
+                                                <span className="join__snslink_icon"><i className="jandaicon-google1"></i></span>
+                                                <span className="join__snslink_txt">구글 계정으로 회원가입</span>
+                                            </a>
+                                        </li>
+                                        <li className="join__snslink_n">
+                                            <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/naver"}>
+                                                <span className="join__snslink_icon"><i className="jandaicon-google1"></i></span>
+                                                <span className="join__snslink_txt">네이버 계정으로 회원가입</span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
