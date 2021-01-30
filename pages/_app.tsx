@@ -102,6 +102,10 @@ function App({ Component, pageProps }: any) {
     return <div>Loading...</div>
   }
 
+  useEffect(()=>{
+    
+  })
+
   if (loading) return <PageLoading />
   return (
     <div className="App">

@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useProductFindById } from "hook/useProduct";
+import { useProductFindById, useProductList } from "hook/useProduct";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -24,6 +24,8 @@ import { getStaticPageInfo, Ipage } from "../../../utils/page";
 import { usePageEdit } from "../../../hook/usePageEdit";
 import defaultPageInfo from 'info/tourView.json';
 import "slick-carousel/slick/slick.css";
+import { ProductPhotoBlock } from "../../../components/list/ProductPhoto";
+import { useGroupFind } from "../../../hook/useGroup";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -36,6 +38,8 @@ export async function getStaticPaths() {
 }
 const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const router = useRouter();
+  const {item:recommendItems} = useGroupFind("Recommend")
+  const { items, filter, setFilter } = useProductList({},{skip:});
   const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const id = router.query.id as string;
   const { loading, item: product } = useProductFindById(id);
@@ -397,7 +401,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         <div className="add_list">
           <h4>핑크로더 추천여행</h4>{/* 랜덤노출 */}
           <ul className="list_ul line3">
-            <li className="list_in">
+            <ProductPhotoBlock />
+            {/* <li className="list_in">
               <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(/img/sample_01.gif)' }}>상품이미지</div>
               <div className="box">
                 <div className="category"><span>문화/예술</span></div>
@@ -447,7 +452,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                   </div>
                 </div>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

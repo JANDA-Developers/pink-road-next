@@ -13,9 +13,11 @@ import { closeModal, openModal } from '../../../utils/popUp';
 import { Ipopup } from '../../../types/interface';
 import { omits } from '../../../utils/omit';
 import dynamic from 'next/dynamic';
-import { defaultModalGet } from '../../../types/const';
+import { ALLOW_ADMINS, defaultModalGet } from '../../../types/const';
 import { cloneObject } from '../../../utils/clone';
 import { DesignTopNav, ResvTopNav } from '../../../components/topNav/MasterTopNav';
+import { auth } from '../../../utils/with';
+import { useUpload } from '../../../hook/useUpload';
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 
 interface IProp { }
@@ -25,15 +27,25 @@ export const MsDesignB: React.FC<IProp> = () => {
     const popupHook = usePopups([], "POPWRAP")
     const [popModal, setPopModal] = useState<Fmodal>()
     const [collapseList, setCollapseList] = useState<string[]>([]);
-    const [homepageUpdate] = useHomepageUpdate()
+    const { signleUpload } = useUpload();
+    const [homepageUpdate] = useHomepageUpdate({
+        onCompleted: ({ HomepageUpdate }) => {
+            if (HomepageUpdate.ok) {
+                alert("업데이트 완료")
+            }
+        }
+    })
     const {
         selectedIndex,
         setSelcetedIndex,
         hideIds,
-        setHideIds
+        setHideIds,
+        savePercentageInModal,
+        changeAllToPercentage
     } = popupHook;
 
     const handleUpdate = () => {
+        savePercentageInModal();
         //업데이트 
         homepageUpdate({
             variables: {
@@ -79,8 +91,8 @@ export const MsDesignB: React.FC<IProp> = () => {
     return <div>
 
         {popModal && <DayPickerModal defaultRange={{
-            from: popModal.startDate ? dayjs(popModal.startDate).toDate() : undefined,
-            to: popModal.endDate ? dayjs(popModal.endDate).toDate() : undefined
+            from: popModal.startDate ? dayjs(popModal.startDate).toDate() : new Date(),
+            to: popModal.endDate ? dayjs(popModal.endDate).toDate() : dayjs().add(1, "d").toDate()
         }} onSubmit={(range) => {
             closeModal("#dayPickerModal")()
             popModal.startDate = range.from;
@@ -140,12 +152,12 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                     <h6>노출기간</h6>
                                                     <div className="txt">
                                                         <div className="input_box mr5">
-                                                            <input onClick={handleOpenDayPicker(modal)} value={dayjs(modal.startDate).format("YYYY.MM.DD")} type="text" className="day w100" />
+                                                            <input onClick={handleOpenDayPicker(modal)} readOnly value={dayjs(modal.startDate).format("YYYY.MM.DD")} type="text" className="day w100" />
                                                             <CalendarIcon />
                                                         </div>
                                                         <span className="pc"> ~ </span>
                                                         <div className="input_box ml5">
-                                                            <input onClick={handleOpenDayPicker(modal)} value={dayjs(modal.endDate).format("YYYY.MM.DD")} type="text" className="day w100" />
+                                                            <input onClick={handleOpenDayPicker(modal)} readOnly value={dayjs(modal.endDate).format("YYYY.MM.DD")} type="text" className="day w100" />
                                                             <CalendarIcon />
                                                         </div>
                                                     </div>
@@ -161,6 +173,22 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                             <option value={LinkBehavior.blank}>새창</option>
                                                             <option value={LinkBehavior.individual}>현재창</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div className="line">
+                                                    <h6>백그라운드 설정</h6>
+                                                    <div className="txt">
+                                                        <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                                            const file = e.currentTarget.files;
+                                                            if (!file || !homepage) return;
+
+                                                            signleUpload(e.currentTarget.files!, (url) => {
+                                                                modal.style.backgroundImage = url
+                                                                setPopModal({
+                                                                    ...modal
+                                                                })
+                                                            })
+                                                        }} type="file" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -214,7 +242,7 @@ export const MsDesignB: React.FC<IProp> = () => {
     </div>
 };
 
-export default MsDesignB;
+export default auth(ALLOW_ADMINS)(MsDesignB);
 
 
 

@@ -6,8 +6,8 @@ interface IProp {
 }
 
 export const _Change: React.FC<IProp> = ({ children }) => {
-    console.count("Changed");
     return children;
 };
 
 export const Change = React.memo(_Change, ({ }, { change }) => !change);
+

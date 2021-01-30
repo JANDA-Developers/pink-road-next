@@ -472,3 +472,23 @@ figure:after {
     top: auto!important;
     bottom: 100%!important;
 }
+
+.productGroupBox .body {
+    padding-top: 0px!important;
+}
+.productGroupBox .body-title {
+    display: flex;
+    align-items: center;
+}
+
+
+.productGroupBox .del {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 15px;
+    height: 15px;
+    opacity: 0.5;
+    z-index: 90;
+    filter: brightness(0);
+}

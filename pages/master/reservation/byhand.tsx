@@ -1,6 +1,8 @@
 import React from 'react';
 import { ByhandTable } from '../../../components/reservation/ByHandTable';
 import ReservationMaster from '../../../components/reservation/ReservationMaster';
+import { ALLOW_ADMINS } from '../../../types/const';
+import { auth } from '../../../utils/with';
 
 interface IProp { }
 export const MsReservationMain: React.FC<IProp> = () => {
@@ -14,7 +16,8 @@ export const MsReservationMain: React.FC<IProp> = () => {
     />
 };
 
-export default MsReservationMain;
+
+export default auth(ALLOW_ADMINS)(MsReservationMain);
 
 
 

@@ -107,11 +107,12 @@ export const Header: React.FC<IProp> = () => {
                             <a>고객센터</a>
                         </Link>
                     </li>
-                    <li >
-                        {!isLogin && <Link href="/login">
+                    {!isLogin && <li >
+                        <Link href="/login">
                             <a>장바구니 </a>
-                        </Link>}
+                        </Link>
                     </li>
+                    }
 
                     {!isLogin ? "" :
                         <li className="join">

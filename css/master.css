@@ -2290,6 +2290,7 @@
         box-sizing: border-box;
         border-bottom: 1px solid #ccc;
         text-align: left;
+        align-items: center;
     }
     .master_box .homepage .design_table .tbody .t01 > div, 
     .master_box .homepage .design_table .tbody .t02 > div {

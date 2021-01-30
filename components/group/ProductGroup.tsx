@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useProductList } from '../../hook/useProduct';
 import { Fgroup, Fproduct, productList_ProductList_data } from '../../types/api';
 import { BG } from '../../types/const';
@@ -10,12 +10,13 @@ import { ProductSelectModal } from '../ProductSelectModal';
 import { openModal } from '../../utils/popUp';
 import { cloneObject } from '../../utils/clone';
 import { Change } from '../loadingList/LoadingList';
+import { AppContext } from '../../pages/_app';
 
 interface IProp {
     group: Fgroup
     onChangeTitle: (title: string) => void;
     onDelete: () => void;
-    onSave: () => void;
+    onSave: (group: Fgroup) => void;
 }
 
 
@@ -27,6 +28,7 @@ interface IProp {
 
 export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTitle, onDelete: handleDelete, onSave: handleSave }) => {
     const [group, setGroup] = useMutable(defaultGroup);
+    const { isAdmin } = useContext(AppContext);
     const { items: products, filter, setFilter, getLoading } = useProductList({
         initialFilter: {
             _id_in: defaultGroup.members
@@ -50,7 +52,6 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
         openModal("#ProductModal" + group._id)();
     }
 
-
     const handleProductSelect = (pd: Fproduct) => {
         group.members.push(pd._id);
         setGroup({ ...group });
@@ -67,19 +68,16 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
         group
     ])
 
-
-
-    return <div className="block_box">
+    return <div className="block_box productGroupBox">
         <div className="head">
             <h5>{group.label}</h5>
         </div>
         <div className="body">
             <div className="body-title">
                 <div className="th">타이틀</div>
-                <div className="td"><input onChange={(e) => {
-                    const val = e.currentTarget.value;
-                    onChangeTitle(val);
-                }} value={group.label} type="text" className="w50" placeholder="문화·예술여행" /></div>
+                <div className="td">
+                    {group.label}
+                </div>
             </div>
             <div className="body-list">
                 <Change change={!getLoading}>
@@ -87,6 +85,7 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
                         <Droppable direction="horizontal" droppableId="droppable">
                             {(provided, snapshot) => (
                                 <ul className="droppable" ref={provided.innerRef}  {...provided.droppableProps}>
+                                    {/* 오름차순 정렬 */}
                                     {cloneObject(products).sort((a, b) => group.members.indexOf(a._id) - group.members.indexOf(b._id)).map((pd, index) =>
                                         <Draggable draggableId={pd._id} index={index} key={pd._id}>
                                             {(provided: any) => (
@@ -95,6 +94,10 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}
                                                 >
+                                                    <span onClick={handleExtract(index)} className="del">
+                                                        <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
+                                                        <button />
+                                                    </span>
                                                     <div className="img" style={BG(pd.images?.[0]?.uri || "")}></div>
                                                     <div className="title">{pd.title}</div>
                                                     <div className="date">{yyyymmdd(pd.startDate)} ~ {yyyymmdd(pd.endDate)}</div>
@@ -102,6 +105,7 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
                                             )}
                                         </Draggable>
                                     )}
+
                                     {provided.placeholder}
                                     <li>
                                         <div onClick={handleAdd} className="add"><button><i className="flaticon-add"></i>추가</button></div>
@@ -117,8 +121,15 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
             <div className="float_left">
             </div>
             <div className="float_right">
-                <button onClick={handleDelete} type="submit" className="btn medium">삭제하기</button>
-                <button onClick={handleSave} type="submit" className="btn medium">저장하기</button>
+                {isAdmin &&
+                    <button onClick={handleDelete} type="submit" className="btn medium">삭제하기</button>
+                }
+                <button onClick={() => {
+
+                    console.log("!!!group!!!");
+                    console.log(group);
+                    handleSave(group)
+                }} type="submit" className="btn medium">저장하기</button>
             </div>
         </div>
         <ProductSelectModal id={"ProductModal" + group._id} onSelect={handleProductSelect} />

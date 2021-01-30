@@ -12,6 +12,10 @@ export interface IPopupStyle {
     width: number;
     height: number;
     backgroundImage?: string;
+    perWidth?: number;
+    perHeight?: number;
+    perTop?: number;
+    perLeft?: number;
 }
 
 export type Tpos = {
@@ -37,7 +41,7 @@ export const PopupBox: React.FC<IProp> = ({ wrapHeight, onClick, onMove, onResiz
     const { height, top, width, left, backgroundImage } = style;
     const maxHeight = wrapHeight - top;
 
-    const { ref, height: _height, width: _width } = useResizeDetector({ refreshOptions: { leading: true } });
+    const { ref, height: _height, width: _width } = useResizeDetector({ refreshOptions: { leading: false, trailing: true }, refreshMode: "throttle", refreshRate: 1000 });
 
     const handleDrag: DraggableEventHandler = (e, ui) => {
         onMove({ x: ui.x, y: ui.y })
@@ -50,9 +54,10 @@ export const PopupBox: React.FC<IProp> = ({ wrapHeight, onClick, onMove, onResiz
 
 
     return <Draggable scale={1} defaultClassName={`dragBox ${seleted && "dragBox--selected"}`} handle=".dragBox__handle" position={{ x: left, y: top }} onStop={handleDrag} bounds="parent">
-        <div className="dragBox__in" onClick={onClick} ref={ref as any} style={{ minWidth: 100 + "px", minHeight: 100 + "px", width: width + "px", maxHeight: maxHeight + "px", height: height + "px", resize: "both", overflow: "auto", position: "absolute", ...BG(backgroundImage || "") }}>
+        <div className="dragBox__in" onClick={onClick} ref={ref as any} style={{ minWidth: 100 + "px", minHeight: 100 + "px", width: width + "px", maxHeight: maxHeight + "px", height: height + "px", resize: "both", overflow: "auto", position: "absolute" }}>
             <div className="dragBox__handle">{title}</div>
-
+            <div className="dragBox__content" style={{ ...BG(backgroundImage || "") }}>
+            </div>
         </div>
     </Draggable>
 };

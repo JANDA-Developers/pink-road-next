@@ -4,6 +4,8 @@ import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
+import { ALLOW_ADMINS } from '../../../types/const';
+import { auth } from '../../../utils/with';
 
 interface IProp { }
 
@@ -189,4 +191,4 @@ export const MsMemberD: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsMemberD;
+export default auth(ALLOW_ADMINS)(MsMemberD);

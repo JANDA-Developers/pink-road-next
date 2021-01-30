@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import defaultPageInfo from 'info/main.json';
 import { Meta } from 'components/common/meta/Meta';
 import { Upload } from 'components/common/Upload';
@@ -11,9 +11,23 @@ import Slider from "react-slick";
 import { usePageEdit } from '../hook/usePageEdit';
 import { Bg } from '../components/Img/img';
 import { PageEditor } from '../components/common/PageEditer';
+import { useGroupFind } from '../hook/useGroup';
+import isEmpty from '../utils/isEmpty';
+import { cloneObject } from '../utils/clone';
+import { useHomepage } from '../hook/useHomepage';
+import { AppContext } from './_app';
+import { openAutos, usePopups } from '../hook/usePopups';
 
 export const Main: React.FC<Ipage> = (pageInfo) => {
-  const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
+  const { item } = useGroupFind("Main");
+  const { homepage } = useContext(AppContext);
+
+  const { items, setFilter, filter } = useProductList({
+    initialPageIndex: 1, initialViewCount: 8, initialFilter: {
+      _id_in: item?.members
+    }
+  }, { skip: !item });
+
   const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const { imgKit, edit } = pageTools;
   const router = useRouter()
@@ -21,6 +35,23 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
   const toProductBoard = (id: string) => {
     router.push(id);
   }
+
+  const sortedItems = item ? items.slice().sort((a, b) => item.members.indexOf(a._id) - item.members.indexOf(b._id)) : [];
+
+  useEffect(() => {
+    if (item) {
+      filter._id_in = item.members
+      setFilter({
+        ...filter
+      })
+    }
+  }, [item])
+
+  useEffect(() => {
+    if (homepage?.modal) {
+      openAutos(homepage?.modal)
+    }
+  }, [homepage?.modal])
 
   return <div className="body main" id="main" >
     <PageEditor pageTools={pageTools} />
@@ -58,7 +89,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
               <span {...edit('m_01_subtitle2')}>
               </span>
               <div className="btn_list onepick">
-                  <a  target="_blank" href="/pinkroader_company_introduction_letter.pdf" className="link" {...edit("m_01_mainLink2_1")} />
+                <a target="_blank" href="/pinkroader_company_introduction_letter.pdf" className="link" {...edit("m_01_mainLink2_1")} />
               </div>
             </div>
           </Bg>
@@ -82,7 +113,6 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
               <strong  {...edit("purposeCircle1")} />
               <span {...edit("purposeCircle1_en")} />
             </div>
-
           </li>
           <li className="infolist__02" >
             <div className="pack">
@@ -160,7 +190,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
               <i><svg><polygon points="69.22 12.71 0 12.71 0 10.71 64.33 10.71 54.87 1.43 56.27 0 69.22 12.71" /></svg></i>
 
             </li>
-            {items.map((item) =>
+            {sortedItems.map((item) =>
               <Link key={item._id} href={`/tour/view/${item._id}`}>
                 <li className="list_in">
                   <div className="img" onClick={() => { toProductBoard(item._id) }} style={{

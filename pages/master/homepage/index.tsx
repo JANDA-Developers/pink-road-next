@@ -62,14 +62,37 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
         }
         // @ts-ignore
         homepage.bankInfo[key] = value;
+
+        console.log("--!!!homepage!!!--");
+        console.log(homepage);
         // @ts-ignore
         setHomepage({ ...homepage })
     }
 
 
+    const uploadPartnerFooter = (e: React.ChangeEvent<HTMLInputElement>) => {
+        signleUpload(e.currentTarget.files!, (url, data) => {
+            const target = homepage?.["partnerFooter"];
+            target ? target.push(data) : [data];
+            setHomepage({
+                ...homepage as any
+            })
+        })
+    }
+
+    const removePartnerFooter = (index: number) => () => {
+        homepage?.partnerFooter?.splice(index, 1);
+        setHomepage({
+            ...homepage as any
+        })
+    }
+
     if (!homepage) return <PageLoading />
     const { ceoName, bankInfo, copyRight, logo, logoBottom, logoTop, contact, degitalSalesNumber, address, addressUrl, busiNumber, email, openTime } = homepage;
     const { accountHolder, accountNumber, bankName } = bankInfo || {}
+    console.log("bankInfo");
+    console.log(bankInfo);
+    console.log(bankInfo);
     return <MasterLayout>
         <div className="in ">
             <h4>홈페이지 설정</h4>
@@ -234,6 +257,90 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                             </div>
                         </div>
                         <div className="block_box">
+                            <h5>하단 로고</h5>
+                            {homepage?.partnerFooter?.map(({ name }, index) =>
+                                <div className="tbody">
+                                    <div className="t01">
+                                        <div className="title overflowEllipsis">{name}</div>
+                                    </div>
+                                    <div className="t02">
+                                        <div className="txt">
+                                            <input onChange={uploadPartnerFooter} className="w50" type="file" />
+                                        </div>
+                                    </div>
+                                    <button style={{
+                                        height: "min-content",
+                                        whiteSpace: "nowrap"
+                                    }} onClick={removePartnerFooter(index)} type="submit" className="btn medium">삭제하기</button>
+                                </div>
+                            )}
+                            <div className="tbody">
+                                <div className="t01">
+                                    <div className="title">로고추가</div>
+                                </div>
+                                <div className="t02">
+                                    <div className="txt">
+                                        <input onChange={uploadPartnerFooter} className="w50" type="file" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="block_box">
+                            <h5>SNS설정</h5>
+                            <div className="tbody">
+                                <div className="t01">
+                                    <div className="title">SNS-페이스북 연결</div>
+                                </div>
+                                <div className="t02">
+                                    <div className="txt">
+                                        <input value={homepage?.facebookLink || ""} onChange={(e) => {
+                                            const val = e.currentTarget.value
+                                            set("facebookLink", val);
+                                        }} className="w80" placeholder="주소" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="tbody">
+                                <div className="t01">
+                                    <div className="title">SNS-트위터 연결</div>
+                                </div>
+                                <div className="t02">
+                                    <div className="txt">
+                                        <input value={homepage?.twitterLink || ""} onChange={(e) => {
+                                            const val = e.currentTarget.value
+                                            set("twitterLink", val);
+                                        }} className="w80" placeholder="주소" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="tbody">
+                                <div className="t01">
+                                    <div className="title">SNS-인스타 연결</div>
+                                </div>
+                                <div className="t02">
+                                    <div className="txt">
+                                        <input value={homepage?.instaLink || ""} onChange={(e) => {
+                                            const val = e.currentTarget.value
+                                            set("instaLink", val);
+                                        }} className="w80" placeholder="주소" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="tbody">
+                                <div className="t01">
+                                    <div className="title">SNS-네이버블로그 연결</div>
+                                </div>
+                                <div className="t02">
+                                    <div className="txt">
+                                        <input value={homepage?.blogLink || ""} onChange={(e) => {
+                                            const val = e.currentTarget.value
+                                            set("blogLink", val);
+                                        }} className="w80" placeholder="주소" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="block_box">
                             <h5>검색 최적화 설정(SEO)</h5>
                             <div className="tbody">
                                 <div className="t01">
@@ -284,95 +391,6 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="block_box">
-
-                            <h5>웹마스터 설정</h5>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">웹마스터 이름</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <input className="w30" placeholder="webmaster" type="text" />
-                                        <p className="infotxt_gray">인증 메일이나 기타 사이트 관리 시 사용될 웹마스터의 이름을 입력해주세요. (기본 : webmaster)</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">웹마스터 이메일</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <input className="w50" placeholder="webmaster@gmail.com" type="text" />
-                                        <p className="infotxt_gray">인증 메일이나 기타 사이트 관리 시 사용될 웹마스터의 메일 주소를 입력해주세요.</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
-                        {/* <div className="block_box">
-
-                            <h5>회원 가입</h5>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">회원 가입 후 이동할 페이지</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <input className="w80" placeholder="https://" type="text" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">금지 아이디</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <ul className="list">
-                                            <li>admin<i className="del"></i></li>
-                                            <li>admin<i className="del"></i></li>
-                                            <li>admin<i className="del"></i></li>
-                                            <li>admin<i className="del"></i></li>
-                                            <li>admin<i className="del"></i></li>
-                                            <li>admin<i className="del"></i></li>
-                                        </ul>
-                                        <input className="w30" placeholder="추가할 아이디" type="text" />
-                                        <button className="btn">추가</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
-                        {/* <div className="block_box">
-
-                            <h5>로그인</h5>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">로그인 후 이동할 주소(URL)</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <input className="w80" placeholder="https://" type="text" />
-                                        <p className="infotxt_gray">로그인 후 이동할 URL을 정할 수 있습니다. 입력 URL이 없는 경우 해당 페이지가 유지됩니다.</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">로그아웃 후 이동할 주소(URL)</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <input className="w80" placeholder="https://" type="text" />
-                                        <p className="infotxt_gray">로그아웃 후 이동할 URL을 정할 수 있습니다. 입력 URL이 없는 경우 해당 페이지가 유지됩니다.</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
                     </div>
                     <div className="fin">
                         <div className="float_left">

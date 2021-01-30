@@ -21,6 +21,11 @@ module.exports = {
             destination: '/member/announce', // Matched parameters can be used in the destination
             permanent: true,
           },
+          {
+            source: '/master/design',
+            destination: '/master/design/display', // Matched parameters can be used in the destination
+            permanent: true,
+          },
         ]
       },
 }

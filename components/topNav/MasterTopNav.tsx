@@ -57,7 +57,7 @@ export const MemberTopNav = () => {
 export const DesignTopNav = () => {
     return <div className="tab-nav">
         <ul>
-            <li className={checkOn("/master/design", true)}><Link href="/master/design"><a>기본설정</a></Link></li>
+            {/* <li className={checkOn("/master/design", true)}><Link href="/master/design"><a>기본설정</a></Link></li> */}
             <li className={checkOn("/master/design/banner")}><Link href="/master/design/banner"><a>배너관리</a></Link></li>
             <li className={checkOn("/master/design/popup")}><Link href="/master/design/popup"><a>팝업관리</a></Link></li>
             <li className={checkOn("/master/design/display")}><Link href="/master/design/display"><a>노출상품관리</a></Link></li>

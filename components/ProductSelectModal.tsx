@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Fproduct } from '../types/api';
 import { closeModal } from '../utils/popUp';
 import { Modal } from './modal/Modal';
@@ -10,9 +11,11 @@ interface IProp {
 }
 
 export const ProductSelectModal: React.FC<IProp> = ({ id, onSelect }) => {
-    return <Modal title="상품선택" id={id || "ProductSearchModal"} className="popup_bg" inClassName="master_popup">
+    if (typeof window === "undefined") return null
+    const target = document.getElementById("portal");
+    return target ? ReactDOM.createPortal(<Modal title="상품선택" id={id || "ProductSearchModal"} className="popup_bg" inClassName="master_popup">
         <ProductSearcher onSelectProduct={(product) => {
             onSelect(product);
         }} />
-    </Modal>
+    </Modal>, target) : null;
 };

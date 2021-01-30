@@ -915,7 +915,6 @@ export interface bookingListVariables {
   sort?: _BookingSort[] | null;
   filter?: _BookingFilter | null;
   pageInput: pageInput;
-  filterProduct?: _ProductFilter | null;
 }
 
 /* tslint:disable */
@@ -1898,10 +1897,6 @@ export interface countManager_Count_data {
    * 구매자(나)의 체험 횟수
    */
   countOfExpBooking: number;
-  /**
-   * 공지사항 수
-   */
-  announceCount: number;
 }
 
 export interface countManager_Count {
@@ -2380,12 +2375,13 @@ export interface homepage_Homepage_data_bannerB {
 export interface homepage_Homepage_data_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: any | null;
-  bankName: any | null;
+  accountNumber: string | null;
+  bankName: string | null;
 }
 
 export interface homepage_Homepage_data_modal {
   __typename: "Modal";
+  _id: string;
   link: string | null;
   startDate: any;
   endDate: any;
@@ -2394,6 +2390,7 @@ export interface homepage_Homepage_data_modal {
   style: any;
   title: string;
   priority: number | null;
+  createdAt: any;
 }
 
 export interface homepage_Homepage_data {
@@ -2516,12 +2513,13 @@ export interface homepageUpdate_HomepageUpdate_data_bannerB {
 export interface homepageUpdate_HomepageUpdate_data_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: any | null;
-  bankName: any | null;
+  accountNumber: string | null;
+  bankName: string | null;
 }
 
 export interface homepageUpdate_HomepageUpdate_data_modal {
   __typename: "Modal";
+  _id: string;
   link: string | null;
   startDate: any;
   endDate: any;
@@ -2530,6 +2528,7 @@ export interface homepageUpdate_HomepageUpdate_data_modal {
   style: any;
   title: string;
   priority: number | null;
+  createdAt: any;
 }
 
 export interface homepageUpdate_HomepageUpdate_data {
@@ -6389,12 +6388,13 @@ export interface getContext_Homepage_data_bannerB {
 export interface getContext_Homepage_data_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: any | null;
-  bankName: any | null;
+  accountNumber: string | null;
+  bankName: string | null;
 }
 
 export interface getContext_Homepage_data_modal {
   __typename: "Modal";
+  _id: string;
   link: string | null;
   startDate: any;
   endDate: any;
@@ -6403,6 +6403,7 @@ export interface getContext_Homepage_data_modal {
   style: any;
   title: string;
   priority: number | null;
+  createdAt: any;
 }
 
 export interface getContext_Homepage_data {
@@ -6632,7 +6633,7 @@ export interface questionList_QuestionList_data {
   likeCount: number;
   no: number;
   author: questionList_QuestionList_data_author | null;
-  product: questionList_QuestionList_data_product | null;
+  product: questionList_QuestionList_data_product;
 }
 
 export interface questionList_QuestionList {
@@ -6878,7 +6879,7 @@ export interface questionFindById_QuestionFindById_data {
   likeCount: number;
   no: number;
   author: questionFindById_QuestionFindById_data_author | null;
-  product: questionFindById_QuestionFindById_data_product | null;
+  product: questionFindById_QuestionFindById_data_product;
 }
 
 export interface questionFindById_QuestionFindById {
@@ -9224,6 +9225,7 @@ export interface Fgroup {
 
 export interface Fmodal {
   __typename: "Modal";
+  _id: string;
   link: string | null;
   startDate: any;
   endDate: any;
@@ -9232,6 +9234,7 @@ export interface Fmodal {
   style: any;
   title: string;
   priority: number | null;
+  createdAt: any;
 }
 
 /* tslint:disable */
@@ -9288,12 +9291,13 @@ export interface Fhomepage_bannerB {
 export interface Fhomepage_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: any | null;
-  bankName: any | null;
+  accountNumber: string | null;
+  bankName: string | null;
 }
 
 export interface Fhomepage_modal {
   __typename: "Modal";
+  _id: string;
   link: string | null;
   startDate: any;
   endDate: any;
@@ -9302,6 +9306,7 @@ export interface Fhomepage_modal {
   style: any;
   title: string;
   priority: number | null;
+  createdAt: any;
 }
 
 export interface Fhomepage {
@@ -10129,9 +10134,9 @@ export enum BookingStatus {
  */
 export enum CategoryType {
   EXPERIENCE = "EXPERIENCE",
+  INQUIRY = "INQUIRY",
   PORTPOLIO = "PORTPOLIO",
   QNA = "QNA",
-  QUESTION = "QUESTION",
   REGION = "REGION",
   TOUR = "TOUR",
 }
@@ -10321,7 +10326,7 @@ export enum SettlementStatus {
 export enum SystemNotiType {
   booking = "booking",
   cancel = "cancel",
-  member = "member",
+  memeber = "memeber",
   payment = "payment",
   system = "system",
 }
@@ -10634,7 +10639,7 @@ export interface AnnounceUpdateInput {
   keyWards?: string[] | null;
   attachFiles?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
-  type?: AnnounceType | null;
+  type: AnnounceType;
 }
 
 export interface AnswerCreateInput {
@@ -10733,6 +10738,7 @@ export interface GroupUpdateInput {
   label?: string | null;
   members?: string[] | null;
   tags?: GqlTagInput[] | null;
+  random?: boolean | null;
 }
 
 export interface HomepageUpdateInput {
@@ -10973,7 +10979,7 @@ export interface QuestionCreateInput {
   keyWards?: string[] | null;
   attachFiles?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
-  productId?: string | null;
+  productId: string;
 }
 
 export interface QuestionUpdateInput {

@@ -7,6 +7,8 @@ import { AddtionalFeesStatus, AddtionalFeesUpdateInput, FeePolicyStatus, FeePoli
 import { omits } from '../../../utils/omit';
 import { AdditionFeePolicyBlock } from '../../../components/feePolicyBlock/AdditionFeePolicyBlock';
 import { cloneObject } from '../../../utils/clone';
+import { ALLOW_ADMINS } from '../../../types/const';
+import { auth } from '../../../utils/with';
 
 interface IProp { }
 
@@ -161,4 +163,4 @@ export const MsHomepageA: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsHomepageA;
+export default auth(ALLOW_ADMINS)(MsHomepageA);

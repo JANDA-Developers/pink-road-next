@@ -19,6 +19,8 @@ import { yyyymmdd } from "../../../utils/yyyymmdd";
 import { autoComma } from "../../../utils/formatter";
 import { GoodsTopNav } from "../../../components/topNav/MasterTopNav";
 import { SettlementStatus } from "../../../types/api";
+import { ALLOW_ADMINS } from "../../../types/const";
+import { auth } from "../../../utils/with";
 
 interface IProp { }
 
@@ -211,4 +213,4 @@ export const MsReservationB: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsReservationB;
+export default auth(ALLOW_ADMINS)(MsReservationB);

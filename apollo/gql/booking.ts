@@ -15,13 +15,11 @@ export const BOOKING_LIST = gql`
     $sort: [_BookingSort!]
     $filter: _BookingFilter
     $pageInput: pageInput!
-    $filterProduct: _ProductFilter
   ) {
   BookingList(
     sort: $sort
     pageInput: $pageInput
     filter: $filter
-    filterProduct: $filterProduct
   ) {
     ok
     error {

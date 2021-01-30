@@ -7,6 +7,9 @@ import { DesignTopNav } from '../../../components/topNav/MasterTopNav';
 import { generateRandomStringCode } from '../../../utils/codeGenerator';
 import { cloneObject } from '../../../utils/clone';
 import { omits } from '../../../utils/omit';
+import { ProductSelectModal } from '../../../components/ProductSelectModal';
+import { auth } from '../../../utils/with';
+import { ALLOW_ADMINS } from '../../../types/const';
 
 interface IProp { }
 
@@ -32,9 +35,9 @@ export const MsDesignC: React.FC<IProp> = () => {
 
     const [groupDelete] = useGroupDelete()
 
-
-
     const handleSave = (group: Fgroup) => {
+        console.log("---group---");
+        console.log(group);
         groupUpdate({
             variables: {
                 key: group.key,
@@ -84,7 +87,7 @@ export const MsDesignC: React.FC<IProp> = () => {
                 <div className="con design goodslist_setting">
                     {/* 메인화면 상품진열 */}
                     {groupList.map(g =>
-                        <ProductGroup onSave={() => { handleSave(g) }} onDelete={handleDeleteGroup(g)} onChangeTitle={handleTitleChange(g)} key={g.members.length + g._id} group={g} />
+                        <ProductGroup onSave={handleSave} onDelete={handleDeleteGroup(g)} onChangeTitle={handleTitleChange(g)} key={g.members.length + g._id} group={g} />
                     )}
                     <div className="fin">
                         <div className="float_left">
@@ -96,6 +99,7 @@ export const MsDesignC: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
+        {/* <ProductSelectModal id={"ProductModal" + group._id} onSelect={handleProductSelect} /> */}
         {/* <ProductSelectModal onSelect={(product) => {
             popupGroup?.members.push(product._id);
             setGroupList([...groupList])
@@ -103,4 +107,4 @@ export const MsDesignC: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsDesignC;
+export default auth(ALLOW_ADMINS)(MsDesignC);

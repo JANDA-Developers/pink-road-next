@@ -4,6 +4,7 @@ import { F_FILE } from "./fragments";
 
 export const F_MODAL = gql`
   fragment Fmodal on Modal {
+    _id
     link
     startDate
     endDate
@@ -12,6 +13,7 @@ export const F_MODAL = gql`
     style
     title
     priority
+    createdAt
   }
 `
 

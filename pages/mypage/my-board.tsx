@@ -99,7 +99,6 @@ export const MyPageBoard: React.FC<IProp> = () => {
                         </div>
                     </Change>
                 </div>
-
             </div>
         </div>
     </MypageLayout>

@@ -8,6 +8,8 @@ import { CategoryEitdor } from '../../../components/categoryEditor/CategoryEdiot
 import { categoryMap } from '../../../utils/categoryMap';
 import { categoryToKR } from '../../../utils/enumToKr';
 import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
+import { auth } from '../../../utils/with';
+import { ALLOW_ADMINS } from '../../../types/const';
 
 interface IProp { }
 
@@ -64,4 +66,4 @@ export const MsHomepageA: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsHomepageA;
+export default auth(ALLOW_ADMINS)(MsHomepageA);

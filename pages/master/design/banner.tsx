@@ -7,6 +7,8 @@ import { useUpload } from '../../../hook/useUpload';
 import { Fhomepage } from '../../../types/api';
 import { omits } from '../../../utils/omit';
 import { cloneObject } from '../../../utils/clone';
+import { ALLOW_ADMINS } from '../../../types/const';
+import { auth } from '../../../utils/with';
 
 interface IProp { }
 
@@ -148,4 +150,4 @@ export const MsDesignA: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsDesignA;
+export default auth(ALLOW_ADMINS)(MsDesignA);

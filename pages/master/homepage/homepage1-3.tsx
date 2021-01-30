@@ -2,6 +2,8 @@ import { MasterLayout } from 'layout/MasterLayout';
 import React from 'react';
 import Link from "next/link";
 import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
+import { ALLOW_ADMINS } from '../../../types/const';
+import { auth } from '../../../utils/with';
 
 interface IProp { }
 
@@ -38,4 +40,4 @@ export const MsHomepageA: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsHomepageA;
+export default auth(ALLOW_ADMINS)(MsHomepageA);;

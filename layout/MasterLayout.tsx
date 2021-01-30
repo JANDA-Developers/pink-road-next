@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Page404 from '../pages/404';
+import { AppContext } from '../pages/_app';
 
 interface IProp { }
 
 export const MasterLayout: React.FC<IProp> = ({ children }) => {
-
-
 
     let current = ""
     if (typeof window !== "undefined") {

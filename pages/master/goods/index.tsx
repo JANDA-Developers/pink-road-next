@@ -19,6 +19,8 @@ import { GoodsTopNav } from '../../../components/topNav/MasterTopNav';
 import { BookingStatus, ProductStatus } from '../../../types/api';
 import { SingleSortSelect } from '../../../components/common/SortSelect';
 import { useSingleSort } from '../../../hook/useSort';
+import { ALLOW_ADMINS } from '../../../types/const';
+import { auth } from '../../../utils/with';
 
 interface IProp { }
 
@@ -221,4 +223,4 @@ export const MsGoodsMain: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default MsGoodsMain;
+export default auth(ALLOW_ADMINS)(MsGoodsMain);
