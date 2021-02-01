@@ -75,7 +75,7 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => 
                 }} />
             </div> : ""
         }
-        {!sendCountOver ? <button onClick={handleSendEmail}>{sendEmailCount ? "인증이메일 발송" : "인증메일 재발송"}</button> : <button>재발송 횟수를 초과하였습니다.</button>}
-        {sendEmailCount ? <button onClick={handleComplete}>인증 완료</button> : ""}
+        {!sendCountOver ? <button className="btn small" onClick={handleSendEmail}>{sendEmailCount ? "인증이메일 발송" : "인증메일 재발송"}</button> : <button >재발송 횟수를 초과하였습니다.</button>}
+        {sendEmailCount ? <button className="btn small" onClick={handleComplete}>인증 완료</button> : ""}
     </Modal>;
 };
