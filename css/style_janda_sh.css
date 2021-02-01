@@ -1087,7 +1087,7 @@ div.popup_bg_mini .page{
             position: absolute;
             bottom: -12px;
             left: 7%;
-            width: 86%;
+            width: 87%;
             height: 1px;
             background-color: #b8b8b8;
         }
@@ -10794,8 +10794,6 @@ i.calendar {
 .__react_component_tooltip  {
     display: none; 
 }
-
-.betatest  { display:none }
 
 
 .tour_content_img_list {

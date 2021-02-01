@@ -115,6 +115,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                     pw: prompt("비밀번호를 입력 해주세요.", "") || ""
                 }
             })
+
     }
 
     let verifyTemplate = (verificationId: string) => {
@@ -142,6 +143,11 @@ export const MyPageProfile: React.FC<IProp> = () => {
         //     if (!verifiId) throw Error("Verifi start fail");
         //     handleVerifyComplete = verifyTemplate.bind(verifyTemplate, verifiId);
         // })
+    }
+
+
+    const handleResign2 = () => {
+        openModal("#reSignModal")()
     }
 
     const handleChangePhoneNumber = () => {
@@ -546,6 +552,12 @@ export const MyPageProfile: React.FC<IProp> = () => {
                             회원탈퇴
                         </button>
                     </div>
+                    <div className="float_right">
+                        <button onClick={handleResign2} type="submit"
+                            className="btn medium color01">
+                            회원탈퇴
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -572,6 +584,45 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 변경하기
             </button>
         </Modal>
+
+        <Modal id="reSignModal" title="회원 탈퇴하기">
+            <div className="withdraw__fom">
+                <p className="withdraw__fom_info">
+                    정말로 회원탈퇴를 하시겠습니까?<br />
+                    회원탈퇴후 데이터는 7일 이내에 문의를 통해서 복구가 가능합니다.
+                    </p>
+                <ul>
+                    <li className="list">
+                        <span className="radiobox mr5">
+                            <input type="radio" />
+                        </span>
+                        <span>개인정보기록 삭제 목적</span>
+                    </li>
+                    <li className="list">
+                        <span className="radiobox mr5">
+                            <input type="radio" />
+                        </span>
+                        <span>새 아이디 생성 목적</span>
+                    </li>
+                    <li className="list">
+                        <span className="radiobox mr5">
+                            <input type="radio" />
+                        </span>
+                        <span>서비스 기능 불편</span>
+                    </li>
+                    <li className="list">
+                        <span className="radiobox mr5">
+                            <input type="radio" />
+                        </span>
+                        <span> 기타 <input type="text" className="ml5" /></span>
+                    </li>
+                </ul>
+                <div className="withdraw__fom_btn">
+                    <button className="btn" >탈퇴하기</button>
+                </div>
+            </div>
+        </Modal>
+
         <Modal id="addressFindModal" title="주소찾기">
             <DaumPostcode onComplete={handleCompleteFindAddress} />
         </Modal>
