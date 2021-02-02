@@ -2109,10 +2109,10 @@ div.reservation_popup .tr select {
  .basket_box {
     position: relative;
 }
-    /* .basket_box .basket_list .th .t01 .checkbox {
-        top:8px;
-        line-height: 5px;
+    .basket_box .basket_list .th .t01 {
+        max-width: 5%;
     }
+     /*
     .basket_box .basket_list .td .t01 .checkbox {
         top:50%;
         margin-top:-8px;
@@ -2176,7 +2176,9 @@ div.reservation_popup .tr select {
 
         .basket_box .basket_list .th div {
             display: inline-block;
-            width: 50%;
+            width: auto;
+            flex: 1 1;
+            flex-grow: 1;
             vertical-align: top;
             text-align: center;
             font-weight: 600;
@@ -2217,19 +2219,23 @@ div.reservation_popup .tr select {
     }
 
     .basket_box .basket_list .t02 {
-        width: 50% !important;
+        width: auto !important;
+        max-width: 50%;
     }
 
     .basket_box .basket_list .t03 {
-        width:26% !important;
+        width:auto !important;
+       max-width: 16%;
     }
 
     .basket_box .basket_list .t04 {
-        width: 16% !important;
+        width: auto !important;
+        max-width: 16%;
     }
 
     .basket_box .basket_list .t05 {
-        width: 13% !important;
+        width: auto !important;
+        max-width: 16%;
     }
 
     .basket_box .basket_list .td .t01 {

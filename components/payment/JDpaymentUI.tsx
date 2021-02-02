@@ -66,11 +66,11 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
     return <div className="payment_box ">
         <div className="head">
             {Preview}
-            <div className="write_type mb20 mt20">
-                <div className="title">결제수단 선택</div>
+            <div className="write_type write_type_box mb20 mt20">
+                <h4 className="title">결제수단</h4>
                 <div className="input_form">
                     <span id="category" className="category r3">
-                        <select onChange={(e) => {
+                        {/* <select onChange={(e) => {
                             const val = e.currentTarget.value;
                             setPayMethod(val as PayMethod)
                         }} value={payMethod} name="category_srl">
@@ -80,7 +80,67 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                             <option value={PayMethod.NICEPAY_CARD} >
                                 무통장입금
                             </option>
-                        </select>
+                        </select> */}
+                        <ul className="paymethod__Check">
+                            <li>
+                                <div className="paymethod__Check_head">
+                                    <span><input type="radio" /></span><span className="title">카드결제</span>
+                                    {/* <button /> */}
+                                </div>
+                                <div className="paymethod__Check_body">
+                                    <div className="paymethod__Check_table">
+                                        <div className="tr">
+                                            <div className="th">이름</div>
+                                            <div className="td"><input type="text" /></div>
+                                        </div>
+                                        <div className="tr">
+                                            <div className="th">연락처</div>
+                                            <div className="td"><input type="text" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="paymethod__Check_head">
+                                    <span><input type="radio" /></span><span className="title">무통장입금</span>
+                                    {/* <button /> */}
+                                </div>
+                                <div className="paymethod__Check_body">
+                                    <div>
+
+                                    </div>
+                                    <div className="paymethod__Check_table">
+                                        <div className="tr">
+                                            <div className="th">입금은행</div>
+                                            <div className="td">
+                                                <span className="mr5">신한은행</span>
+                                                <span className="mr15">2222-2222-222222</span>
+                                                <span >(주)핑크로더</span>
+                                            </div>
+                                        </div>
+                                        <div className="tr">
+                                            <div className="th">입금자 정보</div>
+                                            <div className="td">
+                                                <input type="text" className="mr5" placeholder="입금자명" />
+                                            </div>
+                                        </div>
+                                        <div className="tr">
+                                            <div className="th">환불방법</div>
+                                            <div className="td">
+                                                <div className="radio_check">
+                                                    <input type="radio" /> 본인 계좌환불
+                                                </div>
+                                                <div className="bank_info">
+                                                    <input type="text" className="mr5" placeholder="은행명" />
+                                                    <input type="text" className="mr5" placeholder="예금주" />
+                                                    <input type="text" placeholder="계좌번호" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </span>
                 </div>
             </div>

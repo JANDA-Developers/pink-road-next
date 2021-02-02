@@ -2431,6 +2431,10 @@ i.icon_plus {
     z-index: 1;
 }
 
+.search_box span.pc{
+    margin: 0 5px;
+}
+
     .search_box:before {
         position: absolute;
         top: -1px;

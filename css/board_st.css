@@ -1736,6 +1736,9 @@ div.comment_box {
         .board_write .RangeExample .info_txt a {
             color: rgb(76, 78, 207);
         }
+        .RangeExample ~ .btn{
+            margin-bottom: 30px !important;
+        }
     .board_write .write_con .texta {
         border: 1px solid #efefef;
         padding: 30px;
