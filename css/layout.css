@@ -237,6 +237,7 @@ i.tooltip{
         display: inline-block;
         width: auto;
         margin-right: 2px;
+        cursor: pointer;
     }
 
         .subtop_nav li a {
@@ -3146,8 +3147,10 @@ i.icon_plus {
     vertical-align: middle;
     position: relative;
     width: 44%;
-    margin-right: 5px;
     margin-left: 5px;
+}
+.search_top span.pc{
+    margin: 0 5px;
 }
 .search_top .search_div {
     position: relative;

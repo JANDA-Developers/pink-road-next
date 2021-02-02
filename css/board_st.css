@@ -723,6 +723,8 @@ ul.boardlist_ul li .cash {
             }
 
         .board_list.st01 .tbody .td01 {
+            width:auto;
+            max-width: 10%;
             text-align: center;
             margin-right: 15px;
            
@@ -734,12 +736,11 @@ ul.boardlist_ul li .cash {
         }
 
         .board_list.st01 .tbody .td03 {
-            width:100%;
+            width:auto;
             text-align: left;
             padding-left: 0;
             font-weight: 600;
             font-size: 1.2em;
-            overflow-wrap: anywhere;
         }
 
         .board_list.st01 .tbody .td04 {
@@ -1474,8 +1475,10 @@ div.comment_box {
     box-sizing: border-box;
     padding: 60px 60px 20px 60px;
     background-color: #f5f5f5;
-    border-top: 2px solid #333;
- 
+    border-top: 3px solid #333;
+    border-bottom: 1px solid #e7e7e7;
+    border-left: 1px solid #e7e7e7;
+    border-right: 1px solid #e7e7e7;
 }
 
 .board_write .bottom_write {
@@ -1617,8 +1620,9 @@ div.comment_box {
                 }
 
 .board_write .write_con {
-    padding: 1px;
+    padding: 0;
     box-sizing: border-box;
+    margin-top: 10px;
 }
 
     .board_write .write_con textarea {

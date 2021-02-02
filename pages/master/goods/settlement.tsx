@@ -151,7 +151,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                                 </div>
                             </div>
                             <div className="t04">
-                                <div className="info">
+                                <div className="info goods__info_title">
                                     <span className="ct goods__info_title">문화</span> <span className="g-number">상품번호: {item.product.code}</span>
                                     <strong className="title">{item.product.title}</strong>
                                     <div className="txt">
