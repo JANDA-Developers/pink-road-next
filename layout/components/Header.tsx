@@ -28,7 +28,7 @@ export const Header: React.FC<IProp> = () => {
     const rotuer = useRouter()
 
 
-    const { isLogin, myProfile } = useContext(AppContext);
+    const { isLogin, myProfile, isManager } = useContext(AppContext);
 
     const handleNav = () => {
         $('#header').attr("tabindex", -1);
@@ -293,49 +293,50 @@ export const Header: React.FC<IProp> = () => {
                                     <li onClick={handleAllClose}><Link href={`/news?type=${NEWS_TYPE.MEDIA}`}><a>언론보도</a></Link></li>
                                 </ul>
                             </li>
-                            <li className="a_menu_tit deps">
-                                <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
-                                <ul className="depth1">
-                                    <li><Link href="/mypage"><a>회원정보</a></Link></li>
-                                    <li><Link href="/mypage/notification"><a>알림</a></Link></li>
-                                    <li><Link href="/mypage/purchase"><a>구매내역</a></Link></li>
-                                    <li><Link href="/mypage/basket"><a>장바구니</a></Link></li>
-                                    <li><Link href="/mypage/write"><a>나의 게시글</a></Link></li>
-                                    <li><Link href="/mypage/reservation"><a>예약관리</a></Link></li>
-                                    <li><Link href="/mypage/goods"><a>상품관리</a></Link></li>
-                                    <li><Link href="/mypage/plainning"><a>기획관리</a></Link></li>
-                                    <li><Link href="/mypage/settlement"><a>매출/정산관리</a></Link></li>
-                                </ul>
-                            </li>
-                            <li className="a_menu_tit deps">
-
-                                <Link href="/master"><a>Master<i className="jandaicon-arr4-right"></i></a></Link>
-                                <ul className="depth1">
-                                    <li><Link href="/master/notification"><a>알림</a></Link></li>
-                                    <li><Link href="/master/member"><a>회원관리</a></Link></li>
-                                    <li><Link href="/master/goods"><a>상품관리</a></Link></li>
-                                    <li><Link href="/master/reservation"><a>예약관리</a></Link></li>
-                                    <li><Link href="/master/design"><a>디자인 설정</a></Link></li>
-                                    <li><Link href="/master/homepage"><a>홈페이지 설정</a></Link></li>
-                                </ul>
-
-                            </li>
-                            <li className="a_menu_tit deps hiddennav betatest">
-                                <Link href="/login"><a>Member<i className="jandaicon-arr4-right"></i></a></Link>
-                                <ul className="depth1">
-                                    <li><Link href="/login"><a>로그인</a></Link></li>
-                                    <li><Link href="member/join"><a>회원가입</a></Link></li>
-                                    <li><Link href="/findmembers"><a>아이디/비번 찾기</a></Link></li>
-                                    <li><Link href="/search"><a>통합검색</a></Link></li>
-                                    <li><Link href="/member/rule"><a>이용약관</a></Link></li>
-                                    <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
-                                    <li><Link href="/member/electron-terms"><a>전자상거래이용약관</a></Link></li>
-                                    <li><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
-                                    <li><Link href="/member/question"><a>고객문의</a></Link></li>
-                                    <li><Link href="/member/announce"><a>공지사항</a></Link></li>
-                                    <li><Link href="/member/qna"><a>자주하는질문</a></Link></li>
-                                </ul>
-                            </li>
+                            {isLogin &&
+                                <li className="a_menu_tit deps">
+                                    <Link href="/mypage"><a target="_blank">My page<i className="jandaicon-arr4-right"></i></a></Link>
+                                    <ul className="depth1">
+                                        <li><Link href="/mypage"><a>회원정보</a></Link></li>
+                                        <li><Link href="/mypage/notification"><a>알림</a></Link></li>
+                                        <li><Link href="/mypage/purchase"><a>구매내역</a></Link></li>
+                                        <li><Link href="/mypage/basket"><a>장바구니</a></Link></li>
+                                        <li><Link href="/mypage/write"><a>나의 게시글</a></Link></li>
+                                        <li><Link href="/mypage/reservation"><a>예약관리</a></Link></li>
+                                        <li><Link href="/mypage/goods"><a>상품관리</a></Link></li>
+                                        <li><Link href="/mypage/plainning"><a>기획관리</a></Link></li>
+                                        <li><Link href="/mypage/settlement"><a>매출/정산관리</a></Link></li>
+                                    </ul>
+                                </li>}
+                            {isManager &&
+                                <li className="a_menu_tit deps">
+                                    <Link href="/master"><a>Master<i className="jandaicon-arr4-right"></i></a></Link>
+                                    <ul className="depth1">
+                                        <li><Link href="/master/notification"><a>알림</a></Link></li>
+                                        <li><Link href="/master/member"><a>회원관리</a></Link></li>
+                                        <li><Link href="/master/goods"><a>상품관리</a></Link></li>
+                                        <li><Link href="/master/reservation"><a>예약관리</a></Link></li>
+                                        <li><Link href="/master/design"><a>디자인 설정</a></Link></li>
+                                        <li><Link href="/master/homepage"><a>홈페이지 설정</a></Link></li>
+                                    </ul>
+                                </li>}
+                            {isManager &&
+                                <li className="a_menu_tit deps">
+                                    <Link href="/login"><a>Member<i className="jandaicon-arr4-right"></i></a></Link>
+                                    <ul className="depth1">
+                                        <li><Link href="/login"><a>로그인</a></Link></li>
+                                        <li><Link href="/member/join"><a>회원가입</a></Link></li>
+                                        <li><Link href="/findmembers"><a>아이디/비번 찾기</a></Link></li>
+                                        <li><Link href="/search"><a>통합검색</a></Link></li>
+                                        <li><Link href="/member/rule"><a>이용약관</a></Link></li>
+                                        <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
+                                        <li><Link href="/member/electron-terms"><a>전자상거래이용약관</a></Link></li>
+                                        <li><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
+                                        <li><Link href="/member/question"><a>고객문의</a></Link></li>
+                                        <li><Link href="/member/announce"><a>공지사항</a></Link></li>
+                                        <li><Link href="/member/qna"><a>자주하는질문</a></Link></li>
+                                    </ul>
+                                </li>}
                         </ul>
                         <button className="btn_all_close" onClick={handleAllClose}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.15 26.15">

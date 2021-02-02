@@ -41,7 +41,7 @@ export const ReservationTable: React.FC<IReservationTableProp> = ({ bookingListH
                     </div>
                 </div>
                 <div className="t03">
-                    <div className="info">
+                    <div className="info goods__info_title">
                         <span className="ct">문화</span>   <span className="g-number">상품번호: {item.product.code}</span>
                         <strong className="title">{item.product.title}</strong>
                         <div className="txt">

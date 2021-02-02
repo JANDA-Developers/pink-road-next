@@ -67,9 +67,9 @@ export default PartnerMemberMaster;
 //                                 <div className="input_box">
 //                                     <input type="text" className="day w100" />
 //                                     <CalendarIcon />
-//                                 </div>
-//                                     ~
-//                                     <div className="input_box">
+//                                  </div>
+//                                      <span className="pc"> ~ </span>
+//                                  <div className="input_box">
 //                                     <input type="text" className="day w100" />
 //                                     <CalendarIcon />
 //                                 </div>
@@ -212,7 +212,7 @@ export default PartnerMemberMaster;
 //                     </a>
 //                     <div className="page">
 //                         <h3>회원 상세정보</h3>
-//                         <div className="info_txt">
+//                         _txt">
 //                             <span className="start-day">가입일: 2020.08.26</span>
 //                             <span className="recently-day">최근접속: 2020.08.26 12:12</span>
 //                             <button className="btn"><i className="flaticon-print mr5"></i>프린터</button>

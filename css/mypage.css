@@ -2787,8 +2787,31 @@ div.reservation_popup .tr select {
     .statement_popup .fuction_list_mini .th07{
         width: auto;
     }
-
-
+.withdraw__fom{
+    position: relative;
+}
+.withdraw__fom .withdraw__fom_info{
+    position: relative;
+    border: 5px solid #e1e1e1;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+.withdraw__fom .list{
+    position: relative;
+    line-height: 40px;
+}
+.withdraw__fom .withdraw__fom_btn{
+    position: relative; 
+    display: block;
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+.withdraw__fom .withdraw__fom_btn button{
+    position: relative; 
+    width: 100%;
+}
 @media (min-width: 768px) {
 
 

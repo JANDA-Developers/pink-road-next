@@ -41,7 +41,7 @@ export const ByhandTable: React.FC<IReservationTableProp> = ({ bookingListHook, 
                     </div>
                 </div>
                 <div className="t03">
-                    <div className="info">
+                    <div className="info goods__info_title">
                         <span className="ct">{item.product.category?.label}</span>  <span className="g-number">상품번호: {item.product.code}</span>
                         <strong className="title">{item.product.title}</strong>
                         <div className="txt">

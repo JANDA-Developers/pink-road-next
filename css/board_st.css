@@ -35,6 +35,7 @@
     .board_option li {
         display: inline-block;
         position: relative;
+        cursor: pointer;
     }
 
         .board_option li:after {

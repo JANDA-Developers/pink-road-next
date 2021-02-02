@@ -452,6 +452,7 @@ i.tooltip{
                 box-sizing: border-box;
                 border-top: 5px solid #ed297b;
                 background-color: rgba(255, 255, 255, 0.856);
+                    box-shadow: 0px 0px 5px #0000005e;
                 z-index: 70;
             }
             .header .hd_center .nav_wrap > .deps1 .deps_nav li {
@@ -2003,15 +2004,15 @@ footer .footer_in_bottom {
         }
         .footer_in .copyright .footer_homepage_info a.icon {
             width: 10px;
-            height: 24px;
+            height: 13px;
             display: inline-block;
             font-weight: 600;
             margin-left: 5px;
             vertical-align: middle;
             position: relative;
             opacity:0.5;
-        }   .footer_in .copyright .footer_homepage_info a.icon:hover {
-      
+        }   
+        .footer_in .copyright .footer_homepage_info a.icon:hover {
             opacity:1;
         }
             .footer_in .copyright .footer_homepage_info a.icon button {
@@ -3599,13 +3600,15 @@ i.icon_plus {
         top: 1px;
         right: 100px;
     }
-
     .footer_in .bottom_nav {
         line-height: 50px;
         margin-bottom: 68px;
         padding-bottom: 0;
     }
-
+    
+    .footer_in .bottom_nav .link{
+        margin-top: 0;
+    }
         .footer_in .bottom_nav .cs {
             display: inline-block;
             position: absolute;

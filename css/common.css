@@ -133,7 +133,7 @@ select:focus {
 } 
 
 .betatest {/* 핑크로더는 볼수 없게 none */
-    display:inline-block !important;
+    display:none !important;
 }
 /* btn */
 .btn {

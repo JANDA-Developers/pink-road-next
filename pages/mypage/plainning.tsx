@@ -138,7 +138,7 @@ export const Plainning: React.FC<IProp> = () => {
                                             <div className="th03"><span className="m_title">개시일: </span>{yyyymmdd(item.createdAt)}</div>
                                             <div className="th04">
                                                 <div className="img" style={BG(item?.images?.[0]?.uri || "")} ></div>
-                                                <div className="info">
+                                                <div className="info goods__info_title">
                                                     <span className="ct">{item.category?.label}</span><span className="g-number">상품번호: {item.code}</span>
                                                     <strong className="title">{item.title}</strong>
                                                 </div>
