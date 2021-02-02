@@ -192,6 +192,9 @@ export const F_USER = gql`
         profileImg {
             uri
         }
+        bankImg {
+            ...Ffile
+        }
         busi_department
     }
     ${F_FILE}

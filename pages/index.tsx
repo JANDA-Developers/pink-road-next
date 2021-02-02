@@ -4,7 +4,7 @@ import { Meta } from 'components/common/meta/Meta';
 import { Upload } from 'components/common/Upload';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
-import { useProductList } from 'hook/useProduct';
+import { openListFilter, useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
 import { getStaticPageInfo, Ipage } from '../utils/page';
 import Slider from "react-slick";
@@ -24,6 +24,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
 
   const { items, setFilter, filter } = useProductList({
     initialPageIndex: 1, initialViewCount: 8, initialFilter: {
+      ...openListFilter,
       _id_in: item?.members
     }
   }, { skip: !item });

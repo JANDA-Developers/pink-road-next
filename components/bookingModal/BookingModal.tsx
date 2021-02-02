@@ -14,11 +14,9 @@ interface IProp {
 export const BookingModal: React.FC<IProp> = ({ code }) => {
     const { item: booking } = useBookingFindByCode(code);
 
-
     const print = () => {
         window.print();
     }
-
 
     if (!booking) return null;
     const { product, payment } = booking;

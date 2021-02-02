@@ -469,6 +469,18 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 </div>
                             </li>
                             <li>
+                                <div className="title">통장사본</div>
+                                <div className="txt">
+                                    <span className="w80 upload_out_box">
+                                        {busiRegistration?.name}
+                                    </span>
+                                    <button onClick={() => { hiddenFileInput.current?.click() }} type="button" className="btn btn_mini">
+                                        업로드
+                                    </button>
+                                    <input onChange={handleChangeRegistration} ref={hiddenFileInput} hidden type="file" />
+                                </div>
+                            </li>
+                            <li>
                                 <div className="title">정산계좌</div>
                                 <div className="txt">
                                     <div className="line_first">

@@ -9,14 +9,20 @@ import { omits } from '../../../utils/omit';
 import { cloneObject } from '../../../utils/clone';
 import { ALLOW_ADMINS } from '../../../types/const';
 import { auth } from '../../../utils/with';
+import { useUpdate } from '../../../hook/useUpdater';
+import { useCopy } from '../../../hook/useUpdate';
 
 interface IProp { }
 
 export const MsDesignA: React.FC<IProp> = () => {
     const { signleUpload } = useUpload();
     const { data: defaultHomepage } = useHomepage()
-    const [homeapgeUpdate] = useHomepageUpdate();
-    const [homepage, setHomepage] = useState<null | Fhomepage>(null);
+    const [homeapgeUpdate] = useHomepageUpdate({
+        onCompleted: ({ HomepageUpdate }) => {
+            if (HomepageUpdate.ok) alert("업데이트 완료")
+        }
+    });
+    const [homepage, setHomepage] = useCopy(defaultHomepage);
 
     const handleSave = () => {
         homeapgeUpdate({
@@ -28,12 +34,9 @@ export const MsDesignA: React.FC<IProp> = () => {
         })
     }
 
-    useEffect(() => {
-        if (defaultHomepage)
-            setHomepage(cloneObject(defaultHomepage));
-    }, [defaultHomepage])
 
     if (!homepage) return null;
+    console.log(homepage);
     return <MasterLayout>
         <div className="in ">
             <h4>디자인 설정</h4>
@@ -51,7 +54,7 @@ export const MsDesignA: React.FC<IProp> = () => {
                         <div className="float_left">
                         </div>
                         <div className="float_right">
-                            <button type="submit" className="btn medium">저장하기</button>
+                            <button onClick={handleSave} type="submit" className="btn medium">저장하기</button>
                         </div>
                     </div>
                     <div className="content">
@@ -65,7 +68,10 @@ export const MsDesignA: React.FC<IProp> = () => {
                                     <div className="t02">
                                         <div className="txt">
                                             <div className="switch">
-                                                <input className="tgl tgl-skewed" id="cb3" type="checkbox" />
+                                                <input onChange={() => {
+                                                    homepage.bannerA.use = !homepage.bannerA?.use;
+                                                    setHomepage({ ...homepage })
+                                                }} checked={!!homepage.bannerA?.use} className="tgl tgl-skewed" id="cb3" type="checkbox" />
                                                 <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb3"></label>
                                             </div>
                                         </div>
@@ -80,7 +86,7 @@ export const MsDesignA: React.FC<IProp> = () => {
                                             <input onChange={(e) => {
                                                 if (!e.currentTarget.files) return;
                                                 signleUpload(e.currentTarget.files, (url, data) => {
-                                                    homepage.logo = data
+                                                    homepage.bannerA.img = data
                                                     setHomepage({
                                                         ...homepage
                                                     })
@@ -96,11 +102,33 @@ export const MsDesignA: React.FC<IProp> = () => {
                                     </div>
                                     <div className="t02">
                                         <div className="txt">
-                                            <input className="w50" placeholder="https://" type="text" />
-                                            <select className="w30 ml5">
-                                                <option>새창</option>
-                                                <option>현재창</option>
+                                            <input onChange={(e) => {
+                                                homepage.bannerA.link = e.currentTarget.value;
+                                                setHomepage({ ...homepage })
+                                            }} value={homepage.bannerA.link} className="w50" placeholder="https://" type="text" />
+                                            <select value={homepage.bannerA.target} onChange={(e) => {
+                                                homepage.bannerA.target = e.currentTarget.value
+                                                setHomepage({ ...homepage })
+                                            }} className="w30 ml5">
+                                                <option value="_blank">새창</option>
+                                                <option value="" >현재창</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="tbody">
+                                    <div className="t01">
+                                        <div className="title">사용여부</div>
+                                    </div>
+                                    <div className="t02">
+                                        <div className="txt">
+                                            <div className="switch">
+                                                <input onChange={() => {
+                                                    homepage.bannerB.use = !homepage.bannerB?.use;
+                                                    setHomepage({ ...homepage })
+                                                }} checked={!!homepage.bannerB?.use} className="tgl tgl-skewed" id="cb4" type="checkbox" />
+                                                <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor="cb4"></label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -110,7 +138,15 @@ export const MsDesignA: React.FC<IProp> = () => {
                                     </div>
                                     <div className="t02">
                                         <div className="txt">
-                                            <input className="w50" type="file" />
+                                            <input onChange={(e) => {
+                                                if (!e.currentTarget.files) return;
+                                                signleUpload(e.currentTarget.files, (url, data) => {
+                                                    homepage.bannerB.img = data
+                                                    setHomepage({
+                                                        ...homepage
+                                                    })
+                                                })
+                                            }} className="w50" type="file" />
                                             <p className="infotxt_gray">images size : 500px * 134px</p>
                                         </div>
                                     </div>
@@ -121,10 +157,16 @@ export const MsDesignA: React.FC<IProp> = () => {
                                     </div>
                                     <div className="t02">
                                         <div className="txt">
-                                            <input className="w50" placeholder="https://" type="text" />
-                                            <select className="w30 ml5">
-                                                <option>새창</option>
-                                                <option>현재창</option>
+                                            <input onChange={(e) => {
+                                                homepage.bannerB.link = e.currentTarget.value;
+                                                setHomepage({ ...homepage })
+                                            }} value={homepage.bannerB.link} className="w50" placeholder="https://" type="text" />
+                                            <select value={homepage.bannerB.target} onChange={(e) => {
+                                                homepage.bannerB.target = e.currentTarget.value
+                                                setHomepage({ ...homepage })
+                                            }} className="w30 ml5">
+                                                <option value="_blank">새창</option>
+                                                <option value="">현재창</option>
                                             </select>
                                         </div>
                                     </div>

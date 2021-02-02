@@ -14,9 +14,9 @@ export const SIGN_UP = gql`
       ok
       error {
       location
-              severity
-              code
-              message
+        severity
+        code
+        message
       }
       data {
           email
@@ -28,7 +28,7 @@ export const SIGN_UP = gql`
 
 export const RESIGN = gql`
   mutation userResign(
-      $_id: String!,
+      $_id: String!
       $pw : String!
     ) {
     UserResign(
@@ -91,6 +91,48 @@ export const USER_UPDATE = gql`
     }
 `
 
+export const EMAIL_DUPLIOCATE_CHECK = gql`
+    query emailDuplicateCheck($email:String!) {
+      EmailDuplicateCheck(email:$email) {
+            ok
+            error {
+              location
+              severity
+              code
+              message
+            }
+        }
+    }
+`
+
+
+export const SIGN_UP_DENY = gql`
+    mutation signUpDeny($userId:String!, $reason:String!) {
+      SignUpDeny(userId:$userId, reason: $reason) {
+            ok
+            error {
+              location
+              severity
+              code
+              message
+            }
+        }
+    }
+`
+
+export const SIGN_UP_ACCEPT = gql`
+    mutation signUpAccept($userId:String!) {
+      SignUpAccept(userId:$userId) {
+            ok
+            error {
+              location
+              severity
+              code
+              message
+            }
+        }
+    }
+`
 export const VERIFICATION_START =gql`
 mutation verificationStart($target: VerificationTarget!, $payload: String!, $event: VerificationEvent!){
     VerificationStart(target : $target, payload : $payload, event : $event){

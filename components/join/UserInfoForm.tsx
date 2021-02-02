@@ -28,6 +28,7 @@ const UserInfoForm: React.FC = () => {
         handleDayClick,
         handleDayPickerMonth,
         handleGender,
+        handleBankImg,
         dayPickerMonth,
         birthdayPicker,
         setBirthDayPicker,
@@ -47,7 +48,6 @@ const UserInfoForm: React.FC = () => {
             window.removeEventListener("click", hideDaumAddress)
         }
     }, [])
-
 
     return (
         <>
@@ -375,6 +375,27 @@ const UserInfoForm: React.FC = () => {
                                     {/* <button type="button" className="btn btn_mini">
                   업로드
                 </button> */}
+                                </div>
+                            </div>
+                            <div className="ph_wrap">
+                                <label>
+                                    <i className="important_icon" />
+                                통장사본
+                                </label>
+                                <span className="er red_font">
+                                    *jpg, gif, png 이외에 업로드 불가능합니다.
+                                </span>
+                                <div className="w100 apply_relative">
+                                    <span className="w80 upload_out_box">
+                                        {data.busiRegistration?.name}
+                                    </span>
+
+                                    <label htmlFor="business_license" className="cus_file_busi_license">
+                                        업로드
+                                    </label>
+                                    <input type="file" name="business_license" id="business_license"
+                                        className="file_busi_license"
+                                        onChange={handleBankImg}></input>
                                 </div>
                             </div>
                         </div>

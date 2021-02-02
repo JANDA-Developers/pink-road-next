@@ -21,7 +21,7 @@ export const F_SMS_TEMPLATE = gql`
     description
     content
     _replaceEnum
-    triggers {
+    trigger {
       ...FnotificationTrigger
     }
     tags {
@@ -276,7 +276,7 @@ export const TEMPLATE_LIST = gql`
         description
         content
         _replaceEnum
-        triggers {
+        trigger {
           ...FnotificationTrigger
         }
         tags {

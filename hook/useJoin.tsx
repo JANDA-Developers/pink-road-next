@@ -139,6 +139,20 @@ export const useJoin = () => {
 
     }
 
+    const handleBankImg = async (e: React.ChangeEvent<HTMLInputElement>) => {
+
+        if (!e.target.files) return;
+
+        await signleUpload(e.target.files, (url, file) => {
+            setData({
+                ...data,
+                busiRegistration: file
+            })
+        })
+
+    }
+
+
     const handleNationality = (isKorean: boolean) => () => {
         setData({
             ...data,
@@ -161,6 +175,7 @@ export const useJoin = () => {
         daumAddress,
         setDaumAddress,
         handleData,
+        handleBankImg,
         handleBusinessLicense,
         handleGender,
         handleBirthPicker,

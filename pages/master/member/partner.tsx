@@ -1,14 +1,14 @@
 import React from 'react';
 import { MemberMaster } from '../../../components/member/MemberMaster';
-import { CustomerTable } from '../../../components/member/CustomerTable';
 import { UserRole } from '../../../types/api';
+import { BusiPartnerTable } from '../../../components/member/BusiPartnerTable';
 
 interface IProp { }
-export const CustomerMemberMaster: React.FC<IProp> = () => {
-    return <MemberMaster type={UserRole.partner} Table={CustomerTable} />
+export const PartnerMemberMaster: React.FC<IProp> = () => {
+    return <MemberMaster type={UserRole.partner} Table={BusiPartnerTable} />
 };
 
-export default CustomerMemberMaster;
+export default PartnerMemberMaster;
 
 // import { MasterLayout } from 'layout/MasterLayout';
 // import { Paginater } from 'components/common/Paginator';

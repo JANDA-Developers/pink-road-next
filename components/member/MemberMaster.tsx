@@ -57,6 +57,7 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
     const [popupId, setPopUserId] = useState("");
     const [resignUser] = useUserResign();
     const [updateUser] = useUserUpdate();
+    const [] = 
 
     const setIsForeginer = (foreginer: boolean) => () => {
         filter.is_froreginer_eq = foreginer;

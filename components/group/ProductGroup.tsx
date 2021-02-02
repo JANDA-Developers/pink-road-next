@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useProductList } from '../../hook/useProduct';
-import { Fgroup, Fproduct, productList_ProductList_data } from '../../types/api';
+import { openListFilter, useProductList } from '../../hook/useProduct';
+import { Fgroup, Fproduct, productList_ProductList_data, ProductStatus } from '../../types/api';
 import { BG } from '../../types/const';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import { reorder } from '../../utils/reorder';
-import { useMutable } from '../../hook/useUpdate';
+import { useCopy } from '../../hook/useUpdate';
 import { ProductSelectModal } from '../ProductSelectModal';
 import { openModal } from '../../utils/popUp';
 import { cloneObject } from '../../utils/clone';
@@ -19,18 +19,12 @@ interface IProp {
     onSave: (group: Fgroup) => void;
 }
 
-
-
-// 카테고리 만큼 그룹이 추가되어야함
-// 카테고리를 생성할떄 그룹이 생성되게 해야함?
-// 카테고리 지워질떄 그룹도 지워지게 해야함 ?
-//  그냥 카테고리 순으로 출력하지말고 정렬을 다르게 할 수 있음 좋겠음.
-
 export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTitle, onDelete: handleDelete, onSave: handleSave }) => {
-    const [group, setGroup] = useMutable(defaultGroup);
+    const [group, setGroup] = useCopy(defaultGroup);
     const { isAdmin } = useContext(AppContext);
     const { items: products, filter, setFilter, getLoading } = useProductList({
         initialFilter: {
+            ...openListFilter,
             _id_in: defaultGroup.members
         }
     })

@@ -77,7 +77,7 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                                 {inquiries.map(inq =>
                                     <li onClick={gotoView(inq)} key={inq._id}>
                                         <div className="td01">{inq.no}</div>
-                                        <div className="td02"><Link href={`/question/view/${inq._id}`}><a>{inq.title}</a></Link></div>
+                                        <div className="td02"><Link href={`/question/view/${inq._id}`}><a>{inq.title} {inq.secret ? "비공개" : "공개"} </a></Link></div>
                                         <div className="td03">
                                             {inq.title}
                                             <img className="new" src="../img/svg/new.svg" alt="new" />

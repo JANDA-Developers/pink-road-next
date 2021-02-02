@@ -125,7 +125,8 @@ export const QnaWrite: React.FC<IProp> = () => {
         onLoad={handleLoad}
         opens={{
             title: true,
-            category: true
+            category: true,
+            files: true
         }}
     />
 };

@@ -10,12 +10,15 @@ import { TourMainBoard } from '../../components/tour/TourMainBoard';
 import pageInfoDefault from "info/tourMain.json";
 import { usePageEdit } from '../../hook/usePageEdit';
 import { useHomepage } from '../../hook/useHomepage';
+import { useGroupList } from '../../hook/useGroup';
+import isEmpty from '../../utils/isEmpty';
 
 interface IProp extends InferGetStaticPropsType<typeof getStaticProps> { }
 
 export const getStaticProps = getStaticPageInfo("tourMain");
 export const TourMain: React.FC<Ipage> = (pageInfo) => {
     const isExp = checkIsExp();
+    const { data: groups = [] } = useGroupList()
     const { data } = useHomepage();
     const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const { categoriesMap } = useContext(AppContext);
@@ -28,7 +31,7 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
     }
 
     if (!data) return null;
-    const { bannerA, bannerB, bannerAlink, bannerBlink } = data;
+    const { bannerA, bannerB } = data;
     return <div >
         <Meta />
         <SubTopNav {...subTopInfo} pageTools={pageTools}  >
@@ -45,12 +48,16 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
         </SubTopNav>
         <div className="goods_box">
             <div className="w1200">
-                <div className="bn_box line2">
-                    <a href={bannerAlink || "/#/"}><img src={bannerA?.uri || "'/img/bn_02.png'"} alt="여행할인이벤트" /></a>
-                    <a href={bannerBlink || "/#/"}><img src={bannerB?.uri || "'/img/bn_02.png'"} alt="여행할인이벤트" /></a>
+                <div className="banner bn_box line2">
+                    {bannerA.img?.uri &&
+                        <a className="banner__box" target={bannerA.target} href={bannerA.link || undefined}><img src={bannerA?.img.uri} alt={bannerA.img.name} /></a>
+                    }
+                    {bannerB &&
+                        <a className="banner__box" target={bannerB.target} href={bannerB.link || undefined}><img src={bannerB?.img?.uri} alt={bannerB.img?.name} /></a>
+                    }
                 </div>
-                {cats.map(cat =>
-                    <TourMainBoard key={cat._id} cat={cat} />
+                {groups.filter(group => !isEmpty(group.members) && !!cats.find(cat => cat.label === group.label)).map(group =>
+                    <TourMainBoard group={group} key={group._id} cat={cats.find(cat => cat.label === group.label)!} />
                 )}
             </div>
         </div>

@@ -4,10 +4,11 @@ import { CustomerTable } from '../../../components/member/CustomerTable';
 import { UserRole } from '../../../types/api';
 import { ALLOW_ADMINS } from '../../../types/const';
 import { auth } from '../../../utils/with';
+import { BusiPartnerTable } from '../../../components/member/BusiPartnerTable';
 
 interface IProp { }
 export const CustomerMemberMaster: React.FC<IProp> = () => {
-    return <MemberMaster type={UserRole.partnerB} Table={CustomerTable} />
+    return <MemberMaster type={UserRole.partnerB} Table={BusiPartnerTable} />
 };
 
 export default auth(ALLOW_ADMINS)(CustomerMemberMaster);;

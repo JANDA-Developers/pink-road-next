@@ -13,6 +13,7 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => 
     const [email, setEmail] = useState("")
     const [code, setCode] = useState("")
     const [sendEmailCount, setSendEmailCount] = useState(0);
+    const [] = 
 
     const { verifiComplete, verifiStart, verifiData } = verifiHook;
 

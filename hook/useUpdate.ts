@@ -1,11 +1,13 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { cloneObject } from "../utils/clone";
+import isEmpty from "../utils/isEmpty";
 
-export const useMutable = <T>(defaultData:T): [T,Dispatch<SetStateAction<T>>] => {
-    const [data, setData] = useState<T>(cloneObject(defaultData));
+export const useCopy = <T>(defaultData:T): [T,Dispatch<SetStateAction<T>>] => {
+    const defaultEmpty = isEmpty(defaultData);
+    const [data, setData] = useState<T>(defaultData);
 
     useEffect(()=>{
-        if(defaultData) {
+        if(!defaultEmpty) {
             setData(cloneObject(defaultData));
         }
     },[defaultData])

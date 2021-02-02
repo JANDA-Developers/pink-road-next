@@ -8,6 +8,7 @@ interface IProps extends IDiv {
     catName?: string;
     title: string;
     writer: string;
+    secret?: boolean;
     thumb?: Ffile | null;
     createAt: string;
     comments?: {
@@ -27,7 +28,7 @@ interface IProps extends IDiv {
 
 
 export const BoardView: React.FC<IProps> = (data) => {
-    const { className, catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, onNext, onPrev, onDelete, subTitle, Buttons } = data;
+    const { secret, className, catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, onNext, onPrev, onDelete, subTitle, Buttons } = data;
 
 
     const handlePrev = () => {
@@ -61,6 +62,7 @@ export const BoardView: React.FC<IProps> = (data) => {
                     <div className="footer_txt">
                         <span>작성자<strong>{writer}</strong></span>
                         <span>{dayjs(createAt).format('YYYY.MM.DD HH:mm')}</span>
+                        {secret && <span>비밀글</span>}{/* 댓글기능 열렷을 때 */}
                         {comments?.count && <span>댓글 <strong>0</strong>건</span>}{/* 댓글기능 열렷을 때 */}
                         {viewCount && <span>조회수 <strong>3423</strong>회</span>}
                     </div>

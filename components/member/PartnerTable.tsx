@@ -1,15 +1,11 @@
 import React from 'react';
-import { useIdSelecter } from '../../hook/useIdSelecter';
-import { useUserList } from '../../hook/useUser';
-import { Fuser } from '../../types/api';
 import { foreginKR, genderToKR } from '../../utils/enumToKr';
 import { autoComma } from '../../utils/formatter';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import { Paginater } from '../common/Paginator';
 import { IMemberTableProp } from './MemberMaster';
 
-
-export const CustomerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHook, handleUser }) => {
+export const PartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHook, handleUser }) => {
     const { check, handleCheck, isAllSelected, isChecked, reverseAll, selectAll, selectLength, selectedIds, setSelectedIds, toggle, toggleAll, unCheck, unSelectAll } = idSelectHook;
     const { handleResignUser, handleStopUser, handleViewDetailUser, handleViewUserBoard } = handleUser;
     const { items: users, setPage, pageInfo } = userHook;

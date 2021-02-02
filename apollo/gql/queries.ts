@@ -38,15 +38,18 @@ export const GET_CONTEXT = gql`
       GetProfile {
         ok
         error {
-      location
-      severity
-      code
-      message
-    }
+          location
+          severity
+          code
+          message
+        }
         data {
           ...Fuser
           unReadNoties {
             ...FsystemNoti
+          }
+          bankImg {
+            ...Ffile
           }
           bookings {
             ...Fbooking

@@ -15,15 +15,14 @@ import { SingleSortSelect } from '../../../components/common/SortSelect';
 import { ViewCount } from '../../../components/common/ViewCount';
 import SearchMini from '../../../components/common/SearchMini';
 import { useSingleSort } from '../../../hook/useSort';
-import { announceList_AnnounceList_data } from '../../../types/api';
+import { announceList_AnnounceList_data, _AnnounceSort } from '../../../types/api';
 import { useRouter } from 'next/router';
 
 export const getStaticProps = getStaticPageInfo("announce");
 export const Announce: React.FC<Ipage> = (page) => {
     const pageTools = usePageEdit(page, defaultPageInfo);
     const { items, pageInfo, setPage, filter, setFilter, sort, setSort, viewCount, setViewCount } = useAnnounceList();
-    const { announceCount } = useCustomCount(["announceCount"]);
-    const singleSortHook = useSingleSort(sort, setSort);
+    const singleSortHook = useSingleSort(sort, setSort, [_AnnounceSort.isNotice_desc]);
     const router = useRouter();
 
     const doSearch = (search: string) => {

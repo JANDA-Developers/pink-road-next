@@ -8,8 +8,6 @@ import { generateMutationHook } from "../utils/query";
 export const useVerificationStart =  generateMutationHook<verificationStart,verificationStartVariables>(VERIFICATION_START)
 export const useVerificationComplete = generateMutationHook<verificationComplete, verificationCompleteVariables>(VERIFICATION_COMPLETE)
 
-type TCallBack<T> = (data: T | undefined) => void
-
 type TVerifiData = Partial<Omit<verificationComplete_VerificationComplete_data, "__typename">>;
 export type TuseVerification = ReturnType<typeof useVerification>
 export const useVerification = (defaultData?:TVerifiData) =>  {

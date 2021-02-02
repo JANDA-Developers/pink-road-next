@@ -55,7 +55,6 @@ function App({ Component, pageProps }: any) {
   const [editMode, setEditMode] = useState(false);
   const router = useRouter()
 
-
   const ComponentLayout = Component.Layout ? Component.Layout : Layout;
   const ComponentAuth = Component.Auth ? Component.Auth : ALLOW_FULLESS;
 
@@ -76,11 +75,10 @@ function App({ Component, pageProps }: any) {
 
   const catsMap = categoryMap(catList);
 
-
   if (!ComponentAuth.includes(role || null)) {
-
     if (arrayEquals(ComponentAuth, ALLOW_LOGINED)) {
-      Component = () => <PageDeny msg="해당 페이지는 로그인후 이용 가능합니다." />
+      Component = () => <PageDeny redirect="/login" msg="해당 페이지는 로그인후 이용 가능합니다." />
+      return <Component />;
     } else
       Component = () => <PageDeny />
   }
@@ -101,10 +99,6 @@ function App({ Component, pageProps }: any) {
     console.log("cachefallback");
     return <div>Loading...</div>
   }
-
-  useEffect(()=>{
-    
-  })
 
   if (loading) return <PageLoading />
   return (

@@ -17,6 +17,18 @@ export const F_MODAL = gql`
   }
 `
 
+export const F_BANNER = gql`
+  fragment Fbanner on Banner {
+    img {
+      ...Ffile
+    }
+    link
+    target
+    use
+  }
+  ${F_FILE}
+`
+
 export const F_HOMEPAGE = gql`
     fragment Fhomepage  on Homepage  {
         logo {
@@ -56,10 +68,10 @@ export const F_HOMEPAGE = gql`
           ...Ffile
         }
         bannerA {
-          ...Ffile
+          ...Fbanner
         }
         bannerB {
-          ...Ffile
+          ...Fbanner
         }
         degitalSalesNumber
         copyRight
@@ -68,13 +80,13 @@ export const F_HOMEPAGE = gql`
           accountNumber
           bankName          
         }
-        bannerBlink
-        bannerAlink
         thirdPolicy
         modal {
           ...Fmodal
         }
     }
+    ${F_BANNER}
+    ${F_BANNER}
     ${F_FILE}
     ${F_MODAL}
 `

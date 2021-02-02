@@ -27,6 +27,13 @@ export interface announceFindById_AnnounceFindById_data_author_profileImg {
   uri: string;
 }
 
+export interface announceFindById_AnnounceFindById_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface announceFindById_AnnounceFindById_data_author {
   __typename: "User";
   _id: string;
@@ -90,6 +97,10 @@ export interface announceFindById_AnnounceFindById_data_author {
    * 프로필 사진
    */
   profileImg: announceFindById_AnnounceFindById_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: announceFindById_AnnounceFindById_data_author_bankImg | null;
 }
 
 export interface announceFindById_AnnounceFindById_data_attachFiles {
@@ -219,6 +230,13 @@ export interface announceList_AnnounceList_data_author_profileImg {
   uri: string;
 }
 
+export interface announceList_AnnounceList_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface announceList_AnnounceList_data_author {
   __typename: "User";
   _id: string;
@@ -282,6 +300,10 @@ export interface announceList_AnnounceList_data_author {
    * 프로필 사진
    */
   profileImg: announceList_AnnounceList_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: announceList_AnnounceList_data_author_bankImg | null;
 }
 
 export interface announceList_AnnounceList_data_attachFiles {
@@ -1165,6 +1187,118 @@ export interface bookingUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: bookingCreateByHand
+// ====================================================
+
+export interface bookingCreateByHand_BookingCreateByHand_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface bookingCreateByHand_BookingCreateByHand_data {
+  __typename: "Booking";
+  _id: string;
+}
+
+export interface bookingCreateByHand_BookingCreateByHand {
+  __typename: "BookingCreateByHandResponse";
+  ok: boolean;
+  error: bookingCreateByHand_BookingCreateByHand_error | null;
+  data: bookingCreateByHand_BookingCreateByHand_data | null;
+}
+
+export interface bookingCreateByHand {
+  BookingCreateByHand: bookingCreateByHand_BookingCreateByHand;
+}
+
+export interface bookingCreateByHandVariables {
+  isIgnoreMaxMember: boolean;
+  params: BookingCreateByHandInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: bookingCompleteByHand
+// ====================================================
+
+export interface bookingCompleteByHand_BookingCompleteByHand_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface bookingCompleteByHand_BookingCompleteByHand_data {
+  __typename: "Booking";
+  _id: string;
+}
+
+export interface bookingCompleteByHand_BookingCompleteByHand {
+  __typename: "BookingCompleteByHandResponse";
+  ok: boolean;
+  error: bookingCompleteByHand_BookingCompleteByHand_error | null;
+  data: bookingCompleteByHand_BookingCompleteByHand_data | null;
+}
+
+export interface bookingCompleteByHand {
+  BookingCompleteByHand: bookingCompleteByHand_BookingCompleteByHand;
+}
+
+export interface bookingCompleteByHandVariables {
+  params: BookingCompleteByHandInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: bookingCancelByHand
+// ====================================================
+
+export interface bookingCancelByHand_BookingCancelByHand_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface bookingCancelByHand_BookingCancelByHand_data {
+  __typename: "Booking";
+  _id: string;
+}
+
+export interface bookingCancelByHand_BookingCancelByHand {
+  __typename: "BookingCancelByHandResponse";
+  ok: boolean;
+  error: bookingCancelByHand_BookingCancelByHand_error | null;
+  data: bookingCancelByHand_BookingCancelByHand_data | null;
+}
+
+export interface bookingCancelByHand {
+  BookingCancelByHand: bookingCancelByHand_BookingCancelByHand;
+}
+
+export interface bookingCancelByHandVariables {
+  params: BookingCancelByHandInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: bookingFindByCode
 // ====================================================
 
@@ -1237,6 +1371,13 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author_profile
   uri: string;
 }
 
+export interface bookingFindByCode_BookingFindByCode_data_product_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface bookingFindByCode_BookingFindByCode_data_product_author {
   __typename: "User";
   _id: string;
@@ -1300,6 +1441,10 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author {
    * 프로필 사진
    */
   profileImg: bookingFindByCode_BookingFindByCode_data_product_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: bookingFindByCode_BookingFindByCode_data_product_author_bankImg | null;
 }
 
 export interface bookingFindByCode_BookingFindByCode_data_product {
@@ -2358,7 +2503,22 @@ export interface homepage_Homepage_data_logoBottom {
   owner: string;
 }
 
+export interface homepage_Homepage_data_bannerA_img {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface homepage_Homepage_data_bannerA {
+  __typename: "Banner";
+  img: homepage_Homepage_data_bannerA_img | null;
+  link: string;
+  target: string;
+  use: boolean;
+}
+
+export interface homepage_Homepage_data_bannerB_img {
   __typename: "File";
   name: string;
   uri: string;
@@ -2366,17 +2526,18 @@ export interface homepage_Homepage_data_bannerA {
 }
 
 export interface homepage_Homepage_data_bannerB {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
+  __typename: "Banner";
+  img: homepage_Homepage_data_bannerB_img | null;
+  link: string;
+  target: string;
+  use: boolean;
 }
 
 export interface homepage_Homepage_data_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: string | null;
-  bankName: string | null;
+  accountNumber: any | null;
+  bankName: any | null;
 }
 
 export interface homepage_Homepage_data_modal {
@@ -2426,16 +2587,14 @@ export interface homepage_Homepage_data {
   marketingPolic: string;
   logoTop: homepage_Homepage_data_logoTop | null;
   logoBottom: homepage_Homepage_data_logoBottom | null;
-  bannerA: homepage_Homepage_data_bannerA | null;
-  bannerB: homepage_Homepage_data_bannerB | null;
+  bannerA: homepage_Homepage_data_bannerA;
+  bannerB: homepage_Homepage_data_bannerB;
   /**
    * 통신판매 번호
    */
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: homepage_Homepage_data_bankInfo | null;
-  bannerBlink: string | null;
-  bannerAlink: string | null;
   thirdPolicy: string;
   modal: homepage_Homepage_data_modal[];
 }
@@ -2496,7 +2655,22 @@ export interface homepageUpdate_HomepageUpdate_data_logoBottom {
   owner: string;
 }
 
+export interface homepageUpdate_HomepageUpdate_data_bannerA_img {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface homepageUpdate_HomepageUpdate_data_bannerA {
+  __typename: "Banner";
+  img: homepageUpdate_HomepageUpdate_data_bannerA_img | null;
+  link: string;
+  target: string;
+  use: boolean;
+}
+
+export interface homepageUpdate_HomepageUpdate_data_bannerB_img {
   __typename: "File";
   name: string;
   uri: string;
@@ -2504,17 +2678,18 @@ export interface homepageUpdate_HomepageUpdate_data_bannerA {
 }
 
 export interface homepageUpdate_HomepageUpdate_data_bannerB {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
+  __typename: "Banner";
+  img: homepageUpdate_HomepageUpdate_data_bannerB_img | null;
+  link: string;
+  target: string;
+  use: boolean;
 }
 
 export interface homepageUpdate_HomepageUpdate_data_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: string | null;
-  bankName: string | null;
+  accountNumber: any | null;
+  bankName: any | null;
 }
 
 export interface homepageUpdate_HomepageUpdate_data_modal {
@@ -2564,16 +2739,14 @@ export interface homepageUpdate_HomepageUpdate_data {
   marketingPolic: string;
   logoTop: homepageUpdate_HomepageUpdate_data_logoTop | null;
   logoBottom: homepageUpdate_HomepageUpdate_data_logoBottom | null;
-  bannerA: homepageUpdate_HomepageUpdate_data_bannerA | null;
-  bannerB: homepageUpdate_HomepageUpdate_data_bannerB | null;
+  bannerA: homepageUpdate_HomepageUpdate_data_bannerA;
+  bannerB: homepageUpdate_HomepageUpdate_data_bannerB;
   /**
    * 통신판매 번호
    */
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: homepageUpdate_HomepageUpdate_data_bankInfo | null;
-  bannerBlink: string | null;
-  bannerAlink: string | null;
   thirdPolicy: string;
   modal: homepageUpdate_HomepageUpdate_data_modal[];
 }
@@ -2775,6 +2948,13 @@ export interface newsFindById_NewsFindById_data_author_profileImg {
   uri: string;
 }
 
+export interface newsFindById_NewsFindById_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface newsFindById_NewsFindById_data_author {
   __typename: "User";
   _id: string;
@@ -2838,6 +3018,10 @@ export interface newsFindById_NewsFindById_data_author {
    * 프로필 사진
    */
   profileImg: newsFindById_NewsFindById_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: newsFindById_NewsFindById_data_author_bankImg | null;
 }
 
 export interface newsFindById_NewsFindById_data_attachFiles {
@@ -2966,6 +3150,13 @@ export interface newsList_NewsList_data_author_profileImg {
   uri: string;
 }
 
+export interface newsList_NewsList_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface newsList_NewsList_data_author {
   __typename: "User";
   _id: string;
@@ -3029,6 +3220,10 @@ export interface newsList_NewsList_data_author {
    * 프로필 사진
    */
   profileImg: newsList_NewsList_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: newsList_NewsList_data_author_bankImg | null;
 }
 
 export interface newsList_NewsList_data_attachFiles {
@@ -3585,18 +3780,18 @@ export interface templateList_TemplateList_page {
   remainder: number;
 }
 
-export interface templateList_TemplateList_data_triggers_tags {
+export interface templateList_TemplateList_data_trigger_tags {
   __typename: "Tag";
   key: string;
   value: string;
 }
 
-export interface templateList_TemplateList_data_triggers {
+export interface templateList_TemplateList_data_trigger {
   __typename: "NotificationTrigger";
   sender: string;
   event: NotificationTriggerEvent;
   isEnabled: boolean;
-  tags: templateList_TemplateList_data_triggers_tags[];
+  tags: templateList_TemplateList_data_trigger_tags[];
 }
 
 export interface templateList_TemplateList_data_tags {
@@ -3616,7 +3811,7 @@ export interface templateList_TemplateList_data {
    * 코드겐용
    */
   _replaceEnum: ReplaceString | null;
-  triggers: templateList_TemplateList_data_triggers[];
+  trigger: templateList_TemplateList_data_trigger;
   tags: templateList_TemplateList_data_tags[];
   replacers: string[];
 }
@@ -3868,6 +4063,13 @@ export interface portfolioFindById_PortfolioFindById_data_author_profileImg {
   uri: string;
 }
 
+export interface portfolioFindById_PortfolioFindById_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface portfolioFindById_PortfolioFindById_data_author {
   __typename: "User";
   _id: string;
@@ -3931,6 +4133,10 @@ export interface portfolioFindById_PortfolioFindById_data_author {
    * 프로필 사진
    */
   profileImg: portfolioFindById_PortfolioFindById_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: portfolioFindById_PortfolioFindById_data_author_bankImg | null;
 }
 
 export interface portfolioFindById_PortfolioFindById_data_thumb {
@@ -4055,6 +4261,13 @@ export interface portfolioList_PortfolioList_data_author_profileImg {
   uri: string;
 }
 
+export interface portfolioList_PortfolioList_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface portfolioList_PortfolioList_data_author {
   __typename: "User";
   _id: string;
@@ -4118,6 +4331,10 @@ export interface portfolioList_PortfolioList_data_author {
    * 프로필 사진
    */
   profileImg: portfolioList_PortfolioList_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: portfolioList_PortfolioList_data_author_bankImg | null;
 }
 
 export interface portfolioList_PortfolioList_data_thumb {
@@ -4759,6 +4976,13 @@ export interface productList_ProductList_data_author_profileImg {
   uri: string;
 }
 
+export interface productList_ProductList_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface productList_ProductList_data_author {
   __typename: "User";
   _id: string;
@@ -4822,6 +5046,10 @@ export interface productList_ProductList_data_author {
    * 프로필 사진
    */
   profileImg: productList_ProductList_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: productList_ProductList_data_author_bankImg | null;
 }
 
 export interface productList_ProductList_data {
@@ -4969,6 +5197,13 @@ export interface productFindById_ProductFindById_data_author_profileImg {
   uri: string;
 }
 
+export interface productFindById_ProductFindById_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface productFindById_ProductFindById_data_author {
   __typename: "User";
   _id: string;
@@ -5032,6 +5267,10 @@ export interface productFindById_ProductFindById_data_author {
    * 프로필 사진
    */
   profileImg: productFindById_ProductFindById_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: productFindById_ProductFindById_data_author_bankImg | null;
 }
 
 export interface productFindById_ProductFindById_data_questions_answers_author_profileImg {
@@ -5111,6 +5350,7 @@ export interface productFindById_ProductFindById_data_questions {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  secret: boolean[] | null;
   answers: productFindById_ProductFindById_data_questions_answers[] | null;
   keyWards: string[] | null;
   attachFiles: productFindById_ProductFindById_data_questions_attachFiles[] | null;
@@ -5263,6 +5503,13 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_p
   uri: string;
 }
 
+export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   __typename: "User";
   _id: string;
@@ -5326,6 +5573,10 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
    * 프로필 사진
    */
   profileImg: productFindByIdForSeller_ProductFindByIdForSeller_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: productFindByIdForSeller_ProductFindByIdForSeller_data_author_bankImg | null;
 }
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_settlement {
@@ -5367,6 +5618,13 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker_profileImg {
   __typename: "File";
   uri: string;
+}
+
+export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
 }
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker {
@@ -5432,6 +5690,10 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
    * 프로필 사진
    */
   profileImg: productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker_bankImg | null;
 }
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_payment_history {
@@ -5587,6 +5849,13 @@ export interface qnaFindById_QnaFindById_data_author_profileImg {
   uri: string;
 }
 
+export interface qnaFindById_QnaFindById_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface qnaFindById_QnaFindById_data_author {
   __typename: "User";
   _id: string;
@@ -5650,6 +5919,10 @@ export interface qnaFindById_QnaFindById_data_author {
    * 프로필 사진
    */
   profileImg: qnaFindById_QnaFindById_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: qnaFindById_QnaFindById_data_author_bankImg | null;
 }
 
 export interface qnaFindById_QnaFindById_data_attachFiles {
@@ -5784,6 +6057,13 @@ export interface qnaList_QnaList_data_author_profileImg {
   uri: string;
 }
 
+export interface qnaList_QnaList_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface qnaList_QnaList_data_author {
   __typename: "User";
   _id: string;
@@ -5847,6 +6127,10 @@ export interface qnaList_QnaList_data_author {
    * 프로필 사진
    */
   profileImg: qnaList_QnaList_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: qnaList_QnaList_data_author_bankImg | null;
 }
 
 export interface qnaList_QnaList_data_attachFiles {
@@ -6083,6 +6367,13 @@ export interface getContext_GetProfile_data_profileImg {
   uri: string;
 }
 
+export interface getContext_GetProfile_data_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface getContext_GetProfile_data_unReadNoties {
   __typename: "SystemNoti";
   _id: string;
@@ -6151,6 +6442,13 @@ export interface getContext_GetProfile_data_products_author_profileImg {
   uri: string;
 }
 
+export interface getContext_GetProfile_data_products_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface getContext_GetProfile_data_products_author {
   __typename: "User";
   _id: string;
@@ -6214,6 +6512,10 @@ export interface getContext_GetProfile_data_products_author {
    * 프로필 사진
    */
   profileImg: getContext_GetProfile_data_products_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: getContext_GetProfile_data_products_author_bankImg | null;
 }
 
 export interface getContext_GetProfile_data_products_category {
@@ -6298,6 +6600,10 @@ export interface getContext_GetProfile_data {
    * 프로필 사진
    */
   profileImg: getContext_GetProfile_data_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: getContext_GetProfile_data_bankImg | null;
   unReadNoties: getContext_GetProfile_data_unReadNoties[] | null;
   bookings: getContext_GetProfile_data_bookings[];
   products: getContext_GetProfile_data_products[];
@@ -6371,7 +6677,22 @@ export interface getContext_Homepage_data_logoBottom {
   owner: string;
 }
 
+export interface getContext_Homepage_data_bannerA_img {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface getContext_Homepage_data_bannerA {
+  __typename: "Banner";
+  img: getContext_Homepage_data_bannerA_img | null;
+  link: string;
+  target: string;
+  use: boolean;
+}
+
+export interface getContext_Homepage_data_bannerB_img {
   __typename: "File";
   name: string;
   uri: string;
@@ -6379,17 +6700,18 @@ export interface getContext_Homepage_data_bannerA {
 }
 
 export interface getContext_Homepage_data_bannerB {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
+  __typename: "Banner";
+  img: getContext_Homepage_data_bannerB_img | null;
+  link: string;
+  target: string;
+  use: boolean;
 }
 
 export interface getContext_Homepage_data_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: string | null;
-  bankName: string | null;
+  accountNumber: any | null;
+  bankName: any | null;
 }
 
 export interface getContext_Homepage_data_modal {
@@ -6439,16 +6761,14 @@ export interface getContext_Homepage_data {
   marketingPolic: string;
   logoTop: getContext_Homepage_data_logoTop | null;
   logoBottom: getContext_Homepage_data_logoBottom | null;
-  bannerA: getContext_Homepage_data_bannerA | null;
-  bannerB: getContext_Homepage_data_bannerB | null;
+  bannerA: getContext_Homepage_data_bannerA;
+  bannerB: getContext_Homepage_data_bannerB;
   /**
    * 통신판매 번호
    */
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: getContext_Homepage_data_bankInfo | null;
-  bannerBlink: string | null;
-  bannerAlink: string | null;
   thirdPolicy: string;
   modal: getContext_Homepage_data_modal[];
 }
@@ -6613,6 +6933,7 @@ export interface questionList_QuestionList_data_product {
 
 export interface questionList_QuestionList_data {
   __typename: "Question";
+  secret: boolean[] | null;
   _id: string;
   createdAt: any;
   updatedAt: any;
@@ -6633,7 +6954,7 @@ export interface questionList_QuestionList_data {
   likeCount: number;
   no: number;
   author: questionList_QuestionList_data_author | null;
-  product: questionList_QuestionList_data_product;
+  product: questionList_QuestionList_data_product | null;
 }
 
 export interface questionList_QuestionList {
@@ -6871,6 +7192,7 @@ export interface questionFindById_QuestionFindById_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  secret: boolean[] | null;
   answers: questionFindById_QuestionFindById_data_answers[] | null;
   keyWards: string[] | null;
   attachFiles: questionFindById_QuestionFindById_data_attachFiles[] | null;
@@ -6879,7 +7201,7 @@ export interface questionFindById_QuestionFindById_data {
   likeCount: number;
   no: number;
   author: questionFindById_QuestionFindById_data_author | null;
-  product: questionFindById_QuestionFindById_data_product;
+  product: questionFindById_QuestionFindById_data_product | null;
 }
 
 export interface questionFindById_QuestionFindById {
@@ -6975,6 +7297,13 @@ export interface settlementFindById_SettlementFindById_data_product_author_profi
   uri: string;
 }
 
+export interface settlementFindById_SettlementFindById_data_product_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface settlementFindById_SettlementFindById_data_product_author {
   __typename: "User";
   _id: string;
@@ -7038,6 +7367,10 @@ export interface settlementFindById_SettlementFindById_data_product_author {
    * 프로필 사진
    */
   profileImg: settlementFindById_SettlementFindById_data_product_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: settlementFindById_SettlementFindById_data_product_author_bankImg | null;
 }
 
 export interface settlementFindById_SettlementFindById_data_product_bookings_payment_history {
@@ -7265,6 +7598,13 @@ export interface settlementList_SettlementList_data_seller_profileImg {
   uri: string;
 }
 
+export interface settlementList_SettlementList_data_seller_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface settlementList_SettlementList_data_seller {
   __typename: "User";
   _id: string;
@@ -7328,6 +7668,10 @@ export interface settlementList_SettlementList_data_seller {
    * 프로필 사진
    */
   profileImg: settlementList_SettlementList_data_seller_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: settlementList_SettlementList_data_seller_bankImg | null;
 }
 
 export interface settlementList_SettlementList_data_product_bookerSummary {
@@ -7389,6 +7733,13 @@ export interface settlementList_SettlementList_data_product_author_busiRegistrat
 export interface settlementList_SettlementList_data_product_author_profileImg {
   __typename: "File";
   uri: string;
+}
+
+export interface settlementList_SettlementList_data_product_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
 }
 
 export interface settlementList_SettlementList_data_product_author {
@@ -7454,6 +7805,10 @@ export interface settlementList_SettlementList_data_product_author {
    * 프로필 사진
    */
   profileImg: settlementList_SettlementList_data_product_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: settlementList_SettlementList_data_product_author_bankImg | null;
 }
 
 export interface settlementList_SettlementList_data_product {
@@ -8004,6 +8359,100 @@ export interface userUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: emailDuplicateCheck
+// ====================================================
+
+export interface emailDuplicateCheck_EmailDuplicateCheck_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface emailDuplicateCheck_EmailDuplicateCheck {
+  __typename: "CheckDuplicateResponse";
+  ok: boolean;
+  error: emailDuplicateCheck_EmailDuplicateCheck_error | null;
+}
+
+export interface emailDuplicateCheck {
+  EmailDuplicateCheck: emailDuplicateCheck_EmailDuplicateCheck;
+}
+
+export interface emailDuplicateCheckVariables {
+  email: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: signUpDeny
+// ====================================================
+
+export interface signUpDeny_SignUpDeny_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface signUpDeny_SignUpDeny {
+  __typename: "SignUpDenyResponse";
+  ok: boolean;
+  error: signUpDeny_SignUpDeny_error | null;
+}
+
+export interface signUpDeny {
+  SignUpDeny: signUpDeny_SignUpDeny;
+}
+
+export interface signUpDenyVariables {
+  userId: string;
+  reason: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: signUpAccept
+// ====================================================
+
+export interface signUpAccept_SignUpAccept_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface signUpAccept_SignUpAccept {
+  __typename: "SignUpAcceptResponse";
+  ok: boolean;
+  error: signUpAccept_SignUpAccept_error | null;
+}
+
+export interface signUpAccept {
+  SignUpAccept: signUpAccept_SignUpAccept;
+}
+
+export interface signUpAcceptVariables {
+  userId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: verificationStart
 // ====================================================
 
@@ -8173,6 +8622,13 @@ export interface userList_UserList_data_profileImg {
   uri: string;
 }
 
+export interface userList_UserList_data_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface userList_UserList_data {
   __typename: "User";
   _id: string;
@@ -8236,6 +8692,10 @@ export interface userList_UserList_data {
    * 프로필 사진
    */
   profileImg: userList_UserList_data_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: userList_UserList_data_bankImg | null;
 }
 
 export interface userList_UserList {
@@ -8283,6 +8743,13 @@ export interface userFindById_UserFindById_data_busiRegistration {
 export interface userFindById_UserFindById_data_profileImg {
   __typename: "File";
   uri: string;
+}
+
+export interface userFindById_UserFindById_data_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
 }
 
 export interface userFindById_UserFindById_data_products_region {
@@ -8344,6 +8811,13 @@ export interface userFindById_UserFindById_data_products_author_busiRegistration
 export interface userFindById_UserFindById_data_products_author_profileImg {
   __typename: "File";
   uri: string;
+}
+
+export interface userFindById_UserFindById_data_products_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
 }
 
 export interface userFindById_UserFindById_data_products_author {
@@ -8409,6 +8883,10 @@ export interface userFindById_UserFindById_data_products_author {
    * 프로필 사진
    */
   profileImg: userFindById_UserFindById_data_products_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: userFindById_UserFindById_data_products_author_bankImg | null;
 }
 
 export interface userFindById_UserFindById_data_products {
@@ -8550,6 +9028,10 @@ export interface userFindById_UserFindById_data {
    * 프로필 사진
    */
   profileImg: userFindById_UserFindById_data_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: userFindById_UserFindById_data_bankImg | null;
   products: userFindById_UserFindById_data_products[];
   bookings: userFindById_UserFindById_data_bookings[];
 }
@@ -8588,6 +9070,13 @@ export interface Fannounce_author_busiRegistration {
 export interface Fannounce_author_profileImg {
   __typename: "File";
   uri: string;
+}
+
+export interface Fannounce_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
 }
 
 export interface Fannounce_author {
@@ -8653,6 +9142,10 @@ export interface Fannounce_author {
    * 프로필 사진
    */
   profileImg: Fannounce_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: Fannounce_author_bankImg | null;
 }
 
 export interface Fannounce_attachFiles {
@@ -9037,6 +9530,13 @@ export interface Fuser_profileImg {
   uri: string;
 }
 
+export interface Fuser_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface Fuser {
   __typename: "User";
   _id: string;
@@ -9100,6 +9600,10 @@ export interface Fuser {
    * 프로필 사진
    */
   profileImg: Fuser_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: Fuser_bankImg | null;
 }
 
 /* tslint:disable */
@@ -9243,6 +9747,30 @@ export interface Fmodal {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: Fbanner
+// ====================================================
+
+export interface Fbanner_img {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface Fbanner {
+  __typename: "Banner";
+  img: Fbanner_img | null;
+  link: string;
+  target: string;
+  use: boolean;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fhomepage
 // ====================================================
 
@@ -9274,7 +9802,22 @@ export interface Fhomepage_logoBottom {
   owner: string;
 }
 
+export interface Fhomepage_bannerA_img {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface Fhomepage_bannerA {
+  __typename: "Banner";
+  img: Fhomepage_bannerA_img | null;
+  link: string;
+  target: string;
+  use: boolean;
+}
+
+export interface Fhomepage_bannerB_img {
   __typename: "File";
   name: string;
   uri: string;
@@ -9282,17 +9825,18 @@ export interface Fhomepage_bannerA {
 }
 
 export interface Fhomepage_bannerB {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
+  __typename: "Banner";
+  img: Fhomepage_bannerB_img | null;
+  link: string;
+  target: string;
+  use: boolean;
 }
 
 export interface Fhomepage_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: string | null;
-  bankName: string | null;
+  accountNumber: any | null;
+  bankName: any | null;
 }
 
 export interface Fhomepage_modal {
@@ -9342,16 +9886,14 @@ export interface Fhomepage {
   marketingPolic: string;
   logoTop: Fhomepage_logoTop | null;
   logoBottom: Fhomepage_logoBottom | null;
-  bannerA: Fhomepage_bannerA | null;
-  bannerB: Fhomepage_bannerB | null;
+  bannerA: Fhomepage_bannerA;
+  bannerB: Fhomepage_bannerB;
   /**
    * 통신판매 번호
    */
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: Fhomepage_bankInfo | null;
-  bannerBlink: string | null;
-  bannerAlink: string | null;
   thirdPolicy: string;
   modal: Fhomepage_modal[];
 }
@@ -9375,6 +9917,13 @@ export interface Fnews_author_busiRegistration {
 export interface Fnews_author_profileImg {
   __typename: "File";
   uri: string;
+}
+
+export interface Fnews_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
 }
 
 export interface Fnews_author {
@@ -9440,6 +9989,10 @@ export interface Fnews_author {
    * 프로필 사진
    */
   profileImg: Fnews_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: Fnews_author_bankImg | null;
 }
 
 export interface Fnews_attachFiles {
@@ -9508,18 +10061,18 @@ export interface FnotificationTrigger {
 // GraphQL fragment: FsmsTemplate
 // ====================================================
 
-export interface FsmsTemplate_triggers_tags {
+export interface FsmsTemplate_trigger_tags {
   __typename: "Tag";
   key: string;
   value: string;
 }
 
-export interface FsmsTemplate_triggers {
+export interface FsmsTemplate_trigger {
   __typename: "NotificationTrigger";
   sender: string;
   event: NotificationTriggerEvent;
   isEnabled: boolean;
-  tags: FsmsTemplate_triggers_tags[];
+  tags: FsmsTemplate_trigger_tags[];
 }
 
 export interface FsmsTemplate_tags {
@@ -9539,7 +10092,7 @@ export interface FsmsTemplate {
    * 코드겐용
    */
   _replaceEnum: ReplaceString | null;
-  triggers: FsmsTemplate_triggers[];
+  trigger: FsmsTemplate_trigger;
   tags: FsmsTemplate_tags[];
   replacers: string[];
 }
@@ -9560,18 +10113,18 @@ export interface FnotificationManager_smsPricingTable {
   MMS: number;
 }
 
-export interface FnotificationManager_templates_triggers_tags {
+export interface FnotificationManager_templates_trigger_tags {
   __typename: "Tag";
   key: string;
   value: string;
 }
 
-export interface FnotificationManager_templates_triggers {
+export interface FnotificationManager_templates_trigger {
   __typename: "NotificationTrigger";
   sender: string;
   event: NotificationTriggerEvent;
   isEnabled: boolean;
-  tags: FnotificationManager_templates_triggers_tags[];
+  tags: FnotificationManager_templates_trigger_tags[];
 }
 
 export interface FnotificationManager_templates_tags {
@@ -9591,7 +10144,7 @@ export interface FnotificationManager_templates {
    * 코드겐용
    */
   _replaceEnum: ReplaceString | null;
-  triggers: FnotificationManager_templates_triggers[];
+  trigger: FnotificationManager_templates_trigger;
   tags: FnotificationManager_templates_tags[];
   replacers: string[];
 }
@@ -9684,6 +10237,13 @@ export interface Fportfolio_author_profileImg {
   uri: string;
 }
 
+export interface Fportfolio_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
 export interface Fportfolio_author {
   __typename: "User";
   _id: string;
@@ -9747,6 +10307,10 @@ export interface Fportfolio_author {
    * 프로필 사진
    */
   profileImg: Fportfolio_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: Fportfolio_author_bankImg | null;
 }
 
 export interface Fportfolio_thumb {
@@ -9798,6 +10362,13 @@ export interface Fqna_author_busiRegistration {
 export interface Fqna_author_profileImg {
   __typename: "File";
   uri: string;
+}
+
+export interface Fqna_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
 }
 
 export interface Fqna_author {
@@ -9863,6 +10434,10 @@ export interface Fqna_author {
    * 프로필 사진
    */
   profileImg: Fqna_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: Fqna_author_bankImg | null;
 }
 
 export interface Fqna_attachFiles {
@@ -9984,6 +10559,7 @@ export interface Fquestion {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  secret: boolean[] | null;
   answers: Fquestion_answers[] | null;
   keyWards: string[] | null;
   attachFiles: Fquestion_attachFiles[] | null;
@@ -10134,9 +10710,9 @@ export enum BookingStatus {
  */
 export enum CategoryType {
   EXPERIENCE = "EXPERIENCE",
-  INQUIRY = "INQUIRY",
   PORTPOLIO = "PORTPOLIO",
   QNA = "QNA",
+  QUESTION = "QUESTION",
   REGION = "REGION",
   TOUR = "TOUR",
 }
@@ -10326,7 +10902,7 @@ export enum SettlementStatus {
 export enum SystemNotiType {
   booking = "booking",
   cancel = "cancel",
-  memeber = "memeber",
+  member = "member",
   payment = "payment",
   system = "system",
 }
@@ -10582,6 +11158,7 @@ export enum _UserSort {
 export interface AddUserInput {
   nickName: string;
   busiRegistration?: FileCreateInput | null;
+  bankImg?: FileCreateInput | null;
   address_detail: string;
   name: string;
   phoneNumber: string;
@@ -10639,7 +11216,7 @@ export interface AnnounceUpdateInput {
   keyWards?: string[] | null;
   attachFiles?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
-  type: AnnounceType;
+  type?: AnnounceType | null;
 }
 
 export interface AnswerCreateInput {
@@ -10656,9 +11233,39 @@ export interface BankInfoInput {
   bankName?: any | null;
 }
 
+export interface BannerInput {
+  img: FileCreateInput;
+  link: string;
+  target: string;
+  use: boolean;
+}
+
 export interface BoardTarget {
   type: BoardType;
   id: string;
+}
+
+export interface BookingCancelByHandInput {
+  bookingId: string;
+  cancelPrice: number;
+  reqStatus: BookingStatus;
+}
+
+export interface BookingCompleteByHandInput {
+  bookingId: string;
+  isIgnoreExpired: boolean;
+}
+
+export interface BookingCreateByHandInput {
+  product: string;
+  message?: string | null;
+  status: BookingStatus;
+  babyCount: number;
+  kidCount: number;
+  adultCount: number;
+  name: string;
+  email: string;
+  phoneNumber: string;
 }
 
 export interface BookingUpdateInput {
@@ -10738,7 +11345,6 @@ export interface GroupUpdateInput {
   label?: string | null;
   members?: string[] | null;
   tags?: GqlTagInput[] | null;
-  random?: boolean | null;
 }
 
 export interface HomepageUpdateInput {
@@ -10768,14 +11374,12 @@ export interface HomepageUpdateInput {
   logoBottom?: FileUpdateInput | null;
   degitalSalesNumber?: string | null;
   copyRight?: string | null;
-  bannerAlink?: string | null;
-  bannerBlink?: string | null;
+  bannerA?: BannerInput | null;
+  bannerB?: BannerInput | null;
   instaLink?: string | null;
   facebookLink?: string | null;
   twitterLink?: string | null;
   blogLink?: string | null;
-  bannerA?: FileUpdateInput | null;
-  bannerB?: FileUpdateInput | null;
   modal?: ModalInput[] | null;
   partnerFooter?: FileUpdateInput[] | null;
   bankInfo?: BankInfoInput | null;
@@ -10979,7 +11583,8 @@ export interface QuestionCreateInput {
   keyWards?: string[] | null;
   attachFiles?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
-  productId: string;
+  productId?: string | null;
+  secret?: boolean | null;
 }
 
 export interface QuestionUpdateInput {
@@ -10994,6 +11599,7 @@ export interface QuestionUpdateInput {
   thumb?: FileUpdateInput | null;
   productId?: string | null;
   status?: QuestionStatus | null;
+  secret?: boolean | null;
 }
 
 /**
@@ -11019,7 +11625,7 @@ export interface SmsSendInput {
   content: string;
   receivers: string[];
   tempalteId?: string | null;
-  replacements?: ReplacementSetInput | null;
+  replacements?: ReplacementSetInput[] | null;
 }
 
 export interface SmsSendWithTemplateInput {
@@ -11033,7 +11639,7 @@ export interface SmsTemplateCreateInput {
   name: string;
   content: string;
   description?: string | null;
-  triggers?: NotificationTriggerCreateInput[] | null;
+  trigger: NotificationTriggerCreateInput;
   tags?: GqlTagInput[] | null;
 }
 
@@ -11057,6 +11663,7 @@ export interface UserUpdateInput {
   nickName?: string | null;
   acceptSms?: boolean | null;
   busiRegistration?: FileCreateInput | null;
+  bankImg?: FileCreateInput | null;
   busi_address_detail?: string | null;
   acceptEamil?: boolean | null;
   address_detail?: string | null;

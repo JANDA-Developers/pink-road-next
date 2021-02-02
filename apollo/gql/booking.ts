@@ -209,6 +209,72 @@ location
   }
 }
 `
+
+export const BOOKING_CREATE_BY_HAND = gql`
+  mutation bookingCreateByHand(
+    $isIgnoreMaxMember: Boolean!
+    $params: BookingCreateByHandInput!
+  ) {
+  BookingCreateByHand(
+      params:$params
+      isIgnoreMaxMember: $isIgnoreMaxMember
+    ) {
+    ok
+    error {
+      location
+      severity
+      code
+      message
+    }
+    data {
+      _id
+    }
+  }
+}
+`
+
+
+export const BOOKING_COMPLETE_BY_HAND = gql`
+  mutation bookingCompleteByHand(
+    $params: BookingCompleteByHandInput!
+  ) {
+  BookingCompleteByHand(
+      params:$params
+    ) {
+    ok
+    error {
+      location
+      severity
+      code
+      message
+    }
+    data {
+      _id
+    }
+  }
+}
+`
+
+export const BOOKING_CANCEL_BYHAND = gql`
+  mutation bookingCancelByHand(
+    $params: BookingCancelByHandInput!
+  ) {
+  BookingCancelByHand(
+      params:$params
+    ) {
+    ok
+    error {
+      location
+      severity
+      code
+      message
+    }
+    data {
+      _id
+    }
+  }
+}`
+
 export const BOOKING_FIND_BY_CODE = gql`
   query bookingFindByCode(
     $code: String!

@@ -9,6 +9,7 @@ import { CommentWrite } from '../../../../components/comment/CommentWrite';
 import { AppContext } from '../../../_app';
 import Comment from '../../../../components/comment/Comment';
 import { useAnswerCreate, useAnswerDelete, useAnswerUpdate } from '../../../../hook/useAnswer';
+import PageDeny from '../../../Deny';
 
 interface IProp {
 }
@@ -25,7 +26,13 @@ export const QuestionDetail: React.FC<IProp> = () => {
             if (QuestionDelete.ok) toList();
         }
     })
+
     const { item: question, error } = useQuestionFindById(questionId);
+
+    if (question && question.secret) {
+        if()
+        return <PageDeny />
+    }
 
     if (error) return <Page404 />
     if (!question) return <PageLoading />

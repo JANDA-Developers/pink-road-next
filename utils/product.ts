@@ -1,5 +1,6 @@
 import { Fproduct, ProductType } from "../types/api"
 import { getFromUrl } from "./url";
+import { yyyymmdd } from "./yyyymmdd";
 
 export const getTypeTextOfProduct = (productType: ProductType, range:number) => {
     
@@ -19,6 +20,21 @@ export const getTypeTextOfProduct = (productType: ProductType, range:number) => 
 
 export const getRangeString = (product:Fproduct) => {
     const len = product.itinerary.length;
+    const rangeString = `${len -1}박${len}일`;
+
+    if(len === 1) {
+        return "당일";
+    }
+    
+    return rangeString;
+}
+
+
+export const dateRangeFullString = (startDate:Date,endDate:Date,range:number) => {
+   return yyyymmdd(startDate) +"~"+ yyyymmdd(endDate) + "(" + getRangeStringByNumber(range) + ")"
+}
+
+export const getRangeStringByNumber = (len:number) => {
     const rangeString = `${len -1}박${len}일`;
 
     if(len === 1) {

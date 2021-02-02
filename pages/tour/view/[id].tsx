@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useProductFindById, useProductList } from "hook/useProduct";
+import { openListFilter, useProductFindById, useProductList } from "hook/useProduct";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -26,6 +26,10 @@ import defaultPageInfo from 'info/tourView.json';
 import "slick-carousel/slick/slick.css";
 import { ProductPhotoBlock } from "../../../components/list/ProductPhoto";
 import { useGroupFind } from "../../../hook/useGroup";
+import { randomSort } from "../../../utils/randomSort";
+import isEmpty from "../../../utils/isEmpty";
+import { cloneObject } from "../../../utils/clone";
+import { productList_ProductList_data } from "../../../types/api";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -38,8 +42,17 @@ export async function getStaticPaths() {
 }
 const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const router = useRouter();
-  const {item:recommendItems} = useGroupFind("Recommend")
-  const { items, filter, setFilter } = useProductList({},{skip:});
+  const { item: group } = useGroupFind("Recommend")
+  const groupExsist = !isEmpty(group?.members);
+  const { items, filter, setFilter } = useProductList({
+    initialFilter: {
+      ...openListFilter,
+      _id_in: groupExsist ? group?.members : undefined
+    }
+  });
+
+  const randomSorted: productList_ProductList_data[] = groupExsist ? cloneObject(items).sort((a, b) => group?.members.indexOf(a._id)! - group?.members.indexOf(b._id)!) : randomSort(items);
+
   const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const id = router.query.id as string;
   const { loading, item: product } = useProductFindById(id);
@@ -401,7 +414,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         <div className="add_list">
           <h4>핑크로더 추천여행</h4>{/* 랜덤노출 */}
           <ul className="list_ul line3">
-            <ProductPhotoBlock />
+            {randomSorted.slice(0, 2).map(item =>
+              <ProductPhotoBlock key={item._id} item={item} />
+            )}
             {/* <li className="list_in">
               <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(/img/sample_01.gif)' }}>상품이미지</div>
               <div className="box">

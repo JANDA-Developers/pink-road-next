@@ -64,7 +64,7 @@ export class LocalManager<T extends string> {
 }
 
 
-export type TStoreKeys = "qnaWrite" | "announceWrite" | "lastProd" | "signUpRole" | "questionWrite" | "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin";
+export type TStoreKeys = "qnaWrite" | "announceWrite" | "lastProd" | "signUpRole" | "questionWrite" | "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin" ;
 
 export let Storage: LocalManager<TStoreKeys> | null = null;
 

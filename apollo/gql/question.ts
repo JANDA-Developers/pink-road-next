@@ -17,6 +17,7 @@ export const F_QUESTION = gql`
         summary
         subTitle
         status
+        secret
         answers {
           ...Fanswer
         }
@@ -68,6 +69,7 @@ export const QUESTION_LIST = gql`
       ...Fpage
     }
     data  {
+      secret,
       ...Fquestion,
       product {
         _id
@@ -155,11 +157,11 @@ query questionFindById(
   ) {
   ok
   error {
-location
-        severity
-        code
-        message
-}
+  location
+    severity
+    code
+    message
+  }
   data {
     ...Fquestion
     author {

@@ -1,24 +1,26 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { useProductList } from '../../hook/useProduct';
-import { Fcategory } from '../../types/api';
+import { openListFilter, useProductList } from '../../hook/useProduct';
+import { Fcategory, groupList_GroupList_data } from '../../types/api';
 import { BG } from '../../types/const';
 import { productStatus } from '../../utils/enumToKr';
 import { checkIsExp, getTypeFilterByUrl } from '../../utils/product';
 
 interface IProp {
     cat: Fcategory
+    group: groupList_GroupList_data
 }
 
-export const TourMainBoard: React.FC<IProp> = ({ cat }) => {
+export const TourMainBoard: React.FC<IProp> = ({ cat, group }) => {
     const isExp = checkIsExp()
     const { initialFilter } = getTypeFilterByUrl(isExp);
     const [slicePage, setSlicePage] = useState(0);
-    const { items } = useProductList({
+    const { items, filter, setFilter } = useProductList({
         initialViewCount: 80,
         initialFilter: {
+            ...openListFilter,
             ...initialFilter,
-            categoryId_eq: cat._id,
+            _id_in: group.members
         },
     });
 

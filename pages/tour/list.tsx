@@ -4,7 +4,7 @@ import SubTopNav from 'layout/components/SubTop';
 import { ProductPhotoBlock } from '../../components/list/ProductPhoto';
 import BoardList from '../../components/board/List';
 import { ProductListBlock } from '../../components/list/ProductList';
-import { useProductList } from '../../hook/useProduct';
+import { openListFilter, useProductList } from '../../hook/useProduct';
 import { getTypeFilterByUrl, checkIsExp } from '../../utils/product';
 import { useCategoryList } from '../../hook/useCategory';
 import { getStaticPageInfo, Ipage } from '../../utils/page';
@@ -18,7 +18,7 @@ export const getStaticProps = getStaticPageInfo("tourList")
 export const TourList: React.FC<Ipage> = (_pageInfo) => {
     const isExp = checkIsExp();
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
-    const { initialFilter } = getTypeFilterByUrl(isExp);
+    const { initialFilter: urlInitialFilter } = getTypeFilterByUrl(isExp);
     const { data: cats = [] } = useCategoryList();
     const [view, setView] = useState<"line" | "gal">("line");
     const {
@@ -31,7 +31,12 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
         viewCount,
         setViewCount,
         setPage
-    } = useProductList({ initialFilter });
+    } = useProductList({
+        initialFilter: {
+            ...urlInitialFilter,
+            ...openListFilter
+        }
+    });
     const { totalCount } = pageInfo;
 
     const router = useRouter();

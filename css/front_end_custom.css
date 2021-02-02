@@ -492,3 +492,7 @@ figure:after {
     z-index: 90;
     filter: brightness(0);
 }
+
+.banner {
+    display: flex;
+}
