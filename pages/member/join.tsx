@@ -170,10 +170,10 @@ const Join = () => {
 const JoinResult = () => {
     return (
         <div className="wellcom" id="con03">
-            <img src="/img/join_img01.png" alt="환영합니다 이미지" />
+            <img src="/its/join_img01.png" alt="환영합니다 이미지" />
             <h5>회원가입을 축하드립니다!</h5>
             <p>
-                기업파트너or개인파트너는 가입승인 후에 서비스를 이용할 수 있습니다. <br className="no" />
+                가이드는 가입승인 후에 서비스를 이용할 수 있습니다. <br className="no" />
                 잠시만 기다려주세요! 가입승인이 최대 24시간이 걸리며,{" "}
                 <br className="no" />
                 가입시 입력된 이메일로 가입승인 이메일로 안내드리겠습니다.
@@ -238,7 +238,7 @@ const Verification: React.FC = () => {
                     카카오톡 인증
                 </li>
                 <li onClick={handleSelfAuth} className="socialVerify">
-                    <i className="jandaicon-kakaotalk" />
+                    <span className="icon-email"></span>
                     이메일 인증
                 </li>
             </ul>
@@ -289,7 +289,7 @@ const UserType: React.FC = () => {
                 </li>
                 <li className="li03" onClick={handleTypeChoice(UserRole.partner)}>
                     <i />
-                    <strong>개인파트너 회원</strong>
+                    <strong>가이드회원</strong>
                     <span>개인파트너를 위한 회원입니다.</span>
                 </li> */}
             </ul>

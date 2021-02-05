@@ -20,7 +20,7 @@ export const Main: React.FC = () => {
 
 
   return <div className="body main" id="main" >
-    <Meta title="메인페이지" description="ㅁㄴㅇㄴ" />
+    <Meta title="[It's Guide] 잇츠가이드에서 당신의 가이드를 매칭 해드립니다." description="잇츠가이드로 여행을 시작하세요. 맞춤 여행을 경험해보세요." />
     <div className="main_con_box1 Slider_box">
 
       <Slider
@@ -42,10 +42,10 @@ export const Main: React.FC = () => {
               <span {...edit('m_01_subtitle')}>
               </span>
               <div className="btn_list">
-                <Link href="/guide">
+                <Link href="/tour">
                   <a className="tourLink" {...edit("m_01_mainLink1")} />
                 </Link>
-                <Link href="/tour">
+                <Link href="/guide">
                   <a  {...edit("m_01_mainLink2")} />
                 </Link>
               </div>

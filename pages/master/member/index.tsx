@@ -41,7 +41,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                     <ul>
                         <li className="on"><Link href="/master/member"><a>개인회원</a></Link></li>
                         <li><Link href="/master/member/member1-2"><a>기업파트너 회원</a></Link></li>
-                        <li><Link href="/master/member/member1-3"><a>개인파트너 회원</a></Link></li>
+                        <li><Link href="/master/member/member1-3"><a>가이드회원</a></Link></li>
                         <li><Link href="/master/member/member1-4"><a>탈퇴회원</a></Link></li>
                     </ul>
                 </div>
@@ -85,7 +85,7 @@ export const MsMemberA: React.FC<IProp> = () => {
                                 <div className="search_div">
                                     <input className="w100" type="text" placeholder="검색 내용을 입력해주세요." />
                                     <div className="svg_img">
-                                        <img src="/img/svg/search_icon.svg" alt="검색아이콘" />
+                                        <img src="/img/svg/search_icon.svg" alt="search icon" />
                                         <button />
                                     </div>
                                 </div>

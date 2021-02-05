@@ -179,7 +179,7 @@ select:focus {
     .btn.small {
         color: #999;
         border: 1px solid #cfcfcf;
-        border-radius: 5px;
+        border-radius: 3px;
         box-sizing: border-box;
         padding: 0 15px;
         font-size: 12px;
@@ -194,7 +194,7 @@ select:focus {
     .btn.medium {
         color: #6c6c6c;
         border: 1px solid #7d7d7d;
-        border-radius: 5px;
+        border-radius: 3px;
         box-sizing: border-box;
         padding: 0 15px;
         font-size: 12px;
@@ -408,7 +408,7 @@ input[type="checkbox"] {
 }
 input[type="text"],
 input[type="email"] {
-    border-radius: 5px;
+    border-radius: 3px;
     height: 34px;
     padding-left: 10px;
     box-sizing: border-box;
@@ -418,14 +418,14 @@ input[type="email"] {
 textarea {
     border: #e3e3e3 1px solid;
     font-weight: 100;
-    border-radius: 5px;
+    border-radius: 3px;
     width: 100%;
     min-height: 150px;
     padding: 15px;
     box-sizing: border-box;
 }
 select {
-    border-radius: 5px;
+    border-radius: 3px;
     height: 34px;
     width: 100%;
     font-size: 0.9em;

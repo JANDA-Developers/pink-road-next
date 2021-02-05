@@ -119,7 +119,7 @@ export const Login: React.FC<IProp> = () => {
                             onClick={() => { handleUserType(UserRole.individual) }}
                         />
                         <label htmlFor="tab-1" className="tab-label-1 login_tap tap_01 ">
-                            <b>개인</b>
+                            <b>가이드</b>
                         </label>
                         <input
                             id="tab-2"
@@ -127,9 +127,9 @@ export const Login: React.FC<IProp> = () => {
                             name="radio-set"
                             className="tab-selector-2"
                             value="partnerB"
-                            onClick={() => { handleUserType(UserRole.partnerB) }}
+                            onClick={() => { handleUserType(UserRole.manager) }}
                         />
-                        <label htmlFor="tab-2" className="tab-label-2 login_tap tap_02">
+                        {/* <label htmlFor="tab-2" className="tab-label-2 login_tap tap_02">
                             <b>기업파트너</b>
                         </label>
                         <input
@@ -139,8 +139,8 @@ export const Login: React.FC<IProp> = () => {
                             className="tab-selector-3"
                             value="partner"
                             onClick={() => { handleUserType(UserRole.partner) }}
-                        />
-                        <label htmlFor="tab-3" className="tab-label-3 login_tap tap_03">
+                        /> */}
+                        {/* <label htmlFor="tab-3" className="tab-label-3 login_tap tap_03">
                             <b>개인파트너</b>
                         </label>
                         <input
@@ -150,7 +150,7 @@ export const Login: React.FC<IProp> = () => {
                             className="tab-selector-4"
                             value="manager"
                             onClick={() => { handleUserType(UserRole.manager) }}
-                        />
+                        /> */}
                         <label htmlFor="tab-4" className="tab-label-4 login_tap tap_03">
                             <b>마스터</b>
                         </label>

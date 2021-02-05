@@ -390,7 +390,7 @@
     .master_box .main_paper_div .hang.div09 span{
         width:22px;display: inline-block;
      }
-    .master_box .main_paper_div .hang.div09 object{
+    .master_box .main_paper_div .hang.div09 img{
         width:100%;
      }
      .master_box .main_paper_div .hang.div01 .view li{
@@ -796,7 +796,7 @@
        padding: 20px;
        min-height: 300px;
        margin-bottom: 5px;
-       border-radius: 5px;
+       border-radius: 3px;
     }
 
 
@@ -1460,7 +1460,7 @@
     }
     /* .master_box .reservation.calculate .btn {
         border: 1px solid #cfcfcf;
-        border-radius: 5px;
+        border-radius: 3px;
     } */
     .master_box .calculate .info {
         display: block !important;
@@ -1584,7 +1584,7 @@
         border-bottom: 3px solid #333;
     }
     .master_box .design input[type*=text] {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 34px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -1592,7 +1592,7 @@
         font-weight: 100;
     }
     .master_box .design select {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 34px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -1660,7 +1660,7 @@
                box-sizing: border-box;
                padding: 20px;
                margin-top: 30px;
-               border-radius: 5px;
+               border-radius: 3px;
                border: 1px solid #ccc;
             }
     .master_box .popupst_box .view_box{
@@ -1670,7 +1670,7 @@
         max-width: 100%;
         height: 260px;
         overflow: hidden;
-        border-radius: 5px;
+        border-radius: 3px;
         background-color: #ffffff;
         box-sizing: border-box;
         box-shadow: 0px 0px 5px #3333332e;
@@ -1960,7 +1960,7 @@
             border: 1px solid #ccc;
             margin-right:10px;
         }
-        .master_box .notification_box .ovj  object {
+        .master_box .notification_box .ovj img {
             fill:#fff;
             width: 100%;
         }
@@ -2204,7 +2204,7 @@
     box-sizing: border-box;
 }
     .master_box .homepage input[type*=text] {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 34px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -2212,7 +2212,7 @@
         font-weight: 100;
     }
     .master_box .homepage select {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 34px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -2266,7 +2266,7 @@
         color: #555;
         padding: 8px 10px;
         border: rgb(184, 184, 184) solid 1px;
-        border-radius: 5px;
+        border-radius: 3px;
         margin: 0 10px 10px 0;
         font-weight: 100;
         line-height: 14px;
@@ -2286,7 +2286,7 @@
         cursor: pointer;
      }
     .master_box .homepage .design_table .btn{
-        border-radius: 5px;
+        border-radius: 3px;
         line-height: 32px;
         margin: 0px 0px 0px 5px;
         vertical-align: top;
@@ -2351,7 +2351,7 @@
         box-sizing: border-box;
         margin-bottom: 15px;
         vertical-align: top;
-        border-radius: 5px;
+        border-radius: 3px;
         line-height: 150%;
         cursor: pointer;
         overflow: hidden;
@@ -2447,7 +2447,7 @@
     }
 
     .popup_bg_full .homepage_popup input[type*=text] {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 34px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -2455,7 +2455,7 @@
         font-weight: 100;
     }
     .popup_bg_full .homepage_popup select {
-        border-radius: 5px;
+        border-radius: 3px;
         height: 34px;
         padding-left: 10px;
         box-sizing: border-box;
@@ -3252,7 +3252,7 @@ div.master_popup div.alignment{
 @media (min-width: 768px) {
     
     .master_box .main_paper_div .hang{
-        border-radius: 5px;
+        border-radius: 3px;
     }
     .master_box .main_paper_div .hang.div05{
         width: 32%;
@@ -4283,7 +4283,7 @@ div.master_popup .info_table .th01,
     }
     .master_box .notification_box .paper_div {
         padding: 30px 50px 100px;
-        border-radius: 5px;
+        border-radius: 3px;
     }
     .master_box .notification_box .right .hang:before {
         width: 5px;

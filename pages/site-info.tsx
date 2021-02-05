@@ -47,7 +47,6 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
             <div className="w1200">
                 <h3 {...edit("con01_mainTitle")} />
                 <p {...edit("con01_secondTitle")} />
-                <div className="logo"><img src="/its/logo_1.png" alt="잇츠가이드 로고" /></div>
             </div>
         </div>
 
