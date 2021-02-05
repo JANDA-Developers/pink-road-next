@@ -68,6 +68,7 @@ export const Payment: React.FC<IProp> = ({ }) => {
     }
 
     const auth = async (price: number) => {
+        alert("auth occcurend");
         const { data } = await getAuth(price);
         if (data.ediDate) {
             setAuthData(data);
@@ -77,6 +78,7 @@ export const Payment: React.FC<IProp> = ({ }) => {
         }
     }
 
+    //인증 받을 데이터
     const niceAuth = {
         Amt: totalPrice.toString(),
         EdiDate: authData?.ediDate || "",

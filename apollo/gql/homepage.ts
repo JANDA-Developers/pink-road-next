@@ -86,7 +86,6 @@ export const F_HOMEPAGE = gql`
         }
     }
     ${F_BANNER}
-    ${F_BANNER}
     ${F_FILE}
     ${F_MODAL}
 `

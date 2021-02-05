@@ -223,6 +223,7 @@ export const PRODUCT_FIND_BY_ID = gql`
       }
       data {
         ...Fproduct
+        peopleCount
         author {
             ...Fuser
         }

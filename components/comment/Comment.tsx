@@ -4,6 +4,8 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../../pages/_app';
 import { Fanswer, Fquestion } from '../../types/api';
 import { BG, BGprofile } from '../../types/const';
+import sanitizeHtml from 'sanitize-html';
+
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 
 
@@ -28,7 +30,7 @@ export const Comment: React.FC<IProp> = ({ _id, content, createdAt, title, onDel
     return <li className="list_comment">
         <div className="title"><i className="profile" style={BGprofile(author?.profileImg)}></i>{title}</div>
         {editMode || <p dangerouslySetInnerHTML={{
-            __html: content
+            __html: sanitizeHtml(content)
         }} />}
         {editMode && <div>
             <Editor data={model} onChange={setModel} />

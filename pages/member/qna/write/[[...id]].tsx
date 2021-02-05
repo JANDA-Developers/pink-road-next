@@ -126,7 +126,8 @@ export const QnaWrite: React.FC<IProp> = () => {
         opens={{
             title: true,
             category: true,
-            files: true
+            files: true,
+            open: true
         }}
     />
 };

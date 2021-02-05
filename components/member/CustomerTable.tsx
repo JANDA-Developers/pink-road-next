@@ -28,7 +28,7 @@ export const CustomerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHo
             <div className="td05">성별</div>
             <div className="td06">국적</div>
             <div className="td07">가입일</div>
-            <div className="td08">가입경로</div>
+            <div className="td08">주소</div>
             <div className="td09">상세보기</div>
         </div>
         {users.map(user =>

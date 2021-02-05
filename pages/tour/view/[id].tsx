@@ -29,7 +29,10 @@ import { useGroupFind } from "../../../hook/useGroup";
 import { randomSort } from "../../../utils/randomSort";
 import isEmpty from "../../../utils/isEmpty";
 import { cloneObject } from "../../../utils/clone";
-import { productList_ProductList_data } from "../../../types/api";
+import { productList_ProductList_data, ProductStatus } from "../../../types/api";
+import sanitizeHtml from "sanitize-html";
+import { ALLOW_SELLERS } from "../../../types/const";
+import { productStatus } from "../../../utils/enumToKr";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -56,7 +59,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const id = router.query.id as string;
   const { loading, item: product } = useProductFindById(id);
-  const { isManager, isAdmin, myProfile } = useContext(AppContext);
+  const { isManager, isAdmin, myProfile, isSeller } = useContext(AppContext);
   const isMyProduct = product?.author?._id === myProfile?._id;
 
   const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
@@ -67,6 +70,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     adult_price: product?.adult_price,
     baby_price: product?.baby_price,
     kids_price: product?.kids_price,
+    capacity: product ? product.maxMember - product.peopleCount : 999,
     defaultCount: {
       adult: 0,
       baby: 0,
@@ -120,9 +124,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     })
 
     if (count.adult + count.baby + count.kids === 0) {
-      toast.info("인원을 먼저 선택 해주세요.");
+      alert("인원을 먼저 선택 해주세요.");
     } else {
-      toast.info("장바구니에 저장 되었습니다.")
+      alert("장바구니에 저장 되었습니다.")
     }
   }
 
@@ -143,6 +147,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   if (loading) return <PageLoading />
   if (!product) return <Page404 />
 
+
+
   const {
     images,
     keyWards,
@@ -160,9 +166,13 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     contents,
     inOrNor,
     caution,
-    code
+    code,
+    peopleCount
   } = product;
 
+
+  if (!isSeller && !product.isOpen) return <Page404 />
+  if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
 
   return <div className="edtiorView">
     <SubTopNav
@@ -201,7 +211,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               )}
             </ul>
             <div className="details_info_txt">
-              <div className="ck-content" dangerouslySetInnerHTML={{ __html: info }} />
+              <div className="ck-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(info) }} />
             </div>
           </div>
         </div>
@@ -232,6 +242,11 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                       </ul>
                     </td>
                   </tr>
+                  {isSeller && <tr>
+                    <th className="smtitle bt_line">상태</th>
+                    <td className="smtxt bt_line">{productStatus(product.status)} {product.isOpen ? "공개" : "비공개"}</td>
+                  </tr>
+                  }
                   <tr>
                     <th className="smtitle bt_line">출발일</th>
                     <td className="smtxt bt_line">{dayjs(startDate).format("YYYY.MM.DD")}</td>
@@ -247,6 +262,10 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                   <tr>
                     <th className="smtitle bt_line">최대인원</th>
                     <td className="smtxt bt_line">{maxMember}명</td>
+                  </tr>
+                  <tr>
+                    <th className="smtitle bt_line">현재인원</th>
+                    <td className="smtxt bt_line">{peopleCount + "/" + maxMember}명</td>
                   </tr>
                   <tr>
                     <th className="smtitle bt_no">출발장소</th>
@@ -344,7 +363,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 </div>
                 <div className="tour_list">
                   {it.contents.map((con, index) => <div key={index + "con" + it._id}>
-                    <div className="ck-content" dangerouslySetInnerHTML={{ __html: con }} />
+                    <div className="ck-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(con) }} />
                   </div>
                   )}
                 </div>
@@ -362,19 +381,19 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
           <div className="in_box" id="tap__02">
             <h4>안내 및 참고</h4>
             <div dangerouslySetInnerHTML={{
-              __html: contents
+              __html: sanitizeHtml(contents)
             }} className="text ck-content" />
           </div>
           {/* 포함 및 불포함 */}
           <div className="in_box" id="tap__03">
             <h4>포함 및 불포함 </h4>
             <div dangerouslySetInnerHTML={{
-              __html: inOrNor
+              __html: sanitizeHtml(inOrNor)
             }} className="text ck-content" />
           </div>
           <div className="in_box" id="tap__04" >
             <h4>주의사항</h4>
-            <div dangerouslySetInnerHTML={{ __html: caution }} className="text" />
+            <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(caution) }} className="text" />
           </div>
           <div className="in_box" id="tap__04">
             <h4>문의하기</h4>
@@ -478,3 +497,5 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
 
 
 export default TourDetail;
+
+// 5분 //

@@ -62,29 +62,16 @@ export const GET_CONTEXT = gql`
               title
             }
           }
-          products {
-            author {
-            ...Fuser
-          }
-          category {
-              _id
-              label
-          }
-            bookings {
-              _id
-              name
-            }
-          }
         }
       }
       CategoryList {
         ok
         error {
-      location
-      severity
-      code
-      message
-    }
+        location
+        severity
+        code
+        message
+      }
         data {
           ...Fcategory
         }

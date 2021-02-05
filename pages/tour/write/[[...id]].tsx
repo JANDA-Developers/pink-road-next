@@ -22,6 +22,7 @@ import { EditorLoading } from "../../../components/edit/EdiotrLoading";
 import pageInfoDefault from "info/tourWrite.json"
 import { getStaticPageInfo, Ipage } from "../../../utils/page";
 import { usePageEdit } from "../../../hook/usePageEdit";
+import { assert } from "console";
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
 interface IProp {
@@ -57,7 +58,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const { query } = router;
     const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const id = query.id?.[0] as string | undefined;
-    const isCreateMode = id ? "edit" : "create";
+    const isCreateMode = id ? false : true;
     const { item: product, loading } = useProductFindById(id);
     const { categoriesMap, isAdmin } = useContext(AppContext);
     const {
@@ -75,7 +76,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
 
 
     const { createFn, deleteFn, updateFn } = mutations;
-    const { categoryId, its, simpleData, status, thumbs, keyWards, type } = tourData;
+    const { categoryId, its, simpleData, status, thumbs, keyWards, type, regionId } = tourData;
     const {
         setkeyWards,
         setits,
@@ -99,6 +100,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         isOpen,
     } = simpleData;
     const {
+        handleRegionChange,
         handleTextData,
         handleCatChange,
         handleChangeStatus,
@@ -158,9 +160,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     }, [])
 
 
-
-    console.log("categoriesMap");
-    console.log(categoriesMap);
 
     const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.EXPERIENCE;
     const regionCategories = categoriesMap.REGION;
@@ -262,7 +261,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     <div className="title">지역</div>
                     <div className="input_form">
                         <div>
-                            <select onChange={handleCatChange} value={categoryId} name="category_srl">
+                            <select onChange={handleRegionChange} value={regionId || ""} name="category_srl">
                                 {regionCategories.map(cat =>
                                     <option value={cat._id} key={cat._id}>
                                         {cat.label}
@@ -272,7 +271,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     선택없음
                                 </option>
                             </select>
-                            <input onChange={handleInputChange("address")} value={address} type="text" className="text w100" />
                         </div>
                     </div>
                 </div>
@@ -281,7 +279,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     <div className="title">장소</div>
                     <div className="input_form">
                         <div>
-                            <input onChange={handleInputChange("regionId")} value={address} type="text" className="text w100" />
+                            <input onChange={handleInputChange("address")} value={address} type="text" className="text w100" />
                         </div>
                     </div>
                 </div>
@@ -349,10 +347,10 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
 
             <div className="write_con">
                 <ul className="con_tap">
-                    <li onClick={handleTab(1)} className={tabOnCheck(1)}><span><i>01.</i>여행상세설명</span></li>
-                    <li onClick={handleTab(2)} className={tabOnCheck(2)}><span><i>02.</i>안내 및 참고</span></li>
-                    <li onClick={handleTab(3)} className={tabOnCheck(3)}><span><i>03.</i>포함 및 불포함</span></li>
-                    <li onClick={handleTab(4)} className={tabOnCheck(4)}><span><i>04.</i>기타 설정</span></li>
+                    <li id="tap1" onClick={handleTab(1)} className={tabOnCheck(1)}><span><i>01.</i>여행상세설명</span></li>
+                    <li id="tap2" onClick={handleTab(2)} className={tabOnCheck(2)}><span><i>02.</i>안내 및 참고</span></li>
+                    <li id="tap3" onClick={handleTab(3)} className={tabOnCheck(3)}><span><i>03.</i>포함 및 불포함</span></li>
+                    <li id="tap4" onClick={handleTab(4)} className={tabOnCheck(4)}><span><i>04.</i>기타 설정</span></li>
                 </ul>
                 <div {...tapDisplay(1)} id="texta_01" className="texta">
                     <h5 id="itinerary">여행일정</h5>

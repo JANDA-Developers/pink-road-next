@@ -5,14 +5,17 @@ import { BookingCreateByHandInput, bookingCreateByHandVariables, BookingStatus, 
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
 import { openModal } from '../../utils/popUp';
 import { dateRangeFullString, getRangeString, getRangeStringByNumber, getTypeTextOfProduct } from '../../utils/product';
+import { Validater } from '../../utils/validate';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import { Modal } from '../modal/Modal';
 import { ProductSelectModal } from '../ProductSelectModal';
 import { ProductSelectView } from './ProductSelectView';
 
-interface IProp { }
+interface IProp {
+    defaultProductId?: string
+}
 
-export const HandBookingModal: React.FC<IProp> = () => {
+export const HandBookingModal: React.FC<IProp> = ({ defaultProductId }) => {
     const [input, setInput] = useState<BookingCreateByHandInput>({
         adultCount: 0,
         babyCount: 0,
@@ -21,11 +24,13 @@ export const HandBookingModal: React.FC<IProp> = () => {
         name: "",
         phoneNumber: "",
         product: "",
+        gender: GENDER.MAIL,
         status: BookingStatus.READY
     });
+
     const [bookingCreate] = useBookingCreateByHand()
     const [bookingUpdate] = useBookingUpdate();
-    const { item } = useProductFindById(input?.product)
+    const { item } = useProductFindById(defaultProductId || input?.product)
 
 
     const handleSearch = () => {
@@ -35,6 +40,49 @@ export const HandBookingModal: React.FC<IProp> = () => {
     const handleGender = (gender: GENDER) => () => {
         input.gender = gender
         setInput({ ...input });
+    }
+
+    const selectCount = input.adultCount + input.kidCount + input.babyCount;
+    const availableCount = (item?.maxMember || 0) - (item?.peopleCount || 0)
+    console.log({ availableCount });
+    const { validate } = new Validater([{
+        value: selectCount > 1,
+        failMsg: "인원을 입력해 주세요."
+    }, {
+        value: input.phoneNumber,
+        failMsg: "전화번호를 입력 해주세요."
+    }, {
+        value: defaultProductId || input.product,
+        failMsg: "올바른 상품이 아닙니다."
+    }, {
+        value: availableCount < selectCount,
+        failMsg: "해당 인원을 수용 할 수 없습니다."
+    }, {
+        value: input.name,
+        failMsg: "예약자명을 입력 해주세요."
+    }])
+
+    const handleRegist = () => {
+        const { adultCount, babyCount, kidCount, name, phoneNumber, product, status, email, gender, memo, message } = input;
+        if (!validate()) return;
+        bookingCreate({
+            variables: {
+                isIgnoreMaxMember: false,
+                params: {
+                    adultCount,
+                    babyCount,
+                    kidCount,
+                    name,
+                    phoneNumber,
+                    product,
+                    status,
+                    email,
+                    gender,
+                    memo,
+                    message
+                }
+            }
+        })
     }
 
     const handleCount = (key: keyof BookingCreateByHandInput, isUp: boolean) => () => {
@@ -48,10 +96,13 @@ export const HandBookingModal: React.FC<IProp> = () => {
 
     }
 
-    const totalPrice =
-    (count.adult * adult_price) +
-    (count.baby * baby_price) +
-    (count.kids * kids_price);
+    let totalPrice = 0
+
+    if (item) {
+        totalPrice = (input.adultCount * item?.adult_price) +
+            (input.babyCount * item?.baby_price) +
+            (input.kidCount * item?.kids_price);
+    }
 
     //수기 등록시 여러가지 부킹을 한번에 생산 할 수 있나?  ㄴㄴ
     //하나씩 하면됨 
@@ -63,15 +114,17 @@ export const HandBookingModal: React.FC<IProp> = () => {
             <h3>예약 수기등록</h3>
             <div className="info_page">
                 <div className="full_div">
-                    <h4>상품선택</h4>
-                    <div className="goodsall__choice">
-                        {/* 상품 선택시에 아래 goodsall__choice_info 노출됨 */}
-                        <div className="goodsall__choice_touch">
-                            <button onClick={handleSearch}><i className="flaticon-add"></i>추가</button>
+                    {!defaultProductId && <>
+                        <h4>상품선택</h4>
+                        <div className="goodsall__choice">
+                            {/* 상품 선택시에 아래 goodsall__choice_info 노출됨 */}
+                            <div className="goodsall__choice_touch">
+                                <button onClick={handleSearch}><i className="flaticon-add"></i>추가</button>
+                            </div>
+                            {/* goodsall__choice_info 노출됨과 동시에 goodsall__choice_touch 숨김*/}
+                            {input.product && <ProductSelectView key={input.product} id={input.product} />}
                         </div>
-                        {/* goodsall__choice_info 노출됨과 동시에 goodsall__choice_touch 숨김*/}
-                        {input.product && <ProductSelectView key={input.product} id={input.product} />}
-                    </div>
+                    </>}
 
                     <h4>상품 정보</h4>
                     <div className="info_table w100">
@@ -128,7 +181,7 @@ export const HandBookingModal: React.FC<IProp> = () => {
                                 const val = e.currentTarget.value;
                                 input.email = val;
                                 setInput({ ...input })
-                            }} value={input?.email} type="text" className="w80" placeholder="" /></div>
+                            }} value={input?.email || ""} type="text" className="w80" placeholder="" /></div>
                             <div className="th02">성별</div>
                             <div className="td02">
                                 <ul className="gender_check">
@@ -199,27 +252,21 @@ export const HandBookingModal: React.FC<IProp> = () => {
                         <div className="tr">
                             <div className="th01">합계금액</div>
                             <div className="td01">
-                                <strong className="color02">30,000</strong>원
+                                <strong className="color02">{autoComma(totalPrice)}</strong>원
                             </div>
                             <div className="th02">결제방법</div>
                             <div className="td02">
                                 <select className="w50">
-                                    <option>
-                                        가상계좌
+                                    <option selected >
+                                        무통장입금
                                     </option>
                                 </select>
                             </div>
                         </div>
-                        <div className="tr">
-                            <div className="th01">메모</div>
-                            <div className="td01"><input type="text" className="w100" placeholder="" /></div>
-                        </div>
-
-
                     </div>
                 </div>
             </div>
-            <button className="btn">등록하기</button>
+            <button onClick={handleRegist} className="btn">등록하기</button>
         </div>
         <ProductSelectModal onSelect={() => {
 

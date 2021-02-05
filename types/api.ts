@@ -55,7 +55,12 @@ export interface announceFindById_AnnounceFindById_data_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -68,6 +73,10 @@ export interface announceFindById_AnnounceFindById_data_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -91,6 +100,7 @@ export interface announceFindById_AnnounceFindById_data_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -258,7 +268,12 @@ export interface announceList_AnnounceList_data_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -271,6 +286,10 @@ export interface announceList_AnnounceList_data_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -294,6 +313,7 @@ export interface announceList_AnnounceList_data_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -604,6 +624,63 @@ export interface answerUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: BoardList
+// ====================================================
+
+export interface BoardList_BoardList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface BoardList_BoardList_data_thumb {
+  __typename: "File";
+  uri: string;
+}
+
+export interface BoardList_BoardList_data {
+  __typename: "IntegratedBoards";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  thumb: BoardList_BoardList_data_thumb | null;
+  viewCount: number;
+  likeCount: number;
+  slug: string;
+}
+
+export interface BoardList_BoardList {
+  __typename: "IntegratedBoardsResponse";
+  ok: boolean;
+  error: BoardList_BoardList_error | null;
+  data: BoardList_BoardList_data[] | null;
+}
+
+export interface BoardList {
+  BoardList: BoardList_BoardList;
+}
+
+export interface BoardListVariables {
+  filter?: _BoardFilter | null;
+  sort?: _BoardSort[] | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: myBoardList
 // ====================================================
 
@@ -613,54 +690,6 @@ export interface myBoardList_MyBoardList_error {
   severity: ERR_SEVERITY;
   code: ERR_CODE;
   message: string;
-}
-
-export interface myBoardList_MyBoardList_page {
-  __typename: "Page";
-  /**
-   * 현재 페이지 번호
-   */
-  page: number;
-  /**
-   * 페이지당 문서 갯수
-   */
-  cntPerPage: number;
-  /**
-   * 페이지 총 갯수
-   */
-  totalPageSize: number;
-  /**
-   * 시작 페이지 번호
-   */
-  start_page_num: number;
-  /**
-   * 마지막 페이지 번호
-   */
-  end_page_num: number;
-  /**
-   * 이전(<<) 표시 여부
-   */
-  isPrev: boolean;
-  /**
-   * 다음(>>) 표시 여부
-   */
-  isNext: boolean;
-  /**
-   * 이전(<<) 클릭시 표시할 페이지 번호
-   */
-  prev_page_num: number;
-  /**
-   * 다음(>>) 클릭시 표시할 페이지 번호
-   */
-  next_page_num: number;
-  /**
-   * 총 갯수
-   */
-  totalCount: number;
-  /**
-   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
-   */
-  remainder: number;
 }
 
 export interface myBoardList_MyBoardList_data_thumb {
@@ -693,8 +722,7 @@ export interface myBoardList_MyBoardList {
   __typename: "IntegratedBoardResponse";
   ok: boolean;
   error: myBoardList_MyBoardList_error | null;
-  page: myBoardList_MyBoardList_page;
-  data: myBoardList_MyBoardList_data[];
+  data: myBoardList_MyBoardList_data[] | null;
 }
 
 export interface myBoardList {
@@ -702,7 +730,6 @@ export interface myBoardList {
 }
 
 export interface myBoardListVariables {
-  pageInput: pageInput;
   filter?: _BoardFilter | null;
   sort?: _BoardSort[] | null;
   email?: string | null;
@@ -869,7 +896,7 @@ export interface bookingList_BookingList_data_product {
    */
   compeltePeopleCnt: number;
   /**
-   * 상품 하나에 대한 모든 인원
+   * 취소를 제외한 상품 하나에 대한 모든 인원
    */
   peopleCount: number;
   keyWards: string[] | null;
@@ -1399,7 +1426,12 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -1412,6 +1444,10 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -1435,6 +1471,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -1456,6 +1493,10 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   updatedAt: any;
   regionLabel: string | null;
   isDelete: boolean;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
   contents: string;
   determined: boolean;
   endDate: any;
@@ -2536,8 +2577,8 @@ export interface homepage_Homepage_data_bannerB {
 export interface homepage_Homepage_data_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: any | null;
-  bankName: any | null;
+  accountNumber: string | null;
+  bankName: string | null;
 }
 
 export interface homepage_Homepage_data_modal {
@@ -2688,8 +2729,8 @@ export interface homepageUpdate_HomepageUpdate_data_bannerB {
 export interface homepageUpdate_HomepageUpdate_data_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: any | null;
-  bankName: any | null;
+  accountNumber: string | null;
+  bankName: string | null;
 }
 
 export interface homepageUpdate_HomepageUpdate_data_modal {
@@ -2976,7 +3017,12 @@ export interface newsFindById_NewsFindById_data_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -2989,6 +3035,10 @@ export interface newsFindById_NewsFindById_data_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -3012,6 +3062,7 @@ export interface newsFindById_NewsFindById_data_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -3178,7 +3229,12 @@ export interface newsList_NewsList_data_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -3191,6 +3247,10 @@ export interface newsList_NewsList_data_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -3214,6 +3274,7 @@ export interface newsList_NewsList_data_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -4091,7 +4152,12 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -4104,6 +4170,10 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -4127,6 +4197,7 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -4289,7 +4360,12 @@ export interface portfolioList_PortfolioList_data_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -4302,6 +4378,10 @@ export interface portfolioList_PortfolioList_data_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -4325,6 +4405,7 @@ export interface portfolioList_PortfolioList_data_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -4791,6 +4872,10 @@ export interface productDelete_ProductDelete_data {
   isDelete: boolean;
   title: string;
   code: string;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
   contents: string;
   determined: boolean;
   endDate: any;
@@ -5004,7 +5089,12 @@ export interface productList_ProductList_data_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -5017,6 +5107,10 @@ export interface productList_ProductList_data_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -5040,6 +5134,7 @@ export interface productList_ProductList_data_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -5061,6 +5156,10 @@ export interface productList_ProductList_data {
   isDelete: boolean;
   title: string;
   code: string;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
   contents: string;
   determined: boolean;
   endDate: any;
@@ -5225,7 +5324,12 @@ export interface productFindById_ProductFindById_data_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -5238,6 +5342,10 @@ export interface productFindById_ProductFindById_data_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -5261,6 +5369,7 @@ export interface productFindById_ProductFindById_data_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -5370,6 +5479,10 @@ export interface productFindById_ProductFindById_data {
   isDelete: boolean;
   title: string;
   code: string;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
   contents: string;
   determined: boolean;
   endDate: any;
@@ -5531,7 +5644,12 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -5544,6 +5662,10 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -5567,6 +5689,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -5648,7 +5771,12 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -5661,6 +5789,10 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -5684,6 +5816,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -5760,6 +5893,10 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   isDelete: boolean;
   title: string;
   code: string;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
   contents: string;
   determined: boolean;
   endDate: any;
@@ -5798,10 +5935,6 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   Dday: number;
   author: productFindByIdForSeller_ProductFindByIdForSeller_data_author | null;
   settlement: productFindByIdForSeller_ProductFindByIdForSeller_data_settlement | null;
-  /**
-   * 상품 하나에 대한 모든 인원
-   */
-  peopleCount: number;
   bookings: productFindByIdForSeller_ProductFindByIdForSeller_data_bookings[];
 }
 
@@ -5877,7 +6010,12 @@ export interface qnaFindById_QnaFindById_data_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -5890,6 +6028,10 @@ export interface qnaFindById_QnaFindById_data_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -5913,6 +6055,7 @@ export interface qnaFindById_QnaFindById_data_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -6085,7 +6228,12 @@ export interface qnaList_QnaList_data_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -6098,6 +6246,10 @@ export interface qnaList_QnaList_data_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -6121,6 +6273,7 @@ export interface qnaList_QnaList_data_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -6430,113 +6583,6 @@ export interface getContext_GetProfile_data_bookings {
   product: getContext_GetProfile_data_bookings_product;
 }
 
-export interface getContext_GetProfile_data_products_author_busiRegistration {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
-}
-
-export interface getContext_GetProfile_data_products_author_profileImg {
-  __typename: "File";
-  uri: string;
-}
-
-export interface getContext_GetProfile_data_products_author_bankImg {
-  __typename: "File";
-  name: string;
-  uri: string;
-  owner: string;
-}
-
-export interface getContext_GetProfile_data_products_author {
-  __typename: "User";
-  _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  createdAt: any;
-  updatedAt: any;
-  isDelete: boolean;
-  email: string;
-  /**
-   * 담당자명
-   */
-  manageName: string;
-  connectionCount: number;
-  role: UserRole;
-  brith_date: string;
-  address: string;
-  address_detail: string;
-  acceptSms: boolean;
-  acceptEamil: boolean;
-  is_froreginer: boolean;
-  /**
-   * 기업 전화번호
-   */
-  busi_contact: string;
-  /**
-   * 담당자 연락처
-   */
-  manageContact: string;
-  resignDate: any | null;
-  gender: GENDER;
-  busi_num: string;
-  /**
-   * 부서명
-   */
-  busi_department: string;
-  isVerifiedManager: boolean;
-  isVerifiedPhoneNumber: boolean;
-  /**
-   * 사업자 등록증
-   */
-  busiRegistration: getContext_GetProfile_data_products_author_busiRegistration | null;
-  /**
-   * 개인 법인인지 아닌지 체크함 True = 법인
-   */
-  is_priv_corper: boolean;
-  /**
-   * 사업자명
-   */
-  busi_name: string;
-  busi_address: string;
-  account_number: string;
-  name: string;
-  bank_name: string;
-  resignReason: string | null;
-  isResigned: boolean | null;
-  phoneNumber: string;
-  /**
-   * 프로필 사진
-   */
-  profileImg: getContext_GetProfile_data_products_author_profileImg | null;
-  /**
-   * 통장사본
-   */
-  bankImg: getContext_GetProfile_data_products_author_bankImg | null;
-}
-
-export interface getContext_GetProfile_data_products_category {
-  __typename: "Category";
-  _id: string;
-  label: string;
-}
-
-export interface getContext_GetProfile_data_products_bookings {
-  __typename: "Booking";
-  _id: string;
-  name: string;
-}
-
-export interface getContext_GetProfile_data_products {
-  __typename: "Product";
-  author: getContext_GetProfile_data_products_author | null;
-  category: getContext_GetProfile_data_products_category | null;
-  bookings: getContext_GetProfile_data_products_bookings[];
-}
-
 export interface getContext_GetProfile_data {
   __typename: "User";
   _id: string;
@@ -6558,7 +6604,12 @@ export interface getContext_GetProfile_data {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -6571,6 +6622,10 @@ export interface getContext_GetProfile_data {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -6594,6 +6649,7 @@ export interface getContext_GetProfile_data {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -6606,7 +6662,6 @@ export interface getContext_GetProfile_data {
   bankImg: getContext_GetProfile_data_bankImg | null;
   unReadNoties: getContext_GetProfile_data_unReadNoties[] | null;
   bookings: getContext_GetProfile_data_bookings[];
-  products: getContext_GetProfile_data_products[];
 }
 
 export interface getContext_GetProfile {
@@ -6710,8 +6765,8 @@ export interface getContext_Homepage_data_bannerB {
 export interface getContext_Homepage_data_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: any | null;
-  bankName: any | null;
+  accountNumber: string | null;
+  bankName: string | null;
 }
 
 export interface getContext_Homepage_data_modal {
@@ -7325,7 +7380,12 @@ export interface settlementFindById_SettlementFindById_data_product_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -7338,6 +7398,10 @@ export interface settlementFindById_SettlementFindById_data_product_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -7361,6 +7425,7 @@ export interface settlementFindById_SettlementFindById_data_product_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -7436,6 +7501,10 @@ export interface settlementFindById_SettlementFindById_data_product {
   isDelete: boolean;
   title: string;
   code: string;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
   contents: string;
   determined: boolean;
   endDate: any;
@@ -7626,7 +7695,12 @@ export interface settlementList_SettlementList_data_seller {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -7639,6 +7713,10 @@ export interface settlementList_SettlementList_data_seller {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -7662,6 +7740,7 @@ export interface settlementList_SettlementList_data_seller {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -7763,7 +7842,12 @@ export interface settlementList_SettlementList_data_product_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -7776,6 +7860,10 @@ export interface settlementList_SettlementList_data_product_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -7799,6 +7887,7 @@ export interface settlementList_SettlementList_data_product_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -7824,6 +7913,10 @@ export interface settlementList_SettlementList_data_product {
   isDelete: boolean;
   title: string;
   code: string;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
   contents: string;
   determined: boolean;
   endDate: any;
@@ -8272,6 +8365,8 @@ export interface userResign {
 export interface userResignVariables {
   _id: string;
   pw: string;
+  reason: string;
+  resignReasonType: string;
 }
 
 /* tslint:disable */
@@ -8311,6 +8406,7 @@ export interface signInVariables {
   email: any;
   pw: string;
   hopeRole?: UserRole | null;
+  permanence?: boolean | null;
 }
 
 /* tslint:disable */
@@ -8350,7 +8446,7 @@ export interface userUpdate {
 export interface userUpdateVariables {
   params: UserUpdateInput;
   _id: string;
-  pw?: string | null;
+  currentPw?: string | null;
 }
 
 /* tslint:disable */
@@ -8359,7 +8455,7 @@ export interface userUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: emailDuplicateCheck
+// GraphQL mutation operation: emailDuplicateCheck
 // ====================================================
 
 export interface emailDuplicateCheck_EmailDuplicateCheck_error {
@@ -8370,10 +8466,16 @@ export interface emailDuplicateCheck_EmailDuplicateCheck_error {
   message: string;
 }
 
+export interface emailDuplicateCheck_EmailDuplicateCheck_data {
+  __typename: "CheckDuplicate";
+  duplicated: boolean;
+}
+
 export interface emailDuplicateCheck_EmailDuplicateCheck {
   __typename: "CheckDuplicateResponse";
   ok: boolean;
   error: emailDuplicateCheck_EmailDuplicateCheck_error | null;
+  data: emailDuplicateCheck_EmailDuplicateCheck_data | null;
 }
 
 export interface emailDuplicateCheck {
@@ -8412,7 +8514,7 @@ export interface signUpDeny {
 }
 
 export interface signUpDenyVariables {
-  userId: string;
+  userIds: string[];
   reason: string;
 }
 
@@ -8444,7 +8546,70 @@ export interface signUpAccept {
 }
 
 export interface signUpAcceptVariables {
-  userId: string;
+  userIds: string[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: stopUser
+// ====================================================
+
+export interface stopUser_StopUser_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface stopUser_StopUser {
+  __typename: "StopUserResponse";
+  ok: boolean;
+  error: stopUser_StopUser_error | null;
+}
+
+export interface stopUser {
+  StopUser: stopUser_StopUser;
+}
+
+export interface stopUserVariables {
+  userIds: string[];
+  reason: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: restartUser
+// ====================================================
+
+export interface restartUser_RestartUser_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface restartUser_RestartUser {
+  __typename: "RestartUserResponse";
+  ok: boolean;
+  error: restartUser_RestartUser_error | null;
+}
+
+export interface restartUser {
+  RestartUser: restartUser_RestartUser;
+}
+
+export interface restartUserVariables {
+  userIds: string[];
 }
 
 /* tslint:disable */
@@ -8650,7 +8815,12 @@ export interface userList_UserList_data {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -8663,6 +8833,10 @@ export interface userList_UserList_data {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -8686,6 +8860,7 @@ export interface userList_UserList_data {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -8841,7 +9016,12 @@ export interface userFindById_UserFindById_data_products_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -8854,6 +9034,10 @@ export interface userFindById_UserFindById_data_products_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -8877,6 +9061,7 @@ export interface userFindById_UserFindById_data_products_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -8898,6 +9083,10 @@ export interface userFindById_UserFindById_data_products {
   isDelete: boolean;
   title: string;
   code: string;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
   contents: string;
   determined: boolean;
   endDate: any;
@@ -8986,7 +9175,12 @@ export interface userFindById_UserFindById_data {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -8999,6 +9193,10 @@ export interface userFindById_UserFindById_data {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -9022,6 +9220,7 @@ export interface userFindById_UserFindById_data {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -9049,6 +9248,150 @@ export interface userFindById {
 
 export interface userFindByIdVariables {
   id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: emailFindByInfo
+// ====================================================
+
+export interface emailFindByInfo_EmailFindByInfo_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface emailFindByInfo_EmailFindByInfo_data {
+  __typename: "EmailFindByInfo";
+  foundEmails: string[];
+}
+
+export interface emailFindByInfo_EmailFindByInfo {
+  __typename: "EmailFindByInfoResponse";
+  ok: boolean;
+  error: emailFindByInfo_EmailFindByInfo_error | null;
+  data: emailFindByInfo_EmailFindByInfo_data | null;
+}
+
+export interface emailFindByInfo {
+  EmailFindByInfo: emailFindByInfo_EmailFindByInfo;
+}
+
+export interface emailFindByInfoVariables {
+  phoneNumber: string;
+  name: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: passwordFindByPhone
+// ====================================================
+
+export interface passwordFindByPhone_PasswordFindByPhone_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface passwordFindByPhone_PasswordFindByPhone_data {
+  __typename: "PasswordFind";
+  resultObj: any;
+}
+
+export interface passwordFindByPhone_PasswordFindByPhone {
+  __typename: "PasswordFindResponse";
+  ok: boolean;
+  error: passwordFindByPhone_PasswordFindByPhone_error | null;
+  data: passwordFindByPhone_PasswordFindByPhone_data | null;
+}
+
+export interface passwordFindByPhone {
+  PasswordFindByPhone: passwordFindByPhone_PasswordFindByPhone;
+}
+
+export interface passwordFindByPhoneVariables {
+  email: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: nickNameDuplicateCheck
+// ====================================================
+
+export interface nickNameDuplicateCheck_NickNameDuplicateCheck_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface nickNameDuplicateCheck_NickNameDuplicateCheck_data {
+  __typename: "CheckDuplicate";
+  duplicated: boolean;
+}
+
+export interface nickNameDuplicateCheck_NickNameDuplicateCheck {
+  __typename: "CheckDuplicateResponse";
+  ok: boolean;
+  error: nickNameDuplicateCheck_NickNameDuplicateCheck_error | null;
+  data: nickNameDuplicateCheck_NickNameDuplicateCheck_data | null;
+}
+
+export interface nickNameDuplicateCheck {
+  NickNameDuplicateCheck: nickNameDuplicateCheck_NickNameDuplicateCheck;
+}
+
+export interface nickNameDuplicateCheckVariables {
+  nickName: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: passwordChange
+// ====================================================
+
+export interface passwordChange_PasswordChange_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface passwordChange_PasswordChange {
+  __typename: "PasswordChangeResponse";
+  ok: boolean;
+  error: passwordChange_PasswordChange_error | null;
+}
+
+export interface passwordChange {
+  PasswordChange: passwordChange_PasswordChange;
+}
+
+export interface passwordChangeVariables {
+  newPassword: string;
+  currentPw: string;
 }
 
 /* tslint:disable */
@@ -9100,7 +9443,12 @@ export interface Fannounce_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -9113,6 +9461,10 @@ export interface Fannounce_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -9136,6 +9488,7 @@ export interface Fannounce_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -9418,6 +9771,10 @@ export interface Fproduct {
   isDelete: boolean;
   title: string;
   code: string;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
   contents: string;
   determined: boolean;
   endDate: any;
@@ -9558,7 +9915,12 @@ export interface Fuser {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -9571,6 +9933,10 @@ export interface Fuser {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -9594,6 +9960,7 @@ export interface Fuser {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -9835,8 +10202,8 @@ export interface Fhomepage_bannerB {
 export interface Fhomepage_bankInfo {
   __typename: "BankInfo";
   accountHolder: string | null;
-  accountNumber: any | null;
-  bankName: any | null;
+  accountNumber: string | null;
+  bankName: string | null;
 }
 
 export interface Fhomepage_modal {
@@ -9947,7 +10314,12 @@ export interface Fnews_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -9960,6 +10332,10 @@ export interface Fnews_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -9983,6 +10359,7 @@ export interface Fnews_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -10265,7 +10642,12 @@ export interface Fportfolio_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -10278,6 +10660,10 @@ export interface Fportfolio_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -10301,6 +10687,7 @@ export interface Fportfolio_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -10392,7 +10779,12 @@ export interface Fqna_author {
   address: string;
   address_detail: string;
   acceptSms: boolean;
+  status: UserStatus;
   acceptEamil: boolean;
+  /**
+   * 매니저에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
   is_froreginer: boolean;
   /**
    * 기업 전화번호
@@ -10405,6 +10797,10 @@ export interface Fqna_author {
   resignDate: any | null;
   gender: GENDER;
   busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
   /**
    * 부서명
    */
@@ -10428,6 +10824,7 @@ export interface Fqna_author {
   name: string;
   bank_name: string;
   resignReason: string | null;
+  resignReasonType: string | null;
   isResigned: boolean | null;
   phoneNumber: string;
   /**
@@ -11153,6 +11550,8 @@ export enum _UserSort {
   createdAt_desc = "createdAt_desc",
   name_asc = "name_asc",
   name_desc = "name_desc",
+  resignDate_asc = "resignDate_asc",
+  resignDate_desc = "resignDate_desc",
 }
 
 export interface AddUserInput {
@@ -11264,8 +11663,10 @@ export interface BookingCreateByHandInput {
   kidCount: number;
   adultCount: number;
   name: string;
-  email: string;
+  memo?: string | null;
+  email?: string | null;
   phoneNumber: string;
+  gender?: string | null;
 }
 
 export interface BookingUpdateInput {
@@ -12173,6 +12574,13 @@ export interface _UserFilter {
   keywards_not_in?: string[] | null;
   keywards_not_contains?: string | null;
   keywards_all?: string | null;
+  nickName_eq?: string | null;
+  nickName_not_eq?: string | null;
+  nickName_in?: string[] | null;
+  nickName_contains?: string | null;
+  nickName_not_in?: string[] | null;
+  nickName_not_contains?: string | null;
+  nickName_all?: string | null;
   name_eq?: string | null;
   name_not_eq?: string | null;
   name_contains?: string | null;

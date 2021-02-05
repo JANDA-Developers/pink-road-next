@@ -21,6 +21,7 @@ import { SingleSortSelect } from '../../../components/common/SortSelect';
 import { useSingleSort } from '../../../hook/useSort';
 import { ALLOW_ADMINS } from '../../../types/const';
 import { auth } from '../../../utils/with';
+import { Paginater } from '../../../components/common/Paginator';
 
 interface IProp { }
 
@@ -59,7 +60,7 @@ const popupClose2 = () => {
     });
 }
 export const MsGoodsMain: React.FC<IProp> = () => {
-    const { items, filter, setFilter, setSort, sort, viewCount, setViewCount, setUniqFilter } = useProductList();
+    const { items, filter, setFilter, setSort, sort, viewCount, setViewCount, setUniqFilter, setPage, pageInfo } = useProductList();
     const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({ filter, setFilter });
     const { selectAll, toggleAll, isAllSelected, isChecked, toggle } = useIdSelecter(items.map(item => item._id));
     const singleSort = useSingleSort(sort, setSort)
@@ -216,6 +217,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                     </div>
                 </div>
             </div>
+            <Paginater setPage={setPage} pageInfo={pageInfo} />
             <SearcfInfoBox />
             <ProductModal productId={popProductId} />
             {/* popup-기획반려 사유 */}

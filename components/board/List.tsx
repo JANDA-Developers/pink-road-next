@@ -29,7 +29,7 @@ export const BoardList: React.FC<IProp> = ({ setPage, setViewCount, children, Ca
     <div>
       {Categories}
       <div className="alignment">
-        <div className="left_div"><span className="infotxt">총 <strong>{autoComma(totalCount)}</strong>개</span></div>
+        <div className="left_div"><span className="infotxt">총 <strong>{totalCount}</strong>개</span></div>
         <div className="right_div">
           <SortSelect onChange={setSort} sort={sort} />
           <ViewCount value={viewCount} onChange={setViewCount} />

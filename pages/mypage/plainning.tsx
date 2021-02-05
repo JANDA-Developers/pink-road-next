@@ -18,6 +18,7 @@ import { ProductStatus } from '../../types/api';
 import { ProductModal } from '../../components/productModal/ProductModal';
 import { openModalTimeSet } from '../../utils/popUp';
 import { useSettlementsRequest } from '../../hook/useSettlement';
+import { HandBookingModal } from '../../components/handBookingModal/HandBookingModal';
 
 interface IProp { }
 
@@ -51,9 +52,6 @@ export const Plainning: React.FC<IProp> = () => {
 
     const checkStatusOn = (status?: ProductStatus) => filter.status_eq === status ? "check on" : ""
 
-    const handleOpenRegist = () => {
-    }
-
     // const handleRequestSettlement = (productId:string) => () => {
     //     settlementRquest({
     //         variables: {
@@ -62,6 +60,11 @@ export const Plainning: React.FC<IProp> = () => {
     //         }
     //     })
     // }
+
+    const handleHandWriteModal = (productId: string) => () => {
+        setPopupProductId(productId)
+        openModalTimeSet("#HandwrittenRegistration")
+    }
 
     const handleOpenProductModal = (productId: string) => () => {
         setPopupProductId(productId)
@@ -165,8 +168,7 @@ export const Plainning: React.FC<IProp> = () => {
                                             <div className="th08">
                                                 <i className="btn"><Link href={`/tour/write/${item._id}`}><a>상품수정</a></Link></i>{/*글수정으로 가기 */}
                                                 <i onClick={handleOpenProductModal(item._id)} className="btn">상세보기</i>{/* POPUP */}
-                                                <i onClick={handleOpenRegist} className="btn">예약등록</i>{/* POPUP */}
-                                                {/* <i onClick={handleRequestSettlement()} className="btn">정산신청</i>POPUP */}
+                                                {item.status === ProductStatus.OPEN && <i onClick={handleHandWriteModal(item._id)} className="btn">예약등록</i>}
                                             </div>
                                         </li>
                                     )}
@@ -176,16 +178,15 @@ export const Plainning: React.FC<IProp> = () => {
                         </div>
                         <div className="boardNavigation">
                             <div className="float_left">
-
                             </div>
                             <div className="float_right">
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <HandBookingModal key={popupProductId} defaultProductId={popupProductId} />
         <ProductModal productId={popupProductId} />
     </MypageLayout>
 };

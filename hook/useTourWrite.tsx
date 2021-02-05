@@ -15,7 +15,7 @@ import { useMutation } from "@apollo/client";
 import { PRODUCTS_CREATE } from "../apollo/gql/product";
 import { useRouter } from "next/router";
 
-type SimpleTypePart = "regionId" | "isOpen" | "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "contents" | "inOrNor" | "isNotice"
+type SimpleTypePart = "isOpen" | "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "contents" | "inOrNor" | "isNotice"
 export type TSimpleTypePart = Pick<Required<ProductCreateInput>, SimpleTypePart>
 
 export const DEFAULT_SIMPLE_TOUR_DATA: TSimpleTypePart = {
@@ -32,7 +32,6 @@ export const DEFAULT_SIMPLE_TOUR_DATA: TSimpleTypePart = {
     caution: "",
     contents: "",
     inOrNor: "",
-    regionId: "",
     isNotice: false,
     isOpen: false
 }
@@ -41,6 +40,7 @@ export interface IUseTourData {
     its: ItineraryCreateInput[];
     simpleData: TSimpleTypePart;
     categoryId: string;
+    regionId: string;
     status: ProductStatus;
     keyWards: string[];
     thumbs: Ffile[];
@@ -90,6 +90,7 @@ export interface IUseTour {
     getUpdateInput: () => ProductUpdateInput;
     hiddenFileInput: RefObject<HTMLInputElement>
     handles: {
+        handleRegionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
         handleTextData: (key: keyof TSimpleTypePart) => (data: string) => void
         handleTempSave: () => Promise<void>
         handleDateState: ({ from, to }: any) => void
@@ -184,12 +185,19 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         id: "title"
     }, {
         value: simpleData.contents,
-        failMsg: "안내 및값은 필수 입니다.",
+        failMsg: "안내 및 유의사항 값은 필수 입니다.",
+        failFn: () => {
+            document.getElementById("tap4")?.click();
+        },
         id: "content",
     },
     {
         value: simpleData.inOrNor,
         failMsg: "포함 미포함 값은 필수 입니다.",
+        failFn: () => {
+            console.log(document.getElementById("tap3"));
+            document.getElementById("tap3")?.click()
+        },
         id: "inOrNor"
     }, {
         value: categoryId,
@@ -198,6 +206,9 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     }, {
         value: !isEmpty(its),
         failMsg: "여행일정은 필수 입니다.",
+        failFn: () => {
+            document.getElementById("tap1")?.click();
+        },
         id: "itinerary"
     }, {
         value: !isEmpty(keyWards),
@@ -213,7 +224,8 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         value: !its.find(it => Boolean(it.title) === false),
         failMsg: "일정 타이틀 값은 필수 입니다.",
         failFn: () => {
-            $('.texta_title .input_01').filter(function () {
+            document.getElementById("tap01")?.click();
+            $('.taptitle .input_01').filter(function () {
                 return !(this as HTMLInputElement).value;
             }).focus()
         }
@@ -222,12 +234,13 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
 
     const tourData: IUseTourData = {
         categoryId,
+        regionId,
         its,
         keyWards,
         type,
         simpleData,
         status,
-        thumbs
+        thumbs,
     }
     const {
         address,
@@ -273,6 +286,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             images: thumbs,
             inOrNor,
             info,
+            regionId,
             itinerary: its,
             startPoint,
             title,
@@ -326,6 +340,16 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             setThumbs(data.thumbs)
         if (data.type)
             setType(data.type)
+        if (data.keyWards)
+            setkeyWards(data.keyWards)
+        if (data.regionId)
+            setRegionId(data.regionId)
+
+    }
+
+    const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const nextRegion = e.currentTarget.value
+        setRegionId(nextRegion)
     }
 
 
@@ -408,6 +432,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             handleTextData,
             handleTempSave,
             handleInputChange,
+            handleRegionChange,
             handleCatChange,
             handleChangeStatus,
             handleUploadClick,

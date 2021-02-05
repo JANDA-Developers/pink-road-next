@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+import { closeModal } from '../../utils/popUp';
 import { Modal } from '../modal/Modal';
 
 interface IProp {
@@ -8,9 +10,14 @@ interface IProp {
 }
 
 export const Prompt: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) => {
-    const [reason, setReason] = useState("");
+    const [submitData, setSubmitData] = useState("");
 
-    return <Modal title={title} id={id}>
+
+    if (typeof window === "undefined") return null;
+    const el = document.getElementById('portal');
+    if (!el) return null;
+
+    return ReactDOM.createPortal(<Modal title={title} id={id}>
         <div className="write_comment">
             <div className="comment_layout">
                 <ul className="text_box">
@@ -18,17 +25,18 @@ export const Prompt: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) =
                         <div className="txta w100">
                             <textarea onChange={(e) => {
                                 const val = e.currentTarget.value;
-                                setReason(val);
-                            }} value={reason} style={{ height: "100px;" }} placeholder="..."></textarea>
+                                if (val.length > 3000) return;
+                                setSubmitData(val);
+                            }} value={submitData} style={{ height: "100px;" }} placeholder="..."></textarea>
                         </div>
                     </li>
-                    <li className="tr count">{reason.length}/3000</li>
+                    <li className="tr count">{submitData.length}/3000</li>
                 </ul>
                 <div className="text_box_bottom">
                     <div className="btn_send float_right">
                         <button
                             onClick={() => {
-                                handleSubmit(reason)
+                                handleSubmit(submitData)
                             }}
                             className="comment_btn"
                         >제출</button>
@@ -36,5 +44,17 @@ export const Prompt: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) =
                 </div>
             </div>
         </div>
+    </Modal>, el)
+};
+
+
+export const PromptInput: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) => {
+    const [submitData, setSubmitData] = useState("");
+
+    return <Modal title={title} id={id}>
+        <input className="emailVerifi__input" value={submitData} onChange={(e) => {
+            setSubmitData(e.currentTarget.value)
+        }} />
+        <button className="btn small" onClick={() => { handleSubmit(submitData); closeModal("#" + id)() }}>확인</button>
     </Modal>
 };

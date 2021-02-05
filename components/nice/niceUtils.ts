@@ -18,7 +18,7 @@ export const generateNiceData = ({
 }:IgenDataProp): INiceElementProp => {
     const randomNumber = Math.floor((Math.random() * 1000) + 1);;
     const Moid = "PINK" + `-${groupCode}-` + randomNumber;
-
+    
     const params:INiceElementProp = {
         ...niceDataStatic,
         ...auth,

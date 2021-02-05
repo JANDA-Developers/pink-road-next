@@ -10,9 +10,9 @@ import { YearMonthForm } from './YearMonthForm';
 import { JoinContext } from '../../pages/member/join';
 import { autoHypenPhone } from '../../utils/formatter';
 
-
-
 const UserInfoForm: React.FC = () => {
+
+
     const {
         isIndi,
         isPartenerB,
@@ -35,7 +35,9 @@ const UserInfoForm: React.FC = () => {
         handleNationality,
         errDisplay,
         setDaumAddress,
-        handleBusinessLicense
+        handleBusinessLicense,
+        nickNameChecked,
+        handleNickNameCheck
     } = useJoin()
 
     useEffect(() => {
@@ -123,14 +125,17 @@ const UserInfoForm: React.FC = () => {
                         닉네임
                         </label>
                         <span className={`er red_font ${errDisplay.nickName && `on`}`}>*특수문자를 입력하지 말아주세요.</span>
-                        <input
-                            type="text"
-                            className="w100"
-                            placeholder="닉네임을 입력해주세요"
-                            name="name"
-                            value={data.nickName}
-                            onChange={handleData("nickName")}
-                        />
+                        <div>
+                            <input
+                                type="text"
+                                className="w80"
+                                placeholder="닉네임을 입력해주세요"
+                                name="name"
+                                value={data.nickName}
+                                onChange={handleData("nickName")}
+                            />
+                            <button style={{ lineHeight: "100%" }} onClick={handleNickNameCheck} type="button" className={`btn btn_mini ${nickNameChecked && "ok"}`}>{nickNameChecked ? "사용가능" : "중복확인"} </button>
+                        </div>
                     </div>
                     <div className="name_wrap">
                         <label>
@@ -139,6 +144,7 @@ const UserInfoForm: React.FC = () => {
                     </label>
                         <span className={`er red_font ${errDisplay.name && `on`}`}>*한글 이외에 입력이 안됩니다.</span>
                         <input
+                            id="NameInput"
                             type="text"
                             className="w100"
                             placeholder="이름을 입력해주세요"
@@ -155,6 +161,7 @@ const UserInfoForm: React.FC = () => {
                         <span className={`er red_font ${errDisplay.phoneNumber && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
                         <div className="w100">
                             <input
+                                id="PhoneNumberInput"
                                 type="text"
                                 className="w100"
                                 placeholder="-를 제외한 휴대폰 번호를 입력해주세요"
@@ -253,7 +260,7 @@ const UserInfoForm: React.FC = () => {
                             </button>
                         </div>
                         <div className="w100 mt5">
-                            <input type="text" className="w100" name="address_detail" placeholder="상세주소"
+                            <input id="AddressInput" type="text" className="w100" name="address_detail" placeholder="상세주소"
                                 value={data.address_detail}
                                 onChange={handleData("address_detail")} />
                         </div>
@@ -377,41 +384,41 @@ const UserInfoForm: React.FC = () => {
                 </button> */}
                                 </div>
                             </div>
-                            <div className="ph_wrap">
-                                <label>
-                                    <i className="important_icon" />
-                                통장사본
-                                </label>
-                                <span className="er red_font">
-                                    *jpg, gif, png 이외에 업로드 불가능합니다.
-                                </span>
-                                <div className="w100 apply_relative">
-                                    <span className="w80 upload_out_box">
-                                        {data.busiRegistration?.name}
-                                    </span>
-
-                                    <label htmlFor="business_license" className="cus_file_busi_license">
-                                        업로드
-                                    </label>
-                                    <input type="file" name="business_license" id="business_license"
-                                        className="file_busi_license"
-                                        onChange={handleBankImg}></input>
-                                </div>
-                            </div>
                         </div>
                     }
+                    <div className="ph_wrap">
+                        <label>
+                            <i className="important_icon" />
+                                통장사본
+                                </label>
+                        <span className="er red_font">
+                            *jpg, gif, png 이외에 업로드 불가능합니다.
+                                </span>
+                        <div className="w100 apply_relative">
+                            <span className="w80 upload_out_box">
+                                {data.busiRegistration?.name}
+                            </span>
+
+                            <label htmlFor="business_license" className="cus_file_busi_license">
+                                업로드
+                                    </label>
+                            <input type="file" name="business_license" id="business_license"
+                                className="file_busi_license"
+                                onChange={handleBankImg}></input>
+                        </div>
+                    </div>
                     {isIndi ||
                         <div className="ph_wrap">
                             <label>정산계좌</label>
                             <span className="er red_font">
                                 *정보를 정확하게 입력해주세요.
-                        </span>
+                            </span>
                             <div className="w100">
                                 <input
                                     type="text"
                                     className="w10"
                                     name="bank_name"
-                                    style={{ minWidth: 55 }}
+                                    style={{ minWidth: 55, marginRight: "5px" }}
                                     placeholder="은행"
                                     value={data.bank_name || ""}
                                     onChange={handleData("bank_name")}

@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 import { getStaticPageInfo, Ipage } from '../../utils/page';
 import { usePageEdit } from '../../hook/usePageEdit';
 import defaultPageInfo from "../../info/join.json"
+import { ALLOW_SELLERS } from '../../types/const';
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -54,6 +55,7 @@ const Join: React.FC<Ipage> = (pageInfo) => {
         _id: verificationId,
         payload: verifiedEmail
     });
+    
     const setJoinProcess = (process: TJoinProcess) => {
         history.pushState({ joinProcess: joinProcess }, "회원가입 절차");
         history.pushState({ joinProcess: joinProcess }, "회원가입 절차");
@@ -169,16 +171,18 @@ const Join: React.FC<Ipage> = (pageInfo) => {
 
 
 const JoinResult = () => {
+    const { userType } = useContext(JoinContext)!;
+    const isSeller = ALLOW_SELLERS.includes(userType);
     return (
         <div className="wellcom" id="con03">
             <img src="/img/join_img01.png" alt="환영합니다 이미지" />
             <h5>회원가입을 축하드립니다!</h5>
-            <p>
+            {isSeller && <p>
                 기업파트너or개인파트너는 가입승인 후에 서비스를 이용할 수 있습니다. <br className="no" />
                 잠시만 기다려주세요! 가입승인이 최대 24시간이 걸리며,{" "}
                 <br className="no" />
                 가입시 입력된 이메일로 가입승인 이메일로 안내드리겠습니다.
-            </p>
+            </p>}
             <div className="fin">
                 <Link href="/login">
                     <button
@@ -246,7 +250,7 @@ const Verification: React.FC = () => {
             <p className="bt_txt">
                 ※ 본인인증 시 제공되는 정보로 회원가입시 필요한 정보를 연동합니다.
             </p>
-            <VerifiEamilModal onSuccess={() => {
+            <VerifiEamilModal duplicateCheck onSuccess={() => {
                 closeModal("#emailVerifi")()
                 setJoinProcess("userInfo");
             }} verifiHook={{

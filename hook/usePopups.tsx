@@ -14,17 +14,36 @@ export const covertPer = (parent: number, px: number) => px / parent * 100
 export const covertPx = (parent: number, per: number) => per / 100 * parent
 export const getOpenParam = (left: number, top: number, width: number, height: number) => `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=${width},height=${height},left=${left},top=${top}`
 
-export const getMarkUp = (popup: Ipopup) => <html>
-    <head>
-        <title>{popup.title}</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
-        <link rel="stylesheet" href={location.origin + "/popup.css"} />
-    </head>
-    <body>
-        <div className="ck-content" dangerouslySetInnerHTML={{ __html: popup.content || "" }} style={{ ...BG(popup.style.backgroundImage || ""), backgroundPosition: "center center", backgroundSize: "cover", height: "100%" }} />
-    </body>
-</html>
+export const getMarkUp = (popup: Ipopup) => {
+    return <html>
+        <head>
+            <title>{popup.title}</title>
+            <link rel="icon" href="/favicon.ico" />
+            <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+            <link rel="stylesheet" href={location.origin + "/popup.css"} />
+        </head>
+        <body>
+            <div className="ck-content" dangerouslySetInnerHTML={{ __html: popup.content || "" }} style={{ ...BG(popup.style.backgroundImage || ""), backgroundPosition: "center center", backgroundSize: "cover", height: "100%" }} />
+            <div>
+                오늘 하루동안 보지않기 <input id="DaycheckBox" onClick={() => {
+                }} type="checkbox" checked={false} /> <span onClick={() => {
+                    const target = document.getElementById("DaycheckBox");
+                    if (target) {
+                        // @ts-ignore
+                        const checked = target.checked;
+                        if (checked) {
+                            // popup 일자를 하루 뒤로 놓는다.
+                            var tomorrow = new Date();
+                            tomorrow.setDate(new Date().getDate() + 1);
+                            localStorage.setItem("popup" + popup._id, JSON.stringify(tomorrow));
+                        }
+                        window.close();
+                    }
+                }} >닫기</span>
+            </div>
+        </body>
+    </html>
+}
 
 export const openPercentage = (popup: Ipopup) => {
     console.log("!!!popup.style!!!");
@@ -77,7 +96,7 @@ export const validatePopup = (popup: Fmodal) => {
     const lastPopup = Storage?.getLocalObj<Date>("popup" + popup._id as any)
 
     const dateOk = todayIn(popup.startDate, popup.endDate);
-    const lastPopupOk = !lastPopup || lastPopup < dayjs().add(-1, "d").toDate()
+    const lastPopupOk = !lastPopup || lastPopup < dayjs().add(-1, "h").toDate()
 
     if (dateOk && lastPopupOk) return true
     return false;

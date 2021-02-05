@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Storage, initStorage } from 'utils/Storage';
-import { signInVariables, UserRole } from 'types/api';
+import { ERR_CODE, signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Validater } from '../utils/validate';
@@ -11,7 +11,6 @@ import defaultPageInfo from "../info/login.json"
 import { usePageEdit } from '../hook/usePageEdit';
 import { getStaticPageInfo, Ipage } from '../utils/page';
 import { PageEditor } from '../components/common/PageEditer';
-import { ErrorCode, errorMessage } from '../utils/enumToKr';
 
 export const getStaticProps = getStaticPageInfo("login")
 export const Login: React.FC<Ipage> = (pageInfo) => {
@@ -19,16 +18,22 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
     const [saveSession, setSaveSession] = useState(false);
     const [userId, setId] = useState("");
     const [userPw, setPw] = useState("");
-    const [userType, setUserType] = useState<UserRole>(UserRole.individual)
+    const [userType, setUserType] = useState<UserRole>(Storage?.getLocal("lastLoginType", UserRole.individual) as UserRole || UserRole.individual)
     const editTools = usePageEdit(pageInfo, defaultPageInfo)
     const { getData } = useLogin({
         onCompleted: ({ SignIn }) => {
             if (SignIn.ok) {
+                Storage?.saveLocal("lastLoginType", userType);
                 Storage?.saveLocal("jwt", SignIn.data?.token || "");
                 location.href = "/"
                 alert("환영합니다.")
             } else {
-                errorMessage(SignIn.error?.code)
+                if (SignIn.error?.code === ERR_CODE.PASSWORD_NOT_EQUAL) {
+                    alert("패스워드가 일치하지 않습니다.");
+                }
+                if (SignIn.error?.code === ERR_CODE.AUTHORIZATION) {
+                    alert("해당 접근 권한이 없습니다.");
+                }
             }
         },
     })
@@ -82,7 +87,8 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
         const signInvar: signInVariables = {
             email: userId,
             pw: userPw,
-            hopeRole: userType
+            hopeRole: userType,
+            permanence: saveSession
         }
 
         getData({ variables: signInvar as any });

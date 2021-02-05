@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Paginater } from '../components/common/Paginator';
 import { DayPickerModal } from '../components/dayPickerModal/DayPickerModal';
 import { ProductPhotoBlock } from '../components/list/ProductPhoto';
-import { useProductList } from '../hook/useProduct';
+import { openListFilter, useProductList } from '../hook/useProduct';
 import isEmpty from '../utils/isEmpty';
 import dayjs from "dayjs";
 import { filterToRange, rangeToFilter } from '../utils/filter';
@@ -54,6 +54,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
     const defaultSearch = getFromUrl("search") || "";
     const initialFilter = {
+        ...openListFilter,
         initialFilter: integratedProductSearch(defaultSearch)
     }
     const productListHook = useProductList(initialFilter)
@@ -106,7 +107,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
         <SubTopNav pageTools={pageTools} >
             <li className="homedeps1">Member</li>
             <li className="homedeps2">
-                <a href="/">통합검색</a>
+                <a href="/">상품검색</a>
             </li>
         </SubTopNav>
         <PageEditor pageTools={pageTools} />

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../pages/_app';
 import { Fhomepage } from '../../types/api';
+import sanitizeHtml from 'sanitize-html';
 
 interface IProp {
     type: keyof Fhomepage
@@ -22,7 +23,7 @@ export const Policy: React.FC<IProp> = ({ type }) => {
     }
 
     return <div dangerouslySetInnerHTML={{
-        __html: findPolicy()
+        __html: sanitizeHtml(findPolicy())
     }} />
 };
 

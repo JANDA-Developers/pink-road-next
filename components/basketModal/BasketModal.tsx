@@ -27,6 +27,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
         baby_price,
         kids_price,
         adult_price,
+        capacity: product ? product.maxMember - product.peopleCount : 0,
         defaultCount: {
             adult,
             baby,

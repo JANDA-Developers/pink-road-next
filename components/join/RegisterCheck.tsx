@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { AddUserInput, UserRole } from '../../types/api';
+import { AddUserInput, ERR_CODE, UserRole } from '../../types/api';
 import { isEmail, isPhone, isPassword, isName } from 'utils/validation';
 import { useSignUp } from '../../hook/useUser';
 import { Validater } from '../../utils/validate';
@@ -42,6 +42,9 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         alert("회원가입 완료")
         setJoinProcess('registered');
       } else {
+        if (SignUp.error?.code === ERR_CODE.ALEADY_SAME_DATA) {
+          alert("이미 가입된 회원입니다.");
+        }
       }
     }
   });
@@ -149,18 +152,21 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
   },
   {
     value: registerInfo.address_detail,
-    failMsg: "상세 주소값을 입력 해주세요."
+    failMsg: "상세 주소값을 입력 해주세요.",
+    id: "AddressInput"
   },
   ])
 
   const { validate: normalValidate } = new Validater([
     {
       value: isName(registerInfo.name || ""),
-      failMsg: "이름 값이 올바르지 않습니다."
+      failMsg: "이름 값이 올바르지 않습니다.",
+      id: "NameInput"
     },
     {
       value: isPhone(registerInfo.phoneNumber || ""),
       failMsg: "올바른 핸드폰 번호가 아닙니다.",
+      id: "PhoneNumberInput"
     },
     ...sharedValidate
   ])

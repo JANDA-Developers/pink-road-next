@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { MemberTopNav } from '../../../components/topNav/MemberTopNav';
 import { useQnaList } from '../../../hook/useQna';
 import { qnaList_QnaList_data } from '../../../types/api';
+import sanitizeHtml from 'sanitize-html';
 
 
 export const getStaticProps = getStaticPageInfo("main");
@@ -71,7 +72,7 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                             <div className="form">
                                 <i className="A" />
                                 <p dangerouslySetInnerHTML={{
-                                    __html: qna.contents
+                                    __html: sanitizeHtml(qna.contents)
                                 }} />
                             </div>
                         </div>

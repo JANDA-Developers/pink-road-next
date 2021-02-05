@@ -19,13 +19,13 @@ interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
 const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["data","page"]) => {
     try {
     if(data?.hasOwnProperty(operationName) === false) {
-        throw Error(`result data object dose not have property ${operationName} look this above object ↑ `)
+        console.warn(`result data object dose not have property ${operationName} look this above object ↑ `)
     }
 
     checkProperty.forEach(p => {
         if(data?.[operationName].hasOwnProperty(p) === false) {
             console.error(p);
-            throw Error(`result data object dose not have property ${p} look this above object ↑ `)
+            console.warn(`result data object dose not have property ${p} look this above object ↑ `)
         }
     })
     } catch (e){
@@ -59,7 +59,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             initialPageIndex: getPageNumber(),
             initialSort: [],
             initialFilter: {} as F,
-            initialViewCount: 20
+            initialViewCount: 10
         }
         const initialData = Object.assign(defaultInitData, queryInitDefault, initialOption); 
         const { variables, overrideVariables, ...ops } = options;
@@ -90,6 +90,13 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             params.sort,
             params.viewCount,
             params.page
+        ])
+        
+        useEffect(()=>{
+            params.setPage(1)
+        },[
+            params.viewCount,
+            params.filter
         ])
 
         return { pageInfo,  getLoading, items, ...params,...queryElse }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { foreginKR, genderToKR } from '../../utils/enumToKr';
+import { foreginKR, genderToKR, userStatusKR } from '../../utils/enumToKr';
 import { autoComma } from '../../utils/formatter';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import { Paginater } from '../common/Paginator';
@@ -7,7 +7,7 @@ import { IMemberTableProp } from './MemberMaster';
 
 export const PartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHook, handleUser }) => {
     const { check, handleCheck, isAllSelected, isChecked, reverseAll, selectAll, selectLength, selectedIds, setSelectedIds, toggle, toggleAll, unCheck, unSelectAll } = idSelectHook;
-    const { handleResignUser, handleStopUser, handleViewDetailUser, handleViewUserBoard } = handleUser;
+    const { handleResignUser, handleStopUser, handleViewDetailUser, handleViewUserBoard, handleRestartUser, handleSignUpAccept, handleSignUpDeny } = handleUser;
     const { items: users, setPage, pageInfo } = userHook;
 
     return <div className="con_box_body master__table">
@@ -24,7 +24,7 @@ export const PartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHoo
             <div className="td05">성별</div>
             <div className="td06">국적</div>
             <div className="td07">가입일</div>
-            <div className="td08">가입경로</div>
+            <div className="td08">주소</div>
             <div className="td09">상세보기</div>
         </div>
         {users.map(user =>
@@ -41,12 +41,23 @@ export const PartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHoo
                 <div className="td03">{user.email}</div>
                 <div className="td04"><i className="m_title">휴대폰:</i><a href={`tel:${user.phoneNumber}`}>{autoComma(user.phoneNumber)}</a></div>
                 <div className="td05"><i className="m_title">성별:</i>{genderToKR(user.gender)}</div>
-                <div className="td06"><i className="m_title">국적:</i>{foreginKR(user.is_froreginer)}</div>
+                <div className="td06"><i className="m_title">상태:</i>{userStatusKR(user)}
+                    <div>
+                        {user.isDenied && <i style={{ lineHeight: "22px" }} className="btn small" onClick={() => { handleSignUpAccept([user._id]) }}>가입승인</i>}
+                    </div>
+                    <div>
+                        {!user.isVerifiedManager && !user.isDenied && <i style={{ lineHeight: "22px" }} className="btn small" onClick={handleDenyPop(user._id)}>가입거절</i>}
+                    </div>
+                </div>
                 <div className="td07"><i className="m_title">가입일:</i>{yyyymmdd(user.createdAt)}</div>
                 <div className="td08"><i className="m_title">주소:</i>{user.address.slice(0, 10) + "..."}</div>
                 <div className="td09">
-                    <i className="btn small" onClick={handleViewDetailUser(user._id)}>상세보기</i>
-                    <i className="btn small" onClick={handleViewUserBoard(user)}>작성한 게시글</i>
+                    <div>
+                        <i className="btn small" onClick={handleViewDetailUser(user._id)}>상세보기</i>
+                    </div>
+                    <div>
+                        <i className="btn small" onClick={handleViewUserBoard(user)}>작성한 게시글</i>
+                    </div>
                 </div>
             </div>
         )}
@@ -58,7 +69,7 @@ export const PartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHoo
             <div className="float_right">
                 <button onClick={handleResignUser} type="submit" className="btn medium mr5">탈퇴</button>
                 <button onClick={handleStopUser} type="submit" className="btn medium">활동정지</button>
-                <button onClick={handleStopUser} type="submit" className="btn medium">활동재개</button>
+                <button onClick={handleRestartUser} type="submit" className="btn medium">활동재개</button>
             </div>
         </div>
     </div>;

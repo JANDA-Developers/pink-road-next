@@ -20,12 +20,6 @@ const graphQLClient = new GraphQLClient(SERVER_URI, {
 })
 
 export const useHomepageServerSide = async () => {
-    console.log(SERVER_URI);
-    console.log(SERVER_URI);
-    console.log(SERVER_URI);
-    console.log(SERVER_URI);
-    console.log(SERVER_URI);
-
     const defaultHomePage = {
         PrivacyPolicy: "",
         __typename: "Homepage",

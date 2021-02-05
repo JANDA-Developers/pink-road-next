@@ -2675,6 +2675,7 @@ div.master_popup .info_page h4 {
  div.master_popup .info_table .img {
     display: inline-block !important;
     width: 100% !important;
+    background-size: cover;
     height: 200px;
     background-position: center;
     background-size: 100%;

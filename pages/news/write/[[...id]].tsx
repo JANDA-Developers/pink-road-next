@@ -22,6 +22,7 @@ const categoryOps = [{
     _id: NEWS_TYPE.CULTURE
 }]
 interface IProp {
+    pas
     news: Fnews
 }
 
@@ -30,7 +31,6 @@ export const NewsWrite: React.FC<IProp> = () => {
     const id = router.query.id?.[0] as string | undefined;
     const { item: news } = useNewsFindById(id);
     const mode = id ? "edit" : "create";
-
 
     const goToView = (id: string) => {
         router.push(`/news/view/${id}`)
@@ -115,6 +115,7 @@ export const NewsWrite: React.FC<IProp> = () => {
 
     const handleTempSave = () => {
         Storage?.saveLocal("newsWrite", boardData);
+        alert("저장완료");
     }
 
     const handleCancel = () => {

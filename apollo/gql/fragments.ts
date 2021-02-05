@@ -62,6 +62,7 @@ export const F_PRODUCT = gql`
         isDelete
         title
         code
+        peopleCount
         contents
         determined
         endDate
@@ -166,13 +167,16 @@ export const F_USER = gql`
         address
         address_detail
         acceptSms
+        status
         acceptEamil
+        isDenied
         is_froreginer
         busi_contact
         manageContact
         resignDate
         gender
         busi_num
+        denyReason
         busi_department
         isVerifiedManager
         isVerifiedPhoneNumber
@@ -186,6 +190,7 @@ export const F_USER = gql`
         name
         bank_name
         resignReason
+        resignReasonType
         isResigned
         phoneNumber
         manageName

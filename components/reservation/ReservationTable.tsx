@@ -87,6 +87,6 @@ export const ReservationTable: React.FC<IReservationTableProp> = ({ bookingListH
                 <button onClick={handlePaymentConfirm} type="submit" className="btn medium">입금확인</button>
             </div>
         </div>
-        
+
     </div>;
 };

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { IHumanCount, IProduct, TCount } from "types/interface";
 import { Fproduct } from "../types/api";
 
@@ -64,7 +65,7 @@ export class LocalManager<T extends string> {
 }
 
 
-export type TStoreKeys = "qnaWrite" | "announceWrite" | "lastProd" | "signUpRole" | "questionWrite" | "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin" ;
+export type TStoreKeys = "lastLoginType" | "qnaWrite" | "announceWrite" | "lastProd" | "signUpRole" | "questionWrite" | "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin";
 
 export let Storage: LocalManager<TStoreKeys> | null = null;
 
@@ -89,7 +90,11 @@ export interface IBasketItem extends Partial<Fproduct> {
 
 export const deleteExpireBracket = () => {
     const bracket = getBracket();
-    const unExpiredSet = bracket?.filter((bk) => bk.startDate < new Date());
+    console.log("bracket");
+    console.log(bracket);
+    const unExpiredSet = bracket?.filter((bk) => dayjs(bk.startDate).add(1, "day").toDate() > new Date());
+    console.log("unExpiredSet");
+    console.log(unExpiredSet);
     saveBracket(unExpiredSet || []);
 }
 

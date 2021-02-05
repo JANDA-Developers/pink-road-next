@@ -1,6 +1,6 @@
 import { MutationHookOptions, useMutation } from "@apollo/client";
 import { PRODUCT_FIND_BY_ID_FOR_SELLER, PRODUCT_POST_DELETE, PRODUCT_LIST, ACCEPT_PRODUCT_CREATE, ACCEPT_PRODUCT_UPDATE, REJECT_PRODUCT_UPDATE, REJECT_PRODUCT_CREATE } from "../apollo/gql/product";
-import { productCreateAccept,  productUpdateAccept, productDelete, productDeleteVariables, productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data, productFindById_ProductFindById_data, productList_ProductList_data, productUpdateReject, _BookingFilter, _BookingSort, _PortfolioFilter, productCreateReject, productUpdateAcceptVariables, productCreateAcceptVariables, productUpdateRejectVariables, ProductStatus } from "../types/api";
+import { productCreateAccept,  productUpdateAccept, productDelete, productDeleteVariables, productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data, productFindById_ProductFindById_data, productList_ProductList_data, productUpdateReject, _BookingFilter, _BookingSort, _PortfolioFilter, productCreateReject, productUpdateAcceptVariables, productCreateAcceptVariables, productUpdateRejectVariables, ProductStatus, productCreateRejectVariables } from "../types/api";
 import { productFindById, productFindByIdVariables } from "../types/api";
 import { IlistQueryInit } from "../types/interface";
 import { PRODUCT_FIND_BY_ID } from "../apollo/gql/product";
@@ -62,10 +62,18 @@ export const useProductUpdate = (options?: MutationHookOptions<productUpdate,pro
     return {productUpdate, updateLoading}
 }
 
-export const useAcceptCreateProduct = generateMutationHook<productCreateAccept,productCreateAcceptVariables>(ACCEPT_PRODUCT_CREATE);
-export const useAcceptUpdateProduct = generateMutationHook<productUpdateAccept,productUpdateAcceptVariables>(ACCEPT_PRODUCT_UPDATE);
-export const useRejectCreateProduct = generateMutationHook<productCreateReject,productCreateReject>(REJECT_PRODUCT_CREATE);
-export const useRejectUpdateProduct = generateMutationHook<productUpdateReject,productUpdateRejectVariables>(REJECT_PRODUCT_UPDATE);
+export const useAcceptCreateProduct = generateMutationHook<productCreateAccept,productCreateAcceptVariables>(ACCEPT_PRODUCT_CREATE, {
+    ...getRefetch(PRODUCT_LIST,PRODUCT_FIND_BY_ID)
+});
+export const useAcceptUpdateProduct = generateMutationHook<productUpdateAccept,productUpdateAcceptVariables>(ACCEPT_PRODUCT_UPDATE, {
+    ...getRefetch(PRODUCT_LIST,PRODUCT_FIND_BY_ID)
+});
+export const useRejectCreateProduct = generateMutationHook<productCreateReject,productCreateRejectVariables>(REJECT_PRODUCT_CREATE, {
+    ...getRefetch(PRODUCT_LIST,PRODUCT_FIND_BY_ID)
+});
+export const useRejectUpdateProduct = generateMutationHook<productUpdateReject,productUpdateRejectVariables>(REJECT_PRODUCT_UPDATE, {
+    ...getRefetch(PRODUCT_LIST,PRODUCT_FIND_BY_ID)
+});
 
 
 export const openListFilter = {

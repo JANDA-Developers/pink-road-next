@@ -4,7 +4,6 @@
 }
 
 .BoardCategories__ul {
-    display: flex;
     justify-content: space-around;
     flex-wrap: wrap;    
 }
@@ -13,4 +12,5 @@
     padding: 20px;
     margin: auto!important;
     white-space: nowrap;
+    min-width: 70px;
 }

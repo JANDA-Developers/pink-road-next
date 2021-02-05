@@ -49,10 +49,10 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
         <div className="goods_box">
             <div className="w1200">
                 <div className="banner bn_box line2">
-                    {bannerA.img?.uri &&
+                    {bannerA.use && bannerA.img?.uri &&
                         <a className="banner__box" target={bannerA.target} href={bannerA.link || undefined}><img src={bannerA?.img.uri} alt={bannerA.img.name} /></a>
                     }
-                    {bannerB &&
+                    {bannerB.use && bannerB &&
                         <a className="banner__box" target={bannerB.target} href={bannerB.link || undefined}><img src={bannerB?.img?.uri} alt={bannerB.img?.name} /></a>
                     }
                 </div>

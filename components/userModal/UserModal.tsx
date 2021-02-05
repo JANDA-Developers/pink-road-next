@@ -1,9 +1,9 @@
 import React from 'react';
 import { useBookingList } from '../../hook/useBooking';
 import { useUserFindById } from '../../hook/useUser';
-import { BookingStatus, GENDER } from '../../types/api';
+import { BookingStatus, GENDER, UserRole } from '../../types/api';
 import { ALLOW_SELLERS } from '../../types/const';
-import { foreginKR, userRoleToKR } from '../../utils/enumToKr';
+import { foreginKR, userRoleToKR, managerVerifiedKR } from '../../utils/enumToKr';
 import { autoHypenPhone } from '../../utils/formatter';
 import { closeModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
@@ -17,9 +17,10 @@ interface IProp {
 export const UserModal: React.FC<IProp> = ({ userId }) => {
     const { item } = useUserFindById(userId);
     if (!item) return null;
-    const { isResigned, name, email, phoneNumber, resignReason, gender, role } = item;
+    const { isResigned, name, email, phoneNumber, resignReason, resignReasonType, gender, role } = item;
 
     const isSeller = ALLOW_SELLERS.includes(role);
+    const isPartnerB = role === UserRole.partnerB;
 
 
     const print = () => {
@@ -34,7 +35,7 @@ export const UserModal: React.FC<IProp> = ({ userId }) => {
             <div className="page">
                 <h3>상세정보</h3>
                 <div className="info_txt">
-                    <span className="start-day">가입일: {yyyymmdd(item.createdAt)}</span>
+                    <span className="start-day">가입일: {yyyymmdd(item.createdAt)}</span><span>{managerVerifiedKR(item.isVerifiedManager)}</span>
                     {isResigned && <span className="start-day">탈퇴일: {yyyymmdd(item.resignDate)}</span>}
                     <button onClick={print} className="btn"><i className="flaticon-print mr5"></i>프린터</button>
                 </div>
@@ -47,7 +48,7 @@ export const UserModal: React.FC<IProp> = ({ userId }) => {
                                 <div className="tr">
                                     <div className="th01">탈퇴사유</div>
                                     <div className="td01">
-                                        <span>{resignReason}</span>
+                                        <span>[{resignReasonType}] {resignReason}</span>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +63,7 @@ export const UserModal: React.FC<IProp> = ({ userId }) => {
                             {/* 개인 */}
                             {!isSeller && <>
                                 <div className="tr">
-                                    <div className="th01">이름</div>
+                                    <div className="th01">이름 [{userRoleToKR(item.role)}]</div>
                                     <div className="td01"><span>{name}</span></div>
                                     <div className="th02">아이디</div>
                                     <div className="td02"><a href={`mailto:${email}`}>{email}</a></div>
@@ -91,30 +92,34 @@ export const UserModal: React.FC<IProp> = ({ userId }) => {
                             {/* 파트너 */}
                             {isSeller && <>
                                 <div className="tr">
-                                    <div className="th01">파트너명</div>
-                                    <div className="td01"><span>{item.busi_name}</span></div>
+                                    <div className="th01">성함</div>
+                                    <div className="td01"><span>{item.name}</span></div>
                                     <div className="th02">아이디</div>
                                     <div className="td02"><a href={`mailto:${item.email}`}>{item.email}</a></div>
                                     <div className="th03">연락처</div>
                                     <div className="td03"><span>{autoHypenPhone(item.phoneNumber)}</span></div>
-                                    <div className="th04"></div>
-                                    <div className="td04"></div>
+                                    <div className="th04">닉네임</div>
+                                    <div className="td04">{item.nickName}</div>
                                 </div>
-                                <div className="tr">
-                                    <div className="th01">업체주소</div>
-                                    <div className="td01"><span>{item.busi_address}</span></div>
-                                    <div className="th02">담당자</div>
-                                    <div className="td02"><span>{item.manageName}</span></div>
-                                    <div className="th03">연락처</div>
-                                    <div className="td03"><span>{autoHypenPhone(item.busi_contact)}</span></div>
-                                    <div className="th04">파트너타입</div>
-                                    <div className="td04"><span>{userRoleToKR(item.role)}</span></div>
-                                </div>
+                                {isPartnerB &&
+                                    <div className="tr">
+                                        <div className="th01">업체주소</div>
+                                        <div className="td01"><span>{item.busi_address}</span></div>
+                                        <div className="th02">담당자</div>
+                                        <div className="td02"><span>{item.manageName}</span></div>
+                                        <div className="th03">연락처</div>
+                                        <div className="td03"><span>{autoHypenPhone(item.busi_contact)}</span></div>
+                                        <div className="th04">사업자번호</div>
+                                        <div className="td04"><span>{item.busi_num}</span></div>
+                                    </div>
+                                }
                                 <div className="tr">
                                     <div className="th01">계좌번호</div>
                                     <div className="td01"><span>{item.bank_name}-{item.account_number}</span></div>
                                     <div className="th02">통장사본</div>
-                                    <div className="td02"><span>-<button className="btn dwonload">다운로드</button></span></div>
+                                    <div className="td02">{item.bankImg && <span>{item.bankImg?.name}<button onClick={() => {
+                                        window.open(item.bankImg?.uri, "_blank")
+                                    }} className="btn dwonload">다운로드</button></span>}</div>
                                     <div className="th03">사업자등록증</div>
                                     <div className="td03"><span>{item.busiRegistration?.name}<button onClick={() => {
                                         window.open(item.busiRegistration?.uri, "_blank")

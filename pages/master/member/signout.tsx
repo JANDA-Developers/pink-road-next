@@ -1,28 +1,21 @@
 import React from 'react';
 import { MemberMaster } from '../../../components/member/MemberMaster';
 import { CustomerTable } from '../../../components/member/CustomerTable';
-import { UserRole } from '../../../types/api';
+import { UserRole, _UserSort } from '../../../types/api';
 import { ALLOW_ADMINS } from '../../../types/const';
 import { auth } from '../../../utils/with';
+import { SignOutTable } from '../../../components/member/ResignMemberTable';
 
 interface IProp { }
 export const CustomerMemberMaster: React.FC<IProp> = () => {
     return <MemberMaster SortOptions={
         <>
-            <option>탈퇴일 &uarr;</option>
-            <option>탈퇴일 &darr;</option>
-            <option>이름 &uarr;</option>
-            <option>이름 &darr;</option>
+            <option value={_UserSort.resignDate_desc}>탈퇴일 &uarr;</option>
+            <option value={_UserSort.resignDate_asc}>탈퇴일 &darr;</option>
+            <option value={_UserSort.name_asc}>이름 &uarr;</option>
+            <option value={_UserSort.name_desc}>이름 &darr;</option>
         </>
-    } BoardOptions={
-        <>
-            <option>전체</option>
-            <option>이름</option>
-            <option>파트너명</option>
-            <option>아이디</option>
-            <option>연락처</option>
-        </>
-    } type={UserRole.partner} Table={CustomerTable} />
+    } type={"signOut"} Table={SignOutTable} />
 };
 
 

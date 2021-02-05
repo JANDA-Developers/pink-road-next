@@ -5,7 +5,7 @@ import { useCustomCount } from '../../hook/useCount';
 import { useIdSelecter } from '../../hook/useIdSelecter';
 import { useDateFilter } from '../../hook/useSearch';
 import { useSingleSort } from '../../hook/useSort';
-import { useUserList, useUserResign, useUserUpdate } from '../../hook/useUser';
+import { useRestartUsers, useSignUpAccept, useSignUpDeny, useStopUsers, useUserList, useUserResign, useUserUpdate } from '../../hook/useUser';
 import { MasterLayout } from '../../layout/MasterLayout';
 import { Fuser, GENDER, UserStatus, _UserFilter, _UserSort } from '../../types/api';
 import { TElements } from '../../types/interface';
@@ -13,16 +13,22 @@ import { openModal } from '../../utils/popUp';
 import { BoardModal } from '../boardModal/BoardModal';
 import { SearcfInfoBox } from '../common/SearcfInfoBox-Mypage';
 import { SingleSortSelect } from '../common/SortSelect';
+import { Change } from '../loadingList/LoadingList';
 import { MasterAlignMent } from '../master/MasterAlignMent';
 import { MasterSearchBar } from '../master/MasterSearchBar';
+import { Prompt } from '../promptModal/Prompt';
+import { ResignModal } from '../resign/ResignModal';
 import { MemberTopNav } from '../topNav/MasterTopNav';
 import { UserModal } from '../userModal/UserModal';
 
 type UserMasterHandler = {
     handleViewDetailUser: (id: string) => () => void;
     handleStopUser: () => void;
+    handleRestartUser: () => void
     handleResignUser: () => void;
     handleViewUserBoard: (user: Fuser) => () => void;
+    handleSignUpAccept: (userIds: string[]) => void;
+    handleSignUpDeny: (userIds: string[], reason: string) => void;
 }
 
 export interface IMemberTableProp {
@@ -49,15 +55,36 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
     const [searchType, setSearchType] = useState<TuniqSearch>("name_eq");
     const [popupUser, setPopupUser] = useState<Fuser>();
     const useHook = useUserList({ initialFilter: fixedFilter });
-    const { items: users, filter, setFilter, viewCount, setViewCount, sort, setSort, setUniqFilter, pageInfo: userPageInfo, setPage } = useHook;
+    const { items: users, filter, setFilter, viewCount, setViewCount, sort, setSort, setUniqFilter, setOR, pageInfo: userPageInfo, setPage, getLoading } = useHook;
     const { filterEnd, filterStart, hanldeCreateDateChange, setDateKey } = useDateFilter({ filter, setFilter });
     const idHooks = useIdSelecter(users.map(user => user._id));
     const { selectAll, selectedIds } = idHooks;
     const singleSort = useSingleSort(sort, setSort);
     const [popupId, setPopUserId] = useState("");
+    const [restartUsers] = useRestartUsers();
+    const [stopUsers] = useStopUsers();
     const [resignUser] = useUserResign();
     const [updateUser] = useUserUpdate();
-    const [] = 
+    const [signUpAccept] = useSignUpAccept();
+    const [signUpDeny] = useSignUpDeny();
+
+
+    const handleSignUpAccept = (userIds: string[]) => {
+        signUpAccept({
+            variables: {
+                userIds
+            }
+        })
+    }
+
+    const handleSignUpDeny = (userIds: string[], reason: string) => {
+        signUpDeny({
+            variables: {
+                userIds,
+                reason
+            }
+        })
+    }
 
     const setIsForeginer = (foreginer: boolean) => () => {
         filter.is_froreginer_eq = foreginer;
@@ -83,19 +110,30 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
     }
 
     const handleStopUser = () => {
-        if (selectedIds.length > 1) alert("한번에 하나의 유저만 선택 해주세요.")
-        else if (selectedIds.length < 1) alert("유저를 선택 해주세요.");
-        updateUser({
+        if (!confirm(`정말로 유저 ${selectedIds.length}명을 정지 시키겠습니까?`)) return;
+        stopUsers({
             variables: {
-                _id: selected,
-                params: {
-                    status: UserStatus.stop
-                },
+                reason: "",
+                userIds: selectedIds
             }
         }).then(({ data }) => {
-            if (data?.UserUpdate.ok) alert("해당 유저를 정지 하였습니다.");
+            if (data?.StopUser.ok) alert("해당 유저들을 정지 하였습니다.");
         })
     }
+    const handleRestartUser = () => {
+        restartUsers({
+            variables: {
+                userIds: selectedIds
+            }
+        }).then(({ data }) => {
+            if (data?.RestartUser.ok) alert("해당 유저들의 활동이 재개 되었습니다.");
+        })
+    }
+
+    const handleViewResignReason = () => {
+        openModal("#ResignReason")()
+    }
+
 
     const handleViewDetailUser = (id: string) => () => {
         setPopUserId(id)
@@ -112,7 +150,11 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
     }
 
     const doSearch = (search: string) => {
-        setUniqFilter(searchType, ["name_eq", "email_eq", "phoneNumber_eq"], search);
+        if (searchType) {
+            setUniqFilter(searchType, ["name_eq", "email_eq", "phoneNumber_eq"], search);
+        } else {
+            setOR(["name_eq", "email_eq", "phoneNumber_eq"], search);
+        }
     }
     const checkOnGender = (gender?: Gender) => gender === filter.gender_eq ? "on" : "";
     const checkOnForeginer = (isForeginer?: boolean) => isForeginer === filter.is_froreginer_eq ? "on" : "";
@@ -121,9 +163,12 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
 
     const handlers = {
         handleViewDetailUser,
+        handleRestartUser,
         handleStopUser,
         handleResignUser,
-        handleViewUserBoard
+        handleViewUserBoard,
+        handleSignUpDeny,
+        handleSignUpAccept
     }
 
     return <MasterLayout>
@@ -181,10 +226,13 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
                             }
                         />
                     </div>
-                    <Table handleUser={handlers} idSelectHook={idHooks} userHook={useHook} />
+                    <Change change={!getLoading} >
+                        <Table handleUser={handlers} idSelectHook={idHooks} userHook={useHook} />
+                    </Change>
                 </div>
             </div>
             <SearcfInfoBox />
+            <ResignModal />
             {/* popup-작성한 게시글 보기 */}
             {popupUser && <BoardModal user={popupUser} />}
             <UserModal userId={popupId} />

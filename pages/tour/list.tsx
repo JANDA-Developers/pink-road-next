@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import SubTopNav from 'layout/components/SubTop';
 import { ProductPhotoBlock } from '../../components/list/ProductPhoto';
@@ -6,20 +6,20 @@ import BoardList from '../../components/board/List';
 import { ProductListBlock } from '../../components/list/ProductList';
 import { openListFilter, useProductList } from '../../hook/useProduct';
 import { getTypeFilterByUrl, checkIsExp } from '../../utils/product';
-import { useCategoryList } from '../../hook/useCategory';
 import { getStaticPageInfo, Ipage } from '../../utils/page';
 import pageInfoDefault from "info/tourList.json"
 import { usePageEdit } from '../../hook/usePageEdit';
 import { PageEditor } from '../../components/common/PageEditer';
 import { categoryList_CategoryList_data } from '../../types/api';
-import { getFromUrl } from '../../utils/url';
+import { AppContext } from '../_app';
+import Link from 'next/link';
 
 export const getStaticProps = getStaticPageInfo("tourList")
 export const TourList: React.FC<Ipage> = (_pageInfo) => {
     const isExp = checkIsExp();
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
     const { initialFilter: urlInitialFilter } = getTypeFilterByUrl(isExp);
-    const { data: cats = [] } = useCategoryList();
+    const { categoriesMap } = useContext(AppContext);
     const [view, setView] = useState<"line" | "gal">("line");
     const {
         items,
@@ -30,7 +30,7 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
         filter,
         viewCount,
         setViewCount,
-        setPage
+        setPage,
     } = useProductList({
         initialFilter: {
             ...urlInitialFilter,
@@ -45,14 +45,14 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
         router.push("/tour/write")
     }
 
-    const handleCatFilter = (catId: string) => () => {
+    const handleCatFilter = (catId?: string) => () => {
         setFilter({
             ...filter,
             categoryId_eq: catId
         })
     }
 
-    const checkCatOn = (cat: categoryList_CategoryList_data) => cat._id === filter.categoryId_eq ? "on" : "";
+    const checkCatOn = (cat?: categoryList_CategoryList_data) => cat?._id === filter.categoryId_eq ? "on" : "";
 
     const subTopInfo = {
         imgKey: isExp ? "exp_subTop_img" : "subTop_img",
@@ -60,14 +60,25 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
         descKey: isExp ? "exp_subTop_desc" : "subTop_desc"
     }
 
+    const cats = isExp ? categoriesMap.EXPERIENCE : categoriesMap.TOUR;
+
+
     return <div>
-        <SubTopNav {...subTopInfo} pageTools={pageTools} />
+        <SubTopNav {...subTopInfo} pageTools={pageTools}>
+            <li className="homedeps1">{isExp ? "Experience" : "Tour"}</li>
+            <li className="homedeps2">
+                <Link href="/tour/list"><a>{isExp ? "체험목록" : "투어목록"}</a></Link>
+            </li>
+        </SubTopNav>
         <PageEditor pageTools={pageTools} />
         <div className="tour_box deal_list">
             <BoardList
+                pageInfo={pageInfo}
+                totalCount={totalCount}
                 Categories={
                     <div className="BoardCategories search">
                         <ul className="BoardCategories__ul">
+                            <li onClick={handleCatFilter(undefined)} className={"BoardCategories__li " + checkCatOn(undefined)}><a>전체보기</a></li>
                             {cats.map(cat =>
                                 <li onClick={handleCatFilter(cat._id)} key={cat._id} className={"BoardCategories__li " + checkCatOn(cat)}><a>{cat.label}</a></li>
                             )}
@@ -76,7 +87,6 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
                 }
                 setView={setView}
                 setSort={setSort}
-                totalCount={totalCount}
                 view={view}
                 setViewCount={setViewCount}
                 sort={sort}

@@ -153,7 +153,7 @@ export const BoardWrite: React.FC<IProps> = ({
                             </div>
                         </div>
                     }
-                    {opens.thumb &&
+                    {opens.open &&
                         <div className="write_type">
                             <div className="title">글 설정</div>
                             <div className="input_form">

@@ -1,12 +1,12 @@
 import React from 'react';
-import { foreginKR, genderToKR } from '../../utils/enumToKr';
+import { foreginKR, genderToKR, userRoleToKR } from '../../utils/enumToKr';
 import { autoComma } from '../../utils/formatter';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import { Paginater } from '../common/Paginator';
 import { IMemberTableProp } from './MemberMaster';
 
 
-export const CustomerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHook, handleUser }) => {
+export const SignOutTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHook, handleUser }) => {
     const { check, handleCheck, isAllSelected, isChecked, reverseAll, selectAll, selectLength, selectedIds, setSelectedIds, toggle, toggleAll, unCheck, unSelectAll } = idSelectHook;
     const { handleResignUser, handleStopUser, handleViewDetailUser, handleViewUserBoard } = handleUser;
     const { items: users, setPage, pageInfo } = userHook;
@@ -23,9 +23,9 @@ export const CustomerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHo
             <div className="td03">아이디</div>
             <div className="td04">휴대폰</div>
             <div className="td05">성별</div>
-            <div className="td06">국적</div>
+            <div className="td06">타입</div>
             <div className="td07">가입일</div>
-            <div className="td08">가입경로</div>
+            <div className="td08">탈퇴일</div>
             <div className="td09">상세보기</div>
         </div>
         {users.map(user =>
@@ -42,9 +42,9 @@ export const CustomerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHo
                 <div className="td03">{user.email}</div>
                 <div className="td04"><i className="m_title">휴대폰:</i><a href={`tel:${user.phoneNumber}`}>{autoComma(user.phoneNumber)}</a></div>
                 <div className="td05"><i className="m_title">성별:</i>{genderToKR(user.gender)}</div>
-                <div className="td06"><i className="m_title">국적:</i>{foreginKR(user.is_froreginer)}</div>
+                <div className="td06"><i className="m_title">타입:</i>{userRoleToKR(user.role)}</div>
                 <div className="td07"><i className="m_title">가입일:</i>{yyyymmdd(user.createdAt)}</div>
-                <div className="td08"><i className="m_title">주소:</i>{user.address.slice(0, 10) + "..."}</div>
+                <div className="td08"><i className="m_title">탈퇴일:</i>{yyyymmdd(user.resignDate)}</div>
                 <div className="td09">
                     <i className="btn small" onClick={handleViewDetailUser(user._id)}>상세보기</i>
                     <i className="btn small" onClick={handleViewUserBoard(user)}>작성한 게시글</i>
@@ -52,7 +52,7 @@ export const CustomerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHo
             </div>
         )}
         <Paginater setPage={setPage} pageInfo={pageInfo} />
-        <div className="fin ifMobile">
+        {/* <div className="fin ifMobile">
             <div className="float_left">
                 <button onClick={selectAll} type="submit" className="btn medium">전체선택</button>
             </div>
@@ -61,6 +61,6 @@ export const CustomerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHo
                 <button onClick={handleStopUser} type="submit" className="btn medium">활동정지</button>
                 <button onClick={handleStopUser} type="submit" className="btn medium">활동재개</button>
             </div>
-        </div>
+        </div> */}
     </div>;
 };

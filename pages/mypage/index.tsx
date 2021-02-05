@@ -5,7 +5,6 @@ import { getItemCount } from '../../utils/Storage';
 import { arraySum } from '../../utils/math';
 import { GENDER, UserRole } from '../../types/api';
 import { autoHypenPhone, cc_format } from "../../utils/formatter";
-import { useUserUpdate } from '../../hook/useUserUpdate';
 import { useMyProfile } from '../../hook/useMyProfile';
 import { auth } from '../../utils/with';
 import { ALLOW_LOGINED } from '../../types/const';
@@ -16,19 +15,23 @@ import { useVerification } from '../../hook/useVerification';
 import { GET_CONTEXT } from '../../apollo/gql/queries';
 import { getOperationName } from '@apollo/client/utilities';
 import { useCustomCount } from '../../hook/useCount';
-import { useUserResign } from '../../hook/useUser';
+import { usePasswordChange, useUserResign, useUserUpdate } from '../../hook/useUser';
+import { ResignModal } from '../../components/resign/ResignModal';
+import { isPassword } from '../../utils/validation';
+import { Validater } from '../../utils/validate';
+import { Prompt, PromptInput } from '../../components/promptModal/Prompt';
 
 let SEND_LIMIT = 3;
 interface IProp { }
 export const MyPageProfile: React.FC<IProp> = () => {
-    const { salesOfThisMonth, todayBookingCount, salesofLastMonth, countOfTourBooking, countOfExpBooking } = useCustomCount([
+    const { salesOfThisMonth, todayBookingCount, salesofLastMonth, countOfExpBooking } = useCustomCount([
         "salesofLastMonth",
         "salesOfThisMonth",
         "countOfTourBooking",
         "countOfExpBooking",
         "todayBookingCount"
     ]);
-    const { userUpdate } = useUserUpdate({
+    const [userUpdate] = useUserUpdate({
         refetchQueries: [getOperationName(GET_CONTEXT) || ""],
         onCompleted: ({ UserUpdate }) => {
             if (UserUpdate.ok) {
@@ -36,7 +39,16 @@ export const MyPageProfile: React.FC<IProp> = () => {
             }
         }
     });
+    const [passwordChange] = usePasswordChange({
+        refetchQueries: [getOperationName(GET_CONTEXT) || ""],
+        onCompleted: ({ PasswordChange }) => {
+            if (PasswordChange.ok) {
+                alert("패스워드가 변경 되었습니다.");
+            }
+        }
+    });
 
+    const { salesTotalCount, productRegistCount } = useCustomCount(["productRegistCount", "salesTotalCount"])
     const [resign] = useUserResign();
     const { myProfile: defaultProfile, role, isAdmin } = useContext(AppContext);
     const { code, setCode } = useVerification();
@@ -71,7 +83,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
         account_number } = profile;
     const {
         _id,
-        products,
         bookings,
         email,
         phoneNumber,
@@ -80,43 +91,57 @@ export const MyPageProfile: React.FC<IProp> = () => {
         connectionCount,
     } = defaultProfile!;
 
-    const productsCount = products.length;
-    const sellCounts = arraySum(products.map(p => p.bookings.length));
     const isFemale = gender === GENDER.FEMALE;
+
+    const handlePasswordChange = () => {
+        const { validate } = new Validater([
+            {
+                value: nextPw.password,
+                failMsg: "변경할 패스워드를 입력 해주세요.",
+                id: "passwordCheckInput"
+            }, {
+                value: isPassword(nextPw.password),
+                failMsg: "올바른 비밀번호가 아닙니다."
+            }, {
+                value: nextPw.password === nextPw.passwordCheck,
+                failMsg: "패스워드가 일치하지 않습니다.",
+                id: "passwordCheckInput"
+            }])
+
+        if (!validate()) return;
+        openModal("#PsswordModal")()
+
+    }
+
+    const submitPassword = (currentPw: string) => {
+        if (!currentPw) return;
+        passwordChange({
+            variables: {
+                currentPw,
+                newPassword: nextPw.password
+            }
+        })
+    }
 
     const handleUpdate = () => {
         userUpdate({
-            params: {
-                ...profile
-            },
-            _id,
-            pw
+            variables: {
+                params: {
+                    ...profile,
+                },
+                _id,
+            }
         })
     }
 
-    const handleUpdatePhone = (phoneNumber: string) => {
-        userUpdate({
-            params: {
-                phoneNumber
-            },
-            _id,
-            pw
-        })
-    }
-
-    const handleReSign = () => {
-        if (confirm(`
-        정말로 회원탈퇴를 하시겠습니까?
-        회원탈퇴후 데이터는 7일 이내에 문의를 통해서 복구가 가능합니다. 
-         `))
-            resign({
-                variables: {
-                    _id,
-                    pw: prompt("비밀번호를 입력 해주세요.", "") || ""
-                }
-            })
-
-    }
+    // const handleUpdatePhone = (phoneNumber: string) => {
+    //     userUpdate({
+    //         params: {
+    //             phoneNumber
+    //         },
+    //         _id
+    //     })
+    // }
 
     let verifyTemplate = (verificationId: string) => {
         // if (code.length < 4) {
@@ -189,13 +214,13 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     <p>오늘 총 예약</p>
                                 </li>
                                 <li className="ct">
-                                    <span>{sellCounts}</span>
+                                    <span>{salesTotalCount}</span>
                                     <p>
                                         총 판매 수<i className="jandaicon-info2" data-tip="총 예약자 수" />
                                     </p>
                                 </li>
                                 <li className="ct">
-                                    <span>{productsCount}</span>
+                                    <span>{productRegistCount}</span>
                                     <p>상품 등록 수</p>
                                 </li>
                             </>
@@ -265,14 +290,14 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="txt">{email}</div>
                             </li>
                             <li>
-                                <div className="title">비밀번호</div>
+                                <div className="title">비밀번호 변경</div>
                                 <div className="txt">
                                     <div className="input_relative">
                                         <input
                                             value={nextPw.password}
                                             onChange={handlePassword("password")}
                                             type="password"
-                                            className={`form-control w100`}
+                                            className={`form-control w100 ${isPassword(nextPw.password) && "ok"}`}
                                             placeholder="변경할 비밀번호를 입력 해주세요"
                                         />
                                         <i className="jandaicon-check btn_in" />
@@ -284,6 +309,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="txt">
                                     <div className="input_relative">
                                         <input
+                                            id="passwordCheckInput"
                                             value={nextPw.passwordCheck}
                                             onChange={handlePassword("passwordCheck")}
                                             type="password"
@@ -553,17 +579,19 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 </div>
                 <div className="fin ifMobile">
                     <div className="float_left">
-
                         <button onClick={handleUpdate} type="submit" className="btn medium">
                             수정
                         </button>
+                        <button onClick={handlePasswordChange} type="submit" className="btn medium">
+                            비밀번호 변경
+                        </button>
                     </div>
-                    <div className="float_right">
+                    {/* <div className="float_right">
                         <button onClick={handleReSign} type="submit"
                             className="btn medium color01">
                             회원탈퇴
                         </button>
-                    </div>
+                    </div> */}
                     <div className="float_right">
                         <button onClick={handleResign2} type="submit"
                             className="btn medium color01">
@@ -597,47 +625,11 @@ export const MyPageProfile: React.FC<IProp> = () => {
             </button>
         </Modal>
 
-        <Modal id="reSignModal" title="회원 탈퇴하기">
-            <div className="withdraw__fom">
-                <p className="withdraw__fom_info">
-                    정말로 회원탈퇴를 하시겠습니까?<br />
-                    회원탈퇴후 데이터는 7일 이내에 문의를 통해서 복구가 가능합니다.
-                    </p>
-                <ul>
-                    <li className="list">
-                        <span className="radiobox mr5">
-                            <input type="radio" />
-                        </span>
-                        <span>개인정보기록 삭제 목적</span>
-                    </li>
-                    <li className="list">
-                        <span className="radiobox mr5">
-                            <input type="radio" />
-                        </span>
-                        <span>새 아이디 생성 목적</span>
-                    </li>
-                    <li className="list">
-                        <span className="radiobox mr5">
-                            <input type="radio" />
-                        </span>
-                        <span>서비스 기능 불편</span>
-                    </li>
-                    <li className="list">
-                        <span className="radiobox mr5">
-                            <input type="radio" />
-                        </span>
-                        <span> 기타 <input type="text" className="ml5" /></span>
-                    </li>
-                </ul>
-                <div className="withdraw__fom_btn">
-                    <button className="btn" >탈퇴하기</button>
-                </div>
-            </div>
-        </Modal>
-
+        <ResignModal />
         <Modal id="addressFindModal" title="주소찾기">
             <DaumPostcode onComplete={handleCompleteFindAddress} />
         </Modal>
+        <PromptInput title="비밀번호 변경" onSubmit={submitPassword} id="PsswordModal" />
     </MypageLayout >;
 };
 

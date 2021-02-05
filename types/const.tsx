@@ -5,8 +5,8 @@ import { generateRandomStringCode } from "../utils/codeGenerator";
 
 export const DEFAULT_LOGO = "/img/logo_1.png";
 
-export const lastMonthFirstDate = dayjs().add(-1, "m").set("day", 1).toDate();
-export const lastMonthLastDate = dayjs().add(-1, "m").endOf("month").toDate();
+export const lastMonthFirstDate = dayjs().add(-1, "month").set("day", 1).toDate();
+export const lastMonthLastDate = dayjs().add(-1, "month").endOf("month").toDate();
 export const thisMonthLastDate = dayjs().endOf("month").toDate();
 export const thisMonthFirstDate = dayjs().startOf("month").toDate();
 export const oneYearBefore = dayjs().add(-1, "y").toDate();

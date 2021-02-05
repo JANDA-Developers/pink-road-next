@@ -24,6 +24,7 @@ export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange, isRa
     function handleDayClick(day: any) {
         if (!isRange) {
             onRangeChange({ from: day, to: day });
+            return
         }
 
         // 선택한 날자 뒤를 누른경우에

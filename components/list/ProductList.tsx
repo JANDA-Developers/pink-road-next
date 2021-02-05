@@ -13,7 +13,7 @@ export const ProductListBlock: React.FC<IProp> = ({ product }) => {
     return <li className="list_in">
         <div style={BG(product?.images?.[0]?.uri || "")} className="img" />
         <div className="txt1">
-            <div className="title"><a href="/">{product.title}</a></div>
+            <div className="title"><a href={"/tour/view/" + product._id}>{product.title}</a></div>
             <div className="subtitle">
                 {product.subTitle}
             </div>

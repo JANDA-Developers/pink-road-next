@@ -75,8 +75,9 @@ function App({ Component, pageProps }: any) {
 
   const catsMap = categoryMap(catList);
 
-  if (!ComponentAuth.includes(role || null)) {
+  if (!ComponentAuth.includes(role || null) && !loading) {
     if (arrayEquals(ComponentAuth, ALLOW_LOGINED)) {
+      if (loading) return;
       Component = () => <PageDeny redirect="/login" msg="해당 페이지는 로그인후 이용 가능합니다." />
       return <Component />;
     } else
@@ -97,7 +98,7 @@ function App({ Component, pageProps }: any) {
 
   if (router.isFallback) {
     console.log("cachefallback");
-    return <div>Loading...</div>
+    return <div></div>
   }
 
   if (loading) return <PageLoading />
