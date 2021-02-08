@@ -18,7 +18,7 @@ import { sellerListPublic_SellerListPublic_data } from '../types/api';
 import { BG } from '../types/const';
 import { ProfileListAPI, ProfileListAPIwithGoods } from '../components/common/ProfileListAPI';
 import { PageEditor } from '../components/common/PageEditer';
-import { Bg } from '../components/Img/img';
+import { Bg } from '../components/Img/Img';
 import { LinkRoundIcon } from '../components/common/icon/LinkIcon';
 import { A } from '../components/A/A';
 

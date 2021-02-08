@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { Bg } from '../../components/Img/img';
+import { Bg } from '../../components/Img/Img';
 import { IUsePageEdit } from '../../hook/usePageEdit';
 
 interface IProp {

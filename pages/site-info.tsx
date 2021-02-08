@@ -7,7 +7,7 @@ import { usePageEdit } from '../hook/usePageEdit';
 import { PageEditor } from '../components/common/PageEditer';
 import { LinkIcon } from '../components/common/icon/LinkIcon';
 import { A } from '../components/A/A';
-import { Img } from '../components/Img/img';
+import { Img } from '../components/Img/Img';
 import { CloseIcon } from '../components/common/icon/CloseIcon';
 import { useRouter } from 'next/router';
 

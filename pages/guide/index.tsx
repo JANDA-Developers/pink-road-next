@@ -9,8 +9,8 @@ import defaultPageInfo from "../../info/guideMain.json"
 import { ProfileListAPIwithGoods } from '../../components/common/ProfileListAPI';
 import { PageEditor } from '../../components/common/PageEditer';
 import { CloseIcon } from '../../components/common/icon/CloseIcon';
-import { Bg } from '../../components/Img/img';
 import { AppContext } from '../_app';
+import { Bg } from '../../components/Img/Img';
 
 
 export const getStaticProps = getStaticPageInfo("guideMain")

@@ -2,8 +2,8 @@ import { CSSProperties } from "react";
 import $ from "jquery"
 import { ISet } from "../types/interface";
 import isEmpty from "./isEmpty";
-import { IEditKit } from "../components/Img/img";
 import sanitizeHtml from 'sanitize-html';
+import { IEditKit } from "../components/Img/Img";
 import { ILinkEditProps } from "../components/A/A";
 
 interface Style {

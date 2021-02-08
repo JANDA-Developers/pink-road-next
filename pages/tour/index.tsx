@@ -14,7 +14,7 @@ import { useGroupList } from '../../hook/useGroup';
 import isEmpty from '../../utils/isEmpty';
 import { GoodsListAPI } from '../../components/common/GoodsListAPI';
 import { PageEditor } from '../../components/common/PageEditer';
-import { Bg, Img } from '../../components/Img/img';
+import { Bg, Img } from '../../components/Img/Img';
 import { A } from '../../components/A/A';
 import { LinkRoundIcon } from '../../components/common/icon/LinkIcon';
 import { GoodsListTable } from '../../components/common/GoodListTable';
