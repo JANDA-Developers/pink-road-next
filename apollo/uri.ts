@@ -1,6 +1,6 @@
-const PROD = "http://its.api.stayjanda.cloud:4000";
+const PROD = "https://its.api.stayjanda.cloud:4000";
 const LOCAL = "http://localhost:4000";
-export const SERVER = LOCAL;
+export const SERVER = PROD;
 
 const END_POINT = PROD + "/graphql";
 export const SERVER_URI: string = END_POINT || "";
