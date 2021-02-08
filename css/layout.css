@@ -64,6 +64,7 @@ i.tooltip{
 #setting_link {
     position: fixed;
     display: inline-block;
+    align-items: center;
     bottom: 20px;
     right: 20px;
     padding: 10px 30px;
@@ -250,6 +251,8 @@ i.tooltip{
 
 /* tap_menu */
 .subtop_nav {
+    top: auto!important;
+    bottom: 100%!important;
     position: absolute;
     top: -117px;
     left: 0;

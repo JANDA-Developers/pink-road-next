@@ -17,7 +17,7 @@ export interface IBoardOpen {
     open: boolean;
 }
 
-type TCategory = { _id: string, label: string };
+export type TCategory = { _id: string, label: string };
 interface IProps {
     boardHook: IUseBoard
     categoryList?: TCategory[]
@@ -153,7 +153,7 @@ export const BoardWrite: React.FC<IProps> = ({
                             </div>
                         </div>
                     }
-                    {opens.thumb &&
+                    {opens.open &&
                         <div className="write_type">
                             <div className="title">글 설정</div>
                             <div className="input_form">
@@ -196,7 +196,7 @@ export const BoardWrite: React.FC<IProps> = ({
                     <div className="float_right">
                         {isCreateMode || <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
                         {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
-                        <button onClick={handleCancel} type="button" className="btn medium impact">취소</button>
+                        <button onClick={handleCancel} type="button" className=" btn medium impact">취소</button>
                         <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>
                     </div>
                 </div>

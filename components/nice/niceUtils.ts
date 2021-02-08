@@ -1,8 +1,8 @@
+import { SERVER } from "../../apollo/uri";
 import { INiceElementProp } from "./NiceElement";
-const TEMP = "http://10.159.6.11:4000"
-export const NICE_GET_KEY = TEMP + "/payment"
-export const NICE_MOBILE_AFTER_PAY = TEMP + "/authReq"
-export const NICE_CANCLE = TEMP + "/authReq"
+export const NICE_GET_URI = SERVER + "/payment"
+export const NICE_MOBILE_AFTER_PAY = SERVER + "/authReq"
+export const NICE_CANCLE = SERVER + "/authReq"
 
 // requirePorp: Record<AUTH, string> & Partial<INiceElementProp>
 
@@ -17,8 +17,8 @@ export const generateNiceData = ({
     groupCode
 }:IgenDataProp): INiceElementProp => {
     const randomNumber = Math.floor((Math.random() * 1000) + 1);;
-    const Moid = "PINK" + `-${groupCode}-` + randomNumber;
-
+    const Moid = "ITS" + `-${groupCode}-` + randomNumber;
+    
     const params:INiceElementProp = {
         ...niceDataStatic,
         ...auth,

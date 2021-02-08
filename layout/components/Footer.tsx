@@ -32,8 +32,8 @@ export const Footer: React.FC<IProp> = () => {
             <div className="bottom_nav">
                 <ul className="w1200">
                     <li><Link href="/site-info"><a>회사소개</a></Link></li>
-                    <li><Link href="/member/rule"><a>이용약관</a></Link></li>
-                    <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
+                    <li><Link href="/service/rule"><a>이용약관</a></Link></li>
+                    <li><Link href="/service/privacy-policy"><a>개인정보처리방침</a></Link></li>
                     <li className="sns">
                         <div>
                             <Link href="https://www.facebook.com/profile.php?id=100061223413851"><a target="_blank"><i className="jandaicon-facebook"></i></a></Link>

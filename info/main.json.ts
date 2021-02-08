@@ -1,5 +1,11 @@
 
 const info = {
+    goods_list1_title: {
+        kr: `BEST`,
+    },
+    goods_list2_title: {
+        kr: `DM추천`,
+    },
     m_01_title: {
         kr: `특별한 여행<br/>즐거운 추억<br/>소중한 당신`,
     },
@@ -108,6 +114,24 @@ const info = {
     m_06_link01_bgimg: {
         kr: `/its/tem_bg_06.jpg`,
     },
+    m_06_link01_bgimg_link: {
+        value: "",
+    },
+    m_06_link02_bgimg_link: {
+        value: "",
+    },
+    m_06_link03_bgimg_link: {
+        value: "",
+    },
+    m_06_link04_bgimg_link: {
+        value: "",
+    },
+    m_06_link05_bgimg_link: {
+        value: "",
+    },
+    m_06_link06_bgimg_link: {
+        value: "",
+    },
     m_06_link01_text: {
         kr: `오늘은 소풍가는 날`,
     },
@@ -187,11 +211,6 @@ const info = {
     m_07_box03_rigthbg: {
         kr: '/its/main_bg_002.jpg',
     },
-
-
-
-
-
     purposeTitle: {
         kr: `Purpose and Vision`
     },

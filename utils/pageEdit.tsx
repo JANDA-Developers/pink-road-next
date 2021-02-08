@@ -1,7 +1,10 @@
 import { CSSProperties } from "react";
 import $ from "jquery"
-import { IEditKit } from "../components/Img/Img";
-import { ISet, Langs } from "../types/interface";
+import { ISet } from "../types/interface";
+import isEmpty from "./isEmpty";
+import { IEditKit } from "../components/Img/img";
+import sanitizeHtml from 'sanitize-html';
+import { ILinkEditProps } from "../components/A/A";
 
 interface Style {
     style?: CSSProperties,
@@ -46,25 +49,26 @@ const keyDownUlManage = (e: any,) => {
 }
 
 
+
+
 type TCommand = "bold"
 
 export const effectDoc = (command: TCommand) => {
     document.execCommand(command)
 }
 
+
 export interface IGetEditUtilsResult<Page> {
     page: Page;
     setPage: React.Dispatch<any>;
-    lang: Langs;
+    lang: string;
     edit: (key: keyof Page, index?: number) => any;
     ulEdit: (key: keyof Page) => any;
     imgEdit: (key: keyof Page) => (url: string) => void;
-    editArray: (key: keyof Page, index: number, value: any) => void;
+    linkEdit: (key: keyof Page) => ILinkEditProps
+    editArray: (key: keyof Page, index: number, value: any, key2?: string) => void;
     addArray: (key: keyof Page, value: any) => void;
     removeArray: (key: keyof Page, index: number) => void
-    arrAddKit: (key: keyof Page, modalHook: any) => {
-        onClick: () => void;
-    },
     bg: (key: keyof Page) => {
         backgroundImage: string;
     } | undefined;
@@ -73,34 +77,58 @@ export interface IGetEditUtilsResult<Page> {
         "data-imgkey": keyof Page;
         "data-img": string;
     } | undefined;
-    imgKit: (key: keyof Page) => IEditKit
-    get: (key: keyof Page) => any
-    linkEdit: (key: keyof Page) => any
-    arrayEditModalKit: (key: keyof Page, modalHook: any) => {
-        onSubmit: (data: any) => void;
-        onDelete: (index: number) => void;
-        key: string;
-        modalHook: any
-    },
-    editObjArr: (key: keyof Page, index: number, modalHook: any) => {
-        onClick: () => void;
-        "data-edit": string;
-        key: string
-    } | {
-        key: string
+    get: (key: keyof Page) => any;
+    imgKit: (key: keyof Page) => IEditKit<Page>;
+    arrayImgKit: (index: number, key: keyof Page, arrayOrigin: any) => {
+        src: {
+            "data-edit": string;
+            "data-img": string;
+            "data-imgkey": string;
+            src: any;
+        };
+        upload: (url: string) => void;
     }
 }
 
 
-export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean, page: T, setPage: ISet<any>, lang = "kr") => {
+export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean, page: T, setPage: ISet<any>, lang = "kr"): IGetEditUtilsResult<T> => {
+
+    class EditError extends Error {
+        constructor(message: string) {
+            console.log("pagepagepagepagepage");
+            console.log(page);
+            // Pass remaining arguments (including vendor specific ones) to parent constructor
+            super(message)
+
+            // Maintains proper stack trace for where our error was thrown (only available on V8)
+            if (Error.captureStackTrace) {
+                Error.captureStackTrace(this, EditError)
+            }
+
+            this.name = 'EditError'
+            if (isEmpty(page)) {
+                // location.reload();
+            }
+            const retry = localStorage.getItem("ERR_RE_TRY");
+            if (retry !== "T") {
+                console.error("ERR")
+                localStorage.setItem("ERR_RE_TRY", "T");
+                // location.reload();
+            } else {
+                console.error("ERR")
+                localStorage.removeItem("ERR_RE_TRY");
+            }
+        }
+    }
+
     const validateKey = (key: string | keyof T, array?: number | true) => {
         if (!page[key]) throw Error(`키값 ${key}은 존재하지 않습니다.`);
-        if (page[key][lang] === undefined) throw Error(`언어 ${lang}은 ${key}에 존재하지 않습니다.`);
+        if (page[key].value === undefined)
+            if (page[key][lang] === undefined) throw Error(`언어 ${lang}은 ${key}에 없으며 value 또한 없습니다..`);
 
         if (array !== undefined) {
             if (!Array.isArray(page[key][lang])) throw Error(`the ${key} object is not array!!`);
             if (array !== true) {
-                console.log(page[key][lang]);
                 if (page[key][lang][array] === undefined) throw Error(`the object key ${key} dose not  have index ${array}!!`)
             }
         }
@@ -111,50 +139,27 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         const text = e.currentTarget.innerHTML;
         validateKey(key, index)
 
-        if (index === undefined) {
-            page[key][lang] = text || "";
-        } else {
-            page[key][lang][index] = text || "";
-        }
-        setPage({ ...page })
+        set(key, text || "", index)
     }
 
     const editable: "true" | undefined = editMode === true ? "true" : undefined;
 
     const singleBlur = onSingleBlur.bind(onSingleBlur);
 
-    const arrayEditModalKit = (key: keyof T, tourModalHook: any) => {
-        return {
-            onSubmit: (data: any, index?: number) => {
-                if (index !== undefined) {
-                    editArray(key, data.index, data)
-                } else {
-                    addArray(key, data)
-                }
-            },
-            onDelete: (index: number) => {
-                removeArray(key, index)
-            },
-            modalHook: tourModalHook,
-            key: key + tourModalHook.info?.index + tourModalHook.info?.key
-        }
-    }
-
-    const editArray = (key: keyof T, index: number, value: any) => {
+    const editArray = (key: keyof T, index: number, value: any, key2?: string) => {
         validateKey(key, index)
-        page[key][lang][index] = value
-        setPage({ ...page });
+        set(key, value, index, key2)
     }
 
     const addArray = (key: keyof T, value: any) => {
         validateKey(key, true)
-        page[key][lang].push(value);
+        get(key).push(value);
         setPage({ ...page });
     }
 
     const removeArray = (key: keyof T, index: number) => {
         validateKey(key, index)
-        page[key][lang].splice(index, 1)
+        get(key).splice(index, 1)
         setPage({ ...page });
     }
 
@@ -166,10 +171,10 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
     const data = (key: keyof T, index?: number) => {
         validateKey(key, index);
-        const html = index === undefined ? page[key][lang] : page[key][lang][index];
+        const html = index === undefined ? get(key) : get(key)[index];
         return {
             dangerouslySetInnerHTML: {
-                __html: html
+                __html: sanitizeHtml(html)
             }
         }
     }
@@ -202,21 +207,21 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
     const onImgUpload = (key: keyof T, url: string) => {
         validateKey(key)
-        page[key][lang] = url
-        setPage({ ...page })
+        set(key, url)
     }
 
     const imgEdit = (key: keyof T) => onImgUpload.bind(onImgUpload, key);
     const bg = (key: keyof T) => {
         validateKey(key)
-        return ({ backgroundImage: `url(${page[key][lang]})`, "data-edit": editable ? "bg" : "" })
-    }
-    const src = (key: keyof T) => {
-        validateKey(key)
-        return ({ src: page[key][lang], "data-imgkey": key, "data-img": "img" })
+        return ({ backgroundImage: `url(${get(key)})`, "data-edit": editable ? "bg" : "" })
     }
 
-    const imgKit = (key: string) => {
+    const src = (key: keyof T) => {
+        validateKey(key)
+        return ({ "data-edit": editable ? "img" : "", src: get(key), "data-imgkey": key, "data-img": "img" })
+    }
+
+    const imgKit = (key: string): IEditKit<any> => {
         validateKey(key)
         const upload = imgEdit.bind(imgEdit, key)();
         const _bg = bg.bind(bg, key)();
@@ -229,9 +234,87 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         }
     }
 
-    const get = (key: keyof T) => {
+    const arrayImgKit = (index: number, key: keyof T, arrayOrigin: any) => {
+        validateKey(key, index);
+        const src = page[key][lang][index]["img"];
+        if (!src) throw Error(`img proeprty not exsit ${key}`);
+        return {
+            src: {
+                "data-edit": editable ? "img" : "",
+                "data-img": "img",
+                "data-imgkey": "partner",
+                src: page[key][lang][index]["img"]
+            },
+            upload: (url: string) => {
+                editArray("partners", index, { ...arrayOrigin, img: url })
+            },
+        }
+    }
+
+    const set = (key: keyof T, value: any, index?: number, key2?: string) => {
+        validateKey(key, index)
+
+
+
+        const setPageData = () => {
+            if (index !== undefined) {
+                // @ts-ignore
+                if (page[key].value !== undefined) {
+                    // @ts-ignore
+                    page[key].value[index] = value
+                    return
+                } else if (key2 !== undefined) {
+                    // @ts-ignore
+                    page[key][lang][index][key2] = value;
+                    return
+                } else {
+                    page[key][lang][index] = value;
+                    return
+                }
+            }
+
+
+            if (index === undefined) {
+                // @ts-ignore
+                if (page[key].value !== undefined) {
+                    // @ts-ignore
+                    page[key].value = value
+                    return
+                } else {
+                    // @ts-ignore
+                    page[key][lang] = value;
+                    return
+                }
+            }
+        }
+        setPageData();
+        console.log({ page });
+        setPage({ ...page })
+
+    }
+
+    const get = (key: keyof T, index?: number) => {
         validateKey(key)
-        return page[key][lang]
+
+        if (index !== undefined) {
+            // @ts-ignore
+            if (page[key].value) {
+                // @ts-ignore
+                return page[key].value[index]
+            } else {
+                // @ts-ignore
+                return page[key][lang][index];
+            }
+        }
+
+        // @ts-ignore
+        if (page[key].value) {
+            // @ts-ignore
+            return page[key].value
+        } else {
+            // @ts-ignore
+            return page[key][lang];
+        }
     }
 
     const linkEdit = (key: keyof T) => {
@@ -242,43 +325,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
             link,
             editable: !!editable,
             editLink: (link: string) => {
-                page[key][lang] = link
-            }
-        }
-    }
-
-    const editObjArr = (key: keyof T, index: number, modalHook: any) => {
-        validateKey(key, index);
-        if (!page[key].META) throw Error(`${key} on page META dose not exsit`);
-
-        const _key = `${key}${index}EditArr`;
-
-        if (editMode) {
-            return {
-                onClick: (e: React.MouseEvent) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    modalHook.openModal(
-                        { META: page[key].META, origin: page[key][lang][index], index }
-                    )
-                },
-                "data-edit": "array",
-                key: _key,
-            }
-        }
-
-        return {
-            key: _key
-        }
-    }
-
-    const arrAddKit = (key: keyof T, modalHook: any) => {
-        validateKey(key);
-        if (!page[key].META) throw Error(`${key} on page META dose not exsit`);
-
-        return {
-            onClick: () => {
-                modalHook.openModal({ META: page[key].META, key: "create" })
+                set(key, link)
             }
         }
     }
@@ -296,14 +343,11 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         imgEdit,
         editArray,
         addArray,
+        linkEdit,
         removeArray,
-        arrayEditModalKit,
-        arrAddKit,
-        editObjArr,
+        arrayImgKit,
         bg,
         src,
-        view,
-        imgKit,
-        linkEdit
+        imgKit: imgKit as any,
     }
 }

@@ -1,105 +1,67 @@
 import { MasterLayout } from 'layout/MasterLayout';
-import React from 'react';
-import { ADMINS } from 'types/const';
-import { auth } from 'utils/with';
+import React, { useEffect } from 'react';
+import { NotiLine } from '../../components/notification/NotiLine';
+import { useSystemNotiHide, useSystemNotiList, useSystemNotiRead } from '../../hook/useSystemNoti';
+import { ALLOW_ADMINS } from '../../types/const';
+import { groupDateArray } from '../../utils/group';
+import { auth } from '../../utils/with';
 
 interface IProp { }
 
 export const Notification: React.FC<IProp> = () => {
+
+    const { items, refetch } = useSystemNotiList();
+    const ids = items.map(i => i._id);
+    const groupItems = groupDateArray(items, "createdAt");
+    const [hideMu] = useSystemNotiHide({ variables: { ids } });
+    const [readMu] = useSystemNotiRead({ variables: { ids } });
+
+    const handleRefresh = () => {
+        if (refetch)
+            refetch()
+    }
+
+    const handleHideAll = () => {
+        hideMu()
+    }
+
+    useEffect(() => {
+        readMu();
+    }, [items.length]);
+
     return <MasterLayout>
         <div className="in notification_box">
+            <h4>알림</h4>
             <div className="paper_div">
                 <div className="alignment">
                     <div className="left_div"></div>
                     <div className="right_div">
                         <div className="all_del">
-                            <button className="btn">모두삭제</button>
+                            <button onClick={handleHideAll} className="btn">모두삭제</button>
                         </div>
-                        <div className="re-set">
+                        <div onClick={handleRefresh} className="re-set">
                             <button className="btn">새로고침</button>
                         </div>
                     </div>
                 </div>
 
                 <div className="notification_list">
-                    <div className="date_fom">
-                        <div className="ovj">
-                            <span><i className="svg"><img src="/img/svg/inform_icon4.svg" alt="" /></i>오늘</span>
-                        </div>
-                        <div className="right">
-                            <div className="hang">
-                                <strong className="blue">시스템알림</strong>
-                                <span>비밀번호가 변경이 완료 되었습니다. </span>
-                                <div className="time">2시간전</div>
-                                <span className="del">
-                                    <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
-                                    <button></button>
-                                </span>
+                    {groupItems.map((group, index) =>
+                        <div key={"notificationDateGroup" + index} className="date_fom">
+                            <div className="ovj">
+                                <span><i className="svg"><img src="/img/svg/inform_icon4.svg" alt="" /></i>오늘</span>
                             </div>
-                            <div className="hang">
-                                <strong className="blue">시스템알림</strong>
-                                <span>오늘 출발하는 상품이 <i>[3건]</i>이 있습니다. </span>
-                                <div className="time">5시간전</div>
-                                <span className="del">
-                                    <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
-                                    <button></button>
-                                </span>
-                            </div>
-                            <div className="hang">
-                                <strong className="pink">예약완료</strong>
-                                <span><i>김하은</i>님이 <i>[떠나요~거제도~~!!!]</i> 상품에서 <i>2020.11.12</i>에 <i>성인 1명 / 소인 2명</i>이 예약완료가 되었습니다. </span>
-                                <div className="time">8시간전</div>
-                                <span className="del">
-                                    <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
-                                    <button></button>
-                                </span>
-                            </div>
-                            <div className="hang">
-                                <strong className="red">예약취소</strong>
-                                <span><i>고봉봉</i>님이 <i>[떠나요~거제도~~!!!]</i> 예약상품을 취소하셨습니다. <i>(카드취소)</i></span>
-                                <div className="time">8시간전</div>
-                                <span className="del">
-                                    <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
-                                    <button></button>
-                                </span>
+                            <div className="right">
+                                {group.items.map((item: any) =>
+                                    <NotiLine key={item._id} systemNoti={item} />
+                                )}
                             </div>
                         </div>
-                    </div>
-
-                    <div className="date_fom">
-
-                        <div className="ovj">
-                            <span><i className="svg"><img src="/img/svg/inform_icon4.svg" alt="" /></i>2020.11.01</span>
-                        </div>
-                        <div className="right">
-                            <div className="hang">
-                                <strong className="green">Member</strong>
-                                <span><i>나라여행</i>님이 여행기획 <i>1건</i>을 결제요청 하셨습니다.</span>
-                                <div className="time">5시간전</div>
-                                <span className="del">
-                                    <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
-                                    <button></button>
-                                </span>
-                            </div>
-                            <div className="hang">
-                                <strong className="green">Member</strong>
-                                <span><i>홍나라</i>님이 회원가입(파트너-가이드)을 요청 하셨습니다. 가입승인 대기중입니다. 확인해주세요~!!</span>
-                                <div className="time">5시간전</div>
-                                <span className="del">
-                                    <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
-                                    <button></button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    )}
                 </div>
-
             </div>
         </div>
-
     </MasterLayout >
 };
 
-export default auth(ADMINS)(Notification);
+export default auth(ALLOW_ADMINS)(Notification);

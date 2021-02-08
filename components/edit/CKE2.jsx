@@ -18,7 +18,7 @@ export class UploadAdapter {
 
     _initRequest() {
         const xhr = this.xhr = new XMLHttpRequest();
-        xhr.open('POST', SERVER_URI +'/upload', true);
+        xhr.open('POST', SERVER_URI.replace("/graphql",'') +'/upload', true);
         xhr.responseType = 'json';
     }
 

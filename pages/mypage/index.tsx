@@ -5,27 +5,51 @@ import { getItemCount } from '../../utils/Storage';
 import { arraySum } from '../../utils/math';
 import { GENDER, UserRole } from '../../types/api';
 import { autoHypenPhone, cc_format } from "../../utils/formatter";
-import { useUserUpdate } from '../../hook/useUserUpdate';
 import { useMyProfile } from '../../hook/useMyProfile';
 import { auth } from '../../utils/with';
-import { ONLY_LOGINED } from '../../types/const';
+import { ALLOW_LOGINED } from '../../types/const';
 import DaumPostcode from 'react-daum-postcode';
 import { Modal } from '../../components/modal/Modal';
 import { openModal } from '../../utils/popUp';
 import { useVerification } from '../../hook/useVerification';
-import { toast } from 'react-toastify';
 import { GET_CONTEXT } from '../../apollo/gql/queries';
 import { getOperationName } from '@apollo/client/utilities';
-import { LastMonthBooking } from '../../components/static/LastMonthBooking';
-import { ThisMonthBooking } from '../../components/static/ThisMonthBooking';
-import { useBookingList } from '../../hook/useBooking';
+import { useCustomCount } from '../../hook/useCount';
+import { usePasswordChange, useUserResign, useUserUpdate } from '../../hook/useUser';
+import { ResignModal } from '../../components/resign/ResignModal';
+import { isPassword } from '../../utils/validation';
+import { Validater } from '../../utils/validate';
+import { Prompt, PromptInput } from '../../components/promptModal/Prompt';
 
 let SEND_LIMIT = 3;
 interface IProp { }
 export const MyPageProfile: React.FC<IProp> = () => {
-    const { userUpdate } = useUserUpdate({
+    const { salesOfThisMonth, todayBookingCount, salesofLastMonth, countOfExpBooking } = useCustomCount([
+        "salesofLastMonth",
+        "salesOfThisMonth",
+        "countOfTourBooking",
+        "countOfExpBooking",
+        "todayBookingCount"
+    ]);
+    const [userUpdate] = useUserUpdate({
         refetchQueries: [getOperationName(GET_CONTEXT) || ""],
+        onCompleted: ({ UserUpdate }) => {
+            if (UserUpdate.ok) {
+                alert("업데이트가 완료 되었습니다.");
+            }
+        }
     });
+    const [passwordChange] = usePasswordChange({
+        refetchQueries: [getOperationName(GET_CONTEXT) || ""],
+        onCompleted: ({ PasswordChange }) => {
+            if (PasswordChange.ok) {
+                alert("패스워드가 변경 되었습니다.");
+            }
+        }
+    });
+
+    const { salesTotalCount, productRegistCount } = useCustomCount(["productRegistCount", "salesTotalCount"])
+    const [resign] = useUserResign();
     const { myProfile: defaultProfile, role, isAdmin } = useContext(AppContext);
     const { code, setCode } = useVerification();
     const [nextPhoneNum, setNextPhoneNum] = useState("");
@@ -52,45 +76,72 @@ export const MyPageProfile: React.FC<IProp> = () => {
         busi_department,
         bank_name,
         busi_contact,
+        busi_address,
+        gender,
+        is_froreginer,
+        is_priv_corper,
         account_number } = profile;
     const {
         _id,
-        products,
-        gender,
         bookings,
-        is_froreginer,
         email,
         phoneNumber,
         isVerifiedPhoneNumber,
         busi_name,
-        is_priv_corper } = defaultProfile!;
+        connectionCount,
+    } = defaultProfile!;
 
-    const productsCount = products.length;
-    const sellCounts = arraySum(products.map(p => p.bookings.length));
     const isFemale = gender === GENDER.FEMALE;
+
+    const handlePasswordChange = () => {
+        const { validate } = new Validater([
+            {
+                value: nextPw.password,
+                failMsg: "변경할 패스워드를 입력 해주세요.",
+                id: "passwordCheckInput"
+            }, {
+                value: isPassword(nextPw.password),
+                failMsg: "올바른 비밀번호가 아닙니다."
+            }, {
+                value: nextPw.password === nextPw.passwordCheck,
+                failMsg: "패스워드가 일치하지 않습니다.",
+                id: "passwordCheckInput"
+            }])
+
+        if (!validate()) return;
+        openModal("#PsswordModal")()
+
+    }
+
+    const submitPassword = (currentPw: string) => {
+        if (!currentPw) return;
+        passwordChange({
+            variables: {
+                currentPw,
+                newPassword: nextPw.password
+            }
+        })
+    }
 
     const handleUpdate = () => {
         userUpdate({
-            params: {
-                ...profile
-            },
-            _id,
-            pw
+            variables: {
+                params: {
+                    ...profile,
+                },
+                _id,
+            }
         })
     }
 
-    const handleUpdatePhone = (phoneNumber: string) => {
-        userUpdate({
-            params: {
-                phoneNumber
-            },
-            _id,
-            pw
-        })
-    }
-
-    const handleRetire = () => {
-    }
+    // const handleUpdatePhone = (phoneNumber: string) => {
+    //     userUpdate({
+    //         params: {
+    //             phoneNumber
+    //         },
+    //         _id
+    //     })
+    // }
 
     let verifyTemplate = (verificationId: string) => {
         // if (code.length < 4) {
@@ -119,6 +170,11 @@ export const MyPageProfile: React.FC<IProp> = () => {
         // })
     }
 
+
+    const handleResign2 = () => {
+        openModal("#reSignModal")()
+    }
+
     const handleChangePhoneNumber = () => {
         openModal("#phoneChangeModal")()
     }
@@ -127,66 +183,72 @@ export const MyPageProfile: React.FC<IProp> = () => {
     }
 
     const handleFindAdress = () => {
-
     }
 
     const pwSameCheck = () => nextPw.password && nextPw.password === nextPw.passwordCheck;
 
     const [state, setState] = useState<UserRole>(role);
-
-    const isPartnerB = state === "partnerB" || role === UserRole.manager || UserRole.admin;
+    const isPartnerB = state === "partnerB" || role === UserRole.manager || role === UserRole.admin;
     const isPartner = state === UserRole.partner
     const isBuyer = state === UserRole.individual;
     const isSeller = isPartnerB || isPartner;
 
-
     return <MypageLayout >
-        {isAdmin && <div>
-            <button style={{
-                color: isPartnerB ? "red" : undefined
-            }} onClick={() => {
-                setState(UserRole.partnerB)
-            }}>파트너B</button>
-            <button style={{
-                color: isPartner ? "red" : undefined
-            }} onClick={() => {
-                setState(UserRole.partner)
-            }}>파트너</button>
-            <button style={{
-                color: isBuyer ? "red" : undefined
-            }} onClick={() => {
-                setState(UserRole.individual)
-            }}>구매자</button>
-        </div>
-        }
         <div className="in">
             <h4>회원정보</h4>
-            <div className="mypage_page  ">
+            <div className="mypage_page">
                 <div className="box1">
                     <div className="top_info">
                         <ul className={`line${isSeller ? "5" : "4"}`}>
                             {isSeller && <>
                                 <li className="ct">
-                                    <LastMonthBooking />
-                                    <p>저번달 총 매량</p>
+                                    <span id="SellCount">{salesofLastMonth}</span>
+                                    <p>저번달 총 예약</p>
                                 </li>
                                 <li className="ct">
-                                    <span id="SellCount">234</span>
-                                    <p>이번달 총 판매량</p>
+                                    <span id="SellCount">{salesOfThisMonth}</span>
+                                    <p>이번달 총 예약</p>
                                 </li>
                                 <li className="ct">
-                                    <ThisMonthBooking />
-                                    <p>이번달 총 매량</p>
+                                    <span id="SellCount">{todayBookingCount}</span>
+                                    <p>오늘 총 예약</p>
                                 </li>
                                 <li className="ct">
-                                    <span>{sellCounts}</span>
+                                    <span>{salesTotalCount}</span>
                                     <p>
                                         총 판매 수<i className="jandaicon-info2" data-tip="총 예약자 수" />
                                     </p>
                                 </li>
                                 <li className="ct">
-                                    <span>{productsCount}</span>
+                                    <span>{productRegistCount}</span>
                                     <p>상품 등록 수</p>
+                                </li>
+                            </>
+                            }
+                            {isSeller || <>
+                                <li className="ct">
+                                    <span>{bookings.length}</span>
+                                    <p>
+                                        총 구매 수 {/* <i className="jandaicon-info2" /> */}
+                                    </p>
+                                </li>
+                                <li className="ct">
+                                    <span>{connectionCount}</span>
+                                    <p>
+                                        총 접속 수
+                                </p>
+                                </li>
+                                <li className="ct">
+                                    <span>{countOfExpBooking}</span>
+                                    <p>
+                                        총 체험 수
+                                </p>
+                                </li>
+                                <li className="ct">
+                                    <span>{getItemCount()}</span>
+                                    <p>
+                                        장바구니
+                                </p>
                                 </li>
                             </>
                             }
@@ -202,10 +264,13 @@ export const MyPageProfile: React.FC<IProp> = () => {
                     <div className="box_right">
                         <ul>
                             <li>
-                                <div className="title">별칭</div>
+                                <div className="title">닉네임</div>
                                 <div className="txt">
                                     <div className="input_relative">
                                         <input
+                                            style={{
+                                                border: "1px solid #e3e3e3"
+                                            }}
                                             value={nickName}
                                             onChange={(e) => {
                                                 const nickName = e.currentTarget.value
@@ -225,16 +290,17 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="txt">{email}</div>
                             </li>
                             <li>
-                                <div className="title">비밀번호</div>
+                                <div className="title">비밀번호 변경</div>
                                 <div className="txt">
                                     <div className="input_relative">
                                         <input
                                             value={nextPw.password}
                                             onChange={handlePassword("password")}
                                             type="password"
-                                            className={`form-control w100`}
+                                            className={`form-control w100 ${isPassword(nextPw.password) && "ok"}`}
                                             placeholder="변경할 비밀번호를 입력 해주세요"
                                         />
+                                        <i className="jandaicon-check btn_in" />
                                     </div>
                                 </div>
                             </li>
@@ -243,6 +309,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="txt">
                                     <div className="input_relative">
                                         <input
+                                            id="passwordCheckInput"
                                             value={nextPw.passwordCheck}
                                             onChange={handlePassword("passwordCheck")}
                                             type="password"
@@ -259,8 +326,15 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     <div className="txt">
                                         <strong>{name || ""}</strong>
                                         <ul className="country_check">
-                                            <li className={`c_in ${is_froreginer || "on"}`}>내국인</li>
-                                            <li className={`c_out ${is_froreginer && "on"}`}>외국인</li>
+                                            <li onClick={() => {
+                                                profile.is_froreginer = false;
+                                                setProfile({ ...profile })
+                                            }} className={`c_in ${is_froreginer || "on"}`}>내국인</li>
+                                            <li onClick={() => {
+                                                profile.is_froreginer = true;
+                                                setProfile({ ...profile })
+                                            }}
+                                                className={`c_out ${is_froreginer && "on"}`}>외국인</li>
                                         </ul>
                                     </div>
                                 </li> : ""
@@ -270,8 +344,18 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     <div className="title">성별</div>
                                     <div className="txt">
                                         <ul className="gender_check">
-                                            <li className={`${isFemale && "on"} female`}>여</li>
-                                            <li className={`${isFemale || "on"} men`}>남</li>
+                                            <li onClick={() => {
+                                                profile.gender = GENDER.FEMALE
+                                                setProfile({
+                                                    ...profile
+                                                })
+                                            }} className={`${isFemale && "on"} female`}>여</li>
+                                            <li onClick={() => {
+                                                profile.gender = GENDER.MAIL
+                                                setProfile({
+                                                    ...profile
+                                                })
+                                            }} className={`${isFemale || "on"} men`}>남</li>
                                         </ul>
                                     </div>
                                 </li> : ""
@@ -279,12 +363,31 @@ export const MyPageProfile: React.FC<IProp> = () => {
                             <li>
                                 <div className="title">연락처</div>
                                 <div className="txt">
-                                    <span className="w80">{autoHypenPhone(phoneNumber)}</span>
-                                    <button onClick={isVerifiedPhoneNumber ? handleChangePhoneNumber : handleVerifiPhoneNumber} type="button" className="btn btn_mini">
+                                    <span className="w100">{autoHypenPhone(phoneNumber)}</span>
+                                    {/* <button onClick={isVerifiedPhoneNumber ? handleChangePhoneNumber : handleVerifiPhoneNumber} type="button" className="btn btn_mini">
                                         {isVerifiedPhoneNumber ? "변경" : "인증"}
-                                    </button>
+                                    </button> */}
                                 </div>
                             </li>
+                            {isSeller ||
+                                <li>
+                                    <div className="title">주소</div>
+                                    <div className="txt line2">
+
+                                        <input onChange={handleTextData("address")} value={address} type="text" className="form-control w70" />
+                                        <button onClick={openModal("#addressFindModal")} type="button" className="btn btn_mini">
+                                            주소찾기
+                                    </button>
+                                        <input
+                                            value={address_detail}
+                                            onChange={handleTextData("address_detail")}
+                                            type="text"
+                                            className="form-control w100"
+                                            placeholder="상세주소"
+                                        />
+                                    </div>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -292,14 +395,113 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 {isSeller && <div className="box2">
                     <div className="box_left">
                         <div className="title">
-                            <h5>{isPartnerB ? "가이드정보" : "가이드정보"}</h5>
+                            <h5>가이드정보</h5>
                         </div>
                     </div>
                     <div className="box_right">
                         <ul>
-
+                            {/* {isPartnerB && <li>
+                                <div className="title">파트너명(회사명)</div>
+                                <div className="txt">{busi_name}</div>
+                            </li>} */}
+                            {/* {isPartnerB && <li>
+                                <div className="title">사업자번호</div>
+                                <div className="txt">
+                                    <select onChange={(e) => {
+                                        const is_priv_corper = e.currentTarget.value === "busi";
+                                        profile.is_priv_corper = is_priv_corper ? true : false;
+                                        setProfile({ ...profile });
+                                    }} value={is_priv_corper ? "busi" : "indi"} className="w20">
+                                        <option value={"indi"}>개인</option>
+                                        <option value={"busi"}>법인</option>
+                                    </select>
+                                    <input
+                                        onChange={(e) => {
+                                            const val = e.currentTarget.value;
+                                            setProfile({ ...profile, busi_num: val })
+                                        }}
+                                        value={busi_num}
+                                        type="text"
+                                        className="form-control w70 ml5"
+                                        placeholder="사업자번호를 입력해주세요."
+                                    />
+                                </div>
+                            </li>
+                            } */}
+                            {/* <li>
+                                <div className="title">대표 전화번호</div>
+                                <div className="txt">
+                                    <input
+                                        onChange={(e) => {
+                                            const val = e.currentTarget.value;
+                                            setProfile({ ...profile, busi_contact: val })
+                                        }}
+                                        value={autoHypenPhone(busi_contact)}
+                                        type="text"
+                                        className="form-control w100"
+                                        placeholder="전화번호를 입력해주세요."
+                                    />
+                                </div>
+                            </li> */}
                             <li>
-                                <div className="title">첨부파일</div>
+                                <div className="title">주소</div>
+                                <div className="txt line2">
+                                    <input onChange={handleTextData("address")} value={address} type="text" className="form-control w70" />
+                                    <button onClick={openModal("#addressFindModal")} type="button" className="btn btn_mini">
+                                        주소찾기
+                                    </button>
+                                    <input
+                                        value={address_detail}
+                                        onChange={handleTextData("address_detail")}
+                                        type="text"
+                                        className="form-control w100"
+                                        placeholder="상세주소"
+                                    />
+                                </div>
+                            </li>
+                            {/* <li>
+                                <div className="title">담당자</div>
+                                <div className="txt">
+                                    <input
+                                        value={busi_department}
+                                        onChange={handleTextData("busi_department")}
+                                        type="text"
+                                        className="form-control w20 mr5"
+                                        placeholder="부서명"
+                                    />
+                                    <input
+                                        value={name}
+                                        onChange={handleTextData("name")}
+                                        type="text"
+                                        className="form-control w50"
+                                        placeholder="담당자를 입력해주세요."
+                                    />
+                                </div>
+                            </li> */}
+                            {/* <li>
+                                <div className="title">담당자 연락처</div>
+                                <div className="txt">
+                                    <span className="w80">{phoneNumber}</span>
+                                    <button onClick={handleChangePhoneNumber} type="button" className="btn btn_mini">
+                                        변경
+                                    </button>
+                                </div>
+                                변경시 변경아이콘 눌러 popup띄워서 핸드폰번호 인증절차 거치게됨
+                            </li>
+                            <li>
+                                <div className="title">사업자등록증</div>
+                                <div className="txt">
+                                    <span className="w80 upload_out_box">
+                                        {busiRegistration?.name}
+                                    </span>
+                                    <button onClick={() => { hiddenFileInput.current?.click() }} type="button" className="btn btn_mini">
+                                        업로드
+                                    </button>
+                                    <input onChange={handleChangeRegistration} ref={hiddenFileInput} hidden type="file" />
+                                </div>
+                            </li> */}
+                            <li>
+                                <div className="title">통장사본</div>
                                 <div className="txt">
                                     <span className="w80 upload_out_box">
                                         {busiRegistration?.name}
@@ -315,6 +517,10 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="txt">
                                     <div className="line_first">
                                         <input
+                                            onChange={(e) => {
+                                                const val = e.currentTarget.value
+                                                setProfile({ ...profile, bank_name: val })
+                                            }}
                                             value={bank_name}
                                             type="text"
                                             className="form-control w20 mr5"
@@ -371,15 +577,24 @@ export const MyPageProfile: React.FC<IProp> = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="fin">
+                <div className="fin ifMobile">
                     <div className="float_left">
-
                         <button onClick={handleUpdate} type="submit" className="btn medium">
                             수정
                         </button>
+                        <button onClick={handlePasswordChange} type="submit" className="btn medium">
+                            비밀번호 변경
+                        </button>
                     </div>
+                    {/* <div className="float_right">
+                        <button onClick={handleReSign} type="submit"
+                            className="btn medium color01">
+                            회원탈퇴
+                        </button>
+                    </div> */}
                     <div className="float_right">
-                        <button onClick={handleRetire} type="submit" className="btn medium color01">
+                        <button onClick={handleResign2} type="submit"
+                            className="btn medium color01">
                             회원탈퇴
                         </button>
                     </div>
@@ -409,12 +624,15 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 변경하기
             </button>
         </Modal>
+
+        <ResignModal />
         <Modal id="addressFindModal" title="주소찾기">
             <DaumPostcode onComplete={handleCompleteFindAddress} />
         </Modal>
-    </MypageLayout>;
+        <PromptInput title="비밀번호 변경" onSubmit={submitPassword} id="PsswordModal" />
+    </MypageLayout >;
 };
 
 
 
-export default auth(ONLY_LOGINED)(MyPageProfile);
+export default auth(ALLOW_LOGINED)(MyPageProfile);

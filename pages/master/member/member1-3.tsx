@@ -4,8 +4,8 @@ import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
-import { ADMINS } from 'types/const';
-import { auth } from 'utils/with';
+import { auth } from '../../../utils/with';
+import { ALLOW_ADMINS } from '../../../types/const';
 
 interface IProp { }
 
@@ -30,7 +30,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                     <ul>
                         <li><Link href="/master/member"><a>개인회원</a></Link></li>
                         <li><Link href="/master/member/member1-2"><a>기업파트너 회원</a></Link></li>
-                        <li className="on"><Link href="/master/member/member1-3"><a>가이드회원</a></Link></li>
+                        <li className="on"><Link href="/master/member/member1-3"><a>개인파트너 회원</a></Link></li>
                         <li><Link href="/master/member/member1-4"><a>탈퇴회원</a></Link></li>
                     </ul>
                 </div>
@@ -58,8 +58,8 @@ export const MsMemberC: React.FC<IProp> = () => {
                                     <input type="text" className="day w100" />
                                     <CalendarIcon />
                                 </div>
-                                    ~
-                                    <div className="input_box">
+                                <span className="pc"> ~ </span>
+                                <div className="input_box">
                                     <input type="text" className="day w100" />
                                     <CalendarIcon />
                                 </div>
@@ -114,7 +114,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="con_box_body">
+                    <div className="con_box_body master__table">
                         <div className="list_head">
                             <div className="td01">
                                 <i className="checkbox">
@@ -179,7 +179,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                         </div>
 
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
-                        <div className="fin">
+                        <div className="fin ifMobile">
                             <div className="float_left">
                                 <button type="submit" className="btn medium">전체선택</button>
                             </div>
@@ -454,4 +454,4 @@ export const MsMemberC: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default auth(ADMINS)(MsMemberC);
+export default auth(ALLOW_ADMINS)(MsMemberC);;

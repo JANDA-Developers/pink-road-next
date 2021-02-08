@@ -1,0 +1,88 @@
+import React, { useState } from 'react';
+import { foreginKR, genderToKR, userStatusKR } from '../../utils/enumToKr';
+import { autoComma } from '../../utils/formatter';
+import { closeModal, openModal } from '../../utils/popUp';
+import { yyyymmdd } from '../../utils/yyyymmdd';
+import { Paginater } from '../common/Paginator';
+import { Prompt } from '../promptModal/Prompt';
+import { IMemberTableProp } from './MemberMaster';
+
+export const BusiPartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHook, handleUser }) => {
+    const { check, handleCheck, isAllSelected, isChecked, reverseAll, selectAll, selectLength, selectedIds, setSelectedIds, toggle, toggleAll, unCheck, unSelectAll } = idSelectHook;
+    const { handleResignUser, handleStopUser, handleViewDetailUser, handleRestartUser, handleViewUserBoard, handleSignUpAccept, handleSignUpDeny } = handleUser;
+    const { items: users, setPage, pageInfo } = userHook;
+    const [denyPopId, setDenyPopId] = useState("");
+
+    const handleDenyPop = (userId: string) => () => {
+        setDenyPopId(userId)
+        openModal("#DenyPopup")()
+    }
+
+    return <div className="con_box_body master__table">
+        <div className="list_head">
+            <div className="td01">
+                <i className="checkbox">
+                    <input checked={isAllSelected} type="checkbox" name="agree" id="agree0" title="전체선택" />
+                    <label onClick={toggleAll} htmlFor="agree0" />
+                </i>
+            </div>
+            <div className="td02">이름</div>
+            <div className="td03">아이디</div>
+            <div className="td04">휴대폰</div>
+            <div className="td05">성별</div>
+            <div className="td06">상태</div>
+            <div className="td07">가입일</div>
+            <div className="td08">주소</div>
+            <div className="td09">상세보기</div>
+        </div>
+        {users.map(user =>
+            <div key={user._id} className="list_line">
+                <div className="td01">
+                    <i onClick={() => {
+                        toggle(user._id)
+                    }} className="checkbox">
+                        <input onChange={() => { }} checked={isChecked(user._id)} type="checkbox" name="agree" id="agree0" title="선택" />
+                        <label htmlFor="agree0" />
+                    </i>
+                </div>
+                <div className="td02">{user.name}</div>
+                <div className="td03">{user.email}</div>
+                <div className="td04"><i className="m_title">휴대폰:</i><a href={`tel:${user.phoneNumber}`}>{autoComma(user.phoneNumber)}</a></div>
+                <div className="td05"><i className="m_title">성별:</i>{genderToKR(user.gender)}</div>
+                <div className="td06"><i className="m_title">상태:</i>{userStatusKR(user)}
+                    {!user.isVerifiedManager &&
+                        <div>
+                            <div>
+                                <i style={{ lineHeight: "22px" }} className="btn small" onClick={() => { handleSignUpAccept([user._id]) }}>가입승인</i>
+                            </div>
+                            <div>
+                                <i style={{ lineHeight: "22px" }} className="btn small" onClick={handleDenyPop(user._id)}>가입거절</i>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div className="td07"><i className="m_title">가입일:</i>{yyyymmdd(user.createdAt)}</div>
+                <div className="td08"><i className="m_title">주소:</i>{user.address.slice(0, 10) + "..."}</div>
+                <div className="td09">
+                    <i className="btn small" onClick={handleViewDetailUser(user._id)}>상세보기</i>
+                    <i className="btn small" onClick={handleViewUserBoard(user)}>작성한 게시글</i>
+                </div>
+            </div>
+        )}
+        <Prompt title="회원가입 승인 거절" onSubmit={(reason: string) => {
+            handleSignUpDeny([denyPopId], reason);
+            closeModal("#DenyPopup")()
+        }} id="DenyPopup" />
+        <Paginater setPage={setPage} pageInfo={pageInfo} />
+        <div className="fin ifMobile">
+            <div className="float_left">
+                <button onClick={selectAll} type="submit" className="btn medium">전체선택</button>
+            </div>
+            <div className="float_right">
+                <button onClick={handleResignUser} type="submit" className="btn medium mr5">탈퇴</button>
+                <button onClick={handleStopUser} type="submit" className="btn medium">활동정지</button>
+                <button onClick={handleRestartUser} type="submit" className="btn medium">활동재개</button>
+            </div>
+        </div>
+    </div>;
+};

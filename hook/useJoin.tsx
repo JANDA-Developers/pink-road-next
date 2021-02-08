@@ -5,6 +5,7 @@ import { JoinContext } from "../pages/member/join";
 import { AddUserInput, GENDER, VerificationEvent, VerificationTarget } from "../types/api";
 import { E_INPUT } from "../types/interface";
 import { useUpload } from "./useUpload";
+import { useDuplicateNickNameCheck } from "./useUser";
 
 export interface ISignUpInput extends Partial<AddUserInput> {
     pwcheck?: string;
@@ -44,7 +45,9 @@ export const useJoin = () => {
         pw: false,
         pwcheck: false,
         role: false,
+        bankImg: false,
     });
+
 
 
     const markError = (key: keyof typeof errDisplay) => {
@@ -52,7 +55,7 @@ export const useJoin = () => {
         setErrDisplay({ ...errDisplay })
     }
 
-    const { verifiData: { payload } } = useContext(JoinContext)!;
+    const { verifiData: { payload } = {} } = useContext(JoinContext)!;
     const [data, setData] = useState<ISignUpInput>({ email: payload })
     const [daumAddress, setDaumAddress] = useState(false);
     const { signleUpload } = useUpload();
@@ -76,6 +79,30 @@ export const useJoin = () => {
         setBirthDayPicker(!birthdayPicker)
     }
 
+    const [nickNameChecked, setNickNameChecked] = useState(false);
+
+    const [nickNameCheck] = useDuplicateNickNameCheck({
+        onCompleted: ({ NickNameDuplicateCheck }) => {
+            if (NickNameDuplicateCheck.data?.duplicated) {
+                alert("해당 닉네임은 이미 사용중입니다.")
+            } else {
+                alert("해당 닉네임은 사용 가능합니다.")
+                setNickNameChecked(true);
+            }
+        }
+    })
+
+    const handleNickNameCheck = () => {
+        if (data.nickName?.includes("관리자")) {
+            alert("해당 닉네임은 사용할 수 없습니다.")
+            return;
+        }
+        nickNameCheck({
+            variables: {
+                nickName: data.nickName || ""
+            }
+        })
+    }
 
     const handleDayClick = (day: Date, modifiers: DayModifiers, e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         let selectedDay = dayjs(day).format('YYYYMMDD');
@@ -139,6 +166,20 @@ export const useJoin = () => {
 
     }
 
+    const handleBankImg = async (e: React.ChangeEvent<HTMLInputElement>) => {
+
+        if (!e.target.files) return;
+
+        await signleUpload(e.target.files, (url, file) => {
+            setData({
+                ...data,
+                busiRegistration: file
+            })
+        })
+
+    }
+
+
     const handleNationality = (isKorean: boolean) => () => {
         setData({
             ...data,
@@ -147,10 +188,14 @@ export const useJoin = () => {
     }
 
 
+    console.log("inData");
+    console.log({ data });
+
     return {
         markError,
         errDisplay,
         dayPickerMonth,
+        handleNickNameCheck,
         birthdayPicker,
         setBirthDayPicker,
         handleDaumPostalComplete,
@@ -159,8 +204,10 @@ export const useJoin = () => {
         data,
         handleDayPickerMonth,
         daumAddress,
+        nickNameChecked,
         setDaumAddress,
         handleData,
+        handleBankImg,
         handleBusinessLicense,
         handleGender,
         handleBirthPicker,

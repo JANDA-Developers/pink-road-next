@@ -1,16 +1,19 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import SubTopNav from 'layout/components/SubTop';
-
+import { useVerification } from '../../hook/useVerification';
+import { ISet } from '../../types/interface';
+import { UserRole } from '../../types/api';
+import { getFromUrl } from '../../utils/url';
+import { closeModal, openModal } from '../../utils/popUp';
+import { VerifiEamilModal } from '../../components/verifiModal/VerifiEmailModal';
+import { Storage } from '../../utils/Storage';
 import UserInfoForm from 'components/join/UserInfoForm';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useVerification } from 'hook/useVerification';
-import { ISet } from 'types/interface';
-import { getFromUrl } from 'utils/url';
-import { UserRole } from 'types/api';
-import { Storage } from 'utils/Storage';
-import { closeModal, openModal } from 'utils/popUp';
-import { VerifiEamilModal } from 'components/verifiModal/VerifiEmailModal';
+import { getStaticPageInfo, Ipage } from '../../utils/page';
+import { usePageEdit } from '../../hook/usePageEdit';
+import defaultPageInfo from "../../info/join.json"
+import { ALLOW_SELLERS } from '../../types/const';
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -23,12 +26,10 @@ interface IchkPolocy {
 
 export const ContextPolicyChk = createContext<IchkPolocy | null>(null);
 
-
-
 type TJoinProcess = "userType" | "verification" | "userInfo" | "registered"
 interface IjoinContext extends ReturnType<typeof useVerification> {
     joinProcess: TJoinProcess;
-    setJoinProcess: ISet<TJoinProcess>
+    setJoinProcess: ISet<TJoinProcess> | any
     userType: UserRole,
     setUserType: ISet<UserRole>
     isPartenerB: boolean,
@@ -37,22 +38,24 @@ interface IjoinContext extends ReturnType<typeof useVerification> {
     verificationId?: string
     verifiedEmail?: string
     oauth?: string
-
 }
 
 export const JoinContext = React.createContext<null | IjoinContext>(null);
 
-const Join = () => {
+export const getStaticProps = getStaticPageInfo("join")
+const Join: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
+    const editTools = usePageEdit(pageInfo, defaultPageInfo);
     const verificationId = getFromUrl("vid") || undefined;
     const verifiedEmail = getFromUrl("email") || undefined;
     const oauth = getFromUrl("oauth") || undefined;
-    const [userType, setUserType] = useState<UserRole>(UserRole.individual);
+    const [userType, setUserType] = useState<UserRole>(UserRole.partnerB);
     const [joinProcess, joinSet] = useState<TJoinProcess>("userType");
     const verifiHook = useVerification({
         _id: verificationId,
         payload: verifiedEmail
     });
+
     const setJoinProcess = (process: TJoinProcess) => {
         history.pushState({ joinProcess: joinProcess }, "회원가입 절차");
         history.pushState({ joinProcess: joinProcess }, "회원가입 절차");
@@ -100,7 +103,7 @@ const Join = () => {
 
 
     useEffect(() => {
-        window.onpopstate = function (event) {
+        window.onpopstate = function (event: any) {
             joinSet(event.state.joinProcess);
         };
     }, [])
@@ -108,7 +111,7 @@ const Join = () => {
     return (
         <div>
             <div >
-                <SubTopNav title="as" desc="asd" />
+                <SubTopNav pageTools={editTools} />
                 {/* 개인 */}
                 <div className="sign_in famile">
                     <div className="inner ">
@@ -162,12 +165,14 @@ const Join = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
 
 const JoinResult = () => {
+    const { userType } = useContext(JoinContext)!;
+    const isSeller = ALLOW_SELLERS.includes(userType);
     return (
         <div className="wellcom" id="con03">
             <img src="/its/join_img01.png" alt="환영합니다 이미지" />
@@ -179,7 +184,7 @@ const JoinResult = () => {
                 가입시 입력된 이메일로 가입승인 이메일로 안내드리겠습니다.
             </p>
             <div className="fin">
-                <Link href="/login">
+                <Link href="/member/login">
                     <button
                         className="sum btn"
                     >
@@ -245,13 +250,12 @@ const Verification: React.FC = () => {
             <p className="bt_txt">
                 ※ 본인인증 시 제공되는 정보로 회원가입시 필요한 정보를 연동합니다.
             </p>
-            <VerifiEamilModal onSuccess={() => {
+            <VerifiEamilModal duplicateCheck onSuccess={() => {
                 closeModal("#emailVerifi")()
                 setJoinProcess("userInfo");
             }} verifiHook={{
                 ...verifiHook
             }} />
-
         </div>
     )
 }
@@ -274,28 +278,28 @@ const UserType: React.FC = () => {
             <p>회원가입을 하시고 더 많은 정보와 혜택을 누려보세요~!! </p>
             <ul>
                 {/* 커스텀디자인 */}
-                <li className="li01" onClick={handleTypeChoice(UserRole.partner)}>
+                <li className="li01" onClick={handleTypeChoice(UserRole.partnerB)}>
                     <strong>가이드 회원</strong>
                     <span>
                         가이드로 등록을 원하시나요?
-                        <br />
-                        회원가입을 통해 등록이 이루어집니다.
-                    </span>
+                    <br />
+                    회원가입을 통해 등록이 이루어집니다.
+                </span>
                 </li>
                 {/* <li className="li02" onClick={() => { handleChange('partnerCor', 'userType'); }}>
-                    <i />
-                    <strong>기업파트너 회원</strong>
-                    <span>기업파트너를 위한 회원입니다.</span>
-                </li>
-                <li className="li03" onClick={handleTypeChoice(UserRole.partner)}>
-                    <i />
-                    <strong>가이드회원</strong>
-                    <span>개인파트너를 위한 회원입니다.</span>
-                </li> */}
+                <i />
+                <strong>기업파트너 회원</strong>
+                <span>기업파트너를 위한 회원입니다.</span>
+            </li>
+            <li className="li03" onClick={handleTypeChoice(UserRole.partner)}>
+                <i />
+                <strong>가이드회원</strong>
+                <span>개인파트너를 위한 회원입니다.</span>
+            </li> */}
             </ul>
             <p className="bt_txt">
                 ※ 가이드회원은 승인후 홈페이지 이용이 가능합니다. 승인시 필수서류가 미흡하면 승인이 거부될 수도 있습니다.
-            </p>
+        </p>
             <p className="bt_txt">※ 가입승인은 24시간 이내에 이루어집니다.</p>
         </div >
     )

@@ -1,21 +1,35 @@
 import Link from "next/link"
-import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { EditBtn } from 'components/common/EditBtn';
 import $ from "jquery";
 import { AppContext } from "pages/_app";
-import { NEWS_TYPE } from "../../types/api";
 import { setVal, whenEnter } from "../../utils/eventValueExtracter";
 import { useRouter } from "next/router";
-import cache from "../../apollo/cache";
 import { NotiIcon } from "./NotiIcon";
+import { generateSearchLink } from "../../pages/search";
 
 interface IProp { }
+
+export const handSearchClose = () => {
+    $('.search_bg').css({
+        'display': 'none'
+    });
+
+    $('.search_wrap').animate({
+        'top': '-100px'
+    });
+    $('.hidden').css({
+        'display': 'none'
+    });
+}
+
 
 export const Header: React.FC<IProp> = () => {
     const [search, setSearch] = useState("");
     const rotuer = useRouter()
 
-    const { isLogin, myProfile, isSeller, isManager, isAdmin } = useContext(AppContext);
+
+    const { isLogin, myProfile, isManager, isSeller, isAdmin } = useContext(AppContext);
 
     const handleNav = () => {
         $('#header').attr("tabindex", -1);
@@ -38,19 +52,6 @@ export const Header: React.FC<IProp> = () => {
         });
 
     }
-    const handSearchClose = () => {
-        $('.search_bg').css({
-            'display': 'none'
-        });
-
-        $('.search_wrap').animate({
-            'top': '-100px'
-        });
-        $('.hidden').css({
-            'display': 'none'
-        });
-    }
-
     const handleAllMenu = () => {
         $('#all_menu').animate({
             'top': '0'
@@ -59,24 +60,7 @@ export const Header: React.FC<IProp> = () => {
             'display': 'block'
         });
     }
-    const languageOpen = () => {
 
-        $('.languageBox').css({
-            'display': 'block'
-        });
-        $('.language .btn i').animate({
-            'transform': 'rotate(180deg)'
-        });
-    }
-    const languageClose = () => {
-
-        $('.languageBox').css({
-            'display': 'none'
-        });
-        $('.language .btn i').animate({
-            'transform': 'rotate(0deg)'
-        });
-    }
 
     const handleAllClose = () => {
         const target = document.getElementById('all_menu_right');
@@ -100,15 +84,19 @@ export const Header: React.FC<IProp> = () => {
     }
 
     const goToSearchPage = () => {
-        rotuer.push(`/search?search=${search}#ProductViewer`)
+        rotuer.push(generateSearchLink({ title: search }))
+        $('.search_bg').css({
+            'display': 'none'
+        });
     }
 
     useEffect(() => {
         $('.nav_wrap ul li').on("hover", function () {
             $(this).find("ul").stop().fadeToggle(300);
         });
-
+        rotuer.events.on('routeChangeStart', handleAllClose)
     }, [])
+
 
 
     return <header className="header" id="header">
@@ -134,10 +122,11 @@ export const Header: React.FC<IProp> = () => {
                         <Link href="/mypage"><a>MY PAGE</a></Link>
                     </li>}
                     {isManager && <li className="master">
-                        <Link href="/master"><a>MASTERr</a></Link>
+                        <Link href="/master"><a>MASTER</a></Link>
                     </li>}
 
-                    <li className="language">
+                    {/* 추후 오픈 지금 신경 못씀! */}
+                    {/* <li className="language">
                         <button className="btn" onClick={languageOpen}>English<i className="jandaicon-arr4-bottom"></i></button>
                         <ul className="languageBox" onClick={languageClose}>
                             <li><a href="/">English</a></li>
@@ -145,7 +134,7 @@ export const Header: React.FC<IProp> = () => {
                             <li><a href="/">Japanese</a></li>
                             <li><a href="/">Korean</a></li>
                         </ul>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </div>
@@ -174,7 +163,7 @@ export const Header: React.FC<IProp> = () => {
                                         <a href="/tour">It's투어</a>
                                     </li>
                                     <li className="deps">
-                                        <a href="/service/notice">서비스</a>
+                                        <a href="/service/announce">서비스</a>
                                     </li>
                                     <li className="deps">
                                         <a href="/site-info">소개</a>
@@ -222,15 +211,16 @@ export const Header: React.FC<IProp> = () => {
                             </div>
                             <div onClick={handSearchClose} className="search_bg"></div>
                         </div>
-                        {isLogin &&
-                            <div className="inform_top">
-                                <div className="inform_icon">
-                                    <img src={'/img/svg/inform_icon4.svg'} alt="notification icon" />
-                                    <button />
-                                    <span className="number">99+</span>
-                                </div>
-                            </div>
-                        }
+                        <div className="inform_top">
+                            {isLogin &&
+                                <Link href="/mypage/notification">
+                                    <a>
+                                        <NotiIcon />
+                                    </a>
+                                </Link>
+                            }
+                        </div>
+
                         <div onClick={handleAllMenu} className="all_menu_btn">
                             <img src={'/img/svg/allmenu_icon.svg'} alt="All menu" />
                             <button />
@@ -256,7 +246,7 @@ export const Header: React.FC<IProp> = () => {
                             {isLogin && <span><Link href="/mypage/notification"><a>알림</a></Link></span>}
                             {isLogin ? ""
                                 : <span><Link href="/member/join"><a>JOIN</a></Link></span>}
-                            <span><Link href="/service/inquiry"><a>문의하기</a></Link></span>
+                            <span><Link href="/service/question"><a>문의하기</a></Link></span>
                             <span><Link href="/service/event"><a>이벤트</a></Link></span>
                             {/* <span><Link href="https://booking-app.stayjanda.cloud/#/"><a>예약관리시스템</a></Link></span> */}
                         </div>
@@ -268,12 +258,12 @@ export const Header: React.FC<IProp> = () => {
                                 <Link href="/tour"><a>It's투어<i className="jandaicon-arr4-right"></i></a></Link>
                             </li>
                             <li className="a_menu_tit deps">
-                                <Link href="/service/notice"><a>서비스<i className="jandaicon-arr4-right"></i></a></Link>
+                                <Link href="/service/announce"><a>서비스<i className="jandaicon-arr4-right"></i></a></Link>
                                 <ul className="depth1">
-                                    <li><a href="/service/notice">공지사항</a></li>
+                                    <li><a href="/service/announce">공지사항</a></li>
                                     <li><a href="/service/event">이벤트</a></li>
-                                    <li><a href="/service/inquiry">문의하기</a></li>
-                                    <li><a href="/service/search">통합검색</a></li>
+                                    <li><a href="/service/question">문의하기</a></li>
+                                    <li><a href="/search">통합검색</a></li>
                                     <li><a href="/service/rule">이용약관</a></li>
                                     <li><a href="/service/privacy-policy">개인정보처리방침</a></li>
                                 </ul>
@@ -325,7 +315,6 @@ export const Header: React.FC<IProp> = () => {
                         </button>
                     </div>
                     <div className="m_bg" />
-                    <EditBtn />
                 </div>
             </div>
         </div>

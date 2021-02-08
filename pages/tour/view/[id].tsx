@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useProductFindById } from "hook/useProduct";
+import { openListFilter, useProductFindById, useProductList } from "hook/useProduct";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -20,14 +20,46 @@ import { generateClientPaging } from "../../../utils/generateClientPaging";
 import { Paginater } from "../../../components/common/Paginator";
 import { QnaLi } from "../../../components/qna/QnaLi";
 import PageLoading from "../../Loading";
-import { CommentWrite } from "../../../components/comment/CommentWrite";
+import { getStaticPageInfo, Ipage } from "../../../utils/page";
+import { usePageEdit } from "../../../hook/usePageEdit";
+import defaultPageInfo from 'info/tourView.json';
+import "node_modules/slick-carousel/slick/slick.css";
+import { ProductPhotoBlock } from "../../../components/list/ProductPhoto";
+import { useGroupFind } from "../../../hook/useGroup";
+import { randomSort } from "../../../utils/randomSort";
+import isEmpty from "../../../utils/isEmpty";
+import { cloneObject } from "../../../utils/clone";
+import { productList_ProductList_data, ProductStatus } from "../../../types/api";
+import sanitizeHtml from "sanitize-html";
+import { ALLOW_SELLERS } from "../../../types/const";
+import { productStatus } from "../../../utils/enumToKr";
 
-const TourDetail: React.FC = () => {
-
+export const getStaticProps = getStaticPageInfo("tourView");
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { id: "1" } }
+    ],
+    fallback: true
+  };
+}
+const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const router = useRouter();
+  const { item: group } = useGroupFind("Recommend")
+  const groupExsist = !isEmpty(group?.members);
+  const { items, filter, setFilter } = useProductList({
+    initialFilter: {
+      ...openListFilter,
+      _id_in: groupExsist ? group?.members : undefined
+    }
+  });
+
+  const randomSorted: productList_ProductList_data[] = groupExsist ? cloneObject(items).sort((a, b) => group?.members.indexOf(a._id)! - group?.members.indexOf(b._id)!) : randomSort(items);
+
+  const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const id = router.query.id as string;
-  const { loading, product } = useProductFindById(id);
-  const { isManager, isAdmin, myProfile } = useContext(AppContext);
+  const { loading, item: product } = useProductFindById(id);
+  const { isManager, isAdmin, myProfile, isSeller } = useContext(AppContext);
   const isMyProduct = product?.author?._id === myProfile?._id;
 
   const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
@@ -38,6 +70,7 @@ const TourDetail: React.FC = () => {
     adult_price: product?.adult_price,
     baby_price: product?.baby_price,
     kids_price: product?.kids_price,
+    capacity: product ? product.maxMember - product.peopleCount : 999,
     defaultCount: {
       adult: 0,
       baby: 0,
@@ -91,14 +124,14 @@ const TourDetail: React.FC = () => {
     })
 
     if (count.adult + count.baby + count.kids === 0) {
-      toast.info("인원을 먼저 선택 해주세요.");
+      alert("인원을 먼저 선택 해주세요.");
     } else {
-      toast.info("장바구니에 저장 되었습니다.")
+      alert("장바구니에 저장 되었습니다.")
     }
   }
 
   const handleQnaClick = (id: string) => () => {
-    router.push("/qna/view/" + id);
+    router.push("/service/event/view/" + id);
   }
 
   const handleDoPay = () => {
@@ -113,6 +146,8 @@ const TourDetail: React.FC = () => {
 
   if (loading) return <PageLoading />
   if (!product) return <Page404 />
+
+
 
   const {
     images,
@@ -130,24 +165,32 @@ const TourDetail: React.FC = () => {
     itinerary,
     contents,
     inOrNor,
-    caution
+    caution,
+    code,
+    peopleCount
   } = product;
 
 
+  if (!isSeller && !product.isOpen) return <Page404 />
+  if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
+
   return <div className="edtiorView">
-    <SubTopNav children={
-      <>
-        <li className="homedeps1">
-          <Link href="/tour/">
-            <a>Tour</a>
-          </Link></li>
-        <li className="homedeps2">
-          <Link href="/tour/list">
-            <a >상품리스트</a>
-          </Link>
-        </li>
-      </>
-    } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/work_top_bg2.jpg'} />
+    <SubTopNav
+      pageTools={pageTools}
+      children={
+        <>
+          <li className="homedeps1">
+            <Link href="/tour/">
+              <a>Tour</a>
+            </Link></li>
+          <li className="homedeps2">
+            <Link href="/tour/list">
+              <a >상품리스트</a>
+            </Link>
+          </li>
+        </>
+      }
+    />
     <div className="tour_details_in w1200">
 
       <div className="Document">
@@ -168,7 +211,7 @@ const TourDetail: React.FC = () => {
               )}
             </ul>
             <div className="details_info_txt">
-              <div className="ck-content" dangerouslySetInnerHTML={{ __html: info }} />
+              <div className="ck-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(info) }} />
             </div>
           </div>
         </div>
@@ -180,7 +223,7 @@ const TourDetail: React.FC = () => {
                   <tr>
                     <td colSpan={2} className="category bt_no">
                       <span className="pnt">문화/예술</span>
-                      <span className="code">상품코드 PINK-0001</span>
+                      <span className="code">상품코드 {code}</span>
                     </td>
                   </tr>
                   <tr>
@@ -199,6 +242,11 @@ const TourDetail: React.FC = () => {
                       </ul>
                     </td>
                   </tr>
+                  {isSeller && <tr>
+                    <th className="smtitle bt_line">상태</th>
+                    <td className="smtxt bt_line">{productStatus(product.status)} {product.isOpen ? "공개" : "비공개"}</td>
+                  </tr>
+                  }
                   <tr>
                     <th className="smtitle bt_line">출발일</th>
                     <td className="smtxt bt_line">{dayjs(startDate).format("YYYY.MM.DD")}</td>
@@ -216,6 +264,10 @@ const TourDetail: React.FC = () => {
                     <td className="smtxt bt_line">{maxMember}명</td>
                   </tr>
                   <tr>
+                    <th className="smtitle bt_line">현재인원</th>
+                    <td className="smtxt bt_line">{peopleCount + "/" + maxMember}명</td>
+                  </tr>
+                  <tr>
                     <th className="smtitle bt_no">출발장소</th>
                     <td className="smtxt bt_no">{startPoint}</td>
                   </tr>
@@ -229,7 +281,7 @@ const TourDetail: React.FC = () => {
                     <th>대인</th>
                     <td>
                       <strong>{autoComma(adult_price)}</strong>원
-                  <div className="number_box">
+                  <div className="Number__box">
                         <span onClick={handleCount("adult", false)} className="left_btn"><i className="flaticon-substract" /></span>
                         <span className="number">{count.adult}</span>
                         <span onClick={handleCount("adult", true)} className="right_btn"><i className="flaticon-add" /></span>
@@ -240,7 +292,7 @@ const TourDetail: React.FC = () => {
                     <th>소인</th>
                     <td>
                       <strong>{autoComma(kids_price)}</strong>원
-                  <div className="number_box">
+                  <div className="Number__box">
                         <span onClick={handleCount("kids", false)} className="left_btn"><i className="flaticon-substract" /></span>
                         <span className="number">{count.kids}</span>
                         <span onClick={handleCount("kids", true)} className="right_btn"><i className="flaticon-add" /></span>
@@ -251,7 +303,7 @@ const TourDetail: React.FC = () => {
                     <th>유아</th>
                     <td>
                       <strong>{autoComma(baby_price)}</strong>원
-                  <div className="number_box">
+                  <div className="Number__box">
                         <span onClick={handleCount("baby", false)} className="left_btn"><i className="flaticon-substract" /></span>
                         <span className="number">{count.baby}</span>
                         <span onClick={handleCount("baby", true)} className="right_btn"><i className="flaticon-add" /></span>
@@ -260,7 +312,7 @@ const TourDetail: React.FC = () => {
                   </tr>
                 </tbody>
               </table>
-              <div className="chash_box">
+              <div className="Chash__box">
                 <table cellSpacing={0} summary="Extra Form" className="chash_tb">
                   <tbody>
                     <tr>
@@ -311,7 +363,7 @@ const TourDetail: React.FC = () => {
                 </div>
                 <div className="tour_list">
                   {it.contents.map((con, index) => <div key={index + "con" + it._id}>
-                    <div className="ck-content" dangerouslySetInnerHTML={{ __html: con }} />
+                    <div className="ck-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(con) }} />
                   </div>
                   )}
                 </div>
@@ -329,19 +381,19 @@ const TourDetail: React.FC = () => {
           <div className="in_box" id="tap__02">
             <h4>안내 및 참고</h4>
             <div dangerouslySetInnerHTML={{
-              __html: contents
+              __html: sanitizeHtml(contents)
             }} className="text ck-content" />
           </div>
           {/* 포함 및 불포함 */}
           <div className="in_box" id="tap__03">
             <h4>포함 및 불포함 </h4>
             <div dangerouslySetInnerHTML={{
-              __html: inOrNor
+              __html: sanitizeHtml(inOrNor)
             }} className="text ck-content" />
           </div>
           <div className="in_box" id="tap__04" >
             <h4>주의사항</h4>
-            <div dangerouslySetInnerHTML={{ __html: caution }} className="text" />
+            <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(caution) }} className="text" />
           </div>
           <div className="in_box" id="tap__04">
             <h4>문의하기</h4>
@@ -362,7 +414,7 @@ const TourDetail: React.FC = () => {
               <div className="boardNavigation">
                 <Paginater pageInfo={questionPageInfo} isMini setPage={setQuestionPage} />
                 <div className="float_right">
-                  <Link href={`/qna/write?pid=${id}&name=${title}`}>
+                  <Link href={`/service/question/write?pid=${id}&name=${title}`}>
                     <a className="mini_btn small">고객센터 문의하기</a>
                   </Link>
                 </div>
@@ -379,9 +431,12 @@ const TourDetail: React.FC = () => {
           </div>}
         </div>
         <div className="add_list">
-          <h4>잇츠가이드 추천여행</h4>{/* 랜덤노출 */}
+          <h4>추천여행</h4>{/* 랜덤노출 */}
           <ul className="list_ul line3">
-            <li className="list_in">
+            {randomSorted.slice(0, 2).map(item =>
+              <ProductPhotoBlock key={item._id} item={item} />
+            )}
+            {/* <li className="list_in">
               <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(/img/sample_01.gif)' }}>상품이미지</div>
               <div className="box">
                 <div className="category"><span>문화/예술</span></div>
@@ -431,7 +486,7 @@ const TourDetail: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
@@ -442,3 +497,5 @@ const TourDetail: React.FC = () => {
 
 
 export default TourDetail;
+
+// 5분 //

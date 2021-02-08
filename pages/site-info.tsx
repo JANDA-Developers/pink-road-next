@@ -1,21 +1,27 @@
 import React, { useContext, useState } from 'react';
-import { getEditUtils } from '../utils/pageEdit';
-import { AppContext, EditContext } from "./_app";
 import pageInfoDefault from 'info/siteInfo.json';
-import { HiddenSubmitBtn } from 'components/common/HiddenSubmitBtn';
-import { Upload } from 'components/common/Upload';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { getStaticPageInfo } from '../utils/page';
-import { IEditPage } from '../utils/with';
+import { getStaticPageInfo, Ipage } from '../utils/page';
+import { AppContext } from './_app';
+import defaultPageInfo from "../info/siteInfo.json"
+import { usePageEdit } from '../hook/usePageEdit';
+import { PageEditor } from '../components/common/PageEditer';
+import { LinkIcon } from '../components/common/icon/LinkIcon';
+import { A } from '../components/A/A';
+import { Img } from '../components/Img/img';
+import { CloseIcon } from '../components/common/icon/CloseIcon';
+import { useRouter } from 'next/router';
 
 type TGetProps = {
     pageInfo: typeof pageInfoDefault | "",
 }
 
-export const getStaticProps: GetStaticProps<TGetProps> = getStaticPageInfo("site-info", pageInfoDefault);
-export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ pageInfo }) => {
+export const getStaticProps = getStaticPageInfo("main")
+export const StieInfo: React.FC<Ipage> = (pageInfo) => {
     const original = pageInfo || pageInfoDefault;
-    const { editMode, edit, editArray, addArray, removeArray, page } = useContext<IEditPage<typeof pageInfoDefault>>(EditContext as any);
+    const router = useRouter();
+    const { homepage, groupsMap } = useContext(AppContext);
+    const pageTools = usePageEdit(pageInfo, defaultPageInfo);
+    const { editMode, edit, addArray, page, get, editArray, removeArray } = pageTools;
     const { partners } = page;
     const [addInfo, setAddInfo] = useState({
         alt: "",
@@ -42,6 +48,7 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
 
 
     return <div className="siteInfo_in">
+        <PageEditor pageTools={pageTools} />
         <div className="top_bg w100" style={{ backgroundImage: 'url(/its/portfolio_top_bg.jpg)' }}>
             {/* <Upload onUpload={imgEdit("con01_bg")} /> */}
             <div className="w1200">
@@ -110,28 +117,39 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                     <span {...edit("con05_secondTitle")} />
                 </h4>
                 <ul>
-                    <li><a href="/"><img src="/its/partner_01.png" alt="파트너로고" /></a></li>
-                    <li><a href="/"><img src="/its/partner_02.png" alt="파트너로고" /></a></li>
-                    <li><a href="/"><img src="/its/partner_03.png" alt="파트너로고" /></a></li>
-                    {/* {partners.kr.map((partner: any, index: number) => {
-                        const { alt, img, link } = partner;
-                        return <li key={index + "partner"}>
-                            <a href={editMode ? undefined : link}>
-                                <img src={img} alt={alt} />
-                                {editMode &&
-                                    <span className="del" onClick={() => {
-                                        removeArray("partners", index);
-                                    }}><i className="flaticon-multiply"></i></span>
-                                }
-                                <Upload onUpload={(url) => {
-                                    editArray("partners", index, { ...partner, img: url })
+                    {get("partners").map((partner: any, index: number) =>
+                        <li onClick={() => {
+                            if (!editMode)
+                                location.href = partner.link;
+                        }} className="partners" key={"partners" + index}>
+                            {editMode && <A
+                                className="partners__link"
+                                link={partner.link}
+                                editComponent={<LinkIcon />}
+                                editable={editMode}
+                                editLink={(link) => {
+                                    editArray("partners", index, link, "link")
+                                }} />}
+                            <Img src={{
+                                src: partner.img,
+                                // @ts-ignore
+                                "data-edit": editMode ? "img" : undefined,
+                            }} upload={(uri) => {
+                                editArray("partners", index, uri, "img")
+                            }} />
+                            {editMode &&
+                                <CloseIcon className="partners__close" onClick={() => {
+                                    removeArray("partners", index);
                                 }} />
-                            </a>
+                            }
                         </li>
-                    })} */}
+                    )}
                     {editMode &&
-                        <li className="add" onClick={() => {
-                            addArray("partners", {})
+                        <li id="partners__add" className="add " onClick={() => {
+                            addArray("partners", {
+                                img: "",
+                                link: ""
+                            })
                         }}><i className="flaticon-add"></i>추가</li>
                     }
                 </ul>
@@ -200,8 +218,6 @@ export const StieInfo: React.FC<InferGetStaticPropsType<typeof getStaticProps>> 
                             잇츠가이드에서 가이드만 하세요. 홍보와 마케팅은
                             저희가 다 하겠습니다.
                             </p>
-
-
                     </div>
                 </div>
             </div>

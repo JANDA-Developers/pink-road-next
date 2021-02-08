@@ -4,58 +4,99 @@ import { ListInitOptions, useListQuery } from "../hook/useListQuery";
 import { useEffect } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
+import { ERR_CODE, Fpage } from "../types/api";
+import { CustomErrorResponse } from "aws-sdk/clients/cloudfront";
+import { getFromUrl } from "./url";
 
+export interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
+    queryName?: string;
+    skipInit?: boolean;
+    overrideVariables?: Partial<V>
+    getEditableobject?: boolean;
+};
+
+
+const userErrorHandle = (result:any) => {
+        // @ts-ignore
+        if(result?.error) {
+            // @ts-ignore
+            if(result.error.code === ERR_CODE.BACKEND_MESSAGE) {
+                // @ts-ignore
+                alert(result?.error?.message)
+            }
+        } 
+
+}
 
 const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["data","page"]) => {
+    try {
     if(data?.hasOwnProperty(operationName) === false) {
-        throw Error(`result data object dose not have property ${operationName} look this above object ↑ `)
+        console.warn(`result data object dose not have property ${operationName} look this above object ↑ `)
     }
 
     checkProperty.forEach(p => {
         if(data?.[operationName].hasOwnProperty(p) === false) {
-            throw Error(`result data object dose not have property ${p} look this above object ↑ `)
+            console.error(p);
+            console.warn(`result data object dose not have property ${p} look this above object ↑ `)
         }
     })
+    } catch (e){
+        console.log(operationName);
+        console.log(operationName);
+    console.error("==========FATAL ERROR==========");
+    console.error(e);
+    }
+}
+
+
+const getPageNumber = () => {
+    const pageNum = getFromUrl("pageNum");
+    return pageNum ? parseInt(pageNum) : 1 
 }
 
 export const generateListQueryHook = <F,S,Q,V,R>(
     QUERY: DocumentNode,
-    queryInit: Partial<ListInitOptions<F, S>> = {},
-    defaultOptions?: QueryHookOptions<Q,V>
+    queryInitDefault: Partial<ListInitOptions<F, S>> = {},
+    defaultOptions?: genrateOption<Q,V>
 ) => {
+
+    //집어넣은 옵션에 오버라드가 안되고있음
+    //좌항이 우선순위 더 높음
+    // 우항 오브젝트에 좌학 객체를 덮어 넣으면됨
     const listQueryHook = (
-        {
-            initialPageIndex = 1,
-            initialSort = [],
-            initialFilter,
-            initialViewCount = 20,
-        }: Partial<ListInitOptions<F, S>> = {...queryInit},
-        options: QueryHookOptions<Q, V> = {...defaultOptions}
+        initialOption: Partial<ListInitOptions<F, S>> = {},
+        options: genrateOption<Q, V> = {...defaultOptions}
     )=> {
-        const { variables: overrideVariables, ...ops } = options;
-        const { integratedVariable,...params } = useListQuery({
-            initialFilter,
-            initialPageIndex,
-            initialSort,
-            initialViewCount
-        })
-        
+        const defaultInitData = {
+            initialPageIndex: getPageNumber(),
+            initialSort: [],
+            initialFilter: {} as F,
+            initialViewCount: 10
+        }
+        const initialData = Object.assign(defaultInitData, queryInitDefault, initialOption); 
+        const { variables, overrideVariables, ...ops } = options;
+        const { integratedVariable,...params } = useListQuery(initialData)
         const [getData, { data, loading: getLoading,...queryElse }] = useLazyQuery<Q,V>(QUERY,{
-            fetchPolicy: "network-only",
+            fetchPolicy: "cache-first",
             // @ts-ignore
             variables: {
                 ...integratedVariable,
+                ...variables,
                 ...overrideVariables
             },
             ...ops
         })
 
-        const operationName = getQueryName(QUERY);
+        const operationName = defaultOptions?.queryName || getQueryName(QUERY);
+
         dataCheck(data,operationName)
         // @ts-ignore
         const items: R[] = data?.[operationName]?.data || []
+        const pageInfo: Fpage = (data as any)?.[operationName]?.page || DEFAULT_PAGE
+
         // @ts-ignore
-        const pageInfo: Fpage = data?.[operationName]?.page || DEFAULT_PAGE
+        userErrorHandle(data?.[operationName])
+
 
         useEffect(()=>{
             getData()
@@ -65,9 +106,13 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             params.viewCount,
             params.page
         ])
-
-        console.log("params");
-        console.log(params);
+        
+        useEffect(()=>{
+            params.setPage(1)
+        },[
+            params.viewCount,
+            params.filter
+        ])
 
         return { pageInfo,  getLoading, items, ...params,...queryElse }
     }
@@ -75,13 +120,59 @@ export const generateListQueryHook = <F,S,Q,V,R>(
     return listQueryHook
 }
 
+export const generateQueryHook = <Q, R, V = undefined>(
+    QUERY:DocumentNode,
+    {skipInit,...initOptions}: genrateOption<Q,V> | undefined = {}
+) => {
+
+    const queryHook  = (defaultOptions?: QueryHookOptions<Q,V>) => {
+        const [getData, { data:_data,error, loading:getLoading,...context }] = useLazyQuery<Q,V>(QUERY, {
+            nextFetchPolicy: "network-only",
+            ...initOptions,
+            ...defaultOptions,
+        })
+
+        
+        const operationName = initOptions?.queryName || getQueryName(QUERY);
+        dataCheck(_data, operationName,["data"])
+
+        type Result = R extends Array<any> ? R : R | undefined 
+        // @ts-ignore
+        const data: Result = _data?.[operationName]?.data || undefined;
+        
+        
+        useEffect(()=> {
+            // @ts-ignore
+            userErrorHandle(_data?.[operationName])
+        },[_data])
+
+        useEffect(()=>{
+            if(!skipInit)
+                getData();
+        },[])
+        
+        return {  getData, getLoading, data,...context }
+    }
+    return queryHook
+}
+
+
 // refetchQueries: [getOperationName(BOOKING_LIST) || ""],
 
 export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?: MutationHookOptions<M,V>) => {
     const mutationHook = (options?: MutationHookOptions<M,V>) => {
         const muHook = useMutation<M, V>(MUTATION, {
             ...defaultOptions,
-            ...options
+            ...options,
+            onCompleted: (result) => {
+                const operationName = getQueryName(MUTATION);
+                // @ts-ignore
+                const err:CustomErrorResponse = result[operationName]?.error;
+                // @ts-ignore
+                userErrorHandle(result[operationName])
+                // @ts-ignore
+                options?.onCompleted?.(result) || defaultOptions?.onCompleted?.(result)
+            }
         });
         return muHook
     }
@@ -89,8 +180,7 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
 }
 
 
-
-export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V | null, QUERY:DocumentNode) => {
+export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:DocumentNode) => {
     const findQueryHook = (key?:any, options:QueryHookOptions<Q, V> = {}) => {
         const [getData, { data, loading, error:apolloError }] = useLazyQuery<Q, V>(QUERY, {
             skip: !key,
@@ -108,8 +198,13 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V | null, QU
         const item:ResultFragment | undefined = data?.[operationName]?.data || undefined;
         // @ts-ignore
         const errorFromServer:string = data?.[operationName]?.error;
-        dataCheck(data,operationName)
+        dataCheck(data,operationName,["data"])
    
+
+        // @ts-ignore
+        userErrorHandle(data?.[operationName])
+
+
         useEffect(()=>{
             if(key)
             getData()
@@ -126,6 +221,7 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V | null, QU
 
 export const getQueryName = (QUERY:DocumentNode) => {
     const operation = QUERY.definitions[0];
+
     // @ts-ignore
     const operationName = operation && operation.name.value;
 

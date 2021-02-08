@@ -1,49 +1,6 @@
 import { gql } from "@apollo/client";
 import { F_ITINERARY, F_CATEGORY, F_PRODUCT, F_FILE, F_PAGE_INFO } from "./fragments";
 
-  
-export const PCATEGORY_CREATAE = gql`
-  mutation pcategoryCreate(
-    $params: pCategoryCreateInput!
-  ) {
-    pCategoryCreate(
-      params:$params
-    ) {
-    ok
-    error 
-  }
-}
-`
-
-
-export const PCATEGORY_DELETE = gql`
-  mutation pcategoryDelete(
-    $_id: String!
-  ) {
-    pCategoryDelete(
-      _id:$_id
-    ) {
-    ok
-    error 
-  }
-}
-`
-
-export const PCATEGORY_UPDATE = gql`
-  mutation pcategoryUpdate(
-    $params: pCategoryUpdateInput!
-    $id: String!
-  ) {
-    pCategoryUpdate(
-      params: $params 
-      id: $id
-      ) {
-        ok
-        error
-      }
-}
-`
-
 export const PAGE_INFO_CREATE = gql`
   mutation pageInfoCreate(
     $params: PageInfoCreateInput!
@@ -52,7 +9,12 @@ export const PAGE_INFO_CREATE = gql`
       params:$params
       )  {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
       }
   }
 `;
@@ -71,7 +33,7 @@ export const PAGE_INFO_CREATE = gql`
 //         id: id
 //       ) {
 //       ok
-//       error 
+//       error {
 //       data {
 //           ...Fitinery
 //       }
@@ -89,7 +51,12 @@ export const MULTI_UPLOAD = gql`
         file:$file
       ) {
       ok
-      error 
+      error {
+location
+        severity
+        code
+        message
+}
       data {
         ...Ffile
       }
@@ -109,7 +76,12 @@ export const PAGE_INFO_DELETE = gql`
       key: $key
       )  {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
             ...FpageInfo
         }
@@ -128,7 +100,12 @@ export const PAGE_INFO_UPDATE = gql`
       params: $params
       )  {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
             ...FpageInfo
         }

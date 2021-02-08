@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
-import { Fbooking } from '../../types/api';
+import React, { useContext, useState } from 'react';
+import { useHomepage } from '../../hook/useHomepage';
+import { AppContext } from '../../pages/_app';
+import { Fbooking, PayMethod } from '../../types/api';
 import { TElements } from '../../types/interface';
 import { setVal } from '../../utils/eventValueExtracter';
 import { getFromUrl } from '../../utils/url';
 import { Validater } from '../../utils/validate';
+import { NoData } from '../common/NoData';
 
 export type TPaySubmitInfo = {
     buyerInfo: {
         phone: string;
         name: string;
     };
-    payMethod: "card" | "bankTransfer";
+    payMethod: PayMethod;
 }
 
 
@@ -22,12 +25,14 @@ interface IProp {
 
 {/* TODO 독립처리 => 나중에 시간나면 */ }
 export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
+    const { isLogin, myProfile } = useContext(AppContext);
     const urlPhone = getFromUrl("phone") || "";
     const urlName = getFromUrl("name") || "";
-    const [payMethod, setPayMethod] = useState<"card" | "bankTransfer">("card");
+    const { data: item } = useHomepage()
+    const [payMethod, setPayMethod] = useState<PayMethod>(PayMethod.BANK);
     const [buyerInfo, setBuyerInfo] = useState({
-        phone: "",
-        name: "",
+        phone: myProfile?.phoneNumber || "",
+        name: myProfile?.name || "",
     })
 
     const { validate } = new Validater([{
@@ -57,26 +62,66 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
         }
     }
 
-    return <div className="payment_box">
+    // const { } = item;
+
+    return <div className="payment_box ">
         <div className="head">
             {Preview}
-            <div>
-                결제수단 선택
-                        <div onClick={() => {
-                    setPayMethod("card")
-                }}>카드결제</div>
-                <div onClick={() => {
-                    setPayMethod("bankTransfer")
-                }}>무통장입금</div>
-            </div>
-            {payMethod === "bankTransfer" &&
-                <div>
-                    <input onChange={setVal(set("phone"))} readOnly={!!urlPhone} placeholder="구매자 연락처" />
-                    <input onChange={setVal(set("name"))} readOnly={!!urlName} placeholder="구매자명" />
+            <NoData label="결제 서비스 준비중 입니다." />
+            {/* <div className="write_type mb20 mt20">
+                <div className="title">결제수단 선택</div>
+                <div className="input_form">
+                    <span id="category" className="category r3">
+                        <select onChange={(e) => {
+                            const val = e.currentTarget.value;
+                            setPayMethod(val as PayMethod)
+                        }} value={payMethod} name="category_srl">
+                            <option value={PayMethod.BANK}>
+                                카드결제
+                            </option>
+                            <option value={PayMethod.NICEPAY_CARD} >
+                                무통장입금
+                            </option>
+                        </select>
+                    </span>
                 </div>
-            }
+            </div>
+            {isLogin ||
+                <div>
+                    <div className="write_type mb10">
+                        <div className="title">구매자성함</div>
+                        <div className="input_form">
+                            <input readOnly type="text" name="title" className="inputText w100 fix" />
+                        </div>
+                    </div>
+                    <div className="write_type mb10">
+                        <div className="title">연락처</div>
+                        <div className="input_form">
+                            <input id="title" onChange={(e) => {
+                                // setTitle(e.currentTarget.value)
+                            }} type="text" name="title" className="inputText w100" />
+                        </div>
+                    </div>
+                    <div className="write_type mb10">
+                        <div className="title">이메일</div>
+                        <div className="input_form">
+                            <input id="title" onChange={(e) => {
+                                // setTitle(e.currentTarget.value)
+                            }} type="text" name="title" className="inputText w100" />
+                        </div>
+                    </div>
+                    <div className="write_type mb10">
+                        <div className="write_con">
+                            <div className="title">예약자메모</div>
+                            <div className="input_form">
+                                <textarea className="inputText input_box w100" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            } */}
 
-            <a onClick={handlePayment} className="btn">결제하기</a>
+            {/* <a onClick={handlePayment} className="paymentBtn">결제하기</a> */}
         </div>
     </div>
 };

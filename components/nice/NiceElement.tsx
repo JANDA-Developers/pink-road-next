@@ -71,7 +71,7 @@ const NiceElments: React.FC<INiceElementProp> = ({
                 display: "none",
             }}
             onSubmit={(e) => {
-                alert(e.currentTarget)
+                // alert(e.currentTarget)
             }}
         >
             <Head>

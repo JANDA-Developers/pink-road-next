@@ -29,10 +29,10 @@ export const ElectronTerms: React.FC<IProp> = () => {
 
         <div className="electronterms_box w1200">
             <ul className="subtop_nav">
-                <li><a href="/member/rule">이용약관</a></li>
-                <li><a href="/member/privacy-policy">개인정보처리방침</a></li>
-                <li className="on"><a href="/member/electron-terms">전자상거래이용약관</a></li>
-                <li><a href="/member/kr-terms">국내여행약관</a></li>
+                <li><a href="/service/rule">이용약관</a></li>
+                <li><a href="/service/privacy-policy">개인정보처리방침</a></li>
+                <li className="on"><a href="/service/electron-terms">전자상거래이용약관</a></li>
+                <li><a href="/service/kr-terms">국내여행약관</a></li>
             </ul>
         </div>
 

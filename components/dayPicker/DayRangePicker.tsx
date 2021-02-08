@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import RCDayPicker, { DateUtils } from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
+import 'node_modules/react-day-picker/lib/style.css';
 import { ISet } from 'types/interface';
 
 type Range = {
@@ -24,6 +24,7 @@ export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange, isRa
     function handleDayClick(day: any) {
         if (!isRange) {
             onRangeChange({ from: day, to: day });
+            return
         }
 
         // 선택한 날자 뒤를 누른경우에

@@ -8,7 +8,7 @@ import { JDpaymentUI, TPaySubmitInfo } from "../../components/payment/JDpaymentU
 import { IUseBasket, useBasket } from "../../hook/useBasket";
 import { useBookingFindByCode, useBookingsCreate } from "../../hook/useBooking";
 import PaymentLayout from "../../layout/PaymentLayout";
-import { BookingsCreateInput, Fbooking } from "../../types/api";
+import { bookingFindByCode_BookingFindByCode_data, BookingsCreateInput, bookingsCreate_BookingsCreate_data, Fbooking, PayMethod } from "../../types/api";
 import { getFromUrl } from "../../utils/url";
 
 interface IcustomParams {
@@ -22,11 +22,12 @@ interface IProp {
 export const Payment: React.FC<IProp> = ({ }) => {
     const urlBKcode = getFromUrl("code") || "";
     const [authData, setAuthData] = useState<IAuthInfo>();
-    const [createdBookings, setCreatedBookings] = useState<Fbooking[]>([]);
+    const [createdBookings, setCreatedBookings] = useState<bookingsCreate_BookingsCreate_data[]>([]);
     const [customParams, setCustomParams] = useState<IcustomParams>();
     const { item: findBooking } = useBookingFindByCode(urlBKcode);
     const [bookingCreate] = useBookingsCreate();
     const { items, totalPrice, updateComponent, getLoading }: IUseBasket = useBasket()
+    const [payMethod, setPayMethod] = useState(PayMethod.NICEPAY_CARD);
 
     const startPay = () => {
         auth(totalPrice)
@@ -41,12 +42,14 @@ export const Payment: React.FC<IProp> = ({ }) => {
             name: param.buyerInfo.name,
             phoneNumber: param.buyerInfo.phone,
             message: "",
-            product: item._id
+            product: item._id,
+            payMethod: param.payMethod
         }))
 
         bookingCreate({
             variables: {
-                params
+                params,
+                payMethod
             }
         }).then(result => {
             if (result.data?.BookingsCreate.ok) {
@@ -65,6 +68,7 @@ export const Payment: React.FC<IProp> = ({ }) => {
     }
 
     const auth = async (price: number) => {
+        alert("auth occcurend");
         const { data } = await getAuth(price);
         if (data.ediDate) {
             setAuthData(data);
@@ -74,6 +78,7 @@ export const Payment: React.FC<IProp> = ({ }) => {
         }
     }
 
+    //인증 받을 데이터
     const niceAuth = {
         Amt: totalPrice.toString(),
         EdiDate: authData?.ediDate || "",
@@ -85,7 +90,7 @@ export const Payment: React.FC<IProp> = ({ }) => {
         BuyerEmail: createdBookings[0]?.email || "",
         BuyerName: createdBookings[0]?.name || "",
         BuyerTel: createdBookings[0]?.phoneNumber || "",
-        GoodsName: createdBookings?.map(bk => bk.product.title).join(" | ") || "",
+        GoodsName: "예약상품",
     }
 
     return <PaymentLayout>

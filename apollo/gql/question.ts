@@ -11,14 +11,13 @@ export const F_QUESTION = gql`
         isDelete
         title
         contents
-        author {
-          nickName
-        }
+        code
         isNotice
         isOpen
         summary
         subTitle
         status
+        secret
         answers {
           ...Fanswer
         }
@@ -33,6 +32,15 @@ export const F_QUESTION = gql`
         likeCount
         status
         no
+        author {
+            _id
+            nickName
+            email
+            phoneNumber
+            profileImg {
+              uri
+            }
+        }
     }
     ${F_ANSWER}
     ${F_FILE}
@@ -51,34 +59,32 @@ export const QUESTION_LIST = gql`
     filter: $filter
   ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     page {
       ...Fpage
     }
     data  {
+      secret,
       ...Fquestion,
-      author {
-            _id
-            nickName
-            email
-            profileImg {
-              uri
-            }
-        }
-        product {
+      product {
+        _id
+        title
+        author {
           _id
-          title
-          author {
-            _id
-            name
-            nickName
-          }
+          name
+          nickName
+        }
       }
     }
   }
-  }
-  ${F_PAGE}
-  ${F_QUESTION}
+}
+${F_PAGE}
+${F_QUESTION}
 `
 
 export const QUESTION_CREATE = gql`
@@ -89,7 +95,12 @@ export const QUESTION_CREATE = gql`
       params: $params
     ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     data {
       _id
     }
@@ -104,7 +115,12 @@ export const QUESTION_DELETE = gql`
       id:$id
     ) {
     ok
-    error 
+    error {
+location
+        severity
+        code
+        message
+}
   }
 }
 `
@@ -118,7 +134,12 @@ export const QUESTION_UPDAET = gql`
       id: $id
     ) {
     ok
-    error 
+    error {
+location
+        severity
+        code
+        message
+}
     data {
       _id
     }
@@ -135,7 +156,12 @@ query questionFindById(
     id:$id
   ) {
   ok
-  error 
+  error {
+  location
+    severity
+    code
+    message
+  }
   data {
     ...Fquestion
     author {

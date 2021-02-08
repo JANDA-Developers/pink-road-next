@@ -477,11 +477,25 @@
             overflow: hidden;
         }
         .main_con_box5 .man_box ul{
-            width: 2000px;
+            width: auto;
             display: flex;
             position: relative;
             left: 0px;
+            transition: .3s;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
+
+        .main_con_box5 .man_box::-webkit-scrollbar {
+            display: none;
+        }
+
+        .main_con_box5 .man_box {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+          
             .main_con_box5 .man_box li {
                 position: relative;
                 display: inline-block;
@@ -501,7 +515,7 @@
                 box-sizing: border-box;
                 vertical-align: top;
                 /* background-image: url(/its/man01.jpg); */
-                background-size: 120%;
+                background-size: cover;
                 background-position: center;
                 border-radius: 150px;
                 overflow: hidden;
@@ -693,9 +707,6 @@ div.goods_list {
                 font-size: 14px;
                 background-color: #00000091;
                 padding: 1px 5px;
-                position: absolute;
-                bottom: 20px;
-                left: 20px;
             }
         
             div.theme_deal .tag {
@@ -712,12 +723,8 @@ div.goods_list {
                 background-size: 120%;
             }
         
-                div.theme_deal .top_01:before {
-                    background-image: url(/its/tem_bg_06.jpg);
-                }
         
             div.theme_deal span.first {
-                bottom: 48px;
                 font-size: 21px;
             }
         
@@ -733,9 +740,6 @@ div.goods_list {
                 background-size: 120%;
             }
         
-                div.theme_deal .top_02:before {
-                    background-image: url(/its/tem_bg_07.jpg);
-                }
         
             div.theme_deal .top_03 {
                 width: 49.5%;
@@ -748,9 +752,6 @@ div.goods_list {
                 background-size: 120%;
             }
         
-                div.theme_deal .top_03:before {
-                    background-image: url(/its/tem_bg_03.jpg);
-                }
         
             div.theme_deal .top_04 {
                 width: 32%;
@@ -765,9 +766,6 @@ div.goods_list {
                 background-size: 120%;
             }
         
-                div.theme_deal .top_04:before {
-                    background-image: url(/its/tem_bg_08.jpg);
-                }
         
             div.theme_deal .top_05 {
                 width: 33%;
@@ -782,9 +780,6 @@ div.goods_list {
                 background-size: 120%;
             }
         
-                div.theme_deal .top_05:before {
-                    background-image: url(/its/tem_bg_09.jpg);
-                }
         
             div.theme_deal .top_06 {
                 width: 32%;
@@ -799,7 +794,7 @@ div.goods_list {
             }
         
                 div.theme_deal .top_06:before {
-                    background-image: url(/its/tem_bg_05.jpg);
+                    background-image: url();
                 }
                 
 .main_con_box7 {
@@ -1002,10 +997,10 @@ div.goods_list {
                 font-size: 6em;
                 font-weight: 600;
                 color: #ffffff;
-                line-height: 66%;
+                line-height: 66%!important;
                 font-variant: small-caps;
             }
-
+            
 #Reservation_check,
 #Reservation {
     display: none;
@@ -3160,6 +3155,7 @@ ul.rank_ul {
             text-align: center;
             z-index: 10;
             position: relative;
+            width: 100%;
         }
         .siteInfo_in .top_bg .logo {
             display:none;
@@ -3984,15 +3980,18 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con06 li {
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: relative;
         width: 22%;
         margin: 1% 1%;
         background-color: #ffffff;
         border: 1px solid #ccc;
+        height: 90px;
     }
 
-        .siteInfo_in .con06 li a {
+        .siteInfo_in .con06 li {
             display: inline-block;
             padding: 25.1px;
             box-sizing: border-box;
@@ -10399,7 +10398,6 @@ i.calendar {
 
     div.search_mini {
         width: 45%;
-        position: absolute;
         right: 0;
         padding: 0;
         margin: 20px 0;

@@ -25,11 +25,11 @@ interface IProp extends IDiv {
 }
 
 export const BoardList: React.FC<IProp> = ({ setPage, setViewCount, children, Categories, onWrite: handleWrite, onSearch: handleSearch, pageInfo, totalCount, addBtnLabel, setSort, setView, sort, view, viewCount, ...props }) => {
-  return <div {...props} className={`w1200 board_box ${props.className}`} >
+  return <div {...props} className={`w1200 ${props.className}`} >
     <div>
       {Categories}
       <div className="alignment">
-        <div className="left_div"><span className="infotxt">총 <strong>{autoComma(totalCount)}</strong>개</span></div>
+        <div className="left_div"><span className="infotxt">총 <strong>{totalCount}</strong>개</span></div>
         <div className="right_div">
           <SortSelect onChange={setSort} sort={sort} />
           <ViewCount value={viewCount} onChange={setViewCount} />
@@ -41,7 +41,7 @@ export const BoardList: React.FC<IProp> = ({ setPage, setViewCount, children, Ca
       <div className="tl list_bottom">
         {/* member/상품 등록하기 */}
         <div className="btn_footer">
-          <span onClick={handleWrite} className="xet_btn medium gray">{addBtnLabel}</span>
+          {addBtnLabel && <span onClick={handleWrite} className="xet_btn medium gray">{addBtnLabel}</span>}
         </div>
         {handleSearch && <SearchMini onSubmit={handleSearch} />}
       </div>

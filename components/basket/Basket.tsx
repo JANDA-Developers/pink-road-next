@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
+import { useIdSelecter } from '../../hook/useIdSelecter';
 import { useUpdate } from '../../hook/useUpdater';
 import { Fproduct } from '../../types/api';
 import { BG } from '../../types/const';
@@ -20,9 +21,9 @@ interface IProp {
 
 export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => {
     const [popUpProduct, setPopProduct] = useState<Fproduct & IBasketItem>();
-    const [selectedIds, setSelecteds] = useState<string[]>([]);
-
     const allIds = items.map(i => i._id);
+    const { reverseAll, toggleAll, selectedIds, check, isChecked, isAllSelected, toggle } = useIdSelecter(allIds);
+
 
     const totalPrice = arraySum(items.map(item => item.price));
     const priceLines = items.map(item => autoComma(item.price)).join(" + ");
@@ -30,23 +31,6 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
     const handleModify = (product: Fproduct & IBasketItem) => () => {
         setPopProduct(product);
         openModal("#basketModal")()
-    }
-
-    const toggleCheck = (id: string) => () => {
-        const index = selectedIds.findIndex(_id => id === _id);
-        if (index !== -1) {
-            selectedIds.splice(index, 1)
-            setSelecteds([...selectedIds]);
-        } else {
-            setSelecteds([...selectedIds, id]);
-        }
-    }
-
-    const handleSelectAll = () => {
-        setSelecteds([...allIds]);
-    }
-    const handleCancelAll = () => {
-        setSelecteds([]);
     }
 
     const handleDeleteSelects = () => {
@@ -63,21 +47,13 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
         }
     }
 
-    const handleTooggleAll = () => {
-        if (isEmpty(selectedIds)) {
-            handleSelectAll();
-        } else {
-            handleCancelAll();
-        }
-    }
 
-    const isCheckedAll = selectedIds.length === items.length;
 
     return <div className="basket_box"><div className="basket_list">
         <div className="th">
             <div className="t01">
                 <span className="checkbox">
-                    <input onChange={handleTooggleAll} checked={isCheckedAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
+                    <input onChange={toggleAll} checked={isAllSelected} type="checkbox" name="agree" id="agree0" title="전체선택" />
                     <label htmlFor="agree0" />
                 </span>
             </div>
@@ -90,14 +66,14 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
             <div key={item._id} className="td">
                 <div className="t01">
                     <span className="checkbox">
-                        <input checked={selectedIds.includes(item._id)} onChange={toggleCheck(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
+                        <input checked={isChecked(item._id)} onChange={() => toggle(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
                         <label htmlFor="agree1" />
                     </span>
                 </div>
                 <div className="t02">
-                    <div className="img" style={BG(item.images?.[0]?.uri)}></div>
+                    <div className="img" style={BG(item.images?.[0]?.uri || "")}></div>
                     <div className="right">
-                        <div className="ct">{item.category?.label}</div><div className="code">{item.code}</div>
+                        <div className="ct">{item?.category?.label}</div><div className="code">{item.code}</div>
                         <div className="title"><a href="/">{item.title}</a></div>
                         <div className="subtitle">{item.subTitle}</div>
                     </div>
@@ -109,7 +85,7 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
                 <div className="t03">
                     <div className="day">출발일 : <strong>{dayjs(item.startDate).format("MM.DD (W)")}</strong></div>
                     <div className="start_where">출발장소 : {item.startPoint}</div>
-                    <div className="tour_mode">여행방식 :{getTypeTextOfProduct(item)}</div>
+                    <div className="tour_mode">여행방식 :{getTypeTextOfProduct(item.type, item.dateRange)}</div>
                     <div className="men">선택인원 : <strong>총 {getTotalCount(item.count)}명</strong>{` - 성인${item.count.adult}, 소인${item.count.kids}, 유아${item.count.baby}`}</div>
                     <button onClick={handleModify(item)} className="btn option_btn">조건 추가/변경</button>
                 </div>
@@ -119,11 +95,12 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
                 </div>
                 <div className="t05">
                     <div className="day_cunt">출발 D-{item.Dday}</div>
-                    <div className="men_cunt">모집 인원 : <strong>{item.minMember}</strong> / {item.maxMember}</div>
+                    <div className="men_cunt">모집 인원 : <strong>{item.compeltePeopleCnt}</strong> / {item.maxMember}</div>
                     <div className="state onsale">{item.status}</div>
                 </div>
             </div>
         )}
+
 
         <div className="baket_bottom">
             <div className="sum01"><strong>합계금액</strong></div>
@@ -134,7 +111,7 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
 
         <div className="baket_check">
             <div className="left">
-                <button onClick={handleSelectAll} className="btn"><input type="checkbox" />전체선택</button>
+                <button onClick={reverseAll} className="btn"><input checked={isAllSelected} type="checkbox" />전체선택</button>
                 <button onClick={handleDeleteSelects} className="btn">선택삭제</button>
                 <button onClick={handleDeleteAll} className="btn">전체삭제</button>
             </div>

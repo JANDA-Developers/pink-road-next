@@ -22,7 +22,6 @@ export const CommentWrite: React.FC<IProp> = ({ onSubmit, defaultContent, title 
             alert("3000글자 까지만 적을 수 있습니다.");
             return false;
         }
-
         return true;
     }
 

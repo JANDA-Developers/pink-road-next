@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { IHumanCount, IProduct, TCount } from "types/interface";
 import { Fproduct } from "../types/api";
 
@@ -64,7 +65,7 @@ export class LocalManager<T extends string> {
 }
 
 
-export type TStoreKeys = "signUpRole" | "questionWrite" | "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin";
+export type TStoreKeys = "lastLoginType" | "qnaWrite" | "announceWrite" | "lastProd" | "signUpRole" | "questionWrite" | "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin";
 
 export let Storage: LocalManager<TStoreKeys> | null = null;
 
@@ -83,9 +84,19 @@ export interface IBasketItem extends Partial<Fproduct> {
     name: string;
     price: number;
     count: IHumanCount
+    pickupAt?: Date;
     version?: number;
 }
 
+export const deleteExpireBracket = () => {
+    const bracket = getBracket();
+    console.log("bracket");
+    console.log(bracket);
+    const unExpiredSet = bracket?.filter((bk) => dayjs(bk.startDate).add(1, "day").toDate() > new Date());
+    console.log("unExpiredSet");
+    console.log(unExpiredSet);
+    saveBracket(unExpiredSet || []);
+}
 
 export const removeBracket = () => {
     return localStorage.removeItem("bracket");
@@ -136,6 +147,7 @@ export const removeItem = (_id: string) => {
 }
 
 export const addItem = (product: IBasketItem) => {
+    product.pickupAt = new Date();
     const products = getBracket() || []
     const duplicated = products.findIndex(p => p._id === product._id);
     let updateProducts: IBasketItem[] = [];
@@ -152,7 +164,7 @@ export const getItem = (_id: string) => {
     return products.find((prod) => prod._id === _id)!;
 }
 
-const version = 1;
+const version = 2;
 export const saveBracket = (products: IBasketItem[]) => {
     products.forEach(p => { p.version = version });
     Storage?.saveLocal("bracket", products)

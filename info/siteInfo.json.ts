@@ -64,7 +64,10 @@ const info: TStieInfo = {
         kr: "Change the world with It's GUIDE."
     },
     partners: {
-        kr: []
+        value: [{
+            img:"",
+            link: ""
+        }]
     }
 }
 

@@ -2,12 +2,12 @@ import { useRouter } from "next/router";
 import React, { useEffect } from 'react';
 import { initStorage, Storage } from '../../../utils/Storage';
 import { BoardWrite } from "components/board/Write";
-import { isUnLoaded, IUseBoardData, useBoard } from "hook/useBoard";
+import { IUseBoardData, nullcehck, useBoard } from "hook/useBoard";
 import { omits } from "../../../utils/omit";
-import { auth, compose } from "../../../utils/with";
-import { ONLY_LOGINED } from "../../../types/const";
+import { auth } from "../../../utils/with";
+import { ALLOW_LOGINED } from "../../../types/const";
 import { Fnews, NEWS_TYPE } from '../../../types/api';
-import { useNewsCreate, useNewsDelete, useNewsUpdate } from "../../../hook/useNews";
+import { useNewsCreate, useNewsDelete, useNewsFindById, useNewsUpdate } from "../../../hook/useNews";
 
 const categoryOps = [{
     label: "여행이야기",
@@ -22,13 +22,15 @@ const categoryOps = [{
     _id: NEWS_TYPE.CULTURE
 }]
 interface IProp {
+    pas
     news: Fnews
 }
 
-export const NewsWrite: React.FC<IProp> = ({ news }) => {
-    const id = news._id
+export const NewsWrite: React.FC<IProp> = () => {
     const router = useRouter();
-    const mode = id ? "create" : "edit";
+    const id = router.query.id?.[0] as string | undefined;
+    const { item: news } = useNewsFindById(id);
+    const mode = id ? "edit" : "create";
 
     const goToView = (id: string) => {
         router.push(`/news/view/${id}`)
@@ -79,7 +81,7 @@ export const NewsWrite: React.FC<IProp> = ({ news }) => {
         newsUpdate({
             variables: {
                 params: omits(params, ["categoryId", "files"]),
-                id
+                id: id!
             }
         })
     }
@@ -88,7 +90,7 @@ export const NewsWrite: React.FC<IProp> = ({ news }) => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
             newsDelete({
                 variables: {
-                    id
+                    id: id!
                 }
             })
     }
@@ -113,6 +115,7 @@ export const NewsWrite: React.FC<IProp> = ({ news }) => {
 
     const handleTempSave = () => {
         Storage?.saveLocal("newsWrite", boardData);
+        alert("저장완료");
     }
 
     const handleCancel = () => {
@@ -121,10 +124,13 @@ export const NewsWrite: React.FC<IProp> = ({ news }) => {
 
     const handleLoad = () => {
         const saveData = Storage?.getLocalObj<IUseBoardData>("newsWrite");
-        if (!isUnLoaded(saveData)) {
-            setBoardData(saveData);
-            loadKeyAdd();
+
+        if (!saveData) {
+            alert("저장된 데이터가 없습니다.");
+            return;
         }
+        setBoardData(saveData);
+        loadKeyAdd();
     }
 
     useEffect(() => {
@@ -152,7 +158,7 @@ export const NewsWrite: React.FC<IProp> = ({ news }) => {
 };
 
 
-export default auth(ONLY_LOGINED)(NewsWrite)
+export default auth(ALLOW_LOGINED)(NewsWrite)
 
 
 

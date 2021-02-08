@@ -11,7 +11,7 @@ export const QnaTable: React.FC<IProp> = () => {
                 style={{ backgroundImage: `url(/its/su_visual_bg.jpg)` }}
             >
                 <div className="w1200">
-                    <h2 className="title">자주하는 질문</h2>
+                    <h2 className="title">이벤트</h2>
                     <p className="text">궁금한 것이 있으신가요?</p>
                 </div>
             </div>
@@ -22,16 +22,16 @@ export const QnaTable: React.FC<IProp> = () => {
                     </li>
                     <li className="homedeps1">Member</li>
                     <li className="homedeps2">
-                        <Link href="/member/qna"><a>자주하는 질문</a></Link>
+                        <Link href="/service/event"><a>이벤트</a></Link>
                     </li>
                 </ul>
             </div>
         </div>
         <div className="qna_box w1200">
             <ul className="subtop_nav">
-                <li><Link href="/member/notice"><a>공지사항</a></Link></li>
-                <li className="on"><Link href="/member/qna"><a>자주하는 질문</a></Link></li>
-                <li><Link href="/member/inquiry"><a>고객문의</a></Link></li>
+                <li><Link href="/service/notice"><a>공지사항</a></Link></li>
+                <li className="on"><Link href="/service/event"><a>이벤트</a></Link></li>
+                <li><Link href="/service/inquiry"><a>고객문의</a></Link></li>
             </ul>
             <div className="board_qna">
 

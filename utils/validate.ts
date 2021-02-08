@@ -4,7 +4,9 @@ import { toast } from "react-toastify";
 export const foucsById = (id:string) => {
     const ele = document.getElementById(id);
     ele?.focus();
-    ele?.scrollIntoView();
+    ele?.scrollIntoView({
+        block: "center"
+    });
 }
 
 type Tnode = {

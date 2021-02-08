@@ -28,7 +28,12 @@ export const ANSWER_CREATE = gql`
       questionId: $questionId
     ) {
     ok
-    error
+    error {
+      location
+      severity
+      code
+      message
+    }
     data {
       ...Fanswer
     }
@@ -46,7 +51,12 @@ export const ANSWER_DELETE = gql`
       questionId: $questionId 
     ) {
     ok
-    error 
+    error {
+location
+        severity
+        code
+        message
+}
   }
 }
 `
@@ -62,7 +72,12 @@ export const ANSWER_UPDAET = gql`
       _id: $_id
     ) {
     ok
-    error 
+    error {
+location
+        severity
+        code
+        message
+}
     data {
       _id
     }

@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react'
-import { AddUserInput, UserRole } from '../../types/api';
+import { AddUserInput, ERR_CODE, UserRole } from '../../types/api';
 import { isEmail, isPhone, isPassword, isName } from 'utils/validation';
 import { useSignUp } from '../../hook/useUser';
 import { Validater } from '../../utils/validate';
+import { JoinContext } from '../../pages/member/join';
 import { openModal } from '../../utils/popUp';
 import { ISignUpInput } from '../../hook/useJoin';
 import { omits } from '../../utils/omit';
 import { Modal } from '../modal/Modal';
 import { Policy } from '../policy/PriviacyPolicy';
-import { JoinContext } from '../../pages/member/join';
 
 type TSMS = {
   sns: true,
@@ -33,7 +33,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
 
   const { userType, setJoinProcess, verifiData } = useContext(JoinContext)!;
 
-  const { _id: verificationId } = verifiData;
+  const { _id: verificationId } = verifiData!;
 
 
   const [signUpMu] = useSignUp({
@@ -42,8 +42,9 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         alert("회원가입 완료")
         setJoinProcess('registered');
       } else {
-        alert(SignUp.error);
-        alert("회원가입에 실패 했습니다. 관리자 문의 바랍니다.");
+        if (SignUp.error?.code === ERR_CODE.ALEADY_SAME_DATA) {
+          alert("이미 가입된 회원입니다.");
+        }
       }
     }
   });
@@ -126,8 +127,8 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
 
   if (userType === UserRole.partnerB) {
     //네이밍 얼라이어스
-    registerInfo.name = registerInfo.manageName;
-    registerInfo.phoneNumber = registerInfo.manageContact;
+    registerInfo.manageName = registerInfo.name || "";
+    registerInfo.manageContact = registerInfo.phoneNumber || "";
     registerInfo.address = registerInfo.address;
     registerInfo.address_detail = registerInfo.address_detail;
   }
@@ -151,18 +152,21 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
   },
   {
     value: registerInfo.address_detail,
-    failMsg: "상세 주소값을 입력 해주세요."
+    failMsg: "상세 주소값을 입력 해주세요.",
+    id: "AddressInput"
   },
   ])
 
   const { validate: normalValidate } = new Validater([
     {
       value: isName(registerInfo.name || ""),
-      failMsg: "이름 값이 올바르지 않습니다."
+      failMsg: "이름 값이 올바르지 않습니다.",
+      id: "NameInput"
     },
     {
       value: isPhone(registerInfo.phoneNumber || ""),
       failMsg: "올바른 핸드폰 번호가 아닙니다.",
+      id: "PhoneNumberInput"
     },
     ...sharedValidate
   ])
@@ -181,34 +185,15 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
       failMsg: "대표 연락처가 올바르지 않습니다."
     },
     {
-      value: isPhone(registerInfo.busi_contact || ""),
+      value: isPhone(registerInfo.manageContact || ""),
       failMsg: "담당자 연락처가 올바르지 않습니다."
-    },
-    {
-      value: registerInfo.busi_address,
-      failMsg: "주소값을 입력 해주세요."
-    },
-    {
-      value: registerInfo.busi_address_detail,
-      failMsg: "상세 주소값을 입력 해주세요."
     },
     ...sharedValidate
   ])
 
 
   const validate = (): boolean => {
-    switch (userType) {
-      case UserRole.individual:
-        return normalValidate();
-
-      case UserRole.partner:
-        return partnerValidate();
-
-      case UserRole.partnerB:
-        return BpartnerValidate();
-        break;
-    }
-    return false;
+    return normalValidate();
   }
 
 
@@ -362,24 +347,6 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
             </li>
             <li>
-              {/* 기업파트너/가이드*/}
-              <div className="in_box1">
-                <input type="checkbox" className="checkbox"
-                  checked={chkPolocy.policy_partner}
-                  onClick={() => { handlePolicy('policy_partner') }} />
-                <span>
-                  <strong>파트너약관</strong>[필수]
-                  </span>
-              </div>
-              <div className="in_box2">
-                <a
-                  onClick={openModal('#PartnerPolicy')}
-                >
-                  전문보기 &gt;
-                  </a>
-              </div>
-            </li>
-            <li>
               {/* ALL */}
               <div className="in_box1">
                 <input type="checkbox" className="checkbox"
@@ -446,8 +413,8 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         <Policy type="thirdPolicy" />
       </Modal>
       <div className="fin">
-        <a href="/" className="cancel btn">취소</a>
-        <button type="submit" className="sum btn"
+        <a href="/" className="joinWrapBtn cancel btn">취소</a>
+        <button className="joinWrapBtn sum btn"
           onClick={() => {
             if (validate()) {
               handleRegister()

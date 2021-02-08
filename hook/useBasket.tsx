@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Fproduct } from "../types/api";
 import { IHumanCount } from "../types/interface";
 import { arraySum } from "../utils/math";
-import { getBracket, IBasketItem, removeItem } from "../utils/Storage";
+import { bracketVergionChange, deleteExpireBracket, getBracket, IBasketItem, removeItem } from "../utils/Storage";
 import { useProductList } from "./useProduct";
 import { useUpdate } from "./useUpdater";
 
@@ -12,6 +12,7 @@ interface IPrices {
     adult_price: number
     kids_price: number
     defaultCount?: IHumanCount;
+    capacity?: number;
 }
 
 const DEFAULT_COUNT: IHumanCount = {
@@ -24,15 +25,23 @@ export const useBasketCount = ({
     adult_price = 0,
     baby_price = 0,
     kids_price = 0,
-    defaultCount = DEFAULT_COUNT
+    defaultCount = DEFAULT_COUNT,
+    capacity = 0
 }: Partial<IPrices> = { adult_price: 0, baby_price: 0, kids_price: 0 }) => {
     const [count, setCount] = useState<IHumanCount>(defaultCount);
     const [totalPrice, setPrice] = useState(0);
     const handleCount = (key: keyof IHumanCount, isUp: boolean) => () => {
+        const totalCount = count.adult + count.baby + count.kids;
+
         let val = count[key];
         val = val + (isUp ? 1 : -1);
         if (val < 0) val = 0;
         count[key] = val;
+
+        if (capacity < totalCount) {
+            alert("해당 상품은 더이상 예약을 받을 수 없습니다.");
+            return;
+        }
 
         setCount({ ...count })
     }
@@ -77,9 +86,12 @@ export const useBasket = () => {
     }
 
     const items: (IBasketItem & Fproduct)[] = getLoading ? [] : mappingItemWithProduct();
-
     const totalPrice = arraySum(items.map(item => item.price));
 
+    useEffect(() => {
+        deleteExpireBracket();
+        bracketVergionChange();
+    }, [])
 
     return { updateComponent, totalPrice, items, getLoading }
 }

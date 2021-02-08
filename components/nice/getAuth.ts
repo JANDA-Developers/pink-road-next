@@ -1,9 +1,9 @@
-import { NICE_GET_KEY } from "./niceUtils";
+import { NICE_GET_URI } from "./niceUtils";
 import { IAuthInfo } from "./type";
 
 export type TGetAUth = {data:IAuthInfo};
 export const getAuth = async (amt:number):Promise<TGetAUth> => {
-    return await fetch(NICE_GET_KEY, {
+    return await fetch(NICE_GET_URI, {
         method: "post",
         mode: "cors",
         headers: {

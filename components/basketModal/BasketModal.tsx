@@ -27,6 +27,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
         baby_price,
         kids_price,
         adult_price,
+        capacity: product ? product.maxMember - product.peopleCount : 0,
         defaultCount: {
             adult,
             baby,
@@ -49,7 +50,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
                         <th>대인</th>
                         <td>
                             <strong>{autoComma(product?.adult_price)}</strong>원
-                                <div className="number_box">
+                                <div className="Number__box">
                                 <span onClick={handleCount("adult", false)} className="left_btn"><i className="flaticon-substract"></i></span>
                                 <span className="number">{count.adult}</span>
                                 <span onClick={handleCount("adult", true)} className="right_btn"><i className="flaticon-add"></i></span>
@@ -60,7 +61,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
                         <th>소인</th>
                         <td>
                             <strong>{autoComma(product?.kids_price)}</strong>원
-                                <div className="number_box">
+                                <div className="Number__box">
                                 <span onClick={handleCount("kids", false)} className="left_btn"><i className="flaticon-substract"></i></span>
                                 <span className="number">{count.kids}</span>
                                 <span onClick={handleCount("kids", true)} className="right_btn"><i className="flaticon-add"></i></span>
@@ -71,7 +72,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
                         <th>유아</th>
                         <td>
                             <strong>{autoComma(product?.baby_price)}</strong>원
-                                <div className="number_box">
+                                <div className="Number__box">
                                 <span onClick={handleCount("baby", false)} className="left_btn"><i className="flaticon-substract"></i></span>
                                 <span className="number">{count.baby}</span>
                                 <span onClick={handleCount("baby", true)} className="right_btn"><i className="flaticon-add"></i></span>
@@ -80,7 +81,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
                     </tr>
                 </tbody>
             </table>
-            <div className="chash_box">
+            <div className="Chash__box">
                 <table className="chash_tb">
                     <tbody>
                         <tr>

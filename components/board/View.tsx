@@ -1,14 +1,14 @@
 import dayjs from "dayjs";
-import dynamic from "next/dynamic";
 import React from "react";
 import { Ffile } from "types/api"
-import { TElements } from "../../types/interface";
+import { IDiv, TElements } from "../../types/interface";
 import { ContentViewer } from "../contentViewer/ContentViewer";
 
-interface IProps {
+interface IProps extends IDiv {
     catName?: string;
     title: string;
     writer: string;
+    secret?: boolean;
     thumb?: Ffile | null;
     createAt: string;
     comments?: {
@@ -28,7 +28,7 @@ interface IProps {
 
 
 export const BoardView: React.FC<IProps> = (data) => {
-    const { catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, onNext, onPrev, onDelete, subTitle, Buttons } = data;
+    const { secret, className, catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, onNext, onPrev, onDelete, subTitle, Buttons } = data;
 
 
     const handlePrev = () => {
@@ -51,7 +51,7 @@ export const BoardView: React.FC<IProps> = (data) => {
         onDelete?.();
     }
 
-    return <div className="board_box edtiorView">
+    return <div className={`board_box edtiorView ${className}`}>
         <div className="w1200">
             <div className="xe_content">
                 <div className="xe_top">
@@ -62,6 +62,7 @@ export const BoardView: React.FC<IProps> = (data) => {
                     <div className="footer_txt">
                         <span>작성자<strong>{writer}</strong></span>
                         <span>{dayjs(createAt).format('YYYY.MM.DD HH:mm')}</span>
+                        {secret && <span>비밀글</span>}{/* 댓글기능 열렷을 때 */}
                         {comments?.count && <span>댓글 <strong>0</strong>건</span>}{/* 댓글기능 열렷을 때 */}
                         {viewCount && <span>조회수 <strong>3423</strong>회</span>}
                     </div>

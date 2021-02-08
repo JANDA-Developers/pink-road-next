@@ -1,20 +1,47 @@
 import React, { useState } from 'react';
+import { useEmailDuplicateCheck } from '../../hook/useUser';
 import { TuseVerification } from '../../hook/useVerification';
 import { VerificationEvent, VerificationTarget } from '../../types/api';
 import { isEmail } from '../../utils/validation';
 import { Modal } from '../modal/Modal';
 
 interface IProp {
+    duplicateCheck?: boolean;
     verifiHook: TuseVerification
     onSuccess: () => void;
 }
 
-export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => {
+export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess, duplicateCheck }) => {
     const [email, setEmail] = useState("")
     const [code, setCode] = useState("")
     const [sendEmailCount, setSendEmailCount] = useState(0);
+    const [duplicateChecked, setDuplicateCheck] = useState(false)
+
+    const [checkEmailDu] = useEmailDuplicateCheck({
+        onCompleted: ({ EmailDuplicateCheck }) => {
+            if (EmailDuplicateCheck.data?.duplicated) {
+                alert("해당 이메일은 이미 가입된 이메일 입니다.")
+            } else if (!EmailDuplicateCheck?.data?.duplicated) {
+                setDuplicateCheck(true);
+                handleSendEmail();
+            }
+        }
+    });
 
     const { verifiComplete, verifiStart, verifiData } = verifiHook;
+
+
+    const handleDuplicateCheck = () => {
+        if (duplicateCheck && !duplicateChecked) {
+            checkEmailDu({
+                variables: {
+                    email
+                }
+            })
+        } else {
+            handleSendEmail();
+        }
+    }
 
     const handleSendEmail = () => {
         if (!isEmail(email)) {
@@ -60,13 +87,13 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => 
 
     return <Modal title="이메일 인증" id="emailVerifi" >
         <h6>
-            인증번호를 입력 해주세요.
+            이메일을 입력 해주세요.
                 </h6>
-        <input value={email} onChange={(e) => {
+        <input className="emailVerifi__input" value={email} onChange={(e) => {
             setEmail(e.currentTarget.value)
         }} />
         {sendEmailCount ?
-            <div>
+            <div className="emailVerifi__underBox">
                 <h6>
                     인증번호를 입력 해주세요.
             </h6>
@@ -75,7 +102,7 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess }) => 
                 }} />
             </div> : ""
         }
-        {!sendCountOver ? <button className="btn small" onClick={handleSendEmail}>{sendEmailCount ? "인증이메일 발송" : "인증메일 재발송"}</button> : <button >재발송 횟수를 초과하였습니다.</button>}
+        {!sendCountOver ? <button className="btn small" onClick={handleDuplicateCheck}>{sendEmailCount ? "인증이메일 발송" : "인증메일 재발송"}</button> : <button className="btn small">재발송 횟수를 초과하였습니다.</button>}
         {sendEmailCount ? <button className="btn small" onClick={handleComplete}>인증 완료</button> : ""}
     </Modal>;
 };

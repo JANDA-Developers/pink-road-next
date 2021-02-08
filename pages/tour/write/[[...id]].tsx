@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from 'react';
 import { initStorage } from '../../../utils/Storage';
-import "react-day-picker/lib/style.css";
+import "node_modules/react-day-picker/lib/style.css";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { ProductStatus, ProductType } from '../../../types/api';
@@ -17,21 +17,50 @@ import { useProductFindById } from "../../../hook/useProduct";
 import { changeVal } from "../../../utils/eventValueExtracter";
 import PageLoading from "../../Loading";
 import { auth } from "../../../utils/with";
-import { ADMINS, ALLOW_SELLERS } from "../../../types/const";
+import { ALLOW_SELLERS } from "../../../types/const";
 import { EditorLoading } from "../../../components/edit/EdiotrLoading";
-
+import pageInfoDefault from "info/tourWrite.json"
+import { getStaticPageInfo, Ipage } from "../../../utils/page";
+import { usePageEdit } from "../../../hook/usePageEdit";
+import { assert } from "console";
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
 interface IProp {
 }
 
-export const TourWrite: React.FC<IProp> = () => {
+
+export async function getStaticPaths() {
+
+
+    // Call an external API endpoint to get posts
+    //   const res = await fetch('https://.../posts')
+    //   const posts = await res.json()
+
+    // Get the paths we want to pre-render based on posts
+    //   const paths = posts.map((post) => ({
+    //     params: { id: post.id },
+    //   }))
+
+    // We'll pre-render only these paths at build time.
+    // { fallback: false } means other routes should 404.
+    //   return { paths, fallback: false }
+
+    return {
+        paths: [
+            { params: { id: [] } }
+        ],
+        fallback: true
+    };
+}
+export const getStaticProps = getStaticPageInfo("tourWrite")
+export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
     const { query } = router;
+    const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const id = query.id?.[0] as string | undefined;
-    const isCreateMode = id ? "edit" : "create";
-    const { product, loading } = useProductFindById(id);
-    const { categories } = useContext(AppContext);
+    const isCreateMode = id ? false : true;
+    const { item: product, loading } = useProductFindById(id);
+    const { categoriesMap, isAdmin } = useContext(AppContext);
     const {
         tourSets, tourData,
         loadKey, validater: { validate },
@@ -47,7 +76,7 @@ export const TourWrite: React.FC<IProp> = () => {
 
 
     const { createFn, deleteFn, updateFn } = mutations;
-    const { categoryId, its, simpleData, status, thumbs, keyWards, type } = tourData;
+    const { categoryId, its, simpleData, status, thumbs, keyWards, type, regionId } = tourData;
     const {
         setkeyWards,
         setits,
@@ -71,6 +100,7 @@ export const TourWrite: React.FC<IProp> = () => {
         isOpen,
     } = simpleData;
     const {
+        handleRegionChange,
         handleTextData,
         handleCatChange,
         handleChangeStatus,
@@ -129,9 +159,15 @@ export const TourWrite: React.FC<IProp> = () => {
         initStorage()
     }, [])
 
+
+
+    const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.EXPERIENCE;
+    const regionCategories = categoriesMap.REGION;
+
+
     if (loading) return <PageLoading />
     return <div key={loadKey} className="tour_box w100 board_write">
-        <SubTopNav children={
+        <SubTopNav pageTools={pageTools} children={
             <>
                 <li className="homedeps1">
                     <Link href="/tour/">
@@ -143,7 +179,7 @@ export const TourWrite: React.FC<IProp> = () => {
                     </Link>
                 </li>
             </>
-        } title="Tour" desc="지금 여행을 떠나세요~!~~!!!!!" subTopBg={'/img/work_top_bg2.jpg'} />
+        } />
         <div className="w1200 con_bottom">
             <div className="write_box">
                 <div className="write_type">
@@ -222,6 +258,24 @@ export const TourWrite: React.FC<IProp> = () => {
                 </div>
 
                 <div className="write_type">
+                    <div className="title">지역</div>
+                    <div className="input_form">
+                        <div>
+                            <select onChange={handleRegionChange} value={regionId || ""} name="category_srl">
+                                {regionCategories.map(cat =>
+                                    <option value={cat._id} key={cat._id}>
+                                        {cat.label}
+                                    </option>
+                                )}
+                                <option value="">
+                                    선택없음
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="write_type">
                     <div className="title">장소</div>
                     <div className="input_form">
                         <div>
@@ -239,19 +293,20 @@ export const TourWrite: React.FC<IProp> = () => {
                     </div>
                 </div>
 
-                <div className="write_type">
-                    <div className="title">판매여부</div>
+                {/* 아래는 오직 관리자만 적용할 수 있음 */}
+                {isAdmin && <div className="write_type">
+                    <div className="title">상태관리</div>
                     <div className="input_form">
                         <ul>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sale" value={ProductStatus.OPEN} checked={status === ProductStatus.OPEN} className="radio" /><label htmlFor="status-sale">판매중</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sold" value={ProductStatus.SOLD} checked={status === ProductStatus.SOLD} className="radio" /><label htmlFor="status-sold">완판</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-close" value={ProductStatus.CLOSE} checked={status === ProductStatus.CLOSE} className="radio" /><label htmlFor="status-close">판매종료</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-refused">거절됨</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.HIDE} checked={status === ProductStatus.HIDE} className="radio" /><label htmlFor="status-hide">숨겨짐</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.UPDATE_REQ} checked={status === ProductStatus.UPDATE_REQ} className="radio" /><label htmlFor="status-hide">업데이트 요청</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-hide">거절됨</label></li>
                             <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-ready" value={ProductStatus.READY} checked={status === ProductStatus.READY} className="radio" /><label htmlFor="status-ready">준비중</label></li>
                         </ul>
                     </div>
                 </div>
+                }
 
                 <div className="write_type">
                     <div className="title">키워드</div>
@@ -280,7 +335,7 @@ export const TourWrite: React.FC<IProp> = () => {
                             {thumbs.map((thumb, i) =>
                                 <li key={i + "thumb"} className="on_file">{thumb.name}<i onClick={handleClearThumb(i)} className="flaticon-multiply icon_x"></i></li>
                             )}
-                            <li id="thumb" onClick={handleUploadClick}>이미지추가<i className="flaticon-add icon_plus"></i></li>
+                            {thumbs.length < 4 && <li id="thumb" onClick={handleUploadClick}>이미지추가<i className="flaticon-add icon_plus"></i></li>}
                             <input onChange={handleChangeSumbNail} ref={hiddenFileInput} hidden type="file" />
                         </ul>
                         <p className="input_form info_txt">- 썸네일 이미지사이즈 720px * 434px</p>
@@ -291,10 +346,10 @@ export const TourWrite: React.FC<IProp> = () => {
 
             <div className="write_con">
                 <ul className="con_tap">
-                    <li onClick={handleTab(1)} className={tabOnCheck(1)}><span><i>01.</i>여행상세설명</span></li>
-                    <li onClick={handleTab(2)} className={tabOnCheck(2)}><span><i>02.</i>안내 및 참고</span></li>
-                    <li onClick={handleTab(3)} className={tabOnCheck(3)}><span><i>03.</i>포함 및 불포함</span></li>
-                    <li onClick={handleTab(4)} className={tabOnCheck(4)}><span><i>04.</i>기타 설정</span></li>
+                    <li id="tap1" onClick={handleTab(1)} className={tabOnCheck(1)}><span><i>01.</i>여행상세설명</span></li>
+                    <li id="tap2" onClick={handleTab(2)} className={tabOnCheck(2)}><span><i>02.</i>안내 및 참고</span></li>
+                    <li id="tap3" onClick={handleTab(3)} className={tabOnCheck(3)}><span><i>03.</i>포함 및 불포함</span></li>
+                    <li id="tap4" onClick={handleTab(4)} className={tabOnCheck(4)}><span><i>04.</i>기타 설정</span></li>
                 </ul>
                 <div {...tapDisplay(1)} id="texta_01" className="texta">
                     <h5 id="itinerary">여행일정</h5>
@@ -334,10 +389,10 @@ export const TourWrite: React.FC<IProp> = () => {
                     <button onClick={handleLoad} type="button" className="btn medium">불러오기</button>
                 </div>
                 <div className="float_right">
-                    {isCreateMode || <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
+                    {!isCreateMode && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
                     {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
                     <button onClick={handleCancel} type="button" className="btn medium impact">취소</button>
-                    {isCreateMode || <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>}
+                    {!isCreateMode && <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>}
                 </div>
             </div>
         </div>

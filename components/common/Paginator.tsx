@@ -14,9 +14,9 @@ export const Paginater: React.FC<IProp> = ({ pageInfo: {
     end_page_num
 }, setPage, isMini }) => {
 
-    const disabled = (flag: boolean): any => flag ? {
+    const disabled = (flag: boolean) => flag ? {
         style: {
-            pointerEvents: "none"
+            pointerEvents: "none" as "none"
         }
     } : undefined;
 

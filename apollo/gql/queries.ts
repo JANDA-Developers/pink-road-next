@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_BOOKING, F_CATEGORY,  F_PAGE_INFO, F_PRODUCT,F_USER } from "./fragments";
+import {  F_BOOKING, F_CATEGORY,  F_GROUP,  F_PAGE_INFO,F_USER } from "./fragments";
 import { F_HOMEPAGE } from "./homepage";
 import { F_SYSTEMNOTI } from "./systemNoti";
 
@@ -9,39 +9,6 @@ import { F_SYSTEMNOTI } from "./systemNoti";
   
 :::::::::::::::::::::::::::::::::::::: */
 
-export const PCAT_LIST = gql`
-  query pcategoryList {
-    pCategoryList {
-      ok
-      error
-      data {
-        _id
-        createdAt
-        updatedAt
-        isDelete
-        label
-      }
-    }
-  }
-`
-
-export const SIGN_IN = gql`
-  query signIn(
-    $email: Email!
-    $pw: String!
-    ) {
-    SignIn(
-      email:$email,
-      pw:$pw
-      )  {
-        ok
-        error
-        data {
-          token
-        }
-      }
-  }
-`;
 
 
 export const PAGE_INFO_READ = gql`
@@ -52,7 +19,12 @@ export const PAGE_INFO_READ = gql`
       key: $key
       )  {
         ok
-        error
+        error {
+      location
+      severity
+      code
+      message
+    }
         data {
             ...FpageInfo
         }
@@ -65,11 +37,19 @@ export const GET_CONTEXT = gql`
   query getContext {
       GetProfile {
         ok
-        error
+        error {
+          location
+          severity
+          code
+          message
+        }
         data {
           ...Fuser
           unReadNoties {
             ...FsystemNoti
+          }
+          bankImg {
+            ...Ffile
           }
           bookings {
             ...Fbooking
@@ -82,33 +62,48 @@ export const GET_CONTEXT = gql`
               title
             }
           }
-          products {
-            ...Fproduct
-            bookings {
-              _id
-              name
-            }
-          }
         }
       }
       CategoryList {
         ok
-        error
+        error {
+        location
+        severity
+        code
+        message
+      }
         data {
           ...Fcategory
         }
       }
       Homepage {
         ok
-        error
+        error {
+          location
+          severity
+          code
+          message
+        }
         data {
             ...Fhomepage
         }
       }
+      GroupList  {
+        ok
+        error {
+          location
+          severity
+          code
+          message
+        }
+        data {
+          ...Fgroup
+        }
+      }
     }
+  ${F_GROUP}
   ${F_SYSTEMNOTI}
   ${F_HOMEPAGE}
-  ${F_PRODUCT}
   ${F_BOOKING}
   ${F_CATEGORY}
   ${F_USER}

@@ -26,39 +26,39 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
             {items.map(booking =>
                 <div key={booking._id} className="table">
                     <div className="payment_tr">
-                        <div className="payemnt_th">
+                        <div className="payment_th">
                             예약상품
                         </div>
-                        <div className="payemnt_td">
+                        <div className="payment_td">
                             [{booking.product.code}]
                             {booking.product.title}
                         </div>
                     </div>
-                    <div className="tr">
-                        <div className="th">
+                    <div className="payment_tr">
+                        <div className="payment_th">
                             예약번호
                         </div>
-                        <div className="payemnt_td">
+                        <div className="payment_td">
                             {booking.code}
                         </div>
                     </div>
-                    <div className="tr">
-                        <div className="th">
+                    <div className="payment_tr">
+                        <div className="payment_th">
                             결제정보
                 </div>
-                        <div className="payemnt_td">
+                        <div className="payment_td">
                             <span>결제수단</span>
-                            <span>{booking.payment?.PayMethod}{` `}{card_hypen(booking.payment?.CardNo || "")}</span>
+                            <span>{booking.payment?.payMethod}{` `}</span>
                             <span>일시불</span>
-                            <span>승인일시:{dayjs(booking.payment?.AuthDate || undefined).format("YYYY.MM.DD")}</span>
+                            <span>승인일시:{dayjs(booking.payment?.createdAt || undefined).format("YYYY.MM.DD")}</span>
                         </div>
                     </div>
-                    <div className="tr">
-                        <div className="th">
+                    <div className="payment_tr">
+                        <div className="payment_th">
                             결제금액
                 </div>
-                        <div className="payemnt_td">
-                            <strong>{autoComma(booking.payment?.Amt || 0)}원</strong>
+                        <div className="payment_td">
+                            <strong>{autoComma(booking.payment?.price || 0)}원</strong>
                         </div>
                     </div>
                 </div>

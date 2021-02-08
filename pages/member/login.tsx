@@ -1,29 +1,45 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { LocalManager, Storage, initStorage } from 'utils/Storage';
-import pageInfo from 'info/login.json'
-import { Upload } from 'components/common/Upload';
-import { getEditUtils } from 'utils/pageEdit';
-import { AppContext, EditContext } from '../_app';
-import { BG } from '../../types/const';
-import { signIn, signInVariables, UserRole } from 'types/api';
+import React, { useEffect, useState } from 'react';
+import { Storage, initStorage } from 'utils/Storage';
+import { ERR_CODE, signInVariables, UserRole } from 'types/api';
 import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
 import Link from 'next/link';
-import { SIGN_IN } from '../../apollo/gql/queries';
-interface IProp {
+import { Validater } from '../../utils/validate';
+import { isEmail } from '../../utils/validation';
+import { useLogin } from "../../hook/useUser";
+import SubTopNav from '../../layout/components/SubTop';
+import defaultPageInfo from "../../info/login.json"
+import { usePageEdit } from '../../hook/usePageEdit';
+import { getStaticPageInfo, Ipage } from '../../utils/page';
+import { PageEditor } from '../../components/common/PageEditer';
 
-}
-
-export const Login: React.FC<IProp> = () => {
-    const { editMode } = useContext(EditContext)
+export const getStaticProps = getStaticPageInfo("login")
+export const Login: React.FC<Ipage> = (pageInfo) => {
     const [saveId, setSaveId] = useState(false);
     const [saveSession, setSaveSession] = useState(false);
     const [userId, setId] = useState("");
     const [userPw, setPw] = useState("");
-    const [userType, setUserType] = useState<UserRole>(UserRole.individual)
-    const [page, setPage] = useState(pageInfo);
-    const { edit, ulEdit, imgEdit } = getEditUtils(editMode, page, setPage);
+    const [userType, setUserType] = useState<UserRole>(Storage?.getLocal("lastLoginType", UserRole.partnerB) as UserRole || UserRole.partnerB)
+    const editTools = usePageEdit(pageInfo, defaultPageInfo)
+    const { getData } = useLogin({
+        onCompleted: ({ SignIn }) => {
+            if (SignIn.ok) {
+                Storage?.saveLocal("lastLoginType", userType);
+                Storage?.saveLocal("jwt", SignIn.data?.token || "");
+                location.href = "/"
+                alert("환영합니다.")
+            } else {
+                if (SignIn.error?.code === ERR_CODE.PASSWORD_NOT_EQUAL) {
+                    alert("패스워드가 일치하지 않습니다.");
+                }
+                if (SignIn.error?.code === ERR_CODE.AUTHORIZATION) {
+                    alert("해당 접근 권한이 없습니다.");
+                }
+                if (SignIn.error?.code === ERR_CODE.DOC_NOT_FOUND) {
+                    alert("해당 이메일을 찾을 수 없습니다.");
+                }
+            }
+        },
+    })
     const router = useRouter();
 
     const sessionSave = () => {
@@ -60,51 +76,33 @@ export const Login: React.FC<IProp> = () => {
         setPw(pw);
     }
 
-    const [LoginQu, { loading: create_loading }] = useLazyQuery<signIn, signInVariables>(SIGN_IN, {
-        fetchPolicy: "network-only",
-        onCompleted: ({ SignIn }) => {
-            if (SignIn.ok) {
-                Storage?.saveLocal("jwt", SignIn.data?.token || "");
-                location.href = "/"
-            } else {
-                alert(SignIn.error)
-            }
-        },
-    })
+
+    const { validate } = new Validater([{
+        value: isEmail(userId),
+        failMsg: "이메일을 입력 해주세요"
+    }, {
+        value: userPw.length > 4,
+        failMsg: "패스워드를 입력 해주세요"
+    }])
 
     const handleLogin = () => {
-        LoginQu({
-            variables: {
-                email: userId,
-                pw: userPw,
-            }
-        })
+        if (!validate()) return;
+        const signInvar: signInVariables = {
+            email: userId,
+            pw: userPw,
+            hopeRole: userType,
+            permanence: saveSession
+        }
+
+        getData({ variables: signInvar as any });
     }
 
     return <div >
         <div className="top_visual">
-            <div
-                className="sub_header sub_bg"
-                style={BG(page.top_bg)}
-            >
-                <div className="w1200">
-                    <h2 className="title">로그인</h2>
-                    <p className="text">지금 여행을 떠나세요~!~~!!!!!</p>
-                </div>
-                <Upload onUpload={imgEdit("top_bg")} />
-            </div>
-            <div className="header_nav">
-                <ul>
-                    <li className="home">
-                        <a href="/main."></a>
-                    </li>
-                    <li className="homedeps1">Member</li>
-                    <li className="homedeps2">
-                        <a href="/member/login">로그인</a>
-                    </li>
-                </ul>
-            </div>
+            <SubTopNav pageTools={editTools} >
+            </SubTopNav>
         </div>
+        <PageEditor pageTools={editTools} />
         <div className="login_box">
             <div className="sign_in w1200">
                 <div className="inner">
@@ -114,9 +112,9 @@ export const Login: React.FC<IProp> = () => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-1"
-                            value="individual"
-                            defaultChecked
-                            onClick={() => { handleUserType(UserRole.individual) }}
+                            value="partnerB"
+                            checked={UserRole.partnerB === userType}
+                            onChange={() => { handleUserType(UserRole.partnerB) }}
                         />
                         <label htmlFor="tab-1" className="tab-label-1 login_tap tap_01 ">
                             <b>가이드</b>
@@ -126,32 +124,11 @@ export const Login: React.FC<IProp> = () => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-2"
-                            value="partnerB"
-                            onClick={() => { handleUserType(UserRole.manager) }}
-                        />
-                        {/* <label htmlFor="tab-2" className="tab-label-2 login_tap tap_02">
-                            <b>기업파트너</b>
-                        </label>
-                        <input
-                            id="tab-3"
-                            type="radio"
-                            name="radio-set"
-                            className="tab-selector-3"
-                            value="partner"
-                            onClick={() => { handleUserType(UserRole.partner) }}
-                        /> */}
-                        {/* <label htmlFor="tab-3" className="tab-label-3 login_tap tap_03">
-                            <b>개인파트너</b>
-                        </label>
-                        <input
-                            id="tab-4"
-                            type="radio"
-                            name="radio-set"
-                            className="tab-selector-4"
                             value="manager"
-                            onClick={() => { handleUserType(UserRole.manager) }}
-                        /> */}
-                        <label htmlFor="tab-4" className="tab-label-4 login_tap tap_03">
+                            checked={UserRole.manager === userType}
+                            onChange={() => { handleUserType(UserRole.manager) }}
+                        />
+                        <label htmlFor="tab-2" className="tab-label-2 login_tap tap_03">
                             <b>마스터</b>
                         </label>
                         <div className={`login_wrap white_box`}>
@@ -160,6 +137,7 @@ export const Login: React.FC<IProp> = () => {
                             </h3>
                             <div className="form-group">
                                 <input
+                                    value={userId}
                                     type="text"
                                     name="user_id"
                                     id="uid"
@@ -172,6 +150,7 @@ export const Login: React.FC<IProp> = () => {
                             </div>
                             <div className="form-group">
                                 <input
+                                    value={userPw}
                                     type="password"
                                     name="password"
                                     id="upw"
@@ -198,9 +177,21 @@ export const Login: React.FC<IProp> = () => {
                                 아이디 기억
                                 </label>
                             </div>
+
                             <button type="submit" className="sum" onClick={handleLogin}>
                                 <span >로그인</span>
                             </button>
+                            {/* {userType === UserRole.individual &&
+                                <div className="login__snslink">
+                                    <img className="m" src="/img/google_logo.png" alt="google logo" />
+                                    <img className="m" src="/img/kakao_logo.png" alt="kakao logo" />
+                                    <ul>
+                                        <li className="login__snslink_k"><a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/kakao"}><span className="login__snslink_icon"><i className="jandaicon-kakaotalk"></i></span><span className="login__snslink_txt">카카오 로그인</span></a></li>
+                                        <li className="login__snslink_g"><a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/google"}><span className="login__snslink_icon"><i className="jandaicon-google1"></i></span><span className="login__snslink_txt">구글 로그인</span></a></li>
+                                        <li className="login__snslink_n"><a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/naver"}><span className="login__snslink_icon"><i className="jandaicon-google1"></i></span><span className="login__snslink_txt">네이버 로그인</span></a></li>
+                                    </ul>
+                                </div>
+                            } */}
                             <div className="sign_in_form">
                                 <span>
                                     <Link href="/member/join">
@@ -208,11 +199,36 @@ export const Login: React.FC<IProp> = () => {
                                     </Link>
                                 </span>
                                 <span>
-                                    <Link href="/member/findmembers">
+                                    <Link href="/findmembers">
                                         <a>아이디/비번찾기<i className="jandaicon-arr4-right"></i></a>
                                     </Link>
                                 </span>
                             </div>
+                            {/* 
+                            {userType === UserRole.individual &&
+                                <div className="join__snslink">
+                                    <ul>
+                                        <li className="join__snslink_k">
+                                            <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/kakao"}>
+                                                <span className="join__snslink_icon"><i className="jandaicon-kakaotalk"></i></span>
+                                                <span className="join__snslink_txt">카카오 계정으로 회원가입</span>
+                                            </a>
+                                        </li>
+                                        <li className="join__snslink_g">
+                                            <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/google"}>
+                                                <span className="join__snslink_icon"><i className="jandaicon-google1"></i></span>
+                                                <span className="join__snslink_txt">구글 계정으로 회원가입</span>
+                                            </a>
+                                        </li>
+                                        <li className="join__snslink_n">
+                                            <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/naver"}>
+                                                <span className="join__snslink_icon"><i className="jandaicon-google1"></i></span>
+                                                <span className="join__snslink_txt">네이버 계정으로 회원가입</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            } */}
                         </div>
                     </div>
                 </div>

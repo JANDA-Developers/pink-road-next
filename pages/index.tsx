@@ -1,28 +1,54 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import pageInfoDefault from 'info/main.json';
 import { Meta } from 'components/common/meta/Meta';
 import { Upload } from 'components/common/Upload';
 import Link from 'next/link';
-import { GetStaticProps } from 'next';
-import { useProductList } from 'hook/useProduct';
+import defaultPageInfo from "../info/main.json"
+import { openListFilter, useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
-import { getStaticPageInfo } from '../utils/page';
+import { getStaticPageInfo, Ipage } from '../utils/page';
 import { GoodsListAPI } from '../components/common/GoodsListAPI';
-import { IEditPage } from '../utils/with';
-import { EditContext } from './_app';
 import Slider from "react-slick";
+import { usePageEdit } from '../hook/usePageEdit';
+import { openAutos } from '../hook/usePopups';
+import { useGroupFind } from '../hook/useGroup';
+import { AppContext } from './_app';
+import { usePublicSellerList } from '../hook/useUser';
+import { sellerListPublic_SellerListPublic_data } from '../types/api';
+import { BG } from '../types/const';
+import { ProfileListAPI, ProfileListAPIwithGoods } from '../components/common/ProfileListAPI';
+import { PageEditor } from '../components/common/PageEditer';
+import { Bg } from '../components/Img/img';
+import { LinkRoundIcon } from '../components/common/icon/LinkIcon';
+import { A } from '../components/A/A';
 
+export const getStaticProps = getStaticPageInfo("main")
+export const Main: React.FC<Ipage> = (pageInfo) => {
+  const { homepage, groupsMap } = useContext(AppContext);
+  const { items } = usePublicSellerList();
 
-export const Main: React.FC = () => {
-  const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
-  const { imgEdit, edit, bg } = useContext<IEditPage<typeof pageInfoDefault>>(EditContext as any);
+  const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const router = useRouter()
 
+
+  const { bg, edit, imgEdit, imgKit, linkEdit, page, editMode } = pageTools;
+
+  useEffect(() => {
+    if (homepage?.modal) {
+      openAutos(homepage?.modal)
+    }
+  }, [homepage?.modal])
+
+  const handleLink = (key: keyof typeof page) => () => {
+    if (!editMode)
+      // @ts-ignore
+      router.push(page[key].value)
+  }
 
   return <div className="body main" id="main" >
     <Meta title="[It's Guide] 잇츠가이드에서 당신의 가이드를 매칭 해드립니다." description="잇츠가이드로 여행을 시작하세요. 맞춤 여행을 경험해보세요." />
     <div className="main_con_box1 Slider_box">
-
+      <PageEditor pageTools={pageTools} />
       <Slider
         autoplay
         prevArrow={<div className="rev"><img src="/img/svg/arr_right_w.svg" alt="이전" /></div>}
@@ -30,13 +56,9 @@ export const Main: React.FC = () => {
         arrows={true}
         dots={false}
         infinite={true}
-        className="">
+        className="mainSlider">
         <div>
-          <div
-            className="main_top_images img1"
-            style={{ ...bg("m_01_mainBg") }}
-          >
-            <Upload onUpload={imgEdit("m_01_mainBg")} />
+          <Bg className="main_top_images img1"  {...imgKit("m_01_mainBg")}>
             <div className="w1200">
               <strong {...edit("m_01_title")} />
               <span {...edit('m_01_subtitle')}>
@@ -50,14 +72,10 @@ export const Main: React.FC = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </Bg>
         </div>
         <div>
-          <div
-            className="main_top_images img1"
-            style={{ ...bg("m_01_mainBg2") }}
-          >
-            <Upload onUpload={imgEdit("m_01_mainBg2")} />
+          <Bg className="main_top_images img1"  {...imgKit("m_01_mainBg2")}>
             <div className="w1200">
               <strong {...edit("m_01_title2")} />
               <span {...edit('m_01_subtitle2')}>
@@ -68,26 +86,27 @@ export const Main: React.FC = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </Bg>
         </div>
-
       </Slider>
     </div>
 
     <div className="main_con_box2">
       <div className="w1200">
         <div className="top_txt">
-          <h2 {...edit("m_02_title")} />
+          <h2 >
+            <span {...edit("m_02_title")} />
+          </h2>
           <strong {...edit("m_02_number")} />
         </div>
         <ul className="pr_list">
-          <li style={{ ...bg("m_02_photo01") }}><Upload onUpload={imgEdit("m_02_photo01")} />프로필사진</li>
-          <li style={{ ...bg("m_02_photo02") }}><Upload onUpload={imgEdit("m_02_photo02")} />프로필사진</li>
-          <li style={{ ...bg("m_02_photo03") }}><Upload onUpload={imgEdit("m_02_photo03")} />프로필사진</li>
-          <li style={{ ...bg("m_02_photo04") }}><Upload onUpload={imgEdit("m_02_photo04")} />프로필사진</li>
-          <li style={{ ...bg("m_02_photo05") }}><Upload onUpload={imgEdit("m_02_photo05")} />프로필사진</li>
-          <li style={{ ...bg("m_02_photo06") }}><Upload onUpload={imgEdit("m_02_photo06")} />프로필사진</li>
-          <li style={{ ...bg("m_02_photo07") }}><Upload onUpload={imgEdit("m_02_photo07")} />프로필사진</li>
+          <Bg tag="li" {...imgKit("m_02_photo01")} />
+          <Bg tag="li" {...imgKit("m_02_photo02")} />
+          <Bg tag="li" {...imgKit("m_02_photo03")} />
+          <Bg tag="li" {...imgKit("m_02_photo04")} />
+          <Bg tag="li" {...imgKit("m_02_photo05")} />
+          <Bg tag="li" {...imgKit("m_02_photo06")} />
+          <Bg tag="li" {...imgKit("m_02_photo07")} />
           <li className="plus"><Link href="/guide"><a>+</a></Link></li>
         </ul>
       </div>
@@ -99,7 +118,9 @@ export const Main: React.FC = () => {
       <div className="w1200">
         <div className="top_txt">
           <span className="sidetxt" {...edit("m_02_title")} />
-          <h2 {...edit("m_03_title")} />
+          <h2 >
+            <span {...edit("m_03_title")} />
+          </h2>
         </div>
         <ul>
           <li><a href="/tour" {...edit("m_03_link01")} /></li>
@@ -123,23 +144,35 @@ export const Main: React.FC = () => {
       <div className="w1200">
         <div className="deal_list">
           <div className="alignment">
-            <div className="left_div"><h2>BEST</h2></div>
+            <div className="left_div"><h2><span {...edit("goods_list1_title")} /></h2></div>
             <div className="right_div">
               <span className="goto_page"><a href="/tour">바로가기<i className="flaticon-menu-1"></i></a></span>
             </div>
           </div>
-          <GoodsListAPI />
+          <GoodsListAPI initialOption={{
+            initialViewCount: 4,
+            initialFilter: {
+              _id_in: groupsMap.Main1
+            }
+          }} />
         </div>
-
 
         <div className="deal_list">
           <div className="alignment">
-            <div className="left_div"><h2>DM추천</h2></div>
+            <div className="left_div"><h2 >
+              <span {...edit("goods_list2_title")} />
+            </h2>
+            </div>
             <div className="right_div">
               <span className="goto_page"><a href="/tour">바로가기<i className="flaticon-menu-1"></i></a></span>
             </div>
           </div>
-          <GoodsListAPI />
+          <GoodsListAPI initialOption={{
+            initialViewCount: 4,
+            initialFilter: {
+              _id_in: groupsMap.Main2
+            }
+          }} />
         </div>
 
       </div>
@@ -152,52 +185,7 @@ export const Main: React.FC = () => {
             GUIDE<span {...edit("m_05_subtitle")} />
           </h2>
         </div>
-        <div className="man_list">
-          <a className="left_mov"><i className="jandaicon-arr2-left"></i></a>
-          <div className="man_box">
-            <ul>
-              <li className="on">
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
-                <div className="name"><i>G</i>김행자</div>
-              </li>
-              <li>
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
-                <div className="name"><i>G</i>김행자</div>
-              </li>
-              <li>
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
-                <div className="name"><i>G</i>김행자</div>
-              </li>
-              <li>
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
-                <div className="name"><i>G</i>김행자</div>
-              </li>
-              <li>
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
-                <div className="name"><i>G</i>김행자</div>
-              </li>
-              <li>
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
-                <div className="name"><i>G</i>김행자</div>
-              </li>
-              <li>
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
-                <div className="name"><i>G</i>김행자</div>
-              </li>
-              <li>
-                <span className="photo" style={{ backgroundImage: 'url(/its/people01.jpg)' }}>프로필사진</span>
-                <div className="name"><i>G</i>김행자</div>
-              </li>
-            </ul>
-          </div>
-          <a className="right_mov"><i className="jandaicon-arr2-right"></i></a>
-        </div>
-
-        <div className="goods_list">
-          <GoodsListAPI />
-
-        </div>
-
+        <ProfileListAPIwithGoods />
       </div>
     </div>
     <div className="main_con_box6">
@@ -205,37 +193,43 @@ export const Main: React.FC = () => {
         <h2>추천 테마 여행</h2>
         <div className="theme_deal">
           <ul>
-            <li className="top_01">
-              <Upload onUpload={imgEdit("m_06_link01_bgimg")} />
-              <div className="top_01__bg" style={{ ...bg("m_06_link01_bgimg") }} />
-              <span className="first" {...edit("m_06_link01_text")} /><br />
-              <span className="tag" {...edit("m_06_link01_tage")} />
-            </li>
-            <li className="top_02">
-              <Upload onUpload={imgEdit("m_06_link02_bgimg")} />
-              <div className="top_01__bg" style={{ ...bg("m_06_link02_bgimg") }} />
-              <span className="title" {...edit("m_06_link02_text")} />
-            </li>
-            <li className="top_03">
-              <Upload onUpload={imgEdit("m_06_link03_bgimg")} />
-              <div className="top_01__bg" style={{ ...bg("m_06_link03_bgimg") }} />
-              <span className="title" {...edit("m_06_link03_text")} />
-            </li>
-            <li className="top_04">
-              <Upload onUpload={imgEdit("m_06_link04_bgimg")} />
-              <div className="top_01__bg" style={{ ...bg("m_06_link04_bgimg") }} />
-              <span className="title" {...edit("m_06_link04_text")} />
-            </li>
-            <li className="top_05">
-              <Upload onUpload={imgEdit("m_06_link05_bgimg")} />
-              <div className="top_01__bg" style={{ ...bg("m_06_link05_bgimg") }} />
-              <span className="title" {...edit("m_06_link05_text")} />
-            </li>
-            <li className="top_06">
-              <Upload onUpload={imgEdit("m_06_link06_bgimg")} />
-              <div className="top_01__bg" style={{ ...bg("m_06_link06_bgimg") }} />
-              <span className="title" {...edit("m_06_link06_text")} />
-            </li>
+            <Bg onClick={handleLink("m_06_link01_bgimg_link")} {...imgKit("m_06_link01_bgimg")} tag="li" className="top_01">
+              <A className="m_06_link__linker" {...linkEdit("m_06_link01_bgimg_link")} editComponent={<LinkRoundIcon />} />
+              <div className="theme_deal__textBox">
+                <span className="first" {...edit("m_06_link01_text")} /><br />
+                <span className="tag" {...edit("m_06_link01_tage")} />
+              </div>
+            </Bg>
+            <Bg onClick={handleLink("m_06_link02_bgimg_link")} {...imgKit("m_06_link02_bgimg")} tag="li" className="top_02">
+              <A className="m_06_link__linker" {...linkEdit("m_06_link02_bgimg_link")} editComponent={<LinkRoundIcon />} />
+              <div className="theme_deal__textBox">
+                <span className="title" {...edit("m_06_link02_text")} />
+              </div>
+            </Bg>
+            <Bg onClick={handleLink("m_06_link03_bgimg_link")} {...imgKit("m_06_link03_bgimg")} tag="li" className="top_03">
+              <A className="m_06_link__linker" {...linkEdit("m_06_link03_bgimg_link")} editComponent={<LinkRoundIcon />} />
+              <div className="theme_deal__textBox">
+                <span className="title" {...edit("m_06_link03_text")} />
+              </div>
+            </Bg>
+            <Bg onClick={handleLink("m_06_link04_bgimg_link")} {...imgKit("m_06_link04_bgimg")} tag="li" className="top_04">
+              <A className="m_06_link__linker" {...linkEdit("m_06_link04_bgimg_link")} editComponent={<LinkRoundIcon />} />
+              <div className="theme_deal__textBox">
+                <span className="title" {...edit("m_06_link03_text")} />
+              </div>
+            </Bg>
+            <Bg onClick={handleLink("m_06_link05_bgimg_link")} {...imgKit("m_06_link05_bgimg")} tag="li" className="top_05">
+              <A className="m_06_link__linker" {...linkEdit("m_06_link05_bgimg_link")} editComponent={<LinkRoundIcon />} />
+              <div className="theme_deal__textBox">
+                <span className="title" {...edit("m_06_link03_text")} />
+              </div>
+            </Bg>
+            <Bg onClick={handleLink("m_06_link06_bgimg_link")} {...imgKit("m_06_link06_bgimg")} tag="li" className="top_06">
+              <A className="m_06_link__linker" {...linkEdit("m_06_link06_bgimg_link")} editComponent={<LinkRoundIcon />} />
+              <div className="theme_deal__textBox">
+                <span className="title" {...edit("m_06_link03_text")} />
+              </div>
+            </Bg>
           </ul>
         </div>
       </div>
@@ -245,7 +239,9 @@ export const Main: React.FC = () => {
       <div className="box01">
         <div className="w1200">
           <span className="sidetxt" {...edit("m_07_box01_subtitle")} />
-          <h2 {...edit("m_07_box01_title")} />
+          <h2>
+            <span {...edit("m_07_box01_title")} />
+          </h2>
           <div className="link"><a href="/member/join" {...edit("m_07_box01_link")}></a></div>
         </div>
         <div className="ovj" {...edit("m_07_box01_ovj")} />
@@ -253,24 +249,23 @@ export const Main: React.FC = () => {
       <div className="box02">
         <div className="left">
           <h3 {...edit("m_07_box02_title")} />
-          <p {...edit("m_07_box02_text")} />
+          <p ><span {...edit("m_07_box02_text")} /></p>
         </div>
-        <div className="right" style={{ ...bg("m_07_box02_rigthbg") }}>
-          <Upload onUpload={imgEdit("m_07_box02_rigthbg")} />
+        <Bg className="right" {...imgKit("m_07_box02_rigthbg")}>
           <div className="txt">
             <strong {...edit("m_07_box02_rigthnumber")} />
-            <p {...edit("m_07_box02_rigthtitle")} />
+            <p><span {...edit("m_07_box02_rigthtitle")} /></p>
           </div>
-        </div>
+        </Bg>
       </div>
       <div className="box03">
-        <div className="left" style={{ ...bg("m_07_box03_rigthbg") }}>
+        <Bg className="left" {...imgKit("m_07_box03_rigthbg")}>
           <Upload onUpload={imgEdit("m_07_box03_rigthbg")} />
           <div className="txt">
             <strong {...edit("m_07_box03_rigthnumber")} />
-            <p {...edit("m_07_box03_rigthtitle")} />
+            <p><span {...edit("m_07_box03_rigthtitle")} /></p>
           </div>
-        </div>
+        </Bg>
         <div className="right">
           <h3 {...edit("m_07_box03_title")} />
           <p {...edit("m_07_box03_text")} />
@@ -285,5 +280,4 @@ export interface IGetProps {
   pageInfo: typeof pageInfoDefault | "",
 }
 
-export const getStaticProps: GetStaticProps<IGetProps> = getStaticPageInfo("main", pageInfoDefault);
 export default Main;

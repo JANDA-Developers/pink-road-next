@@ -9,9 +9,7 @@ export const NotiIcon: React.FC<IProp> = () => {
     const countString = count > 99 ? "99+" : count;
 
     return <div className="inform_icon">
-        <object type="image/svg+xml" data={'/img/svg/inform_icon4.svg'}>
-            현재 브라우저는 iframe을 지원하지 않습니다.
-    </object>
+        <img src={'/img/svg/inform_icon4.svg'} alt="inform icon" />
         <button />
         {countString ? <span className="number">{countString}</span> : ""}
     </div>;
