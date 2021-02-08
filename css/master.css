@@ -12,6 +12,7 @@
     line-height: 40px;
 }
 .master_box .top_info_number{
+    display: none;
     position: relative;
     background-color: #f5f5f5;
     padding: 20px 15px 15px;
@@ -132,14 +133,14 @@
         margin-left: 11px;
         vertical-align: text-bottom;
     }
-    .master_box .main_paper_div .hang.div05 .board_option,
+    /* .master_box .main_paper_div .hang.div05 .board_option,
     .master_box .main_paper_div .hang.div06 .board_option,
     .master_box .main_paper_div .hang.div07 .board_option{
         margin-left: 0;
         margin-top: 3px;
         width: 100%;
         vertical-align: text-bottom;
-    }
+    } */
     .master_box .main_paper_div .board_option a{
         padding: 6px 7px;
     }
@@ -323,12 +324,12 @@
 
         top: 20px;
     }
-    .master_box .main_paper_div .hang.div05 .board_option li,
+    /* .master_box .main_paper_div .hang.div05 .board_option li,
     .master_box .main_paper_div .hang.div06 .board_option li,
     .master_box .main_paper_div .hang.div07 .board_option li{
         width: 33%;
         text-align: center;
-    }
+    } */
     .master_box .main_paper_div .hang .more i{
         margin-left: 3px;
         font-size: 0.5em;
@@ -769,7 +770,7 @@
         color: #333;
     }
     .master_box .board_option li strong {
-        margin-left: 3px;
+       display: none;
     }
     .master_box h5 {
         font-size: 1.1em;
@@ -1151,13 +1152,13 @@
         padding: 25px 20px 20px;
         box-sizing: border-box;
     }
-     .master_box .reservation_list .t01 .checkbox {
+     /* .master_box .reservation_list .t01 .checkbox {
         top: 50%;
         margin-top: -8px;
      }
      .master_box .reservation_list .thead .t01 .checkbox {
         margin-top: -10px;
-    }
+    } */
     .master_box .reservation .reservation_list .t05 strong {
         width:auto !important;
         display: inline-block !important;
@@ -3264,12 +3265,22 @@ div.master_popup div.alignment{
         margin-top: 2%;
         margin-right: 2%;
      }
+    .master_box .main_paper_div .hang.div06 .board_option{
+        width: auto;
+    }
     .master_box .main_paper_div .hang.div07{
         width: 32%;
         margin-top: 2%;
      }
     .master_box .main_paper_div .hang .table .head{
-        display: block;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+    }
+    .master_box .main_paper_div .hang .table div[class*=td0]{
+        flex-grow: 1;
+        flex: 1 1;
     }
     .master_box .main_paper_div .hang .table.typeA .td01{
         width: 45%;
@@ -3327,13 +3338,16 @@ div.master_popup div.alignment{
         display: block;
     }
     .master_box .main_paper_div .hang .table.typeC .td02{
-        width: 25%;
+        width: auto;
+        max-width: 25%;
     }
     .master_box .main_paper_div .hang .table.typeC .td03{
-        width: 25%;
+        width: auto;
+        max-width: 25%;
     }
     .master_box .main_paper_div .hang .table.typeD .td01{
-        width: 55%;
+        width: auto;
+        max-width: 55%;
         text-align: left;
         padding-left: 15px;
     }

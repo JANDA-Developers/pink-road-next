@@ -328,11 +328,11 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             {/* btn */}
             <div className="btn_box">
               <div className="links_wrap">
-                <div onClick={handleAddBracket} className="link05">
+                {/* <div onClick={handleAddBracket} className="link05">
                   <a>
                     장바구니 담기
                   </a>
-                </div>
+                </div> */}
                 <div className="link02">
                   <a onClick={handleDoPay}>
                     예약하기

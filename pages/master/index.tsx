@@ -90,7 +90,7 @@ export const MsIndex: React.FC<IProp> = () => {
                         </ul>
                         <Link href="/master/goods"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
                     </div>
-                    <ul className="view">
+                    {/* <ul className="view">
                         <li>
                             <strong>{totalProductCountMaster}</strong>
                             <span>전체</span>
@@ -107,7 +107,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <strong className="sky_font">{determiendProductCountMaster}</strong>
                             <span>출발확정</span>
                         </li>
-                    </ul>
+                    </ul> */}
                     <ul className="table typeA">
                         <li className="head">
                             <div className="td01">상품명</div>
@@ -146,7 +146,7 @@ export const MsIndex: React.FC<IProp> = () => {
                         </ul>
                         <Link href="/master/reservation"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
                     </div>
-                    <ul className="view">
+                    {/* <ul className="view">
                         <li>
                             <strong>{totalBookingCountMaster}</strong>
                             <span>전체</span>
@@ -163,7 +163,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <strong>{cancelBookingCountMaster}</strong>
                             <span>취소</span>
                         </li>
-                    </ul>
+                    </ul> */}
                     <ul className="table typeA">
                         <li className="head">
                             <div className="td01">상품명</div>
@@ -184,7 +184,7 @@ export const MsIndex: React.FC<IProp> = () => {
                         </ul>
                         <Link href="/master/reservation"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
                     </div>
-                    <ul className="view">
+                    {/* <ul className="view">
                         <li>
                             <strong>{cancelBookingCountMaster! + totalCancelCompleteCount!}</strong>
                             <span>전체</span>
@@ -197,7 +197,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <strong>{totalCancelCompleteCount}</strong>
                             <span>취소완료</span>
                         </li>
-                    </ul>
+                    </ul> */}
                     <ul className="table typeA">
                         <li className="head">
                             <div className="td01">상품명</div>
@@ -220,7 +220,7 @@ export const MsIndex: React.FC<IProp> = () => {
                         </ul>
                         <Link href="/master/reservation"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
                     </div>
-                    <ul className="view">
+                    {/* <ul className="view">
                         <li>
                             <strong>{totalSettlementCount}</strong>
                             <span>전체</span>
@@ -237,7 +237,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <strong>{settlementReadyCountMater}</strong>
                             <span>지급보류</span>
                         </li>
-                    </ul>
+                    </ul> */}
                     <ul className="table typeA">
                         <li className="head">
                             <div className="td01">상품명</div>

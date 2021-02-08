@@ -1,4 +1,4 @@
-const PROD = "http://its.api.stayjanda.cloud:4000";
+const PROD = "http://api.itsguide.co.kr";
 const LOCAL = "http://localhost:4000";
 export const SERVER = LOCAL;
 

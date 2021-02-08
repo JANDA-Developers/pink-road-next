@@ -514,14 +514,13 @@
                 text-align: center;
                 box-sizing: border-box;
                 vertical-align: top;
-                /* background-image: url(/its/man01.jpg); */
                 background-size: cover;
                 background-position: center;
                 border-radius: 150px;
                 overflow: hidden;
                 text-indent: -999px;
                 margin-bottom: 15px;
-                border: 2px solid #fff;
+                border: 2px solid #dfdfdf;
             }
     
             .main_con_box5 .man_box li.on .photo {
@@ -6389,7 +6388,7 @@ i.important_icon {
                 left: 83px;
                 top: 26px;
                 width: 2px;
-                background-color: #ffe9f4;
+                background-color: #cfeaff;
                 height: 95%;
             }
 
@@ -6419,7 +6418,7 @@ i.important_icon {
                     top: 14px;
                     width: 15px;
                     height: 15px;
-                    background-color: #ffd4e9;
+                    background-color: #bee3ff;
                     border-radius: 50px;
                 }
 
@@ -6427,7 +6426,7 @@ i.important_icon {
             position: relative;
             width: 100%;
             display: block;
-            background-color: #ffeff6;
+            background-color: #f1f9ff;
             margin-bottom: 15px;
             border-bottom: 1px solid #5bace9;
             border-top: 1px solid #5bace9;
@@ -6436,7 +6435,7 @@ i.important_icon {
             .tour_details_in .boardReadBody .top_day h5 {
                 display: inline-block;
                 width: 15%;
-                background-color: #ffe2ee;
+                background-color: #e0f2ff;
                 color: #5bace9;
                 font-weight: 600;
                 text-align: center;
@@ -6565,7 +6564,7 @@ i.important_icon {
         }
 
         #viewControl .btn_box .link02 {
-            width: 49%;
+            width: 100%;
             display: inline-block;
         }
 
@@ -6664,7 +6663,7 @@ i.important_icon {
         }
 
             #viewControl .btn_box .link02 a:hover {
-                background: #d81868;
+                background: #1882d8;
                 color: #ffffff;
             }
 
@@ -6840,7 +6839,7 @@ i.important_icon {
         margin-bottom: 5px;
         padding: 2px 5px;
         box-sizing: border-box;
-        font-size: 0.9em;
+        font-size: 1.1em;
         color: #999;
         font-weight: 100;
         background-color: #f5f5f5;
@@ -9021,6 +9020,56 @@ i.calendar {
 .member_details_in .right_div .goto_page{
     line-height: 8px !important;
 }
+.Number__box {
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    width: 108px;
+    margin-left: 15px;
+}
+.Number__box > span{
+    vertical-align: middle;
+    display: inline-block;
+}
+
+    .Number__box .left_btn {
+        width: 30%;
+        height: 28px;
+        text-align: center;
+        font-size: 10px;
+        line-height: 23px;
+        border: 1px solid #ccc;
+        border-radius: 3px 0 0 3px;
+        margin: 0 -3px 0 0;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+   .Number__box .right_btn {
+        width: 30%;
+        height: 28px;
+        text-align: center;
+        font-size: 10px;
+        line-height: 23px;
+        border: 1px solid #ccc;
+        border-radius: 0 3px 3px 0;
+        margin: 0 0 0 -3px;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+    .Number__box .number {
+        width: 38%;
+        height: 28px;
+        text-align: center;
+        line-height: 28px;
+        border: 1px solid #ccc;
+        border-right: 0;
+        border-left: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-weight: 600;
+    }
 
 @media (min-width: 768px) {   
     
@@ -9900,7 +9949,7 @@ i.calendar {
         width: 38%;
     }
     #viewControl .btn_box .link02 {
-        width: 60%;
+        width: 100%;
     }
     .sign_in .inner .join_address {
         margin-bottom: 79px;
@@ -10931,7 +10980,7 @@ i.calendar {
         text-align: center;
     }
     #viewControl .btn_box .link02 {
-        width: 69.9%;
+        width:100%;
     }
 
     .footer_in .f_detail_wrap,

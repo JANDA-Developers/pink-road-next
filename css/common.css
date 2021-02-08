@@ -51,12 +51,10 @@ i{
     background: #fff2cf;
     text-shadow: none;
 }
-
 *::selection {
-    background: rgb(255 203 235 / 60%);
+    background: #bde3ff61;
     text-shadow: none;
 }
-
 ul, ol, form, h1, h2, h3, h4, h5, h6, dl, dt, dd {
     margin: 0;
     padding: 0;

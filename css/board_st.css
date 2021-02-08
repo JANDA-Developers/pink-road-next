@@ -246,14 +246,19 @@
     .board_list_mini .thead {
         position: relative;
         display: none;
+        justify-content: space-around;
+        align-items: center;
         width: 100%;
         border-bottom: 2px solid #ccc;
         background-color: #f4f4f4;
+
     }
 
         .board_list_mini .thead > div {
             display: inline-block;
-            width: 24.5%;
+            width:auto;
+            flex-grow: 1;
+            flex: 1 1;
             text-align: center;
             font-size: 14px;
             font-weight: 600;
@@ -2289,6 +2294,36 @@ div.sum_div {
         transform: rotate(180deg);
 
     }
+    .master__table {
+        position: relative;
+        display: block;
+        box-sizing: border-box;
+    }
+    .master__table .thead {
+        display: none;
+        justify-content: space-around;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        display: none;
+        border-bottom: 1px solid #999;
+        line-height: 17px;
+        box-sizing: border-box;
+        background-color: #f5f5f5;
+    }
+   .master__table .thead div[class*=t0] {
+       flex-grow: 1;
+       flex: 1 1;
+       text-align: center;
+       padding:10px 0;
+       font-weight: 600;
+   }
+  .master__table .tbody div[class*=t0] {
+    padding:10px 0;
+    text-align: center;
+    flex: 1 1;
+    flex-grow: 1;
+} 
 @media (min-width:768px) {
     ul.list_ul .list_in{
         margin-right: 1%;
@@ -2496,6 +2531,21 @@ div.sum_div {
     }
     ul.list_ul.line4 li .img {
         height: 290px;
+    }
+    .master__table .thead {
+        display: flex;
+    }
+    .master__table .tbody {
+        display: flex;
+    }
+    .master__table .thead div[class*=t0] {
+        width: auto;
+    }
+    .master__table .tbody div[class*=t0]{
+       width: auto;
+    }
+    .master__table .t01 {
+       max-width: 5%;
     }
 }
 

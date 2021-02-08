@@ -965,57 +965,57 @@
     display: block;
 }
 
-    .reservation_div .t01 {
+    .reservation_div .master__table .t01 {
         width:100% !important;
         padding:0;
         text-align: left !important;
     }
-    .reservation_div .t02 {
+    .reservation_div .master__table .t02 {
         width: 100% !important;
         padding: 0;
       text-align: left !important;
       position: unset !important;
       margin-bottom: 5px;
     }
-    .reservation_div .t02 .align{
+    .reservation_div .master__table .t02 .align{
       position: unset !important;
     }
-    .reservation_div .t02 .btn {
+    .reservation_div .master__table .t02 .btn {
         width:90%;
         position: absolute;
         bottom: 10px;
         left: 5%;
         line-height: 35px !important;
     }
-    .reservation_div .t03 {
+    .reservation_div .master__table .t03 {
         width: auto !important;
         padding:0;
     }
-    .reservation_div .t04 {
+    .reservation_div .master__table .t04 {
         width: 100% !important;
         padding:0;
         text-align: left;
     }
-    .reservation_div .t05 {
+    .reservation_div .master__table .t05 {
         width:  100% !important;
         padding:0;
         text-align: left !important;
     }
-    .reservation_div .t06 {
+    .reservation_div .master__table .t06 {
         width: auto !important;
         padding: 0;
         text-align: left !important;
     }
-    .reservation_div .t07 {
+    .reservation_div .master__table .t07 {
         width: 100% !important;
         padding: 0;
         text-align: left !important;
         margin-top: 5px;
     } 
-        .reservation_div .th .t01 .checkbox {
+        /* .reservation_div .master__table .thead .t01 .checkbox {
             top: 50%;
             margin-top: -16px;
-        }
+        } */
     /* .reservation_div .td .t01 .checkbox {
         top: 50%;
         margin-top: -8px;
@@ -1097,7 +1097,7 @@
         font-size: 10px;
         
     }
-    .reservation_div .t04 .txt {
+    .reservation_div .master__table .t04 .txt {
         display: block;
         text-align: left;
         width: 100%;
@@ -1105,7 +1105,7 @@
         position: relative;
     }
 
-        .reservation_div .t04 .info span {
+        .reservation_div .master__table .t04 .info span {
             color:#333;
             display:inline-block;
             text-align:left;
@@ -2120,14 +2120,14 @@ div.reservation_popup .tr select {
  .basket_box {
     position: relative;
 }
-    .basket_box .basket_list .th .t01 .checkbox {
+    /* .basket_box .basket_list .th .t01 .checkbox {
         top:8px;
         line-height: 5px;
     }
     .basket_box .basket_list .td .t01 .checkbox {
         top:50%;
         margin-top:-8px;
-    }
+    } */
 
 .basket_box .paper_div {
     position: relative;
@@ -2823,7 +2823,7 @@ div.reservation_popup .tr select {
         display: block;
     }
     .mypage_in .paper_div {
-        border-radius: 10px 10px 0 0;
+        border-radius: 5px ;
     }
     .reservation_div .paper_div {
         border-radius: 5px !important;
@@ -2909,6 +2909,7 @@ div.reservation_popup .tr select {
     .goods_div .fuction_list_mini .th02 {
         display: inline-block;
         width:5%;
+        margin-right: 0;
     }
     .goods_div .fuction_list_mini .th03 {
         display: inline-block;
@@ -2918,6 +2919,7 @@ div.reservation_popup .tr select {
         display: inline-block;
         width: 37%;
         text-align: center;
+        margin-top: 0;
     }
     .goods_div .fuction_list_mini .th05 {
         display: inline-block;
@@ -3498,63 +3500,66 @@ div.reservation_popup .tr select {
         width: 15%;
     }
 
-
-    .reservation_div .t01 {
-        width: 5% !important;
+    .reservation_div .master__table .t01 {
+        width: auto !important;
+        display: inline-block;
+        max-width: 5%;
         padding:10px 0;
+        text-align: center !important;
     }
-    .reservation_div .t02 {
-        width: 10% !important;
+    .reservation_div .master__table .t02 {
+        width: auto !important;
+        display: inline-block;
+        max-width: 10% !important;
         padding: 10px 0;
         border-left: 1px #eee solid;
         margin-bottom: 0;
+        text-align: center !important;
     }
-    .reservation_div .t03 {
-        width: 13% !important;
+    .reservation_div .master__table .t03 {
+        width: auto !important;
+        display: inline-block;
+        max-width: 13% !important;
         padding: 10px 0;
         border-left: 1px #eee solid;
+        text-align: center !important;
     }
-    .reservation_div .t04 {
-        width: 44% !important;
+    .reservation_div .master__table .t04 {
+        width: auto !important;
+        display: inline-block;
+        max-width:  44% !important;
+        padding: 10px 0;
+        border-left: 1px #eee solid;
+        text-align: center !important;
+    }
+    .reservation_div .master__table .tbody .t04 {
         padding: 10px 0 0;
-        border-left: 1px #eee solid;
     }
-    .reservation_div .t05 {
-        width: 13% !important;
+    .reservation_div .master__table .t05 {
+        width: auto !important;
+        display: inline-block;
+        max-width: 13% !important;
         padding: 10px 0;
         border-left: 1px #eee solid;
+        text-align: center !important;
     }
-    .reservation_div .t06 {
-        width: 15% !important;
+    .reservation_div .master__table .t06 {
+        width: auto !important;
+        display: inline-block;
+        max-width: 15% !important;
         padding: 10px 0;
         border-left: 1px #eee solid;
+        text-align: center !important;
     }
-    .reservation_div .t07 {
-        width: 13% !important;
+    .reservation_div .master__table .t07 {
+        width: auto !important;
+        display: inline-block;
         padding: 10px 0;
         border-left: 1px #eee solid;
+        margin-top: 0;
+        text-align: center !important;
     } 
-    .reservation_div .td .t01 .checkbox {
-        top: 50%;
-        margin-top: -8px;
-    }
-    .reservation_div .align {
-        top: 50%;
-        margin-top: -40px;
-    }    
-    .reservation_div .t02 .align {
-        top: 50%;
-        margin-top: -60px;
-    }  
-    .reservation_div .t06 .align {
-        top: 50%;
-        margin-top: -35px;
-    }   
-    .reservation_div .t07 .align {
-        top: 50%;
-        margin-top: -30px;
-    }
-    .reservation_div .t04 .img {
+    .reservation_div .master__table .t04 .img {
         width: 150px !important;
         height: 90px;
         left: 10px;

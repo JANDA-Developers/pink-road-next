@@ -17,7 +17,7 @@ export const Meta: React.FC<IProp> = ({ description = "맞춤형 여행상품을
         <meta name="keywords" content={keywordString} />
         <meta property="og:locale" content="ko_KR" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://pinkroader.iwinv.net/" />
+        <meta property="og:url" content="https://itsguide.co.kr/" />
         <meta property="og:site_name" content="잇츠가이드" />
         <meta property="og:title" content={titleMeta} />
         <meta property="og:description" content={description} />
