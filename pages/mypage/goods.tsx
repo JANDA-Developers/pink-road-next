@@ -43,7 +43,7 @@ export const MyGoods: React.FC<IProp> = () => {
         })
     }
 
-    const checkStatusOn = (status?: ProductStatus) => filter.status_eq === status ? "check on" : ""
+    const checkStatusOn = (status?: ProductStatus) => filter.status_eq === status ? "check on" : "check"
 
     const handleOpenRegist = () => {
     }
@@ -104,12 +104,12 @@ export const MyGoods: React.FC<IProp> = () => {
                         } setViewCount={setViewCount} viewCount={viewCount} />
                         <div className="fuction_list_mini ln08">
                             <div className="thead">
-                                <div className="th01">
+                                {/* <div className="th01">
                                     <span onClick={selectAll} className="checkbox check2">
                                         <input type="checkbox" name="agree" id="agree0" title="전체선택" />
                                         <label htmlFor="agree0" />
                                     </span>
-                                </div>
+                                </div> */}
                                 <div className="th02">유형</div>
                                 <div className="th03">개시일</div>
                                 <div className="th04">상품</div>
@@ -120,12 +120,12 @@ export const MyGoods: React.FC<IProp> = () => {
                             </div>
                             <div className="tbody">
                                 <ul>
-                                    {items.map(item =>
+                                    {items.map((item, i) =>
                                         <li key={item._id}>
                                             <div className="th01">
                                                 <span className="checkbox check2">
-                                                    <input onChange={() => { toggle(item._id) }} checked={isChecked(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                                    <label htmlFor="agree1" />
+                                                    <input onChange={() => { toggle(item._id) }} checked={isChecked(item._id)} type="checkbox" name="agree" id={`agree${i + 1}`} title="개별선택" />
+                                                    <label htmlFor={`agree${i + 1}`} />
                                                 </span>
                                             </div>
                                             <div className="th02"><span className="m_title">유형: </span>{itemTypeToKr(item.type)}</div>

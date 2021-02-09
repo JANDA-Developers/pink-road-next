@@ -114,7 +114,7 @@ export const UserHandWriteModal: React.FC<IProp> = () => {
                         기타 정보
                     <div className="full_div__right">
                             <span className="checkbox mr5">
-                                <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
+                                <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />
                             </span>
                         모두 동의합니다.
                     </div>
@@ -124,14 +124,14 @@ export const UserHandWriteModal: React.FC<IProp> = () => {
                             <div className="th01">SNS 수신동의</div>
                             <div className="td01">
                                 <span className="checkbox mr5">
-                                    <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
+                                    <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />
                                 </span>
                             동의합니다.
                         </div>
                             <div className="th02">E-mail 수신동의</div>
                             <div className="td02">
                                 <span className="checkbox mr5">
-                                    <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
+                                    <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />
                                 </span>
                             동의합니다.
                         </div>
@@ -140,14 +140,14 @@ export const UserHandWriteModal: React.FC<IProp> = () => {
                             <div className="th01">개인정보 수집 및 이용 동의</div>
                             <div className="td01">
                                 <span className="checkbox mr5">
-                                    <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
+                                    <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />
                                 </span>
                             동의합니다.
                         </div>
                             <div className="th02">개인정보처리 위탁</div>
                             <div className="td02">
                                 <span className="checkbox mr5">
-                                    <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
+                                    <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />
                                 </span>
                             동의합니다.
                         </div>
@@ -156,14 +156,14 @@ export const UserHandWriteModal: React.FC<IProp> = () => {
                             <div className="th01">여행자약관</div>
                             <div className="td01">
                                 <span className="checkbox mr5">
-                                    <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
+                                    <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />
                                 </span>
                             동의합니다.
                         </div>
                             <div className="th02">개인정보 제3자 제공</div>
                             <div className="td02">
                                 <span className="checkbox mr5">
-                                    <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
+                                    <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />
                                 </span>
                             동의합니다.
                         </div>
@@ -172,14 +172,14 @@ export const UserHandWriteModal: React.FC<IProp> = () => {
                             <div className="th01">마케팅정보 수신동의</div>
                             <div className="td01">
                                 <span className="checkbox mr5">
-                                    <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
+                                    <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />
                                 </span>
                             동의합니다.
                         </div>
                             <div className="th02">파트너약관</div>
                             <div className="td02">
                                 <span className="checkbox mr5">
-                                    <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
+                                    <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />
                                 </span>
                             동의합니다.
                         </div>
@@ -188,7 +188,7 @@ export const UserHandWriteModal: React.FC<IProp> = () => {
                             <div className="th01">이용약관</div>
                             <div className="td01">
                                 <span className="checkbox mr5">
-                                    <input type="checkbox" id="agree1" title="동의" /><label htmlFor="agree1" />
+                                    <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />
                                 </span>
                             동의합니다.
                         </div>

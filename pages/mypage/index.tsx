@@ -557,8 +557,8 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="txt tr">
                                     {/* <input onChange={toggleCheck("acceptSms")} checked={acceptSms} type="checkbox" /> */}
                                     <span className="checkbox mr5">
-                                        <input type="checkbox" onChange={toggleCheck("acceptSms")} checked={acceptSms} id="agree1" title="동의" />
-                                        <label htmlFor="agree1" />
+                                        <input type="checkbox" onChange={toggleCheck("acceptSms")} checked={acceptSms} id={`agree${i}`} title="동의" />
+                                        <label htmlFor={`agree${i}`} />
                                     </span>
                                     <span>SNS 수신 동의를 합니다.</span>
                                 </div>

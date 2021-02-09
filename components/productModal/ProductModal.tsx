@@ -357,8 +357,8 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                     <div key={bk._id} className="tr first">
                                         <div className="pp01">
                                             <span onClick={() => { toggle(bk._id) }} className="checkbox">
-                                                <input checked={isChecked(bk._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                                <label htmlFor="agree1" />
+                                                <input checked={isChecked(bk._id)} type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
+                                                <label htmlFor={`agree${i}`} />
                                             </span>
                                         </div>
                                         <div className="th">예약번호</div>
@@ -417,7 +417,7 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                         </div>
                         <div className="float_right">
                             <button disabled={selectedBookings.length !== 1} type="submit" onClick={handleCancel} className="btn medium">예약취소</button>
-                            <Link href={`/tour/write/${_id}`}><a className="btn medium">상품수정 하러가기</a></Link>{/* 상품수정폼 가기 */}
+                            <Link href={`/tour/write/${_id}`}><a className="btn medium">수정하기</a></Link>{/* 상품수정폼 가기 */}
                         </div>
                     </div>
                 </div>

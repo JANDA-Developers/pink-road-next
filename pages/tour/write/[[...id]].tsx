@@ -5,7 +5,7 @@ import { initStorage } from '../../../utils/Storage';
 import "react-day-picker/lib/style.css";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
-import { ProductStatus, ProductType } from '../../../types/api';
+import { Fproduct, ProductStatus, ProductType } from '../../../types/api';
 import DayRangePicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
 import { ItineryForm } from "components/tourWrite/ItineryForm";
@@ -13,7 +13,7 @@ import { AppContext } from "pages/_app";
 import { tapCheck } from "../../../utils/style";
 import TagInput from "../../../components/tagInput/TagInput";
 import { getDefault, useTourWrite } from "../../../hook/useTourWrite";
-import { useProductFindById } from "../../../hook/useProduct";
+import { useProductFindById, useProductUpdateReq } from "../../../hook/useProduct";
 import { changeVal } from "../../../utils/eventValueExtracter";
 import PageLoading from "../../Loading";
 import { auth } from "../../../utils/with";
@@ -23,6 +23,12 @@ import pageInfoDefault from "info/tourWrite.json"
 import { getStaticPageInfo, Ipage } from "../../../utils/page";
 import { usePageEdit } from "../../../hook/usePageEdit";
 import { assert } from "console";
+import PageDeny from "../../Deny";
+import { cloneObject } from "../../../utils/clone";
+import { productStatus } from "../../../utils/enumToKr";
+import { Prompt } from "../../../components/promptModal/Prompt";
+import { openModal } from "../../../utils/popUp";
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
 interface IProp {
@@ -60,7 +66,17 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const id = query.id?.[0] as string | undefined;
     const isCreateMode = id ? false : true;
     const { item: product, loading } = useProductFindById(id);
-    const { categoriesMap, isAdmin } = useContext(AppContext);
+    const [updateReq, { loading: updateReqLoading }] = useProductUpdateReq({
+        onCompleted: ({ ProductUpdateReq }) => {
+            if (ProductUpdateReq?.ok) {
+                alert("상품 수정요청이 접수 되었습니다.");
+                router.push(`/tour/view/${ProductUpdateReq?.data?._id}`)
+            }
+        }
+    });
+    const { categoriesMap, isAdmin, myProfile, isManager, isParterB, isParterNonB } = useContext(AppContext);
+    const isMyProduct = product?.author?._id === myProfile?._id;
+
     const {
         tourSets, tourData,
         loadKey, validater: { validate },
@@ -68,10 +84,10 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         getCreateInput, getUpdateInput,
         setTourData, mutations,
         hiddenFileInput, lastDate,
-    } = useTourWrite(getDefault(product));
+    } = useTourWrite(getDefault(cloneObject(product)));
 
     useEffect(() => {
-        setTourData(getDefault(product))
+        setTourData(getDefault(cloneObject(product)))
     }, [product])
 
 
@@ -141,6 +157,25 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             updateFn(product._id, nextData)
         }
     }
+    const handleEditReq = () => {
+        openModal("#UpdateMemo")();
+    }
+
+    const handleSubmitUpdateReq = (memo: string) => {
+        if (!product) return;
+        if (!updateReqLoading) {
+            const nextData = getUpdateInput()
+            updateReq({
+                variables: {
+                    params: {
+                        ...nextData,
+                        requestMemo: memo
+                    },
+                    _id: product?._id
+                }
+            })
+        }
+    }
 
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
@@ -159,12 +194,14 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         initStorage()
     }, [])
 
-
+    const noram_partner_updateable_status = [ProductStatus.READY, ProductStatus.UPDATE_REQ, ProductStatus.UPDATE_REQ_REFUSED]
+    const updateAble = !isCreateMode && isParterB && isManager || noram_partner_updateable_status.includes(product?.status!);
+    const normalPartnerUpdateReqAble = updateBtnDisableCheck(product!, isParterB || false)
 
     const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.EXPERIENCE;
     const regionCategories = categoriesMap.REGION;
 
-
+    if (!isManager && !isMyProduct) return <PageDeny />
     if (loading) return <PageLoading />
     return <div key={loadKey} className="tour_box w100 board_write">
         <SubTopNav pageTools={pageTools} children={
@@ -182,6 +219,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         } />
         <div className="w1200 con_bottom">
             <div className="write_box">
+                {product && <h1>{productStatus(product.status)}</h1>}
                 <div className="write_type">
                     <div className="title">상품타입</div>
                     <div className="input_form">
@@ -390,14 +428,34 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     <button onClick={handleLoad} type="button" className="btn medium">불러오기</button>
                 </div>
                 <div className="float_right">
-                    {!isCreateMode && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
+                    {!updateAble && !isCreateMode && isParterNonB && <button disabled={!normalPartnerUpdateReqAble} onClick={handleEditReq} type="submit" className="btn medium pointcolor">
+                        수정요청
+                        <i data-for="ToolTipLayOut" className="jandaicon-info2 tooltip" data-iscapture={true} data-tip="수정요청은 예약인원이 없을때만 가능합니다." />
+                    </button>}
+                    {updateAble && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                        수정
+                    </button>}
                     {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
                     <button onClick={handleCancel} type="button" className="btn medium impact">취소</button>
                     {!isCreateMode && <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>}
                 </div>
             </div>
+
         </div>
+        <Prompt id="UpdateMemo" onSubmit={handleSubmitUpdateReq} title="업데이트 변경 사항을 입력 해주세요." />
+        <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" />
     </div>
 };
 
 export default auth(ALLOW_SELLERS)(TourWrite);
+
+const updateBtnDisableCheck = (product: Fproduct, isParterB: boolean): boolean => {
+    if (!product) return false;
+    // 비지니스 파트너면 업데이트가 가능하다.
+    if (isParterB) return true;
+    // 예약자가 없으면 업데이트 요청이 가능하다.
+    if (product.peopleCount === 0) return true;
+    // 확정되지 않은 예약만 수정요청 할 수 있다.
+    if (product.determined === false) return true;
+    return false;
+}

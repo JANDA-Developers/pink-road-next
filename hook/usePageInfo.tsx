@@ -4,6 +4,7 @@ import { TPageKeys } from "types/interface"
 import { GraphQLClient } from 'graphql-request';
 import { SERVER_URI } from "apollo/uri";
 import { PAGE_INFO_READ } from "../apollo/gql/queries";
+import { generateFindQuery } from "../utils/query";
 
 
 // export const usePageInfo = async (key: TPageKeys) => {
@@ -38,3 +39,6 @@ export const getStaticPathsOfProduct = async (key: TPageKeys) => {
     const { data } = PageInfoRead;
     return { data };
 }
+
+
+export const usePageFindByKey = generateFindQuery<pageInfoRead, pageInfoReadVariables, pageInfoRead_PageInfoRead_data>("key", PAGE_INFO_READ);

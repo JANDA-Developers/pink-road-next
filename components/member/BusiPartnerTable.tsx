@@ -50,12 +50,16 @@ export const BusiPartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelec
                 <div className="td04"><i className="m_title">휴대폰:</i><a href={`tel:${user.phoneNumber}`}>{autoComma(user.phoneNumber)}</a></div>
                 <div className="td05"><i className="m_title">성별:</i>{genderToKR(user.gender)}</div>
                 <div className="td06"><i className="m_title">상태:</i>{userStatusKR(user)}
-                    <div>
-                        {user.isDenied && <i style={{ lineHeight: "22px" }} className="btn small" onClick={() => { handleSignUpAccept([user._id]) }}>가입승인</i>}
-                    </div>
-                    <div>
-                        {!user.isVerifiedManager && !user.isDenied && <i style={{ lineHeight: "22px" }} className="btn small" onClick={handleDenyPop(user._id)}>가입거절</i>}
-                    </div>
+                    {!user.isVerifiedManager &&
+                        <div>
+                            <div>
+                                <i style={{ lineHeight: "22px" }} className="btn small" onClick={() => { handleSignUpAccept([user._id]) }}>가입승인</i>
+                            </div>
+                            <div>
+                                <i style={{ lineHeight: "22px" }} className="btn small" onClick={handleDenyPop(user._id)}>가입거절</i>
+                            </div>
+                        </div>
+                    }
                 </div>
                 <div className="td07"><i className="m_title">가입일:</i>{yyyymmdd(user.createdAt)}</div>
                 <div className="td08"><i className="m_title">주소:</i>{user.address.slice(0, 10) + "..."}</div>

@@ -19,7 +19,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
     const { filter: filterProduct, setOR: setProductOR, setFilter: setProductFilter } = useQueryFilter<_ProductFilter>({})
     const { items = [], setFilter, setPage, page, filter, sort, setSort, viewCount, setViewCount } = useBookingList({}, {
         overrideVariables: {
-            filterProduct
+            ...filterProduct
         }
     })
     const [detailCode, setDetailCode] = useState("")
@@ -101,7 +101,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                         {/*리스트로 보기*/}
                         <div className="list selectViewList">
                             <ul className="list_ul">
-                                {items.map(item =>
+                                {items.map((item, i) =>
                                     <PurChasedItem onDetail={handleDetail(item.code)} item={item} key={item._id} />
                                 )}
                             </ul>

@@ -61,6 +61,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const { loading, item: product } = useProductFindById(id);
   const { isManager, isAdmin, myProfile, isSeller } = useContext(AppContext);
   const isMyProduct = product?.author?._id === myProfile?._id;
+  const status = product?.status;
 
   const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
 
@@ -174,6 +175,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   if (!isSeller && !product.isOpen) return <Page404 />
   if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
 
+
+
+
   return <div className="edtiorView">
     <SubTopNav
       pageTools={pageTools}
@@ -244,7 +248,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                   </tr>
                   {isSeller && <tr>
                     <th className="smtitle bt_line">상태</th>
-                    <td className="smtxt bt_line">{productStatus(product.status)} {product.isOpen ? "공개" : "비공개"}</td>
+                    <td className="smtxt bt_line">{productStatus(product.status)} {product.isOpen ? "[공개]" : "[비공개]"}</td>
                   </tr>
                   }
                   <tr>
@@ -425,9 +429,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         <div className="boardNavigation">
           <div className="float_left">
           </div>
-          {(isManager || isAdmin) && <div className="float_right">
+          {(isManager || isAdmin || isMyProduct) && <div className="float_right">
             <button type="submit" onClick={handleEdit} className="btn medium pointcolor">수정</button>
-            <button type="submit" onClick={handleDelete} className="btn medium">삭제</button>
+            {(isManager || isAdmin) && <button type="submit" onClick={handleDelete} className="btn medium">삭제</button>}
           </div>}
         </div>
         <div className="add_list">
@@ -436,57 +440,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             {randomSorted.slice(0, 2).map(item =>
               <ProductPhotoBlock key={item._id} item={item} />
             )}
-            {/* <li className="list_in">
-              <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(/img/sample_01.gif)' }}>상품이미지</div>
-              <div className="box">
-                <div className="category"><span>문화/예술</span></div>
-                <div className="title">더운날 수목원으로 오세요~!!</div>
-                <div className="bottom_txt">
-                  <div className="subtitle">
-                    골목길따가 추억을 걷는 여행
-              </div>
-                  <div className="tag2">
-                    <span>#1박2일</span>
-                    <span>#버스투어</span>
-                    <span>#서구/중구</span>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li className="list_in">
-              <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(/img/sample_01.gif)' }}>상품이미지</div>
-              <div className="box">
-                <div className="category"><span>문화/예술</span></div>
-                <div className="title">더운날 수목원으로 오세요~!!</div>
-                <div className="bottom_txt">
-                  <div className="subtitle">
-                    골목길따가 추억을 걷는 여행
-              </div>
-                  <div className="tag2">
-                    <span>#1박2일</span>
-                    <span>#버스투어</span>
-                    <span>#서구/중구</span>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li className="list_in">
-              <div className="img" onClick={() => { }} style={{ backgroundImage: 'url(/img/sample_01.gif)' }}>상품이미지</div>
-              <div className="box">
-                <div className="category"><span>문화/예술</span></div>
-                <div className="title">더운날 수목원으로 오세요~!!</div>
-                <div className="bottom_txt">
-                  <div className="subtitle">
-                    골목길따가 추억을 걷는 여행
-              </div>
-                  <div className="tag2">
-                    <span>#1박2일</span>
-                    <span>#버스투어</span>
-                    <span>#서구/중구</span>
-                  </div>
-                </div>
-              </div>
-            </li> */}
           </ul>
         </div>
       </div>

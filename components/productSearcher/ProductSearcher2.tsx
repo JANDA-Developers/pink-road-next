@@ -47,7 +47,7 @@ export const ProductSearcher: React.FC<IProp> = ({ defaultSearch, onSelectProduc
             <div className="goodsall__list">
                 <p>검색결과 <strong>{items.length}건</strong></p>
                 <ul>
-                    {items.map(item =>
+                    {items.map((item, i) =>
                         <li onClick={() => { handleSelectProduct(item) }} key={item._id}>
                             <div className="goodsall__list__img">
                                 <img src={item.images?.[0]?.uri || ""} alt="상품이미지" />

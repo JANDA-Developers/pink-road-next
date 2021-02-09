@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from "next/link";
 import { getStaticPageInfo, Ipage } from '../../../utils/page';
 import { usePageEdit } from '../../../hook/usePageEdit';
@@ -17,9 +17,11 @@ import SearchMini from '../../../components/common/SearchMini';
 import { useSingleSort } from '../../../hook/useSort';
 import { announceList_AnnounceList_data, _AnnounceSort } from '../../../types/api';
 import { useRouter } from 'next/router';
+import { AppContext } from '../../_app';
 
 export const getStaticProps = getStaticPageInfo("announce");
 export const Announce: React.FC<Ipage> = (page) => {
+    const { isAdmin } = useContext(AppContext);
     const pageTools = usePageEdit(page, defaultPageInfo);
     const { items, pageInfo, setPage, filter, setFilter, sort, setSort, viewCount, setViewCount } = useAnnounceList();
     const singleSortHook = useSingleSort(sort, setSort, [_AnnounceSort.isNotice_desc]);
@@ -61,7 +63,7 @@ export const Announce: React.FC<Ipage> = (page) => {
                 <div className="board_list st01">
                     <div className="tbody">
                         <ul>
-                            {items.map(item =>
+                            {items.map((item, i) =>
                                 <li onClick={toView(item)} key={item._id}>
                                     <div className="td01">{item.no}</div>
                                     <div className="td02"><span className="ct_01">{announceTypeKR(item.type)}</span></div>
@@ -78,9 +80,10 @@ export const Announce: React.FC<Ipage> = (page) => {
                 <Paginater pageInfo={pageInfo} setPage={setPage} />
 
                 <div className="tl list_bottom">
-                    <div className="btn_footer">
+                    {isAdmin && <div className="btn_footer">
                         <button onClick={toWrite} type="submit" className="btn medium pointcolor">글쓰기</button>
-                    </div>
+                    </div>}
+
                     <SearchMini onSubmit={doSearch} />
                 </div>
             </div>

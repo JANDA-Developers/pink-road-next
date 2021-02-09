@@ -25,8 +25,8 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
     const { reverseAll, toggleAll, selectedIds, check, isChecked, isAllSelected, toggle } = useIdSelecter(allIds);
 
 
-    const totalPrice = arraySum(items.map(item => item.price));
-    const priceLines = items.map(item => autoComma(item.price)).join(" + ");
+    const totalPrice = arraySum(items.map((item, i) => item.price));
+    const priceLines = items.map((item, i) => autoComma(item.price)).join(" + ");
 
     const handleModify = (product: Fproduct & IBasketItem) => () => {
         setPopProduct(product);
@@ -62,12 +62,12 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
             <div className="t04">상품금액</div>
             <div className="t05">상태</div>
         </div>
-        {items.map(item =>
+        {items.map((item, i) =>
             <div key={item._id} className="td">
                 <div className="t01">
                     <span className="checkbox">
-                        <input checked={isChecked(item._id)} onChange={() => toggle(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
-                        <label htmlFor="agree1" />
+                        <input checked={isChecked(item._id)} onChange={() => toggle(item._id)} type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
+                        <label htmlFor={`agree${i}`} />
                     </span>
                 </div>
                 <div className="t02">

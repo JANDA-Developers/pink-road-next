@@ -26,6 +26,7 @@ type TSearchParam = {
     keyward?: string;
     title?: string;
 }
+
 export const generateSearchLink = (param: TSearchParam) => {
     let link = `/search`
 

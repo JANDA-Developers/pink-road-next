@@ -142,6 +142,30 @@ location
 `;
 
 
+export const PRODUCT_POST_UPDATE_REQ = gql`
+  mutation productUpdateReq(
+        $params: ProductUpdateReqInput!
+        $_id: String!
+    ) {
+      ProductUpdateReq(
+        params:$params,
+        _id: $_id 
+      ) {
+      ok
+      error {
+        location
+        severity
+        code
+        message
+      }
+      data {
+        _id
+      } 
+    }
+  }
+`;
+
+
 export const PRODUCT_POST_DELETE = gql`
   mutation productDelete(
       $id: String!

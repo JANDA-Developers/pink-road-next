@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { userInfo } from 'os';
 import React, { useContext, useRef } from 'react';
 import { useCount } from '../hook/useCount';
+import { usePageEditClientSide } from '../hook/usePageEdit';
 import { useUnReadSystemNotiFind } from '../hook/useSystemNoti';
 import { useUpload } from '../hook/useUpload';
 import { useUserUpdate } from '../hook/useUser';
@@ -12,10 +13,14 @@ import { BG, BGprofile } from '../types/const';
 import { autoComma } from '../utils/formatter';
 import { omits } from '../utils/omit';
 import { getItemCount, Storage } from '../utils/Storage';
+import mypageLayout from "../info/mypageLayout.json"
+import SubTopNav from './components/SubTop';
 
 interface IProp { }
 
 export const MypageLayout: React.FC<IProp> = ({ children }) => {
+    const pageTools = usePageEditClientSide("mypageLayout", mypageLayout)
+
     const [userUpdate] = useUserUpdate()
     const { signleUpload } = useUpload();
     const { items } = useUnReadSystemNotiFind();
@@ -66,15 +71,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
 
     return <div>
         <div className="top_visual">
-            <div
-                className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/pr_img_37.jpg)` }}
-            >
-                <div className="w1200">
-                    <h2 className="title">My page</h2>
-                    <p className="text">지금 여행을 떠나세요~!~~!!!!!</p>
-                </div>
-            </div>
+            <SubTopNav pageTools={pageTools} />
             <div className="header_nav">
                 <ul>
                     <li className="home">

@@ -443,7 +443,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
       </Modal>
       <div className="fin">
         <a href="/" className="joinWrapBtn cancel btn">취소</a>
-        <button type="submit" className="joinWrapBtn sum btn"
+        <button className="joinWrapBtn sum btn"
           onClick={() => {
             if (validate()) {
               handleRegister()

@@ -6,7 +6,7 @@ import { SearchBar } from '../../components/searchBar/SearchBar';
 import { useProductList } from '../../hook/useProduct';
 import { useDateFilter } from '../../hook/useSearch';
 import { useIdSelecter } from '../../hook/useIdSelecter';
-import { itemTypeToKr } from '../../utils/enumToKr';
+import { itemTypeToKr, productStatus } from '../../utils/enumToKr';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import Link from 'next/link';
 import { getUniqFilter } from '../../utils/filter';
@@ -50,7 +50,7 @@ export const Plainning: React.FC<IProp> = () => {
         })
     }
 
-    const checkStatusOn = (status?: ProductStatus) => filter.status_eq === status ? "check on" : ""
+    const checkStatusOn = (status?: ProductStatus) => filter.status_eq === status ? "check on" : "check"
 
     // const handleRequestSettlement = (productId:string) => () => {
     //     settlementRquest({
@@ -85,8 +85,12 @@ export const Plainning: React.FC<IProp> = () => {
                                 <div className="title">상태</div>
                                 <div className="text">
                                     <span onClick={handleSatus(undefined)} className={checkStatusOn(undefined)}>전체</span>
-                                    <span onClick={handleSatus(ProductStatus.UPDATE_REQ)} className={checkStatusOn(undefined)}>수정요청</span>
-                                    <span onClick={handleSatus(ProductStatus.READY)} className="check">대기</span>
+                                    <span onClick={handleSatus(ProductStatus.CANCELD)} className={checkStatusOn(ProductStatus.CANCELD)}>취소</span>
+                                    <span onClick={handleSatus(ProductStatus.OPEN)} className={checkStatusOn(ProductStatus.OPEN)}>판매중</span>
+                                    <span onClick={handleSatus(ProductStatus.COMPLETED)} className={checkStatusOn(ProductStatus.COMPLETED)}>완료</span>
+                                    <span onClick={handleSatus(ProductStatus.UPDATE_REQ)} className={checkStatusOn(ProductStatus.UPDATE_REQ)}>수정요청</span>
+                                    <span onClick={handleSatus(ProductStatus.REFUSED)} className={checkStatusOn(ProductStatus.REFUSED)}>생성반려</span>
+                                    <span onClick={handleSatus(ProductStatus.UPDATE_REQ_REFUSED)} className={checkStatusOn(ProductStatus.UPDATE_REQ_REFUSED)}>수정반려</span>
                                 </div>
                             </div>
                         }
@@ -113,30 +117,31 @@ export const Plainning: React.FC<IProp> = () => {
                         } setViewCount={setViewCount} viewCount={viewCount} />
                         <div className="fuction_list_mini ln08">
                             <div className="thead">
-                                <div className="th01">
+                                {/* <div className="th01">
                                     <span onClick={selectAll} className="checkbox check2">
                                         <input type="checkbox" name="agree" id="agree0" title="전체선택" />
                                         <label htmlFor="agree0" />
                                     </span>
-                                </div>
+                                </div> */}
                                 <div className="th02">유형</div>
                                 <div className="th03">개시일</div>
                                 <div className="th04">상품</div>
                                 <div className="th05">출발일</div>
                                 <div className="th06">누적</div>
                                 <div className="th07">상태</div>
-                                <div className="th08">관리</div>
+                                <div className="th08">예약상태</div>
+                                <div className="th09">관리</div>
                             </div>
                             <div className="tbody">
                                 <ul>
-                                    {items.map(item =>
+                                    {items.map((item,i) =>
                                         <li key={item._id}>
-                                            <div className="th01">
+                                            {/* <div className="th01">
                                                 <span className="checkbox check2">
-                                                    <input onChange={() => { toggle(item._id) }} checked={isChecked(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                                    <label htmlFor="agree1" />
+                                                    <input onChange={() => { toggle(item._id) }} checked={isChecked(item._id)} type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
+                                                    <label htmlFor={`agree${i}`} />
                                                 </span>
-                                            </div>
+                                            </div> */}
                                             <div className="th02"><span className="m_title">유형: </span>{itemTypeToKr(item.type)}</div>
                                             <div className="th03"><span className="m_title">개시일: </span>{yyyymmdd(item.createdAt)}</div>
                                             <div className="th04">
@@ -159,14 +164,25 @@ export const Plainning: React.FC<IProp> = () => {
                                             <div className="th07">
                                                 {/* 단위 : 건 */}
                                                 <span className="m_title">상태: </span>
+                                                {productStatus(item.status)}
+                                            </div>
+                                            <div className="th08">
+                                                {/* 단위 : 건 */}
+                                                <span className="m_title">상태: </span>
                                                 <span className="present">예약 {item.bookerSummary.completePeople}</span>
                                                 <span className="m_title"> / </span>
                                                 <span className="present">취소 {item.bookerSummary.cancelPeople}</span>
                                                 <span className="m_title"> / </span>
                                                 <span className="present">환불 {item.bookerSummary.cancelCompletePeople}</span>
                                             </div>
-                                            <div className="th08">
-                                                <i className="btn"><Link href={`/tour/write/${item._id}`}><a>상품수정</a></Link></i>{/*글수정으로 가기 */}
+                                            <div className="th09">
+                                                <i className="btn"><Link href={`/tour/write/${item._id}`}><a>
+                                                    
+                                                    
+                                                    상품수정
+                                                    
+                                                    
+                                                    </a></Link></i>{/*글수정으로 가기 */}
                                                 <i onClick={handleOpenProductModal(item._id)} className="btn">상세보기</i>{/* POPUP */}
                                                 {item.status === ProductStatus.OPEN && <i onClick={handleHandWriteModal(item._id)} className="btn">예약등록</i>}
                                             </div>
@@ -313,8 +329,8 @@ export default auth(ALLOW_LOGINED)(Plainning);
 //                                         <li>
 //                                             <div className="th01">
 //                                                 <span className="checkbox">
-//                                                     <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-//                                                     <label htmlFor="agree1" />
+//                                                     <input type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
+//                                                     <label htmlFor={`agree${i}`} />
 //                                                 </span>
 //                                             </div>
 //                                             <div className="th02"><span className="m_title">상품코드: </span>PINK-01230</div>
@@ -335,8 +351,8 @@ export default auth(ALLOW_LOGINED)(Plainning);
 //                                         <li>
 //                                             <div className="th01">
 //                                                 <span className="checkbox">
-//                                                     <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-//                                                     <label htmlFor="agree1" />
+//                                                     <input type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
+//                                                     <label htmlFor={`agree${i}`} />
 //                                                 </span>
 //                                             </div>
 //                                             <div className="th02"><span className="m_title">상품코드: </span>PINK-01230</div>

@@ -34,7 +34,7 @@ export const Payment: React.FC<IProp> = ({ }) => {
     }
 
     const handleBooking = (param: TPaySubmitInfo) => {
-        const params: BookingsCreateInput[] = items.map(item => ({
+        const params: BookingsCreateInput[] = items.map((item, i) => ({
             adultCount: item.count.adult,
             babyCount: item.count.baby,
             kidCount: item.count.kids,

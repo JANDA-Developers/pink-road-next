@@ -4803,6 +4803,44 @@ export interface productUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: productUpdateReq
+// ====================================================
+
+export interface productUpdateReq_ProductUpdateReq_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productUpdateReq_ProductUpdateReq_data {
+  __typename: "Product";
+  _id: string;
+}
+
+export interface productUpdateReq_ProductUpdateReq {
+  __typename: "ProductUpdateReqResponse";
+  ok: boolean;
+  error: productUpdateReq_ProductUpdateReq_error | null;
+  data: productUpdateReq_ProductUpdateReq_data | null;
+}
+
+export interface productUpdateReq {
+  ProductUpdateReq: productUpdateReq_ProductUpdateReq;
+}
+
+export interface productUpdateReqVariables {
+  params: ProductUpdateReqInput;
+  _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: productDelete
 // ====================================================
 
@@ -6671,6 +6709,49 @@ export interface getContext_GetProfile {
   data: getContext_GetProfile_data | null;
 }
 
+export interface getContext_GroupList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface getContext_GroupList_data_tags {
+  __typename: "Tag";
+  key: string;
+  value: string;
+}
+
+export interface getContext_GroupList_data {
+  __typename: "Group";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  /**
+   * 어떤 모델을 대상으로 정렬을 하는지 정의함
+   */
+  target: string;
+  /**
+   * 이 그룹을 호출하기 위한 Uniq한 key값
+   */
+  key: string;
+  label: string;
+  /**
+   * 그룹안의 순서는 이 배열의 인덱스로 조정됨
+   */
+  members: string[];
+  tags: getContext_GroupList_data_tags[] | null;
+}
+
+export interface getContext_GroupList {
+  __typename: "GroupListResponse";
+  ok: boolean;
+  error: getContext_GroupList_error | null;
+  data: getContext_GroupList_data[] | null;
+}
+
 export interface getContext_CategoryList_error {
   __typename: "CustomError";
   location: string;
@@ -6837,6 +6918,7 @@ export interface getContext_Homepage {
 
 export interface getContext {
   GetProfile: getContext_GetProfile;
+  GroupList: getContext_GroupList;
   CategoryList: getContext_CategoryList;
   Homepage: getContext_Homepage;
 }
@@ -11238,11 +11320,11 @@ export enum PaymentStatus {
  */
 export enum ProductStatus {
   CANCELD = "CANCELD",
+  COMPLETED = "COMPLETED",
   EXPIRED = "EXPIRED",
   OPEN = "OPEN",
   READY = "READY",
   REFUSED = "REFUSED",
-  SOLD = "SOLD",
   UPDATE_REQ = "UPDATE_REQ",
   UPDATE_REQ_REFUSED = "UPDATE_REQ_REFUSED",
 }
@@ -11944,6 +12026,37 @@ export interface ProductUpdateInput {
   kids_price?: number | null;
   baby_price?: number | null;
   type?: ProductType | null;
+  adminMemo?: string | null;
+  regionId?: string | null;
+}
+
+export interface ProductUpdateReqInput {
+  title?: string | null;
+  contents?: string | null;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileUpdateInput[] | null;
+  thumb?: FileUpdateInput | null;
+  productId?: string | null;
+  categoryId?: string | null;
+  status?: ProductStatus | null;
+  itinerary?: ItineraryUpdateInput[] | null;
+  inOrNor?: string | null;
+  info?: string | null;
+  caution?: string | null;
+  images?: FileUpdateInput[] | null;
+  address?: string | null;
+  startPoint?: string | null;
+  maxMember?: number | null;
+  minMember?: number | null;
+  adult_price?: number | null;
+  kids_price?: number | null;
+  baby_price?: number | null;
+  type?: ProductType | null;
+  requestMemo?: string | null;
   adminMemo?: string | null;
   regionId?: string | null;
 }

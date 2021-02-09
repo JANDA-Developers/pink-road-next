@@ -5,7 +5,6 @@ import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
-import ReactTooltip from 'react-tooltip';
 import { useSettlementList } from '../../../hook/useSettlement';
 import { useCustomCount } from '../../../hook/useCount';
 import { MasterSearchBar } from '../../../components/master/MasterSearchBar';
@@ -47,7 +46,7 @@ export const MsReservationB: React.FC<IProp> = () => {
     });
     const { settlementRequestCountMaster, settlementReadyCountMater, settlementCompleteCountMaster, totalSettlementCount } = useCustomCount(["settlementRequestCountMaster", "settlementReadyCountMater", "settlementCompleteCountMaster", "totalSettlementCount"]);
     const { filterEnd, filterStart, hanldeCreateDateChange, setDateKey } = useDateFilter({ filter, setFilter });
-    const { selectAll, isChecked } = useIdSelecter(items.map(item => item._id));
+    const { selectAll, isChecked } = useIdSelecter(items.map((item, i) => item._id));
     const singleSort = useSingleSort(sort, setSort);
 
     const doSearch = (search: string) => {
@@ -134,12 +133,12 @@ export const MsReservationB: React.FC<IProp> = () => {
                         <div className="t07">정산</div>
                         <div className="t08">관리</div>
                     </div>
-                    {items.map(item =>
+                    {items.map((item, i) =>
                         <div key={item._id} className="tbody">
                             <div className="t01">
                                 <span className="checkbox">
-                                    <input checked={isChecked(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                    <label htmlFor="agree1" />
+                                    <input checked={isChecked(item._id)} type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
+                                    <label htmlFor={`agree${i}`} />
                                 </span>
                             </div>
                             <div className="t02">

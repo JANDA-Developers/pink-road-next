@@ -56,7 +56,7 @@ export const MySettlement: React.FC<IProp> = () => {
         setFilter
     });
     const [searchType, setSearchType] = useState<TsearchType>("status_eq");
-    const { selectAll, isAllSelected } = useIdSelecter(items.map(item => item._id));
+    const { selectAll, isAllSelected } = useIdSelecter(items.map((item, i) => item._id));
     const [code, setCode] = useState("");
     const [settlementId, setSettlementId] = useState("");
 
@@ -169,7 +169,7 @@ export const MySettlement: React.FC<IProp> = () => {
                             </div>
                             <div className="tbody">
                                 <ul>
-                                    {items.map(item =>
+                                    {items.map((item, i) =>
                                         <li>
                                             <div className="th01"><input type="checkbox" /></div>
                                             <div className="th02">{item.product.code}</div>

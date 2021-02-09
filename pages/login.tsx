@@ -34,6 +34,9 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                 if (SignIn.error?.code === ERR_CODE.AUTHORIZATION) {
                     alert("해당 접근 권한이 없습니다.");
                 }
+                if (SignIn.error?.code === ERR_CODE.DOC_NOT_FOUND) {
+                    alert("해당 이메일을 찾을 수 없습니다.");
+                }
             }
         },
     })

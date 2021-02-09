@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import {  F_BOOKING, F_CATEGORY,  F_PAGE_INFO,F_USER } from "./fragments";
+import {  F_BOOKING, F_CATEGORY,  F_GROUP,  F_PAGE_INFO,F_USER } from "./fragments";
 import { F_HOMEPAGE } from "./homepage";
 import { F_SYSTEMNOTI } from "./systemNoti";
 
@@ -64,6 +64,18 @@ export const GET_CONTEXT = gql`
           }
         }
       }
+      GroupList  {
+        ok
+        error {
+          location
+          severity
+          code
+          message
+        }
+        data {
+          ...Fgroup
+        }
+      }
       CategoryList {
         ok
         error {
@@ -79,16 +91,17 @@ export const GET_CONTEXT = gql`
       Homepage {
         ok
         error {
-      location
-      severity
-      code
-      message
-    }
-        data {
-            ...Fhomepage
-        }
+        location
+        severity
+        code
+        message
+      }
+      data {
+          ...Fhomepage
       }
     }
+  }
+  ${F_GROUP}
   ${F_SYSTEMNOTI}
   ${F_HOMEPAGE}
   ${F_BOOKING}

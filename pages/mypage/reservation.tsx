@@ -42,7 +42,7 @@ export const MyReservation: React.FC<IProp> = () => {
         }
     });
     const [searchType, setSearchType] = useState<"code" | "title" | "name">("code");
-    const { isChecked, check, selectAll, unSelectAll, isAllSelected } = useIdSelecter(items.map(item => item._id));
+    const { isChecked, check, selectAll, unSelectAll, isAllSelected } = useIdSelecter(items.map((item, i) => item._id));
     const singleSortHook = useSingleSort(sort, setSort)
 
     const { hanldeCreateDateChange, filterEnd, filterStart } = useDateFilter({
@@ -129,12 +129,12 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <div className="t06">금액</div>
                                 <div className="t07">상태</div>
                             </div>
-                            {items.map(item =>
+                            {items.map((item, i) =>
                                 <div key={item._id} className="td">
                                     <div className="t01">
                                         <span onClick={() => { check(item._id) }} className="checkbox">
-                                            <input checked={isChecked(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                            <label htmlFor="agree1" />
+                                            <input checked={isChecked(item._id)} type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
+                                            <label htmlFor={`agree${i}`} />
                                         </span>
                                     </div>
                                     <div className="t02">

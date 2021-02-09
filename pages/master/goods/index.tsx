@@ -62,7 +62,7 @@ const popupClose2 = () => {
 export const MsGoodsMain: React.FC<IProp> = () => {
     const { items, filter, setFilter, setSort, sort, viewCount, setViewCount, setUniqFilter, setPage, pageInfo } = useProductList();
     const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({ filter, setFilter });
-    const { selectAll, toggleAll, isAllSelected, isChecked, toggle } = useIdSelecter(items.map(item => item._id));
+    const { selectAll, toggleAll, isAllSelected, isChecked, toggle } = useIdSelecter(items.map((item, i) => item._id));
     const singleSort = useSingleSort(sort, setSort)
 
     const [popProductId, setPopProductId] = useState("");
@@ -180,12 +180,12 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                     </div>
                     <div className="con_box_body master__table">
                         <div className="list_head">
-                            <div className="td01">
+                            {/* <div className="td01">
                                 <i className="checkbox">
                                     <input onChange={toggleAll} checked={isAllSelected} type="checkbox" name="agree" id="agree0" title="전체선택" />
                                     <label htmlFor="agree0" />
                                 </i>
-                            </div>
+                            </div> */}
                             <div className="td02">카테고리</div>
                             <div className="td03">상품번호</div>
                             <div className="td04">상품명</div>
@@ -196,14 +196,14 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             <div className="td09">상세보기</div>
                         </div>
 
-                        {items.map((item) =>
+                        {items.map((item, i) =>
                             <div key={item._id} className="list_line">
-                                <div className="td01">
+                                {/* <div className="td01">
                                     <i className="checkbox">
-                                        <input onChange={() => { toggle(item._id) }} checked={isChecked(item._id)} type="checkbox" name="agree" id="agree0" title="선택" />
-                                        <label htmlFor="agree0" />
+                                        <input onChange={() => { toggle(item._id) }} checked={isChecked(item._id)} type="checkbox" name="agree" id={`agree${i}`} title="선택" />
+                                        <label htmlFor={`agree${i}`} />
                                     </i>
-                                </div>
+                                </div> */}
                                 <div className="td02"><i className="m_title">카테고리:</i>{item.category?.label}</div>
                                 <div className="td03"><i className="m_title">상품번호:</i>{item.code}</div>
                                 <div className="td04"><div className="goods__info_title"><Link href={generateSearchLink({ title: item.title })}><a className="title"> {item.title}</a></Link></div></div>

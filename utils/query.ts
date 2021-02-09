@@ -4,7 +4,7 @@ import { ListInitOptions, useListQuery } from "../hook/useListQuery";
 import { useEffect, useState } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
-import { Fpage } from "../types/api";
+import { ERR_CODE, Fpage } from "../types/api";
 import { CustomErrorResponse } from "aws-sdk/clients/cloudfront";
 import { ErrorCode } from "./enumToKr";
 import { getFromUrl } from "./url";
@@ -15,6 +15,19 @@ interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     overrideVariables?: Partial<V>
     getEditableobject?: boolean;
 };
+
+
+const userErrorHandle = (result:any) => {
+        // @ts-ignore
+        if(result?.error) {
+            // @ts-ignore
+            if(result.error.code === ERR_CODE.BACKEND_MESSAGE) {
+                // @ts-ignore
+                alert(result?.error?.message)
+            }
+        } 
+
+}
 
 const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["data","page"]) => {
     try {
@@ -82,6 +95,9 @@ export const generateListQueryHook = <F,S,Q,V,R>(
         const items: R[] = data?.[operationName]?.data || []
         const pageInfo: Fpage = (data as any)?.[operationName]?.page || DEFAULT_PAGE
 
+        // @ts-ignore
+        userErrorHandle(data?.[operationName])
+
 
         useEffect(()=>{
             getData()
@@ -124,7 +140,12 @@ export const generateQueryHook = <Q, R, V = undefined>(
         type Result = R extends Array<any> ? R : R | undefined 
         // @ts-ignore
         const data: Result = _data?.[operationName]?.data || undefined;
-
+        
+        
+        useEffect(()=> {
+            // @ts-ignore
+            userErrorHandle(_data?.[operationName])
+        },[_data])
 
         useEffect(()=>{
             if(!skipInit)
@@ -148,13 +169,8 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
                 const operationName = getQueryName(MUTATION);
                 // @ts-ignore
                 const err:CustomErrorResponse = result[operationName]?.error;
-                if(err) {
-                    // @ts-ignore
-                    const msg = ErrorCode[err.ErrorCode]
-                    if(msg) {
-                        alert(msg);
-                    }
-                }
+                // @ts-ignore
+                userErrorHandle(result[operationName])
                 options?.onCompleted?.(result) || defaultOptions?.onCompleted?.(result)
             }
         });
@@ -184,6 +200,11 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:Doc
         const errorFromServer:string = data?.[operationName]?.error;
         dataCheck(data,operationName,["data"])
    
+
+        // @ts-ignore
+        userErrorHandle(data?.[operationName])
+
+
         useEffect(()=>{
             if(key)
             getData()

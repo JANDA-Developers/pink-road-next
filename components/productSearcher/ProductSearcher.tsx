@@ -45,7 +45,7 @@ export const ProductSearcher: React.FC<IProp> = ({ selectProductId, onSelectProd
             <Change change={!getLoading} >
                 <div className={`searchList__wrap`}>
                     <ul>
-                        {items.map(item =>
+                        {items.map((item, i) =>
                             <li className={`searchList__li ${selectProductId === item._id && "searchList__li--selected"}`} onClick={handleSelectProduct(item)} key={item._id}>
                                 <div className="searchList__imgWrap">
                                     <img className="searchList__img" src={item.images?.[0]?.uri || ""} alt="상품이미지" />

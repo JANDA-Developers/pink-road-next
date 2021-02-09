@@ -138,8 +138,8 @@ export default auth(ALLOW_ADMINS)(MsReservationMain);
 //             <div className="tbody">
 //                 <div className="t01">
 //                     <span className="checkbox">
-//                         <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-//                         <label htmlFor="agree1" />
+//                         <input type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
+//                         <label htmlFor={`agree${i}`} />
 //                     </span>
 //                 </div>
 //                 <div className="t02">
@@ -189,8 +189,8 @@ export default auth(ALLOW_ADMINS)(MsReservationMain);
 //             <div className="tbody">
 //                 <div className="t01">
 //                     <span className="checkbox">
-//                         <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-//                         <label htmlFor="agree1" />
+//                         <input type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
+//                         <label htmlFor={`agree${i}`} />
 //                     </span>
 //                 </div>
 //                 <div className="t02">

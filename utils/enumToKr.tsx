@@ -13,7 +13,6 @@ export const productStatus = (status?: ProductStatus | null) => {
     if (status === ProductStatus.OPEN) return "판매중"
     if (status === ProductStatus.READY) return "생성요청"
     if (status === ProductStatus.REFUSED) return "생성거절됨"
-    if (status === ProductStatus.SOLD) return "완판"
     if (status === ProductStatus.UPDATE_REQ) return "업데이트요청"
     if (status === ProductStatus.UPDATE_REQ_REFUSED) return "업데이트요청거절"
     return status || "";

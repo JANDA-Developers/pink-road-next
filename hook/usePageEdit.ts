@@ -1,13 +1,15 @@
-import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { useEffect, useState } from "react";
 import PinkClient from "../apollo/client";
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from "../apollo/gql/mutations";
+import search from "../info/search.json";
 import { pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables } from "../types/api";
 import { ISet, TPageKeys } from "../types/interface";
 import { cloneObject } from "../utils/clone";
 import {  mergeDeepOnlyExsistProperty } from "../utils/merge";
 import { Ipage } from "../utils/page";
 import { getEditUtils, IGetEditUtilsResult } from "../utils/pageEdit";
+import { usePageFindByKey, usePageInfo } from "./usePageInfo";
 
 export interface IUsePageEdit<Page = any> extends IGetEditUtilsResult<Page> {
     setPage: ISet<Page>
@@ -25,7 +27,8 @@ export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultP
     const [lang, setLang] = useState<any>(ln);
     const [editMode, setEditMode] = useState<boolean>(false);
 
-    const [page, setPage] = useState(cloneObject(mergeDeepOnlyExsistProperty(cloneObject(defaultPage), originPage || {})));
+    const pageMerge = () => cloneObject(mergeDeepOnlyExsistProperty(cloneObject(defaultPage), originPage || {}))
+    const [page, setPage] = useState(pageMerge());
  
     //page는 이전 값을 조회하고있음 왜 ? => state니까 
     //페이지가 바뀌면 setPage는 초기화 되어야함. 
@@ -72,7 +75,19 @@ export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultP
         setPage(originPage || defaultPage);
     }
 
+    useEffect(()=>{
+        if(originPage)
+            setPage(pageMerge())
+    },[originPage])
+
     return {...editUtils,reset,page,editMode,setPage, setLang, submitEdit, setEditMode,originPage,pageKey}
 }
 
 export interface IEditPage<T> extends IUsePageEdit<T> { }
+
+
+export const usePageEditClientSide = (key:TPageKeys, originPage:any) => {
+    const {item} = usePageFindByKey(key)
+    const pageTools = usePageEdit({ pageInfo: item, pageKey: key }, originPage)
+    return {...pageTools}
+}

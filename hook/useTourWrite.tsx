@@ -133,7 +133,8 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
 
     const { productUpdate, updateLoading } = useProductUpdate({
         onCompleted: ({ ProductUpdate }) => {
-            router.push(`/tour/view/${ProductUpdate?.data?._id}`)
+            if (ProductUpdate.ok)
+                router.push(`/tour/view/${ProductUpdate?.data?._id}`)
         }
     })
 
