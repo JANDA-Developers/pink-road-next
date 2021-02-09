@@ -2739,8 +2739,12 @@ i.icon_plus {
         vertical-align: middle;
         position: relative;
         width: 100%;
-        margin-right: 5px;
+        margin-right: 0;
         margin-top: 10px;
+    }
+
+    .search_box .pc {
+        margin: 0 10px;
     }
 
     .search_box .calendar {

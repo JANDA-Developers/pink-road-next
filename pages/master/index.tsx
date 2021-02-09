@@ -129,8 +129,7 @@ export const MsIndex: React.FC<IProp> = () => {
                                     <span>취소 <strong>{pd.bookings.map(bk => bk.status === BookingStatus.CANCEL)}</strong></span>
                                 </div>
                                 <div className="td04">
-                                    <strong>{pd.author?.busi_name}</strong>
-                                    <span>({pd.author?.name})</span>
+                                    <strong>{pd.author?.name}</strong>
                                 </div>
                                 <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
                             </li>
@@ -268,7 +267,7 @@ export const MsIndex: React.FC<IProp> = () => {
 
                 <div className="hang div06">
                     <div className="head">
-                        <h5>파트너회원</h5>
+                        <h5>가이드회원</h5>
                         <ul className="board_option">
                             <li className="on"><a href="/">전체<strong>{(unConfimedBusiPartnerCount || 0) + (confimedBusiPartnerCount || 0)}</strong></a></li>
                             <li><a href="/">승인<strong>{unConfimedBusiPartnerCount}</strong></a></li>
@@ -278,7 +277,7 @@ export const MsIndex: React.FC<IProp> = () => {
                     </div>
                     <ul className="table typeC">
                         <li className="head">
-                            <div className="td01">파트너명/아이디</div>
+                            <div className="td01">가이드명/아이디</div>
                             <div className="td02">가입날짜</div>
                             <div className="td03">승인</div>
                         </li>

@@ -69,7 +69,7 @@ export const MySettlement: React.FC<IProp> = () => {
         <div className="in mypage_purchase">
             <h4>매출/정산관리</h4>
             <div className="paper_div">
-                <div className="statement_div">
+                {/* <div className="statement_div">
                     <div className="top_btn">
                         <span>통계표 상세보기</span>
                     </div>
@@ -84,16 +84,16 @@ export const MySettlement: React.FC<IProp> = () => {
                         </li>
                         <li>
                             <strong>정산 가능 금액</strong>
-                            {/* 계산법: 상태가 Ready인 Settlement들의 정산금액 */}
+                             계산법: 상태가 Ready인 Settlement들의 정산금액 
                             <div><strong>{autoComma(settleAvaiableAmount)}</strong>원</div>
                         </li>
                         <li>
                             <strong>취소 환수금</strong>
-                            {/* 계산법: Settlement의 취소 환수금들의 합산  */}
+                             계산법: Settlement의 취소 환수금들의 합산 
                             <div><strong>{autoComma(cancelReturnPrice)}</strong>원</div>
                         </li>
                     </ul>
-                </div>
+                </div> */}
                 <div className="con_top">
                     <h6>상세검색</h6>
                     <SearchBar
@@ -137,12 +137,12 @@ export const MySettlement: React.FC<IProp> = () => {
                         </div>
                         <div className="fuction_list_mini ln08">
                             <div className="thead">
-                                <div className="th01">
+                                {/* <div className="th01">
                                     <span className="checkbox">
                                         <input checked={isAllSelected} onClick={selectAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
                                         <label htmlFor="agree0" />
                                     </span>
-                                </div>
+                                </div> */}
                                 <div className="th02">상품코드</div>
                                 <div className="th03">상품명</div>
                                 <div className="th04">상품상태</div>
@@ -155,7 +155,12 @@ export const MySettlement: React.FC<IProp> = () => {
                                 <ul>
                                     {items.map(item =>
                                         <li>
-                                            <div className="th01"><input type="checkbox" /></div>
+                                            {/* <div className="th01">
+                                                <span className="checkbox">
+                                                    <input checked={isAllSelected} onClick={selectAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                                    <label htmlFor="agree0" />
+                                                </span>
+                                            </div> */}
                                             <div className="th02">{item.product.code}</div>
                                             <div className="th03">{item.product.title}</div>
                                             <div className="th04">{productStatus(item.product?.status)}</div>

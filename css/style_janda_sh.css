@@ -9426,7 +9426,7 @@ i.calendar {
         font-weight: 600;
     }
         div.popup_bg_full h3 {
-            top: 35px;
+            top: 54px;
         }
      
     div.popup_bg_full .close_icon {
@@ -9940,7 +9940,7 @@ i.calendar {
         padding: 16px 13px;
     }
     .option_tb td {
-        font-size: 0.8em;
+        font-size: 0.9em;
     }
     .option_tb .bt_line {
         border-bottom: 1px solid #ccc;

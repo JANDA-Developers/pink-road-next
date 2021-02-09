@@ -2596,6 +2596,9 @@ div.master_popup .info_page h4 {
             top:8px;
             background-color: #ccc;
         } 
+         div.master_popup .info_txt span:last-child:after {
+            display: none;
+        } 
          div.master_popup .info_txt .pay-day:after {
             display: none;
         } 
@@ -2984,7 +2987,7 @@ div.master_popup .people{
     color: #999;
     margin-bottom: 10px;
 }
- div.master_popup .info_table .tag li {
+div.master_popup .info_table .tag li{
     display: inline-block;
     margin-bottom: 5px;
     margin-right: 5px;
@@ -2995,7 +2998,7 @@ div.master_popup .people{
     font-weight: 100;
     background-color: #f5f5f5;
     color: #555;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 div.master_popup .reservationlist .tr{
     border: 1px solid #eee ;
@@ -3331,7 +3334,8 @@ div.master_popup div.alignment{
     }
 
     .master_box .main_paper_div .hang .table.typeC .td01{
-        width: 50%;
+        width: auto;
+        max-width: 50%;
     }
     .master_box .main_paper_div .hang .table.typeC .td01 span{
         width:100%;
@@ -3394,6 +3398,12 @@ div.master_popup div.alignment{
 
     
 @media (min-width: 1000px) {    
+    .master_box .main_paper_div .hang .table .body{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+   
+    }
     .master_box .btn.small{
         line-height: 28px;
     }

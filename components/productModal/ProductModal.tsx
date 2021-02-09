@@ -214,13 +214,13 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                     <i className="flaticon-multiply"></i>
                 </a>
                 <div className="page">
-                    <h3>상세정보</h3>
+                    <h3>상품 상세정보</h3>
                     <div className="info_txt">
-                        <span className="g-number">상품명: {title}</span>
-                        <span className="g-number">상품번호: {product.code}</span>
+                        <span className="g-number">상품명: <strong>{title}</strong></span>
+                        <span className="g-number">상품번호: <strong>{product.code}</strong></span>
                         <span className="goods-state1 st01">확정여부: <i>{determinedKr(product.determined)}</i></span>{/* 출발확정/출발미정 */}
-                        <span className="r-day">출발일: {yyyymmdd(createdAt)}</span>
-                        <span className="goods-state2">상품상태: {productStatus(status)}</span>
+                        <span className="r-day">출발일: <strong>{yyyymmdd(createdAt)}</strong></span>
+                        <span className="goods-state2">상품상태: <strong>{productStatus(status)}</strong></span>
                         <button onClick={print} className="btn"><i className="flaticon-print mr5"></i>프린터</button>
                         <Excel
                             data={getExcelByBookings(bookings)}
@@ -303,12 +303,12 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                         <div className="info_page">
                             <div className="full_div">
                                 <h4>
-                                    파트너 정보
+                                    가이드 정보
                         </h4>
                                 <div className="info_table partnerinfo">
                                     <div className="tr">
                                         <div className="th01">
-                                            파트너명
+                                            가이드명
                                     </div>
                                         <div className="td01">
                                             <span>{seller?.nickName}</span>
@@ -319,12 +319,12 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                         <div className="td02">
                                             <span>{seller?.email}</span>
                                         </div>
-                                        <div className="th03">
+                                        {/* <div className="th03">
                                             담당자
                                 </div>
                                         <div className="td03">
                                             <span>{seller?.busi_name || seller?.name} (<a href="tel:">{autoHypenPhone(seller?.phoneNumber)}</a> )</span>
-                                        </div>
+                                        </div> */}
                                         <div className="th04">
                                             정산계좌
                                 </div>

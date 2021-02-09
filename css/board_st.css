@@ -1973,13 +1973,15 @@ div.comment_box {
 
     .fuction_list_mini .thead > div {
         display: inline-block;
-        width: 24.5%;
+        width: auto;
         text-align: center;
         font-size: 1em;
         font-weight: 600;
         line-height: 120%;
-        padding: 17px 10px;
+        padding: 17px 2px;
         box-sizing: border-box;
+        flex-grow: 1;
+        flex: 1 1;
     }
 
     .fuction_list_mini .tbody {
@@ -2012,6 +2014,8 @@ div.comment_box {
                 box-sizing: border-box;
                 position:relative;
                 font-weight: 100;
+                flex: 1 1;
+                flex-grow: 1;
             }
     .new {
         width: 12px;
@@ -2309,7 +2313,6 @@ div.sum_div {
         border-bottom: 1px solid #999;
         line-height: 17px;
         box-sizing: border-box;
-        background-color: #f5f5f5;
     }
    .master__table .thead div[class*=t0] {
        flex-grow: 1;
@@ -2366,7 +2369,12 @@ div.sum_div {
 
 }
 @media (min-width:1000px) {
-  
+    .fuction_list_mini .tbody li{
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
     .new {
         width: 12px;
         vertical-align: baseline;
@@ -2382,6 +2390,8 @@ div.sum_div {
 }
     .board_list_mini .thead{
         display: flex;
+        justify-content: space-around;
+        align-items: center;
     }
     .m_title{
         display: none !important;
@@ -2391,7 +2401,8 @@ div.sum_div {
     }
     .board_list.st03 .tbody li {
         display: flex;
-        
+        justify-content: space-around;
+        align-items: center;
     }
     
     .board_list.st03 .tbody .td01 {
@@ -2428,18 +2439,33 @@ div.sum_div {
     ul.list_ul .list_in:hover {
         border: 2px solid #5bace9;
     }
+    .fuction_list_mini .thead li{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
     .fuction_list_mini .tbody li{
-        padding: 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .fuction_list_mini .thead li > div {
+        flex: 1 1;
+        flex-grow: 1;
     }
     .fuction_list_mini .tbody li > div {
         display: inline-block;
-        width: 24.5%;
+        width: auto;
         text-align: center;
         font-size: 12px;
-        padding: 13px 10px 10px;
+        padding: 10px 2px 10px;
+        flex: 1 1;
+        flex-grow: 1;
     }
     .board_list.st01 .tbody li {
         display: flex;
+        justify-content: space-around;
+        align-items: center;
         padding: 0;
         line-height: 55px;
     }

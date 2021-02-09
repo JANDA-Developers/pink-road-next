@@ -191,7 +191,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
       <div className="information_box">
         {/* 회원정보:기업파트너 */}
         <h5>
-          기업파트너 회원
+          가이드 회원
               <span className="info_top">
             <i className="important_icon" />는 필수항목입니다.
               </span>
@@ -251,14 +251,14 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
         <div className="ph_wrap">
           <label>
             <i className="important_icon" />
-                파트너명(회사명)
+                가이드명
               </label>
           <span className="er red_font">*숫자는 입력이 불가능합니다.</span>
           <input
             type="text"
             className="w100"
             name="name_company"
-            placeholder="업체명을 입력해주세요"
+            placeholder="가이드명을 입력해주세요"
             value={formInfo.name_company}
             onChange={(e) => { handleForm(e) }}
           />

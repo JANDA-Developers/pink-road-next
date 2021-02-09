@@ -98,7 +98,7 @@ export const MsReservationB: React.FC<IProp> = () => {
                                 }} className="option">
                                     <option value={"productName_contain"}>상품명</option>
                                     <option value={"productCode_eq"}>상품번호</option>
-                                    <option value={"sellerName_eq"}>파트너명</option>
+                                    <option value={"sellerName_eq"}>가이드명</option>
                                 </select>}
                         />
                     </div>
