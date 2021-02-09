@@ -126,19 +126,19 @@ export const StyleGuide: React.FC<IProp> = () => {
             <p className="layoutbox__infotext">예약관련 항목 예약대기/예약완료/예약취소 사용됨.<strong>.r-btn </strong> 클래스 사용 </p>
             <div className="layoutbox__ex">
                 <div className="layoutbox__ovject">
-                    <p className="layoutbox__ovject__txt">지급보류 했을때 .stand</p>
+                    <p className="layoutbox__ovject__txt">예약대기 했을때 .stand</p>
                     <div className="layoutbox__item">
                         <span className="r-btn stand">예약대기</span>
                     </div>
                 </div>
                 <div className="layoutbox__ovject">
-                    <p className="layoutbox__ovject__txt">정산완료 했을때 .yes</p>
+                    <p className="layoutbox__ovject__txt">예약완료 했을때 .yes</p>
                     <div className="layoutbox__item">
                         <span className="r-btn yes">예약완료</span>
                     </div>
                 </div>
                 <div className="layoutbox__ovject">
-                    <p className="layoutbox__ovject__txt">정산대기 했을때 .no</p>
+                    <p className="layoutbox__ovject__txt">예약취소 했을때 .no</p>
                     <div className="layoutbox__item">
                         <span className="r-btn no">예약취소</span>
                     </div>
@@ -178,6 +178,84 @@ export const StyleGuide: React.FC<IProp> = () => {
                         </select>
                     </div>
                 </div>
+
+            </div>
+        </div>
+
+
+
+        <div className="layoutbox">
+            <h4>게시판 디자인A</h4>
+            <p className="layoutbox__infotext">게시판 디자인-리스트 </p>
+            <div className="layoutbox__ex">
+                <div className="layoutbox__ovject w100">
+                    <p className="layoutbox__ovject__txt">게시판 디자인-리스트</p>
+                    <div className="layoutbox__item">
+                        <div className="board_list st01">
+                            <div className="tbody">
+                                <ul>
+                                    <li>
+                                        <div className="td01">2323</div>
+                                        <div className="td02">
+                                            <span className="title">문의합니다. 예약이 안되요.</span>
+                                            <img className="new" src="../img/svg/new.svg" alt="new" />
+                                            <i className="q_no">미답변</i>
+                                        </div>
+                                        <div className="td03">
+                                            도로롱도마뱀
+                                        </div>
+                                        <div className="td04">2021.01.22 10:56</div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+        <div className="layoutbox">
+            <h4>게시판 디자인B</h4>
+            <p className="layoutbox__infotext">게시판 디자인-갤러리 </p>
+            <div className="layoutbox__ex">
+                <div className="layoutbox__ovject w100">
+                    <p className="layoutbox__ovject__txt">게시판 디자인-갤러리</p>
+                    <div className="layoutbox__item">
+                        <div className="board_list st03">
+                            <div className="tbody">
+                                <ul>
+                                    <li>
+                                        <div className="td01">2323</div>
+                                        <div className="td02"><span className="img" style={{ backgroundImage: 'url(https://pink-loader-storage.s3.ap-northeast-2.amazonaws.com/1611280573477_thum.jpg)' }}></span></div>
+                                        <div className="td03"><span className="title">테스트</span><span className="id"></span><span className="count">조회[2]</span></div>
+                                        <div className="td04">2021.01.22 10:56</div>
+                                    </li>
+                                    <li>
+                                        <div className="td01">2323</div>
+                                        <div className="td02"><span className="img" style={{ backgroundImage: 'url(https://pink-loader-storage.s3.ap-northeast-2.amazonaws.com/1611280573477_thum.jpg)' }}></span></div>
+                                        <div className="td03"><span className="title">테스트</span><span className="id"></span><span className="count">조회[2]</span></div>
+                                        <div className="td04">2021.01.22 10:56</div>
+                                    </li>
+                                    <li>
+                                        <div className="td01">2323</div>
+                                        <div className="td02"><span className="img" style={{ backgroundImage: 'url(https://pink-loader-storage.s3.ap-northeast-2.amazonaws.com/1611280573477_thum.jpg)' }}></span></div>
+                                        <div className="td03"><span className="title">테스트</span><span className="id"></span><span className="count">조회[2]</span></div>
+                                        <div className="td04">2021.01.22 10:56</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
 
             </div>
         </div>

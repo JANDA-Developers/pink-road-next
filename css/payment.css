@@ -31,7 +31,7 @@
 #payment .payment_box {
     position: relative;
     display: block;
-    padding: 40px 20px 15px;
+    padding: 40px 40px 15px;
     border-radius: 10px;
     box-sizing: border-box;
     background-color: #fff;
@@ -49,9 +49,24 @@
     display: block;
     text-align:center;
 }
+
     #payment .payment_box h2 i {
         font-style: normal;
         color: #2196F3;
+    }
+    #payment .payment_box h4 {
+        position: relative;
+        display: block;
+        text-align:left;
+        font-size: 1.4em;
+        line-height: 200%;
+    }
+    #payment .payment_box .write_type_box {
+        margin-top: 50px;
+        padding-top: 30px;
+        margin-bottom: 50px;
+
+        border-top: 2px dotted #e5e5e5;
     }
     #payment .payment_box .table {
         position: relative;
@@ -143,6 +158,76 @@
         width: 170px;
         display: inline-block;
     }
+
+.paymethod__Check{
+    position: relative;
+    width: 100%;
+    border-top: 1px solid #888;
+    box-sizing: border-box;
+    padding: 0 0.5%;
+}
+.paymethod__Check > li{
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+   
+    border-bottom: 1px solid #888;
+}
+
+.paymethod__Check .paymethod__Check_head{
+    position: relative;
+    line-height: 40px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 1%;
+    border-bottom: 1px solid #cccccc;
+}
+.paymethod__Check .paymethod__Check_head button{
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.paymethod__Check .paymethod__Check_head input{
+    margin-right: 10px;
+}
+.paymethod__Check_body{
+    position: relative;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    padding: 2%;
+}
+.paymethod__Check_table{
+    position: relative;
+    width: 100%;
+    display: block;
+    line-height: 55px;
+    padding-left: 2%;
+    box-sizing: border-box;
+}
+.paymethod__Check_table .tr{
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+.paymethod__Check_table .tr > div{
+    width:auto;
+    flex: 1 1 ;
+    flex-grow: 1;
+}
+.paymethod__Check_table .th{
+    max-width: 20%;
+    text-align: left;
+}
+.paymethod__Check_table .td{
+    text-align: left;
+}
 
 
 @media (min-width: 1200px) {
