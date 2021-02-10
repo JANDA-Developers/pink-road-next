@@ -1365,10 +1365,10 @@ div.search {
             font-weight: 600;
         }
 
-    div.search .on:after {
+    div.search .on a:after {
         content: '';
         display: block;
-        height: 5px;
+        height: 3px;
         width: 110%;
         background-color: #ed297b;
         position: absolute;
@@ -2683,6 +2683,15 @@ ul.rank_ul {
 .join__snslink_g .join__snslink_icon{
     font-size: 1.2em;
 }
+.join__snslink_n .join__snslink_icon i{
+    background-image: url(/img/svg/icon-naver-b.svg);
+    background-size: 13px;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    width: 51px;
+    height: 41px;
+}
 .join__snslink_icon{
    width: 60px;
     height: 40px;
@@ -2709,36 +2718,48 @@ span.join__snslink_txt{
     align-items: center;
 }
 .login__snslink li{
-    width: 49%;
     position: relative;
-    display: inline-block;
+    width: 32%;
+    height: 46px;
     line-height: 43px;
-    border: 1px solid #333;
     box-sizing: border-box;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .login__snslink span{
     display: inline-block !important;
 }
 .login__snslink a{
-    display: block;
+    display: flex;
     text-align: center;
     color: #fff;
 }
 .login__snslink .login__snslink_icon{
-    width: 30px;
-    height: 30px;
+    margin-right: 5px;
     align-items: center;
     text-align: center;
 }
 .login__snslink_k{
     background-color: #fbea26;
-    border-color: #fbea26 !important;
 }
 .login__snslink_g{
     background-color: #e04a32;
-    border-color: #e04a32 !important;
+}
+.login__snslink_n{
+    background-color: #25b825;
+}
+.login__snslink_n i{
+    background-image: url(/img/svg/icon-naver-w.svg);
+    background-size: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    width: 17px;
+    height: 30px;
+    margin-top: 6px;
 }
 .login__snslink_k i{
     font-size: 1.2em;
@@ -9626,11 +9647,11 @@ i.calendar {
     div.search li{
         margin: 0 36px;
     }
-    div.search li.on a{
+    /* div.search li.on a{
         font-size: 18px;
-    }
-    div.search .on:after {
-        bottom: -2px;
+    } */
+    div.search .on a:after {
+        bottom: -5px;
     }
     .tour_details_in .Read_box {
         margin-bottom: 10px;
