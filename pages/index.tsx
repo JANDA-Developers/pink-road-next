@@ -11,8 +11,6 @@ import Slider from "react-slick";
 import { usePageEdit } from '../hook/usePageEdit';
 import { Bg } from '../components/Img/img';
 import { PageEditor } from '../components/common/PageEditer';
-import { Prompt } from 'components/promptModal/Prompt';
-import { openModal } from 'utils/popUp';
 
 export const Main: React.FC<Ipage> = (pageInfo) => {
   const { items } = useProductList({ initialPageIndex: 1, initialViewCount: 8 });
@@ -24,8 +22,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
     router.push(id);
   }
 
-  return <div onClick={openModal("#test")} className="body main" id="main" >
-    <Prompt onSubmit={() => { }} id="test" title="테스트" />
+  return <div className="body main" id="main" >
     <PageEditor pageTools={pageTools} />
     <Meta title="Pinkroader" description="사람과 시간이 공존하는 여행플랫폼 핑크로더입니다." />
     <div className="main_con_box1 Slider_box">
