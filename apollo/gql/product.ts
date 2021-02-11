@@ -166,7 +166,7 @@ export const PRODUCT_POST_UPDATE_REQ = gql`
 `;
 
 
-export const PRODUCT_POST_DELETE = gql`
+export const PRODUCT_DELETE = gql`
   mutation productDelete(
       $id: String!
     ) {
@@ -314,23 +314,125 @@ export const PRODUCT_FIND_BY_ID_FOR_SELLER = gql`
   ${F_PRODUCT}
 `;
 
-// export const PRODUCTS_OPS = gql`
-//   query productFindById(
-//       $_id:String!
-//     ) {
-//       ProductFindById(
-//         _id: $_id
-//       ) {
-//       ok
-//       error
-//       data {
-//         ...Fproduct
-//         questions {
-//           ...Fquestion
-//         }
-//       }
-//     }
-//   }
-//   ${F_QUESTION}
-//   ${F_PRODUCT}
-// `;
+export const TRAVEL_CANCEL = gql`
+  mutation travelCancel(
+      $reason: String!
+      $ProductId: String!
+    ) {
+      TravelCancel(
+        reason: $reason
+        ProductId: $ProductId
+      ) {
+      ok
+      error {
+        location
+        severity
+        code
+        message
+      }
+    }
+  }
+`;
+
+
+export const TRAVEL_DETERMINE = gql`
+  mutation travelDetermine(
+      $message: String!
+      $ProductId: String!
+    ) {
+      TravelDetermine(
+        message: $message
+        ProductId: $ProductId
+      ) {
+      ok
+      error {
+        location
+        severity
+        code
+        message
+      }
+    }
+  }
+`;
+
+
+export const TRAVEL_WITDRWAL = gql`
+  mutation travelWithdrwal(
+      $reason: String!
+      $ProductId: String!
+    ) {
+      TravelWithdrwal(
+        reason: $reason
+        ProductId: $ProductId
+      ) {
+      ok
+      error {
+        location
+        severity
+        code
+        message
+      }
+    }
+  }
+`;
+
+export const PRODUCT_ELSE_REQ = gql`
+  mutation productElseReq(
+      $ProductId: String!
+      $req: ProductElseReq!
+    ) {
+      ProductElseReq(
+        ProductId: $ProductId
+        req: $req
+      ) {
+      ok
+      error {
+        location
+        severity
+        code
+        message
+      }
+    }
+  }
+`;
+
+
+export const PRODUCT_ELSE_ACCEPT = gql`
+  mutation productElseAccept(
+      $ProductId: String!
+    ) {
+      ProductElseAccept(
+        ProductId: $ProductId
+        req: $req
+      ) {
+      ok
+      error {
+        location
+        severity
+        code
+        message
+      }
+    }
+  }
+`;
+
+
+export const PRODUCT_ELSE_DENY = gql`
+  mutation productElseDeny(
+      $ProductId: String!
+      $reason: String!
+    ) {
+      ProductElseDeny(
+        ProductId: $ProductId
+        reason: $reason
+      ) {
+      ok
+      error {
+        location
+        severity
+        code
+        message
+      }
+    }
+  }
+`;

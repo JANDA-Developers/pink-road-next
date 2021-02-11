@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'css/all.css';
 import "dayjs/locale/ko"
 import dayjs from 'dayjs';
-import Layout from '../layout/Layout';
+import Layout, { jwtExpireCheck } from '../layout/Layout';
 import { ApolloProvider, useQuery } from '@apollo/client';
 import { getContext_GetProfile_data as IProfile, categoryList_CategoryList_data, getContext, UserRole, Fhomepage, Fcategory, CategoryType } from 'types/api';
 import PinkClient from "apollo/client"

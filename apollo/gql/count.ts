@@ -66,6 +66,7 @@ export const COUNT_MANAGER = gql`
                 createRequestCountMaster
                 cancelReturnPrice
                 settlementRequestCountMaster
+                elseReqCount
                 compeltedProductCountMaster
                 tourBookingCountMaster
                 expBookingCountMaster

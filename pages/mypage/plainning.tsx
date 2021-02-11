@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { MypageLayout } from 'layout/MypageLayout';
 import { auth } from "../../utils/with";
 import { ALLOW_LOGINED, BG } from '../../types/const';
@@ -6,7 +6,7 @@ import { SearchBar } from '../../components/searchBar/SearchBar';
 import { useProductList } from '../../hook/useProduct';
 import { useDateFilter } from '../../hook/useSearch';
 import { useIdSelecter } from '../../hook/useIdSelecter';
-import { itemTypeToKr, productStatus } from '../../utils/enumToKr';
+import { itemTypeToKr, productStatus, ReqBadge } from '../../utils/enumToKr';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import Link from 'next/link';
 import { getUniqFilter } from '../../utils/filter';
@@ -19,11 +19,18 @@ import { ProductModal } from '../../components/productModal/ProductModal';
 import { openModalTimeSet } from '../../utils/popUp';
 import { useSettlementsRequest } from '../../hook/useSettlement';
 import { HandBookingModal } from '../../components/handBookingModal/HandBookingModal';
+import { PordStatusBadge } from '../../components/Status/StatusBadge';
+import { AppContext } from '../_app';
 
 interface IProp { }
 
 export const Plainning: React.FC<IProp> = () => {
-    const { items, filter, setFilter, pageInfo, sort, setSort, viewCount, setViewCount, page, setPage } = useProductList()
+    const {myProfile} = useContext(AppContext);
+    const { items, filter, setFilter, pageInfo, sort, setSort, viewCount, setViewCount, page, setPage } = useProductList({
+        initialFilter: {
+            authorEmail_eq:  myProfile?.email
+        }
+    })
     const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({ filter, setFilter })
     const { check, isChecked, selectAll, toggleAll, toggle, setSelectedIds, unCheck, unSelectAll } = useIdSelecter(items.map(i => i._id));
     const singleSort = useSingleSort(sort, setSort);
@@ -148,7 +155,7 @@ export const Plainning: React.FC<IProp> = () => {
                                                 <div className="img" style={BG(item?.images?.[0]?.uri || "")} ></div>
                                                 <div className="info goods__info_title">
                                                     <span className="ct">{item.category?.label}</span><span className="g-number">상품번호: {item.code}</span>
-                                                    <strong className="title">{item.title}</strong>
+                                                    <strong className="title">{item.title} <ReqBadge req={item.elseReq} /></strong>
                                                 </div>
                                             </div>
                                             <div className="th05"><span className="m_title">출발일: </span>{yyyymmdd(item.startDate)}</div>
@@ -164,7 +171,7 @@ export const Plainning: React.FC<IProp> = () => {
                                             <div className="th07">
                                                 {/* 단위 : 건 */}
                                                 <span className="m_title">상태: </span>
-                                                {productStatus(item.status)}
+                                                <PordStatusBadge status={item.status} />
                                             </div>
                                             <div className="th08">
                                                 {/* 단위 : 건 */}

@@ -100,6 +100,7 @@ export const F_PRODUCT = gql`
         startPoint
         maxMember
         minMember
+        requestMemo
         subTitle
         adult_price
         bookingCount
@@ -107,6 +108,7 @@ export const F_PRODUCT = gql`
         compeltePeopleCnt
         baby_price
         isNotice
+        elseReq
         isOpen
         type
         startDate

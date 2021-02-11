@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { whenEnter } from '../../utils/eventValueExtracter';
 import { closeModal } from '../../utils/popUp';
 import { Modal } from '../modal/Modal';
 
@@ -17,13 +18,17 @@ export const Prompt: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) =
     const el = document.getElementById('portal');
     if (!el) return null;
 
+    const onSubmit = () => {
+        handleSubmit(submitData)
+    }
+
     return ReactDOM.createPortal(<Modal title={title} id={id}>
         <div className="write_comment">
             <div className="comment_layout">
                 <ul className="text_box">
                     <li>
                         <div className="txta w100">
-                            <textarea onChange={(e) => {
+                            <textarea onKeyPress={whenEnter(onSubmit) as any} onChange={(e) => {
                                 const val = e.currentTarget.value;
                                 if (val.length > 3000) return;
                                 setSubmitData(val);
@@ -35,9 +40,8 @@ export const Prompt: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) =
                 <div className="text_box_bottom">
                     <div className="btn_send float_right">
                         <button
-                            onClick={() => {
-                                handleSubmit(submitData)
-                            }}
+                            type="submit"
+                            onClick={onSubmit}
                             className="comment_btn"
                         >제출</button>
                     </div>

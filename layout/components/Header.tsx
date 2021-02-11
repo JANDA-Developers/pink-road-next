@@ -7,6 +7,7 @@ import { setVal, whenEnter } from "../../utils/eventValueExtracter";
 import { Router, useRouter } from "next/router";
 import { NotiIcon } from "./NotiIcon";
 import { generateSearchLink } from "../../pages/search";
+import { userRoleToKR } from "../../utils/enumToKr";
 
 interface IProp { }
 
@@ -99,7 +100,7 @@ export const Header: React.FC<IProp> = () => {
     return <header className="header" id="header">
         <div className="top-menu">
             <div className="w1200">
-                {isLogin ? <p className="welcome_ms"><strong>{myProfile?.nickName}</strong>님 어서오세요~!!</p>
+                {isLogin ? <p className="welcome_ms"><strong>({userRoleToKR(myProfile?.role)}) {myProfile?.nickName}</strong>님 어서오세요~!!</p>
                     : ""}
                 <ul onClick={handleAllClose}>
                     <li >

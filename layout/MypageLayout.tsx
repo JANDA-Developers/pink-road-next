@@ -100,8 +100,8 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                 {isSeller || <li className={isTapOn("basket")}><Link href="/mypage/basket"><a >장바구니</a></Link></li>}{/* 개인 -*/}
                 <li className={isTapOn("my-board")}><Link href="/mypage/my-board"><a >나의 게시글</a></Link></li>{/* 개인/기업파트너/개인파트너 -*/}
                 {isSeller && <li className={isTapOn("reservation")}><Link href="/mypage/reservation"><a >예약관리</a></Link></li>}{/* 기업파트너/개인파트너 -*/}
-                {isParterB && <li className={isTapOn("goods")}><Link href="/mypage/goods"><a >상품관리</a></Link></li>}{/* 기업파트너 -*/}
-                {isSeller && !isParterB && <li className={isTapOn("plainning")}><Link href="/mypage/plainning"><a >기획관리</a></Link></li>}{/* 개인파트너 -*/}
+                {/* {isParterB && <li className={isTapOn("goods")}><Link href="/mypage/goods"><a >상품관리</a></Link></li>}기업파트너 - */}
+                {isSeller && <li className={isTapOn("plainning")}><Link href="/mypage/plainning"><a >상품관리</a></Link></li>}{/* 개인파트너 -*/}
                 {isSeller && <li className={isTapOn("settlement")}><Link href="/mypage/settlement"><a >매출/정산관리</a></Link></li>}{/* 기업파트너/개인파트너 -*/}
             </ul>
             }

@@ -7,7 +7,7 @@ import { SearchBar } from '../../components/searchBar/SearchBar';
 import { useProductList } from '../../hook/useProduct';
 import { useDateFilter } from '../../hook/useSearch';
 import { useIdSelecter } from '../../hook/useIdSelecter';
-import { itemTypeToKr } from '../../utils/enumToKr';
+import { itemTypeToKr, ReqBadge } from '../../utils/enumToKr';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import Link from 'next/link';
 import { useCustomCount } from '../../hook/useCount';
@@ -20,6 +20,7 @@ import { ProductStatus } from '../../types/api';
 import { ProductModal } from '../../components/productModal/ProductModal';
 import { openModalTimeSet } from '../../utils/popUp';
 import { useSettlementsRequest } from '../../hook/useSettlement';
+import { PordStatusBadge } from '../../components/Status/StatusBadge';
 
 interface IProp { }
 
@@ -122,19 +123,20 @@ export const MyGoods: React.FC<IProp> = () => {
                                 <ul>
                                     {items.map((item, i) =>
                                         <li key={item._id}>
-                                            <div className="th01">
+                                            {/* <div className="th01">
                                                 <span className="checkbox check2">
                                                     <input onChange={() => { toggle(item._id) }} checked={isChecked(item._id)} type="checkbox" name="agree" id={`agree${i + 1}`} title="개별선택" />
                                                     <label htmlFor={`agree${i + 1}`} />
                                                 </span>
-                                            </div>
+                                            </div> */}
                                             <div className="th02"><span className="m_title">유형: </span>{itemTypeToKr(item.type)}</div>
                                             <div className="th03"><span className="m_title">개시일: </span>{yyyymmdd(item.createdAt)}</div>
                                             <div className="th04">
                                                 <div className="img" style={BG(item?.images?.[0]?.uri || "")} ></div>
                                                 <div className="info goods__info_title">
                                                     <span className="ct">{item.category?.label}</span><span className="g-number">상품번호: {item.code}</span>
-                                                    <strong className="title">{item.title}</strong>
+                                                    <strong className="title">{item.title} <ReqBadge req={item.elseReq} /></strong>
+                                                    <PordStatusBadge status={item.status} />
                                                 </div>
                                             </div>
                                             <div className="th05"><span className="m_title">출발일: </span>{yyyymmdd(item.startDate)}</div>

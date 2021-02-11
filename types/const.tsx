@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { IPageInfo, Ipopup } from "./interface"
-import { Fquestion_author_profileImg, ItineraryCreateInput, LinkBehavior, ProductStatus, UserRole, } from "./api";
+import { Fquestion_author_profileImg, ItineraryCreateInput, LinkBehavior, ProductStatus, SettlementStatus, UserRole, } from "./api";
 import { generateRandomStringCode } from "../utils/codeGenerator";
 
 export const DEFAULT_LOGO = "/img/logo_1.png";
@@ -100,3 +100,22 @@ export const defaultModalGet: () => Ipopup = () => ({
     updatedAt: new Date(),
     priority: 1
 })
+
+
+export const AFTER_OPEN_PRODUCT_STATUS = [ProductStatus.OPEN, ProductStatus.EXPIRED, ProductStatus.CANCELD, ProductStatus.COMPLETED];
+export const DELETE_AVAIABLE_PRODUCTS = [ProductStatus.UPDATE_REQ, ProductStatus.UPDATE_REQ_REFUSED, ProductStatus.REFUSED, ProductStatus.READY];
+export const SETTLEMENT_REQ_AVAIABLE = [SettlementStatus.COMPLETE, ProductStatus.EXPIRED];
+
+export const CONDITION = {
+    travelCacnel: "여행취소는 예약자가 없을때만 가능합니다.",
+    travelDetermineChange: "출발 확정 임의변경은 최소 7일전에 해주셔야합니다."
+}
+export const SYSTEM_CHECK_MESSAGE = {
+    travelCancel: `
+    정말로 상품을 취소 하시겠습니까?
+    해당 상품의 모든 예약 및  결제가 취소 처리 됩니다.
+    `,
+    productDelete: `
+        정말로 상품을 삭제 하시겠습니까?
+    `
+}

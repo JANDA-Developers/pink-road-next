@@ -194,7 +194,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         initStorage()
     }, [])
 
-    const noram_partner_updateable_status = [ProductStatus.READY, ProductStatus.UPDATE_REQ, ProductStatus.UPDATE_REQ_REFUSED]
+    const noram_partner_updateable_status = [ProductStatus.READY, ProductStatus.UPDATE_REQ, ProductStatus.UPDATE_REQ_REFUSED, ProductStatus.REFUSED]
     const updateAble = !isCreateMode && isParterB && isManager || noram_partner_updateable_status.includes(product?.status!);
     const normalPartnerUpdateReqAble = updateBtnDisableCheck(product!, isParterB || false)
 
@@ -220,6 +220,23 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         <div className="w1200 con_bottom">
             <div className="write_box">
                 {product && <h1>{productStatus(product.status)}</h1>}
+                {/* 아래는 오직 관리자만 적용할 수 있음 아래는 상태가 CANCEL상태이거나  */}
+                {/* {isManager && <div className="write_type">
+                    <div className="title">상태관리</div>
+                    <div className="input_form">
+                        <ul>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sale" value={ProductStatus.OPEN} checked={status === ProductStatus.OPEN} className="radio" /><label htmlFor="status-sale">판매중</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-cancel" value={ProductStatus.CANCELD} checked={status === ProductStatus.CANCELD} className="radio" /><label htmlFor="status-cancel">취소</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-ready" value={ProductStatus.READY} checked={status === ProductStatus.READY} className="radio" /><label htmlFor="status-ready">생성요청</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-refused">생성거절</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-updateRefuse" value={ProductStatus.UPDATE_REQ_REFUSED} checked={status === ProductStatus.UPDATE_REQ_REFUSED} className="radio" /><label htmlFor="updateRefuse">업데이트거절</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-upReq" value={ProductStatus.UPDATE_REQ} checked={status === ProductStatus.UPDATE_REQ} className="radio" /><label htmlFor="status-upReq">업데이트 요청</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-complete" value={ProductStatus.COMPLETED} checked={status === ProductStatus.COMPLETED} className="radio" /><label htmlFor="status-complete">판매완료</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-expire" value={ProductStatus.EXPIRED} checked={status === ProductStatus.EXPIRED} className="radio" /><label htmlFor="status-expire">만료</label></li>
+                        </ul>
+                    </div>
+                </div>
+                } */}
                 <div className="write_type">
                     <div className="title">상품타입</div>
                     <div className="input_form">
@@ -331,21 +348,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     </div>
                 </div>
 
-                {/* 아래는 오직 관리자만 적용할 수 있음 */}
-                {isAdmin && <div className="write_type">
-                    <div className="title">상태관리</div>
-                    <div className="input_form">
-                        <ul>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sale" value={ProductStatus.OPEN} checked={status === ProductStatus.OPEN} className="radio" /><label htmlFor="status-sale">판매중</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sold" value={ProductStatus.SOLD} checked={status === ProductStatus.SOLD} className="radio" /><label htmlFor="status-sold">완판</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-refused">거절됨</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.UPDATE_REQ} checked={status === ProductStatus.UPDATE_REQ} className="radio" /><label htmlFor="status-hide">업데이트 요청</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-hide">거절됨</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-ready" value={ProductStatus.READY} checked={status === ProductStatus.READY} className="radio" /><label htmlFor="status-ready">준비중</label></li>
-                        </ul>
-                    </div>
-                </div>
-                }
+
 
                 <div className="write_type">
                     <div className="title">키워드</div>
@@ -428,12 +431,26 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     <button onClick={handleLoad} type="button" className="btn medium">불러오기</button>
                 </div>
                 <div className="float_right">
+
+                    {/* 차라리 여기서 상품을 취소 상태로 변경하거나, 다시 오픈 상태로 변경 하거나 요청을 수락 하거나  */}
+                    {isManager && status === ProductStatus.OPEN && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                        상품취소
+                    </button>}
+                    {isManager && status === ProductStatus.CANCELD && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                        취소철회
+                    </button>}
+                    {isManager && status === ProductStatus.UPDATE_REQ && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                        수정수락
+                    </button>}
+                    {isManager && status === ProductStatus.READY && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                        생성수락
+                    </button>}
                     {!updateAble && !isCreateMode && isParterNonB && <button disabled={!normalPartnerUpdateReqAble} onClick={handleEditReq} type="submit" className="btn medium pointcolor">
-                        수정요청
+                        {status === ProductStatus.UPDATE_REQ_REFUSED ? "재신청" : "수정요청"}
                         <i data-for="ToolTipLayOut" className="jandaicon-info2 tooltip" data-iscapture={true} data-tip="수정요청은 예약인원이 없을때만 가능합니다." />
                     </button>}
                     {updateAble && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
-                        수정
+                        {status === ProductStatus.REFUSED ? "재신청" : "수정"}
                     </button>}
                     {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
                     <button onClick={handleCancel} type="button" className="btn medium impact">취소</button>

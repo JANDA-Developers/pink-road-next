@@ -16,12 +16,13 @@ import { useIdSelecter } from '../../../hook/useIdSelecter';
 import { getExcelByProduct } from '../../../utils/getExcelData';
 import { ProductModal } from '../../../components/productModal/ProductModal';
 import { GoodsTopNav } from '../../../components/topNav/MasterTopNav';
-import { BookingStatus, ProductStatus } from '../../../types/api';
+import { BookingStatus, ProductElseReq, productElseReq, ProductStatus } from '../../../types/api';
 import { SingleSortSelect } from '../../../components/common/SortSelect';
 import { useSingleSort } from '../../../hook/useSort';
 import { ALLOW_ADMINS } from '../../../types/const';
 import { auth } from '../../../utils/with';
 import { Paginater } from '../../../components/common/Paginator';
+import { ReqBadge, reqToKr } from '../../../utils/enumToKr';
 
 interface IProp { }
 
@@ -68,6 +69,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
     const [popProductId, setPopProductId] = useState("");
 
     const {
+        elseReqCount,
         totalProductCountMaster,
         openProductCountMaster,
         cancelProductCountMaster,
@@ -81,6 +83,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
         createRequestCountMaster,
         updateRequestCountMaster
     } = useCustomCount([
+        "elseReqCount",
         "createRequestCountMaster",
         "totalProductCountMaster",
         "refusedCountMaster",
@@ -112,12 +115,20 @@ export const MsGoodsMain: React.FC<IProp> = () => {
         setUniqFilter("status_eq", ["status_eq", "determined_eq"], status)
     }
 
+    const setElseReq = (req?: productElseReq) => () => {
+        setFilter({
+            elseReq_not_eq: undefined
+        })
+
+    }
+
     const setDetermine = (isDetermined: boolean) => () => {
         setUniqFilter("determined_eq", ["status_eq", "determined_eq"], isDetermined)
     }
 
     const checkOnDetermined = (isDetermined: boolean) => isDetermined === filter.determined_eq ? "on" : "";
     const checkOnStatus = (status?: ProductStatus) => status === filter.status_eq ? "on" : "";
+    const checkOnElseReq = (req?: ProductElseReq) => req === filter.elseReq_not_eq ? undefined : ""
 
     return <MasterLayout>
         <div className="in ">
@@ -164,6 +175,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <li onClick={setType(ProductStatus.REFUSED)} className={checkOnStatus(ProductStatus.REFUSED)}><a>기획반려<strong>{refusedCountMaster}</strong></a></li>
                                     <li onClick={setType(ProductStatus.UPDATE_REQ)} className={checkOnStatus(ProductStatus.UPDATE_REQ)}><a>수정요청<strong>{updateRequestCountMaster}</strong></a></li>
                                     <li onClick={setType(ProductStatus.UPDATE_REQ_REFUSED)} className={checkOnStatus(ProductStatus.UPDATE_REQ_REFUSED)}><a>수정반려<strong>{updateRequestCountMaster}</strong></a></li>
+                                    <li onClick={setElseReq()} className={checkOnElseReq()}><a>기타요청<strong>{elseReqCount}</strong></a></li>
                                 </ul>
                             }
                             Sort={
@@ -206,7 +218,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                 </div> */}
                                 <div className="td02"><i className="m_title">카테고리:</i>{item.category?.label}</div>
                                 <div className="td03"><i className="m_title">상품번호:</i>{item.code}</div>
-                                <div className="td04"><div className="goods__info_title"><Link href={generateSearchLink({ title: item.title })}><a className="title"> {item.title}</a></Link></div></div>
+                                <div className="td04"><div className="goods__info_title"><Link href={generateSearchLink({ title: item.title })}><a className="title"> {item.title} <ReqBadge req={item.elseReq} /></a></Link></div></div>
                                 <div className="td05"><i className="m_title">여행일:</i>{yyyymmdd(item.createdAt)}</div>
                                 <div className="td06"><i className="m_title">인원:</i> {item.compeltePeopleCnt}/{item.maxMember}</div>
                                 <div className="td07"><i className="m_title">형태:</i>{getTypeTextOfProduct(item.type, item.dateRange)}</div>

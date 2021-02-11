@@ -21,7 +21,7 @@ interface IProp {
 
 export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTitle, onDelete: handleDelete, onSave: handleSave }) => {
     const [group, setGroup] = useCopy(defaultGroup);
-    const { isAdmin } = useContext(AppContext);
+    const { isManager } = useContext(AppContext);
     const { items: products, filter, setFilter, getLoading } = useProductList({
         initialFilter: {
             ...openListFilter,
@@ -115,7 +115,7 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
             <div className="float_left">
             </div>
             <div className="float_right">
-                {isAdmin &&
+                {isManager &&
                     <button onClick={handleDelete} type="submit" className="btn medium">삭제하기</button>
                 }
                 <button onClick={() => {

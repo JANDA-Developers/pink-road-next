@@ -1,4 +1,4 @@
-import { AddtionalFeesStatus, AnnounceType, BookingStatus, CategoryType, ERR_CODE, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fuser, GENDER, PaymentStatus, PayMethod, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole, UserStatus } from "../types/api";
+import { AddtionalFeesStatus, AnnounceType, BookingStatus, CategoryType, ERR_CODE, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fuser, GENDER, PaymentStatus, PayMethod, ProductElseReq, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole, UserStatus } from "../types/api";
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if (status === BookingStatus.CANCEL) return "예약취소"
@@ -78,7 +78,7 @@ export const payMethodToKR = (paymethod?: PayMethod) => {
 }
 
 export const userRoleToKR = (role?: UserRole) => {
-    if (role === UserRole.partner) return "일반파트너"
+    if (role === UserRole.partner) return "파트너"
     if (role === UserRole.partnerB) return "비지니스파트너"
     if (role === UserRole.individual) return "개인유저"
     if (role === UserRole.manager) return "매니저"
@@ -141,9 +141,23 @@ export const userStatusKR = (user?: Fuser) => {
     return ""
 }
 
-
 export const userStatusReverseKR = (user?: Fuser) => {
     if (user?.isDenied) return "가입승인"
     if (!user?.isVerifiedManager) return "가입거절"
     return ""
+}
+
+export const reqToKr = (req?: ProductElseReq | null) => {
+    if (req === ProductElseReq.REOPEN) return "오픈요청"
+    return ""
+}
+
+
+interface IReqBadgeProp {
+    req?: ProductElseReq | null;
+}
+
+export const ReqBadge: React.FC<IReqBadgeProp> = ({ req }) => {
+    if (req === ProductElseReq.REOPEN) return <span>{`[${reqToKr(req)}]`}</span>;
+    return <span />
 }

@@ -80,7 +80,7 @@ export const Announce: React.FC<Ipage> = (page) => {
                 <Paginater pageInfo={pageInfo} setPage={setPage} />
 
                 <div className="tl list_bottom">
-                    {isAdmin && <div className="btn_footer">
+                    {isManager && <div className="btn_footer">
                         <button onClick={toWrite} type="submit" className="btn medium pointcolor">글쓰기</button>
                     </div>}
 

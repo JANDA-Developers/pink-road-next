@@ -330,7 +330,7 @@ export const PASSWORD_FIND_BY_PHONE = gql`
         message
       }
       data {
-        resultObj
+      resultObj
       }
   }
 }

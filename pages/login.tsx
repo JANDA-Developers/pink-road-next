@@ -40,6 +40,7 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
             }
         },
     })
+
     const router = useRouter();
 
     const sessionSave = () => {
@@ -112,9 +113,9 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-1"
-                            value="individual"
-                            defaultChecked
-                            onClick={() => { handleUserType(UserRole.individual) }}
+                            value={UserRole.individual}
+                            checked={UserRole.manager === userType}
+                            onChange={() => { handleUserType(UserRole.individual) }}
                         />
                         <label htmlFor="tab-1" className="tab-label-1 login_tap tap_01 ">
                             <b>개인</b>
@@ -124,8 +125,9 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-2"
-                            value="partnerB"
-                            onClick={() => { handleUserType(UserRole.partnerB) }}
+                            value={UserRole.partnerB}
+                            checked={UserRole.partnerB === userType}
+                            onChange={() => { handleUserType(UserRole.partnerB) }}
                         />
                         <label htmlFor="tab-2" className="tab-label-2 login_tap tap_02">
                             <b>기업파트너</b>
@@ -135,8 +137,9 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-3"
-                            value="partner"
-                            onClick={() => { handleUserType(UserRole.partner) }}
+                            value={UserRole.partner}
+                            checked={UserRole.partner === userType}
+                            onChange={() => { handleUserType(UserRole.partner) }}
                         />
                         <label htmlFor="tab-3" className="tab-label-3 login_tap tap_03">
                             <b>개인파트너</b>
@@ -146,7 +149,7 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-4"
-                            value="manager"
+                            value={UserRole.manager}
                             onClick={() => { handleUserType(UserRole.manager) }}
                         />
                         <label htmlFor="tab-4" className="tab-label-4 login_tap tap_03">

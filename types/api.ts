@@ -1519,6 +1519,10 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   startPoint: string;
   maxMember: number;
   minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
   subTitle: string | null;
   adult_price: number;
   bookingCount: number;
@@ -1529,6 +1533,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
+  elseReq: ProductElseReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -2007,6 +2012,10 @@ export interface countManager_Count_data {
    * 마스터용::미해결 정산 요청 수
    */
   settlementRequestCountMaster: number;
+  /**
+   * 마스터용::상품 수정 요청수
+   */
+  elseReqCount: number;
   /**
    * 마스터용::전체중 상품중 판매완료수
    */
@@ -4936,6 +4945,10 @@ export interface productDelete_ProductDelete_data {
   startPoint: string;
   maxMember: number;
   minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
   subTitle: string | null;
   adult_price: number;
   bookingCount: number;
@@ -4946,6 +4959,7 @@ export interface productDelete_ProductDelete_data {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
+  elseReq: ProductElseReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -5220,6 +5234,10 @@ export interface productList_ProductList_data {
   startPoint: string;
   maxMember: number;
   minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
   subTitle: string | null;
   adult_price: number;
   bookingCount: number;
@@ -5230,6 +5248,7 @@ export interface productList_ProductList_data {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
+  elseReq: ProductElseReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -5543,6 +5562,10 @@ export interface productFindById_ProductFindById_data {
   startPoint: string;
   maxMember: number;
   minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
   subTitle: string | null;
   adult_price: number;
   bookingCount: number;
@@ -5553,6 +5576,7 @@ export interface productFindById_ProductFindById_data {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
+  elseReq: ProductElseReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -5957,6 +5981,10 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   startPoint: string;
   maxMember: number;
   minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
   subTitle: string | null;
   adult_price: number;
   bookingCount: number;
@@ -5967,6 +5995,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
+  elseReq: ProductElseReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -5989,6 +6018,249 @@ export interface productFindByIdForSeller {
 
 export interface productFindByIdForSellerVariables {
   _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: travelCancel
+// ====================================================
+
+export interface travelCancel_TravelCancel_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface travelCancel_TravelCancel {
+  __typename: "TravelCancelResponse";
+  ok: boolean;
+  error: travelCancel_TravelCancel_error | null;
+}
+
+export interface travelCancel {
+  /**
+   * 아예 출발을 취소하는 함수(문자, 알림, 환불) CanCel 된 상품은 다시 살릴수 없다.
+   */
+  TravelCancel: travelCancel_TravelCancel;
+}
+
+export interface travelCancelVariables {
+  reason: string;
+  ProductId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: travelDetermine
+// ====================================================
+
+export interface travelDetermine_TravelDetermine_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface travelDetermine_TravelDetermine {
+  __typename: "TravelDetermineResponse";
+  ok: boolean;
+  error: travelDetermine_TravelDetermine_error | null;
+}
+
+export interface travelDetermine {
+  /**
+   * 출발 확정하는 함수(문자, 알림)
+   */
+  TravelDetermine: travelDetermine_TravelDetermine;
+}
+
+export interface travelDetermineVariables {
+  message: string;
+  ProductId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: travelWithdrwal
+// ====================================================
+
+export interface travelWithdrwal_TravelWithdrwal_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface travelWithdrwal_TravelWithdrwal {
+  __typename: "TravelWithdrwalResponse";
+  ok: boolean;
+  error: travelWithdrwal_TravelWithdrwal_error | null;
+}
+
+export interface travelWithdrwal {
+  /**
+   * 출발 확정 철회함 (문자, 알림)
+   */
+  TravelWithdrwal: travelWithdrwal_TravelWithdrwal;
+}
+
+export interface travelWithdrwalVariables {
+  reason: string;
+  ProductId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: travelReopen
+// ====================================================
+
+export interface travelReopen_TravelReopen_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface travelReopen_TravelReopen {
+  __typename: "TravelReopenResponse";
+  ok: boolean;
+  error: travelReopen_TravelReopen_error | null;
+}
+
+export interface travelReopen {
+  /**
+   * 상품 취소를 철회한다. 
+   */
+  TravelReopen: travelReopen_TravelReopen;
+}
+
+export interface travelReopenVariables {
+  ProductId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: productElseReq
+// ====================================================
+
+export interface productElseReq_ProductElseReq_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productElseReq_ProductElseReq {
+  __typename: "ProductElseReqResponse";
+  ok: boolean;
+  error: productElseReq_ProductElseReq_error | null;
+}
+
+export interface productElseReq {
+  /**
+   * 어떠한 요청을 수락한다.
+   */
+  ProductElseReq: productElseReq_ProductElseReq;
+}
+
+export interface productElseReqVariables {
+  ProductId: string;
+  req: ProductElseReq;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: productElseAccept
+// ====================================================
+
+export interface productElseAccept_ProductElseAccept_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productElseAccept_ProductElseAccept {
+  __typename: "ProductElseAcceptResponse";
+  ok: boolean;
+  error: productElseAccept_ProductElseAccept_error | null;
+}
+
+export interface productElseAccept {
+  /**
+   * 상품 취소를 철회한다. 
+   */
+  ProductElseAccept: productElseAccept_ProductElseAccept;
+}
+
+export interface productElseAcceptVariables {
+  ProductId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: productElseDeny
+// ====================================================
+
+export interface productElseDeny_ProductElseDeny_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productElseDeny_ProductElseDeny {
+  __typename: "ProductElseDenyResponse";
+  ok: boolean;
+  error: productElseDeny_ProductElseDeny_error | null;
+}
+
+export interface productElseDeny {
+  /**
+   * 어떠한 요청을 거절한다.
+   */
+  ProductElseDeny: productElseDeny_ProductElseDeny;
+}
+
+export interface productElseDenyVariables {
+  ProductId: string;
+  reason: string;
 }
 
 /* tslint:disable */
@@ -7609,6 +7881,10 @@ export interface settlementFindById_SettlementFindById_data_product {
   startPoint: string;
   maxMember: number;
   minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
   subTitle: string | null;
   adult_price: number;
   bookingCount: number;
@@ -7619,6 +7895,7 @@ export interface settlementFindById_SettlementFindById_data_product {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
+  elseReq: ProductElseReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -8017,6 +8294,10 @@ export interface settlementList_SettlementList_data_product {
   startPoint: string;
   maxMember: number;
   minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
   subTitle: string | null;
   adult_price: number;
   bookingCount: number;
@@ -8027,6 +8308,7 @@ export interface settlementList_SettlementList_data_product {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
+  elseReq: ProductElseReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -9191,6 +9473,10 @@ export interface userFindById_UserFindById_data_products {
   startPoint: string;
   maxMember: number;
   minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
   subTitle: string | null;
   adult_price: number;
   bookingCount: number;
@@ -9201,6 +9487,7 @@ export interface userFindById_UserFindById_data_products {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
+  elseReq: ProductElseReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -9879,6 +10166,10 @@ export interface Fproduct {
   startPoint: string;
   maxMember: number;
   minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
   subTitle: string | null;
   adult_price: number;
   bookingCount: number;
@@ -9889,6 +10180,7 @@ export interface Fproduct {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
+  elseReq: ProductElseReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -11211,6 +11503,7 @@ export enum Currency {
 export enum ERR_CODE {
   ALEADY_SAME_DATA = "ALEADY_SAME_DATA",
   AUTHORIZATION = "AUTHORIZATION",
+  BACKEND_MESSAGE = "BACKEND_MESSAGE",
   BOOKING_MEMBER_OVER = "BOOKING_MEMBER_OVER",
   DOC_ALEADY_EXIST = "DOC_ALEADY_EXIST",
   DOC_NOT_FOUND = "DOC_NOT_FOUND",
@@ -11313,6 +11606,13 @@ export enum PaymentStatus {
   CANCEL = "CANCEL",
   COMPLETE = "COMPLETE",
   READY = "READY",
+}
+
+/**
+ * 상품 업데이트외 요청
+ */
+export enum ProductElseReq {
+  REOPEN = "REOPEN",
 }
 
 /**
@@ -12497,6 +12797,8 @@ export interface _ProductFilter {
   address_not_contains?: string | null;
   address_in?: string[] | null;
   address_not_in?: string[] | null;
+  elseReq_eq?: ProductType | null;
+  elseReq_not_eq?: ProductType | null;
   type_eq?: ProductType | null;
   type_not_eq?: ProductType | null;
   type_in?: ProductType[] | null;
