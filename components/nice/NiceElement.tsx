@@ -55,16 +55,6 @@ const NiceElments: React.FC<INiceElementProp> = ({
         import("./niceGlobal")
     }, [])
 
-    const openNCmodal = () => {
-        if (window.jdPayStart)
-            window.jdPayStart();
-    }
-
-    useLayoutEffect(() => {
-        if (isAuth)
-            openNCmodal();
-    }, [isAuth, EdiDate])
-
     return (
         <div
             style={{

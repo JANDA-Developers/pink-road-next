@@ -40,6 +40,7 @@ const getToken = () => {
     return window.localStorage.getItem("jwt")
   }
 }
+
 const headers = {
   "Authorization": "Bearer " + getToken()
 }

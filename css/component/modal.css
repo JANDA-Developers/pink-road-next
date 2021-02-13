@@ -1,0 +1,6 @@
+.App div.OPEN_MODAL {
+    display: flex;
+}
+#portal .OPEN_MODAL {
+    display: flex;
+}

@@ -25,6 +25,15 @@ export const paymentStatus = (status?: PaymentStatus | null) => {
     return "";
 }
 
+export const paymentStatus2 = (obj?: any | null) => {
+    if (!obj) return "미결제";
+    const { status } = obj;
+    if (status === PaymentStatus.CANCEL) return "환불완료"
+    if (status === PaymentStatus.COMPLETE) return "완료"
+    if (status === PaymentStatus.READY) return "대기중"
+    return "";
+}
+
 export const settlementStatus = (status?: SettlementStatus | null) => {
     if (status === SettlementStatus.REQUEST) return "요청"
     if (status === SettlementStatus.COMPLETE) return "완료"
@@ -79,7 +88,7 @@ export const payMethodToKR = (paymethod?: PayMethod) => {
 
 export const userRoleToKR = (role?: UserRole) => {
     if (role === UserRole.partner) return "파트너"
-    if (role === UserRole.partnerB) return "비지니스파트너"
+    if (role === UserRole.partnerB) return "기업파트너"
     if (role === UserRole.individual) return "개인유저"
     if (role === UserRole.manager) return "매니저"
     if (role === UserRole.admin) return "관리자(JANDA)"

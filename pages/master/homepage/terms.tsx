@@ -33,7 +33,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
     const textReverse = (key: keyof HomepageUpdateInput) => {
         if (key === "usePolicy") return "이용약관";
         if (key === "PrivacyPolicy") return "개인정보약관";
-        if (key === "partnerBpolicy") return "비지니스파트너약관";
+        if (key === "partnerBpolicy") return "기업파트너약관";
         if (key === "partnerPolicy") return "파트너약관";
         if (key === "marketingPolic") return "마케팅약관";
         if (key === "thirdPolicy") return "삼자정보제공약관";

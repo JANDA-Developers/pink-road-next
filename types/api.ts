@@ -925,13 +925,17 @@ export interface bookingList_BookingList_data {
   cancelDate: any | null;
   gender: GENDER | null;
   age: string | null;
+  payMethod: PayMethod;
   updatedAt: any;
   isDelete: boolean;
+  leftTime: number;
   adultCount: number;
   kidCount: number;
   babyCount: number;
   totalCount: number;
   message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
   memo: string | null;
@@ -964,6 +968,7 @@ export interface bookingListVariables {
   sort?: _BookingSort[] | null;
   filter?: _BookingFilter | null;
   pageInput: pageInput;
+  isTimeOverExcept?: boolean | null;
 }
 
 /* tslint:disable */
@@ -1035,13 +1040,17 @@ export interface bookingCancelReq_BookingCancelReq_data {
   cancelDate: any | null;
   gender: GENDER | null;
   age: string | null;
+  payMethod: PayMethod;
   updatedAt: any;
   isDelete: boolean;
+  leftTime: number;
   adultCount: number;
   kidCount: number;
   babyCount: number;
   totalCount: number;
   message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
   memo: string | null;
@@ -1078,6 +1087,79 @@ export interface bookingCancelReqVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: bookingCancelReject
+// ====================================================
+
+export interface bookingCancelReject_BookingCancelReject_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface bookingCancelReject_BookingCancelReject_data_product {
+  __typename: "Product";
+  _id: string;
+  title: string;
+  code: string;
+}
+
+export interface bookingCancelReject_BookingCancelReject_data {
+  __typename: "Booking";
+  product: bookingCancelReject_BookingCancelReject_data_product;
+  _id: string;
+  createdAt: any;
+  cancelDate: any | null;
+  gender: GENDER | null;
+  age: string | null;
+  payMethod: PayMethod;
+  updatedAt: any;
+  isDelete: boolean;
+  leftTime: number;
+  adultCount: number;
+  kidCount: number;
+  babyCount: number;
+  totalCount: number;
+  message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
+  bookingPrice: number;
+  status: BookingStatus | null;
+  memo: string | null;
+  code: string;
+  groupCode: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  /**
+   * 결제가 되었는지
+   */
+  isPaid: boolean | null;
+}
+
+export interface bookingCancelReject_BookingCancelReject {
+  __typename: "BookingCancelRejectResponse";
+  ok: boolean;
+  error: bookingCancelReject_BookingCancelReject_error | null;
+  data: bookingCancelReject_BookingCancelReject_data | null;
+}
+
+export interface bookingCancelReject {
+  BookingCancelReject: bookingCancelReject_BookingCancelReject;
+}
+
+export interface bookingCancelRejectVariables {
+  bookingId: string;
+  reason: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: bookingsCreate
 // ====================================================
 
@@ -1101,13 +1183,17 @@ export interface bookingsCreate_BookingsCreate_data {
   cancelDate: any | null;
   gender: GENDER | null;
   age: string | null;
+  payMethod: PayMethod;
   updatedAt: any;
   isDelete: boolean;
+  leftTime: number;
   adultCount: number;
   kidCount: number;
   babyCount: number;
   totalCount: number;
   message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
   memo: string | null;
@@ -1335,6 +1421,14 @@ export interface bookingFindByCode_BookingFindByCode_error {
   severity: ERR_SEVERITY;
   code: ERR_CODE;
   message: string;
+}
+
+export interface bookingFindByCode_BookingFindByCode_data_bankTransInfo {
+  __typename: "IBankTranInfo";
+  accountHolder: string | null;
+  accountNumber: string | null;
+  bankName: string | null;
+  bankTransfter: string | null;
 }
 
 export interface bookingFindByCode_BookingFindByCode_data_product_region {
@@ -1576,19 +1670,24 @@ export interface bookingFindByCode_BookingFindByCode_data_payment {
 
 export interface bookingFindByCode_BookingFindByCode_data {
   __typename: "Booking";
+  bankTransInfo: bookingFindByCode_BookingFindByCode_data_bankTransInfo | null;
   product: bookingFindByCode_BookingFindByCode_data_product;
   _id: string;
   createdAt: any;
   cancelDate: any | null;
   gender: GENDER | null;
   age: string | null;
+  payMethod: PayMethod;
   updatedAt: any;
   isDelete: boolean;
+  leftTime: number;
   adultCount: number;
   kidCount: number;
   babyCount: number;
   totalCount: number;
   message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
   memo: string | null;
@@ -4110,6 +4209,37 @@ export interface bankDepositConfirmVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: bankRefund
+// ====================================================
+
+export interface bankRefund_BankRefund_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface bankRefund_BankRefund {
+  __typename: "BankRefundResponse";
+  ok: boolean;
+  error: bankRefund_BankRefund_error | null;
+}
+
+export interface bankRefund {
+  BankRefund: bankRefund_BankRefund;
+}
+
+export interface bankRefundVariables {
+  params: BankRefundInput[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: portfolioFindById
 // ====================================================
 
@@ -5924,13 +6054,17 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   cancelDate: any | null;
   gender: GENDER | null;
   age: string | null;
+  payMethod: PayMethod;
   updatedAt: any;
   isDelete: boolean;
+  leftTime: number;
   adultCount: number;
   kidCount: number;
   babyCount: number;
   totalCount: number;
   message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
   memo: string | null;
@@ -6122,40 +6256,6 @@ export interface travelWithdrwal {
 
 export interface travelWithdrwalVariables {
   reason: string;
-  ProductId: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: travelReopen
-// ====================================================
-
-export interface travelReopen_TravelReopen_error {
-  __typename: "CustomError";
-  location: string;
-  severity: ERR_SEVERITY;
-  code: ERR_CODE;
-  message: string;
-}
-
-export interface travelReopen_TravelReopen {
-  __typename: "TravelReopenResponse";
-  ok: boolean;
-  error: travelReopen_TravelReopen_error | null;
-}
-
-export interface travelReopen {
-  /**
-   * 상품 취소를 철회한다. 
-   */
-  TravelReopen: travelReopen_TravelReopen;
-}
-
-export interface travelReopenVariables {
   ProductId: string;
 }
 
@@ -6870,13 +6970,17 @@ export interface getContext_GetProfile_data_bookings {
   cancelDate: any | null;
   gender: GENDER | null;
   age: string | null;
+  payMethod: PayMethod;
   updatedAt: any;
   isDelete: boolean;
+  leftTime: number;
   adultCount: number;
   kidCount: number;
   babyCount: number;
   totalCount: number;
   message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
   memo: string | null;
@@ -7824,13 +7928,17 @@ export interface settlementFindById_SettlementFindById_data_product_bookings {
   cancelDate: any | null;
   gender: GENDER | null;
   age: string | null;
+  payMethod: PayMethod;
   updatedAt: any;
   isDelete: boolean;
+  leftTime: number;
   adultCount: number;
   kidCount: number;
   babyCount: number;
   totalCount: number;
   message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
   memo: string | null;
@@ -9502,13 +9610,17 @@ export interface userFindById_UserFindById_data_bookings {
   cancelDate: any | null;
   gender: GENDER | null;
   age: string | null;
+  payMethod: PayMethod;
   updatedAt: any;
   isDelete: boolean;
+  leftTime: number;
   adultCount: number;
   kidCount: number;
   babyCount: number;
   totalCount: number;
   message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
   memo: string | null;
@@ -10024,13 +10136,17 @@ export interface Fbooking {
   cancelDate: any | null;
   gender: GENDER | null;
   age: string | null;
+  payMethod: PayMethod;
   updatedAt: any;
   isDelete: boolean;
+  leftTime: number;
   adultCount: number;
   kidCount: number;
   babyCount: number;
   totalCount: number;
   message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
   memo: string | null;
@@ -11471,7 +11587,6 @@ export enum BoardType {
  */
 export enum BookingStatus {
   CANCEL = "CANCEL",
-  CANCEL_REQ = "CANCEL_REQ",
   COMPLETE = "COMPLETE",
   READY = "READY",
 }
@@ -12014,6 +12129,20 @@ export interface BankInfoInput {
   bankName?: any | null;
 }
 
+export interface BankRefundInput {
+  bookingId: string;
+  cancelPrice: number;
+  reqStatus: BookingStatus;
+  cancelMemo?: string | null;
+}
+
+export interface BankTransInfoInput {
+  accountHolder?: string | null;
+  accountNumber?: any | null;
+  bankName?: any | null;
+  bankTransfter?: string | null;
+}
+
 export interface BannerInput {
   img: FileCreateInput;
   link: string;
@@ -12064,6 +12193,7 @@ export interface BookingUpdateInput {
 }
 
 export interface BookingsCreateInput {
+  bankTransfter?: BankTransInfoInput | null;
   payMethod: PayMethod;
   product: string;
   message?: string | null;
@@ -12073,6 +12203,7 @@ export interface BookingsCreateInput {
   name: string;
   email: string;
   phoneNumber: string;
+  bookerInclue?: boolean | null;
 }
 
 export interface CategoryCreateInput {
@@ -12606,6 +12737,8 @@ export interface _BookingFilter {
   name_contains?: string | null;
   byHand_eq?: boolean | null;
   byHand_not_eq?: boolean | null;
+  isCancelRequest_eq?: string | null;
+  isCancelRequest_not_eq?: string | null;
   phoneNumber_eq?: string | null;
   phoneNumber_not_eq?: string | null;
   phoneNumber_in?: string[] | null;
@@ -12619,6 +12752,35 @@ export interface _BookingFilter {
   createdAt_lt?: any | null;
   createdAt_gte?: any | null;
   createdAt_gt?: any | null;
+  exField__determined_eq?: boolean | null;
+  exField__determined_not_eq?: boolean | null;
+  exField__title_eq?: string | null;
+  exField__title_not_eq?: string | null;
+  exField__title_contains?: string | null;
+  exField__title_not_contains?: string | null;
+  exField__title_in?: string[] | null;
+  exField__title_not_in?: string[] | null;
+  exField__code_eq?: string | null;
+  exField__code_not_eq?: string | null;
+  exField__code_contains?: string | null;
+  exField__code_not_contains?: string | null;
+  exField__code_in?: string[] | null;
+  exField__code_not_in?: string[] | null;
+  exField__status_eq?: ProductStatus | null;
+  exField__status_not_eq?: ProductStatus | null;
+  exField__status_in?: ProductStatus[] | null;
+  exField__bookerName_eq?: string | null;
+  exField__bookerName_not_eq?: string | null;
+  exField__bookerName_contains?: string | null;
+  exField__bookerName_not_contains?: string | null;
+  exField__bookerName_in?: string[] | null;
+  exField__bookerName_not_in?: string[] | null;
+  exField__sellerName_eq?: string | null;
+  exField__sellerName_not_eq?: string | null;
+  exField__sellerName_contains?: string | null;
+  exField__sellerName_not_contains?: string | null;
+  exField__sellerName_in?: string[] | null;
+  exField__sellerName_not_in?: string[] | null;
 }
 
 export interface _INotificationHistoryItemFilter {
@@ -12846,6 +13008,24 @@ export interface _ProductFilter {
   createdAt_lt?: any | null;
   createdAt_gte?: any | null;
   createdAt_gt?: any | null;
+  exField__sellerName_eq?: string | null;
+  exField__sellerName_not_eq?: string | null;
+  exField__sellerName_contains?: string | null;
+  exField__sellerName_not_contains?: string | null;
+  exField__sellerName_in?: string[] | null;
+  exField__sellerName_not_in?: string[] | null;
+  exField__startDate_eq?: any | null;
+  exField__startDate_not_eq?: any | null;
+  exField__startDate_lte?: any | null;
+  exField__startDate_lt?: any | null;
+  exField__startDate_gte?: any | null;
+  exField__startDate_gt?: any | null;
+  exField__endDate_eq?: any | null;
+  exField__endDate_not_eq?: any | null;
+  exField__endDate_lte?: any | null;
+  exField__endDate_lt?: any | null;
+  exField__endDate_gte?: any | null;
+  exField__endDate_gt?: any | null;
 }
 
 export interface _QnaFilter {
@@ -12946,6 +13126,24 @@ export interface _SettlementFilter {
   createdAt_lt?: any | null;
   createdAt_gte?: any | null;
   createdAt_gt?: any | null;
+  exField__title_eq?: string | null;
+  exField__title_not_eq?: string | null;
+  exField__title_contains?: string | null;
+  exField__title_not_contains?: string | null;
+  exField__title_in?: string[] | null;
+  exField__title_not_in?: string[] | null;
+  exField__code_eq?: string | null;
+  exField__code_not_eq?: string | null;
+  exField__code_contains?: string | null;
+  exField__code_not_contains?: string | null;
+  exField__code_in?: string[] | null;
+  exField__code_not_in?: string[] | null;
+  exField__sellerName_eq?: string | null;
+  exField__sellerName_not_eq?: string | null;
+  exField__sellerName_contains?: string | null;
+  exField__sellerName_not_contains?: string | null;
+  exField__sellerName_in?: string[] | null;
+  exField__sellerName_not_in?: string[] | null;
 }
 
 export interface _SystemNotiFilter {

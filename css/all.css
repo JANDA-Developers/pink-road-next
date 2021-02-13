@@ -22,3 +22,7 @@
 @import "./component/searchList.css";
 @import "./component/qnaView.css";
 @import "./component/boardCategory.css";
+@import "./component/LocalStorageBoard.css";
+@import "./component/modal.css";
+@import "./component/fix.css";
+

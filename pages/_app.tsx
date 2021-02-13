@@ -60,7 +60,7 @@ function App({ Component, pageProps }: any) {
 
   const { data, loading } = useQuery<getContext>(GET_CONTEXT, {
     client: PinkClient,
-    nextFetchPolicy: "network-only"
+    nextFetchPolicy: "cache-first"
   })
 
   const homepage = data?.Homepage.data || undefined;
@@ -75,14 +75,24 @@ function App({ Component, pageProps }: any) {
 
   const catsMap = categoryMap(catList);
 
+  if (data) {
+    const error = data.GetProfile.error
+    console.log({ error })
+  }
+
+
   if (!ComponentAuth.includes(role || null) && !loading) {
     if (arrayEquals(ComponentAuth, ALLOW_LOGINED)) {
       if (loading) return;
+      console.log('???--');
       Component = () => <PageDeny redirect="/login" msg="해당 페이지는 로그인후 이용 가능합니다." />
       return <Component />;
-    } else
-      Component = () => <PageDeny />
+    } else {
+      if (loading) return;
+      // Component = () => <PageDeny />
+    }
   }
+
 
 
 
@@ -97,7 +107,6 @@ function App({ Component, pageProps }: any) {
   }
 
   if (router.isFallback) {
-    console.log("cachefallback");
     return <div></div>
   }
 

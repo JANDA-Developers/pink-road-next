@@ -396,7 +396,7 @@ const UserInfoForm: React.FC = () => {
                                 </span>
                         <div className="w100 apply_relative">
                             <span className="w80 upload_out_box">
-                                {data.busiRegistration?.name}
+                                {data.bankImg?.name}
                             </span>
 
                             <label htmlFor="business_license" className="cus_file_busi_license">

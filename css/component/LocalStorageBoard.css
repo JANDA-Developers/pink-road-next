@@ -1,0 +1,18 @@
+
+
+.LocalStorageBoard__block {
+    border: 1px solid #ccc;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 5px;
+}
+
+.LocalStorageBoard__date {
+    font-size: 12px;
+    letter-spacing: normal;
+}
+
+.LocalStorageBoard__blocks {
+    overflow: auto;
+    max-height: 80%;
+}

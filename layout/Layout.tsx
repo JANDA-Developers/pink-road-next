@@ -44,8 +44,8 @@ export const checkLogoutTime = () => {
     const expireAt: Date = new Date(result.exp * 1000)
 
     if (dayjs(expireAt).isBefore(new Date())) {
-        localStorage.removeItem("jwt");
-        alert("활동이 없어 로그아웃 처리 되었습니다.");
-        location.reload();
+        // localStorage.removeItem("jwt");
+        // alert("활동이 없어 로그아웃 처리 되었습니다.");
+        // location.reload();
     }
 }

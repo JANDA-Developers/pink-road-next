@@ -23,7 +23,7 @@ export const Prompt: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) =
     }
 
     return ReactDOM.createPortal(<Modal title={title} id={id}>
-        <div className="write_comment">
+        <div className="write_comment popup__st01">
             <div className="comment_layout">
                 <ul className="text_box">
                     <li>
@@ -32,17 +32,18 @@ export const Prompt: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) =
                                 const val = e.currentTarget.value;
                                 if (val.length > 3000) return;
                                 setSubmitData(val);
-                            }} value={submitData} style={{ height: "100px;" }} placeholder="..."></textarea>
+                            }} value={submitData} style={{ height: "100px", width: "100%" }} placeholder="..."></textarea>
                         </div>
                     </li>
-                    <li className="tr count">{submitData.length}/3000</li>
+                    <li className="tl count">{submitData.length}/3000</li>
                 </ul>
                 <div className="text_box_bottom">
                     <div className="btn_send float_right">
                         <button
-                            type="submit"
-                            onClick={onSubmit}
-                            className="comment_btn"
+                            onClick={() => {
+                                handleSubmit(submitData)
+                            }}
+                            className="btn comment_btn"
                         >제출</button>
                     </div>
                 </div>

@@ -176,7 +176,7 @@ export const SMSmodal: React.FC<IProps> = ({ template }) => {
                                     }
                                     {smsTag === "MEMBER" && <>
                                         <option value={NotificationTriggerEvent.SIGNUP_PARTNER_USER}> 일반파트너 회원가입시 유저에게</option>
-                                        <option value={NotificationTriggerEvent.SIGNUP_PARNTER_B_USER}>비지니스파트너 회원가입시 유저에게</option>
+                                        <option value={NotificationTriggerEvent.SIGNUP_PARNTER_B_USER}>기업파트너 회원가입시 유저에게</option>
                                         <option value={NotificationTriggerEvent.SIGNUP_INDI_USER}>일반회원 회원가입시 유저에게</option>
                                         <option value={NotificationTriggerEvent.PRODUCT_CONFIRM_REQUEST}>상품검토 요청시 판매자에게</option>
                                     </>}

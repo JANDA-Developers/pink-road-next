@@ -15,9 +15,10 @@ import { omits } from '../../../utils/omit';
 import dynamic from 'next/dynamic';
 import { ALLOW_ADMINS, defaultModalGet } from '../../../types/const';
 import { cloneObject } from '../../../utils/clone';
-import { DesignTopNav, ResvTopNav } from '../../../components/topNav/MasterTopNav';
+import { DesignTopNav } from '../../../components/topNav/MasterTopNav';
 import { auth } from '../../../utils/with';
 import { useUpload } from '../../../hook/useUpload';
+
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 
 interface IProp { }

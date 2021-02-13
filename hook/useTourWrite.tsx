@@ -14,6 +14,9 @@ import { useProductDelete, useProductUpdate } from "./useProduct";
 import { useMutation } from "@apollo/client";
 import { PRODUCTS_CREATE } from "../apollo/gql/product";
 import { useRouter } from "next/router";
+import { ProductTempBoard } from "../utils/Storage2";
+import { generateRandomStringCode } from "../utils/codeGenerator";
+import { openModal } from "../utils/popUp";
 
 type SimpleTypePart = "isOpen" | "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "contents" | "inOrNor" | "isNotice"
 export type TSimpleTypePart = Pick<Required<ProductCreateInput>, SimpleTypePart>
@@ -121,7 +124,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const { signleUpload } = useUpload();
     const router = useRouter();
 
-    const { productDelete, deleteLoading } = useProductDelete({
+    const [productDelete] = useProductDelete({
         onCompleted: ({
             ProductDelete
         }) => {
@@ -165,7 +168,9 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const deleteFn = (id: string) => {
         if (confirm("정말로 상품을 삭제 하시겠습니가?"))
             productDelete({
-                id
+                variables: {
+                    id
+                }
             })
     }
 
@@ -366,18 +371,23 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
 
 
     const handleTempSave = async () => {
+        ProductTempBoard.addItem({
+            ...tourData
+        })
+        loadKeyAdd();
         Storage!.saveLocal("write", tourData);
         alert("저장완료");
     }
 
     const handleLoad = () => {
         const savedData = Storage!.getLocalObj<IUseTourData>("write", undefined);
-        if (!savedData) {
-            alert("저장된 정보가 없습니다.");
-            return;
-        }
-        setTourData(savedData);
-        alert("로드완료");
+        // if (!savedData) {
+        //     alert("저장된 정보가 없습니다.");
+        //     return;
+        // }
+        // setTourData(savedData);
+        // alert("로드완료");
+        openModal("#LocalStorageBoard")();
     }
 
 
@@ -474,7 +484,6 @@ export const getDefault = (product: IproductFindById | undefined): Partial<IUseT
 
     const simpleData: TSimpleTypePart = {
         address,
-        regionId: region?._id || "",
         adult_price,
         baby_price,
         caution,

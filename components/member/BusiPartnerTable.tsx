@@ -8,15 +8,9 @@ import { Prompt } from '../promptModal/Prompt';
 import { IMemberTableProp } from './MemberMaster';
 
 export const BusiPartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHook, handleUser }) => {
-    const { check, handleCheck, isAllSelected, isChecked, reverseAll, selectAll, selectLength, selectedIds, setSelectedIds, toggle, toggleAll, unCheck, unSelectAll } = idSelectHook;
-    const { handleResignUser, handleStopUser, handleViewDetailUser, handleRestartUser, handleViewUserBoard, handleSignUpAccept, handleSignUpDeny } = handleUser;
+    const { isAllSelected, isChecked, selectAll, toggle, toggleAll, } = idSelectHook;
+    const { handleResignUser, handleStopUser, handleViewDetailUser, handleRestartUser, handleViewUserBoard, handleSignUpAccept, handleSignUpDeny, handleDenyPop } = handleUser;
     const { items: users, setPage, pageInfo } = userHook;
-    const [denyPopId, setDenyPopId] = useState("");
-
-    const handleDenyPop = (userId: string) => () => {
-        setDenyPopId(userId)
-        openModal("#DenyPopup")()
-    }
 
     return <div className="con_box_body master__table">
         <div className="list_head">
@@ -69,10 +63,6 @@ export const BusiPartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelec
                 </div>
             </div>
         )}
-        <Prompt title="회원가입 승인 거절" onSubmit={(reason: string) => {
-            handleSignUpDeny([denyPopId], reason);
-            closeModal("#DenyPopup")()
-        }} id="DenyPopup" />
         <Paginater setPage={setPage} pageInfo={pageInfo} />
         <div className="fin ifMobile">
             <div className="float_left">

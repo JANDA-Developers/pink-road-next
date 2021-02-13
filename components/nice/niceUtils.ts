@@ -1,8 +1,10 @@
 import { END_POINT, SEVER } from "../../apollo/uri";
+import { BookingStatus } from "../../types/api";
 import { INiceElementProp } from "./NiceElement";
 export const NICE_GET_URI = SEVER + "/payment"
 export const NICE_MOBILE_AFTER_PAY = SEVER + "/authReq"
-export const NICE_CANCLE = SEVER + "/authReq"
+export const NICE_CANCLE = SEVER + "/cancelReq"
+
 
 // requirePorp: Record<AUTH, string> & Partial<INiceElementProp>
 

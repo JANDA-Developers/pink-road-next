@@ -7,7 +7,7 @@ import { IMemberTableProp } from './MemberMaster';
 
 export const PartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelectHook, handleUser }) => {
     const { check, handleCheck, isAllSelected, isChecked, reverseAll, selectAll, selectLength, selectedIds, setSelectedIds, toggle, toggleAll, unCheck, unSelectAll } = idSelectHook;
-    const { handleResignUser, handleStopUser, handleViewDetailUser, handleViewUserBoard, handleRestartUser, handleSignUpAccept, handleSignUpDeny } = handleUser;
+    const { handleResignUser, handleStopUser, handleViewDetailUser, handleViewUserBoard, handleRestartUser, handleSignUpAccept, handleSignUpDeny, handleDenyPop } = handleUser;
     const { items: users, setPage, pageInfo } = userHook;
 
     return <div className="con_box_body master__table">

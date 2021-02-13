@@ -1,0 +1,48 @@
+.BookingModal__top02 {
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+}
+
+.BookingModal__top02Align {
+    margin: 0!important;
+}
+
+
+.BookingModal__headerTitle {
+    position: initial!important;
+}
+
+.BookingModal__in {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px!important;
+}
+
+.BookingModal__body {
+    flex: 1 1;
+    overflow: auto;
+}
+
+.goods__info_title {
+    padding: 0px!important;
+}
+
+.MypageGoods__img {
+    position: initial!important;
+}
+.MypageGoods__infoBox {
+    display: flex!important;
+    padding: 10px!important;
+}
+
+.MypageGoods__btn {
+    width: 100%
+}
+
+@media (max-width: 1000px) {
+    .MypageGoods__infoBox {
+        display: initial!important;
+    }
+
+}

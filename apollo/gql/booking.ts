@@ -15,11 +15,13 @@ export const BOOKING_LIST = gql`
     $sort: [_BookingSort!]
     $filter: _BookingFilter
     $pageInput: pageInput!
+    $isTimeOverExcept: Boolean
   ) {
   BookingList(
     sort: $sort
     pageInput: $pageInput
     filter: $filter
+    isTimeOverExcept: $isTimeOverExcept
   ) {
     ok
     error {
@@ -98,7 +100,7 @@ export const BOOKING_COUNT = gql`
             page: 1,
             cntPerPage: 99999999
         },
-        filter: $filter
+        filter: $filter,
     ) {
         ok
         error {
@@ -114,12 +116,43 @@ export const BOOKING_COUNT = gql`
 }
 `
 
-export const BOOKING_CANCEL = gql`
+
+export const BOOKING_CANCEL_REQ = gql`
   mutation bookingCancelReq(
     $bookingId: String!
     $reason: String!
   ) {
     BookingCancelReq(
+      bookingId: $bookingId
+      reason: $reason
+    ) {
+    ok
+    error {
+      location
+      severity
+      code
+      message
+    }
+    data {
+      product {
+            _id
+            title
+            code
+        }
+      ...Fbooking
+    }
+  }
+}
+${F_BOOKING}
+`
+
+
+export const BOOKING_CANCEL_REJECT = gql`
+  mutation bookingCancelReject(
+    $bookingId: String!
+    $reason: String!
+  ) {
+    BookingCancelReject(
       bookingId: $bookingId
       reason: $reason
     ) {
@@ -193,7 +226,7 @@ export const BOOKING_UPDAET = gql`
     $id: String!
   ) {
   BookingUpdate(
-      params:$params
+    params:$params
       _id: $id
     ) {
     ok
@@ -284,12 +317,18 @@ export const BOOKING_FIND_BY_CODE = gql`
     ) {
     ok
     error {
-location
+      location
         severity
         code
         message
-}
+    }
     data {
+      bankTransInfo {
+        accountHolder
+        accountNumber
+        bankName
+        bankTransfter
+      }
       product {
             _id
             title

@@ -1,15 +1,18 @@
 import dayjs from 'dayjs';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useBookingList } from '../../hook/useBooking';
 import PaymentLayout from '../../layout/PaymentLayout';
 import PageLoading from '../../pages/Loading';
+import { AppContext } from '../../pages/_app';
+import { paymentStatus, paymentStatus2, payMethodToKR } from '../../utils/enumToKr';
 import { autoComma, card_hypen } from '../../utils/formatter';
 import { getFromUrl } from '../../utils/url';
 
 interface IProp { }
 
 export const JDpayCompleteUI: React.FC<IProp> = () => {
+    const { isLogin } = useContext(AppContext);
     const groupCode = getFromUrl("groupCode");
     const { items, getLoading } = useBookingList({
         initialFilter: {
@@ -44,27 +47,45 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
                     </div>
                     <div className="payment_tr">
                         <div className="payment_th">
-                            결제정보
-                </div>
+                            결제상태
+                        </div>
                         <div className="payment_td">
-                            <span>결제수단</span>
-                            <span>{booking.payment?.payMethod}{` `}</span>
-                            <span>일시불</span>
-                            <span>승인일시:{dayjs(booking.payment?.createdAt || undefined).format("YYYY.MM.DD")}</span>
+                            {paymentStatus2(booking.payment)}
                         </div>
                     </div>
+
+                    <div className="payment_tr">
+                        <div className="payment_th">
+                            결제수단
+                        </div>
+                        <div className="payment_td">
+                            <span>{payMethodToKR(booking.payMethod)}</span>
+                        </div>
+                    </div>
+
+                    {booking.payment && <div className="payment_tr">
+                        <div className="payment_th">
+                            결제일시
+                        </div>
+                        <div className="payment_td">
+                            <span>승인일시:{dayjs(booking.payment.createdAt).format("YYYY.MM.DD")}</span>
+                        </div>
+                    </div>}
+
                     <div className="payment_tr">
                         <div className="payment_th">
                             결제금액
-                </div>
+                        </div>
                         <div className="payment_td">
-                            <strong>{autoComma(booking.payment?.price || 0)}원</strong>
+                            <strong>{autoComma(booking.bookingPrice || 0)}원</strong>
                         </div>
                     </div>
                 </div>
             )}
             <div className="btn_box">
-                <Link href="/mypage/purchase"><a className="btn">구매내역 확인하기</a></Link>
+                {isLogin &&
+                    <Link href="/mypage/purchase"><a className="btn">구매내역 확인하기</a></Link>
+                }
                 <Link href="/"><a className="btn">홈으로</a></Link>
             </div>
         </div>

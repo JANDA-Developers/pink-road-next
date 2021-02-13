@@ -403,7 +403,6 @@ export const PRODUCT_ELSE_ACCEPT = gql`
     ) {
       ProductElseAccept(
         ProductId: $ProductId
-        req: $req
       ) {
       ok
       error {

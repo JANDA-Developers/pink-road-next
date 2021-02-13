@@ -7,15 +7,18 @@ import { foreginKR, userRoleToKR, managerVerifiedKR } from '../../utils/enumToKr
 import { autoHypenPhone } from '../../utils/formatter';
 import { closeModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
+import { UserMasterHandler } from '../member/MemberMaster';
 import { UserModalResvCancelList } from './UserModalResvCacnelList';
 import { UserModalResvList } from './UserModalResvList';
 
 interface IProp {
+    handlers: UserMasterHandler
     userId: string;
 }
 
-export const UserModal: React.FC<IProp> = ({ userId }) => {
+export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
     const { item } = useUserFindById(userId);
+    const { handleSignUpAccept, handleDenyPop } = handlers;
     if (!item) return null;
     const { isResigned, name, email, phoneNumber, resignReason, resignReasonType, gender, role } = item;
 
@@ -104,7 +107,7 @@ export const UserModal: React.FC<IProp> = ({ userId }) => {
                                 {isPartnerB &&
                                     <div className="tr">
                                         <div className="th01">업체주소</div>
-                                        <div className="td01"><span>{item.busi_address}</span></div>
+                                        <div className="td01"><span>{item.busi_address || item.address}</span></div>
                                         <div className="th02">담당자</div>
                                         <div className="td02"><span>{item.manageName}</span></div>
                                         <div className="th03">연락처</div>
@@ -160,7 +163,26 @@ export const UserModal: React.FC<IProp> = ({ userId }) => {
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                     </div>
                 </div>
+                <div className="fin ifMobile">
+                    <div className="float_left">
+
+                        {!item.isVerifiedManager &&
+                            <div>
+                                <div>
+                                    <i style={{ lineHeight: "22px" }} className="btn small" onClick={() => { handleSignUpAccept([item._id]) }}>가입승인</i>
+                                </div>
+                                <div>
+                                    <i style={{ lineHeight: "22px" }} className="btn small" onClick={handleDenyPop(item._id)}>가입거절</i>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div className="float_right">
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>;
 };

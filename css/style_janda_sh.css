@@ -1086,8 +1086,8 @@ div.popup_bg_mini .page{
             display: block;
             position: absolute;
             bottom: -12px;
-            left: 7%;
-            width: 87%;
+            left: 5%;
+            width: 90%;
             height: 1px;
             background-color: #b8b8b8;
         }
@@ -1096,7 +1096,7 @@ div.popup_bg_mini .page{
         display: block;
         position: relative;
         width: 100%;
-        padding: 25px 50px 0;
+        padding: 25px 30px 0;
         box-sizing: border-box;
     }
 
@@ -1364,10 +1364,10 @@ div.search {
             font-weight: 600;
         }
 
-    div.search .on:after {
+    div.search .on a:after {
         content: '';
         display: block;
-        height: 5px;
+        height: 3px;
         width: 110%;
         background-color: #ed297b;
         position: absolute;
@@ -2682,6 +2682,15 @@ ul.rank_ul {
 .join__snslink_g .join__snslink_icon{
     font-size: 1.2em;
 }
+.join__snslink_n .join__snslink_icon i{
+    background-image: url(/img/svg/icon-naver-b.svg);
+    background-size: 13px;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    width: 51px;
+    height: 41px;
+}
 .join__snslink_icon{
    width: 60px;
     height: 40px;
@@ -2708,36 +2717,48 @@ span.join__snslink_txt{
     align-items: center;
 }
 .login__snslink li{
-    width: 49%;
     position: relative;
-    display: inline-block;
+    width: 32%;
+    height: 46px;
     line-height: 43px;
-    border: 1px solid #333;
     box-sizing: border-box;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .login__snslink span{
     display: inline-block !important;
 }
 .login__snslink a{
-    display: block;
+    display: flex;
     text-align: center;
     color: #fff;
 }
 .login__snslink .login__snslink_icon{
-    width: 30px;
-    height: 30px;
+    margin-right: 5px;
     align-items: center;
     text-align: center;
 }
 .login__snslink_k{
     background-color: #fbea26;
-    border-color: #fbea26 !important;
 }
 .login__snslink_g{
     background-color: #e04a32;
-    border-color: #e04a32 !important;
+}
+.login__snslink_n{
+    background-color: #25b825;
+}
+.login__snslink_n i{
+    background-image: url(/img/svg/icon-naver-w.svg);
+    background-size: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    width: 17px;
+    height: 30px;
+    margin-top: 6px;
 }
 .login__snslink_k i{
     font-size: 1.2em;
@@ -4718,24 +4739,24 @@ div.bn_box {
         font-weight: 600;
         line-height: 60px;
         display: inline-block;
-        background-color: #ed297b;
-        border-color: #ed297b;
+        background-color: #5c5c5c;
+        border-color: #5c5c5c;
         border-width: 0;
         color: #fff;
         border-radius: 5px;
-        box-shadow: 0 3px 0px #cf0059 !important;
+        box-shadow: 0 3px 0px #464646 !important;
     }
 
         .login_wrap button:hover {
-            background-color: #de1c6d;
-            border-color: #ed297b;
+            background-color: #444444;
+            border-color: #444444;
             color: #ffffff;
-            box-shadow: 0 3px 0px #ac0249 !important;
+            box-shadow: 0 3px 0px #333333 !important;
         }
 
     .login_wrap .sum {
-        background-color: #ed297b;
-        border-color: #ed297b;
+        background-color: #5c5c5c;
+        border-color: #5c5c5c;
     }
 
     .login_wrap span {
@@ -8480,7 +8501,45 @@ i.calendar {
     top: 18%;
 }
 
-
+.popup__st01{
+   min-width: 400px;
+}
+.popup__st01 .comment_layout{
+    
+    box-sizing: border-box;
+    padding: 5px;
+}
+.popup__st01 .btn{
+    border: 0;
+    border: 1px solid #ccc;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+.popup__st01 .text_box{
+    position: relative;
+}
+.popup__st01 textarea{
+    border: 1px solid #ccc;
+}
+.popup__st01 .count{
+    line-height: 22px;
+    color: #888;
+    font-weight: 100;
+    position: absolute;
+    z-index: 99;
+    right: 10px;
+    bottom: 10px;
+}
+.popup__st01 .text_box_bottom{
+    display: block;
+    width: 100%;
+    height: 53px;
+}
+.popup__st01 .float_right{
+    display: block;
+    width: 100%;
+}
 @media (min-width: 768px) {   
     .siteInfo_in .con05 {
         background-size: 320%;
@@ -9629,11 +9688,11 @@ i.calendar {
     div.search li{
         margin: 0 36px;
     }
-    div.search li.on a{
+    /* div.search li.on a{
         font-size: 18px;
-    }
-    div.search .on:after {
-        bottom: -2px;
+    } */
+    div.search .on a:after {
+        bottom: -5px;
     }
     .tour_details_in .Read_box {
         margin-bottom: 10px;

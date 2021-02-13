@@ -17,13 +17,17 @@ export const F_BOOKING = gql`
         cancelDate
         gender
         age
+        payMethod
         updatedAt
         isDelete
+        leftTime
         adultCount
         kidCount
         babyCount
         totalCount
         message
+        isCancelRequest
+        bookerInclue
         bookingPrice
         status
         memo

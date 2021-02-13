@@ -28,6 +28,7 @@ import { cloneObject } from "../../../utils/clone";
 import { productStatus } from "../../../utils/enumToKr";
 import { Prompt } from "../../../components/promptModal/Prompt";
 import { openModal } from "../../../utils/popUp";
+import { LocalStorageBoard } from "../../../components/localStorageBoard/LocalStorageBoard";
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
@@ -97,7 +98,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         setkeyWards,
         setits,
         setType,
-        setSimpleData
+        setSimpleData,
     } = tourSets;
     const {
         address,
@@ -195,13 +196,13 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     }, [])
 
     const noram_partner_updateable_status = [ProductStatus.READY, ProductStatus.UPDATE_REQ, ProductStatus.UPDATE_REQ_REFUSED, ProductStatus.REFUSED]
-    const updateAble = !isCreateMode && isParterB && isManager || noram_partner_updateable_status.includes(product?.status!);
+    const updateAble = (!isCreateMode && (isParterB || isManager)) || noram_partner_updateable_status.includes(product?.status!);
     const normalPartnerUpdateReqAble = updateBtnDisableCheck(product!, isParterB || false)
 
     const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.EXPERIENCE;
     const regionCategories = categoriesMap.REGION;
 
-    if (!isManager && !isMyProduct) return <PageDeny />
+    // if (!isManager && !isMyProduct) return <PageDeny />
     if (loading) return <PageLoading />
     return <div key={loadKey} className="tour_box w100 board_write">
         <SubTopNav pageTools={pageTools} children={
@@ -433,7 +434,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 <div className="float_right">
 
                     {/* 차라리 여기서 상품을 취소 상태로 변경하거나, 다시 오픈 상태로 변경 하거나 요청을 수락 하거나  */}
-                    {isManager && status === ProductStatus.OPEN && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                    {/* {isManager && status === ProductStatus.OPEN && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
                         상품취소
                     </button>}
                     {isManager && status === ProductStatus.CANCELD && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
@@ -444,7 +445,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     </button>}
                     {isManager && status === ProductStatus.READY && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
                         생성수락
-                    </button>}
+                    </button>} */}
                     {!updateAble && !isCreateMode && isParterNonB && <button disabled={!normalPartnerUpdateReqAble} onClick={handleEditReq} type="submit" className="btn medium pointcolor">
                         {status === ProductStatus.UPDATE_REQ_REFUSED ? "재신청" : "수정요청"}
                         <i data-for="ToolTipLayOut" className="jandaicon-info2 tooltip" data-iscapture={true} data-tip="수정요청은 예약인원이 없을때만 가능합니다." />
@@ -457,7 +458,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     {!isCreateMode && <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>}
                 </div>
             </div>
-
+            <LocalStorageBoard key={loadKey} onLoad={setTourData} />
         </div>
         <Prompt id="UpdateMemo" onSubmit={handleSubmitUpdateReq} title="업데이트 변경 사항을 입력 해주세요." />
         <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" />

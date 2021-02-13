@@ -173,7 +173,7 @@ export const useJoin = () => {
         await signleUpload(e.target.files, (url, file) => {
             setData({
                 ...data,
-                busiRegistration: file
+                bankImg: file
             })
         })
 

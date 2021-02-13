@@ -65,7 +65,6 @@ export const MsGoodsMain: React.FC<IProp> = () => {
     const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({ filter, setFilter });
     const { selectAll, toggleAll, isAllSelected, isChecked, toggle } = useIdSelecter(items.map((item, i) => item._id));
     const singleSort = useSingleSort(sort, setSort)
-
     const [popProductId, setPopProductId] = useState("");
 
     const {

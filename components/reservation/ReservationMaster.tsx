@@ -8,7 +8,7 @@ import { bookingList_BookingList_data, _BookingFilter, _ProductFilter } from '..
 import { useSingleSort } from '../../hook/useSort';
 import { useQueryFilter } from '../../hook/useQueryFilter';
 import { useDateFilter } from '../../hook/useSearch';
-import { useBookingCancel, useBookingList } from '../../hook/useBooking';
+import { useBookingList } from '../../hook/useBooking';
 import { useBankDepositConfirm } from '../../hook/usePayment';
 import { ResvTopNav } from '../topNav/MasterTopNav';
 import { MasterSearchBar } from '../master/MasterSearchBar';
@@ -17,10 +17,12 @@ import { getExcelByBookings } from '../../utils/getExcelData';
 import { SingleSortSelect } from '../common/SortSelect';
 import { Prompt } from '../promptModal/Prompt';
 import { useCustomCount } from '../../hook/useCount';
-import { BookingModal } from '../bookingModal/BookingModal';
+import { BookingModal, IBookingModalInfo } from '../bookingModal/BookingModal';
+import { useModal } from '../../hook/useModal';
+import { useBookingBoard } from '../../hook/useBookingBoard';
 
 
-type UserMasterHandler = {
+export type UserMasterHandler = {
     handleCancelConfirm: () => void;
     handleSelectCancelConfirm: () => void;
     openBookingModal: (code: string) => void
@@ -47,34 +49,24 @@ interface IProp {
 
 export const ReservationMaster: React.FC<IProp> = ({ Table, FilterBtn }) => {
     const { totalBookingCountMaster, readyBookingCountMaster, compeltedBookingCountMaster } = useCustomCount(["totalBookingCountMaster", "readyBookingCountMaster", "compeltedBookingCountMaster"])
-    const bookingListHook = useBookingList();
-    const { items, filter, setFilter, pageInfo, sort, setSort, viewCount, setViewCount, page, setPage, getLoading } = bookingListHook;
-    const { setUniqFilter } = useQueryFilter<_ProductFilter>({})
-    const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({ filter, setFilter })
-    const idSelectHook = useIdSelecter(items.map(i => i._id));
-    const { selectAll, selectedIds } = idSelectHook;
-    const singleSort = useSingleSort(sort, setSort);
-    const [bookingCancel] = useBookingCancel();
-    const [bookingModalCode, setBookingModalCode] = useState<string>("");
+
+    const { bookingListHook, bookingModalHook, doSearch, idSelecterHook, singleSortHook, handleDetail, dateFilterHook } = useBookingBoard();
+    const { filter, items, setFilter, setViewCount, viewCount } = bookingListHook;
+    const { filterEnd, filterStart, hanldeCreateDateChange } = dateFilterHook;
+    const { selectAll, selectedIds } = idSelecterHook;
+
     const [popupCancelItem, setpopupCancelItem] = useState<bookingList_BookingList_data>()
     const [paymentConfirm] = useBankDepositConfirm();
 
 
-    const doSearch = (search: string) => {
-        setUniqFilter(
-            "title_contains",
-            ["title_contains"],
-            search
-        )
-    }
     const handleCancel = (reason: string) => {
         if (!popupCancelItem) throw Error
-        bookingCancel({
-            variables: {
-                reason,
-                bookingId: popupCancelItem._id,
-            }
-        })
+        // bookingCancel({
+        //     variables: {
+        //         reason,
+        //         bookingId: popupCancelItem._id,
+        //     }
+        // })
     }
 
     const openCacnelPrompt = (item: bookingList_BookingList_data) => () => {
@@ -109,13 +101,9 @@ export const ReservationMaster: React.FC<IProp> = ({ Table, FilterBtn }) => {
     const handleSelectCancelConfirm = () => {
     }
 
-    const openBookingModal = (code: string) => {
-        setBookingModalCode(code);
-        openModal("#BookingModal")();
-    }
 
     const handlers = {
-        openBookingModal,
+        openBookingModal: handleDetail,
         handlePaymentConfirm,
         openCacnelPrompt,
         checkOnByhand,
@@ -123,7 +111,6 @@ export const ReservationMaster: React.FC<IProp> = ({ Table, FilterBtn }) => {
         handleCancelConfirm,
         handleSelectCancelConfirm,
     }
-
 
     return <MasterLayout>
         <div className="in ">
@@ -160,7 +147,9 @@ export const ReservationMaster: React.FC<IProp> = ({ Table, FilterBtn }) => {
                                 <option value={"code_eq" as keyof _ProductFilter}>상품상태</option>
                                 <option value={"code_eq" as keyof _ProductFilter}>출발여부</option>
                             </select>
-                        } defaultRange={{}} doSearch={doSearch} filterEnd={filterEnd} filterStart={filterStart} />
+                        } defaultRange={{}} doSearch={doSearch}
+                            filterEnd={filterEnd} filterStart={filterStart}
+                        />
                         <MasterAlignMent
                             LeftDiv={
                                 <div>
@@ -168,7 +157,7 @@ export const ReservationMaster: React.FC<IProp> = ({ Table, FilterBtn }) => {
                                 </div>
                             }
                             Sort={
-                                <SingleSortSelect {...singleSort} />
+                                <SingleSortSelect {...singleSortHook} />
                             }
                             excelData={getExcelByBookings(items)}
                             viewCount={viewCount}
@@ -176,10 +165,10 @@ export const ReservationMaster: React.FC<IProp> = ({ Table, FilterBtn }) => {
                             handleSelectAll={selectAll}
                         />
                     </div>
-                    <Table bookingListHook={bookingListHook} idSelectHook={idSelectHook} handlers={handlers} />
+                    <Table bookingListHook={bookingListHook} idSelectHook={idSelecterHook} handlers={handlers} />
                 </div>
             </div>
-            <BookingModal code={bookingModalCode} />
+            <BookingModal key={bookingModalHook.info?.code} {...bookingModalHook} />
             <SearcfInfoBox />
             <Prompt onSubmit={handleCancel} title="예약 취소하기" id="BookingCancelModal" />
         </div>

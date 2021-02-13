@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useBookingCancel } from '../../hook/useBooking';
 import { Fbooking } from '../../types/api';
 import { Modal } from '../modal/Modal';
 
@@ -9,7 +8,6 @@ interface IProp {
 
 export const BookingCancelModal: React.FC<IProp> = ({ booking }) => {
     const [cancelReason, setCancelReason] = useState("");
-    const [cancelMu] = useBookingCancel();
 
     //하나씩만됨
     const handleCancel = () => {

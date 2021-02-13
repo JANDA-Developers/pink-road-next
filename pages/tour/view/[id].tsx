@@ -116,19 +116,17 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     return index === sliderIndex ? "on" : ""
   }
 
-  const handleAddBracket = () => {
+  const addBracket = () => {
     addItem({
       count,
       price: totalPrice,
       name: product!.title,
       _id: product!._id
     })
+  }
 
-    if (count.adult + count.baby + count.kids === 0) {
-      alert("인원을 먼저 선택 해주세요.");
-    } else {
-      alert("장바구니에 저장 되었습니다.")
-    }
+  const handleAddBracket = () => {
+    addBracket();
   }
 
   const handleQnaClick = (id: string) => () => {
@@ -136,7 +134,12 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   }
 
   const handleDoPay = () => {
-    handleAddBracket()
+    if (count.adult + count.baby + count.kids === 0) {
+      alert("인원을 먼저 선택 해주세요.");
+      return;
+    }
+
+    addBracket();
     router.push("/payment/")
   }
 

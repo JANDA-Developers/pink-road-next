@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Basket } from "../../components/basket/Basket";
 import { getAuth } from "../../components/nice/getAuth";
@@ -27,53 +28,69 @@ export const Payment: React.FC<IProp> = ({ }) => {
     const { item: findBooking } = useBookingFindByCode(urlBKcode);
     const [bookingCreate] = useBookingsCreate();
     const { items, totalPrice, updateComponent, getLoading }: IUseBasket = useBasket()
-    const [payMethod, setPayMethod] = useState(PayMethod.NICEPAY_CARD);
+    const router = useRouter();
 
-    const startPay = () => {
-        auth(totalPrice)
-    }
 
     const handleBooking = (param: TPaySubmitInfo) => {
         const params: BookingsCreateInput[] = items.map((item, i) => ({
             adultCount: item.count.adult,
             babyCount: item.count.baby,
             kidCount: item.count.kids,
-            email: param.buyerInfo.phone,
+            email: param.buyerInfo.email,
             name: param.buyerInfo.name,
             phoneNumber: param.buyerInfo.phone,
             message: "",
             product: item._id,
-            payMethod: param.payMethod
+            payMethod: param.payMethod,
+            bankTransfter: param.bankTransInput
         }))
 
         bookingCreate({
             variables: {
                 params,
-                payMethod
+                payMethod: param.payMethod
             }
         }).then(result => {
             if (result.data?.BookingsCreate.ok) {
                 const bks = result.data.BookingsCreate.data || []
                 const groupCode = bks[0]?.groupCode;
+
+                const redirectPath = "/payment/complete?groupCode=" + groupCode;
+                const redirectUrl = process.env.NEXT_PUBLIC_CLIENT_DOMAIN + redirectPath;
+                const failRedirectUrl = process.env.NEXT_PUBLIC_CLIENT_DOMAIN + "/payment/fail";
+
                 const customParams: IcustomParams = {
                     groupCode,
-                    redirectUrl: process.env.NEXT_PUBLIC_CLIENT_DOMAIN + "/payment/complete?groupCode=" + groupCode,
-                    failRedirectUrl: process.env.NEXT_PUBLIC_CLIENT_DOMAIN + "/payment/fail"
+                    redirectUrl,
+                    failRedirectUrl
                 }
                 setCreatedBookings(bks);
                 setCustomParams(customParams);
-                startPay();
+                if (param.payMethod === PayMethod.NICEPAY_CARD) {
+                    alert("auth 발동");
+                    auth(totalPrice);
+                } else {
+                    alert("redirectOccur");
+                    router.push(redirectPath)
+                }
             }
         })
     }
+    const openNCmodal = () => {
+        if (window.jdPayStart)
+            window.jdPayStart();
+    }
 
+    //부킹후에 나이스 인증모달 인증 셋팅후 인증모달 트리거.
     const auth = async (price: number) => {
         alert("auth occcurend");
         const { data } = await getAuth(price);
+
+        if (payMethod === PayMethod.NICEPAY_CARD) return;
         if (data.ediDate) {
             setAuthData(data);
-        }
-        else {
+            openNCmodal();
+        } else {
             throw Error("this asdasd")
         }
     }

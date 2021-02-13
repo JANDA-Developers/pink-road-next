@@ -9,7 +9,7 @@ import { useRestartUsers, useSignUpAccept, useSignUpDeny, useStopUsers, useUserL
 import { MasterLayout } from '../../layout/MasterLayout';
 import { Fuser, GENDER, UserStatus, _UserFilter, _UserSort } from '../../types/api';
 import { TElements } from '../../types/interface';
-import { openModal } from '../../utils/popUp';
+import { closeModal, openModal } from '../../utils/popUp';
 import { BoardModal } from '../boardModal/BoardModal';
 import { SearcfInfoBox } from '../common/SearcfInfoBox-Mypage';
 import { SingleSortSelect } from '../common/SortSelect';
@@ -21,14 +21,15 @@ import { ResignModal } from '../resign/ResignModal';
 import { MemberTopNav } from '../topNav/MasterTopNav';
 import { UserModal } from '../userModal/UserModal';
 
-type UserMasterHandler = {
+export type UserMasterHandler = {
     handleViewDetailUser: (id: string) => () => void;
     handleStopUser: () => void;
     handleRestartUser: () => void
     handleResignUser: () => void;
     handleViewUserBoard: (user: Fuser) => () => void;
     handleSignUpAccept: (userIds: string[]) => void;
-    handleSignUpDeny: (userIds: string[], reason: string) => void;
+    handleSignUpDeny: (userIds: string[], reason: string) => void
+    handleDenyPop: (userId: string) => () => void;
 }
 
 export interface IMemberTableProp {
@@ -67,7 +68,12 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
     const [updateUser] = useUserUpdate();
     const [signUpAccept] = useSignUpAccept();
     const [signUpDeny] = useSignUpDeny();
+    const [denyPopId, setDenyPopId] = useState("");
 
+    const handleDenyPop = (userId: string) => () => {
+        setDenyPopId(userId)
+        openModal("#DenyPopup")()
+    }
 
     const handleSignUpAccept = (userIds: string[]) => {
         signUpAccept({
@@ -103,6 +109,8 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
         else if (selectedIds.length < 1) alert("유저를 선택 해주세요.");
         resignUser({
             variables: {
+                reason: "manager",
+                resignReasonType: "manager",
                 _id: selected,
                 pw: "" //마스터 일때는 안넣어도됨
             }
@@ -168,7 +176,8 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
         handleResignUser,
         handleViewUserBoard,
         handleSignUpDeny,
-        handleSignUpAccept
+        handleSignUpAccept,
+        handleDenyPop
     }
 
     return <MasterLayout>
@@ -235,7 +244,11 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
             <ResignModal />
             {/* popup-작성한 게시글 보기 */}
             {popupUser && <BoardModal user={popupUser} />}
-            <UserModal userId={popupId} />
+            <UserModal handlers={handlers} userId={popupId} />
+            <Prompt title="회원가입 승인 거절" onSubmit={(reason: string) => {
+                handleSignUpDeny([denyPopId], reason);
+                closeModal("#DenyPopup")()
+            }} id="DenyPopup" />
         </div>
     </MasterLayout >
 };

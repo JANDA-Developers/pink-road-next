@@ -71,26 +71,20 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
 
     return <div>
         <div className="top_visual">
-            <SubTopNav pageTools={pageTools} />
-            <div className="header_nav">
-                <ul>
-                    <li className="home">
-                        <Link href="/" ><a /></Link>
-                    </li>
-                    <li className="homedeps1">
+            <SubTopNav pageTools={pageTools} >
+                <li className="homedeps1">
+                    <Link href="/mypage">
+                        <a >My page</a>
+                    </Link>
+                </li>
+                {isLogin &&
+                    <li className="homedeps2">
                         <Link href="/mypage">
-                            <a >My page</a>
+                            <a >회원정보</a>
                         </Link>
                     </li>
-                    {isLogin &&
-                        <li className="homedeps2">
-                            <Link href="/mypage">
-                                <a >회원정보</a>
-                            </Link>
-                        </li>
-                    }
-                </ul>
-            </div>
+                }
+            </SubTopNav>
         </div>
         <div className="mypage_in w100">
             {isLogin && <ul className="subtop_nav">

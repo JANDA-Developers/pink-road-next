@@ -37,9 +37,7 @@ export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultP
     // 여기서 state를 사용하는데 구조적 문제가있음 
     //_app에서 state를 사용하는것이 위험함
     // 어떻게든 값을 업데이트 할 필요는 있어보임
-        console.log("index2")
         // console.log(page)
-        console.log("index3")
         // console.log(defaultPage)
     const editUtils = getEditUtils<Page>(editMode, page, setPage,lang);
 

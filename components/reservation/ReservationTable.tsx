@@ -10,6 +10,7 @@ export const ReservationTable: React.FC<IReservationTableProp> = ({ bookingListH
     const { handlePaymentConfirm, openCacnelPrompt, openBookingModal } = handlers;
     const { isAllSelected, selectAll, toggle, toggleAll, isChecked } = idSelectHook;
     const { items, pageInfo, setPage } = bookingListHook;
+    
     return <div className="master__table reservation_list ln07">
         <div className="thead">
             <div className="t01">

@@ -43,9 +43,6 @@ export const useIdSelecter = (list:string[], defaultIds:string[] = []) => {
         }
     }
 
-    console.log("selectedIds");
-    console.log(selectedIds);
-
     const selectLength = selectedIds.length;
 
     return {

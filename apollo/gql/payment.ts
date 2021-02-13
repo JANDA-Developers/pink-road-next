@@ -64,3 +64,23 @@ export const BANK_DEPOSIT_CONFIRM = gql`
 }
 ${F_PAYMENT}
 `
+
+
+export const BANK_REFUND = gql`
+  mutation bankRefund(
+    $params:[BankRefundInput!]!
+  ) {
+    BankRefund(
+      params: $params
+    ) {
+    ok
+    error {
+      location
+      severity
+      code
+      message
+    }
+  }
+}
+`
+

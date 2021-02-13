@@ -2,7 +2,7 @@ import {  MutationHookOptions, useMutation } from "@apollo/client";
 import { PRODUCT_FIND_BY_ID_FOR_SELLER,
      PRODUCT_DELETE, 
      PRODUCT_LIST, ACCEPT_PRODUCT_CREATE, ACCEPT_PRODUCT_UPDATE, REJECT_PRODUCT_UPDATE, REJECT_PRODUCT_CREATE, PRODUCT_POST_UPDATE_REQ, TRAVEL_CANCEL,  TRAVEL_DETERMINE, TRAVEL_WITDRWAL, PRODUCT_ELSE_DENY, PRODUCT_ELSE_ACCEPT, PRODUCT_ELSE_REQ } from "../apollo/gql/product";
-import { productCreateAccept,  productUpdateAccept, productDelete, productDeleteVariables, productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data, productFindById_ProductFindById_data, productList_ProductList_data, productUpdateReject, _BookingFilter, _BookingSort, _PortfolioFilter, productCreateReject, productUpdateAcceptVariables, productCreateAcceptVariables, productUpdateRejectVariables, ProductStatus, productCreateRejectVariables, productUpdateReq, productUpdateReqVariables, travelDetermine, travelDetermineVariables, travelCancel, travelCancelVariables, travelWithdrwal, travelWithdrwalVariables } from "../types/api";
+import { productCreateAccept,  productUpdateAccept, productDelete, productDeleteVariables, productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data, productFindById_ProductFindById_data, productList_ProductList_data, productUpdateReject, _BookingFilter, _BookingSort, _PortfolioFilter, productCreateReject, productUpdateAcceptVariables, productCreateAcceptVariables, productUpdateRejectVariables, ProductStatus, productCreateRejectVariables, productUpdateReq, productUpdateReqVariables, travelDetermine, travelDetermineVariables, travelCancel, travelCancelVariables, travelWithdrwal, travelWithdrwalVariables, UserRole } from "../types/api";
 import { productFindById, productFindByIdVariables } from "../types/api";
 import { IlistQueryInit } from "../types/interface";
 import { PRODUCT_FIND_BY_ID } from "../apollo/gql/product";
@@ -99,12 +99,14 @@ export const openListFilter = {
 
 
 
-export const useProductController = (onSucess: () => void) => {
+export const useProductController = (onSucess: () => void,role:UserRole) => {
 
     const [productElseReq, { loading:elseReqLoading }] = useProductElseReq({
         onCompleted: ({ ProductElseReq }) => {
             if (ProductElseReq.ok)  {
-                alert("요청이 접수 되었습니다");
+                if(role === UserRole.partner) {
+                    alert("요청이 접수 되었습니다");
+                }
                 onSucess();
             }
         }

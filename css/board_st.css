@@ -42,7 +42,7 @@
             content: '';
             display: inline-block;
             position: absolute;
-            right: -2px;
+            right:0;
             top: 50%;
             margin-top: -5px;
             height: 10px;

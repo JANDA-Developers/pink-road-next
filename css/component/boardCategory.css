@@ -9,8 +9,7 @@
 }
 .BoardCategories__li {
     flex: 1 1;
-    padding: 20px;
-    margin: auto!important;
+    padding:0;
     white-space: nowrap;
     min-width: 70px;
 }

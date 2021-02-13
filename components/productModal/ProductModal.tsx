@@ -26,14 +26,14 @@ interface IProp {
 
 type promptTarget = "denyReq" | "travelWithdrwal" | "update" | "create" | "settlement" | "determine" | "travelCancel";
 
-interface PromptInfo {
+interface IPromptInfo {
     title?: string;
     target: promptTarget;
 }
 
 export const ProductModal: React.FC<IProp> = ({ productId }) => {
     const ProductId = productId;
-    const { isManager, isParterB, isParterNonB } = useContext(AppContext);
+    const { isManager, isParterB, isParterNonB, role, isSeller } = useContext(AppContext);
     const { item: product } = useProductFindByIdForSeller(productId, {
         onCompleted: ({ ProductFindByIdForSeller }) => {
             if (!ProductFindByIdForSeller.ok) {
@@ -59,7 +59,8 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
     const { acceptCreate, acceptUpdate, rejectCreate, rejectUpdate, productDelete, tarvelDetermine, travelCancel, travelWithdrwal, loading, productElseAccept, productElseDeny, productElseReq } = useProductController(
         () => {
             closeModal("#PromptModal")();
-        }
+        },
+        role
     );
     const totalLoading = settlementLoading || loading;
 
@@ -82,7 +83,7 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
     const completeBookingsTotalCount = arraySum(completeBookings.map(cb => cb.totalCount));
     const selectedBookings = bookings.filter(bk => selectedIds.includes(bk._id));
     const selectedOne = selectedBookings[0];
-    const [proptTarget, setPomptTarget] = useState<PromptInfo>();
+    const [proptTarget, setPomptTarget] = useState<IPromptInfo>();
 
     const handleTravelCancel = (reason: string) => {
         if (totalLoading) return;
@@ -248,7 +249,7 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
     // 취소 가능: 일반파트너일경우 인원이 없을때 
     const cancelAvailable = (noPeople || isManager || isParterB) && product?.status === ProductStatus.OPEN && product?.determined === false; // Travel 캔슬함수 사용하면됨
     // 삭제 가능: 사람없을때 || 오픈이거나 마감 상태가 아닐떄 
-    const deleteAvailable = (noPeople || isManager || isParterB) && product && DELETE_AVAIABLE_PRODUCTS.includes(product?.status);
+    const deleteAvailable = (noPeople || isManager) && product && DELETE_AVAIABLE_PRODUCTS.includes(product?.status);
     // 다시 오픈이 가능한가
     const reopenAvailable = (isManager || isParterB) && product?.status === ProductStatus.CANCELD;
     // 다시 오픈 요청이 가능한가
@@ -536,7 +537,7 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
 
                             {/* 여행취소 */}
                             {cancelAvailable && <button onClick={handleOpenPrompt("travelCancel", "취소 사유를 입력 해주세요")} type="submit" className="btn medium">여행취소
-                                {isParterNonB && <i className="jandaicon-info2 tooltip" data-for="TooltipProductModal" data-tip={CONDITION.travelCacnel} />}
+                                {isSeller && <i className="jandaicon-info2 tooltip" data-for="TooltipProductModal" data-tip={CONDITION.travelCacnel} />}
                             </button>}
 
                             {/* 여행재개 */}

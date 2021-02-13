@@ -1,12 +1,16 @@
 import { PurChasedItem } from 'components/mypage/PurchasedItem';
 import { MypageLayout } from 'layout/MypageLayout';
 import React, { useState } from 'react';
-import { BookingModal } from '../../components/bookingModal/BookingModal';
+import { BookingModal, IBookingModalInfo } from '../../components/bookingModal/BookingModal';
+import { Paginater } from '../../components/common/Paginator';
 import SortSelect from '../../components/common/SortMethod';
 import { ViewCount } from '../../components/common/ViewCount';
 import { DayPickerModal } from '../../components/dayPickerModal/DayPickerModal';
+import { Change } from '../../components/loadingList/LoadingList';
 import { SearchBar } from '../../components/searchBar/SearchBar';
 import { useBookingList } from '../../hook/useBooking';
+import { TBookingSearchType, useBookingBoard } from '../../hook/useBookingBoard';
+import { useModal } from '../../hook/useModal';
 import { useQueryFilter } from '../../hook/useQueryFilter';
 import { useDateFilter } from '../../hook/useSearch';
 import { BookingStatus, _BookingFilter, _ProductFilter } from '../../types/api';
@@ -15,40 +19,13 @@ import { closeModal, openModal } from '../../utils/popUp';
 
 interface IProp { }
 
+
+
+
 export const MyPagePurchase: React.FC<IProp> = () => {
-    const { filter: filterProduct, setOR: setProductOR, setFilter: setProductFilter } = useQueryFilter<_ProductFilter>({})
-    const { items = [], setFilter, setPage, page, filter, sort, setSort, viewCount, setViewCount } = useBookingList({}, {
-        overrideVariables: {
-            ...filterProduct
-        }
-    })
-    const [detailCode, setDetailCode] = useState("")
-    const [filterType, setFilterType] = useState<"keywards" | "productName">("keywards");
-    const { hanldeCreateDateChange } = useDateFilter({
-        filter,
-        setFilter,
-        dateKey: "createdAt",
-    });
-
-    const setType = (status?: BookingStatus) => () => {
-        filter.status_eq = status;
-        setFilter({ ...filter })
-    }
-
-    const doSearch = (search: string) => {
-        if (filterType === "productName") {
-            setProductFilter({ title_contains: search });
-        }
-    }
-
-    const handleDetail = (code: string) => () => {
-        setDetailCode(code);
-        setTimeout(() => {
-            openModal("#BookingModal")()
-        }, 100)
-    }
-
-    const checkOnStatus = (status?: BookingStatus) => status === filter.status_eq ? "check on" : "check";
+    const { filterType, bookingModalHook, bookingListHook, checkOnStatus, doSearch, handleDetail, dateFilterHook, isTimeOverExcept, setFilterType, setIsTimeOverExcept, setType } = useBookingBoard()
+    const { setPage, filter, filterToRange, getLoading, items, setFilter, viewCount, sort, setSort, setViewCount, pageInfo } = bookingListHook;
+    const { hanldeCreateDateChange } = dateFilterHook;
 
     return <MypageLayout>
         <div className="in mypage_purchase">
@@ -65,6 +42,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                                 <div className="text">
                                     <span onClick={setType(undefined)} className={checkOnStatus(undefined)}>전체</span>
                                     <span onClick={setType(BookingStatus.COMPLETE)} className={checkOnStatus(BookingStatus.COMPLETE)}>예약완료</span>
+                                    <span onClick={setType(BookingStatus.READY)} className={checkOnStatus(BookingStatus.READY)}>예약대기</span>
                                     <span onClick={setType(BookingStatus.CANCEL)} className={checkOnStatus(BookingStatus.CANCEL)}>취소예약</span>
                                 </div>
                             </div>
@@ -75,8 +53,9 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                                 const val = e.currentTarget.value;
                                 setFilterType(val as any)
                             }} value={filterType} className="option">
-                                <option value={"productName"}>상품명</option>
-                                <option value={"keywards"}>키워드</option>
+                                <option value={"exField__title_contains" as TBookingSearchType}>상품명</option>
+                                <option value={"exField__sellerName_eq" as TBookingSearchType}>판매자명</option>
+                                <option value={"code_eq" as TBookingSearchType}>예약코드</option>
                             </select>
                         }
                         onDateChange={hanldeCreateDateChange}
@@ -86,33 +65,35 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                 </div>
                 <div className="con_bottom">
 
-                    <div className="con_box">
-                        <div className="alignment">
-                            <div className="left_div">
-                                총 <strong>{(items || []).length}</strong>개
+                    <Change change={!getLoading}>
+                        <div className="con_box">
+                            <div className="alignment">
+                                <div className="left_div">
+                                    총 <strong>{(items || []).length}</strong>개
                             </div>
-                            <div className="right_div">
-                                <SortSelect onChange={setSort} sort={sort} />
-                                <ViewCount value={viewCount} onChange={(val) => {
+                                <div className="right_div">
+                                    <SortSelect onChange={setSort} sort={sort} />
+                                    <ViewCount value={viewCount} onChange={(val) => {
                                     setViewCount(val);
-                                }} />
+                                    }} />
+                                </div>
                             </div>
+                            {/*리스트로 보기*/}
+                            <div className="list selectViewList">
+                                <ul className="list_ul">
+                                    {items.map((item, i) =>
+                                        <PurChasedItem onDetail={handleDetail(item.code)} item={item} key={item._id} />
+                                    )}
+                                </ul>
+                            </div>
+                            <Paginater setPage={setPage} pageInfo={pageInfo} />
                         </div>
-                        {/*리스트로 보기*/}
-                        <div className="list selectViewList">
-                            <ul className="list_ul">
-                                {items.map((item, i) =>
-                                    <PurChasedItem onDetail={handleDetail(item.code)} item={item} key={item._id} />
-                                )}
-                            </ul>
-                        </div>
-                        {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
-                    </div>
+                    </Change>
                 </div>
             </div>
         </div>
-        {detailCode && <BookingModal code={detailCode} />}
-        <DayPickerModal defaultRange={filterToRange(filter, "createdAt")} onSubmit={(range) => {
+        <BookingModal key={bookingModalHook.info?.code} {...bookingModalHook} />
+        <DayPickerModal defaultRange={filterToRange("createdAt_gte")} onSubmit={(range) => {
             closeModal("#dayPickerModal")()
             const data = rangeToFilter(range, "createdAt")
             setFilter({

@@ -1,7 +1,7 @@
 import { QueryHookOptions, useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
-import { BANK_DEPOSIT_CONFIRM, PAYMENT_LIST, SETTLEMENT_CAL } from "../apollo/gql/payment";
-import { bankDepositConfirm, bankDepositConfirmVariables, Fpage,  Fpayment, paymentList, paymentListVariables, settlementCal, settlementCalVariables, _PaymentFilter, _PaymentSort } from "../types/api";
+import { BANK_DEPOSIT_CONFIRM, BANK_REFUND, PAYMENT_LIST, SETTLEMENT_CAL } from "../apollo/gql/payment";
+import { bankDepositConfirm, bankDepositConfirmVariables, bankRefund, bankRefundVariables, Fpage,  Fpayment, paymentList, paymentListVariables, settlementCal, settlementCalVariables, _PaymentFilter, _PaymentSort } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
 import { generateMutationHook } from "../utils/query";
 import { useListQuery, ListInitOptions, IListHook } from "./useListQuery";
@@ -62,3 +62,5 @@ export const useSettlementCal = ({
 }
 
 export const useBankDepositConfirm = generateMutationHook<bankDepositConfirm,bankDepositConfirmVariables>(BANK_DEPOSIT_CONFIRM)
+export const useBankRefund = generateMutationHook<bankRefund,bankRefundVariables>(BANK_REFUND)
+
