@@ -8,6 +8,7 @@ import { AppContext } from '../../pages/_app';
 import { paymentStatus, paymentStatus2, payMethodToKR } from '../../utils/enumToKr';
 import { autoComma, card_hypen } from '../../utils/formatter';
 import { getFromUrl } from '../../utils/url';
+import { yyyymmddHHmm } from '../../utils/yyyymmdd';
 
 interface IProp { }
 
@@ -33,8 +34,12 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
                             예약상품
                         </div>
                         <div className="payment_td">
-                            [{booking.product.code}]
-                            {booking.product.title}
+                            <span style={{ marginRight: "5px" }}>
+                                {booking.product.title}
+                            </span>
+                            <span>
+                                ({booking.product.code})
+                            </span>
                         </div>
                     </div>
                     <div className="payment_tr">
@@ -68,7 +73,7 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
                             결제일시
                         </div>
                         <div className="payment_td">
-                            <span>승인일시:{dayjs(booking.payment.createdAt).format("YYYY.MM.DD")}</span>
+                            <span>{yyyymmddHHmm(booking.payment.createdAt)}</span>
                         </div>
                     </div>}
 

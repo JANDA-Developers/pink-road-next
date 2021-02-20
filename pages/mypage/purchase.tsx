@@ -74,7 +74,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                                 <div className="right_div">
                                     <SortSelect onChange={setSort} sort={sort} />
                                     <ViewCount value={viewCount} onChange={(val) => {
-                                    setViewCount(val);
+                                        setViewCount(val);
                                     }} />
                                 </div>
                             </div>
@@ -82,7 +82,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                             <div className="list selectViewList">
                                 <ul className="list_ul">
                                     {items.map((item, i) =>
-                                        <PurChasedItem onDetail={handleDetail(item.code)} item={item} key={item._id} />
+                                        <PurChasedItem onDetail={() => { handleDetail(item.code) }} item={item} key={item._id} />
                                     )}
                                 </ul>
                             </div>

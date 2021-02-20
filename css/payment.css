@@ -64,7 +64,7 @@
     #payment .payment_box .write_type_box {
         margin-top: 50px;
         padding-top: 30px;
-        margin-bottom: 50px;
+        padding-bottom: 30px;
 
         border-top: 2px dotted #e5e5e5;
     }
@@ -92,7 +92,7 @@
         vertical-align: top;
     }
     #payment .payment_box .payment_td {
-        width: 80%;
+        width: 70%;
         text-align: left;
         display: inline-block;
         line-height: 130%;

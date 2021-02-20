@@ -861,7 +861,7 @@ div.popup_bg_full .fin{
     div.popup_bg_full .in_txt .page {
         height: 100%;
         width: 100%;
-        overflow-y: scroll;
+        overflow-y: auto;
         margin: 0 auto;
         text-align: left;
         font-size: 12px;
@@ -5872,7 +5872,7 @@ i.important_icon {
 
         .tour_details_in .boardReadBody .con_top_tap {
             position: sticky;
-            top: -1px;
+            top: 113px;
             background-color: white;
             display: flex;
             text-align: left;
@@ -8391,7 +8391,6 @@ i.calendar {
 .question_box{
     margin: 0 auto;
     margin-top: 0px !important;
-    margin-bottom: 100px !important;
     box-sizing: border-box;
     padding: 0 3%;
 }

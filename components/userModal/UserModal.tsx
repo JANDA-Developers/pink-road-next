@@ -107,7 +107,10 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                                 {isPartnerB &&
                                     <div className="tr">
                                         <div className="th01">업체주소</div>
-                                        <div className="td01"><span>{item.busi_address || item.address}</span></div>
+                                        <div className="td01"><span style={{
+                                            wordBreak: "break-all",
+                                            lineHeight: 1.3
+                                        }}>{item.busi_address || item.address}</span></div>
                                         <div className="th02">담당자</div>
                                         <div className="td02"><span>{item.manageName}</span></div>
                                         <div className="th03">연락처</div>
@@ -118,7 +121,10 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                                 }
                                 <div className="tr">
                                     <div className="th01">계좌번호</div>
-                                    <div className="td01"><span>{item.bank_name}-{item.account_number}</span></div>
+                                    <div className="td01"><span style={{
+                                        wordBreak: "break-all",
+                                        lineHeight: 1.3
+                                    }}>{item.bank_name}-{item.account_number}</span></div>
                                     <div className="th02">통장사본</div>
                                     <div className="td02">{item.bankImg && <span>{item.bankImg?.name}<button onClick={() => {
                                         window.open(item.bankImg?.uri, "_blank")

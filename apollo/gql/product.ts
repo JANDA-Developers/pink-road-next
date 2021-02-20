@@ -7,17 +7,19 @@ import { F_SETTLEMENT } from "./settlement";
 export const PRODUCTS_CREATE = gql`
   mutation productCreate(
         $params: ProductCreateInput!
+        $groupCode: String
     ) {
     ProductCreate(
-        params: $params  
+        params: $params
+        groupCode: $groupCode  
       ) {
       ok
       error {
-location
+      location
         severity
         code
         message
-}
+      }
       data {
         _id
       }
@@ -55,11 +57,11 @@ export const ACCEPT_PRODUCT_UPDATE = gql`
     ) {
       ok
       error {
-location
+      location
         severity
         code
         message
-}
+      }
       data {
         _id
       }
@@ -231,6 +233,40 @@ ${F_PRODUCT}
 ${F_PAGE}
 `
 
+
+
+// export const PRODUCT_LIST_MINIMUM = gql`
+// query productList(
+//     $sort: [_ProductSort!]
+//     $filter: _ProductFilter
+//     $pageInput: pageInput!
+// ) {
+//   ProductList(
+//     sort: $sort
+//     pageInput: $pageInput
+//     filter: $filter
+//   ) {
+//     ok
+//     error {
+//       location
+//       severity
+//       code
+//       message
+//     }
+//     page {
+//       ...Fpage
+//     }
+//     data  {
+//       ...Fproduct
+//     }
+//   }
+// }
+// ${F_USER}
+// ${F_PRODUCT}
+// ${F_PAGE}
+// `
+
+
 export const PRODUCT_FIND_BY_ID = gql`
   query productFindById(
       $_id:String!
@@ -247,6 +283,7 @@ export const PRODUCT_FIND_BY_ID = gql`
       }
       data {
         ...Fproduct
+        questionIds
         peopleCount
         author {
             ...Fuser

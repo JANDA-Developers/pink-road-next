@@ -2654,7 +2654,7 @@ div.master_popup .info_page h4 {
     }
      div.master_popup .peoplelist .tr.first > div {
         margin-bottom: 5px;
-        text-align: left !important;
+        text-align: center !important;
         width: 100% !important;
     }
     div.master_popup .peoplelist .tr.first .re01 {
@@ -2684,12 +2684,11 @@ div.master_popup .info_page h4 {
     top: 0;
 }
  div.master_popup .men {
-    width: auto !important;
     display: inline-block !important;
     text-align: center !important;
     line-height: 130%;
     font-size: 0.9em;
-    color: #2196F3 !important;
+    color: #2196F3;
     padding-top: 0px !important;
     vertical-align: middle;
 }

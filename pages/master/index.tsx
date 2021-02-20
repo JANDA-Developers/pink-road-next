@@ -1,7 +1,9 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import Link from 'next/link';
 import React from 'react';
-import { MaseterBookingLi } from '../../components/bookingLi/MasterBookingLi';
+import { MasterBookingLi } from '../../components/bookingLi/MasterBookingLi';
+import { BookingModal } from '../../components/bookingModal/BookingModal';
+import { ProductModal } from '../../components/productModal/ProductModal';
 import { useBookingList } from '../../hook/useBooking';
 import { useCountManager } from '../../hook/useCount';
 import { useProductList } from '../../hook/useProduct';
@@ -10,7 +12,7 @@ import { useSettlementList } from '../../hook/useSettlement';
 import { useUserList } from '../../hook/useUser';
 import { BookingStatus, UserRole } from '../../types/api';
 import { ALLOW_ADMINS } from '../../types/const';
-import { confirmKr, productStatus, questionSatus, settlementStatus } from '../../utils/enumToKr';
+import { confirmKr, productStatus, questionSatus, settlementStatus, userStatusKR } from '../../utils/enumToKr';
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
 import { auth } from '../../utils/with';
 import { yyyymmdd } from '../../utils/yyyymmdd';
@@ -80,7 +82,7 @@ export const MsIndex: React.FC<IProp> = () => {
 
     return <MasterLayout>
         <div className="in">
-            <div className="main_paper_div">
+            <div className="main_paper_div masterMain">
                 <div className="hang div01">
                     <div className="head">
                         <h5>상품</h5>
@@ -111,10 +113,10 @@ export const MsIndex: React.FC<IProp> = () => {
                     <ul className="table typeA">
                         <li className="head">
                             <div className="td01">상품명</div>
-                            <div className="td02">판매여부</div>
+                            <div className="td02">상품상태</div>
                             <div className="td03">판매누적</div>
                             <div className="td04">판매자</div>
-                            <div className="td05">상세정보</div>
+                            <div className="td05">게시일</div>
                         </li>
                         {products.map(pd =>
                             <li className="body">
@@ -132,7 +134,10 @@ export const MsIndex: React.FC<IProp> = () => {
                                     <strong>{pd.author?.busi_name}</strong>
                                     <span>({pd.author?.name})</span>
                                 </div>
-                                <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                                <div className="td05">
+                                    {yyyymmdd(pd.createdAt)}
+                                    {/* <a  className="masterMain__detailBtn btn">상세보기</a> */}
+                                </div>
                             </li>
                         )}
                     </ul>
@@ -170,9 +175,9 @@ export const MsIndex: React.FC<IProp> = () => {
                             <div className="td02">출발일</div>
                             <div className="td03">진행여부</div>
                             <div className="td04">예약상태</div>
-                            <div className="td05">상세정보</div>
+                            <div className="td05">예약자</div>
                         </li>
-                        {bookings.map(bk => <MaseterBookingLi booking={bk} key={bk._id} />)}
+                        {bookings.map(bk => <MasterBookingLi booking={bk} key={bk._id} />)}
                     </ul>
                 </div>
                 <div className="hang div03">
@@ -207,7 +212,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <div className="td05">상세정보</div>
                         </li>
                         {bookings.filter(bk => bk.status === BookingStatus.CANCEL).map(bk =>
-                            <MaseterBookingLi booking={bk} key={bk._id} />
+                            <MasterBookingLi booking={bk} key={bk._id} />
                         )}
                     </ul>
                 </div>
@@ -244,7 +249,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <div className="td02">정산요청일</div>
                             <div className="td03">정산금액</div>
                             <div className="td04">정산여부</div>
-                            <div className="td05">상세정보</div>
+                            <div className="td05">파트너명</div>
                         </li>
                         {settlements.map(st =>
                             <li key={st._id} className="body">
@@ -259,7 +264,10 @@ export const MsIndex: React.FC<IProp> = () => {
                                 <div className="td04">
                                     <strong>{settlementStatus(st.status)}</strong>
                                 </div>
-                                <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+                                <div className="td05">
+                                    {/* <a className="masterMain__detailBtn btn">상세보기</a> */}
+                                    {st.seller.name}
+                                </div>
                             </li>
                         )}
                     </ul>
@@ -278,7 +286,7 @@ export const MsIndex: React.FC<IProp> = () => {
                     <ul className="table typeB">
                         <li className="head">
                             <div className="td01">이름</div>
-                            <div className="td02">국적</div>
+                            <div className="td02">상태</div>
                             <div className="td03">주소</div>
                             <div className="td04">가입날짜</div>
                         </li>
@@ -288,7 +296,7 @@ export const MsIndex: React.FC<IProp> = () => {
                                     <span>{u.name}</span>
                                     <span>{autoHypenPhone(u.phoneNumber)}</span>
                                 </div>
-                                <div className="td02"><span>{u.is_froreginer}</span></div>
+                                <div className="td02"><span>{userStatusKR(u)}</span></div>
                                 <div className="td03">
                                     <span>{u.address}</span>
                                 </div>

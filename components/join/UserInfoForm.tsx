@@ -254,6 +254,7 @@ const UserInfoForm: React.FC = () => {
                         <div onClick={handleAddress} className="w100">
                             <input type="text" className="w80" name="address"
                                 value={data.address}
+                                readOnly
                                 onChange={handleData("address")} />
                             <button style={{ lineHeight: "100%" }} type="button" className="btn btn_mini" >
                                 찾기
@@ -290,13 +291,13 @@ const UserInfoForm: React.FC = () => {
                             <div className="ph_wrap">
                                 <label>
                                     <i className="important_icon" />
-                            사업자번호
-                        </label>
+                                    사업자번호
+                                </label>
                                 <span className="er red_font">
                                     *사업자번호가 바르지 않습니다.
                                 </span>
                                 <div className="w100">
-                                    <select className="w20" value={data.is_priv_corper ? "true" : "false"} onChange={handleData("is_priv_corper")}>
+                                    <select style={{marginRight: "5px"}} className="w20 mr5" value={data.is_priv_corper ? "true" : "false"} onChange={handleData("is_priv_corper")}>
                                         <option value={"false"}>개인</option>
                                         <option value={"true"}>법인</option>
                                     </select>
@@ -319,7 +320,7 @@ const UserInfoForm: React.FC = () => {
                                         className="form-control w100"
                                         name="contact"
                                         placeholder="전화번호를 입력해주세요."
-                                        value={data.busi_contact || ""}
+                                        value={autoHypenPhone(data.busi_contact || "")}
                                         onChange={handleData("busi_contact")}
                                     />
                                 </div>
@@ -399,10 +400,10 @@ const UserInfoForm: React.FC = () => {
                                 {data.bankImg?.name}
                             </span>
 
-                            <label htmlFor="business_license" className="cus_file_busi_license">
+                            <label htmlFor="bankImg" className="cus_file_busi_license">
                                 업로드
                                     </label>
-                            <input type="file" name="business_license" id="business_license"
+                            <input type="file" name="business_license" id="bankImg"
                                 className="file_busi_license"
                                 onChange={handleBankImg}></input>
                         </div>

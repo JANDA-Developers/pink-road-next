@@ -1,22 +1,23 @@
 import React from 'react';
 import Head from 'next/head';
-import RCDayPicker, { DateUtils } from 'react-day-picker';
+import RCDayPicker, { DateUtils, DayPickerProps } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { ISet } from 'types/interface';
+import dayjs from 'dayjs';
 
 type Range = {
     from?: Date,
     to?: Date
 }
 type ThandleSate = (range: Range) => void;
-interface IProps {
+interface IProps extends DayPickerProps {
     from?: Date,
     to?: Date,
     isRange?: boolean
     onRangeChange: ThandleSate
 }
 
-export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange, isRange = true, children }) => {
+export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange, isRange = true, children, ...props }) => {
     const defaultProps = {
         numberOfMonths: 2,
     };
@@ -58,6 +59,7 @@ export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange, isRa
         <div className="RangeExample">
             {/* @ts-ignore */}
             <RCDayPicker
+                {...props}
                 className="Selectable"
                 selectedDays={[from, { from, to }]}
                 modifiers={modifiers}

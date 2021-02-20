@@ -23,6 +23,7 @@ export const F_BOOKING = gql`
         leftTime
         adultCount
         kidCount
+        cancelMemo
         babyCount
         totalCount
         message
@@ -30,6 +31,7 @@ export const F_BOOKING = gql`
         bookerInclue
         bookingPrice
         status
+        isMember
         memo
         code
         groupCode
@@ -72,6 +74,7 @@ export const F_PRODUCT = gql`
         endDate
         dateRange
         adminMemo
+        groupCode
         region {
             label
             _id
@@ -84,10 +87,9 @@ export const F_PRODUCT = gql`
             adultCount
             babyCount
             kidsCount
-            completePeople
-            readyPoeple
-            cancelCompletePeople
-            cancelPeople
+            completeBookCount
+            readyBookCount
+            cancelBookCount
         }
         status
         itinerary {

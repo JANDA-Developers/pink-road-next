@@ -1,17 +1,20 @@
+import dayjs from 'dayjs';
 import React, { useContext, useEffect, useState } from 'react';
 import { useBookingCancelReject, useBookingCancelReq, useBookingFindByCode, useBookingUpdate } from '../../hook/useBooking';
 import { IUseModal } from '../../hook/useModal';
 import { useBankDepositConfirm, useBankRefund } from '../../hook/usePayment';
 import { AppContext } from '../../pages/_app';
-import { BookingStatus, PaymentStatus, ProductStatus } from '../../types/api';
-import { determinedKr, genderToKR, payMethodToKR, productStatus } from '../../utils/enumToKr';
+import { BookingStatus, PaymentStatus, PayMethod, ProductStatus } from '../../types/api';
+import { determinedKr, genderToKR, paymentStatus, paymentStatus2, payMethodToKR, peopleCurrentCountBracket, personCountBracket, productStatus } from '../../utils/enumToKr';
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
 import { closeModal, openModal } from '../../utils/popUp';
-import { yyyymmdd } from '../../utils/yyyymmdd';
+import { printRecipt } from '../../utils/recipt/recept';
+import { yyyymmdd, yyyymmddHHmm } from '../../utils/yyyymmdd';
 import { cardRefund } from '../nice/refund';
 import { Prompt } from '../promptModal/Prompt';
 import { IRefundModalSubmit, RefundModal } from '../promptModal/RefundModal';
-import { BookingStatusBadge } from '../Status/StatusBadge';
+import { ITableInfo } from '../recipt/components/TableRender';
+import { BookingStatusBadge, RequestBadge } from '../Status/StatusBadge';
 
 export interface IBookingModalInfo {
     code: string;
@@ -28,7 +31,7 @@ interface IPromptInfo {
 }
 
 
-export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
+export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalClose }) => {
     const code = info?.code;
     const { isSeller, isManager, myProfile } = useContext(AppContext);
     const { item: booking } = useBookingFindByCode(code);
@@ -48,8 +51,20 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
     })
     const [bankRefund, { loading: refundLoading }] = useBankRefund()
     const [cancelReq, { loading: reqLoading }] = useBookingCancelReq()
-    const [cancelReject, { loading: rejectLoading }] = useBookingCancelReject()
-    const [bankConfirm, { loading: confirmLoading }] = useBankDepositConfirm()
+    const [cancelReject, { loading: rejectLoading }] = useBookingCancelReject({
+        onCompleted: ({ BookingCancelReq }) => {
+            if (BookingCancelReq.ok) {
+                alert("취소요청이 거절처리 되었습니다.");
+            }
+        }
+    })
+    const [bankConfirm, { loading: confirmLoading }] = useBankDepositConfirm({
+        onCompleted: ({ BankDepositConfirm }) => {
+            if (BankDepositConfirm.ok) {
+                alert("입금이 확인되어 예약이 완료처리 되었습니다.")
+            }
+        }
+    })
     const [memo, setMemo] = useState("");
 
     const totalLoading = updateLoading || refundLoading || reqLoading || rejectLoading || confirmLoading;
@@ -72,10 +87,22 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
 
     const handleBankDeposit = () => {
         if (totalLoading) return;
+        if (!paymentId) return;
         bankConfirm({
             variables: {
                 paymentIds: [paymentId || ""]
             }
+        })
+    }
+
+    const handleCardRefund = (cancelInfo: IRefundModalSubmit) => {
+        if (!booking?._id) return;
+        cardRefund({
+            bookingId: booking?._id,
+            price: cancelInfo.cancelPrice.toString(),
+            partialCancelCode: "0",
+            cancelMemo: cancelInfo.cancelMemo || "",
+            reqStatus: cancelInfo.reqStatus
         })
     }
 
@@ -128,7 +155,7 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
         if (proptTarget?.target === "cancelReject") return handleCancelReject
         if (proptTarget?.target === "cancelReq") return handleCancelReq
         return () => { }
-    })() as () => void;
+    })() as (reason: string) => void;
 
     useEffect(() => {
         if (booking) {
@@ -142,25 +169,74 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
     }
     const { product, payment, bankTransInfo } = booking;
 
-    //  잠깐 판매자가 예약 취소 수락이 가능한가???? 윙?
 
+    const isAuthor = product.author?._id === myProfile?._id;
+    const isBuyer = booking.booker?._id === myProfile?._id;
+    const isComplete = booking.status === BookingStatus.COMPLETE;
+    const isBankBook = booking.payMethod === PayMethod.BANK || booking.payMethod === PayMethod.HAND;
+    const isReadyBook = booking.status === BookingStatus.READY;
+    const isCancelReq = booking?.isCancelRequest;
+    const isCardBooking = booking?.payMethod === PayMethod.NICEPAY_CARD;
+
+    // 취소는 마스터만 가능!
     // 취소 요청이 가능한가:: COMPLETE 상태일때 아마도 해당 판매자 이거나 본인일때 가능할 것 같다.
-    const cancelReqAB = product.author?._id === myProfile?._id && product.status === ProductStatus.COMPLETED;
+    const cancelReqAB = (isAuthor || isBuyer) && isComplete && !isCancelReq;
 
     // 취소 거절이 가능한가:: CANCEL_REQ 상태일때 이행위는 마스터만 가능하다.
-    const cancelDenyAB = isManager && booking?.isCancelRequest;
+    const cancelDenyAB = isManager && isCancelReq;
 
     // 취소가 가능하가:: 마스터일때는 취소가 가능할 것이다.
-    const cancleAB = isManager;
+    const cancleAB = isManager && isComplete;
 
     // 입금 완료처리:: 입금확인은 사실 매니저만 할 수 있는 부분
-    const bankDepositAB = isManager && product.status === ProductStatus.READY;
+    const bankDepositAB = isManager && isBankBook && isReadyBook;
+
+
+
+    const dummyTable: ITableInfo[] = [{
+        title: "결제정보",
+        infos: [[{
+            label: "결제수단",
+            value: payMethodToKR(booking.payMethod)
+        }, {
+            label: "결제금액",
+            value: autoComma(booking.bookingPrice)
+        }], [{
+            label: "결제일",
+            value: yyyymmdd(booking.createdAt)
+        }, {
+            label: "승인일",
+            value: yyyymmdd(booking.payment?.createdAt)
+        }]]
+    },
+    {
+        title: "상품정보",
+        infos: [[{
+            label: "상품명",
+            value: product.title
+        }, {
+            label: "예약인원",
+            value: booking.totalCount
+        }], [{
+            label: "인원정보",
+            value: personCountBracket(booking)
+        }, {
+            label: "상품상태",
+            value: productStatus(product.status)
+        }]]
+    }
+    ];
+
+    const reciptOpen = () => {
+        printRecipt(dummyTable)
+    }
+
 
     return <div id="BookingModal" className={`popup_bg_full ${isOpen && "OPEN_MODAL"}`}>
         <div className="BookingModal__in in_txt master_popup">
             <div className="BookingModal__headerWrap">
                 <h3 className="BookingModal__headerTitle">예약 상세정보</h3>
-                <a className="BookingModal__headerClose close_icon" onClick={closeModal}>
+                <a className="BookingModal__headerClose close_icon" onClick={modalClose}>
                     <i className="flaticon-multiply"></i>
                 </a>
             </div>
@@ -173,17 +249,17 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
                         {booking.payment && <span className="pay-day">결제일: {yyyymmdd(booking.payment?.createdAt)}</span>}
                         <button onClick={print} className="btn"><i className="flaticon-print mr5"></i>프린터</button>
                     </div>
-
                     <div className="info_table goodsinfo">
                         <div className="tr">
                             <div className="top01">
-                                <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div>
+                                {/* <div className="img" style={{ backgroundImage: 'url(/img/store_01.jpg)' }} ></div> */}
                                 <div className="info goods__info_title">
                                     <span className="ct">{product.category?.label}</span><span className="g-number">상품번호: {product.code}</span>
                                     <strong className="title">{product.title}</strong>
                                     <div className="txt">
-                                        <span className="goods-state1">확정여부: {determinedKr(product.determined)}({product.peopleCount}/{product.maxMember})</span>
+                                        <span className="goods-state1">확정여부: {determinedKr(product.determined)}({peopleCurrentCountBracket(product)}</span>
                                         <span className="goods-state2">상품상태: {productStatus(product.status)}</span>
+                                        <span className="goods-state2">판매자: {product.author?.nickName}</span>
                                     </div>
                                 </div>
                             </div>
@@ -193,90 +269,90 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
                                     <span className="where">출발장소: {product.startPoint}</span>
                                 </div>
                             </div>
-                            <div className="top03">
-                                <div className="align">
-                                    <BookingStatusBadge status={booking.status!} />
-                                    {booking.isCancelRequest && "[취소요청]"}
-                                    {BookingStatus.READY && <span><i className="jandaicon-info2"></i>예약은 걸었으나 입금이 되지 않았습니다. 1일 이내에 입금을 하지 않으시면 예약대기가 풀립니다.</span>}
-                                </div>
+                            <div className="top03 BookingModal__statusBox">
+                                <BookingStatusBadge status={booking.status!} />
+                                <RequestBadge className="ml5" {...booking} />
+                                {booking.status === BookingStatus.READY && <span><i className="jandaicon-info2"></i>예약은 걸었으나 입금이 되지 않았습니다. <br />1일 이내에 입금을 하지 않으시면 취소 됩니다.<br />남은시간 {dayjs(booking.leftTime).format("HH:mm")}</span>}
                             </div>
                         </div>
                     </div>
-
-                    {booking.payment &&
-                        <div className="info_page">
-                            <div className="left_div">
-                                <h4>결제 정보</h4>
-                                <div className="info_table w50">
-                                    <div className="tr">
-                                        <div className="th01">
-                                            결제금액
-                            </div>
-                                        <div className="td01">
-                                            <span>{autoComma(payment?.price || 0)}</span>
+                    <div className="info_page">
+                        <div className="left_div">
+                            <h4>예약 정보
+                                <button onClick={reciptOpen}>
+                                    전표출력
+                                </button>
+                            </h4>
+                            <div className="info_table w50">
+                                <div className="tr">
+                                    
+                                    <div className="th01">
+                                        예약메모
                                         </div>
-                                        <div className="th02">
-                                            결제방법
-                            </div>
-                                        <div className="td02">
-                                            <span>{payMethodToKR(payment?.payMethod)}</span>
-                                        </div>
+                                    <div className="td01">
+                                        <span className="lineHeight-2">{booking.message}</span>
                                     </div>
-                                    {bankTransInfo &&
-                                        <div className="tr">
-                                            <div className="th01">
-                                                환불정보-예금주
-                                    </div>
-                                            <div className="td01">
-                                                <span>{bankTransInfo.accountHolder}</span>
-                                            </div>
-                                            <div className="th02">
-                                                환불정보-계좌
-                                    </div>
-                                            <div className="td02">
-                                                <span>({bankTransInfo.bankName}){bankTransInfo.accountNumber}</span>
-                                            </div>
+                                    <div className="th02">
+                                        예약일시
                                         </div>
-                                    }
-                                </div>
-                            </div>
-                            {payment?.totalCancelPrice && <div className="right_div">
-                                <h4>환불 정보</h4>
-                                <div className="info_table w50">
-                                    <div className="tr">
-                                        <div className="th01">
-                                            취소신청일
-                                    </div>
-                                        <div className="td01">
-                                            <span>{yyyymmdd(booking.cancelDate)}</span>
-                                        </div>
-                                        <div className="th02">
-                                            {payment?.status === PaymentStatus.CANCEL ? "환불완료" : "-"}
-                                        </div>
-                                        <div className="td02">
-                                            <span></span>
-                                        </div>
-                                    </div>
-                                    <div className="tr">
-                                        <div className="th01">
-                                            환불형태
-                                    </div>
-                                        <div className="td01">
-                                            <span>{payment?.isPartialCancel ? "부분취소" : "전체취소"}</span>
-                                        </div>
-                                        <div className="th02">
-                                            환불금액
-                                    </div>
-                                        <div className="td02">
-                                            <span>{autoComma(payment?.totalCancelPrice)}원</span>
-                                        </div>
+                                    <div className="td02">
+                                        <span>{yyyymmddHHmm(booking.createdAt)}</span>
                                     </div>
                                 </div>
+                                {booking.cancelMemo && 
+                                <div className="tr">
+                                    <div className="th01">
+                                        취소사유
+                                        </div>
+                                    <div className="td01">
+                                        <span className="lineHeight-2">{booking.message}</span>
+                                    </div>
+                                    <div className="th02">
+                                        예약일시
+                                        </div>
+                                    <div className="td02">
+                                        <span>{yyyymmddHHmm(booking.createdAt)}</span>
+                                    </div>
+                                </div>
+                                }
                             </div>
-                            }
                         </div>
-                    }
-
+                        {payment?.totalCancelPrice ? <div className="right_div">
+                            <h4>환불 정보</h4>
+                            <div className="info_table w50">
+                                <div className="tr">
+                                    <div className="th01">
+                                        취소신청일
+                                    </div>
+                                    <div className="td01">
+                                        <span>{yyyymmdd(booking.cancelDate)}</span>
+                                    </div>
+                                    <div className="th02">
+                                        결제상태
+                                            {payment?.status === PaymentStatus.CANCEL ? "환불완료" : "-"}
+                                    </div>
+                                    <div className="td02">
+                                        <span>{paymentStatus(payment?.status)}</span>
+                                    </div>
+                                </div>
+                                <div className="tr">
+                                    <div className="th01">
+                                        환불형태
+                                    </div>
+                                    <div className="td01">
+                                        <span>{payment?.isPartialCancel ? "부분취소" : "전체취소"}</span>
+                                    </div>
+                                    <div className="th02">
+                                        환불금액
+                                    </div>
+                                    <div className="td02">
+                                        <span>{autoComma(payment?.totalCancelPrice)}원</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> : ""
+                        }
+                    </div>
                     <div className="info_page">
                         <div className="full_div">
                             <h4>예약자 정보</h4>
@@ -289,32 +365,32 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
                                             <i className="menno">예약자-미포함</i>}
                                     </span>
                                 </div>
-                                <div className="tr first">
-                                    <div className="re01">
+                                <div className="tr first peoplelist__wrap">
+                                    <div className="re01 peoplelist__li">
                                         예약자 {booking.bookerInclue && "(본인)"}
                                     </div>
-                                    <div className="re02">
+                                    <div className="re02 peoplelist__li">
                                         예약자명
                             </div>
-                                    <div className="re03">
+                                    <div className="re03 peoplelist__li">
                                         <span>{booking.name}</span>
                                     </div>
-                                    <div className="re04">
+                                    <div className="re04 peoplelist__li">
                                         연락처
                             </div>
-                                    <div className="re05">
+                                    <div className="re05 peoplelist__li">
                                         <a href={`tel:${autoHypenPhone(booking.phoneNumber)}`}>{autoHypenPhone(booking.phoneNumber)}</a>
                                     </div>
-                                    <div className="re06">
+                                    <div className="re06 peoplelist__li">
                                         성별
                                 </div>
-                                    <div className="re07">
+                                    <div className="re07 peoplelist__li">
                                         <span>{genderToKR(booking.gender) || "정보없음"}</span>
                                     </div>
-                                    <div className="re08">
+                                    <div className="re08 peoplelist__li">
                                         나이
                                 </div>
-                                    <div className="re09">
+                                    <div className="re09 peoplelist__li">
                                         <span>{booking.age || "정보없음"}</span>
                                     </div>
                                 </div>
@@ -350,17 +426,17 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
                     </div>
                     }
 
-                    <div className="fin ifMobile">
+                    {(cancelReqAB || cancleAB || cancelDenyAB || bankDepositAB) && <div className="fin ifMobile">
                         <div className="float_left">
 
                             {/* 취소요청 */}
                             {cancelReqAB && <button onClick={handleOpenPrompt("cancelReq", "취소 요청 사유를 입력 해주세요.")} type="submit" className="btn medium">취소요청</button>}
 
                             {/* 취소완료 */}
-                            {cancleAB && <button onClick={handleOpenRefundModal} type="submit" className="btn medium">지급완료</button>}
+                            {cancleAB && <button onClick={handleOpenRefundModal} type="submit" className="btn medium">취소하기</button>}
 
                             {/* 취소거절 */}
-                            {cancelDenyAB && <button onClick={handleOpenPrompt("cancelReject", "취소를 거절 사유를 입력해주세요.")} type="submit" className="btn medium">지급보류</button>}
+                            {cancelDenyAB && <button onClick={handleOpenPrompt("cancelReject", "취소를 거절 사유를 입력해주세요.")} type="submit" className="btn medium">취소거절</button>}
 
                             {/* 입금완료 처리 */}
                             {bankDepositAB && <button onClick={handleBankDeposit} type="submit" className="btn medium">입금완료</button>}
@@ -375,10 +451,15 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
                             </button> */}
                         </div>
                     </div>
+                    }
                 </div>
             </div>
-            <RefundModal onSubmit={handleBankRefund} />
-            <Prompt title={proptTarget?.title || "거절 사유를 입력 해주세요"} onSubmit={rejectHandle} id="PromptModal" />
+            <RefundModal booking={booking} onSubmit={isCardBooking ? handleCardRefund : handleBankRefund} />
+            <Prompt title={proptTarget?.title || "거절 사유를 입력 해주세요"} onSubmit={
+                (submitData) => {
+                    closeModal("#PromptModal")()
+                    rejectHandle(submitData)
+                }} id="PromptModal" />
         </div>
     </div >;
 };

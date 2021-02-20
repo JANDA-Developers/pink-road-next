@@ -147,10 +147,22 @@ export const useJoin = () => {
     }
 
     const handleData = (key: keyof typeof data) => (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
-        setData({
-            ...data,
-            [key]: e.currentTarget.value
-        })
+
+        if (key === "address") {
+            alert("??");
+        }
+
+        if (key === "is_priv_corper") {
+            setData({
+                ...data,
+                // @ts-ignore
+                [key]: e.currentTarget.value === "true"
+            })
+        } else
+            setData({
+                ...data,
+                [key]: e.currentTarget.value
+            })
     }
 
     const handleBusinessLicense = async (e: React.ChangeEvent<HTMLInputElement>) => {

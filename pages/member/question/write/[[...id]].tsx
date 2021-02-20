@@ -24,7 +24,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
         onCompleted: ({ QuestionUpdate }) => {
             if (QuestionUpdate.ok) {
                 const id = QuestionUpdate.data!._id;
-                router.push(`/member/qna/view/${id}`)
+                router.push(`/member/question/view/${id}`)
             }
         },
         awaitRefetchQueries: true
@@ -34,7 +34,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
         onCompleted: ({ QuestionCreate }) => {
             if (QuestionCreate.ok) {
                 const id = QuestionCreate.data!._id;
-                router.push(`/member/qna/view/${id}`)
+                router.push(`/member/question/view/${id}`)
             }
         },
         awaitRefetchQueries: true
@@ -43,7 +43,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
     const [questionDeleteMu] = useQuestionDelete({
         onCompleted: ({ QuestionDelete }) => {
             if (QuestionDelete.ok)
-                router.push(`/member/qna`)
+                router.push(`/member/question`)
         },
     })
 
@@ -100,7 +100,10 @@ export const QuestionWrite: React.FC<IProp> = () => {
 
         questionCreateMu({
             variables: {
-                params: omits(next, ["categoryId", "files"])
+                params: {
+                    ...omits(next, ["categoryId", "files"]),
+                    productId: question ? question._id : undefined
+                }
             }
         })
     }

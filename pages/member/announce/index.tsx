@@ -21,7 +21,7 @@ import { AppContext } from '../../_app';
 
 export const getStaticProps = getStaticPageInfo("announce");
 export const Announce: React.FC<Ipage> = (page) => {
-    const { isAdmin } = useContext(AppContext);
+    const { isManager } = useContext(AppContext);
     const pageTools = usePageEdit(page, defaultPageInfo);
     const { items, pageInfo, setPage, filter, setFilter, sort, setSort, viewCount, setViewCount } = useAnnounceList();
     const singleSortHook = useSingleSort(sort, setSort, [_AnnounceSort.isNotice_desc]);
@@ -40,7 +40,7 @@ export const Announce: React.FC<Ipage> = (page) => {
         router.push("/member/announce/view/" + itemId)
     }
 
-    return <div>
+    return <div >
         <SubTopNav pageTools={pageTools}>
             <li className="homedeps1">Member</li>
             <li className="homedeps2">
@@ -49,7 +49,7 @@ export const Announce: React.FC<Ipage> = (page) => {
         </SubTopNav>
         <div className="announce_box w1200">
             <MemberTopNav />
-            <div>
+            <div className="board_box">
                 <div className="alignment">
                     <div className="left_div">
                         <span className="infotxt">총 <strong>{pageInfo.totalCount}</strong>개</span>

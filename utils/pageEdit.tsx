@@ -93,8 +93,6 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
     class EditError extends Error {
         constructor(message: string) {
-            console.log("pagepagepagepagepage");
-            console.log(page);
             // Pass remaining arguments (including vendor specific ones) to parent constructor
             super(message)
 
@@ -127,7 +125,6 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         if (array !== undefined) {
             if (!Array.isArray(page[key][lang])) throw Error(`the ${key} object is not array!!`);
             if (array !== true) {
-                console.log(page[key][lang]);
                 if (page[key][lang][array] === undefined) throw Error(`the object key ${key} dose not  have index ${array}!!`)
             }
         }

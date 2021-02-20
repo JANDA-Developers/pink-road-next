@@ -21,12 +21,13 @@ import { useSettlementsRequest } from '../../hook/useSettlement';
 import { HandBookingModal } from '../../components/handBookingModal/HandBookingModal';
 import { PordStatusBadge } from '../../components/Status/StatusBadge';
 import { AppContext } from '../_app';
+import { Change } from '../../components/loadingList/LoadingList';
 
 interface IProp { }
 
 export const Plainning: React.FC<IProp> = () => {
     const {myProfile} = useContext(AppContext);
-    const { items, filter, setFilter, pageInfo, sort, setSort, viewCount, setViewCount, page, setPage } = useProductList({
+    const { items, filter, setFilter, pageInfo, sort, setSort, viewCount, setViewCount, page, setPage, getLoading } = useProductList({
         initialFilter: {
             authorEmail_eq:  myProfile?.email
         }
@@ -115,6 +116,7 @@ export const Plainning: React.FC<IProp> = () => {
                             </select>}
                     />
                 </div>
+                <Change change={!getLoading} >
                 <div className="con_bottom">
                     <div className="con_box">
                         <MasterAlignMent handleSelectAll={toggleAll} LeftDiv={
@@ -178,7 +180,7 @@ export const Plainning: React.FC<IProp> = () => {
                                                 <span className="m_title">상태: </span>
                                                 <span className="present">예약 {item.bookerSummary.completePeople}</span>
                                                 <span className="m_title"> / </span>
-                                                <span className="present">취소 {item.bookerSummary.cancelPeople}</span>
+                                                <span className="present">대기 {item.bookerSummary.cancelPeople}</span>
                                                 <span className="m_title"> / </span>
                                                 <span className="present">환불 {item.bookerSummary.cancelCompletePeople}</span>
                                             </div>
@@ -207,6 +209,7 @@ export const Plainning: React.FC<IProp> = () => {
                         </div>
                     </div>
                 </div>
+                </Change>
             </div>
         </div>
         <HandBookingModal key={popupProductId} defaultProductId={popupProductId} />

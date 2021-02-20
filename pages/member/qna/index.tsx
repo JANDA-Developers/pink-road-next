@@ -14,7 +14,8 @@ import sanitizeHtml from 'sanitize-html';
 
 export const getStaticProps = getStaticPageInfo("main");
 export const Qna: React.FC<Ipage> = (pageInfo) => {
-    const { items, filter, setFilter } = useQnaList({ initialViewCount: 999 })
+    const { items } = useQnaList({ initialViewCount: 999 })
+    const [filterCat, setFilterCat] = useState("")
     const router = useRouter();
     const { isManager, categoriesMap } = useContext(AppContext)
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
@@ -24,8 +25,8 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
         router.push("/member/qna/write/")
     }
 
-    const checkCatEq = (catId?: string) => filter.categoryId_eq === catId ? "on" : "";
-    const checkCatCount = (catId: string) => items.filter(item => item._id === catId).length;
+    const checkCatEq = (catId?: string) => filterCat === catId ? "on" : "";
+    const checkCatCount = (catId: string) => items.filter(item => item.category?._id === catId).length;
 
     const handleToogle = (qna: qnaList_QnaList_data) => () => {
         if (openId === qna._id) {
@@ -33,6 +34,10 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
         } else {
             setOpenId(qna._id);
         }
+    }
+
+    const handleCatFilter = (catId: string) => () => {
+        setFilterCat(catId);
     }
 
     return <div>
@@ -44,13 +49,13 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
         </SubTopNav>
         <div className="qna_box w1200">
             <MemberTopNav />
-            <div className="board_qna">
+            <div className="board_qna board_box">
                 <div className="alignment">
                     <div className="left_div">
                         <ul className="board_option">
                             <li className={checkCatEq(undefined)}><a>전체</a></li>
                             {categoriesMap.QNA.map(cat =>
-                                <li key={cat._id}><a>{cat.label}<strong>{checkCatCount(cat._id)}</strong></a></li>
+                                <li onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}<strong>{checkCatCount(cat._id)}</strong></a></li>
                             )}
                         </ul>
                     </div>
@@ -61,11 +66,14 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                     <div onClick={handleToogle(qna)} key={qna._id} className={`dl ${openId === qna._id && "active"}`}>
                         <div className="dt"><span><i className="Q"></i>{qna.category?.label}</span>{qna.title}
 
-                            <button onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                router.push("/member/qna/write/" + qna._id)
-                            }} type="submit" className="btn medium">수정하기</button>
+                            {isManager &&
+                                <button onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    router.push("/member/qna/write/" + qna._id)
+                                }} type="submit" className="btn medium">수정하기</button>
+                            }
+
                             <i className="jandaicon-arr4-bottom"></i></div>
 
                         <div className="dd panel-collapse collapse in">

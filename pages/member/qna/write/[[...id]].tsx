@@ -102,8 +102,6 @@ export const QnaWrite: React.FC<IProp> = () => {
         })
     }
 
-    console.log("categoriesMap");
-    console.log(categoriesMap);
 
     useEffect(() => {
         setBoardData({

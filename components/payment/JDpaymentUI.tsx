@@ -14,6 +14,7 @@ export type TPaySubmitInfo = {
         phone: string;
         name: string;
         email: string;
+        memo: string;
     };
     payMethod: PayMethod;
     bankTransInput: IBankInput
@@ -41,6 +42,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
         phone: myProfile?.phoneNumber || "",
         name: myProfile?.name || "",
         email: myProfile?.email || "",
+        memo: ""
     })
     const [bankRefundInfo, setBankRefundInfo] = useState<IBankInput>({
         bankTransfter: "",
@@ -132,7 +134,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
     return <div className="payment_box ">
         <div className="head">
             {Preview}
-            <div className="write_type write_type_box mb20 mt20">
+            <div className="write_type write_type_box mt20">
                 <h4 className="title">결제수단</h4>
                 <div className="input_form">
                     <span id="category" className="category r3">
@@ -155,10 +157,10 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                     <span><input checked={payMethod === PayMethod.NICEPAY_CARD} type="radio" /></span><span className="title">카드결제</span>
                                     {/* <button /> */}
                                 </div>
-                                {payMethod === PayMethod.NICEPAY_CARD &&
+                                {payMethod === PayMethod.NICEPAY_CARD && !isLogin &&
                                     <div className="paymethod__Check_body">
                                         <div className="paymethod__Check_table">
-                                            {isLogin || UnLoginedFrom}
+                                            {UnLoginedFrom}
                                         </div>
                                     </div>
                                 }
@@ -276,7 +278,25 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                     </div>
                 </div>
             } */}
-
+            <div className="write_comment payment__memoForm">
+                <h3>예약메모</h3>
+                <div className="comment_layout">
+                    <ul className="text_box">
+                        <li>
+                            <div className="txta w100">
+                                <textarea onChange={(e) => {
+                                    const val = e.currentTarget.value;
+                                    buyerInfo.memo = val;
+                                    setBuyerInfo({
+                                        ...buyerInfo
+                                    })
+                                }} value={buyerInfo.memo} className="payment__textarea" style={{ height: "100px;" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
+                            </div>
+                        </li>
+                        <li className="tr count">{buyerInfo.memo.length}/3000</li>
+                    </ul>
+                </div>
+            </div>
             <a onClick={handlePayment} className="paymentBtn">결제하기</a>
         </div>
     </div>

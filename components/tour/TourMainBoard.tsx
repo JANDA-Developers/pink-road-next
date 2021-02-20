@@ -13,13 +13,13 @@ interface IProp {
 
 export const TourMainBoard: React.FC<IProp> = ({ cat, group }) => {
     const isExp = checkIsExp()
-    const { initialFilter } = getTypeFilterByUrl(isExp);
+    // const { initialFilter } = getTypeFilterByUrl(isExp);
     const [slicePage, setSlicePage] = useState(0);
     const { items, filter, setFilter } = useProductList({
         initialViewCount: 80,
         initialFilter: {
             ...openListFilter,
-            ...initialFilter,
+            // ...initialFilter,
             _id_in: group.members
         },
     });

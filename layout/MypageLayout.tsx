@@ -24,7 +24,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
     const [userUpdate] = useUserUpdate()
     const { signleUpload } = useUpload();
     const { items } = useUnReadSystemNotiFind();
-    const { isSeller, isParterB, isParterNonB, myProfile, isLogin } = useContext(AppContext);
+    const { isSeller, isParterB, isParterNonB, myProfile, isManager, isLogin } = useContext(AppContext);
     const { data: count } = useCount();
     const hiddenFileInput = useRef<HTMLInputElement>(null);
 
@@ -104,15 +104,18 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                 {isLogin && <div className="lnb">
                     <div className="profile_box">
                         <div className="welcome">
-                            <span style={BGprofile(myProfile?.profileImg)} onClick={() => {
-                                if (hiddenFileInput.current) {
-                                    hiddenFileInput.current.click();
-                                }
-                            }} className="img"><i className="jandaicon-setting"></i>프로필이미지</span>
+                            <span className="mypageLayout__profileImgWrap">
+                                <span style={BGprofile(myProfile?.profileImg)} onClick={() => {
+                                    if (hiddenFileInput.current) {
+                                        hiddenFileInput.current.click();
+                                    }
+                                }} className="mypageLayout__profileImg img"><i className="jandaicon-setting"></i>프로필이미지</span>
+                            </span>
                             <input onChange={handleChangeProfile} ref={hiddenFileInput} hidden type="file" />
                             <span className="name1">
-                                {isParterNonB && <i className="ct_partner">Personal Partner</i>}{/* 개인파트너 Personal Partner -*/}
-                                {isParterB && <i className="ct_guide">Corporation Partner</i>}{/* 기업파트너 Corporation Partner -*/}
+                                {isManager && <i className="ct_manager">Manager</i>}{/* 개인파트너 Personal Partner -*/}
+                                {!isManager && isParterNonB && <i className="ct_partner">Personal Partner</i>}{/* 개인파트너 Personal Partner -*/}
+                                {!isManager && isParterB && <i className="ct_guide">Corporation Partner</i>}{/* 기업파트너 Corporation Partner -*/}
                                 {isSeller && <span><strong>{myProfile?.nickName}</strong>님 어서오세요 :)</span>}{/*기업파트너/개인파트너*/}
                                 {isSeller && <span className="point"><i>Point</i><strong>{autoComma(settleAvaiableAmount)}</strong>원</span>}{/*기업파트너/개인파트너*/}
                                 {isSeller || <span className="name2"><i className="ct_family">Family</i><strong>{myProfile?.name}</strong>님 어서오세요 :)</span>}{/*개인*/}

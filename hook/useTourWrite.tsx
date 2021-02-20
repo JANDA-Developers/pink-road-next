@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { RefObject, useRef, useState } from "react";
+import { Dispatch, RefObject, SetStateAction, useRef, useState } from "react";
 import { generateitinery, TRange } from "../components/tourWrite/helper";
 import { Ffile, ItineraryCreateInput, productCreate, ProductCreateInput, productCreateVariables, ProductStatus, ProductType, ProductUpdateInput } from "../types/api";
 import { IproductFindById, ISet } from "../types/interface";
@@ -80,6 +80,7 @@ export interface IUseTour {
     tourData: IUseTourData;
     tourSets: ITourDataSet;
     validater: Validater;
+    setGroupCode: Dispatch<SetStateAction<string | undefined>>
     setTourData: (data: Partial<IUseTourData>) => void;
     loadKey: number;
     firstDate?: Date;
@@ -120,6 +121,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const [thumbs, setThumbs] = useState<Ffile[]>(Array.from(defaults.thumbs || []))
     const [keyWards, setkeyWards] = useState<string[]>(Array.from(defaults.keyWards || []));
     const [loadKey, setLoadKey] = useState<number>(0);
+    const [groupCode, setGroupCode] = useState<string>();
     const hiddenFileInput = useRef<HTMLInputElement>(null);
     const { signleUpload } = useUpload();
     const router = useRouter();
@@ -149,14 +151,17 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     })
 
     const createFn = (params: ProductCreateInput) => {
+        if(createLoading) return;
         ProductCreateMu({
             variables: {
-                params
+                params,
+                groupCode
             },
         })
     }
 
     const updateFn = (_id: string, params: ProductUpdateInput) => {
+        if(updateLoading) return;
         productUpdate({
             _id,
             params: {
@@ -201,7 +206,6 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         value: simpleData.inOrNor,
         failMsg: "포함 미포함 값은 필수 입니다.",
         failFn: () => {
-            console.log(document.getElementById("tap3"));
             document.getElementById("tap3")?.click()
         },
         id: "inOrNor"
@@ -432,6 +436,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         tourSets,
         validater,
         setTourData,
+        setGroupCode,
         firstDate,
         hiddenFileInput,
         getCreateInput,

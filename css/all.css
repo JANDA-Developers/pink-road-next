@@ -15,6 +15,7 @@
 @import  "./editor.css";
 @import "./productSearcher.css";
 @import "./slider.css";
+@import "./global.css";
 @import "./component/categoryEditor.css";
 @import "./component/popupConfigViewBox.css";
 @import "./component/emailVerifi.css";
@@ -25,4 +26,22 @@
 @import "./component/LocalStorageBoard.css";
 @import "./component/modal.css";
 @import "./component/fix.css";
+@import "./component/statusBadge.css";
+@import "./component/refundModal.css";
 
+
+.productModal__paginatorWrap {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.productDateSelecter {
+
+}
+
+.mypageLayout__profileImg {
+    background-repeat: no-repeat;
+    border: none!important;
+    box-shadow: 0px 0px 1px;
+}

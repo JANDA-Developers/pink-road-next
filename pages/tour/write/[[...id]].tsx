@@ -29,6 +29,7 @@ import { productStatus } from "../../../utils/enumToKr";
 import { Prompt } from "../../../components/promptModal/Prompt";
 import { openModal } from "../../../utils/popUp";
 import { LocalStorageBoard } from "../../../components/localStorageBoard/LocalStorageBoard";
+import dayjs from "dayjs";
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
@@ -66,7 +67,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const id = query.id?.[0] as string | undefined;
     const isCreateMode = id ? false : true;
-    const { item: product, loading } = useProductFindById(id);
+    const { item: product, getData, loading } = useProductFindById(id);
     const [updateReq, { loading: updateReqLoading }] = useProductUpdateReq({
         onCompleted: ({ ProductUpdateReq }) => {
             if (ProductUpdateReq?.ok) {
@@ -75,7 +76,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             }
         }
     });
-    const { categoriesMap, isAdmin, myProfile, isManager, isParterB, isParterNonB } = useContext(AppContext);
+    const { categoriesMap, isAdmin, myProfile, isManager, isParterB, isParterNonB, productGroupList } = useContext(AppContext);
     const isMyProduct = product?.author?._id === myProfile?._id;
 
     const {
@@ -84,6 +85,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         handles, firstDate,
         getCreateInput, getUpdateInput,
         setTourData, mutations,
+        setGroupCode,
         hiddenFileInput, lastDate,
     } = useTourWrite(getDefault(cloneObject(product)));
 
@@ -191,6 +193,17 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
 
     const tapDisplay = tapCheck.bind(tapCheck, tab);
 
+    const handleBaseProdChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const val = e.currentTarget.value;
+        const target = productGroupList.find(g => g._id === val)
+        setGroupCode(target?.groupCode);
+        getData({
+            variables: {
+                _id: val
+            }
+        })
+    }
+
     useEffect(() => {
         initStorage()
     }, [])
@@ -238,6 +251,24 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     </div>
                 </div>
                 } */}
+                {isCreateMode && <div className="write_type">
+                    <div className="title">회차연결</div>
+                    <div className="input_form">
+                        <span className="category r3">
+                            <select onChange={handleBaseProdChange} value={product?._id} name="type">
+                                <option value={""}>
+                                    새로운상품
+                                </option>
+                                {productGroupList.map(p =>
+                                    <option key={p._id} value={p._id}>
+                                        {p.label}
+                                    </option>
+                                )}
+                            </select>
+                        </span>
+                    </div>
+                </div>
+                }
                 <div className="write_type">
                     <div className="title">상품타입</div>
                     <div className="input_form">
@@ -316,7 +347,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 <div className="write_type">
                     <div className="title">지역</div>
                     <div className="input_form">
-                        <div>
+                        <span className="category">
                             <select onChange={handleRegionChange} value={regionId || ""} name="category_srl">
                                 {regionCategories.map(cat =>
                                     <option value={cat._id} key={cat._id}>
@@ -327,7 +358,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     선택없음
                                 </option>
                             </select>
-                        </div>
+                        </span>
                     </div>
                 </div>
 
@@ -396,10 +427,18 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 </ul>
                 <div {...tapDisplay(1)} id="texta_01" className="texta">
                     <h5 id="itinerary">여행일정</h5>
-                    <DayRangePicker isRange={type === ProductType.TOUR} onRangeChange={handleDateState} from={firstDate} to={lastDate} >
+                    <DayRangePicker
+                        month={dayjs().add(20, "day").toDate()}
+                        disabledDays={
+                            {
+                                before: dayjs().add(30, "day").toDate(),
+                                after: dayjs().add(90, "day").toDate()
+                            }}
+                        isRange={type === ProductType.TOUR} onRangeChange={handleDateState} from={firstDate} to={lastDate} >
                         <div className="info_txt">
                             <h4><i className="jandaicon-info2"></i>여행일정 등록시 유의점</h4>
                             <ul>
+                                <li>- 여행일은 최소 30일 이전 최대 90일 이상해주세요.</li>
                                 <li>- 달력에서 여행기간을 선택해 주세요. 그래야 아래에 입력창이 생성됩니다.</li>
                                 <li>- 이미지를 첨부시에 이미지 내부에 이미지를 입력할 경우 텍스트를 크게 써주세요.<br />모바일 화면도 고려해야합니다.</li>
                                 <li>- 이미지를 꼭 한번 용량을 압축해서 올려주세요. 로딩시에 시간이 단축됩니다.<br /><a href="https://www.iloveimg.com/ko/compress-image" target="_blank">(추천사이트 이동)</a></li>
@@ -469,7 +508,7 @@ export default auth(ALLOW_SELLERS)(TourWrite);
 
 const updateBtnDisableCheck = (product: Fproduct, isParterB: boolean): boolean => {
     if (!product) return false;
-    // 비지니스 파트너면 업데이트가 가능하다.
+    // 기업 파트너면 업데이트가 가능하다.
     if (isParterB) return true;
     // 예약자가 없으면 업데이트 요청이 가능하다.
     if (product.peopleCount === 0) return true;

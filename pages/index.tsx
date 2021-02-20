@@ -46,7 +46,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
         ...filter
       })
     }
-  }, [item])
+  }, [item?.members.length])
 
   useEffect(() => {
     if (homepage?.modal) {

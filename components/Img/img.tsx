@@ -35,8 +35,6 @@ interface IProp extends IDiv, IEditKit {
 export const Img: React.FC<IProp> = ({ children, upload, src }) => {
     const { src: _src, ...imgpp } = src || {}
 
-    console.log("!!imgpp!!");
-    console.log(imgpp);
 
     return <div {...imgpp}>
         <img src={_src} />

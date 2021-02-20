@@ -31,8 +31,15 @@ export type TContext = {
   homepage?: Fhomepage;
   isParterNonB?: boolean;
   categoriesMap: Record<CategoryType, Fcategory[]>
+  productGroupList: TProductGrop[]
 }
 
+
+export type TProductGrop = {
+  _id: string;
+  label: string;
+  groupCode: string;
+}
 
 const defaultContext: TContext = {
   categories: [],
@@ -46,6 +53,7 @@ const defaultContext: TContext = {
   isParterB: false,
   isParterNonB: false,
   categoriesMap: defaultCatsMap,
+  productGroupList: []
 }
 
 export const AppContext = React.createContext<TContext>(defaultContext);
@@ -67,6 +75,25 @@ function App({ Component, pageProps }: any) {
   const catList = data?.CategoryList?.data || []
   const myProfile = data?.GetProfile?.data || undefined
   const role: UserRole = myProfile?.role || UserRole.anonymous
+  const productList = data?.GetProfile.data?.products.map(p => ({
+    _id: p._id,
+    label: p.title,
+    groupCode: p.groupCode
+  }))
+
+  const productGroupList: {
+    _id: string;
+    label: string;
+    groupCode: string;
+  }[] = [];
+
+  productList?.forEach((p) => {
+    if (!productGroupList.find(g => g.groupCode === p.groupCode)) {
+      productGroupList.push({
+        ...p,
+      })
+    }
+  })
 
   const isSeller = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
   const isParterB = [UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
@@ -77,19 +104,17 @@ function App({ Component, pageProps }: any) {
 
   if (data) {
     const error = data.GetProfile.error
-    console.log({ error })
   }
 
 
   if (!ComponentAuth.includes(role || null) && !loading) {
     if (arrayEquals(ComponentAuth, ALLOW_LOGINED)) {
       if (loading) return;
-      console.log('???--');
       Component = () => <PageDeny redirect="/login" msg="해당 페이지는 로그인후 이용 가능합니다." />
       return <Component />;
     } else {
       if (loading) return;
-      // Component = () => <PageDeny />
+      Component = () => <PageDeny />
     }
   }
 
@@ -126,6 +151,7 @@ function App({ Component, pageProps }: any) {
           isLogin: !!myProfile,
           isParterNonB,
           homepage,
+          productGroupList,
         }}>
           <ComponentLayout>
             <Component {...pageProps} />

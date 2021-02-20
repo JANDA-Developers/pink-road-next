@@ -150,6 +150,10 @@
                 .mypage_in .lnb .profile_box [class*="name"] i.ct_partner {
                     background-color: #e2a600;
                 }
+                
+                .mypage_in .lnb .profile_box [class*="name"] i.ct_manager {
+                    background-color: #ed297b;
+                }
 
             .mypage_in .lnb .profile_box .point {
                 width: 100%;
@@ -2698,7 +2702,7 @@ div.reservation_popup .tr select {
     }
     .mypage_purchase .fuction_list_mini .th03 {
         width: 100%;
-        text-align: left;
+        text-align: center;
         font-size: 1.2em;
         font-weight: 600;
         margin-bottom: 5px;
@@ -2776,7 +2780,6 @@ div.reservation_popup .tr select {
         width: 100%;
         font-size: 1.2em;
         font-weight: 600;
-        text-align: left;
     }
     .statement_popup .fuction_list_mini .th04{
         width: auto;
@@ -3429,7 +3432,7 @@ div.reservation_popup .tr select {
     .mypage_purchase .fuction_list_mini .th03 {
         width: auto;
         max-width: 30%;
-        text-align: left;
+        text-align: center;
         font-size: 0.8em;
         margin-bottom: 0;
     }
@@ -3475,7 +3478,6 @@ div.reservation_popup .tr select {
     .mypage_purchase .fuction_list_mini .tbody .th05,
     .mypage_purchase .fuction_list_mini .tbody .th06,
     .mypage_purchase .fuction_list_mini .tbody .th07 {
-        padding: 20px 5px 5px;
     }
     .mypage_in .statement_div li {
         padding: 0 32px;
@@ -3498,7 +3500,6 @@ div.reservation_popup .tr select {
     }
     .statement_popup .fuction_list_mini .th03{
         width: 30%;
-        text-align: left;
         font-size: 0.9em;
     }
     .statement_popup .fuction_list_mini .thead .th03{

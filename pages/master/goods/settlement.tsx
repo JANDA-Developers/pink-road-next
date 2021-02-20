@@ -17,7 +17,7 @@ import settlement from "../../mypage/settlement";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
 import { autoComma } from "../../../utils/formatter";
 import { GoodsTopNav } from "../../../components/topNav/MasterTopNav";
-import { SettlementStatus } from "../../../types/api";
+import { SettlementStatus, _SettlementFilter } from "../../../types/api";
 import { ALLOW_ADMINS } from "../../../types/const";
 import { auth } from "../../../utils/with";
 
@@ -37,8 +37,10 @@ const popupClose = () => {
 }
 
 
-export const MsReservationB: React.FC<IProp> = () => {
-    const [searchType, setSearchType] = useState("status_eq");
+type TsearchType = keyof _SettlementFilter;
+
+export const MasterSettlement: React.FC<IProp> = () => {
+    const [searchType, setSearchType] = useState<TsearchType>("exField__code_eq");
     const { items, filter, setFilter, viewCount, setViewCount, sort, setSort, setUniqFilter } = useSettlementList({
         initialFilter: {
             status_not_eq: SettlementStatus.READY //레디인것은 아직 판매되지 않은 상품일 가능성이 높다.
@@ -52,7 +54,7 @@ export const MsReservationB: React.FC<IProp> = () => {
     const doSearch = (search: string) => {
         setUniqFilter(
             searchType as any,
-            ["status_eq"],
+            ["exField__code_eq", "exField__sellerName_eq", "exField__title_contains"],
             search
         )
     }
@@ -212,4 +214,4 @@ export const MsReservationB: React.FC<IProp> = () => {
     </MasterLayout >
 };
 
-export default auth(ALLOW_ADMINS)(MsReservationB);
+export default auth(ALLOW_ADMINS)(MasterSettlement);

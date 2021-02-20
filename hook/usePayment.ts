@@ -1,8 +1,10 @@
 import { QueryHookOptions, useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
+import { BOOKING_FIND_BY_CODE, BOOKING_LIST } from "../apollo/gql/booking";
 import { BANK_DEPOSIT_CONFIRM, BANK_REFUND, PAYMENT_LIST, SETTLEMENT_CAL } from "../apollo/gql/payment";
 import { bankDepositConfirm, bankDepositConfirmVariables, bankRefund, bankRefundVariables, Fpage,  Fpayment, paymentList, paymentListVariables, settlementCal, settlementCalVariables, _PaymentFilter, _PaymentSort } from "../types/api";
 import { DEFAULT_PAGE } from "../types/const";
+import { getRefetch } from "../utils/api";
 import { generateMutationHook } from "../utils/query";
 import { useListQuery, ListInitOptions, IListHook } from "./useListQuery";
 
@@ -61,6 +63,10 @@ export const useSettlementCal = ({
     return {setFilter,amt}
 }
 
-export const useBankDepositConfirm = generateMutationHook<bankDepositConfirm,bankDepositConfirmVariables>(BANK_DEPOSIT_CONFIRM)
-export const useBankRefund = generateMutationHook<bankRefund,bankRefundVariables>(BANK_REFUND)
+export const useBankDepositConfirm = generateMutationHook<bankDepositConfirm,bankDepositConfirmVariables>(BANK_DEPOSIT_CONFIRM, {
+    ...getRefetch(BOOKING_FIND_BY_CODE, BOOKING_LIST)
+})
+export const useBankRefund = generateMutationHook<bankRefund,bankRefundVariables>(BANK_REFUND, {
+    ...getRefetch(BOOKING_FIND_BY_CODE, BOOKING_LIST)
+})
 

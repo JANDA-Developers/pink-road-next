@@ -24,30 +24,17 @@ export const getMarkUp = (popup: Ipopup) => {
         </head>
         <body>
             <div className="ck-content" dangerouslySetInnerHTML={{ __html: popup.content || "" }} style={{ ...BG(popup.style.backgroundImage || ""), backgroundPosition: "center center", backgroundSize: "cover", height: "100%" }} />
-            <div>
-                오늘 하루동안 보지않기 <input id="DaycheckBox" onClick={() => {
-                }} type="checkbox" checked={false} /> <span onClick={() => {
-                    const target = document.getElementById("DaycheckBox");
-                    if (target) {
-                        // @ts-ignore
-                        const checked = target.checked;
-                        if (checked) {
-                            // popup 일자를 하루 뒤로 놓는다.
-                            var tomorrow = new Date();
-                            tomorrow.setDate(new Date().getDate() + 1);
-                            localStorage.setItem("popup" + popup._id, JSON.stringify(tomorrow));
-                        }
-                        window.close();
-                    }
-                }} >닫기</span>
+            <div className="modal__controller">
+                오늘 하루동안 보지않기 <span className="modal__closerWrap"> <input id="DaycheckBox"
+                    type="checkbox" checked={false} /> <span id="Closer" className="modal__closer">닫기</span></span>
             </div>
+            <script src={location.origin + "/popup.js"} >
+            </script>
         </body>
     </html>
 }
 
 export const openPercentage = (popup: Ipopup) => {
-    console.log("!!!popup.style!!!");
-    console.log(popup.style);
 
     function isMobile() {
         return ((window.innerWidth <= 800) && (window.innerHeight <= 600));
@@ -64,10 +51,10 @@ export const openPercentage = (popup: Ipopup) => {
     const t = window.screen.height * perTop / 100;
     //높이값은 어쩌면 width에 대한 비율 이여하지 않을까?
 
-    console.log({ l, t, w, h })
 
 
     const param = getOpenParam(l, t, w, h);
+
     open(popup, param);
 }
 
@@ -156,3 +143,4 @@ export const usePopups = (defaultModals: Ipopup[], wrapperId: string) => {
 
     return { hideIds, setHideIds, savePercentageInModal, changeAllToPercentage, selectedIndex, selectedPopup, setSelcetedIndex, popups, setPopups, openAll, open, changeToPercentage, openAllPecentage, openPercentage }
 }
+

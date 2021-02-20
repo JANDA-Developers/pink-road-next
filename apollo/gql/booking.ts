@@ -133,17 +133,8 @@ export const BOOKING_CANCEL_REQ = gql`
       code
       message
     }
-    data {
-      product {
-            _id
-            title
-            code
-        }
-      ...Fbooking
-    }
   }
 }
-${F_BOOKING}
 `
 
 
@@ -163,17 +154,8 @@ export const BOOKING_CANCEL_REJECT = gql`
       code
       message
     }
-    data {
-      product {
-            _id
-            title
-            code
-        }
-      ...Fbooking
-    }
   }
 }
-${F_BOOKING}
 `
 
 export const BOOKINGS_CREATE = gql`
@@ -231,11 +213,11 @@ export const BOOKING_UPDAET = gql`
     ) {
     ok
     error {
-location
-        severity
-        code
-        message
-}
+      location
+      severity
+      code
+      message
+    }
     data {
       _id
     }
@@ -335,6 +317,9 @@ export const BOOKING_FIND_BY_CODE = gql`
             code
       }
       ...Fbooking
+      booker {
+        _id
+      }
       travelers {
         ...Ftraveler
       }

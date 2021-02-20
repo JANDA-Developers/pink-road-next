@@ -36,7 +36,7 @@ export const useBookingBoard = () => {
         setUniqFilter(filterType, ["exField__sellerName_eq", "code_eq", "exField__title_contains"], search);
     }
 
-    const handleDetail = (code: string) => () => {
+    const handleDetail = (code: string) => {
         bookingModalHook.openModal({
             code
         })
@@ -50,5 +50,5 @@ export const useBookingBoard = () => {
 
 
     
-    return {filterType, singleSortHook, bookingModalHook, isTimeOverExcept, bookingListHook, checkOnStatus, handleDetail, doSearch, setType, dateFilterHook, setFilterType, setIsTimeOverExcept, idSelecterHook}   
+    return {filterType, singleSortHook, bookingModalHook, isTimeOverExcept, bookingListHook, checkOnStatus, handleDetail, doSearch, setType, dateFilterHook, setFilterType, setIsTimeOverExcept, idSelecterHook, getLoading}   
 }

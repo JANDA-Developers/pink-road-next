@@ -90,7 +90,7 @@ export const BoardWrite: React.FC<IProps> = ({
                         <div className="title">카테고리</div>
                         <div className="input_form">
                             <span id="category" className="category r3">
-                                <select onChange={handleCatChange} value={categoryId} name="category_srl">
+                                <select className="" onChange={handleCatChange} value={categoryId} name="category_srl">
                                     <option value={""} >
                                         선택없음
                                     </option>

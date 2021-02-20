@@ -497,4 +497,19 @@ figure:after {
     display: flex;
 }
 
+.payment__textarea {
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    width: 100%;
+    height: 120px;
+}
 
+.payment__memoForm {
+    margin-bottom: 30px;
+}
+
+.paymethod__Check_table {
+    
+}

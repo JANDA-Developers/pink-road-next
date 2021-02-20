@@ -59,7 +59,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
         initialFilter: integratedProductSearch(defaultSearch)
     }
     const productListHook = useProductList(initialFilter)
-    const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = productListHook;
+    const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount, setOR } = productListHook;
     const { categoriesMap } = useContext(AppContext);
 
     const [view, setView] = useState<"line" | "gal">("line");
@@ -68,6 +68,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
 
     const onClickDistrict = (regionLabel?: string) => () => {
         setFilter({
+            ...filter,
             regionLabel_eq: regionLabel
         })
     }
@@ -78,6 +79,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
 
     const handleTypeFilter = (type?: ProductType) => () => {
         setFilter({
+            ...filter,
             type_eq: type
         })
     }
@@ -95,15 +97,15 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     }
 
     const doSearch = () => {
-        setFilter(integratedProductSearch(search, filter))
+        const _filter = integratedProductSearch(search, filter);
+        console.log({ _filter });
+        setFilter(_filter)
     }
-
 
     const filterStart = filter.startDate_gte ? dayjs(filter.startDate_gte).format("YYYY.MM.DD") : "";
     const filterEnd = filter.startDate_lte ? dayjs(filter.startDate_lte).format("YYYY.MM.DD") : "";
-
-
     const noProduct = isEmpty(products);
+    
     return <div>
         <SubTopNav pageTools={pageTools} >
             <li className="homedeps1">Member</li>
@@ -122,7 +124,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                     <div className="jul2">
                         <div className="title">유형</div>
                         <div className="in">
-                            <span className={`check ${typeOn()}`}>ALL</span>
+                            <span onClick={handleTypeFilter(undefined)} className={`check ${typeOn(undefined)}`}>ALL</span>
                             <span onClick={handleTypeFilter(ProductType.TOUR)} className={`check ${typeOn(ProductType.TOUR)}`}>여행</span>
                             <span onClick={handleTypeFilter(ProductType.EXPERIENCE)} className={`check ${typeOn(ProductType.EXPERIENCE)}`}>체험</span>
                         </div>

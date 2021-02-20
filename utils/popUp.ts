@@ -5,8 +5,6 @@ export const closeModal = (selecter:string) => () => {
 }
 
 export const openModal = (selecter:string) => ()=> {
-    console.log({selecter});
-    console.log($("#BookingModal"));
     $(selecter).css("display","flex");
 }
 

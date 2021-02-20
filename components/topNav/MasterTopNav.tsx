@@ -15,8 +15,8 @@ export const ResvTopNav: React.FC<IProp> = () => {
     return <div className="tab-nav">
         <ul>
             <li className={checkOn("/master/reservation", true)}><Link href="/master/reservation"><a>예약·결제관리</a></Link></li>
-            <li className={checkOn("cancel")}><Link href="/master/reservation/cancel"><a>취소·환불관리</a></Link></li>
-            <li className={checkOn("byhand")}><Link href="/master/reservation/byhand"><a>예약수기등록관리</a></Link></li>
+            {/* <li className={checkOn("cancel")}><Link href="/master/reservation/cancel"><a>취소·환불관리</a></Link></li> */}
+            {/* <li className={checkOn("byhand")}><Link href="/master/reservation/byhand"><a>예약수기등록관리</a></Link></li> */}
         </ul>
     </div>;
 };

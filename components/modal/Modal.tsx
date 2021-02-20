@@ -23,7 +23,7 @@ export const Modal: React.FC<IProp> = ({ id, className, inClassName, children, t
         <div className={`in_txt ${inClassName}`}>
             <a onClick={closeModal(`#${id}`)} className="close_icon"><i className="flaticon-multiply" /></a>
             <div className="page">
-                <h3>{title}</h3>
+                <h3 className="popup__tittle">{title}</h3>
                 <div className="con">
                     {children}
                 </div>

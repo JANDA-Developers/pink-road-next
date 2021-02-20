@@ -119,10 +119,9 @@ export const SETTLEMENT_LIST = gql`
           adultCount
           babyCount
           kidsCount
-          completePeople
-          readyPoeple
-          cancelCompletePeople
-          cancelPeople 
+          completeBookCount
+          readyBookCount
+          cancelBookCount
         }
         ...Fproduct
         author {

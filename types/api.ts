@@ -714,7 +714,7 @@ export interface myBoardList_MyBoardList_data {
   viewCount: number;
   likeCount: number;
   slug: string;
-  questionStatus: QuestionStatus | null;
+  questionStatus: string | null;
   boardType: BoardType;
 }
 
@@ -938,6 +938,7 @@ export interface bookingList_BookingList_data {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
+  isMember: boolean;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -1025,51 +1026,10 @@ export interface bookingCancelReq_BookingCancelReq_error {
   message: string;
 }
 
-export interface bookingCancelReq_BookingCancelReq_data_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-  code: string;
-}
-
-export interface bookingCancelReq_BookingCancelReq_data {
-  __typename: "Booking";
-  product: bookingCancelReq_BookingCancelReq_data_product;
-  _id: string;
-  createdAt: any;
-  cancelDate: any | null;
-  gender: GENDER | null;
-  age: string | null;
-  payMethod: PayMethod;
-  updatedAt: any;
-  isDelete: boolean;
-  leftTime: number;
-  adultCount: number;
-  kidCount: number;
-  babyCount: number;
-  totalCount: number;
-  message: string | null;
-  isCancelRequest: boolean | null;
-  bookerInclue: boolean;
-  bookingPrice: number;
-  status: BookingStatus | null;
-  memo: string | null;
-  code: string;
-  groupCode: string;
-  name: string;
-  email: string;
-  phoneNumber: string;
-  /**
-   * 결제가 되었는지
-   */
-  isPaid: boolean | null;
-}
-
 export interface bookingCancelReq_BookingCancelReq {
   __typename: "BookingCancelReqResponse";
   ok: boolean;
   error: bookingCancelReq_BookingCancelReq_error | null;
-  data: bookingCancelReq_BookingCancelReq_data | null;
 }
 
 export interface bookingCancelReq {
@@ -1098,51 +1058,10 @@ export interface bookingCancelReject_BookingCancelReject_error {
   message: string;
 }
 
-export interface bookingCancelReject_BookingCancelReject_data_product {
-  __typename: "Product";
-  _id: string;
-  title: string;
-  code: string;
-}
-
-export interface bookingCancelReject_BookingCancelReject_data {
-  __typename: "Booking";
-  product: bookingCancelReject_BookingCancelReject_data_product;
-  _id: string;
-  createdAt: any;
-  cancelDate: any | null;
-  gender: GENDER | null;
-  age: string | null;
-  payMethod: PayMethod;
-  updatedAt: any;
-  isDelete: boolean;
-  leftTime: number;
-  adultCount: number;
-  kidCount: number;
-  babyCount: number;
-  totalCount: number;
-  message: string | null;
-  isCancelRequest: boolean | null;
-  bookerInclue: boolean;
-  bookingPrice: number;
-  status: BookingStatus | null;
-  memo: string | null;
-  code: string;
-  groupCode: string;
-  name: string;
-  email: string;
-  phoneNumber: string;
-  /**
-   * 결제가 되었는지
-   */
-  isPaid: boolean | null;
-}
-
 export interface bookingCancelReject_BookingCancelReject {
   __typename: "BookingCancelRejectResponse";
   ok: boolean;
   error: bookingCancelReject_BookingCancelReject_error | null;
-  data: bookingCancelReject_BookingCancelReject_data | null;
 }
 
 export interface bookingCancelReject {
@@ -1196,6 +1115,7 @@ export interface bookingsCreate_BookingsCreate_data {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
+  isMember: boolean;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -1448,10 +1368,9 @@ export interface bookingFindByCode_BookingFindByCode_data_product_bookerSummary 
   adultCount: number;
   babyCount: number;
   kidsCount: number;
-  completePeople: number;
-  readyPoeple: number;
-  cancelCompletePeople: number;
-  cancelPeople: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
 }
 
 export interface bookingFindByCode_BookingFindByCode_data_product_itinerary_images {
@@ -1596,6 +1515,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  groupCode: string;
   region: bookingFindByCode_BookingFindByCode_data_product_region | null;
   category: bookingFindByCode_BookingFindByCode_data_product_category | null;
   /**
@@ -1633,6 +1553,11 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   startDate: any;
   Dday: number;
   author: bookingFindByCode_BookingFindByCode_data_product_author | null;
+}
+
+export interface bookingFindByCode_BookingFindByCode_data_booker {
+  __typename: "User";
+  _id: string;
 }
 
 export interface bookingFindByCode_BookingFindByCode_data_travelers {
@@ -1690,6 +1615,7 @@ export interface bookingFindByCode_BookingFindByCode_data {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
+  isMember: boolean;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -1700,6 +1626,7 @@ export interface bookingFindByCode_BookingFindByCode_data {
    * 결제가 되었는지
    */
   isPaid: boolean | null;
+  booker: bookingFindByCode_BookingFindByCode_data_booker | null;
   travelers: bookingFindByCode_BookingFindByCode_data_travelers[] | null;
   payment: bookingFindByCode_BookingFindByCode_data_payment | null;
 }
@@ -2040,6 +1967,10 @@ export interface countManager_Count_data {
    */
   buyerCount: number;
   /**
+   * 마스터 취소요청 갯수
+   */
+  bookingCancelReqCount: number;
+  /**
    * 판매자(나)의 오늘 총 예약
    */
   todayBookingCount: number;
@@ -2048,7 +1979,7 @@ export interface countManager_Count_data {
    */
   updateRequestCountMaster: number;
   /**
-   * 마스터용::가입된 비지니스 파트너 인원수
+   * 마스터용::가입된 기업 파트너 인원수
    */
   busiPartnerBCountMaster: number;
   /**
@@ -2140,11 +2071,11 @@ export interface countManager_Count_data {
    */
   totalIndiMemberCount: number;
   /**
-   * 마스터용::비지니스 파트너 유저증 승인 유저수
+   * 마스터용::기업 파트너 유저증 승인 유저수
    */
   confimedBusiPartnerCount: number;
   /**
-   * 마스터용::비지니스 파트너 유저증 미승인 유저수
+   * 마스터용::기업 파트너 유저증 미승인 유저수
    */
   unConfimedBusiPartnerCount: number;
   /**
@@ -2180,7 +2111,7 @@ export interface countManager_Count_data {
    */
   openProductCountMaster: number;
   /**
-   * 마스터용::미답변 질문수
+   * 미답변 질문수
    */
   unAnsweredQuestionCount: number;
   /**
@@ -3980,7 +3911,7 @@ export interface templateList_TemplateList_data {
    * 코드겐용
    */
   _replaceEnum: ReplaceString | null;
-  trigger: templateList_TemplateList_data_trigger;
+  trigger: templateList_TemplateList_data_trigger | null;
   tags: templateList_TemplateList_data_tags[];
   replacers: string[];
 }
@@ -4746,6 +4677,7 @@ export interface productCreate {
 
 export interface productCreateVariables {
   params: ProductCreateInput;
+  groupCode?: string | null;
 }
 
 /* tslint:disable */
@@ -5008,10 +4940,9 @@ export interface productDelete_ProductDelete_data_bookerSummary {
   adultCount: number;
   babyCount: number;
   kidsCount: number;
-  completePeople: number;
-  readyPoeple: number;
-  cancelCompletePeople: number;
-  cancelPeople: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
 }
 
 export interface productDelete_ProductDelete_data_itinerary_images {
@@ -5058,6 +4989,7 @@ export interface productDelete_ProductDelete_data {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  groupCode: string;
   region: productDelete_ProductDelete_data_region | null;
   category: productDelete_ProductDelete_data_category | null;
   /**
@@ -5193,10 +5125,9 @@ export interface productList_ProductList_data_bookerSummary {
   adultCount: number;
   babyCount: number;
   kidsCount: number;
-  completePeople: number;
-  readyPoeple: number;
-  cancelCompletePeople: number;
-  cancelPeople: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
 }
 
 export interface productList_ProductList_data_itinerary_images {
@@ -5347,6 +5278,7 @@ export interface productList_ProductList_data {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  groupCode: string;
   region: productList_ProductList_data_region | null;
   category: productList_ProductList_data_category | null;
   /**
@@ -5439,10 +5371,9 @@ export interface productFindById_ProductFindById_data_bookerSummary {
   adultCount: number;
   babyCount: number;
   kidsCount: number;
-  completePeople: number;
-  readyPoeple: number;
-  cancelCompletePeople: number;
-  cancelPeople: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
 }
 
 export interface productFindById_ProductFindById_data_itinerary_images {
@@ -5646,7 +5577,6 @@ export interface productFindById_ProductFindById_data_questions {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
-  secret: boolean[] | null;
   answers: productFindById_ProductFindById_data_questions_answers[] | null;
   keyWards: string[] | null;
   attachFiles: productFindById_ProductFindById_data_questions_attachFiles[] | null;
@@ -5675,6 +5605,7 @@ export interface productFindById_ProductFindById_data {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  groupCode: string;
   region: productFindById_ProductFindById_data_region | null;
   category: productFindById_ProductFindById_data_category | null;
   /**
@@ -5711,6 +5642,7 @@ export interface productFindById_ProductFindById_data {
   type: ProductType;
   startDate: any;
   Dday: number;
+  questionIds: string[] | null;
   author: productFindById_ProductFindById_data_author | null;
   questions: productFindById_ProductFindById_data_questions[] | null;
 }
@@ -5764,10 +5696,9 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookerSu
   adultCount: number;
   babyCount: number;
   kidsCount: number;
-  completePeople: number;
-  readyPoeple: number;
-  cancelCompletePeople: number;
-  cancelPeople: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
 }
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_itinerary_images {
@@ -6067,6 +5998,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
+  isMember: boolean;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -6098,6 +6030,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  groupCode: string;
   region: productFindByIdForSeller_ProductFindByIdForSeller_data_region | null;
   category: productFindByIdForSeller_ProductFindByIdForSeller_data_category | null;
   /**
@@ -6951,6 +6884,13 @@ export interface getContext_GetProfile_data_unReadNoties {
   isRead: boolean;
 }
 
+export interface getContext_GetProfile_data_products {
+  __typename: "Product";
+  _id: string;
+  title: string;
+  groupCode: string;
+}
+
 export interface getContext_GetProfile_data_bookings_seller {
   __typename: "User";
   _id: string;
@@ -6983,6 +6923,7 @@ export interface getContext_GetProfile_data_bookings {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
+  isMember: boolean;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -7075,6 +7016,7 @@ export interface getContext_GetProfile_data {
    */
   bankImg: getContext_GetProfile_data_bankImg | null;
   unReadNoties: getContext_GetProfile_data_unReadNoties[] | null;
+  products: getContext_GetProfile_data_products[];
   bookings: getContext_GetProfile_data_bookings[];
 }
 
@@ -7446,7 +7388,6 @@ export interface questionList_QuestionList_data_product {
 
 export interface questionList_QuestionList_data {
   __typename: "Question";
-  secret: boolean[] | null;
   _id: string;
   createdAt: any;
   updatedAt: any;
@@ -7705,7 +7646,6 @@ export interface questionFindById_QuestionFindById_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
-  secret: boolean[] | null;
   answers: questionFindById_QuestionFindById_data_answers[] | null;
   keyWards: string[] | null;
   attachFiles: questionFindById_QuestionFindById_data_attachFiles[] | null;
@@ -7766,10 +7706,9 @@ export interface settlementFindById_SettlementFindById_data_product_bookerSummar
   adultCount: number;
   babyCount: number;
   kidsCount: number;
-  completePeople: number;
-  readyPoeple: number;
-  cancelCompletePeople: number;
-  cancelPeople: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
 }
 
 export interface settlementFindById_SettlementFindById_data_product_itinerary_images {
@@ -7941,6 +7880,7 @@ export interface settlementFindById_SettlementFindById_data_product_bookings {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
+  isMember: boolean;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -7972,6 +7912,7 @@ export interface settlementFindById_SettlementFindById_data_product {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  groupCode: string;
   region: settlementFindById_SettlementFindById_data_product_region | null;
   category: settlementFindById_SettlementFindById_data_product_category | null;
   /**
@@ -8225,10 +8166,9 @@ export interface settlementList_SettlementList_data_product_bookerSummary {
   adultCount: number;
   babyCount: number;
   kidsCount: number;
-  completePeople: number;
-  readyPoeple: number;
-  cancelCompletePeople: number;
-  cancelPeople: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
 }
 
 export interface settlementList_SettlementList_data_product_region {
@@ -8389,6 +8329,7 @@ export interface settlementList_SettlementList_data_product {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  groupCode: string;
   region: settlementList_SettlementList_data_product_region | null;
   category: settlementList_SettlementList_data_product_category | null;
   status: ProductStatus;
@@ -9416,10 +9357,9 @@ export interface userFindById_UserFindById_data_products_bookerSummary {
   adultCount: number;
   babyCount: number;
   kidsCount: number;
-  completePeople: number;
-  readyPoeple: number;
-  cancelCompletePeople: number;
-  cancelPeople: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
 }
 
 export interface userFindById_UserFindById_data_products_itinerary_images {
@@ -9564,6 +9504,7 @@ export interface userFindById_UserFindById_data_products {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  groupCode: string;
   region: userFindById_UserFindById_data_products_region | null;
   category: userFindById_UserFindById_data_products_category | null;
   /**
@@ -9623,6 +9564,7 @@ export interface userFindById_UserFindById_data_bookings {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
+  isMember: boolean;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -10149,6 +10091,7 @@ export interface Fbooking {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
+  isMember: boolean;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -10215,10 +10158,9 @@ export interface Fproduct_bookerSummary {
   adultCount: number;
   babyCount: number;
   kidsCount: number;
-  completePeople: number;
-  readyPoeple: number;
-  cancelCompletePeople: number;
-  cancelPeople: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
 }
 
 export interface Fproduct_itinerary_images {
@@ -10265,6 +10207,7 @@ export interface Fproduct {
   endDate: any;
   dateRange: number;
   adminMemo: string;
+  groupCode: string;
   region: Fproduct_region | null;
   category: Fproduct_category | null;
   /**
@@ -10959,7 +10902,7 @@ export interface FsmsTemplate {
    * 코드겐용
    */
   _replaceEnum: ReplaceString | null;
-  trigger: FsmsTemplate_trigger;
+  trigger: FsmsTemplate_trigger | null;
   tags: FsmsTemplate_tags[];
   replacers: string[];
 }
@@ -11011,7 +10954,7 @@ export interface FnotificationManager_templates {
    * 코드겐용
    */
   _replaceEnum: ReplaceString | null;
-  trigger: FnotificationManager_templates_trigger;
+  trigger: FnotificationManager_templates_trigger | null;
   tags: FnotificationManager_templates_tags[];
   replacers: string[];
 }
@@ -11446,7 +11389,6 @@ export interface Fquestion {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
-  secret: boolean[] | null;
   answers: Fquestion_answers[] | null;
   keyWards: string[] | null;
   attachFiles: Fquestion_attachFiles[] | null;
@@ -11692,6 +11634,9 @@ export enum NotificationTriggerEvent {
   COMPLETE_BOOKING_BOOKER = "COMPLETE_BOOKING_BOOKER",
   COMPLETE_BOOKING_SELLER = "COMPLETE_BOOKING_SELLER",
   PRODUCT_CONFIRM_REQUEST = "PRODUCT_CONFIRM_REQUEST",
+  PRODUCT_EXPIRE_SELLER = "PRODUCT_EXPIRE_SELLER",
+  SETTLEMENT_COMPLETE = "SETTLEMENT_COMPLETE",
+  SETTLEMENT_REJECT = "SETTLEMENT_REJECT",
   SETTLEMENT_REQUEST = "SETTLEMENT_REQUEST",
   SIGNUP_INDI_USER = "SIGNUP_INDI_USER",
   SIGNUP_PARNTER_B_USER = "SIGNUP_PARNTER_B_USER",
@@ -11773,7 +11718,9 @@ export enum ReplaceString {
   PRICE = "PRICE",
   PROD_NAME = "PROD_NAME",
   REFUND_AMT = "REFUND_AMT",
+  REJECT_REASON = "REJECT_REASON",
   REQUEST_DATE = "REQUEST_DATE",
+  SETTLE_PRICE = "SETTLE_PRICE",
   TRAVEL_CONFIRMED = "TRAVEL_CONFIRMED",
   TRAVEL_DATE_YMD = "TRAVEL_DATE_YMD",
   USERNAME = "USERNAME",
@@ -12125,8 +12072,8 @@ export interface AnswerUpdateInput {
 
 export interface BankInfoInput {
   accountHolder?: string | null;
-  accountNumber?: any | null;
-  bankName?: any | null;
+  accountNumber?: string | null;
+  bankName?: string | null;
 }
 
 export interface BankRefundInput {
@@ -12138,8 +12085,8 @@ export interface BankRefundInput {
 
 export interface BankTransInfoInput {
   accountHolder?: string | null;
-  accountNumber?: any | null;
-  bankName?: any | null;
+  accountNumber?: string | null;
+  bankName?: string | null;
   bankTransfter?: string | null;
 }
 
@@ -12159,6 +12106,7 @@ export interface BookingCancelByHandInput {
   bookingId: string;
   cancelPrice: number;
   reqStatus: BookingStatus;
+  reason: string;
 }
 
 export interface BookingCompleteByHandInput {
@@ -12362,10 +12310,10 @@ export interface NewsUpdateInput {
 }
 
 export interface NotificationTriggerCreateInput {
-  sender: string;
+  sender?: string | null;
   event: NotificationTriggerEvent;
   isEnabled: boolean;
-  tags: GqlTagInput[];
+  tags?: GqlTagInput[] | null;
 }
 
 export interface PageInfoCreateInput {
@@ -12529,7 +12477,6 @@ export interface QuestionCreateInput {
   attachFiles?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   productId?: string | null;
-  secret?: boolean | null;
 }
 
 export interface QuestionUpdateInput {
@@ -12544,7 +12491,6 @@ export interface QuestionUpdateInput {
   thumb?: FileUpdateInput | null;
   productId?: string | null;
   status?: QuestionStatus | null;
-  secret?: boolean | null;
 }
 
 /**
@@ -12584,7 +12530,7 @@ export interface SmsTemplateCreateInput {
   name: string;
   content: string;
   description?: string | null;
-  trigger: NotificationTriggerCreateInput;
+  trigger?: NotificationTriggerCreateInput | null;
   tags?: GqlTagInput[] | null;
 }
 
@@ -12592,7 +12538,7 @@ export interface SmsTemplateUpdateInput {
   content?: string | null;
   name?: string | null;
   description?: string | null;
-  triggers?: NotificationTriggerCreateInput[] | null;
+  trigger?: NotificationTriggerCreateInput | null;
   tags?: GqlTagInput[] | null;
 }
 
@@ -12781,6 +12727,12 @@ export interface _BookingFilter {
   exField__sellerName_not_contains?: string | null;
   exField__sellerName_in?: string[] | null;
   exField__sellerName_not_in?: string[] | null;
+  exField__sellerNickName_eq?: string | null;
+  exField__sellerNickName_not_eq?: string | null;
+  exField__sellerNickName_contains?: string | null;
+  exField__sellerNickName_not_contains?: string | null;
+  exField__sellerNickName_in?: string[] | null;
+  exField__sellerNickName_not_in?: string[] | null;
 }
 
 export interface _INotificationHistoryItemFilter {
@@ -12964,6 +12916,8 @@ export interface _ProductFilter {
   type_eq?: ProductType | null;
   type_not_eq?: ProductType | null;
   type_in?: ProductType[] | null;
+  groupCode_eq?: string | null;
+  groupCode_not_eq?: string | null;
   startDate_eq?: any | null;
   startDate_not_eq?: any | null;
   startDate_lte?: any | null;
@@ -13014,6 +12968,12 @@ export interface _ProductFilter {
   exField__sellerName_not_contains?: string | null;
   exField__sellerName_in?: string[] | null;
   exField__sellerName_not_in?: string[] | null;
+  exField__sellerNickName_eq?: string | null;
+  exField__sellerNickName_not_eq?: string | null;
+  exField__sellerNickName_contains?: string | null;
+  exField__sellerNickName_not_contains?: string | null;
+  exField__sellerNickName_in?: string[] | null;
+  exField__sellerNickName_not_in?: string[] | null;
   exField__startDate_eq?: any | null;
   exField__startDate_not_eq?: any | null;
   exField__startDate_lte?: any | null;
@@ -13144,6 +13104,12 @@ export interface _SettlementFilter {
   exField__sellerName_not_contains?: string | null;
   exField__sellerName_in?: string[] | null;
   exField__sellerName_not_in?: string[] | null;
+  exField__sellerNickName_eq?: string | null;
+  exField__sellerNickName_not_eq?: string | null;
+  exField__sellerNickName_contains?: string | null;
+  exField__sellerNickName_not_contains?: string | null;
+  exField__sellerNickName_in?: string[] | null;
+  exField__sellerNickName_not_in?: string[] | null;
 }
 
 export interface _SystemNotiFilter {

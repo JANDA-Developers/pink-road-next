@@ -42,8 +42,6 @@ const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["da
         }
     })
     } catch (e){
-        console.log(operationName);
-        console.log(operationName);
     console.error("==========FATAL ERROR==========");
     console.error(e);
     }
@@ -182,7 +180,7 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
 
 export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:DocumentNode) => {
     const findQueryHook = (key?:any, options:QueryHookOptions<Q, V> = {}) => {
-        const [getData, { data, loading, error:apolloError }] = useLazyQuery<Q, V>(QUERY, {
+        const [getData, { data, loading, error:apolloError,...context }] = useLazyQuery<Q, V>(QUERY, {
             skip: !key,
             nextFetchPolicy: "network-only",
             // @ts-ignore
@@ -212,7 +210,7 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:Doc
 
         const error = apolloError || errorFromServer 
 
-        return {item, loading, error}
+        return {item, loading, error, getData,...context}
     }
 
     return findQueryHook

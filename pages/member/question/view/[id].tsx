@@ -17,7 +17,7 @@ interface IProp {
 export const QuestionDetail: React.FC<IProp> = () => {
     const router = useRouter();
     const questionId = router.query.id as string;
-    const { myProfile } = useContext(AppContext);
+    const { myProfile, isAdmin } = useContext(AppContext);
     const [createAnswerMu] = useAnswerCreate();
     const [answerDeleteMu] = useAnswerDelete();
     const [answerUpdateMu] = useAnswerUpdate();
@@ -27,16 +27,17 @@ export const QuestionDetail: React.FC<IProp> = () => {
         }
     })
 
-    const { item: question, error } = useQuestionFindById(questionId);
 
-    if (question && question.secret) {
-        if()
+    const { item: question, error } = useQuestionFindById(questionId);
+    const myQuestion = question?.product?.author === myProfile?._id;
+
+    if (question && !question.isOpen && !isAdmin && !myQuestion) {
         return <PageDeny />
     }
 
     if (error) return <Page404 />
     if (!question) return <PageLoading />
-    const { title, thumb, createdAt, contents, subTitle, _id, product } = question;
+    const { title, thumb, createdAt, contents, subTitle, _id, product, author } = question;
     const isMyProduct = myProfile?._id === product?.author?._id;
 
 
@@ -45,7 +46,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
     }
 
     const toList = () => {
-        router.push(`/question/`)
+        router.push(`/member/question/`)
     }
 
     const handleDelete = () => {
@@ -93,6 +94,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
     return <div>
         <BoardView
+            authorId={author?._id || ""}
             onList={toList}
             thumb={thumb}
             content={contents}
@@ -104,16 +106,18 @@ export const QuestionDetail: React.FC<IProp> = () => {
             createAt={createdAt}
 
         />
-        <div className="w1200">
-            <div className="comment_box">
-                <ul>
-                    {(question.answers || []).filter(answer => !answer?.isDelete).map(answer =>
-                        <Comment title={answer?.author.nickName} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
-                    )}
-                </ul>
+        {myProfile &&
+            <div className="w1200">
+                <div className="comment_box">
+                    <ul>
+                        {(question.answers || []).filter(answer => !answer?.isDelete).map(answer =>
+                            <Comment title={answer?.author?.nickName} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
+                        )}
+                    </ul>
+                </div>
+                {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile.nickName} onSubmit={handleAnswer} />}
             </div>
-            {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile!.nickName} onSubmit={handleAnswer} />}
-        </div>
+        }
     </div>
 };
 

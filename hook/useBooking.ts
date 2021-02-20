@@ -17,7 +17,7 @@ export const useBookingDelete = generateMutationHook<bookingDelete,bookingDelete
 });
 export const useBookingCancelReject = generateMutationHook<bookingCancelReq,bookingCancelReqVariables>(BOOKING_CANCEL_REJECT, {
     onCompleted: ({BookingCancelReq}) => {
-        if(BookingCancelReq.ok) {
+        if(BookingCancelReq?.ok) {
             alert("예약 취소가 요청이 거절 되었습니다.");
         }
     },

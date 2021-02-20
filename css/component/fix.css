@@ -25,11 +25,12 @@
 }
 
 .goods__info_title {
-    padding: 0px!important;
+    padding: 10px!important;
 }
 
 .MypageGoods__img {
     position: initial!important;
+    background-repeat: no-repeat;
 }
 .MypageGoods__infoBox {
     display: flex!important;
@@ -45,4 +46,163 @@
         display: initial!important;
     }
 
+}
+
+
+
+
+div.popup_bg_full h3 {
+    position: initial!important;
+}
+
+div.popup_bg_full .in_txt {
+    padding-top: 0px!important;
+}
+
+.productModal__close {
+ position: initial!important;   
+}
+
+.productModal__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.productModal__body {
+    overflow: auto!important;
+    padding: 20px 10px 10px 0px;
+}
+
+.productModal__wrap {
+    display: flex;
+    flex-direction: column;
+    padding-right: 0px!important;
+    overflow: initial!important;
+}
+
+.productModal__inWrap {
+}
+
+.productDateSelecter__categoryWrap  {
+    padding: 0px!important;
+}
+
+
+.masterMain {
+
+}
+
+.masterMain .table .body{ 
+    display: flex!important;
+    align-items: center!important;
+}
+
+.masterMain .table .head  {
+    display: flex!important;
+    height: 35px;
+    align-items: center;
+}
+
+.masterMain .table .head > div {
+    flex: 1 1!important
+}
+
+
+
+.masterMain .table .td01, .masterMain .table .td02,.masterMain .table .td03,.masterMain .table .td04 { 
+    width: auto!important;
+    
+}
+
+
+.masterMain .table .td01 { 
+    /* min-width: 25%; */
+}
+
+.master_box .in_content .alignment {
+    margin-bottom: 20px;
+    height: auto!important;
+}
+
+.productSelectModal .popup__tittle {
+    position: initial!important;
+}
+
+.productSelectModal  {
+    padding-top: 0px!important;
+    height: auto!important;
+}
+
+.productSelectModal .page {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden!important;
+}
+
+
+.goodsall__wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.goodsall__list {
+    max-height: 400px;
+    overflow: auto;
+}
+
+
+.terms__saveBtn {
+    height: min-content;
+}
+
+.tourView__recommendList {
+    display: flex!important;
+}
+@media (max-width: 767px) {
+    .tourView__recommendList {
+        display: flex!important;
+        flex-direction: column;
+    }
+}
+
+
+.BookingModal__statusBox {
+    display: flex!important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mypageSettlement__list {
+    text-align: center;
+}
+
+.mypageSettlement__list .th02 {
+    text-align: center!important;
+}
+
+.settlementModal__li {
+    display: flex!important;
+    justify-content: space-around!important;
+    align-items: center!important;
+}
+
+.settlementModal__li-th3 {
+    font-size: initial!important;
+    font-weight: initial!important;
+    width: auto!important;
+}
+
+.statement_popup__topBox {
+    margin-top: 20px;
+}
+
+.goods__productinfo {
+    min-width: 300px;
+}
+
+.peoplelist__li {
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
 }

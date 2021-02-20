@@ -26,8 +26,6 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
     const { getData: getPassword } = usePasswordFindByPhone({
         onCompleted: ({ PasswordFindByPhone }) => {
             if (PasswordFindByPhone.ok) {
-                console.log("PasswordFindByPhone.data?.resultObj");
-                console.log(PasswordFindByPhone.data?.resultObj);
                 alert("임시 패스워드가 성공적으로 발신 되었습니다. 핸드폰을 확인 해주세요.");
             }
         }

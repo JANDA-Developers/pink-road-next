@@ -12,7 +12,6 @@ export const cardRefund = async (body:IRefundBody):Promise<any> => {
         referrerPolicy: 'no-referrer'
     }).then((res) => {
         const result = res.json();
-        console.log({result})
         return result;
     }).catch((e)=> {
         alert("pay err")

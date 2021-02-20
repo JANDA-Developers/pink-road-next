@@ -231,7 +231,7 @@ export const MsDesignB: React.FC<IProp> = () => {
                             <div className="float_left">
                             </div>
                             <div className="float_right">
-                                <button type="submit" className="btn medium">저장하기</button>
+                                <button onClick={handleUpdate} type="submit" className="btn medium">저장하기</button>
                             </div>
                         </div>
                     </div>

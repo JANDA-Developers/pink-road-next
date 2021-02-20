@@ -1,10 +1,11 @@
 import React from 'react';
 import { useProductFindById } from '../../hook/useProduct';
+import { Fproduct } from '../../types/api';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 
-interface IProp { id: string }
+interface IProp { id: string, item: Fproduct }
 
-export const ProductSelectView: React.FC<IProp> = ({ id }) => {
+export const ProductSelectView: React.FC<IProp> = ({ id, item }) => {
     return <div className="goodsall__choice_info">
         <a className="close_icon"><i className="flaticon-multiply"></i></a>
         <div className="goodsall__list__img">

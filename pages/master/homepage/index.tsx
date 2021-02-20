@@ -63,8 +63,6 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
         // @ts-ignore
         homepage.bankInfo[key] = value;
 
-        console.log("--!!!homepage!!!--");
-        console.log(homepage);
         // @ts-ignore
         setHomepage({ ...homepage })
     }
@@ -90,9 +88,6 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
     if (!homepage) return <PageLoading />
     const { ceoName, bankInfo, copyRight, logo, logoBottom, logoTop, contact, degitalSalesNumber, address, addressUrl, busiNumber, email, openTime } = homepage;
     const { accountHolder, accountNumber, bankName } = bankInfo || {}
-    console.log("bankInfo");
-    console.log(bankInfo);
-    console.log(bankInfo);
     return <MasterLayout>
         <div className="in ">
             <h4>홈페이지 설정</h4>
@@ -258,6 +253,16 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                         </div>
                         <div className="block_box">
                             <h5>하단 로고</h5>
+                            <div key={homepage.partnerFooter?.length} className="tbody">
+                                <div className="t01">
+                                    <div className="title">로고추가</div>
+                                </div>
+                                <div className="t02">
+                                    <div className="txt">
+                                        <input name={"bottomLogoAdd"} onChange={uploadPartnerFooter} className="w50" type="file" />
+                                    </div>
+                                </div>
+                            </div>
                             {homepage?.partnerFooter?.map(({ name }, index) =>
                                 <div className="tbody">
                                     <div className="t01">
@@ -265,7 +270,7 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     </div>
                                     <div className="t02">
                                         <div className="txt">
-                                            <input onChange={uploadPartnerFooter} className="w50" type="file" />
+                                            <input name={"bottomLogo" + index} onChange={uploadPartnerFooter} className="w50" type="file" />
                                         </div>
                                     </div>
                                     <button style={{
@@ -274,16 +279,7 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     }} onClick={removePartnerFooter(index)} type="submit" className="btn medium">삭제하기</button>
                                 </div>
                             )}
-                            <div className="tbody">
-                                <div className="t01">
-                                    <div className="title">로고추가</div>
-                                </div>
-                                <div className="t02">
-                                    <div className="txt">
-                                        <input onChange={uploadPartnerFooter} className="w50" type="file" />
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                         <div className="block_box">
                             <h5>SNS설정</h5>

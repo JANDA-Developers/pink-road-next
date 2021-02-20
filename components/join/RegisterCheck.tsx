@@ -127,10 +127,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
 
   if (userType === UserRole.partnerB) {
     //네이밍 얼라이어스
-    registerInfo.name = registerInfo.manageName || "";
     registerInfo.phoneNumber = registerInfo.manageContact || "";
-    registerInfo.address = registerInfo.address;
-    registerInfo.address_detail = registerInfo.address_detail;
   }
 
   const { nodes: sharedValidate } = new Validater([{
@@ -434,7 +431,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         <Policy type="marketingPolic" />
       </Modal>
 
-      <Modal id="MarketingPolicy" title="비지니스 파트너 약관">
+      <Modal id="MarketingPolicy" title="기업 파트너 약관">
         <Policy type="partnerBpolicy" />
       </Modal>
 

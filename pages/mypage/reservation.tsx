@@ -12,7 +12,7 @@ import { SingleSortSelect } from '../../components/common/SortSelect';
 import { ViewCount } from '../../components/common/ViewCount';
 import { BookingStatusBadge } from '../../components/Status/StatusBadge';
 import { yyyymmdd } from '../../utils/yyyymmdd';
-import { determinedKr, payMethodToKR, productStatus } from '../../utils/enumToKr';
+import { determinedKr, payMethodToKR, personCountBracket, productStatus } from '../../utils/enumToKr';
 import { useSingleSort } from '../../hook/useSort';
 import { autoComma } from '../../utils/formatter';
 import { useQueryFilter } from '../../hook/useQueryFilter';
@@ -45,10 +45,9 @@ export const MyReservation: React.FC<IProp> = () => {
     const { check, handleCheck, isAllSelected, isChecked, reverseAll, selectAll, selectLength, selectedIds, setSelectedIds, toggle, toggleAll, unCheck, unSelectAll } = idSelecterHook;
     const { hanldeCreateDateChange } = dateFilterHook;
 
-
     // const { items, viewCount, setViewCount, filter, setFilter, setOR, sort, setSort, pageInfo, setPage } = useBookingList(undefined);
     // const [searchType, setSearchType] = useState<"code" | "title" | "name">("code");
-    // const bookingModalHook = useModal<IBookingModalInfo>()
+    // const bookingModalHook = useModal<IBookingModalInfot>()
 
 
     // const { hanldeCreateDateChange, filterEnd, filterStart } = useDateFilter({
@@ -156,7 +155,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                         <div className="t04 MypageGoods__infoBox">
                                             <div className="MypageGoods__img img" style={BG(item?.product?.images?.[0]?.uri || "")} ></div>
                                             <div className="info goods__info_title">
-                                                <span className="ct">{item.product.title}</span><span className="g-number">상품번호: {item.product.code}</span>
+                                                <span className="ct">{item.product.category?.label}</span><span className="g-number">상품번호: {item.product.code}</span>
                                                 <strong className="title">{item.product.title}</strong>
                                                 <div className="txt">
                                                     <span className="s-day">출발일: {yyyymmdd(item.product.startDate)}</span>
@@ -171,7 +170,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                             <div className="align">
                                                 <span className="name"><i className="m_title">예약자:</i>{item.name}</span>
                                                 <span className="ph">{item.phoneNumber}</span>
-                                                <span className="men">예약인원: 총 {item.totalCount}명<br />(성인{item.adultCount} / {item.kidCount} / 유아{item.babyCount})</span>
+                                                <span className="men">예약인원: 총 {item.totalCount}명<br />{personCountBracket(item)}</span>
                                             </div>
                                         </div>
                                         <div className="t06">
@@ -186,9 +185,11 @@ export const MyReservation: React.FC<IProp> = () => {
                                                 <BookingStatusBadge status={item.status!} />
                                                 <span
                                                     className="btn"
-                                                    onClick={handleDetail(item.code)}
+                                                    onClick={() => {
+                                                        handleDetail(item.code)
+                                                    }}
                                                 >
-                                                    결제 및 상세내역
+                                                    상세보기
                                             </span>
                                             </div>
                                         </div>

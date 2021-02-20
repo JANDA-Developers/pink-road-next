@@ -104,7 +104,7 @@ export const defaultModalGet: () => Ipopup = () => ({
 
 export const AFTER_OPEN_PRODUCT_STATUS = [ProductStatus.OPEN, ProductStatus.EXPIRED, ProductStatus.CANCELD, ProductStatus.COMPLETED];
 export const DELETE_AVAIABLE_PRODUCTS = [ProductStatus.UPDATE_REQ, ProductStatus.UPDATE_REQ_REFUSED, ProductStatus.REFUSED, ProductStatus.READY];
-export const SETTLEMENT_REQ_AVAIABLE = [SettlementStatus.COMPLETE, ProductStatus.EXPIRED];
+export const SETTLEMENT_REQ_AVAIABLE = [ProductStatus.COMPLETED];
 
 export const CONDITION = {
     travelCacnel: "여행취소는 예약자가 없을때만 가능합니다.",

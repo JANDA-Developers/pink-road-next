@@ -1,11 +1,9 @@
-import dayjs from 'dayjs';
 import Link from 'next/link';
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import { generateSearchLink } from '../../pages/search';
 import { bookingList_BookingList_data, BookingStatus, Fbooking, ProductStatus } from '../../types/api';
 import { BG } from '../../types/const';
-import { bookingStatus } from '../../utils/enumToKr';
 import { autoComma } from '../../utils/formatter';
 import { getTypeTextOfProduct } from '../../utils/product';
 import { yyyymmdd } from '../../utils/yyyymmdd';
@@ -50,7 +48,7 @@ export const PurChasedItem: React.FC<IProp> = ({ item, onDetail: handleDetail })
                 </div>
             </div>
             <div className="bottom_info">
-                {status && <span data-for="ToolTipLayOut" data-tip={statusTip(status)} className="ok">{bookingStatus(status)}</span>}
+                {status && <BookingStatusBadge square status={status} />}
             </div>
         </div>
         <div className="txt2">

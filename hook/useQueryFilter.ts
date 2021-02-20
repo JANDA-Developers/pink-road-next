@@ -79,9 +79,6 @@ export const useQueryFilter = <F>(defaultFilter:F):IUseQueryFilter<F> => {
             }
         })
 
-        console.log({target});
-        console.log({_value});
-        console.log({_filter});
 
         setFilter({
             ..._filter

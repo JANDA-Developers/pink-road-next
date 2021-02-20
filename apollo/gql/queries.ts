@@ -51,6 +51,11 @@ export const GET_CONTEXT = gql`
           bankImg {
             ...Ffile
           }
+          products {
+            _id
+            title
+            groupCode
+          }
           bookings {
             ...Fbooking
             seller {

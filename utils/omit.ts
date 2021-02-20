@@ -36,7 +36,7 @@ function omit <T,K>(obj:T,key:K):DeepOmit<T,K> {
     return omitDeep(obj,key)
 }
 
-const defaultOmits = ["createdAt", "updatedAt", "__typename", "isDelete", "_id",];
+const defaultOmits = ["createdAt", "updatedAt", "__typename", "isDelete", "_id"];
 
 export function omits <T>(obj:T, keys?: T extends (infer U)[] ? (keyof U)[] : (keyof T)[]) {
     return omitDeep(obj,...defaultOmits,...keys || "")

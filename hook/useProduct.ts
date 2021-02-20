@@ -12,6 +12,8 @@ import { PRODUCT_POST_UPDATE } from "../apollo/gql/product";
 import { productUpdate, productUpdateVariables } from "../types/api";
 import { getRefetch } from "../utils/api";
 import { generateFindQuery, generateListQueryHook, generateMutationHook } from "../utils/query";
+import { useContext } from "react";
+import { AppContext } from "../pages/_app";
 
 export const useProductDelete = generateMutationHook<productDelete,productDeleteVariables>(PRODUCT_DELETE);
 export const useProductFindById = generateFindQuery<productFindById, productFindByIdVariables, productFindById_ProductFindById_data>("_id",PRODUCT_FIND_BY_ID);
@@ -212,4 +214,43 @@ export const useProductController = (onSucess: () => void,role:UserRole) => {
     cancel_loading;
 
     return { productElseDeny, productElseAccept, productElseReq, productDelete, rejectUpdate,acceptUpdate,rejectCreate, acceptCreate,  travelCancel, travelWithdrwal, tarvelDetermine, loading}
+}
+
+export const useFindProductsByGroup = (groupCode:string) => {
+    const { isManager, isSeller } =useContext(AppContext);
+    const result = useProductList({
+    }, {
+        variables: {
+            pageInput: {
+                cntPerPage: 99,
+                page: 1
+            },
+            filter: {
+                ...openListFilter,
+                isOpen_eq: (isManager || isSeller) ? undefined : true,
+                groupCode_eq: groupCode
+            }
+        }
+    })
+
+    const productGroupList: {
+        _id: string;
+        label: string;
+        groupCode: string;
+        date: string;
+      }[] = [];
+    
+      result.items?.forEach((p) => {
+        if (!productGroupList.find(g => g.groupCode === p.groupCode)) {
+          productGroupList.push({
+              _id: p._id,
+              groupCode: p.groupCode,
+              label: p.title,
+              date: p.startDate
+          })
+        }
+      })
+    
+
+    return {...result, productGroupList};
 }

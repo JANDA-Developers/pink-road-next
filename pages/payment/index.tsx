@@ -39,7 +39,7 @@ export const Payment: React.FC<IProp> = ({ }) => {
             email: param.buyerInfo.email,
             name: param.buyerInfo.name,
             phoneNumber: param.buyerInfo.phone,
-            message: "",
+            message: param.buyerInfo.memo,
             product: item._id,
             payMethod: param.payMethod,
             bankTransfter: param.bankTransInput
@@ -67,10 +67,8 @@ export const Payment: React.FC<IProp> = ({ }) => {
                 setCreatedBookings(bks);
                 setCustomParams(customParams);
                 if (param.payMethod === PayMethod.NICEPAY_CARD) {
-                    alert("auth 발동");
                     auth(totalPrice);
                 } else {
-                    alert("redirectOccur");
                     router.push(redirectPath)
                 }
             }

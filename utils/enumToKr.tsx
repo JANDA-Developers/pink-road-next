@@ -1,4 +1,4 @@
-import { AddtionalFeesStatus, AnnounceType, BookingStatus, CategoryType, ERR_CODE, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fuser, GENDER, PaymentStatus, PayMethod, ProductElseReq, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole, UserStatus } from "../types/api";
+import { AddtionalFeesStatus, AnnounceType, BookingStatus, CategoryType, ERR_CODE, Fbooking, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fproduct, Fuser, GENDER, PaymentStatus, PayMethod, ProductElseReq, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole, UserStatus } from "../types/api";
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if (status === BookingStatus.CANCEL) return "예약취소"
@@ -9,6 +9,7 @@ export const bookingStatus = (status?: BookingStatus | null) => {
 
 export const productStatus = (status?: ProductStatus | null) => {
     if (status === ProductStatus.CANCELD) return "취소"
+    if (status === ProductStatus.COMPLETED) return "완료"
     if (status === ProductStatus.EXPIRED) return "만료"
     if (status === ProductStatus.OPEN) return "판매중"
     if (status === ProductStatus.READY) return "생성요청"
@@ -156,6 +157,12 @@ export const userStatusReverseKR = (user?: Fuser) => {
     return ""
 }
 
+export const isOpenKr = (isOpen?: boolean) => {
+    if (isOpen) return "공개"
+    if (!isOpen) return "비공개"
+    return ""
+}
+
 export const reqToKr = (req?: ProductElseReq | null) => {
     if (req === ProductElseReq.REOPEN) return "오픈요청"
     return ""
@@ -169,4 +176,20 @@ interface IReqBadgeProp {
 export const ReqBadge: React.FC<IReqBadgeProp> = ({ req }) => {
     if (req === ProductElseReq.REOPEN) return <span>{`[${reqToKr(req)}]`}</span>;
     return <span />
+}
+
+
+interface IBookingInfo {
+}
+
+export const personCountBracket = (info: Fbooking) => {
+    const { adultCount, babyCount, kidCount } = info;
+
+    return `( 성인${adultCount} / 소아${kidCount} / 유아${babyCount} )`
+}
+
+export const peopleCurrentCountBracket = (info: Fproduct) => {
+    const { peopleCount, maxMember, minMember } = info;
+
+    return `(인원:${peopleCount} / 최소${minMember} / 최대${maxMember})`
 }

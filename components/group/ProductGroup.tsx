@@ -7,7 +7,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautif
 import { reorder } from '../../utils/reorder';
 import { useCopy } from '../../hook/useUpdate';
 import { ProductSelectModal } from '../ProductSelectModal';
-import { openModal } from '../../utils/popUp';
+import { closeModal, openModal } from '../../utils/popUp';
 import { cloneObject } from '../../utils/clone';
 import { Change } from '../loadingList/LoadingList';
 import { AppContext } from '../../pages/_app';
@@ -32,8 +32,6 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
     const handleDrop = (result: DropResult) => {
         const ordered = reorder(group.members, result.source.index, result.destination?.index!);
         group.members = ordered;
-        console.log("ordered");
-        console.log(ordered);
         setGroup({ ...group })
     }
 
@@ -49,6 +47,7 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
     const handleProductSelect = (pd: Fproduct) => {
         group.members.push(pd._id);
         setGroup({ ...group });
+        closeModal("#ProductModal" + group._id)();
     }
 
 
@@ -68,10 +67,10 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
         </div>
         <div className="body">
             <div className="body-title">
-                <div className="th">타이틀</div>
-                <div className="td">
+                <div className="th">{group.label}</div>
+                {/* <div className="td">
                     {group.label}
-                </div>
+                </div> */}
             </div>
             <div className="body-list">
                 <Change change={!getLoading}>
@@ -115,13 +114,11 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
             <div className="float_left">
             </div>
             <div className="float_right">
-                {isManager &&
+                {/* {isManager &&
                     <button onClick={handleDelete} type="submit" className="btn medium">삭제하기</button>
-                }
+                } */}
                 <button onClick={() => {
 
-                    console.log("!!!group!!!");
-                    console.log(group);
                     handleSave(group)
                 }} type="submit" className="btn medium">저장하기</button>
             </div>

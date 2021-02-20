@@ -152,12 +152,10 @@ export const addItem = (product: IBasketItem) => {
     const duplicated = products.findIndex(p => p._id === product._id);
     let updateProducts: IBasketItem[] = [];
     if (duplicated !== -1) {
-        console.log({ product })
         updateProducts.splice(duplicated, 1, product);
     } else
         updateProducts = [product, ...products];
 
-    console.log({ updateProducts })
     saveBracket(updateProducts);
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookingStatus, ProductStatus } from '../../types/api';
+import { BookingStatus, Fbooking, ProductStatus } from '../../types/api';
 import { bookingStatus, productStatus } from "../../utils/enumToKr";
 
 interface IProp {
@@ -14,10 +14,10 @@ export const PordStatusBadge: React.FC<IProp> = ({ status }) => {
         if (status === ProductStatus.EXPIRED) return "tour-no"
         if (status === ProductStatus.OPEN) return "tour-ok"
         if (status === ProductStatus.REFUSED) return "plainning-no"
-        if (status === ProductStatus.SOLD) return "tour-no"
         if (status === ProductStatus.UPDATE_REQ) return "plainning-yes"
         if (status === ProductStatus.UPDATE_REQ_REFUSED) return "plainning-no"
     }
+
 
     // <span> </span>
     const _class = getClass();
@@ -26,9 +26,10 @@ export const PordStatusBadge: React.FC<IProp> = ({ status }) => {
 
 interface IBookingStatusBadgeProp {
     status: BookingStatus;
+    square?: boolean;
 }
 
-export const BookingStatusBadge: React.FC<IBookingStatusBadgeProp> = ({ status }) => {
+export const BookingStatusBadge: React.FC<IBookingStatusBadgeProp> = ({ status, square }) => {
 
     const getClass = () => {
         if (status === BookingStatus.COMPLETE) return "re-ok"
@@ -36,8 +37,24 @@ export const BookingStatusBadge: React.FC<IBookingStatusBadgeProp> = ({ status }
         if (status === BookingStatus.CANCEL) return "re-refund"
     }
 
+    if (square)
+        return <span className={`status_square ${getClass()}`}>{bookingStatus(status)}</span>
     return <i className={`state ${getClass()}`}>{bookingStatus(status)}</i>
 };
+
+export const RequestBadge: React.FC<any> = ({ isCancelRequest, className }) => {
+
+    const getClass = () => {
+        if (status === BookingStatus.COMPLETE) return "re-ok"
+        if (status === BookingStatus.READY) return "re-stay"
+        if (status === BookingStatus.CANCEL) return "re-refund"
+    }
+
+    if (isCancelRequest)
+        return <span className={`requestBadge` + " " + className}>취소요청</span>
+    else return null
+};
+
 
 
 // .state_icon.tour-no { // 여행취소
