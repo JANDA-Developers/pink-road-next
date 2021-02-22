@@ -143,6 +143,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
         onLoad={handleLoad}
         opens={{
             title: true,
+            open: true,
         }}
     />
 };

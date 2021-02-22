@@ -98,14 +98,13 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
 
     const doSearch = () => {
         const _filter = integratedProductSearch(search, filter);
-        console.log({ _filter });
         setFilter(_filter)
     }
 
     const filterStart = filter.startDate_gte ? dayjs(filter.startDate_gte).format("YYYY.MM.DD") : "";
     const filterEnd = filter.startDate_lte ? dayjs(filter.startDate_lte).format("YYYY.MM.DD") : "";
     const noProduct = isEmpty(products);
-    
+
     return <div>
         <SubTopNav pageTools={pageTools} >
             <li className="homedeps1">Member</li>

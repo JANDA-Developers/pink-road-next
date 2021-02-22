@@ -39,25 +39,26 @@ export interface IMemberTableProp {
 }
 
 
-type TuniqSearch = keyof Pick<_UserFilter, "name_eq" | "email_eq" | "phoneNumber_eq">
+type TuniqSearch = keyof Pick<_UserFilter, "name_eq" | "email_eq" | "phoneNumber_eq" | "nickName_eq">
 
 interface IProp {
-    type: UserRole | "signOut"
+    type?: UserRole;
+    signOut?: boolean;
     BoardOptions?: TElements;
     SortOptions?: TElements
     Table: React.FC<IMemberTableProp>
 }
 
-export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortOptions }) => {
-    const role_eq = type !== "signOut" ? type : undefined;
-    const isResigned_eq = type === "signOut" ? true : false;
+export const MemberMaster: React.FC<IProp> = ({ type, Table, signOut, BoardOptions, SortOptions }) => {
+    const role_eq = type;
+    const isResigned_eq = signOut;
     const fixedFilter: _UserFilter = { role_eq, isResigned_eq };
     const { totalIndiMemberCount, koreanMemberCount, foreginMemberCount } = useCustomCount(["totalPartnerMemberCount", "koreanMemberCount", "foreginMemberCount", "totalIndiMemberCount"])
     const [searchType, setSearchType] = useState<TuniqSearch>("name_eq");
     const [popupUser, setPopupUser] = useState<Fuser>();
     const useHook = useUserList({ initialFilter: fixedFilter });
     const { items: users, filter, setFilter, viewCount, setViewCount, sort, setSort, setUniqFilter, setOR, pageInfo: userPageInfo, setPage, getLoading } = useHook;
-    const { filterEnd, filterStart, hanldeCreateDateChange, setDateKey } = useDateFilter({ filter, setFilter });
+    const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({ filter, setFilter });
     const idHooks = useIdSelecter(users.map(user => user._id));
     const { selectAll, selectedIds } = idHooks;
     const singleSort = useSingleSort(sort, setSort);
@@ -92,46 +93,55 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
         })
     }
 
-    const setIsForeginer = (foreginer: boolean) => () => {
+    const setIsForeginer = (foreginer?: boolean) => () => {
         filter.is_froreginer_eq = foreginer;
         setFilter({ ...filter })
     }
 
-    const setGenderFilter = (gender: Gender) => () => {
+    const setGenderFilter = (gender?: Gender) => () => {
         filter.gender_eq = gender;
         setFilter({ ...filter });
     }
 
     const selected = selectedIds[0];
 
-    const handleResignUser = () => {
-        if (selectedIds.length > 1) alert("한번에 하나의 유저만 선택 해주세요.")
-        else if (selectedIds.length < 1) alert("유저를 선택 해주세요.");
-        resignUser({
-            variables: {
-                reason: "manager",
-                resignReasonType: "manager",
-                _id: selected,
-                pw: "" //마스터 일때는 안넣어도됨
+    const handleResignUser = (userId?: string) => {
+        const targetUser = users.find(u => u._id === userId);
+        if (targetUser) {
+            const data = prompt(`해당 유저를 탈퇴 시킬려면 ${targetUser.name}를 정확히 입력해 주세요.`)
+            if (!data) return;
+            if (data !== targetUser.name) {
+                alert("입력값이 정확하지 않습니다.");
+                return;
             }
-        })
+        }
+        if (targetUser || confirm("정말로 해당 유저를 삭제하십니까?")) {
+            resignUser({
+                variables: {
+                    reason: "manager",
+                    resignReasonType: "manager",
+                    _id: userId || selected,
+                    pw: "" //마스터 일때는 안넣어도됨
+                }
+            })
+        }
     }
 
-    const handleStopUser = () => {
+    const handleStopUser = (userIds?: string[]) => {
         if (!confirm(`정말로 유저 ${selectedIds.length}명을 정지 시키겠습니까?`)) return;
         stopUsers({
             variables: {
                 reason: "",
-                userIds: selectedIds
+                userIds: userIds || selectedIds
             }
         }).then(({ data }) => {
             if (data?.StopUser.ok) alert("해당 유저들을 정지 하였습니다.");
         })
     }
-    const handleRestartUser = () => {
+    const handleRestartUser = (userIds?: string[]) => {
         restartUsers({
             variables: {
-                userIds: selectedIds
+                userIds: userIds || selectedIds
             }
         }).then(({ data }) => {
             if (data?.RestartUser.ok) alert("해당 유저들의 활동이 재개 되었습니다.");
@@ -201,6 +211,7 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
                                     {BoardOptions}
                                     <option value={undefined}>전체</option>
                                     <option value={"name_eq" as TuniqSearch}>이름</option>
+                                    <option value={"nickName_eq" as TuniqSearch}>닉네임</option>
                                     <option value={"email_eq" as TuniqSearch}>아이디</option>
                                     <option value={"phoneNumber_eq" as TuniqSearch}>휴대폰</option>
                                 </select>
@@ -222,12 +233,12 @@ export const MemberMaster: React.FC<IProp> = ({ Table, type, BoardOptions, SortO
                             LeftDiv={
                                 <div>
                                     <ul className="board_option">
-                                        <li className={checkOnAllForgien()}><a >전체<strong>{totalIndiMemberCount}</strong></a></li>
+                                        <li onClick={setIsForeginer(undefined)} className={checkOnAllForgien()}><a >전체<strong>{totalIndiMemberCount}</strong></a></li>
                                         <li onClick={setIsForeginer(false)} className={checkOnForeginer(false)}><a>내국인<strong>{koreanMemberCount}</strong></a></li>
                                         <li onClick={setIsForeginer(true)} className={checkOnForeginer(true)}><a >외국인<strong>{foreginMemberCount}</strong></a></li>
                                     </ul>
                                     <ul className="board_option">
-                                        <li className={checkOnAllGender()}><a >전체<strong>{totalIndiMemberCount}</strong></a></li>
+                                        <li onClick={setGenderFilter(undefined)} className={checkOnAllGender()}><a >전체<strong>{totalIndiMemberCount}</strong></a></li>
                                         <li onClick={setGenderFilter(GENDER.MAIL)} className={checkOnGender(GENDER.MAIL)}><a>남<strong>{koreanMemberCount}</strong></a></li>
                                         <li onClick={setGenderFilter(GENDER.FEMALE)} className={checkOnGender(GENDER.FEMALE)}><a>녀<strong>{foreginMemberCount}</strong></a></li>
                                     </ul>

@@ -70,10 +70,10 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
 
                     {booking.payment && <div className="payment_tr">
                         <div className="payment_th">
-                            결제일시
+                            결제코드
                         </div>
                         <div className="payment_td">
-                            <span>{yyyymmddHHmm(booking.payment.createdAt)}</span>
+                            <span>{booking.payment.groupCode}</span>
                         </div>
                     </div>}
 

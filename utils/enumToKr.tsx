@@ -1,4 +1,4 @@
-import { AddtionalFeesStatus, AnnounceType, BookingStatus, CategoryType, ERR_CODE, Fbooking, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fproduct, Fuser, GENDER, PaymentStatus, PayMethod, ProductElseReq, ProductStatus, ProductType, QuestionStatus, SettlementStatus, UserRole, UserStatus } from "../types/api";
+import { AddtionalFeesStatus, AnnounceType, bookingFindByCode_BookingFindByCode_data_bankTransInfo, BookingStatus, CategoryType, ERR_CODE, Fbooking, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fproduct, Fuser, GENDER, MethodType, PaymentStatus, PayMethod, ProductReOpenReq, ProductStatus, ProductType, QuestionStatus, RequestStatus, SettlementStatus, UserRole, UserStatus } from "../types/api";
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if (status === BookingStatus.CANCEL) return "예약취소"
@@ -35,11 +35,11 @@ export const paymentStatus2 = (obj?: any | null) => {
     return "";
 }
 
-export const settlementStatus = (status?: SettlementStatus | null) => {
+export const settlementStatus = (status?: SettlementStatus | null, productStatus?: ProductStatus | null) => {
+    if (productStatus && productStatus !== ProductStatus.COMPLETED) return "요청불가"
     if (status === SettlementStatus.REQUEST) return "요청"
     if (status === SettlementStatus.COMPLETE) return "완료"
-    if (status === SettlementStatus.READY) return "보류중"
-    if (status === SettlementStatus.ACCEPT) return "승인"
+    if (status === SettlementStatus.READY) return "요청가능"
     if (status === SettlementStatus.CANCELED) return "취소"
     return "";
 }
@@ -83,6 +83,7 @@ export const categoryToKR = (catType?: CategoryType | null) => {
 
 export const payMethodToKR = (paymethod?: PayMethod) => {
     if (paymethod === PayMethod.BANK) return "무통장입금"
+    if (paymethod === PayMethod.HAND) return "수기등록(무통장)"
     if (paymethod === PayMethod.NICEPAY_CARD) return "카드결제"
     return ""
 }
@@ -103,8 +104,8 @@ export const genderToKR = (gender?: GENDER | null) => {
 }
 
 export const announceTypeKR = (type?: AnnounceType) => {
-    if (type === AnnounceType.ACCOUNCE) return "알림"
-    if (type === AnnounceType.NOICE) return "공지"
+    if (type === AnnounceType.ACCOUNCE) return "공지"
+    if (type === AnnounceType.NOICE) return "알림"
     return ""
 }
 
@@ -151,6 +152,30 @@ export const userStatusKR = (user?: Fuser) => {
     return ""
 }
 
+export const requestStatusKr = (req?: RequestStatus) => {
+    if (req === RequestStatus.ACCEPT) return "수락"
+    if (req === RequestStatus.CANCEL) return "취소"
+    if (req === RequestStatus.CANCEL_REQ) return "취소요청"
+    if (req === RequestStatus.COMPLETE) return "완료"
+    if (req === RequestStatus.DETERMIN) return "출발결정"
+    if (req === RequestStatus.EXPIRED) return "만료"
+    if (req === RequestStatus.REJECT) return "거절"
+    if (req === RequestStatus.REQUEST) return "요청"
+    if (req === RequestStatus.WITHDRAWAL) return "출발철회"
+    return ""
+}
+
+export const methodTypeKr = (mt?: MethodType) => {
+    if (mt === MethodType.BOOKING) return "예약"
+    if (mt === MethodType.PRODUCT) return "상품"
+    if (mt === MethodType.PRODUCT_CREATE) return "상품생성"
+    if (mt === MethodType.PRODUCT_REOPEN) return "상품재개"
+    if (mt === MethodType.SETTLEMENT) return "정산"
+    if (mt === MethodType.TRAVEL) return "여행"
+    return ""
+}
+
+
 export const userStatusReverseKR = (user?: Fuser) => {
     if (user?.isDenied) return "가입승인"
     if (!user?.isVerifiedManager) return "가입거절"
@@ -163,18 +188,18 @@ export const isOpenKr = (isOpen?: boolean) => {
     return ""
 }
 
-export const reqToKr = (req?: ProductElseReq | null) => {
-    if (req === ProductElseReq.REOPEN) return "오픈요청"
+export const reqToKr = (req?: ProductReOpenReq | null) => {
+    if (req === ProductReOpenReq.REOPEN) return "오픈요청"
     return ""
 }
 
 
 interface IReqBadgeProp {
-    req?: ProductElseReq | null;
+    req?: ProductReOpenReq | null;
 }
 
 export const ReqBadge: React.FC<IReqBadgeProp> = ({ req }) => {
-    if (req === ProductElseReq.REOPEN) return <span>{`[${reqToKr(req)}]`}</span>;
+    if (req === ProductReOpenReq.REOPEN) return <span>{`[${reqToKr(req)}]`}</span>;
     return <span />
 }
 
@@ -193,3 +218,23 @@ export const peopleCurrentCountBracket = (info: Fproduct) => {
 
     return `(인원:${peopleCount} / 최소${minMember} / 최대${maxMember})`
 }
+
+
+interface Author {
+    name: string;
+    nickName: string;
+    [key: string]: any
+}
+export const withNick = (info?: Author | null) => {
+    const { name, nickName } = info || {}
+    return `${name}(${nickName ? nickName : "닉네임없음"})`
+};
+
+
+interface Author {
+}
+export const bankrefundTransInfo = (bankTransInfo?: bookingFindByCode_BookingFindByCode_data_bankTransInfo) => {
+    const { accountHolder, accountNumber, bankName } = bankTransInfo || {}
+    return `${accountHolder} ${accountNumber}(${bankName})`
+};
+

@@ -81,10 +81,8 @@ export const Payment: React.FC<IProp> = ({ }) => {
 
     //부킹후에 나이스 인증모달 인증 셋팅후 인증모달 트리거.
     const auth = async (price: number) => {
-        alert("auth occcurend");
         const { data } = await getAuth(price);
 
-        if (payMethod === PayMethod.NICEPAY_CARD) return;
         if (data.ediDate) {
             setAuthData(data);
             openNCmodal();

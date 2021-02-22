@@ -5,11 +5,12 @@ import { IUseModal } from '../../hook/useModal';
 import { useBankDepositConfirm, useBankRefund } from '../../hook/usePayment';
 import { AppContext } from '../../pages/_app';
 import { BookingStatus, PaymentStatus, PayMethod, ProductStatus } from '../../types/api';
-import { determinedKr, genderToKR, paymentStatus, paymentStatus2, payMethodToKR, peopleCurrentCountBracket, personCountBracket, productStatus } from '../../utils/enumToKr';
+import { bankrefundTransInfo, determinedKr, genderToKR, paymentStatus, paymentStatus2, payMethodToKR, peopleCurrentCountBracket, personCountBracket, productStatus } from '../../utils/enumToKr';
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
 import { closeModal, openModal } from '../../utils/popUp';
 import { printRecipt } from '../../utils/recipt/recept';
 import { yyyymmdd, yyyymmddHHmm } from '../../utils/yyyymmdd';
+import { HistoryTable } from '../historyTable/HistoryTable';
 import { cardRefund } from '../nice/refund';
 import { Prompt } from '../promptModal/Prompt';
 import { IRefundModalSubmit, RefundModal } from '../promptModal/RefundModal';
@@ -49,8 +50,20 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
             }
         }
     })
-    const [bankRefund, { loading: refundLoading }] = useBankRefund()
-    const [cancelReq, { loading: reqLoading }] = useBookingCancelReq()
+    const [bankRefund, { loading: refundLoading }] = useBankRefund({
+        onCompleted: ({ BankRefund }) => {
+            if (BankRefund.ok) {
+                alert("취소가 완료되었습니다");
+            }
+        }
+    })
+    const [cancelReq, { loading: reqLoading }] = useBookingCancelReq({
+        onCompleted: ({ BookingCancelReq }) => {
+            if (BookingCancelReq.ok) {
+                alert("취소가 완료 되었습니다.");
+            }
+        }
+    })
     const [cancelReject, { loading: rejectLoading }] = useBookingCancelReject({
         onCompleted: ({ BookingCancelReq }) => {
             if (BookingCancelReq.ok) {
@@ -279,13 +292,12 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
                     <div className="info_page">
                         <div className="left_div">
                             <h4>예약 정보
-                                <button onClick={reciptOpen}>
+                                <button style={{ marginLeft: "5px", lineHeight: "26px!important" }} className="btn small" onClick={reciptOpen}>
                                     전표출력
                                 </button>
                             </h4>
                             <div className="info_table w50">
                                 <div className="tr">
-                                    
                                     <div className="th01">
                                         예약메모
                                         </div>
@@ -294,26 +306,56 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
                                     </div>
                                     <div className="th02">
                                         예약일시
-                                        </div>
+                                    </div>
                                     <div className="td02">
                                         <span>{yyyymmddHHmm(booking.createdAt)}</span>
                                     </div>
                                 </div>
-                                {booking.cancelMemo && 
                                 <div className="tr">
                                     <div className="th01">
-                                        취소사유
-                                        </div>
+                                        결제수단
+                                    </div>
                                     <div className="td01">
-                                        <span className="lineHeight-2">{booking.message}</span>
+                                        <span className="lineHeight-2">{payMethodToKR(booking.payMethod)}</span>
                                     </div>
                                     <div className="th02">
-                                        예약일시
-                                        </div>
+                                        결제일시
+                                    </div>
                                     <div className="td02">
-                                        <span>{yyyymmddHHmm(booking.createdAt)}</span>
+                                        <span>{yyyymmddHHmm(booking.payment?.createdAt)}</span>
                                     </div>
                                 </div>
+                                {booking.bankTransInfo &&
+                                    <div className="tr">
+                                        <div className="th01">
+                                            입금자
+                                    </div>
+                                        <div className="td01">
+                                            <span >{booking.bankTransInfo?.bankTransfter}</span>
+                                        </div>
+                                        <div className="th02">
+                                            환불정보
+                                    </div>
+                                        <div className="td02">
+                                            {bankrefundTransInfo(booking.bankTransInfo)}
+                                        </div>
+                                    </div>
+                                }
+                                {booking.isCancelRequest &&
+                                    <div className="tr">
+                                        <div className="th01">
+                                            취소사유
+                                        </div>
+                                        <div className="td01">
+                                            <span className="lineHeight-2">{booking.cancelMemo}</span>
+                                        </div>
+                                        <div className="th02">
+                                            -
+                                        </div>
+                                        <div className="td02">
+                                            -
+                                        </div>
+                                    </div>
                                 }
                             </div>
                         </div>
@@ -329,7 +371,6 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
                                     </div>
                                     <div className="th02">
                                         결제상태
-                                            {payment?.status === PaymentStatus.CANCEL ? "환불완료" : "-"}
                                     </div>
                                     <div className="td02">
                                         <span>{paymentStatus(payment?.status)}</span>
@@ -360,10 +401,10 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
                                 <div className="top_info">
                                     <span className="tt">선택된 예약 인원</span>
                                     <span>총 {booking.totalCount}명 ( 성인{booking.adultCount} / 소아{booking.kidCount} / 유아{booking.babyCount} )</span>
-                                    <span className="float_right">
+                                    {/* <span className="float_right">
                                         {booking.bookerInclue ? <i className="menok">예약자-포함</i> :
                                             <i className="menno">예약자-미포함</i>}
-                                    </span>
+                                    </span> */}
                                 </div>
                                 <div className="tr first peoplelist__wrap">
                                     <div className="re01 peoplelist__li">
@@ -398,6 +439,7 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
                         </div>
                     </div>
 
+                    <HistoryTable histories={booking.requestHistory} />
 
                     {isSeller && <div className="info_page">
                         <h4>메모(판매자)</h4>

@@ -6808,6 +6808,13 @@ react-kakao-login@^2.0.2:
   resolved "https://registry.npmjs.org/react-kakao-login/-/react-kakao-login-2.0.2.tgz#26eb169d72a433b3ed6689a00589b23b5a6f3ae2"
   integrity sha512-cINChazc6WC5pNmZJff29d8wM/H5+90qgxHYh700dsdL7ISrvoDA8mUVyd+OINCkZZqrj2QYVVULzWP7ZxCX+w==
 
+react-on-images-loaded@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.npmjs.org/react-on-images-loaded/-/react-on-images-loaded-2.2.5.tgz#177d2f064ce647b248e59fc4af3250f81de70c0e"
+  integrity sha512-9p5hDxBBpyl/Z6RgJNZipnswUFzX/QfMaEHAioSfZy/hm8iFlxoBchuXqqdZlRxQ6Xd2HPR3hAusB+6yeM0cXA==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-quill@^1.3.5:
   version "1.3.5"
   resolved "https://registry.npmjs.org/react-quill/-/react-quill-1.3.5.tgz#8c4ad759da03365b17c79c6c52afa9772259844e"

@@ -84,11 +84,13 @@ const CardRecipt = ({ tables }: IProps): JSX.Element => {
                 </div>
               </div>
               <div
+                // @ts-ignore
                 width="90%"
                 bgcolor="#ffffff"
                 style={{ maxWidth: '700px', borderTop: '5px solid #4A5A71' }}
               />
               <table
+                // @ts-ignore
                 align="center"
                 border={0}
                 cellPadding={0}

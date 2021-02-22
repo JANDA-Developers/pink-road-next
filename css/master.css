@@ -929,11 +929,14 @@
         width: auto !important;
     }
     .master_box .goods .td09 {
+        width: auto !important;
+    }
+    .master_box .goods .td10 {
         width: 100% !important;
         margin-top: 10px;
     }
-    .master_box .goods .td09 .btn {
-        width: 100% !important;
+    .master_box .goods .td10 .btn {
+        width: 100% ;
     }
     .master_box .goods .list_line div[class*=td] {
         word-break: break-all;
@@ -1391,8 +1394,6 @@
     }
     .master_box .reservation.calculate .master__table .t04 {
         width:100% !important;
-        border: 5px solid #eee;
-        padding: 3% !important;
         box-sizing: border-box;
     }
     .master_box .reservation.calculate .master__table .t05 {
@@ -3238,6 +3239,9 @@ div.master_popup div.alignment{
 
 @media (min-width: 768px) {
     
+    .master_box .goods .td10 .btn {
+        width: auto!important;
+    }
     .master_box .main_paper_div .hang{
         border-radius: 5px;
     }
@@ -3728,7 +3732,7 @@ div.master_popup div.alignment{
         max-width: 70px;
     }
     .master_box .reservation.calculate .master__table .t02 .align {
-        padding-top: 46px;
+        /* padding-top: 46px; */
     }
     .master_box .reservation.calculate .master__table .thead .t02 {
         padding: 0;
@@ -3742,7 +3746,6 @@ div.master_popup div.alignment{
         display: inline-block;
     }
     .master_box .reservation.calculate .master__table .t03 .align {
-        padding-top: 30px;
     }
     .master_box .reservation.calculate .master__table .thead .t03 {
         padding: 0;
@@ -3800,7 +3803,7 @@ div.master_popup div.alignment{
         padding: 0;
     }
     .master_box .reservation.calculate .master__table .t07 .align {
-        padding-top: 36px;
+        /* padding-top: 36px; */
     }
     .master_box .reservation.calculate .master__table .t08 {
         width:auto !important;
@@ -4325,7 +4328,7 @@ div.master_popup .info_table .th01,
         top: 22px;
     }
     div.master_popup .board_list_mini .tt01  {
-        width: 5%;
+        max-width: 5%;
         text-align: center;
     }
     div.master_popup .board_list_mini .tt02  {

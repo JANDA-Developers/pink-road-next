@@ -18,13 +18,14 @@ import { useSingleSort } from '../../../hook/useSort';
 import { announceList_AnnounceList_data, _AnnounceSort } from '../../../types/api';
 import { useRouter } from 'next/router';
 import { AppContext } from '../../_app';
+import { AnnotationBadge } from '../../../components/Status/StatusBadge';
 
 export const getStaticProps = getStaticPageInfo("announce");
 export const Announce: React.FC<Ipage> = (page) => {
     const { isManager } = useContext(AppContext);
     const pageTools = usePageEdit(page, defaultPageInfo);
     const { items, pageInfo, setPage, filter, setFilter, sort, setSort, viewCount, setViewCount } = useAnnounceList();
-    const singleSortHook = useSingleSort(sort, setSort, [_AnnounceSort.isNotice_desc]);
+    const singleSortHook = useSingleSort(sort, setSort, [_AnnounceSort.isNotice_desc, _AnnounceSort.type_desc]);
     const router = useRouter();
 
     const doSearch = (search: string) => {
@@ -66,7 +67,7 @@ export const Announce: React.FC<Ipage> = (page) => {
                             {items.map((item, i) =>
                                 <li onClick={toView(item)} key={item._id}>
                                     <div className="td01">{item.no}</div>
-                                    <div className="td02"><span className="ct_01">{announceTypeKR(item.type)}</span></div>
+                                    <div className="td02"><AnnotationBadge type={item.type} /></div>
                                     <div className="td03">
                                         {item.title}
                                         <NewBadge createdAt={item.createdAt} />

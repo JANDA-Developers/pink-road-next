@@ -931,6 +931,7 @@ export interface bookingList_BookingList_data {
   leftTime: number;
   adultCount: number;
   kidCount: number;
+  cancelMemo: string | null;
   babyCount: number;
   totalCount: number;
   message: string | null;
@@ -938,7 +939,7 @@ export interface bookingList_BookingList_data {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
-  isMember: boolean;
+  isMember: boolean | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -1108,6 +1109,7 @@ export interface bookingsCreate_BookingsCreate_data {
   leftTime: number;
   adultCount: number;
   kidCount: number;
+  cancelMemo: string | null;
   babyCount: number;
   totalCount: number;
   message: string | null;
@@ -1115,7 +1117,7 @@ export interface bookingsCreate_BookingsCreate_data {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
-  isMember: boolean;
+  isMember: boolean | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -1343,6 +1345,14 @@ export interface bookingFindByCode_BookingFindByCode_error {
   message: string;
 }
 
+export interface bookingFindByCode_BookingFindByCode_data_requestHistory {
+  __typename: "RequestHistory";
+  methodType: MethodType;
+  reqType: RequestStatus;
+  date: any;
+  reason: string;
+}
+
 export interface bookingFindByCode_BookingFindByCode_data_bankTransInfo {
   __typename: "IBankTranInfo";
   accountHolder: string | null;
@@ -1547,7 +1557,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
-  elseReq: ProductElseReq | null;
+  elseReq: ProductReOpenReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -1595,6 +1605,7 @@ export interface bookingFindByCode_BookingFindByCode_data_payment {
 
 export interface bookingFindByCode_BookingFindByCode_data {
   __typename: "Booking";
+  requestHistory: bookingFindByCode_BookingFindByCode_data_requestHistory[];
   bankTransInfo: bookingFindByCode_BookingFindByCode_data_bankTransInfo | null;
   product: bookingFindByCode_BookingFindByCode_data_product;
   _id: string;
@@ -1608,6 +1619,7 @@ export interface bookingFindByCode_BookingFindByCode_data {
   leftTime: number;
   adultCount: number;
   kidCount: number;
+  cancelMemo: string | null;
   babyCount: number;
   totalCount: number;
   message: string | null;
@@ -1615,7 +1627,7 @@ export interface bookingFindByCode_BookingFindByCode_data {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
-  isMember: boolean;
+  isMember: boolean | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -1975,6 +1987,10 @@ export interface countManager_Count_data {
    */
   todayBookingCount: number;
   /**
+   * 마스터용::전체중 만료된 카운트
+   */
+  expireProductCountMaster: number;
+  /**
    * 마스터용::상품 수정 요청수
    */
   updateRequestCountMaster: number;
@@ -2039,11 +2055,11 @@ export interface countManager_Count_data {
    */
   cancelReturnPrice: number;
   /**
-   * 마스터용::미해결 정산 요청 수
+   * 마스터용::요청 정산 요청 수
    */
   settlementRequestCountMaster: number;
   /**
-   * 마스터용::상품 수정 요청수
+   * 판매자용::상품 수정 요청수
    */
   elseReqCount: number;
   /**
@@ -2094,6 +2110,10 @@ export interface countManager_Count_data {
    * 마스터용::정산 완료 수
    */
   settlementReadyCountMater: number;
+  /**
+   * 마스터용::취소 요청 수
+   */
+  cancelReqBookingCountMaster: number;
   /**
    * 마스터용::정산 완료 수
    */
@@ -2632,6 +2652,7 @@ export interface homepage_Homepage_data_modal {
   title: string;
   priority: number | null;
   createdAt: any;
+  open: boolean;
 }
 
 export interface homepage_Homepage_data {
@@ -2784,6 +2805,7 @@ export interface homepageUpdate_HomepageUpdate_data_modal {
   title: string;
   priority: number | null;
   createdAt: any;
+  open: boolean;
 }
 
 export interface homepageUpdate_HomepageUpdate_data {
@@ -4866,6 +4888,7 @@ export interface productUpdate {
 export interface productUpdateVariables {
   params: ProductUpdateInput;
   _id: string;
+  reason: string;
 }
 
 /* tslint:disable */
@@ -4904,6 +4927,7 @@ export interface productUpdateReq {
 export interface productUpdateReqVariables {
   params: ProductUpdateReqInput;
   _id: string;
+  reason: string;
 }
 
 /* tslint:disable */
@@ -5021,7 +5045,7 @@ export interface productDelete_ProductDelete_data {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
-  elseReq: ProductElseReq | null;
+  elseReq: ProductReOpenReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -5310,7 +5334,7 @@ export interface productList_ProductList_data {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
-  elseReq: ProductElseReq | null;
+  elseReq: ProductReOpenReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -5637,7 +5661,7 @@ export interface productFindById_ProductFindById_data {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
-  elseReq: ProductElseReq | null;
+  elseReq: ProductReOpenReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -5825,6 +5849,14 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   bankImg: productFindByIdForSeller_ProductFindByIdForSeller_data_author_bankImg | null;
 }
 
+export interface productFindByIdForSeller_ProductFindByIdForSeller_data_requestHistory {
+  __typename: "RequestHistory";
+  methodType: MethodType;
+  reqType: RequestStatus;
+  date: any;
+  reason: string;
+}
+
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_settlement {
   __typename: "Settlement";
   _id: string;
@@ -5991,6 +6023,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   leftTime: number;
   adultCount: number;
   kidCount: number;
+  cancelMemo: string | null;
   babyCount: number;
   totalCount: number;
   message: string | null;
@@ -5998,7 +6031,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
-  isMember: boolean;
+  isMember: boolean | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -6062,12 +6095,13 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
-  elseReq: ProductElseReq | null;
+  elseReq: ProductReOpenReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
   Dday: number;
   author: productFindByIdForSeller_ProductFindByIdForSeller_data_author | null;
+  requestHistory: productFindByIdForSeller_ProductFindByIdForSeller_data_requestHistory[];
   settlement: productFindByIdForSeller_ProductFindByIdForSeller_data_settlement | null;
   bookings: productFindByIdForSeller_ProductFindByIdForSeller_data_bookings[];
 }
@@ -6201,7 +6235,7 @@ export interface travelWithdrwalVariables {
 // GraphQL mutation operation: productElseReq
 // ====================================================
 
-export interface productElseReq_ProductElseReq_error {
+export interface productElseReq_ProductReOpenReq_error {
   __typename: "CustomError";
   location: string;
   severity: ERR_SEVERITY;
@@ -6209,22 +6243,23 @@ export interface productElseReq_ProductElseReq_error {
   message: string;
 }
 
-export interface productElseReq_ProductElseReq {
-  __typename: "ProductElseReqResponse";
+export interface productElseReq_ProductReOpenReq {
+  __typename: "ProductReOpenReqResponse";
   ok: boolean;
-  error: productElseReq_ProductElseReq_error | null;
+  error: productElseReq_ProductReOpenReq_error | null;
 }
 
 export interface productElseReq {
   /**
    * 어떠한 요청을 수락한다.
    */
-  ProductElseReq: productElseReq_ProductElseReq;
+  ProductReOpenReq: productElseReq_ProductReOpenReq;
 }
 
 export interface productElseReqVariables {
   ProductId: string;
-  req: ProductElseReq;
+  req: ProductReOpenReq;
+  reason: string;
 }
 
 /* tslint:disable */
@@ -6236,7 +6271,7 @@ export interface productElseReqVariables {
 // GraphQL mutation operation: productElseAccept
 // ====================================================
 
-export interface productElseAccept_ProductElseAccept_error {
+export interface productElseAccept_ProductReOpenAccept_error {
   __typename: "CustomError";
   location: string;
   severity: ERR_SEVERITY;
@@ -6244,17 +6279,17 @@ export interface productElseAccept_ProductElseAccept_error {
   message: string;
 }
 
-export interface productElseAccept_ProductElseAccept {
-  __typename: "ProductElseAcceptResponse";
+export interface productElseAccept_ProductReOpenAccept {
+  __typename: "ProductReOpenAcceptResponse";
   ok: boolean;
-  error: productElseAccept_ProductElseAccept_error | null;
+  error: productElseAccept_ProductReOpenAccept_error | null;
 }
 
 export interface productElseAccept {
   /**
    * 상품 취소를 철회한다. 
    */
-  ProductElseAccept: productElseAccept_ProductElseAccept;
+  ProductReOpenAccept: productElseAccept_ProductReOpenAccept;
 }
 
 export interface productElseAcceptVariables {
@@ -6267,10 +6302,10 @@ export interface productElseAcceptVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: productElseDeny
+// GraphQL mutation operation: productReOpenDeny
 // ====================================================
 
-export interface productElseDeny_ProductElseDeny_error {
+export interface productReOpenDeny_ProductReOpenDeny_error {
   __typename: "CustomError";
   location: string;
   severity: ERR_SEVERITY;
@@ -6278,20 +6313,20 @@ export interface productElseDeny_ProductElseDeny_error {
   message: string;
 }
 
-export interface productElseDeny_ProductElseDeny {
-  __typename: "ProductElseDenyResponse";
+export interface productReOpenDeny_ProductReOpenDeny {
+  __typename: "ProductReOpenDenyResponse";
   ok: boolean;
-  error: productElseDeny_ProductElseDeny_error | null;
+  error: productReOpenDeny_ProductReOpenDeny_error | null;
 }
 
-export interface productElseDeny {
+export interface productReOpenDeny {
   /**
    * 어떠한 요청을 거절한다.
    */
-  ProductElseDeny: productElseDeny_ProductElseDeny;
+  ProductReOpenDeny: productReOpenDeny_ProductReOpenDeny;
 }
 
-export interface productElseDenyVariables {
+export interface productReOpenDenyVariables {
   ProductId: string;
   reason: string;
 }
@@ -6916,6 +6951,7 @@ export interface getContext_GetProfile_data_bookings {
   leftTime: number;
   adultCount: number;
   kidCount: number;
+  cancelMemo: string | null;
   babyCount: number;
   totalCount: number;
   message: string | null;
@@ -6923,7 +6959,7 @@ export interface getContext_GetProfile_data_bookings {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
-  isMember: boolean;
+  isMember: boolean | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -7180,6 +7216,7 @@ export interface getContext_Homepage_data_modal {
   title: string;
   priority: number | null;
   createdAt: any;
+  open: boolean;
 }
 
 export interface getContext_Homepage_data {
@@ -7689,6 +7726,14 @@ export interface settlementFindById_SettlementFindById_error {
   message: string;
 }
 
+export interface settlementFindById_SettlementFindById_data_requestHistory {
+  __typename: "RequestHistory";
+  methodType: MethodType;
+  reqType: RequestStatus;
+  date: any;
+  reason: string;
+}
+
 export interface settlementFindById_SettlementFindById_data_product_region {
   __typename: "Category";
   label: string;
@@ -7873,6 +7918,7 @@ export interface settlementFindById_SettlementFindById_data_product_bookings {
   leftTime: number;
   adultCount: number;
   kidCount: number;
+  cancelMemo: string | null;
   babyCount: number;
   totalCount: number;
   message: string | null;
@@ -7880,7 +7926,7 @@ export interface settlementFindById_SettlementFindById_data_product_bookings {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
-  isMember: boolean;
+  isMember: boolean | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -7944,7 +7990,7 @@ export interface settlementFindById_SettlementFindById_data_product {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
-  elseReq: ProductElseReq | null;
+  elseReq: ProductReOpenReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -7955,6 +8001,7 @@ export interface settlementFindById_SettlementFindById_data_product {
 
 export interface settlementFindById_SettlementFindById_data {
   __typename: "Settlement";
+  requestHistory: settlementFindById_SettlementFindById_data_requestHistory[];
   _id: string;
   createdAt: any;
   updatedAt: any;
@@ -8357,7 +8404,7 @@ export interface settlementList_SettlementList_data_product {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
-  elseReq: ProductElseReq | null;
+  elseReq: ProductReOpenReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -8442,7 +8489,6 @@ export interface settlementRequest {
 }
 
 export interface settlementRequestVariables {
-  params: ReturnTargetInput[];
   settlementId: string;
 }
 
@@ -9536,7 +9582,7 @@ export interface userFindById_UserFindById_data_products {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
-  elseReq: ProductElseReq | null;
+  elseReq: ProductReOpenReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -9557,6 +9603,7 @@ export interface userFindById_UserFindById_data_bookings {
   leftTime: number;
   adultCount: number;
   kidCount: number;
+  cancelMemo: string | null;
   babyCount: number;
   totalCount: number;
   message: string | null;
@@ -9564,7 +9611,7 @@ export interface userFindById_UserFindById_data_bookings {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
-  isMember: boolean;
+  isMember: boolean | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -10084,6 +10131,7 @@ export interface Fbooking {
   leftTime: number;
   adultCount: number;
   kidCount: number;
+  cancelMemo: string | null;
   babyCount: number;
   totalCount: number;
   message: string | null;
@@ -10091,7 +10139,7 @@ export interface Fbooking {
   bookerInclue: boolean;
   bookingPrice: number;
   status: BookingStatus | null;
-  isMember: boolean;
+  isMember: boolean | null;
   memo: string | null;
   code: string;
   groupCode: string;
@@ -10130,6 +10178,23 @@ export interface Fitinerary {
   contents: string[];
   images: Fitinerary_images[];
   date: any;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FrequestHistory
+// ====================================================
+
+export interface FrequestHistory {
+  __typename: "RequestHistory";
+  methodType: MethodType;
+  reqType: RequestStatus;
+  date: any;
+  reason: string;
 }
 
 /* tslint:disable */
@@ -10239,7 +10304,7 @@ export interface Fproduct {
   compeltePeopleCnt: number;
   baby_price: number;
   isNotice: boolean | null;
-  elseReq: ProductElseReq | null;
+  elseReq: ProductReOpenReq | null;
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
@@ -10539,6 +10604,7 @@ export interface Fmodal {
   title: string;
   priority: number | null;
   createdAt: any;
+  open: boolean;
 }
 
 /* tslint:disable */
@@ -10651,6 +10717,7 @@ export interface Fhomepage_modal {
   title: string;
   priority: number | null;
   createdAt: any;
+  open: boolean;
 }
 
 export interface Fhomepage {
@@ -11610,6 +11677,19 @@ export enum LinkBehavior {
 }
 
 /**
+ * 공제 대상
+ */
+export enum MethodType {
+  BOOKING = "BOOKING",
+  PRODUCT = "PRODUCT",
+  PRODUCT_CREATE = "PRODUCT_CREATE",
+  PRODUCT_REOPEN = "PRODUCT_REOPEN",
+  PRODUCT_UPATE = "PRODUCT_UPATE",
+  SETTLEMENT = "SETTLEMENT",
+  TRAVEL = "TRAVEL",
+}
+
+/**
  * 뉴스 타입
  */
 export enum NEWS_TYPE {
@@ -11635,6 +11715,7 @@ export enum NotificationTriggerEvent {
   COMPLETE_BOOKING_SELLER = "COMPLETE_BOOKING_SELLER",
   PRODUCT_CONFIRM_REQUEST = "PRODUCT_CONFIRM_REQUEST",
   PRODUCT_EXPIRE_SELLER = "PRODUCT_EXPIRE_SELLER",
+  SETTLEMENT_CANCEL = "SETTLEMENT_CANCEL",
   SETTLEMENT_COMPLETE = "SETTLEMENT_COMPLETE",
   SETTLEMENT_REJECT = "SETTLEMENT_REJECT",
   SETTLEMENT_REQUEST = "SETTLEMENT_REQUEST",
@@ -11671,7 +11752,7 @@ export enum PaymentStatus {
 /**
  * 상품 업데이트외 요청
  */
-export enum ProductElseReq {
+export enum ProductReOpenReq {
   REOPEN = "REOPEN",
 }
 
@@ -11724,6 +11805,21 @@ export enum ReplaceString {
   TRAVEL_CONFIRMED = "TRAVEL_CONFIRMED",
   TRAVEL_DATE_YMD = "TRAVEL_DATE_YMD",
   USERNAME = "USERNAME",
+}
+
+/**
+ * 공제 대상
+ */
+export enum RequestStatus {
+  ACCEPT = "ACCEPT",
+  CANCEL = "CANCEL",
+  CANCEL_REQ = "CANCEL_REQ",
+  COMPLETE = "COMPLETE",
+  DETERMIN = "DETERMIN",
+  EXPIRED = "EXPIRED",
+  REJECT = "REJECT",
+  REQUEST = "REQUEST",
+  WITHDRAWAL = "WITHDRAWAL",
 }
 
 /**
@@ -11814,6 +11910,8 @@ export enum _AnnounceSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  type_asc = "type_asc",
+  type_desc = "type_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -12276,6 +12374,7 @@ export interface ModalInput {
   link?: string | null;
   startDate: any;
   endDate: any;
+  open?: boolean | null;
   title?: string | null;
   content?: string | null;
   linkBehavior?: LinkBehavior | null;
@@ -12506,11 +12605,6 @@ export interface ReplacementSetInput {
   value: string;
 }
 
-export interface ReturnTargetInput {
-  returnTargetId: string;
-  price: number;
-}
-
 export interface SmsSendInput {
   title?: string | null;
   content: string;
@@ -12683,8 +12777,8 @@ export interface _BookingFilter {
   name_contains?: string | null;
   byHand_eq?: boolean | null;
   byHand_not_eq?: boolean | null;
-  isCancelRequest_eq?: string | null;
-  isCancelRequest_not_eq?: string | null;
+  isCancelRequest_eq?: boolean | null;
+  isCancelRequest_not_eq?: boolean | null;
   phoneNumber_eq?: string | null;
   phoneNumber_not_eq?: string | null;
   phoneNumber_in?: string[] | null;
@@ -13140,6 +13234,8 @@ export interface _UserFilter {
   status_contains?: string | null;
   isResigned_eq?: boolean | null;
   isResigned_not_eq?: boolean | null;
+  isVerifiedManager_eq?: boolean | null;
+  isVerifiedManager_not_eq?: boolean | null;
   role_eq?: string | null;
   role_not_eq?: string | null;
   is_froreginer_eq?: boolean | null;

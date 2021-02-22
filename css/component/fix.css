@@ -206,3 +206,60 @@ div.popup_bg_full .in_txt {
     align-items: center;
     justify-content: center;
 }
+
+.emailVerifiModal__btns {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+}
+
+.emailVerifi__input {
+    width: 100%;
+    margin-right:  0px!important;
+}
+
+.emailVerifiModal .page {
+    padding-right: 0px!important;
+}
+
+.emailVerifiModal .close_icon {
+    right: 16px!important
+}
+
+.emailVerifiModal {
+    width: 300px;
+}
+
+.birthday-picker {
+    display: flex;
+}
+
+.fileNameInputLabel {
+    line-height: initial;
+    /* word-break: break-all; */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+
+.tourBracketBtn--disabled a {
+    border: none!important;
+    color: white!important;
+    cursor: auto!important;
+    pointer-events: none;
+    background-color: #999!important;
+}
+
+.annotationBadge.up {
+display: inline-block;
+padding: 0 13px;
+font-size: 12px;
+color: #ed297b;
+font-weight: 600;
+border: 1px solid #ed297b;
+border-radius: 100px;
+line-height: initial;
+background-color: #fff;
+}

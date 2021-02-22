@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { useFeePolicy } from '../../hook/useFeePolicy';
 import { useSettlementFindById, useSettlementsRequest } from '../../hook/useSettlement';
 import { BookingStatus, ProductStatus, SettlementStatus } from '../../types/api';
-import { bookingStatus, feePresent, payMethodToKR, productStatus, settlementStatus } from '../../utils/enumToKr';
+import { bookingStatus, feePresent, itemTypeToKr, paymentStatus, payMethodToKR, productStatus, settlementStatus } from '../../utils/enumToKr';
 import { autoComma } from '../../utils/formatter';
 import { generateClientPaging } from '../../utils/generateClientPaging';
 import { closeModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import { Paginater } from '../common/Paginator';
+import { SettlementController } from '../contollers/SettlementContollers';
+import { HistoryTable } from '../historyTable/HistoryTable';
+import { BookingStatusBadge } from '../Status/StatusBadge';
 
 interface IProp {
     settlementId: string;
@@ -15,15 +18,6 @@ interface IProp {
 
 export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
     const { item: settlement } = useSettlementFindById(settlementId);
-    // const [cancelBooking] = useBookingCancel()
-    const [settlementRquest] = useSettlementsRequest({
-        onCompleted: ({ SettlementRequest }) => {
-            if (SettlementRequest.ok) alert("정산신청이 완료 되었습니다.");
-        }
-    });
-    const [reason, setReason] = useState("");
-
-
     const { data: policy } = useFeePolicy();
 
 
@@ -46,28 +40,12 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
     //     })
     // }
 
-    const handleSettleRequest = () => {
-        if (settlement.status === SettlementStatus.REQUEST) {
-            alert("이 상품은 이미 정산 신청 상태입니다.");
-            return;
-        }
-        settlementRquest({
-            variables: {
-                params: [{ price: 0, returnTargetId: "" }],
-                settlementId: settlement._id
-            }
-        })
-    }
-
     const bookingStatusColor = (status?: BookingStatus | null) => {
         if (status === BookingStatus.CANCEL) return "no"
         if (status === BookingStatus.COMPLETE) return "ok"
         if (status === BookingStatus.READY) return ""
         return "";
     }
-
-    const settlementRequestAB = product.status === ProductStatus.COMPLETED;
-
 
 
     return <div id="SettlementModal" className="popup_bg_full">
@@ -88,7 +66,7 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                         <button onClick={print} className="btn"><i className="flaticon-print mr5"></i>프린터</button> */}
                     </div>
                     <div className="alignment">
-                        <div className="left_div"><span className="infotxt"><i>{yyyymmdd(createdAt)} ~ {yyyymmdd(startDate)} 예약</i>이 총 <strong>{bookings.length}</strong>건</span></div>
+                        <div className="left_div"><span className="infotxt"><i>{yyyymmdd(createdAt)} ~ {yyyymmdd(startDate)} 예약</i>이 총 <strong>{bookings?.length}</strong>건</span></div>
                     </div>
                     <div className="fuction_list_mini">
                         <div className="thead">
@@ -104,11 +82,11 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                                 {bookingsPagination.slice.map(bk =>
                                     <li className="settlementModal__li" key={bk._id}>
                                         <div className="th02">{payMethodToKR(bk.payMethod)}</div>
-                                        <div className="th03 settlementModal__li-th3">{bookingStatus(bk.status)} </div>
+                                        <div className="th03">{paymentStatus(bk.payment?.status)}</div>
                                         <div className="th04">{bk.name}</div>
                                         <div className="th05">{yyyymmdd(bk.createdAt)}</div>
                                         <div className="th06">{autoComma(bk.bookingPrice)}원</div>
-                                        <div className="th07"><strong className={bookingStatusColor(bk.status)}>{bookingStatus(bk.status)}</strong>
+                                        <div className="th07"><BookingStatusBadge status={bk.status} />
                                         </div>
                                     </li>
                                 )}
@@ -119,7 +97,7 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                         </div>
                     </div>
                     <div className="alignment ">
-                        <div className="left_div"><span className="infotxt"><i>예약취소 환수금</i>이 총 <strong>{canceldBooking.length}</strong>건</span></div>
+                        <div className="left_div"><span className="infotxt"><i>취소건이</i>이 총 <strong>{canceldBooking.length}</strong>건</span></div>
                     </div>
                     <div className="fuction_list_mini">
                         <div className="thead">
@@ -150,6 +128,7 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                             <Paginater isMini pageInfo={cancelBookingsPagination.paging} setPage={cancelBookingsPagination.setPage} />
                         </div>
                     </div>
+                    <HistoryTable histories={settlement.requestHistory} />
                     <div className="sum_div mt50">
                         <ul className="first_ul">
                             <li>
@@ -181,9 +160,9 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                     </div>
                     <div className="in_fin mt30">
                         <div className="float_left">
+                            <SettlementController settlement={settlement} product={product} />
                         </div>
                         <div className="float_right">
-                            {settlementRequestAB && <button onClick={handleSettleRequest} type="submit" className="btn strong">정산 신청하기</button>}
                         </div>
                     </div>
                 </div>

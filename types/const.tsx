@@ -82,6 +82,7 @@ export const DEFAULT_PAGEINFO = {
 
 export const defaultModalGet: () => Ipopup = () => ({
     __typename: "Modal",
+    open: true,
     isDelete: false,
     _id: generateRandomStringCode(4),
     content: "",
@@ -113,7 +114,6 @@ export const CONDITION = {
 export const SYSTEM_CHECK_MESSAGE = {
     travelCancel: `
     정말로 상품을 취소 하시겠습니까?
-    해당 상품의 모든 예약 및  결제가 취소 처리 됩니다.
     `,
     productDelete: `
         정말로 상품을 삭제 하시겠습니까?

@@ -10,11 +10,12 @@ import { MemberTopNav } from '../../../components/topNav/MemberTopNav';
 import { useQnaList } from '../../../hook/useQna';
 import { qnaList_QnaList_data } from '../../../types/api';
 import sanitizeHtml from 'sanitize-html';
+import { Change } from '../../../components/loadingList/LoadingList';
 
 
 export const getStaticProps = getStaticPageInfo("main");
 export const Qna: React.FC<Ipage> = (pageInfo) => {
-    const { items } = useQnaList({ initialViewCount: 999 })
+    const { items, getLoading } = useQnaList({ initialViewCount: 999 })
     const [filterCat, setFilterCat] = useState("")
     const router = useRouter();
     const { isManager, categoriesMap } = useContext(AppContext)
@@ -55,37 +56,39 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                         <ul className="board_option">
                             <li className={checkCatEq(undefined)}><a>전체</a></li>
                             {categoriesMap.QNA.map(cat =>
-                                <li onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}<strong>{checkCatCount(cat._id)}</strong></a></li>
+                                <li className={checkCatEq(cat._id)} onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}<strong>{checkCatCount(cat._id)}</strong></a></li>
                             )}
                         </ul>
                     </div>
                     <div className="right_div">
                     </div>
                 </div>
-                {items.map(qna =>
-                    <div onClick={handleToogle(qna)} key={qna._id} className={`dl ${openId === qna._id && "active"}`}>
-                        <div className="dt"><span><i className="Q"></i>{qna.category?.label}</span>{qna.title}
+                <Change change={!getLoading}>
+                    {items.map(qna =>
+                        <div onClick={handleToogle(qna)} key={qna._id} className={`dl ${openId === qna._id && "active"}`}>
+                            <div className="dt"><span><i className="Q"></i>{qna.category?.label}</span>{qna.title}
 
-                            {isManager &&
-                                <button onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    router.push("/member/qna/write/" + qna._id)
-                                }} type="submit" className="btn medium">수정하기</button>
-                            }
+                                {isManager &&
+                                    <button onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        router.push("/member/qna/write/" + qna._id)
+                                    }} type="submit" className="btn medium">수정하기</button>
+                                }
 
-                            <i className="jandaicon-arr4-bottom"></i></div>
+                                <i className="jandaicon-arr4-bottom"></i></div>
 
-                        <div className="dd panel-collapse collapse in">
-                            <div className="form">
-                                <i className="A" />
-                                <p dangerouslySetInnerHTML={{
-                                    __html: sanitizeHtml(qna.contents)
-                                }} />
+                            <div className="dd panel-collapse collapse in">
+                                <div className="form">
+                                    <i className="A" />
+                                    <p dangerouslySetInnerHTML={{
+                                        __html: sanitizeHtml(qna.contents)
+                                    }} />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )}
+                </Change>
             </div>
 
             <div className="fin mt30 mb100">

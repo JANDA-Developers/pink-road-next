@@ -11,7 +11,7 @@ interface IProp {
 
 export const NewsDetail: React.FC<IProp> = ({ item }) => {
     const router = useRouter();
-    const { title, thumb, createdAt, contents, _id, subTitle, author } = item;
+    const { isOpen, title, thumb, createdAt, contents, _id, subTitle, author } = item;
 
     const toDetail = () => {
         router.push(`/news/write/${_id}`)
@@ -37,11 +37,12 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
     }
 
     return <BoardView
+        isOpen={!!isOpen}
         authorId={author?._id || ""}
         onList={toList}
         thumb={thumb}
         content={contents}
-        writer={"관리자"}
+        writer={author?.nickName || ""}
         title={title}
         subTitle={subTitle || ""}
         onDelete={handleDelete}

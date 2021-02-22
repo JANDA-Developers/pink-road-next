@@ -178,11 +178,11 @@ export const Plainning: React.FC<IProp> = () => {
                                             <div className="th08">
                                                 {/* 단위 : 건 */}
                                                 <span className="m_title">상태: </span>
-                                                <span className="present">예약 {item.bookerSummary.completePeople}</span>
+                                                <span className="present">예약 {item.bookerSummary.completeBookCount}</span>
                                                 <span className="m_title"> / </span>
-                                                <span className="present">대기 {item.bookerSummary.cancelPeople}</span>
+                                                <span className="present">대기 {item.bookerSummary.readyBookCount}</span>
                                                 <span className="m_title"> / </span>
-                                                <span className="present">환불 {item.bookerSummary.cancelCompletePeople}</span>
+                                                <span className="present">환불 {item.bookerSummary.readyBookCount}</span>
                                             </div>
                                             <div className="th09">
                                                 <i className="btn"><Link href={`/tour/write/${item._id}`}><a>

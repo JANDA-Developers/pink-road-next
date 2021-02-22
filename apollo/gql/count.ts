@@ -49,6 +49,7 @@ export const COUNT_MANAGER = gql`
                 buyerCount
                 bookingCancelReqCount
                 todayBookingCount
+                expireProductCountMaster
                 updateRequestCountMaster
                 busiPartnerBCountMaster
                 busiPartnerCountMaster
@@ -80,6 +81,7 @@ export const COUNT_MANAGER = gql`
                 confimedPartnerCount
                 totalSettlementCount
                 settlementReadyCountMater
+                cancelReqBookingCountMaster
                 settlementCompleteCountMaster
                 totalPartnerMemberCount
                 answeredQuestionCount

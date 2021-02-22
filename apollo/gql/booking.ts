@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client"
-import { F_PAGE, F_PAYMENT, F_FILE, F_USER, F_PRODUCT, F_BOOKING } from "./fragments"
+import { F_PAGE, F_PAYMENT, F_FILE, F_USER, F_PRODUCT, F_BOOKING, F_REQUEST_HISTORY } from "./fragments"
 
 export const F_TRAVELER = gql`
     fragment Ftraveler on Traveler {
@@ -305,6 +305,9 @@ export const BOOKING_FIND_BY_CODE = gql`
         message
     }
     data {
+      requestHistory {
+          ...FrequestHistory
+      }
       bankTransInfo {
         accountHolder
         accountNumber
@@ -339,6 +342,7 @@ export const BOOKING_FIND_BY_CODE = gql`
     }
   }
 }
+${F_REQUEST_HISTORY}
 ${F_USER}
 ${F_TRAVELER}
 ${F_BOOKING}

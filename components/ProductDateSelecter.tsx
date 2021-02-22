@@ -18,6 +18,13 @@ export const ProductDateSelecter: React.FC<IProp> = ({ currentId, groupCode, onC
         onChange(target)
     }
 
+    let availableExsist = false;
+    for (let item of items) {
+        if (item.startDate < dayjs().toDate()) {
+            availableExsist = true;
+        }
+    }
+    if (!availableExsist) return <span>예약가능 기간이 지났습니다.</span>
     if (!groupCode) return <span>{ }</span>
     return <div className="productDateSelecter write_type">
         <div className="input_form">

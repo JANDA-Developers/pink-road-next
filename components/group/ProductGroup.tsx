@@ -11,6 +11,7 @@ import { closeModal, openModal } from '../../utils/popUp';
 import { cloneObject } from '../../utils/clone';
 import { Change } from '../loadingList/LoadingList';
 import { AppContext } from '../../pages/_app';
+import PageLoading from '../../pages/Loading';
 
 interface IProp {
     group: Fgroup
@@ -62,6 +63,7 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
     ])
 
     return <div className="block_box productGroupBox">
+        <PageLoading />
         <div className="head">
             <h5>{group.label}</h5>
         </div>

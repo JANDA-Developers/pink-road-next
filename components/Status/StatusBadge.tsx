@@ -1,6 +1,7 @@
+import { Annotation } from 'aws-sdk/clients/configservice';
 import React from 'react';
-import { BookingStatus, Fbooking, ProductStatus } from '../../types/api';
-import { bookingStatus, productStatus } from "../../utils/enumToKr";
+import { AnnounceType, BookingStatus, Fbooking, ProductStatus, SettlementStatus } from '../../types/api';
+import { announceTypeKR, bookingStatus, productStatus, settlementStatus } from "../../utils/enumToKr";
 
 interface IProp {
     status: ProductStatus;
@@ -25,7 +26,7 @@ export const PordStatusBadge: React.FC<IProp> = ({ status }) => {
 };
 
 interface IBookingStatusBadgeProp {
-    status: BookingStatus;
+    status: BookingStatus | null;
     square?: boolean;
 }
 
@@ -56,6 +57,33 @@ export const RequestBadge: React.FC<any> = ({ isCancelRequest, className }) => {
 };
 
 
+export const AnnotationBadge: React.FC<any> = ({ type }) => {
+
+    const getClass = (type: AnnounceType) => {
+        if (type === AnnounceType.ACCOUNCE) return "up"
+        if (type === AnnounceType.NOICE) return "-"
+    }
+
+    return <span className={`annotationBadge` + " " + getClass(type)}>{announceTypeKR(type)}</span>
+};
+
+interface ISettlementStatusProp {
+    status: SettlementStatus,
+    productStatus?: ProductStatus
+}
+export const SettlementStatusBadge: React.FC<ISettlementStatusProp> = ({ status, productStatus }) => {
+
+    const getClass = () => {
+        if (productStatus && productStatus !== ProductStatus.COMPLETED) return "not-ready"
+        if (status === SettlementStatus.COMPLETE) return "complete"
+        if (status === SettlementStatus.READY) return "ready"
+        if (status === SettlementStatus.REQUEST) return "request"
+    }
+
+    return <span className={`settlementStatus ${getClass()}`}>
+        {settlementStatus(status, productStatus)}
+    </span>
+}
 
 // .state_icon.tour-no { // 여행취소
 //     color: #f32121;

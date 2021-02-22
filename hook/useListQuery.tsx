@@ -9,6 +9,7 @@ export interface ListInitOptions<F, S> {
     initialViewCount: number
     initialFilter: F,
     initialSort: S[]
+    uniqSearchKeys?: (keyof F)[]
 }
 
 export interface IListHook<F, S> extends IUseQueryFilter<F>, IUseQuerySort<S> {

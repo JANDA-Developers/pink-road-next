@@ -2139,6 +2139,22 @@
             "deprecationReason": null
           },
           {
+            "name": "open",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "priority",
             "description": null,
             "args": [],
@@ -2922,6 +2938,199 @@
       },
       {
         "kind": "OBJECT",
+        "name": "RequestHistory",
+        "description": null,
+        "fields": [
+          {
+            "name": "methodType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "MethodType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "reqType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "RequestStatus",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "date",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "reason",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "MethodType",
+        "description": "공제 대상",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "PRODUCT",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PRODUCT_CREATE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PRODUCT_UPATE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PRODUCT_REOPEN",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TRAVEL",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "BOOKING",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SETTLEMENT",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "RequestStatus",
+        "description": "공제 대상",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "REQUEST",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ACCEPT",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "REJECT",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "COMPLETE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CANCEL",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CANCEL_REQ",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "WITHDRAWAL",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DETERMIN",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "EXPIRED",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ExFieldForBk",
         "description": null,
         "fields": [
@@ -3375,6 +3584,18 @@
             "deprecationReason": null
           },
           {
+            "name": "isMember",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "totalCount",
             "description": null,
             "args": [],
@@ -3441,6 +3662,42 @@
             "type": {
               "kind": "ENUM",
               "name": "BookingStatus",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "requestHistory",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "RequestHistory",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "latestRequestHistory",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "RequestHistory",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3594,22 +3851,6 @@
               "kind": "OBJECT",
               "name": "User",
               "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "isMember",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -4245,6 +4486,42 @@
             "deprecationReason": null
           },
           {
+            "name": "requestHistory",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "RequestHistory",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "latestRequestHistory",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "RequestHistory",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "seller",
             "description": null,
             "args": [],
@@ -4657,6 +4934,18 @@
             "deprecationReason": null
           },
           {
+            "name": "rejectDate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "cancelDate",
             "description": null,
             "args": [],
@@ -4670,6 +4959,18 @@
           },
           {
             "name": "rejectReason",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "cancelReason",
             "description": null,
             "args": [],
             "type": {
@@ -5203,6 +5504,42 @@
             "deprecationReason": null
           },
           {
+            "name": "requestHistory",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "RequestHistory",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "latestRequestHistory",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "RequestHistory",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "determined",
             "description": null,
             "args": [],
@@ -5664,7 +6001,7 @@
             "args": [],
             "type": {
               "kind": "ENUM",
-              "name": "ProductElseReq",
+              "name": "ProductReOpenReq",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5878,7 +6215,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "ProductElseReq",
+        "name": "ProductReOpenReq",
         "description": "상품 업데이트외 요청",
         "fields": null,
         "inputFields": null,
@@ -6283,6 +6620,12 @@
           },
           {
             "name": "SETTLEMENT_REJECT",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SETTLEMENT_CANCEL",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -14776,6 +15119,22 @@
             "deprecationReason": null
           },
           {
+            "name": "expireProductCountMaster",
+            "description": "마스터용::전체중 만료된 카운트",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "foreginMemberCount",
             "description": "마스터용::멤버 외국인 수",
             "args": [],
@@ -15081,7 +15440,7 @@
           },
           {
             "name": "elseReqCount",
-            "description": "마스터용::상품 수정 요청수",
+            "description": "판매자용::상품 수정 요청수",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -15097,7 +15456,7 @@
           },
           {
             "name": "settlementRequestCountMaster",
-            "description": "마스터용::미해결 정산 요청 수",
+            "description": "마스터용::요청 정산 요청 수",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -15130,6 +15489,22 @@
           {
             "name": "settlementReadyCountMater",
             "description": "마스터용::정산 완료 수",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "cancelReqBookingCountMaster",
+            "description": "마스터용::취소 요청 수",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -15178,6 +15553,38 @@
           {
             "name": "answeredQuestionCount",
             "description": "마스터용:: 답변 질문수",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "everyReturnPriceTotal",
+            "description": "모든 가이드들의 취소환수금 총합",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "myReturnPriceTotal",
+            "description": "가이드 한명의 취소환수금 총합",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -17439,159 +17846,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProductElseDenyResponse",
-        "description": null,
-        "fields": [
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "CustomError",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "data",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Product",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ProductElseAcceptResponse",
-        "description": null,
-        "fields": [
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "CustomError",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "data",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Product",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ProductElseReqResponse",
-        "description": null,
-        "fields": [
-          {
-            "name": "ok",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "error",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "CustomError",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "data",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Product",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "ProductFindByIdForSellerResponse",
         "description": null,
         "fields": [
@@ -17809,6 +18063,159 @@
                   }
                 }
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProductReOpenDenyResponse",
+        "description": null,
+        "fields": [
+          {
+            "name": "ok",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "error",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomError",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "data",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Product",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProductReOpenAcceptResponse",
+        "description": null,
+        "fields": [
+          {
+            "name": "ok",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "error",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomError",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "data",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Product",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProductReOpenReqResponse",
+        "description": null,
+        "fields": [
+          {
+            "name": "ok",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "error",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomError",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "data",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Product",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -18987,6 +19394,57 @@
             "type": {
               "kind": "OBJECT",
               "name": "Review",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SettlementCancelResponse",
+        "description": null,
+        "fields": [
+          {
+            "name": "ok",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "error",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CustomError",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "data",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Settlement",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24942,7 +25400,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null
@@ -24952,7 +25410,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null
@@ -26211,6 +26669,16 @@
                 "name": "DateTime",
                 "ofType": null
               }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "open",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -34665,45 +35133,6 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "ReturnTargetInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "returnTargetId",
-            "description": "취소환수 대상, 정산 도큐먼트 id",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "price",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "_SystemNotiFilter",
         "description": null,
         "fields": null,
@@ -34991,6 +35420,26 @@
           },
           {
             "name": "isResigned_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "isVerifiedManager_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "isVerifiedManager_not_eq",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -35508,6 +35957,26 @@
           },
           {
             "name": "isResigned_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "isVerifiedManager_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "isVerifiedManager_not_eq",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -38927,6 +39396,18 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "type_desc",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type_asc",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "title_desc",
             "description": null,
             "isDeprecated": false,
@@ -40002,6 +40483,20 @@
             "name": "ProductUpdate",
             "description": null,
             "args": [
+              {
+                "name": "reason",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
               {
                 "name": "params",
                 "description": null,
@@ -41945,7 +42440,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ProductElseDeny",
+            "name": "ProductReOpenDeny",
             "description": "어떠한 요청을 거절한다.",
             "args": [
               {
@@ -41982,7 +42477,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProductElseDenyResponse",
+                "name": "ProductReOpenDenyResponse",
                 "ofType": null
               }
             },
@@ -41990,7 +42485,7 @@
             "deprecationReason": null
           },
           {
-            "name": "ProductElseAccept",
+            "name": "ProductReOpenAccept",
             "description": "상품 취소를 철회한다. ",
             "args": [
               {
@@ -42013,7 +42508,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProductElseAcceptResponse",
+                "name": "ProductReOpenAcceptResponse",
                 "ofType": null
               }
             },
@@ -42021,9 +42516,23 @@
             "deprecationReason": null
           },
           {
-            "name": "ProductElseReq",
+            "name": "ProductReOpenReq",
             "description": "어떠한 요청을 수락한다.",
             "args": [
+              {
+                "name": "reason",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
               {
                 "name": "req",
                 "description": null,
@@ -42032,7 +42541,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "ProductElseReq",
+                    "name": "ProductReOpenReq",
                     "ofType": null
                   }
                 },
@@ -42058,7 +42567,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProductElseReqResponse",
+                "name": "ProductReOpenReqResponse",
                 "ofType": null
               }
             },
@@ -42145,6 +42654,20 @@
             "name": "ProductUpdateReq",
             "description": null,
             "args": [
+              {
+                "name": "reason",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
               {
                 "name": "params",
                 "description": null,
@@ -42643,6 +43166,51 @@
             "deprecationReason": null
           },
           {
+            "name": "SettlementCancel",
+            "description": null,
+            "args": [
+              {
+                "name": "reason",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "settlementId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "SettlementCancelResponse",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "SettlementComplete",
             "description": null,
             "args": [
@@ -42722,24 +43290,6 @@
             "name": "SettlementRequest",
             "description": null,
             "args": [
-              {
-                "name": "params",
-                "description": null,
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "ReturnTargetInput",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null
-              },
               {
                 "name": "settlementId",
                 "description": null,

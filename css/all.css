@@ -28,6 +28,9 @@
 @import "./component/fix.css";
 @import "./component/statusBadge.css";
 @import "./component/refundModal.css";
+@import "./component/submitPasswordModal.css";
+@import "./component/historyTable.css";
+@import "./component/pageLoader.css";
 
 
 .productModal__paginatorWrap {

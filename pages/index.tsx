@@ -24,7 +24,6 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
 
   const { items, setFilter, filter } = useProductList({
     initialPageIndex: 1, initialViewCount: 8, initialFilter: {
-      ...openListFilter,
       _id_in: item?.members
     }
   }, { skip: !item });

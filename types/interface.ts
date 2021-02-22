@@ -65,6 +65,7 @@ export interface IlistQueryInit<F,S,Q,V> extends Partial<ListInitOptions<F, S>> 
 
 type ReplaceKR = Record<ReplaceString, string>;
 export const ReplaceKr:ReplaceKR = {
+    REJECT_REASON: "거절사유",
     BOOK_DAY: "예약일",
     CANCEL_REASON: "취소사유",
     CONFRIM_MESSAGE: "확인메세지",

@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client"
-import {  F_BOOKING, F_PAGE, F_PAYMENT, F_PRODUCT, F_USER } from "./fragments"
+import {  F_BOOKING, F_PAGE, F_PAYMENT, F_PRODUCT, F_REQUEST_HISTORY, F_USER } from "./fragments"
 
 export const F_FEEPOLICY = gql`
     fragment Ffeepolicy on FeePolicy {
@@ -61,6 +61,9 @@ export const SETTLEMENT_FIND_BY_ID = gql`
       message
     }
     data  {
+      requestHistory {
+        ...FrequestHistory
+      }
       ...Fsettlement
       product {
         ...Fproduct
@@ -81,6 +84,7 @@ export const SETTLEMENT_FIND_BY_ID = gql`
     }
   }
   }
+  ${F_REQUEST_HISTORY}
   ${F_PRODUCT}
   ${F_USER}
   ${F_BOOKING}
@@ -143,11 +147,9 @@ export const SETTLEMENT_LIST = gql`
 
 export const SETTLEMENT_REQUEST = gql`
   mutation settlementRequest(
-      $params: [ReturnTargetInput!]!
       $settlementId: String!
     ) {
     SettlementRequest(
-        params: $params,
         settlementId: $settlementId
       ) {
         ok

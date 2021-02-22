@@ -151,7 +151,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     })
 
     const createFn = (params: ProductCreateInput) => {
-        if(createLoading) return;
+        if (createLoading) return;
         ProductCreateMu({
             variables: {
                 params,
@@ -161,12 +161,13 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     }
 
     const updateFn = (_id: string, params: ProductUpdateInput) => {
-        if(updateLoading) return;
+        if (updateLoading) return;
         productUpdate({
             _id,
             params: {
                 ...params,
-            }
+            },
+            reason: ""
         })
     }
 

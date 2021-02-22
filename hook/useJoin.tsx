@@ -211,6 +211,7 @@ export const useJoin = () => {
         handleAddress,
         handleDayClick,
         data,
+        setData,
         handleDayPickerMonth,
         daumAddress,
         nickNameChecked,

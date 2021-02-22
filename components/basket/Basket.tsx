@@ -12,6 +12,7 @@ import { openModal } from '../../utils/popUp';
 import { getTypeTextOfProduct } from '../../utils/product';
 import { getBracket, getTotalCount, IBasketItem, removeBracket, removeItem } from '../../utils/Storage';
 import { BasketModal } from '../basketModal/BasketModal';
+import { Nodata } from '../noData/Nodata';
 
 interface IProp {
     Buttons?: TElements
@@ -47,8 +48,6 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
         }
     }
 
-
-
     return <div className="basket_box"><div className="basket_list">
         <div className="th">
             <div className="t01">
@@ -62,6 +61,7 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
             <div className="t04">상품금액</div>
             <div className="t05">상태</div>
         </div>
+        <Nodata show={isEmpty(items)} label="장바구니에 상품이 존재하지 않습니다." />
         {items.map((item, i) =>
             <div key={item._id} className="td">
                 <div className="t01">
@@ -77,7 +77,10 @@ export const Basket: React.FC<IProp> = ({ updateComponent, Buttons, items }) => 
                         <div className="title"><a href="/">{item.title}</a></div>
                         <div className="subtitle">{item.subTitle}</div>
                     </div>
-                    <span className="del">
+                    <span onClick={() => {
+                        removeItem(item._id)
+                        updateComponent();
+                    }} className="del">
                         <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
                         <button />
                     </span>

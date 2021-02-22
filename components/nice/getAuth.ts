@@ -16,7 +16,6 @@ export const getAuth = async (amt:number):Promise<TGetAUth> => {
     }).then((res) =>
         res.json()
     ).catch((e)=> {
-        alert("pay err")
         throw Error(e);
     })
 }

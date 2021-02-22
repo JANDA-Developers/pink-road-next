@@ -23,7 +23,7 @@ export const QnaDetail: React.FC<IProp> = () => {
     if (error) return <Page404 />
     if (!qna) return <PageLoading />
 
-    const { title, thumb, createdAt, contents, subTitle, _id, author } = qna;
+    const { title, thumb, createdAt, contents, subTitle, _id, author, isOpen } = qna;
 
 
     const toDetail = () => {
@@ -45,11 +45,12 @@ export const QnaDetail: React.FC<IProp> = () => {
 
     return <div>
         <BoardView
+            isOpen={!!isOpen}
             authorId={author?._id || ""}
             onList={toList}
             thumb={thumb}
             content={contents}
-            writer={"관리자"}
+            writer={author?.nickName || ""}
             title={title}
             subTitle={subTitle || ""}
             onDelete={handleDelete}

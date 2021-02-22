@@ -7,6 +7,7 @@ import { Modal } from '../modal/Modal';
 interface IProp {
     id: string;
     title: string;
+    label?: string;
     onSubmit: (reason: string) => void;
 }
 
@@ -28,14 +29,14 @@ export const Prompt: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) =
                 <ul className="text_box">
                     <li>
                         <div className="txta w100">
-                            <textarea onKeyPress={whenEnter(onSubmit) as any} onChange={(e) => {
+                            <textarea onChange={(e) => {
                                 const val = e.currentTarget.value;
-                                if (val.length > 3000) return;
+                                if (val.length > 100) return;
                                 setSubmitData(val);
                             }} value={submitData} style={{ height: "100px", width: "100%" }} placeholder="..."></textarea>
                         </div>
                     </li>
-                    <li className="tl count">{submitData.length}/3000</li>
+                    <li className="tl count">{submitData.length}/100</li>
                 </ul>
                 <div className="text_box_bottom">
                     <div className="btn_send float_right">
@@ -53,11 +54,12 @@ export const Prompt: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) =
 };
 
 
-export const PromptInput: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) => {
+export const SubmitPsswordModal: React.FC<IProp> = ({ onSubmit: handleSubmit, label, title, id }) => {
     const [submitData, setSubmitData] = useState("");
 
-    return <Modal title={title} id={id}>
-        <input className="emailVerifi__input" value={submitData} onChange={(e) => {
+    return <Modal inClassName="promptinput" title={title} id={id}>
+        <h6 className="promptinput__label">{label}</h6>
+        <input type="password" className="promptinput__input" value={submitData} onChange={(e) => {
             setSubmitData(e.currentTarget.value)
         }} />
         <button className="btn small" onClick={() => { handleSubmit(submitData); closeModal("#" + id)() }}>확인</button>

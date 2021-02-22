@@ -24,10 +24,10 @@ export const getMarkUp = (popup: Ipopup) => {
         </head>
         <body>
             <div className="ck-content" dangerouslySetInnerHTML={{ __html: popup.content || "" }} style={{ ...BG(popup.style.backgroundImage || ""), backgroundPosition: "center center", backgroundSize: "cover", height: "100%" }} />
-            <div className="modal__controller">
+            {/* <div className="modal__controller">
                 오늘 하루동안 보지않기 <span className="modal__closerWrap"> <input id="DaycheckBox"
                     type="checkbox" checked={false} /> <span id="Closer" className="modal__closer">닫기</span></span>
-            </div>
+            </div> */}
             <script src={location.origin + "/popup.js"} >
             </script>
         </body>

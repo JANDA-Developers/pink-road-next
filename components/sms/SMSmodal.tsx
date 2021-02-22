@@ -199,6 +199,7 @@ export const SMSmodal: React.FC<IProps> = ({ template }) => {
                             <div className="th">자동메시지</div>
                             <div className="td">
                                 <ul className="text_ul">
+                                    {/* @ts-ignore */}
                                     {trigger.event && (replaceObj[trigger.event] as ReplaceString[]).map((r) =>
                                         <li key={r} onClick={hanldeReplaceString(r)}><span>{ReplaceKr[r]}</span></li>
                                     )}

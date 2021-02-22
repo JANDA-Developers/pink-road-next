@@ -123,7 +123,10 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                 <h5>
                                                     <span>{modal.title}</span>
                                                     <div className="switch">
-                                                        <input onChange={() => { }} className="tgl tgl-skewed" id={`cb${index}`} type="checkbox" />
+                                                        <input onChange={() => {
+                                                            modal.open = !modal.open;
+                                                            popupHook.setPopups([...popupHook.popups]);
+                                                        }} checked={modal.open} className="tgl tgl-skewed" id={`cb${index}`} type="checkbox" />
                                                         <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor={`cb${index}`} />
                                                     </div>
                                                 </h5>
@@ -179,6 +182,7 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                 <div className="line">
                                                     <h6>백그라운드 설정</h6>
                                                     <div className="txt">
+                                                        <div className="fileNameInputLabel">{modal.style?.backgroundImage}</div>
                                                         <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                                             const file = e.currentTarget.files;
                                                             if (!file || !homepage) return;

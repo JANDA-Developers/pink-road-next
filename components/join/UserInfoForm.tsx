@@ -9,6 +9,8 @@ import { fromMonth, toMonth, useJoin } from '../../hook/useJoin';
 import { YearMonthForm } from './YearMonthForm';
 import { JoinContext } from '../../pages/member/join';
 import { autoHypenPhone } from '../../utils/formatter';
+import { BirthDayPicker } from '../birthdayPicker/BirthdayPicker';
+import dayjs from 'dayjs';
 
 const UserInfoForm: React.FC = () => {
 
@@ -20,6 +22,7 @@ const UserInfoForm: React.FC = () => {
     } = useContext(JoinContext)!;
     const {
         data,
+        setData,
         daumAddress,
         handleAddress,
         handleBirthPicker,
@@ -166,7 +169,7 @@ const UserInfoForm: React.FC = () => {
                                 className="w100"
                                 placeholder="-를 제외한 휴대폰 번호를 입력해주세요"
                                 name="contact"
-                                value={data.phoneNumber}
+                                value={autoHypenPhone(data.phoneNumber)}
                                 onChange={handleData("phoneNumber")}
                             />
                             {/* <button type="button" className="btn btn_mini">
@@ -200,9 +203,16 @@ const UserInfoForm: React.FC = () => {
                             </div>
                             <div className="ph_wrap">
                                 <label>생년월일</label>
-                                <span className={`er red_font ${errDisplay.brith_date && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
+                                <BirthDayPicker setDate={(date) => {
+                                    data.brith_date = dayjs(date).format("YYYY-MM-DD");
+                                    console.log(data.brith_date);
+                                    console.log(data.brith_date);
+                                    console.log(data.brith_date);
+                                    console.log(data.brith_date);
+                                    setData({ ...data })
+                                }} date={data.brith_date ? dayjs(data.brith_date, "YYYY-MM-DD").toDate() : new Date()} />
+                                {/* <span className={`er red_font ${errDisplay.brith_date && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
                                 <div
-                                    onClick={handleBirthPicker}
                                     className="w100 join_birthday">
                                     <input
                                         type="text"
@@ -215,22 +225,7 @@ const UserInfoForm: React.FC = () => {
                                     <i className="calendar">
                                         <Calendar />
                                     </i>
-                                    <DayPicker
-                                        className={`join_birthdayPick ${birthdayPicker && `on`}`}
-                                        month={dayPickerMonth}
-                                        fromMonth={fromMonth}
-                                        toMonth={toMonth}
-                                        onDayClick={handleDayClick}
-                                        canChangeMonth={false}
-                                        captionElement={({ date, localeUtils }) => (
-                                            <YearMonthForm
-                                                date={date}
-                                                localeUtils={localeUtils}
-                                                onChange={handleDayPickerMonth}
-                                            />
-                                        )}
-                                    />
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     }
@@ -297,7 +292,7 @@ const UserInfoForm: React.FC = () => {
                                     *사업자번호가 바르지 않습니다.
                                 </span>
                                 <div className="w100">
-                                    <select style={{marginRight: "5px"}} className="w20 mr5" value={data.is_priv_corper ? "true" : "false"} onChange={handleData("is_priv_corper")}>
+                                    <select style={{ marginRight: "5px" }} className="w20 mr5" value={data.is_priv_corper ? "true" : "false"} onChange={handleData("is_priv_corper")}>
                                         <option value={"false"}>개인</option>
                                         <option value={"true"}>법인</option>
                                     </select>

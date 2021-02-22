@@ -85,7 +85,7 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess, dupli
 
     const sendCountOver = sendEmailCount > 5;
 
-    return <Modal title="이메일 인증" id="emailVerifi" >
+    return <Modal title="이메일 인증" id="emailVerifi" inClassName="emailVerifiModal" >
         <h6>
             이메일을 입력 해주세요.
                 </h6>
@@ -97,12 +97,14 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess, dupli
                 <h6>
                     인증번호를 입력 해주세요.
             </h6>
-                <input value={code} onChange={(e) => {
+                <input className="emailVerifi__input" value={code} onChange={(e) => {
                     setCode(e.currentTarget.value)
                 }} />
             </div> : ""
         }
-        {!sendCountOver ? <button className="btn small" onClick={handleDuplicateCheck}>{sendEmailCount ? "인증이메일 발송" : "인증메일 재발송"}</button> : <button className="btn small">재발송 횟수를 초과하였습니다.</button>}
-        {sendEmailCount ? <button className="btn small" onClick={handleComplete}>인증 완료</button> : ""}
+        <div className="emailVerifiModal__btns">
+            {!sendCountOver ? <button className=" btn small" onClick={handleDuplicateCheck}>{sendEmailCount ? "인증이메일 발송" : "인증메일 재발송"}</button> : <button className="btn small">재발송 횟수를 초과하였습니다.</button>}
+            {sendEmailCount ? <button className="btn small" onClick={handleComplete}>인증 완료</button> : ""}
+        </div>
     </Modal>;
 };

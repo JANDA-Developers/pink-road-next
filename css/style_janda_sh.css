@@ -867,7 +867,7 @@ div.popup_bg_full .fin{
         font-size: 12px;
         padding: 20px 10px 10px 0px;
         box-sizing: border-box;
-
+        text-align: center;
     }
 
     div.popup_bg_full .in_txt2 {
@@ -4051,6 +4051,7 @@ div.bn_box {
         text-align: center;
         display: flex;
         width: 100%;
+        justify-content: center;
     }
 
         .pagenate .page a {

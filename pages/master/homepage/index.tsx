@@ -193,11 +193,11 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                         <input onChange={(e) => {
                                             const account = e.currentTarget.value;
                                             setBankInfo("bankName", account)
-                                        }} value={bankName} className="w10 mr5" placeholder="은행" type="text" />
+                                        }} value={bankName || ""} className="w10 mr5" placeholder="은행" type="text" />
                                         <input onChange={(e) => {
                                             const accountNumber = e.currentTarget.value;
                                             setBankInfo("accountNumber", accountNumber)
-                                        }} value={accountNumber} className="w50 mr5" placeholder="계좌번호" type="text" />
+                                        }} value={accountNumber || ""} className="w50 mr5" placeholder="계좌번호" type="text" />
                                         <input onChange={(e) => {
                                             const accountHolder = e.currentTarget.value;
                                             setBankInfo("accountHolder", accountHolder)

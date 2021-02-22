@@ -17,7 +17,7 @@ interface IProp {
 export const QuestionDetail: React.FC<IProp> = () => {
     const router = useRouter();
     const questionId = router.query.id as string;
-    const { myProfile, isAdmin } = useContext(AppContext);
+    const { myProfile, isManager } = useContext(AppContext);
     const [createAnswerMu] = useAnswerCreate();
     const [answerDeleteMu] = useAnswerDelete();
     const [answerUpdateMu] = useAnswerUpdate();
@@ -29,15 +29,18 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
 
     const { item: question, error } = useQuestionFindById(questionId);
-    const myQuestion = question?.product?.author === myProfile?._id;
+    const myQuestion = question?.author?._id === myProfile?._id;
+    const myProdQuestion = question?.product?.author?._id === myProfile?._id;
 
-    if (question && !question.isOpen && !isAdmin && !myQuestion) {
+    if (question && !question.isOpen && !isManager && !myQuestion && !myProdQuestion) {
         return <PageDeny />
     }
 
+    console.log({ myProdQuestion });
+2
     if (error) return <Page404 />
     if (!question) return <PageLoading />
-    const { title, thumb, createdAt, contents, subTitle, _id, product, author } = question;
+    const { title, thumb, createdAt, contents, subTitle, _id, product, author, isOpen } = question;
     const isMyProduct = myProfile?._id === product?.author?._id;
 
 
@@ -94,11 +97,12 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
     return <div>
         <BoardView
+            isOpen={!!isOpen}
             authorId={author?._id || ""}
             onList={toList}
             thumb={thumb}
             content={contents}
-            writer={"관리자"}
+            writer={author?.nickName || ""}
             title={title}
             subTitle={subTitle || ""}
             onDelete={handleDelete}
@@ -106,7 +110,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
             createAt={createdAt}
 
         />
-        {myProfile &&
+        {(isMyProduct || isManager) &&
             <div className="w1200">
                 <div className="comment_box">
                     <ul>
@@ -115,7 +119,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
                         )}
                     </ul>
                 </div>
-                {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile.nickName} onSubmit={handleAnswer} />}
+                {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.nickName} onSubmit={handleAnswer} />}
             </div>
         }
     </div>

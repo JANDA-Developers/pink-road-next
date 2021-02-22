@@ -13,7 +13,6 @@ function closePopup(setCookie) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    alert("documnet load triggered");
     const checkbox = document.getElementById("DaycheckBox")
     const isChecked = checkbox.value === true;
     const target = document.getElementById("Closer");

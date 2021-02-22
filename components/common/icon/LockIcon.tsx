@@ -3,7 +3,8 @@ import React from 'react';
 interface IProp { }
 
 export const LockIcon: React.FC<IProp> = () => {
-    return <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 25.2 28.3" style={{ enableBackground: 'new 0 0 25.2 28.3' }} xmlSpace="preserve">
+    // style={{ enableBackground: 'new 0 0 25.2 28.3' }}
+    return <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 25.2 28.3" xmlSpace="preserve">
         <style type="text/css" dangerouslySetInnerHTML={{ __html: "\n\t.st0{fill:#808080;}\n" }} />
         <g>
             <path className="st0" d="M23.9,9.4h-2.6V6.2c0-3.4-2.8-6.2-6.2-6.2h-4.9C6.7,0,3.9,2.8,3.9,6.2v3.1H1.3C0.6,9.4,0,10,0,10.6v16.4

@@ -18,7 +18,7 @@ interface IProp {
 
 export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
     const { item } = useUserFindById(userId);
-    const { handleSignUpAccept, handleDenyPop } = handlers;
+    const { handleSignUpAccept, handleDenyPop, handleResignUser, handleSignUpDeny, handleRestartUser, handleStopUser, handleViewDetailUser, handleViewUserBoard } = handlers;
     if (!item) return null;
     const { isResigned, name, email, phoneNumber, resignReason, resignReasonType, gender, role } = item;
 
@@ -173,7 +173,7 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                     <div className="float_left">
 
                         {!item.isVerifiedManager &&
-                            <div>
+                            <div style={{ display: "flex" }}>
                                 <div>
                                     <i style={{ lineHeight: "22px" }} className="btn small" onClick={() => { handleSignUpAccept([item._id]) }}>가입승인</i>
                                 </div>
@@ -184,11 +184,17 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                         }
 
                     </div>
-                    <div className="float_right">
+                    <div className="fin ifMobile">
+                        <div className="float_left">
+                        </div>
+                        <div className="float_right">
+                            <button onClick={handleResignUser} type="submit" className="btn medium mr5">강제탈퇴</button>
+                            <button onClick={handleStopUser} type="submit" className="btn medium">활동정지</button>
+                            <button onClick={handleRestartUser} type="submit" className="btn medium">활동재개</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>;
+    </div>
 };

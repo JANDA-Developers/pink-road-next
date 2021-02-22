@@ -14,7 +14,6 @@ export const cardRefund = async (body:IRefundBody):Promise<any> => {
         const result = res.json();
         return result;
     }).catch((e)=> {
-        alert("pay err")
         throw Error(e);
     })
 }

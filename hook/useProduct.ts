@@ -6,7 +6,7 @@ import { productCreateAccept,  productUpdateAccept, productDelete, productDelete
 import { productFindById, productFindByIdVariables } from "../types/api";
 import { IlistQueryInit } from "../types/interface";
 import { PRODUCT_FIND_BY_ID } from "../apollo/gql/product";
-import { productElseDeny,  productElseDenyVariables, productElseReq, productElseReqVariables, productElseAccept, productElseAcceptVariables,Fpage, Fproduct, productList, productListVariables, _PortfolioSort, _ProductFilter, _ProductSort } from "../types/api";
+import { productReOpenDeny,  productReOpenDenyVariables, productElseReq, productElseReqVariables, productElseAccept, productElseAcceptVariables,Fpage, Fproduct, productList, productListVariables, _PortfolioSort, _ProductFilter, _ProductSort } from "../types/api";
 import { IListHook } from "./useListQuery";
 import { PRODUCT_POST_UPDATE } from "../apollo/gql/product";
 import { productUpdate, productUpdateVariables } from "../types/api";
@@ -80,15 +80,15 @@ export const useTravelWithdrwal = generateMutationHook<travelWithdrwal, travelWi
     ...getRefetch(PRODUCT_LIST,PRODUCT_FIND_BY_ID)
 })
 
-export const useProductElseDeny = generateMutationHook<productElseDeny, productElseDenyVariables>(PRODUCT_ELSE_DENY, {
+export const useProductReOpenDeny = generateMutationHook<productReOpenDeny, productReOpenDenyVariables>(PRODUCT_ELSE_DENY, {
     ...getRefetch(PRODUCT_LIST,PRODUCT_FIND_BY_ID)
 })
 
-export const useProductElseAccept = generateMutationHook<productElseAccept, productElseAcceptVariables>(PRODUCT_ELSE_ACCEPT, {
+export const useProductReOpenAccept = generateMutationHook<productElseAccept, productElseAcceptVariables>(PRODUCT_ELSE_ACCEPT, {
     ...getRefetch(PRODUCT_LIST,PRODUCT_FIND_BY_ID)
 })
 
-export const useProductElseReq = generateMutationHook<productElseReq, productElseReqVariables>(PRODUCT_ELSE_REQ, {
+export const useProductReOpenReq = generateMutationHook<productElseReq, productElseReqVariables>(PRODUCT_ELSE_REQ, {
     ...getRefetch(PRODUCT_LIST,PRODUCT_FIND_BY_ID)
 })
 
@@ -100,32 +100,30 @@ export const openListFilter = {
 
 
 
-
+export type TUseProductController = ReturnType<typeof useProductController>;
 export const useProductController = (onSucess: () => void,role:UserRole) => {
 
-    const [productElseReq, { loading:elseReqLoading }] = useProductElseReq({
-        onCompleted: ({ ProductElseReq }) => {
-            if (ProductElseReq.ok)  {
-                if(role === UserRole.partner) {
-                    alert("요청이 접수 되었습니다");
-                }
+    const [productElseReq, { loading:elseReqLoading }] = useProductReOpenReq({
+        onCompleted: ({ ProductReOpenReq }) => {
+            if (ProductReOpenReq.ok)  {
+                alert("요청이 접수 되었습니다");
                 onSucess();
             }
         }
     })
 
-    const [productElseDeny, { loading: elseDeny_loading }] = useProductElseDeny({
-        onCompleted: ({ ProductElseDeny }) => {
-            if (ProductElseDeny.ok)  {
+    const [productReOpenDeny, { loading: elseDeny_loading }] = useProductReOpenDeny({
+        onCompleted: ({ ProductReOpenDeny }) => {
+            if (ProductReOpenDeny.ok)  {
                 alert("상품 요청이 거절 되었습니다.");
                 onSucess();
             }
         }
     })
 
-    const [productElseAccept, {loading: elseAccept_loading}] = useProductElseAccept({
-        onCompleted: ({ ProductElseAccept }) => {
-            if (ProductElseAccept.ok)  {
+    const [productElseAccept, {loading: elseAccept_loading}] = useProductReOpenAccept({
+        onCompleted: ({ ProductReOpenAccept }) => {
+            if (ProductReOpenAccept.ok)  {
                 alert("변경 요청이 처리되었습니다.");
                 onSucess();
             }
@@ -213,7 +211,7 @@ export const useProductController = (onSucess: () => void,role:UserRole) => {
     elseAccept_loading ||
     cancel_loading;
 
-    return { productElseDeny, productElseAccept, productElseReq, productDelete, rejectUpdate,acceptUpdate,rejectCreate, acceptCreate,  travelCancel, travelWithdrwal, tarvelDetermine, loading}
+    return { productReOpenDeny, productElseAccept, productElseReq, productDelete, rejectUpdate,acceptUpdate,rejectCreate, acceptCreate,  travelCancel, travelWithdrwal, tarvelDetermine, loading}
 }
 
 export const useFindProductsByGroup = (groupCode:string) => {

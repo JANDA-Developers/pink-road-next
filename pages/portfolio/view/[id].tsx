@@ -14,7 +14,7 @@ interface IProp {
 
 export const PorfolioDetail: React.FC<IProp> = ({ item }) => {
     const router = useRouter();
-    const { title, subTitle, thumb, createdAt, updatedAt, contents, category, summary, isDelete, _id, author } = item;
+    const { title, isOpen, subTitle, thumb, createdAt, updatedAt, contents, category, summary, isDelete, _id, author } = item;
 
     const toDetail = () => {
         router.push(`/portfolio/write/${_id}`)
@@ -42,11 +42,12 @@ export const PorfolioDetail: React.FC<IProp> = ({ item }) => {
     }
 
     return <BoardView
+        isOpen={!!isOpen}
         authorId={author?._id || ""}
         onList={toList}
         thumb={thumb}
         content={contents}
-        writer={"관리자"}
+        writer={author?.nickName || ""}
         title={title}
         onDelete={handleDelete}
         onEdit={toDetail}

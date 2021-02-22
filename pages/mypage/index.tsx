@@ -19,7 +19,7 @@ import { usePasswordChange, useUserResign, useUserUpdate } from '../../hook/useU
 import { ResignModal } from '../../components/resign/ResignModal';
 import { isPassword } from '../../utils/validation';
 import { Validater } from '../../utils/validate';
-import { Prompt, PromptInput } from '../../components/promptModal/Prompt';
+import { Prompt, SubmitPsswordModal } from '../../components/promptModal/Prompt';
 
 let SEND_LIMIT = 3;
 interface IProp { }
@@ -629,7 +629,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
         <Modal id="addressFindModal" title="주소찾기">
             <DaumPostcode onComplete={handleCompleteFindAddress} />
         </Modal>
-        <PromptInput title="비밀번호 변경" onSubmit={submitPassword} id="PsswordModal" />
+        <SubmitPsswordModal label="기존의 비밀번호를 입력 해주세요." title="비밀번호 변경" onSubmit={submitPassword} id="PsswordModal" />
     </MypageLayout >;
 };
 

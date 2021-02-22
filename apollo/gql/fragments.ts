@@ -58,6 +58,15 @@ export const F_ITINERARY = gql`
     ${F_FILE}
 `
 
+export const F_REQUEST_HISTORY = gql`
+    fragment FrequestHistory on RequestHistory  {
+        methodType
+        reqType
+        date
+        reason
+    }
+    ${F_FILE}
+`
 
 export const F_PRODUCT = gql`
     fragment Fproduct on Product {

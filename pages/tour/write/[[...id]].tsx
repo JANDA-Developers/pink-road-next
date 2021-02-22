@@ -72,7 +72,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         onCompleted: ({ ProductUpdateReq }) => {
             if (ProductUpdateReq?.ok) {
                 alert("상품 수정요청이 접수 되었습니다.");
-                router.push(`/tour/view/${ProductUpdateReq?.data?._id}`)
+                router.push(`/tour/view/${ProductUpdateReq?.data?._id}`).then(() => window.scrollTo(0, 0));
             }
         }
     });
@@ -170,6 +170,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             const nextData = getUpdateInput()
             updateReq({
                 variables: {
+                    reason: "",
                     params: {
                         ...nextData,
                         requestMemo: memo

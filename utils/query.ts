@@ -13,7 +13,7 @@ interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
     skipInit?: boolean;
     overrideVariables?: Partial<V>
-    getEditableobject?: boolean;
+    getEditableobject?: boolean; 
 };
 
 

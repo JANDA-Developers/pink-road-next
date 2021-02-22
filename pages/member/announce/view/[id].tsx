@@ -21,7 +21,7 @@ export const AnnounceDetail: React.FC<IProp> = () => {
     if (error) return <Page404 />
     if (!announce) return <PageLoading />
 
-    const { title, thumb, createdAt, contents, subTitle, _id, author } = announce;
+    const { title, thumb, createdAt, contents, subTitle, _id, author, isOpen } = announce;
 
 
     const toDetail = () => {
@@ -43,11 +43,12 @@ export const AnnounceDetail: React.FC<IProp> = () => {
 
     return <div>
         <BoardView
+            isOpen={!!isOpen}
             authorId={author?._id || ""}
             onList={toList}
             thumb={thumb}
             content={contents}
-            writer={"관리자"}
+            writer={author?.nickName || ""}
             title={title}
             subTitle={subTitle || ""}
             onDelete={handleDelete}

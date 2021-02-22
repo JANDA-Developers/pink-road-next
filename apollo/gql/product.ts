@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { F_BOOKING, F_PAGE, F_PAYMENT, F_PRODUCT, F_USER } from "./fragments";
+import { F_BOOKING, F_PAGE, F_PAYMENT, F_PRODUCT, F_REQUEST_HISTORY, F_USER } from "./fragments";
 import { F_QUESTION } from "./question";
 import { F_SETTLEMENT } from "./settlement";
 
@@ -124,10 +124,12 @@ export const PRODUCT_POST_UPDATE = gql`
   mutation productUpdate(
         $params: ProductUpdateInput!
         $_id: String!
+        $reason: String!
     ) {
     ProductUpdate(
         params:$params,
-        _id: $_id 
+        _id: $_id
+        reason: $reason 
       ) {
       ok
       error {
@@ -148,10 +150,12 @@ export const PRODUCT_POST_UPDATE_REQ = gql`
   mutation productUpdateReq(
         $params: ProductUpdateReqInput!
         $_id: String!
+        $reason: String!
     ) {
       ProductUpdateReq(
         params:$params,
-        _id: $_id 
+        reason: $reason, 
+        _id: $_id
       ) {
       ok
       error {
@@ -324,6 +328,9 @@ export const PRODUCT_FIND_BY_ID_FOR_SELLER = gql`
         author {
             ...Fuser
         }
+        requestHistory {
+          ...FrequestHistory
+        }
         category {
             _id
             label
@@ -344,6 +351,7 @@ export const PRODUCT_FIND_BY_ID_FOR_SELLER = gql`
       }
     }
   }
+  ${F_REQUEST_HISTORY}
   ${F_SETTLEMENT}
   ${F_USER}
   ${F_PAYMENT}
@@ -416,11 +424,13 @@ export const TRAVEL_WITDRWAL = gql`
 export const PRODUCT_ELSE_REQ = gql`
   mutation productElseReq(
       $ProductId: String!
-      $req: ProductElseReq!
+      $req: ProductReOpenReq!
+      $reason: String!
     ) {
-      ProductElseReq(
+      ProductReOpenReq(
         ProductId: $ProductId
         req: $req
+        reason: $reason
       ) {
       ok
       error {
@@ -438,7 +448,7 @@ export const PRODUCT_ELSE_ACCEPT = gql`
   mutation productElseAccept(
       $ProductId: String!
     ) {
-      ProductElseAccept(
+      ProductReOpenAccept(
         ProductId: $ProductId
       ) {
       ok
@@ -454,11 +464,11 @@ export const PRODUCT_ELSE_ACCEPT = gql`
 
 
 export const PRODUCT_ELSE_DENY = gql`
-  mutation productElseDeny(
+  mutation productReOpenDeny(
       $ProductId: String!
       $reason: String!
     ) {
-      ProductElseDeny(
+      ProductReOpenDeny(
         ProductId: $ProductId
         reason: $reason
       ) {
