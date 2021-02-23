@@ -9504,13 +9504,13 @@ i.calendar {
         .main_con_box1 .main_top_images .btn_list {
             padding-left: 100px;
             text-align: left;
-            width: auto;
+            width: 45%;
         }
           
 
     .siteInfo_in .top_bg {
         height: 460px;
-    padding: 370px 0 0;
+        padding: 370px 0 0;
         background-position: center;
         background-size: 200%;
     }

@@ -202,7 +202,7 @@
         .mypage_in .lnb ul {
             width: auto;
             display: inline-block;
-            background-color: #2196F3;
+            background-color: #989898;
             position: relative;
             top: 11px;
             right: 0px;
@@ -224,7 +224,7 @@
                 content: '';
                 width: 1px;
                 height: 20px;
-                background-color: #a7d7ff;
+                background-color: #a5a5a5;
             }
 
             .mypage_in .lnb li:last-child:after {
