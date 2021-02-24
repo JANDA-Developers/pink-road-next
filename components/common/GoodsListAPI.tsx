@@ -34,7 +34,7 @@ export const GoodsListAPI: React.FC<IProp> = ({ initialOption = {
     {
       isEmpty(sortedItems) && <NoData />
     }
-    {sortedItems.map(item =>
+    {sortedItems.map((item, i) =>
       <Goods onClick={toProductBoard(item._id)} key={item._id} item={item} />
     )}
   </ul>;

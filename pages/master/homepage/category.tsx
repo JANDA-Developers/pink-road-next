@@ -55,11 +55,9 @@ export const MsHomepageA: React.FC<IProp> = () => {
                     <div className="design_table">
                         <div className="block_box">
                             <h5>게시판 카테고리 설정</h5>
-                            {cats.map((catWrap) => {
-                                if (catWrap[0] === CategoryType.EXPERIENCE) return null;
-                                if (catWrap[0] === CategoryType.QNA) return null;
-                                return <CategoryEitdor onDelete={handleDelete} onEdit={handleUpdate} key={catWrap[0]} onAdd={handleAdd(catWrap[0] as CategoryType)} wrapLabel={categoryToKR(catWrap[0] as CategoryType)} categories={catWrap[1]} />
-                            })}
+                            {cats.map((catWrap) =>
+                                <CategoryEitdor onDelete={handleDelete} onEdit={handleUpdate} key={catWrap[0]} onAdd={handleAdd(catWrap[0] as CategoryType)} wrapLabel={categoryToKR(catWrap[0] as CategoryType)} categories={catWrap[1]} />
+                            )}
                         </div>
                     </div>
                 </div>

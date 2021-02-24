@@ -2,8 +2,10 @@ import React from 'react';
 import { useBookingList } from '../../hook/useBooking';
 import { BookingStatus } from '../../types/api';
 import { autoComma } from '../../utils/formatter';
+import isEmpty from '../../utils/isEmpty';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import { Paginater } from '../common/Paginator';
+import { Nodata } from '../noData/Nodata';
 
 interface IProp {
     id: string
@@ -19,6 +21,7 @@ export const UserModalResvCancelList: React.FC<IProp> = ({ id }) => {
     })
 
     return <div className="info_table reservationlist">
+        <Nodata show={isEmpty(bookings)} />
         {bookings.map(bk =>
             <div className="tr">
                 <div className="re01">

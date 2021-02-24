@@ -36,7 +36,6 @@ export const MsDesignA: React.FC<IProp> = () => {
 
 
     if (!homepage) return null;
-    console.log(homepage);
     return <MasterLayout>
         <div className="in ">
             <h4>디자인 설정</h4>
@@ -83,6 +82,7 @@ export const MsDesignA: React.FC<IProp> = () => {
                                     </div>
                                     <div className="t02">
                                         <div className="txt">
+                                            {homepage.bannerA && <p style={{ lineHeight: 1.5 }}>{homepage.bannerA.img?.name}</p>}
                                             <input onChange={(e) => {
                                                 if (!e.currentTarget.files) return;
                                                 signleUpload(e.currentTarget.files, (url, data) => {
@@ -138,6 +138,7 @@ export const MsDesignA: React.FC<IProp> = () => {
                                     </div>
                                     <div className="t02">
                                         <div className="txt">
+                                            {homepage.bannerB && <p style={{ lineHeight: 1.5 }}>{homepage.bannerB.img?.name}</p>}
                                             <input onChange={(e) => {
                                                 if (!e.currentTarget.files) return;
                                                 signleUpload(e.currentTarget.files, (url, data) => {

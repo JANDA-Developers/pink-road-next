@@ -7,15 +7,18 @@ import { foreginKR, userRoleToKR, managerVerifiedKR } from '../../utils/enumToKr
 import { autoHypenPhone } from '../../utils/formatter';
 import { closeModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
+import { UserMasterHandler } from '../member/MemberMaster';
 import { UserModalResvCancelList } from './UserModalResvCacnelList';
 import { UserModalResvList } from './UserModalResvList';
 
 interface IProp {
+    handlers: UserMasterHandler
     userId: string;
 }
 
-export const UserModal: React.FC<IProp> = ({ userId }) => {
+export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
     const { item } = useUserFindById(userId);
+    const { handleSignUpAccept, handleDenyPop, handleResignUser, handleSignUpDeny, handleRestartUser, handleStopUser, handleViewDetailUser, handleViewUserBoard } = handlers;
     if (!item) return null;
     const { isResigned, name, email, phoneNumber, resignReason, resignReasonType, gender, role } = item;
 
@@ -104,7 +107,10 @@ export const UserModal: React.FC<IProp> = ({ userId }) => {
                                 {isPartnerB &&
                                     <div className="tr">
                                         <div className="th01">업체주소</div>
-                                        <div className="td01"><span>{item.busi_address}</span></div>
+                                        <div className="td01"><span style={{
+                                            wordBreak: "break-all",
+                                            lineHeight: 1.3
+                                        }}>{item.busi_address || item.address}</span></div>
                                         <div className="th02">담당자</div>
                                         <div className="td02"><span>{item.manageName}</span></div>
                                         <div className="th03">연락처</div>
@@ -115,7 +121,10 @@ export const UserModal: React.FC<IProp> = ({ userId }) => {
                                 }
                                 <div className="tr">
                                     <div className="th01">계좌번호</div>
-                                    <div className="td01"><span>{item.bank_name}-{item.account_number}</span></div>
+                                    <div className="td01"><span style={{
+                                        wordBreak: "break-all",
+                                        lineHeight: 1.3
+                                    }}>{item.bank_name}-{item.account_number}</span></div>
                                     <div className="th02">통장사본</div>
                                     <div className="td02">{item.bankImg && <span>{item.bankImg?.name}<button onClick={() => {
                                         window.open(item.bankImg?.uri, "_blank")
@@ -160,7 +169,32 @@ export const UserModal: React.FC<IProp> = ({ userId }) => {
                         {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
                     </div>
                 </div>
+                <div className="fin ifMobile">
+                    <div className="float_left">
+
+                        {!item.isVerifiedManager &&
+                            <div style={{ display: "flex" }}>
+                                <div>
+                                    <i style={{ lineHeight: "22px" }} className="btn small" onClick={() => { handleSignUpAccept([item._id]) }}>가입승인</i>
+                                </div>
+                                <div>
+                                    <i style={{ lineHeight: "22px" }} className="btn small" onClick={handleDenyPop(item._id)}>가입거절</i>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div className="fin ifMobile">
+                        <div className="float_left">
+                        </div>
+                        <div className="float_right">
+                            <button onClick={handleResignUser} type="submit" className="btn medium mr5">강제탈퇴</button>
+                            <button onClick={handleStopUser} type="submit" className="btn medium">활동정지</button>
+                            <button onClick={handleRestartUser} type="submit" className="btn medium">활동재개</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>;
+    </div>
 };

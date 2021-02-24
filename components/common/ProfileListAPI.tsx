@@ -37,7 +37,7 @@ export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSel
         <a onClick={handleScrollArrowClick(false)} className="left_mov"><i className="jandaicon-arr2-left"></i></a>
         <div ref={guidesRef} className="man_box">
             <ul>
-                {items.map(item =>
+                {items.map((item, i) =>
                     <li key={item._id + "guid"} onClick={handleSelectUser(item)} className={selectedSeller?._id === item._id ? "on" : ""}>
                         <span className="photo" style={BG(item.profileImg?.uri || "/img/profile_default160.gif")} />
                         <div className="name"><i>G</i>{item.nickName}</div>

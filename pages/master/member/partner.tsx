@@ -1,7 +1,7 @@
 import React from 'react';
-import { BusiPartnerTable } from '../../../components/member/BusiPartnerTable';
 import { MemberMaster } from '../../../components/member/MemberMaster';
 import { UserRole } from '../../../types/api';
+import { BusiPartnerTable } from '../../../components/member/BusiPartnerTable';
 
 interface IProp { }
 export const PartnerMemberMaster: React.FC<IProp> = () => {

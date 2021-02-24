@@ -7,6 +7,8 @@ import { closeModal } from "../../utils/popUp";
 import { Modal } from "../modal/Modal";
 import { bite } from "../../utils/bite";
 import { replaceObj } from "../../types/sms";
+import { cloneObject } from "../../utils/clone";
+import { omits } from "../../utils/omit";
 
 interface ITriggerDefault extends Omit<NotificationTriggerCreateInput, "event"> {
     event: null
@@ -16,11 +18,12 @@ interface IProps {
     template?: FsmsTemplate;
 }
 
-export type TSMStemplateTag = "MEMBER" | "RESERVATION" | "SETTLEMENT"
+export type TSMStemplateTag = "MEMBER" | "RESERVATION" | "SETTLEMENT" | "PRODUCT"
 export const SMStemplateTagKr: Record<TSMStemplateTag, string> = {
     MEMBER: "멤버",
     RESERVATION: "예약",
-    SETTLEMENT: "정산"
+    SETTLEMENT: "정산",
+    PRODUCT: "상품"
 }
 
 export const SMSmodal: React.FC<IProps> = ({ template }) => {
@@ -51,33 +54,26 @@ export const SMSmodal: React.FC<IProps> = ({ template }) => {
         }
     });
 
+    const [trigger, setTrigger] = useState<NotificationTriggerCreateInput | ITriggerDefault>(cloneObject(template?.trigger) || {
+        event: null,
+        isEnabled: false
+    })
+
     //발신전략은 한 템플릿에 하나의 트리거만 연결되도록 한다. 
-    const [input, setInput] = useState<SmsTemplateCreateInput>({
+    const [input, setInput] = useState<Omit<SmsTemplateCreateInput, "trigger">>({
         name: template?.name || "",
         content: template?.content || "",
         description: template?.description || "",
-        tags: template?.tags,
-        trigger: {
-            event: NotificationTriggerEvent.BANK_TRANSFER_BOOKER,
-            isEnabled: false,
-            sender: "",
-            tags: []
-        }
+        tags: template?.tags
     });
 
-    const [trigger, setTrigger] = useState<NotificationTriggerCreateInput | ITriggerDefault>(template?.trigger || {
-        event: null,
-        isEnabled: false,
-        sender: "",
-        tags: []
-    })
 
-    const nextTrigger = trigger.event ? [{ ...trigger }] : undefined;
-    const nextInput = {
+    const nextTrigger = trigger.event ? trigger : undefined;
+    const nextInput: SmsTemplateCreateInput = omits({
         ...input,
         tags: [{ key: "SMStype", value: smsTag }],
-        triggers: nextTrigger
-    }
+        trigger: nextTrigger
+    }, ["__typename" as any])
 
     const handleCreate = () => {
         create({
@@ -126,6 +122,7 @@ export const SMSmodal: React.FC<IProps> = ({ template }) => {
                                     <option value="MEMBER">회원</option>
                                     <option value="RESERVATION">예약</option>
                                     <option value="SETTLEMENT">정산</option>
+                                    <option value="PRODUCT">상품</option>
                                 </select>
                             </div>
                         </li>
@@ -172,8 +169,8 @@ export const SMSmodal: React.FC<IProps> = ({ template }) => {
                                     <option value="">= 상태 =</option>
                                     {smsTag === "RESERVATION" &&
                                         <>
-                                            <option value={NotificationTriggerEvent.BANK_TRANSFER_BOOKER}>예약취소시 구매자에게</option>
-                                            <option value={NotificationTriggerEvent.BANK_TRANSFER_SELLER}>예약취소시 판매자에게</option>
+                                            {/* <option value={NotificationTriggerEvent.BANK_TRANSFER_BOOKER}>무통장 예약시 예약자에게</option> */}
+                                            {/* <option value={NotificationTriggerEvent.BANK_TRANSFER_SELLER}>무통장 예약시 판매자에게</option> */}
                                             <option value={NotificationTriggerEvent.CANCEL_BOOKING_BOOKER}>예약취소시 예약자에게</option>
                                             <option value={NotificationTriggerEvent.CANCEL_BOOKING_SELLER}>예약취소시 판매자에게</option>
                                             <option value={NotificationTriggerEvent.COMPLETE_BOOKING_BOOKER}>예약완료시 구매자에게</option>
@@ -182,13 +179,17 @@ export const SMSmodal: React.FC<IProps> = ({ template }) => {
                                     }
                                     {smsTag === "MEMBER" && <>
                                         <option value={NotificationTriggerEvent.SIGNUP_PARTNER_USER}> 일반파트너 회원가입시 유저에게</option>
-                                        <option value={NotificationTriggerEvent.SIGNUP_PARNTER_B_USER}>비지니스파트너 회원가입시 유저에게</option>
+                                        <option value={NotificationTriggerEvent.SIGNUP_PARNTER_B_USER}>기업파트너 회원가입시 유저에게</option>
                                         <option value={NotificationTriggerEvent.SIGNUP_INDI_USER}>일반회원 회원가입시 유저에게</option>
-                                        <option value={NotificationTriggerEvent.PRODUCT_CONFIRM_REQUEST}>상품검토 요청시 판매자에게</option>
                                     </>}
                                     {smsTag === "SETTLEMENT" && <>
-                                        <option value={NotificationTriggerEvent.PRODUCT_CONFIRM_REQUEST}>상품등록 승인요청시 요청자에게</option>
                                         <option value={NotificationTriggerEvent.SETTLEMENT_REQUEST}>정산 요청시 요청자에게</option>
+                                        <option value={NotificationTriggerEvent.SETTLEMENT_COMPLETE}>정산 완료시 요청자에게</option>
+                                        <option value={NotificationTriggerEvent.SETTLEMENT_REJECT}>정산 거절시 요청자에게</option>
+                                    </>}
+                                    {smsTag === "PRODUCT" && <>
+                                        <option value={NotificationTriggerEvent.PRODUCT_CONFIRM_REQUEST}>상품검토 요청시 판매자에게</option>
+                                        <option value={NotificationTriggerEvent.PRODUCT_EXPIRE_SELLER}>상품 만료시 판매자에게</option>
                                     </>}
                                 </select>
                             </div>
@@ -198,6 +199,7 @@ export const SMSmodal: React.FC<IProps> = ({ template }) => {
                             <div className="th">자동메시지</div>
                             <div className="td">
                                 <ul className="text_ul">
+                                    {/* @ts-ignore */}
                                     {trigger.event && (replaceObj[trigger.event] as ReplaceString[]).map((r) =>
                                         <li key={r} onClick={hanldeReplaceString(r)}><span>{ReplaceKr[r]}</span></li>
                                     )}

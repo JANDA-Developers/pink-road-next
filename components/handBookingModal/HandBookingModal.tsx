@@ -3,7 +3,7 @@ import { useBookingCreateByHand, useBookingUpdate } from '../../hook/useBooking'
 import { useProductFindById } from '../../hook/useProduct';
 import { BookingCreateByHandInput, bookingCreateByHandVariables, BookingStatus, GENDER } from '../../types/api';
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
-import { openModal } from '../../utils/popUp';
+import { closeModal, openModal } from '../../utils/popUp';
 import { dateRangeFullString, getRangeString, getRangeStringByNumber, getTypeTextOfProduct } from '../../utils/product';
 import { Validater } from '../../utils/validate';
 import { yyyymmdd } from '../../utils/yyyymmdd';
@@ -23,12 +23,19 @@ export const HandBookingModal: React.FC<IProp> = ({ defaultProductId }) => {
         email: "",
         name: "",
         phoneNumber: "",
-        product: "",
+        product: defaultProductId || "",
         gender: GENDER.MAIL,
         status: BookingStatus.READY
     });
 
-    const [bookingCreate] = useBookingCreateByHand()
+    const [bookingCreate] = useBookingCreateByHand({
+        onCompleted: ({ BookingCreateByHand }) => {
+            if (BookingCreateByHand.ok) {
+                alert("예약이 수기등록 되었습니다.");
+                closeModal("#HandwrittenRegistration")();
+            }
+        }
+    })
     const [bookingUpdate] = useBookingUpdate();
     const { item } = useProductFindById(defaultProductId || input?.product)
 
@@ -44,9 +51,8 @@ export const HandBookingModal: React.FC<IProp> = ({ defaultProductId }) => {
 
     const selectCount = input.adultCount + input.kidCount + input.babyCount;
     const availableCount = (item?.maxMember || 0) - (item?.peopleCount || 0)
-    console.log({ availableCount });
     const { validate } = new Validater([{
-        value: selectCount > 1,
+        value: selectCount > 0,
         failMsg: "인원을 입력해 주세요."
     }, {
         value: input.phoneNumber,
@@ -55,7 +61,7 @@ export const HandBookingModal: React.FC<IProp> = ({ defaultProductId }) => {
         value: defaultProductId || input.product,
         failMsg: "올바른 상품이 아닙니다."
     }, {
-        value: availableCount < selectCount,
+        value: availableCount > selectCount,
         failMsg: "해당 인원을 수용 할 수 없습니다."
     }, {
         value: input.name,
@@ -93,6 +99,7 @@ export const HandBookingModal: React.FC<IProp> = ({ defaultProductId }) => {
         input[key] = val;
 
         setInput({ ...input })
+
     }
 
     let totalPrice = 0
@@ -110,18 +117,17 @@ export const HandBookingModal: React.FC<IProp> = ({ defaultProductId }) => {
 
     return <Modal title="예약 수기등록" inClassName="master_popup handwritten_registration" className="popup_bg_full" id="HandwrittenRegistration">
         <div className="box">
-            <h3>예약 수기등록</h3>
             <div className="info_page">
                 <div className="full_div">
                     {!defaultProductId && <>
                         <h4>상품선택</h4>
                         <div className="goodsall__choice">
                             {/* 상품 선택시에 아래 goodsall__choice_info 노출됨 */}
-                            <div className="goodsall__choice_touch">
-                                <button onClick={handleSearch}><i className="flaticon-add"></i>추가</button>
-                            </div>
+                            {!item && !input.product && <div className="goodsall__choice_touch">
+                                <button onClick={handleSearch}><i className="flaticon-add"></i>상품선택</button>
+                            </div>}
                             {/* goodsall__choice_info 노출됨과 동시에 goodsall__choice_touch 숨김*/}
-                            {input.product && <ProductSelectView key={input.product} id={input.product} />}
+                            {input.product && item && <ProductSelectView item={item} key={input.product} id={input.product} />}
                         </div>
                     </>}
 
@@ -267,7 +273,10 @@ export const HandBookingModal: React.FC<IProp> = ({ defaultProductId }) => {
             </div>
             <button onClick={handleRegist} className="btn">등록하기</button>
         </div>
-        <ProductSelectModal onSelect={() => {
+        <ProductSelectModal onSelect={(product) => {
+            input.product = product._id;
+            setInput({ ...input });
+            closeModal("#ProductSearchModal")();
 
         }} />
     </Modal>;

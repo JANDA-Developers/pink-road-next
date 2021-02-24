@@ -36,8 +36,6 @@ export const MsDesignC: React.FC<IProp> = () => {
     const [groupDelete] = useGroupDelete()
 
     const handleSave = (group: Fgroup) => {
-        console.log("---group---");
-        console.log(group);
         groupUpdate({
             variables: {
                 key: group.key,
@@ -93,7 +91,7 @@ export const MsDesignC: React.FC<IProp> = () => {
                         <div className="float_left">
                         </div>
                         <div className="float_right">
-                            <button onClick={handleAddGroup} type="submit" className="btn medium">추가하기</button>
+                            {/* <button onClick={handleAddGroup} type="submit" className="btn medium">추가하기</button> */}
                         </div>
                     </div>
                 </div>

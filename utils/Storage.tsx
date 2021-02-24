@@ -65,7 +65,7 @@ export class LocalManager<T extends string> {
 }
 
 
-export type TStoreKeys = "lastLoginType" | "qnaWrite" | "announceWrite" | "lastProd" | "signUpRole" | "questionWrite" | "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin";
+export type TStoreKeys = "productTempBoard" | "lastLoginType" | "qnaWrite" | "announceWrite" | "lastProd" | "signUpRole" | "questionWrite" | "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin";
 
 export let Storage: LocalManager<TStoreKeys> | null = null;
 
@@ -90,11 +90,7 @@ export interface IBasketItem extends Partial<Fproduct> {
 
 export const deleteExpireBracket = () => {
     const bracket = getBracket();
-    console.log("bracket");
-    console.log(bracket);
     const unExpiredSet = bracket?.filter((bk) => dayjs(bk.startDate).add(1, "day").toDate() > new Date());
-    console.log("unExpiredSet");
-    console.log(unExpiredSet);
     saveBracket(unExpiredSet || []);
 }
 
@@ -151,10 +147,11 @@ export const addItem = (product: IBasketItem) => {
     const products = getBracket() || []
     const duplicated = products.findIndex(p => p._id === product._id);
     let updateProducts: IBasketItem[] = [];
-    if (duplicated !== -1)
-        updateProducts = products.splice(duplicated, 1, product);
-    else
+    if (duplicated !== -1) {
+        updateProducts.splice(duplicated, 1, product);
+    } else
         updateProducts = [product, ...products];
+
     saveBracket(updateProducts);
 }
 
@@ -186,3 +183,19 @@ export const getItemCount = (): number => {
     const brakcet = getBracket();
     return brakcet?.length || 0
 }
+
+
+    // humanCountToCount(count: IHumanCount) {
+    //     return [{ key: "kid", label: "성인", value: count.adult },
+    //     { key: "kid", label: "소아", value: count.kids },
+    //     { key: "baby", label: "유아", value: count.baby }]
+    // }
+
+
+    // countToHumanCount(count: TCount[]): IHumanCount {
+    //     return {
+    //         adult: count[0].value,
+    //         kids: count[1].value,
+    //         baby: count[2].value,
+    //     }
+    // }

@@ -6,9 +6,11 @@ import { BookingModal } from '../../components/bookingModal/BookingModal';
 import { Paginater } from '../../components/common/Paginator';
 import SortSelect from '../../components/common/SortMethod';
 import { ViewCount } from '../../components/common/ViewCount';
+import { Change } from '../../components/loadingList/LoadingList';
 import { ProductModal } from '../../components/productModal/ProductModal';
 import { SearchBar } from '../../components/searchBar/SearchBar';
 import { SettlementModal } from '../../components/settlementModal/SettlementModal';
+import { SettlementStatusBadge } from '../../components/Status/StatusBadge';
 import { useCustomCount } from '../../hook/useCount';
 import { useIdSelecter } from '../../hook/useIdSelecter';
 import { useDateFilter } from '../../hook/useSearch';
@@ -26,28 +28,52 @@ const popupOpen = () => {
     $('#Popup01').css({
         'display': 'flex'
     });
+
+}
+const popupClose = () => {
+    $('#Popup01').css({
+        'display': 'none'
+    });
+}
+const popupOpen2 = () => {
+    $('#Popup02').css({
+        'display': 'flex'
+    });
+
+}
+const popupClose2 = () => {
+    $('#Popup02').css({
+        'display': 'none'
+    });
 }
 
-
-type TsearchType = keyof _SettlementFilter;
+type TsearchType = keyof Pick<_SettlementFilter, "exField__code_eq" | "exField__title_contains">;
 
 
 export const MySettlement: React.FC<IProp> = () => {
-    const { items, filter, setFilter, viewCount, setViewCount, setUniqFilter, setSort, sort, pageInfo, setPage } = useSettlementList()
+    const { items, filter, setFilter, viewCount, setViewCount, setUniqFilter, setSort, sort, pageInfo, setPage, getLoading } = useSettlementList()
     const [target] = useState<Fsettlement | null>(null);
-    const { filterEnd, filterStart, hanldeCreateDateChange } = useDateFilter({
+    const { filterEnd, filterStart, hanldeCreateDateChange, setDateKey } = useDateFilter({
         filter,
         setFilter
     });
-    const [searchType, setSearchType] = useState<TsearchType>("status_eq");
-    const { selectAll, isAllSelected } = useIdSelecter(items.map(item => item._id));
-    const [code, setCode] = useState("");
+    const [searchType, setSearchType] = useState<TsearchType>("exField__code_eq" as TsearchType);
+    const { selectAll, isAllSelected } = useIdSelecter(items.map((item, i) => item._id));
     const [settlementId, setSettlementId] = useState("");
+    const dateFilterHook = useDateFilter({
+        filter,
+        setFilter,
+        dateKey: "createdAt",
+    });
 
     const { salesofLastMonth, salesOfThisMonth, settleAvaiableAmount, cancelReturnPrice } = useCustomCount(["salesofLastMonth", "salesofLastMonth", "salesOfThisMonth", "settleAvaiableAmount", "cancelReturnPrice"])
 
     const doSearch = (search: string) => {
-        // setUniqFilter("")
+        setUniqFilter(
+            searchType,
+            ["exField__code_eq", "exField__title_contains"],
+            search
+        )
     }
 
     const handleOpenModal = (_id: string) => () => {
@@ -71,7 +97,7 @@ export const MySettlement: React.FC<IProp> = () => {
             <div className="paper_div">
                 <div className="statement_div">
                     <div className="top_btn">
-                        <span>통계표 상세보기</span>
+                        {/* <span>통계표 상세보기</span> */}
                     </div>
                     <ul>
                         <li>
@@ -105,9 +131,9 @@ export const MySettlement: React.FC<IProp> = () => {
                                 <div className="title">상태</div>
                                 <div className="text">
                                     <span onClick={handleStatus(undefined)} className={checkStatusOn(undefined)}>전체</span>
+                                    <span onClick={handleStatus(SettlementStatus.READY)} className={checkStatusOn(SettlementStatus.READY)}>정산대기</span>
+                                    <span onClick={handleStatus(SettlementStatus.REQUEST)} className={checkStatusOn(SettlementStatus.REQUEST)}>정산요청</span>
                                     <span onClick={handleStatus(SettlementStatus.COMPLETE)} className={checkStatusOn(SettlementStatus.COMPLETE)}>정산완료</span>
-                                    <span onClick={handleStatus(SettlementStatus.CANCELED)} className={checkStatusOn(SettlementStatus.ACCEPT)}>정산수락</span>
-                                    <span onClick={handleStatus(SettlementStatus.CANCELED)} className={checkStatusOn(SettlementStatus.READY)}>정산요청</span>
                                     <span onClick={handleStatus(SettlementStatus.CANCELED)} className={checkStatusOn(SettlementStatus.CANCELED)}>정산취소</span>
                                 </div>
                             </div>
@@ -118,70 +144,71 @@ export const MySettlement: React.FC<IProp> = () => {
                                 setSearchType(val as any);
                             }} className="option">
                                 <option value={"code_eq" as TsearchType}>상품코드</option>
-                                <option >상품명</option>
-                                <option>예약자</option>
+                                <option value={"exField__title_contains" as TsearchType}>상품명</option>
                             </select>
                         }
-                        onDateChange={() => { }} defaultRange={{}} />
+                        onDateChange={hanldeCreateDateChange} defaultRange={{}} />
                 </div>
-                <div className="con_bottom">
-                    <div className="con_box">
-                        <div className="alignment">
-                            <div className="left_div">
-                                총 <strong>{pageInfo.totalCount}</strong>개
+                <Change change={!getLoading}>
+                    <div className="con_bottom">
+                        <div className="con_box">
+                            <div className="alignment">
+                                <div className="left_div">
+                                    총 <strong>{pageInfo.totalCount}</strong>개
                             </div>
-                            <div className="right_div">
-                                <SortSelect onChange={setSort} sort={sort} />
-                                <ViewCount value={viewCount} onChange={setViewCount} />
-                            </div>
-                        </div>
-                        <div className="fuction_list_mini ln08">
-                            <div className="thead">
-                                <div className="th01">
-                                    <span className="checkbox">
-                                        <input checked={isAllSelected} onClick={selectAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
-                                        <label htmlFor="agree0" />
-                                    </span>
+                                <div className="right_div">
+                                    <SortSelect onChange={setSort} sort={sort} />
+                                    <ViewCount value={viewCount} onChange={setViewCount} />
                                 </div>
-                                <div className="th02">상품코드</div>
-                                <div className="th03">상품명</div>
-                                <div className="th04">상품상태</div>
-                                <div className="th05">정산날짜</div>
-                                <div className="th06">금액</div>
-                                <div className="th07">상태</div>
-                                <div className="th08">상세보기</div>
                             </div>
-                            <div className="tbody">
-                                <ul>
-                                    {items.map(item =>
-                                        <li>
-                                            <div className="th01"><input type="checkbox" /></div>
-                                            <div className="th02">{item.product.code}</div>
-                                            <div className="th03">{item.product.title}</div>
-                                            <div className="th04">{productStatus(item.product?.status)}</div>
-                                            <div className="th05">{item.completeDate ? dayjs(item.completeDate).format("YYYY.MM.DD") : undefined}</div>
-                                            <div className="th06">{autoComma(item.totalPrice)}</div>
-                                            <div className="th07"><strong className="ok">{settlementStatus(item.status)}</strong></div>
-                                            <div onClick={handleOpenModal(item._id)} className="th08"><i className="btn">상세보기</i></div>
-                                        </li>
-                                    )}
-                                </ul>
+                            <div className="fuction_list_mini ln08">
+                                <div className="thead">
+                                    <div className="th01">
+                                        <span className="checkbox">
+                                            <input checked={isAllSelected} onClick={selectAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                            <label htmlFor="agree0" />
+                                        </span>
+                                    </div>
+                                    <div className="th02">상품코드</div>
+                                    <div className="th03">상품명</div>
+                                    <div className="th04">상품상태</div>
+                                    <div className="th05">정산날짜</div>
+                                    <div className="th06">금액</div>
+                                    <div className="th07">상태</div>
+                                    <div className="th08">상세보기</div>
+                                </div>
+                                <div className="tbody">
+                                    <ul>
+                                        {items.map((item, i) =>
+                                            <li className="mypageSettlement__list">
+                                                <div className="th01"><input type="checkbox" /></div>
+                                                <div className="th02">{item.product.code}</div>
+                                                <div className="th03">{item.product.title}</div>
+                                                <div className="th04">{productStatus(item.product?.status)}</div>
+                                                <div className="th05">{item.completeDate ? dayjs(item.completeDate).format("YYYY.MM.DD") : "미정산"}</div>
+                                                <div className="th06">{autoComma(item.totalPrice)}</div>
+                                                <div className="th07"> <SettlementStatusBadge status={item.status} productStatus={item.product.status} /></div>
+                                                <div onClick={handleOpenModal(item._id)} className="th08"><i className="btn">상세보기</i></div>
+                                            </li>
+                                        )}
+                                    </ul>
+                                </div>
+                                <div className="boardNavigation">
+                                    <Paginater setPage={setPage} pageInfo={pageInfo} isMini />
+                                </div>
                             </div>
-                            <div className="boardNavigation">
-                                <Paginater setPage={setPage} pageInfo={pageInfo} isMini />
-                            </div>
-                        </div>
 
-                        <div className="in_fin mt30">
-                            <div className="float_left">
-                                <button type="submit" className="btn strong" onClick={popupOpen}>정산 계산하기</button>
-                            </div>
-                            <div className="float_right">
+                            <div className="in_fin mt30">
+                                <div className="float_left">
+                                    {/* <button type="submit" className="btn strong" onClick={popupOpen}>정산 계산하기</button> */}
+                                </div>
+                                <div className="float_right">
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </Change>
             </div>
         </div>
         {/* 정산모달 */}

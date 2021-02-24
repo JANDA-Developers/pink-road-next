@@ -8,7 +8,7 @@ interface IProp {
     booking: bookingList_BookingList_data;
 }
 
-export const MaseterBookingLi: React.FC<IProp> = ({ booking: bk }) => {
+export const MasterBookingLi: React.FC<IProp> = ({ booking: bk }) => {
     return <li className="body">
         <div className="td01">
             <strong>{bk.product.title}</strong>
@@ -23,6 +23,9 @@ export const MaseterBookingLi: React.FC<IProp> = ({ booking: bk }) => {
             <strong>{bookingStatus(bk.status)}</strong>
             <span>({paymentStatus(bk.payment?.status)})</span>
         </div>
-        <div className="td05"><Link href="/"><a className="btn">상세보기</a></Link></div>
+        <div className="td05">
+            {bk.name}
+            {/* <Link href="/"><a className="btn">상세보기</a></Link> */}
+        </div>
     </li>;
 };

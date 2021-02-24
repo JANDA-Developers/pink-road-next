@@ -25,12 +25,12 @@ export const CancelTable: React.FC<IReservationTableProp> = ({ bookingListHook, 
             <div className="t06">상태</div>
             <div className="t07">관리</div>
         </div>
-        {items.map(item =>
+        {items.map((item, i) =>
             <div key={item._id} className="tbody">
                 <div className="t01">
                     <span className="checkbox">
-                        <input type="checkbox" name="agree" id="agree1" title="개별선택" />
-                        <label htmlFor="agree1" />
+                        <input type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
+                        <label htmlFor={`agree${i}`} />
                     </span>
                 </div>
                 <div className="t02">

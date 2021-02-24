@@ -77,7 +77,7 @@ export const useBasket = () => {
     })
 
     const mappingItemWithProduct = (): any => {
-        return _items.map(item => {
+        return _items.map((item, i) => {
             const product = products?.find(p => p._id === item._id);
             if (!product)
                 return null;
@@ -86,7 +86,7 @@ export const useBasket = () => {
     }
 
     const items: (IBasketItem & Fproduct)[] = getLoading ? [] : mappingItemWithProduct();
-    const totalPrice = arraySum(items.map(item => item.price));
+    const totalPrice = arraySum(items.map((item, i) => item.price));
 
     useEffect(() => {
         deleteExpireBracket();

@@ -148,7 +148,7 @@ export const TopBox: React.FC<IProp> = ({ doSearch, filterStart, filterEnd, onDa
             <div className="right_div">
                 <ul className="board_option">
                     <li onClick={onSelectAll}><a>전체선택</a></li>
-                    <li><Excel data={[]} element={<a>엑셀파일<i className="jandaicon-info2 tooltip" data-tip="선택된 항목에 한해서 엑셀파일로 저장이 가능합니다." ></i></a>} /></li>
+                    <li><Excel data={[]} element={<a>엑셀파일</a>} /></li>
                 </ul>
                 {Search}
                 {/* <select onChange={()=>{}} className="sel01">

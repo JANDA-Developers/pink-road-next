@@ -11,7 +11,7 @@ export const AdditionFeePolicyBlock: React.FC<IProp> = ({ addtionPolicy: bpp, on
     const isPer = bpp.type === AddtionalFeesStatus.DEFAULT;
     return <div className="tbody">
         <div className="t01">
-            <div className="title">공제항목</div>
+            <div className="title">수수료 항목</div>
         </div>
         <div className="t02">
             <div className="txt">

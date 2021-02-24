@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { generateSearchLink } from '../../pages/search';
 import { Fproduct } from '../../types/api';
@@ -10,8 +11,12 @@ interface IProp {
 }
 
 export const ProductListBlock: React.FC<IProp> = ({ product }) => {
+    const router = useRouter();
+
     return <li className="list_in">
-        <div style={BG(product?.images?.[0]?.uri || "")} className="img" />
+        <div onClick={() => {
+            router.push(`/tour/view/${product._id}`)
+        }} style={BG(product?.images?.[0]?.uri || "")} className="img" />
         <div className="txt1">
             <div className="title"><a href={"/tour/view/" + product._id}>{product.title}</a></div>
             <div className="subtitle">

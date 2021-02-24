@@ -5,7 +5,7 @@ import { useSmsTemplateCreate, useSmsTemplateDelete, useSmsTemplateUpdate, useTe
 import { FsmsTemplate, _ITemplateSort } from '../../../types/api';
 import { openModal } from '../../../utils/popUp';
 import { SMSmodal, SMStemplateTagKr, TSMStemplateTag } from '../../../components/sms/SMSmodal';
-import { ALLOW_SELLERS } from '../../../types/const';
+import { ALLOW_ADMINS, ALLOW_SELLERS } from '../../../types/const';
 import { auth } from '../../../utils/with';
 import SortSelect from '../../../components/common/SortMethod';
 import { SortSelecter } from '../../../components/common/SortSelect';
@@ -73,7 +73,7 @@ export const MsHomepageA: React.FC = () => {
                                         <h5>{template.name}</h5>
                                         <div className="tag">
                                             {template.tags[0] && <span className="ct">{SMStemplateTagKr[template.tags[0].value as TSMStemplateTag]}</span>}
-                                            {template.trigger && <span className="auto">자동</span>}
+                                            {template.trigger?.event && <span className="auto">자동</span>}
                                         </div>
                                     </div>
                                     <div>
@@ -92,10 +92,10 @@ export const MsHomepageA: React.FC = () => {
                 </div>
             </div>
             {/* popup-SMS문자 템플릿 */}
-            <SMSmodal key={template?._id} template={template} />
+            <SMSmodal key={template?._id || "CreateTemplateModal"} template={template} />
         </div>
 
     </MasterLayout >
 };
 
-export default auth(ALLOW_SELLERS)(MsHomepageA);
+export default auth(ALLOW_ADMINS)(MsHomepageA);

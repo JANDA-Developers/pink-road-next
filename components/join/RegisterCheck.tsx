@@ -127,10 +127,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
 
   if (userType === UserRole.partnerB) {
     //네이밍 얼라이어스
-    registerInfo.manageName = registerInfo.name || "";
-    registerInfo.manageContact = registerInfo.phoneNumber || "";
-    registerInfo.address = registerInfo.address;
-    registerInfo.address_detail = registerInfo.address_detail;
+    registerInfo.phoneNumber = registerInfo.manageContact || "";
   }
 
   const { nodes: sharedValidate } = new Validater([{
@@ -193,7 +190,18 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
 
 
   const validate = (): boolean => {
-    return normalValidate();
+    switch (userType) {
+      case UserRole.individual:
+        return normalValidate();
+
+      case UserRole.partner:
+        return partnerValidate();
+
+      case UserRole.partnerB:
+        return BpartnerValidate();
+        break;
+    }
+    return false;
   }
 
 
@@ -347,6 +355,24 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
             </li>
             <li>
+              {/* 기업파트너/개인파트너 */}
+              <div className="in_box1">
+                <input type="checkbox" className="checkbox"
+                  checked={chkPolocy.policy_partner}
+                  onClick={() => { handlePolicy('policy_partner') }} />
+                <span>
+                  <strong>파트너약관</strong>[필수]
+                  </span>
+              </div>
+              <div className="in_box2">
+                <a
+                  onClick={openModal('#PartnerPolicy')}
+                >
+                  전문보기 &gt;
+                  </a>
+              </div>
+            </li>
+            <li>
               {/* ALL */}
               <div className="in_box1">
                 <input type="checkbox" className="checkbox"
@@ -405,7 +431,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         <Policy type="marketingPolic" />
       </Modal>
 
-      <Modal id="MarketingPolicy" title="비지니스 파트너 약관">
+      <Modal id="MarketingPolicy" title="기업 파트너 약관">
         <Policy type="partnerBpolicy" />
       </Modal>
 

@@ -19,7 +19,7 @@ import { usePasswordChange, useUserResign, useUserUpdate } from '../../hook/useU
 import { ResignModal } from '../../components/resign/ResignModal';
 import { isPassword } from '../../utils/validation';
 import { Validater } from '../../utils/validate';
-import { Prompt, PromptInput } from '../../components/promptModal/Prompt';
+import { Prompt, SubmitPsswordModal } from '../../components/promptModal/Prompt';
 
 let SEND_LIMIT = 3;
 interface IProp { }
@@ -395,16 +395,16 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 {isSeller && <div className="box2">
                     <div className="box_left">
                         <div className="title">
-                            <h5>가이드정보</h5>
+                            <h5>{isPartnerB ? "기업정보" : "개인파트너정보"}</h5>
                         </div>
                     </div>
                     <div className="box_right">
                         <ul>
-                            {/* {isPartnerB && <li>
+                            {isPartnerB && <li>
                                 <div className="title">파트너명(회사명)</div>
                                 <div className="txt">{busi_name}</div>
-                            </li>} */}
-                            {/* {isPartnerB && <li>
+                            </li>}
+                            {isPartnerB && <li>
                                 <div className="title">사업자번호</div>
                                 <div className="txt">
                                     <select onChange={(e) => {
@@ -427,8 +427,8 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     />
                                 </div>
                             </li>
-                            } */}
-                            {/* <li>
+                            }
+                            <li>
                                 <div className="title">대표 전화번호</div>
                                 <div className="txt">
                                     <input
@@ -442,7 +442,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                         placeholder="전화번호를 입력해주세요."
                                     />
                                 </div>
-                            </li> */}
+                            </li>
                             <li>
                                 <div className="title">주소</div>
                                 <div className="txt line2">
@@ -459,7 +459,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     />
                                 </div>
                             </li>
-                            {/* <li>
+                            <li>
                                 <div className="title">담당자</div>
                                 <div className="txt">
                                     <input
@@ -477,8 +477,8 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                         placeholder="담당자를 입력해주세요."
                                     />
                                 </div>
-                            </li> */}
-                            {/* <li>
+                            </li>
+                            <li>
                                 <div className="title">담당자 연락처</div>
                                 <div className="txt">
                                     <span className="w80">{phoneNumber}</span>
@@ -486,7 +486,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                         변경
                                     </button>
                                 </div>
-                                변경시 변경아이콘 눌러 popup띄워서 핸드폰번호 인증절차 거치게됨
+                                {/* 변경시 변경아이콘 눌러 popup띄워서 핸드폰번호 인증절차 거치게됨 */}
                             </li>
                             <li>
                                 <div className="title">사업자등록증</div>
@@ -499,7 +499,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     </button>
                                     <input onChange={handleChangeRegistration} ref={hiddenFileInput} hidden type="file" />
                                 </div>
-                            </li> */}
+                            </li>
                             <li>
                                 <div className="title">통장사본</div>
                                 <div className="txt">
@@ -557,8 +557,8 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 <div className="txt tr">
                                     {/* <input onChange={toggleCheck("acceptSms")} checked={acceptSms} type="checkbox" /> */}
                                     <span className="checkbox mr5">
-                                        <input type="checkbox" onChange={toggleCheck("acceptSms")} checked={acceptSms} id="agree1" title="동의" />
-                                        <label htmlFor="agree1" />
+                                        <input type="checkbox" onChange={toggleCheck("acceptSms")} checked={acceptSms} id={`agree1`} title="동의" />
+                                        <label htmlFor={`agree1`} />
                                     </span>
                                     <span>SNS 수신 동의를 합니다.</span>
                                 </div>
@@ -629,7 +629,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
         <Modal id="addressFindModal" title="주소찾기">
             <DaumPostcode onComplete={handleCompleteFindAddress} />
         </Modal>
-        <PromptInput title="비밀번호 변경" onSubmit={submitPassword} id="PsswordModal" />
+        <SubmitPsswordModal label="기존의 비밀번호를 입력 해주세요." title="비밀번호 변경" onSubmit={submitPassword} id="PsswordModal" />
     </MypageLayout >;
 };
 

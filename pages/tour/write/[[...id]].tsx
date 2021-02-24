@@ -23,6 +23,8 @@ import pageInfoDefault from "info/tourWrite.json"
 import { getStaticPageInfo, Ipage } from "../../../utils/page";
 import { usePageEdit } from "../../../hook/usePageEdit";
 import { assert } from "console";
+import PageDeny from "../../Deny";
+import { cloneObject } from "../../../utils/clone";
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
 interface IProp {
@@ -60,7 +62,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const id = query.id?.[0] as string | undefined;
     const isCreateMode = id ? false : true;
     const { item: product, loading } = useProductFindById(id);
-    const { categoriesMap, isAdmin } = useContext(AppContext);
+    const { categoriesMap, isAdmin, isManager, myProfile } = useContext(AppContext);
+    const isMyProduct = myProfile._id === product._id;
     const {
         tourSets, tourData,
         loadKey, validater: { validate },
@@ -68,10 +71,10 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         getCreateInput, getUpdateInput,
         setTourData, mutations,
         hiddenFileInput, lastDate,
-    } = useTourWrite(getDefault(product));
+    } = useTourWrite(getDefault(cloneObject(product)));
 
     useEffect(() => {
-        setTourData(getDefault(product))
+        setTourData(getDefault(cloneObject(product)))
     }, [product])
 
 
@@ -160,11 +163,10 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     }, [])
 
 
-
     const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.EXPERIENCE;
     const regionCategories = categoriesMap.REGION;
 
-
+    if (!isManager && !isMyProduct) return <PageDeny />
     if (loading) return <PageLoading />
     return <div key={loadKey} className="tour_box w100 board_write">
         <SubTopNav pageTools={pageTools} children={
@@ -294,7 +296,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 </div>
 
                 {/* 아래는 오직 관리자만 적용할 수 있음 */}
-                {isAdmin && <div className="write_type">
+                {isManager && <div className="write_type">
                     <div className="title">상태관리</div>
                     <div className="input_form">
                         <ul>

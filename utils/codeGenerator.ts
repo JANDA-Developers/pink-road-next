@@ -2,7 +2,7 @@ export const randomInteger = (max: number, min = 0) =>
     Math.floor(Math.random() * (max + 1 - min) + min);
 
 const genCode = (d: number) =>
-    "ITS-" + Math.random().toString(36).substr(2, d).toUpperCase();
+    "PINK-" + Math.random().toString(36).substr(2, d).toUpperCase();
 
 const numTo36str = (n: number) => n.toString(36).toUpperCase();
 

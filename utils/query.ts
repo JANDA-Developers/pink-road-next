@@ -1,18 +1,19 @@
 import { DocumentNode, MutationHookOptions, QueryHookOptions, useMutation } from "@apollo/client";
 import { capitalize } from "./stirng";
 import { ListInitOptions, useListQuery } from "../hook/useListQuery";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
 import { ERR_CODE, Fpage } from "../types/api";
 import { CustomErrorResponse } from "aws-sdk/clients/cloudfront";
+import { ErrorCode } from "./enumToKr";
 import { getFromUrl } from "./url";
-
-export interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
+import { cloneObject } from "./clone";
+interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
     skipInit?: boolean;
     overrideVariables?: Partial<V>
-    getEditableobject?: boolean;
+    getEditableobject?: boolean; 
 };
 
 
@@ -41,8 +42,6 @@ const dataCheck = (data:any,operationName:string, checkProperty: string[] = ["da
         }
     })
     } catch (e){
-        console.log(operationName);
-        console.log(operationName);
     console.error("==========FATAL ERROR==========");
     console.error(e);
     }
@@ -170,7 +169,6 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
                 const err:CustomErrorResponse = result[operationName]?.error;
                 // @ts-ignore
                 userErrorHandle(result[operationName])
-                // @ts-ignore
                 options?.onCompleted?.(result) || defaultOptions?.onCompleted?.(result)
             }
         });
@@ -182,7 +180,7 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
 
 export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:DocumentNode) => {
     const findQueryHook = (key?:any, options:QueryHookOptions<Q, V> = {}) => {
-        const [getData, { data, loading, error:apolloError }] = useLazyQuery<Q, V>(QUERY, {
+        const [getData, { data, loading, error:apolloError,...context }] = useLazyQuery<Q, V>(QUERY, {
             skip: !key,
             nextFetchPolicy: "network-only",
             // @ts-ignore
@@ -212,7 +210,7 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:Doc
 
         const error = apolloError || errorFromServer 
 
-        return {item, loading, error}
+        return {item, loading, error, getData,...context}
     }
 
     return findQueryHook

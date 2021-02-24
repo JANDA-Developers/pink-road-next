@@ -40,7 +40,6 @@ export const useHomepageServerSide = async () => {
     }
 
     const { Homepage: { data = defaultHomePage } } = await graphQLClient.request<homepage>(HOMEPAGE)
-    console.log(data);
     return { data };
 }
 

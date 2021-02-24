@@ -15,9 +15,10 @@ import { omits } from '../../../utils/omit';
 import dynamic from 'next/dynamic';
 import { ALLOW_ADMINS, defaultModalGet } from '../../../types/const';
 import { cloneObject } from '../../../utils/clone';
-import { DesignTopNav, ResvTopNav } from '../../../components/topNav/MasterTopNav';
+import { DesignTopNav } from '../../../components/topNav/MasterTopNav';
 import { auth } from '../../../utils/with';
 import { useUpload } from '../../../hook/useUpload';
+
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 
 interface IProp { }
@@ -122,7 +123,10 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                 <h5>
                                                     <span>{modal.title}</span>
                                                     <div className="switch">
-                                                        <input onChange={() => { }} className="tgl tgl-skewed" id={`cb${index}`} type="checkbox" />
+                                                        <input onChange={() => {
+                                                            modal.open = !modal.open;
+                                                            popupHook.setPopups([...popupHook.popups]);
+                                                        }} checked={modal.open} className="tgl tgl-skewed" id={`cb${index}`} type="checkbox" />
                                                         <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor={`cb${index}`} />
                                                     </div>
                                                 </h5>
@@ -178,6 +182,7 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                 <div className="line">
                                                     <h6>백그라운드 설정</h6>
                                                     <div className="txt">
+                                                        <div className="fileNameInputLabel">{modal.style?.backgroundImage}</div>
                                                         <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                                             const file = e.currentTarget.files;
                                                             if (!file || !homepage) return;
@@ -230,7 +235,7 @@ export const MsDesignB: React.FC<IProp> = () => {
                             <div className="float_left">
                             </div>
                             <div className="float_right">
-                                <button type="submit" className="btn medium">저장하기</button>
+                                <button onClick={handleUpdate} type="submit" className="btn medium">저장하기</button>
                             </div>
                         </div>
                     </div>

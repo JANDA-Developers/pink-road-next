@@ -4,6 +4,7 @@ import { openListFilter, useProductList } from '../../hook/useProduct';
 import { Fcategory, groupList_GroupList_data } from '../../types/api';
 import { BG } from '../../types/const';
 import { productStatus } from '../../utils/enumToKr';
+import { updateURLParameter, updateURLParameters } from '../../utils/getUpdateUrlParam';
 import { checkIsExp, getTypeFilterByUrl } from '../../utils/product';
 
 interface IProp {
@@ -13,13 +14,12 @@ interface IProp {
 
 export const TourMainBoard: React.FC<IProp> = ({ cat, group }) => {
     const isExp = checkIsExp()
-    const { initialFilter } = getTypeFilterByUrl(isExp);
+    // const { initialFilter } = getTypeFilterByUrl(isExp);
     const [slicePage, setSlicePage] = useState(0);
     const { items, filter, setFilter } = useProductList({
         initialViewCount: 80,
         initialFilter: {
-            ...openListFilter,
-            ...initialFilter,
+            // ...initialFilter,
             _id_in: group.members
         },
     });
@@ -27,6 +27,10 @@ export const TourMainBoard: React.FC<IProp> = ({ cat, group }) => {
     const start = slicePage * 3;
     const nextPage = items.slice(start, start * 3 + 3)
 
+    const getLink = (catId: string) => {
+        const url = updateURLParameters("/tour/list", [{ param: "exp", paramVal: isExp ? "true" : "false" }, { param: "catId", paramVal: catId }]);
+        return url;
+    }
 
     return <div key={cat?._id} className="deal_list">
         <div className="alignment">
@@ -40,6 +44,11 @@ export const TourMainBoard: React.FC<IProp> = ({ cat, group }) => {
                     if ((items.length - (start + 3)) > 0)
                         setSlicePage(slicePage + 1)
                 }} className="move-right"><i className="jandaicon-arr4-right" /><button></button></span>
+                <Link href={getLink(cat._id)} >
+                    <a>
+                        <button className="btn small">더보기</button>
+                    </a>
+                </Link>
             </div>
         </div>
         <ul className="tourMianListUl list_ul line3">

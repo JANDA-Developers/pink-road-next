@@ -4,7 +4,6 @@ import { TRange } from "../components/tourWrite/helper";
 
 export function arrayEquals(a:any[], b:any[]) {
 
-    console.log("array Eqal triggered");
     return Array.isArray(a) &&
       Array.isArray(b) &&
       a.length === b.length &&

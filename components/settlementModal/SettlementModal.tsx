@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { useBookingCancel } from '../../hook/useBooking';
 import { useFeePolicy } from '../../hook/useFeePolicy';
 import { useSettlementFindById, useSettlementsRequest } from '../../hook/useSettlement';
-import { BookingStatus, SettlementStatus } from '../../types/api';
-import { bookingStatus, feePresent } from '../../utils/enumToKr';
+import { BookingStatus, ProductStatus, SettlementStatus } from '../../types/api';
+import { bookingStatus, feePresent, itemTypeToKr, paymentStatus, payMethodToKR, productStatus, settlementStatus } from '../../utils/enumToKr';
 import { autoComma } from '../../utils/formatter';
+import { generateClientPaging } from '../../utils/generateClientPaging';
 import { closeModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
+import { Paginater } from '../common/Paginator';
+import { SettlementController } from '../contollers/SettlementContollers';
+import { HistoryTable } from '../historyTable/HistoryTable';
+import { BookingStatusBadge } from '../Status/StatusBadge';
 
 interface IProp {
     settlementId: string;
@@ -14,43 +18,27 @@ interface IProp {
 
 export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
     const { item: settlement } = useSettlementFindById(settlementId);
-    const [cancelBooking] = useBookingCancel()
-    const [settlementRquest] = useSettlementsRequest({
-        onCompleted: ({ SettlementRequest }) => {
-            if (SettlementRequest.ok) alert("정산신청이 완료 되었습니다.");
-        }
-    });
-    const [reason, setReason] = useState("");
-
-
-    if (!settlement) return <div />
-    const { product, bankFee, cancelReturnPrice, cardFee, acceptDate, cancelDate, totalFee, totalPrice, payReqPrice, jandaFee, niceCardFee, jandaCardFee, cardPrice, requestDate, bankPrice, additionFeeSum } = settlement;
-    const { bookings, createdAt, startDate } = product;
-    const canceldBooking = bookings.filter(bk => bk.status === BookingStatus.CANCEL);
     const { data: policy } = useFeePolicy();
 
-    const handleCancelBooking = (bookingId: string) => {
-        confirm("정말로 예약을 취소 하시겠습니까?")
-        cancelBooking({
-            variables: {
-                bookingId,
-                reason
-            }
-        })
-    }
 
-    const handleSettleRequest = () => {
-        if (settlement.status !== SettlementStatus.REQUEST) {
-            alert("현 정산은 이미 신청 상태입니다.");
-            return;
-        }
-        settlementRquest({
-            variables: {
-                params: [{ price: 0, returnTargetId: "" }],
-                settlementId: settlement._id
-            }
-        })
-    }
+    const { product, bankFee, cancelReturnPrice, cardFee, acceptDate, cancelDate, totalFee, totalPrice, payReqPrice, jandaFee, niceCardFee, jandaCardFee, cardPrice, requestDate, bankPrice, additionFeeSum } = settlement || {};
+    const { bookings, createdAt, startDate } = product || {};
+    const canceldBooking = (bookings || []).filter(bk => bk.status === BookingStatus.CANCEL);
+    const bookingsPagination = generateClientPaging(bookings || [], 10);
+    const cancelBookingsPagination = generateClientPaging(canceldBooking, 10);
+    if (!settlement) return <div />
+    if (!product) return <div />
+
+
+    // const handleCancelBooking = (bookingId: string) => {
+    //     confirm("정말로 예약을 취소 하시겠습니까?")
+    //     cancelBooking({
+    //         variables: {
+    //             bookingId,
+    //             reason
+    //         }
+    //     })
+    // }
 
     const bookingStatusColor = (status?: BookingStatus | null) => {
         if (status === BookingStatus.CANCEL) return "no"
@@ -62,19 +50,28 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
 
     return <div id="SettlementModal" className="popup_bg_full">
         {settlement &&
-            <div className="in_txt statement_popup">
+            <div className="in_txt statement_popup master_popup">
                 <a className="close_icon" onClick={closeModal("#SettlementModal")}>
                     <i className="flaticon-multiply"></i>
                 </a>
                 <div className="page">
                     <h3>정산계산</h3>
+                    <div className="statement_popup__topBox info_txt">
+                        <span className="r-number">상품명: <i>{product.title}</i></span>
+                        <span className="r-number">상품상태: <i>{productStatus(product.status)}</i></span>
+                        <span className="r-number">정산상태: <i>{settlementStatus(settlement.status)}</i></span>
+                        {/* <span className="r-day">예약일: {yyyymmdd(booking.createdAt)}</span>
+                        {booking.isCancelRequest && <span>[취소요청]</span>}
+                        {booking.payment && <span className="pay-day">결제일: {yyyymmdd(booking.payment?.createdAt)}</span>}
+                        <button onClick={print} className="btn"><i className="flaticon-print mr5"></i>프린터</button> */}
+                    </div>
                     <div className="alignment">
-                        <div className="left_div"><span className="infotxt"><i>{yyyymmdd(createdAt)} ~ {yyyymmdd(startDate)} 예약</i>이 총 <strong>{bookings.length}</strong>건</span></div>
+                        <div className="left_div"><span className="infotxt"><i>{yyyymmdd(createdAt)} ~ {yyyymmdd(startDate)} 예약</i>이 총 <strong>{bookings?.length}</strong>건</span></div>
                     </div>
                     <div className="fuction_list_mini">
                         <div className="thead">
-                            <div className="th02">상품코드</div>
-                            <div className="th03">상품명</div>
+                            <div className="th02">결제방법</div>
+                            <div className="th03">결제상태</div>
                             <div className="th04">예약자</div>
                             <div className="th05">예약날짜</div>
                             <div className="th06">예약금</div>
@@ -82,41 +79,44 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                         </div>
                         <div className="tbody">
                             <ul>
-                                {bookings.map(bk =>
-                                    <li key={bk._id}>
-                                        <div className="th02">{bk.code}</div>
-                                        <div className="th03">{product.title}</div>
+                                {bookingsPagination.slice.map(bk =>
+                                    <li className="settlementModal__li" key={bk._id}>
+                                        <div className="th02">{payMethodToKR(bk.payMethod)}</div>
+                                        <div className="th03">{paymentStatus(bk.payment?.status)}</div>
                                         <div className="th04">{bk.name}</div>
                                         <div className="th05">{yyyymmdd(bk.createdAt)}</div>
                                         <div className="th06">{autoComma(bk.bookingPrice)}원</div>
-                                        <div className="th07"><strong className={bookingStatusColor(bk.status)}>{bookingStatus(bk.status)}</strong>
+                                        <div className="th07"><BookingStatusBadge status={bk.status} />
                                         </div>
                                     </li>
                                 )}
                             </ul>
                         </div>
+                        <div className="productModal__paginatorWrap">
+                            <Paginater isMini pageInfo={bookingsPagination.paging} setPage={bookingsPagination.setPage} />
+                        </div>
                     </div>
                     <div className="alignment ">
-                        <div className="left_div"><span className="infotxt"><i>예약취소 환수금</i>이 총 <strong>{canceldBooking.length}</strong>건</span></div>
+                        <div className="left_div"><span className="infotxt"><i>취소건이</i>이 총 <strong>{canceldBooking.length}</strong>건</span></div>
                     </div>
                     <div className="fuction_list_mini">
                         <div className="thead">
-                            <div className="th02">상품코드</div>
-                            <div className="th03">상품명</div>
+                            <div className="th02">결제방법</div>
+                            <div className="th03">결제상태</div>
                             <div className="th04">예약자</div>
                             <div className="th05">예약날짜</div>
-                            <div className="th06">예약금</div>
+                            <div className="th06">예약금 | 취소금</div>
                             <div className="th07">상태</div>
                         </div>
                         <div className="tbody">
                             <ul>
-                                {canceldBooking.map(cb =>
-                                    <li key={cb._id + "cancel"}>
-                                        <div className="th02">{cb.code}</div>
-                                        <div className="th03">{product.title} </div>
+                                {cancelBookingsPagination.slice.map(cb =>
+                                    <li className="settlementModal__li" key={cb._id + "cancel"}>
+                                        <div className="th02">{payMethodToKR(cb.payMethod)}</div>
+                                        <div className="th03 settlementModal__li-th3">{bookingStatus(cb.status)} </div>
                                         <div className="th04">{cb.name}</div>
                                         <div className="th05">{yyyymmdd(cb.createdAt)}</div>
-                                        <div className="th06">{cb.bookingPrice}원</div>
+                                        <div className="th06">{autoComma(cb.bookingPrice)}원 | {autoComma(cb.payment?.totalCancelPrice)} [{cb.payment?.isPartialCancel}]</div>
                                         <div className="th07">
                                             <strong className={bookingStatusColor(cb.status)}>{bookingStatus(cb.status)}</strong>
                                         </div>
@@ -124,7 +124,11 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                                 )}
                             </ul>
                         </div>
+                        <div className="productModal__paginatorWrap">
+                            <Paginater isMini pageInfo={cancelBookingsPagination.paging} setPage={cancelBookingsPagination.setPage} />
+                        </div>
                     </div>
+                    <HistoryTable histories={settlement.requestHistory} />
                     <div className="sum_div mt50">
                         <ul className="first_ul">
                             <li>
@@ -156,9 +160,9 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                     </div>
                     <div className="in_fin mt30">
                         <div className="float_left">
+                            <SettlementController settlement={settlement} product={product} />
                         </div>
                         <div className="float_right">
-                            <button onClick={handleSettleRequest} type="submit" className="btn strong">정산 신청하기</button>
                         </div>
                     </div>
                 </div>

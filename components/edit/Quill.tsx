@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
-import 'components/edit/node_modules/react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.snow.css';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 

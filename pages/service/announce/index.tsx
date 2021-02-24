@@ -63,7 +63,7 @@ export const Announce: React.FC<Ipage> = (page) => {
                 <div className="board_list st01">
                     <div className="tbody">
                         <ul>
-                            {items.map(item =>
+                            {items.map((item, i) =>
                                 <li onClick={toView(item)} key={item._id}>
                                     <div className="td01">{item.no}</div>
                                     <div className="td02"><span className="ct_01">{announceTypeKR(item.type)}</span></div>

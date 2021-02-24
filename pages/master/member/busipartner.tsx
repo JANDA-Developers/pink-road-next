@@ -1,9 +1,10 @@
 import React from 'react';
-import { BusiPartnerTable } from '../../../components/member/BusiPartnerTable';
 import { MemberMaster } from '../../../components/member/MemberMaster';
+import { CustomerTable } from '../../../components/member/CustomerTable';
 import { UserRole } from '../../../types/api';
 import { ALLOW_ADMINS } from '../../../types/const';
 import { auth } from '../../../utils/with';
+import { BusiPartnerTable } from '../../../components/member/BusiPartnerTable';
 
 interface IProp { }
 export const CustomerMemberMaster: React.FC<IProp> = () => {

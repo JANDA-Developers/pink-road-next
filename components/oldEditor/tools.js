@@ -1,17 +1,17 @@
 
-import Embed from "node_modules/@editorjs/embed";
-import Table from "node_modules/@editorjs/table";
-import List from "node_modules/@editorjs/list";
-import LinkTool from "node_modules/@editorjs/link";
-import Image from "node_modules/@editorjs/image";
-import Raw from "node_modules/@editorjs/raw";
-import Header from "node_modules/@editorjs/header";
+import Embed from "@editorjs/embed";
+import Table from "@editorjs/table";
+import List from "@editorjs/list";
+import LinkTool from "@editorjs/link";
+import Image from "@editorjs/image";
+import Raw from "@editorjs/raw";
+import Header from "@editorjs/header";
 // import Quote from "@editorjs/quote";
-import Marker from "node_modules/@editorjs/marker";
+import Marker from "@editorjs/marker";
 // import CheckList from "@editorjs/checklist";
-import Delimiter from "node_modules/@editorjs/delimiter";
-import InlineCode from "node_modules/@editorjs/inline-code";
-import SimpleImage from "node_modules/@editorjs/simple-image";
+import Delimiter from "@editorjs/delimiter";
+import InlineCode from "@editorjs/inline-code";
+import SimpleImage from "@editorjs/simple-image";
 const uploadUrl = 'http://ec2-54-180-32-135.ap-northeast-2.compute.amazonaws.com:3000/upload';
 
 const fileAction = uploadUrl;

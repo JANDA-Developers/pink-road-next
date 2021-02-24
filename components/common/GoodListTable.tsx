@@ -46,7 +46,7 @@ export const GoodsListTable: React.FC<IProp> = () => {
             {
                 isEmpty(items) && <NoData />
             }
-            {items.map(item =>
+            {items.map((item, i) =>
                 <Goods key={item._id} item={item} />
             )}
         </ul>

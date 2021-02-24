@@ -97,7 +97,7 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
                     <div className=" st03 selectViewList">
                         <div className="tbody">
                             <ul className="list_ul  st03">
-                                {items.map(item =>
+                                {items.map((item, i) =>
                                     <ProductListBlock product={item} key={item._id} />
                                 )}
                             </ul>
@@ -106,7 +106,7 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
                 }
                 {view === "gal" &&
                     <ul className="list_ul line3">
-                        {items.map(item =>
+                        {items.map((item, i) =>
                             <ProductPhotoBlock key={item._id} item={item} />
                         )}
                     </ul>

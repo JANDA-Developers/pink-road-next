@@ -54,7 +54,7 @@ export const Notification: React.FC<IProp> = () => {
                                 <span><i className="svg"><img src="/img/svg/inform_icon4.svg" alt="" /></i>{group.date}</span>
                             </div>
                             <div className="right">
-                                {group.items.map(item =>
+                                {group.items.map((item, i) =>
                                     <NotiLine key={item._id} systemNoti={item} />
                                 )}
                             </div>

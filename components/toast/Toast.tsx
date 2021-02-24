@@ -4,7 +4,7 @@ import {
     cssTransition,
     ToastContainerProps,
 } from 'react-toastify';
-import 'components/toast/node_modules/react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export interface IProps extends ToastContainerProps { }

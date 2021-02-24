@@ -15,8 +15,8 @@ export const ResvTopNav: React.FC<IProp> = () => {
     return <div className="tab-nav">
         <ul>
             <li className={checkOn("/master/reservation", true)}><Link href="/master/reservation"><a>예약·결제관리</a></Link></li>
-            <li className={checkOn("cancel")}><Link href="/master/reservation/cancel"><a>취소·환불관리</a></Link></li>
-            <li className={checkOn("byhand")}><Link href="/master/reservation/byhand"><a>예약수기등록관리</a></Link></li>
+            {/* <li className={checkOn("cancel")}><Link href="/master/reservation/cancel"><a>취소·환불관리</a></Link></li> */}
+            {/* <li className={checkOn("byhand")}><Link href="/master/reservation/byhand"><a>예약수기등록관리</a></Link></li> */}
         </ul>
     </div>;
 };
@@ -46,7 +46,9 @@ export const GoodsTopNav = () => {
 export const MemberTopNav = () => {
     return <div className="tab-nav">
         <ul>
-            <li className={checkOn("/master/member", true)}><Link href="/master/member"><a>가이드</a></Link></li>
+            <li className={checkOn("/master/member", true)}><Link href="/master/member"><a>개인회원</a></Link></li>
+            <li className={checkOn("busipartner")}><Link href="/master/member/busipartner"><a>기업파트너 회원</a></Link></li>
+            <li className={checkOn("/master/member/partner", true)}><Link href="/master/member/partner"><a>개인파트너 회원</a></Link></li>
             <li className={checkOn("signout")}><Link href="/master/member/signout"><a>탈퇴회원</a></Link></li>
         </ul>
     </div>
@@ -56,7 +58,7 @@ export const DesignTopNav = () => {
     return <div className="tab-nav">
         <ul>
             {/* <li className={checkOn("/master/design", true)}><Link href="/master/design"><a>기본설정</a></Link></li> */}
-            {/* <li className={checkOn("/master/design/banner")}><Link href="/master/design/banner"><a>배너관리</a></Link></li> */}
+            <li className={checkOn("/master/design/banner")}><Link href="/master/design/banner"><a>배너관리</a></Link></li>
             <li className={checkOn("/master/design/popup")}><Link href="/master/design/popup"><a>팝업관리</a></Link></li>
             <li className={checkOn("/master/design/display")}><Link href="/master/design/display"><a>노출상품관리</a></Link></li>
         </ul>

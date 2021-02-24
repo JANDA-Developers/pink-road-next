@@ -5,7 +5,6 @@ import { SearcfInfoBox } from 'components/common/SearcfInfoBox';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React from 'react';
 import Link from "next/link";
-import ReactTooltip from 'react-tooltip';
 import { useSettlementList } from '../../../hook/useSettlement';
 import { useCustomCount } from '../../../hook/useCount';
 import { MasterSearchBar } from '../../../components/master/MasterSearchBar';
@@ -17,49 +16,54 @@ import { SingleSortSelect } from "../../../components/common/SortSelect";
 import settlement from "../../mypage/settlement";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
 import { autoComma } from "../../../utils/formatter";
-import { GoodsTopNav } from "../../../components/topNav/MasterTopNav";
-import { SettlementStatus } from "../../../types/api";
+import { checkOn, GoodsTopNav } from "../../../components/topNav/MasterTopNav";
+import { SettlementStatus, _SettlementFilter } from "../../../types/api";
 import { ALLOW_ADMINS } from "../../../types/const";
 import { auth } from "../../../utils/with";
+import { SettlementStatusBadge } from "../../../components/Status/StatusBadge";
+import { SettlementModal } from "../../../components/settlementModal/SettlementModal";
+import { openModal } from "../../../utils/popUp";
 
 interface IProp { }
 
-const popupOpen = () => {
-    $('#Popup01').css({
-        'display': 'flex'
-    });
-
-}
-
-const popupClose = () => {
-    $('#Popup01').css({
-        'display': 'none'
-    });
-}
 
 
-export const MsReservationB: React.FC<IProp> = () => {
-    const [searchType, setSearchType] = useState("status_eq");
-    const { items, filter, setFilter, viewCount, setViewCount, sort, setSort, setUniqFilter } = useSettlementList({
+type TsearchType = keyof _SettlementFilter;
+
+export const MasterSettlement: React.FC<IProp> = () => {
+    const [searchType, setSearchType] = useState<TsearchType>("exField__code_eq");
+    const { items, filter, setFilter, viewCount, setViewCount, sort, setSort, setUniqFilter, pageInfo, setPage } = useSettlementList({
         initialFilter: {
-            status_not_eq: SettlementStatus.READY //레디인것은 아직 판매되지 않은 상품일 가능성이 높다.
+            status_not_eq: SettlementStatus.READY //레디인것은 아직 판매되지 않은 상품이다
         }
     });
     const { settlementRequestCountMaster, settlementReadyCountMater, settlementCompleteCountMaster, totalSettlementCount } = useCustomCount(["settlementRequestCountMaster", "settlementReadyCountMater", "settlementCompleteCountMaster", "totalSettlementCount"]);
     const { filterEnd, filterStart, hanldeCreateDateChange, setDateKey } = useDateFilter({ filter, setFilter });
-    const { selectAll, isChecked } = useIdSelecter(items.map(item => item._id));
+    const { selectAll, isChecked } = useIdSelecter(items.map((item, i) => item._id));
     const singleSort = useSingleSort(sort, setSort);
+    const [settlementId, setSettlementId] = useState("");
 
     const doSearch = (search: string) => {
         setUniqFilter(
             searchType as any,
-            ["status_eq"],
+            ["exField__code_eq", "exField__sellerName_eq", "exField__title_contains"],
             search
         )
     }
 
+    const setType = (status?: SettlementStatus) => () => {
+        setUniqFilter("status_eq", ["status_eq"], status)
+    }
+
     const handleReject = () => {
 
+    }
+
+    const checkOnStatus = (status?: SettlementStatus) => status === filter.status_eq ? "on" : "";
+
+    const handleOpenModal = (sid: string) => () => {
+        setSettlementId(sid)
+        openModal("#SettlementModal")()
     }
 
     return <MasterLayout>
@@ -96,121 +100,111 @@ export const MsReservationB: React.FC<IProp> = () => {
                                     const type = e.currentTarget.value;
                                     setSearchType(type as any);
                                 }} className="option">
-                                    <option value={"productName_contain"}>상품명</option>
-                                    <option value={"productCode_eq"}>상품번호</option>
-                                    <option value={"sellerName_eq"}>파트너명</option>
+                                    <option value={"exField__title_contains" as TsearchType}>상품명</option>
+                                    <option value={"exField__code_eq" as TsearchType}>상품번호</option>
+                                    <option value={"exField__sellerName_eq" as TsearchType}>파트너명</option>
+                                    <option value={"exField__sellerNickName_eq" as TsearchType}>파트너 닉네임</option>
                                 </select>}
                         />
+                        <MasterAlignMent
+                            Sort={
+                                <SingleSortSelect {...singleSort} />
+                            }
+                            setViewCount={setViewCount}
+                            viewCount={viewCount}
+                            handleSelectAll={selectAll}
+                            LeftDiv={
+                                <ul className="board_option">
+                                    <li onClick={setType(undefined)} className={checkOnStatus(undefined)}><a>전체<strong>{totalSettlementCount}</strong></a></li>
+                                    <li onClick={setType(SettlementStatus.REQUEST)} className={checkOn(SettlementStatus.REQUEST)}><a>요청<strong>{settlementRequestCountMaster}</strong></a></li>
+                                    <li onClick={setType(SettlementStatus.COMPLETE)} className={checkOn(SettlementStatus.COMPLETE)}><a>완료<strong>{settlementCompleteCountMaster}</strong></a></li>
+                                </ul>
+                            }
+                        />
                     </div>
-                    <MasterAlignMent
-                        Sort={
-                            <SingleSortSelect {...singleSort} />
-                        }
-                        setViewCount={setViewCount}
-                        viewCount={viewCount}
-                        handleSelectAll={selectAll}
-                        LeftDiv={
-                            <ul className="board_option">
-                                <li className="on"><a>전체</a></li>
-                                <li><a>여행</a></li>
-                                <li><a>체험</a></li>
-                            </ul>
-                        }
-                    />
-                </div>
-                <div className="master__table">
-                    <div className="thead">
-                        <div className="t01">
-                            <span className="checkbox">
-                                <input type="checkbox" name="agree" id="agree0" title="전체선택" />
-                                <label htmlFor="agree0" />
-                            </span>
-                        </div>
-                        <div className="t02">유형</div>
-                        <div className="t03">정산계좌</div>
-                        <div className="t04">상품</div>
-                        <div className="t05">인원</div>
-                        <div className="t06">금액</div>
-                        <div className="t07">정산</div>
-                        <div className="t08">관리</div>
-                    </div>
-                    {items.map(item =>
-                        <div key={item._id} className="tbody">
-                            <div className="t01">
+                    <div className="master__table">
+                        <div className="thead">
+                            {/* <div className="t01">
                                 <span className="checkbox">
-                                    <input checked={isChecked(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                    <label htmlFor="agree1" />
+                                    <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                    <label htmlFor="agree0" />
                                 </span>
-                            </div>
-                            <div className="t02">
-                                <div className="align">
+                            </div> */}
+                            <div className="t02">유형</div>
+                            <div className="t03">정산계좌</div>
+                            <div style={{ minWidth: 300 }} className="t04">상품</div>
+                            <div className="t05">인원</div>
+                            <div className="t06">금액</div>
+                            <div className="t07">상태</div>
+                            <div className="t08">관리</div>
+                        </div>
+                        {items.map((item, i) =>
+                            <div key={item._id} className="tbody">
+                                {/* <div className="t01">
+                                    <span className="checkbox">
+                                        <input checked={isChecked(item._id)} type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
+                                        <label htmlFor={`agree${i}`} />
+                                    </span>
+                                </div> */}
+                                <div className="t02">
                                     <span className="goods-ct"><i className="m_title">유형:</i>{item.product.type}</span>
                                 </div>
-                            </div>
-                            <div className="t03">
-                                <div className="align">
+                                <div className="t03">
                                     <span className="bank">({item.seller.bank_name})<br /><i className="m_title"> / </i>{item.seller.account_number}<br /><i className="m_title"> / </i>예금주:{item.seller.name}</span>
                                 </div>
-                            </div>
-                            <div className="t04">
-                                <div className="info">
-                                    <span className="ct goods__info_title">문화</span> <span className="g-number">상품번호: {item.product.code}</span>
-                                    <strong className="title">{item.product.title}</strong>
-                                    <div className="txt">
-                                        <span className="s-day">출발일: {yyyymmdd(item.product.startDate)}</span>
-                                        <span className="where">출발장소: {item.product.startPoint}</span>
+                                <div style={{ minWidth: 300 }} className="t04">
+                                    <div className="info goods__info_title">
+                                        <span className="ct goods__info_title">문화</span> <span className="g-number">상품번호: {item.product.code}</span>
+                                        <strong className="title">{item.product.title}</strong>
+                                        <div className="txt">
+                                            <span className="s-day">출발일: {yyyymmdd(item.product.startDate)}</span>
+                                            <span className="where">출발장소: {item.product.startPoint}</span>
 
-                                        <span className="men">가격: 성인:{autoComma(item.product.adult_price)}/소아{autoComma(item.product.kids_price)}/유아:{autoComma(item.product.baby_price)}</span>
+                                            <span className="men">가격: 성인:{autoComma(item.product.adult_price)}/소아{autoComma(item.product.kids_price)}/유아:{autoComma(item.product.baby_price)}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="t05">
-                                <div className="align">
+                                <div className="t05">
                                     <strong className="total_men"><i className="m_title">인원:</i>{item.product.compeltePeopleCnt}명</strong>
                                     <span className="all_men">(성인{item.product.bookerSummary.adultCount}/소아{item.product.bookerSummary.kidsCount}/유아{item.product.bookerSummary.babyCount})</span>
                                 </div>
-                            </div>
-                            <div className="t06">
-                                <div className="align">
-                                    <strong className="money"><i className="m_title">합계금액:{autoComma(item.totalPrice)}</i>원</strong>
+                                <div className="t06">
+                                    <strong className="money">합계금액: {autoComma(item.totalPrice)}원</strong>
                                     <span className="sum01">수수료 및 공제(-) {autoComma(item.totalFee)}원</span>
                                     <span className="sum03">정산금액: {autoComma(item.settlementPrice)}원</span>
                                 </div>
-                            </div>
-                            <div className="t07">
-                                <div className="align">
-                                    {item.status === SettlementStatus.REQUEST && <strong onClick={handleReject}><span className="sel no">지급보류</span></strong>}
+                                <div className="t07">
+                                    <SettlementStatusBadge status={item.status} />
                                 </div>
-                            </div>
-                            <div className="t08">
-                                <div className="align">
-                                    <button className="btn small" onClick={popupOpen}>상세보기</button>
-                                    <button className="btn small" >정산완료</button>
+                                <div className="t08">
+                                    <button className="btn small" onClick={handleOpenModal(item._id)}>상세보기</button>
+                                    {/* <button className="btn small" >정산완료</button>
                                     <button className="btn small off">지급보류</button>
-                                    <button className="btn small off">정산대기</button>
+                                    <button className="btn small off">정산대기</button> */}
                                 </div>
                             </div>
-                        </div>
-                    )}
-                    {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
+                        )}
+                        <Paginater pageInfo={pageInfo} setPage={setPage} />
 
-                    <div className="fin ifMobile">
-                        <div className="float_left">
-                            <button onClick={selectAll} type="submit" className="btn medium">전체선택</button>
-                        </div>
-                        <div className="float_right">
-                            <button type="submit" className="btn medium">정산완료</button>
+                        <div className="fin ifMobile">
+                            <div className="float_left">
+                                {/* <button onClick={selectAll} type="submit" className="btn medium">전체선택</button> */}
+                            </div>
+                            <div className="float_right">
+                                {/* <button type="submit" className="btn medium">정산완료</button>
                             <button type="submit" className="btn medium">정산대기</button>
-                            <button type="submit" className="btn medium">지급보류</button>
+                            <button type="submit" className="btn medium">지급보류</button> */}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div >
         <SearcfInfoBox />
+        <SettlementModal settlementId={settlementId} />
 
         {/* popup-상세보기[마스터 모달] */}
     </MasterLayout >
 };
 
-export default auth(ALLOW_ADMINS)(MsReservationB);
+export default auth(ALLOW_ADMINS)(MasterSettlement);

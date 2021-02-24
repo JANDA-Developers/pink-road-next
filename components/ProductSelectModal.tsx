@@ -13,7 +13,11 @@ interface IProp {
 export const ProductSelectModal: React.FC<IProp> = ({ id, onSelect }) => {
     if (typeof window === "undefined") return null
     const target = document.getElementById("portal");
-    return target ? ReactDOM.createPortal(<Modal title="상품선택" id={id || "ProductSearchModal"} className="popup_bg" inClassName="master_popup">
+    return target ? ReactDOM.createPortal(<Modal title="상품선택" id={id || "ProductSearchModal"} className="popup_bg" inClassName="productSelectModal master_popup">
+        {/* TODO 카테고리 셀렉터 */}
+        {/* <select> 
+            <option />
+        </select> */}
         <ProductSearcher onSelectProduct={(product) => {
             onSelect(product);
         }} />

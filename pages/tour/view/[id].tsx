@@ -33,6 +33,7 @@ import { productList_ProductList_data, ProductStatus } from "../../../types/api"
 import sanitizeHtml from "sanitize-html";
 import { ALLOW_SELLERS } from "../../../types/const";
 import { productStatus } from "../../../utils/enumToKr";
+import PageDeny from "../../Deny";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -433,7 +434,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         <div className="add_list">
           <h4>추천여행</h4>{/* 랜덤노출 */}
           <ul className="list_ul line3">
-            {randomSorted.slice(0, 2).map(item =>
+            {randomSorted.slice(0, 2).map((item, i) =>
               <ProductPhotoBlock key={item._id} item={item} />
             )}
             {/* <li className="list_in">

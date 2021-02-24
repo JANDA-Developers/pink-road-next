@@ -15,6 +15,7 @@ import { Change } from '../../components/loadingList/LoadingList';
 import Link from 'next/link';
 import { BoardType, myBoardList_MyBoardList_data } from '../../types/api';
 import { useRouter } from 'next/router';
+import { isOpenKr } from '../../utils/enumToKr';
 
 interface IProp { }
 
@@ -35,7 +36,7 @@ export const MyPageBoard: React.FC<IProp> = () => {
         if (isProduct)
             rotuer.push(`/tour/view/${item._id}`)
         if (isQuestion)
-            rotuer.push(`/service/event/view/${item._id}`)
+            rotuer.push(`/member/qna/view/${item._id}`)
     }
 
     return <MypageLayout>
@@ -71,7 +72,7 @@ export const MyPageBoard: React.FC<IProp> = () => {
                             <div className="board_list_mini ln05">
                                 <div className="thead">
                                     <div className="th02">게시판</div>
-                                    <div className="th03">번호</div>
+                                    <div className="th03">공개</div>
                                     <div className="th04">제목</div>
                                     <div className="th05">날짜</div>
                                 </div>
@@ -80,7 +81,7 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                         {items.map((item, index) =>
                                             <li onClick={handleClickBoard(item)} key={item._id}>
                                                 <div className="th02">{item.boardType}</div>
-                                                <div className="th03">{index}</div>
+                                                <div className="th03">{isOpenKr(!!item.isOpen)}</div>
                                                 <div className="th04"><a>{item.title}<i className="q_ok">{item.questionStatus}</i></a></div>
                                                 <div className="th05">{dayjs(item.createdAt).format("YYYY.MM.DD hh:mm")}</div>
                                             </li>
