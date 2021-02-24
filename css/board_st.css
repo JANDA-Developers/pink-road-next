@@ -262,8 +262,7 @@
             text-align: center;
             font-size: 14px;
             font-weight: 600;
-            line-height: 37px;
-            padding: 10px;
+            padding: 15px 0;
         }
 
     .board_list_mini .tbody {
@@ -289,7 +288,9 @@
 
             .board_list_mini .tbody li > div {
                 display: inline-block;
-                width: 24.5%;
+                width: auto;
+                flex: 1 1;
+                flex-grow: 1;
                 text-align: center;
                 font-size: 12px;
                 padding: 0;
@@ -1428,7 +1429,6 @@ div.comment_box {
     div.board_list_mini div {
         width: auto;
         display: inline-block;
-        padding: 3px 0;
         box-sizing: border-box;
         text-align: left;
     }  
@@ -1969,6 +1969,8 @@ div.comment_box {
         width: 100%;
         border-bottom: 2px solid #ccc;
         background-color: #fff;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 
     .fuction_list_mini .thead > div {
@@ -1978,7 +1980,6 @@ div.comment_box {
         font-size: 1em;
         font-weight: 600;
         line-height: 120%;
-        padding: 17px 2px;
         box-sizing: border-box;
         flex-grow: 1;
         flex: 1 1;
@@ -2131,17 +2132,16 @@ div.sum_div {
     width: 100%;
     margin-top: 0;
     display: block;
-    border-top: 2px solid #555;
 }
     .reservation_list .th {
         position: relative;
         width: 100%;
         display: none;
+        align-items: center;
         border-bottom: 1px solid #999;
-        line-height: 30px;
         box-sizing: border-box;
-        padding-top: 10px;
-        padding-bottom: 5px;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
     .reservation_list .td {
         position: relative;
@@ -2302,6 +2302,7 @@ div.sum_div {
         position: relative;
         display: block;
         box-sizing: border-box;
+        background-color: #ffffff;
     }
     .master__table .thead {
         display: none;
@@ -2309,19 +2310,27 @@ div.sum_div {
         align-items: center;
         position: relative;
         width: 100%;
-        display: none;
         border-bottom: 1px solid #999;
-        line-height: 17px;
         box-sizing: border-box;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #f5f5f5;
+
     }
    .master__table .thead div[class*=t0] {
+       width: auto;
        flex-grow: 1;
        flex: 1 1;
        text-align: center;
-       padding:10px 0;
        font-weight: 600;
    }
+   .master__table .tbody {
+    align-items: center;
+    position: relative;
+    width: 100%;
+} 
   .master__table .tbody div[class*=t0] {
+    width: auto;
     padding:10px 0;
     text-align: center;
     flex: 1 1;
@@ -2458,7 +2467,7 @@ div.sum_div {
         width: auto;
         text-align: center;
         font-size: 12px;
-        padding: 10px 2px 10px;
+        padding: 10px  10px;
         flex: 1 1;
         flex-grow: 1;
     }
@@ -2467,24 +2476,26 @@ div.sum_div {
         justify-content: space-around;
         align-items: center;
         padding: 0;
-        line-height: 55px;
     }
     .board_list.st01 .tbody li > div{
         padding: 10px;
     }
     .board_list.st01 .tbody .td01 {
-        width: 10%;
+        width: auto;
+        max-width: 10%;
         text-align: center;
         margin-right: 0;
     }
 
     .board_list.st01 .tbody .td02 {
-        width: 10%;
+        width: auto;
+        max-width:10%;
         text-align: center;
     }
 
     .board_list.st01 .tbody .td03 {
-        width: 64%;
+        width: auto;
+        max-width:64%;
         text-align: left;
         padding-left: 34px;
         font-weight: 600;
@@ -2492,46 +2503,53 @@ div.sum_div {
     }
 
     .board_list.st01 .tbody .td04 {
-        width: 15%;
+        width: auto;
+        max-width: 15%;
         text-align: right;
         color: #555555;
         font-weight: 100;
     }
     .board_list_mini .tbody li{
         display: flex;
+        align-items: center;
         padding: 0;
     }
     .board_list_mini .tbody li > div{
-        padding: 10px 10px 10px;
+        padding:10px;
     }
     .board_list_mini.ln05 .th01 {
-        width: 10%;
+        width: auto;
+        max-width: 10%;
         text-align: center;
     }
     div.board_list_mini li {
-        line-height: 35px;
         padding: 0;
     }
     .board_list_mini.ln04 .th01 {
-        width: 15%;
+        width: auto;
+        max-width:15%;
         text-align: center;
     }
     .board_list_mini.ln04 .th02 {
-        width: 45%;
+        width: auto;
+        max-width: 45%;
         text-align: left;
         font-size: 0.9em;
     }
     .board_list_mini.ln04 .th03 {
-        width: 20%;
+        width: auto;
+        max-width: 20%;
         text-align: center;
         margin-right: 0;
     }
     .board_list_mini.ln04 .th04 {
-        width: 20%;
+        width: auto;
+        max-width:20%;
         text-align: center;
     }
     div.sum_div li {
-        width: 43%;
+        width: auto;
+        max-width: 43%;
         margin: 0 3%;
     }
     .reservation_list .th {

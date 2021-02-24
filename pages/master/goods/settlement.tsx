@@ -101,22 +101,23 @@ export const MsReservationB: React.FC<IProp> = () => {
                                     <option value={"sellerName_eq"}>가이드명</option>
                                 </select>}
                         />
+                        <MasterAlignMent
+                            Sort={
+                                <SingleSortSelect {...singleSort} />
+                            }
+                            setViewCount={setViewCount}
+                            viewCount={viewCount}
+                            handleSelectAll={selectAll}
+                            LeftDiv={
+                                <ul className="board_option">
+                                    <li className="on"><a>전체</a></li>
+                                    <li><a>여행</a></li>
+                                    <li><a>체험</a></li>
+                                </ul>
+                            }
+                        />
                     </div>
-                    <MasterAlignMent
-                        Sort={
-                            <SingleSortSelect {...singleSort} />
-                        }
-                        setViewCount={setViewCount}
-                        viewCount={viewCount}
-                        handleSelectAll={selectAll}
-                        LeftDiv={
-                            <ul className="board_option">
-                                <li className="on"><a>전체</a></li>
-                                <li><a>여행</a></li>
-                                <li><a>체험</a></li>
-                            </ul>
-                        }
-                    />
+
                 </div>
                 <div className="master__table">
                     <div className="thead">

@@ -217,12 +217,14 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         </span>
                     </div>
                 </div>
+
                 <div className="write_type">
                     <div className="title">제목</div>
                     <div className="input_form">
                         <input id="title" onChange={handleInputChange("title")} value={title} type="text" name="title" className="inputText w100" />
                     </div>
                 </div>
+
                 <div className="write_type">
                     <div className="title">부제목</div>
                     <div className="input_form">

@@ -445,8 +445,8 @@
             }
 
         .mypage_in .in i[class*=janda] {
-            margin-right: 5px;
-            font-size: 18px;
+            /* margin-right: 5px; */
+            font-size: 11px;
         }
 
     .mypage_in .box_right > ul {
@@ -845,6 +845,9 @@
 .goods_div .fuction_list_mini .tbody li > div{
     font-size: 12px;
 }
+.goods_div .fuction_list_mini .tbody li:hover{
+    background-color: #fbfbfb;
+}
     .goods_div .fuction_list_mini .th01 {
         width: 100%;
         text-align: left;
@@ -902,7 +905,7 @@
         margin-top: 5px;
     }
     .goods_div .fuction_list_mini .th08 .btn {
-        width: 49%;
+        width: 100%;
         padding: 0 12px;
         font-size: 12px;
         line-height: 34px;
@@ -2957,7 +2960,7 @@ div.reservation_popup .tr select {
     .goods_div .fuction_list_mini .th08 {
         display: inline-block;
         width: auto;
-        max-width: 21%;
+        max-width: 11%;
         text-align: center;
         margin-top: 0;
     }
@@ -3368,7 +3371,7 @@ div.reservation_popup .tr select {
         font-size: 1em;
         display: inline-block;
         width: auto;
-        max-width: 30%;    
+       min-width: 30%;    
         line-height: 60px;
         padding-top: 0;
     }
@@ -3376,8 +3379,7 @@ div.reservation_popup .tr select {
     .mypage_in .box_right .txt {
         font-size: 14px;
         display: inline-block;
-        width: auto;
-        max-width: 70%;
+        width: 70%;
         padding: 15px 0;
         box-sizing: border-box;
     }
@@ -3418,7 +3420,7 @@ div.reservation_popup .tr select {
     }
     .mypage_purchase .fuction_list_mini .th02 {
         width: auto;
-        max-width:  10%;
+        max-width:  15%;
     }
     .mypage_purchase .fuction_list_mini .th03 {
         width: auto;
@@ -3516,14 +3518,12 @@ div.reservation_popup .tr select {
         width: auto !important;
         display: inline-block;
         max-width: 5%;
-        padding:10px 0;
         text-align: center !important;
     }
     .reservation_div .master__table .t02 {
         width: auto !important;
         display: inline-block;
         max-width: 10% !important;
-        padding: 10px 0;
         border-left: 1px #eee solid;
         margin-bottom: 0;
         text-align: center !important;
@@ -3532,7 +3532,6 @@ div.reservation_popup .tr select {
         width: auto !important;
         display: inline-block;
         max-width: 13% !important;
-        padding: 10px 0;
         border-left: 1px #eee solid;
         text-align: center !important;
     }
@@ -3540,18 +3539,15 @@ div.reservation_popup .tr select {
         width: auto !important;
         display: inline-block;
         max-width:  44% !important;
-        padding: 10px 0;
         border-left: 1px #eee solid;
         text-align: center !important;
     }
     .reservation_div .master__table .tbody .t04 {
-        padding: 10px 0 0;
     }
     .reservation_div .master__table .t05 {
         width: auto !important;
         display: inline-block;
         max-width: 13% !important;
-        padding: 10px 0;
         border-left: 1px #eee solid;
         text-align: center !important;
     }
@@ -3559,14 +3555,12 @@ div.reservation_popup .tr select {
         width: auto !important;
         display: inline-block;
         max-width: 15% !important;
-        padding: 10px 0;
         border-left: 1px #eee solid;
         text-align: center !important;
     }
     .reservation_div .master__table .t07 {
         width: auto !important;
         display: inline-block;
-        padding: 10px 0;
         border-left: 1px #eee solid;
         margin-top: 0;
         text-align: center !important;
