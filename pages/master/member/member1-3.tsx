@@ -203,8 +203,8 @@ export const MsMemberC: React.FC<IProp> = () => {
                     <div className="page">
                         <h3>회원 상세정보</h3>
                         <div className="info_txt">
-                            <span className="start-day">가입일: 2020.08.26</span>
-                            <span className="recently-day">최근접속: 2020.08.26 12:12</span>
+                            <span className="start-day">가입일: <strong>2020.08.26</strong></span>
+                            <span className="recently-day">최근접속: <strong>2020.08.26 12:12</strong></span>
                             <button className="btn"><i className="flaticon-print mr5"></i>프린터</button>
                             <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
                             <button className="btn mr5">작성한 게시글</button>

@@ -514,14 +514,13 @@
                 text-align: center;
                 box-sizing: border-box;
                 vertical-align: top;
-                /* background-image: url(/its/man01.jpg); */
                 background-size: cover;
                 background-position: center;
                 border-radius: 150px;
                 overflow: hidden;
                 text-indent: -999px;
                 margin-bottom: 15px;
-                border: 2px solid #fff;
+                border: 2px solid #dfdfdf;
             }
     
             .main_con_box5 .man_box li.on .photo {
@@ -1435,7 +1434,7 @@ div.popup_bg_mini .page{
     height: 100%;
     width: 100%;
     border-radius: 20px;
-    padding: 20px 10px 10px 0px;
+    padding: 20px 10px 20px 0px;
     box-sizing: border-box;
     overflow: hidden;
     background-color: #fff;
@@ -1444,8 +1443,8 @@ div.popup_bg_mini .page{
 
     div.popup_bg_mini .in_txt {
         position: relative;
-        height:280px;
-        width: 500px;  
+        min-height:280px;
+        min-width: 500px;  
         box-sizing: border-box;
         padding: 0;
         text-align: left;
@@ -4087,7 +4086,7 @@ ul.rank_ul {
             }
 
             .guide_box .guide_top_bn .txt span {
-                font-size: 16px;
+                font-size: 14px;
                 color: #fff;
                 margin-top: 7px;
                 display: block;
@@ -4117,6 +4116,9 @@ ul.rank_ul {
                 .guide_box .guide_top_bn .btn_list li a:hover {
                     background-color: #039ce0;
                     color: #ffffff;
+                }
+                .guide_box .guide_top_bn .btn_list li a:hover span {
+                    color: #ffffff !important;
                 }
 
     .guide_box .guide_content {
@@ -4565,9 +4567,9 @@ div.bn_box {
         box-sizing: border-box;
     }
 
-        .pagenate_mini .count strong {
+        /* .pagenate_mini .count strong {
             font-size: 20px;
-        }
+        } */
 
     .pagenate_mini .first {
         margin-right: 0;
@@ -6389,7 +6391,7 @@ i.important_icon {
                 left: 83px;
                 top: 26px;
                 width: 2px;
-                background-color: #ffe9f4;
+                background-color: #cfeaff;
                 height: 95%;
             }
 
@@ -6419,7 +6421,7 @@ i.important_icon {
                     top: 14px;
                     width: 15px;
                     height: 15px;
-                    background-color: #ffd4e9;
+                    background-color: #bee3ff;
                     border-radius: 50px;
                 }
 
@@ -6427,7 +6429,7 @@ i.important_icon {
             position: relative;
             width: 100%;
             display: block;
-            background-color: #ffeff6;
+            background-color: #f1f9ff;
             margin-bottom: 15px;
             border-bottom: 1px solid #5bace9;
             border-top: 1px solid #5bace9;
@@ -6436,7 +6438,7 @@ i.important_icon {
             .tour_details_in .boardReadBody .top_day h5 {
                 display: inline-block;
                 width: 15%;
-                background-color: #ffe2ee;
+                background-color: #e0f2ff;
                 color: #5bace9;
                 font-weight: 600;
                 text-align: center;
@@ -6565,7 +6567,7 @@ i.important_icon {
         }
 
         #viewControl .btn_box .link02 {
-            width: 49%;
+            width: 100%;
             display: inline-block;
         }
 
@@ -6664,7 +6666,7 @@ i.important_icon {
         }
 
             #viewControl .btn_box .link02 a:hover {
-                background: #d81868;
+                background: #1882d8;
                 color: #ffffff;
             }
 
@@ -6840,7 +6842,7 @@ i.important_icon {
         margin-bottom: 5px;
         padding: 2px 5px;
         box-sizing: border-box;
-        font-size: 0.9em;
+        font-size: 1.1em;
         color: #999;
         font-weight: 100;
         background-color: #f5f5f5;
@@ -9021,6 +9023,56 @@ i.calendar {
 .member_details_in .right_div .goto_page{
     line-height: 8px !important;
 }
+.Number__box {
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    width: 108px;
+    margin-left: 15px;
+}
+.Number__box > span{
+    vertical-align: middle;
+    display: inline-block;
+}
+
+    .Number__box .left_btn {
+        width: 30%;
+        height: 28px;
+        text-align: center;
+        font-size: 10px;
+        line-height: 23px;
+        border: 1px solid #ccc;
+        border-radius: 3px 0 0 3px;
+        margin: 0 -3px 0 0;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+   .Number__box .right_btn {
+        width: 30%;
+        height: 28px;
+        text-align: center;
+        font-size: 10px;
+        line-height: 23px;
+        border: 1px solid #ccc;
+        border-radius: 0 3px 3px 0;
+        margin: 0 0 0 -3px;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+    .Number__box .number {
+        width: 38%;
+        height: 28px;
+        text-align: center;
+        line-height: 28px;
+        border: 1px solid #ccc;
+        border-right: 0;
+        border-left: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-weight: 600;
+    }
 
 @media (min-width: 768px) {   
     
@@ -9377,7 +9429,7 @@ i.calendar {
         font-weight: 600;
     }
         div.popup_bg_full h3 {
-            top: 35px;
+            top: 54px;
         }
      
     div.popup_bg_full .close_icon {
@@ -9455,13 +9507,13 @@ i.calendar {
         .main_con_box1 .main_top_images .btn_list {
             padding-left: 100px;
             text-align: left;
-            width: auto;
+            width: 45%;
         }
           
 
     .siteInfo_in .top_bg {
         height: 460px;
-    padding: 370px 0 0;
+        padding: 370px 0 0;
         background-position: center;
         background-size: 200%;
     }
@@ -9891,7 +9943,7 @@ i.calendar {
         padding: 16px 13px;
     }
     .option_tb td {
-        font-size: 0.8em;
+        font-size: 0.9em;
     }
     .option_tb .bt_line {
         border-bottom: 1px solid #ccc;
@@ -9900,7 +9952,7 @@ i.calendar {
         width: 38%;
     }
     #viewControl .btn_box .link02 {
-        width: 60%;
+        width: 100%;
     }
     .sign_in .inner .join_address {
         margin-bottom: 79px;
@@ -10931,7 +10983,7 @@ i.calendar {
         text-align: center;
     }
     #viewControl .btn_box .link02 {
-        width: 69.9%;
+        width:100%;
     }
 
     .footer_in .f_detail_wrap,

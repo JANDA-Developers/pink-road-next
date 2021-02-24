@@ -223,7 +223,7 @@ export const StyleGuide: React.FC<IProp> = () => {
                             <select className="option">
                                 <option>전체</option>
                                 <option>이름</option>
-                                <option>파트너명</option>
+                                <option>가이드명</option>
                                 <option>아이디</option>
                                 <option>연락처</option>
                             </select>

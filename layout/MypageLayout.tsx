@@ -114,8 +114,8 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                             </div>
                             <input onChange={handleChangeProfile} ref={hiddenFileInput} hidden type="file" />
                             <span className="name1">
-                                {isParterNonB && <i className="ct_partner">Personal Partner</i>}{/* 개인파트너 Personal Partner -*/}
-                                {isParterB && <i className="ct_guide">Corporation Partner</i>}{/* 기업파트너 Corporation Partner -*/}
+                                {/* {isParterNonB && <i className="ct_partner">Guide</i>} 개인파트너 Personal Partner -*/}
+                                {isParterB && <i className="ct_guide">Guide</i>}{/* 기업파트너 Corporation Partner -*/}
                                 {isSeller && <span><strong>{myProfile?.nickName}</strong>님 어서오세요 :)</span>}{/*기업파트너/개인파트너*/}
                                 {isSeller && <span className="point"><i>Point</i><strong>{autoComma(settleAvaiableAmount)}</strong>원</span>}{/*기업파트너/개인파트너*/}
                                 {isSeller || <span className="name2"><i className="ct_family">Family</i><strong>{myProfile?.name}</strong>님 어서오세요 :)</span>}{/*개인*/}

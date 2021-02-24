@@ -100,10 +100,16 @@ export const MasterSettlement: React.FC<IProp> = () => {
                                     const type = e.currentTarget.value;
                                     setSearchType(type as any);
                                 }} className="option">
+<<<<<<< HEAD
                                     <option value={"exField__title_contains" as TsearchType}>상품명</option>
                                     <option value={"exField__code_eq" as TsearchType}>상품번호</option>
                                     <option value={"exField__sellerName_eq" as TsearchType}>파트너명</option>
                                     <option value={"exField__sellerNickName_eq" as TsearchType}>파트너 닉네임</option>
+=======
+                                    <option value={"productName_contain"}>상품명</option>
+                                    <option value={"productCode_eq"}>상품번호</option>
+                                    <option value={"sellerName_eq"}>가이드명</option>
+>>>>>>> origin/잇츠가이드-디자인
                                 </select>}
                         />
                         <MasterAlignMent
@@ -115,16 +121,46 @@ export const MasterSettlement: React.FC<IProp> = () => {
                             handleSelectAll={selectAll}
                             LeftDiv={
                                 <ul className="board_option">
+<<<<<<< HEAD
                                     <li onClick={setType(undefined)} className={checkOnStatus(undefined)}><a>전체<strong>{totalSettlementCount}</strong></a></li>
                                     <li onClick={setType(SettlementStatus.REQUEST)} className={checkOn(SettlementStatus.REQUEST)}><a>요청<strong>{settlementRequestCountMaster}</strong></a></li>
                                     <li onClick={setType(SettlementStatus.COMPLETE)} className={checkOn(SettlementStatus.COMPLETE)}><a>완료<strong>{settlementCompleteCountMaster}</strong></a></li>
+=======
+                                    <li className="on"><a>전체</a></li>
+                                    <li><a>여행</a></li>
+                                    <li><a>체험</a></li>
+>>>>>>> origin/잇츠가이드-디자인
                                 </ul>
                             }
                         />
                     </div>
+<<<<<<< HEAD
                     <div className="master__table">
                         <div className="thead">
                             {/* <div className="t01">
+=======
+
+                </div>
+                <div className="master__table">
+                    <div className="thead">
+                        <div className="t01">
+                            <span className="checkbox">
+                                <input type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                <label htmlFor="agree0" />
+                            </span>
+                        </div>
+                        <div className="t02">유형</div>
+                        <div className="t03">정산계좌</div>
+                        <div className="t04">상품</div>
+                        <div className="t05">인원</div>
+                        <div className="t06">금액</div>
+                        <div className="t07">정산</div>
+                        <div className="t08">관리</div>
+                    </div>
+                    {items.map(item =>
+                        <div key={item._id} className="tbody">
+                            <div className="t01">
+>>>>>>> origin/잇츠가이드-디자인
                                 <span className="checkbox">
                                     <input type="checkbox" name="agree" id="agree0" title="전체선택" />
                                     <label htmlFor="agree0" />

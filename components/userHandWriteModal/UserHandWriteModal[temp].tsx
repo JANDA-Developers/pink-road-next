@@ -18,8 +18,7 @@ export const UserHandWriteModal: React.FC<IProp> = () => {
                             <div className="td01">
                                 <select className="w30">
                                     <option>개인</option>
-                                    <option>기업파트너</option>
-                                    <option>개인파트너</option>
+                                    <option>가이드</option>
                                 </select>
                             </div>
                         </div>
@@ -63,10 +62,10 @@ export const UserHandWriteModal: React.FC<IProp> = () => {
                         </div>
                     </div>
 
-                    <h4>파트너 정보</h4>
+                    <h4>가이드 정보</h4>
                     <div className="info_table w100">
                         <div className="tr">
-                            <div className="th01">파트너명(회사명)</div>
+                            <div className="th01">가이드</div>
                             <div className="td01"><input type="text" className="w50" placeholder="" /></div>
                             <div className="th02">사업자번호</div>
                             <div className="td02">
@@ -176,7 +175,7 @@ export const UserHandWriteModal: React.FC<IProp> = () => {
                                 </span>
                             동의합니다.
                         </div>
-                            <div className="th02">파트너약관</div>
+                            <div className="th02">가이드약관</div>
                             <div className="td02">
                                 <span className="checkbox mr5">
                                     <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />

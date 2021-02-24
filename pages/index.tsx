@@ -67,8 +67,35 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
                 <Link href="/tour">
                   <a className="tourLink" {...edit("m_01_mainLink1")} />
                 </Link>
-                <Link href="/guide">
+                <Link href="/tour">
                   <a  {...edit("m_01_mainLink2")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink3")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink4")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink5")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink6")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink7")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink8")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink9")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink10")} />
+                </Link>
+                <Link href="/tour">
+                  <a  {...edit("m_01_mainLink11")} />
                 </Link>
               </div>
             </div>

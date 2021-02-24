@@ -95,7 +95,7 @@ export const MySettlement: React.FC<IProp> = () => {
         <div className="in mypage_purchase">
             <h4>매출/정산관리</h4>
             <div className="paper_div">
-                <div className="statement_div">
+                {/* <div className="statement_div">
                     <div className="top_btn">
                         {/* <span>통계표 상세보기</span> */}
                     </div>
@@ -110,16 +110,16 @@ export const MySettlement: React.FC<IProp> = () => {
                         </li>
                         <li>
                             <strong>정산 가능 금액</strong>
-                            {/* 계산법: 상태가 Ready인 Settlement들의 정산금액 */}
+                             계산법: 상태가 Ready인 Settlement들의 정산금액 
                             <div><strong>{autoComma(settleAvaiableAmount)}</strong>원</div>
                         </li>
                         <li>
                             <strong>취소 환수금</strong>
-                            {/* 계산법: Settlement의 취소 환수금들의 합산  */}
+                             계산법: Settlement의 취소 환수금들의 합산 
                             <div><strong>{autoComma(cancelReturnPrice)}</strong>원</div>
                         </li>
                     </ul>
-                </div>
+                </div> */}
                 <div className="con_top">
                     <h6>상세검색</h6>
                     <SearchBar
@@ -156,10 +156,54 @@ export const MySettlement: React.FC<IProp> = () => {
                                 <div className="left_div">
                                     총 <strong>{pageInfo.totalCount}</strong>개
                             </div>
+<<<<<<< HEAD
                                 <div className="right_div">
                                     <SortSelect onChange={setSort} sort={sort} />
                                     <ViewCount value={viewCount} onChange={setViewCount} />
                                 </div>
+=======
+                            <div className="right_div">
+                                <SortSelect onChange={setSort} sort={sort} />
+                                <ViewCount value={viewCount} onChange={setViewCount} />
+                            </div>
+                        </div>
+                        <div className="fuction_list_mini ln08">
+                            <div className="thead">
+                                {/* <div className="th01">
+                                    <span className="checkbox">
+                                        <input checked={isAllSelected} onClick={selectAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                        <label htmlFor="agree0" />
+                                    </span>
+                                </div> */}
+                                <div className="th02">상품코드</div>
+                                <div className="th03">상품명</div>
+                                <div className="th04">상품상태</div>
+                                <div className="th05">정산날짜</div>
+                                <div className="th06">금액</div>
+                                <div className="th07">상태</div>
+                                <div className="th08">상세보기</div>
+                            </div>
+                            <div className="tbody">
+                                <ul>
+                                    {items.map(item =>
+                                        <li>
+                                            {/* <div className="th01">
+                                                <span className="checkbox">
+                                                    <input checked={isAllSelected} onClick={selectAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
+                                                    <label htmlFor="agree0" />
+                                                </span>
+                                            </div> */}
+                                            <div className="th02">{item.product.code}</div>
+                                            <div className="th03">{item.product.title}</div>
+                                            <div className="th04">{productStatus(item.product?.status)}</div>
+                                            <div className="th05">{item.completeDate ? dayjs(item.completeDate).format("YYYY.MM.DD") : undefined}</div>
+                                            <div className="th06">{autoComma(item.totalPrice)}</div>
+                                            <div className="th07"><strong className="ok">{settlementStatus(item.status)}</strong></div>
+                                            <div onClick={handleOpenModal(item._id)} className="th08"><i className="btn">상세보기</i></div>
+                                        </li>
+                                    )}
+                                </ul>
+>>>>>>> origin/잇츠가이드-디자인
                             </div>
                             <div className="fuction_list_mini ln08">
                                 <div className="thead">
