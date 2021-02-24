@@ -436,14 +436,14 @@ figure:after {
 }
 
 .tourMianListUl {
-    display: flex!important;
+    /* display: flex!important; */
     overflow: hidden;
 }
 
 .tourMianListUl__li {
     overflow: hidden;
-    max-width: 32%;
-    min-width: 32%;
+    /* max-width: 32%;
+    min-width: 32%; */
     flex-grow: 0;
     margin-right: 2%!important;
 }

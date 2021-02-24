@@ -670,7 +670,7 @@ div.search_mini {
     div.popup_bg .close_icon {
         position: absolute;
         top: 21px;
-        right: 3px;
+        right: 14px;
         display: block;
         width: 30px;
         height: 30px;
@@ -917,7 +917,7 @@ div.popup_bg_full .fin{
 
     div.popup_bg_full h3 {
         font-size: 20px;
-        line-height: 40px;
+        line-height: 76px;
         font-weight: 600;
         position: fixed;
         top: 14px;
@@ -6544,10 +6544,18 @@ i.important_icon {
 .big_pd td {
     padding: 7px 13px;
 }
-
-.selectViewList {
-    padding-top: 13px;
+.accept__btn{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
+.accept__btn .accept__btn_link{
+    width: auto;
+}
+/* .selectViewList {
+    padding-top: 13px;
+} */
 
     .selectViewList ul.list_ul {
         width: 100%;
@@ -10752,7 +10760,7 @@ i.calendar {
         top: 15px;
     }
     div.popup_bg .close_icon {
-        top: 27px;
+        top: 20px;
     }
 
     .tour_details_in .Read_box{

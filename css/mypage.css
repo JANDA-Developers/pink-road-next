@@ -45,16 +45,21 @@
     display: none;
 }
 .mypage_in .btn {
+    width: 100%;
     box-sizing: border-box;
     padding: 0 15px;
     font-size: 12px;
-    border-radius: 100px;
+    border-radius: 2px;
     display: inline-block;
-    line-height: 28px;
-    margin: 3px;
+    line-height: 32px;
+    margin: 3px 0;
     border: 1px solid #cfcfcf;
     border-radius: 3px;
+    text-align: center;
     color: #999;
+}
+.reservation_div .t07{
+    max-width: 100%;
 }
 .mypage_in .fuction_list_mini .thead {
     display: none;
@@ -232,7 +237,7 @@
         .mypage_in .lnb ul {
             width: auto;
             display: inline-block;
-            background-color: #2196F3;
+            background-color: #999999;
             position: relative;
             top: 11px;
             right: 0px;
@@ -254,7 +259,7 @@
                 content: '';
                 width: 1px;
                 height: 20px;
-                background-color: #a7d7ff;
+                background-color: #cccccc;
             }
 
             .mypage_in .lnb li:last-child:after {
@@ -1009,9 +1014,8 @@
     .reservation_div .t07 {
         width: 100% !important;
         padding: 0;
-        text-align: left !important;
         margin-top: 5px;
-        max-width: 100px;
+       
     } 
         /* .reservation_div .th .t01 .checkbox {
             top: 50%;
@@ -1058,13 +1062,7 @@
         line-height: 35px !important;
     }
     .reservation_div .t04 .img {
-        display:inline-block !important;
-        width:100px !important;
-        height:64px;
-        background-position:center;
-        background-size:100%;
-        left:15px;
-        top:20px;
+        display:none !important;
     }
     .reservation_div .t04 .info {
         display: block !important;
@@ -1279,9 +1277,9 @@
         margin-left: 15px;
     }
     .reservation_div .state {
-        width: auto !important;
+        width: 100% !important;
         display: inline-block;
-        line-height: 122%;
+        line-height: 210%;
         border: 1px solid #ccc;
         padding: 3px 15px !important;
         -webkit-box-sizing: border-box;
@@ -1289,7 +1287,7 @@
         font-size: 13px;
         color: #555;
         font-weight: 600;
-        border-radius: 100px;
+        border-radius: 3px;
         font-style:unset;
     }
 
@@ -2827,7 +2825,47 @@ div.reservation_popup .tr select {
 
     
 @media (min-width: 1000px) {  
-
+    .reservation_div .state {
+        width: auto !important;
+        display: inline-block;
+        line-height: 122%;
+        border: 1px solid #ccc;
+        padding: 3px 15px !important;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 13px;
+        color: #555;
+        font-weight: 600;
+        border-radius: 100px;
+        font-style:unset;
+    }
+    .mypage_in .btn {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 15px;
+        font-size: 12px;
+        border-radius: 100px;
+        display: inline-block;
+        line-height: 28px;
+        margin: 3px;
+        border: 1px solid #cfcfcf;
+        border-radius: 3px;
+        text-align: center;
+        color: #999;
+    }
+    .reservation_div .t04 .img {
+        display:inline-block !important;
+        width:100px !important;
+        height:64px;
+        background-position:center;
+        background-size:100%;
+        left:15px;
+        top:20px;
+    }
+    .reservation_div .t07 {
+        text-align: left !important;
+       
+    } 
     .reservation_div .t02 .btn {
         width:auto;
         position: relative;
@@ -3529,38 +3567,33 @@ div.reservation_popup .tr select {
         width: auto !important;
         max-width: 10%;
         padding:  0;
-        border-left: 1px #eee solid;
         margin-bottom: 0;
         text-align: center !important;
     }
     .reservation_div .t03 {
         width: auto !important;
         padding:  0;
-        border-left: 1px #eee solid;
     }
     .reservation_div .t04 {
         width: auto !important;
         padding: 0;
-        border-left: 1px #eee solid;
     }
     .reservation_div .t05 {
         width: auto !important;
         max-width: 15%;
         padding:  0;
-        border-left: 1px #eee solid;
         text-align: center !important;
     }
     .reservation_div .t06 {
         width: auto !important;
         max-width: 15%;
         padding: 0;
-        border-left: 1px #eee solid;
         text-align: center !important;
     }
     .reservation_div .t07 {
         width: auto !important;
+        max-width: 100px;
         padding:0;
-        border-left: 1px #eee solid;
         text-align: center !important;
     } 
     /* .reservation_div .td .t01 .checkbox {

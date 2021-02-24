@@ -1,6 +1,6 @@
 const tourWrite = {
     subTop_title: {
-        kr: "Exp"
+        kr: "Experience"
     },
     subTop_desc: {
         kr: "지금 여행을 떠나세요~!~~!!!!!"
@@ -9,7 +9,7 @@ const tourWrite = {
         kr: "/img/pr_img_06.jpg"
     },
     exp_subTop_title: {
-        kr: "Exp"
+        kr: "Experience"
     },
     exp_subTop_desc: {
         kr: "지금 여행을 떠나세요~!~~!!!!!"

@@ -34,7 +34,7 @@ export const ProductSearcher: React.FC<IProp> = ({ defaultSearch, onSelectProduc
 
     return <div className="productSearcher">
         <div className="goodsall">
-            <h3>상품선택</h3>
+            {/* <h3>상품선택</h3> */}
             <div className="goodsall__wrap">
                 <div className="goodsall__search search_top">
                     <div className="search_div">

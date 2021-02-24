@@ -35,6 +35,7 @@
 .MypageGoods__infoBox {
     display: flex!important;
     padding: 10px!important;
+
 }
 
 .MypageGoods__btn {
@@ -44,6 +45,7 @@
 @media (max-width: 1000px) {
     .MypageGoods__infoBox {
         display: initial!important;
+        padding: 0!important;
     }
 
 }

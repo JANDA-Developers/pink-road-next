@@ -176,13 +176,13 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                         <MasterAlignMent
                             LeftDiv={
                                 <>
-                                    <ul style={{ marginBottom: ".5rem" }} className="board_option">
+                                    <ul className="board_option">
                                         <li onClick={setType(undefined)} className={checkOnStatus(undefined)}><a>전체<strong>{totalProductCountMaster}</strong></a></li>
                                         <li onClick={setDetermine(true)} className={checkOnDetermined(true)}><a>출발확정<strong>{determiendProductCountMaster}</strong></a></li>
                                         <li onClick={setDetermine(false)} className={checkOnDetermined(false)}><a>미확정<strong>{undeterMinedProductCountMaster}</strong></a></li>
                                         <li onClick={setElseReq(ProductReOpenReq.REOPEN)} className={checkOnElseReq(ProductReOpenReq.REOPEN)}><a>재개요청<strong>{elseReqCount}</strong></a></li>
                                     </ul>
-                                    <ul style={{ marginBottom: ".5rem" }} className="board_option">
+                                    <ul className="board_option">
                                         <li onClick={setType(ProductStatus.OPEN)} className={checkOnStatus(ProductStatus.OPEN)}><a>판매중<strong>{openProductCountMaster}</strong></a></li>
                                         <li onClick={setType(ProductStatus.CANCELD)} className={checkOnStatus(ProductStatus.CANCELD)}><a>여행취소<strong>{cancelProductCountMaster}</strong></a></li>
                                         <li onClick={setType(ProductStatus.EXPIRED)} className={checkOnStatus(ProductStatus.EXPIRED)}><a>여행만료<strong>{expireProductCountMaster}</strong></a></li>
