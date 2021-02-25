@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { RefObject, useRef, useState } from "react";
+import { Dispatch, RefObject, SetStateAction, useRef, useState } from "react";
 import { generateitinery, TRange } from "../components/tourWrite/helper";
 import { Ffile, ItineraryCreateInput, productCreate, ProductCreateInput, productCreateVariables, ProductStatus, ProductType, ProductUpdateInput } from "../types/api";
 import { IproductFindById, ISet } from "../types/interface";
@@ -14,6 +14,9 @@ import { useProductDelete, useProductUpdate } from "./useProduct";
 import { useMutation } from "@apollo/client";
 import { PRODUCTS_CREATE } from "../apollo/gql/product";
 import { useRouter } from "next/router";
+import { ProductTempBoard } from "../utils/Storage2";
+import { generateRandomStringCode } from "../utils/codeGenerator";
+import { openModal } from "../utils/popUp";
 
 type SimpleTypePart = "isOpen" | "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "contents" | "inOrNor" | "isNotice"
 export type TSimpleTypePart = Pick<Required<ProductCreateInput>, SimpleTypePart>
@@ -77,6 +80,7 @@ export interface IUseTour {
     tourData: IUseTourData;
     tourSets: ITourDataSet;
     validater: Validater;
+    setGroupCode: Dispatch<SetStateAction<string | undefined>>
     setTourData: (data: Partial<IUseTourData>) => void;
     loadKey: number;
     firstDate?: Date;
@@ -117,11 +121,12 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const [thumbs, setThumbs] = useState<Ffile[]>(Array.from(defaults.thumbs || []))
     const [keyWards, setkeyWards] = useState<string[]>(Array.from(defaults.keyWards || []));
     const [loadKey, setLoadKey] = useState<number>(0);
+    const [groupCode, setGroupCode] = useState<string>();
     const hiddenFileInput = useRef<HTMLInputElement>(null);
     const { signleUpload } = useUpload();
     const router = useRouter();
 
-    const { productDelete, deleteLoading } = useProductDelete({
+    const [productDelete] = useProductDelete({
         onCompleted: ({
             ProductDelete
         }) => {
@@ -133,7 +138,8 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
 
     const { productUpdate, updateLoading } = useProductUpdate({
         onCompleted: ({ ProductUpdate }) => {
-            router.push(`/tour/view/${ProductUpdate?.data?._id}`)
+            if (ProductUpdate.ok)
+                router.push(`/tour/view/${ProductUpdate?.data?._id}`)
         }
     })
 
@@ -145,26 +151,32 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     })
 
     const createFn = (params: ProductCreateInput) => {
+        if (createLoading) return;
         ProductCreateMu({
             variables: {
-                params
+                params,
+                groupCode
             },
         })
     }
 
     const updateFn = (_id: string, params: ProductUpdateInput) => {
+        if (updateLoading) return;
         productUpdate({
             _id,
             params: {
                 ...params,
-            }
+            },
+            reason: ""
         })
     }
 
     const deleteFn = (id: string) => {
         if (confirm("정말로 상품을 삭제 하시겠습니가?"))
             productDelete({
-                id
+                variables: {
+                    id
+                }
             })
     }
 
@@ -195,7 +207,6 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         value: simpleData.inOrNor,
         failMsg: "포함 미포함 값은 필수 입니다.",
         failFn: () => {
-            console.log(document.getElementById("tap3"));
             document.getElementById("tap3")?.click()
         },
         id: "inOrNor"
@@ -365,18 +376,23 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
 
 
     const handleTempSave = async () => {
+        ProductTempBoard.addItem({
+            ...tourData
+        })
+        loadKeyAdd();
         Storage!.saveLocal("write", tourData);
         alert("저장완료");
     }
 
     const handleLoad = () => {
         const savedData = Storage!.getLocalObj<IUseTourData>("write", undefined);
-        if (!savedData) {
-            alert("저장된 정보가 없습니다.");
-            return;
-        }
-        setTourData(savedData);
-        alert("로드완료");
+        // if (!savedData) {
+        //     alert("저장된 정보가 없습니다.");
+        //     return;
+        // }
+        // setTourData(savedData);
+        // alert("로드완료");
+        openModal("#LocalStorageBoard")();
     }
 
 
@@ -421,6 +437,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         tourSets,
         validater,
         setTourData,
+        setGroupCode,
         firstDate,
         hiddenFileInput,
         getCreateInput,

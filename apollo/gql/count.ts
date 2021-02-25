@@ -1,7 +1,5 @@
 import { gql } from "@apollo/client";
 
-
-
 export const COUNT = gql`
     query count {
         Count {
@@ -25,16 +23,17 @@ export const COUNT = gql`
     }
 }
 `
+
 export const COUNT_MANAGER = gql`
     query countManager {
         Count {
             ok
             error {
-      location
-      severity
-      code
-      message
-    }
+                location
+                severity
+                code
+                message
+            }
             data  {
                 buyTotalCount
                 salesTotalCount
@@ -48,7 +47,9 @@ export const COUNT_MANAGER = gql`
                 totalExpCount
                 totalProdCount
                 buyerCount
+                bookingCancelReqCount
                 todayBookingCount
+                expireProductCountMaster
                 updateRequestCountMaster
                 busiPartnerBCountMaster
                 busiPartnerCountMaster
@@ -66,6 +67,7 @@ export const COUNT_MANAGER = gql`
                 createRequestCountMaster
                 cancelReturnPrice
                 settlementRequestCountMaster
+                elseReqCount
                 compeltedProductCountMaster
                 tourBookingCountMaster
                 expBookingCountMaster
@@ -79,6 +81,7 @@ export const COUNT_MANAGER = gql`
                 confimedPartnerCount
                 totalSettlementCount
                 settlementReadyCountMater
+                cancelReqBookingCountMaster
                 settlementCompleteCountMaster
                 totalPartnerMemberCount
                 answeredQuestionCount

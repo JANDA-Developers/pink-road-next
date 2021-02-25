@@ -29,11 +29,11 @@ query groupList {
     GroupList  {
       ok
       error {
-      location
-      severity
-      code
-      message
-    }
+        location
+        severity
+        code
+        message
+      }
       data {
         ...Fgroup
       }

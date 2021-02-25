@@ -355,7 +355,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
             </li>
             <li>
-              {/* 기업파트너/개인파트너 */}
+              {/* 가이드/개인파트너 */}
               <div className="in_box1">
                 <input type="checkbox" className="checkbox"
                   checked={chkPolocy.policy_partner}

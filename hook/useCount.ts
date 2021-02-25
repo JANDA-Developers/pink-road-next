@@ -35,8 +35,6 @@ export const useCustomCount = <K extends keyof countManager_Count_data>(requires
     const data = result?.data?.["Count"]?.data;
     const count = Object.assign(defaultObj,data || {});
 
-    console.log("count");
-    console.log(count);
 
     
     return count;

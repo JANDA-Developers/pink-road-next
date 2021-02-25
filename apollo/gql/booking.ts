@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client"
-import { F_PAGE, F_PAYMENT, F_FILE, F_USER, F_PRODUCT, F_BOOKING } from "./fragments"
+import { F_PAGE, F_PAYMENT, F_FILE, F_USER, F_PRODUCT, F_BOOKING, F_REQUEST_HISTORY } from "./fragments"
 
 export const F_TRAVELER = gql`
     fragment Ftraveler on Traveler {
@@ -15,11 +15,13 @@ export const BOOKING_LIST = gql`
     $sort: [_BookingSort!]
     $filter: _BookingFilter
     $pageInput: pageInput!
+    $isTimeOverExcept: Boolean
   ) {
   BookingList(
     sort: $sort
     pageInput: $pageInput
     filter: $filter
+    isTimeOverExcept: $isTimeOverExcept
   ) {
     ok
     error {
@@ -98,7 +100,7 @@ export const BOOKING_COUNT = gql`
             page: 1,
             cntPerPage: 99999999
         },
-        filter: $filter
+        filter: $filter,
     ) {
         ok
         error {
@@ -114,7 +116,8 @@ export const BOOKING_COUNT = gql`
 }
 `
 
-export const BOOKING_CANCEL = gql`
+
+export const BOOKING_CANCEL_REQ = gql`
   mutation bookingCancelReq(
     $bookingId: String!
     $reason: String!
@@ -130,17 +133,29 @@ export const BOOKING_CANCEL = gql`
       code
       message
     }
-    data {
-      product {
-            _id
-            title
-            code
-        }
-      ...Fbooking
+  }
+}
+`
+
+
+export const BOOKING_CANCEL_REJECT = gql`
+  mutation bookingCancelReject(
+    $bookingId: String!
+    $reason: String!
+  ) {
+    BookingCancelReject(
+      bookingId: $bookingId
+      reason: $reason
+    ) {
+    ok
+    error {
+      location
+      severity
+      code
+      message
     }
   }
 }
-${F_BOOKING}
 `
 
 export const BOOKINGS_CREATE = gql`
@@ -193,16 +208,16 @@ export const BOOKING_UPDAET = gql`
     $id: String!
   ) {
   BookingUpdate(
-      params:$params
+    params:$params
       _id: $id
     ) {
     ok
     error {
-location
-        severity
-        code
-        message
-}
+      location
+      severity
+      code
+      message
+    }
     data {
       _id
     }
@@ -284,18 +299,30 @@ export const BOOKING_FIND_BY_CODE = gql`
     ) {
     ok
     error {
-location
+      location
         severity
         code
         message
-}
+    }
     data {
+      requestHistory {
+          ...FrequestHistory
+      }
+      bankTransInfo {
+        accountHolder
+        accountNumber
+        bankName
+        bankTransfter
+      }
       product {
             _id
             title
             code
       }
       ...Fbooking
+      booker {
+        _id
+      }
       travelers {
         ...Ftraveler
       }
@@ -315,6 +342,7 @@ location
     }
   }
 }
+${F_REQUEST_HISTORY}
 ${F_USER}
 ${F_TRAVELER}
 ${F_BOOKING}

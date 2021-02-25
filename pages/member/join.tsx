@@ -288,8 +288,8 @@ const UserType: React.FC = () => {
                 </li>
                 {/* <li className="li02" onClick={() => { handleChange('partnerCor', 'userType'); }}>
                 <i />
-                <strong>기업파트너 회원</strong>
-                <span>기업파트너를 위한 회원입니다.</span>
+                <strong>가이드 회원</strong>
+                <span>가이드를 위한 회원입니다.</span>
             </li>
             <li className="li03" onClick={handleTypeChoice(UserRole.partner)}>
                 <i />

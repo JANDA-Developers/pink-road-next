@@ -86,7 +86,6 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
         window.print();
     }
 
-<<<<<<< HEAD
     const handleUpdateBooking = () => {
         if (totalLoading) return;
         bookingUpdate({
@@ -151,23 +150,6 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
         openModal("#PromptModal")();
     }
 
-=======
-    if (!booking) return null;
-    const { product, payment } = booking;
-    return <div id="BookingModal" className="popup_bg_full">
-        <div className="in_txt master_popup">
-            <a className="close_icon" onClick={closeModal("#BookingModal")}>
-                <i className="flaticon-multiply"></i>
-            </a>
-            <div className="page">
-                <h3>예약 상세정보</h3>
-                <div className="info_txt">
-                    <span className="r-number">예약번호: <strong>{booking.code}</strong></span>
-                    <span className="r-day">예약일: <strong>{yyyymmdd(booking.createdAt)}</strong></span>
-                    {booking.payment && <span className="pay-day">결제일: <strong>{yyyymmdd(booking.payment?.createdAt)}</strong></span>}
-                    <button onClick={print} className="btn"><i className="flaticon-print mr5"></i>프린터</button>
-                </div>
->>>>>>> origin/잇츠가이드-디자인
 
     const handleCancelReq = (reason: string) => {
         cancelReq({

@@ -2,7 +2,10 @@ import { CSSProperties } from "react";
 import $ from "jquery"
 import { ISet } from "../types/interface";
 import isEmpty from "./isEmpty";
-import { IEditKit } from "../components/Img/img";
+import sanitizeHtml from 'sanitize-html';
+import { IEditKit } from "../components/Img/Img";
+import { ILinkEditProps } from "../components/A/A";
+
 interface Style {
     style?: CSSProperties,
 }
@@ -62,7 +65,8 @@ export interface IGetEditUtilsResult<Page> {
     edit: (key: keyof Page, index?: number) => any;
     ulEdit: (key: keyof Page) => any;
     imgEdit: (key: keyof Page) => (url: string) => void;
-    editArray: (key: keyof Page, index: number, value: any) => void;
+    linkEdit: (key: keyof Page) => ILinkEditProps
+    editArray: (key: keyof Page, index: number, value: any, key2?: string) => void;
     addArray: (key: keyof Page, value: any) => void;
     removeArray: (key: keyof Page, index: number) => void
     bg: (key: keyof Page) => {
@@ -87,8 +91,6 @@ export interface IGetEditUtilsResult<Page> {
 }
 
 
-
-
 export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean, page: T, setPage: ISet<any>, lang = "kr"): IGetEditUtilsResult<T> => {
 
     class EditError extends Error {
@@ -102,7 +104,6 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
             }
 
             this.name = 'EditError'
-            // 핵 ... 조사를 깊게 해봐야함
             if (isEmpty(page)) {
                 // location.reload();
             }
@@ -119,8 +120,9 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
     }
 
     const validateKey = (key: string | keyof T, array?: number | true) => {
-        if (!page[key]) throw new EditError(`키값 ${key}은 존재하지 않습니다.`);
-        if (page[key][lang] === undefined) throw Error(`언어 ${lang}은 ${key}에 존재하지 않습니다.`);
+        if (!page[key]) throw Error(`키값 ${key}은 존재하지 않습니다.`);
+        if (page[key].value === undefined)
+            if (page[key][lang] === undefined) throw Error(`언어 ${lang}은 ${key}에 없으며 value 또한 없습니다..`);
 
         if (array !== undefined) {
             if (!Array.isArray(page[key][lang])) throw Error(`the ${key} object is not array!!`);
@@ -135,33 +137,27 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         const text = e.currentTarget.innerHTML;
         validateKey(key, index)
 
-        if (index === undefined) {
-            page[key][lang] = text || "";
-        } else {
-            page[key][lang][index] = text || "";
-        }
-        setPage({ ...page })
+        set(key, text || "", index)
     }
 
     const editable: "true" | undefined = editMode === true ? "true" : undefined;
 
     const singleBlur = onSingleBlur.bind(onSingleBlur);
 
-    const editArray = (key: keyof T, index: number, value: any) => {
+    const editArray = (key: keyof T, index: number, value: any, key2?: string) => {
         validateKey(key, index)
-        page[key][lang][index] = value
-        setPage({ ...page });
+        set(key, value, index, key2)
     }
 
     const addArray = (key: keyof T, value: any) => {
         validateKey(key, true)
-        page[key][lang].push(value);
+        get(key).push(value);
         setPage({ ...page });
     }
 
     const removeArray = (key: keyof T, index: number) => {
         validateKey(key, index)
-        page[key][lang].splice(index, 1)
+        get(key).splice(index, 1)
         setPage({ ...page });
     }
 
@@ -173,10 +169,10 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
     const data = (key: keyof T, index?: number) => {
         validateKey(key, index);
-        const html = index === undefined ? page[key][lang] : page[key][lang][index];
+        const html = index === undefined ? get(key) : get(key)[index];
         return {
             dangerouslySetInnerHTML: {
-                __html: html
+                __html: sanitizeHtml(html)
             }
         }
     }
@@ -209,19 +205,18 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
     const onImgUpload = (key: keyof T, url: string) => {
         validateKey(key)
-        page[key][lang] = url
-        setPage({ ...page })
+        set(key, url)
     }
 
     const imgEdit = (key: keyof T) => onImgUpload.bind(onImgUpload, key);
     const bg = (key: keyof T) => {
         validateKey(key)
-        return ({ backgroundImage: `url(${page[key][lang]})`, "data-edit": editable ? "bg" : "" })
+        return ({ backgroundImage: `url(${get(key)})`, "data-edit": editable ? "bg" : "" })
     }
 
     const src = (key: keyof T) => {
         validateKey(key)
-        return ({ "data-edit": editable ? "img" : "", src: page[key][lang], "data-imgkey": key, "data-img": "img", })
+        return ({ "data-edit": editable ? "img" : "", src: get(key), "data-imgkey": key, "data-img": "img" })
     }
 
     const imgKit = (key: string): IEditKit<any> => {
@@ -254,9 +249,70 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         }
     }
 
-    const get = (key: keyof T) => {
+    const set = (key: keyof T, value: any, index?: number, key2?: string) => {
+        validateKey(key, index)
+
+
+
+        const setPageData = () => {
+            if (index !== undefined) {
+                // @ts-ignore
+                if (page[key].value !== undefined) {
+                    // @ts-ignore
+                    page[key].value[index] = value
+                    return
+                } else if (key2 !== undefined) {
+                    // @ts-ignore
+                    page[key][lang][index][key2] = value;
+                    return
+                } else {
+                    page[key][lang][index] = value;
+                    return
+                }
+            }
+
+
+            if (index === undefined) {
+                // @ts-ignore
+                if (page[key].value !== undefined) {
+                    // @ts-ignore
+                    page[key].value = value
+                    return
+                } else {
+                    // @ts-ignore
+                    page[key][lang] = value;
+                    return
+                }
+            }
+        }
+        setPageData();
+        console.log({ page });
+        setPage({ ...page })
+
+    }
+
+    const get = (key: keyof T, index?: number) => {
         validateKey(key)
-        return page[key][lang]
+
+        if (index !== undefined) {
+            // @ts-ignore
+            if (page[key].value) {
+                // @ts-ignore
+                return page[key].value[index]
+            } else {
+                // @ts-ignore
+                return page[key][lang][index];
+            }
+        }
+
+        // @ts-ignore
+        if (page[key].value) {
+            // @ts-ignore
+            return page[key].value
+        } else {
+            // @ts-ignore
+            return page[key][lang];
+        }
     }
 
     const linkEdit = (key: keyof T) => {
@@ -267,16 +323,14 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
             link,
             editable: !!editable,
             editLink: (link: string) => {
-                page[key][lang] = link
+                set(key, link)
             }
         }
     }
 
-
     // 에디터 모드이거나 값이 있으면 출력함
     const view = (key: keyof T) => editMode || get(key)
 
-    arrayImgKit
     return {
         get,
         page,
@@ -287,6 +341,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         imgEdit,
         editArray,
         addArray,
+        linkEdit,
         removeArray,
         arrayImgKit,
         bg,

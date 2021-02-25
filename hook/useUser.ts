@@ -1,8 +1,9 @@
 import { getRefetch } from "../utils/api";
 import { GET_CONTEXT } from "../apollo/gql/queries";
 import {  EMAIL_DUPLIOCATE_CHECK, EMAIl_FIND_BY_INFO, NICK_NAME_DUPLICATE_CHECK, PASSWORD_CHNAGE, PASSWORD_FIND_BY_PHONE, RESIGN, RESTART_USER, SELLER_LIST_PUBLIC, SIGN_IN, SIGN_UP, SIGN_UP_ACCEPT, SIGN_UP_DENY, STOP_USER, USER_FIND_BY_ID, USER_LIST, USER_UPDATE } from "../apollo/gql/user";
-import {  restartUser, restartUserVariables,nickNameDuplicateCheck, nickNameDuplicateCheckVariables, sellerListPublic, sellerListPublicVariables, sellerListPublic_SellerListPublic_data, passwordFindByPhone, passwordFindByPhoneVariables, emailFindByInfo, emailFindByInfoVariables,  userResign, userResignVariables, userList, userListVariables, userUpdate, userUpdateVariables, Fuser,   _UserFilter, _UserSort, signUp, signUpVariables, userFindById, userFindByIdVariables, signIn, signInVariables, userFindById_UserFindById, userFindById_UserFindById_data, signUpAccept, signUpAcceptVariables, signUpDeny, signUpDenyVariables, emailDuplicateCheck, emailDuplicateCheckVariables, emailFindByInfo_EmailFindByInfo_data, passwordFindByPhone_PasswordFindByPhone_data, passwordChange, passwordChangeVariables, stopUser, stopUserVariables, _SellerFilter, _SellerSort } from "../types/api";
+import {   travelDetermine, travelDetermineVariables, travelCancel,travelCancelVariables,travelWithdrwal, travelWithdrwalVariables, restartUser, restartUserVariables,nickNameDuplicateCheck, nickNameDuplicateCheckVariables, passwordFindByPhone, passwordFindByPhoneVariables, emailFindByInfo, emailFindByInfoVariables,  userResign, userResignVariables, userList, userListVariables, userUpdate, userUpdateVariables, Fuser,   _UserFilter, _UserSort, signUp, signUpVariables, userFindById, userFindByIdVariables, signIn, signInVariables, userFindById_UserFindById, userFindById_UserFindById_data, signUpAccept, signUpAcceptVariables, signUpDeny, signUpDenyVariables, emailDuplicateCheck, emailDuplicateCheckVariables, emailFindByInfo_EmailFindByInfo_data, passwordFindByPhone_PasswordFindByPhone_data, passwordChange, passwordChangeVariables, stopUser, stopUserVariables, productDelete, productDeleteVariables, _SellerFilter, _SellerSort, sellerListPublic, sellerListPublicVariables, sellerListPublic_SellerListPublic_data } from "../types/api";
 import { generateFindQuery, generateListQueryHook, generateMutationHook, generateQueryHook } from "../utils/query";
+import { PRODUCT_DELETE, TRAVEL_CANCEL, TRAVEL_DETERMINE, TRAVEL_WITDRWAL } from "../apollo/gql/product";
 
 export const useRestartUsers = generateMutationHook<restartUser,restartUserVariables>(RESTART_USER, {
     ...getRefetch(USER_LIST, USER_FIND_BY_ID)
@@ -12,8 +13,8 @@ export const useStopUsers = generateMutationHook<stopUser,stopUserVariables>(STO
 });
 export const useUserFind = generateFindQuery<userFindById,userFindByIdVariables,userFindById_UserFindById_data>("id",USER_FIND_BY_ID)
 export const useUserFindById = generateFindQuery<userFindById,userFindByIdVariables,userFindById_UserFindById_data>("id",USER_FIND_BY_ID)
-export const useUserList = generateListQueryHook<_UserFilter,_UserSort,userList,userListVariables,Fuser>(USER_LIST, { initialSort:[_UserSort.createdAt_desc]});
 export const usePublicSellerList = generateListQueryHook<_SellerFilter,_SellerSort,sellerListPublic,sellerListPublicVariables,sellerListPublic_SellerListPublic_data>(SELLER_LIST_PUBLIC, { initialSort:[_SellerSort.createdAt_desc]});
+export const useUserList = generateListQueryHook<_UserFilter,_UserSort,userList,userListVariables,Fuser>(USER_LIST, { initialSort:[_UserSort.createdAt_desc]});
 export const useLogin = generateQueryHook<signIn, signInVariables>(SIGN_IN,{skipInit:true,fetchPolicy:"network-only"});
 export const useSignUp = generateMutationHook<signUp,signUpVariables>(SIGN_UP, {
     ...getRefetch(USER_LIST, USER_FIND_BY_ID, GET_CONTEXT)

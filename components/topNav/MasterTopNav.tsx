@@ -47,9 +47,8 @@ export const MemberTopNav = () => {
     return <div className="tab-nav">
         <ul>
             <li className={checkOn("/master/member", true)}><Link href="/master/member"><a>개인회원</a></Link></li>
-            <li className={checkOn("busipartner")}><Link href="/master/member/busipartner"><a>기업파트너 회원</a></Link></li>
-            <li className={checkOn("/master/member/partner", true)}><Link href="/master/member/partner"><a>개인파트너 회원</a></Link></li>
-            <li className={checkOn("signout")}><Link href="/master/member/signout"><a>탈퇴회원</a></Link></li>
+            <li className={checkOn("busipartner")}><Link href="/master/member/busipartner"><a>가이드 회원</a></Link></li>
+
         </ul>
     </div>
 }

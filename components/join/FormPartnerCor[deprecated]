@@ -189,7 +189,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
   return (
     <>
       <div className="information_box">
-        {/* 회원정보:기업파트너 */}
+        {/* 회원정보:가이드 */}
         <h5>
           가이드 회원
               <span className="info_top">

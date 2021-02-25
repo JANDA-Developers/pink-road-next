@@ -1,5 +1,5 @@
 import { QUESTION_DELETE, QUESTION_LIST, QUESTION_CREATE, QUESTION_UPDAET } from "../apollo/gql/question";
-import { questionCreate, questionCreateVariables, questionDelete, questionDeleteVariables, questionFindById_QuestionFindById_data, questionList_QuestionList_data, questionUpdate, questionUpdateVariables } from "../types/api";
+import { questionCreate, questionCreateVariables, questionDelete, questionDeleteVariables, questionFindById_QuestionFindById_data, questionList_QuestionList_data, questionUpdate, questionUpdateVariables, _INotificationHistoryItemSort } from "../types/api";
 import { questionFindById, questionFindByIdVariables } from "../types/api";
 import { QueryHookOptions } from "@apollo/client"
 import { QUESTION_FIND_BY_ID } from "../apollo/gql/question";
@@ -11,7 +11,7 @@ export interface IuseQuestionFindByIdProp extends QueryHookOptions<questionFindB
 }
 
 export const useQuestionFindById = generateFindQuery<questionFindById,questionFindByIdVariables,questionFindById_QuestionFindById_data>("id",QUESTION_FIND_BY_ID);
-export const useQuestionList = generateListQueryHook<_QuestionFilter,_QuestionSort,questionList,questionCreateVariables,questionList_QuestionList_data>(QUESTION_LIST);
+export const useQuestionList = generateListQueryHook<_QuestionFilter,_QuestionSort,questionList,questionCreateVariables,questionList_QuestionList_data>(QUESTION_LIST,{initialSort:[_QuestionSort.createdAt_desc]});
 export const useQuestionCreate = generateMutationHook<questionCreate,questionCreateVariables>(QUESTION_CREATE,{...getRefetch(QUESTION_FIND_BY_ID,QUESTION_LIST)});
 export const useQuestionDelete = generateMutationHook<questionDelete,questionDeleteVariables>(QUESTION_DELETE,{...getRefetch(QUESTION_FIND_BY_ID,QUESTION_LIST)});
 export const useQuestionUpdate = generateMutationHook<questionUpdate, questionUpdateVariables>(QUESTION_UPDAET,{...getRefetch(QUESTION_FIND_BY_ID,QUESTION_LIST)});

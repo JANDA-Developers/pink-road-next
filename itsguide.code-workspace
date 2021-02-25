@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "..\\its-guide-server"
+		},
+		{
+			"path": "..\\its-guide-backup\\20210224"
 		}
 	],
 	"settings": {

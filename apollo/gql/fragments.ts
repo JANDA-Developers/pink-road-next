@@ -36,15 +36,21 @@ export const F_BOOKING = gql`
         cancelDate
         gender
         age
+        payMethod
         updatedAt
         isDelete
+        leftTime
         adultCount
         kidCount
+        cancelMemo
         babyCount
         totalCount
         message
+        isCancelRequest
+        bookerInclue
         bookingPrice
         status
+        isMember
         memo
         code
         groupCode
@@ -71,6 +77,15 @@ export const F_ITINERARY = gql`
     ${F_FILE}
 `
 
+export const F_REQUEST_HISTORY = gql`
+    fragment FrequestHistory on RequestHistory  {
+        methodType
+        reqType
+        date
+        reason
+    }
+    ${F_FILE}
+`
 
 export const F_PRODUCT = gql`
     fragment Fproduct on Product {
@@ -87,6 +102,7 @@ export const F_PRODUCT = gql`
         endDate
         dateRange
         adminMemo
+        groupCode
         region {
             label
             _id
@@ -99,10 +115,9 @@ export const F_PRODUCT = gql`
             adultCount
             babyCount
             kidsCount
-            completePeople
-            readyPoeple
-            cancelCompletePeople
-            cancelPeople
+            completeBookCount
+            readyBookCount
+            cancelBookCount
         }
         status
         itinerary {
@@ -119,6 +134,7 @@ export const F_PRODUCT = gql`
         startPoint
         maxMember
         minMember
+        requestMemo
         subTitle
         adult_price
         bookingCount
@@ -126,6 +142,7 @@ export const F_PRODUCT = gql`
         compeltePeopleCnt
         baby_price
         isNotice
+        elseReq
         isOpen
         type
         startDate

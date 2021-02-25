@@ -39,7 +39,7 @@ export default PartnerMemberMaster;
 //                 <div className="tab-nav">
 //                     <ul>
 //                         <li><Link href="/master/member"><a>개인회원</a></Link></li>
-//                         <li><Link href="/master/member/busipartner"><a>기업파트너 회원</a></Link></li>
+//                         <li><Link href="/master/member/busipartner"><a>가이드 회원</a></Link></li>
 //                         <li className="on"><Link href="/master/member/partner"><a>개인파트너 회원</a></Link></li>
 //                         <li><Link href="/master/member/signout"><a>탈퇴회원</a></Link></li>
 //                     </ul>

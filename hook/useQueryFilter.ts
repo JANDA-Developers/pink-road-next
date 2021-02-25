@@ -6,6 +6,7 @@ import { ISet } from "../types/interface";
 export interface IUseQueryFilter<F> {
     filter: F;
     setFilter: ISet<F>;
+    doSearch: (target: keyof F, value: any) => void
     setOR: (keys: (keyof F)[], value: string) => void;
     setUniqFilter: <T extends keyof F>(target: T, uniq: (keyof F)[], value: any) => void;
     filterToRange: (key: keyof F) => TRange
@@ -14,7 +15,11 @@ export interface IUseQueryFilter<F> {
     }
 }
 
-export const useQueryFilter = <F>(defaultFilter:F):IUseQueryFilter<F> => {
+export interface IUseQueryFilterOption<F> {
+    uniqSearchKeys?: (keyof F)[]
+}
+
+export const useQueryFilter = <F>(defaultFilter:F, {uniqSearchKeys}:IUseQueryFilterOption<F> = {}):IUseQueryFilter<F> => {
     const [filter,setFilter] = useState(defaultFilter);
 
     //특정 필터키를 range 로 전환
@@ -65,8 +70,8 @@ export const useQueryFilter = <F>(defaultFilter:F):IUseQueryFilter<F> => {
     }
 
     //uniq목록을 사용하여 uniq한 필터를 set함.
-    const setUniqFilter = <T extends keyof F>(target: T, uniq: (keyof F)[], value:F[T]) => {
-        const _value = value ? value : undefined;
+    const setUniqFilter = <T extends keyof F>(target: T, uniq: (keyof F)[] = (uniqSearchKeys || []), value:F[T]) => {
+        const _value = value !== "" as any ? value : undefined;
         const _filter = {
             ...filter
         }
@@ -79,14 +84,16 @@ export const useQueryFilter = <F>(defaultFilter:F):IUseQueryFilter<F> => {
             }
         })
 
+
         setFilter({
             ..._filter
         })
     }
 
-    const foo = {
-        filterToRange,setRange
+    const doSearch = (target: keyof F, value:any) => {
+        setUniqFilter(target, undefined, value)
     }
-    return {filter,setFilter,setUniqFilter,filterToRange,setRange,setOR}
+
+    return {filter,setFilter,setUniqFilter,filterToRange,setRange,setOR, doSearch }
 }
 

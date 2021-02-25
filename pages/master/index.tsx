@@ -330,51 +330,9 @@ export const MsIndex: React.FC<IProp> = () => {
                     </ul>
                 </div>
 
-                <div className="hang div05">
-                    <div className="head">
-                        <h5>개인회원</h5>
-                        <BoardOption filterKey="is_froreginer_eq" setUniqFilter={setIndiFilter} filter={indiUserFilter} li={[{
-                            count: totalIndiMemberCount || 0,
-                            label: "전체",
-                            value: undefined,
-                        }, {
-                            count: koreanMemberCount || 0,
-                            label: "내국인",
-                            value: true,
-                        }, {
-                            count: foreginMemberCount || 0,
-                            label: "외국인",
-                            value: false,
-                        }]} />
-                        <Link href="/master/member"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
-                    </div>
-                    <ul className="table typeB">
-                        <li className="head">
-                            <div className="td01">이름</div>
-                            <div className="td03">주소</div>
-                            <div className="td04">가입날짜</div>
-                        </li>
-                        {indiUsers.map(u =>
-                            <li key={u._id} className="body">
-                                <div className="td01">
-                                    <span>{u.name || "test"}</span>
-                                    <span>{autoHypenPhone(u.phoneNumber)}</span>
-                                </div>
-                                <div className="td02">
-                                    <span>{u.address}</span>
-                                </div>
-                                <div className="td03">
-                                    <span>{yyyymmdd(u.createdAt)}</span>
-                                </div>
-                            </li>
-                        )}
-                    </ul>
-                </div>
-
                 <div className="hang div06">
                     <div className="head">
-<<<<<<< HEAD
-                        <h5>기업파트너회원</h5>
+                        <h5>가이드</h5>
                         <BoardOption filterKey="isVerifiedManager_eq" setUniqFilter={setPartnerBFilter} filter={busiPartnerFilter} li={[{
                             count: busiPartnerBCountMaster || 0,
                             label: "전체",
@@ -388,14 +346,6 @@ export const MsIndex: React.FC<IProp> = () => {
                             label: "미답",
                             value: false,
                         }]} />
-=======
-                        <h5>가이드회원</h5>
-                        <ul className="board_option">
-                            <li className="on"><a href="/">전체<strong>{(unConfimedBusiPartnerCount || 0) + (confimedBusiPartnerCount || 0)}</strong></a></li>
-                            <li><a href="/">승인<strong>{unConfimedBusiPartnerCount}</strong></a></li>
-                            <li><a href="/">미승인<strong>{confimedBusiPartnerCount}</strong></a></li>
-                        </ul>
->>>>>>> origin/잇츠가이드-디자인
                         <Link href="/master/member"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
                     </div>
                     <ul className="table typeC">
@@ -423,51 +373,7 @@ export const MsIndex: React.FC<IProp> = () => {
                     </ul>
                 </div>
 
-                <div className="hang div07">
-                    <div className="head">
-                        <h5>개인파트너회원</h5>
-                        <BoardOption filterKey="isVerifiedManager_eq" setUniqFilter={setPartnerFilter} filter={partnerFilter} li={[{
-                            count: totalPartnerMemberCount || 0,
-                            label: "전체",
-                            value: undefined,
-                        }, {
-                            count: confimedPartnerCount || 0,
-                            label: "승인",
-                            value: true,
-                        }, {
-                            count: unConfimedPartnerCount || 0,
-                            label: "미승인",
-                            value: false,
-                        }]} />
-                        {/* <li ><a >전체<strong>{(confimedPartnerCount || 0) + (unConfimedBusiPartnerCount || 0)}</strong></a></li> */}
-                        {/* <li><a >승인<strong>{confimedPartnerCount}</strong></a></li> */}
-                        {/* <li><a >미승인<strong>{unConfimedBusiPartnerCount}</strong></a></li> */}
-                        <Link href="/master/member"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
-                    </div>
-                    <ul className="table typeC">
-                        <li className="head">
-                            <div className="td01">파트너명/아이디</div>
-                            <div className="td02">가입날짜</div>
-                            <div className="td03">승인</div>
-                        </li>
-                        {parterUsers.map(pu =>
-                            <li key={pu._id} className="body">
-                                <div style={{
-                                    wordBreak: "break-all"
-                                }} className="td01">
-                                    <span>{pu.name}</span>
-                                    <span>{pu.email}</span>
-                                </div>
-                                <div className="td02">
-                                    <span>{yyyymmdd(pu.createdAt)}</span>
-                                </div>
-                                <div className="td03">
-                                    <span>{confirmKr(pu.isVerifiedManager)}</span>
-                                </div>
-                            </li>
-                        )}
-                    </ul>
-                </div>
+
 
                 <div className="hang div08">
                     <div className="head">

@@ -116,7 +116,6 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
 
     return <div id="ProductModal" className="productModal popup_bg_full" >
         {product &&
-<<<<<<< HEAD
             <div className="in_txt master_popup productModal__inWrap">
                 <div className="page productModal__wrap">
                     <div className="productModal__head">
@@ -124,27 +123,6 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                         <a className="close_icon productModal__close" onClick={closeModal("#ProductModal")}>
                             <i className="flaticon-multiply"></i>
                         </a>
-=======
-            <div className="in_txt master_popup">
-                <a className="close_icon" onClick={closeModal("#ProductModal")}>
-                    <i className="flaticon-multiply"></i>
-                </a>
-                <div className="page">
-                    <h3>상품 상세정보</h3>
-                    <div className="info_txt">
-                        <span className="g-number">상품명: <strong>{title}</strong></span>
-                        <span className="g-number">상품번호: <strong>{product.code}</strong></span>
-                        <span className="goods-state1 st01">확정여부: <i>{determinedKr(product.determined)}</i></span>{/* 출발확정/출발미정 */}
-                        <span className="r-day">출발일: <strong>{yyyymmdd(createdAt)}</strong></span>
-                        <span className="goods-state2">상품상태: <strong>{productStatus(status)}</strong></span>
-                        <button onClick={print} className="btn"><i className="flaticon-print mr5"></i>프린터</button>
-                        <Excel
-                            data={getExcelByBookings(bookings)}
-                            element={
-                                <button className="btn mr5"><i className="flaticon-download mr5"></i>엑셀저장</button>
-                            }
-                        />
->>>>>>> origin/잇츠가이드-디자인
                     </div>
                     <div className="productModal__body">
                         <div className="info_txt">
@@ -203,7 +181,6 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                     </div>
                                 </div>
                             </div>
-<<<<<<< HEAD
                             <div className="right_div">
                                 <h4>환불 정보</h4>
                                 <div className="info_table w50">
@@ -211,21 +188,6 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                         <div className="th01">
                                             환불건수
                                 </div>
-=======
-                        </div>
-                    </div>
-                    {isManager &&
-                        <div className="info_page">
-                            <div className="full_div">
-                                <h4>
-                                    가이드 정보
-                        </h4>
-                                <div className="info_table partnerinfo">
-                                    <div className="tr">
-                                        <div className="th01">
-                                            가이드명
-                                    </div>
->>>>>>> origin/잇츠가이드-디자인
                                         <div className="td01">
                                             <span>{cancelCount}</span>
                                         </div>
@@ -235,7 +197,6 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                         <div className="td02">
                                             <span className="red_font">- {autoComma(arraySum(cancelAmt))}원</span>
                                         </div>
-<<<<<<< HEAD
                                     </div>
 
                                 </div>
@@ -263,16 +224,6 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                             </div>
                                             <div className="th03">
                                                 담당자
-=======
-                                        {/* <div className="th03">
-                                            담당자
-                                </div>
-                                        <div className="td03">
-                                            <span>{seller?.busi_name || seller?.name} (<a href="tel:">{autoHypenPhone(seller?.phoneNumber)}</a> )</span>
-                                        </div> */}
-                                        <div className="th04">
-                                            정산계좌
->>>>>>> origin/잇츠가이드-디자인
                                 </div>
                                             <div className="td03">
                                                 <span>{seller?.busi_name || seller?.name} (<a href="tel:">{autoHypenPhone(seller?.phoneNumber)}</a> )</span>

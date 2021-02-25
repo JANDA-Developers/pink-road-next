@@ -51,6 +51,11 @@ export const GET_CONTEXT = gql`
           bankImg {
             ...Ffile
           }
+          products {
+            _id
+            title
+            groupCode
+          }
           bookings {
             ...Fbooking
             seller {
@@ -62,6 +67,18 @@ export const GET_CONTEXT = gql`
               title
             }
           }
+        }
+      }
+      GroupList  {
+        ok
+        error {
+          location
+          severity
+          code
+          message
+        }
+        data {
+          ...Fgroup
         }
       }
       CategoryList {
@@ -79,28 +96,16 @@ export const GET_CONTEXT = gql`
       Homepage {
         ok
         error {
-          location
-          severity
-          code
-          message
-        }
-        data {
-            ...Fhomepage
-        }
+        location
+        severity
+        code
+        message
       }
-      GroupList  {
-        ok
-        error {
-          location
-          severity
-          code
-          message
-        }
-        data {
-          ...Fgroup
-        }
+      data {
+          ...Fhomepage
       }
     }
+  }
   ${F_GROUP}
   ${F_SYSTEMNOTI}
   ${F_HOMEPAGE}

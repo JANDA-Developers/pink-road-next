@@ -26,6 +26,37 @@ export const SIGN_UP = gql`
 `;
 
 
+export const SELLER_LIST_PUBLIC = gql`
+  query sellerListPublic(
+      $sort: [_SellerSort!]
+      $filter: _SellerFilter
+      $pageInput: pageInput!
+  ) {
+    SellerListPublic(
+      sort: $sort
+      pageInput: $pageInput
+      filter: $filter
+    ) {
+      ok
+      error {
+        location
+        severity
+        code
+        message
+      }
+      page {
+        ...Fpage
+      }
+      data  {
+        ...FpublicUserData
+      }
+    }
+  }
+  ${F_PUBLIC_USER}
+  ${F_PAGE}
+`
+
+
 export const RESIGN = gql`
   mutation userResign(
       $_id: String!
@@ -202,11 +233,11 @@ mutation verificationComplete(
         VerificationComplete(verificationId:$verificationId, target:$target,code:$code,payload:$payload) {
             ok
             error {
-              location
-              severity
-              code
-              message
-            }
+      location
+      severity
+      code
+      message
+    }
             data {
                 _id
                 createdAt
@@ -252,35 +283,6 @@ query userList(
 }
 ${F_USER}
 ${F_PAGE}
-`
-export const SELLER_LIST_PUBLIC = gql`
-  query sellerListPublic(
-      $sort: [_SellerSort!]
-      $filter: _SellerFilter
-      $pageInput: pageInput!
-  ) {
-    SellerListPublic(
-      sort: $sort
-      pageInput: $pageInput
-      filter: $filter
-    ) {
-      ok
-      error {
-        location
-        severity
-        code
-        message
-      }
-      page {
-        ...Fpage
-      }
-      data  {
-        ...FpublicUserData
-      }
-    }
-  }
-  ${F_PUBLIC_USER}
-  ${F_PAGE}
 `
 
 export const USER_FIND_BY_ID = gql`
@@ -359,7 +361,7 @@ export const PASSWORD_FIND_BY_PHONE = gql`
         message
       }
       data {
-        resultObj
+      resultObj
       }
   }
 }

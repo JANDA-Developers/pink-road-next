@@ -1,15 +1,14 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import PinkClient from "../apollo/client";
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from "../apollo/gql/mutations";
-import search from "../info/search.json";
 import { pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables } from "../types/api";
 import { ISet, TPageKeys } from "../types/interface";
 import { cloneObject } from "../utils/clone";
 import {  mergeDeepOnlyExsistProperty } from "../utils/merge";
 import { Ipage } from "../utils/page";
 import { getEditUtils, IGetEditUtilsResult } from "../utils/pageEdit";
-import { usePageFindByKey, usePageInfo } from "./usePageInfo";
+import { usePageFindByKey } from "./usePageInfo";
 
 export interface IUsePageEdit<Page = any> extends IGetEditUtilsResult<Page> {
     setPage: ISet<Page>
@@ -37,8 +36,6 @@ export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultP
     // 여기서 state를 사용하는데 구조적 문제가있음 
     //_app에서 state를 사용하는것이 위험함
     // 어떻게든 값을 업데이트 할 필요는 있어보임
-        // console.log(page)
-        // console.log(defaultPage)
     const editUtils = getEditUtils<Page>(editMode, page, setPage,lang);
 
     const [pageInfoCreateMu] = useMutation<pageInfoCreate, pageInfoCreateVariables>(PAGE_INFO_CREATE, {
@@ -70,15 +67,13 @@ export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultP
 
     
     const reset = () => {
-        setPage(pageMerge());
+        setPage(originPage || defaultPage);
     }
 
-    // useEffect(()=>{
-    //     if(originPage) {
-    //         alert("?!?!!");
-    //         setPage(pageMerge())
-    //     }
-    // },[originPage])
+    useEffect(()=>{
+        if(originPage)
+            setPage(pageMerge())
+    },[originPage])
 
     return {...editUtils,reset,page,editMode,setPage, setLang, submitEdit, setEditMode,originPage,pageKey}
 }

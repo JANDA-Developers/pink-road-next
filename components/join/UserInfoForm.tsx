@@ -65,7 +65,7 @@ const UserInfoForm: React.FC = () => {
                     {/* 회원정보:개인 */}
                     <h5>
                         {isIndi && "개인 회원"}
-                        {isPartenerB && "기업파트너 회원"}
+                        {isPartenerB && "가이드 회원"}
                         {isPartner && "개인파트너 회원"}
                         <span className="info_top">
                             <i className="important_icon" />는 필수항목입니다.

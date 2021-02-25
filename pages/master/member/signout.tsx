@@ -50,7 +50,7 @@ export default auth(ALLOW_ADMINS)(CustomerMemberMaster);
 //                 <div className="tab-nav">
 //                     <ul>
 //                         <li><Link href="/master/member"><a>개인회원</a></Link></li>
-//                         <li><Link href="/master/member/busipartner"><a>기업파트너 회원</a></Link></li>
+//                         <li><Link href="/master/member/busipartner"><a>가이드 회원</a></Link></li>
 //                         <li><Link href="/master/member/partner"><a>개인파트너 회원</a></Link></li>
 //                         <li className="on"><Link href="/master/member/signout"><a>탈퇴회원</a></Link></li>
 //                     </ul>
@@ -108,7 +108,7 @@ export default auth(ALLOW_ADMINS)(CustomerMemberMaster);
 //                                     <li className="on"><a href="/">전체<strong>46</strong></a></li>
 //                                     <li><a href="/">개인<strong>23</strong></a></li>
 //                                     <li><a href="/">개인파트너<strong>23</strong></a></li>
-//                                     <li><a href="/">기업파트너<strong>23</strong></a></li>
+//                                     <li><a href="/">가이드<strong>23</strong></a></li>
 //                                 </ul>
 //                             </div>
 //                             <div className="right_div">
@@ -169,7 +169,7 @@ export default auth(ALLOW_ADMINS)(CustomerMemberMaster);
 //                                     <label htmlFor="agree0" />
 //                                 </i>
 //                             </div>
-//                             <div className="td02"><i className="m_title">유형:</i>기업파트너</div>
+//                             <div className="td02"><i className="m_title">유형:</i>가이드</div>
 //                             <div className="td03">(주)투어</div>
 //                             <div className="td04"><a href="mailto:">gogo@gamail.com</a></div>
 //                             <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>
@@ -184,7 +184,7 @@ export default auth(ALLOW_ADMINS)(CustomerMemberMaster);
 //                                     <label htmlFor="agree0" />
 //                                 </i>
 //                             </div>
-//                             <div className="td02"><i className="m_title">유형:</i>기업파트너</div>
+//                             <div className="td02"><i className="m_title">유형:</i>가이드</div>
 //                             <div className="td03">(주)투어</div>
 //                             <div className="td04"><a href="mailto:">gogo@gamail.com</a></div>
 //                             <div className="td05"><i className="m_title">담당자:</i>김김김<br /><a href="tel:">(010-2222-2222)</a></div>

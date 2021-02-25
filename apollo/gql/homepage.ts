@@ -14,6 +14,7 @@ export const F_MODAL = gql`
     title
     priority
     createdAt
+    open
   }
 `
 

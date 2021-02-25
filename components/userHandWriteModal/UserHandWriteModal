@@ -18,7 +18,7 @@ export const UserHandWriteModal: React.FC<IProp> = () => {
                             <div className="td01">
                                 <select className="w30">
                                     <option>개인</option>
-                                    <option>기업파트너</option>
+                                    <option>가이드</option>
                                     <option>개인파트너</option>
                                 </select>
                             </div>

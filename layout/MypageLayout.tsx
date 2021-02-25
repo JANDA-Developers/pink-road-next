@@ -90,14 +90,14 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         <div className="mypage_in w100">
             {isLogin && <ul className="subtop_nav">
                 {isSeller || <li className={isTapOn(undefined)}><Link href="/mypage"><a >회원정보</a></Link></li>}{/* 개인 -*/}
-                <li className={isTapOn("notification")}><Link href="/mypage/notification"><a >알림</a></Link></li>{/* 개인/기업파트너/개인파트너 -*/}
+                <li className={isTapOn("notification")}><Link href="/mypage/notification"><a >알림</a></Link></li>{/* 개인/가이드/개인파트너 -*/}
                 {isSeller || <li className={isTapOn("purchase")}><Link href="/mypage/purchase"><a >구매내역</a></Link></li>}{/* 개인 -*/}
                 {isSeller || <li className={isTapOn("basket")}><Link href="/mypage/basket"><a >장바구니</a></Link></li>}{/* 개인 -*/}
-                <li className={isTapOn("my-board")}><Link href="/mypage/my-board"><a >나의 게시글</a></Link></li>{/* 개인/기업파트너/개인파트너 -*/}
-                {isSeller && <li className={isTapOn("reservation")}><Link href="/mypage/reservation"><a >예약관리</a></Link></li>}{/* 기업파트너/개인파트너 -*/}
-                {isParterB && <li className={isTapOn("goods")}><Link href="/mypage/goods"><a >상품관리</a></Link></li>}{/* 기업파트너 -*/}
+                <li className={isTapOn("my-board")}><Link href="/mypage/my-board"><a >나의 게시글</a></Link></li>{/* 개인/가이드/개인파트너 -*/}
+                {isSeller && <li className={isTapOn("reservation")}><Link href="/mypage/reservation"><a >예약관리</a></Link></li>}{/* 가이드/개인파트너 -*/}
+                {isParterB && <li className={isTapOn("goods")}><Link href="/mypage/plainning"><a >상품관리</a></Link></li>}{/* 가이드 -*/}
                 {isSeller && !isParterB && <li className={isTapOn("plainning")}><Link href="/mypage/plainning"><a >기획관리</a></Link></li>}{/* 개인파트너 -*/}
-                {isSeller && <li className={isTapOn("settlement")}><Link href="/mypage/settlement"><a >매출/정산관리</a></Link></li>}{/* 기업파트너/개인파트너 -*/}
+                {isSeller && <li className={isTapOn("settlement")}><Link href="/mypage/settlement"><a >매출/정산관리</a></Link></li>}{/* 가이드/개인파트너 -*/}
             </ul>
             }
             <div className="w1200">
@@ -115,18 +115,18 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                             <input onChange={handleChangeProfile} ref={hiddenFileInput} hidden type="file" />
                             <span className="name1">
                                 {/* {isParterNonB && <i className="ct_partner">Guide</i>} 개인파트너 Personal Partner -*/}
-                                {isParterB && <i className="ct_guide">Guide</i>}{/* 기업파트너 Corporation Partner -*/}
-                                {isSeller && <span><strong>{myProfile?.nickName}</strong>님 어서오세요 :)</span>}{/*기업파트너/개인파트너*/}
-                                {isSeller && <span className="point"><i>Point</i><strong>{autoComma(settleAvaiableAmount)}</strong>원</span>}{/*기업파트너/개인파트너*/}
+                                {isParterB && <i className="ct_guide">Guide</i>}{/* 가이드 Corporation Partner -*/}
+                                {isSeller && <span><strong>{myProfile?.nickName}</strong>님 어서오세요 :)</span>}{/*가이드/개인파트너*/}
+                                {isSeller && <span className="point"><i>Point</i><strong>{autoComma(settleAvaiableAmount)}</strong>원</span>}{/*가이드/개인파트너*/}
                                 {isSeller || <span className="name2"><i className="ct_family">Family</i><strong>{myProfile?.name}</strong>님 어서오세요 :)</span>}{/*개인*/}
                                 {isSeller || <span className="time"><i>최근 살펴본 여행</i>{Storage?.getLocal("lastProd", "")}</span>}{/*개인*/}
                                 {/* //최근접속시간은 최근에 본 상품으로 변경함 */}
                                 <ul>
-                                    <li><a href="/">알림<i>{items.length}</i></a></li>{/* 개인/기업파트너/개인파트너 -*/}
+                                    <li><a href="/">알림<i>{items.length}</i></a></li>{/* 개인/가이드/개인파트너 -*/}
                                     {isSeller || <li><Link href="/mypage/purchase/"><a >구매<i>{buyTotalCount}</i></a></Link></li>}{/* 개인 -*/}
                                     {isSeller || <li><Link href="/mypage/basket"><a >장바구니<i>{getItemCount()}</i></a></Link></li>}{/* 개인 -*/}
-                                    {isSeller && <li><Link href="/mypage/reservation"><a >예약<i>{totalSalesCount}</i></a></Link></li>}{/* 기업파트너/개인파트너 -*/}
-                                    {isSeller && <li><Link href="/mypage/settlement"><a >정산<i>{settleUnsolvedRequestCount}</i></a></Link></li>}{/* 기업파트너/개인파트너 -*/}
+                                    {isSeller && <li><Link href="/mypage/reservation"><a >예약<i>{totalSalesCount}</i></a></Link></li>}{/* 가이드/개인파트너 -*/}
+                                    {isSeller && <li><Link href="/mypage/settlement"><a >정산<i>{settleUnsolvedRequestCount}</i></a></Link></li>}{/* 가이드/개인파트너 -*/}
                                 </ul>
                             </span>
                         </div>

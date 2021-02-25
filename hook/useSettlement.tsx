@@ -29,3 +29,27 @@ export const useSettlementsReject = generateMutationHook<settlementReject, settl
     },
     ...getRefetch(SETTLEMENT_LIST)
 });
+
+
+
+export const useSettlementController = () => {
+    const [settlementComplete, { loading:completeLoading }] = useSettlementsComplete({
+        onCompleted: ({ SettlementComplete }) => {
+            if (SettlementComplete.ok) alert("정산요청이 완료 되었습니다.");
+        }
+    })
+    const [settlementRject, {loading:rejectLoading}] = useSettlementsReject({
+        onCompleted: ({ SettlementReject }) => {
+            if (SettlementReject.ok) alert("정산 요청이 거절 처리 되었습니다.")
+        }
+    })
+    const [settlementRquest, {loading: requestLoading}] = useSettlementsRequest({
+        onCompleted: ({ SettlementRequest }) => {
+            if (SettlementRequest.ok) alert("정산 요청이 처리되었습니다.")
+        }
+    })
+
+    const totalLoading = completeLoading || rejectLoading || requestLoading;
+
+    return {settlementComplete, settlementRject, settlementRquest, totalLoading}
+}

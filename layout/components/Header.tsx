@@ -280,7 +280,7 @@ export const Header: React.FC<IProp> = () => {
                                     <li><a href="/mypage/basket">리뷰관리</a></li>
                                     <li><a href="/mypage/write">나의 게시글</a></li>
                                     <li><a href="/mypage/reservation">예약관리</a></li>
-                                    <li><a href="/mypage/goods">나의 It's투어</a></li>
+                                    <li><a href="/mypage/plainning">나의 It's투어</a></li>
                                     <li><a href="/mypage/settlement">매출/정산</a></li>
                                 </ul>
                             </li>}
