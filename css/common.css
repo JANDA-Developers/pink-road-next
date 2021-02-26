@@ -184,6 +184,20 @@ select:focus {
         border: 1px solid rgb(170, 170, 170);
         color: #333;
     }
+    .btn.plus {
+        color: #999;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        padding: 0 7px;
+        font-size: 12px;
+        display: inline-block;
+        line-height: 19px;
+        margin: 3px;
+    }
+    .btn.plus:hover {
+       
+        color: #333;
+    }
     .btn.medium {
         color: #999;
         border: 1px solid #cfcfcf;
