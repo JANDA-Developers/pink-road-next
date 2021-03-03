@@ -33,7 +33,7 @@ export const UserModal: React.FC<IProp> = ({ userId }) => {
                 <i className="flaticon-multiply"></i>
             </a>
             <div className="page">
-                <h3>상세정보</h3>
+                <h3>회원 상세정보</h3>
                 <div className="info_txt">
                     <span className="start-day">가입일: {yyyymmdd(item.createdAt)}</span><span>{managerVerifiedKR(item.isVerifiedManager)}</span>
                     {isResigned && <span className="start-day">탈퇴일: {yyyymmdd(item.resignDate)}</span>}

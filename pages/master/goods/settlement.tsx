@@ -98,25 +98,26 @@ export const MsReservationB: React.FC<IProp> = () => {
                                 }} className="option">
                                     <option value={"productName_contain"}>상품명</option>
                                     <option value={"productCode_eq"}>상품번호</option>
-                                    <option value={"sellerName_eq"}>파트너명</option>
+                                    <option value={"sellerName_eq"}>가이드명</option>
                                 </select>}
                         />
+                        <MasterAlignMent
+                            Sort={
+                                <SingleSortSelect {...singleSort} />
+                            }
+                            setViewCount={setViewCount}
+                            viewCount={viewCount}
+                            handleSelectAll={selectAll}
+                            LeftDiv={
+                                <ul className="board_option">
+                                    <li className="on"><a>전체</a></li>
+                                    <li><a>여행</a></li>
+                                    <li><a>체험</a></li>
+                                </ul>
+                            }
+                        />
                     </div>
-                    <MasterAlignMent
-                        Sort={
-                            <SingleSortSelect {...singleSort} />
-                        }
-                        setViewCount={setViewCount}
-                        viewCount={viewCount}
-                        handleSelectAll={selectAll}
-                        LeftDiv={
-                            <ul className="board_option">
-                                <li className="on"><a>전체</a></li>
-                                <li><a>여행</a></li>
-                                <li><a>체험</a></li>
-                            </ul>
-                        }
-                    />
+
                 </div>
                 <div className="master__table">
                     <div className="thead">

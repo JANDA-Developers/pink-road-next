@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const PROD = "https://its.api.stayjanda.cloud:4000";
+=======
+const PROD = "http://api.itsguide.co.kr";
+>>>>>>> 039036beb2521dce217183b74429612a1028b09d
 const LOCAL = "http://localhost:4000";
 export const SERVER = PROD;
 

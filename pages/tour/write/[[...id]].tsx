@@ -182,7 +182,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         } />
         <div className="w1200 con_bottom">
             <div className="write_box">
-                <div className="write_type">
+                {/* <div className="write_type">
                     <div className="title">상품타입</div>
                     <div className="input_form">
                         <span className="category r3">
@@ -199,7 +199,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             </select>
                         </span>
                     </div>
-                </div>
+                </div> */}
                 <div className="write_type">
                     <div className="title">카테고리</div>
                     <div className="input_form">
@@ -217,12 +217,14 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         </span>
                     </div>
                 </div>
+
                 <div className="write_type">
                     <div className="title">제목</div>
                     <div className="input_form">
                         <input id="title" onChange={handleInputChange("title")} value={title} type="text" name="title" className="inputText w100" />
                     </div>
                 </div>
+
                 <div className="write_type">
                     <div className="title">부제목</div>
                     <div className="input_form">

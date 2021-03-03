@@ -114,8 +114,8 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <ViewCount onChange={setViewCount} value={viewCount} />
                             </div>
                         </div>
-                        <div className="master__table">
-                            <div className="th">
+                        <div className="master__table fuction_list_mini">
+                            <div className="thead">
                                 <div className="t01">
                                     <span className="checkbox">
                                         <input checked={isAllSelected} onClick={selectAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
@@ -128,57 +128,59 @@ export const MyReservation: React.FC<IProp> = () => {
                                 <div className="t06">금액</div>
                                 <div className="t07">상태</div>
                             </div>
-                            {items.map(item =>
-                                <div key={item._id} className="td">
-                                    <div className="t01">
-                                        <span onClick={() => { check(item._id) }} className="checkbox">
-                                            <input checked={isChecked(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
-                                            <label htmlFor="agree1" />
-                                        </span>
-                                    </div>
-                                    <div className="t02">
-                                        <div className="align">
-                                            <span className="r-number"><i className="m_title">예약번호:</i>{item.code}</span>
+                            <div className="tbody">
+                                {items.map(item =>
+                                    <div key={item._id} className="td">
+                                        <div className="t01">
+                                            <span onClick={() => { check(item._id) }} className="checkbox">
+                                                <input checked={isChecked(item._id)} type="checkbox" name="agree" id="agree1" title="개별선택" />
+                                                <label htmlFor="agree1" />
+                                            </span>
                                         </div>
-                                    </div>
-                                    <div className="t04">
-                                        <div className="img" style={BG(item?.product?.images?.[0]?.uri || "")} ></div>
-                                        <div className="info goods__info_title">
-                                            <span className="ct">{item.product.title}</span><span className="g-number">상품번호: {item.product.code}</span>
-                                            <strong className="title">{item.product.title}</strong>
-                                            <div className="txt">
-                                                <span className="s-day">출발일: {yyyymmdd(item.product.startDate)}</span>
-                                                <span className="where">출발장소: {item.product.startPoint}</span>
+                                        <div className="t02">
+                                            <div className="align">
+                                                <span className="r-number"><i className="m_title">예약번호:</i>{item.code}</span>
+                                            </div>
+                                        </div>
+                                        <div className="t04">
+                                            <div className="img" style={BG(item?.product?.images?.[0]?.uri || "")} ></div>
+                                            <div className="info goods__info_title">
+                                                <span className="ct">{item.product.title}</span><span className="g-number">상품번호: {item.product.code}</span>
+                                                <strong className="title">{item.product.title}</strong>
+                                                <div className="txt">
+                                                    <span className="s-day">출발일: {yyyymmdd(item.product.startDate)}</span>
+                                                    <span className="where">출발장소: {item.product.startPoint}</span>
 
-                                                <span className="r-day">예약일: {yyyymmdd(item.createdAt)}</span>
+                                                    <span className="r-day">예약일: {yyyymmdd(item.createdAt)}</span>
 
-                                                <span className="goods-state1">확정여부: {productStatus(item.product.status)}({item.product.compeltePeopleCnt}/{item.product.maxMember})</span>
-                                                <span className="goods-state2">상품상태: {productStatus(item.product.status)}</span>
+                                                    <span className="goods-state1">확정여부: {productStatus(item.product.status)}({item.product.compeltePeopleCnt}/{item.product.maxMember})</span>
+                                                    <span className="goods-state2">상품상태: {productStatus(item.product.status)}</span>
 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="t05">
+                                            <div className="align">
+                                                <span className="name"><i className="m_title">예약자:</i>{item.name}</span>
+                                                <span className="ph">{item.phoneNumber}</span>
+                                                <span className="men">예약인원: 총 {item.totalCount}명<br />(성인{item.adultCount}/ {item.kidCount} / 유아{item.babyCount} )</span>
+                                            </div>
+                                        </div>
+                                        <div className="t06">
+                                            <div className="align">
+                                                <strong className="money"><i className="m_title">금액:</i>{autoComma(item.bookingPrice)}원</strong>
+                                                <span className="pay">결제종류: {payMethodToKR(item.payment?.payMethod)}</span>
+                                                <span className="pay-day">결제일: {yyyymmdd(item.payment?.createdAt)}</span>
+                                            </div>
+                                        </div>
+                                        <div className="t07">
+                                            <div className="align">
+                                                <BookingStatusBadge status={item.status!} />
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="t05">
-                                        <div className="align">
-                                            <span className="name"><i className="m_title">예약자:</i>{item.name}</span>
-                                            <span className="ph">{item.phoneNumber}</span>
-                                            <span className="men">예약인원: 총 {item.totalCount}명<br />(성인{item.adultCount}/ {item.kidCount} / 유아{item.babyCount} )</span>
-                                        </div>
-                                    </div>
-                                    <div className="t06">
-                                        <div className="align">
-                                            <strong className="money"><i className="m_title">금액:</i>{autoComma(item.bookingPrice)}원</strong>
-                                            <span className="pay">결제종류: {payMethodToKR(item.payment?.payMethod)}</span>
-                                            <span className="pay-day">결제일: {yyyymmdd(item.payment?.createdAt)}</span>
-                                        </div>
-                                    </div>
-                                    <div className="t07">
-                                        <div className="align">
-                                            <BookingStatusBadge status={item.status!} />
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
                         <Paginater setPage={setPage} pageInfo={pageInfo} />
                     </div>

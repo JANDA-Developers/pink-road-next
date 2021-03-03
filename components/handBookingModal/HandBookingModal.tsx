@@ -128,8 +128,8 @@ export const HandBookingModal: React.FC<IProp> = ({ defaultProductId }) => {
                     <h4>상품 정보</h4>
                     <div className="info_table w100">
                         <div className="tr">
-                            <div className="th01">상품타입</div>
-                            <div className="td01">{item && getTypeTextOfProduct(item.type, item.dateRange)}</div>
+                            {/* <div className="th01">상품타입</div>
+                            <div className="td01">{item && getTypeTextOfProduct(item.type, item.dateRange)}</div> */}
                             <div className="th02">카테고리</div>
                             <div className="td02">{item?.category?.label}</div>
                         </div>

@@ -28,9 +28,9 @@ export const BookingModal: React.FC<IProp> = ({ code }) => {
             <div className="page">
                 <h3>예약 상세정보</h3>
                 <div className="info_txt">
-                    <span className="r-number">예약번호: <i>{booking.code}</i></span>
-                    <span className="r-day">예약일: {yyyymmdd(booking.createdAt)}</span>
-                    {booking.payment && <span className="pay-day">결제일: {yyyymmdd(booking.payment?.createdAt)}</span>}
+                    <span className="r-number">예약번호: <strong>{booking.code}</strong></span>
+                    <span className="r-day">예약일: <strong>{yyyymmdd(booking.createdAt)}</strong></span>
+                    {booking.payment && <span className="pay-day">결제일: <strong>{yyyymmdd(booking.payment?.createdAt)}</strong></span>}
                     <button onClick={print} className="btn"><i className="flaticon-print mr5"></i>프린터</button>
                 </div>
 

@@ -13,13 +13,40 @@ const info = {
         kr: `It's가이드와 함께 지금 떠나세요.`
     },
     m_01_mainBg: {
-        kr: `/its/main_top_bg.jpg`,
+        kr: `/its/main_top_bg4.jpg`,
     },
     m_01_mainLink1: {
-        kr: `It's투어`,
+        kr: `#부산`,
     },
     m_01_mainLink2: {
-        kr: `It's가이드`,
+        kr: `#서울`,
+    },
+    m_01_mainLink3: {
+        kr: `#제주도`,
+    },
+    m_01_mainLink4: {
+        kr: `#강원도`,
+    },
+    m_01_mainLink5: {
+        kr: `#의정부`,
+    },
+    m_01_mainLink6: {
+        kr: `#서해`,
+    },
+    m_01_mainLink7: {
+        kr: `#동해`,
+    },
+    m_01_mainLink8: {
+        kr: `#거제도`,
+    },
+    m_01_mainLink9: {
+        kr: `#포항`,
+    },
+    m_01_mainLink10: {
+        kr: `#지리산`,
+    },
+    m_01_mainLink11: {
+        kr: `전체+`,
     },
     m_01_title2: {
         kr: `가이드를 위한<br/>가이드에 의한<br/>가이드플랫폼`,

@@ -141,7 +141,7 @@ const PolicyPopup: React.FC<IProps> = ({ closePopup }) => {
                 </div>
             </div>
             {/* // Popup:마케팅정보 수신동의 */}
-            {/* Popup:파트너약관 */}
+            {/* Popup:가이드약관 */}
             <div id="Popup07" className="popup_bg" style={{ display: "none" }}>
                 <div className="policyA in_txt">
                     <a className="close_icon">
@@ -153,8 +153,8 @@ const PolicyPopup: React.FC<IProps> = ({ closePopup }) => {
                         />
                     </a>
                     <div className="page">
-                        <h4>파트너약관</h4>
-                        <p>파트너약관파트너약관파트너약관파트너약관파트너약관</p>
+                        <h4>가이드약관</h4>
+                        <p>가이드약관가이드약관가이드약관가이드약관</p>
                     </div>
                 </div>
             </div>

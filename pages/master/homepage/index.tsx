@@ -252,7 +252,7 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="txt"><input onChange={(e) => {
                                         const val = e.currentTarget.value;
                                         set("copyRight", val)
-                                    }} value={copyRight || ""} className="w90" placeholder="Copyright © 2020 PINKROADER Co., Ltd. All rights reserved" type="text" /></div>
+                                    }} value={copyRight || ""} className="w90" placeholder="Copyright © 2021 It's Guide Co., Ltd. All rights reserved" type="text" /></div>
                                 </div>
                             </div>
                         </div>
