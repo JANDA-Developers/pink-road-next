@@ -800,6 +800,7 @@ div.goods_list {
     position: relative;
     display: block;
     width: 100%;
+    overflow: hidden;
 }
     .main_con_box7 .box01 {
         position: relative;
@@ -3110,7 +3111,8 @@ ul.rank_ul {
             background-size: 360%;
             z-index: 2;
             animation: grdAnime 60s infinite linear;
-
+            box-sizing: border-box;
+            padding: 260px 3% 3%;
         }
         
         @keyframes grdAnime {
@@ -3138,8 +3140,8 @@ ul.rank_ul {
         }
 
         .siteInfo_in .top_bg h3 {
-            font-size: 50px;
-            line-height: 60px;
+            font-size: 1.8em;
+            line-height: 150%;
             color: #fff;
             text-align: center;
             z-index: 10;
@@ -3148,8 +3150,8 @@ ul.rank_ul {
 
 
         .siteInfo_in .top_bg p {
-            font-size: 1.9em;
-            line-height: 52px;
+            font-size: 1em;
+            line-height: 100%;
             color: #fff;
             text-align: center;
             z-index: 10;
@@ -3164,30 +3166,30 @@ ul.rank_ul {
         }
 
     .siteInfo_in .con01 {
-        padding: 189px 0 240px;
-        height: 743px;
+        padding: 3% 0;
+        height: 500px;
         background-color: #f5f5f5;
         background-image: url(/its/siteinfo_bg03.jpg);
         background-position: right bottom;
-        background-size: 100%;
+        background-size: 170%;
         background-repeat: no-repeat;
     }
 
     .siteInfo_in .con02 {
-        padding: 86px 0;
+        padding:3% 3%;
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAPElEQVQoU2OMXvPyPwMBwEhIkZsaDwNeRSAFu259wa8I5gqsJsFMwKkIXQFIIUGHoyjCZgKKdfgUgBQCAFVzKemHv4/EAAAAAElFTkSuQmCC) repeat;
     }
 
     .siteInfo_in .con03 {
         position: relative;
-        padding: 400px 0 0;
-        min-height: 1150px;
+        padding: 130px 3% 3%;
+        min-height: 620px;
         box-sizing: border-box;
         text-align: center;
         background-color: #062e4c;
         background-image: url(/its/siteinfo_bg04.jpg);
         background-position: center bottom;
-        background-size: 100%;
+        background-size: 370%;
         background-repeat: no-repeat;
     }
 
@@ -3215,34 +3217,36 @@ ul.rank_ul {
         }
 
             .siteInfo_in .con03 .info_address ul {
-                width: 1200px;
+                width: 100%;
                 margin: 0 auto;
                 text-align: center;
-                height: 130px;
+                height: auto;
             }
 
             .siteInfo_in .con03 .info_address li {
                 position: relative;
-                width: 150px;
-                height: 150px;
-                line-height: 19px;
+                width: 80%;
+                height: auto;
+                line-height: 130%;
                 border-radius: 300px;
                 border: 3px solid #ffffff;
                 text-align: center;
                 display: inline-block;
                 font-size: 15px;
                 color: #ffffff;
-                margin: 0 40px 0;
-                padding: 53px 0 0 0;
+                margin: 0 6% 0;
+                padding: 5%;
                 box-sizing: border-box;
                 font-weight: 600;
                 vertical-align: top;
             }
+       
                 .siteInfo_in .con03 .info_address li:after {
                     position: absolute;
                     content: '';
-                    top: 36%;
-                    right: -59px;
+                    top: 127%;
+                    right: 50%;
+                    margin-right: -15px;
                     width: 30px;
                     height: 30px;
                     display: inline-block;
@@ -3250,6 +3254,7 @@ ul.rank_ul {
                     background-size: 100%;
                     background-repeat: no-repeat;
                     background-position: center;
+                    transform: rotate(90deg);
                 }
 
                 .siteInfo_in .con03 .info_address li:last-child:after {
@@ -3283,7 +3288,7 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con06 {
-        padding: 250px 0;
+        padding: 80px 0 100px;
         text-align: center;
         background-image: url(/its/siteinfo_bg02.jpg);
         background-position: right bottom;
@@ -3308,18 +3313,20 @@ ul.rank_ul {
         width: 100%;
         display: block;
         box-sizing: border-box;
-        padding: 150px 0 0;
+        padding: 17% 0 0;
     }
 
         .siteInfo_in .con02 .top_txt h4 {
             color: #fff;
             font-weight: 600;
-            font-size: 56px;
-            line-height: 100%;
+            font-size: 3em;
+            line-height: 150%;
+            margin-bottom: 0;
         }
 
         .siteInfo_in .con02 .top_txt p {
-            font-size: 18px;
+            font-size: 1.2em;
+            line-height: 100%;
             color: #fff;
             font-weight: 400;
         }
@@ -3328,19 +3335,18 @@ ul.rank_ul {
         position: relative;
         display: block;
         box-sizing: border-box;
-        padding: 35px 0 150px;
+        padding: 35px 0 20%;
         text-align: center;
     }
-
     .siteInfo_in .con02 li {
-        width: 320px;
-        height: 320px;
+        width: 80%;
+        height: auto;
         display: inline-block;
-        margin: 17px;
+        margin: 2%;
         text-align: center;
         color: #ffffff;
-        border-radius: 900px;
-        border: 7px #fff solid;
+        border-radius: 5px;
+        border: 3px #fff solid;
         padding: 10px;
         box-sizing: border-box;
         vertical-align: top;
@@ -3348,9 +3354,7 @@ ul.rank_ul {
     }
 
         .siteInfo_in .con02 li i {
-            display: inline-block;
-            font-size: 55px;
-            margin-top: 44px;
+            display: none;
         }
 
     .siteInfo_in .con02 .svg1 {
@@ -3367,8 +3371,9 @@ ul.rank_ul {
 
     .siteInfo_in .con02 li strong {
         display: block;
-        font-size: 22px;
+        font-size: 1.3em;
         margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     .siteInfo_in .con02 li p {
@@ -3377,13 +3382,14 @@ ul.rank_ul {
         line-height: 20px;
         margin-top: 10px;
     }
+ 
 
 
     .siteInfo_in .con01 h4 {
         text-align: center;
-        font-size: 23px;
+        font-size: 12px;
         line-height: 172%;
-        margin-bottom: 70px;
+        margin-top: 70px;
         font-weight: 500;
         background-color: rgb(255 255 255 / 65%);
         padding: 45px;
@@ -3469,8 +3475,9 @@ ul.rank_ul {
         position: relative;
         display: block;
     }
-
-
+    .siteInfo_in .con01 .w1200{
+       width: 80%;
+    }
         .siteInfo_in .con_block .box {
             position: relative;
             text-align: center;
@@ -3606,23 +3613,23 @@ ul.rank_ul {
         text-align: left;
     }
 
-
-
     .siteInfo_in .con03 h4 {
         text-align: center;
-        font-size: 57px;
-        line-height: 100%;
+        width: 100%;
+        font-size: 2.8em;
+        line-height: 130%;
         color: #ffffff;
         z-index: 2;
         z-index: 28;
         display: block;
         position: relative;
+        margin-bottom: 0;
     }
 
 
     .siteInfo_in .con03 p {
-        font-size: 28px;
-        line-height: 52px;
+        font-size: 1.2em;
+        line-height: 150%;
         color: #ffffff;
         text-align: center;
         z-index: 28;
@@ -3959,14 +3966,14 @@ ul.rank_ul {
         display: block;
         position: relative;
         font-weight: 400;
-        font-size: 36px;
+        font-size: 1.6em;
         line-height: 100%;
         color: #858585;
         margin-bottom: 50px;
     }
 
         .siteInfo_in .con06 h4 strong {
-            font-size: 50px;
+            font-size:1.4em;
             line-height: 160%;
             display: block;
             color: #333333;
@@ -6903,9 +6910,6 @@ i.important_icon {
     padding: 7px 13px;
 }
 
-.selectViewList {
-    padding-top: 13px;
-}
 
     .selectViewList ul.list_ul {
         width: 100%;
@@ -8215,38 +8219,30 @@ i.calendar {
 
 /* news */
 .news_box {
-    padding-top: 63px;
-    padding-bottom: 100px;
-    box-sizing: border-box;
-}
-
-    .news_box .subtop_nav {
-        top: -39px
-    }
-/* culture */
-.culture_box {
-    padding-top: 63px;
-    padding-bottom: 100px;
-    box-sizing: border-box;
-}
-
-    .culture_box .subtop_nav {
-        top: -39px
-    }
-/* rule */
-.rule_box {
-    margin-top: 60px !important;
     margin-bottom: 100px !important;
     box-sizing: border-box;
-    padding: 0 3%;
+    padding: 5% 3%;
+}
+
+/* culture */
+.culture_box {
+    margin-bottom: 100px !important;
+    box-sizing: border-box;
+    padding: 5% 3%;
+}
+
+/* rule */
+.rule_box {
+    margin-bottom: 100px !important;
+    box-sizing: border-box;
+    padding: 5% 3%;
 }
 
 /* privacy */
 .privacy_box {
-    margin-top: 60px !important;
     margin-bottom: 100px !important;
     box-sizing: border-box;
-    padding: 0 3%;
+    padding: 5% 3%;
 }
 .privacy_box ul.txtul {
     position:relative;
@@ -8263,456 +8259,23 @@ i.calendar {
 
 /*krterms */
 .krterms_box {
-    margin-top: 60px !important;
     margin-bottom: 100px !important;
     box-sizing: border-box;
-    padding: 0 3%;
+    padding: 5% 3%;
 }
 /*electronterms_box */
 .electronterms_box {
-    margin-top: 60px !important;
     margin-bottom: 100px !important;
-    padding: 0 3%;
     box-sizing: border-box;
+    padding: 5% 3%;
 }
 /*itstour_box */
 .itstour_box {
-    margin-top: 60px !important;
     margin-bottom: 100px !important;
-    padding: 0 3%;
     box-sizing: border-box;
+    padding: 5% 3%;
 }
 
-
-/* portfolio_in */
-/* .portfolio_in .top_bg {
-    position: relative;
-    display: block;
-    height: 550px;
-    width: 100%;
-    background-image: url(/img/portfolio_top_bg.jpg);
-    background-position: left bottom;
-    background-repeat: no-repeat;
-    background-size: 360%;
-    z-index: 2;
-}
-
-@keyframes grdAnime {
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: 100% 0;
-    }
-}
-
-.portfolio_in .top_bg {
-    animation: grdAnime 60s infinite linear;
-} */
-
-    /* .portfolio_in .top_bg:before {
-        top: 0;
-        left: 0;
-        position: absolute;
-        background-size: 100%;
-        opacity: 0.5 !important;
-        filter: alpha(opacity=50);
-        z-index: 0;
-        content: "";
-        width: 100%;
-        height: 100%;
-        background-color: #000000;
-    }
-
-    .portfolio_in .top_bg .w1200 {
-        z-index: 10;
-        position: relative;
-    }
-
-
-    .portfolio_in .top_bg h3 {
-        color: #fff;
-        display: block;
-        font-size: 44px;
-        text-align: center;
-        padding-top: 210px;
-        font-weight: 600;
-        z-index: 10;
-    }
-
-    .portfolio_in .top_bg span {
-        color: #c7c7c7;
-        display: block;
-        font-size: 27px;
-        text-align: center;
-        z-index: 10;
-    }
-
-.portfolio_in .con_block {
-    position: relative;
-    display: block;
-}
-
-.portfolio_in .con02 {
-    padding: 250px 3% 80px;
-    box-sizing: border-box;
-}
-
-    .portfolio_in .con02::after {
-        content: '';
-        display: inline-block;
-        width: 2px;
-        height: 150px;
-        background-color: #7d7d7d;
-        position: absolute;
-        left: 50%;
-        top: 65px;
-    }
-
-    .portfolio_in .con02 ul {
-        position: relative;
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding-top: 70px;
-    }
-
-    .portfolio_in .con02 h4 {
-        font-size: 16px;
-        text-align: center;
-        width: 100%;
-        position: relative;
-        display: block;
-        line-height: 34px;
-        font-weight: 600;
-    }
-
-        .portfolio_in .con02 h4 strong {
-            font-size: 33px;
-            text-align: center;
-            width: 100%;
-            position: relative;
-            display: block;
-        }
-
-    .portfolio_in .con02 ul li {
-        display: inline-block;
-        width: 45%;
-        margin: 1% 1% 5%;
-    }
-
-        .portfolio_in .con02 ul li .img {
-            display: inline-block;
-            width: 170px;
-            height: 100px;
-            border-radius: 10px;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 50px;
-            margin-bottom: 10px;
-            background-color: #949494;
-        }
-
-    .portfolio_in .con02 li.img01 .img {
-        background-size: 55px;
-        background-image: url('/img/svg/work_icon_04.svg');
-    }
-
-    .portfolio_in .con02 li.img02 .img {
-        background-size: 50px;
-        background-image: url('/img/svg/work_icon_02.svg');
-    }
-
-    .portfolio_in .con02 li.img03 .img {
-        background-size: 50px;
-        background-image: url('/img/svg/work_icon_03.svg');
-    }
-
-    .portfolio_in .con02 li.img04 .img {
-        background-size: 50px;
-        background-image: url('/img/svg/work_icon_01.svg');
-    }
-
-    .portfolio_in .con02 ul li h5 {
-        font-size: 16px;
-        font-weight: 600;
-        color: #555;
-    }
-
-    .portfolio_in .con02 ul li span {
-        font-size: 14px;
-    }
-
-.portfolio_in .con03 {
-    padding: 100px 0 150px;
-    text-align: center;
-    box-sizing: border-box;
-    background-color: #a6a6a6;
-    background-image: url(/img/brand_bg2.jpg);
-    background-size: 150%;
-    background-position: center center;
-}
-
-    .portfolio_in .con03 h4 {
-        font-size: 62px;
-        font-weight: 400;
-        color: #fff;
-        letter-spacing: 2px;
-    }
-
-    .portfolio_in .con03 span {
-        color: #bcbcbc;
-        line-height: 42px;
-    }
-
-.portfolio_in .con04 {
-    min-height: 590px;
-    padding: 0 3% 120px;
-    box-sizing: border-box;
-    top: -39px;
-}
-
-    .portfolio_in .con04 .photo_tap_div {
-        display: block;
-        text-align: center;
-        position: relative;
-        margin: 0 auto;
-    }
-
-        .portfolio_in .con04 .photo_tap_div input[type=radio] {
-            position: absolute;
-            z-index: 1000;
-            left: 42px;
-            top: -9px;
-            opacity: 0;
-            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-            filter: alpha(opacity=0);
-            cursor: pointer;
-        }
-
-
-        .portfolio_in .con04 .photo_tap_div .photo_tap {
-            display: inline-block;
-            line-height: 33px;
-            height: 35px;
-            margin: 3px;
-            padding: 0 12px;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            color: #8e8e8e;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 200px;
-            cursor: pointer;
-            position: relative;
-        }
-
-            .portfolio_in .con04 .photo_tap_div .photo_tap:hover {
-                color: #fff;
-            }
-
-        .portfolio_in .con04 .photo_tap_div .tab-selector-1:checked + .tab-label-1 {
-            color: #fff;
-            z-index: 61;
-        }
-
-            .portfolio_in .con04 .photo_tap_div .tab-selector-1:checked + .tab-label-1:after {
-                content: '';
-                width: 80%;
-                height: 5px;
-                background-color: #5bace9;
-                position: absolute;
-                bottom: 0;
-                left: 10%;
-                display: inline-block;
-            }
-
-    .portfolio_in .con04 .portfolio_box {
-        position: absolute;
-        top: 85px;
-        width: 100%;
-        box-sizing: border-box;
-        transition: .3s ease;
-        z-index: 1;
-        opacity: 0;
-        transition: opacity linear 0.1s;
-        margin-bottom: 50px;
-        padding-bottom: 30px;
-    }
-
-    .portfolio_in .con04 .photo_tap_div input.tab-selector-1:checked ~ #portfolio_box_1,
-    .portfolio_in .con04 .photo_tap_div input.tab-selector-2:checked ~ #portfolio_box_2,
-    .portfolio_in .con04 .photo_tap_div input.tab-selector-3:checked ~ #portfolio_box_3,
-    .portfolio_in .con04 .photo_tap_div input.tab-selector-4:checked ~ #portfolio_box_4,
-    .portfolio_in .con04 .photo_tap_div input.tab-selector-5:checked ~ #portfolio_box_5,
-    .portfolio_in .con04 .photo_tap_div input.tab-selector-6:checked ~ #portfolio_box_6,
-    .portfolio_in .con04 .photo_tap_div input.tab-selector-7:checked ~ #portfolio_box_7 {
-        z-index: 60;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-        filter: alpha(opacity=100);
-        opacity: 1;
-        -webkit-transition: opacity ease-out 0.2s 0.1s;
-        -moz-transition: opacity ease-out 0.2s 0.1s;
-        -o-transition: opacity ease-out 0.2s 0.1s;
-        -ms-transition: opacity ease-out 0.2s 0.1s;
-        transition: opacity ease-out 0.2s 0.1s;
-        position: relative;
-    }
-
-    .portfolio_in .con04 .portfolio_box ul {
-        position: relative;
-        width: 100%;
-        text-align: left;
-        margin-bottom: 50px;
-    }
-
-        .portfolio_in .con04 .portfolio_box ul li {
-            position: relative;
-            width: 100%;
-            height: 178px;
-            margin: 1% 0;
-            display: inline-block;
-            background-color: #000000;
-            vertical-align: top;
-            cursor: pointer;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 101%;
-            box-shadow: 2px 2px 8px #0000001f;
-        }
-
-            .portfolio_in .con04 .portfolio_box ul li:before {
-                top: 0;
-                left: 0;
-                position: absolute;
-                background-color: #000;
-                opacity: 0 !important;
-                filter: alpha(opacity=50);
-                z-index: 0;
-                content: "";
-                width: 100%;
-                height: 100%;
-            }
-
-            .portfolio_in .con04 .portfolio_box ul li:hover:before {
-                opacity: 0.6 !important;
-            }
-
-    .portfolio_in .con04 .portfolio_box .box {
-        display: none;
-        position: relative;
-        padding: 70px 20px 15px;
-        box-sizing: border-box;
-        width: 100%;
-        height: 100%;
-        z-index: 10;
-        text-align: center;
-    }
-
-    .portfolio_in .con04 .portfolio_box li:hover .box {
-        display: block;
-    }
-
-    .portfolio_in .con04 .portfolio_box .category {
-        font-size: 11px;
-        padding: 3px;
-        border: 1px solid #fff;
-        display: inline-block;
-        margin-right: 5px;
-        margin-bottom: 5px;
-        font-style: unset;
-        color: #ffffff;
-    }
-
-    .portfolio_in .con04 .portfolio_box .title {
-        font-size: 18px;
-        display: block;
-        color: #ffffff;
-        line-height: 150%;
-    }
-
-    .portfolio_in .con04 .portfolio_box .txt {
-        font-size: 14px;
-        display: block;
-        color: #ffffff;
-    }
-
-.portfolio_in .con05 {
-    min-height: 300px;
-    padding: 0 3% 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    position: relative;
-    display: flex;
-    background-color: #333;
-    background-image: url(/img/pr_img_09.jpg);
-    background-position: center 730px;
-    background-size: 100%;
-}
-
-    .portfolio_in .con05:before {
-        top: 0;
-        left: 0;
-        position: absolute;
-        background-size: 100%;
-        opacity: 0.6 !important;
-        filter: alpha(opacity=50);
-        z-index: 0;
-        content: "";
-        width: 100%;
-        height: 100%;
-        background-color: #000000;
-    }
-
-    .portfolio_in .con05 .link {
-        display: inline-block;
-        position: relative;
-        width: 80%;
-        height: 45px;
-        top: 15px;
-        margin-top: 0;
-        right: -10px;
-        border-radius: 20px;
-        background-color: #ffffff;
-        text-align: center;
-        padding-top: 11px;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        font-weight: 600;
-        font-size: 14px;
-        -webkit-box-shadow: 2px 2px 2px #0000001c;
-        box-shadow: 2px 2px 2px #0000001c;
-    }
-
-        .portfolio_in .con05 .link br {
-            display: none;
-        }
-
-        .portfolio_in .con05 .link:hover {
-            background-color: #5bace9;
-            color: #fff;
-        }
-
-    .portfolio_in .con05 .txt {
-        color: #fff;
-        position: relative;
-        top: 0;
-        padding-top: 75px;
-    }
-
-        .portfolio_in .con05 .txt h4 {
-            color: #fff;
-            font-size: 29px;
-            text-align: center;
-        }
-
-        .portfolio_in .con05 .txt span {
-            color: #f5f5f5;
-            font-size: 14px;
-            text-align: center;
-            display: block;
-        } */
 
 /* tour */
 .tour_box {
@@ -9191,10 +8754,6 @@ i.calendar {
         font-weight: 400;
     }
 
-    .siteInfo_in .con02 {
-        background-size: 150%;
-    }
-
         .siteInfo_in .con02 li br {
             display: inline-block;
         }
@@ -9394,6 +8953,10 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+
+.selectViewList {
+    padding-top: 13px;
+}
     .sign_in .inner{
         padding: 0;
     }
@@ -9511,10 +9074,10 @@ i.calendar {
           
 
     .siteInfo_in .top_bg {
-        height: 460px;
-        padding: 370px 0 0;
+        height: 750px;
+        padding: 310px 0 0;
         background-position: center;
-        background-size: 200%;
+        background-size: 150%;
     }
 
         .siteInfo_in .top_bg h3 {
@@ -9526,10 +9089,18 @@ i.calendar {
             font-size: 36px;
             line-height: 52px;
         }
-
+        .siteInfo_in .con01 .w1200{
+            width: 70%;
+            margin: 0 auto;
+        }
+        .siteInfo_in .con01 h4{
+            font-size: 15px;
+            margin-top: 0;
+        }
     .siteInfo_in .con01 {
         padding: 200px 0 240px;
         height: 493px;
+        background-size: 110%;
     }
 
         .siteInfo_in .con01 .haf {
@@ -9563,10 +9134,32 @@ i.calendar {
             width: 300px;
             height: 300px;
             margin: 15px;
+            border-radius: 500px;
             border: 7px #fff solid;
             padding: 10px;
         }
-
+        .siteInfo_in .con06 {
+            padding: 250px 0;
+            text-align: center;
+            background-image: url(/its/siteinfo_bg02.jpg);
+            background-position: right bottom;
+            background-size: 100%;
+        }
+        .siteInfo_in .con06 h4 {
+            display: block;
+            position: relative;
+            font-weight: 400;
+            font-size: 36px;
+            line-height: 100%;
+            color: #858585;
+            margin-bottom: 50px;
+        }
+        .siteInfo_in .con06 h4 strong {
+            font-size: 50px;
+            line-height: 160%;
+            display: block;
+            color: #333333;
+        }
     .siteInfo_in .con03 {
         padding: 182px 0 0;
         min-height: 703px;
@@ -10224,6 +9817,60 @@ i.calendar {
 }
 
 @media (min-width: 1200px) {
+    .siteInfo_in .con01 {
+        padding: 150px 0 380px;
+        height: 493px;
+        background-size: 110%;
+    }
+    .siteInfo_in .con02 li i {
+        display: inline-block;
+        font-size: 55px;
+        margin-top: 44px;
+    }
+    .siteInfo_in .con02 li strong {
+        display: block;
+        font-size: 22px;
+        margin-top: 10px;
+    }
+
+    .siteInfo_in .con03 .info_address li:after {
+        position: absolute;
+        content: '';
+        top: 55px;
+        right: -55px;
+        margin-right: 0;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        background-image: url(/img/svg/join_arr_right.svg);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: rotate(0deg);
+    }
+    .siteInfo_in .con03 .info_address li {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        line-height: 19px;
+        border-radius: 300px;
+        border: 3px solid #ffffff;
+        text-align: center;
+        display: inline-block;
+        font-size: 15px;
+        color: #ffffff;
+        margin: 0 40px 0;
+        padding: 53px 0 0 0;
+        box-sizing: border-box;
+        font-weight: 600;
+        vertical-align: top;
+    }
+    .siteInfo_in .con03 .info_address ul {
+        width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        height: 130px;
+    }
     .main_con_box2 {
         padding: 0;
     }
@@ -10668,6 +10315,23 @@ i.calendar {
    
 }
 @media (max-width: 767px) {
+    .header .all_menu_btn{
+        padding-left: 0;
+    }
+    .siteInfo_in .con02 li br {
+        display: none;
+    }
+    .siteInfo_in .con03 .info_address li br {
+        display: none;
+     }
+    div.alignment .view_icon{
+        display: none !important;
+    }
+    .announce_box{
+        margin-bottom: 100px !important;
+        box-sizing: border-box;
+        padding: 5% 3%;
+    }
     .guide_box .guide_content .con01 li {
         width: 50px;
         height: 50px;

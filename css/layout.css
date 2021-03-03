@@ -2983,7 +2983,8 @@ i.icon_plus {
 
     .search_in .search_box .check {
         position: relative;
-        display: block;
+        display: inline-block;
+        width: auto;
         background: #fff;
         border: 1px solid #ccc;
         color: #777;
