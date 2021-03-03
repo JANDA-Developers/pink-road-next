@@ -49,10 +49,10 @@ export default auth(ALLOW_ADMINS)(CustomerMemberMaster);
 //             <div className="in_content">
 //                 <div className="tab-nav">
 //                     <ul>
-//                         <li><Link href="/master/member"><a>개인회원</a></Link></li>
+//                         <li><Link href="/master/member/busipartner"><a>개인회원</a></Link></li>
 //                         <li><Link href="/master/member/busipartner"><a>가이드 회원</a></Link></li>
-//                         <li><Link href="/master/member/partner"><a>개인파트너 회원</a></Link></li>
-//                         <li className="on"><Link href="/master/member/signout"><a>탈퇴회원</a></Link></li>
+//                         <li><Link href="/master/member/busipartner/partner"><a>가이드 회원</a></Link></li>
+//                         <li className="on"><Link href="/master/member/busipartner/signout"><a>탈퇴회원</a></Link></li>
 //                     </ul>
 //                 </div>
 //                 <div className="con withdrawal">
@@ -89,7 +89,7 @@ export default auth(ALLOW_ADMINS)(CustomerMemberMaster);
 //                                 <select className="option">
 //                                     <option>전체</option>
 //                                     <option>이름</option>
-//                                     <option>파트너명</option>
+//                                     <option>가이드명</option>
 //                                     <option>아이디</option>
 //                                     <option>연락처</option>
 //                                 </select>
@@ -107,7 +107,7 @@ export default auth(ALLOW_ADMINS)(CustomerMemberMaster);
 //                                 <ul className="board_option">
 //                                     <li className="on"><a href="/">전체<strong>46</strong></a></li>
 //                                     <li><a href="/">개인<strong>23</strong></a></li>
-//                                     <li><a href="/">개인파트너<strong>23</strong></a></li>
+//                                     <li><a href="/">가이드<strong>23</strong></a></li>
 //                                     <li><a href="/">가이드<strong>23</strong></a></li>
 //                                 </ul>
 //                             </div>
@@ -139,7 +139,7 @@ export default auth(ALLOW_ADMINS)(CustomerMemberMaster);
 //                                 </i>
 //                             </div>
 //                             <div className="td02">유형</div>
-//                             <div className="td03">이름(파트너명)</div>
+//                             <div className="td03">이름(가이드명)</div>
 //                             <div className="td04">아이디</div>
 //                             <div className="td05">담당자</div>
 //                             <div className="td06">탈퇴일</div>

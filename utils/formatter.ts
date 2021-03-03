@@ -124,3 +124,8 @@ export const card_hypen = (value: string = '') => {
   }
 };
 
+
+export const removeSpecialChar = (str: string) => {
+  const test = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+  return str.replace(test, '');
+};

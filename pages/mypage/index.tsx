@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { MypageLayout } from 'layout/MypageLayout';
 import { AppContext } from '../_app';
 import { getItemCount } from '../../utils/Storage';
-import { arraySum } from '../../utils/math';
 import { GENDER, UserRole } from '../../types/api';
-import { autoHypenPhone, cc_format } from "../../utils/formatter";
+import { autoHypenPhone, cc_format, IselectedOption } from "../../utils/formatter";
 import { useMyProfile } from '../../hook/useMyProfile';
 import { auth } from '../../utils/with';
 import { ALLOW_LOGINED } from '../../types/const';
@@ -19,7 +18,8 @@ import { usePasswordChange, useUserResign, useUserUpdate } from '../../hook/useU
 import { ResignModal } from '../../components/resign/ResignModal';
 import { isPassword } from '../../utils/validation';
 import { Validater } from '../../utils/validate';
-import { Prompt, SubmitPsswordModal } from '../../components/promptModal/Prompt';
+import { SubmitPsswordModal } from '../../components/promptModal/Prompt';
+import { KeywardSelecter } from '../../components/keywardSelecter/KeywardSelecter';
 
 let SEND_LIMIT = 3;
 interface IProp { }
@@ -31,6 +31,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
         "countOfExpBooking",
         "todayBookingCount"
     ]);
+
     const [userUpdate] = useUserUpdate({
         refetchQueries: [getOperationName(GET_CONTEXT) || ""],
         onCompleted: ({ UserUpdate }) => {
@@ -47,10 +48,10 @@ export const MyPageProfile: React.FC<IProp> = () => {
             }
         }
     });
-
     const { salesTotalCount, productRegistCount } = useCustomCount(["productRegistCount", "salesTotalCount"])
     const [resign] = useUserResign();
-    const { myProfile: defaultProfile, role, isAdmin } = useContext(AppContext);
+
+    const { myProfile: defaultProfile, role, isManager, categoriesMap } = useContext(AppContext);
     const { code, setCode } = useVerification();
     const [nextPhoneNum, setNextPhoneNum] = useState("");
 
@@ -79,6 +80,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
         busi_address,
         gender,
         is_froreginer,
+        keywards,
         is_priv_corper,
         account_number } = profile;
     const {
@@ -192,6 +194,13 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const isPartner = state === UserRole.partner
     const isBuyer = state === UserRole.individual;
     const isSeller = isPartnerB || isPartner;
+
+
+    const filteredKeywards = categoriesMap.GUIDE_KEYWARD.filter(key => keywards.includes(key._id));
+    const keywardsOps: IselectedOption[] = filteredKeywards.map(key => ({
+        _id: key._id,
+        label: key.label
+    }))
 
     return <MypageLayout >
         <div className="in">
@@ -395,13 +404,13 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 {isSeller && <div className="box2">
                     <div className="box_left">
                         <div className="title">
-                            <h5>{isPartnerB ? "기업정보" : "개인파트너정보"}</h5>
+                            <h5>{isPartnerB ? "가이드정보" : "가이드정보"}</h5>
                         </div>
                     </div>
                     <div className="box_right">
                         <ul>
                             {isPartnerB && <li>
-                                <div className="title">파트너명(회사명)</div>
+                                <div className="title">가이드명</div>
                                 <div className="txt">{busi_name}</div>
                             </li>}
                             {isPartnerB && <li>
@@ -488,6 +497,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 </div>
                                 {/* 변경시 변경아이콘 눌러 popup띄워서 핸드폰번호 인증절차 거치게됨 */}
                             </li>
+
                             <li>
                                 <div className="title">사업자등록증</div>
                                 <div className="txt">
@@ -547,6 +557,20 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 <div className="box3">
                     <div className="box_left">
                         <div className="title">
+                            <h5>가이드 키워드</h5>
+                        </div>
+                    </div>
+                    <div className="box_right">
+                        <KeywardSelecter className="mypage__keywards" value={keywardsOps} handleChange={(keywards) => {
+                            const keyIds = keywards.map(keyward => keyward._id);
+                            profile.keywards = keyIds;
+                            setProfile({ ...profile })
+                        }} />
+                    </div>
+                </div>
+                <div className="box3">
+                    <div className="box_left">
+                        <div className="title">
                             <h5>기타정보</h5>
                         </div>
                     </div>
@@ -577,6 +601,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                         </ul>
                     </div>
                 </div>
+
                 <div className="fin ifMobile">
                     <div className="float_left">
                         <button onClick={handleUpdate} type="submit" className="btn medium">

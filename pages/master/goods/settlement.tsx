@@ -101,8 +101,8 @@ export const MasterSettlement: React.FC<IProp> = () => {
                                 }} className="option">
                                     <option value={"exField__title_contains" as TsearchType}>상품명</option>
                                     <option value={"exField__code_eq" as TsearchType}>상품번호</option>
-                                    <option value={"exField__sellerName_eq" as TsearchType}>파트너명</option>
-                                    <option value={"exField__sellerNickName_eq" as TsearchType}>파트너 닉네임</option>
+                                    <option value={"exField__sellerName_eq" as TsearchType}>가이드명</option>
+                                    <option value={"exField__sellerNickName_eq" as TsearchType}>가이드 닉네임</option>
                                 </select>}
                         />
                         <MasterAlignMent

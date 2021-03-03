@@ -678,6 +678,12 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "GUIDE_KEYWARD",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "QNA",
             "description": null,
             "isDeprecated": false,
@@ -685,18 +691,6 @@
           },
           {
             "name": "QUESTION",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "PORTPOLIO",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EXPERIENCE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -8352,6 +8346,38 @@
             "deprecationReason": null
           },
           {
+            "name": "productCount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookingCount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "bookings",
             "description": null,
             "args": [],
@@ -14800,7 +14826,7 @@
           },
           {
             "name": "busiPartnerBCountMaster",
-            "description": "마스터용::가입된 기업 파트너 인원수",
+            "description": "마스터용::가입된 가이드 인원수",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -14816,7 +14842,7 @@
           },
           {
             "name": "busiPartnerCountMaster",
-            "description": "마스터용::가입된 일반 파트너 인원수",
+            "description": "마스터용::가입된 가이드 인원수",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -15008,7 +15034,7 @@
           },
           {
             "name": "totalPartnerMemberCount",
-            "description": "마스터용::파트너 회원 수",
+            "description": "마스터용::가이드 회원 수",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -15056,7 +15082,7 @@
           },
           {
             "name": "confimedPartnerCount",
-            "description": "마스터용::파트너 유저증 확인안된 유저수",
+            "description": "마스터용::가이드 유저증 확인안된 유저수",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -15072,7 +15098,7 @@
           },
           {
             "name": "unConfimedPartnerCount",
-            "description": "마스터용::파트너 유저증 확인안된 유저수",
+            "description": "마스터용::가이드 유저증 확인안된 유저수",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -15088,7 +15114,7 @@
           },
           {
             "name": "confimedBusiPartnerCount",
-            "description": "마스터용::기업 파트너 유저증 승인 유저수",
+            "description": "마스터용::가이드 유저증 승인 유저수",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -15104,7 +15130,7 @@
           },
           {
             "name": "unConfimedBusiPartnerCount",
-            "description": "마스터용::기업 파트너 유저증 미승인 유저수",
+            "description": "마스터용::가이드 유저증 미승인 유저수",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -20519,6 +20545,38 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "productCount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookingCount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -20528,7 +20586,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "SellerFindByEmailPublicResponse",
+        "name": "SellerFindByKeyPublicResponse",
         "description": null,
         "fields": [
           {
@@ -20567,153 +20625,6 @@
               "kind": "OBJECT",
               "name": "publicSellerData",
               "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "publicUserData",
-        "description": null,
-        "fields": [
-          {
-            "name": "_id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "email",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "zoneinfo",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Zoneinfo",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "gender",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "GENDER",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "keywards",
-            "description": "판매자에 대한 키워드",
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "nickName",
-            "description": "닉네임 유니크",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "profileImg",
-            "description": "프로필 사진",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "File",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "products",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Product",
-                    "ofType": null
-                  }
-                }
-              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -20788,7 +20699,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "publicUserData",
+                    "name": "publicSellerData",
                     "ofType": null
                   }
                 }
@@ -36573,6 +36484,24 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "keywards",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -39065,11 +38994,25 @@
             "deprecationReason": null
           },
           {
-            "name": "SellerFindByEmailPublic",
+            "name": "SellerFindByKeyPublic",
             "description": null,
             "args": [
               {
-                "name": "email",
+                "name": "value",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "key",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -39088,7 +39031,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "SellerFindByEmailPublicResponse",
+                "name": "SellerFindByKeyPublicResponse",
                 "ofType": null
               }
             },
@@ -40234,6 +40177,18 @@
             "deprecationReason": null
           },
           {
+            "name": "profileImg_desc",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "profileImg_asc",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "createdAt_desc",
             "description": null,
             "isDeprecated": false,
@@ -40276,6 +40231,18 @@
           },
           {
             "name": "name_asc",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "profileImg_desc",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "profileImg_asc",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

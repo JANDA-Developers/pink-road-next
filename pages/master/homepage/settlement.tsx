@@ -96,7 +96,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                         </div>
 
                         <div className="block_box">
-                            <h5>개인파트너 - 추가금액<button onClick={handleAddPolicy(TargetStatus.PERSONAL)} className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
+                            <h5>가이드 - 추가금액<button onClick={handleAddPolicy(TargetStatus.PERSONAL)} className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
                             {(addtionalFees || []).map((bpp, index) => {
                                 if (bpp.target !== TargetStatus.PERSONAL) return null;
                                 return <AdditionFeePolicyBlock onDelete={handleDelete(index)} addtionPolicy={bpp} onChange={handleAddtionFeeChange(bpp, index)} key={"indiPartner" + index} />
@@ -125,7 +125,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                         </div>
 
                         <div className="block_box">
-                            <h5>개인파트너 - 추가금액<button className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
+                            <h5>가이드 - 추가금액<button className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
                             <div className="tbody">
                                 <div className="t01">
                                     <div className="title">추가항목1</div>

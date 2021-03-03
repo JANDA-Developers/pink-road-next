@@ -247,7 +247,7 @@ const FormPartnerCor: React.FC<TForm> = ({ openPopup, handleJoinProcess }) => {
           />
         </div>
         <hr />
-        <h4>기업정보</h4>
+        <h4>가이드정보</h4>
         <div className="ph_wrap">
           <label>
             <i className="important_icon" />

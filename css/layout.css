@@ -63,7 +63,7 @@ i.tooltip{
 
 #setting_link {
     position: fixed;
-    display: inline-block;
+    display: flex;
     align-items: center;
     bottom: 20px;
     right: 20px;

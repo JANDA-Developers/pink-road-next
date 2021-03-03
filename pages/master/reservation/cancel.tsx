@@ -130,7 +130,7 @@ export default auth(ALLOW_ADMINS)(MsReservationMain);
 //                 </div>
 //                 <div className="t02">예약번호/결제일/유형</div>
 //                 <div className="t03">상품정보</div>
-//                 <div className="t04">예약자/파트너명</div>
+//                 <div className="t04">예약자/가이드명</div>
 //                 <div className="t05">금액</div>
 //                 <div className="t06">상태</div>
 //                 <div className="t07">관리</div>
@@ -164,7 +164,7 @@ export default auth(ALLOW_ADMINS)(MsReservationMain);
 //                 <div className="t04">
 //                     <div className="align">
 //                         <strong className="name"><i className="m_title">예약자명:</i>홍언니</strong>
-//                         <span className="patner-name"><i className="m_title">파트너명:</i>( (주)하나하나 )</span>
+//                         <span className="patner-name"><i className="m_title">가이드명:</i>( (주)하나하나 )</span>
 //                     </div>
 //                 </div>
 //                 <div className="t05">
@@ -214,7 +214,7 @@ export default auth(ALLOW_ADMINS)(MsReservationMain);
 //                 <div className="t04">
 //                     <div className="align">
 //                         <strong className="name"><i className="m_title">예약자명:</i>홍언니</strong>
-//                         <span className="patner-name"><i className="m_title">파트너명:</i>( (주)하나하나 )</span>
+//                         <span className="patner-name"><i className="m_title">가이드명:</i>( (주)하나하나 )</span>
 //                     </div>
 //                 </div>
 //                 <div className="t05">

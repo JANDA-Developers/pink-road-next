@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from "next/link";
 import { useProductList } from '../../../hook/useProduct';
 import { yyyymmdd } from '../../../utils/yyyymmdd';
-import { generateSearchLink } from '../../search';
+import { tourSearchLink } from '../../search';
 import { getTypeTextOfProduct } from '../../../utils/product';
 import { PordStatusBadge } from '../../../components/Status/StatusBadge';
 import { useCustomCount } from '../../../hook/useCount';
@@ -240,7 +240,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                 </div> */}
                                     <div className="td02"><i className="m_title">카테고리:</i>{item.category?.label}</div>
                                     <div className="td03"><i className="m_title">상품번호:</i>{item.code}</div>
-                                    <div className="td04"><div className="goods__info_title"><Link href={generateSearchLink({ title: item.title })}><a className="title"> {item.title} <ReqBadge req={item.elseReq} /></a></Link></div></div>
+                                    <div className="td04"><div className="goods__info_title"><Link href={tourSearchLink({ title: item.title })}><a className="title"> {item.title} <ReqBadge req={item.elseReq} /></a></Link></div></div>
                                     <div className="td05"><i className="m_title">여행일:</i>{yyyymmdd(item.createdAt)}</div>
                                     <div className="td06"><i className="m_title">인원:</i> {item.compeltePeopleCnt}/{item.maxMember}</div>
                                     <div className="td07"><i className="m_title">형태:</i>{getTypeTextOfProduct(item.type, item.dateRange)}</div>

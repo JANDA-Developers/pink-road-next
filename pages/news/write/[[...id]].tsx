@@ -22,7 +22,6 @@ const categoryOps = [{
     _id: NEWS_TYPE.CULTURE
 }]
 interface IProp {
-    pas
     news: Fnews
 }
 

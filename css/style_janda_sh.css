@@ -8975,8 +8975,8 @@ i.calendar {
 /*qna_box*/
 .qna_box {
     margin: 0 auto;
-    margin-top: 60px !important;
-    margin-bottom: 100px !important;
+    padding-top: 60px !important;
+    padding-bottom: 100px !important;
     box-sizing: border-box;
     padding: 0 3%;
 }

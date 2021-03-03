@@ -100,7 +100,6 @@ function App({ Component, pageProps }: any) {
   }
 
   if (router.isFallback) {
-    console.log("cachefallback");
     return <div></div>
   }
 

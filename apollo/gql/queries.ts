@@ -45,6 +45,7 @@ export const GET_CONTEXT = gql`
         }
         data {
           ...Fuser
+          keywards
           unReadNoties {
             ...FsystemNoti
           }

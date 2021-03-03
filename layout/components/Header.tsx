@@ -6,7 +6,7 @@ import { AppContext } from "pages/_app";
 import { setVal, whenEnter } from "../../utils/eventValueExtracter";
 import { useRouter } from "next/router";
 import { NotiIcon } from "./NotiIcon";
-import { generateSearchLink } from "../../pages/search";
+import { tourSearchLink } from "../../pages/search";
 
 interface IProp { }
 
@@ -84,7 +84,7 @@ export const Header: React.FC<IProp> = () => {
     }
 
     const goToSearchPage = () => {
-        rotuer.push(generateSearchLink({ title: search }))
+        rotuer.push(tourSearchLink({ title: search }))
         $('.search_bg').css({
             'display': 'none'
         });
@@ -289,7 +289,7 @@ export const Header: React.FC<IProp> = () => {
                                 <a href="/master">Master<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">
                                     <li><a href="/master/notification">알림</a></li>
-                                    <li><a href="/master/member">회원관리</a></li>
+                                    <li><a href="/master/member/busipartner">회원관리</a></li>
                                     <li><a href="/master/goods">상품관리</a></li>
                                     <li><a href="/master/reservation">예약관리</a></li>
                                     <li><a href="/master/design">디자인 설정</a></li>

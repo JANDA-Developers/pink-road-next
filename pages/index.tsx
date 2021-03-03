@@ -4,34 +4,32 @@ import { Meta } from 'components/common/meta/Meta';
 import { Upload } from 'components/common/Upload';
 import Link from 'next/link';
 import defaultPageInfo from "../info/main.json"
-import { openListFilter, useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
 import { getStaticPageInfo, Ipage } from '../utils/page';
 import { GoodsListAPI } from '../components/common/GoodsListAPI';
 import Slider from "react-slick";
 import { usePageEdit } from '../hook/usePageEdit';
 import { openAutos } from '../hook/usePopups';
-import { useGroupFind } from '../hook/useGroup';
 import { AppContext } from './_app';
 import { usePublicSellerList } from '../hook/useUser';
-import { sellerListPublic_SellerListPublic_data } from '../types/api';
-import { BG } from '../types/const';
-import { ProfileListAPI, ProfileListAPIwithGoods } from '../components/common/ProfileListAPI';
+import { ProfileListAPIwithGoods } from '../components/common/ProfileListAPI';
 import { PageEditor } from '../components/common/PageEditer';
 import { Bg } from '../components/Img/Img';
 import { LinkRoundIcon } from '../components/common/icon/LinkIcon';
 import { A } from '../components/A/A';
+import { tourSearchLink } from './search';
 
 export const getStaticProps = getStaticPageInfo("main")
 export const Main: React.FC<Ipage> = (pageInfo) => {
-  const { homepage, groupsMap } = useContext(AppContext);
+  const { homepage, groupsMap, categoriesMap } = useContext(AppContext);
   const { items } = usePublicSellerList();
 
   const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const router = useRouter()
 
 
-  const { bg, edit, imgEdit, imgKit, linkEdit, page, editMode } = pageTools;
+
+  const { bg, edit, imgEdit, imgKit, linkEdit, page, editMode, get } = pageTools;
 
   useEffect(() => {
     if (homepage?.modal) {
@@ -64,39 +62,11 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
               <span {...edit('m_01_subtitle')}>
               </span>
               <div className="btn_list">
-                <Link href="/tour">
-                  <a className="tourLink" {...edit("m_01_mainLink1")} />
-                </Link>
-                <Link href="/tour">
-                  <a  {...edit("m_01_mainLink2")} />
-                </Link>
-                <Link href="/tour">
-                  <a  {...edit("m_01_mainLink3")} />
-                </Link>
-                <Link href="/tour">
-                  <a  {...edit("m_01_mainLink4")} />
-                </Link>
-                <Link href="/tour">
-                  <a  {...edit("m_01_mainLink5")} />
-                </Link>
-                <Link href="/tour">
-                  <a  {...edit("m_01_mainLink6")} />
-                </Link>
-                <Link href="/tour">
-                  <a  {...edit("m_01_mainLink7")} />
-                </Link>
-                <Link href="/tour">
-                  <a  {...edit("m_01_mainLink8")} />
-                </Link>
-                <Link href="/tour">
-                  <a  {...edit("m_01_mainLink9")} />
-                </Link>
-                <Link href="/tour">
-                  <a  {...edit("m_01_mainLink10")} />
-                </Link>
-                <Link href="/tour">
-                  <a  {...edit("m_01_mainLink11")} />
-                </Link>
+                {categoriesMap.REGION.map(region =>
+                  <Link key={region._id} href={`/tour/${region._id}`}>
+                    <a className="tourLink">{region.label}</a>
+                  </Link>
+                )}
               </div>
             </div>
           </Bg>
@@ -150,8 +120,14 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
           </h2>
         </div>
         <ul>
-          <li><a href="/tour" {...edit("m_03_link01")} /></li>
-          <li><a href="/tour" {...edit("m_03_link02")} /></li>
+          <li><a href={tourSearchLink({
+            keyward: get("m_03_link01")
+          })} {...edit("m_03_link01")} /></li>
+          <li><a href={
+            tourSearchLink({
+              keyward: get("m_03_link02")
+            })
+          } {...edit("m_03_link02")} /></li>
           <li><a href="/tour" {...edit("m_03_link03")} /></li>
           <li><a href="/tour" {...edit("m_03_link04")} /></li>
           <li><a href="/tour" {...edit("m_03_link05")} /></li>

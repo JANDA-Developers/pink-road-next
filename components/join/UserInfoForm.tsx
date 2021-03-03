@@ -66,7 +66,7 @@ const UserInfoForm: React.FC = () => {
                     <h5>
                         {isIndi && "개인 회원"}
                         {isPartenerB && "가이드 회원"}
-                        {isPartner && "개인파트너 회원"}
+                        {isPartner && "가이드 회원"}
                         <span className="info_top">
                             <i className="important_icon" />는 필수항목입니다.
                         </span>
@@ -181,8 +181,8 @@ const UserInfoForm: React.FC = () => {
                     <hr />
                     <h4>
                         {isIndi && "추가정보"}
-                        {isPartenerB && "기업정보"}
-                        {isPartner && "개인파트너 정보"}
+                        {isPartenerB && "가이드정보"}
+                        {isPartner && "가이드 정보"}
                     </h4>
 
                     {isIndi &&
@@ -205,10 +205,6 @@ const UserInfoForm: React.FC = () => {
                                 <label>생년월일</label>
                                 <BirthDayPicker setDate={(date) => {
                                     data.brith_date = dayjs(date).format("YYYY-MM-DD");
-                                    console.log(data.brith_date);
-                                    console.log(data.brith_date);
-                                    console.log(data.brith_date);
-                                    console.log(data.brith_date);
                                     setData({ ...data })
                                 }} date={data.brith_date ? dayjs(data.brith_date, "YYYY-MM-DD").toDate() : new Date()} />
                                 {/* <span className={`er red_font ${errDisplay.brith_date && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
@@ -271,7 +267,7 @@ const UserInfoForm: React.FC = () => {
                             <div className="ph_wrap">
                                 <label>
                                     <i className="important_icon" />
-                            파트너명(회사명)
+                            가이드명
                         </label>
                                 <span className="er red_font">*숫자는 입력이 불가능합니다.</span>
                                 <input
@@ -283,7 +279,7 @@ const UserInfoForm: React.FC = () => {
                                     onChange={handleData("busi_name")}
                                 />
                             </div>
-                            <div className="ph_wrap">
+                            {/* <div className="ph_wrap">
                                 <label>
                                     <i className="important_icon" />
                                     사업자번호
@@ -305,9 +301,9 @@ const UserInfoForm: React.FC = () => {
                                         onChange={handleData("busi_num")}
                                     />
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="ph_wrap">
-                                <label>대표 전화번호</label>
+                                <label>전화번호</label>
                                 <span className={`er red_font ${errDisplay.busi_contact && `on`}`}>*숫자만 입력이 가능합니다.</span>
                                 <div className="w100">
                                     <input
@@ -320,7 +316,7 @@ const UserInfoForm: React.FC = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="ph_wrap">
+                            {/* <div className="ph_wrap">
                                 <label>담당자</label>
                                 <span className="er red_font">*숫자를 입력 할 수 없습니다.</span>
                                 <div className="w100">
@@ -355,8 +351,8 @@ const UserInfoForm: React.FC = () => {
                                         onChange={handleData("manageContact")}
                                     />
                                 </div>
-                            </div>
-                            <div className="ph_wrap">
+                            </div> */}
+                            {/* <div className="ph_wrap">
                                 <label>
                                     <i className="important_icon" />
                                 사업자등록증
@@ -375,11 +371,8 @@ const UserInfoForm: React.FC = () => {
                                     <input type="file" name="business_license" id="business_license"
                                         className="file_busi_license"
                                         onChange={handleBusinessLicense}></input>
-                                    {/* <button type="button" className="btn btn_mini">
-                  업로드
-                </button> */}
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     }
                     <div className="ph_wrap">

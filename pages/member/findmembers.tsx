@@ -4,6 +4,7 @@ import { useEmailFindByInfo, usePasswordFindByPhone } from '../../hook/useUser';
 import SubTopNav from '../../layout/components/SubTop';
 import { getStaticPageInfo, Ipage } from '../../utils/page';
 import defaultPageInfo from "../../info/findmember.json"
+import { autoComma, autoHypenPhone } from '../../utils/formatter';
 
 interface IProp { }
 
@@ -55,9 +56,6 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
 
     return <div>
         <SubTopNav pageTools={editTools} >
-            <li className="home">
-                <a href="/index"></a>
-            </li>
             <li className="homedeps1">Member</li>
             <li className="homedeps2">
                 <a href="/">아이디/비밀번호 찾기</a>
@@ -81,7 +79,7 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
                             const val = e.currentTarget.value;
                             info.phoneNumber = val;
                             setInfo({ ...info })
-                        }} value={info.phoneNumber} type="text" placeholder="가입시 입력한 휴대전화번호를 입력해 주세요." /></div>
+                        }} value={autoHypenPhone(info.phoneNumber)} type="text" placeholder="가입시 입력한 휴대전화번호를 입력해 주세요." /></div>
                         <div className="certification_sec"><button onClick={handleEmailFind} className="btn">아이디 찾기</button></div>
                     </div>
                 </div>

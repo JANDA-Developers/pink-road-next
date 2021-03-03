@@ -28,10 +28,10 @@ export const MsMemberC: React.FC<IProp> = () => {
 
                 <div className="tab-nav">
                     <ul>
-                        <li><Link href="/master/member"><a>개인회원</a></Link></li>
-                        <li><Link href="/master/member/member1-2"><a>가이드 회원</a></Link></li>
-                        <li className="on"><Link href="/master/member/member1-3"><a>개인파트너 회원</a></Link></li>
-                        <li><Link href="/master/member/member1-4"><a>탈퇴회원</a></Link></li>
+                        <li><Link href="/master/member/busipartner"><a>개인회원</a></Link></li>
+                        <li><Link href="/master/member/busipartner/member1-2"><a>가이드 회원</a></Link></li>
+                        <li className="on"><Link href="/master/member/busipartner/member1-3"><a>가이드 회원</a></Link></li>
+                        <li><Link href="/master/member/busipartner/member1-4"><a>탈퇴회원</a></Link></li>
                     </ul>
                 </div>
                 <div className="con guide">
@@ -67,7 +67,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                             <div className="hang fr">
                                 <select className="option">
                                     <option>전체</option>
-                                    <option>파트너명</option>
+                                    <option>가이드명</option>
                                     <option>아이디</option>
                                     <option>연락처</option>
                                     <option>담당자</option>
@@ -122,7 +122,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                                     <label htmlFor="agree0" />
                                 </i>
                             </div>
-                            <div className="td02">파트너명</div>
+                            <div className="td02">가이드명</div>
                             <div className="td03">아이디</div>
                             <div className="td04">담당자</div>
                             <div className="td05">승인여부</div>
@@ -236,7 +236,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                                 <h4>회원정보</h4>
                                 <div className="info_table line8 w50">
                                     <div className="tr">
-                                        <div className="th01">파트너명</div>
+                                        <div className="th01">가이드명</div>
                                         <div className="td01"><span>김홍이</span></div>
                                         <div className="th02">아이디</div>
                                         <div className="td02"><a href="mailto:gggg@naver.com">gggg@naver.com</a></div>

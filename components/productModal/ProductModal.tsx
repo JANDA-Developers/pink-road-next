@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { useIdSelecter } from '../../hook/useIdSelecter';
 import { useProductController, useProductFindByIdForSeller, useProductUpdate, } from '../../hook/useProduct';
-import { generateSearchLink } from '../../pages/search';
+import { tourSearchLink } from '../../pages/search';
 import { AppContext } from '../../pages/_app';
 import { PaymentStatus, BookingStatus, ProductStatus, } from '../../types/api';
 import { AFTER_OPEN_PRODUCT_STATUS } from '../../types/const';
@@ -140,7 +140,7 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                     {/* <div className="img" style={BG(product?.images?.[0]?.uri || "")} ></div> */}
                                     <div className="info goods__info_title">
                                         <span className="ct">{product.category?.label}</span>
-                                        <strong className="title"><Link href={generateSearchLink({ title: product.title })}><a>{product.title}{product.elseReq && "[" + reqToKr(product.elseReq) + "]"}</a></Link></strong>
+                                        <strong className="title"><Link href={tourSearchLink({ title: product.title })}><a>{product.title}{product.elseReq && "[" + reqToKr(product.elseReq) + "]"}</a></Link></strong>
                                         <div className="txt">
                                             <div className="subTitle">{product.subTitle}</div>
                                             <ul className="tag">
@@ -206,12 +206,12 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                             <div className="info_page">
                                 <div className="full_div">
                                     <h4>
-                                        파트너 정보
+                                        가이드 정보
                         </h4>
                                     <div className="info_table partnerinfo">
                                         <div className="tr">
                                             <div className="th01">
-                                                파트너명
+                                                가이드명
                                     </div>
                                             <div className="td01">
                                                 <span>{seller?.nickName}</span>

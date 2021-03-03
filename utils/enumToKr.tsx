@@ -73,6 +73,7 @@ export const determinedKr = (isDetermined: boolean) => {
 
 export const categoryToKR = (catType?: CategoryType | null) => {
     if (catType === CategoryType.QUESTION) return "문의글"
+    if (catType === CategoryType.GUIDE_KEYWARD) return "가이드 키워드"
     if (catType === CategoryType.PORTPOLIO) return "포트폴리오"
     if (catType === CategoryType.QNA) return "QNA"
     if (catType === CategoryType.TOUR) return "투어"
@@ -89,7 +90,7 @@ export const payMethodToKR = (paymethod?: PayMethod) => {
 }
 
 export const userRoleToKR = (role?: UserRole) => {
-    if (role === UserRole.partner) return "파트너"
+    if (role === UserRole.partner) return "가이드"
     if (role === UserRole.partnerB) return "가이드"
     if (role === UserRole.individual) return "개인유저"
     if (role === UserRole.manager) return "매니저"

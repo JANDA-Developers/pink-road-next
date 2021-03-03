@@ -32,12 +32,13 @@ interface IProp extends IDiv, IEditKit {
     tag?: Ttag
 }
 
-export const Img: React.FC<IProp> = ({ children, upload, src }) => {
+export const Img: React.FC<IProp> = ({ children, upload, src, ...props }) => {
     const { src: _src, ...imgpp } = src || {}
 
 
-    return <div {...imgpp}>
+    return <div {...props} {...imgpp} >
         <img src={_src} />
+        {children}
         <Upload onUpload={upload} />
     </div>;
 };

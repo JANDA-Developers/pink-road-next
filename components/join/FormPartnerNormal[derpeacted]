@@ -29,9 +29,9 @@
 //   return (
 //     <>
 //       <div className="information_box">
-//         {/* 회원정보:개인파트너 */}
+//         {/* 회원정보:가이드 */}
 //         <h5>
-//           개인파트너 회원
+//           가이드 회원
 //               <span className="info_top">
 //             <i className="important_icon" />는 필수항목입니다.
 //               </span>
@@ -121,7 +121,7 @@
 //           </div>
 //         </div>
 //         <hr />
-//         <h4>개인파트너 정보</h4>
+//         <h4>가이드 정보</h4>
 //         <div className="ph_wrap">
 //           <label>내국인/외국인</label>
 //           <span className="er red_font">*둘중 한개를 선택해 주세요.</span>

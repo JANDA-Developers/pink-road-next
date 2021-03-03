@@ -48,7 +48,7 @@ export const SELLER_LIST_PUBLIC = gql`
         ...Fpage
       }
       data  {
-        ...FpublicUserData
+        ...FpublicSellerData
       }
     }
   }
@@ -284,6 +284,41 @@ query userList(
 ${F_USER}
 ${F_PAGE}
 `
+
+export const SELLER_ID_LIST = gql`
+query sellerIdlistPublic {
+  SellerListPublic(
+    pageInput: {
+      page:1,
+      cntPerPage: 99999
+    }
+  ) {
+    data  {
+      _id
+    }
+  }
+}
+`
+
+
+export const SELLER_FIND_BY_KEY = gql`
+  query sellerFindByKey($key:String!,$value:String!) {
+    SellerFindByKeyPublic(
+      key: $key
+      value: $value
+    ) {
+      data  {
+        ...FpublicSellerData
+        products {
+          ...Fproduct
+        }
+      }
+    }
+  }
+  ${F_PRODUCT}
+  ${F_PUBLIC_USER}
+`
+
 
 export const USER_FIND_BY_ID = gql`
   query userFindById(

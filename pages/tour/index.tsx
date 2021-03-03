@@ -28,8 +28,8 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
     const { data } = useHomepage();
     const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const { categoriesMap, isSeller, groupsMap } = useContext(AppContext);
-    const cats = isExp ? categoriesMap?.EXPERIENCE || [] : categoriesMap?.TOUR || [];
-    const { editMode, page, linkEdit, imgKit, edit } = pageTools;
+    const cats = categoriesMap?.TOUR || [];
+    const { editMode, page, linkEdit, imgKit, edit, get } = pageTools;
     const router = useRouter();
 
     const subTopInfo = {
@@ -41,7 +41,7 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
     const handleLink = (key: keyof typeof page) => () => {
         if (!editMode)
             // @ts-ignore
-            router.push(page[key].value)
+            router.push(get(key))
     }
 
     if (!data) return null;
@@ -143,11 +143,11 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
                     <div className="goods_box">
                         <div className="w1200">
                             <div className="bn_box line2">
-                                <Img {...imgKit("banner1")} >
-                                    <A {...linkEdit("banner1__link")} />
+                                <Img className="banner" onClick={handleLink("banner1__link")} {...imgKit("banner1")} >
+                                    <A {...linkEdit("banner1__link")} editComponent={<LinkRoundIcon />} />
                                 </Img>
-                                <Img  {...imgKit("banner2")} >
-                                    <A {...linkEdit("banner2__link")} />
+                                <Img className="banner" onClick={handleLink("banner2__link")} {...imgKit("banner2")} >
+                                    <A {...linkEdit("banner2__link")} editComponent={<LinkRoundIcon />} />
                                 </Img>
                             </div>
                             {/* {cats.map(cat =>

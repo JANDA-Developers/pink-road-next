@@ -294,7 +294,7 @@ const UserType: React.FC = () => {
             <li className="li03" onClick={handleTypeChoice(UserRole.partner)}>
                 <i />
                 <strong>가이드회원</strong>
-                <span>개인파트너를 위한 회원입니다.</span>
+                <span>가이드를 위한 회원입니다.</span>
             </li> */}
             </ul>
             <p className="bt_txt">

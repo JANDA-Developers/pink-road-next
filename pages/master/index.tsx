@@ -306,7 +306,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             <div className="td02">정산요청일</div>
                             <div className="td03">정산금액</div>
                             <div className="td04">정산여부</div>
-                            <div className="td05">파트너명</div>
+                            <div className="td05">가이드명</div>
                         </li>
                         {settlements.map(st =>
                             <li key={st._id} className="body">
@@ -346,7 +346,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             label: "미답",
                             value: false,
                         }]} />
-                        <Link href="/master/member"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
+                        <Link href="/master/member/busipartner"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
                     </div>
                     <ul className="table typeC">
                         <li className="head">
@@ -391,7 +391,7 @@ export const MsIndex: React.FC<IProp> = () => {
                             label: "미승인",
                             value: QuestionStatus.READY,
                         }]} />
-                        <Link href="/member/questionlist"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
+                        <Link href="/service/questionlist"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
                     </div>
                     <ul className="table typeD">
                         <li className="head">

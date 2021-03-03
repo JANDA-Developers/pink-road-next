@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { usePublicSellerList } from '../../hook/useUser';
-import { sellerListPublic_SellerListPublic_data } from '../../types/api';
+import { sellerListPublic_SellerListPublic_data, _SellerSort, _UserSort } from '../../types/api';
 import { BG } from '../../types/const';
 import { GoodsListAPI } from './GoodsListAPI';
 
@@ -11,7 +11,9 @@ interface IProp {
 
 export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSeller }) => {
     const guidesRef = useRef<HTMLDivElement>(null)
-    const { items } = usePublicSellerList();
+    const { items } = usePublicSellerList({
+        initialSort: [_SellerSort.profileImg_desc]
+    });
 
     const handleSelectUser = (user: sellerListPublic_SellerListPublic_data) => () => {
         setSelectedSeller(user);
@@ -22,8 +24,6 @@ export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSel
         if (!guidesRef?.current) return;
         const guidesLeft = guidesRef.current.scrollLeft;
         let nextLeft = guidesLeft + (plus ? 500 : -500);
-        console.log("nextLeft");
-        console.log(nextLeft);
         guidesRef.current.scroll({ left: nextLeft, behavior: "smooth" })
     }
 

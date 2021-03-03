@@ -1,4 +1,4 @@
-import { _ProductFilter } from "../types/api"
+import { _ProductFilter, _UserFilter } from "../types/api"
 
 export const integratedProductSearch = (search?:string, filter?:_ProductFilter):_ProductFilter  => {
     return {
@@ -9,6 +9,20 @@ export const integratedProductSearch = (search?:string, filter?:_ProductFilter):
         subTitle_contains: search,
     }, {
         keyWards_in: [search] 
+    }] : undefined,
+ }   
+}
+
+
+export const integratedUserSearch = (search?:string, filter?:_UserFilter):_UserFilter  => {
+    return {
+    ...filter,
+    OR: search ? [{
+        nickName_contains: search,
+    }, {
+        name_contains: search
+    }, {
+        keywards_in: [search] 
     }] : undefined,
  }   
 }

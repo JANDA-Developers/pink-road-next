@@ -108,7 +108,7 @@ export const GuideMain: React.FC<Ipage> = (pageInfo) => {
                         </div>
                         <div className="deal_list">
                             <div className="alignment">
-                                <div className="left_div"><h2> <span {...edit("goods_list1_title")} /></h2></div>
+                                <div className="left_div"><h2> <span {...edit("goods_list2_title")} /></h2></div>
                                 <div className="right_div">
                                     <span className="goto_page"><a href="../sub/tour_list.html">바로가기<i className="flaticon-menu-1"></i></a></span>
                                 </div>

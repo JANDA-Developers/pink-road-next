@@ -1,0 +1,4 @@
+.guideSearch__keywards {
+    display: flex!important;
+    flex-wrap: wrap;
+}

@@ -199,7 +199,7 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                                     </Link>
                                 </span>
                                 <span>
-                                    <Link href="/findmembers">
+                                    <Link href="/member/findmembers">
                                         <a>아이디/비번찾기<i className="jandaicon-arr4-right"></i></a>
                                     </Link>
                                 </span>

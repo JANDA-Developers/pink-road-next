@@ -6,7 +6,7 @@ import { closeModal } from "../utils/popUp";
 import { useUpload } from "./useUpload";
 
 
-type TChangeAbleData = "is_froreginer" | "gender" | "address" | "account_number" | "busi_num" | "busi_address" | "bank_name" | "address_detail" |"acceptEamil" | "acceptSms" | "name" | "nickName" | "busi_department" | "busi_contact" | "is_priv_corper"
+type TChangeAbleData = "keywards" | "is_froreginer" | "gender" | "address" | "account_number" | "busi_num" | "busi_address" | "bank_name" | "address_detail" |"acceptEamil" | "acceptSms" | "name" | "nickName" | "busi_department" | "busi_contact" | "is_priv_corper"
 type TProfile = Pick<getContext_GetProfile_data,TChangeAbleData>;
 
 export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
@@ -30,6 +30,7 @@ export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
     };
     
     const [profile, setProfile] = useState<TProfile>({
+        keywards: defaultData.keywards || [],
         busi_address: defaultData.busi_address || "",
         address: defaultData.address || "",
         bank_name: defaultData.bank_name || "",

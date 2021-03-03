@@ -24,7 +24,8 @@ export const ProductSearcher: React.FC<IProp> = ({ selectProductId, onSelectProd
     });
 
     const getData = () => {
-        setFilter(integratedProductSearch(search || "____"));
+        const query = integratedProductSearch(search);
+        setFilter(integratedProductSearch(search));
         handSearchClose()
     }
 

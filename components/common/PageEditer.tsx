@@ -3,10 +3,11 @@ import { IUsePageEdit } from '../../hook/usePageEdit';
 import { EditBtn } from './EditBtn';
 
 interface IProp {
+    allowToUser?: boolean;
     pageTools: IUsePageEdit<any>;
 }
 
-export const PageEditor: React.FC<IProp> = ({ pageTools }) => {
+export const PageEditor: React.FC<IProp> = ({ pageTools, allowToUser }) => {
     const { editMode, reset, submitEdit, setEditMode } = pageTools;
 
     const submit = () => {
@@ -22,7 +23,7 @@ export const PageEditor: React.FC<IProp> = ({ pageTools }) => {
     }
 
     return <div >
-        <EditBtn onSubmit={submit} editMode={editMode} />
+        <EditBtn allowToUser={allowToUser} onSubmit={submit} editMode={editMode} />
     </div>;
 };
 

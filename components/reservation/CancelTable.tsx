@@ -20,7 +20,7 @@ export const CancelTable: React.FC<IReservationTableProp> = ({ bookingListHook, 
             </div>
             <div className="t02">예약번호/결제일/유형</div>
             <div className="t03">상품정보</div>
-            <div className="t04">예약자/파트너명</div>
+            <div className="t04">예약자/가이드명</div>
             <div className="t05">금액</div>
             <div className="t06">상태</div>
             <div className="t07">관리</div>
@@ -55,7 +55,7 @@ export const CancelTable: React.FC<IReservationTableProp> = ({ bookingListHook, 
                 <div className="t04">
                     <div className="align">
                         <strong className="name"><i className="m_title">예약자명:</i>{item.name}</strong>
-                        <span className="patner-name"><i className="m_title">파트너명:</i>({item.product?.author?.name})</span>
+                        <span className="patner-name"><i className="m_title">가이드명:</i>({item.product?.author?.name})</span>
                     </div>
                 </div>
                 <div className="t05">

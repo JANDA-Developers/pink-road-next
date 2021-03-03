@@ -92,7 +92,7 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                                 </div>
                             </>
                             }
-                            {/* 파트너 */}
+                            {/* 가이드 */}
                             {isSeller && <>
                                 <div className="tr">
                                     <div className="th01">성함</div>
@@ -142,7 +142,7 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                 </div>
 
 
-                {/* 파트너 */}
+                {/* 가이드 */}
                 {/* 사업자회원 주의사항 */}
                 {/* <div className="info_page">
             <div className="full_div">
@@ -159,7 +159,7 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                         <UserModalResvList id={userId} />
                     </div>
                 </div>
-                {/* 파트너 */}
+                {/* 가이드 */}
                 {/* 취소 및 환불내역 */}
                 <div className="info_page">
                     <div className="full_div">

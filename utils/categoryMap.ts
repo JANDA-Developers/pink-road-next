@@ -2,10 +2,9 @@ import { CategoryType, Fcategory, Fgroup, groupList_GroupList_data } from "../ty
 import { cloneObject } from "./clone";
 
 export const defaultCatsMap:Record<CategoryType, Fcategory[]> = {
+  GUIDE_KEYWARD: [],
   QUESTION: [],
-  PORTPOLIO: [],
   QNA: [],
-  EXPERIENCE: [],
   TOUR: [],
   REGION: []
 }

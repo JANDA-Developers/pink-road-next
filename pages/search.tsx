@@ -15,27 +15,31 @@ import { integratedProductSearch } from '../utils/genFilter';
 import SortSelect from '../components/common/SortMethod';
 import { ProductType } from '../types/api';
 import { whenEnter } from '../utils/eventValueExtracter';
-import { getFromUrl } from '../utils/url';
+import { getAllFromUrl, getFromUrl } from '../utils/url';
 import pageInfoDefault from "info/search.json";
 import { getStaticPageInfo, Ipage } from '../utils/page';
 import { usePageEdit } from '../hook/usePageEdit';
 import { AppContext } from './_app';
 import { PageEditor } from '../components/common/PageEditer';
+import { Change } from '../components/loadingList/LoadingList';
+import { removeSpecialChar } from '../utils/formatter';
 
 type TSearchParam = {
     keyward?: string;
     title?: string;
 }
 
-export const generateSearchLink = (param: TSearchParam) => {
+export const tourSearchLink = (param: TSearchParam) => {
     let link = `/search`
 
     const attach = (key: string, value: string) => {
+
         if (!link.includes("?")) {
-            link = link + "?" + key + "=" + value
+            link = link + "?" + key + "=" + removeSpecialChar(value);
+            return;
         }
         if (!link.endsWith("&")) {
-            link = link + "&" + key + "=" + value
+            link = link + "&" + key + "=" + removeSpecialChar(value);
         }
     }
 
@@ -56,17 +60,19 @@ interface IProp { }
 export const getStaticProps = getStaticPageInfo("search");
 export const Search: React.FC<Ipage> = (_pageInfo) => {
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
-    const defaultSearch = getFromUrl("search") || "";
+    const all = getAllFromUrl<TSearchParam>()
+    const { keyward, title } = all;
+    console.log({ all })
     const initialFilter = {
         ...openListFilter,
-        initialFilter: integratedProductSearch(defaultSearch)
+        initialFilter: integratedProductSearch(keyward || title)
     }
     const productListHook = useProductList(initialFilter)
     const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = productListHook;
     const { categoriesMap } = useContext(AppContext);
 
     const [view, setView] = useState<"line" | "gal">("line");
-    const [search, setSearch] = useState(defaultSearch);
+    const [search, setSearch] = useState(keyward || title);
     const { totalCount } = pageInfo;
 
     const onClickDistrict = (regionLabel?: string) => () => {
@@ -172,50 +178,52 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                 </div>
 
             </div>
-            <div className="con_bottom">
-                {isEmpty(products) &&
-                    <div className="alignment2">
-                        <div className="left_div">총 <strong>{totalCount}</strong>건의 검색결과가 있습니다.</div>
-                    </div>
-                }
-
-                <div id="ProductViewer" className="con_box">
-                    <div className="alignment">
-                        <div className="left_div">
-                            <h5>여행상품<strong>{totalCount}</strong></h5>
+            <Change change={!getLoading}>
+                <div className="con_bottom">
+                    {isEmpty(products) &&
+                        <div className="alignment2">
+                            <div className="left_div">총 <strong>{totalCount}</strong>건의 검색결과가 있습니다.</div>
                         </div>
-                        <div className="right_div">
-                            <SortSelect onChange={setSort} sort={sort} />
-                            <ViewCount value={viewCount} onChange={setViewCount} />
-                            <ViewSelect select={view} onChange={setView} />
-                        </div>
-                    </div>
+                    }
 
-                    {/*검색결과가 없을때*/}
-                    {noProduct && <div className="no_search">
-                        <i className="jandaicon-info3" />
-                        <div>검색결과 없음</div>
-                    </div>}
-                    {/*리스트로 보기*/}
-                    {view === "line" && <div className="list selectViewList">
-                        <ul className="list_ul">
-                            {products.map(product =>
-                                <ProductListBlock key={product._id} product={product} />
-                            )}
-                        </ul>
-                    </div>}
-                    {/*이미지로 보기*/}
-                    {view === "gal" &&
-                        <div className="list selectViewImg">
-                            <ul className="list_ul line3">
+                    <div id="ProductViewer" className="con_box">
+                        <div className="alignment">
+                            <div className="left_div">
+                                <h5>여행상품<strong>{totalCount}</strong></h5>
+                            </div>
+                            <div className="right_div">
+                                <SortSelect onChange={setSort} sort={sort} />
+                                <ViewCount value={viewCount} onChange={setViewCount} />
+                                <ViewSelect select={view} onChange={setView} />
+                            </div>
+                        </div>
+
+                        {/*검색결과가 없을때*/}
+                        {noProduct && <div className="no_search">
+                            <i className="jandaicon-info3" />
+                            <div>검색결과 없음</div>
+                        </div>}
+                        {/*리스트로 보기*/}
+                        {view === "line" && <div className="list selectViewList">
+                            <ul className="list_ul">
                                 {products.map(product =>
-                                    <ProductPhotoBlock key={product._id} item={product} />
+                                    <ProductListBlock key={product._id} product={product} />
                                 )}
                             </ul>
                         </div>}
-                    <Paginater setPage={setPage} pageInfo={pageInfo} />
+                        {/*이미지로 보기*/}
+                        {view === "gal" &&
+                            <div className="list selectViewImg">
+                                <ul className="list_ul line3">
+                                    {products.map(product =>
+                                        <ProductPhotoBlock key={product._id} item={product} />
+                                    )}
+                                </ul>
+                            </div>}
+                        <Paginater setPage={setPage} pageInfo={pageInfo} />
+                    </div>
                 </div>
-            </div>
+            </Change>
         </div>
         <DayPickerModal defaultRange={filterToRange(filter, "startDate")} onSubmit={(range) => {
             closeModal("#dayPickerModal")()

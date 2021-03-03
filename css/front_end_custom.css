@@ -585,11 +585,14 @@ figure:after {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
+
 
 .partners {
     cursor: pointer;
 }
+
 /* 
 div.popup_bg_mini .in_txt {
     height: 500px;

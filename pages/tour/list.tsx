@@ -13,10 +13,12 @@ import { PageEditor } from '../../components/common/PageEditer';
 import { categoryList_CategoryList_data } from '../../types/api';
 import { AppContext } from '../_app';
 import Link from 'next/link';
+import { getFromUrl } from '../../utils/url';
 
 export const getStaticProps = getStaticPageInfo("tourList")
 export const TourList: React.FC<Ipage> = (_pageInfo) => {
     const isExp = checkIsExp();
+    const catId = getFromUrl("catId");
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
     const { initialFilter: urlInitialFilter } = getTypeFilterByUrl(isExp);
     const { categoriesMap } = useContext(AppContext);
@@ -34,7 +36,8 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
     } = useProductList({
         initialFilter: {
             ...urlInitialFilter,
-            ...openListFilter
+            ...openListFilter,
+            categoryId_eq: catId || undefined
         }
     });
     const { totalCount } = pageInfo;

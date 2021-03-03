@@ -19,6 +19,7 @@ export const A: React.FC<ILinkEditProps> = ({ editComponent, children, link: _li
     }
 
     return <a
+        className="linkEditor"
         {...props}
         // @ts-ignore
         onClick={editable ? handleSubmit : undefined}

@@ -42,7 +42,7 @@ export const AnnounceWrite: React.FC<IProp> = () => {
     const [announceDeleteMu] = useAnnounceDelete({
         onCompleted: ({ AnnounceDelete }) => {
             if (AnnounceDelete.ok)
-                router.push(`/service/event`)
+                router.push(`/service/qna`)
         },
     })
 

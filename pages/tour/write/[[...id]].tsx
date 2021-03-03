@@ -2,10 +2,10 @@
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from 'react';
 import { initStorage } from '../../../utils/Storage';
-import "node_modules/react-day-picker/lib/style.css";
+import "react-day-picker/lib/style.css";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
-import { ProductStatus, ProductType } from '../../../types/api';
+import { Fproduct, ProductStatus, ProductType } from '../../../types/api';
 import DayRangePicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
 import { ItineryForm } from "components/tourWrite/ItineryForm";
@@ -13,7 +13,7 @@ import { AppContext } from "pages/_app";
 import { tapCheck } from "../../../utils/style";
 import TagInput from "../../../components/tagInput/TagInput";
 import { getDefault, useTourWrite } from "../../../hook/useTourWrite";
-import { useProductFindById } from "../../../hook/useProduct";
+import { useProductFindById, useProductUpdateReq } from "../../../hook/useProduct";
 import { changeVal } from "../../../utils/eventValueExtracter";
 import PageLoading from "../../Loading";
 import { auth } from "../../../utils/with";
@@ -25,6 +25,12 @@ import { usePageEdit } from "../../../hook/usePageEdit";
 import { assert } from "console";
 import PageDeny from "../../Deny";
 import { cloneObject } from "../../../utils/clone";
+import { productStatus } from "../../../utils/enumToKr";
+import { Prompt } from "../../../components/promptModal/Prompt";
+import { openModal } from "../../../utils/popUp";
+import { LocalStorageBoard } from "../../../components/localStorageBoard/LocalStorageBoard";
+import dayjs from "dayjs";
+const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
 interface IProp {
@@ -61,15 +67,25 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const id = query.id?.[0] as string | undefined;
     const isCreateMode = id ? false : true;
-    const { item: product, loading } = useProductFindById(id);
-    const { categoriesMap, isAdmin, isManager, myProfile } = useContext(AppContext);
-    const isMyProduct = myProfile._id === product._id;
+    const { item: product, getData, loading } = useProductFindById(id);
+    const [updateReq, { loading: updateReqLoading }] = useProductUpdateReq({
+        onCompleted: ({ ProductUpdateReq }) => {
+            if (ProductUpdateReq?.ok) {
+                alert("상품 수정요청이 접수 되었습니다.");
+                router.push(`/tour/view/${ProductUpdateReq?.data?._id}`).then(() => window.scrollTo(0, 0));
+            }
+        }
+    });
+    const { categoriesMap, isAdmin, myProfile, isManager, isParterB, isParterNonB } = useContext(AppContext);
+    const isMyProduct = product?.author?._id === myProfile?._id;
+
     const {
         tourSets, tourData,
         loadKey, validater: { validate },
         handles, firstDate,
         getCreateInput, getUpdateInput,
         setTourData, mutations,
+        setGroupCode,
         hiddenFileInput, lastDate,
     } = useTourWrite(getDefault(cloneObject(product)));
 
@@ -84,7 +100,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         setkeyWards,
         setits,
         setType,
-        setSimpleData
+        setSimpleData,
     } = tourSets;
     const {
         address,
@@ -102,6 +118,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         info,
         isOpen,
     } = simpleData;
+
+    console.log({ simpleData });
     const {
         handleRegionChange,
         handleTextData,
@@ -144,6 +162,26 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             updateFn(product._id, nextData)
         }
     }
+    const handleEditReq = () => {
+        openModal("#UpdateMemo")();
+    }
+
+    const handleSubmitUpdateReq = (memo: string) => {
+        if (!product) return;
+        if (!updateReqLoading) {
+            const nextData = getUpdateInput()
+            updateReq({
+                variables: {
+                    reason: "",
+                    params: {
+                        ...nextData,
+                        requestMemo: memo
+                    },
+                    _id: product?._id
+                }
+            })
+        }
+    }
 
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
@@ -158,15 +196,20 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
 
     const tapDisplay = tapCheck.bind(tapCheck, tab);
 
+
+
     useEffect(() => {
         initStorage()
     }, [])
 
+    const noram_partner_updateable_status = [ProductStatus.READY, ProductStatus.UPDATE_REQ, ProductStatus.UPDATE_REQ_REFUSED, ProductStatus.REFUSED]
+    const updateAble = (!isCreateMode && (isParterB || isManager)) || noram_partner_updateable_status.includes(product?.status!);
+    const normalPartnerUpdateReqAble = updateBtnDisableCheck(product!, isParterB || false)
 
     const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.EXPERIENCE;
     const regionCategories = categoriesMap.REGION;
 
-    if (!isManager && !isMyProduct) return <PageDeny />
+    // if (!isManager && !isMyProduct) return <PageDeny />
     if (loading) return <PageLoading />
     return <div key={loadKey} className="tour_box w100 board_write">
         <SubTopNav pageTools={pageTools} children={
@@ -184,6 +227,42 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         } />
         <div className="w1200 con_bottom">
             <div className="write_box">
+                {product && <h1>{productStatus(product.status)}</h1>}
+                {/* 아래는 오직 관리자만 적용할 수 있음 아래는 상태가 CANCEL상태이거나  */}
+                {/* {isManager && <div className="write_type">
+                    <div className="title">상태관리</div>
+                    <div className="input_form">
+                        <ul>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sale" value={ProductStatus.OPEN} checked={status === ProductStatus.OPEN} className="radio" /><label htmlFor="status-sale">판매중</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-cancel" value={ProductStatus.CANCELD} checked={status === ProductStatus.CANCELD} className="radio" /><label htmlFor="status-cancel">취소</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-ready" value={ProductStatus.READY} checked={status === ProductStatus.READY} className="radio" /><label htmlFor="status-ready">생성요청</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-refused">생성거절</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-updateRefuse" value={ProductStatus.UPDATE_REQ_REFUSED} checked={status === ProductStatus.UPDATE_REQ_REFUSED} className="radio" /><label htmlFor="updateRefuse">업데이트거절</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-upReq" value={ProductStatus.UPDATE_REQ} checked={status === ProductStatus.UPDATE_REQ} className="radio" /><label htmlFor="status-upReq">업데이트 요청</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-complete" value={ProductStatus.COMPLETED} checked={status === ProductStatus.COMPLETED} className="radio" /><label htmlFor="status-complete">판매완료</label></li>
+                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-expire" value={ProductStatus.EXPIRED} checked={status === ProductStatus.EXPIRED} className="radio" /><label htmlFor="status-expire">만료</label></li>
+                        </ul>
+                    </div>
+                </div>
+                } */}
+                {/* {isCreateMode && <div className="write_type">
+                    <div className="title">회차연결</div>
+                    <div className="input_form">
+                        <span className="category r3">
+                            <select onChange={handleBaseProdChange} value={product?._id} name="type">
+                                <option value={""}>
+                                    새로운상품
+                                </option>
+                                {productGroupList.map(p =>
+                                    <option key={p._id} value={p._id}>
+                                        {p.label}
+                                    </option>
+                                )}
+                            </select>
+                        </span>
+                    </div>
+                </div>
+                } */}
                 {/* <div className="write_type">
                     <div className="title">상품타입</div>
                     <div className="input_form">
@@ -219,14 +298,12 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         </span>
                     </div>
                 </div>
-
                 <div className="write_type">
                     <div className="title">제목</div>
                     <div className="input_form">
                         <input id="title" onChange={handleInputChange("title")} value={title} type="text" name="title" className="inputText w100" />
                     </div>
                 </div>
-
                 <div className="write_type">
                     <div className="title">부제목</div>
                     <div className="input_form">
@@ -264,7 +341,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 <div className="write_type">
                     <div className="title">지역</div>
                     <div className="input_form">
-                        <div>
+                        <span className="category">
                             <select onChange={handleRegionChange} value={regionId || ""} name="category_srl">
                                 {regionCategories.map(cat =>
                                     <option value={cat._id} key={cat._id}>
@@ -275,7 +352,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     선택없음
                                 </option>
                             </select>
-                        </div>
+                        </span>
                     </div>
                 </div>
 
@@ -297,20 +374,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     </div>
                 </div>
 
-                {/* 아래는 오직 관리자만 적용할 수 있음 */}
-                {isManager && <div className="write_type">
-                    <div className="title">상태관리</div>
-                    <div className="input_form">
-                        <ul>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-sale" value={ProductStatus.OPEN} checked={status === ProductStatus.OPEN} className="radio" /><label htmlFor="status-sale">판매중</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-refused" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-refused">거절됨</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.UPDATE_REQ} checked={status === ProductStatus.UPDATE_REQ} className="radio" /><label htmlFor="status-hide">업데이트 요청</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-hide" value={ProductStatus.REFUSED} checked={status === ProductStatus.REFUSED} className="radio" /><label htmlFor="status-hide">거절됨</label></li>
-                            <li><input onChange={handleChangeStatus} type="radio" name="status" id="status-ready" value={ProductStatus.READY} checked={status === ProductStatus.READY} className="radio" /><label htmlFor="status-ready">준비중</label></li>
-                        </ul>
-                    </div>
-                </div>
-                }
+
 
                 <div className="write_type">
                     <div className="title">키워드</div>
@@ -357,10 +421,18 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 </ul>
                 <div {...tapDisplay(1)} id="texta_01" className="texta">
                     <h5 id="itinerary">여행일정</h5>
-                    <DayRangePicker isRange={type === ProductType.TOUR} onRangeChange={handleDateState} from={firstDate} to={lastDate} >
+                    <DayRangePicker
+                        month={dayjs().add(20, "day").toDate()}
+                        disabledDays={
+                            {
+                                before: dayjs().add(30, "day").toDate(),
+                                after: dayjs().add(90, "day").toDate()
+                            }}
+                        isRange={type === ProductType.TOUR} onRangeChange={handleDateState} from={firstDate} to={lastDate} >
                         <div className="info_txt">
                             <h4><i className="jandaicon-info2"></i>여행일정 등록시 유의점</h4>
                             <ul>
+                                <li>- 여행일은 최소 30일 이전 최대 90일 이상해주세요.</li>
                                 <li>- 달력에서 여행기간을 선택해 주세요. 그래야 아래에 입력창이 생성됩니다.</li>
                                 <li>- 이미지를 첨부시에 이미지 내부에 이미지를 입력할 경우 텍스트를 크게 써주세요.<br />모바일 화면도 고려해야합니다.</li>
                                 <li>- 이미지를 꼭 한번 용량을 압축해서 올려주세요. 로딩시에 시간이 단축됩니다.<br /><a href="https://www.iloveimg.com/ko/compress-image" target="_blank">(추천사이트 이동)</a></li>
@@ -393,14 +465,48 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     <button onClick={handleLoad} type="button" className="btn medium">불러오기</button>
                 </div>
                 <div className="float_right">
-                    {!isCreateMode && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
+
+                    {/* 차라리 여기서 상품을 취소 상태로 변경하거나, 다시 오픈 상태로 변경 하거나 요청을 수락 하거나  */}
+                    {/* {isManager && status === ProductStatus.OPEN && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                        상품취소
+                    </button>}
+                    {isManager && status === ProductStatus.CANCELD && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                        취소철회
+                    </button>}
+                    {isManager && status === ProductStatus.UPDATE_REQ && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                        수정수락
+                    </button>}
+                    {isManager && status === ProductStatus.READY && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                        생성수락
+                    </button>} */}
+                    {!updateAble && !isCreateMode && isParterNonB && <button disabled={!normalPartnerUpdateReqAble} onClick={handleEditReq} type="submit" className="btn medium pointcolor">
+                        {status === ProductStatus.UPDATE_REQ_REFUSED ? "재신청" : "수정요청"}
+                        <i data-for="ToolTipLayOut" className="jandaicon-info2 tooltip" data-iscapture={true} data-tip="수정요청은 예약인원이 없을때만 가능합니다." />
+                    </button>}
+                    {updateAble && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                        {status === ProductStatus.REFUSED ? "재신청" : "수정"}
+                    </button>}
                     {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
                     <button onClick={handleCancel} type="button" className="btn medium impact">취소</button>
                     {!isCreateMode && <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>}
                 </div>
             </div>
+            <LocalStorageBoard key={loadKey} onLoad={setTourData} />
         </div>
+        <Prompt id="UpdateMemo" onSubmit={handleSubmitUpdateReq} title="업데이트 변경 사항을 입력 해주세요." />
+        <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" />
     </div>
 };
 
 export default auth(ALLOW_SELLERS)(TourWrite);
+
+const updateBtnDisableCheck = (product: Fproduct, isParterB: boolean): boolean => {
+    if (!product) return false;
+    // 가이드면 업데이트가 가능하다.
+    if (isParterB) return true;
+    // 예약자가 없으면 업데이트 요청이 가능하다.
+    if (product.peopleCount === 0) return true;
+    // 확정되지 않은 예약만 수정요청 할 수 있다.
+    if (product.determined === false) return true;
+    return false;
+}

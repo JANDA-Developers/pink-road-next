@@ -19,6 +19,7 @@ export const LocalStorageBoard: React.FC<IProp> = ({ onLoad }) => {
     }
 
     const handleLoad = (item: IProductTemp) => () => {
+        console.log({ item });
         onLoad(item)
     }
 

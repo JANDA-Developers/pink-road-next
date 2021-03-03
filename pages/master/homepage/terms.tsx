@@ -33,7 +33,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
     const textReverse = (key: keyof HomepageUpdateInput) => {
         if (key === "usePolicy") return "이용약관";
         if (key === "PrivacyPolicy") return "개인정보약관";
-        if (key === "partnerBpolicy") return "비지니스파트너약관";
+        if (key === "partnerBpolicy") return "비지니스가이드약관";
         if (key === "partnerPolicy") return "가이드약관";
         if (key === "marketingPolic") return "마케팅약관";
         if (key === "thirdPolicy") return "삼자정보제공약관";
@@ -116,7 +116,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
                     </div>
 
                     <div className="jul">
-                        <h5>기업 파트너 이용 약관동의</h5>
+                        <h5>가이드 이용 약관동의</h5>
                         <Editor data={datas.partnerBpolicy} onChange={setPoliicy("partnerBpolicy")} />
                         <div className="terms__termBox fin ifMobile">
                             <button onClick={handleSave("partnerBpolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>

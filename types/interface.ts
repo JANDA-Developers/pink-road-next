@@ -77,7 +77,7 @@ export const ReplaceKr:ReplaceKR = {
     "USERNAME": "유저명",
     "BOOKING_STATUS": "예약상태",
     "INTERGRATED_PRODUCT_INFO": "(상품명/예약인원/예약금/출발일자)",
-    "PARTNERNAME": "파트너명",
+    "PARTNERNAME": "가이드명",
     "PEOPLE": "예약인원",
     "PROD_NAME": "상품명",
     "PRICE": "예약가격",

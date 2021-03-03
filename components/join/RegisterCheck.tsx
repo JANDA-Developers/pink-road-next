@@ -355,13 +355,13 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
             </li>
             <li>
-              {/* 가이드/개인파트너 */}
+              {/* 가이드/가이드 */}
               <div className="in_box1">
                 <input type="checkbox" className="checkbox"
                   checked={chkPolocy.policy_partner}
                   onClick={() => { handlePolicy('policy_partner') }} />
                 <span>
-                  <strong>파트너약관</strong>[필수]
+                  <strong>가이드약관</strong>[필수]
                   </span>
               </div>
               <div className="in_box2">
@@ -423,7 +423,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         <Policy type="travelerPolicy" />
       </Modal>
 
-      <Modal id="PartnerPolicy" title="파트너약관">
+      <Modal id="PartnerPolicy" title="가이드약관">
         <Policy type="partnerPolicy" />
       </Modal>
 
@@ -431,7 +431,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         <Policy type="marketingPolic" />
       </Modal>
 
-      <Modal id="MarketingPolicy" title="기업 파트너 약관">
+      <Modal id="MarketingPolicy" title="가이드 약관">
         <Policy type="partnerBpolicy" />
       </Modal>
 

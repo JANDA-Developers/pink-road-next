@@ -153,6 +153,9 @@
                 border-radius: 300px;
                 cursor: pointer;
                 z-index: 50;
+                background-size: contain;
+                background-position: center center;
+                background-repeat: no-repeat;
             }
 
                 .mypage_in .lnb .profile_box .img i {
@@ -3766,4 +3769,8 @@ div.reservation_popup .tr select {
 
 @media (max-width:360px) {
 
+}
+
+.mypage__keywards {
+    
 }

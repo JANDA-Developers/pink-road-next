@@ -25,7 +25,6 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
     const { isManager } = useContext(AppContext);
     const { items: products, filter, setFilter, getLoading } = useProductList({
         initialFilter: {
-            ...openListFilter,
             _id_in: defaultGroup.members
         }
     })
@@ -47,6 +46,7 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
 
     const handleProductSelect = (pd: Fproduct) => {
         group.members.push(pd._id);
+        console.log({ group });
         setGroup({ ...group });
         closeModal("#ProductModal" + group._id)();
     }
@@ -59,21 +59,14 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
             ...filter
         })
     }, [
-        group
+        group.members.length, group
     ])
 
     return <div className="block_box productGroupBox">
-        <PageLoading />
         <div className="head">
             <h5>{group.label}</h5>
         </div>
         <div className="body">
-            <div className="body-title">
-                <div className="th">{group.label}</div>
-                {/* <div className="td">
-                    {group.label}
-                </div> */}
-            </div>
             <div className="body-list">
                 <Change change={!getLoading}>
                     <DragDropContext onDragEnd={handleDrop}>

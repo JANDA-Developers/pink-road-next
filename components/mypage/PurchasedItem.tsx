@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
-import { generateSearchLink } from '../../pages/search';
+import { tourSearchLink } from '../../pages/search';
 import { bookingList_BookingList_data, BookingStatus, Fbooking, ProductStatus } from '../../types/api';
 import { BG } from '../../types/const';
 import { autoComma } from '../../utils/formatter';
@@ -39,7 +39,7 @@ export const PurChasedItem: React.FC<IProp> = ({ item, onDetail: handleDetail })
             </div>
             <div className="tag">
                 {keyWards?.map((keyward, index) =>
-                    <Link href={generateSearchLink({ keyward })} key={_id + index + "keyward"}><a>#{keyward}</a></Link>
+                    <Link href={tourSearchLink({ keyward })} key={_id + index + "keyward"}><a>#{keyward}</a></Link>
                 )}
             </div>
             <div className="data">

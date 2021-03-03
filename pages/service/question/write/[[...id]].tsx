@@ -43,7 +43,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
     const [questionDeleteMu] = useQuestionDelete({
         onCompleted: ({ QuestionDelete }) => {
             if (QuestionDelete.ok)
-                router.push(`/service/event`)
+                router.push(`/service/question`)
         },
     })
 
@@ -63,10 +63,6 @@ export const QuestionWrite: React.FC<IProp> = () => {
             value: boardData.contents,
             failMsg: "콘텐츠 값은 필수 입니다.",
         },
-        {
-            value: productId || urlProductId,
-            failMsg: "상품값이 올바르지 않습니다."
-        }
     ]
     );
 
@@ -99,12 +95,15 @@ export const QuestionWrite: React.FC<IProp> = () => {
 
         const next = {
             ...boardData,
-            productId: productId || urlProductId,
+            productId,
         }
 
         questionCreateMu({
             variables: {
-                params: omits(next, ["categoryId", "files"])
+                params: {
+                    ...omits(next, ["categoryId", "files"]),
+                    productId: question ? question._id : undefined
+                }
             }
         })
     }
@@ -144,6 +143,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
         onLoad={handleLoad}
         opens={{
             title: true,
+            open: true,
         }}
     />
 };

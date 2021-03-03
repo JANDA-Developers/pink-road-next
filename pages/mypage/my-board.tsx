@@ -36,7 +36,7 @@ export const MyPageBoard: React.FC<IProp> = () => {
         if (isProduct)
             rotuer.push(`/tour/view/${item._id}`)
         if (isQuestion)
-            rotuer.push(`/member/qna/view/${item._id}`)
+            rotuer.push(`/service/qna/view/${item._id}`)
     }
 
     return <MypageLayout>

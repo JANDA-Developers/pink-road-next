@@ -117,7 +117,7 @@ export const MasterSearchBar: React.FC<IProp> = ({ doSearch, filterStart, filter
                 <option>예약자명</option>
                 <option>실여행자명</option>
                 <option>휴대번호</option>
-                <option>파트너명</option>
+                <option>가이드명</option>
                 <option>상품상태</option>
                 <option>진행여부</option>
             </select> */}

@@ -22,7 +22,7 @@ export const ReservationTable: React.FC<IReservationTableProp> = ({ bookingListH
             </div>
             <div className="t02">예약번호/결제일/유형</div>
             <div className="t03 goods__productinfo">상품정보</div>
-            <div className="t04">예약자/파트너명</div>
+            <div className="t04">예약자/가이드명</div>
             <div className="t05">상태</div>
             <div className="t06">금액</div>
             <div className="t07">관리</div>
@@ -56,7 +56,7 @@ export const ReservationTable: React.FC<IReservationTableProp> = ({ bookingListH
                 <div className="t04">
                     <div className="align">
                         <strong className="name"><i className="m_title">예약자명:</i>{item.name}(예약자)</strong>
-                        <span className="patner-name"><i className="m_title">파트너명:</i>{item.product.author?.name}(판매자)</span>
+                        <span className="patner-name"><i className="m_title">가이드명:</i>{item.product.author?.name}(판매자)</span>
                         <span className="patner-name"><i className="m_title">예약번호:</i>{item.code}</span>
                     </div>
                 </div>

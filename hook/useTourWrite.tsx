@@ -339,12 +339,15 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
 
 
     const setTourData = (data: Partial<IUseTourData>) => {
+
+        console.log({ data });
         if (data.categoryId)
             setCategoryId(data.categoryId)
         if (data.its)
             setits(data.its)
-        if (data.simpleData)
-            setSimpleData(data.simpleData)
+        if (data.simpleData) {
+            setSimpleData({ ...data.simpleData })
+        }
         if (data.status)
             setStatus(data.status)
         if (data.thumbs)
@@ -356,6 +359,8 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         if (data.regionId)
             setRegionId(data.regionId)
 
+
+        setLoadKey(loadKey + 1);
     }
 
     const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -429,6 +434,9 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const lastItDate = its[its.length - 1]?.date;
     const lastDate = lastItDate ? dayjs(lastItDate).toDate() : undefined;
 
+
+    console.log("innnnuseTourWrite simpleData");
+    console.log({ simpleData });
 
     return {
         tourData,

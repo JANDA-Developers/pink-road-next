@@ -36,12 +36,12 @@ export const ProductControllers: React.FC<IProp> = ({ product, acceptCreate, acc
     // 출발7일전
     const left7overDay = dayjs().diff(product?.startDate, "day") > 7
 
-    // 출발 하기: 일반파트너일경우 출발 7일 전일때 
+    // 출발 하기: 일반가이드일경우 출발 7일 전일때 
     const determindAble = (left7overDay || isManager || isParterB) && product?.determined === false && product.status === ProductStatus.OPEN;
-    // 출발 안하기: 일반파트너일경우 출발 7일 전일때 
+    // 출발 안하기: 일반가이드일경우 출발 7일 전일때 
     const unDetermindAble = (left7overDay || isManager || isParterB) && product?.determined === true && product.status === ProductStatus.OPEN;
 
-    // 취소 가능: 일반파트너일경우 인원이 없을때 
+    // 취소 가능: 일반가이드일경우 인원이 없을때 
     const cancelAvailable = (noPeople || isManager || isParterB) && product?.status === ProductStatus.OPEN && product?.determined === false; // Travel 캔슬함수 사용하면됨
     // 삭제 가능: 사람없을때 || 오픈이거나 마감 상태가 아닐떄 
 

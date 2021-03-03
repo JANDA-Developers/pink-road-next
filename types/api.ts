@@ -1409,6 +1409,11 @@ export interface bookingFindByCode_BookingFindByCode_data_product_images {
   owner: string;
 }
 
+export interface bookingFindByCode_BookingFindByCode_data_product_thumb {
+  __typename: "File";
+  uri: string;
+}
+
 export interface bookingFindByCode_BookingFindByCode_data_product_author_busiRegistration {
   __typename: "File";
   name: string;
@@ -1540,6 +1545,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   images: bookingFindByCode_BookingFindByCode_data_product_images[] | null;
   keyWards: string[] | null;
   address: string;
+  thumb: bookingFindByCode_BookingFindByCode_data_product_thumb | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -1995,11 +2001,11 @@ export interface countManager_Count_data {
    */
   updateRequestCountMaster: number;
   /**
-   * 마스터용::가입된 기업 파트너 인원수
+   * 마스터용::가입된 가이드 인원수
    */
   busiPartnerBCountMaster: number;
   /**
-   * 마스터용::가입된 일반 파트너 인원수
+   * 마스터용::가입된 가이드 인원수
    */
   busiPartnerCountMaster: number;
   /**
@@ -2087,19 +2093,19 @@ export interface countManager_Count_data {
    */
   totalIndiMemberCount: number;
   /**
-   * 마스터용::기업 파트너 유저증 승인 유저수
+   * 마스터용::가이드 유저증 승인 유저수
    */
   confimedBusiPartnerCount: number;
   /**
-   * 마스터용::기업 파트너 유저증 미승인 유저수
+   * 마스터용::가이드 유저증 미승인 유저수
    */
   unConfimedBusiPartnerCount: number;
   /**
-   * 마스터용::파트너 유저증 확인안된 유저수
+   * 마스터용::가이드 유저증 확인안된 유저수
    */
   unConfimedPartnerCount: number;
   /**
-   * 마스터용::파트너 유저증 확인안된 유저수
+   * 마스터용::가이드 유저증 확인안된 유저수
    */
   confimedPartnerCount: number;
   /**
@@ -2119,7 +2125,7 @@ export interface countManager_Count_data {
    */
   settlementCompleteCountMaster: number;
   /**
-   * 마스터용::파트너 회원 수
+   * 마스터용::가이드 회원 수
    */
   totalPartnerMemberCount: number;
   /**
@@ -4995,6 +5001,11 @@ export interface productDelete_ProductDelete_data_images {
   owner: string;
 }
 
+export interface productDelete_ProductDelete_data_thumb {
+  __typename: "File";
+  uri: string;
+}
+
 export interface productDelete_ProductDelete_data {
   __typename: "Product";
   _id: string;
@@ -5028,6 +5039,7 @@ export interface productDelete_ProductDelete_data {
   images: productDelete_ProductDelete_data_images[] | null;
   keyWards: string[] | null;
   address: string;
+  thumb: productDelete_ProductDelete_data_thumb | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -5180,6 +5192,11 @@ export interface productList_ProductList_data_images {
   owner: string;
 }
 
+export interface productList_ProductList_data_thumb {
+  __typename: "File";
+  uri: string;
+}
+
 export interface productList_ProductList_data_bookings {
   __typename: "Booking";
   _id: string;
@@ -5317,6 +5334,7 @@ export interface productList_ProductList_data {
   images: productList_ProductList_data_images[] | null;
   keyWards: string[] | null;
   address: string;
+  thumb: productList_ProductList_data_thumb | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -5424,6 +5442,11 @@ export interface productFindById_ProductFindById_data_images {
   name: string;
   uri: string;
   owner: string;
+}
+
+export interface productFindById_ProductFindById_data_thumb {
+  __typename: "File";
+  uri: string;
 }
 
 export interface productFindById_ProductFindById_data_author_busiRegistration {
@@ -5644,6 +5667,7 @@ export interface productFindById_ProductFindById_data {
   images: productFindById_ProductFindById_data_images[] | null;
   keyWards: string[] | null;
   address: string;
+  thumb: productFindById_ProductFindById_data_thumb | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -5749,6 +5773,11 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_images {
   name: string;
   uri: string;
   owner: string;
+}
+
+export interface productFindByIdForSeller_ProductFindByIdForSeller_data_thumb {
+  __typename: "File";
+  uri: string;
 }
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_busiRegistration {
@@ -6078,6 +6107,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   images: productFindByIdForSeller_ProductFindByIdForSeller_data_images[] | null;
   keyWards: string[] | null;
   address: string;
+  thumb: productFindByIdForSeller_ProductFindByIdForSeller_data_thumb | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -7051,6 +7081,10 @@ export interface getContext_GetProfile_data {
    * 통장사본
    */
   bankImg: getContext_GetProfile_data_bankImg | null;
+  /**
+   * 판매자에 대한 키워드
+   */
+  keywards: string[] | null;
   unReadNoties: getContext_GetProfile_data_unReadNoties[] | null;
   products: getContext_GetProfile_data_products[];
   bookings: getContext_GetProfile_data_bookings[];
@@ -7782,6 +7816,11 @@ export interface settlementFindById_SettlementFindById_data_product_images {
   owner: string;
 }
 
+export interface settlementFindById_SettlementFindById_data_product_thumb {
+  __typename: "File";
+  uri: string;
+}
+
 export interface settlementFindById_SettlementFindById_data_product_author_busiRegistration {
   __typename: "File";
   name: string;
@@ -7973,6 +8012,7 @@ export interface settlementFindById_SettlementFindById_data_product {
   images: settlementFindById_SettlementFindById_data_product_images[] | null;
   keyWards: string[] | null;
   address: string;
+  thumb: settlementFindById_SettlementFindById_data_product_thumb | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -8256,6 +8296,11 @@ export interface settlementList_SettlementList_data_product_images {
   owner: string;
 }
 
+export interface settlementList_SettlementList_data_product_thumb {
+  __typename: "File";
+  uri: string;
+}
+
 export interface settlementList_SettlementList_data_product_author_busiRegistration {
   __typename: "File";
   name: string;
@@ -8387,6 +8432,7 @@ export interface settlementList_SettlementList_data_product {
   images: settlementList_SettlementList_data_product_images[] | null;
   keyWards: string[] | null;
   address: string;
+  thumb: settlementList_SettlementList_data_product_thumb | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -8873,7 +8919,7 @@ export interface sellerListPublic_SellerListPublic_data_profileImg {
 }
 
 export interface sellerListPublic_SellerListPublic_data {
-  __typename: "publicUserData";
+  __typename: "publicSellerData";
   _id: string;
   zoneinfo: sellerListPublic_SellerListPublic_data_zoneinfo;
   email: string;
@@ -8886,6 +8932,8 @@ export interface sellerListPublic_SellerListPublic_data {
    * 닉네임 유니크
    */
   nickName: string;
+  productCount: number;
+  bookingCount: number;
   /**
    * 프로필 사진
    */
@@ -9472,6 +9520,199 @@ export interface userListVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: sellerIdlistPublic
+// ====================================================
+
+export interface sellerIdlistPublic_SellerListPublic_data {
+  __typename: "publicSellerData";
+  _id: string;
+}
+
+export interface sellerIdlistPublic_SellerListPublic {
+  __typename: "SellerListPublicResponse";
+  data: sellerIdlistPublic_SellerListPublic_data[];
+}
+
+export interface sellerIdlistPublic {
+  SellerListPublic: sellerIdlistPublic_SellerListPublic;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: sellerFindByKey
+// ====================================================
+
+export interface sellerFindByKey_SellerFindByKeyPublic_data_zoneinfo {
+  __typename: "Zoneinfo";
+  timezone: string;
+  offset: number;
+  callingCode: string;
+  alpha2Code: string;
+}
+
+export interface sellerFindByKey_SellerFindByKeyPublic_data_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface sellerFindByKey_SellerFindByKeyPublic_data_products_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
+}
+
+export interface sellerFindByKey_SellerFindByKeyPublic_data_products_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface sellerFindByKey_SellerFindByKeyPublic_data_products_bookerSummary {
+  __typename: "BookerSummary";
+  adultCount: number;
+  babyCount: number;
+  kidsCount: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
+}
+
+export interface sellerFindByKey_SellerFindByKeyPublic_data_products_itinerary_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface sellerFindByKey_SellerFindByKeyPublic_data_products_itinerary {
+  __typename: "Itinerary";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string[];
+  images: sellerFindByKey_SellerFindByKeyPublic_data_products_itinerary_images[];
+  date: any;
+}
+
+export interface sellerFindByKey_SellerFindByKeyPublic_data_products_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface sellerFindByKey_SellerFindByKeyPublic_data_products_thumb {
+  __typename: "File";
+  uri: string;
+}
+
+export interface sellerFindByKey_SellerFindByKeyPublic_data_products {
+  __typename: "Product";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  regionLabel: string | null;
+  isDelete: boolean;
+  title: string;
+  code: string;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
+  contents: string;
+  determined: boolean;
+  endDate: any;
+  dateRange: number;
+  adminMemo: string;
+  groupCode: string;
+  region: sellerFindByKey_SellerFindByKeyPublic_data_products_region | null;
+  category: sellerFindByKey_SellerFindByKeyPublic_data_products_category | null;
+  /**
+   * 예약인원에 대한 요약
+   */
+  bookerSummary: sellerFindByKey_SellerFindByKeyPublic_data_products_bookerSummary;
+  status: ProductStatus;
+  itinerary: sellerFindByKey_SellerFindByKeyPublic_data_products_itinerary[];
+  inOrNor: string;
+  info: string;
+  caution: string;
+  images: sellerFindByKey_SellerFindByKeyPublic_data_products_images[] | null;
+  keyWards: string[] | null;
+  address: string;
+  thumb: sellerFindByKey_SellerFindByKeyPublic_data_products_thumb | null;
+  startPoint: string;
+  maxMember: number;
+  minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
+  subTitle: string | null;
+  adult_price: number;
+  bookingCount: number;
+  kids_price: number;
+  /**
+   * 상품 하나에 대한 결제완료된 예약 총 인원
+   */
+  compeltePeopleCnt: number;
+  baby_price: number;
+  isNotice: boolean | null;
+  elseReq: ProductReOpenReq | null;
+  isOpen: boolean | null;
+  type: ProductType;
+  startDate: any;
+  Dday: number;
+}
+
+export interface sellerFindByKey_SellerFindByKeyPublic_data {
+  __typename: "publicSellerData";
+  _id: string;
+  zoneinfo: sellerFindByKey_SellerFindByKeyPublic_data_zoneinfo;
+  email: string;
+  gender: GENDER;
+  /**
+   * 판매자에 대한 키워드
+   */
+  keywards: string[] | null;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  productCount: number;
+  bookingCount: number;
+  /**
+   * 프로필 사진
+   */
+  profileImg: sellerFindByKey_SellerFindByKeyPublic_data_profileImg | null;
+  products: sellerFindByKey_SellerFindByKeyPublic_data_products[];
+}
+
+export interface sellerFindByKey_SellerFindByKeyPublic {
+  __typename: "SellerFindByKeyPublicResponse";
+  data: sellerFindByKey_SellerFindByKeyPublic_data | null;
+}
+
+export interface sellerFindByKey {
+  SellerFindByKeyPublic: sellerFindByKey_SellerFindByKeyPublic;
+}
+
+export interface sellerFindByKeyVariables {
+  key: string;
+  value: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: userFindById
 // ====================================================
 
@@ -9548,6 +9789,11 @@ export interface userFindById_UserFindById_data_products_images {
   name: string;
   uri: string;
   owner: string;
+}
+
+export interface userFindById_UserFindById_data_products_thumb {
+  __typename: "File";
+  uri: string;
 }
 
 export interface userFindById_UserFindById_data_products_author_busiRegistration {
@@ -9681,6 +9927,7 @@ export interface userFindById_UserFindById_data_products {
   images: userFindById_UserFindById_data_products_images[] | null;
   keyWards: string[] | null;
   address: string;
+  thumb: userFindById_UserFindById_data_products_thumb | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -10215,10 +10462,10 @@ export interface FfeePolicy {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: FpublicUserData
+// GraphQL fragment: FpublicSellerData
 // ====================================================
 
-export interface FpublicUserData_zoneinfo {
+export interface FpublicSellerData_zoneinfo {
   __typename: "Zoneinfo";
   timezone: string;
   offset: number;
@@ -10226,15 +10473,15 @@ export interface FpublicUserData_zoneinfo {
   alpha2Code: string;
 }
 
-export interface FpublicUserData_profileImg {
+export interface FpublicSellerData_profileImg {
   __typename: "File";
   uri: string;
 }
 
-export interface FpublicUserData {
-  __typename: "publicUserData";
+export interface FpublicSellerData {
+  __typename: "publicSellerData";
   _id: string;
-  zoneinfo: FpublicUserData_zoneinfo;
+  zoneinfo: FpublicSellerData_zoneinfo;
   email: string;
   gender: GENDER;
   /**
@@ -10245,10 +10492,12 @@ export interface FpublicUserData {
    * 닉네임 유니크
    */
   nickName: string;
+  productCount: number;
+  bookingCount: number;
   /**
    * 프로필 사진
    */
-  profileImg: FpublicUserData_profileImg | null;
+  profileImg: FpublicSellerData_profileImg | null;
 }
 
 /* tslint:disable */
@@ -10412,6 +10661,11 @@ export interface Fproduct_images {
   owner: string;
 }
 
+export interface Fproduct_thumb {
+  __typename: "File";
+  uri: string;
+}
+
 export interface Fproduct {
   __typename: "Product";
   _id: string;
@@ -10445,6 +10699,7 @@ export interface Fproduct {
   images: Fproduct_images[] | null;
   keyWards: string[] | null;
   address: string;
+  thumb: Fproduct_thumb | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -11762,8 +12017,7 @@ export enum BookingStatus {
  * 카테고리 타입
  */
 export enum CategoryType {
-  EXPERIENCE = "EXPERIENCE",
-  PORTPOLIO = "PORTPOLIO",
+  GUIDE_KEYWARD = "GUIDE_KEYWARD",
   QNA = "QNA",
   QUESTION = "QUESTION",
   REGION = "REGION",
@@ -12234,6 +12488,8 @@ export enum _SellerSort {
   createdAt_desc = "createdAt_desc",
   name_asc = "name_asc",
   name_desc = "name_desc",
+  profileImg_asc = "profileImg_asc",
+  profileImg_desc = "profileImg_desc",
   resignDate_asc = "resignDate_asc",
   resignDate_desc = "resignDate_desc",
 }
@@ -12262,6 +12518,8 @@ export enum _UserSort {
   createdAt_desc = "createdAt_desc",
   name_asc = "name_asc",
   name_desc = "name_desc",
+  profileImg_asc = "profileImg_asc",
+  profileImg_desc = "profileImg_desc",
   resignDate_asc = "resignDate_asc",
   resignDate_desc = "resignDate_desc",
 }
@@ -12843,6 +13101,7 @@ export interface UserUpdateInput {
   manageContact?: string | null;
   isVerifiedManager?: boolean | null;
   status?: UserStatus | null;
+  keywards?: string[] | null;
 }
 
 export interface _AnnounceFilter {

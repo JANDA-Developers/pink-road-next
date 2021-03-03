@@ -62,6 +62,7 @@ export interface IGetEditUtilsResult<Page> {
     page: Page;
     setPage: React.Dispatch<any>;
     lang: string;
+    set: (key: keyof Page, value: any, index?: number, key2?: string) => void
     edit: (key: keyof Page, index?: number) => any;
     ulEdit: (key: keyof Page) => any;
     imgEdit: (key: keyof Page) => (url: string) => void;
@@ -120,15 +121,17 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
     }
 
     const validateKey = (key: string | keyof T, array?: number | true) => {
-        if (!page[key]) throw Error(`키값 ${key}은 존재하지 않습니다.`);
-        if (page[key].value === undefined)
-            if (page[key][lang] === undefined) throw Error(`언어 ${lang}은 ${key}에 없으며 value 또한 없습니다..`);
+        const target = page[key];
+        if (!target) throw Error(`키값 ${key}은 존재하지 않습니다.`);
+        if (target.value === undefined)
+            if (target[lang] === undefined) throw Error(`언어 ${lang}은 ${key}에 없으며 value 또한 없습니다..`);
 
         if (array !== undefined) {
-            if (!Array.isArray(page[key][lang])) throw Error(`the ${key} object is not array!!`);
-            if (array !== true) {
-                if (page[key][lang][array] === undefined) throw Error(`the object key ${key} dose not  have index ${array}!!`)
-            }
+            if (!Array.isArray(target.value))
+                if (!Array.isArray(target[lang])) throw Error(`the ${key} object is not array!!`);
+            // if (array !== true) {
+            //     if (target.value[array] === undefined && target[lang][array] === undefined) throw Error(`the object key ${key} dose not  have index ${array}!!`)
+            // }
         }
     }
 
@@ -253,40 +256,38 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         validateKey(key, index)
 
 
-
         const setPageData = () => {
-            if (index !== undefined) {
-                // @ts-ignore
-                if (page[key].value !== undefined) {
-                    // @ts-ignore
-                    page[key].value[index] = value
-                    return
-                } else if (key2 !== undefined) {
-                    // @ts-ignore
-                    page[key][lang][index][key2] = value;
-                    return
+            const isArray = index !== undefined
+            const hasKey2 = !!key2;
+            const target = page[key];
+            const hasValue = target.value !== undefined;
+
+            if (isArray && !hasKey2) {
+                if (hasValue) {
+                    target.value[index] = value;
                 } else {
-                    page[key][lang][index] = value;
-                    return
+                    target[lang][index] = value;
                 }
             }
 
-
-            if (index === undefined) {
-                // @ts-ignore
-                if (page[key].value !== undefined) {
-                    // @ts-ignore
-                    page[key].value = value
-                    return
+            if (isArray && hasKey2) {
+                if (hasValue) {
+                    target.value[index][key2] = value;
                 } else {
-                    // @ts-ignore
-                    page[key][lang] = value;
-                    return
+                    target[lang][index][key2] = value;
+                }
+            }
+
+            if (!isArray) {
+                if (hasValue) {
+                    target.value = value
+                } else {
+                    target[lang] = value;
                 }
             }
         }
+
         setPageData();
-        console.log({ page });
         setPage({ ...page })
 
     }
@@ -295,22 +296,16 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         validateKey(key)
 
         if (index !== undefined) {
-            // @ts-ignore
             if (page[key].value) {
-                // @ts-ignore
                 return page[key].value[index]
             } else {
-                // @ts-ignore
                 return page[key][lang][index];
             }
         }
 
-        // @ts-ignore
         if (page[key].value) {
-            // @ts-ignore
             return page[key].value
         } else {
-            // @ts-ignore
             return page[key][lang];
         }
     }
@@ -333,6 +328,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
     return {
         get,
+        set,
         page,
         setPage,
         lang,

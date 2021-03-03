@@ -72,3 +72,4 @@ const info: TStieInfo = {
 }
 
 export default info;
+

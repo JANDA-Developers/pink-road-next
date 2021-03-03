@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 
 export const F_PUBLIC_USER = gql`
-    fragment FpublicUserData on publicUserData {
+    fragment FpublicSellerData on publicSellerData {
         _id
         zoneinfo {
             timezone
@@ -14,6 +14,8 @@ export const F_PUBLIC_USER = gql`
         gender
         keywards
         nickName
+        productCount
+        bookingCount
         profileImg {
             uri            
         }
@@ -131,6 +133,9 @@ export const F_PRODUCT = gql`
         }
         keyWards
         address
+        thumb {
+            uri
+        }
         startPoint
         maxMember
         minMember
