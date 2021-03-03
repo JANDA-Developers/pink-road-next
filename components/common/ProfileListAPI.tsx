@@ -1,22 +1,30 @@
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
+import { ListInitOptions } from '../../hook/useListQuery';
+import { openListFilter } from '../../hook/useProduct';
 import { usePublicSellerList } from '../../hook/useUser';
-import { sellerListPublic_SellerListPublic_data, _SellerSort, _UserSort } from '../../types/api';
-import { BG } from '../../types/const';
+import { tourSearchLink } from '../../pages/search';
+import { sellerListPublic_SellerListPublic_data, _SellerFilter, _SellerSort, _UserSort } from '../../types/api';
+import { BG, BGprofile } from '../../types/const';
 import { GoodsListAPI } from './GoodsListAPI';
 
 interface IProp {
+    mode?: "wide" | "short"
+    listQueryFilter?: Partial<ListInitOptions<_SellerFilter, _SellerSort>>;
     selectedSeller?: sellerListPublic_SellerListPublic_data;
-    setSelectedSeller: React.Dispatch<React.SetStateAction<sellerListPublic_SellerListPublic_data | undefined>>
+    setSelectedSeller?: React.Dispatch<React.SetStateAction<sellerListPublic_SellerListPublic_data | undefined>>
 }
 
-export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSeller }) => {
+export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSeller, listQueryFilter, mode = "wide" }) => {
+    const router = useRouter();
     const guidesRef = useRef<HTMLDivElement>(null)
     const { items } = usePublicSellerList({
+        ...listQueryFilter,
         initialSort: [_SellerSort.profileImg_desc]
     });
 
     const handleSelectUser = (user: sellerListPublic_SellerListPublic_data) => () => {
-        setSelectedSeller(user);
+        setSelectedSeller?.(user);
     }
 
 
@@ -29,9 +37,23 @@ export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSel
 
     useEffect(() => {
         if (items?.[0] && !selectedSeller) {
-            setSelectedSeller(items[0])
+            setSelectedSeller?.(items[0])
         }
     }, [items.length])
+
+    const isShort = mode === "short"
+
+    const toGuidePage = (code: string) => {
+        router.push("/itsguid/" + code)
+    }
+
+    if (isShort) return <ul className="pr_list">
+        {items.map(item =>
+            <li onClick={() => {
+                toGuidePage(item._id)
+            }} key={item._id} style={BGprofile(item.profileImg)} />
+        )}
+    </ul>
 
     return <div className="man_list">
         <a onClick={handleScrollArrowClick(false)} className="left_mov"><i className="jandaicon-arr2-left"></i></a>
@@ -59,6 +81,7 @@ export const ProfileListAPIwithGoods = () => {
             <GoodsListAPI options={{
                 variables: {
                     filter: {
+                        ...openListFilter,
                         authorEmail_eq: selectedSeller?.email
                     },
                     pageInput: {

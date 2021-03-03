@@ -3,7 +3,6 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import { GoodsListAPI } from '../../components/common/GoodsListAPI';
 import { getStaticPageInfo, Ipage } from 'utils/page';
-import { Upload } from 'components/common/Upload';
 import { usePageEdit } from '../../hook/usePageEdit';
 import defaultPageInfo from "../../info/guideMain.json"
 import { ProfileListAPIwithGoods } from '../../components/common/ProfileListAPI';

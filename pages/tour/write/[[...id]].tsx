@@ -14,7 +14,6 @@ import { tapCheck } from "../../../utils/style";
 import TagInput from "../../../components/tagInput/TagInput";
 import { getDefault, useTourWrite } from "../../../hook/useTourWrite";
 import { useProductFindById, useProductUpdateReq } from "../../../hook/useProduct";
-import { changeVal } from "../../../utils/eventValueExtracter";
 import PageLoading from "../../Loading";
 import { auth } from "../../../utils/with";
 import { ALLOW_SELLERS } from "../../../types/const";
@@ -22,8 +21,6 @@ import { EditorLoading } from "../../../components/edit/EdiotrLoading";
 import pageInfoDefault from "info/tourWrite.json"
 import { getStaticPageInfo, Ipage } from "../../../utils/page";
 import { usePageEdit } from "../../../hook/usePageEdit";
-import { assert } from "console";
-import PageDeny from "../../Deny";
 import { cloneObject } from "../../../utils/clone";
 import { productStatus } from "../../../utils/enumToKr";
 import { Prompt } from "../../../components/promptModal/Prompt";
@@ -206,7 +203,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const updateAble = (!isCreateMode && (isParterB || isManager)) || noram_partner_updateable_status.includes(product?.status!);
     const normalPartnerUpdateReqAble = updateBtnDisableCheck(product!, isParterB || false)
 
-    const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.EXPERIENCE;
+    const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.TOUR;
     const regionCategories = categoriesMap.REGION;
 
     // if (!isManager && !isMyProduct) return <PageDeny />

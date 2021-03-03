@@ -13,7 +13,7 @@ import { ViewSelect } from '../components/common/ViewSelect';
 import SubTopNav from '../layout/components/SubTop';
 import { integratedProductSearch } from '../utils/genFilter';
 import SortSelect from '../components/common/SortMethod';
-import { ProductType } from '../types/api';
+import { ProductType, _ProductFilter } from '../types/api';
 import { whenEnter } from '../utils/eventValueExtracter';
 import { getAllFromUrl, getFromUrl } from '../utils/url';
 import pageInfoDefault from "info/search.json";
@@ -25,6 +25,7 @@ import { Change } from '../components/loadingList/LoadingList';
 import { removeSpecialChar } from '../utils/formatter';
 
 type TSearchParam = {
+    regionLabel?: string;
     keyward?: string;
     title?: string;
 }
@@ -61,12 +62,15 @@ export const getStaticProps = getStaticPageInfo("search");
 export const Search: React.FC<Ipage> = (_pageInfo) => {
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
     const all = getAllFromUrl<TSearchParam>()
-    const { keyward, title } = all;
-    console.log({ all })
+    const { keyward, title, regionLabel } = all;
     const initialFilter = {
         ...openListFilter,
-        initialFilter: integratedProductSearch(keyward || title)
+        initialFilter: {
+            ...integratedProductSearch(keyward || title),
+            regionLabel_eq: regionLabel || undefined,
+        }
     }
+
     const productListHook = useProductList(initialFilter)
     const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = productListHook;
     const { categoriesMap } = useContext(AppContext);

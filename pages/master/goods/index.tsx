@@ -131,6 +131,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
 
     const checkOnDetermined = (isDetermined: boolean) => isDetermined === filter.determined_eq ? "on" : "";
     const checkOnStatus = (status?: ProductStatus) => status === filter.status_eq ? "on" : "";
+    // @ts-ignore
     const checkOnElseReq = (req?: ProductReOpenReq) => req === filter.elseReq_not_eq ? undefined : ""
 
     return <MasterLayout>
@@ -251,7 +252,6 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             )}
                         </div>
                     </Change>
-
                 </div>
             </div>
             <Paginater setPage={setPage} pageInfo={pageInfo} />

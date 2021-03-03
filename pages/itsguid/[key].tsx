@@ -73,7 +73,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { key } }) => {
 const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
     const { guideData } = pageInfo;
     const { isManager, myProfile, categoriesMap } = useContext(AppContext);
-    const { query } = useRouter();
+    const { query, push } = useRouter();
     const key = query.key;
     const myId = myProfile?._id;
     const isMypage = isManager || (myId === key);
@@ -92,6 +92,10 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
 
     const handleLang = (lang: "kr" | "GB") => () => {
         setLang(lang);
+    }
+
+    const toProduct = (id: string) => () => {
+        push("/tour/view/" + id)
     }
 
     const location = typeof window === "undefined" ? "" : window?.location?.href;
@@ -174,9 +178,9 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
                                 </div>
                             </div>
                             <div className="board_view">
-                                {slice?.map((product) =>
-                                    <ul key={product._id} className="list_ul line4">
-                                        <li className="list_in">
+                                <ul className="list_ul line4">
+                                    {slice?.map((product) =>
+                                        <li onClick={toProduct(product._id)} key={product._id} className="list_in">
                                             <div className="img" style={{ backgroundImage: `url(${product?.images[0]?.uri})` }}>상품이미지</div>
                                             <div className="box">
                                                 <div className="category"><span>{product.category.label}</span></div>
@@ -191,8 +195,8 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
                                                 </div>
                                             </div>
                                         </li>
-                                    </ul>
-                                )}
+                                    )}
+                                </ul>
                                 {isEmpty(guideData.products) && <NoData label="작성된 상품이 없습니다." />}
                                 <div className="mypage_in__paginator">
                                     <Paginater isMini pageInfo={paging} setPage={setPage} />

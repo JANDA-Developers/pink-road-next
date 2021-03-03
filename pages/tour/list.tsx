@@ -63,7 +63,7 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
         descKey: isExp ? "exp_subTop_desc" : "subTop_desc"
     }
 
-    const cats = isExp ? categoriesMap.EXPERIENCE : categoriesMap.TOUR;
+    const cats = isExp ? categoriesMap.TOUR : categoriesMap.TOUR;
 
 
     return <div>

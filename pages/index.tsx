@@ -12,12 +12,13 @@ import { usePageEdit } from '../hook/usePageEdit';
 import { openAutos } from '../hook/usePopups';
 import { AppContext } from './_app';
 import { usePublicSellerList } from '../hook/useUser';
-import { ProfileListAPIwithGoods } from '../components/common/ProfileListAPI';
+import { ProfileListAPI, ProfileListAPIwithGoods } from '../components/common/ProfileListAPI';
 import { PageEditor } from '../components/common/PageEditer';
 import { Bg } from '../components/Img/Img';
 import { LinkRoundIcon } from '../components/common/icon/LinkIcon';
 import { A } from '../components/A/A';
 import { tourSearchLink } from './search';
+import { openListFilter } from '../hook/useProduct';
 
 export const getStaticProps = getStaticPageInfo("main")
 export const Main: React.FC<Ipage> = (pageInfo) => {
@@ -63,7 +64,9 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
               </span>
               <div className="btn_list">
                 {categoriesMap.REGION.map(region =>
-                  <Link key={region._id} href={`/tour/${region._id}`}>
+                  <Link key={region._id} href={tourSearchLink({
+                    regionLabel: region.label
+                  })}>
                     <a className="tourLink">{region.label}</a>
                   </Link>
                 )}
@@ -96,16 +99,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
           </h2>
           <strong {...edit("m_02_number")} />
         </div>
-        <ul className="pr_list">
-          <Bg tag="li" {...imgKit("m_02_photo01")} />
-          <Bg tag="li" {...imgKit("m_02_photo02")} />
-          <Bg tag="li" {...imgKit("m_02_photo03")} />
-          <Bg tag="li" {...imgKit("m_02_photo04")} />
-          <Bg tag="li" {...imgKit("m_02_photo05")} />
-          <Bg tag="li" {...imgKit("m_02_photo06")} />
-          <Bg tag="li" {...imgKit("m_02_photo07")} />
-          <li className="plus"><Link href="/guide"><a>+</a></Link></li>
-        </ul>
+        <ProfileListAPI listQueryFilter={{ initialViewCount: 7 }} mode="short" />
       </div>
 
     </div>

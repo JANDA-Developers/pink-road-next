@@ -1,15 +1,14 @@
 import { DocumentNode, MutationHookOptions, QueryHookOptions, useMutation } from "@apollo/client";
 import { capitalize } from "./stirng";
 import { ListInitOptions, useListQuery } from "../hook/useListQuery";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
 import { ERR_CODE, Fpage } from "../types/api";
 import { CustomErrorResponse } from "aws-sdk/clients/cloudfront";
-import { ErrorCode } from "./enumToKr";
 import { getFromUrl } from "./url";
-import { cloneObject } from "./clone";
-interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
+
+export interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
     skipInit?: boolean;
     overrideVariables?: Partial<V>
@@ -169,6 +168,7 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
                 const err:CustomErrorResponse = result[operationName]?.error;
                 // @ts-ignore
                 userErrorHandle(result[operationName])
+                // @ts-ignore
                 options?.onCompleted?.(result) || defaultOptions?.onCompleted?.(result)
             }
         });

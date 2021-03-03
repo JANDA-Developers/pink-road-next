@@ -1,6 +1,6 @@
 import React from 'react';
 import { TElements } from '../../types/interface';
-import { HtmlTag } from '../Img/img';
+import { HtmlTag } from '../Img/Img';
 
 interface IProp {
     condition: boolean;

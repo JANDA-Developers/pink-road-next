@@ -19,6 +19,7 @@ import { A } from '../../components/A/A';
 import { LinkRoundIcon } from '../../components/common/icon/LinkIcon';
 import { GoodsListTable } from '../../components/common/GoodListTable';
 import { useRouter } from 'next/router';
+import { openListFilter } from '../../hook/useProduct';
 
 interface IProp extends InferGetStaticPropsType<typeof getStaticProps> { }
 
@@ -63,7 +64,6 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
         <div className="in ">
             <div className="itstour_box">
                 <div className="w1200">
-
                     <div className="theme_deal">
                         <ul>
                             <Bg onClick={handleLink("m_06_link01_bgimg_link")} {...imgKit("m_06_link01_bgimg")} tag="li" className="top_01">
