@@ -13,7 +13,7 @@ const info = {
         kr: `It's가이드와 함께 지금 떠나세요.`
     },
     m_01_mainBg: {
-        kr: `/its/main_top_bg.jpg`,
+        kr: `/its/main_top_bg4.jpg`,
     },
     m_01_mainLink1: {
         kr: `#부산`,
