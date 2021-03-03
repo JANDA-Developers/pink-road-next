@@ -3666,7 +3666,10 @@ div.reservation_popup .tr select {
     }
 }
 @media (max-width: 767px) {
-
+    .selectViewList ul.list_ul .list_in .txt2 span{
+        width: auto !important;
+        margin-right: 15px;
+    }
     .mypage_in .statement_div li:after{
         display: none;
     }

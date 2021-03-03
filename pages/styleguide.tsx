@@ -244,6 +244,78 @@ export const StyleGuide: React.FC<IProp> = () => {
 
 
 
+        {/* 가이드리스트 디자인 */}
+        <ul className="member_ul">
+            <li className="list_in">
+                <div className="img" style={{ backgroundImage: 'url(/img/profile_default160.gif)' }}>GUIDE</div>
+                <div className="box">
+                    <div className="name"><i>G</i>김행자</div>
+                    <div className="bottom_txt">
+                        <div className="tag">
+                            <span>#부산가이드</span>
+                            <span>#여성가이드</span>
+                            <span>#뚜벅이여행</span>
+                            <span>#꽃놀이</span>
+                            <span>#버스투어</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="member_info">
+                    <div className="info_01">
+                        <strong>0</strong>
+                        <span>총 가이드 </span>
+                    </div>
+                    <div className="info_02">
+                        <strong>0</strong>
+                        <span>총 가이드 </span>
+                    </div>
+                    <div className="info_03">
+                        <strong>0</strong>
+                        <span>총 가이드 </span>
+                    </div>
+                    <div className="info_04">
+                        <strong>0</strong>
+                        <span>총 가이드 </span>
+                    </div>
+                </div>
+            </li>
+            <li className="list_in">
+                <div className="img" style={{ backgroundImage: 'url(/img/profile_default160.gif)' }}>GUIDE</div>
+                <div className="box">
+                    <div className="name"><i>G</i>김행자</div>
+                    <div className="bottom_txt">
+                        <div className="tag">
+                            <span>#부산가이드</span>
+                            <span>#여성가이드</span>
+                            <span>#뚜벅이여행</span>
+                            <span>#꽃놀이</span>
+                            <span>#버스투어</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="member_info">
+                    <div className="info_01">
+                        <strong>0</strong>
+                        <span>총 가이드 </span>
+                    </div>
+                    <div className="info_02">
+                        <strong>0</strong>
+                        <span>총 가이드 </span>
+                    </div>
+                    <div className="info_03">
+                        <strong>0</strong>
+                        <span>총 가이드 </span>
+                    </div>
+                    <div className="info_04">
+                        <strong>0</strong>
+                        <span>총 가이드 </span>
+                    </div>
+                </div>
+            </li>
+
+
+        </ul>
+
 
     </div>
 };

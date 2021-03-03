@@ -359,7 +359,6 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         if (data.regionId)
             setRegionId(data.regionId)
 
-
         setLoadKey(loadKey + 1);
     }
 
