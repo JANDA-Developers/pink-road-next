@@ -5,11 +5,12 @@ import { GoodsListAPI } from '../../components/common/GoodsListAPI';
 import { getStaticPageInfo, Ipage } from 'utils/page';
 import { usePageEdit } from '../../hook/usePageEdit';
 import defaultPageInfo from "../../info/guideMain.json"
-import { ProfileListAPIwithGoods } from '../../components/common/ProfileListAPI';
+import { ProfileListAPI, ProfileListAPIwithGoods } from '../../components/common/ProfileListAPI';
 import { PageEditor } from '../../components/common/PageEditer';
 import { CloseIcon } from '../../components/common/icon/CloseIcon';
 import { AppContext } from '../_app';
 import { Bg } from '../../components/Img/Img';
+import { guideSearchLink } from '../guide-search';
 
 
 export const getStaticProps = getStaticPageInfo("guideMain")
@@ -42,7 +43,9 @@ export const GuideMain: React.FC<Ipage> = (pageInfo) => {
                             <ul className="btn_list">
                                 {get("guideMain_topBtns").map((val: string, i: number) =>
                                     <li key={`guideMain_topBtns${i}`}>
-                                        <Link href="/guide">
+                                        <Link href={guideSearchLink({
+                                            keyward: val
+                                        })}>
                                             <a className="guid_topBtn__btn">
                                                 <span className="guid_topBtn__title" {...edit("guideMain_topBtns", i)} />
                                                 {editMode && <CloseIcon className="guid_topBtn__close" onClick={() => {
@@ -79,16 +82,7 @@ export const GuideMain: React.FC<Ipage> = (pageInfo) => {
                             <h2><span {...edit("guideMain01_subtitle")} /></h2>
                             <strong {...edit("guideMain01_title")} />
                         </div>
-                        <ul className="pr_list">
-                            <Bg tag="li" {...imgKit("guideMain01_photo01")} />
-                            <Bg tag="li" {...imgKit("guideMain01_photo02")} />
-                            <Bg tag="li" {...imgKit("guideMain01_photo03")} />
-                            <Bg tag="li" {...imgKit("guideMain01_photo04")} />
-                            <Bg tag="li" {...imgKit("guideMain01_photo05")} />
-                            <Bg tag="li" {...imgKit("guideMain01_photo06")} />
-                            <Bg tag="li" {...imgKit("guideMain01_photo07")} />
-                            <li className="plus"><a href="/">+</a></li>
-                        </ul>
+                        <ProfileListAPI listQueryFilter={{ initialViewCount: 7 }} mode="short" />
                     </div>
                     <div className="con02">
                         <div className="deal_list">

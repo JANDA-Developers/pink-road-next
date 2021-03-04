@@ -24,10 +24,10 @@ export const GuideLine: React.FC<IProp> = ({ guide }) => {
                 <div className="guideLine__img" style={BGprofile(profileImg)} />
             </div>
             <div className="guideLine__info">
-                <GuideBadge nickName={nickName} />
+                <GuideBadge className="mr5 mb10" nickName={nickName} />
                 <div className="guideLine__keywards">
                     {keywards.map((t, i: number) =>
-                        <Keyward key={i + "keyward" + _id + t} keywardId={t} />
+                        <Keyward key={i + "keyward" + _id} keyward={t} />
                     )}
                 </div>
             </div>

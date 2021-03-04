@@ -14,10 +14,12 @@ import { TBookingSearchType, useBookingBoard } from '../../hook/useBookingBoard'
 import { useModal } from '../../hook/useModal';
 import { useQueryFilter } from '../../hook/useQueryFilter';
 import { useDateFilter } from '../../hook/useSearch';
-import { BookingStatus, _BookingFilter, _ProductFilter } from '../../types/api';
+import { BookingStatus, UserRole, _BookingFilter, _ProductFilter } from '../../types/api';
+import { ALLOW_LOGINED } from '../../types/const';
 import { filterToRange, rangeToFilter } from '../../utils/filter';
 import isEmpty from '../../utils/isEmpty';
 import { closeModal, openModal } from '../../utils/popUp';
+import { auth } from '../../utils/with';
 
 interface IProp { }
 
@@ -107,4 +109,4 @@ export const MyPagePurchase: React.FC<IProp> = () => {
     </MypageLayout>
 };
 
-export default MyPagePurchase;
+export default auth(ALLOW_LOGINED)(MyPagePurchase);

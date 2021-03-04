@@ -343,7 +343,7 @@ export default auth(ALLOW_LOGINED)(Plainning);
 //                                                     <label htmlFor={`agree${i}`} />
 //                                                 </span>
 //                                             </div>
-//                                             <div className="th02"><span className="m_title">상품코드: </span>PINK-01230</div>
+//                                             <div className="th02"><span className="m_title">상품코드: </span>ITS-01230</div>
 //                                             <div className="th03">제주도로 떠나요~ 제주도로 떠나요~제주도로 떠나요~</div>
 //                                             <div className="th04"><span className="m_title">출발일: </span>2020.02.02</div>
 //                                             <div className="th05">
@@ -365,7 +365,7 @@ export default auth(ALLOW_LOGINED)(Plainning);
 //                                                     <label htmlFor={`agree${i}`} />
 //                                                 </span>
 //                                             </div>
-//                                             <div className="th02"><span className="m_title">상품코드: </span>PINK-01230</div>
+//                                             <div className="th02"><span className="m_title">상품코드: </span>ITS-01230</div>
 //                                             <div className="th03">제주도로 떠나요~ 제주도로 떠나요~제주도로 떠나요~</div>
 //                                             <div className="th04"><span className="m_title">출발일: </span>2020.02.02</div>
 //                                             <div className="th05">

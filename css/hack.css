@@ -8,3 +8,15 @@
 .banner {
     cursor: pointer;
 }
+
+.pr_list__li {
+    cursor: pointer;
+}
+
+.pr_list__li:hover {
+    filter: brightness(0.8);
+}
+
+figure.image img {
+    width: 100%;
+}

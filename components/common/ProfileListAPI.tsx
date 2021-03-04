@@ -49,10 +49,11 @@ export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSel
 
     if (isShort) return <ul className="pr_list">
         {items.map(item =>
-            <li onClick={() => {
+            <li className="pr_list__li" onClick={() => {
                 toGuidePage(item._id)
             }} key={item._id} style={BGprofile(item.profileImg)} />
         )}
+        <li className="plus"><a href="/guide-search">+</a></li>
     </ul>
 
     return <div className="man_list">

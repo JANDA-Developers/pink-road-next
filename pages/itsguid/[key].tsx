@@ -22,6 +22,7 @@ import { useRouter } from 'next/router';
 import { AppContext } from '../_app';
 import Link from 'next/link';
 import { BGprofile } from '../../types/const';
+import { clean } from '../../utils/clearn';
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 
 //URL 링크
@@ -78,7 +79,7 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
     const myId = myProfile?._id;
     const isMypage = isManager || (myId === key);
     const filteredKeywards = categoriesMap.GUIDE_KEYWARD.filter(key => {
-        return guideData.keywards?.includes(key._id)
+        return guideData.keywards?.includes(key.label)
     });
 
     const pageTools = usePageEdit(pageInfo, ITS_GUIDE_INFO);
@@ -120,7 +121,7 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
             <div className="member_box">
                 <div className="w1200">
                     <div className="profile">
-                        <div className="photo"><div className="photo__bg" style={BGprofile(myProfile?.profileImg)} /> </div>
+                        <div className="photo"><div className="photo__bg" style={BGprofile(guideData?.profileImg)} /> </div>
                         <div className="name"><i>G</i><span >{guideData.nickName || "닉네임 없음"}</span></div>
                         <div className="tag">
                             {filteredKeywards.map((t, i: number) =>
@@ -138,8 +139,8 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
                             <div className="txt">
                                 {editMode ? <Editor data={get("content")} onChange={(content) => {
                                     set("content", content);
-                                }} /> : <div dangerouslySetInnerHTML={{
-                                    __html: sanitize(get("content"))
+                                }} /> : <div className="ck-content" dangerouslySetInnerHTML={{
+                                    __html: get("content")
                                 }} />}
                             </div>
                         </div>

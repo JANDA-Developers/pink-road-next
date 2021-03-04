@@ -548,6 +548,8 @@
 	border-radius: 150px;
 	overflow: hidden;
 	margin-bottom: 15px;
+	position: relative;
+	z-index: 10;
 }
 
 .profilePage .member_details_in .profile .name {

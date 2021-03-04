@@ -196,7 +196,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const isSeller = isPartnerB || isPartner;
 
 
-    const filteredKeywards = categoriesMap.GUIDE_KEYWARD.filter(key => keywards.includes(key._id));
+    const filteredKeywards = categoriesMap.GUIDE_KEYWARD.filter(key => keywards.includes(key.label));
     const keywardsOps: IselectedOption[] = filteredKeywards.map(key => ({
         _id: key._id,
         label: key.label
@@ -562,8 +562,8 @@ export const MyPageProfile: React.FC<IProp> = () => {
                     </div>
                     <div className="box_right">
                         <KeywardSelecter className="mypage__keywards" value={keywardsOps} handleChange={(keywards) => {
-                            const keyIds = keywards.map(keyward => keyward._id);
-                            profile.keywards = keyIds;
+                            const keyLabels = keywards.map(keyward => keyward.label);
+                            profile.keywards = keyLabels;
                             setProfile({ ...profile })
                         }} />
                     </div>

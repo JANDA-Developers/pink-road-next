@@ -88,19 +88,19 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
                             <Bg onClick={handleLink("m_06_link04_bgimg_link")} {...imgKit("m_06_link04_bgimg")} tag="li" className="top_04">
                                 <A className="m_06_link__linker" {...linkEdit("m_06_link04_bgimg_link")} editComponent={<LinkRoundIcon />} />
                                 <div className="theme_deal__textBox">
-                                    <span className="title" {...edit("m_06_link03_text")} />
+                                    <span className="title" {...edit("m_06_link04_text")} />
                                 </div>
                             </Bg>
                             <Bg onClick={handleLink("m_06_link05_bgimg_link")} {...imgKit("m_06_link05_bgimg")} tag="li" className="top_05">
                                 <A className="m_06_link__linker" {...linkEdit("m_06_link05_bgimg_link")} editComponent={<LinkRoundIcon />} />
                                 <div className="theme_deal__textBox">
-                                    <span className="title" {...edit("m_06_link03_text")} />
+                                    <span className="title" {...edit("m_06_link05_text")} />
                                 </div>
                             </Bg>
                             <Bg onClick={handleLink("m_06_link06_bgimg_link")} {...imgKit("m_06_link06_bgimg")} tag="li" className="top_06">
                                 <A className="m_06_link__linker" {...linkEdit("m_06_link06_bgimg_link")} editComponent={<LinkRoundIcon />} />
                                 <div className="theme_deal__textBox">
-                                    <span className="title" {...edit("m_06_link03_text")} />
+                                    <span className="title" {...edit("m_06_link06_text")} />
                                 </div>
                             </Bg>
                         </ul>

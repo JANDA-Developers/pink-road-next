@@ -3,11 +3,9 @@ import { AppContext } from '../../../pages/_app';
 import { IDiv } from '../../../types/interface';
 
 interface IProp extends IDiv {
-    keywardId: string;
+    keyward: string;
 }
 
-export const Keyward: React.FC<IProp> = ({ keywardId, ...props }) => {
-    const { categoriesMap } = useContext(AppContext);
-    const catg = categoriesMap.GUIDE_KEYWARD.find(key => key._id === keywardId)
-    return <div className="keyward" {...props} >{catg.label}</div>;
+export const Keyward: React.FC<IProp> = ({ keyward, ...props }) => {
+    return <div className="keyward" {...props} >#{keyward}</div>;
 };

@@ -80,7 +80,7 @@ export const Header: React.FC<IProp> = () => {
 
     const handleLogOut = () => {
         localStorage.removeItem("jwt");
-        location.href = process.env.NEXT_PUBLIC_CLIENT_DOMAIN + "/"
+        location.href = "/"
     }
 
     const goToSearchPage = () => {

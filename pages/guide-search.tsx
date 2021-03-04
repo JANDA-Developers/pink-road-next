@@ -15,7 +15,7 @@ import { integratedProductSearch, integratedUserSearch } from '../utils/genFilte
 import SortSelect from '../components/common/SortMethod';
 import { ProductType } from '../types/api';
 import { whenEnter } from '../utils/eventValueExtracter';
-import { getFromUrl } from '../utils/url';
+import { getAllFromUrl, getFromUrl } from '../utils/url';
 import pageInfoDefault from "info/search.json";
 import { getStaticPageInfo, Ipage } from '../utils/page';
 import { usePageEdit } from '../hook/usePageEdit';
@@ -26,16 +26,17 @@ import { GuideLine } from '../components/guidLi/GuideLi';
 import { Change } from '../components/loadingList/LoadingList';
 
 type TSearchParam = {
-    keyward?: string;
-    title?: string;
+    keyward?: string; //라벨
+    name?: string;
 }
 
-export const tourSearchLink = (param: TSearchParam) => {
-    let link = `/search`
+export const guideSearchLink = (param: TSearchParam) => {
+    let link = `/guide-search`
 
     const attach = (key: string, value: string) => {
         if (!link.includes("?")) {
             link = link + "?" + key + "=" + value
+            return;
         }
         if (!link.endsWith("&")) {
             link = link + "&" + key + "=" + value
@@ -59,10 +60,16 @@ interface IProp { }
 export const getStaticProps = getStaticPageInfo("search");
 export const GuideSearch: React.FC<Ipage> = (_pageInfo) => {
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
+    const all = getAllFromUrl<TSearchParam>()
+    const { keyward, name } = all;
+
     const defaultSearch = getFromUrl("search") || "";
     const initialFilter = {
         ...openListFilter,
-        initialFilter: integratedProductSearch(defaultSearch)
+        initialFilter: {
+            ...integratedProductSearch(defaultSearch),
+            keywards_in: keyward ? [keyward] : undefined
+        }
     }
     const guideListHook = usePublicSellerList(initialFilter)
     const { items: users, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount } = guideListHook;
@@ -71,9 +78,9 @@ export const GuideSearch: React.FC<Ipage> = (_pageInfo) => {
     const [search, setSearch] = useState(defaultSearch);
     const { totalCount } = pageInfo;
 
-    const onClickKeyward = (reginId?: string) => () => {
+    const onClickKeyward = (keyward?: string) => () => {
         setFilter({
-            keywards_in: reginId ? [reginId] : undefined
+            keywards_in: keyward ? [keyward] : undefined
         })
     }
 
@@ -115,7 +122,7 @@ export const GuideSearch: React.FC<Ipage> = (_pageInfo) => {
                         <div className="guideSearch__keywards in">
                             <span onClick={onClickKeyward(undefined)} className={`check ${keywardOn()}`}>전국</span>
                             {categoriesMap.GUIDE_KEYWARD.map(keyward =>
-                                <span key={keyward._id} onClick={onClickKeyward(keyward._id)} className={`check ${keywardOn(keyward._id)}`}>{keyward.label}</span>
+                                <span key={keyward._id} onClick={onClickKeyward(keyward.label)} className={`check ${keywardOn(keyward.label)}`}>{keyward.label}</span>
                             )}
                         </div>
                     </div>
