@@ -1,7 +1,6 @@
 import { gql } from "@apollo/client";
 import { F_FILE } from "./fragments";
 
-
 export const F_MODAL = gql`
   fragment Fmodal on Modal {
     _id

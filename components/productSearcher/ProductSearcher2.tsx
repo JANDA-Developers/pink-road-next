@@ -23,7 +23,7 @@ export const ProductSearcher: React.FC<IProp> = ({ defaultSearch, onSelectProduc
     });
 
     const getData = () => {
-        setFilter(integratedProductSearch(search || "____"));
+        setFilter(integratedProductSearch(search));
         handSearchClose()
     }
 
