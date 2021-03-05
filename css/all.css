@@ -31,6 +31,7 @@
 @import "./component/submitPasswordModal.css";
 @import "./component/historyTable.css";
 @import "./component/pageLoader.css";
+@import "./component/muPageLoading.css";
 
 
 .productModal__paginatorWrap {

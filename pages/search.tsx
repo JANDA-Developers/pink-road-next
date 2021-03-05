@@ -15,7 +15,7 @@ import { integratedProductSearch } from '../utils/genFilter';
 import SortSelect from '../components/common/SortMethod';
 import { ProductType } from '../types/api';
 import { whenEnter } from '../utils/eventValueExtracter';
-import { getFromUrl } from '../utils/url';
+import { getFromUrl, getAllFromUrl } from '../utils/url';
 import { getStaticPageInfo, Ipage } from '../utils/page';
 import { usePageEdit } from '../hook/usePageEdit';
 import pageInfoDefault from "info/search.json";
@@ -33,6 +33,7 @@ export const generateSearchLink = (param: TSearchParam) => {
     const attach = (key: string, value: string) => {
         if (!link.includes("?")) {
             link = link + "?" + key + "=" + value
+            return;
         }
         if (!link.endsWith("&")) {
             link = link + "&" + key + "=" + value
@@ -53,9 +54,15 @@ interface IProp { }
 export const getStaticProps = getStaticPageInfo("search");
 export const Search: React.FC<Ipage> = (_pageInfo) => {
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
-    const defaultSearch = getFromUrl("search") || "";
-    const initialFilter = {
+    const all = getAllFromUrl<TSearchParam>()
+    const { keyward, title } = all;
+    const defaultSearch = getFromUrl("search") || keyward || title;
+
+    const fixingFilter = {
         ...openListFilter,
+    }
+    const initialFilter = {
+        fixingFilter,
         initialFilter: integratedProductSearch(defaultSearch)
     }
     const productListHook = useProductList(initialFilter)

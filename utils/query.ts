@@ -9,6 +9,19 @@ import { CustomErrorResponse } from "aws-sdk/clients/cloudfront";
 import { ErrorCode } from "./enumToKr";
 import { getFromUrl } from "./url";
 import { cloneObject } from "./clone";
+
+export const pageLoadingEffect = (loading:boolean) => {
+    if(typeof window === "undefined") return;
+    const MuPageLoading = document.getElementById("MuPageLoading");
+    if(MuPageLoading) {
+        if(loading) {
+                MuPageLoading.classList.add("muPageLoading--visible");
+        } else {
+            MuPageLoading?.classList.remove("muPageLoading--visible");
+        }
+    }
+}
+
 interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
     skipInit?: boolean;
@@ -113,6 +126,8 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             params.filter
         ])
 
+        pageLoadingEffect(getLoading);
+
         return { pageInfo,  getLoading, items, ...params,...queryElse }
     }
 
@@ -150,6 +165,8 @@ export const generateQueryHook = <Q, R, V = undefined>(
                 getData();
         },[])
         
+        pageLoadingEffect(getLoading);
+
         return {  getData, getLoading, data,...context }
     }
     return queryHook
@@ -172,6 +189,9 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
                 options?.onCompleted?.(result) || defaultOptions?.onCompleted?.(result)
             }
         });
+
+        pageLoadingEffect(muHook[1].loading);
+
         return muHook
     }
     return mutationHook
@@ -202,6 +222,7 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:Doc
         // @ts-ignore
         userErrorHandle(data?.[operationName])
 
+        pageLoadingEffect(loading);
 
         useEffect(()=>{
             if(key)
