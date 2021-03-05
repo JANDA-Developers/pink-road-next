@@ -30,6 +30,8 @@ export const usePageInfo = async (key: TPageKeys) => {
     })
 
     const { PageInfoRead } = await graphQLClient.request<pageInfoRead, pageInfoReadVariables>(PAGE_INFO_READ, { key })
+
+    console.log({ PageInfoRead });
     const { data } = PageInfoRead;
     return { data };
 }

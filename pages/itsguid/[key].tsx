@@ -57,8 +57,8 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = async ({ params: { key } }) => {
     const { data } = await usePageInfo(key as any);
     const guideData = await userFindByKey("_id", key as string);
-    console.log({ guideData });
     const { data: homepage } = await useHomepageServerSide();
+    console.log({ data });
 
     return {
         revalidate: 1,

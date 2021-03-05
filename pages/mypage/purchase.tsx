@@ -1,7 +1,7 @@
 import { PurChasedItem } from 'components/mypage/PurchasedItem';
 import { MypageLayout } from 'layout/MypageLayout';
-import React, { useState } from 'react';
-import { BookingModal, IBookingModalInfo } from '../../components/bookingModal/BookingModal';
+import React from 'react';
+import { BookingModal } from '../../components/bookingModal/BookingModal';
 import { Paginater } from '../../components/common/Paginator';
 import SortSelect from '../../components/common/SortMethod';
 import { ViewCount } from '../../components/common/ViewCount';
@@ -9,16 +9,12 @@ import { DayPickerModal } from '../../components/dayPickerModal/DayPickerModal';
 import { Change } from '../../components/loadingList/LoadingList';
 import { Nodata } from '../../components/noData/Nodata';
 import { SearchBar } from '../../components/searchBar/SearchBar';
-import { useBookingList } from '../../hook/useBooking';
 import { TBookingSearchType, useBookingBoard } from '../../hook/useBookingBoard';
-import { useModal } from '../../hook/useModal';
-import { useQueryFilter } from '../../hook/useQueryFilter';
-import { useDateFilter } from '../../hook/useSearch';
-import { BookingStatus, UserRole, _BookingFilter, _ProductFilter } from '../../types/api';
+import { BookingStatus, _BookingFilter, _ProductFilter } from '../../types/api';
 import { ALLOW_LOGINED } from '../../types/const';
-import { filterToRange, rangeToFilter } from '../../utils/filter';
+import { rangeToFilter } from '../../utils/filter';
 import isEmpty from '../../utils/isEmpty';
-import { closeModal, openModal } from '../../utils/popUp';
+import { closeModal } from '../../utils/popUp';
 import { auth } from '../../utils/with';
 
 interface IProp { }
