@@ -9,7 +9,7 @@ export const tourMain = {
         kr: "/img/pr_img_06.jpg"
     },
     exp_subTop_title: {
-        kr: "Exp"
+        kr: "Experience"
     },
     exp_subTop_desc: {
         kr: "지금 여행을 떠나세요~!~~!!!!!"

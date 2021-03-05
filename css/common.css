@@ -174,7 +174,7 @@ select:focus {
         border: 1px solid #cfcfcf;
         border-radius: 3px;
         box-sizing: border-box;
-        padding: 0 15px;
+        padding: 0 7px;
         font-size: 12px;
         display: inline-block;
         line-height: 28px;
@@ -182,6 +182,20 @@ select:focus {
     }
     .btn.small:hover {
         border: 1px solid rgb(170, 170, 170);
+        color: #333;
+    }
+    .btn.plus {
+        color: #999;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        padding: 0 7px;
+        font-size: 12px;
+        display: inline-block;
+        line-height: 19px;
+        margin: 3px;
+    }
+    .btn.plus:hover {
+       
         color: #333;
     }
     .btn.medium {
@@ -237,7 +251,7 @@ select:focus {
         width: auto;
         display: inline-block;
         line-height: 122%;
-        border: 1px solid #ccc;
+        border: 1px solid #595959;
         padding: 4px 9px;
         box-sizing: border-box;
         font-size: 0.9em;

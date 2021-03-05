@@ -46,7 +46,7 @@ export const TourMainBoard: React.FC<IProp> = ({ cat, group }) => {
                 }} className="move-right"><i className="jandaicon-arr4-right" /><button></button></span>
                 <Link href={getLink(cat._id)} >
                     <a>
-                        <button className="btn small">더보기</button>
+                        <button className="btn plus">더보기</button>
                     </a>
                 </Link>
             </div>

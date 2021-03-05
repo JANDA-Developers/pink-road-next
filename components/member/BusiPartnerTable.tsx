@@ -45,12 +45,12 @@ export const BusiPartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelec
                 <div className="td05"><i className="m_title">성별:</i>{genderToKR(user.gender)}</div>
                 <div className="td06"><i className="m_title">상태:</i>{userStatusKR(user)}
                     {!user.isVerifiedManager &&
-                        <div>
-                            <div>
-                                <i style={{ lineHeight: "22px" }} className="btn small" onClick={() => { handleSignUpAccept([user._id]) }}>가입승인</i>
+                        <div className="accept__btn">
+                            <div className="accept__btn_link">
+                                <i className="btn small" onClick={() => { handleSignUpAccept([user._id]) }}>가입승인</i>
                             </div>
-                            <div>
-                                <i style={{ lineHeight: "22px" }} className="btn small" onClick={handleDenyPop(user._id)}>가입거절</i>
+                            <div className="accept__btn_link">
+                                <i className="btn small" onClick={handleDenyPop(user._id)}>가입거절</i>
                             </div>
                         </div>
                     }

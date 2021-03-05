@@ -670,7 +670,7 @@ div.search_mini {
     div.popup_bg .close_icon {
         position: absolute;
         top: 21px;
-        right: 3px;
+        right: 14px;
         display: block;
         width: 30px;
         height: 30px;
@@ -917,7 +917,7 @@ div.popup_bg_full .fin{
 
     div.popup_bg_full h3 {
         font-size: 20px;
-        line-height: 40px;
+        line-height: 76px;
         font-weight: 600;
         position: fixed;
         top: 14px;
@@ -3665,7 +3665,7 @@ span.join__snslink_txt{
         display: block;
         width: 26px;
         height: 1px;
-        border-bottom: 3px dotted #ffef72;
+        /* border-bottom: 3px dotted #ffef72; */
     }
 
 
@@ -5738,11 +5738,35 @@ i.important_icon {
 
             .tour_details_in .Read_box .details_photo .main_photo {
                 display: block;
+                position: relative;
                 width: 100%;
                 height: 264px;
                 background-color: #f3f3f3;
                 margin-bottom: 5px;
                 overflow: hidden;
+            }
+             .main_photo .main_photo_tag {
+                position: absolute;
+                top: 0;
+                right: 2%;
+                z-index: 9;
+            }
+            .main_photo .main_photo_tag .sell {
+                display: inline-block;
+                background-color: #2196F3;
+                color: #ffffff;
+                font-weight: 600;
+                box-sizing: border-box;
+                padding: 5px 25px;
+                margin-right: 2px;
+            }
+            .main_photo .main_photo_tag .open {
+                display: inline-block;
+                background-color: #333333;
+                color: #ffffff;
+                font-weight: 600;
+                box-sizing: border-box;
+                padding: 5px 25px;
             }
 
                 .tour_details_in .Read_box .details_photo .main_photo img {
@@ -6520,10 +6544,18 @@ i.important_icon {
 .big_pd td {
     padding: 7px 13px;
 }
-
-.selectViewList {
-    padding-top: 13px;
+.accept__btn{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
+.accept__btn .accept__btn_link{
+    width: auto;
+}
+/* .selectViewList {
+    padding-top: 13px;
+} */
 
     .selectViewList ul.list_ul {
         width: 100%;
@@ -7999,7 +8031,7 @@ i.calendar {
     .portfolio_in .con04 .portfolio_box .box {
         display: none;
         position: relative;
-        padding: 10%;
+        padding: 30% 10% 0;
         box-sizing: border-box;
         width: 100%;
         height: 100%;
@@ -9515,7 +9547,7 @@ i.calendar {
             width: 25px;
             height: 257%;
             top: -573px;
-            left: -49px;
+            left: -77px;
             transform: rotate(24deg);
         }
 
@@ -9523,46 +9555,46 @@ i.calendar {
             width: 25px;
             height: 257%;
             top: -582px;
-            left: 0;
+            left: -27px;
             transform: rotate(24deg);
         }
 
         .siteInfo_in .con05 .in_txt .y2020 {
-            left: 124px;
+            left: 123px;
         }
 
         .siteInfo_in .con05 .in_txt .y2019 {
-            left: 72px;
+            left:49px;
         }
 
         .siteInfo_in .con05 .in_txt .y2018 {
-            left: 14px;
+            left:-10px;
         }
 
         .siteInfo_in .con05 .in_txt .y2017 {
-            left: -28px;
+            left:-72px;
         }
 
         .siteInfo_in .con05 .in_txt .y2016 {
-            left: -71px;
+            left: -148px;
             margin-bottom: 36px;
         }
 
         .siteInfo_in .con05 .in_txt .y2015 {
-            left: -112px;
+            left: -198px;
         }
 
         .siteInfo_in .con05 .in_txt .y2014 {
-            left: -191px;
+            left:-241px;
             margin-bottom: 39px;
         }
 
         .siteInfo_in .con05 .in_txt .y2013 {
-            left: -230px;
+            left: -297px;
         }
 
         .siteInfo_in .con05 .in_txt .y2012 {
-            left: -322px;
+            left: -364px;
         }
 
         .siteInfo_in .con05 .in_txt .year:after {
@@ -10210,7 +10242,7 @@ i.calendar {
         }
 
         .siteInfo_in .con05 .in_txt {
-            padding-left: 570px;
+            padding-left: 611px;
         }
 
         .siteInfo_in .con05 .w1200 {
@@ -10481,7 +10513,7 @@ i.calendar {
     .siteInfo_in .top_bg {
         height: 700px;
         padding: 302px 0 0;
-        background-position: center 60%;
+        background-position: bottom 60%;
         background-size: 105%;
     }
     .siteInfo_in .con03 .bg01 {
@@ -10728,7 +10760,7 @@ i.calendar {
         top: 15px;
     }
     div.popup_bg .close_icon {
-        top: 27px;
+        top: 20px;
     }
 
     .tour_details_in .Read_box{

@@ -230,6 +230,10 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             <div className="Read_box">
               <div className="details_photo">
                 <div className="main_photo">
+                  {isSeller && <div className="main_photo_tag">
+                    <span className="sell">{productStatus(product.status)}</span>
+                    <span className="open">{product.isOpen ? "공개" : "비공개"}</span>
+                  </div>}
                   <Slider ref={sliderRef} >
                     {images?.map((img, i) =>
                       <Slide key={i + "sliderImg"} >
@@ -275,11 +279,11 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                           </ul>
                         </td>
                       </tr>
-                      {isSeller && <tr>
+                      {/* {isSeller && <tr>
                         <th className="smtitle bt_line">상태</th>
                         <td className="smtxt bt_line">{productStatus(product.status)} {product.isOpen ? "[공개]" : "[비공개]"}</td>
                       </tr>
-                      }
+                      } */}
                       <tr>
                         <th className="smtitle bt_line">출발일</th>
                         <td className="smtxt bt_line">
