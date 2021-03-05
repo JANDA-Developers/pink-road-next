@@ -24,6 +24,7 @@ export const pageLoadingEffect = (loading:boolean) => {
 
 interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
+    skip?: boolean;
     skipInit?: boolean;
     overrideVariables?: Partial<V>
     getEditableobject?: boolean; 
@@ -86,7 +87,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             initialViewCount: 10
         }
         const initialData = Object.assign(defaultInitData, queryInitDefault, initialOption); 
-        const { variables, overrideVariables, ...ops } = options;
+        const { skipInit,skip,variables, overrideVariables, ...ops } = options;
         const { integratedVariable,...params } = useListQuery(initialData)
         const [getData, { data, loading: getLoading,...queryElse }] = useLazyQuery<Q,V>(QUERY,{
             fetchPolicy: "cache-first",
@@ -111,6 +112,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
 
 
         useEffect(()=>{
+            if(skip) return;
             getData()
         },[
             params.filter,

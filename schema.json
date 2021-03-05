@@ -2643,6 +2643,22 @@
             "deprecationReason": null
           },
           {
+            "name": "refundPolicy",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "usePolicy",
             "description": null,
             "args": [],
@@ -2757,6 +2773,22 @@
           {
             "name": "busiNumber",
             "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tourismbusinessNumber",
+            "description": "관광사업등록번호",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -26635,6 +26667,46 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "updatedAt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "isDeleted",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "link",
             "description": null,
             "type": {
@@ -26874,6 +26946,16 @@
             "defaultValue": null
           },
           {
+            "name": "refundPolicy",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "travelerPolicy",
             "description": null,
             "type": {
@@ -26895,6 +26977,16 @@
           },
           {
             "name": "marketingPolic",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "tourismbusinessNumber",
             "description": null,
             "type": {
               "kind": "SCALAR",

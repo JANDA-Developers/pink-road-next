@@ -9,6 +9,7 @@ import { LoadEditor } from '../../../components/edit/EdiotrLoading';
 import { auth } from '../../../utils/with';
 import { ALLOW_ADMINS } from '../../../types/const';
 import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
+import { omits } from '../../../utils/omit';
 
 const Editor = LoadEditor();
 
@@ -33,6 +34,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
     const textReverse = (key: keyof HomepageUpdateInput) => {
         if (key === "usePolicy") return "이용약관";
         if (key === "PrivacyPolicy") return "개인정보약관";
+        if (key === "refundPolicy") return "취소및환불정책";
         if (key === "partnerBpolicy") return "기업파트너약관";
         if (key === "partnerPolicy") return "파트너약관";
         if (key === "marketingPolic") return "마케팅약관";
@@ -49,7 +51,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
         homepageUpdateMu({
             variables: {
                 params: {
-                    ...next
+                    ...omits(next, "modal" as any)
                 }
             }
         }).then(result => {
@@ -120,6 +122,15 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
                         <Editor data={datas.partnerBpolicy} onChange={setPoliicy("partnerBpolicy")} />
                         <div className="terms__termBox fin ifMobile">
                             <button onClick={handleSave("partnerBpolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                        </div>
+                    </div>
+
+
+                    <div className="jul">
+                        <h5>취소 및 환불 정책</h5>
+                        <Editor data={datas.refundPolicy} onChange={setPoliicy("refundPolicy")} />
+                        <div className="terms__termBox fin ifMobile">
+                            <button onClick={handleSave("refundPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
                         </div>
                     </div>
                 </div>

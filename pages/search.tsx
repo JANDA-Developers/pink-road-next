@@ -65,12 +65,12 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
         fixingFilter,
         initialFilter: integratedProductSearch(defaultSearch)
     }
+    const [search, setSearch] = useState(defaultSearch);
     const productListHook = useProductList(initialFilter)
     const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount, setOR } = productListHook;
     const { categoriesMap } = useContext(AppContext);
 
     const [view, setView] = useState<"line" | "gal">("line");
-    const [search, setSearch] = useState(defaultSearch);
     const { totalCount } = pageInfo;
 
     const onClickDistrict = (regionLabel?: string) => () => {
@@ -96,7 +96,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     }
 
     const reset = () => {
-        setFilter({});
+        setSearch("");
     }
 
     const openDayPicker = () => {
@@ -110,7 +110,10 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
 
     const filterStart = filter.startDate_gte ? dayjs(filter.startDate_gte).format("YYYY.MM.DD") : "";
     const filterEnd = filter.startDate_lte ? dayjs(filter.startDate_lte).format("YYYY.MM.DD") : "";
-    const noProduct = isEmpty(products);
+    const noSearch = search === "";
+    const filteredProducts = noSearch ? [] : products;
+    const noProduct = isEmpty(filteredProducts);
+
 
     return <div>
         <SubTopNav pageTools={pageTools} >
@@ -130,9 +133,9 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                     <div className="jul2">
                         <div className="title">유형</div>
                         <div className="in">
-                            <span onClick={handleTypeFilter(undefined)} className={`check ${typeOn(undefined)}`}>ALL</span>
-                            <span onClick={handleTypeFilter(ProductType.TOUR)} className={`check ${typeOn(ProductType.TOUR)}`}>여행</span>
-                            <span onClick={handleTypeFilter(ProductType.EXPERIENCE)} className={`check ${typeOn(ProductType.EXPERIENCE)}`}>체험</span>
+                            <span onClick={handleTypeFilter(undefined)} className={`check ${typeOn(undefined)}`}>전체상품</span>
+                            <span onClick={handleTypeFilter(ProductType.TOUR)} className={`check ${typeOn(ProductType.TOUR)}`}>여행상품</span>
+                            <span onClick={handleTypeFilter(ProductType.EXPERIENCE)} className={`check ${typeOn(ProductType.EXPERIENCE)}`}>체험상품</span>
                         </div>
                     </div>
                     <div className="jul3">
@@ -179,16 +182,16 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
 
             </div>
             <div className="con_bottom">
-                {isEmpty(products) &&
+                {!isEmpty(filteredProducts) &&
                     <div className="alignment2">
-                        <div className="left_div">총 <strong>{totalCount}</strong>건의 검색결과가 있습니다.</div>
+                        <div className="left_div">총 <strong>{noSearch ? 0 : totalCount}</strong>건의 검색결과가 있습니다.</div>
                     </div>
                 }
 
                 <div id="ProductViewer" className="con_box">
                     <div className="alignment">
                         <div className="left_div">
-                            <h5>여행상품<strong>{totalCount}</strong></h5>
+                            <h5>여행상품<strong>{noSearch ? 0 : totalCount}</strong></h5>
                         </div>
                         <div className="right_div">
                             <SortSelect onChange={setSort} sort={sort} />
@@ -205,7 +208,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                     {/*리스트로 보기*/}
                     {view === "line" && <div className="list selectViewList">
                         <ul className="list_ul">
-                            {products.map(product =>
+                            {filteredProducts.map(product =>
                                 <ProductListBlock key={product._id} product={product} />
                             )}
                         </ul>
@@ -214,7 +217,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                     {view === "gal" &&
                         <div className="list selectViewImg">
                             <ul className="list_ul line3">
-                                {products.map(product =>
+                                {filteredProducts.map(product =>
                                     <ProductPhotoBlock key={product._id} item={product} />
                                 )}
                             </ul>

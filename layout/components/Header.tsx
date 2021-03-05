@@ -11,18 +11,6 @@ import { userRoleToKR } from "../../utils/enumToKr";
 
 interface IProp { }
 
-export const handSearchClose = () => {
-    $('.search_bg').css({
-        'display': 'none'
-    });
-
-    $('.search_wrap').animate({
-        'top': '-100px'
-    });
-    $('.hidden').css({
-        'display': 'none'
-    });
-}
 
 export const Header: React.FC<IProp> = () => {
     const [search, setSearch] = useState("");
@@ -88,6 +76,20 @@ export const Header: React.FC<IProp> = () => {
         $('.search_bg').css({
             'display': 'none'
         });
+    }
+
+    const handSearchClose = () => {
+        $('.search_bg').css({
+            'display': 'none'
+        });
+
+        $('.search_wrap').animate({
+            'top': '-100px'
+        });
+        $('.hidden').css({
+            'display': 'none'
+        });
+        setSearch("");
     }
 
     useEffect(() => {

@@ -55,7 +55,7 @@ const Join: React.FC<Ipage> = (pageInfo) => {
         _id: verificationId,
         payload: verifiedEmail
     });
-    
+
     const setJoinProcess = (process: TJoinProcess) => {
         history.pushState({ joinProcess: joinProcess }, "회원가입 절차");
         history.pushState({ joinProcess: joinProcess }, "회원가입 절차");
@@ -140,7 +140,7 @@ const Join: React.FC<Ipage> = (pageInfo) => {
                                 <li className={checkProcessOn("registered")}>
                                     <i>Setep.04</i>
                                     <br />
-                                    가입완료
+                                    {userType === UserRole.individual ? "가입완료" : "가입요청완료"}
                                 </li>
                             </ul>
                         </div>
