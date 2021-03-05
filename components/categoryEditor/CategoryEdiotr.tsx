@@ -32,10 +32,12 @@ export const CategoryEitdor: React.FC<IProp> = ({ categories, onAdd, onDelete, o
     const handleUpdate = () => {
         if (!selelcted) throw Error("");
         onEdit(selelcted, label);
+        setLabel("");
     }
 
     const handleAdd = () => {
         onAdd(label);
+        setLabel("");
     }
 
 
