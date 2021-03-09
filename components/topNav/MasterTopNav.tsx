@@ -30,6 +30,7 @@ export const HomepageTopNav = () => {
             <li className={checkOn("terms")}><Link href="/master/homepage/terms"><a>약관설정</a></Link></li>
             <li className={checkOn("category")}><Link href="/master/homepage/category"><a>게시판설정</a></Link></li>
             <li className={checkOn("settlement")}><Link href="/master/homepage/settlement"><a>정산설정</a></Link></li>
+            <li className={checkOn("customquotation")}><Link href="/master/homepage/customquotation"><a>맞춤견적설정</a></Link></li>
         </ul>
     </div>
 }

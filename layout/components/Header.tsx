@@ -338,6 +338,7 @@ export const Header: React.FC<IProp> = () => {
                                         <li><Link href="/member/question"><a>고객문의</a></Link></li>
                                         <li><Link href="/member/announce"><a>공지사항</a></Link></li>
                                         <li><Link href="/member/qna"><a>자주하는질문</a></Link></li>
+                                        <li><Link href="/customquotation"><a>맞춤견적</a></Link></li>
                                     </ul>
                                 </li>}
                         </ul>

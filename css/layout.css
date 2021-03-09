@@ -343,8 +343,8 @@ i.tooltip{
     }
 
         .header .hd_left .logo img {
-            margin-top: 10px;
-            height: 32px;
+            margin-top: 5px;
+            height: 38px;
         }
 
     .header .hd_center {
@@ -2070,7 +2070,31 @@ footer .footer_in_bottom {
 }
 
 
-/** BTN ë””ìžì¸ */
+/** BTN */
+.btn.add_btn.right{
+    float: right;
+}
+
+.btn.add_btn{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    border: 1px dotted rgb(195 195 195);
+    font-weight: 500;
+    line-height: 18px !important;
+    padding: 5px 10px !important;
+    margin: 0px 0px 0px 5px;
+    box-sizing: border-box;
+    font-size: 12px;
+    border-radius: 3px;
+    color: #aeaeae;
+}
+
+.btn.add_btn i {
+    font-size: 10px;
+    margin-right: 5px;
+}
 
 .mini_btn {
     display: inline-block;
@@ -2404,7 +2428,7 @@ i.icon_plus {
     position: absolute;
     content: "\F16B";
     left: 2px;
-    top: 7px;
+    top: 9px;
     width: 15px;
     height: 15px;
     vertical-align: middle;
