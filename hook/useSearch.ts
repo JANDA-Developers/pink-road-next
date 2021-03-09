@@ -5,7 +5,7 @@ import { ISet } from "../types/interface";
 
 interface IUseDateFilterParam<T> {
     filter: T
-    setFilter: ISet<T>
+    setFilter: ISet<T> | any
     dateKey?: string
 }
 
