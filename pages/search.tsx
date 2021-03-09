@@ -21,6 +21,9 @@ import { usePageEdit } from '../hook/usePageEdit';
 import pageInfoDefault from "info/search.json";
 import { PageEditor } from '../components/common/PageEditer';
 import { AppContext } from './_app';
+import { useBoardList } from '../hook/useMyBoardList';
+import { generateClientPaging } from '../utils/generateClientPaging';
+import { BoardListBlock } from '../components/list/BoardListBlock';
 
 type TSearchParam = {
     keyward?: string;
@@ -49,10 +52,17 @@ export const generateSearchLink = (param: TSearchParam) => {
     return link;
 }
 
+
+
 interface IProp { }
+
+type TboardTapType = "board" | "product";
 
 export const getStaticProps = getStaticPageInfo("search");
 export const Search: React.FC<Ipage> = (_pageInfo) => {
+    const [boardTapType, setBoardTapType] = useState<TboardTapType>("board")
+    const isProdView = boardTapType === "product";
+
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
     const all = getAllFromUrl<TSearchParam>()
     const { keyward, title } = all;
@@ -61,17 +71,27 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     const fixingFilter = {
         ...openListFilter,
     }
+
+    const urlSearchFilter = integratedProductSearch(defaultSearch);
     const initialFilter = {
         fixingFilter,
-        initialFilter: integratedProductSearch(defaultSearch)
+        initialFilter: urlSearchFilter
     }
+
     const [search, setSearch] = useState(defaultSearch);
     const productListHook = useProductList(initialFilter)
     const { items: products, setPage, filter, getLoading, pageInfo, setFilter, sort, setSort, viewCount, setViewCount, setOR } = productListHook;
+    const { items: boards, pageInfo: { totalCount: boardTotalCount }, setFilter: setBoardFilter } = useBoardList({
+        fixingFilter: {
+            isOpen_eq: true,
+        },
+        initialFilter: urlSearchFilter
+    })
+
     const { categoriesMap } = useContext(AppContext);
 
     const [view, setView] = useState<"line" | "gal">("line");
-    const { totalCount } = pageInfo;
+    const { totalCount: totalProdCount } = pageInfo;
 
     const onClickDistrict = (regionLabel?: string) => () => {
         setFilter({
@@ -105,6 +125,8 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
 
     const doSearch = () => {
         const _filter = integratedProductSearch(search, filter);
+        const boardfilter = integratedProductSearch(search);
+        setBoardFilter(boardfilter)
         setFilter(_filter)
     }
 
@@ -114,6 +136,18 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     const filteredProducts = noSearch ? [] : products;
     const noProduct = isEmpty(filteredProducts);
 
+    const handleBoardType = (type: TboardTapType) => () => {
+        setBoardTapType(type);
+    }
+
+    const checkOnType = (type: TboardTapType) => boardTapType === type ? "on" : "";
+
+    const getTotalCount = () => {
+        return noSearch ? 0 : isProdView ? totalProdCount : boards.length
+    }
+
+
+    const { paging, setPage: setBoardPage, slice } = generateClientPaging(boards, viewCount)
 
     return <div>
         <SubTopNav pageTools={pageTools} >
@@ -126,47 +160,55 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
         <div className="search_in w1200">
             <div className="con_top">
                 <h4>상세검색</h4>
+                <div className="searchTap">
+                    <span onClick={handleBoardType("board")} className={`searchTap__type ${checkOnType("board")}`}>통합검색</span>
+                    <span onClick={handleBoardType("product")} className={`searchTap__type ${checkOnType("product")}`}>상품검색</span>
+                </div>
                 <div className="search_box">
+
                     <div className="jul0">
                         <span onClick={reset}>검색조건 초기화</span>
                     </div>
-                    <div className="jul2">
-                        <div className="title">유형</div>
-                        <div className="in">
-                            <span onClick={handleTypeFilter(undefined)} className={`check ${typeOn(undefined)}`}>전체상품</span>
-                            <span onClick={handleTypeFilter(ProductType.TOUR)} className={`check ${typeOn(ProductType.TOUR)}`}>여행상품</span>
-                            <span onClick={handleTypeFilter(ProductType.EXPERIENCE)} className={`check ${typeOn(ProductType.EXPERIENCE)}`}>체험상품</span>
-                        </div>
-                    </div>
-                    <div className="jul3">
-                        <div className="title">지역</div>
-                        <div className="in">
-                            <span onClick={onClickDistrict()} className={`check ${districtOn()}`}>전국</span>
-                            {categoriesMap.REGION.map(region =>
-                                <span key={region._id} onClick={onClickDistrict(region.label)} className={`check ${districtOn(region.label)}`}>{region.label}</span>
-                            )}
-                        </div>
-                    </div>
-                    <div className="jul4">
-                        <div className="title">날짜</div>
-                        <div className="in">
-                            <div className="inf">
-                                <input value={filterStart} onFocus={openDayPicker} type="text" className="day" />
-                                <span onClick={openDayPicker} className="calendar">
-                                    <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
-                                </span>
+                    {isProdView &&
+                        <div>
+                            <div className="jul2">
+                                <div className="title">유형</div>
+                                <div className="in">
+                                    <span onClick={handleTypeFilter(undefined)} className={`check ${typeOn(undefined)}`}>전체상품</span>
+                                    <span onClick={handleTypeFilter(ProductType.TOUR)} className={`check ${typeOn(ProductType.TOUR)}`}>여행상품</span>
+                                    <span onClick={handleTypeFilter(ProductType.EXPERIENCE)} className={`check ${typeOn(ProductType.EXPERIENCE)}`}>체험상품</span>
+                                </div>
                             </div>
-                            <div className="ovj">~</div>
-                            <div className="inf">
-                                <input value={filterEnd} onFocus={openDayPicker} type="text" className="day" />
-                                <span onClick={openDayPicker} className="calendar">
-                                    <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
-                                    <button />
-                                </span>
+                            <div className="jul3">
+                                <div className="title">지역</div>
+                                <div className="in">
+                                    <span onClick={onClickDistrict()} className={`check ${districtOn()}`}>전국</span>
+                                    {categoriesMap.REGION.map(region =>
+                                        <span key={region._id} onClick={onClickDistrict(region.label)} className={`check ${districtOn(region.label)}`}>{region.label}</span>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="jul4">
+                                <div className="title">날짜</div>
+                                <div className="in">
+                                    <div className="inf">
+                                        <input value={filterStart} onFocus={openDayPicker} type="text" className="day" />
+                                        <span onClick={openDayPicker} className="calendar">
+                                            <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
+                                        </span>
+                                    </div>
+                                    <div className="ovj">~</div>
+                                    <div className="inf">
+                                        <input value={filterEnd} onFocus={openDayPicker} type="text" className="day" />
+                                        <span onClick={openDayPicker} className="calendar">
+                                            <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
+                                            <button />
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                    </div>
+                    }
                     <div className="jul1">
                         <div className="srearch__input search_div">
                             <input onKeyPress={whenEnter(doSearch)} onChange={(e) => {
@@ -184,45 +226,56 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
             <div className="con_bottom">
                 {!isEmpty(filteredProducts) &&
                     <div className="alignment2">
-                        <div className="left_div">총 <strong>{noSearch ? 0 : totalCount}</strong>건의 검색결과가 있습니다.</div>
+                        <div className="left_div">총 <strong>{getTotalCount()}</strong>건의 검색결과가 있습니다.</div>
                     </div>
                 }
-
                 <div id="ProductViewer" className="con_box">
                     <div className="alignment">
                         <div className="left_div">
-                            <h5>여행상품<strong>{noSearch ? 0 : totalCount}</strong></h5>
+                            <h5>{isProdView ? "여행상품" : "게시글"}<strong>{getTotalCount()}</strong></h5>
                         </div>
                         <div className="right_div">
                             <SortSelect onChange={setSort} sort={sort} />
                             <ViewCount value={viewCount} onChange={setViewCount} />
-                            <ViewSelect select={view} onChange={setView} />
+                            {isProdView && <ViewSelect select={view} onChange={setView} />}
                         </div>
                     </div>
 
-                    {/*검색결과가 없을때*/}
-                    {noProduct && <div className="no_search">
-                        <i className="jandaicon-info3" />
-                        <div>검색결과 없음</div>
-                    </div>}
-                    {/*리스트로 보기*/}
-                    {view === "line" && <div className="list selectViewList">
+                    {isProdView || <div className="list">
                         <ul className="list_ul">
-                            {filteredProducts.map(product =>
-                                <ProductListBlock key={product._id} product={product} />
-                            )}
+                            {slice.map(baord => (
+                                <BoardListBlock board={baord} key={baord._id} />
+                            ))}
                         </ul>
                     </div>}
-                    {/*이미지로 보기*/}
-                    {view === "gal" &&
-                        <div className="list selectViewImg">
-                            <ul className="list_ul line3">
+
+                    {isProdView && <div>
+
+                        {/*검색결과가 없을때*/}
+                        {noProduct && <div className="no_search">
+                            <i className="jandaicon-info3" />
+                            <div>검색결과 없음</div>
+                        </div>}
+                        {/*리스트로 보기*/}
+                        {view === "line" && <div className="list selectViewList">
+                            <ul className="list_ul">
                                 {filteredProducts.map(product =>
-                                    <ProductPhotoBlock key={product._id} item={product} />
+                                    <ProductListBlock key={product._id} product={product} />
                                 )}
                             </ul>
                         </div>}
-                    <Paginater setPage={setPage} pageInfo={pageInfo} />
+                        {/*이미지로 보기*/}
+                        {view === "gal" &&
+                            <div className="list selectViewImg">
+                                <ul className="list_ul line3">
+                                    {filteredProducts.map(product =>
+                                        <ProductPhotoBlock key={product._id} item={product} />
+                                    )}
+                                </ul>
+                            </div>}
+                    </div>}
+                    <Paginater setPage={setBoardPage} pageInfo={paging} />
+                    {/* <Paginater setPage={setPage} pageInfo={pageInfo} /> */}
                 </div>
             </div>
         </div>

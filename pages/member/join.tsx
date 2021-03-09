@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import SubTopNav from 'layout/components/SubTop';
 import { useVerification } from '../../hook/useVerification';
 import { ISet } from '../../types/interface';
-import { UserRole } from '../../types/api';
+import { UserRole, VerificationTarget } from '../../types/api';
 import { getFromUrl } from '../../utils/url';
 import { closeModal, openModal } from '../../utils/popUp';
 import { VerifiEamilModal } from '../../components/verifiModal/VerifiEmailModal';
@@ -35,6 +35,7 @@ interface IjoinContext extends ReturnType<typeof useVerification> {
     isPartenerB: boolean,
     isPartner: boolean,
     isIndi: boolean,
+    verifiedPhone?: string
     verificationId?: string
     verifiedEmail?: string
     oauth?: string
@@ -48,6 +49,7 @@ const Join: React.FC<Ipage> = (pageInfo) => {
     const editTools = usePageEdit(pageInfo, defaultPageInfo);
     const verificationId = getFromUrl("vid") || undefined;
     const verifiedEmail = getFromUrl("email") || undefined;
+    const verifiedPhone = getFromUrl("phone") || undefined;
     const oauth = getFromUrl("oauth") || undefined;
     const [userType, setUserType] = useState<UserRole>(UserRole.individual);
     const [joinProcess, joinSet] = useState<TJoinProcess>("userType");
@@ -75,6 +77,7 @@ const Join: React.FC<Ipage> = (pageInfo) => {
         joinProcess,
         setUserType,
         userType,
+        verifiedPhone,
         verifiedEmail,
         verificationId,
         setJoinProcess,
@@ -199,11 +202,18 @@ const JoinResult = () => {
 
 const Verification: React.FC = () => {
     const { setJoinProcess, oauth, ...verifiHook } = useContext(JoinContext)!;
+    const [verifiTarget, setVerifiTarget] = useState(VerificationTarget.EMAIL)
     const handleAuth = (target: "google" | "kakao") => () => {
         window.location.href = process.env.NEXT_PUBLIC_SERVER_URI + "/login/" + target
     }
 
-    const handleSelfAuth = () => {
+    const handleSelfAuthEmail = () => {
+        setVerifiTarget(VerificationTarget.EMAIL)
+        openModal("#emailVerifi")()
+    }
+
+    const handleSelfAuthPhone = () => {
+        setVerifiTarget(VerificationTarget.PHONE)
         openModal("#emailVerifi")()
     }
 
@@ -234,23 +244,27 @@ const Verification: React.FC = () => {
                 본인확인을 받으시기 바랍니다.
             </p>
             <ul>
-                <li onClick={handleAuth("google")} className="socialVerify">
+                {/* <li onClick={handleAuth("google")} className="socialVerify">
                     <i className="jandaicon-google1" />
                     구글 인증
                 </li>
                 <li onClick={handleAuth("kakao")} className="socialVerify">
                     <i className="jandaicon-kakaotalk" />
                     카카오톡 인증
-                </li>
-                <li onClick={handleSelfAuth} className="socialVerify">
+                </li> */}
+                <li onClick={handleSelfAuthEmail} className="socialVerify">
                     <span className="icon-email"></span>
                     이메일 인증
+                </li>
+                <li onClick={handleSelfAuthPhone} className="socialVerify">
+                    <span className="icon-email"></span>
+                    핸드폰 인증
                 </li>
             </ul>
             <p className="bt_txt">
                 ※ 본인인증 시 제공되는 정보로 회원가입시 필요한 정보를 연동합니다.
             </p>
-            <VerifiEamilModal duplicateCheck onSuccess={() => {
+            <VerifiEamilModal target={verifiTarget} duplicateCheck onSuccess={() => {
                 closeModal("#emailVerifi")()
                 setJoinProcess("userInfo");
             }} verifiHook={{

@@ -4,22 +4,29 @@ import DayPicker from 'react-day-picker';
 import RegisterCheck from './RegisterCheck';
 import Calendar from '../common/icon/CalendarIcon';
 import 'react-day-picker/lib/style.css';
-import { GENDER } from '../../types/api';
+import { GENDER, VerificationTarget } from '../../types/api';
 import { fromMonth, toMonth, useJoin } from '../../hook/useJoin';
 import { YearMonthForm } from './YearMonthForm';
 import { JoinContext } from '../../pages/member/join';
 import { autoHypenPhone } from '../../utils/formatter';
 import { BirthDayPicker } from '../birthdayPicker/BirthdayPicker';
 import dayjs from 'dayjs';
+import { VerifiEamilModal } from '../verifiModal/VerifiEmailModal';
+import { useVerification } from '../../hook/useVerification';
+import { closeModal, openModal } from '../../utils/popUp';
 
 const UserInfoForm: React.FC = () => {
-
+    const verifiHook = useVerification();
 
     const {
         isIndi,
         isPartenerB,
-        isPartner
+        isPartner,
+        verifiData
     } = useContext(JoinContext)!;
+    const { target } = verifiData || {};
+    const isPhoneVerified = target === VerificationTarget.PHONE;
+
     const {
         data,
         setData,
@@ -79,14 +86,22 @@ const UserInfoForm: React.FC = () => {
                         <span className={`er red_font ${errDisplay.email && `on`}`}>
                             *해당 이메일은 이미 사용중입니다.
                     </span>
-                        <input
-                            type="email"
-                            className="w100"
-                            placeholder="email@email.com"
-                            name="email"
-                            readOnly
-                            value={data.email}
-                        />
+                        <div>
+                            <input
+                                type="email"
+                                className={!isPhoneVerified ? "w100" : "w80"}
+                                placeholder="인증하기를 통해 이메일을 입력 해주세요."
+                                name="email"
+                                readOnly
+                                value={data.email}
+                            />
+                            {isPhoneVerified ?
+                                <button style={{ lineHeight: "100%" }} className="btn btn_mini" onClick={() => {
+                                    openModal("#ElseVeirifiModal")();
+                                }}>
+                                    {verifiHook.verifiData?.isVerified ? "인증완료" : "인증하기"}
+                                </button> : <></>}
+                        </div>
                     </div>
                     <div className="pw_wrap">
                         <label>
@@ -166,15 +181,20 @@ const UserInfoForm: React.FC = () => {
                             <input
                                 id="PhoneNumberInput"
                                 type="text"
-                                className="w100"
-                                placeholder="-를 제외한 휴대폰 번호를 입력해주세요"
+                                className={isPhoneVerified ? "w100" : "w80"}
+                                placeholder="인증하기를 통해 번호를 입력 해주세요"
                                 name="contact"
+                                readOnly={isPhoneVerified}
                                 value={autoHypenPhone(data.phoneNumber)}
                                 onChange={handleData("phoneNumber")}
                             />
-                            {/* <button type="button" className="btn btn_mini">
-                                인증
-                            </button> */}
+                            {!isPhoneVerified ?
+                                <button style={{ lineHeight: "100%" }} className="btn btn_mini" onClick={() => {
+                                    openModal("#ElseVeirifiModal")();
+                                }}>
+                                    {verifiHook.verifiData?.isVerified ? "인증완료" : "인증하기"}
+                                </button> : <></>
+                            }
                         </div>
                     </div>}
 
@@ -431,6 +451,20 @@ const UserInfoForm: React.FC = () => {
                         </div>
                     }
                 </div>
+                <VerifiEamilModal
+                    id="ElseVeirifiModal"
+                    target={isPhoneVerified ? VerificationTarget.EMAIL : VerificationTarget.PHONE}
+                    onSuccess={() => {
+                        if (isPhoneVerified) {
+                            data.email = verifiHook.verifiData?.payload || ""
+                            setData({ ...data })
+                            closeModal("#ElseVeirifiModal")();
+                        } else {
+                            data.phoneNumber = verifiHook.verifiData?.payload || ""
+                            setData({ ...data })
+                            closeModal("#ElseVeirifiModal")();
+                        }
+                    }} verifiHook={verifiHook} />
                 <RegisterCheck
                     registerInfo={data}
                 />

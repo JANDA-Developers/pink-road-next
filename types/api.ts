@@ -653,6 +653,7 @@ export interface BoardList_BoardList_data {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
+  boardType: BoardType;
   thumb: BoardList_BoardList_data_thumb | null;
   viewCount: number;
   likeCount: number;
@@ -11607,7 +11608,11 @@ export enum BoardAction {
  * 보드종류
  */
 export enum BoardType {
+  ANNOUNCE = "ANNOUNCE",
+  News = "News",
+  PORTFOLIO = "PORTFOLIO",
   PRODUCT = "PRODUCT",
+  QNA = "QNA",
   QUESTION = "QUESTION",
 }
 

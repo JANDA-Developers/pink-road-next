@@ -55,8 +55,9 @@ export const useJoin = () => {
         setErrDisplay({ ...errDisplay })
     }
 
-    const { verifiData: { payload } = {} } = useContext(JoinContext)!;
-    const [data, setData] = useState<ISignUpInput>({ email: payload })
+    const { verifiData: { payload, target: payloadTarget } = {} as any } = useContext(JoinContext)!;
+    const phoneVeirifi = payloadTarget === VerificationTarget.PHONE
+    const [data, setData] = useState<ISignUpInput>(phoneVeirifi ? { phoneNumber: payload } : { email: payload })
     const [daumAddress, setDaumAddress] = useState(false);
     const { signleUpload } = useUpload();
 

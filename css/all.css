@@ -32,7 +32,15 @@
 @import "./component/historyTable.css";
 @import "./component/pageLoader.css";
 @import "./component/muPageLoading.css";
+@import "./component/searchTap.css";
+@import "./component/privacy.css";
 
+
+.policyViewer {
+    max-height: 50vh;
+    height: 500px;
+    overflow: auto;
+}
 
 .productModal__paginatorWrap {
     display: flex;
