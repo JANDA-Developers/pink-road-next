@@ -10,7 +10,18 @@ import { generateSearchLink } from "../../pages/search";
 import { userRoleToKR } from "../../utils/enumToKr";
 
 interface IProp { }
+export const handSearchClose = () => {
+    $('.search_bg').css({
+        'display': 'none'
+    });
 
+    $('.search_wrap').animate({
+        'top': '-100px'
+    });
+    $('.hidden').css({
+        'display': 'none'
+    });
+}
 
 export const Header: React.FC<IProp> = () => {
     const [search, setSearch] = useState("");
