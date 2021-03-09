@@ -153,7 +153,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
         <SubTopNav pageTools={pageTools} >
             <li className="homedeps1">Member</li>
             <li className="homedeps2">
-                <a href="/">상품검색</a>
+                <a href="/">통합검색</a>
             </li>
         </SubTopNav>
         <PageEditor pageTools={pageTools} />
@@ -241,12 +241,16 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                         </div>
                     </div>
 
-                    {isProdView || <div className="list">
-                        <ul className="list_ul">
-                            {slice.map(baord => (
-                                <BoardListBlock board={baord} key={baord._id} />
-                            ))}
-                        </ul>
+                    {isProdView || <div className="board_list st05">
+                        <div className="tbody">
+                            <div >
+                                <ul >
+                                    {slice.map(baord => (
+                                        <BoardListBlock board={baord} key={baord._id} />
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
                     </div>}
 
                     {isProdView && <div>

@@ -1,15 +1,22 @@
 .searchTap {
     font-size: 1rem;
+    margin-bottom: -1px;
 
 }
 .searchTap__type {
-    font-size: 14px;
-    padding: 8px;
-    
+    font-size: 1em;
+    padding: 8px 20px;
     display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 3px 3px 0 0 ;
+    margin-right: 2px;
+    cursor: pointer;
 }
 
 .searchTap__type.on {
     font-weight: 600;
-    border-bottom: 2px solid #ed297b;
+    background-color: #333333;
+    border: 1px solid #333333;
+    color: #ffffff;
+   
 }

@@ -203,7 +203,55 @@
     .board_list .list_ul .file path {
         fill: #8a8a8a !important;
     }
+    .board_list.st05{
+        border-top: 2px solid #333;
+        position: relative;
+        width: 100%;
 
+    }
+    .board_list.st05 li{
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        box-sizing: border-box;
+        padding: 5% 0;
+    }
+    .board_list.st05 .textbox__img{
+        max-width: 100%;
+        height: 150px;
+        background-color: #eeeeee;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        margin-bottom: 15px;
+    }
+    .board_list.st05 .textbox__01{
+        width: 100%;
+       display: block;
+    }
+    .board_list.st05 .textbox__01 .txt{
+        margin-bottom:6px;
+    }
+    .board_list.st05 .textbox__01 .title{
+        width: 100%;
+       display: block;
+       font-size: 1.3em;
+       font-weight: 600;
+    }
+    .board_list.st05 .textbox__01 .day{
+        font-weight: 100;
+        font-size: 0.8em;
+    }
+    .board_list.st05 .textbox__02{
+        width: 100%;
+       display: block;
+    }
+    .board_list.st05 .textbox__02 > span{
+        width: auto;
+       display: inline-block;
+       margin-right: 15px;
+       line-height: 160%;
+       font-weight: 100;
+    }
 /* statement */
 .statement_div {
     position: relative;
@@ -2334,6 +2382,49 @@ div.sum_div {
     }
 }
 @media (min-width:1000px) {
+    .board_list.st05 {
+        width: 94%;
+    }
+    .board_list.st05 li{
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        cursor: pointer;
+    }
+    .board_list.st05 li > div{
+        flex-grow: 1;
+        flex: 1 1;
+        
+    }
+    .board_list.st05 .textbox__img{
+        max-width: 400px;
+        height: 120px;
+        margin-right: 15px;
+    }
+    .board_list.st05 .textbox__01 .title{
+        font-size: 1.4em;
+        font-weight: 600;
+    }
+    .board_list.st05 .textbox__01{
+        width: auto;
+        max-width: 560px;
+    }
+    .board_list.st05 .textbox__02{
+        width: auto;
+        margin-left: 15px;
+        max-width: 200px;
+        border-left: 1px solid #e5e5e5;
+        box-sizing: border-box;
+        padding: 5px 10px 5px 20px;
+    }
+    .board_list.st05 .textbox__02 > span{
+        width: 100%;
+       display: block;
+       line-height: 160%;
+       font-weight: 100;
+    }
     .new {
         width: 14px;
     }
@@ -2390,7 +2481,7 @@ div.sum_div {
         display: inline-block;
     }
     ul.list_ul.line3{
-        display: flex;
+        display: block;
     } 
     .photo_ul.line4 li {
         width: 25%;

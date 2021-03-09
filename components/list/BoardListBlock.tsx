@@ -44,12 +44,22 @@ export const BoardListBlock: React.FC<IProp> = ({ board }) => {
     //     </div>
     // </li>;
 
-    return <li className="list_in">
+    return <li className="list_in" onClick={() => { router.push(link) }}>
         <div
-            className="img"
+            className="textbox__img"
             style={BG(thumb?.uri || "")}
         />
-        <div className="title">{title}</div>
-        <div className="txt">{subTitle}</div>
+        <div className="textbox__01">
+            <div className="day">[ 2020-33-33 ]</div>
+            <div className="title">{title}</div>
+            <div className="txt">{subTitle}</div>
+            <div className="keyWards">{keyWards}</div>
+
+        </div>
+        <div className="textbox__02">
+            <span>장소 : 부산역앞</span>
+            <span>모집인원 : 22/50</span>
+            <span>기간 : 당일체험</span>
+        </div>
     </li>
 };
