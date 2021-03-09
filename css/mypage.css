@@ -2054,7 +2054,7 @@ div.reservation_popup .tr select {
        
             box-shadow: 2px 2px 10px #00000017;
         }
-        .notification_box .right .hang:before {
+        /* .notification_box .right .hang:before {
             position: absolute;
             content: '';
             display:inline-block;
@@ -2077,7 +2077,7 @@ div.reservation_popup .tr select {
             border-radius: 100px;
             left: -85px;
             top: 22px;
-        }
+        } */
         .notification_box .right .time {
             color:#999;
             font-size:0.8em;
@@ -3313,7 +3313,7 @@ div.reservation_popup .tr select {
         padding: 30px 50px 100px;
         border-radius: 5px;
     }
-  .notification_box .right .hang:before {
+  /* .notification_box .right .hang:before {
         width: 5px;
         height: 5px;
         left: -98px;
@@ -3327,7 +3327,7 @@ div.reservation_popup .tr select {
         height: 1px;
         left: -85px;
         top: 22px;
-    }
+    } */
     
     .selectViewList ul.list_ul li .img {
         width: 250px;
@@ -3755,11 +3755,14 @@ div.reservation_popup .tr select {
         border:5px solid #ededed;
         padding: 2% !important;
         box-sizing: border-box;
-        margin: 10px 0 5px;
+        margin: 0 0 5px;
     }
 }
 
 @media (max-width: 767px) {
+    .reservation_div .money{
+        font-size: 1em;
+    }
     .mypage_in .subtop_nav {
         top: -39px;
     }

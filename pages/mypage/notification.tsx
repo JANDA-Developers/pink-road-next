@@ -1,9 +1,12 @@
 import dayjs from 'dayjs';
+import { usePageEdit } from 'hook/usePageEdit';
+import SubTopNav from 'layout/components/SubTop';
+import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { NotiLine } from '../../components/notification/NotiLine';
 import { useSystemNotiHide, useSystemNotiList, useSystemNotiRead } from '../../hook/useSystemNoti';
 import { MypageLayout } from '../../layout/MypageLayout';
-import { ALLOW_LOGINED } from '../../types/const';
+import { ALLOW_LOGINED, DEFAULT_PAGEINFO } from '../../types/const';
 import { groupDateArray } from '../../utils/group';
 import { auth } from '../../utils/with';
 import { yyyymmdd } from '../../utils/yyyymmdd';
@@ -16,6 +19,7 @@ export const Notification: React.FC<IProp> = () => {
     const groupItems = groupDateArray(items, "createdAt");
     const [hideMu] = useSystemNotiHide({ variables: { ids } });
     const [readMu] = useSystemNotiRead({ variables: { ids } });
+    // const editTools = usePageEdit(pageInfo, DEFAULT_PAGEINFO)
 
     const handleRefresh = () => {
         if (refetch)
@@ -32,6 +36,7 @@ export const Notification: React.FC<IProp> = () => {
 
 
     return <MypageLayout>
+
         <div className="in notification_box">
             <h4>알림</h4>
             <div className="paper_div">

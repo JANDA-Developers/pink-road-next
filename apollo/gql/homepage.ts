@@ -53,9 +53,7 @@ export const F_HOMEPAGE = gql`
         email
         ceoName
         openTime
-        refundPolicy
         loginRedirect
-        tourismbusinessNumber
         loginOutRedirect
         PrivacyPolicy
         partnerBpolicy
