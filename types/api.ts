@@ -653,6 +653,7 @@ export interface BoardList_BoardList_data {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
+  boardType: BoardType;
   thumb: BoardList_BoardList_data_thumb | null;
   viewCount: number;
   likeCount: number;
@@ -2678,7 +2679,12 @@ export interface homepage_Homepage_data {
    * 영업시간
    */
   openTime: string;
+  refundPolicy: string;
   loginRedirect: string;
+  /**
+   * 관광사업등록번호
+   */
+  tourismbusinessNumber: string;
   loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
@@ -2831,7 +2837,12 @@ export interface homepageUpdate_HomepageUpdate_data {
    * 영업시간
    */
   openTime: string;
+  refundPolicy: string;
   loginRedirect: string;
+  /**
+   * 관광사업등록번호
+   */
+  tourismbusinessNumber: string;
   loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
@@ -7242,7 +7253,12 @@ export interface getContext_Homepage_data {
    * 영업시간
    */
   openTime: string;
+  refundPolicy: string;
   loginRedirect: string;
+  /**
+   * 관광사업등록번호
+   */
+  tourismbusinessNumber: string;
   loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
@@ -10743,7 +10759,12 @@ export interface Fhomepage {
    * 영업시간
    */
   openTime: string;
+  refundPolicy: string;
   loginRedirect: string;
+  /**
+   * 관광사업등록번호
+   */
+  tourismbusinessNumber: string;
   loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
@@ -11587,7 +11608,11 @@ export enum BoardAction {
  * 보드종류
  */
 export enum BoardType {
+  ANNOUNCE = "ANNOUNCE",
+  News = "News",
+  PORTFOLIO = "PORTFOLIO",
   PRODUCT = "PRODUCT",
+  QNA = "QNA",
   QUESTION = "QUESTION",
 }
 
@@ -12319,9 +12344,11 @@ export interface HomepageUpdateInput {
   PrivacyPolicy?: string | null;
   usePolicy?: string | null;
   partnerBpolicy?: string | null;
+  refundPolicy?: string | null;
   travelerPolicy?: string | null;
   partnerPolicy?: string | null;
   marketingPolic?: string | null;
+  tourismbusinessNumber?: string | null;
   thirdPolicy?: string | null;
   ceoName?: string | null;
   address?: string | null;
@@ -12371,6 +12398,10 @@ export interface ItineraryUpdateInput {
 }
 
 export interface ModalInput {
+  _id?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
+  isDeleted?: boolean | null;
   link?: string | null;
   startDate: any;
   endDate: any;

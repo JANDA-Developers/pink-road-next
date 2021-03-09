@@ -138,6 +138,9 @@ function App({ Component, pageProps }: any) {
   if (loading) return <PageLoading />
   return (
     <div className="App">
+      <div id="MuPageLoading" className="muPageLoading">
+      </div>
+
       <ApolloProvider client={PinkClient}>
         <AppContext.Provider value={{
           categoriesMap: catsMap,

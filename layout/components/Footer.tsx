@@ -21,6 +21,7 @@ export const Footer: React.FC<IProp> = () => {
         bankInfo,
         email,
         busiNumber,
+        tourismbusinessNumber,
         degitalSalesNumber,
         logoBottom,
         partnerFooter
@@ -36,15 +37,15 @@ export const Footer: React.FC<IProp> = () => {
 
     return <footer className="footer" id="footer">
         <div id="gotop" className="">
-            <Link href="#header">
-                <a className="top"><i className="jandaicon-arr4-top" /></a>
-            </Link>
+            <a onClick={() => {
+                window.scrollTo({ behavior: "smooth", top: 0 })
+            }} className="top"><i className="jandaicon-arr4-top" /></a>
             {isLogin && <Link href="/mypage/basket">
                 <a className="basket"><img src="/img/svg/basket.svg" alt="basket icon" /><button /></a>
             </Link>}
-            <Link href="#footer">
-                <a className="down"><i className="jandaicon-arr4-bottom" /></a>
-            </Link>
+            <a onClick={() => {
+                window.scrollTo({ behavior: "smooth", top: 99999 })
+            }} className="down"><i className="jandaicon-arr4-bottom" /></a>
         </div>
         <div className="footer_in">
             <div className="bottom_nav">
@@ -53,6 +54,7 @@ export const Footer: React.FC<IProp> = () => {
                     <li className="link"><Link href="/member/rule"><a>이용약관</a></Link></li>
                     <li className="link"><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
                     <li className="link"><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
+                    <li className="link"><Link href="/member/refund-policy"><a>취소 및 환불 정책</a></Link></li>
                     <li className="sns">
                         <div>
                             <Link href="https://www.facebook.com/PinkRoader"><a target="_blank"><i className="jandaicon-facebook"></i></a></Link>
@@ -92,6 +94,10 @@ export const Footer: React.FC<IProp> = () => {
                             <strong>영업보증보험</strong>
                             <span>5천만원 가입</span>
                         </li>
+                        <li>
+                            <strong>관광사업등록증번호</strong>
+                            <span>{tourismbusinessNumber}</span>
+                        </li>
                         <li className="bottom_txt pc">
                             {copyRight}
                         </li>
@@ -100,6 +106,10 @@ export const Footer: React.FC<IProp> = () => {
                         <li>
                             <strong>이메일</strong>
                             <span>{email}</span>
+                        </li>
+                        <li>
+                            <strong>연락처</strong>
+                            <span>{contact}</span>
                         </li>
                         <li>
                             <strong>영업시간</strong>

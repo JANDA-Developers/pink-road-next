@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import defaultPageInfo from 'info/main.json';
 import { Meta } from 'components/common/meta/Meta';
 import { Upload } from 'components/common/Upload';
@@ -17,6 +17,8 @@ import { cloneObject } from '../utils/clone';
 import { useHomepage } from '../hook/useHomepage';
 import { AppContext } from './_app';
 import { openAutos, usePopups } from '../hook/usePopups';
+import { ThreePhoneNumberInput } from '../components/phoneNumberInput/PhoneNumberInput';
+import { usePhoneInput } from '../hook/usePhoneInput';
 
 export const Main: React.FC<Ipage> = (pageInfo) => {
   const { item } = useGroupFind("Main");
@@ -52,6 +54,8 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
       openAutos(homepage?.modal)
     }
   }, [homepage?.modal])
+
+  const { setValue, value } = usePhoneInput("");
 
   return <div className="body main" id="main" >
     <PageEditor pageTools={pageTools} />
@@ -131,6 +135,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
         </ul>
       </div>
     </div>
+    <ThreePhoneNumberInput onChange={setValue} value={value} />
 
     <div className="main_con_box6">
       <ul className="mainbn">

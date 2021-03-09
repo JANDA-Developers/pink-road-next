@@ -1,4 +1,5 @@
 import React from 'react';
+import { PolicyTopNav } from '../../components/policyTopNav/PolicyTopNav';
 
 interface IProp { }
 
@@ -28,11 +29,7 @@ export const KrTerms: React.FC<IProp> = () => {
         </div>
 
         <div className="krterms_box w1200">
-            <ul className="subtop_nav">
-                <li><a href="/member/rule">이용약관</a></li>
-                <li><a href="/member/privacy-policy">개인정보처리방침</a></li>
-                <li className="on"><a href="/member/kr-terms">국내여행약관</a></li>
-            </ul>
+            <PolicyTopNav />
             <div>
                 <h4 className="mt20">제 1조 (목적)</h4>
                 <p>

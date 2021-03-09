@@ -86,7 +86,7 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
     }
 
     if (!homepage) return <PageLoading />
-    const { ceoName, bankInfo, copyRight, logo, logoBottom, logoTop, contact, degitalSalesNumber, address, addressUrl, busiNumber, email, openTime } = homepage;
+    const { ceoName, bankInfo, copyRight, logo, logoBottom, logoTop, contact, degitalSalesNumber, address, addressUrl, busiNumber, email, openTime, tourismbusinessNumber } = homepage;
     const { accountHolder, accountNumber, bankName } = bankInfo || {}
     return <MasterLayout>
         <div className="in ">
@@ -165,6 +165,17 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                         const val = e.currentTarget.value;
                                         set("degitalSalesNumber", val);
                                     }} value={degitalSalesNumber || ""} className="w50" placeholder="" type="text" /></div>
+                                </div>
+                            </div>
+                            <div className="tbody">
+                                <div className="t01">
+                                    <div className="title">관광사업등록번호</div>
+                                </div>
+                                <div className="t02">
+                                    <div className="txt"><input onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        set("tourismbusinessNumber", val);
+                                    }} value={tourismbusinessNumber || ""} className="w50" placeholder="" type="text" /></div>
                                 </div>
                             </div>
                             <div className="tbody">

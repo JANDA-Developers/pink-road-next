@@ -27,6 +27,7 @@ export const BOARD_LIST = gql`
             summary
             subTitle
             keyWards
+            boardType
             thumb {
                 uri
             }

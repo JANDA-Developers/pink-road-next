@@ -11,18 +11,6 @@ import { userRoleToKR } from "../../utils/enumToKr";
 
 interface IProp { }
 
-export const handSearchClose = () => {
-    $('.search_bg').css({
-        'display': 'none'
-    });
-
-    $('.search_wrap').animate({
-        'top': '-100px'
-    });
-    $('.hidden').css({
-        'display': 'none'
-    });
-}
 
 export const Header: React.FC<IProp> = () => {
     const [search, setSearch] = useState("");
@@ -80,7 +68,7 @@ export const Header: React.FC<IProp> = () => {
 
     const handleLogOut = () => {
         localStorage.removeItem("jwt");
-        location.href = process.env.NEXT_PUBLIC_CLIENT_DOMAIN + "/"
+        location.href = "/"
     }
 
     const goToSearchPage = () => {
@@ -88,6 +76,20 @@ export const Header: React.FC<IProp> = () => {
         $('.search_bg').css({
             'display': 'none'
         });
+    }
+
+    const handSearchClose = () => {
+        $('.search_bg').css({
+            'display': 'none'
+        });
+
+        $('.search_wrap').animate({
+            'top': '-100px'
+        });
+        $('.hidden').css({
+            'display': 'none'
+        });
+        setSearch("");
     }
 
     useEffect(() => {
@@ -100,11 +102,11 @@ export const Header: React.FC<IProp> = () => {
     return <header className="header" id="header">
         <div className="top-menu">
             <div className="w1200">
-                {isLogin ? <p className="welcome_ms"><strong>({userRoleToKR(myProfile?.role)}) {myProfile?.nickName}</strong>님 어서오세요~!!</p>
+                {isLogin ? <p className="welcome_ms"><strong>{userRoleToKR(myProfile?.role)}</strong> {myProfile?.nickName}님 어서오세요</p>
                     : ""}
                 <ul onClick={handleAllClose}>
                     <li >
-                        <Link href="/member/qna">
+                        <Link href="/member/announce">
                             <a>고객센터</a>
                         </Link>
                     </li>
@@ -176,7 +178,7 @@ export const Header: React.FC<IProp> = () => {
                                     <a href="https://smartstore.naver.com/pinkroader" target="_blank">Design Goods</a>
                                 </li>
                                 <li className="deps">
-                                    <Link href="/news">
+                                    <Link href={`/news?type=${NEWS_TYPE.TRAVEL}`}>
                                         <a>News</a>
                                     </Link>
 
@@ -214,7 +216,7 @@ export const Header: React.FC<IProp> = () => {
                                     <div className="search_wrap">
 
                                         <input onKeyPress={whenEnter(goToSearchPage)} value={search} onChange={setVal(setSearch)} type="text" placeholder="검색어를 입력해주세요" />
-                                        <div className="search_btn">
+                                        <div onClick={goToSearchPage} className="search_btn">
                                             <img src="/img/svg/search_icon.svg" alt="search icon" />
                                             <button className="btt1" />
                                         </div>

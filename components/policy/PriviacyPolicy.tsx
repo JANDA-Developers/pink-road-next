@@ -22,7 +22,7 @@ export const Policy: React.FC<IProp> = ({ type }) => {
         return ""
     }
 
-    return <div dangerouslySetInnerHTML={{
+    return <div className="policyViewer" dangerouslySetInnerHTML={{
         __html: sanitizeHtml(findPolicy())
     }} />
 };

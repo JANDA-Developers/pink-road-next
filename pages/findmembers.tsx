@@ -4,6 +4,7 @@ import { useEmailFindByInfo, usePasswordFindByPhone } from '../hook/useUser';
 import SubTopNav from '../layout/components/SubTop';
 import { getStaticPageInfo, Ipage } from '../utils/page';
 import defaultPageInfo from "../info/findmember.json"
+import { autoHypenPhone } from '../utils/formatter';
 
 interface IProp { }
 

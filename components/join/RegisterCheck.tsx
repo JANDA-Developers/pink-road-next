@@ -9,6 +9,8 @@ import { ISignUpInput } from '../../hook/useJoin';
 import { omits } from '../../utils/omit';
 import { Modal } from '../modal/Modal';
 import { Policy } from '../policy/PriviacyPolicy';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 type TSMS = {
   sns: true,
@@ -294,7 +296,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#UsePolicy')}
+                  onClick={openModal('#PolicyModal')}
                 >
                   전문보기 &gt;
                 </a>
@@ -312,7 +314,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#PrivacyPolicy')}
+                  onClick={openModal('#PolicyModal')}
                 >
                   전문보기 &gt;
                   </a>
@@ -330,7 +332,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#PrivacyConsignmentPolicy')}
+                  onClick={openModal('#PolicyModal')}
                 >
                   전문보기 &gt;
                   </a>
@@ -348,7 +350,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#TravelerPolicy')}
+                  onClick={openModal('#PolicyModal')}
                 >
                   전문보기 &gt;
                   </a>
@@ -366,7 +368,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#PartnerPolicy')}
+                  onClick={openModal('#PolicyModal')}
                 >
                   전문보기 &gt;
                   </a>
@@ -384,7 +386,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#MarketingPolicy')}
+                  onClick={openModal('#PolicyModal')}
                 >
                   전문보기 &gt;
                   </a>
@@ -402,7 +404,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#ThirdPolicy')}
+                  onClick={openModal('#PolicyModal')}
                 >
                   전문보기 &gt;
                   </a>
@@ -411,33 +413,42 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
           </ul>
         </div>
       </div>
-      <Modal id="UsePolicy" title="이용약관 동의">
-        <Policy type="usePolicy" />
+      <Modal id="PolicyModal" title="약관보기">
+        <Tabs>
+          <TabList>
+            <Tab>이용약관 동의</Tab>
+            <Tab>여행자약관</Tab>
+            <Tab>개인정보 수집 및 이용 동의</Tab>
+            <Tab>마케팅정보 수신동의</Tab>
+            <Tab>기업 파트너 약관</Tab>
+            <Tab>개인정보 제3자 제공</Tab>
+          </TabList>
+
+          <TabPanel>
+            <Policy type="usePolicy" />
+          </TabPanel>
+          <TabPanel>
+            <Policy type="travelerPolicy" />
+          </TabPanel>
+          <TabPanel>
+            <Policy type="PrivacyPolicy" />
+          </TabPanel>
+          <TabPanel>
+            <Policy type="partnerPolicy" />
+          </TabPanel>
+          <TabPanel>
+            <Policy type="marketingPolic" />
+          </TabPanel>
+          <TabPanel>
+            <Policy type="partnerBpolicy" />
+          </TabPanel>
+          <TabPanel>
+            <Policy type="thirdPolicy" />
+          </TabPanel>
+        </Tabs>
+        <button className="btn" >확인</button>
       </Modal>
 
-      <Modal id="PrivacyPolicy" title="개인정보 수집 및 이용 동의">
-        <Policy type="PrivacyPolicy" />
-      </Modal>
-
-      <Modal id="TravelerPolicy" title="여행자약관">
-        <Policy type="travelerPolicy" />
-      </Modal>
-
-      <Modal id="PartnerPolicy" title="파트너약관">
-        <Policy type="partnerPolicy" />
-      </Modal>
-
-      <Modal id="MarketingPolicy" title="마케팅정보 수신동의">
-        <Policy type="marketingPolic" />
-      </Modal>
-
-      <Modal id="MarketingPolicy" title="기업 파트너 약관">
-        <Policy type="partnerBpolicy" />
-      </Modal>
-
-      <Modal id="ThirdPolicy" title="개인정보 제3자 제공">
-        <Policy type="thirdPolicy" />
-      </Modal>
       <div className="fin">
         <a href="/" className="joinWrapBtn cancel btn">취소</a>
         <button className="joinWrapBtn sum btn"
