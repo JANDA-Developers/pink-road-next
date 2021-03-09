@@ -114,7 +114,12 @@ const Join: React.FC<Ipage> = (pageInfo) => {
     return (
         <div>
             <div >
-                <SubTopNav pageTools={editTools} />
+                <SubTopNav pageTools={editTools} >
+                    <li className="homedeps1">Member</li>
+                    <li className="homedeps2">
+                        <Link href="/member/join"><a>회원가입</a></Link>
+                    </li>
+                </SubTopNav>
                 {/* 개인 */}
                 <div className="sign_in famile">
                     <div className="inner ">
