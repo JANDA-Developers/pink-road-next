@@ -159,7 +159,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
         <PageEditor pageTools={pageTools} />
         <div className="search_in w1200">
             <div className="con_top">
-                <h4>상세검색</h4>
+                {/* <h4>상세검색</h4> */}
                 <div className="searchTap">
                     <span onClick={handleBoardType("board")} className={`searchTap__type ${checkOnType("board")}`}>통합검색</span>
                     <span onClick={handleBoardType("product")} className={`searchTap__type ${checkOnType("product")}`}>상품검색</span>

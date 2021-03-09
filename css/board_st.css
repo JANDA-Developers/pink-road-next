@@ -2383,7 +2383,7 @@ div.sum_div {
 }
 @media (min-width:1000px) {
     .board_list.st05 {
-        width: 94%;
+        width:100%;
     }
     .board_list.st05 li{
         width: 100%;
