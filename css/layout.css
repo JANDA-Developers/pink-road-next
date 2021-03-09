@@ -453,8 +453,8 @@ i.tooltip{
                 text-align: left;
                 box-sizing: border-box;
                 border-top: 5px solid #ed297b;
-                background-color: rgba(255, 255, 255, 0.856);
-                    box-shadow: 0px 0px 5px #0000005e;
+                background-color: rgba(0, 0, 0, 0.753);
+                    /* box-shadow: 0px 0px 5px #0000005e; */
                 z-index: 70;
             }
             .header .hd_center .nav_wrap > .deps1 .deps_nav li {
@@ -473,7 +473,7 @@ i.tooltip{
                     border-bottom: 0;
                 }
                 .header .hd_center .nav_wrap > .deps1 .deps_nav a:hover {
-                    color: #333;
+                    color: #ffffff;
                 }
 
 .nav_bg {
@@ -638,7 +638,7 @@ rect.allmenu_svg {
             position: relative;
             display: inline-block;
             vertical-align: middle;
-            width: 27px;
+            width: 28px;
             padding-top: 4px;
         }
 
@@ -821,6 +821,17 @@ rect.allmenu_svg {
         opacity: 0.8;
     }
     .header .inform_top .inform_icon:hover img {
+        opacity:1;
+    }
+    .header .inform_top .mypage_icon {
+        cursor: pointer;
+        width: 27px;
+        position: relative;
+    }
+    .header .inform_top .mypage_icon img {
+        opacity: 0.8;
+    }
+    .header .inform_top .mypage_icon:hover img {
         opacity:1;
     }
     .header .inform_top .number {

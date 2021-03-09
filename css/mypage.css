@@ -2818,6 +2818,7 @@ div.reservation_popup .tr select {
     position: relative; 
     width: 100%;
 }
+
 @media (min-width: 768px) {
 
 
@@ -2825,6 +2826,13 @@ div.reservation_popup .tr select {
 
     
 @media (min-width: 1000px) {  
+    .mypage_in .in .fin .btn{
+        width: auto !important;
+        padding: 5px 20px !important;
+    }
+    .mypage_in .box_right .btn_mini{
+        width: auto !important;
+    }
     .reservation_div .state {
         width: auto !important;
         display: inline-block;

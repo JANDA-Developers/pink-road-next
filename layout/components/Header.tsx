@@ -231,11 +231,24 @@ export const Header: React.FC<IProp> = () => {
                             </div>
                             <div onClick={handSearchClose} className="search_bg"></div>
                         </div>
-                        {isLogin ?
+                        {/* {isLogin ?
                             <div className="inform_top">
                                 <Link href="/mypage/notification">
                                     <a>
                                         <NotiIcon />
+                                    </a>
+                                </Link>
+                            </div>
+                            : ""} */}
+                        {isLogin ?
+                            <div className="inform_top">
+                                <Link href="/mypage">
+                                    <a>
+                                        <div className="mypage_icon">
+                                            <img src={'/img/svg/icon_man.svg'} alt="mypage icon" />
+                                            <button />
+
+                                        </div>
                                     </a>
                                 </Link>
                             </div>
@@ -319,6 +332,7 @@ export const Header: React.FC<IProp> = () => {
                                         <li><Link href="/master/reservation"><a>예약관리</a></Link></li>
                                         <li><Link href="/master/design"><a>디자인 설정</a></Link></li>
                                         <li><Link href="/master/homepage"><a>홈페이지 설정</a></Link></li>
+
                                     </ul>
                                 </li>}
                             {isManager &&
