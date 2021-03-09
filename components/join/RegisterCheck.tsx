@@ -11,6 +11,7 @@ import { Modal } from '../modal/Modal';
 import { Policy } from '../policy/PriviacyPolicy';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { userRoleToKR } from '../../utils/enumToKr';
 
 type TSMS = {
   sns: true,
@@ -66,7 +67,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
     policy_info_3rd: false
   });
 
-  const optional: (keyof typeof chkPolocy)[] = ["policy_info_3rd"]
+  const optional: (keyof typeof chkPolocy)[] = ["policy_info_3rd", "policy_marketing"]
 
   const [chkAll, setChkAll] = useState(false);
 
@@ -381,8 +382,8 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
                   checked={chkPolocy.policy_marketing}
                   onClick={() => { handlePolicy('policy_marketing') }} />
                 <span>
-                  <strong>마케팅정보 수신동의</strong>[필수]
-                  </span>
+                  <strong>SMS, E-mail 수신동의</strong>
+                </span>
               </div>
               <div className="in_box2">
                 <a
@@ -417,18 +418,14 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         <Tabs>
           <TabList>
             <Tab>이용약관 동의</Tab>
-            <Tab>여행자약관</Tab>
             <Tab>개인정보 수집 및 이용 동의</Tab>
-            <Tab>마케팅정보 수신동의</Tab>
-            <Tab>기업 파트너 약관</Tab>
+            <Tab>SMS, E-mail 수신동의</Tab>
+            <Tab>{userRoleToKR(userType)} 약관</Tab>
             <Tab>개인정보 제3자 제공</Tab>
           </TabList>
 
           <TabPanel>
             <Policy type="usePolicy" />
-          </TabPanel>
-          <TabPanel>
-            <Policy type="travelerPolicy" />
           </TabPanel>
           <TabPanel>
             <Policy type="PrivacyPolicy" />
@@ -440,7 +437,15 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
             <Policy type="marketingPolic" />
           </TabPanel>
           <TabPanel>
-            <Policy type="partnerBpolicy" />
+            {userType === UserRole.partnerB &&
+              <Policy type="partnerBpolicy" />
+            }
+            {userType === UserRole.partner &&
+              <Policy type="partnerPolicy" />
+            }
+            {userType === UserRole.individual &&
+              <Policy type="travelerPolicy" />
+            }
           </TabPanel>
           <TabPanel>
             <Policy type="thirdPolicy" />

@@ -102,7 +102,7 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
                     </div>
 
                     <div className="jul">
-                        <h5>마케팅정보 수신동의</h5>
+                        <h5>SMS, E-mail 수신동의</h5>
                         <Editor data={datas.marketingPolic} onChange={setPoliicy("marketingPolic")} />
                         <div className="terms__termBox fin">
                             <button onClick={handleSave("marketingPolic")} type="submit" className="terms__saveBtn btn medium">저장하기</button>

@@ -120,7 +120,7 @@ const PolicyPopup: React.FC<IProps> = ({ closePopup }) => {
                 </div>
             </div>
             {/* // Popup:개인정보 제3자 제공 */}
-            {/* Popup:마케팅정보 수신동의 */}
+            {/* Popup:SMS, E-mail 수신동의 */}
             <div id="Popup06" className="popup_bg" style={{ display: "none" }}>
                 <div className="policyA in_txt">
                     <a className="close_icon">
@@ -132,15 +132,15 @@ const PolicyPopup: React.FC<IProps> = ({ closePopup }) => {
                         />
                     </a>
                     <div className="page">
-                        <h4>마케팅정보 수신동의</h4>
+                        <h4>SMS, E-mail 수신동의</h4>
                         <p>
-                            마케팅정보 수신동의마케팅정보 수신동의마케팅정보 수신동의마케팅정보
-                            수신동의마케팅정보 수신동의마케팅정보 수신동의마케팅정보 수신동의
+                            SMS, E-mail 수신동의SMS, E-mail 수신동의SMS, E-mail 수신동의마케팅정보
+                            수신동의SMS, E-mail 수신동의SMS, E-mail 수신동의SMS, E-mail 수신동의
                 </p>
                     </div>
                 </div>
             </div>
-            {/* // Popup:마케팅정보 수신동의 */}
+            {/* // Popup:SMS, E-mail 수신동의 */}
             {/* Popup:파트너약관 */}
             <div id="Popup07" className="popup_bg" style={{ display: "none" }}>
                 <div className="policyA in_txt">

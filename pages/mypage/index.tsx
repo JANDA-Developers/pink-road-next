@@ -286,7 +286,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 </div>
                             </li>
                             <li>
-                                <div className="title">이메일</div>
+                                <div className="title">아이디</div>
                                 <div className="txt">{email}</div>
                             </li>
                             <li>
