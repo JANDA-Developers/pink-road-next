@@ -53,8 +53,13 @@ export const BoardListBlock: React.FC<IProp> = ({ board }) => {
             <div className="day">[ 2020-33-33 ]</div>
             <div className="title">{title}</div>
             <div className="txt">{subTitle}</div>
-            <div className="keyWards">{keyWards}</div>
-
+            <div className="tag">
+                <a href="/">#문화</a>
+                <a href="/">#예술</a>
+                <a href="/">#전포</a>
+                <a href="/">#부산</a>
+            </div>
+            <div className="cash"><strong>1,000</strong>원</div>
         </div>
         <div className="textbox__02">
             <span>장소 : 부산역앞</span>

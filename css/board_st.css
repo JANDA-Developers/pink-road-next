@@ -237,6 +237,24 @@
        font-size: 1.3em;
        font-weight: 600;
     }
+    .board_list.st05 .textbox__01 .tag > a{
+        margin-right: 5px;
+        background-color: #f3f3f3;
+        color: #888;
+        padding: 2px 4px;
+        font-weight: 400;
+        font-size: 0.8em;
+    }
+    .board_list.st05 .textbox__01 .cash{
+        text-align: left;
+        font-size: 16px;
+        margin-top: 10px;
+        line-height: 28px;
+    }
+    .board_list.st05 .textbox__01 .cash strong{
+        font-size: 20px;
+        color: #ed297b;
+    }
     .board_list.st05 .textbox__01 .day{
         font-weight: 100;
         font-size: 0.8em;
@@ -2402,6 +2420,7 @@ div.sum_div {
         max-width: 400px;
         height: 120px;
         margin-right: 15px;
+        margin-bottom: 0;
     }
     .board_list.st05 .textbox__01 .title{
         font-size: 1.4em;
