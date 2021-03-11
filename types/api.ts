@@ -37,10 +37,6 @@ export interface announceFindById_AnnounceFindById_data_author_bankImg {
 export interface announceFindById_AnnounceFindById_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -250,10 +246,6 @@ export interface announceList_AnnounceList_data_author_bankImg {
 export interface announceList_AnnounceList_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -631,6 +623,11 @@ export interface BoardList_BoardList_error {
   message: string;
 }
 
+export interface BoardList_BoardList_data_images {
+  __typename: "File";
+  uri: string;
+}
+
 export interface BoardList_BoardList_data_thumb {
   __typename: "File";
   uri: string;
@@ -643,13 +640,20 @@ export interface BoardList_BoardList_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  maxMember: number | null;
+  images: BoardList_BoardList_data_images[] | null;
+  boardType: BoardType;
+  address: string | null;
+  baby_price: number | null;
+  adult_price: number | null;
+  status: string | null;
+  kids_price: number | null;
   contents: string;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  boardType: BoardType;
   thumb: BoardList_BoardList_data_thumb | null;
   viewCount: number;
   likeCount: number;
@@ -1584,10 +1588,6 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author_bankImg
 export interface bookingFindByCode_BookingFindByCode_data_product_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -2831,12 +2831,7 @@ export interface homepage_Homepage_data {
    * 영업시간
    */
   openTime: string;
-  refundPolicy: string;
   loginRedirect: string;
-  /**
-   * 관광사업등록번호
-   */
-  tourismbusinessNumber: string;
   loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
@@ -2989,12 +2984,7 @@ export interface homepageUpdate_HomepageUpdate_data {
    * 영업시간
    */
   openTime: string;
-  refundPolicy: string;
   loginRedirect: string;
-  /**
-   * 관광사업등록번호
-   */
-  tourismbusinessNumber: string;
   loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
@@ -3223,10 +3213,6 @@ export interface newsFindById_NewsFindById_data_author_bankImg {
 export interface newsFindById_NewsFindById_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -3435,10 +3421,6 @@ export interface newsList_NewsList_data_author_bankImg {
 export interface newsList_NewsList_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -4389,10 +4371,6 @@ export interface portfolioFindById_PortfolioFindById_data_author_bankImg {
 export interface portfolioFindById_PortfolioFindById_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -4597,10 +4575,6 @@ export interface portfolioList_PortfolioList_data_author_bankImg {
 export interface portfolioList_PortfolioList_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -5371,10 +5345,6 @@ export interface productList_ProductList_data_author_bankImg {
 export interface productList_ProductList_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -5611,10 +5581,6 @@ export interface productFindById_ProductFindById_data_author_bankImg {
 export interface productFindById_ProductFindById_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -5929,10 +5895,6 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_b
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -6064,10 +6026,6 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -6525,12 +6483,7 @@ export interface qnaFindById_QnaFindById_data_author_bankImg {
 
 export interface qnaFindById_QnaFindById_data_author {
   __typename: "User";
-  name: string;
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -6587,6 +6540,7 @@ export interface qnaFindById_QnaFindById_data_author {
   busi_name: string;
   busi_address: string;
   account_number: string;
+  name: string;
   bank_name: string;
   resignReason: string | null;
   resignReasonType: string | null;
@@ -6743,12 +6697,7 @@ export interface qnaList_QnaList_data_author_bankImg {
 
 export interface qnaList_QnaList_data_author {
   __typename: "User";
-  name: string;
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -6805,6 +6754,7 @@ export interface qnaList_QnaList_data_author {
   busi_name: string;
   busi_address: string;
   account_number: string;
+  name: string;
   bank_name: string;
   resignReason: string | null;
   resignReasonType: string | null;
@@ -7133,10 +7083,6 @@ export interface getContext_GetProfile_data_bookings {
 export interface getContext_GetProfile_data {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -7398,12 +7344,7 @@ export interface getContext_Homepage_data {
    * 영업시간
    */
   openTime: string;
-  refundPolicy: string;
   loginRedirect: string;
-  /**
-   * 관광사업등록번호
-   */
-  tourismbusinessNumber: string;
   loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
@@ -7943,10 +7884,6 @@ export interface settlementFindById_SettlementFindById_data_product_author_bankI
 export interface settlementFindById_SettlementFindById_data_product_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -8271,10 +8208,6 @@ export interface settlementList_SettlementList_data_seller_bankImg {
 export interface settlementList_SettlementList_data_seller {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -8417,10 +8350,6 @@ export interface settlementList_SettlementList_data_product_author_bankImg {
 export interface settlementList_SettlementList_data_product_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -9395,10 +9324,6 @@ export interface userList_UserList_data_bankImg {
 export interface userList_UserList_data {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -9595,10 +9520,6 @@ export interface userFindById_UserFindById_data_products_author_bankImg {
 export interface userFindById_UserFindById_data_products_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -9766,10 +9687,6 @@ export interface userFindById_UserFindById_data_bookings {
 export interface userFindById_UserFindById_data {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -9997,10 +9914,6 @@ export interface Fannounce_author_bankImg {
 export interface Fannounce_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -10493,10 +10406,6 @@ export interface Fuser_bankImg {
 export interface Fuser {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -10841,12 +10750,7 @@ export interface Fhomepage {
    * 영업시간
    */
   openTime: string;
-  refundPolicy: string;
   loginRedirect: string;
-  /**
-   * 관광사업등록번호
-   */
-  tourismbusinessNumber: string;
   loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
@@ -10899,10 +10803,6 @@ export interface Fnews_author_bankImg {
 export interface Fnews_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -11227,10 +11127,6 @@ export interface Fportfolio_author_bankImg {
 export interface Fportfolio_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -11363,12 +11259,7 @@ export interface Fqna_author_bankImg {
 
 export interface Fqna_author {
   __typename: "User";
-  name: string;
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
@@ -11425,6 +11316,7 @@ export interface Fqna_author {
   busi_name: string;
   busi_address: string;
   account_number: string;
+  name: string;
   bank_name: string;
   resignReason: string | null;
   resignReasonType: string | null;

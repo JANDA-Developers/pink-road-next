@@ -22,8 +22,6 @@ import { EditorLoading } from "../../../components/edit/EdiotrLoading";
 import pageInfoDefault from "info/tourWrite.json"
 import { getStaticPageInfo, Ipage } from "../../../utils/page";
 import { usePageEdit } from "../../../hook/usePageEdit";
-import { assert } from "console";
-import PageDeny from "../../Deny";
 import { cloneObject } from "../../../utils/clone";
 import { productStatus } from "../../../utils/enumToKr";
 import { Prompt } from "../../../components/promptModal/Prompt";
@@ -349,7 +347,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     <div className="title">지역</div>
                     <div className="input_form">
                         <span className="category">
-                            <select onChange={handleRegionChange} value={regionId || ""} name="category_srl">
+                            <select id="RegionId" onChange={handleRegionChange} value={regionId || ""} name="category_srl">
                                 {regionCategories.map(cat =>
                                     <option value={cat._id} key={cat._id}>
                                         {cat.label}

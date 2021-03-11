@@ -156,7 +156,7 @@ export const BOOKING_FIND_BY_INFO = gql`
         Dday
         author {
           name
-        }
+      }
       }
         }
     }

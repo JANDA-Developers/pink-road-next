@@ -215,6 +215,10 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         failMsg: "카테고리 값은 필수 입니다.",
         id: "category"
     }, {
+        value: regionId,
+        failMsg: "지역을 선택 해주세요",
+        id: "RegionId",
+    }, {
         value: !isEmpty(its),
         failMsg: "여행일정은 필수 입니다.",
         failFn: () => {
@@ -510,6 +514,7 @@ export const getDefault = (product: IproductFindById | undefined): Partial<IUseT
         categoryId: category?._id,
         contents,
         its,
+        regionId: region?._id || "",
         keyWards: keyWards || [],
         simpleData,
         status,

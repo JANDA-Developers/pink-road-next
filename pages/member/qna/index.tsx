@@ -13,7 +13,7 @@ import sanitizeHtml from 'sanitize-html';
 import { Change } from '../../../components/loadingList/LoadingList';
 
 
-export const getStaticProps = getStaticPageInfo("main");
+export const getStaticProps = getStaticPageInfo("qna");
 export const Qna: React.FC<Ipage> = (pageInfo) => {
     const { items, getLoading } = useQnaList({ initialViewCount: 999 })
     const [filterCat, setFilterCat] = useState("")

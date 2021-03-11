@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 import PageLoading from './Loading';
 import { arrayEquals } from '../utils/filter';
 import "slick-carousel/slick/slick.css";
+import useRouterScroll from '../hook/useRouterScroll';
 
 
 dayjs.locale('ko')
@@ -62,6 +63,8 @@ export const AppContext = React.createContext<TContext>(defaultContext);
 function App({ Component, pageProps }: any) {
   const [editMode, setEditMode] = useState(false);
   const router = useRouter()
+
+  useRouterScroll();
 
   const ComponentLayout = Component.Layout ? Component.Layout : Layout;
   const ComponentAuth = Component.Auth ? Component.Auth : ALLOW_FULLESS;
@@ -138,8 +141,7 @@ function App({ Component, pageProps }: any) {
   if (loading) return <PageLoading />
   return (
     <div className="App">
-      <div id="MuPageLoading" className="muPageLoading">
-      </div>
+      <div id="MuPageLoading" className="muPageLoading" />
 
       <ApolloProvider client={PinkClient}>
         <AppContext.Provider value={{

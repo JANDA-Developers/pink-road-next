@@ -21,13 +21,22 @@ export const BOARD_LIST = gql`
             updatedAt
             isDelete
             title
+            maxMember
+            images {
+                uri
+            }
+            boardType
+            address
+            baby_price
+            adult_price
+            status
+            kids_price
             contents
             isNotice
             isOpen
             summary
             subTitle
             keyWards
-            boardType
             thumb {
                 uri
             }
