@@ -264,21 +264,6 @@ const UserInfoForm: React.FC = () => {
                     </div>
                     {isPartenerB &&
                         <div>
-                            <div className="ph_wrap">
-                                <label>
-                                    <i className="important_icon" />
-                            가이드명
-                        </label>
-                                <span className="er red_font">*숫자는 입력이 불가능합니다.</span>
-                                <input
-                                    type="text"
-                                    className="w100"
-                                    name="name_company"
-                                    placeholder="업체명을 입력해주세요"
-                                    value={data.busi_name || ""}
-                                    onChange={handleData("busi_name")}
-                                />
-                            </div>
                             {/* <div className="ph_wrap">
                                 <label>
                                     <i className="important_icon" />

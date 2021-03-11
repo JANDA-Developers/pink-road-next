@@ -75,12 +75,13 @@ export const VerifiEamilModal: React.FC<IProp> = ({ verifiHook, onSuccess, dupli
         await verifiComplete(code).then(result => {
             if (result.ok) {
                 alert("인증이 완료 되었습니다.");
+                onSuccess()
             } else {
                 alert("인증번호가 일치하지 않습니다.")
+                return;
             }
         })
 
-        onSuccess()
     }
 
     const sendCountOver = sendEmailCount > 5;
