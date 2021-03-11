@@ -285,7 +285,7 @@ export const Header: React.FC<IProp> = () => {
                                 </ul>
                             </li>}
 
-                            {isManager && <li className="a_menu_tit deps hiddennav betatest">
+                            {isManager && <li className="a_menu_tit deps">
                                 <a href="/master">Master<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">
                                     <li><a href="/master/notification">알림</a></li>
@@ -297,7 +297,7 @@ export const Header: React.FC<IProp> = () => {
                                 </ul>
                             </li>}
 
-                            {isManager && <li className="a_menu_tit deps hiddennav betatest">
+                            {isManager && <li className="a_menu_tit deps">
                                 <a href="/member/login">Member<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">
                                     <li><a href="/member/login">로그인</a></li>

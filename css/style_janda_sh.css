@@ -127,6 +127,7 @@
     position:relative;
     background-size: 220%;
     min-height: 580px;
+    background-repeat: no-repeat;
 }
    
 .main_con_box1 .w1200 {
@@ -10204,7 +10205,7 @@ i.calendar {
         width: 90%;
     }
     .main_con_box1 .main_top_images {
-        background-size: 102%;
+        background-size: 115%;
         min-height: 800px;
         background-position: -10px center;
     }
