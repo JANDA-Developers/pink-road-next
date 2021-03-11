@@ -40,9 +40,14 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
     }
 
     const handleLink = (key: keyof typeof page) => () => {
-        if (!editMode)
+        const link = get(key);
+        if (!link) return;
+        if (link.icnludes("http")) {
+            location.href = link
+        } else if (!editMode) {
             // @ts-ignore
             router.push(get(key))
+        }
     }
 
     if (!data) return null;

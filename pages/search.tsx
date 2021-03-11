@@ -25,6 +25,7 @@ import { Change } from '../components/loadingList/LoadingList';
 import { removeSpecialChar } from '../utils/formatter';
 
 type TSearchParam = {
+    authorNick?: string;
     regionLabel?: string;
     keyward?: string;
     title?: string;
@@ -62,11 +63,12 @@ export const getStaticProps = getStaticPageInfo("search");
 export const Search: React.FC<Ipage> = (_pageInfo) => {
     const pageTools = usePageEdit(_pageInfo, pageInfoDefault);
     const all = getAllFromUrl<TSearchParam>()
-    const { keyward, title, regionLabel } = all;
+    const { keyward, title, regionLabel, authorNick } = all;
+    const defaultUrlSearch = authorNick || keyward || title;
     const initialFilter = {
         ...openListFilter,
         initialFilter: {
-            ...integratedProductSearch(keyward || title),
+            ...integratedProductSearch(defaultUrlSearch),
             regionLabel_eq: regionLabel || undefined,
         }
     }
@@ -76,7 +78,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     const { categoriesMap } = useContext(AppContext);
 
     const [view, setView] = useState<"line" | "gal">("line");
-    const [search, setSearch] = useState(keyward || title);
+    const [search, setSearch] = useState(defaultUrlSearch);
     const { totalCount } = pageInfo;
 
     const onClickDistrict = (regionLabel?: string) => () => {

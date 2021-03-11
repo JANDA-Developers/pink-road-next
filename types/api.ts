@@ -7082,7 +7082,7 @@ export interface getContext_GetProfile_data {
    */
   bankImg: getContext_GetProfile_data_bankImg | null;
   /**
-   * 판매자에 대한 키워드
+   * 판매자에 대한 키워드 모음
    */
   keywards: string[] | null;
   unReadNoties: getContext_GetProfile_data_unReadNoties[] | null;
@@ -8925,7 +8925,7 @@ export interface sellerListPublic_SellerListPublic_data {
   email: string;
   gender: GENDER;
   /**
-   * 판매자에 대한 키워드
+   * 판매자에 대한 키워드 모음
    */
   keywards: string[] | null;
   /**
@@ -9677,7 +9677,7 @@ export interface sellerFindByKey_SellerFindByKeyPublic_data {
   email: string;
   gender: GENDER;
   /**
-   * 판매자에 대한 키워드
+   * 판매자에 대한 키워드 모음
    */
   keywards: string[] | null;
   /**
@@ -10485,7 +10485,7 @@ export interface FpublicSellerData {
   email: string;
   gender: GENDER;
   /**
-   * 판매자에 대한 키워드
+   * 판매자에 대한 키워드 모음
    */
   keywards: string[] | null;
   /**
@@ -13118,6 +13118,8 @@ export interface _AnnounceFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13155,6 +13157,8 @@ export interface _BoardFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13311,6 +13315,8 @@ export interface _NewsFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13380,6 +13386,8 @@ export interface _PortfolioFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13462,6 +13470,8 @@ export interface _ProductFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13526,6 +13536,8 @@ export interface _QnaFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13569,6 +13581,8 @@ export interface _QuestionFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13626,6 +13640,13 @@ export interface _SellerFilter {
   keywards_not_in?: string[] | null;
   keywards_not_contains?: string | null;
   keywards_all?: string | null;
+  keywardString_eq?: string | null;
+  keywardString_not_eq?: string | null;
+  keywardString_in?: string[] | null;
+  keywardString_contains?: string | null;
+  keywardString_not_in?: string[] | null;
+  keywardString_not_contains?: string | null;
+  keywardString_all?: string | null;
   nickName_eq?: string | null;
   nickName_not_eq?: string | null;
   nickName_in?: string[] | null;
@@ -13731,6 +13752,13 @@ export interface _UserFilter {
   keywards_not_in?: string[] | null;
   keywards_not_contains?: string | null;
   keywards_all?: string | null;
+  keywardString_eq?: string | null;
+  keywardString_not_eq?: string | null;
+  keywardString_in?: string[] | null;
+  keywardString_contains?: string | null;
+  keywardString_not_in?: string[] | null;
+  keywardString_not_contains?: string | null;
+  keywardString_all?: string | null;
   nickName_eq?: string | null;
   nickName_not_eq?: string | null;
   nickName_in?: string[] | null;

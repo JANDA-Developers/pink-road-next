@@ -117,6 +117,8 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const [simpleData, setSimpleData] = useState<TSimpleTypePart>(defaults.simpleData || DEFAULT_SIMPLE_TOUR_DATA)
     const [categoryId, setCategoryId] = useState<string>(defaults.categoryId || "");
     const [regionId, setRegionId] = useState<string>(defaults.regionId || "");
+    console.log(defaults.regionId);
+    console.log({ regionId });
     const [status, setStatus] = useState<ProductStatus>(defaults.status || ProductStatus.READY);
     const [thumbs, setThumbs] = useState<Ffile[]>(Array.from(defaults.thumbs || []))
     const [keyWards, setkeyWards] = useState<string[]>(Array.from(defaults.keyWards || []));
@@ -202,6 +204,11 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             document.getElementById("tap4")?.click();
         },
         id: "content",
+    },
+    {
+        value: regionId,
+        failMsg: "지역을 선택 해주세요",
+        id: "RegionId",
     },
     {
         value: simpleData.inOrNor,
@@ -517,6 +524,7 @@ export const getDefault = (product: IproductFindById | undefined): Partial<IUseT
         categoryId: category?._id,
         contents,
         its,
+        regionId: region._id,
         keyWards: keyWards || [],
         simpleData,
         status,

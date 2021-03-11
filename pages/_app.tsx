@@ -14,9 +14,19 @@ import { useRouter } from 'next/router';
 import PageLoading from './Loading';
 import { arrayEquals } from '../utils/filter';
 import "node_modules/slick-carousel/slick/slick.css";
+import useRouterScroll from '../hook/useRouterScroll';
+import Head from 'next/head';
 
 
 dayjs.locale('ko')
+
+
+export type TProductGrop = {
+  _id: string;
+  label: string;
+  groupCode: string;
+}
+
 
 export type TContext = {
   categories: categoryList_CategoryList_data[]
@@ -31,6 +41,7 @@ export type TContext = {
   isParterNonB?: boolean;
   groupsMap: Record<GroupTypes, string[]>
   categoriesMap: Record<CategoryType, Fcategory[]>
+  productGroupList: TProductGrop[]
 }
 
 
@@ -47,6 +58,7 @@ const defaultContext: TContext = {
   isParterNonB: false,
   groupsMap: defaultGroupMap,
   categoriesMap: defaultCatsMap,
+  productGroupList: []
 }
 
 export const AppContext = React.createContext<TContext>(defaultContext);
@@ -55,6 +67,7 @@ export const AppContext = React.createContext<TContext>(defaultContext);
 function App({ Component, pageProps }: any) {
   const [editMode, setEditMode] = useState(false);
   const router = useRouter()
+  useRouterScroll();
 
   const ComponentLayout = Component.Layout ? Component.Layout : Layout;
   const ComponentAuth = Component.Auth ? Component.Auth : ALLOW_FULLESS;
@@ -88,6 +101,25 @@ function App({ Component, pageProps }: any) {
   }
 
 
+  const productList = data?.GetProfile.data?.products.map(p => ({
+    _id: p._id,
+    label: p.title,
+    groupCode: p.groupCode
+  }))
+
+  const productGroupList: {
+    _id: string;
+    label: string;
+    groupCode: string;
+  }[] = [];
+
+  productList?.forEach((p) => {
+    if (!productGroupList.find(g => g.groupCode === p.groupCode)) {
+      productGroupList.push({
+        ...p,
+      })
+    }
+  })
 
   if (
     //인증 받지 않았으며 일반 권한은 아닌경우
@@ -106,6 +138,10 @@ function App({ Component, pageProps }: any) {
   if (loading) return <PageLoading />
   return (
     <div className="App">
+      <Head>
+
+      </Head>
+      <div id="MuPageLoading" className="muPageLoading" />
       <ApolloProvider client={PinkClient}>
         <AppContext.Provider value={{
           groupsMap: groupsMap,
@@ -120,6 +156,7 @@ function App({ Component, pageProps }: any) {
           isLogin: !!myProfile,
           isParterNonB,
           homepage,
+          productGroupList
         }}>
           <ComponentLayout>
             <Component {...pageProps} />

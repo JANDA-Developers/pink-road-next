@@ -45,6 +45,8 @@ export const useHomepageServerSide = async () => {
 
 export const getStaticPageInfo = (key: TPageKeys):GetStaticProps => async () => {
     const { data } = await usePageInfo(key);
+
+    console.log({data});
     const { data: homepage } = await useHomepageServerSide();
     
     return {

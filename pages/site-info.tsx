@@ -15,9 +15,10 @@ type TGetProps = {
     pageInfo: typeof pageInfoDefault | "",
 }
 
-export const getStaticProps = getStaticPageInfo("main")
+export const getStaticProps = getStaticPageInfo("site-info")
 export const StieInfo: React.FC<Ipage> = (pageInfo) => {
     const original = pageInfo || pageInfoDefault;
+    console.log({ pageInfo });
     const router = useRouter();
     const { homepage, groupsMap } = useContext(AppContext);
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);

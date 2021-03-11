@@ -23,6 +23,9 @@ import { AppContext } from '../_app';
 import Link from 'next/link';
 import { BGprofile } from '../../types/const';
 import { clean } from '../../utils/clearn';
+import { tourSearchLink } from '../search';
+import { profile } from 'console';
+import { guideSearchLink } from '../guide-search';
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 
 //URL 링크
@@ -125,9 +128,11 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
                         <div className="name"><i>G</i><span >{guideData.nickName || "닉네임 없음"}</span></div>
                         <div className="tag">
                             {filteredKeywards.map((t, i: number) =>
-                                <Link href={"/"} >
-                                    <a key={t._id} href={process.env.REACT_APP_ITS_GUIDE_CLIENT_URI + `/service/search&guideTag=${t._id}`} >
-                                        {t.label}
+                                <Link href={guideSearchLink({
+                                    keyward: t.label
+                                })} >
+                                    <a key={t._id} >
+                                        #{t.label}
                                     </a>
                                 </Link>
                             )}
@@ -172,7 +177,7 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
                                 <div className="left_div"><h3><span>{get("portfolio_label")}</span></h3></div>
                                 <div className="right_div">
                                     <span className="goto_page">
-                                        <a href={"/review"}>
+                                        <a href={tourSearchLink({ authorNick: guideData.nickName })}>
                                             <span>{get("portfolio_label")}</span>
                                         </a>
                                     </span>
