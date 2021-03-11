@@ -11,14 +11,15 @@ interface IProp {
     duplicateCheck?: boolean;
     verifiHook: TuseVerification
     onSuccess: () => void;
+    defaultPayload?: string;
     target?: VerificationTarget
 }
 
-export const VerifiEamilModal: React.FC<IProp> = ({ target = VerificationTarget.EMAIL, verifiHook, onSuccess, duplicateCheck, id }) => {
+export const VerifiEamilModal: React.FC<IProp> = ({ defaultPayload, target = VerificationTarget.EMAIL, verifiHook, onSuccess, duplicateCheck, id }) => {
     const isEmailVerifi = target === VerificationTarget.EMAIL;
     const targetName = isEmailVerifi ? `이메일` : "핸드폰번호";
 
-    const [payload, setPayload] = useState("")
+    const [payload, setPayload] = useState(defaultPayload || "")
     const [code, setCode] = useState("")
     const [sendEmailCount, setSendEmailCount] = useState(0);
     const [duplicateChecked, setDuplicateCheck] = useState(false)

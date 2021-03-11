@@ -16,7 +16,7 @@ interface IProp {
 }
 
 export const BoardModal: React.FC<IProp> = ({ user }) => {
-    const { email, nickName } = user;
+    const { email,name } = user;
     const [boardControl] = useBoardControl();
     const { items: boards, pageInfo, setPage, viewCount, setViewCount, sort, setSort, getLoading } = useMyBoardList({}, {
         overrideVariables: {
@@ -46,7 +46,7 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
                 <i className="flaticon-multiply"></i>
             </a>
             <div className="page">
-                <h3><strong>{nickName}</strong>님이 작성한 글 </h3>
+                <h3><strong>{name}</strong>님이 작성한 글 </h3>
                 {/* 작성한글 */}
                 <div className="info_page">
                     <div className="alignment">

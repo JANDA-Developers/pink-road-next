@@ -23,27 +23,6 @@ export const BoardListBlock: React.FC<IProp> = ({ board }) => {
 
     const link = `/${getPath()}/view/${_id}`;
 
-    // return <li className="list_in">
-    //     <div onClick={() => {
-    //         router.push(link)
-    //     }} style={BG(thumb?.uri || "")} className="img" />
-    //     <div className="txt1">
-    //         <div className="title"><a href={link}>{title}</a></div>
-    //         <div className="subtitle">
-    //             {subTitle}
-    //         </div>
-    //         {/* <div className="cash"><strong>{autoComma(product.adult_price)}</strong>원</div> */}
-    //     </div>
-    //     <div className="txt2">
-    //         {/* <span>장소 : {product.address}</span>
-    //         <span>모집인원 : {product.bookingCount}/{product.maxMember}</span>
-    //         <span>기간 : 당일체험</span>
-    //         <Link href={"/tour/view/" + product._id}>
-    //             <span className="btn">바로가기</span>
-    //         </Link> */}
-    //     </div>
-    // </li>;
-
     return <li className="list_in">
         <div
             className="img"

@@ -8,7 +8,7 @@ import { generateSearchLink } from '../../pages/search';
 import { AppContext } from '../../pages/_app';
 import { PaymentStatus, BookingStatus, ProductStatus, } from '../../types/api';
 import { AFTER_OPEN_PRODUCT_STATUS } from '../../types/const';
-import { bookingStatus, determinedKr, genderToKR, productStatus, reqToKr } from '../../utils/enumToKr';
+import { bookingStatus, determinedKr, genderToKR, productStatus, reqToKr, withCompany } from '../../utils/enumToKr';
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
 import { generateClientPaging } from '../../utils/generateClientPaging';
 import { arraySum } from '../../utils/math';
@@ -214,11 +214,11 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                                 파트너명
                                     </div>
                                             <div className="td01">
-                                                <span>{seller?.nickName}</span>
+                                                <span>{withCompany(seller)}</span>
                                             </div>
                                             <div className="th02">
                                                 아이디
-                                </div>
+                                            </div>
                                             <div className="td02">
                                                 <span>{seller?.email}</span>
                                             </div>

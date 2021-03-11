@@ -172,7 +172,6 @@ export const F_CATEGORY = gql`
 export const F_USER = gql`
     fragment Fuser  on User  {
         _id
-        nickName
         createdAt
         updatedAt
         isDelete

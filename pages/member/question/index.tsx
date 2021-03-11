@@ -87,7 +87,7 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                                             {dayjs(inq.createdAt).isAfter(dayjs().add(-8, "hour")) && <img className="new" src="../img/svg/new.svg" alt="new" />}
                                             <i className="q_no">{questionSatus(inq.status)}</i>
                                         </div>
-                                        <div className="td04">{inq.author?.nickName}</div>
+                                        <div className="td04">{inq.author?.name}</div>
                                         <div className="td05">{yyyymmddHHmm(inq.createdAt)}</div>
                                     </li>
                                 )}

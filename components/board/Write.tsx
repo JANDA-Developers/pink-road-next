@@ -46,7 +46,7 @@ export const BoardWrite: React.FC<IProps> = ({
     onSave: handleSave
 }) => {
     const { myProfile } = useContext(AppContext);
-    const name = myProfile?.nickName || "";
+    const name = myProfile?.name || "";
     const isCreateMode = mode === "create";
     const { signleUpload } = useUpload();
     const { boardData, boardSets } = boardHook;

@@ -272,7 +272,7 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
                                     <div className="txt">
                                         <span className="goods-state1">확정여부: {determinedKr(product.determined)}({peopleCurrentCountBracket(product)}</span>
                                         <span className="goods-state2">상품상태: {productStatus(product.status)}</span>
-                                        <span className="goods-state2">판매자: {product.author?.nickName}</span>
+                                        <span className="goods-state2">판매자: {product.author?.name}</span>
                                     </div>
                                 </div>
                             </div>

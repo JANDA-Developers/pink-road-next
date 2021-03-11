@@ -46,7 +46,6 @@ const UserInfoForm: React.FC = () => {
         errDisplay,
         setDaumAddress,
         handleBusinessLicense,
-        nickNameChecked,
         handleNickNameCheck
     } = useJoin()
 
@@ -137,7 +136,7 @@ const UserInfoForm: React.FC = () => {
                             onChange={handleData("pwcheck")}
                         />
                     </div>
-                    {isIndi ? <div /> :
+                    {/* {isIndi ? <div /> :
                         <div className="name_wrap">
                             <label>
                                 <i className="important_icon" />
@@ -156,7 +155,7 @@ const UserInfoForm: React.FC = () => {
                                 <button style={{ lineHeight: "100%" }} onClick={handleNickNameCheck} type="button" className={`btn btn_mini ${nickNameChecked && "ok"}`}>{nickNameChecked ? "사용가능" : "중복확인"} </button>
                             </div>
                         </div>
-                    }
+                    } */}
                     <div className="name_wrap">
                         <label>
                             <i className="important_icon" />
@@ -370,7 +369,7 @@ const UserInfoForm: React.FC = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="ph_wrap">
+                            {/* <div className="ph_wrap">
                                 <label>
                                     <i className="important_icon" />
                                 사업자등록증
@@ -389,11 +388,9 @@ const UserInfoForm: React.FC = () => {
                                     <input type="file" name="business_license" id="business_license"
                                         className="file_busi_license"
                                         onChange={handleBusinessLicense}></input>
-                                    {/* <button type="button" className="btn btn_mini">
-                  업로드
-                </button> */}
+                             
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     }
                     {/* <div className="ph_wrap">

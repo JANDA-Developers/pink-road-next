@@ -47,7 +47,7 @@ export const PorfolioDetail: React.FC<IProp> = ({ item }) => {
         onList={toList}
         thumb={thumb}
         content={contents}
-        writer={author?.nickName || ""}
+        writer={author?.name || ""}
         title={title}
         onDelete={handleDelete}
         onEdit={toDetail}

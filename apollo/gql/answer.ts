@@ -10,7 +10,6 @@ export const F_ANSWER = gql`
         author {
             _id
             name
-            nickName
             profileImg {
                 uri
             }

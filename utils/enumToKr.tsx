@@ -222,12 +222,12 @@ export const peopleCurrentCountBracket = (info: Fproduct) => {
 
 interface Author {
     name: string;
-    nickName: string;
+    busi_name: string;
     [key: string]: any
 }
-export const withNick = (info?: Author | null) => {
-    const { name, nickName } = info || {}
-    return `${name}(${nickName ? nickName : "닉네임없음"})`
+export const withCompany = (info?: Author | null) => {
+    const { name, busi_name } = info || {}
+    return `${name}${busi_name ? busi_name : "닉네임없음"}`
 };
 
 

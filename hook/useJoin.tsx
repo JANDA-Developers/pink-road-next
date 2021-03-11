@@ -80,30 +80,30 @@ export const useJoin = () => {
         setBirthDayPicker(!birthdayPicker)
     }
 
-    const [nickNameChecked, setNickNameChecked] = useState(false);
+    // const [nickNameChecked, setNickNameChecked] = useState(false);
 
-    const [nickNameCheck] = useDuplicateNickNameCheck({
-        onCompleted: ({ NickNameDuplicateCheck }) => {
-            if (NickNameDuplicateCheck.data?.duplicated) {
-                alert("해당 닉네임은 이미 사용중입니다.")
-            } else {
-                alert("해당 닉네임은 사용 가능합니다.")
-                setNickNameChecked(true);
-            }
-        }
-    })
+    // const [nickNameCheck] = useDuplicateNickNameCheck({
+    //     onCompleted: ({ NickNameDuplicateCheck }) => {
+    //         if (NickNameDuplicateCheck.data?.duplicated) {
+    //             alert("해당 닉네임은 이미 사용중입니다.")
+    //         } else {
+    //             alert("해당 닉네임은 사용 가능합니다.")
+    //             setNickNameChecked(true);
+    //         }
+    //     }
+    // })
 
-    const handleNickNameCheck = () => {
-        if (data.nickName?.includes("관리자")) {
-            alert("해당 닉네임은 사용할 수 없습니다.")
-            return;
-        }
-        nickNameCheck({
-            variables: {
-                nickName: data.nickName || ""
-            }
-        })
-    }
+    // const handleNickNameCheck = () => {
+    //     if (data.nickName?.includes("관리자")) {
+    //         alert("해당 닉네임은 사용할 수 없습니다.")
+    //         return;
+    //     }
+    //     nickNameCheck({
+    //         variables: {
+    //             nickName: data.nickName || ""
+    //         }
+    //     })
+    // }
 
     const handleDayClick = (day: Date, modifiers: DayModifiers, e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         let selectedDay = dayjs(day).format('YYYYMMDD');
@@ -205,7 +205,7 @@ export const useJoin = () => {
         markError,
         errDisplay,
         dayPickerMonth,
-        handleNickNameCheck,
+        // handleNickNameCheck,
         birthdayPicker,
         setBirthDayPicker,
         handleDaumPostalComplete,
@@ -215,7 +215,7 @@ export const useJoin = () => {
         setData,
         handleDayPickerMonth,
         daumAddress,
-        nickNameChecked,
+        // nickNameChecked,
         setDaumAddress,
         handleData,
         handleBankImg,

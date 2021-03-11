@@ -502,7 +502,8 @@ export const MsIndex: React.FC<IProp> = () => {
                                     <span>{yyyymmdd(q.createdAt)}</span>
                                 </div>
                                 <div className="td05">
-                                    <span>{q.author?.nickName}</span>
+                                    {/* @ts-ignore */}
+                                    <span>{q.author.name}</span>
                                 </div>
                             </li>)}
                     </ul>

@@ -3,7 +3,7 @@ import { useBookingList } from '../../hook/useBooking';
 import { useUserFindById } from '../../hook/useUser';
 import { BookingStatus, GENDER, UserRole } from '../../types/api';
 import { ALLOW_SELLERS } from '../../types/const';
-import { foreginKR, userRoleToKR, managerVerifiedKR } from '../../utils/enumToKr';
+import { foreginKR, userRoleToKR, managerVerifiedKR, withCompany } from '../../utils/enumToKr';
 import { autoHypenPhone } from '../../utils/formatter';
 import { closeModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
@@ -96,13 +96,13 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                             {isSeller && <>
                                 <div className="tr">
                                     <div className="th01">성함</div>
-                                    <div className="td01"><span>{item.name}</span></div>
+                                    <div className="td01"><span>{withCompany(item)}</span></div>
                                     <div className="th02">아이디</div>
                                     <div className="td02"><a href={`mailto:${item.email}`}>{item.email}</a></div>
                                     <div className="th03">연락처</div>
                                     <div className="td03"><span>{autoHypenPhone(item.phoneNumber)}</span></div>
-                                    <div className="th04">닉네임</div>
-                                    <div className="td04">{item.nickName}</div>
+                                    <div className="th04">-</div>
+                                    <div className="td04">-</div>
                                 </div>
                                 {isPartnerB &&
                                     <div className="tr">

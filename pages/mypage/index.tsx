@@ -263,7 +263,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                     </div>
                     <div className="box_right">
                         <ul>
-                            <li>
+                            {/* <li>
                                 <div className="title">닉네임</div>
                                 <div className="txt">
                                     <div className="input_relative">
@@ -284,7 +284,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                         />
                                     </div>
                                 </div>
-                            </li>
+                            </li> */}
                             <li>
                                 <div className="title">아이디</div>
                                 <div className="txt">{email}</div>

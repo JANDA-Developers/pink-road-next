@@ -512,10 +512,6 @@ export interface answerCreate_AnswerCreate_data_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: answerCreate_AnswerCreate_data_author_profileImg | null;
@@ -972,6 +968,162 @@ export interface bookingListVariables {
   filter?: _BookingFilter | null;
   pageInput: pageInput;
   isTimeOverExcept?: boolean | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: bookingFindByInfo
+// ====================================================
+
+export interface bookingFindByInfo_BookingFindByInfo_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_payment_history {
+  __typename: "TxHistory";
+  status: string;
+  price: number;
+  metadata: any | null;
+  createdAt: any;
+  updatedAt: any;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_payment {
+  __typename: "Payment";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  payMethod: PayMethod;
+  status: PaymentStatus;
+  price: number;
+  totalCancelPrice: number;
+  cancelDate: any | null;
+  isPartialCancel: number;
+  groupCode: string | null;
+  history: bookingFindByInfo_BookingFindByInfo_data_payment_history[];
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_product_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_product_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_product_author {
+  __typename: "User";
+  name: string;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_product {
+  __typename: "Product";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  code: string;
+  determined: boolean;
+  contents: string;
+  category: bookingFindByInfo_BookingFindByInfo_data_product_category | null;
+  status: ProductStatus;
+  inOrNor: string;
+  info: string;
+  caution: string;
+  images: bookingFindByInfo_BookingFindByInfo_data_product_images[] | null;
+  /**
+   * 상품 하나에 대한 결제완료된 예약 총 인원
+   */
+  compeltePeopleCnt: number;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
+  keyWards: string[] | null;
+  address: string;
+  startPoint: string;
+  maxMember: number;
+  minMember: number;
+  subTitle: string | null;
+  adult_price: number;
+  bookingCount: number;
+  dateRange: number;
+  kids_price: number;
+  baby_price: number;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  type: ProductType;
+  startDate: any;
+  Dday: number;
+  author: bookingFindByInfo_BookingFindByInfo_data_product_author | null;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data {
+  __typename: "Booking";
+  _id: string;
+  createdAt: any;
+  cancelDate: any | null;
+  gender: GENDER | null;
+  age: string | null;
+  payMethod: PayMethod;
+  updatedAt: any;
+  isDelete: boolean;
+  leftTime: number;
+  adultCount: number;
+  kidCount: number;
+  cancelMemo: string | null;
+  babyCount: number;
+  totalCount: number;
+  message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
+  bookingPrice: number;
+  status: BookingStatus | null;
+  isMember: boolean | null;
+  memo: string | null;
+  code: string;
+  groupCode: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  /**
+   * 결제가 되었는지
+   */
+  isPaid: boolean | null;
+  payment: bookingFindByInfo_BookingFindByInfo_data_payment | null;
+  product: bookingFindByInfo_BookingFindByInfo_data_product;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo {
+  __typename: "BookingFindByInfoResponse";
+  ok: boolean;
+  error: bookingFindByInfo_BookingFindByInfo_error | null;
+  data: bookingFindByInfo_BookingFindByInfo_data[] | null;
+}
+
+export interface bookingFindByInfo {
+  BookingFindByInfo: bookingFindByInfo_BookingFindByInfo;
+}
+
+export interface bookingFindByInfoVariables {
+  name: string;
+  phoneNumber: string;
+  verificationId: string;
 }
 
 /* tslint:disable */
@@ -5545,10 +5697,6 @@ export interface productFindById_ProductFindById_data_questions_answers_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: productFindById_ProductFindById_data_questions_answers_author_profileImg | null;
@@ -5586,11 +5734,8 @@ export interface productFindById_ProductFindById_data_questions_author_profileIm
 export interface productFindById_ProductFindById_data_questions_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   email: string;
+  name: string;
   phoneNumber: string;
   /**
    * 프로필 사진
@@ -6380,6 +6525,7 @@ export interface qnaFindById_QnaFindById_data_author_bankImg {
 
 export interface qnaFindById_QnaFindById_data_author {
   __typename: "User";
+  name: string;
   _id: string;
   /**
    * 닉네임 유니크
@@ -6441,7 +6587,6 @@ export interface qnaFindById_QnaFindById_data_author {
   busi_name: string;
   busi_address: string;
   account_number: string;
-  name: string;
   bank_name: string;
   resignReason: string | null;
   resignReasonType: string | null;
@@ -6598,6 +6743,7 @@ export interface qnaList_QnaList_data_author_bankImg {
 
 export interface qnaList_QnaList_data_author {
   __typename: "User";
+  name: string;
   _id: string;
   /**
    * 닉네임 유니크
@@ -6659,7 +6805,6 @@ export interface qnaList_QnaList_data_author {
   busi_name: string;
   busi_address: string;
   account_number: string;
-  name: string;
   bank_name: string;
   resignReason: string | null;
   resignReasonType: string | null;
@@ -7369,10 +7514,6 @@ export interface questionList_QuestionList_data_answers_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: questionList_QuestionList_data_answers_author_profileImg | null;
@@ -7410,11 +7551,8 @@ export interface questionList_QuestionList_data_author_profileImg {
 export interface questionList_QuestionList_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   email: string;
+  name: string;
   phoneNumber: string;
   /**
    * 프로필 사진
@@ -7426,10 +7564,6 @@ export interface questionList_QuestionList_data_product_author {
   __typename: "User";
   _id: string;
   name: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
 }
 
 export interface questionList_QuestionList_data_product {
@@ -7615,10 +7749,6 @@ export interface questionFindById_QuestionFindById_data_answers_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: questionFindById_QuestionFindById_data_answers_author_profileImg | null;
@@ -7656,11 +7786,8 @@ export interface questionFindById_QuestionFindById_data_author_profileImg {
 export interface questionFindById_QuestionFindById_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   email: string;
+  name: string;
   phoneNumber: string;
   /**
    * 프로필 사진
@@ -7672,10 +7799,6 @@ export interface questionFindById_QuestionFindById_data_product_author {
   __typename: "User";
   _id: string;
   name: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
 }
 
 export interface questionFindById_QuestionFindById_data_product {
@@ -9817,43 +9940,6 @@ export interface passwordFindByPhoneVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: nickNameDuplicateCheck
-// ====================================================
-
-export interface nickNameDuplicateCheck_NickNameDuplicateCheck_error {
-  __typename: "CustomError";
-  location: string;
-  severity: ERR_SEVERITY;
-  code: ERR_CODE;
-  message: string;
-}
-
-export interface nickNameDuplicateCheck_NickNameDuplicateCheck_data {
-  __typename: "CheckDuplicate";
-  duplicated: boolean;
-}
-
-export interface nickNameDuplicateCheck_NickNameDuplicateCheck {
-  __typename: "CheckDuplicateResponse";
-  ok: boolean;
-  error: nickNameDuplicateCheck_NickNameDuplicateCheck_error | null;
-  data: nickNameDuplicateCheck_NickNameDuplicateCheck_data | null;
-}
-
-export interface nickNameDuplicateCheck {
-  NickNameDuplicateCheck: nickNameDuplicateCheck_NickNameDuplicateCheck;
-}
-
-export interface nickNameDuplicateCheckVariables {
-  nickName: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: passwordChange
 // ====================================================
 
@@ -10040,10 +10126,6 @@ export interface Fanswer_author {
   __typename: "User";
   _id: string;
   name: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   /**
    * 프로필 사진
    */
@@ -11281,6 +11363,7 @@ export interface Fqna_author_bankImg {
 
 export interface Fqna_author {
   __typename: "User";
+  name: string;
   _id: string;
   /**
    * 닉네임 유니크
@@ -11342,7 +11425,6 @@ export interface Fqna_author {
   busi_name: string;
   busi_address: string;
   account_number: string;
-  name: string;
   bank_name: string;
   resignReason: string | null;
   resignReasonType: string | null;
@@ -11410,10 +11492,6 @@ export interface Fquestion_answers_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: Fquestion_answers_author_profileImg | null;
@@ -11451,11 +11529,8 @@ export interface Fquestion_author_profileImg {
 export interface Fquestion_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   email: string;
+  name: string;
   phoneNumber: string;
   /**
    * 프로필 사진

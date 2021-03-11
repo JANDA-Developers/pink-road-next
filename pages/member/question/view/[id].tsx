@@ -37,7 +37,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
     }
 
     console.log({ myProdQuestion });
-2
+    2
     if (error) return <Page404 />
     if (!question) return <PageLoading />
     const { title, thumb, createdAt, contents, subTitle, _id, product, author, isOpen } = question;
@@ -102,7 +102,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
             onList={toList}
             thumb={thumb}
             content={contents}
-            writer={author?.nickName || ""}
+            writer={author?.name || ""}
             title={title}
             subTitle={subTitle || ""}
             onDelete={handleDelete}
@@ -115,11 +115,11 @@ export const QuestionDetail: React.FC<IProp> = () => {
                 <div className="comment_box">
                     <ul>
                         {(question.answers || []).filter(answer => !answer?.isDelete).map(answer =>
-                            <Comment title={answer?.author?.nickName} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
+                            <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
                         )}
                     </ul>
                 </div>
-                {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.nickName} onSubmit={handleAnswer} />}
+                {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.name} onSubmit={handleAnswer} />}
             </div>
         }
     </div>

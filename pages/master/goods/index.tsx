@@ -22,7 +22,7 @@ import { useSingleSort } from '../../../hook/useSort';
 import { ALLOW_ADMINS } from '../../../types/const';
 import { auth } from '../../../utils/with';
 import { Paginater } from '../../../components/common/Paginator';
-import { withNick, ReqBadge, reqToKr } from '../../../utils/enumToKr';
+import { withCompany, ReqBadge, reqToKr } from '../../../utils/enumToKr';
 import { Change } from '../../../components/loadingList/LoadingList';
 
 type TProductFilterKey = keyof _ProductFilter;
@@ -245,7 +245,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                     <div className="td06"><i className="m_title">인원:</i> {item.compeltePeopleCnt}/{item.maxMember}</div>
                                     <div className="td07"><i className="m_title">형태:</i>{getTypeTextOfProduct(item.type, item.dateRange)}</div>
                                     <div className="td08"><i className="m_title">상태:</i><PordStatusBadge status={item.status} /> </div>
-                                    <div className="td09"><i className="m_title">이름/닉네임:</i>{withNick(item.author)}</div>
+                                    <div className="td09"><i className="m_title">이름/닉네임:</i>{withCompany(item.author)}</div>
                                     <div className="td10"><button onClick={handleOpen(item._id)} className="btn small">상세보기</button></div>
                                 </div>
                             )}
