@@ -297,7 +297,7 @@
             z-index: 10;
             position: relative;
         }
-        .infolist .infolist__01 {
+        /* .infolist .infolist__01 {
             background-image: url(/img/pr_img_01.jpg);
 
         }
@@ -306,10 +306,28 @@
 
         }
         .infolist .infolist__03 {
-            background-image: url(/img/pr_img_01.jpg);
+            background-image: url(/img/pr_img_01.jpg); 
 
+        } */
+        /* .infolist .infolist__01 .img,
+        .infolist .infolist__02 .img,
+        .infolist .infolist__03 .img{
+            background-size: 100%;
+            background-position: center;
+            display: block;
+            width: 100%;
+            height: 100%;
+        } */
+        .infolist .img {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100px;
+            background-size: 150%;
+            background-position: center;
+            border-radius: 10px;
+            overflow: hidden;
         }
-
 /* .main_con_box3 {
 }
 
@@ -9214,7 +9232,7 @@ i.calendar {
 
         .main_con_box1 .main_top_images strong {
             margin-bottom: 50px;
-            margin-top: 230px;
+            margin-top: 125px;
             font-size: 5em;
         }
         .main_con_box1 .main_top_images strong::after {
@@ -10642,7 +10660,7 @@ i.calendar {
     }
 
     .infolist .pack {
-        padding-top: 25px;
+        padding-top: 0;
     }
     .main_con_box4 .top_txt h2 {
         font-size: 66px;
