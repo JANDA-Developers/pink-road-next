@@ -3,16 +3,16 @@
   }
   
   .react-tabs__tab-list {
-    border-bottom: 1px solid #aaa;
+    border-bottom: 3px solid #aaa;
     margin: 0 0 10px;
     padding: 0;
   }
   
   .react-tabs__tab {
     display: inline-block;
-    border: 1px solid transparent;
+    border-bottom: 3px solid #ed297B;
     border-bottom: none;
-    bottom: -1px;
+    bottom: -3px;
     position: relative;
     list-style: none;
     padding: 6px 12px;
@@ -32,8 +32,8 @@
   }
   
   .react-tabs__tab:focus {
-    box-shadow: 0 0 5px hsl(208, 99%, 50%);
-    border-color: hsl(208, 99%, 50%);
+    /* box-shadow: 0 0 5px hsl(208, 99%, 50%);
+    border-color: hsl(208, 99%, 50%); */
     outline: none;
   }
   

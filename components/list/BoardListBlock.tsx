@@ -23,12 +23,52 @@ export const BoardListBlock: React.FC<IProp> = ({ board }) => {
 
     const link = `/${getPath()}/view/${_id}`;
 
+<<<<<<< HEAD
     return <li className="list_in">
+=======
+    // return <li className="list_in">
+    //     <div onClick={() => {
+    //         router.push(link)
+    //     }} style={BG(thumb?.uri || "")} className="img" />
+    //     <div className="txt1">
+    //         <div className="title"><a href={link}>{title}</a></div>
+    //         <div className="subtitle">
+    //             {subTitle}
+    //         </div>
+    //         {/* <div className="cash"><strong>{autoComma(product.adult_price)}</strong>원</div> */}
+    //     </div>
+    //     <div className="txt2">
+    //         {/* <span>장소 : {product.address}</span>
+    //         <span>모집인원 : {product.bookingCount}/{product.maxMember}</span>
+    //         <span>기간 : 당일체험</span>
+    //         <Link href={"/tour/view/" + product._id}>
+    //             <span className="btn">바로가기</span>
+    //         </Link> */}
+    //     </div>
+    // </li>;
+
+    return <li className="list_in" onClick={() => { router.push(link) }}>
+>>>>>>> origin/design
         <div
-            className="img"
+            className="textbox__img"
             style={BG(thumb?.uri || "")}
         />
-        <div className="title">{title}</div>
-        <div className="txt">{subTitle}</div>
+        <div className="textbox__01">
+            <div className="day">[ 2020-33-33 ]</div>
+            <div className="title">{title}</div>
+            <div className="txt">{subTitle}</div>
+            <div className="tag">
+                <a href="/">#문화</a>
+                <a href="/">#예술</a>
+                <a href="/">#전포</a>
+                <a href="/">#부산</a>
+            </div>
+            <div className="cash"><strong>1,000</strong>원</div>
+        </div>
+        <div className="textbox__02">
+            <span>장소 : 부산역앞</span>
+            <span>모집인원 : 22/50</span>
+            <span>기간 : 당일체험</span>
+        </div>
     </li>
 };

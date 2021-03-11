@@ -219,7 +219,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
       <div className="txt w1200">
         <h2 {...edit('bottom_title')} />
         <p {...edit('bottom_desc')} />
-        <Bg className="ovj" {...imgKit("bottom_ovj")} />
+        {/* <Bg className="ovj" {...imgKit("bottom_ovj")} /> */}
       </div>
       {/* <div
         className="main_bg_img"

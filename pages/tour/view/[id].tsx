@@ -363,16 +363,19 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 {/* btn */}
                 <div className="btn_box">
                   <div className="links_wrap">
-                    <div onClick={handleAddBracket} className={`link05 ${isPast && "tourBracketBtn--disabled"}`}>
-                      <a>
-                        장바구니 담기
-                      </a>
-                    </div>
+
                     <div className={`link02 ${isPast && "tourBracketBtn--disabled"}`}>
                       <a onClick={handleDoPay}>
                         예약하기
                       </a>
                     </div>
+
+                    <div onClick={handleAddBracket} className={`link05 ${isPast && "tourBracketBtn--disabled"}`}>
+                      <a>
+                        <i className="icon_basket"></i>
+                      </a>
+                    </div>
+
                   </div>
                 </div>
               </div>

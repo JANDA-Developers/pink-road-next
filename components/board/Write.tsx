@@ -191,17 +191,17 @@ export const BoardWrite: React.FC<IProps> = ({
                 <div className="boardNavigation">
                     <div className="float_left">
                         <button onClick={handleSave} type="button" className="btn medium">임시 저장</button>
-                        <button onClick={handleLoad} type="button" className="btn medium">불러오기</button>
-                    </div>
-                    <div className="float_right">
-                        {isCreateMode || <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
-                        {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
-                        <button onClick={handleCancel} type="button" className=" btn medium impact">취소</button>
-                        <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>
-                    </div>
+                        <button ={handleLoad} type="button" className="btn medium">불러오기</button>
+                </div>
+                <div className="float_right">
+                    {isCreateMode || <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
+                    {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
+                    <button onClick={handleCancel} type="button" className=" btn medium impact">취소</button>
+                    <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>
                 </div>
             </div>
         </div>
+        </div >
     )
 }
 

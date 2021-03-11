@@ -8,7 +8,7 @@ interface IProp {
     keywords?: string[];
 }
 
-export const Meta: React.FC<IProp> = ({ description = "맞춤형 여행상품을 찾아드리는 플랫폼 핑크로더", titleMeta = "핑크로더에서 여행을 시작하세요!!", title = "핑크로드", keywords }) => {
+export const Meta: React.FC<IProp> = ({ description = "맞춤형 여행상품을 찾아드리는 플랫폼 핑크로더", titleMeta = "핑크로더에서 여행을 시작하세요!!", title = "핑크로더", keywords }) => {
     const keywordString = keywords?.join(",");
 
     return <Head>

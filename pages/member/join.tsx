@@ -123,30 +123,34 @@ const Join: React.FC<Ipage> = (pageInfo) => {
                 {/* 개인 */}
                 <div className="sign_in famile">
                     <div className="inner ">
-                        <h4 className="join_title w100">
+                        {/* <h4 className="join_title w100">
                             <img src="/img/logo_1.png" alt="logo" />
-                        </h4>
+                        </h4> */}
                         <div className="join_address w100">
                             <ul>
                                 <li
                                     key={joinProcess}
                                     className={checkProcessOn("userType")}>
-                                    <i>Setep.01</i>
+                                    <i className="text">Step.01</i>
+                                    <i className="svg01"></i>
                                     <br />
                                     회원선택
                                 </li>
                                 <li className={checkProcessOn("verification")}>
-                                    <i>Setep.02</i>
+                                    <i className="text">Step.02</i>
+                                    <i className="svg02"></i>
                                     <br />
                                     인증
                                 </li>
                                 <li className={checkProcessOn("userInfo")}>
-                                    <i>Setep.03</i>
+                                    <i className="text">Step.03</i>
+                                    <i className="svg03"></i>
                                     <br />
                                     정보입력
                                 </li>
                                 <li className={checkProcessOn("registered")}>
-                                    <i>Setep.04</i>
+                                    <i className="text">Step.04</i>
+                                    <i className="svg04"></i>
                                     <br />
                                     {userType === UserRole.individual ? "가입완료" : "가입요청완료"}
                                 </li>
@@ -183,15 +187,24 @@ const JoinResult = () => {
     const isSeller = ALLOW_SELLERS.includes(userType);
     return (
         <div className="wellcom" id="con03">
-            <img src="/img/join_img01.png" alt="환영합니다 이미지" />
+            {/* <img src="/img/join_img01.png" alt="환영합니다 이미지" /> */}
             <h5>회원가입을 축하드립니다!</h5>
             {isSeller && <p>
+                회원가입이 완료 되었습니다.  <br className="no" />
+                로그인 후 핑크로더의 알차고 즐거운 컨텐츠를 사용하실 수 있습니다.
+            </p>}
+            {isSeller && <p>
                 기업파트너or개인파트너는 가입승인 후에 서비스를 이용할 수 있습니다. <br className="no" />
-                잠시만 기다려주세요! 가입승인이 최대 24시간이 걸리며,{" "}
-                <br className="no" />
-                가입시 입력된 이메일로 가입승인 이메일로 안내드리겠습니다.
+                핑크로더의 파트너 담당자가 승인 절차 메일을 발송 합니다. 조금만 기다려 주세요.
             </p>}
             <div className="fin">
+                <Link href="/">
+                    <button
+                        className="sum btn"
+                    >
+                        홈으로
+                </button>
+                </Link>
                 <Link href="/login">
                     <button
                         className="sum btn"

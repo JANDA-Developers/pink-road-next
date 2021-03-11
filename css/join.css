@@ -15,7 +15,158 @@
    width: 100% !important;
     
 }
+.sign_in .inner .join_address {
+    width: 100%;
+    display: block;
+    position: relative;
+    line-height: 138px;
+    margin-bottom: 26px;
+    margin-top: 0;
+    padding: 3% 0;
+    border-top: 1px #efefef solid;
+    border-bottom: 1px #efefef solid;
+}
 
+    .sign_in .inner .join_address ul {
+        width:100%;
+        margin: 0 auto;
+        text-align: center;
+        height: 130px;
+    }
+
+    .sign_in .inner .join_address li {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        line-height: 19px;
+        border-radius: 300px;
+        border: 3px solid #dbdbdb;
+        background: #ededed;
+        text-align: center;
+        display: inline-block;
+        font-size: 12px;
+        color: #a9a9a9;
+        margin: -50px 10px 0;
+        padding: 15px 0 0 0;
+        box-sizing: border-box;
+        font-weight: 600;
+    }
+  
+    .sign_in .inner .join_address .text{
+       display: none;
+    }
+    .sign_in .inner .join_address i[class*="svg"]{
+       display: inline-block;
+       width: 30px;
+       height: 30px;
+       background-position: center;
+       background-size: 90%;
+       background-repeat: no-repeat;
+       opacity: 0.4;
+    }
+    .sign_in .inner .join_address li.on i[class*="svg"] {
+        opacity:1;
+    }
+    .sign_in .inner .join_address i.svg01{
+        background-image: url(/img/svg/icon_man.svg);
+     }
+     .sign_in .inner .join_address i.svg02{
+        background-image: url(/img/svg/icon_certified.svg);
+        background-size: 100%;
+     }
+     .sign_in .inner .join_address i.svg03{
+        background-image: url(/img/svg/icon_input.svg);
+     }
+     .sign_in .inner .join_address i.svg04{
+        background-image: url(/img/svg/icon_check.svg);
+     }
+        .sign_in .inner .join_address li:after {
+            position: absolute;
+            content: '';
+            top: 36%;
+            right: -59px;
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            background-image: url(/img/svg/join_arr_right.svg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .sign_in .inner .join_address li:last-child:after {
+            display: none;
+        }
+
+        .sign_in .inner .join_address li i {
+            font-size: 10px;
+            font-style: unset;
+            font-weight: 500;
+        }
+
+        .sign_in .inner .join_address li.on {
+            background: #fff;
+            color: #333;
+            border: 3px solid #9f9f9f;
+        }
+.join__snslink{
+position: relative;
+display: block;
+margin-top: 15px;
+}
+
+.join__snslink li{
+position: relative;
+display: block;
+line-height: 40px;
+width: 100%;
+text-align: left;
+border: 1px solid rgb(201 201 201);
+box-sizing: border-box;
+border-radius: 5px;
+margin-bottom: 5px;  
+opacity: 0.5;
+}
+.join__snslink li:hover{
+opacity:1;
+}
+.join__snslink a{
+position: relative;
+display: flex;
+}
+.join__snslink span{
+display: inline-block !important;
+}
+
+
+.join__snslink_icon{
+font-size: 1.4em;
+}
+.join__snslink_g .join__snslink_icon{
+font-size: 1.2em;
+}
+.join__snslink_n .join__snslink_icon i{
+background-image: url(/img/svg/icon-naver-b.svg);
+background-size: 13px;
+background-position: center;
+background-repeat: no-repeat;
+display: block;
+width: 51px;
+height: 41px;
+}
+.join__snslink_icon{
+width: 60px;
+height: 40px;
+align-items: center;
+text-align: center;
+border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+span.join__snslink_txt{
+text-align: right;
+width: 100%;
+padding-right: 15px;
+font-weight: 600;
+}
 .apply_relative {
     position:relative;
 }
@@ -76,9 +227,20 @@
 
 
 @media (min-width: 1000px) {
-.join_birthday input{
-   width: 100% !important;
-    
-}
+    .join_birthday input{
+    width: 100% !important;
+        
+    }
+    .sign_in .inner .join_address {
+        line-height: 158px;
+        padding: 1% 0;
+    }
+    .sign_in .inner .join_address li{
+        margin: -50px 40px 0;
+        padding: 27px 0 0 0;
+        width: 120px;
+        height: 120px;
+        
+    }
 
 }

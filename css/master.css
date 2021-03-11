@@ -2013,10 +2013,10 @@
        
             box-shadow: 2px 2px 10px #00000017;
         }
-        .master_box .notification_box .right .hang:before {
+        /* .master_box .notification_box .right .hang:before {
             position: absolute;
             content: '';
-            display:inline-block;
+            display:none;
             width: 5px;
             height: 5px;
             border: 5px solid #e3e3e3;
@@ -2036,7 +2036,7 @@
             border-radius: 100px;
             left: -85px;
             top: 22px;
-        }
+        } */
         .master_box .notification_box .right .time {
             color:#999;
             font-size:0.8em;
@@ -4323,21 +4323,22 @@ div.master_popup .info_table .th01,
         padding: 30px 50px 100px;
         border-radius: 5px;
     }
-    .master_box .notification_box .right .hang:before {
+    /* .master_box .notification_box .right .hang:before {
         width: 5px;
         height: 5px;
         left: -98px;
         top: 15px;
+        display: none;
     }
     .master_box .notification_box .right .hang:after {
         position: absolute;
         content: '';
-        display: inline-block;
+        display: none;
         width: 85px;
         height: 1px;
         left: -85px;
         top: 22px;
-    }
+    } */
     div.master_popup .board_list_mini .tt01  {
         max-width: 5%;
         text-align: center;
