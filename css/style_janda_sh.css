@@ -133,8 +133,20 @@
     color: #fff;
     display: inline-block;
     text-align: left;
-    width: 64%;
+    width: 100%;
     z-index: 3;
+}
+.main_con_box1 .main_top_images strong::after {
+    position: absolute;
+    content: '';
+    width: 50px;
+    height: 2px;
+    background-color: #ffffff;
+    z-index: 10;
+    bottom: -8px;
+    left: 50%;
+    margin-left: -25px;
+    display: inline-block;
 }
 .main_con_box1 .main_top_images span {
     position: relative;
@@ -145,7 +157,7 @@
     letter-spacing: 0px;
     padding-left: 2px;
     text-align: left;
-    width: 64%;
+    width: 100%;
     z-index: 3;
 }
 
@@ -8656,14 +8668,13 @@ i.calendar {
     .main_con_box1 .main_top_images::after {
         position: absolute;
         top: 0;
-        left: -100%;
+        left: 0;
         opacity: 0.5 !important;
         filter: alpha(opacity=50);
         content: "";
         width: 200%;
         height: 140%;
         background-color: #000000;
-        transform: rotate(-56deg);
         z-index: 2;
     
     }
@@ -9202,13 +9213,19 @@ i.calendar {
     }
 
         .main_con_box1 .main_top_images strong {
-            margin-bottom: 5px;
+            margin-bottom: 50px;
             margin-top: 230px;
-            font-size: 3em;
+            font-size: 5em;
         }
-
+        .main_con_box1 .main_top_images strong::after {
+            width: 80px;
+            height: 2px;
+            bottom: -26px;
+            margin-left: 0;
+            left: 0;
+        }
         .main_con_box1 .main_top_images span {
-            font-size: 16px;
+            font-size: 2em;
         }
         .main_con_box1 .main_top_images .btn_list {
             text-align: left;
@@ -10133,12 +10150,11 @@ i.calendar {
     }
     .main_con_box1 .main_top_images::after {
         top: 0;
-        left: -111%;
+        left: 0;
         opacity: 0.5 !important;
         filter: alpha(opacity=50);
         width: 200%;
         height: 200%;
-        transform: rotate(-56deg);
         z-index: 2;
     }
     .sign_in .inner{
@@ -10499,7 +10515,7 @@ i.calendar {
     }
     .main_con_box1 .main_top_images strong {
         padding-left: 0;
-        width: 58%;
+        /* width: 58%; */
     }
     .main_con_box1 .main_top_images span {
         padding-left: 0;
@@ -10529,7 +10545,7 @@ i.calendar {
     }
     .main_con_box1 .main_top_images strong {
 
-        margin-top: 240px;
+        margin-top: 190px;
     }
     .main_con_box1 .ovj:before {
         content: '';
