@@ -10500,7 +10500,24 @@ i.calendar {
     }
     .main_con_box5 .man_box li {
         width: 150px;
+        padding: 3%;
     }
+    .main_con_box5 .man_box .name i {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+    }
+    .main_con_box5 .man_box .name{
+        padding: 0 7px 0 24px;
+        font-size: 11px;
+        line-height: 21px;
+    }
+    .main_con_box5 .man_box .home {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        background-size: 52%;
+}
     .main_con_box5 div.goods_list .line4 li{
         width:48.6%;
     }
@@ -10515,8 +10532,17 @@ i.calendar {
         text-align: center;
     }
     .main_con_box5 .man_box .photo {
-        width: 90px;
-        height: 90px;
+        width: 100px;
+        height: 100px;
+    }
+    .main_con_box5 .man_list a{
+        line-height: 189px;
+    }
+    .main_con_box5 .man_box {
+        height: 165px;
+    }
+    .main_con_box5 .man_list a {
+        height: 195px;
     }
     div.theme_deal .top_01 {
         position: relative;
