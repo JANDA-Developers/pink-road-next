@@ -2377,6 +2377,20 @@ div.sum_div {
 
 
 @media (min-width:768px) {
+    .board_write .RangeExample .info_txt{
+        display: none;
+    }
+.board_write .con_tap li{
+        font-size: 15px;
+        margin: 3px 4px;
+    }
+.board_write .write_con .day_tap .elimination {
+    left: 87%;
+}
+.board_write .write_con .day_tap .add {
+        left: 87%;
+        margin-left: -126px;
+    }
     ul .list_ul.line3 li {
         width: auto;
     }
@@ -2619,6 +2633,19 @@ div.sum_div {
 }
 
 @media (min-width:1200px) {
+    .board_write .RangeExample .info_txt{
+        display: block;
+    }
+.board_write .write_con .day_tap .elimination {
+    left:90%;
+}
+.board_write .write_con .day_tap .add {
+    left: 90%
+}
+.board_write .con_tap li{
+        font-size:20px;
+        margin: 3px 15px;
+    }
     ul.list_ul {
         width: 100%;
     }
@@ -2641,6 +2668,7 @@ div.sum_div {
 }
 
 @media (max-width:767px) {
+
     .board_box .xe_content {
         margin-top: 50px;
     }
@@ -2673,7 +2701,50 @@ div.sum_div {
         ul.list_ul.line3 li:last-child {
             display: inline-block;
         }
- 
+        .board_write .write_box{
+            padding: 60px 3% 20px;
+        }
+        .board_write .bottom_write{
+            padding: 35px 3% 20px;
+        }
+        .board_write .write_type .title,
+        .board_write .write_type .input_form {
+            width: 100%;
+        }
+        .board_write .write_type{
+            display: block;
+        }
+        .board_write .write_type .img_box_add {
+            width: 100%;
+        }
+        .board_write .con_tap li{
+            margin: 0px 2px;
+            font-size: 15px;
+            line-height: 13px;
+        }
+        .board_write .RangeExample .info_txt {
+            position: relative;
+            top: 0;
+            right: 0;
+            padding: 5% 3% 3%;
+            width: 100%;
+            box-sizing: border-box;
+            border-top: 1px dotted #cccccc;
+        }
+        .board_write .write_con .texta{
+            padding: 3%;
+        }
+        .board_write .write_con .day_tap .elimination{
+            left: 84%;
+        }
+        .board_write .write_con .day_tap .add{
+            left: 84%;
+						margin-left: -126px;
+        }
+        .board_write .write_con .texta input[type=text]{
+            width: 100%;
+            margin-bottom: 3px;
+        }
 }
 
 @media (max-width:360px) {

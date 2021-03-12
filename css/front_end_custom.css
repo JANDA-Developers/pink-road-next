@@ -248,9 +248,6 @@ td {
     outline: 1px solid black;
 }
 
-.ck-content {
-    /* min-height: 250px; */
-}
 
 .day_tap .ck-content {
     min-height: 150px;
@@ -259,7 +256,7 @@ td {
 .JDtagInput__tag {
     white-space: nowrap;
     display: inline-block;
-    padding: 2px 19px;
+    padding: 8px 19px;
     font-size: 14px;
     color: #696969;
     font-weight: 600;
@@ -273,7 +270,7 @@ td {
 }
 
 .JDtagInput {
-    display: flex;;
+    display: block;
 }
 .JDtagInput__input {
     display: flex;
@@ -387,11 +384,10 @@ figure:after {
  font-size: initial;
  color: white;   
 }
-
-.portfolio__values {
-
+.JDtagInput__tags{
+    display: block;
+    margin-bottom: 5px;
 }
-
 .portfolio__bottomWrap .imgEdit {
     align-items: flex-start;
 }
@@ -508,8 +504,4 @@ figure:after {
 
 .payment__memoForm {
     margin-bottom: 30px;
-}
-
-.paymethod__Check_table {
-    
 }

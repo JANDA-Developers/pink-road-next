@@ -8090,8 +8090,12 @@ i.calendar {
 
 /* tour */
 .tour_box {
+    padding-top: 0;
+}
+.tour_box .con_bottom {
     box-sizing: border-box;
-    padding: 0 3% 100px;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 
     .tour_box .view_icon {
@@ -10914,7 +10918,12 @@ i.calendar {
     .quotation__table_fom .content > div{
         width: 49%;
     }
-
+    .DayPicker-Months > .DayPicker-Month:first-child::after{
+        border-right: 0;
+    }
+    .DayPicker-Month{
+        margin-bottom: 20px !important;
+    }
 }
 
 
