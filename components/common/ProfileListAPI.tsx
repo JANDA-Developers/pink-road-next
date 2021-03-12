@@ -44,6 +44,7 @@ export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSel
     const isShort = mode === "short"
 
     const toGuidePage = (code: string) => {
+        
         router.push("/itsguid/" + code)
     }
 

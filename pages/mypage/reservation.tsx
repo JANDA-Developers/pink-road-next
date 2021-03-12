@@ -108,8 +108,8 @@ export const MyReservation: React.FC<IProp> = () => {
                     />
                 </div>
                 <div className="con_bottom">
-                    <div className="con_box">
-                        <div className="alignment">
+                    <div className="reservation__list con_box">
+                        <div className=" alignment">
                             <div className="left_div"><span className="infotxt">총 <strong>{pageInfo.totalCount}</strong>건</span></div>
                             <div className="right_div">
                                 <ul className="board_option">

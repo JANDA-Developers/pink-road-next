@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { usePageEdit } from '../../hook/usePageEdit';
 import { usePageInfo } from '../../hook/usePageInfo';
 import ITS_GUIDE_INFO from '../../info/itsGuide';

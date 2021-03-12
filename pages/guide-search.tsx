@@ -106,8 +106,6 @@ export const GuideSearch: React.FC<Ipage> = (_pageInfo) => {
             return keyward.trim() === _keyward.label.trim()
         })
 
-        console.log({ keyward })
-        console.log({ target });
         if (target) {
             onClickKeyward(target.label)()
         }

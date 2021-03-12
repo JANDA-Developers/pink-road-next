@@ -76,6 +76,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const { categoriesMap, isAdmin, myProfile, isManager, isParterB, isParterNonB, productGroupList } = useContext(AppContext);
     const isMyProduct = product?.author?._id === myProfile?._id;
 
+    
     const {
         tourSets, tourData,
         loadKey, validater: { validate },
