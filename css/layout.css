@@ -687,7 +687,7 @@ rect.allmenu_svg {
         height: 36px;
         position: relative;
         top: 0;
-        margin-right: 9px;
+        margin-right: 5px;
         display: inline-block;
         vertical-align: middle;
     }
@@ -873,7 +873,7 @@ rect.allmenu_svg {
 .header .inform_top {
     display:inline-block;
     position:relative;
-    margin:0 5px;
+    margin:0 10px 0 5px;
     vertical-align:middle;
 }
     .header .inform_top .inform_icon {
@@ -3679,7 +3679,9 @@ margin-bottom:0;
     .m {
         display: none;
     }
-  
+    .header .inform_top {
+        margin: 0 5px 0 5px;
+    }
     .footer_in .sns {
         width: auto;
         display: block;

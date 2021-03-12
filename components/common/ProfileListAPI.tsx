@@ -61,9 +61,13 @@ export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSel
         <div ref={guidesRef} className="man_box">
             <ul>
                 {items.map((item, i) =>
-                    <li key={item._id + "guid"} onClick={handleSelectUser(item)} className={selectedSeller?._id === item._id ? "on" : ""}>
-                        <span className="photo" style={BG(item.profileImg?.uri || "/img/profile_default160.gif")} />
-                        <div className="name"><i>G</i>{item.nickName}</div>
+                    <li key={item._id + "guid"} className={selectedSeller?._id === item._id ? "on" : ""}>
+                        <span className="photo" onClick={handleSelectUser(item)} style={BG(item.profileImg?.uri || "/img/profile_default160.gif")} />
+                        <div className="home" onClick={() => {
+                            toGuidePage(item._id)
+                        }}></div>
+                        <div className="name" onClick={handleSelectUser(item)}><i>G</i>{item.nickName}</div>
+
                     </li>
                 )}
             </ul>

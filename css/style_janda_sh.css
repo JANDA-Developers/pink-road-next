@@ -172,7 +172,7 @@
         line-height: 100px;
         color: #fff;
         font-weight: 600;
-        font-size: 1.3em;
+        font-size: 1.2em;
         letter-spacing: 1px;
         border: 2px solid #fff;
         margin: 5px 10px 5px 0px;
@@ -182,7 +182,7 @@
         width: auto;
         height: auto;
         line-height: normal;
-        padding: 10px 22px;
+        padding: 3px 21px;
     }
 
         .main_con_box1 .main_top_images .btn_list a:hover {
@@ -540,6 +540,22 @@
                 font-weight: 600;
                 background-color: #ffffff;
             }
+            .main_con_box5 .man_box .home {
+                position: relative;
+                display: inline-block;
+                width: 34px;
+                    height: 34px;
+                    line-height: 34px;
+                    border-radius: 100px;
+                    background-color: #777777;
+                    background-image: url(/its/icon_home_w.svg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: 42%;
+                    vertical-align: bottom;
+                    margin-right: 3px;
+
+            }
     
                 .main_con_box5 .man_box .name i {
                     position: absolute;
@@ -562,6 +578,10 @@
                 color: #039ce0;
             }
     
+            .main_con_box5 .man_box li.on .home {
+                    background-color: #0090ce;
+
+            }
                 .main_con_box5 .man_box li.on .name i {
                     background-color: #039ce0;
                 }
@@ -6110,6 +6130,7 @@ i.important_icon {
 .tour_details_in {
     position: relative;
     padding: 50px 3% 100px;
+    box-sizing: border-box;
 }
 
     .tour_details_in .Document {
@@ -8278,9 +8299,10 @@ i.calendar {
 
 
 /* tour */
-.tour_box {
+.tour_box .con_bottom {
     box-sizing: border-box;
-    padding: 0 3% 100px;
+    padding-left:3%;
+    padding-right:3%;
 }
 
     .tour_box .view_icon {
@@ -8637,7 +8659,13 @@ i.calendar {
     }
 
 @media (min-width: 768px) {   
-    
+    .main_con_box1 .main_top_images .btn_list{
+        width: 70%;
+    }
+    .board_write .con_tap li{
+        font-size: 15px;
+        margin: 3px 4px;
+    }
 .main_con_box1 .main_top_images strong {
     font-size: 4.6em;
     margin-top: 101px;
@@ -8953,7 +8981,9 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
-
+    .main_con_box1 .main_top_images .btn_list{
+        width: 100%;
+    }
 .selectViewList {
     padding-top: 13px;
 }
@@ -9898,7 +9928,7 @@ i.calendar {
         padding: 120px 0 120px;
     }
     .main_con_box3 ul {
-        right: 20px;
+        right: 110px;
         width: 370px;
         top: 137px;
     }
@@ -10315,6 +10345,7 @@ i.calendar {
    
 }
 @media (max-width: 767px) {
+ 
     .header .all_menu_btn{
         padding-left: 0;
     }
@@ -10695,6 +10726,7 @@ i.calendar {
             line-height: 120%;
             text-align: left;
             margin-top:93px;
+            margin-bottom: 5px;
         }
 
         .main_con_box1 .main_top_images span {
@@ -10711,7 +10743,7 @@ i.calendar {
             height: auto;
             padding:  0 20px;
             border-radius: 3px;
-            line-height: 40px;
+            line-height: 30px;
             font-size: 1em;
         }
     .main_con_box1 .main_top_images:before {

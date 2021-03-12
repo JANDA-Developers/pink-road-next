@@ -2798,13 +2798,13 @@ div.master_popup .board_list_mini .tt05  {
         box-sizing: border-box;
         padding-top: 15px;
     }
- div.master_popup div[class*=top0] {
-  display: inline-block;
-    width: 22%;
-    vertical-align: top;
-    text-align: center;
-    box-sizing: border-box;
-    position: relative;
+    div.master_popup div[class*=top0]{
+        display: inline-block;
+        width: 100%;
+        vertical-align: top;
+        text-align: center;
+        box-sizing: border-box;
+        position: relative;
 }
  div.master_popup .top01 {
     width: 100% !important;

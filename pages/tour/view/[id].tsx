@@ -462,7 +462,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               </div>}
             </div>
             <div className="add_list">
-              <h4>핑크로더 추천여행</h4>{/* 랜덤노출 */}
+              <h4>잇츠가이드 추천여행</h4>{/* 랜덤노출 */}
               <ul className="tourView__recommendList  list_ul line3">
                 {randomSliced.map(item =>
                   <ProductPhotoBlock key={item._id} item={item} />
