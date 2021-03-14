@@ -687,7 +687,7 @@ rect.allmenu_svg {
         height: 36px;
         position: relative;
         top: 0;
-        margin-right: 9px;
+        margin-right: 5px;
         display: inline-block;
         vertical-align: middle;
     }
@@ -873,7 +873,7 @@ rect.allmenu_svg {
 .header .inform_top {
     display:inline-block;
     position:relative;
-    margin:0 5px;
+    margin:0 10px 0 5px;
     vertical-align:middle;
 }
     .header .inform_top .inform_icon {
@@ -3612,10 +3612,10 @@ margin-bottom:0;
            
             right: 30px;
         }
-        #all_menu .hiddennav  {
+        /* #all_menu .hiddennav  {
            width: 100% !important;
            display: block;
-        }
+        } 
         #all_menu ul .hiddennav .depth1{
             padding: 0 !important;
             margin: 0 0 10px !important;
@@ -3627,7 +3627,7 @@ margin-bottom:0;
         }
         #all_menu ul .hiddennav .depth1 li a{
             padding-bottom: 3px !important;
-        }
+        }*/
         .top_visual .sub_bg {
             background-size: 180%;
             padding: 70px 0 0;
@@ -3679,7 +3679,9 @@ margin-bottom:0;
     .m {
         display: none;
     }
-  
+    .header .inform_top {
+        margin: 0 5px 0 5px;
+    }
     .footer_in .sns {
         width: auto;
         display: block;

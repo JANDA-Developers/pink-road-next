@@ -251,10 +251,6 @@ td {
     outline: 1px solid black;
 }
 
-.ck-content {
-    /* min-height: 250px; */
-}
-
 .day_tap .ck-content {
     min-height: 150px;
 }
@@ -262,7 +258,7 @@ td {
 .JDtagInput__tag {
     white-space: nowrap;
     display: inline-block;
-    padding: 2px 19px;
+    padding: 8px 19px;
     font-size: 14px;
     color: #696969;
     font-weight: 600;
@@ -346,9 +342,6 @@ figure:after {
 #basketModal .popup_bg_mini { 
     max-width: 400px;
 }
-.ck-reset_all {
-}
-
 
 #SMSmodal .sms__textarea-wrap {
     width: 100%;
@@ -384,10 +377,6 @@ figure:after {
 .imgEdit__text {
  font-size: initial;
  color: white;   
-}
-
-.portfolio__values {
-
 }
 
 .portfolio__bottomWrap .imgEdit {
@@ -486,9 +475,11 @@ figure:after {
     right: 5px;
     width: 15px;
     height: 15px;
-    opacity: 0.5;
+    opacity: 0.8;
     z-index: 90;
-    filter: brightness(0);
+    background-color: #000000;
+    box-sizing: border-box;
+    padding: 2px;
 }
 
 .banner {
@@ -502,10 +493,6 @@ figure:after {
 .profile_box__profileImg {
     background-size: cover;
 }
-
-.profile_box__imgWrap {
-}
-
 
 
 .m_06_link__linker {
@@ -592,8 +579,14 @@ figure:after {
 .partners {
     cursor: pointer;
 }
-
-/* 
-div.popup_bg_mini .in_txt {
-    height: 500px;
-} */
+@media (max-width:767px) {
+    .JDtagInput {
+        display: block;
+    }
+    .JDtagInput__tag{
+        padding: 2px 14px;
+    }
+    .DayPicker-Month{
+        margin-bottom: 10px !important;
+    }
+}

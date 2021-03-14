@@ -125,8 +125,8 @@ export const MyReservation: React.FC<IProp> = () => {
                             </div>
                         </div>
                         <Change change={!getLoading} >
-                            <div className="master__table">
-                                <div className="th">
+                            <div className="master__table reservation_list ln07">
+                                <div className="thead">
                                     <div className="t01">
                                         <span className="checkbox">
                                             <input checked={isAllSelected} onClick={selectAll} type="checkbox" name="agree" id="agree0" title="전체선택" />
@@ -140,7 +140,7 @@ export const MyReservation: React.FC<IProp> = () => {
                                     <div className="t07">상태</div>
                                 </div>
                                 {items.map((item, i) =>
-                                    <div key={item._id} className="td">
+                                    <div key={item._id} className="tbody">
                                         <div className="t01">
                                             <span onClick={() => { check(item._id) }} className="checkbox">
                                                 <input checked={isChecked(item._id)} type="checkbox" name="agree" id={`agree${i}`} title="개별선택" />
@@ -175,14 +175,16 @@ export const MyReservation: React.FC<IProp> = () => {
                                         </div>
                                         <div className="t06">
                                             <div className="align">
+
                                                 <strong className="money"><i className="m_title">금액:</i>{autoComma(item.bookingPrice)}원</strong>
                                                 {item.payment && <span className="pay">결제종류: {payMethodToKR(item.payment?.payMethod)}</span>}
                                                 {item.payment && <span className="pay-day">결제일: {yyyymmdd(item.payment?.createdAt)}</span>}
+                                                <BookingStatusBadge status={item.status!} />
                                             </div>
                                         </div>
                                         <div className="t07 MypageGoods__btn">
                                             <div className="align">
-                                                <BookingStatusBadge status={item.status!} />
+
                                                 <span
                                                     className="btn"
                                                     onClick={() => {
@@ -196,14 +198,14 @@ export const MyReservation: React.FC<IProp> = () => {
                                     </div>
                                 )}
                             </div>
-                        <Paginater setPage={setPage} pageInfo={pageInfo} />
+                            <Paginater setPage={setPage} pageInfo={pageInfo} />
                         </Change>
-            </div>
-        </div>
+                    </div>
+                </div>
             </div>
         </div >
-    <BookingModal key={bookingModalHook.info?.code} {...bookingModalHook} />
-{/* popup-상세보기 = 마스터>예약관리>예약.결제관리 상세보기와 같음*/ }
+        <BookingModal key={bookingModalHook.info?.code} {...bookingModalHook} />
+        {/* popup-상세보기 = 마스터>예약관리>예약.결제관리 상세보기와 같음*/}
 
     </MypageLayout >
 };

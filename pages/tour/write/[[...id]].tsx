@@ -238,7 +238,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         } />
         <div className="w1200 con_bottom">
             <div className="write_box">
-                {product && <h1>{productStatus(product.status)}</h1>}
+                {product && <h3 className="write_top_tag">{productStatus(product.status)}</h3>}
                 {/* 아래는 오직 관리자만 적용할 수 있음 아래는 상태가 CANCEL상태이거나  */}
                 {/* {isManager && <div className="write_type">
                     <div className="title">상태관리</div>
