@@ -1,4 +1,3 @@
-import { Annotation } from 'aws-sdk/clients/configservice';
 import React from 'react';
 import { AnnounceType, BookingStatus, Fbooking, ProductStatus, SettlementStatus } from '../../types/api';
 import { announceTypeKR, bookingStatus, productStatus, settlementStatus } from "../../utils/enumToKr";

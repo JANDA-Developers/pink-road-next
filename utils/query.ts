@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
 import { ERR_CODE, Fpage } from "../types/api";
-import { CustomErrorResponse } from "aws-sdk/clients/cloudfront";
 import { ErrorCode } from "./enumToKr";
 import { getFromUrl } from "./url";
 import { cloneObject } from "./clone";
@@ -185,7 +184,7 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
             onCompleted: (result) => {
                 const operationName = getQueryName(MUTATION);
                 // @ts-ignore
-                const err:CustomErrorResponse = result[operationName]?.error;
+                const err:any = result[operationName]?.error;
                 // @ts-ignore
                 userErrorHandle(result[operationName])
                 // @ts-ignore
