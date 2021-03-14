@@ -524,7 +524,7 @@ export const getDefault = (product: IproductFindById | undefined): Partial<IUseT
         categoryId: category?._id,
         contents,
         its,
-        regionId: region._id,
+        regionId: region?._id,
         keyWards: keyWards || [],
         simpleData,
         status,

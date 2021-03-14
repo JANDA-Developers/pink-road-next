@@ -100,6 +100,9 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
     return <div >
         <div className="top_visual">
             <SubTopNav pageTools={editTools} >
+                <li >
+                    <a>Login</a>
+                </li>
             </SubTopNav>
         </div>
         <PageEditor pageTools={editTools} />

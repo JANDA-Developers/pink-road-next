@@ -28,9 +28,6 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
     const { data: count } = useCount();
     const hiddenFileInput = useRef<HTMLInputElement>(null);
 
-
-
-
     const changeProfile = (file: Ffile) => {
         if (!myProfile) throw Error("profile is not exsit");
         userUpdate({

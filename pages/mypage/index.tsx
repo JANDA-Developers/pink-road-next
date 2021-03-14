@@ -20,6 +20,7 @@ import { isPassword } from '../../utils/validation';
 import { Validater } from '../../utils/validate';
 import { SubmitPsswordModal } from '../../components/promptModal/Prompt';
 import { KeywardSelecter } from '../../components/keywardSelecter/KeywardSelecter';
+import { omits } from '../../utils/omit';
 
 let SEND_LIMIT = 3;
 interface IProp { }
@@ -55,16 +56,19 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const { code, setCode } = useVerification();
     const [nextPhoneNum, setNextPhoneNum] = useState("");
 
-    const { data,
+    const {
+        data,
         setData,
         handlePassword,
         handleCompleteFindAddress,
         handleTextData,
         toggleCheck,
+        handleBankRegistration,
         handleChangeRegistration,
-        hiddenFileInput
+        hiddenBankFileInput,
+        hiddenBusiFileInput
     } = useMyProfile(defaultProfile!)
-    const { nextPw, profile, pw, busiRegistration } = data;
+    const { nextPw, profile, pw, busiRegistration, bankImg } = data;
     const { setPw, setProfile } = setData;
     const {
         nickName,
@@ -103,7 +107,9 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 id: "passwordCheckInput"
             }, {
                 value: isPassword(nextPw.password),
-                failMsg: "올바른 비밀번호가 아닙니다."
+                failMsg: `올바른 비밀번호가 아닙니다.
+*비밀번호는 특수문자 1개이상 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다
+                `
             }, {
                 value: nextPw.password === nextPw.passwordCheck,
                 failMsg: "패스워드가 일치하지 않습니다.",
@@ -125,12 +131,17 @@ export const MyPageProfile: React.FC<IProp> = () => {
         })
     }
 
+
+
     const handleUpdate = () => {
+        const nextData = omits({
+            ...profile,
+            bankImg,
+            busiRegistration
+        })
         userUpdate({
             variables: {
-                params: {
-                    ...profile,
-                },
+                params: nextData,
                 _id,
             }
         })
@@ -201,6 +212,9 @@ export const MyPageProfile: React.FC<IProp> = () => {
         _id: key._id,
         label: key.label
     }))
+
+    console.log({ busiRegistration });
+    console.log({ bankImg });
 
     return <MypageLayout >
         <div className="in">
@@ -369,15 +383,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     </div>
                                 </li> : ""
                             }
-                            <li>
-                                <div className="title">연락처</div>
-                                <div className="txt">
-                                    <span className="w100">{autoHypenPhone(phoneNumber)}</span>
-                                    {/* <button onClick={isVerifiedPhoneNumber ? handleChangePhoneNumber : handleVerifiPhoneNumber} type="button" className="btn btn_mini">
-                                        {isVerifiedPhoneNumber ? "변경" : "인증"}
-                                    </button> */}
-                                </div>
-                            </li>
                             {isSeller ||
                                 <li>
                                     <div className="title">주소</div>
@@ -409,10 +414,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
                     </div>
                     <div className="box_right">
                         <ul>
-                            {isPartnerB && <li>
-                                <div className="title">가이드명</div>
-                                <div className="txt">{busi_name}</div>
-                            </li>}
                             {isPartnerB && <li>
                                 <div className="title">사업자번호</div>
                                 <div className="txt">
@@ -488,38 +489,28 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 </div>
                             </li>
                             <li>
-                                <div className="title">담당자 연락처</div>
-                                <div className="txt">
-                                    <span className="w80">{phoneNumber}</span>
-                                    <button onClick={handleChangePhoneNumber} type="button" className="btn btn_mini">
-                                        변경
-                                    </button>
-                                </div>
-                                {/* 변경시 변경아이콘 눌러 popup띄워서 핸드폰번호 인증절차 거치게됨 */}
-                            </li>
-
-                            <li>
                                 <div className="title">사업자등록증</div>
                                 <div className="txt">
                                     <span className="w80 upload_out_box">
                                         {busiRegistration?.name}
                                     </span>
-                                    <button onClick={() => { hiddenFileInput.current?.click() }} type="button" className="btn btn_mini">
+                                    <button onClick={() => { hiddenBusiFileInput.current?.click() }} type="button" className="btn btn_mini">
                                         업로드
                                     </button>
-                                    <input onChange={handleChangeRegistration} ref={hiddenFileInput} hidden type="file" />
+                                    <input onChange={handleChangeRegistration} ref={hiddenBusiFileInput} hidden type="file" />
                                 </div>
                             </li>
+
                             <li>
                                 <div className="title">통장사본</div>
                                 <div className="txt">
                                     <span className="w80 upload_out_box">
-                                        {busiRegistration?.name}
+                                        {bankImg?.name}
                                     </span>
-                                    <button onClick={() => { hiddenFileInput.current?.click() }} type="button" className="btn btn_mini">
+                                    <button onClick={() => { hiddenBankFileInput.current?.click() }} type="button" className="btn btn_mini">
                                         업로드
                                     </button>
-                                    <input onChange={handleChangeRegistration} ref={hiddenFileInput} hidden type="file" />
+                                    <input onChange={handleBankRegistration} ref={hiddenBankFileInput} hidden type="file" />
                                 </div>
                             </li>
                             <li>

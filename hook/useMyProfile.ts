@@ -11,13 +11,16 @@ type TProfile = Pick<getContext_GetProfile_data,TChangeAbleData>;
 
 export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
     const [pw,setPw] = useState("");
+    const [bankImg, setBankImg] = useState<Ffile | null>(defaultData.bankImg)
     const [busiRegistration, setBusiRegistration] = useState<Ffile | null>(defaultData.busiRegistration)
     const [nextPw, setNextPw] = useState({
         password: "",
         passwordCheck: ""
     })
     
-    const hiddenFileInput = useRef<HTMLInputElement>(null);
+    const hiddenBusiFileInput = useRef<HTMLInputElement>(null);
+    const hiddenBankFileInput = useRef<HTMLInputElement>(null);
+
     const { signleUpload } = useUpload();
 
     const handleChangeRegistration = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +28,15 @@ export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
         const fileUploaded = event.target.files;
         const onUpload = (_: string, data: Ffile) => {
             setBusiRegistration(data)
+        }
+        signleUpload(fileUploaded, onUpload);
+    };
+
+    const handleBankRegistration = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (!event.target.files) return;
+        const fileUploaded = event.target.files;
+        const onUpload = (_: string, data: Ffile) => {
+            setBankImg(data)
         }
         signleUpload(fileUploaded, onUpload);
     };
@@ -73,12 +85,13 @@ export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
         }
         profile.busi_address = fullAddress;
         profile.address = fullAddress;
-        closeModal("popup_bg_mini")();
+        closeModal("#addressFindModal")();
         setProfile({ ...profile });
     }
 
 
     const data = {
+        bankImg,
         busiRegistration,
         profile,
         nextPw,
@@ -109,7 +122,11 @@ export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
         handleCompleteFindAddress,
         handleTextData,
         toggleCheck,
-        hiddenFileInput,
+        bankImg, 
+        setBankImg,
+        hiddenBusiFileInput,
+        hiddenBankFileInput,
+        handleBankRegistration,
         handleChangeRegistration
     };
 }

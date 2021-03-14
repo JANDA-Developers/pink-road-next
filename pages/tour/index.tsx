@@ -56,14 +56,9 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
         <PageEditor pageTools={pageTools} />
         <SubTopNav pageTools={pageTools} >
             <li className="homedeps1">
-                {isExp ?
-                    <Link href="/tour">
-                        <a>It's투어</a>
-                    </Link> :
-                    <Link href="/tour?exp=true">
-                        <a>It's투어</a>
-                    </Link>
-                }
+                <Link href="/tour">
+                    <a>It's투어</a>
+                </Link>
             </li>
         </SubTopNav>
         <div className="in ">

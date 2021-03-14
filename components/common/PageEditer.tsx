@@ -23,7 +23,7 @@ export const PageEditor: React.FC<IProp> = ({ pageTools, allowToUser }) => {
     }
 
     return <div >
-        <EditBtn allowToUser={allowToUser} onSubmit={submit} editMode={editMode} />
+        <EditBtn allowToUser={allowToUser || false} onSubmit={submit} editMode={editMode} />
     </div>;
 };
 

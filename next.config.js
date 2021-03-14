@@ -11,7 +11,7 @@ const targetModules = [
   'react-export-excel',
   '@apollo/client',
   '@ckeditor/ckeditor5-react','apollo-upload-client','classnames','dayjs','graphql-request','jquery','omit-deep-lodash','react-draggable','react','react-dom','react-beautiful-dnd','react-daum-postcode','react-day-picker']
-const withTM = require('next-transpile-modules')(targetModules);
+const withTM = require('next-transpile-modules')([]);
 const path = require("path");
 
 module.exports = {
