@@ -1,6 +1,6 @@
 import 'isomorphic-unfetch'
 import "core-js";
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import defaultPageInfo from 'info/main.json';
 import { Meta } from 'components/common/meta/Meta';
 import { Upload } from 'components/common/Upload';
@@ -16,7 +16,6 @@ import { useGroupFind } from '../hook/useGroup';
 import { AppContext } from './_app';
 import "."
 import { openAutos, usePopups } from '../hook/usePopups';
-import { ThreePhoneNumberInput } from '../components/phoneNumberInput/PhoneNumberInput';
 import { usePhoneInput } from '../hook/usePhoneInput';
 import { BG } from '../types/const';
 import { PageEditor } from '../components/common/PageEditer';
@@ -25,7 +24,8 @@ export const getStaticProps = getStaticPageInfo("main");
 export const Main: React.FC<Ipage> = (pageInfo) => {
   const { item } = useGroupFind("Main");
   const { homepage } = useContext(AppContext);
-  const [currentSlide, setCurrentSlide] = useState(1)
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const sliderRef = useRef<any>()
 
   const { items, setFilter, filter } = useProductList({
     initialPageIndex: 1, initialViewCount: 8, initialFilter: {
@@ -72,9 +72,18 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
       }} text="이미지 추가" />
       <Slider
         afterChange={(currentSlide) => {
-          setCurrentSlide(currentSlide);
+          const slide = sliderRef?.current;
+          if (slide) {
+            if (currentSlide === 0) {
+              slide.slickPause()
+            } else {
+              slide.slickPlay()
+            }
+          }
         }}
-        autoplay={currentSlide === 1 || mainSliderImgs.length > 1}
+        ref={sliderRef}
+        key={"slider"}
+        autoplay={currentSlide !== 0}
         prevArrow={<div className="rev"><img src="/img/svg/arr_left_w.svg" alt="이전" /></div>}
         nextArrow={<div className="next"><img src="/img/svg/arr_right_w.svg" alt="다음" /></div>}
         arrows={true}
@@ -128,10 +137,10 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
       </Slider>
     </div >
     {editMode &&
-      <div id="partners__add" className="add " onClick={() => {
+      <div id="slider__add" className="add " onClick={() => {
         addArray("main_slideImgs", "")
         alert("빈 슬라이드가 화면에 추가 되었습니다.");
-      }}><i className="flaticon-add"></i>추가</div>
+      }}><i className="flaticon-add"></i>슬라이더 추가</div>
     }
     <div className="main_con_box2">
       <div className="w1200">
