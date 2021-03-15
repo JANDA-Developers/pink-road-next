@@ -133,8 +133,20 @@
     color: #fff;
     display: inline-block;
     text-align: left;
-    width: 64%;
+    width: 100%;
     z-index: 3;
+}
+.main_con_box1 .main_top_images strong::after {
+    position: absolute;
+    content: '';
+    width: 50px;
+    height: 2px;
+    background-color: #ffffff;
+    z-index: 10;
+    bottom: -8px;
+    left: 50%;
+    margin-left: -25px;
+    display: inline-block;
 }
 .main_con_box1 .main_top_images span {
     position: relative;
@@ -145,7 +157,7 @@
     letter-spacing: 0px;
     padding-left: 2px;
     text-align: left;
-    width: 64%;
+    width: 100%;
     z-index: 3;
 }
 
@@ -285,7 +297,7 @@
             z-index: 10;
             position: relative;
         }
-        .infolist .infolist__01 {
+        /* .infolist .infolist__01 {
             background-image: url(/img/pr_img_01.jpg);
 
         }
@@ -294,10 +306,28 @@
 
         }
         .infolist .infolist__03 {
-            background-image: url(/img/pr_img_01.jpg);
+            background-image: url(/img/pr_img_01.jpg); 
 
+        } */
+        /* .infolist .infolist__01 .img,
+        .infolist .infolist__02 .img,
+        .infolist .infolist__03 .img{
+            background-size: 100%;
+            background-position: center;
+            display: block;
+            width: 100%;
+            height: 100%;
+        } */
+        .infolist .img {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100px;
+            background-size: 150%;
+            background-position: center;
+            border-radius: 10px;
+            overflow: hidden;
         }
-
 /* .main_con_box3 {
 }
 
@@ -8060,8 +8090,12 @@ i.calendar {
 
 /* tour */
 .tour_box {
+    padding-top: 0;
+}
+.tour_box .con_bottom {
     box-sizing: border-box;
-    padding: 0 3% 100px;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 
     .tour_box .view_icon {
@@ -8656,14 +8690,13 @@ i.calendar {
     .main_con_box1 .main_top_images::after {
         position: absolute;
         top: 0;
-        left: -100%;
+        left: 0;
         opacity: 0.5 !important;
         filter: alpha(opacity=50);
         content: "";
         width: 200%;
         height: 140%;
         background-color: #000000;
-        transform: rotate(-56deg);
         z-index: 2;
     
     }
@@ -9202,13 +9235,19 @@ i.calendar {
     }
 
         .main_con_box1 .main_top_images strong {
-            margin-bottom: 5px;
-            margin-top: 230px;
-            font-size: 3em;
+            margin-bottom: 50px;
+            margin-top: 125px;
+            font-size: 5em;
         }
-
+        .main_con_box1 .main_top_images strong::after {
+            width: 80px;
+            height: 2px;
+            bottom: -26px;
+            margin-left: 0;
+            left: 0;
+        }
         .main_con_box1 .main_top_images span {
-            font-size: 16px;
+            font-size: 2em;
         }
         .main_con_box1 .main_top_images .btn_list {
             text-align: left;
@@ -10188,12 +10227,11 @@ i.calendar {
 
     .main_con_box1 .main_top_images::after {
         top: 0;
-        left: -111%;
+        left: 0;
         opacity: 0.5 !important;
         filter: alpha(opacity=50);
         width: 200%;
         height: 200%;
-        transform: rotate(-56deg);
         z-index: 2;
     }
     
@@ -10555,7 +10593,7 @@ i.calendar {
     }
     .main_con_box1 .main_top_images strong {
         padding-left: 0;
-        width: 58%;
+        /* width: 58%; */
     }
     .main_con_box1 .main_top_images span {
         padding-left: 0;
@@ -10585,7 +10623,7 @@ i.calendar {
     }
     .main_con_box1 .main_top_images strong {
 
-        margin-top: 240px;
+        margin-top: 190px;
     }
     .main_con_box1 .ovj:before {
         content: '';
@@ -10682,7 +10720,7 @@ i.calendar {
     }
 
     .infolist .pack {
-        padding-top: 25px;
+        padding-top: 0;
     }
     .main_con_box4 .top_txt h2 {
         font-size: 66px;
@@ -10936,7 +10974,12 @@ i.calendar {
     .quotation__table_fom .content > div{
         width: 49%;
     }
-
+    .DayPicker-Months > .DayPicker-Month:first-child::after{
+        border-right: 0;
+    }
+    .DayPicker-Month{
+        margin-bottom: 20px !important;
+    }
 }
 
 
