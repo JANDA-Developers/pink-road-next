@@ -42,6 +42,10 @@ export interface announceFindById_AnnounceFindById_data_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -250,6 +254,10 @@ export interface announceList_AnnounceList_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -1593,6 +1601,10 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -2306,6 +2318,213 @@ export interface countManager_Count {
 
 export interface countManager {
   Count: countManager_Count;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: estimateItemList
+// ====================================================
+
+export interface estimateItemList_EstimateItemList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface estimateItemList_EstimateItemList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface estimateItemList_EstimateItemList_data_options {
+  __typename: "EstimateOption";
+  optionName: string;
+  option: string;
+  price: number;
+  isUse: boolean;
+}
+
+export interface estimateItemList_EstimateItemList_data {
+  __typename: "EstimateItem";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  options: estimateItemList_EstimateItemList_data_options[];
+}
+
+export interface estimateItemList_EstimateItemList {
+  __typename: "EstimateItemListResponse";
+  ok: boolean;
+  error: estimateItemList_EstimateItemList_error | null;
+  page: estimateItemList_EstimateItemList_page;
+  data: estimateItemList_EstimateItemList_data[];
+}
+
+export interface estimateItemList {
+  EstimateItemList: estimateItemList_EstimateItemList;
+}
+
+export interface estimateItemListVariables {
+  sort?: _EstimateItemSort[] | null;
+  filter?: _EstimateItemFilter | null;
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: estimateItemCreate
+// ====================================================
+
+export interface estimateItemCreate_EstimateItemsCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface estimateItemCreate_EstimateItemsCreate_data {
+  __typename: "EstimateItem";
+  _id: string;
+}
+
+export interface estimateItemCreate_EstimateItemsCreate {
+  __typename: "EstimateItemsCreateResponse";
+  ok: boolean;
+  error: estimateItemCreate_EstimateItemsCreate_error | null;
+  data: estimateItemCreate_EstimateItemsCreate_data[] | null;
+}
+
+export interface estimateItemCreate {
+  EstimateItemsCreate: estimateItemCreate_EstimateItemsCreate;
+}
+
+export interface estimateItemCreateVariables {
+  params: EstimateItemCreateInput[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: estimateItemDelete
+// ====================================================
+
+export interface estimateItemDelete_EstimateItemDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface estimateItemDelete_EstimateItemDelete {
+  __typename: "EstimateItemDeleteResponseResponse";
+  ok: boolean;
+  error: estimateItemDelete_EstimateItemDelete_error | null;
+}
+
+export interface estimateItemDelete {
+  EstimateItemDelete: estimateItemDelete_EstimateItemDelete;
+}
+
+export interface estimateItemDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: estimateItemUpdate
+// ====================================================
+
+export interface estimateItemUpdate_EstimateItemUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface estimateItemUpdate_EstimateItemUpdate_data {
+  __typename: "EstimateItem";
+  _id: string;
+}
+
+export interface estimateItemUpdate_EstimateItemUpdate {
+  __typename: "EstimateItemUpdateResponse";
+  ok: boolean;
+  error: estimateItemUpdate_EstimateItemUpdate_error | null;
+  data: estimateItemUpdate_EstimateItemUpdate_data | null;
+}
+
+export interface estimateItemUpdate {
+  EstimateItemUpdate: estimateItemUpdate_EstimateItemUpdate;
+}
+
+export interface estimateItemUpdateVariables {
+  params: EstimateItemUpdateInput;
+  _id: string;
 }
 
 /* tslint:disable */
@@ -3218,6 +3437,10 @@ export interface newsFindById_NewsFindById_data_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -3425,6 +3648,10 @@ export interface newsList_NewsList_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -4376,6 +4603,10 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -4579,6 +4810,10 @@ export interface portfolioList_PortfolioList_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -5350,6 +5585,10 @@ export interface productList_ProductList_data_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -5585,6 +5824,10 @@ export interface productFindById_ProductFindById_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -5900,6 +6143,10 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -6030,6 +6277,10 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -6489,6 +6740,10 @@ export interface qnaFindById_QnaFindById_data_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -6702,6 +6957,10 @@ export interface qnaList_QnaList_data_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -7087,6 +7346,10 @@ export interface getContext_GetProfile_data {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -7889,6 +8152,10 @@ export interface settlementFindById_SettlementFindById_data_product_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -8213,6 +8480,10 @@ export interface settlementList_SettlementList_data_seller {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -8354,6 +8625,10 @@ export interface settlementList_SettlementList_data_product_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -9329,6 +9604,10 @@ export interface userList_UserList_data {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -9525,6 +9804,10 @@ export interface userFindById_UserFindById_data_products_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -9691,6 +9974,10 @@ export interface userFindById_UserFindById_data {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -9919,6 +10206,10 @@ export interface Fannounce_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -10070,6 +10361,50 @@ export interface Ftraveler {
   phoneNumber: any;
   gender: GENDER | null;
   age: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FestimateOption
+// ====================================================
+
+export interface FestimateOption {
+  __typename: "EstimateOption";
+  optionName: string;
+  option: string;
+  price: number;
+  isUse: boolean;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FestimateItem
+// ====================================================
+
+export interface FestimateItem_options {
+  __typename: "EstimateOption";
+  optionName: string;
+  option: string;
+  price: number;
+  isUse: boolean;
+}
+
+export interface FestimateItem {
+  __typename: "EstimateItem";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  options: FestimateItem_options[];
 }
 
 /* tslint:disable */
@@ -10410,6 +10745,10 @@ export interface Fuser {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -10808,6 +11147,10 @@ export interface Fnews_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -11132,6 +11475,10 @@ export interface Fportfolio_author {
   isDelete: boolean;
   email: string;
   /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
    * 담당자명
    */
   manageName: string;
@@ -11264,6 +11611,10 @@ export interface Fqna_author {
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -11941,6 +12292,14 @@ export enum _BookingSort {
 /**
  * Auto generated sort type
  */
+export enum _EstimateItemSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+}
+
+/**
+ * Auto generated sort type
+ */
 export enum _INotificationHistoryItemSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
@@ -12251,6 +12610,30 @@ export interface CategoryCreateInput {
 
 export interface CategoryUpdateInput {
   label?: string | null;
+}
+
+export interface EstimateItemCreateInput {
+  title: string;
+  options: EstimateItemOptionsCreateInput[];
+  isUse: boolean;
+}
+
+export interface EstimateItemOptionsCreateInput {
+  optionName: string;
+  option: string;
+  price: number;
+}
+
+export interface EstimateItemOptionsUpdateInput {
+  optionName: string;
+  option: string;
+  price: number;
+}
+
+export interface EstimateItemUpdateInput {
+  title?: string | null;
+  options?: EstimateItemOptionsUpdateInput[] | null;
+  isUse?: boolean | null;
 }
 
 export interface FeePolicyUpdateInput {
@@ -12825,6 +13208,20 @@ export interface _BookingFilter {
   exField__sellerNickName_not_contains?: string | null;
   exField__sellerNickName_in?: string[] | null;
   exField__sellerNickName_not_in?: string[] | null;
+}
+
+export interface _EstimateItemFilter {
+  AND?: _EstimateItemFilter[] | null;
+  OR?: _EstimateItemFilter[] | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
 }
 
 export interface _INotificationHistoryItemFilter {

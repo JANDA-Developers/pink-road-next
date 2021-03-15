@@ -23,6 +23,9 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
     const { getData } = useLogin({
         onCompleted: ({ SignIn }) => {
             if (SignIn.ok) {
+                if (saveId) {
+                    localStorage.setItem("saveId", userId)
+                }
                 Storage?.saveLocal("lastLoginType", userType);
                 Storage?.saveLocal("jwt", SignIn.data?.token || "");
                 location.href = "/"
@@ -46,24 +49,34 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
     const sessionSave = () => {
         const answer = confirm('브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.\n\n로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.')
         if (!answer) return;
-        setSaveSession(true);
-        // saveLocal("saveSession", "saved");
+        setSaveSession(!saveSession);
+
+
+        if (!saveSession) {
+            localStorage.setItem("saveSession?", "Y")
+        } else {
+            localStorage.removeItem("saveSession?")
+        }
+
     }
+
+    const handleSaveId = () => {
+        setSaveId(!saveId)
+        if (!saveId) {
+            localStorage.setItem("saveId?", "Y")
+        } else {
+            localStorage.removeItem("saveId?")
+        }
+    }
+
     // 로그인성공시
     // saveLocal("saveid", id);
     useEffect(() => {
         initStorage()
-        setId(Storage!.getLocal("saveid", ""))
+        setId(localStorage?.getItem("saveId") || "")
         setSaveId(!!Storage!.getLocal("saveId?", ""))
         setSaveSession(!!Storage!.getLocal("saveSession?", ""))
     }, [])
-
-
-    useEffect(() => {
-        Storage?.saveLocal("saveid", saveId)
-        Storage?.saveLocal("saveSession?", saveSession)
-
-    }, [saveId, saveSession])
 
     const handleUserType = (type: UserRole) => {
         setUserType(type);
@@ -94,6 +107,8 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
             hopeRole: userType,
             permanence: saveSession
         }
+
+
 
         getData({ variables: signInvar as any });
     }
@@ -193,14 +208,17 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                                         type="checkbox"
                                         name="keep_signed"
                                         id="keepid_opt"
-                                        defaultValue="Y"
                                         onClick={sessionSave}
+                                        checked={saveSession}
                                     />
                                     로그인 유지
                                 </label>
                                 <label htmlFor="keepid_opt2" className="checkbox-inline">
-                                    <input type="checkbox" id="keepid_opt2" defaultValue="Y" />{" "}
-                                아이디 기억
+                                    <input
+                                        onClick={handleSaveId}
+                                        checked={saveId}
+                                        type="checkbox" id="keepid_opt2" />{" "}
+                                    아이디 기억
                                 </label>
                             </div>
 

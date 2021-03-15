@@ -77,6 +77,12 @@ td {
 /* 이미지교체 아이콘 */
 
 
+
+.imgEdit--editMode {
+    display: flex!important;
+}
+
+
 .imgEdit {
     position: absolute;
     left: 0;
@@ -92,6 +98,7 @@ td {
     z-index: 5;
 }
 
+/* 아래 Deprecated 예정*/
 [data-edit="bg"] { 
     position: relative;
 }

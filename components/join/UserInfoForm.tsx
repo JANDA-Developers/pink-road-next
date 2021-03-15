@@ -14,6 +14,7 @@ import dayjs from 'dayjs';
 import { VerifiEamilModal } from '../verifiModal/VerifiEmailModal';
 import { useVerification } from '../../hook/useVerification';
 import { closeModal, openModal } from '../../utils/popUp';
+import { ThreePhoneNumberInput } from '../phoneNumberInput/PhoneNumberInput';
 
 const UserInfoForm: React.FC = () => {
     const verifiHook = useVerification();
@@ -179,10 +180,14 @@ const UserInfoForm: React.FC = () => {
                         </label>
                         <span className={`er red_font ${errDisplay.phoneNumber && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
                         <div className="w100">
+                            {/* <ThreePhoneNumberInput
+                            className={isPhoneVerified ? "w100" : "w80"}
+                            onChange={setValue} 
+                            value={value} 
+                            /> */}
                             <input
                                 id="PhoneNumberInput"
                                 type="text"
-                                className={isPhoneVerified ? "w100" : "w80"}
                                 placeholder="인증하기를 통해 번호를 입력 해주세요"
                                 name="contact"
                                 readOnly={isPhoneVerified}

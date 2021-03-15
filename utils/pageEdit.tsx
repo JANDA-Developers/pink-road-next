@@ -119,14 +119,17 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
     }
 
     const validateKey = (key: string | keyof T, array?: number | true) => {
-        if (!page[key]) throw new EditError(`키값 ${key}은 존재하지 않습니다.`);
-        if (page[key][lang] === undefined) throw Error(`언어 ${lang}은 ${key}에 존재하지 않습니다.`);
+        const target = page[key];
+        if (!target) throw Error(`키값 ${key}은 존재하지 않습니다.`);
+        if (target.value === undefined)
+            if (target[lang] === undefined) throw Error(`언어 ${lang}은 ${key}에 없으며 value 또한 없습니다..`);
 
         if (array !== undefined) {
-            if (!Array.isArray(page[key][lang])) throw Error(`the ${key} object is not array!!`);
-            if (array !== true) {
-                if (page[key][lang][array] === undefined) throw Error(`the object key ${key} dose not  have index ${array}!!`)
-            }
+            if (!Array.isArray(target.value))
+                if (!Array.isArray(target[lang])) throw Error(`the ${key} object is not array!!`);
+            // if (array !== true) {
+            //     if (target.value[array] === undefined && target[lang][array] === undefined) throw Error(`the object key ${key} dose not  have index ${array}!!`)
+            // }
         }
     }
 
@@ -147,21 +150,63 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
     const singleBlur = onSingleBlur.bind(onSingleBlur);
 
-    const editArray = (key: keyof T, index: number, value: any) => {
+
+    const set = (key: keyof T, value: any, index?: number, key2?: string) => {
         validateKey(key, index)
-        page[key][lang][index] = value
-        setPage({ ...page });
+
+
+        const setPageData = () => {
+            const isArray = index !== undefined
+            const hasKey2 = !!key2;
+            const target = page[key];
+            const hasValue = target.value !== undefined;
+
+            if (isArray && !hasKey2 && index !== undefined) {
+                if (hasValue) {
+                    target.value[index] = value;
+                } else {
+                    target[lang][index] = value;
+                }
+            }
+
+            if (isArray && hasKey2 && index !== undefined && key2 !== undefined) {
+                if (hasValue) {
+                    target.value[index][key2] = value;
+                } else {
+                    target[lang][index][key2] = value;
+                }
+            }
+
+            if (!isArray) {
+                if (hasValue) {
+                    target.value = value
+                } else {
+                    target[lang] = value;
+                }
+            }
+        }
+
+        setPageData();
+        setPage({ ...page })
+
     }
+
+
+    const editArray = (key: keyof T, index: number, value: any, key2?: string) => {
+        validateKey(key, index)
+        set(key, value, index, key2)
+    }
+
 
     const addArray = (key: keyof T, value: any) => {
         validateKey(key, true)
-        page[key][lang].push(value);
+        get(key).push(value);
         setPage({ ...page });
     }
 
     const removeArray = (key: keyof T, index: number) => {
         validateKey(key, index)
-        page[key][lang].splice(index, 1)
+        get(key).splice(index, 1)
         setPage({ ...page });
     }
 
@@ -254,9 +299,22 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         }
     }
 
-    const get = (key: keyof T) => {
+    const get = (key: keyof T, index?: number) => {
         validateKey(key)
-        return page[key][lang]
+
+        if (index !== undefined) {
+            if (page[key].value) {
+                return page[key].value[index]
+            } else {
+                return page[key][lang][index];
+            }
+        }
+
+        if (page[key].value) {
+            return page[key].value
+        } else {
+            return page[key][lang];
+        }
     }
 
     const linkEdit = (key: keyof T) => {

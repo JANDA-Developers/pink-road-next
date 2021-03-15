@@ -2,11 +2,8 @@
  * @license Copyright (c) 2014-2020, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
-
 'use strict';
-
 /* eslint-env node */
-
 const path = require( 'path' );
 const webpack = require( 'webpack' );
 const { bundler, styles } = require( '@ckeditor/ckeditor5-dev-utils' );
@@ -56,7 +53,7 @@ module.exports = {
 			raw: true
 		} )
 	],
-
+	
 	module: {
 		rules: [
 			{
@@ -94,3 +91,4 @@ module.exports = {
 		]
 	}
 };
+

@@ -1,3 +1,5 @@
+import 'isomorphic-unfetch'
+import "core-js";
 import React, { useContext, useEffect, useState } from 'react';
 import defaultPageInfo from 'info/main.json';
 import { Meta } from 'components/common/meta/Meta';
@@ -10,19 +12,20 @@ import { getStaticPageInfo, Ipage } from '../utils/page';
 import Slider from "react-slick";
 import { usePageEdit } from '../hook/usePageEdit';
 import { Bg } from '../components/Img/img';
-import { PageEditor } from '../components/common/PageEditer';
 import { useGroupFind } from '../hook/useGroup';
-import isEmpty from '../utils/isEmpty';
-import { cloneObject } from '../utils/clone';
-import { useHomepage } from '../hook/useHomepage';
 import { AppContext } from './_app';
+import "."
 import { openAutos, usePopups } from '../hook/usePopups';
 import { ThreePhoneNumberInput } from '../components/phoneNumberInput/PhoneNumberInput';
 import { usePhoneInput } from '../hook/usePhoneInput';
+import { BG } from '../types/const';
+import { PageEditor } from '../components/common/PageEditer';
 
+export const getStaticProps = getStaticPageInfo("main");
 export const Main: React.FC<Ipage> = (pageInfo) => {
   const { item } = useGroupFind("Main");
   const { homepage } = useContext(AppContext);
+  const [currentSlide, setCurrentSlide] = useState(1)
 
   const { items, setFilter, filter } = useProductList({
     initialPageIndex: 1, initialViewCount: 8, initialFilter: {
@@ -30,8 +33,9 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
     }
   }, { skip: !item });
 
-  const pageTools = usePageEdit(pageInfo, defaultPageInfo);
-  const { imgKit, edit } = pageTools;
+  const pageTools = usePageEdit(pageInfo, defaultPageInfo)
+
+  const { imgKit, edit, get, editMode, removeArray, addArray, editArray } = pageTools;
   const router = useRouter()
 
   const toProductBoard = (id: string) => {
@@ -57,16 +61,24 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
 
   const { setValue, value } = usePhoneInput("");
 
+  const mainSliderImgs: string[] = get("main_slideImgs") || [];
   return <div className="body main" id="main" >
-    <PageEditor pageTools={pageTools} />
     <Meta title="Pinkroader" description="사람과 시간이 공존하는 여행플랫폼 핑크로더입니다." />
+    <PageEditor pageTools={pageTools} />
     <div className="main_con_box1 Slider_box">
+      <Upload onUpload={(url) => {
+        addArray("main_slideImgs", url);
+        setCurrentSlide(mainSliderImgs.length)
+      }} text="이미지 추가" />
       <Slider
-        autoplay
+        afterChange={(currentSlide) => {
+          setCurrentSlide(currentSlide);
+        }}
+        autoplay={currentSlide === 1 || mainSliderImgs.length > 1}
         prevArrow={<div className="rev"><img src="/img/svg/arr_left_w.svg" alt="이전" /></div>}
         nextArrow={<div className="next"><img src="/img/svg/arr_right_w.svg" alt="다음" /></div>}
         arrows={true}
-        dots={false}
+        dots={true}
         infinite={true}
         className="mainSlider">
         <div>
@@ -97,13 +109,30 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
               </div>
             </div>
           </Bg>
-
         </div>
+        {mainSliderImgs.map((slideImg, i) => <div key={"slide" + i}>
+          <Bg className="main_top_images main_top_images--added" editMode={editMode} upload={(src) => {
+            editArray("main_slideImgs", i, src)
+          }} bg={BG(slideImg)}  >
+            <div className="w1200">
+            </div>
+            {/* 삭제버튼 */}
+            {editMode &&
+              <div className="main_top_images__delete" onClick={() => {
+                removeArray("main_slideImgs", i);
+              }}>삭제하기</div>
+            }
+          </Bg>
+        </div>
+        )}
       </Slider>
     </div >
-
-
-
+    {editMode &&
+      <div id="partners__add" className="add " onClick={() => {
+        addArray("main_slideImgs", "")
+        alert("빈 슬라이드가 화면에 추가 되었습니다.");
+      }}><i className="flaticon-add"></i>추가</div>
+    }
     <div className="main_con_box2">
       <div className="w1200">
         <div className="top_txt">
@@ -135,7 +164,6 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
         </ul>
       </div>
     </div>
-    <ThreePhoneNumberInput onChange={setValue} value={value} />
 
     <div className="main_con_box6">
       <ul className="mainbn">
@@ -235,5 +263,4 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
   </div >
 };
 
-export const getStaticProps = getStaticPageInfo("main");
 export default Main;

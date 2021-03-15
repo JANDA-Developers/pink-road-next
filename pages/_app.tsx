@@ -121,9 +121,6 @@ function App({ Component, pageProps }: any) {
     }
   }
 
-
-
-
   if (
     //인증 받지 않았으며 일반 권한은 아닌경우
     ALLOW_SELLERS.includes(role) &&

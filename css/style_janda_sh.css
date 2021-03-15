@@ -10116,6 +10116,60 @@ i.calendar {
     }
 }
 
+.main_top_images--added {
+
+}
+
+.mainSlider .slick-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex!important;
+    justify-content: center;
+    bottom: 40px;
+}
+
+.mainSlider .slick-dots > li {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    background-color: white;
+}
+
+.mainSlider .slick-dots > li.slick-active {
+    background-color: red;
+}
+
+.main_top_images__delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: initial;
+    color: white;
+    cursor: pointer;
+    background-color: rgba(255,0,0,.3);
+}
+
+.main_top_images__close {
+    position: absolute;
+    top:0;
+    right:0;
+
+}
+
+.main_top_images--added::after {
+    display: none!important;
+}
+
 @media (min-width: 1200px) {
     .sign_in {
         margin: 118px 0 150px;
@@ -10131,6 +10185,7 @@ i.calendar {
     .sign_in .inner .join_address ul {
         width: 1200px;
     }
+
     .main_con_box1 .main_top_images::after {
         top: 0;
         left: -111%;
@@ -10141,6 +10196,7 @@ i.calendar {
         transform: rotate(-56deg);
         z-index: 2;
     }
+    
     .sign_in .inner{
         padding: 0;
     }

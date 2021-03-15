@@ -176,6 +176,7 @@ export const F_USER = gql`
         updatedAt
         isDelete
         email
+        nickName
         manageName
         connectionCount
         role

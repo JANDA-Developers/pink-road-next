@@ -7,9 +7,10 @@ import { getStaticPageInfo, Ipage } from '../../utils/page';
 import { useBookingFindByInfo } from '../../hook/useBooking';
 import { useVerification } from '../../hook/useVerification';
 import { VerifiEamilModal } from '../../components/verifiModal/VerifiEmailModal';
-import { openModal } from '../../utils/popUp';
+import { closeModal, openModal } from '../../utils/popUp';
 import { VERIFICATION_COMPLETE } from '../../apollo/gql/user';
 import { VerificationTarget } from '../../types/api';
+import { autoComma, autoHypenPhone } from '../../utils/formatter';
 
 export const Main: React.FC<Ipage> = (pageInfo) => {
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
@@ -22,6 +23,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
     })
     const router = useRouter()
     const { getData, data } = useBookingFindByInfo({
+        fetchPolicy: "network-only",
         variables: {
             name: info.name,
             phoneNumber: info.phoneNumber,
@@ -30,6 +32,10 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
     })
 
     const handleSearch = () => {
+        if (!verifiHook.verifiData?._id) {
+            alert("본인인증을 진행 해주새요.")
+        }
+        alert("getData occured");
         getData();
     }
 
@@ -57,11 +63,13 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
                     setInfo({
                         ...info
                     })
-                }} value={info.phoneNumber} />
+                }}
+                value={autoHypenPhone(info.phoneNumber)}
+            />
             <button onClick={() => {
-                openModal("#emailVerifi")();
+                openModal("#PhoneVerifi")();
             }}>인증하기</button>
-            <button disabled={verifiHook.verifiData?.isVerified} onClick={handleSearch}>검색하기</button>
+            <button disabled={!verifiHook.verifiData?.isVerified} onClick={handleSearch}>검색하기</button>
         </div>
         {/* 결과 */}
         {data?.map(data =>
@@ -69,7 +77,9 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
                 {data.name}
             </div>
         )}
-        <VerifiEamilModal key={info.phoneNumber} defaultPayload={info.phoneNumber} target={VerificationTarget.PHONE} onSuccess={() => { }} verifiHook={verifiHook} />
+        <VerifiEamilModal id="PhoneVerifi" key={info.phoneNumber} defaultPayload={info.phoneNumber} target={VerificationTarget.PHONE} onSuccess={() => {
+            closeModal("#PhoneVerifi")();
+        }} verifiHook={verifiHook} />
     </div >
 };
 

@@ -112,10 +112,9 @@ export const BOOKING_FIND_BY_INFO = gql`
         }
         data {
           ...Fbooking
-      payment {
-        ...Fpayment
-      }
-
+        payment {
+          ...Fpayment
+        }
       product {
         _id
         createdAt
@@ -162,7 +161,6 @@ export const BOOKING_FIND_BY_INFO = gql`
     }
 }
 ${F_PAYMENT}
-  ${F_PAGE}
   ${F_FILE}
   ${F_BOOKING}
 `

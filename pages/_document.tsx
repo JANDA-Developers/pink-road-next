@@ -9,7 +9,9 @@ class MyDocument extends Document {
     render() {
         return (
             <Html lang="ko">
-                <Head />
+                <Head >
+                    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+                </Head>
                 <body>
                     <Main />
                     <NextScript />

@@ -40,6 +40,7 @@ export const ANSWER_CREATE = gql`
 }
 ${F_ANSWER}
 `
+
 export const ANSWER_DELETE = gql`
   mutation answerDelete(
     $questionId: String!

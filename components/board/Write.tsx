@@ -191,7 +191,7 @@ export const BoardWrite: React.FC<IProps> = ({
                 <div className="boardNavigation">
                     <div className="float_left">
                         <button onClick={handleSave} type="button" className="btn medium">임시 저장</button>
-                        <button ={handleLoad} type="button" className="btn medium">불러오기</button>
+                        <button onClick={handleLoad} type="button" className="btn medium">불러오기</button>
                 </div>
                 <div className="float_right">
                     {isCreateMode || <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
