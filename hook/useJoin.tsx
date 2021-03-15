@@ -2,10 +2,8 @@ import dayjs from "dayjs";
 import { useContext, useState } from "react";
 import { DayModifiers } from "react-day-picker";
 import { JoinContext } from "../pages/member/join";
-import { AddUserInput, GENDER, VerificationEvent, VerificationTarget } from "../types/api";
-import { E_INPUT } from "../types/interface";
+import { AddUserInput, GENDER, VerificationTarget } from "../types/api";
 import { useUpload } from "./useUpload";
-import { useDuplicateNickNameCheck } from "./useUser";
 
 export interface ISignUpInput extends Partial<AddUserInput> {
     pwcheck?: string;

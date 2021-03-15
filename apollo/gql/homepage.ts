@@ -55,6 +55,7 @@ export const F_HOMEPAGE = gql`
         openTime
         loginRedirect
         loginOutRedirect
+        tourismbusinessNumber
         PrivacyPolicy
         partnerBpolicy
         usePolicy

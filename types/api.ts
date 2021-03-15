@@ -3052,6 +3052,10 @@ export interface homepage_Homepage_data {
   openTime: string;
   loginRedirect: string;
   loginOutRedirect: string;
+  /**
+   * 관광사업등록번호
+   */
+  tourismbusinessNumber: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
   usePolicy: string;
@@ -3205,6 +3209,10 @@ export interface homepageUpdate_HomepageUpdate_data {
   openTime: string;
   loginRedirect: string;
   loginOutRedirect: string;
+  /**
+   * 관광사업등록번호
+   */
+  tourismbusinessNumber: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
   usePolicy: string;
@@ -7609,6 +7617,10 @@ export interface getContext_Homepage_data {
   openTime: string;
   loginRedirect: string;
   loginOutRedirect: string;
+  /**
+   * 관광사업등록번호
+   */
+  tourismbusinessNumber: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
   usePolicy: string;
@@ -11091,6 +11103,10 @@ export interface Fhomepage {
   openTime: string;
   loginRedirect: string;
   loginOutRedirect: string;
+  /**
+   * 관광사업등록번호
+   */
+  tourismbusinessNumber: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
   usePolicy: string;
@@ -12615,25 +12631,25 @@ export interface CategoryUpdateInput {
 export interface EstimateItemCreateInput {
   title: string;
   options: EstimateItemOptionsCreateInput[];
-  isUse: boolean;
 }
 
 export interface EstimateItemOptionsCreateInput {
   optionName: string;
   option: string;
   price: number;
+  isUse: boolean;
 }
 
 export interface EstimateItemOptionsUpdateInput {
   optionName: string;
   option: string;
   price: number;
+  isUse?: boolean | null;
 }
 
 export interface EstimateItemUpdateInput {
   title?: string | null;
   options?: EstimateItemOptionsUpdateInput[] | null;
-  isUse?: boolean | null;
 }
 
 export interface FeePolicyUpdateInput {

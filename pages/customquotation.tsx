@@ -1,6 +1,4 @@
-import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React, { useState } from 'react';
-import Link from "next/link";
 import { useEstimateList } from '../hook/useEstimate';
 import { EstimateCounter } from '../components/Estimate/EstimateCounter';
 import { estimateItemList_EstimateItemList_data, FestimateItem, FestimateOption } from '../types/api';
@@ -76,7 +74,8 @@ export const CustomQuotationWrap: React.FC<Ipage> = (pageTools) => {
             options: formItem
         };
     })
+    return <div />
     return <CustomQuotation itemsFormData={itemsFormData} key={items.length} items={items} {...pageTools} />
 }
 
-export default CustomQuotation;
+export default CustomQuotationWrap;

@@ -131,7 +131,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
 
     const checkOnDetermined = (isDetermined: boolean) => isDetermined === filter.determined_eq ? "on" : "";
     const checkOnStatus = (status?: ProductStatus) => status === filter.status_eq ? "on" : "";
-    const checkOnElseReq = (req?: ProductReOpenReq) => req === filter.elseReq_not_eq ? undefined : ""
+    const checkOnElseReq = (req?: any) => req === filter.elseReq_not_eq ? undefined : ""
 
     return <MasterLayout>
         <div className="in ">

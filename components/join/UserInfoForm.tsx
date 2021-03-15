@@ -47,7 +47,6 @@ const UserInfoForm: React.FC = () => {
         errDisplay,
         setDaumAddress,
         handleBusinessLicense,
-        handleNickNameCheck
     } = useJoin()
 
     useEffect(() => {
