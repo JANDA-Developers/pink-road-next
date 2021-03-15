@@ -113,21 +113,21 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
         <ul className="infolist">
           <li className="infolist__01" >
             <div className="pack">
-              <Bg className="img"  {...imgKit("purposeCircle1_bg")} />
+              <p {...edit("purposeCircle1_ct")} />
               <strong  {...edit("purposeCircle1")} />
               <span {...edit("purposeCircle1_en")} />
             </div>
           </li>
           <li className="infolist__02" >
             <div className="pack">
-              <Bg className="img" {...imgKit("purposeCircle2_bg")} />
+              <p {...edit("purposeCircle2_ct")} />
               <strong  {...edit("purposeCircle2")} />
               <span {...edit("purposeCircle2_en")} />
             </div>
           </li>
           <li className="infolist__03">
             <div className="pack">
-              <Bg className="img" {...imgKit("purposeCircle3_bg")} />
+              <p {...edit("purposeCircle3_ct")} />
               <strong  {...edit("purposeCircle3")} />
               <span {...edit("purposeCircle3_en")} />
             </div>
@@ -135,7 +135,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
         </ul>
       </div>
     </div>
-    <ThreePhoneNumberInput onChange={setValue} value={value} />
+    {/* <ThreePhoneNumberInput onChange={setValue} value={value} /> */}
 
     <div className="main_con_box6">
       <ul className="mainbn">

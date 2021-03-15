@@ -195,8 +195,7 @@
 
 .main_con_box2 {
     background-color: rgb(255, 255, 255);
-   
-    padding: 20px 3%;
+    padding: 20px 0;
     box-sizing: border-box;
 }
 
@@ -218,29 +217,43 @@
         text-align: center;
         position: relative;
         box-sizing: border-box;
-        padding: 70px 0 0;
+        padding: 70px 0 20px 10%;
+        overflow: hidden;
+    }
+    .main_con_box2 .top_txt::after {
+        content: '';
+        display: inline-block;
+        width: 3000px;
+        height: 3px;
+        background-color: #555555;
+        position: absolute;
+        left: 47px;
+        bottom: 6px;
     }
 
 
         .main_con_box2 .top_txt h2 {
             color: #333;
             font-weight: 600;
-            font-size: 1.7em;
+            font-size: 3.7em;
             line-height: 100%;
             margin-bottom: 10px;
+            text-align: left;   
         }
 
         .main_con_box2 .top_txt span {
-            font-size: 1.1em;
+            font-size: 1.2em;
             color: #333;
             font-weight: 400;
+            display: block;
+            text-align: left;
         }
 
     .main_con_box2 ul {
         position: relative;
         display: block;
         box-sizing: border-box;
-        padding: 35px 0 34px;
+        padding: 35px 3% 34px 10%;
         text-align: center;
     }
 
@@ -260,28 +273,22 @@
         background-position: center;
           
     }
-    .infolist li::after {
-        top: 0;
-        left: 0;
-        position: absolute;
-        background-size: 100%;
-        opacity: 0.5 !important;
-        filter: alpha(opacity=50);
-        z-index: 0;
-        content: "";
-        width: 100%;
-        height: 100%;
-        background-color: #000000;
-    }
-
+        .infolist li p {
+            display: block;
+            font-size: 1.1em;
+            color: #bdbdbd;
+            text-align: left;
+            font-weight: 600;
+        }   
         .infolist li strong {
             display: block;
-            font-size: 1.2em;
+            position: relative;
+            font-size:1.6em;
             padding: 0;
             box-sizing: border-box;
-            color: #ffffff;
+            color: #333333;
+            text-align: left;
             z-index: 10;
-            position: relative;
         }   
         .infolist li strong br {
             display: none;
@@ -289,35 +296,15 @@
 
         .infolist li span {
             display: block;
-            font-size: 0.9em;
+            font-size: 1.4em;
             font-weight: 100;
             line-height: 20px;
             box-sizing: border-box;
-            color: #ffffff;
+            color: #666666;
             z-index: 10;
             position: relative;
+            text-align: left;
         }
-        /* .infolist .infolist__01 {
-            background-image: url(/img/pr_img_01.jpg);
-
-        }
-        .infolist .infolist__02 {
-            background-image: url(/img/pr_img_01.jpg);
-
-        }
-        .infolist .infolist__03 {
-            background-image: url(/img/pr_img_01.jpg); 
-
-        } */
-        /* .infolist .infolist__01 .img,
-        .infolist .infolist__02 .img,
-        .infolist .infolist__03 .img{
-            background-size: 100%;
-            background-position: center;
-            display: block;
-            width: 100%;
-            height: 100%;
-        } */
         .infolist .img {
             position: absolute;
             display: block;
@@ -328,22 +315,6 @@
             border-radius: 10px;
             overflow: hidden;
         }
-/* .main_con_box3 {
-}
-
-    .main_con_box3:before {
-        top: 0;
-        left: 0;
-        position: absolute;
-        background-size: 100%;
-        opacity: 0.8 !important;
-        filter: alpha(opacity=50);
-        z-index: 0;
-        content: "";
-        width: 100%;
-        height: 100%;
-        background-color: #ffffff;
-    } */
 
     .main_con_box3 .top_txt {
         text-align: center;
@@ -377,10 +348,11 @@
     .main_con_box3 li {
         position: relative;
         width: 100%;
+        min-height: 150px;
         display: flex;
         vertical-align: top;
         box-sizing: border-box;
-        padding: 8%;
+        padding: 3%;
         text-align: center;
         background-repeat: no-repeat;
         background-size: 110%;
@@ -412,11 +384,17 @@
 }
 
 .main_con_box3 li span {
-    display: block;
+    display: none;
+    position: relative !important;
+   
     font-size: 0.9em;
     line-height: 150%;
     margin-top: 10px;
     color: #fff;
+}
+.main_con_box3 li:hover span {
+    position: relative !important;
+    display: block;
 }
 
 .main_con_box3 .bgtxt {
@@ -6163,7 +6141,7 @@ i.important_icon {
         }
 
         #viewControl .btn_box .link05 {
-            width: 49%;
+            width: 19%;
             background-color: #fff;
             border: 1px solid #ed297b;
             display: inline-block;
@@ -8792,10 +8770,6 @@ i.calendar {
     .tourstory_box .subtop_nav {
         top: -52px
     }
-
-    .news_box .subtop_nav {
-    }
-
     .culture_box .subtop_nav {
         top: -52px
     }
@@ -8915,7 +8889,7 @@ i.calendar {
     }
 
     .main_con_box2 {
-        padding: 35px 3% 120px;
+        padding: 35px 3% 30px;
     }
 
         .infolist li {
@@ -8958,7 +8932,8 @@ i.calendar {
         }
         .infolist li span {
             padding: 0 0 0 3px;
-            color: #333;
+            color: #616161;
+            line-height: 180%;
             text-align: left;
         }
 
@@ -9097,6 +9072,9 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+    .option_tb .category {
+        padding: 0 7px;
+    }
     .selectViewList ul.list_ul li {
         width: 100%;
 
@@ -9225,7 +9203,7 @@ i.calendar {
         }
 
     .main_con_box1 .w1200 {
-        padding: 0 7%;
+        padding: 0 0;
         text-align: left;
     }
 
@@ -9248,14 +9226,14 @@ i.calendar {
         }
         .main_con_box1 .main_top_images span {
             font-size: 2em;
+            line-height: 190%;
         }
         .main_con_box1 .main_top_images .btn_list {
             text-align: left;
             width: auto;
         }
             .main_con_box2 {
-                padding: 150px 0 150px;
-                background-size: 110%;
+                padding: 150px 0 50px;
             }
     .main_con_box2 .top_txt {
         padding: 25px 0 0;
@@ -9266,34 +9244,61 @@ i.calendar {
         }
 
         .infolist li {
-            width: 300px;
+            width: 29%;
             height: 300px;
             margin: 8px;
-            padding: 10px;
+            padding: 0;
         }
                
             .infolist li strong {
                 display: block;
-                font-size: 22px;
-                margin-top: 10px;
+                font-size: 2.3em;
+                margin-top: 0;
+                padding: 0;
             }
 
             .infolist li span {
                 display: block;
-                font-size: 1em;
-                line-height: 20px;
+                font-size: 1.5em;
+                line-height: 120%;
             }
 
+  
     .main_con_box3 .top_txt {
         padding: 0 0 0;
+        position: relative;
+    
     }
+
 
         .main_con_box3 .top_txt h2 {
             font-size: 3em;
         }
-
+        .main_con_box2 .top_txt::after {
+            content: '';
+            display: inline-block;
+            width: 3000px;
+            height: 3px;
+            background-color: #555555;
+            position: absolute;
+            left: 3px;
+            bottom: -24px;
+        }
+        .main_con_box2 {
+            overflow: hidden;
+        }
+        .main_con_box2 .top_txt{
+            position: relative;
+        }
     .main_con_box2 .top_txt h2 {
-        font-size: 3em;
+        font-size: 7em;
+        text-align: left;
+    }
+    .main_con_box2 .top_txt span{
+        font-size: 3.1em;
+        text-align: left;
+        display: block;
+        font-weight: 100;
     }
     .main_con_box3 ul{
         display: flex;
@@ -10220,10 +10225,11 @@ i.calendar {
     }
 
     .infolist li {
-        width: 300px;
+        width: 25%;
         height: 220px;
-        margin: 22px;
-        padding: 38px 10px 10px;
+        margin: 60px 8% 0px 0;
+        padding: 0;
+
     }
 
     .main_con_box4 .photo_box {
@@ -10541,6 +10547,7 @@ i.calendar {
     }
     .main_con_box1 .main_top_images span {
         padding-left: 0;
+        line-height: 190%;
     }
     .main_con_box1 .main_top_images .btn_list {
         padding-left: 0;
@@ -10650,6 +10657,9 @@ i.calendar {
 }
 
 @media (max-width: 767px) {
+    .big_pd th, .big_pd td {
+        padding: 7px 7px;
+    }
     .quotation__table_fom .content > div{
         width: 100%;
     }
@@ -10675,7 +10685,7 @@ i.calendar {
     }
 
     #viewControl .btn_box .link02 {
-        width: 69.9%;
+        width: 79.9%;
     }
 
     .footer_in .f_detail_wrap,
@@ -10928,6 +10938,31 @@ i.calendar {
 
 
 @media (max-width:360px) {
+    /* .top_visual{
+        height: auto;
+        min-height: 170px;
+    } */
+    ul.list_ul li .img {
+        height: 160px;
+    }
+    .tour_details_in .Read_box .details_photo .photo_list li{
+        height: 45px;
+    }
+    .tour_details_in .Read_box .details_photo .main_photo {
+        height: 184px;
+    }
+    .main_con_box4 .top_txt h2 {
+        font-size: 36px;
+    }
+    .photo_ul.line3 li{
+        height: 190px;
+    }
+    .photo_ul.line3 li:first-child{
+        height: 237px;
+    }
+    ul.photo_ul li .box {
+        padding: 52px 5% 0;
+    }
     .main_con_box1 .main_top_images {
         min-height: 400px;
         background-size: 379%;
