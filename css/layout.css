@@ -1048,7 +1048,7 @@ rect.allmenu_svg {
         width: 100%;
         font-size: 0;
         display: block;
-        padding: 8% 5%;
+        padding:4% 5%;
         box-sizing: border-box;
         justify-content: center;
     }
@@ -1060,7 +1060,7 @@ rect.allmenu_svg {
             margin-bottom: 0;
             width: 100%;
             vertical-align: top;
-            padding: 3% 3%;
+            padding: 2% 3%;
             box-sizing: border-box;
             border-bottom:1px solid #8bbfe757;
         }
@@ -1074,19 +1074,21 @@ rect.allmenu_svg {
             }
 
                 #all_menu ul .a_menu_tit .depth1 li {
-                    width: 48%;
+                    width: auto;
                     display:inline-block;
+                    margin-right: 10px;
                 }
 
                     #all_menu ul .a_menu_tit .depth1 li a {
                         border-bottom: none;
-                        font-size: 16px;
+                        display: block;
+                        font-size: 13px;
                         font-weight: normal;
                         color: #ffffff;
                         opacity: 0.9;
                         font-weight: 100;
                         letter-spacing: -1px;
-                        padding-bottom: 4px;
+                        padding-bottom: 2px;
                     }
 
                         #all_menu ul .a_menu_tit .depth1 li a:hover {
@@ -1094,7 +1096,7 @@ rect.allmenu_svg {
                         }
 
             #all_menu ul .a_menu_tit > a {
-                font-size: 22px;
+                font-size: 17px;
                 font-weight: 600;
                 display: block;
                 color: #ffffff;
@@ -4070,10 +4072,10 @@ margin-bottom:0;
         padding: 0;
     }
     #all_menu ul .a_menu_tit .depth1 li {
-        margin-bottom:10px;
+        margin-bottom:3px;
     }
         #all_menu ul .a_menu_tit .depth1 li:first-child {
-            margin-top:15px;
+            margin-top:2px;
         }
     #all_menu .m_member .profile {
         width:80px;
@@ -4085,11 +4087,24 @@ margin-bottom:0;
       .header .hd_left .logo img {
         height: 29px;
     }
+    #all_menu .m_member {
+        display: none;
+    }
   
 }
 
 @media (max-width:360px) {
- 
+    #all_menu ul .a_menu_tit .depth1 li a{
+        padding-bottom:0;
+    }
+    #all_menu ul .a_menu_tit .depth1 li:first-child {
+        margin-top: 8px;
+    }
+    #all_menu ul .a_menu_tit .depth1 li {
+        margin-bottom: 3px;
+        width: auto;
+        margin-right: 10px;
+    }
     #viewControl .btn_box .link02 {
         width: 100%;
     }
@@ -4109,15 +4124,31 @@ margin-bottom:0;
         background-size: 256%;
     }
     #all_menu .m_member .profile {
-        width: 30%;
+        width: 19%;
     }
 
     #all_menu .m_member .profile_txt {
-        width: 60%;
+        width: 70%;
     }
 
     #all_menu ul .a_menu_tit .depth1 li a {
         font-size: 14px;
+   
     }
-  
+    #all_menu .m_member .profile .photo {
+      
+        width: 50px;
+        height: 50px;
+    }
+    #all_menu .m_member .profile_txt .text02 {
+        font-size: 21px;
+    }
+    #all_menu ul {
+        padding: 4% 5%;
+    }
+    #all_menu ul .a_menu_tit > a {
+        font-size: 16px;
+        padding-bottom: 0px;
+        border-bottom: 0;
+    }
 }
