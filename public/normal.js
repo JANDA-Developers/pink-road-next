@@ -1,56 +1,66 @@
 
 
-// $(window).scroll(function (e) {
-//     var scrollHeight = $(this).scrollTop();
-//     if (scrollHeight < 500) {
-//         $("#gotop").addClass("animationHide");
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('ytplayer', {
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        },
+        loop: 1
+    });
 
-//     } else {
-//         $("#gotop").removeClass("animationHide");
-//     }
-// });
+}
 
+function onPlayerReady() {
+    player.setVolume(3);
 
-// $(document).ready(function () {
-//     closebtn = $('#Popup01 .close_icon');
-//     popup = $('#Popup01');
+}
 
-//     closebtn.click(function () {
-//         icon.toggle(
-//             function () {
-//                 icon.css({ transform: 'rotate(-180deg)' }),
-//                     function () {
-//                         icon.css({ transform: 'rotate( 0deg)' })
+function onPlayerPause() {
+    player.pauseVideo();
 
-//                     })
-// });
-//     btn.click(function () {
-//         layer.toggle(function () {
-//             $(this).find('.description').stop().animate({
-//                 height: "toggle",
-//                 opacity: "toggle"
-//             }, 300);
-//         });
-//     });
-//     // btn.click(function () {
-//     //     layer.toggleClass(
-//     //         function () {
-//     //             layer.addClass('show'),
-//     //                 icon.addClass('rotate180')
-//     //         },
-//     //         function () {
-//     //             layer.addClass('hide'),
-//     //                 icon.addClass('rotate0')
-//     //         }
-//     //     );
-//     //    $(this).toggle(function () {
-//     //             layer.css('display', 'block');
-//     //         }, function () {
-//     //             layer.css('display', 'none');
-//     //         });
-//     // });
+}
 
+function onPlayerPlay() {
+    player.playVideo();
+}
 
-// return false;
+function FNvodSize(_id, _ratio) {
+    var screenWidth = document.documentElement.clientWidth;
+    var screenHeight = document.documentElement.clientHeight;
+    var screenRatio = screenWidth / screenHeight;
+    var offsetY = -((1080 / screenHeight) / 2);
+    var movWidth = 1920;
+    var movHeight = 1080;
+    var movRatio = movWidth / movHeight;
 
-// });
+    if (movRatio <= screenRatio) {
+        var Tratio = _ratio.split(":");
+        var vodW = screenWidth;
+        var vodH = Math.round(vodW * Number(Tratio[1] / Tratio[0]));
+        $(_id).css({
+            "height": vodH,
+            "width": "100%",
+            "margin-top": "-3.35%",
+            "margin-left": -(screenWidth / 2)
+        });
+    } else {
+        $(_id).css({
+            "height": screenHeight,
+            "width": movRatio * screenHeight,
+            "margin-top": "0",
+            "margin-left": -((movRatio * screenHeight) / 2)
+        });
+    }
+}
+
+$(window).load(function () {
+    FNvodSize("#ytplayer", "16:9");
+    $("#vodScreen").animate({
+        "opacity": "0"
+    });
+});
+
+$(window).resize(function () {
+    FNvodSize("#ytplayer", "16:9");
+});

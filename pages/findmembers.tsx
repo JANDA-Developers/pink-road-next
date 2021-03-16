@@ -74,20 +74,18 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
                             info.name = val;
                             setInfo({ ...info })
                         }} value={info.name} type="text" placeholder="이름을 입력해 주세요." /></div>
-                        <h4>휴대전화</h4>
-
-                        
+                        <h4>휴대폰번호</h4>
                         <div className="input_box"><input onChange={(e) => {
                             const val = e.currentTarget.value;
                             info.phoneNumber = val;
                             setInfo({ ...info })
-                        }} value={autoHypenPhone(info.phoneNumber)} type="text" placeholder="가입시 입력한 휴대전화번호를 입력해 주세요." /></div>
+                        }} value={autoHypenPhone(info.phoneNumber)} type="text" placeholder="가입시 입력한 휴대폰번호번호를 입력해 주세요." /></div>
                         <div className="certification_sec"><button onClick={handleEmailFind} className="btn">아이디 찾기</button></div>
                     </div>
                 </div>
                 <div className="right">
                     <h3>비밀번호 찾기</h3>
-                    <span>비밀번호가 기억나지 않으신가요? 가입 시 입력한 이메일(아이디)을 입력하시면, 가입 시 입력한 휴대전화 번호로 임시 비밀번호가 문자로 발송됩니다.</span>
+                    <span>비밀번호가 기억나지 않으신가요? 가입 시 입력한 이메일(아이디)을 입력하시면, 가입 시 입력한 휴대폰번호 번호로 임시 비밀번호가 문자로 발송됩니다.</span>
                     <div className="pwfind_box in_box">
                         <h4>아이디</h4>
                         <div className="input_box"><input onChange={(e) => {

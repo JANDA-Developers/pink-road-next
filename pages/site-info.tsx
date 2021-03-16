@@ -77,7 +77,7 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                 <ul className="infolist">
                     <li className="infolist__01" >
                         <div className="pack">
-                            <Bg className="img" {...imgKit("purpose1_bg")} />
+                            <p {...edit("purpose1_ct")} />
                             <strong  {...edit("purpose1_title")} />
                             <span {...edit("purpose1_bottom")} />
                         </div>
@@ -85,7 +85,7 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                     </li>
                     <li className="infolist__02" >
                         <div className="pack">
-                            <Bg className="img" {...imgKit("purpose2_bg")} />
+                            <p {...edit("purpose2_ct")} />
                             <strong  {...edit("purpose2_title")} />
                             <span {...edit("purpose2_bottom")} />
                         </div>
@@ -93,7 +93,7 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                     </li>
                     <li className="infolist__03" >
                         <div className="pack">
-                            <Bg className="img" {...imgKit("purpose3_bg")} />
+                            <p {...edit("purpose3_ct")} />
                             <strong  {...edit("purpose3_title")} />
                             <span {...edit("purpose3_bottom")} />
                         </div>
