@@ -12,7 +12,7 @@ import { VERIFICATION_COMPLETE } from '../../apollo/gql/user';
 import { VerificationTarget } from '../../types/api';
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
 
-export const Main: React.FC<Ipage> = (pageInfo) => {
+export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
 
     const verifiHook = useVerification();
@@ -43,7 +43,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
         router.push(id);
     }
 
-    return <div className="body main" id="main" >
+    return <div className="body AnonymouseFindBook" id="AnonymouseFindBook" >
         <PageEditor pageTools={pageTools} />
         <div>
             {/* 성함 */}
@@ -84,4 +84,4 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
 };
 
 export const getStaticProps = getStaticPageInfo("anonymouseFindBook");
-export default Main;
+export default AnonymouseFindBook;

@@ -173,10 +173,6 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
         </ul>
       </div>
     </div>
-<<<<<<< HEAD
-    {/* <ThreePhoneNumberInput onChange={setValue} value={value} /> */}
-=======
->>>>>>> master
 
     <div className="main_con_box6">
       <ul className="mainbn">
