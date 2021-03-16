@@ -267,3 +267,48 @@ background-color: #fff;
 .rule_box .subtop_nav {
     bottom: 100%!important;
 }
+
+.upload_out_box {
+    padding-right: 30px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    display: flex!important;
+    align-items: center;
+}
+
+.upload_out_box__closer {
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+}
+
+.txt--flex {
+    display: flex!important;
+    align-items: center;
+}
+
+.upload_out_box__fileName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.imgEdit--editMode {
+    display: flex!important;
+}
+
+.top_bg__clear {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    color: white;
+    z-index: 9;
+    justify-content: center;
+    background-color: rgba(255,0,0,0.3);
+}

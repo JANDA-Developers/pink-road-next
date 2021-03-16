@@ -1,5 +1,5 @@
-import { GetStaticProps } from 'next';
-import React, { useContext, useEffect } from 'react';
+import { GetServerSideProps, GetStaticProps } from 'next';
+import React, { useContext, useEffect, useState } from 'react';
 import { usePageEdit } from '../../hook/usePageEdit';
 import { usePageInfo } from '../../hook/usePageInfo';
 import ITS_GUIDE_INFO from '../../info/itsGuide';
@@ -17,15 +17,17 @@ import { NoData } from '../../components/common/NoData';
 import { Modal } from '../../components/modal/Modal';
 import { openModal } from '../../utils/popUp';
 import { SHARE } from '../../css/component/Share';
-import { sellerFindByKey_SellerFindByKeyPublic_data } from '../../types/api';
+import { Ffile, sellerFindByKey_SellerFindByKeyPublic_data } from '../../types/api';
 import { useRouter } from 'next/router';
 import { AppContext } from '../_app';
 import Link from 'next/link';
-import { BGprofile } from '../../types/const';
+import { BG, BGprofile } from '../../types/const';
 import { clean } from '../../utils/clearn';
 import { tourSearchLink } from '../search';
 import { profile } from 'console';
 import { guideSearchLink } from '../guide-search';
+import { useUserUpdate } from '../../hook/useUser';
+import { omits } from '../../utils/omit';
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 
 //URL 링크
@@ -40,31 +42,14 @@ interface IGudeProfilePage extends Ipage {
 }
 
 
-// This function gets called at build time
-export async function getStaticPaths() {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
-    // Call an external API endpoint to get posts
-    const result = await sellerIdListForPublic();
-
-    const paths = result.data.map(d => ({
-        params: { key: d._id },
-    }));
-
-    console.log({ paths });
-    // We'll pre-render only these paths at build time.
-    // { fallback: false } means other routes should 404.
-    return { paths, fallback: false }
-}
-
-
-export const getStaticProps: GetStaticProps = async ({ params: { key } }) => {
+    const key = params.key
     const { data } = await usePageInfo(key as any);
     const guideData = await userFindByKey("_id", key as string);
     const { data: homepage } = await useHomepageServerSide();
-    console.log({ data });
 
     return {
-        revalidate: 1,
         props: {
             pageKey: key,
             guideData: guideData.data,
@@ -73,6 +58,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { key } }) => {
         },
     }
 }
+
 
 const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
     const { guideData } = pageInfo;
@@ -84,6 +70,18 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
     const filteredKeywards = categoriesMap.GUIDE_KEYWARD.filter(key => {
         return guideData.keywards?.includes(key.label)
     });
+    const [chagnedProfileImg, setChangedProfileImg] = useState("");
+    const [userUpdate, { data }] = useUserUpdate({
+        onCompleted: ({ UserUpdate }) => {
+            if (UserUpdate.ok) {
+                alert("프로필이 수정되었습니다.");
+            } else {
+                setChangedProfileImg("");
+            }
+        }
+    })
+
+    console.log({ chagnedProfileImg });
 
     const pageTools = usePageEdit(pageInfo, ITS_GUIDE_INFO);
     const { edit, set, arrayImgKit, setLang, addArray, removeArray, editMode, page, get, bg, lang, imgKit, linkEdit, src, originPage } = pageTools;
@@ -100,6 +98,20 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
 
     const toProduct = (id: string) => () => {
         push("/tour/view/" + id)
+    }
+
+
+    const changeProfile = (file: Ffile) => {
+        if (!myProfile) throw Error("profile is not exsit");
+        userUpdate({
+            variables: {
+                _id: myProfile._id!,
+                params: {
+                    profileImg: omits(file)
+                }
+            }
+        })
+        setChangedProfileImg(file.uri);
     }
 
     const location = typeof window === "undefined" ? "" : window?.location?.href;
@@ -120,11 +132,26 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
                         </div>
                     </div>
                 </div>
+                {editMode && <div onClick={() => {
+                    if (confirm("정말로 이미지를 삭제 하시겠습니까?"))
+                        set("topBg", "")
+                }} className="top_bg__clear">이미지삭제</div>}
             </Bg>
             <div className="member_box">
                 <div className="w1200">
                     <div className="profile">
-                        <div className="photo"><div className="photo__bg" style={BGprofile(guideData?.profileImg)} /> </div>
+                        <div className="photo"><Bg key={chagnedProfileImg ? "changed" : ""} editMode={editMode} upload={(uri) => {
+                            const result = confirm(`해당수정은 모든 페이지의 표기되는 프로필 사진을 변환시킵니다. 진행 하시겠습니까?`);
+                            if (result) {
+                                changeProfile({
+                                    __typename: "File",
+                                    name: "profileImage" + guideData._id,
+                                    owner: guideData._id,
+                                    uri
+                                });
+                            }
+                        }} bg={chagnedProfileImg ? BG(chagnedProfileImg) : BGprofile(guideData?.profileImg)} className="photo__bg" />
+                        </div>
                         <div className="name"><i>G</i><span >{guideData.nickName || "닉네임 없음"}</span></div>
                         <div className="tag">
                             {filteredKeywards.map((t, i: number) =>

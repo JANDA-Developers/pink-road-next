@@ -93,9 +93,6 @@ const UserInfoForm: React.FC = () => {
                             <i className="important_icon" />
                         비밀번호
                     </label>
-                        <span className={`er red_font ${errDisplay.pw && `on`}`}>
-                            * 비밀번호는 특수문자 1개이상 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다
-                    </span>
                         <input
                             type="password"
                             className="w100"
@@ -105,6 +102,9 @@ const UserInfoForm: React.FC = () => {
                             onChange={handleData("pw")}
                         />
                     </div>
+                    <span>
+                        * 비밀번호는 특수문자 1개이상 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다
+                    </span>
                     <div className="pw_wrap_c">
                         <label>
                             <i className="important_icon" />

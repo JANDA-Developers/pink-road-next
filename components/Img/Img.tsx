@@ -7,7 +7,7 @@ export interface IEditKit<Page = any> {
     bg?: {
         backgroundImage: string;
     } | undefined;
-    src: {
+    src?: {
         src: any;
         "data-imgkey": keyof Page;
         "data-img": string;
@@ -30,6 +30,7 @@ export const HtmlTag: React.FC<IHtmlTag> = ({ tag = "div", ...props }) => {
 
 interface IProp extends IDiv, IEditKit {
     tag?: Ttag
+    editMode?: boolean;
 }
 
 export const Img: React.FC<IProp> = ({ children, upload, src, ...props }) => {
@@ -43,12 +44,13 @@ export const Img: React.FC<IProp> = ({ children, upload, src, ...props }) => {
     </div>;
 };
 
-export const Bg: React.FC<IProp> = ({ tag, children, bg, upload, ...props }) => {
+
+export const Bg: React.FC<IProp> = ({ tag, children, bg, upload, editMode, ...props }) => {
     const { backgroundImage, ...bgpp } = bg || {};
     return <HtmlTag tag={tag} {...bgpp} style={{
         backgroundImage: bg?.backgroundImage
     }} {...props}>
         {children}
-        <Upload onUpload={upload} />
+        <Upload className={editMode ? "imgEdit--editMode" : ""} onUpload={upload} />
     </HtmlTag>
 }

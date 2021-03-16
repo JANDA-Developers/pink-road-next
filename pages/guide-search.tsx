@@ -102,8 +102,9 @@ export const GuideSearch: React.FC<Ipage> = (_pageInfo) => {
 
 
     useEffect(() => {
+        if (!keyward) return;
         const target = categoriesMap.GUIDE_KEYWARD.find(_keyward => {
-            return keyward.trim() === _keyward.label.trim()
+            return keyward?.trim() === _keyward.label?.trim()
         })
 
         if (target) {

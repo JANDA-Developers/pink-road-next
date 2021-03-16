@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/all.css';
 import "dayjs/locale/ko"
 import dayjs from 'dayjs';
@@ -63,8 +63,8 @@ const defaultContext: TContext = {
 
 export const AppContext = React.createContext<TContext>(defaultContext);
 
-//APp파일은 서버사이드 렌더링만함
 function App({ Component, pageProps }: any) {
+  console.log(".....");
   const [editMode, setEditMode] = useState(false);
   const router = useRouter()
   useRouterScroll();
@@ -86,7 +86,6 @@ function App({ Component, pageProps }: any) {
   const isSeller = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
   const isParterB = [UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
   const isParterNonB = [UserRole.partner, UserRole.manager, UserRole.admin].includes(role);
-  {/* <DaumPostcode autoResize autoClose onSearch={() => { }} onComplete={(asd) => { }} /> */ }
 
   const groupsMap = groupMap(groups)
   const catsMap = categoryMap(catList);
@@ -131,6 +130,24 @@ function App({ Component, pageProps }: any) {
     Component = () => <PageDeny msg="인증되지 않은 판매자 입니다. 인증 소요시간은 평균 24시간 입니다." />
   }
 
+  useEffect(() => {
+    function isItIE() {
+      if (typeof window === "undefined") return;
+      var user_agent = window.navigator.userAgent;
+      var is_it_ie = user_agent.indexOf("MSIE ") > -1 || user_agent.indexOf("Trident/") > -1;
+      return is_it_ie;
+    }
+
+    if (isItIE()) {
+      alert(`
+      현 사이트는 Internet Explor를 지원하지 않고 있습니다. 
+      Chorme 또는 Edge브라우저 사용을 권장 드립니다.
+      `)
+    } else {
+      console.log('It is not Internet Explorer');
+    }
+  }, [])
+
   if (router.isFallback) {
     return <div></div>
   }
@@ -139,7 +156,7 @@ function App({ Component, pageProps }: any) {
   return (
     <div className="App">
       <Head>
-
+        <script src="/ie.js" />
       </Head>
       <div id="MuPageLoading" className="muPageLoading" />
       <ApolloProvider client={PinkClient}>

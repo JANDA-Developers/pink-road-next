@@ -6,7 +6,7 @@ import { closeModal } from "../utils/popUp";
 import { useUpload } from "./useUpload";
 
 
-type TChangeAbleData = "keywards" | "is_froreginer" | "gender" | "address" | "account_number" | "busi_num" | "busi_address" | "bank_name" | "address_detail" |"acceptEamil" | "acceptSms" | "name" | "nickName" | "busi_department" | "busi_contact" | "is_priv_corper"
+type TChangeAbleData = "phoneNumber" | "keywards" | "is_froreginer" | "gender" | "address" | "account_number" | "busi_num" | "busi_address" | "bank_name" | "address_detail" |"acceptEamil" | "acceptSms" | "name" | "nickName" | "busi_department" | "busi_contact" | "is_priv_corper"
 type TProfile = Pick<getContext_GetProfile_data,TChangeAbleData>;
 
 export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
@@ -57,7 +57,8 @@ export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
         acceptSms: defaultData.acceptSms || false,
         is_priv_corper: defaultData.is_priv_corper || false,
         gender: defaultData.gender,
-        is_froreginer: defaultData.is_froreginer
+        is_froreginer: defaultData.is_froreginer,
+        phoneNumber: defaultData.phoneNumber || ""
     });
 
     const toggleCheck = (key: "acceptEamil" | "acceptSms") =>  () => {
@@ -124,6 +125,7 @@ export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
         toggleCheck,
         bankImg, 
         setBankImg,
+        setBusiRegistration,
         hiddenBusiFileInput,
         hiddenBankFileInput,
         handleBankRegistration,

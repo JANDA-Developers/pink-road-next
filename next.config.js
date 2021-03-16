@@ -29,7 +29,6 @@ module.exports = {
             }
             
             config.resolve.alias['react'] = path.resolve(__dirname, '.', 'node_modules', 'react');
-            config.optimization.minimize = false;
             return config;
         }
     })
