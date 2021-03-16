@@ -459,7 +459,7 @@ ul.list_ul li .category {
     width: 100%;
     display: block;
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 10px; 
 }
 
     ul.list_ul li .category span {
@@ -2906,6 +2906,9 @@ div.sum_div {
 }
 
 @media (max-width:767px) {
+    ul.list_ul.line4 li .img{
+        height: 170px;
+    }
     .photo_ul.line4 li {
         height: 185px;
     }
@@ -2991,4 +2994,11 @@ div.sum_div {
     .board_write .write_type .input_form, .board_write .write_type .form {
         width: 100%;
     }
+    ul.list_ul.line3 li .img {
+        height: 180px;
+    }
+    ul.list_ul.line4 li {
+        margin-bottom: 20px;
+    }
+    
 }

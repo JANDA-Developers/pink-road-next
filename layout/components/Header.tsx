@@ -247,7 +247,7 @@ export const Header: React.FC<IProp> = () => {
                             {isLogin ? ""
                                 : <span><Link href="/member/join"><a>JOIN</a></Link></span>}
                             <span><Link href="/service/question"><a>문의하기</a></Link></span>
-                            <span><Link href="/service/event"><a>이벤트</a></Link></span>
+                            {/* <span><Link href="/service/event"><a>이벤트</a></Link></span> */}
                             {/* <span><Link href="https://booking-app.stayjanda.cloud/#/"><a>예약관리시스템</a></Link></span> */}
                         </div>
                         <ul>
