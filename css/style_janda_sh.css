@@ -241,10 +241,17 @@
             text-align: left;   
         }
 
-        .main_con_box2 .top_txt span {
-            font-size: 1.2em;
+        .main_con_box2 .top_txt strong {
+            font-size: 1.6em;
             color: #333;
             font-weight: 400;
+            display: block;
+            text-align: left;
+        }
+        .main_con_box2 .top_txt span {
+            font-size: 1.4em;
+            color: #666666;
+            font-weight: 100;
             display: block;
             text-align: left;
         }
@@ -2668,16 +2675,17 @@ ul.rank_ul {
         font-size: 22px;
         margin-bottom: 20px;
     }
-
+.siteInfo_in .siteInfo__top{
+    background-size: 110%;
+}
     .siteInfo_in .top_bg {
         position: relative;
         display: block;
         width: 100%;
-        height:250px;
-        padding: 100px 5% 0;
+        height: 330px;
+        padding: 120px 5% 0;
         box-sizing: border-box;
         background-position: center;
-        background-size: 187%;
     }
 
         .siteInfo_in .top_bg h3 {
@@ -2704,6 +2712,7 @@ ul.rank_ul {
         padding: 100px 0 100px;
         box-sizing: border-box;
         background-color: rgb(252, 252, 252);
+        overflow: hidden;
     }
 
     .siteInfo_in .con03 {
@@ -2797,6 +2806,7 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con06 {
+        background-color: #ffffff;
         padding: 250px 5%;
         box-sizing: border-box;
         text-align: center;
@@ -2834,43 +2844,54 @@ ul.rank_ul {
         }
 
     .siteInfo_in .con02 .top_txt {
-        text-align: center;
+        text-align: left;
         position: relative;
         width: 100%;
         display: block;
         box-sizing: border-box;
-        padding: 0 5%;
+        padding: 0px 0 20px 10%;
+        overflow: hidden;
+    }
+    .siteInfo_in .con02 .top_txt::after {
+        content: '';
+        display: inline-block;
+        width: 3000px;
+        height: 3px;
+        background-color: #555555;
+        position: absolute;
+        left: 50px;
+        bottom: 2px;
     }
 
         .siteInfo_in .con02 .top_txt h4 {
             color: #333333;
             font-weight: 600;
-            font-size: 32px;
+            font-size: 3.6em;
             line-height: 65%;
         }
 
         .siteInfo_in .con02 .top_txt p {
-            font-size: 14px;
+            font-size: 1.3em;
             color: #333333;
-            font-weight: 400;
+            font-weight: 100;
         }
 
     .siteInfo_in .con02 ul {
         position: relative;
         display: block;
         box-sizing: border-box;
-        padding: 35px 0 0;
+        padding: 35px 0 0 50px;
         text-align: center;
     }
 
     .siteInfo_in .con02 li {
-        width: 88%;
+        width: 100%;
         height: auto;
         display: inline-block;
-        margin: 1%;
-        text-align: center;
+        margin: 0;
+        text-align: left;
         color: #333333;
-        padding: 10px 10px 20px 10px;
+        padding: 10px 10px 0px 0px;
         box-sizing: border-box;
         vertical-align: top;
         position: relative;
@@ -2884,7 +2905,13 @@ ul.rank_ul {
         .siteInfo_in .con02 li strong {
             display: block;
             font-size: 1.3em;
-            text-align: center;
+            text-align: left;
+        }
+        .siteInfo_in .con02 li span {
+            display: block;
+            font-size: 1.2em;
+            line-height: 120%;
+            text-align: left;
         }
 
         .siteInfo_in .con02 li p {
@@ -2892,9 +2919,24 @@ ul.rank_ul {
             font-size: 0.9em;
             line-height: 20px;
             margin-top: 5px;
-            text-align: center;
+            text-align: left;
+            font-weight: 600;
         }
 
+    .siteInfo_in .siteInfo__top::before {
+            top: 0;
+            left: 0;
+            position: absolute;
+            background-size: 100%;
+            opacity: 0.5 !important;
+            filter: alpha(opacity=50);
+            z-index: 0;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+        
+    }
     .siteInfo_in .con01 {
         position: relative;
         overflow: hidden;
@@ -2908,7 +2950,7 @@ ul.rank_ul {
         content: '';
         position: absolute;
         top: 7%;
-        left: -320px;
+        left: -540px;
         margin-top: -500px;
         width: 1000px;
         height: 1000px;
@@ -3439,7 +3481,7 @@ ul.rank_ul {
         position: absolute;
         top: -573px;
         left: 70px;
-        transform: rotate(0deg);
+        /* transform: rotate(0deg); */
     }
 
     .siteInfo_in .con05 .w1200:after {
@@ -3451,7 +3493,7 @@ ul.rank_ul {
         position: absolute;
         top: -582px;
         left: 40px;
-        transform: rotate(0deg);
+        /* transform: rotate(0deg); */
     }
 
 .siteInfo_in .con05 h4 {
@@ -3479,7 +3521,7 @@ ul.rank_ul {
         position: relative;
         display: block;
         margin-bottom: 20px;
-        padding-left: 42px;
+        padding-left: 27px;
     }
 
     .siteInfo_in .con05 .in_txt .y2020 {
@@ -3576,7 +3618,7 @@ ul.rank_ul {
             background-color: #ffffff;
         }
 
-.siteInfo_in .con06::after {
+/* .siteInfo_in .con06::after {
     content: '';
     display: inline-block;
     width: 2px;
@@ -3585,7 +3627,7 @@ ul.rank_ul {
     position: absolute;
     left: 50%;
     top: 65px;
-}
+} */
 
 .siteInfo_in .con06 h4 {
     display: block;
@@ -8741,12 +8783,18 @@ i.calendar {
 
         .main_con_box1 .main_top_images strong {
             margin-top: 100px;
-            font-size: 2em;
+            font-size: 4em;
             line-height: 100%;
         }
-
-        .main_con_box1 .main_top_images span {
+        .main_con_box1 .main_top_images strong::after{
+            bottom: -15px;
+            left: 0;
+            margin-left: 3px;
+        }
+        .main_con_box1 .main_top_images > span {
             font-size: 1.1em;
+            margin-top: 30px; 
+            line-height: 100%;
         }
         .main_con_box1 .main_top_images .btn_list{
             width: 100%;
@@ -8800,17 +8848,17 @@ i.calendar {
 
     .siteInfo_in .con02 {
         background-size: 150%;
+        padding: 150px 0;
     }
 
         .siteInfo_in .con02 li {
-            width: 29%;
-            margin: 5px;
-            padding: 10px;
+            width: 26%;
+            margin: 0 7% 0 0;
+            padding: 0;
         }
 
-
             .siteInfo_in .con02 li strong {
-                font-size: 1em;
+                font-size: 1.7em;
                 text-align: left;
                 padding-left: 0;
             }
@@ -8819,10 +8867,14 @@ i.calendar {
                 font-size: 14px;
                 line-height: 20px;
                 margin-top: 10px;
-                text-align: center;
+                text-align: left;
                 padding-left: 0;
             }
-
+            .siteInfo_in .con02 li span {
+                display: block;
+                font-size: 1.5em;
+                line-height: 120%;
+            }
 
     .siteInfo_in .con01 .haf_first {
         width: 95%;
@@ -9072,6 +9124,9 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+    .siteInfo_in .con02 ul{
+        padding: 35px 0 0 0;
+    }
     .option_tb .category {
         padding: 0 7px;
     }
@@ -9237,6 +9292,7 @@ i.calendar {
             }
     .main_con_box2 .top_txt {
         padding: 25px 0 0;
+        overflow: unset;
     }
 
         .main_con_box2 ul {
@@ -9311,8 +9367,8 @@ i.calendar {
     }
 
     .siteInfo_in .top_bg {
-        height: 710px;
-        padding: 170px 0 0;
+        height: 580px;
+        padding: 250px 0 0;
         background-position: center;
         background-size: 180%;
     }
@@ -9347,21 +9403,37 @@ i.calendar {
 
         .siteInfo_in .con02 .top_txt {
             padding: 0;
+            overflow: unset;
         }
-
+        .siteInfo_in .con02 .top_txt::after {
+            content: '';
+            display: inline-block;
+            width: 3000px;
+            height: 3px;
+            background-color: #555555;
+            position: absolute;
+            left: 3px;
+            bottom: -24px;
+        }
             .siteInfo_in .con02 .top_txt h4 {
-                font-size: 3em;
+                font-size: 7em;
+                text-align: left;
             }
 
             .siteInfo_in .con02 .top_txt p {
-                font-size: 1em;
+                font-size: 3.1em;
+                display: block;
+                text-align: left;
+                font-weight: 100;
             }
 
         .siteInfo_in .con02 li {
-            width: 300px;
-            margin: 1%;
-            padding: 10px;
+            width: 25%;
+            height: 220px;
+            margin: 60px 8% 0px 0;
+            padding: 0;
         }
+
 
         .siteInfo_in .con04 .li05::after {
             content: '';
@@ -9627,7 +9699,7 @@ i.calendar {
     }
 
         .siteInfo_in .con05 h4 {
-            font-size: 56px;
+            font-size:43px;
             line-height: 100%;
             width: 25%;
             left: 50px;
@@ -9638,19 +9710,19 @@ i.calendar {
             width: 25px;
             height: 257%;
             top: -573px;
-            left: -77px;
-            transform: rotate(24deg);
+            left: 317px;
+            /* transform: rotate(24deg); */
         }
 
         .siteInfo_in .con05 .w1200:after {
             width: 25px;
             height: 257%;
             top: -582px;
-            left: -27px;
-            transform: rotate(24deg);
+            left: 360px;
+            /* transform: rotate(24deg); */
         }
 
-        .siteInfo_in .con05 .in_txt .y2020 {
+        /* .siteInfo_in .con05 .in_txt .y2020 {
             left: 123px;
         }
 
@@ -9686,7 +9758,7 @@ i.calendar {
 
         .siteInfo_in .con05 .in_txt .y2012 {
             left: -364px;
-        }
+        } */
 
         .siteInfo_in .con05 .in_txt .year:after {
             left: -79px;
@@ -10024,7 +10096,7 @@ i.calendar {
 
 .main_con_box3 li span {
     position: absolute;
-    top: 42%;
+    top: 4%;
     display: none;
     width: 100%;
     font-size: 0.9em;
@@ -10037,8 +10109,8 @@ i.calendar {
     padding: 5%;
 }
 .main_con_box3 li .bgtxt{
-    position: absolute;
-    display: flex;
+    position: initial;
+    display: grid;
     top:0;
     left: 0;
     bottom: 0;
@@ -10069,7 +10141,7 @@ i.calendar {
     
 }
 .main_con_box3 li:hover strong{
-    margin-top: -70px;
+    margin-top: 0;
     
 }
 
@@ -10083,7 +10155,7 @@ i.calendar {
         width:50%;
     }
     .siteInfo_in .con02 li strong {
-        font-size: 1.3em;
+        font-size: 2.3em;
     }
     div.alignment .right_div {
         width:50%;
@@ -10299,9 +10371,6 @@ i.calendar {
             line-height: 30px;
         }
 
-    .siteInfo_in .con02 li {
-        margin: 1%;
-    }
     .siteInfo_in .con03 {
         min-height: 830px;
         padding: 365px 25% 0;
@@ -10330,20 +10399,20 @@ i.calendar {
             width: 25px;
             height: 257%;
             top: -573px;
-            left: 170px;
-            transform: rotate(28deg);
+            left: 430px;
+            /* transform: rotate(28deg); */
         }
 
         .siteInfo_in .con05 .w1200:after {
             width: 25px;
             height: 257%;
             top: -582px;
-            left: 121px;
-            transform: rotate(28deg);
+            left: 471px;
+            /* transform: rotate(28deg); */
         }
 
         .siteInfo_in .con05 .in_txt {
-            padding-left: 611px;
+            padding-left: 521px;
         }
 
         .siteInfo_in .con05 .w1200 {
@@ -10657,6 +10726,9 @@ i.calendar {
 }
 
 @media (max-width: 767px) {
+    .siteInfo_in .con04 .li05{
+        padding-top: 25px;
+    }
     .big_pd th, .big_pd td {
         padding: 7px 7px;
     }
@@ -10752,12 +10824,14 @@ i.calendar {
             }
 
     .siteInfo_in .top_bg h3 {
-        font-size: 1.2em;
+        font-size: 2.6em;
+        line-height: 110%;
     }
 
     .siteInfo_in .top_bg span {
-        font-size: 0.9em;
-        line-height: 100%;
+        font-size: 1.3em;
+        line-height: 150%;
+        font-weight: 100;
     }
 
     .siteInfo_in .con06 h4 strong {
@@ -10793,7 +10867,7 @@ i.calendar {
 
         .main_con_box1 .main_top_images strong {
             width: 100%;
-            font-size: 2em;
+            font-size: 4em;
             text-align: center;
             margin-top: 123px;
         }
