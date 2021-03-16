@@ -99,7 +99,7 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
                     </div>
                 </div>
             </div>
-            <div className="info_txt">
+            <div className="info__txt">
                 <dl>
                     <dt>비밀번호나 아이디 찾기에 어려움이 있으신가요?</dt>
                     <dd>

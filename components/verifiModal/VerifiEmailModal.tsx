@@ -95,18 +95,18 @@ export const VerifiEamilModal: React.FC<IProp> = ({ defaultPayload, target = Ver
     const sendCountOver = sendEmailCount > 5;
 
     return <Modal title={`${targetName}인증`} id={id || `emailVerifi`} inClassName="emailVerifiModal" >
-        <h6>
+        <h4>
             {targetName}을 입력 해주세요.
-                </h6>
-        <input className="emailVerifi__input" value={isEmailVerifi ? payload : autoHypenPhone(payload)} onChange={(e) => {
+                </h4>
+        <input className="emailVerifi__input input mb10" value={isEmailVerifi ? payload : autoHypenPhone(payload)} onChange={(e) => {
             setPayload(e.currentTarget.value)
         }} />
         {sendEmailCount ?
             <div className="emailVerifi__underBox">
-                <h6>
+                <h4>
                     인증번호를 입력 해주세요.
-            </h6>
-                <input className="emailVerifi__input" value={code} onChange={(e) => {
+            </h4>
+                <input className="emailVerifi__input input mb10" value={code} onChange={(e) => {
                     setCode(e.currentTarget.value)
                 }} />
             </div> : ""
