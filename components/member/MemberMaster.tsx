@@ -39,7 +39,7 @@ export interface IMemberTableProp {
 }
 
 
-type TuniqSearch = keyof Pick<_UserFilter, "name_eq" | "email_eq" | "phoneNumber_eq" | "nickName_eq">
+type TuniqSearch = keyof Pick<_UserFilter, "name_eq" | "email_eq" | "phoneNumber_eq">
 
 interface IProp {
     type?: UserRole;
@@ -211,7 +211,6 @@ export const MemberMaster: React.FC<IProp> = ({ type, Table, signOut, BoardOptio
                                     {BoardOptions}
                                     <option value={undefined}>전체</option>
                                     <option value={"name_eq" as TuniqSearch}>이름</option>
-                                    <option value={"nickName_eq" as TuniqSearch}>닉네임</option>
                                     <option value={"email_eq" as TuniqSearch}>아이디</option>
                                     <option value={"phoneNumber_eq" as TuniqSearch}>휴대폰</option>
                                 </select>

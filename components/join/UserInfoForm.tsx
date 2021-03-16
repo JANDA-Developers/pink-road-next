@@ -14,6 +14,7 @@ import dayjs from 'dayjs';
 import { VerifiEamilModal } from '../verifiModal/VerifiEmailModal';
 import { useVerification } from '../../hook/useVerification';
 import { closeModal, openModal } from '../../utils/popUp';
+import { ThreePhoneNumberInput } from '../phoneNumberInput/PhoneNumberInput';
 
 const UserInfoForm: React.FC = () => {
     const verifiHook = useVerification();
@@ -46,8 +47,6 @@ const UserInfoForm: React.FC = () => {
         errDisplay,
         setDaumAddress,
         handleBusinessLicense,
-        nickNameChecked,
-        handleNickNameCheck
     } = useJoin()
 
     useEffect(() => {
@@ -81,7 +80,7 @@ const UserInfoForm: React.FC = () => {
                     <div className="ph_wrap">
                         <label>
                             <i className="important_icon" />
-                        이메일
+                        아이디
                     </label>
                         <span className={`er red_font ${errDisplay.email && `on`}`}>
                             *해당 이메일은 이미 사용중입니다.
@@ -137,24 +136,26 @@ const UserInfoForm: React.FC = () => {
                             onChange={handleData("pwcheck")}
                         />
                     </div>
-                    <div className="name_wrap">
-                        <label>
-                            <i className="important_icon" />
+                    {/* {isIndi ? <div /> :
+                        <div className="name_wrap">
+                            <label>
+                                <i className="important_icon" />
                         닉네임
                         </label>
-                        <span className={`er red_font ${errDisplay.nickName && `on`}`}>*특수문자를 입력하지 말아주세요.</span>
-                        <div>
-                            <input
-                                type="text"
-                                className="w80"
-                                placeholder="닉네임을 입력해주세요"
-                                name="name"
-                                value={data.nickName}
-                                onChange={handleData("nickName")}
-                            />
-                            <button style={{ lineHeight: "100%" }} onClick={handleNickNameCheck} type="button" className={`btn btn_mini ${nickNameChecked && "ok"}`}>{nickNameChecked ? "사용가능" : "중복확인"} </button>
+                            <span className={`er red_font ${errDisplay.nickName && `on`}`}>*특수문자를 입력하지 말아주세요.</span>
+                            <div>
+                                <input
+                                    type="text"
+                                    className="w80"
+                                    placeholder="닉네임을 입력해주세요"
+                                    name="name"
+                                    value={data.nickName}
+                                    onChange={handleData("nickName")}
+                                />
+                                <button style={{ lineHeight: "100%" }} onClick={handleNickNameCheck} type="button" className={`btn btn_mini ${nickNameChecked && "ok"}`}>{nickNameChecked ? "사용가능" : "중복확인"} </button>
+                            </div>
                         </div>
-                    </div>
+                    } */}
                     <div className="name_wrap">
                         <label>
                             <i className="important_icon" />
@@ -174,14 +175,18 @@ const UserInfoForm: React.FC = () => {
                     {isPartenerB || <div className="ph_wrap">
                         <label>
                             <i className="important_icon" />
-                        연락처
+                        휴대폰번호
                         </label>
                         <span className={`er red_font ${errDisplay.phoneNumber && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
                         <div className="w100">
+                            {/* <ThreePhoneNumberInput
+                            className={isPhoneVerified ? "w100" : "w80"}
+                            onChange={setValue} 
+                            value={value} 
+                            /> */}
                             <input
                                 id="PhoneNumberInput"
                                 type="text"
-                                className={isPhoneVerified ? "w100" : "w80"}
                                 placeholder="인증하기를 통해 번호를 입력 해주세요"
                                 name="contact"
                                 readOnly={isPhoneVerified}
@@ -197,14 +202,6 @@ const UserInfoForm: React.FC = () => {
                             }
                         </div>
                     </div>}
-
-                    <hr />
-                    <h4>
-                        {isIndi && "추가정보"}
-                        {isPartenerB && "기업정보"}
-                        {isPartner && "개인파트너 정보"}
-                    </h4>
-
                     {isIndi &&
                         <div>
                             <div className="ph_wrap">
@@ -376,7 +373,7 @@ const UserInfoForm: React.FC = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="ph_wrap">
+                            {/* <div className="ph_wrap">
                                 <label>
                                     <i className="important_icon" />
                                 사업자등록증
@@ -395,14 +392,12 @@ const UserInfoForm: React.FC = () => {
                                     <input type="file" name="business_license" id="business_license"
                                         className="file_busi_license"
                                         onChange={handleBusinessLicense}></input>
-                                    {/* <button type="button" className="btn btn_mini">
-                  업로드
-                </button> */}
+                             
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     }
-                    <div className="ph_wrap">
+                    {/* <div className="ph_wrap">
                         <label>
                             <i className="important_icon" />
                                 통장사본
@@ -422,7 +417,7 @@ const UserInfoForm: React.FC = () => {
                                 className="file_busi_license"
                                 onChange={handleBankImg}></input>
                         </div>
-                    </div>
+                    </div> */}
                     {isIndi ||
                         <div className="ph_wrap">
                             <label>정산계좌</label>

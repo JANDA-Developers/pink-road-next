@@ -75,6 +75,8 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
                             setInfo({ ...info })
                         }} value={info.name} type="text" placeholder="이름을 입력해 주세요." /></div>
                         <h4>휴대전화</h4>
+
+                        
                         <div className="input_box"><input onChange={(e) => {
                             const val = e.currentTarget.value;
                             info.phoneNumber = val;

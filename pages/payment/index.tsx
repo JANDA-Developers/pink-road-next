@@ -107,7 +107,8 @@ export const Payment: React.FC<IProp> = ({ }) => {
     }
 
     return <PaymentLayout>
-        <NiceElments ReqReserved={encodeURIComponent(JSON.stringify(customParams || {}))}
+        <NiceElments
+            ReqReserved={encodeURIComponent(JSON.stringify(customParams || {}))}
             {...generateNiceData({
                 auth: niceAuth,
                 buy: niceBuy,

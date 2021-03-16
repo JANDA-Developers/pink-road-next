@@ -35,7 +35,7 @@ const refundPolicy = () => {
             <div className="privacy_box w1200">
                 <PolicyTopNav />
                 <div dangerouslySetInnerHTML={{
-                    __html: homepage?.refundPolicy || ""
+                    __html: ""
                 }} />
             </div>
 

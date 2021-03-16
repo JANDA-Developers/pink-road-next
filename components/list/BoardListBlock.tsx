@@ -1,15 +1,19 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { generateSearchLink } from '../../pages/search';
 import { BoardList_BoardList_data, BoardType } from '../../types/api';
 import { BG } from '../../types/const';
+import { productStatus } from '../../utils/enumToKr';
+import { autoComma } from '../../utils/formatter';
+import { yyyymmdd } from '../../utils/yyyymmdd';
 
 interface IProp {
     board: BoardList_BoardList_data
 }
 
 export const BoardListBlock: React.FC<IProp> = ({ board }) => {
-    const { _id, title, subTitle, thumb, keyWards, boardType } = board;
+    const { _id, images, boardType, status, maxMember, adult_price, address, title, subTitle, thumb, keyWards, createdAt } = board;
     const router = useRouter();
 
     const getPath = () => {
@@ -19,52 +23,37 @@ export const BoardListBlock: React.FC<IProp> = ({ board }) => {
         if (boardType === BoardType.PRODUCT) return "tour";
         if (boardType === BoardType.QNA) return "qna";
         if (boardType === BoardType.QUESTION) return "question";
-    }
+    };
+
+    const isProduct = boardType === BoardType.PRODUCT;
 
     const link = `/${getPath()}/view/${_id}`;
+    const img = images?.[0]?.uri
+    const thumbImg = img || thumb?.uri
 
-    // return <li className="list_in">
-    //     <div onClick={() => {
-    //         router.push(link)
-    //     }} style={BG(thumb?.uri || "")} className="img" />
-    //     <div className="txt1">
-    //         <div className="title"><a href={link}>{title}</a></div>
-    //         <div className="subtitle">
-    //             {subTitle}
-    //         </div>
-    //         {/* <div className="cash"><strong>{autoComma(product.adult_price)}</strong>원</div> */}
-    //     </div>
-    //     <div className="txt2">
-    //         {/* <span>장소 : {product.address}</span>
-    //         <span>모집인원 : {product.bookingCount}/{product.maxMember}</span>
-    //         <span>기간 : 당일체험</span>
-    //         <Link href={"/tour/view/" + product._id}>
-    //             <span className="btn">바로가기</span>
-    //         </Link> */}
-    //     </div>
-    // </li>;
-
-    return <li className="list_in" onClick={() => { router.push(link) }}>
-        <div
+    return <li className="list_in">
+        {thumbImg && <div
             className="textbox__img"
-            style={BG(thumb?.uri || "")}
-        />
+            style={BG(thumbImg || "")}
+        />}
         <div className="textbox__01">
-            <div className="day">[ 2020-33-33 ]</div>
+            <div className="day">[ {yyyymmdd(createdAt)} ]</div>
             <div className="title">{title}</div>
             <div className="txt">{subTitle}</div>
             <div className="tag">
-                <a href="/">#문화</a>
-                <a href="/">#예술</a>
-                <a href="/">#전포</a>
-                <a href="/">#부산</a>
+                {keyWards?.map((keyward, index) =>
+                    <Link href={generateSearchLink({ keyward })} key={_id + index + "keyward"}><a>#{keyward}</a></Link>
+                )}
             </div>
-            <div className="cash"><strong>1,000</strong>원</div>
+            {isProduct && <div className="cash"><strong>{autoComma(adult_price || 0)}</strong>원</div>}
         </div>
-        <div className="textbox__02">
-            <span>장소 : 부산역앞</span>
-            <span>모집인원 : 22/50</span>
-            <span>기간 : 당일체험</span>
-        </div>
+        {isProduct &&
+            <div className="textbox__02">
+                <span>장소 : {address}</span>
+                <span>{productStatus(status as any)}</span>
+                {/* <span>모집인원 : {compeltePeopleCnt}/{maxMember}</span> */}
+                {/* <span>기간 : {dateRange}</span> */}
+            </div>
+        }
     </li>
 };

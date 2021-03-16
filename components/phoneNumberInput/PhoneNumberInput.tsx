@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from "jquery";
+import { IDiv } from '../../types/interface';
 
 
 export interface Ivalue {
@@ -8,7 +9,7 @@ export interface Ivalue {
     three: string;
 }
 
-interface IProp {
+interface IProp extends Omit<IDiv,"onChange"> {
     value: Ivalue
     onChange: (value: Ivalue) => void;
 }

@@ -2,10 +2,10 @@ import $ from 'jquery'
 import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { Footer } from './components/Footer';
-import { Header } from './components/Header';
 import dynamic from 'next/dynamic';
 import jwt from "jsonwebtoken";
 import dayjs from 'dayjs';
+import { Header } from './components/Header';
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 interface IProp { }
@@ -22,7 +22,6 @@ export const Layout: React.FC<IProp> = ({ children }) => {
                 integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
                 crossOrigin="anonymous"
             ></script>
-            <script src="/normal.js"></script>
         </Head>
         <Header />
         {children}

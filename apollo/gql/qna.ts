@@ -10,7 +10,7 @@ export const F_QNA = gql`
         title
         contents
         author {
-            ...Fuser
+          ...Fuser
         }
         isNotice
         isOpen

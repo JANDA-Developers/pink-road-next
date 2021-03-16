@@ -4,6 +4,9 @@ const info = {
     m_01_mainBg1: {
         kr: `/img/pr_img_43.jpg`,
     },
+    main_slideImgs: {
+        value: []
+    },
     m_01_mainLink1_1: {
         kr: `투어`,
     },

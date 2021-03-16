@@ -188,6 +188,7 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
                 const err:CustomErrorResponse = result[operationName]?.error;
                 // @ts-ignore
                 userErrorHandle(result[operationName])
+                // @ts-ignore
                 options?.onCompleted?.(result) || defaultOptions?.onCompleted?.(result)
             }
         });

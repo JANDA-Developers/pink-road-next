@@ -169,7 +169,7 @@ export const UserHandWriteModal: React.FC<IProp> = () => {
                         </div>
                         </div>
                         <div className="tr">
-                            <div className="th01">마케팅정보 수신동의</div>
+                            <div className="th01">SMS, E-mail 수신동의</div>
                             <div className="td01">
                                 <span className="checkbox mr5">
                                     <input type="checkbox" id={`agree${i}`} title="동의" /><label htmlFor={`agree${i}`} />

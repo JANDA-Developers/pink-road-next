@@ -48,7 +48,7 @@ export const AnnounceDetail: React.FC<IProp> = () => {
             onList={toList}
             thumb={thumb}
             content={contents}
-            writer={author?.nickName || ""}
+            writer={author?.name || ""}
             title={title}
             subTitle={subTitle || ""}
             onDelete={handleDelete}

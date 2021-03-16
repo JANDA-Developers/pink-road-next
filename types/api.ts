@@ -37,14 +37,14 @@ export interface announceFindById_AnnounceFindById_data_author_bankImg {
 export interface announceFindById_AnnounceFindById_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -250,14 +250,14 @@ export interface announceList_AnnounceList_data_author_bankImg {
 export interface announceList_AnnounceList_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -512,10 +512,6 @@ export interface answerCreate_AnswerCreate_data_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: answerCreate_AnswerCreate_data_author_profileImg | null;
@@ -635,6 +631,11 @@ export interface BoardList_BoardList_error {
   message: string;
 }
 
+export interface BoardList_BoardList_data_images {
+  __typename: "File";
+  uri: string;
+}
+
 export interface BoardList_BoardList_data_thumb {
   __typename: "File";
   uri: string;
@@ -647,13 +648,20 @@ export interface BoardList_BoardList_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  maxMember: number | null;
+  images: BoardList_BoardList_data_images[] | null;
+  boardType: BoardType;
+  address: string | null;
+  baby_price: number | null;
+  adult_price: number | null;
+  status: string | null;
+  kids_price: number | null;
   contents: string;
   isNotice: boolean | null;
   isOpen: boolean | null;
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  boardType: BoardType;
   thumb: BoardList_BoardList_data_thumb | null;
   viewCount: number;
   likeCount: number;
@@ -972,6 +980,162 @@ export interface bookingListVariables {
   filter?: _BookingFilter | null;
   pageInput: pageInput;
   isTimeOverExcept?: boolean | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: bookingFindByInfo
+// ====================================================
+
+export interface bookingFindByInfo_BookingFindByInfo_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_payment_history {
+  __typename: "TxHistory";
+  status: string;
+  price: number;
+  metadata: any | null;
+  createdAt: any;
+  updatedAt: any;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_payment {
+  __typename: "Payment";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  payMethod: PayMethod;
+  status: PaymentStatus;
+  price: number;
+  totalCancelPrice: number;
+  cancelDate: any | null;
+  isPartialCancel: number;
+  groupCode: string | null;
+  history: bookingFindByInfo_BookingFindByInfo_data_payment_history[];
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_product_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_product_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_product_author {
+  __typename: "User";
+  name: string;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data_product {
+  __typename: "Product";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  code: string;
+  determined: boolean;
+  contents: string;
+  category: bookingFindByInfo_BookingFindByInfo_data_product_category | null;
+  status: ProductStatus;
+  inOrNor: string;
+  info: string;
+  caution: string;
+  images: bookingFindByInfo_BookingFindByInfo_data_product_images[] | null;
+  /**
+   * 상품 하나에 대한 결제완료된 예약 총 인원
+   */
+  compeltePeopleCnt: number;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
+  keyWards: string[] | null;
+  address: string;
+  startPoint: string;
+  maxMember: number;
+  minMember: number;
+  subTitle: string | null;
+  adult_price: number;
+  bookingCount: number;
+  dateRange: number;
+  kids_price: number;
+  baby_price: number;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  type: ProductType;
+  startDate: any;
+  Dday: number;
+  author: bookingFindByInfo_BookingFindByInfo_data_product_author | null;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo_data {
+  __typename: "Booking";
+  _id: string;
+  createdAt: any;
+  cancelDate: any | null;
+  gender: GENDER | null;
+  age: string | null;
+  payMethod: PayMethod;
+  updatedAt: any;
+  isDelete: boolean;
+  leftTime: number;
+  adultCount: number;
+  kidCount: number;
+  cancelMemo: string | null;
+  babyCount: number;
+  totalCount: number;
+  message: string | null;
+  isCancelRequest: boolean | null;
+  bookerInclue: boolean;
+  bookingPrice: number;
+  status: BookingStatus | null;
+  isMember: boolean | null;
+  memo: string | null;
+  code: string;
+  groupCode: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  /**
+   * 결제가 되었는지
+   */
+  isPaid: boolean | null;
+  payment: bookingFindByInfo_BookingFindByInfo_data_payment | null;
+  product: bookingFindByInfo_BookingFindByInfo_data_product;
+}
+
+export interface bookingFindByInfo_BookingFindByInfo {
+  __typename: "BookingFindByInfoResponse";
+  ok: boolean;
+  error: bookingFindByInfo_BookingFindByInfo_error | null;
+  data: bookingFindByInfo_BookingFindByInfo_data[] | null;
+}
+
+export interface bookingFindByInfo {
+  BookingFindByInfo: bookingFindByInfo_BookingFindByInfo;
+}
+
+export interface bookingFindByInfoVariables {
+  name: string;
+  phoneNumber: string;
+  verificationId: string;
 }
 
 /* tslint:disable */
@@ -1432,14 +1596,14 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author_bankImg
 export interface bookingFindByCode_BookingFindByCode_data_product_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -2162,6 +2326,213 @@ export interface countManager {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: estimateItemList
+// ====================================================
+
+export interface estimateItemList_EstimateItemList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface estimateItemList_EstimateItemList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface estimateItemList_EstimateItemList_data_options {
+  __typename: "EstimateOption";
+  optionName: string;
+  option: string;
+  price: number;
+  isUse: boolean;
+}
+
+export interface estimateItemList_EstimateItemList_data {
+  __typename: "EstimateItem";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  options: estimateItemList_EstimateItemList_data_options[];
+}
+
+export interface estimateItemList_EstimateItemList {
+  __typename: "EstimateItemListResponse";
+  ok: boolean;
+  error: estimateItemList_EstimateItemList_error | null;
+  page: estimateItemList_EstimateItemList_page;
+  data: estimateItemList_EstimateItemList_data[];
+}
+
+export interface estimateItemList {
+  EstimateItemList: estimateItemList_EstimateItemList;
+}
+
+export interface estimateItemListVariables {
+  sort?: _EstimateItemSort[] | null;
+  filter?: _EstimateItemFilter | null;
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: estimateItemCreate
+// ====================================================
+
+export interface estimateItemCreate_EstimateItemsCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface estimateItemCreate_EstimateItemsCreate_data {
+  __typename: "EstimateItem";
+  _id: string;
+}
+
+export interface estimateItemCreate_EstimateItemsCreate {
+  __typename: "EstimateItemsCreateResponse";
+  ok: boolean;
+  error: estimateItemCreate_EstimateItemsCreate_error | null;
+  data: estimateItemCreate_EstimateItemsCreate_data[] | null;
+}
+
+export interface estimateItemCreate {
+  EstimateItemsCreate: estimateItemCreate_EstimateItemsCreate;
+}
+
+export interface estimateItemCreateVariables {
+  params: EstimateItemCreateInput[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: estimateItemDelete
+// ====================================================
+
+export interface estimateItemDelete_EstimateItemDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface estimateItemDelete_EstimateItemDelete {
+  __typename: "EstimateItemDeleteResponseResponse";
+  ok: boolean;
+  error: estimateItemDelete_EstimateItemDelete_error | null;
+}
+
+export interface estimateItemDelete {
+  EstimateItemDelete: estimateItemDelete_EstimateItemDelete;
+}
+
+export interface estimateItemDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: estimateItemUpdate
+// ====================================================
+
+export interface estimateItemUpdate_EstimateItemUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface estimateItemUpdate_EstimateItemUpdate_data {
+  __typename: "EstimateItem";
+  _id: string;
+}
+
+export interface estimateItemUpdate_EstimateItemUpdate {
+  __typename: "EstimateItemUpdateResponse";
+  ok: boolean;
+  error: estimateItemUpdate_EstimateItemUpdate_error | null;
+  data: estimateItemUpdate_EstimateItemUpdate_data | null;
+}
+
+export interface estimateItemUpdate {
+  EstimateItemUpdate: estimateItemUpdate_EstimateItemUpdate;
+}
+
+export interface estimateItemUpdateVariables {
+  params: EstimateItemUpdateInput;
+  _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: feePolicyFindOne
 // ====================================================
 
@@ -2679,13 +3050,12 @@ export interface homepage_Homepage_data {
    * 영업시간
    */
   openTime: string;
-  refundPolicy: string;
   loginRedirect: string;
+  loginOutRedirect: string;
   /**
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
   usePolicy: string;
@@ -2837,13 +3207,12 @@ export interface homepageUpdate_HomepageUpdate_data {
    * 영업시간
    */
   openTime: string;
-  refundPolicy: string;
   loginRedirect: string;
+  loginOutRedirect: string;
   /**
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
   usePolicy: string;
@@ -3071,14 +3440,14 @@ export interface newsFindById_NewsFindById_data_author_bankImg {
 export interface newsFindById_NewsFindById_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -3283,14 +3652,14 @@ export interface newsList_NewsList_data_author_bankImg {
 export interface newsList_NewsList_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -4237,14 +4606,14 @@ export interface portfolioFindById_PortfolioFindById_data_author_bankImg {
 export interface portfolioFindById_PortfolioFindById_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -4445,14 +4814,14 @@ export interface portfolioList_PortfolioList_data_author_bankImg {
 export interface portfolioList_PortfolioList_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -5219,14 +5588,14 @@ export interface productList_ProductList_data_author_bankImg {
 export interface productList_ProductList_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -5459,14 +5828,14 @@ export interface productFindById_ProductFindById_data_author_bankImg {
 export interface productFindById_ProductFindById_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -5545,10 +5914,6 @@ export interface productFindById_ProductFindById_data_questions_answers_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: productFindById_ProductFindById_data_questions_answers_author_profileImg | null;
@@ -5586,11 +5951,8 @@ export interface productFindById_ProductFindById_data_questions_author_profileIm
 export interface productFindById_ProductFindById_data_questions_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   email: string;
+  name: string;
   phoneNumber: string;
   /**
    * 프로필 사진
@@ -5784,14 +6146,14 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_b
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -5919,14 +6281,14 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -6381,14 +6743,14 @@ export interface qnaFindById_QnaFindById_data_author_bankImg {
 export interface qnaFindById_QnaFindById_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -6599,14 +6961,14 @@ export interface qnaList_QnaList_data_author_bankImg {
 export interface qnaList_QnaList_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -6988,14 +7350,14 @@ export interface getContext_GetProfile_data_bookings {
 export interface getContext_GetProfile_data {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -7253,13 +7615,12 @@ export interface getContext_Homepage_data {
    * 영업시간
    */
   openTime: string;
-  refundPolicy: string;
   loginRedirect: string;
+  loginOutRedirect: string;
   /**
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
   usePolicy: string;
@@ -7369,10 +7730,6 @@ export interface questionList_QuestionList_data_answers_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: questionList_QuestionList_data_answers_author_profileImg | null;
@@ -7410,11 +7767,8 @@ export interface questionList_QuestionList_data_author_profileImg {
 export interface questionList_QuestionList_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   email: string;
+  name: string;
   phoneNumber: string;
   /**
    * 프로필 사진
@@ -7426,10 +7780,6 @@ export interface questionList_QuestionList_data_product_author {
   __typename: "User";
   _id: string;
   name: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
 }
 
 export interface questionList_QuestionList_data_product {
@@ -7615,10 +7965,6 @@ export interface questionFindById_QuestionFindById_data_answers_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: questionFindById_QuestionFindById_data_answers_author_profileImg | null;
@@ -7656,11 +8002,8 @@ export interface questionFindById_QuestionFindById_data_author_profileImg {
 export interface questionFindById_QuestionFindById_data_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   email: string;
+  name: string;
   phoneNumber: string;
   /**
    * 프로필 사진
@@ -7672,10 +8015,6 @@ export interface questionFindById_QuestionFindById_data_product_author {
   __typename: "User";
   _id: string;
   name: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
 }
 
 export interface questionFindById_QuestionFindById_data_product {
@@ -7820,14 +8159,14 @@ export interface settlementFindById_SettlementFindById_data_product_author_bankI
 export interface settlementFindById_SettlementFindById_data_product_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -8148,14 +8487,14 @@ export interface settlementList_SettlementList_data_seller_bankImg {
 export interface settlementList_SettlementList_data_seller {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -8294,14 +8633,14 @@ export interface settlementList_SettlementList_data_product_author_bankImg {
 export interface settlementList_SettlementList_data_product_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -9272,14 +9611,14 @@ export interface userList_UserList_data_bankImg {
 export interface userList_UserList_data {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -9472,14 +9811,14 @@ export interface userFindById_UserFindById_data_products_author_bankImg {
 export interface userFindById_UserFindById_data_products_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -9643,14 +9982,14 @@ export interface userFindById_UserFindById_data_bookings {
 export interface userFindById_UserFindById_data {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -9817,43 +10156,6 @@ export interface passwordFindByPhoneVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: nickNameDuplicateCheck
-// ====================================================
-
-export interface nickNameDuplicateCheck_NickNameDuplicateCheck_error {
-  __typename: "CustomError";
-  location: string;
-  severity: ERR_SEVERITY;
-  code: ERR_CODE;
-  message: string;
-}
-
-export interface nickNameDuplicateCheck_NickNameDuplicateCheck_data {
-  __typename: "CheckDuplicate";
-  duplicated: boolean;
-}
-
-export interface nickNameDuplicateCheck_NickNameDuplicateCheck {
-  __typename: "CheckDuplicateResponse";
-  ok: boolean;
-  error: nickNameDuplicateCheck_NickNameDuplicateCheck_error | null;
-  data: nickNameDuplicateCheck_NickNameDuplicateCheck_data | null;
-}
-
-export interface nickNameDuplicateCheck {
-  NickNameDuplicateCheck: nickNameDuplicateCheck_NickNameDuplicateCheck;
-}
-
-export interface nickNameDuplicateCheckVariables {
-  nickName: string;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: passwordChange
 // ====================================================
 
@@ -9911,14 +10213,14 @@ export interface Fannounce_author_bankImg {
 export interface Fannounce_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -10041,10 +10343,6 @@ export interface Fanswer_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: Fanswer_author_profileImg | null;
@@ -10075,6 +10373,50 @@ export interface Ftraveler {
   phoneNumber: any;
   gender: GENDER | null;
   age: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FestimateOption
+// ====================================================
+
+export interface FestimateOption {
+  __typename: "EstimateOption";
+  optionName: string;
+  option: string;
+  price: number;
+  isUse: boolean;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FestimateItem
+// ====================================================
+
+export interface FestimateItem_options {
+  __typename: "EstimateOption";
+  optionName: string;
+  option: string;
+  price: number;
+  isUse: boolean;
+}
+
+export interface FestimateItem {
+  __typename: "EstimateItem";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  options: FestimateItem_options[];
 }
 
 /* tslint:disable */
@@ -10411,14 +10753,14 @@ export interface Fuser_bankImg {
 export interface Fuser {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -10759,13 +11101,12 @@ export interface Fhomepage {
    * 영업시간
    */
   openTime: string;
-  refundPolicy: string;
   loginRedirect: string;
+  loginOutRedirect: string;
   /**
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  loginOutRedirect: string;
   PrivacyPolicy: string;
   partnerBpolicy: string;
   usePolicy: string;
@@ -10817,14 +11158,14 @@ export interface Fnews_author_bankImg {
 export interface Fnews_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -11145,14 +11486,14 @@ export interface Fportfolio_author_bankImg {
 export interface Fportfolio_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -11282,14 +11623,14 @@ export interface Fqna_author_bankImg {
 export interface Fqna_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
   email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
   /**
    * 담당자명
    */
@@ -11410,10 +11751,6 @@ export interface Fquestion_answers_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: Fquestion_answers_author_profileImg | null;
@@ -11451,11 +11788,8 @@ export interface Fquestion_author_profileImg {
 export interface Fquestion_author {
   __typename: "User";
   _id: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   email: string;
+  name: string;
   phoneNumber: string;
   /**
    * 프로필 사진
@@ -11974,6 +12308,14 @@ export enum _BookingSort {
 /**
  * Auto generated sort type
  */
+export enum _EstimateItemSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+}
+
+/**
+ * Auto generated sort type
+ */
 export enum _INotificationHistoryItemSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
@@ -12284,6 +12626,30 @@ export interface CategoryCreateInput {
 
 export interface CategoryUpdateInput {
   label?: string | null;
+}
+
+export interface EstimateItemCreateInput {
+  title: string;
+  options: EstimateItemOptionsCreateInput[];
+}
+
+export interface EstimateItemOptionsCreateInput {
+  optionName: string;
+  option: string;
+  price: number;
+  isUse: boolean;
+}
+
+export interface EstimateItemOptionsUpdateInput {
+  optionName: string;
+  option: string;
+  price: number;
+  isUse?: boolean | null;
+}
+
+export interface EstimateItemUpdateInput {
+  title?: string | null;
+  options?: EstimateItemOptionsUpdateInput[] | null;
 }
 
 export interface FeePolicyUpdateInput {
@@ -12858,6 +13224,20 @@ export interface _BookingFilter {
   exField__sellerNickName_not_contains?: string | null;
   exField__sellerNickName_in?: string[] | null;
   exField__sellerNickName_not_in?: string[] | null;
+}
+
+export interface _EstimateItemFilter {
+  AND?: _EstimateItemFilter[] | null;
+  OR?: _EstimateItemFilter[] | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
 }
 
 export interface _INotificationHistoryItemFilter {

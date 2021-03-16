@@ -9,3 +9,4 @@ export const SERVER_URI: string = END_POINT || "";
 export default (() => {
     return SERVER_URI;
 })();
+

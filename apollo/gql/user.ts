@@ -337,26 +337,26 @@ export const PASSWORD_FIND_BY_PHONE = gql`
 `;
 
 
-export const NICK_NAME_DUPLICATE_CHECK = gql`
-  mutation nickNameDuplicateCheck(
-    $nickName: String!
-    ) {
-      NickNameDuplicateCheck(
-        nickName: $nickName
-      ) {
-      ok
-      error {
-        location
-        severity
-        code
-        message
-      }
-      data {
-        duplicated
-      }
-  }
-}
-`;
+// export const NICK_NAME_DUPLICATE_CHECK = gql`
+//   mutation nickNameDuplicateCheck(
+//     $nickName: String!
+//     ) {
+//       NickNameDuplicateCheck(
+//         nickName: $nickName
+//       ) {
+//       ok
+//       error {
+//         location
+//         severity
+//         code
+//         message
+//       }
+//       data {
+//         duplicated
+//       }
+//   }
+// }
+// `;
 
 export const PASSWORD_CHNAGE = gql`
   mutation passwordChange(

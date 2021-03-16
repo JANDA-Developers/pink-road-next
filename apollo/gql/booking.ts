@@ -91,6 +91,80 @@ export const BOOKING_LIST = gql`
 `
 
 
+
+export const BOOKING_FIND_BY_INFO = gql`
+    query bookingFindByInfo(
+        $name: String!
+        $phoneNumber: String!
+        $verificationId: String!
+    ) {
+    BookingFindByInfo(
+      name: $name
+      phoneNumber: $phoneNumber
+      verificationId: $verificationId
+    ) {
+        ok
+        error {
+          location
+          severity
+          code
+          message
+        }
+        data {
+          ...Fbooking
+        payment {
+          ...Fpayment
+        }
+      product {
+        _id
+        createdAt
+        updatedAt
+        isDelete
+        title
+        code
+        determined
+        contents
+        category {
+            _id
+            label
+        }
+        status
+        inOrNor
+        info
+        caution
+        images {
+            ...Ffile
+        }
+        compeltePeopleCnt
+        peopleCount
+        keyWards
+        address
+        startPoint
+        maxMember
+        minMember
+        subTitle
+        adult_price
+        bookingCount
+        dateRange
+        kids_price
+        baby_price
+        isNotice
+        isOpen
+        type
+        startDate
+        Dday
+        author {
+          name
+      }
+      }
+        }
+    }
+}
+${F_PAYMENT}
+  ${F_FILE}
+  ${F_BOOKING}
+`
+
 export const BOOKING_COUNT = gql`
     query bookingCount(
         $filter: _BookingFilter

@@ -42,7 +42,7 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
         onList={toList}
         thumb={thumb}
         content={contents}
-        writer={author?.nickName || ""}
+        writer={author?.name || ""}
         title={title}
         subTitle={subTitle || ""}
         onDelete={handleDelete}

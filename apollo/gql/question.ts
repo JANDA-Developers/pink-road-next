@@ -33,8 +33,8 @@ export const F_QUESTION = gql`
         no
         author {
             _id
-            nickName
             email
+            name
             phoneNumber
             profileImg {
               uri
@@ -75,7 +75,6 @@ export const QUESTION_LIST = gql`
         author {
           _id
           name
-          nickName
         }
       }
     }
@@ -164,7 +163,7 @@ query questionFindById(
     ...Fquestion
     author {
       _id
-      nickName
+      name
       email
       profileImg {
         uri
@@ -176,7 +175,6 @@ query questionFindById(
       author {
         _id
         name
-        nickName
       }
     }
   }

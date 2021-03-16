@@ -10160,6 +10160,73 @@ i.calendar {
     }
 }
 
+.main_top_images--added {
+
+}
+
+.mainSlider .slick-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex!important;
+    justify-content: center;
+    bottom: 30px;
+}
+
+.mainSlider .slick-dots > li {
+    border-radius: 14px;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px;
+    background-color: rgba(255,255,255,.4);
+}
+
+.mainSlider .slick-dots > li > button{
+    flex: 1 1;
+    display: block;
+    font-size: 0px!important;
+    height: 100%;
+}
+
+
+.mainSlider .slick-dots > li:first-child {
+    width: 24px;
+}
+
+
+.mainSlider .slick-dots > li.slick-active {
+    background-color: rgba(255,255,255,.9);
+}
+
+.main_top_images__delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: initial;
+    color: white;
+    cursor: pointer;
+    background-color: rgba(255,0,0,.3);
+}
+
+.main_top_images__close {
+    position: absolute;
+    top:0;
+    right:0;
+
+}
+
+.main_top_images--added::after {
+    display: none!important;
+}
+
 @media (min-width: 1200px) {
     .sign_in {
         margin: 118px 0 150px;
@@ -10175,6 +10242,7 @@ i.calendar {
     .sign_in .inner .join_address ul {
         width: 1200px;
     }
+
     .main_con_box1 .main_top_images::after {
         top: 0;
         left: 0;
@@ -10184,6 +10252,7 @@ i.calendar {
         height: 200%;
         z-index: 2;
     }
+    
     .sign_in .inner{
         padding: 0;
     }

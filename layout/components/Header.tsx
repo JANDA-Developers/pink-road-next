@@ -113,7 +113,7 @@ export const Header: React.FC<IProp> = () => {
     return <header className="header" id="header">
         <div className="top-menu">
             <div className="w1200">
-                {isLogin ? <p className="welcome_ms"><strong>{userRoleToKR(myProfile?.role)}</strong> {myProfile?.nickName}님 어서오세요</p>
+                {isLogin ? <p className="welcome_ms"><strong>{userRoleToKR(myProfile?.role)}</strong> {myProfile?.name}님 어서오세요</p>
                     : ""}
                 <ul onClick={handleAllClose}>
                     <li >
