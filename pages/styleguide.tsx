@@ -182,8 +182,6 @@ export const StyleGuide: React.FC<IProp> = () => {
             </div>
         </div>
 
-
-
         <div className="layoutbox">
             <h4>게시판 디자인A</h4>
             <p className="layoutbox__infotext">게시판 디자인-리스트 </p>

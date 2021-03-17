@@ -15,6 +15,7 @@ import { VerifiEamilModal } from '../verifiModal/VerifiEmailModal';
 import { useVerification } from '../../hook/useVerification';
 import { closeModal, openModal } from '../../utils/popUp';
 import { ThreePhoneNumberInput } from '../phoneNumberInput/PhoneNumberInput';
+import { NUMBER_OPS } from '../../types/const';
 
 const UserInfoForm: React.FC = () => {
     const verifiHook = useVerification();
@@ -80,13 +81,20 @@ const UserInfoForm: React.FC = () => {
                     <div className="ph_wrap">
                         <label>
                             <i className="important_icon" />
-                        아이디
-                    </label>
+                            아이디
+                        </label>
                         <span className={`er red_font ${errDisplay.email && `on`}`}>
                             *해당 이메일은 이미 사용중입니다.
-                    </span>
-                        <div>
+                        </span>
+                        <div
+                            onClick={() => {
+                                if (isPhoneVerified && !verifiHook.verifiData?.isVerified) {
+                                    openModal("#ElseVeirifiModal")();
+                                }
+                            }}
+                        >
                             <input
+
                                 type="email"
                                 className={!isPhoneVerified ? "w100" : "w80"}
                                 placeholder="인증하기를 통해 이메일을 입력 해주세요."
@@ -157,20 +165,32 @@ const UserInfoForm: React.FC = () => {
                         </div>
                     } */}
                     <div className="name_wrap">
-                        <label>
-                            <i className="important_icon" />
+                        <div>
+                            <label>
+                                <i className="important_icon" />
                         이름
-                    </label>
+                        </label>
+                        </div>
                         <span className={`er red_font ${errDisplay.name && `on`}`}>*한글 이외에 입력이 안됩니다.</span>
-                        <input
-                            id="NameInput"
-                            type="text"
-                            className="w100"
-                            placeholder="이름을 입력해주세요"
-                            name="name"
-                            value={data.name}
-                            onChange={handleData("name")}
-                        />
+                        <div className="userInfoForm__nameBlueBirdWrap">
+                            <input
+                                id="NameInput"
+                                type="text"
+                                className={isPartner ? `w65 mr5` : 'w100'}
+                                placeholder="이름을 입력해주세요"
+                                name="name"
+                                value={data.name}
+                                onChange={handleData("name")}
+                            />
+                            {isPartner &&
+                                <select className="w30" onChange={handleData("blueBird")} value={data.blueBird} name="type">
+                                    {NUMBER_OPS.map(op =>
+                                        <option key={"blueBird" + op} value={op}>
+                                            {op + "기 파랑새"}
+                                        </option>
+                                    )}
+                                </select>}
+                        </div>
                     </div>
                     {isPartenerB || <div className="ph_wrap">
                         <label>
@@ -178,7 +198,7 @@ const UserInfoForm: React.FC = () => {
                         휴대폰번호
                         </label>
                         <span className={`er red_font ${errDisplay.phoneNumber && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
-                        <div className="w100">
+                        <div className="w100 userInfoForm__phoneNumberWrap">
                             {/* <ThreePhoneNumberInput
                             className={isPhoneVerified ? "w100" : "w80"}
                             onChange={setValue} 
@@ -198,7 +218,7 @@ const UserInfoForm: React.FC = () => {
                                     openModal("#ElseVeirifiModal")();
                                 }}>
                                     {verifiHook.verifiData?.isVerified ? "인증완료" : "인증하기"}
-                                </button> : <></>
+                                </button> : null
                             }
                         </div>
                     </div>}

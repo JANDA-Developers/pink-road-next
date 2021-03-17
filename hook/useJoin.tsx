@@ -44,6 +44,7 @@ export const useJoin = () => {
         pwcheck: false,
         role: false,
         bankImg: false,
+        blueBird: false,
     });
 
 
@@ -147,8 +148,13 @@ export const useJoin = () => {
 
     const handleData = (key: keyof typeof data) => (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
 
-        if (key === "address") {
-            alert("??");
+        if (key === "blueBird") {
+            setData({
+                ...data,
+                // @ts-ignore
+                [key]: parseInt(e.currentTarget.value) || 0
+            })
+            return;
         }
 
         if (key === "is_priv_corper") {

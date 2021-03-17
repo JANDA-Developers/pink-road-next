@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useEstimateList } from '../hook/useEstimate';
+import { useEstimateFindOne, useEstimateList } from '../hook/useEstimate';
 import { EstimateCounter } from '../components/Estimate/EstimateCounter';
 import { estimateItemList_EstimateItemList_data, FestimateItem, FestimateOption } from '../types/api';
 import { EstimateViewer } from '../components/Estimate/EstimateViewer';
@@ -38,7 +38,7 @@ export const CustomQuotation: React.FC<IProp> = ({ items, pageInfo, itemsFormDat
         <div className="quotation__table">
             <div className="quotation__table_fom">
 
-                {estimate.map(item => <div key={item._id}>
+                {estimate.map((item, index) => <div key={"estimate" + index}>
                     <div className="title">{item.title}</div>
                     <div className="quotation__table_list">
                         {item.options.map((option, index) =>
@@ -62,8 +62,9 @@ export const CustomQuotation: React.FC<IProp> = ({ items, pageInfo, itemsFormDat
 
 export const getStaticProps = getStaticPageInfo("estimate");
 export const CustomQuotationWrap: React.FC<Ipage> = (pageTools) => {
-    const { items } = useEstimateList();
-    const itemsFormData = items.map(item => {
+    const { data } = useEstimateFindOne();
+
+    const itemsFormData = data.map(item => {
         const formItem = item.options.map((option): EstimateOption => ({
             ...option,
             count: 0,
@@ -74,8 +75,7 @@ export const CustomQuotationWrap: React.FC<Ipage> = (pageTools) => {
             options: formItem
         };
     })
-    return <div />
-    return <CustomQuotation itemsFormData={itemsFormData} key={items.length} items={items} {...pageTools} />
+    return <CustomQuotation itemsFormData={itemsFormData} key={data.length} items={data} {...pageTools} />
 }
 
 export default CustomQuotationWrap;

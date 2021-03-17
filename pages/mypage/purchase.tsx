@@ -81,7 +81,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                                 </div>
                             </div>
                             {/*리스트로 보기*/}
-                            <div className="list selectViewList">
+                            <div className="list selectViewList selectViewList--paddingTop0">
                                 <ul className="list_ul">
                                     {items.map((item, i) =>
                                         <PurChasedItem onDetail={() => { handleDetail(item.code) }} item={item} key={item._id} />

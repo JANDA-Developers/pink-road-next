@@ -119,3 +119,8 @@ export const SYSTEM_CHECK_MESSAGE = {
         정말로 상품을 삭제 하시겠습니까?
     `
 }
+
+export const NUMBER_OPS = (() => {
+    const blueBirds = new Array(100).fill(null).map((val, index) => index);
+    return blueBirds;
+})()

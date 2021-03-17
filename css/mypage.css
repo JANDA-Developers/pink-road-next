@@ -488,6 +488,7 @@
         width: 100%;
         line-height: 50px;
         padding: 0 10px;
+        align-items: center;
         box-sizing: border-box;
         border-bottom: 1px solid #cccccc52;
         display: block;

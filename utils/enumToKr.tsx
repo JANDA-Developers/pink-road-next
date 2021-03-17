@@ -218,18 +218,16 @@ export const peopleCurrentCountBracket = (info: Fproduct) => {
 
     return `(인원:${peopleCount} / 최소${minMember} / 최대${maxMember})`
 }
-
-
 interface Author {
     name: string;
     busi_name: string;
+    blueBird?: string;
     [key: string]: any
 }
 export const withCompany = (info?: Author | null) => {
-    const { name, busi_name } = info || {}
-    return `${name}${busi_name ? busi_name : "닉네임없음"}`
+    const { name, busi_name, blueBird } = info || {}
+    return `${name}${busi_name ? `(${busi_name})` : ""}${blueBird ? `(파랑새${blueBird}기)` : ""}`
 };
-
 
 interface Author {
 }

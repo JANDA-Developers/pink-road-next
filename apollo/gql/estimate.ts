@@ -13,11 +13,8 @@ export const F_ESTIMATE_OPTION = gql`
 
 export const F_ESTIMATE_ITEM = gql`
     fragment FestimateItem  on EstimateItem  {
-        _id
-      createdAt
-        updatedAt
-        isDelete
         title
+        isUse
         options {
             ...FestimateOption
         }
@@ -25,81 +22,12 @@ export const F_ESTIMATE_ITEM = gql`
     ${F_ESTIMATE_OPTION}
 `
 
-export const ESTIMATE_ITEM_LIST = gql`
-    query estimateItemList(
-        $sort: [_EstimateItemSort!]
-        $filter: _EstimateItemFilter
-        $pageInput: pageInput!
-    ) {
-    EstimateItemList(
-        sort: $sort
-        pageInput: $pageInput
-        filter: $filter
-    ) {
-        ok
-        error {
-            location
-            severity
-            code
-            message
-            }
-        page {
-            ...Fpage
-        }
-        data  {
-            ...FestimateItem
-        }
-    }
-}
-${F_PAGE}
-${F_ESTIMATE_ITEM}
-`
-
-export const ESTIMATE_ITEM_CREATE = gql`
-  mutation estimateItemCreate(
-    $params: [EstimateItemCreateInput!]!
-  ) {
-    EstimateItemsCreate(
-      params:$params
-    ) {
-    ok
-    error {
-      location
-      severity
-      code
-      message
-    }
-    data {
-      _id
-    }
-  }
-}
-`
-export const ESTIMATE_ITEM_DELETE = gql`
-  mutation estimateItemDelete(
-    $id: String!
-  ) {
-    EstimateItemDelete(
-      id:$id
-    ) {
-    ok
-    error {
-      location
-      severity
-      code
-      message
-    }
-    }
-}
-`
 export const ESTIMATE_ITEM_UPDAET = gql`
-  mutation estimateItemUpdate(
-    $params: EstimateItemUpdateInput!
-    $_id: String!
+  mutation estimateItemListUpdate(
+    $params:[EstimateItemUpdateInput!]!
   ) {
-  EstimateItemUpdate(
+  EstimateItemListUpdate(
       params:$params
-      _id: $_id
     ) {
     ok
     error {
@@ -108,9 +36,23 @@ export const ESTIMATE_ITEM_UPDAET = gql`
               code
               message
       }
-    data {
-      _id
+  }
+}`
+
+export const ESTIMATE_ITEM_FIND_ONE = gql`
+  query estimateItemListFindOne {
+    EstimateItemListFindOne{
+      ok
+      error {
+        location
+              severity
+              code
+              message
+      }
+      data {
+        ...FestimateItem
+      }
     }
   }
-}
+${F_ESTIMATE_ITEM}
 `
