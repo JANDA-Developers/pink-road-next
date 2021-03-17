@@ -10,7 +10,7 @@ import { toNumber } from "../utils/toNumber";
 import { Validater } from "../utils/validate";
 import { useUpload } from "./useUpload";
 import { autoComma, deepCopy } from "../utils/formatter";
-import { useProductDelete, useProductUpdate } from "./useProduct";
+import { useProductCreate, useProductDelete, useProductUpdate } from "./useProduct";
 import { useMutation } from "@apollo/client";
 import { PRODUCTS_CREATE } from "../apollo/gql/product";
 import { useRouter } from "next/router";
@@ -117,8 +117,6 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const [simpleData, setSimpleData] = useState<TSimpleTypePart>(defaults.simpleData || DEFAULT_SIMPLE_TOUR_DATA)
     const [categoryId, setCategoryId] = useState<string>(defaults.categoryId || "");
     const [regionId, setRegionId] = useState<string>(defaults.regionId || "");
-    console.log(defaults.regionId);
-    console.log({ regionId });
     const [status, setStatus] = useState<ProductStatus>(defaults.status || ProductStatus.READY);
     const [thumbs, setThumbs] = useState<Ffile[]>(Array.from(defaults.thumbs || []))
     const [keyWards, setkeyWards] = useState<string[]>(Array.from(defaults.keyWards || []));
@@ -145,7 +143,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         }
     })
 
-    const [ProductCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCTS_CREATE, {
+    const [ProductCreateMu, { loading: createLoading }] = useProductCreate({
         onCompleted: ({ ProductCreate }) => {
             if (ProductCreate.ok)
                 router.push(`/tour/view/${ProductCreate!.data!._id}`)

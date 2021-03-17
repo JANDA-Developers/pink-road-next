@@ -18,7 +18,6 @@ import { Bg } from '../components/Img/Img';
 import { LinkRoundIcon } from '../components/common/icon/LinkIcon';
 import { A } from '../components/A/A';
 import { tourSearchLink } from './search';
-import { openListFilter } from '../hook/useProduct';
 
 export const getStaticProps = getStaticPageInfo("main")
 export const Main: React.FC<Ipage> = (pageInfo) => {
@@ -99,10 +98,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
         </div>
         <ProfileListAPI listQueryFilter={{ initialViewCount: 7 }} mode="short" />
       </div>
-
     </div>
-
-
     <div className="main_con_box3">
       <div className="w1200">
         <div className="top_txt">

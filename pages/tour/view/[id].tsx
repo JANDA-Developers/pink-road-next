@@ -35,6 +35,7 @@ import { ProductDateSelecter } from "../../../components/ProductDateSelecter";
 import { Change } from "../../../components/loadingList/LoadingList";
 import OnImagesLoaded from "../../../components/onImageLoad/OnImageLoad";
 import { useImgLoading } from "../../../hook/useImgLoading";
+import PageDeny from "../../Deny";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -201,8 +202,13 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
 
   const isPast = dayjs(startDate).isBefore(new Date());
 
-  if (!isSeller && !product.isOpen) return <Page404 />
-  if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
+  if (!isSeller && !product.isOpen) return <PageDeny msg="해당 게시글은 비공개 상태입니다." />
+  // if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
+
+  useEffect(() => {
+    if (product.status !== ProductStatus.OPEN)
+      alert("해당 상품은 판매중이 아닙니다.")
+  }, [])
 
   return <div className="edtiorView">
     {!loaded && <PageLoading />}

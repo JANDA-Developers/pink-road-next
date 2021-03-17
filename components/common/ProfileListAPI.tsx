@@ -27,7 +27,6 @@ export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSel
         setSelectedSeller?.(user);
     }
 
-
     const handleScrollArrowClick = (plus: boolean) => () => {
         if (!guidesRef?.current) return;
         const guidesLeft = guidesRef.current.scrollLeft;
@@ -39,7 +38,7 @@ export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSel
         if (items?.[0] && !selectedSeller) {
             setSelectedSeller?.(items[0])
         }
-    }, [items.length])
+    }, [items.length]);
 
     const isShort = mode === "short"
 

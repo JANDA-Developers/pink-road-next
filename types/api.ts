@@ -12002,7 +12002,7 @@ export enum BoardAction {
 export enum BoardType {
   ANNOUNCE = "ANNOUNCE",
   News = "News",
-  PORTFOLIO = "PORTFOLIO",
+PORTFOLIO = "PORTFOLIO",
   PRODUCT = "PRODUCT",
   QNA = "QNA",
   QUESTION = "QUESTION",
