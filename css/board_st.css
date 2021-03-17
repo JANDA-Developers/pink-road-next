@@ -2629,7 +2629,9 @@ div.sum_div {
         padding: 0;
         align-items: center;
     }
-
+    ul.photo_ul {
+        display: flex;
+    }
 }
 
 @media (min-width:1200px) {
@@ -2652,9 +2654,7 @@ div.sum_div {
         ul.list_ul li .box {
             padding: 0 0 5px;
         }
-    ul.photo_ul {
-        display: flex;
-    }
+
 
     ul.photo_ul li .img {
         background-size: 150%;

@@ -512,3 +512,14 @@ figure:after {
 .payment__memoForm {
     margin-bottom: 30px;
 }
+
+@media (min-width:768px) {
+    .main_photo_ul li{
+        min-width: 50%;
+    }
+}
+@media (min-width:1000px) {
+    .main_photo_ul li{
+        min-width: 33.3%;
+    }
+}

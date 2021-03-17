@@ -195,8 +195,9 @@
 
 .main_con_box2 {
     background-color: rgb(255, 255, 255);
-    padding: 20px 0;
+    padding: 20px 0 150px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
     /* .main_con_box2:before {
@@ -334,7 +335,7 @@
         .main_con_box3 .top_txt h2 {
             color: #333;
             font-weight: 600;
-            font-size: 1.7em;
+            font-size: 2.5em;
         }
 
         .main_con_box3 .top_txt span {
@@ -409,33 +410,35 @@
 }
 .main_con_box4 {
     overflow: hidden;
-    padding:50px 3%;
+    padding:50px 3% 200px;
     box-sizing: border-box;
 }
 
     .main_con_box4 .top_txt {
-        text-align: left;
-        background-color: #ed297b;
+        text-align: center;
+        background-color: #ffffff;
         display: block;
         width: 100%;
         height: 100%;
         box-sizing: border-box;
-        padding: 30px;
+        padding: 90px 3% 0;
         cursor: default;
     }
 
 
         .main_con_box4 .top_txt h2 {
-            color: #fff;
+            color: #333333;
             font-weight: 500;
             font-size: 54px;
             line-height: 100%;
         }
 
-
+        .main_con_box4 .top_txt h2 br{
+            display: none;
+        }
         .main_con_box4 .top_txt .txt {
             font-size: 16px;
-            color: #fff;
+            color: #333333;
             font-weight: 400;
             line-height: 38px;
         }
@@ -452,8 +455,8 @@
 
             .main_con_box4 .top_txt .btn_list a {
                 padding: 5px 15px;
-                border: 1px solid #fff;
-                color: #fff;
+                border: 1px solid #333333;
+                color: #333333;
                 font-size: 16px;
                 border-radius: 100px;
             }
@@ -462,14 +465,14 @@
             width: 100%;
             height: 50px;
             overflow: hidden;
-            display: inline-block;
+            display: none;
             margin-top: 49px;
         }
 
         .main_con_box4 .top_txt svg {
-            width: 100%;
+            width: 73px;
             display: inline-block;
-            fill: #fff;
+            fill: #333333;
         }
 
     .main_con_box4 .photo_box {
@@ -482,27 +485,37 @@
     }
 
 .main_con_box5 {
-    background: #f9d4e4;
-    /* background: -moz-linear-gradient(-45deg,  #ed297b 0%, #e52977 100%);
-    background: -webkit-linear-gradient(-45deg,  #ed297b 0%,#e52977 100%);
-    background: linear-gradient(135deg,  #ed297b 0%,#e52977 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ed297b', endColorstr='#e52977',GradientType=1 ); */
-    
+    background: #e4e4e4;
+    overflow: hidden;
 }
-.main_con_box5 .ovj {
-    position: absolute;
-    right:50%;
-    top: -110px;
-    width: 340px;
-    height: 190px;
-    margin-right: -170px;
-    display: block;
-    background-size: 100%;
-    background-repeat: no-repeat;
+.photo__listBottom {
+    position: relative;
+    bottom: -80px;
+    display: flex;
+    height: 170px;
+    width: 130%;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  
+    margin-left: -15%;
 }
+.photo__listBottom li {
+    background-color: #aaaaaa;
+    position: relative;
+    display: inline-block;
+    width: 15%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 1%;
+    flex: 1 1;
+    flex-grow: 1;
+}
+
     .main_con_box5 .txt {
         position: relative;
-        padding: 70px 3%;
+        padding: 30px 3%;
         box-sizing: border-box;
         left: 0;
         top: 0;
@@ -520,6 +533,7 @@
             font-weight: 400;
             font-size: 27px;
             line-height: 36px;
+            text-align: center;
         }
 
             .main_con_box5 .txt h2 strong {
@@ -528,7 +542,9 @@
 
         .main_con_box5 .txt p {
             font-weight: 100;
-            font-size: 0.8em;
+            font-size: 1.1em;
+            text-align: center;
+            color: #6f6f6f;
         }
 
 #Reservation_check,
@@ -2687,6 +2703,7 @@ ul.rank_ul {
     }
 .siteInfo_in .siteInfo__top{
     background-size: 110%;
+    overflow: hidden;
 }
     .siteInfo_in .top_bg {
         position: relative;
@@ -2721,7 +2738,7 @@ ul.rank_ul {
         position: relative;
         padding: 100px 0 100px;
         box-sizing: border-box;
-        background-color: rgb(252, 252, 252);
+        background-color: #ffffff;
         overflow: hidden;
     }
 
@@ -2953,7 +2970,7 @@ ul.rank_ul {
         z-index: 0;
         padding: 90px 5% 90px;
         box-sizing: border-box;
-        background-color: #f5f5f5;
+        background-color: #eeeeee;
     }
     
     .siteInfo_in .con01:before {
@@ -3246,7 +3263,7 @@ ul.rank_ul {
             top: -60px;
             font-size: 4.1em;
             font-weight: 400;
-            color: #ccc;
+            color: #333333;
             z-index: 22;
             width: 100%;
             text-align: center;
@@ -3284,6 +3301,7 @@ ul.rank_ul {
         text-align: center;
         overflow: hidden;
         padding: 114px 0;
+        background-color: #e4e4e4;
     }
 
     .siteInfo_in .con04 .wave_animation_wrap {
@@ -8768,8 +8786,89 @@ i.calendar {
    margin-top: 5px;
    padding-top: 5px;
 }
+.main__wave_box {
+    width: 100%;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+}
+.main__wave_box .main__wave {
+    background: url(/img/svg/m_wave.svg) repeat-x;
+    position: absolute;
+    top: -156px;
+    width: 6400px;
+    height: 157px;
+    animation: wave 14s cubic-bezier(0.36,0.45,0.63,0.53) infinite;
+    transform: translate3d(0,0,0);
+}
+.main__wave_box .main__wave2 {
+    background: url(/img/svg/m_wave2.svg) repeat-x;
+    position: absolute;
+    top: -156px;
+    width: 6400px;
+    height: 157px;
+    animation: wave 14s cubic-bezier(0.36,0.45,0.63,0.53) infinite;
+    transform: translate3d(0,0,0);
+}
+.main__wave_box .main__wave3 {
+    background: url(/img/svg/m_wave3.svg) repeat-x;
+    position: absolute;
+    top: -156px;
+    width: 6400px;
+    height: 157px;
+    animation: wave 14s cubic-bezier(0.36,0.45,0.63,0.53) infinite;
+    transform: translate3d(0,0,0);
+}
+@keyframes wave {
+    0% {
+        margin-left: -1600px;
+    }
+
+    100% {
+        margin-left: 0px;
+    }
+}
 
 @media (min-width: 768px) {   
+    .main_con_box4 .top_txt{
+        background-color: #ffffff;
+        display: block;
+        text-align: center;
+        padding: 100px 0 30px;
+        height: 340px;
+    }
+    .main_con_box4 .top_txt i {
+        margin-top: 31px;
+    }
+    .main_con_box4 .top_txt svg{
+        fill: #333333;
+        width: 82px;
+    }
+    .main_con_box4 .top_txt h2 {
+        color: #333333;
+        font-weight: 500;
+        font-size: 5em;
+        text-align: center;
+    }
+    .main_con_box4 .top_txt h2 br {
+        display: none;
+    }
+    .main_con_box4 .top_txt .btn_list a {
+        padding: 5px 15px;
+        border: 1px solid #333333;
+        color: #333333;
+        font-size: 16px;
+        border-radius: 100px;
+    }
+    .main_con_box4 .top_txt .txt{
+        color: #333333;
+    }    
+    .main_con_box4 {
+        padding: 50px 3% 210px;
+    }
     .siteInfo_in .con05 {
         background-size: 320%;
     }
@@ -8799,7 +8898,7 @@ i.calendar {
         display: block;
     }
     .main_con_box5 .txt h2 {
-        font-size: 1.5em;
+        font-size: 2.3em;
         line-height: 129%;
     }
     .main_con_box1 .main_top_images::after {
@@ -8999,16 +9098,16 @@ i.calendar {
 
         .main_con_box3 .top_txt h2 {
             color: #333;
-            font-size: 38px;
+            font-size: 4em;
         }
 
     .main_con_box5 .txt {
-        padding:80px 342px 80px 3%;
+        padding:30px 0 80px;
     }
 
 
     .siteInfo_in .con06 {
-        padding: 250px 0;
+        padding: 180px 0;
         background-size: 150%;
     }
 
@@ -9022,25 +9121,33 @@ i.calendar {
     }
 
     .main_con_box2 {
-        padding: 35px 3% 30px;
+        padding: 35px 0 110px 3%;
     }
 
         .infolist li {
-            width: 28%;
+            width: 26%;
             height: 166px;
-            margin: 2%;
+            margin: 3%;
             text-align: center;
             overflow: initial;
             padding:0;
             background-image: none !important;
         }
+        .main_con_box2 .top_txt {
+            padding: 70px 0 20px 6%;
+        }
         .main_con_box2 .top_txt span {
-            font-size: 1.1em;
+            font-size: 2.1em;
           
         }
-
+        .main_con_box1 .main_top_images .w1200 > span{
+            margin-top: 20px;
+        }
         .main_con_box2 .top_txt h2 {
-            font-size: 35px;
+            font-size: 5em;
+        }
+        .main_con_box2 ul {
+            padding: 35px 0 34px 2%;
         }
         .infolist .img {
             position: relative;
@@ -9066,8 +9173,9 @@ i.calendar {
         .infolist li span {
             padding: 0 0 0 3px;
             color: #616161;
-            line-height: 180%;
+            line-height: 112%;
             text-align: left;
+            font-size: 1.2em;
         }
 
     .siteInfo_in .con04 .infopp {
@@ -9205,6 +9313,12 @@ i.calendar {
 }
 
 @media (min-width: 1000px) {
+    .main_con_box4 .top_txt i {
+       display: inline-block;
+    }
+    .main_con_box4 .top_txt h2 br {
+        display: inline-block;
+    }
     .ReInput__box_line .t02 {
         text-align: left;
         min-width: 450px;
@@ -9299,9 +9413,16 @@ i.calendar {
             height: 30px;
         }
     .main_con_box4 {
-        padding: 160px 3%;
+        padding: 160px 3% 300px;
     }
-
+    .main_con_box4 .top_txt{
+        padding: 20px;
+        border: 10px #333 solid;
+    }
+    .main_con_box4 .top_txt h2{
+        font-size: 3.5em;
+        margin-top: 22px;
+    }
         .main_con_box4 .top_txt .btn_list a {
             padding: 5px 15px;
             font-size: 12px;
@@ -9378,7 +9499,7 @@ i.calendar {
             width: auto;
         }
             .main_con_box2 {
-                padding: 150px 0 50px;
+                padding: 150px 0 130px;
             }
     .main_con_box2 .top_txt {
         padding: 25px 0 0;
@@ -9415,10 +9536,11 @@ i.calendar {
         position: relative;
     
     }
-
-
+    .main_con_box1 .main_top_images .w1200 > span{
+        margin-top: 0;
+    }
         .main_con_box3 .top_txt h2 {
-            font-size: 3em;
+            font-size: 4em;
         }
         .main_con_box2 .top_txt::after {
             content: '';
@@ -9532,7 +9654,7 @@ i.calendar {
             height: calc(100% + 12px);
             left: -10px;
             top: -10px;
-            border: dashed 4px #e2e2e2;
+            border: dashed 4px #ffffff;
             border-radius: 50%;
             animation: spin 50s linear infinite;
             -webkit-animation: spin 50s linear infinite;
@@ -9631,7 +9753,7 @@ i.calendar {
     }
 
         .siteInfo_in .con04 .infopp {
-            padding: 270px 0 30px;
+            padding: 270px 0 200px;
             background-position: center;
             background-size: 150%;
             text-align: right;
@@ -9660,7 +9782,7 @@ i.calendar {
                 }
 
         .siteInfo_in .con04 .infoimg {
-            padding: 170px 0 130px;
+            padding: 0px 0 210px;
         }
 
         .siteInfo_in .con04 h4 strong {
@@ -9801,7 +9923,6 @@ i.calendar {
             height: 257%;
             top: -573px;
             left: 317px;
-            /* transform: rotate(24deg); */
         }
 
         .siteInfo_in .con05 .w1200:after {
@@ -9809,47 +9930,9 @@ i.calendar {
             height: 257%;
             top: -582px;
             left: 360px;
-            /* transform: rotate(24deg); */
         }
 
-        /* .siteInfo_in .con05 .in_txt .y2020 {
-            left: 123px;
-        }
-
-        .siteInfo_in .con05 .in_txt .y2019 {
-            left:49px;
-        }
-
-        .siteInfo_in .con05 .in_txt .y2018 {
-            left:-10px;
-        }
-
-        .siteInfo_in .con05 .in_txt .y2017 {
-            left:-72px;
-        }
-
-        .siteInfo_in .con05 .in_txt .y2016 {
-            left: -148px;
-            margin-bottom: 36px;
-        }
-
-        .siteInfo_in .con05 .in_txt .y2015 {
-            left: -198px;
-        }
-
-        .siteInfo_in .con05 .in_txt .y2014 {
-            left:-241px;
-            margin-bottom: 39px;
-        }
-
-        .siteInfo_in .con05 .in_txt .y2013 {
-            left: -297px;
-        }
-
-        .siteInfo_in .con05 .in_txt .y2012 {
-            left: -364px;
-        } */
-
+        
         .siteInfo_in .con05 .in_txt .year:after {
             left: -79px;
             top: 16px;
@@ -9857,13 +9940,14 @@ i.calendar {
         }
 
     .main_con_box5 .txt h2 {
-        line-height: 28px;
+        font-size: 3em;
+        line-height: 120%;
         margin-bottom: 10px;
-        width: 49%;
+        width: 100%;
     }
     .login_wrap .sign_in_form span {
         position: relative;
-        font-size: 14px;
+        font-size: 1em;
         font-weight: 400;
         color: #555;
         padding: 0 12px;
@@ -9871,7 +9955,9 @@ i.calendar {
         display: inline-block;
         margin-bottom: 0;
     }
-
+    .main_con_box5 .txt p {
+        font-size: 1.8em;
+    }
         .login_wrap .sign_in_form span a {
             border: 0;
             padding: 0;
@@ -10570,7 +10656,7 @@ i.calendar {
         }
 
         .siteInfo_in .con05 .w1200 {
-            padding: 150px 0;
+            padding: 150px 0 260px;
         }
 
         .siteInfo_in .con05 .in_txt .year:after {
@@ -10957,15 +11043,17 @@ i.calendar {
     .main_con_box4 .photo_box {
         margin-bottom: 0;
     }
-
+    .mainSlider .slick-dots > li:first-child{
+        width: 10%;
+    }
     .main_con_box5 {
         padding: 5%;
         box-sizing: border-box;
-        margin-top: 140px;
+        margin-top: 0;
     }
 
         .main_con_box5 .txt {
-            padding: 100px 3% 20px;
+            padding: 0x 3% 20px;
         }
 
             .main_con_box5 .txt h2 {
@@ -11012,16 +11100,22 @@ i.calendar {
                 font-weight:600;
                 
             }
-
+            .main__wave_box .main__wave,
+            .main__wave_box .main__wave2,
+            .main__wave_box .main__wave3 {
+                top: -86px;
+                width: 6400px;
+                height: 87px;
+            }
 
     .main_con_box1 .main_top_images {
-        min-height: 460px;
+        min-height: 520px;
         background-position: 70% center;
     }
 
         .main_con_box1 .main_top_images strong {
             width: 100%;
-            font-size: 4em;
+            font-size: 2em;
             text-align: center;
             margin-top: 123px;
         }
@@ -11192,8 +11286,20 @@ i.calendar {
         padding: 52px 5% 0;
     }
     .main_con_box1 .main_top_images {
-        min-height: 400px;
+        min-height: 490px;
         background-size: 379%;
+    }
+    .main_con_box3 li {
+        min-height: 190px;
+    }
+    .main_con_box2 .top_txt::after {
+        left: 10%;
+    }
+    .main_con_box2 .top_txt h2{
+        font-size: 2.7em;
+    }
+    .main_con_box2 .top_txt span{
+        font-size: 1em;
     }
     .main_con_box1 .main_top_images .btn_list a {
         font-size: 1em;

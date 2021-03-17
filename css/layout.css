@@ -84,6 +84,7 @@ i.tooltip{
         text-align: center;
         color: #8b8b8b;
         border-bottom: 1px #e2e2e2 solid;
+        cursor: pointer;
     }
     #gotop .basket {
         display: inline-block;
@@ -991,7 +992,7 @@ rect.allmenu_svg {
         width: 100%;
         font-size: 0;
         display: block;
-        padding: 8% 5%;
+        padding: 2% 5%;
         box-sizing: border-box;
         justify-content: center;
     }
@@ -1003,7 +1004,7 @@ rect.allmenu_svg {
             margin-bottom: 0;
             width: 100%;
             vertical-align: top;
-            padding: 3% 3%;
+            padding: 2% 3%;
             box-sizing: border-box;
             border-bottom: 1px solid #ffffff0a;
         }
@@ -1017,13 +1018,14 @@ rect.allmenu_svg {
             }
 
                 #all_menu ul .a_menu_tit .depth1 li {
-                    width: 48%;
+                    width: auto;
                     display:inline-block;
+                    margin-right: 10px;
                 }
 
                     #all_menu ul .a_menu_tit .depth1 li a {
                         border-bottom: none;
-                        font-size: 16px;
+                        font-size: 14px;
                         font-weight: normal;
                         color: #ffffff;
                         opacity: 0.9;
@@ -1037,7 +1039,7 @@ rect.allmenu_svg {
                         }
 
             #all_menu ul .a_menu_tit > a {
-                font-size: 22px;
+                font-size: 16px;
                 font-weight: 600;
                 display: block;
                 color: #ffffff;
@@ -1086,7 +1088,7 @@ rect.allmenu_svg {
     }
     #all_menu .m_member {
         position: relative;
-        display: block;
+        display: none;
         width: 90%;
         margin: 0 5%;
         border-top: 1px solid #ffffff87;
@@ -4024,7 +4026,7 @@ i.icon_plus {
         padding: 0;
     }
         #all_menu ul .a_menu_tit .depth1 li:first-child {
-            margin-top:15px;
+            margin-top:4px;
         }
     #all_menu .m_member .profile {
         width:80px;

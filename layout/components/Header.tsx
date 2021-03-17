@@ -292,7 +292,6 @@ export const Header: React.FC<IProp> = () => {
                             {isLogin && <span><Link href="/mypage/notification"><a>알림</a></Link></span>}
                             {!isLogin && <span><a href="member/join">JOIN</a></span>}
                             <span><Link href="/member/question"><a>고객문의</a></Link></span>
-                            <span><Link href="/member/qna"><a>자주하는 질문</a></Link></span>
                         </div>
                         <ul>
                             <li className="a_menu_tit deps solo_nav">
