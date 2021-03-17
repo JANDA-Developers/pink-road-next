@@ -7,7 +7,7 @@ import { GENDER, UserRole } from '../../types/api';
 import { autoHypenPhone, cc_format } from "../../utils/formatter";
 import { useMyProfile } from '../../hook/useMyProfile';
 import { auth } from '../../utils/with';
-import { ALLOW_LOGINED } from '../../types/const';
+import { ALLOW_LOGINED, NUMBER_OPS } from '../../types/const';
 import DaumPostcode from 'react-daum-postcode';
 import { Modal } from '../../components/modal/Modal';
 import { openModal } from '../../utils/popUp';
@@ -338,6 +338,23 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                         </ul>
                                     </div>
                                 </li> : ""
+                            }
+                            {isPartner &&
+                                <li>
+                                    <div className="title">파랑새</div>
+                                    <div className="txt">
+                                        <select className="w30" onChange={(e) => {
+                                            profile.blueBird = parseInt(e.currentTarget.value) || 0;
+                                            setProfile({ ...profile });
+                                        }} value={profile.blueBird} name="type">
+                                            {NUMBER_OPS.map(op =>
+                                                <option key={"blueBird" + op} value={op}>
+                                                    {op + "기 파랑새"}
+                                                </option>
+                                            )}
+                                        </select>
+                                    </div>
+                                </li>
                             }
                             {isSeller ?
                                 <li>

@@ -176,6 +176,10 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
       value: isName(registerInfo.name || ""),
       failMsg: "이름 값이 올바르지 않습니다."
     },
+    {
+      value: registerInfo.blueBird,
+      failMsg: "파랑새 기수를 입력 해주세요."
+    },
     ...sharedValidate
   ])
 

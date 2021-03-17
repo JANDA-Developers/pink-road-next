@@ -194,6 +194,7 @@ export const F_USER = gql`
         gender
         busi_num
         denyReason
+        blueBird
         busi_department
         isVerifiedManager
         isVerifiedPhoneNumber
