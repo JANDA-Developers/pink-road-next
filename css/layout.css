@@ -2087,6 +2087,12 @@ footer .footer_in_bottom {
 .btn.add_btn.right{
     float: right;
 }
+.btn.add_btn.right.top{
+    float: right;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
 
 .btn.add_btn{
     position: relative;
@@ -2108,7 +2114,13 @@ footer .footer_in_bottom {
     font-size: 10px;
     margin-right: 5px;
 }
-
+.btn.add_btn:hover {
+    color: #333333 !important;
+    border: 1px dotted  #555555 !important;
+}
+.btn.add_btn:hover i{
+    color: #333333 !important;
+}
 .mini_btn {
     display: inline-block;
     zoom: 1;
@@ -2424,7 +2436,29 @@ i.icon_plus {
   .switch .tgl-skewed:checked + .tgl-btn:active:after {
     left: 10%;
   }
-
+  .switch.big {
+    vertical-align: middle;
+  }
+  .switch.big .tgl + .tgl-btn{
+    width: 4.6em;
+    height: 2.4em;
+}
+.switch.big .tgl-skewed + .tgl-btn:after, 
+.switch.big .tgl-skewed + .tgl-btn:before {
+    line-height: 2.4em;
+}
+  .switch.mini {
+    vertical-align: sub;
+  }
+  .switch.mini .tgl + .tgl-btn{
+      height: 1.1em;
+      width: 2.5em;
+  }
+  .switch.mini .tgl-skewed + .tgl-btn:after, 
+    .switch.mini .tgl-skewed + .tgl-btn:before {
+        line-height: 150%;
+        font-size: 0.7em;
+    }
 .infotxt_gray{
     position: relative;
     display: block;

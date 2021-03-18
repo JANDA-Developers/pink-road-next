@@ -1216,6 +1216,7 @@ div.alignment {
 
         div.alignment .left_div strong {
             color: #2196F3;
+            display: none;
         }
 
         div.alignment .left_div .infotxt {
@@ -8831,7 +8832,9 @@ i.calendar {
         margin-left: 0px;
     }
 }
-
+.qna_box .board_box{
+    padding: 0;
+}
 @media (min-width: 768px) {   
     .main_con_box4 .top_txt{
         background-color: #ffffff;
