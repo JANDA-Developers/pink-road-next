@@ -1,6 +1,6 @@
 import React from 'react';
-import { foreginKR, genderToKR, userStatusKR, withNick } from '../../utils/enumToKr';
-import { autoComma, autoHypenPhone, autoHypenPhone } from '../../utils/formatter';
+import { genderToKR, userStatusKR, withNick } from '../../utils/enumToKr';
+import { autoHypenPhone } from '../../utils/formatter';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import { Paginater } from '../common/Paginator';
 import { IMemberTableProp } from './MemberMaster';

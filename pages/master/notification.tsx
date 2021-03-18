@@ -5,6 +5,7 @@ import { NotiLine } from '../../components/notification/NotiLine';
 import { useSystemNotiHide, useSystemNotiList, useSystemNotiRead } from '../../hook/useSystemNoti';
 import { SystemNotiType } from '../../types/api';
 import { ALLOW_ADMINS } from '../../types/const';
+import { systemTypeToString } from '../../utils/enumToKr';
 import { groupDateArray } from '../../utils/group';
 import { auth } from '../../utils/with';
 

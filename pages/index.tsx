@@ -96,7 +96,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
           </h2>
           <strong {...edit("m_02_number")} />
         </div>
-        <ProfileListAPI listQueryFilter={{ initialViewCount: 7 }} mode="short" />
+        <ProfileListAPI mode="short" />
       </div>
     </div>
     <div className="main_con_box3">
