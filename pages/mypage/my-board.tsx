@@ -82,7 +82,8 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                             <li onClick={handleClickBoard(item)} key={item._id}>
                                                 <div className="th02">{item.boardType}</div>
                                                 <div className="th03">{isOpenKr(!!item.isOpen)}</div>
-                                                <div className="th04"><a>{item.title}<i className="q_ok">{item.questionStatus}</i></a></div>
+                                                <div className="th04"><a>{item.title}
+                                                    {item.questionStatus && <i className="q_ok">{item.questionStatus}</i>}</a></div>
                                                 <div className="th05">{dayjs(item.createdAt).format("YYYY.MM.DD hh:mm")}</div>
                                             </li>
                                         )}

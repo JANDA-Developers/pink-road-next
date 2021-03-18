@@ -82,7 +82,7 @@ export const GuideMain: React.FC<Ipage> = (pageInfo) => {
                             <h2><span {...edit("guideMain01_subtitle")} /></h2>
                             <strong {...edit("guideMain01_title")} />
                         </div>
-                        <ProfileListAPI listQueryFilter={{ initialViewCount: 7 }} mode="short" />
+                        <ProfileListAPI mode="short" />
                     </div>
                     <div className="con02">
                         <div className="deal_list">
@@ -113,7 +113,7 @@ export const GuideMain: React.FC<Ipage> = (pageInfo) => {
                                 }
                             }} />
                         </div>
-                        <div className="deal_list">
+                        {/* <div className="deal_list">
                             <div className="alignment">
                                 <div className="left_div"><h2><span {...edit("goods_list3_title")} /></h2></div>
                                 <div className="right_div">
@@ -126,7 +126,7 @@ export const GuideMain: React.FC<Ipage> = (pageInfo) => {
                                     _id_in: groupsMap.guideMain3
                                 }
                             }} />
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>

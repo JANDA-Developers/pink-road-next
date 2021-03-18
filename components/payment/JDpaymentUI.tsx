@@ -290,7 +290,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                     setBuyerInfo({
                                         ...buyerInfo
                                     })
-                                }} value={buyerInfo.memo} className="payment__textarea" style={{ height: "100px;" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
+                                }} value={buyerInfo.memo} className="payment__textarea" style={{ height: "100px" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
                             </div>
                         </li>
                         <li className="tr count">{buyerInfo.memo.length}/3000</li>

@@ -57,6 +57,32 @@ export const SELLER_LIST_PUBLIC = gql`
 `
 
 
+export const RANDOM_SELLER_LIST_PUBLIC = gql`
+  query randomSellerListPublic(
+      $random: Float
+      $filter: _SellerFilter
+  ) {
+    RandomSellerListPublic(
+      random: $random
+      filter: $filter
+    ) {
+      ok
+      error {
+        location
+        severity
+        code
+        message
+      }
+      data  {
+        ...FpublicSellerData
+      }
+    }
+  }
+  ${F_PUBLIC_USER}
+`
+
+
+
 export const RESIGN = gql`
   mutation userResign(
       $_id: String!

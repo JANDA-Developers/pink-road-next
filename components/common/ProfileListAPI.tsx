@@ -2,25 +2,30 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import { ListInitOptions } from '../../hook/useListQuery';
 import { openListFilter } from '../../hook/useProduct';
-import { usePublicSellerList } from '../../hook/useUser';
+import { usePublicSellerList, useRandomPublicSellerList } from '../../hook/useUser';
 import { tourSearchLink } from '../../pages/search';
-import { sellerListPublic_SellerListPublic_data, _SellerFilter, _SellerSort, _UserSort } from '../../types/api';
+import { randomSellerListPublicVariables, sellerListPublic_SellerListPublic_data, _SellerFilter, _SellerSort, _UserSort } from '../../types/api';
 import { BG, BGprofile } from '../../types/const';
 import { GoodsListAPI } from './GoodsListAPI';
 
 interface IProp {
     mode?: "wide" | "short"
-    listQueryFilter?: Partial<ListInitOptions<_SellerFilter, _SellerSort>>;
+    variables?: randomSellerListPublicVariables;
     selectedSeller?: sellerListPublic_SellerListPublic_data;
     setSelectedSeller?: React.Dispatch<React.SetStateAction<sellerListPublic_SellerListPublic_data | undefined>>
 }
 
-export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSeller, listQueryFilter, mode = "wide" }) => {
+export const ProfileListAPI: React.FC<IProp> = ({ variables, selectedSeller, setSelectedSeller, mode = "wide" }) => {
     const router = useRouter();
     const guidesRef = useRef<HTMLDivElement>(null)
-    const { items } = usePublicSellerList({
-        ...listQueryFilter,
-        initialSort: [_SellerSort.profileImg_desc]
+    const { data: items = [] } = useRandomPublicSellerList({
+        variables: {
+            filter: {
+                profileImg_not_eq: null
+            },
+            random: 7,
+            ...variables
+        }
     });
 
     const handleSelectUser = (user: sellerListPublic_SellerListPublic_data) => () => {
@@ -38,12 +43,12 @@ export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSel
         if (items?.[0] && !selectedSeller) {
             setSelectedSeller?.(items[0])
         }
-    }, [items.length]);
+    }, [items?.length]);
 
     const isShort = mode === "short"
 
     const toGuidePage = (code: string) => {
-        
+
         router.push("/itsguid/" + code)
     }
 
@@ -63,11 +68,12 @@ export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSel
                 {items.map((item, i) =>
                     <li key={item._id + "guid"} className={selectedSeller?._id === item._id ? "on" : ""}>
                         <span className="photo" onClick={handleSelectUser(item)} style={BG(item.profileImg?.uri || "/img/profile_default160.gif")} />
-                        <div className="home" onClick={() => {
-                            toGuidePage(item._id)
-                        }}></div>
-                        <div className="name" onClick={handleSelectUser(item)}><i>G</i>{item.nickName}</div>
-
+                        <div className="max_box__infoWrap">
+                            <div className="home" onClick={() => {
+                                toGuidePage(item._id)
+                            }}></div>
+                            <div className="max_box__name name" onClick={handleSelectUser(item)}><i>G</i>{item.nickName}</div>
+                        </div>
                     </li>
                 )}
             </ul>

@@ -8964,6 +8964,74 @@ export interface sellerListPublicVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: randomSellerListPublic
+// ====================================================
+
+export interface randomSellerListPublic_RandomSellerListPublic_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface randomSellerListPublic_RandomSellerListPublic_data_zoneinfo {
+  __typename: "Zoneinfo";
+  timezone: string;
+  offset: number;
+  callingCode: string;
+  alpha2Code: string;
+}
+
+export interface randomSellerListPublic_RandomSellerListPublic_data_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface randomSellerListPublic_RandomSellerListPublic_data {
+  __typename: "publicSellerData";
+  _id: string;
+  zoneinfo: randomSellerListPublic_RandomSellerListPublic_data_zoneinfo;
+  email: string;
+  gender: GENDER;
+  /**
+   * 판매자에 대한 키워드 모음
+   */
+  keywards: string[] | null;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  productCount: number;
+  bookingCount: number;
+  /**
+   * 프로필 사진
+   */
+  profileImg: randomSellerListPublic_RandomSellerListPublic_data_profileImg | null;
+}
+
+export interface randomSellerListPublic_RandomSellerListPublic {
+  __typename: "RandomSellerListPublicResponse";
+  ok: boolean;
+  error: randomSellerListPublic_RandomSellerListPublic_error | null;
+  data: randomSellerListPublic_RandomSellerListPublic_data[] | null;
+}
+
+export interface randomSellerListPublic {
+  RandomSellerListPublic: randomSellerListPublic_RandomSellerListPublic;
+}
+
+export interface randomSellerListPublicVariables {
+  random?: number | null;
+  filter?: _SellerFilter | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: userResign
 // ====================================================
 
@@ -12002,7 +12070,7 @@ export enum BoardAction {
 export enum BoardType {
   ANNOUNCE = "ANNOUNCE",
   News = "News",
-PORTFOLIO = "PORTFOLIO",
+  PORTFOLIO = "PORTFOLIO",
   PRODUCT = "PRODUCT",
   QNA = "QNA",
   QUESTION = "QUESTION",
@@ -13667,6 +13735,8 @@ export interface _SellerFilter {
   name_eq?: string | null;
   name_not_eq?: string | null;
   name_contains?: string | null;
+  profileImg_eq?: string | null;
+  profileImg_not_eq?: string | null;
   createdAt_eq?: any | null;
   createdAt_not_eq?: any | null;
   createdAt_lte?: any | null;
@@ -13719,6 +13789,9 @@ export interface _SettlementFilter {
 export interface _SystemNotiFilter {
   AND?: _SystemNotiFilter[] | null;
   OR?: _SystemNotiFilter[] | null;
+  type_eq?: string | null;
+  type_not_eq?: string | null;
+  type_in?: string[] | null;
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
@@ -13779,6 +13852,8 @@ export interface _UserFilter {
   name_eq?: string | null;
   name_not_eq?: string | null;
   name_contains?: string | null;
+  profileImg_eq?: string | null;
+  profileImg_not_eq?: string | null;
   createdAt_eq?: any | null;
   createdAt_not_eq?: any | null;
   createdAt_lte?: any | null;

@@ -66,7 +66,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         current = window.location.href.split('/mypage/')[1];
     }
 
-    
+
 
     const isTapOn = (value?: string) => current === value ? "on" : "";
 
@@ -96,7 +96,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                 {isSeller || <li className={isTapOn("basket")}><Link href="/mypage/basket"><a >장바구니</a></Link></li>}{/* 개인 -*/}
                 <li className={isTapOn("my-board")}><Link href="/mypage/my-board"><a >나의 게시글</a></Link></li>{/* 개인/가이드/가이드 -*/}
                 {isSeller && <li className={isTapOn("reservation")}><Link href="/mypage/reservation"><a >예약관리</a></Link></li>}{/* 가이드/가이드 -*/}
-                {isParterB && <li className={isTapOn("goods")}><Link href="/mypage/plainning"><a >상품관리</a></Link></li>}{/* 가이드 -*/}
+                {isParterB && <li className={isTapOn("plainning")}><Link href="/mypage/plainning"><a >상품관리</a></Link></li>}{/* 가이드 -*/}
                 {isSeller && !isParterB && <li className={isTapOn("plainning")}><Link href="/mypage/plainning"><a >기획관리</a></Link></li>}{/* 가이드 -*/}
                 {isSeller && <li className={isTapOn("settlement")}><Link href="/mypage/settlement"><a >매출/정산관리</a></Link></li>}{/* 가이드/가이드 -*/}
                 <li><Link href={`/itsguid/${myProfile._id}`}><a>가이드페이지</a></Link></li>

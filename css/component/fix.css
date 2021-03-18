@@ -312,3 +312,26 @@ background-color: #fff;
     justify-content: center;
     background-color: rgba(255,0,0,0.3);
 }
+
+.max_box__infoWrap {
+    display: flex;
+}
+.max_box__name {
+    white-space: nowrap;
+    max-width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.notification_box__alignment {
+    margin-bottom: 10px!important;
+}
+.notification_box__typeBtn.on {
+    color: #555!important;
+    border-color: #555!important;
+}
+
+.slick-arrow {
+    display: none!important;
+}

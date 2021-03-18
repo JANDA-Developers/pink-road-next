@@ -45,7 +45,12 @@ interface IGoodsProp extends ILi {
 }
 
 export const Goods: React.FC<IGoodsProp> = ({ item, ...props }) => {
-  return <li {...props} key={item._id} className="list_in">
+  const router = useRouter();
+  const handleToDetail = () => {
+    router.push("/tour/view/" + item._id);
+  }
+
+  return <li onClick={handleToDetail} {...props} key={item._id} className="list_in">
     <div className="img" style={BG(item?.images?.[0]?.uri || "")}>상품이미지</div>
     <div className="box">
       <div className="category"><span>{item.category?.label}</span></div>

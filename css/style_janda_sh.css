@@ -503,7 +503,6 @@
                 width: 200px;
                 float: left;
                 text-align: center;
-                cursor: pointer;
                 padding: 20px;
                 box-sizing: border-box;
             }
@@ -519,6 +518,7 @@
                 background-position: center;
                 border-radius: 150px;
                 overflow: hidden;
+                cursor: pointer;
                 text-indent: -999px;
                 margin-bottom: 15px;
                 border: 2px solid #dfdfdf;
@@ -539,9 +539,11 @@
                 font-size: 13px;
                 font-weight: 600;
                 background-color: #ffffff;
+                cursor: pointer;
             }
             .main_con_box5 .man_box .home {
                 position: relative;
+                cursor: pointer;
                 display: inline-block;
                 width: 34px;
                     height: 34px;
@@ -8722,12 +8724,8 @@ i.calendar {
         
         padding: 50px;
     }
-    .privacy_box .subtop_nav {
-        top: -117px !important;
-    }
-    .rule_box .subtop_nav {
-        top: -117px !important;
-    }
+ 
+
     .footer_in .f_detail_wrap,
     #container .row1, 
     #container .row3, 

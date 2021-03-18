@@ -1,4 +1,14 @@
-import { AddtionalFeesStatus, AnnounceType, bookingFindByCode_BookingFindByCode_data_bankTransInfo, BookingStatus, CategoryType, ERR_CODE, Fbooking, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fproduct, Fuser, GENDER, MethodType, PaymentStatus, PayMethod, ProductReOpenReq, ProductStatus, ProductType, QuestionStatus, RequestStatus, SettlementStatus, UserRole, UserStatus } from "../types/api";
+import { AddtionalFeesStatus, AnnounceType, bookingFindByCode_BookingFindByCode_data_bankTransInfo, BookingStatus, CategoryType, ERR_CODE, Fbooking, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fproduct, Fuser, GENDER, MethodType, PaymentStatus, PayMethod, ProductReOpenReq, ProductStatus, ProductType, QuestionStatus, RequestStatus, SettlementStatus, SystemNotiType, UserRole, UserStatus } from "../types/api";
+
+export const systemTypeToString = (type?: SystemNotiType) => {
+    if (type === SystemNotiType.booking) return "예약알림"
+    if (type === SystemNotiType.cancel) return "예약취소"
+    if (type === SystemNotiType.member) return "멤버알림"
+    if (type === SystemNotiType.system) return "시스템알림"
+    if (type === SystemNotiType.payment) return "결제알림"
+    return ""
+}
+
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if (status === BookingStatus.CANCEL) return "예약취소"
@@ -36,6 +46,8 @@ export const paymentStatus2 = (obj?: any | null) => {
 }
 
 export const settlementStatus = (status?: SettlementStatus | null, productStatus?: ProductStatus | null) => {
+    console.log({ productStatus })
+    console.log({ status })
     if (productStatus && productStatus !== ProductStatus.COMPLETED) return "요청불가"
     if (status === SettlementStatus.REQUEST) return "요청"
     if (status === SettlementStatus.COMPLETE) return "완료"

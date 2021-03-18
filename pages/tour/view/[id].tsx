@@ -47,6 +47,7 @@ export async function getStaticPaths() {
   };
 }
 const TourDetail: React.FC<Ipage> = (pageInfo) => {
+
   const router = useRouter();
   const { item: group } = useGroupFind("Recommend")
   const groupExsist = !isEmpty(group?.members);
@@ -166,8 +167,10 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   }
 
   useEffect(() => {
-    if (!product) return;
-  }, [product])
+    if (product && product?.status !== ProductStatus.OPEN)
+      alert("해당 상품은 판매중이 아닙니다.")
+  }, [])
+
 
 
   const randomSliced = useMemo(() => randomSorted.slice(0, 3), [randomSorted.length])
@@ -198,17 +201,11 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     peopleCount
   } = product;
 
-
-
   const isPast = dayjs(startDate).isBefore(new Date());
 
   if (!isSeller && !product.isOpen) return <PageDeny msg="해당 게시글은 비공개 상태입니다." />
   // if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
 
-  useEffect(() => {
-    if (product.status !== ProductStatus.OPEN)
-      alert("해당 상품은 판매중이 아닙니다.")
-  }, [])
 
   return <div className="edtiorView">
     {!loaded && <PageLoading />}
@@ -418,19 +415,19 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               <div className="in_box" id="tap__02">
                 <h4>안내 및 참고</h4>
                 <div dangerouslySetInnerHTML={{
-                  __html: sanitizeHtml(contents)
+                  __html: contents
                 }} className="text ck-content" />
               </div>
               {/* 포함 및 불포함 */}
               <div className="in_box" id="tap__03">
                 <h4>포함 및 불포함 </h4>
                 <div dangerouslySetInnerHTML={{
-                  __html: sanitizeHtml(inOrNor)
+                  __html: inOrNor
                 }} className="text ck-content" />
               </div>
               <div className="in_box" id="tap__04" >
                 <h4>주의사항</h4>
-                <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(caution) }} className="text" />
+                <div dangerouslySetInnerHTML={{ __html: caution }} className="text" />
               </div>
               <div className="in_box" id="tap__04">
                 <h4>문의하기</h4>
