@@ -73,7 +73,7 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                                         e.preventDefault();
                                         e.stopPropagation();
                                         router.push("/member/qna/write/" + qna._id)
-                                    }} type="submit" className="btn medium">수정하기</button>
+                                    }} type="submit" className="btn mini ml10">수정하기</button>
                                 }
 
                                 <i className="jandaicon-arr4-bottom"></i></div>

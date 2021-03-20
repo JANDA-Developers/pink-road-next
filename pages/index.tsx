@@ -172,7 +172,12 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
           </li>
         </ul>
       </div>
+      <div className="main__wave_box">
+        <div className="main__wave"></div>
+      </div>
     </div>
+
+
 
     <div className="main_con_box6">
       <ul className="mainbn">
@@ -251,13 +256,23 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
           </ul>
         </div>
       </div>
+      <div className="main__wave_box">
+        <div className="main__wave2"></div>
+      </div>
     </div>
+
     <div className="main_con_box5">
       <div className="txt w1200">
         <h2 {...edit('bottom_title')} />
         <p {...edit('bottom_desc')} />
         {/* <Bg className="ovj" {...imgKit("bottom_ovj")} /> */}
       </div>
+      {/* <ul className="photo__listBottom">
+        <Bg tag="li" {...imgKit("busi_area1_bg")} ></Bg>
+        <Bg tag="li" {...imgKit("busi_area1_bg")} ></Bg>
+        <Bg tag="li" {...imgKit("busi_area1_bg")} ></Bg>
+        <Bg tag="li" {...imgKit("busi_area1_bg")} ></Bg>
+      </ul> */}
       {/* <div
         className="main_bg_img"
         style={{ ...bg("bottom_bg_img") }}

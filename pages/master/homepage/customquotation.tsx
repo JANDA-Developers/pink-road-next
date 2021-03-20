@@ -58,8 +58,8 @@ export const CustomQuotationMaster: React.FC<IProp> = ({ items = [] }) => {
 
 
     const deleteGroup = (index: number) => {
-        if (confirm("정말로 그룹을 삭제 하시겠습니까?"));
-        data.splice(index, 1);
+        if (confirm("정말로 그룹을 삭제 하시겠습니까?"))
+            data.splice(index, 1);
         console.log({ data });
         setData([...data]);
     }
@@ -86,11 +86,13 @@ export const CustomQuotationMaster: React.FC<IProp> = ({ items = [] }) => {
                 <HomepageTopNav />
                 <div className="con homepage customquotationmaster">
                     <div className="design_table">
-                        <button onClick={addGroup} className="btn add_btn"><i className="flaticon-add"></i>그룹추가</button>
+                        <div className="boardNavigation tr">
+                            <button onClick={addGroup} className="btn full"><i className="flaticon-add"></i>그룹추가</button>
+                        </div>
                         {data.map((item, index) =>
                             <div key={index + "estimate"} className="block_box">
                                 <h5>그룹{index + 1}
-                                    <div className="switch">
+                                    <div className="switch mini ml10">
                                         <input onChange={() => {
                                             const isUse = !item.isUse
                                             item.isUse = isUse;
@@ -100,11 +102,11 @@ export const CustomQuotationMaster: React.FC<IProp> = ({ items = [] }) => {
                                     </div>
                                     <button onClick={() => {
                                         deleteGroup(index)
-                                    }} className="btn add_btn right">그룹삭제</button>
+                                    }} className="btn add_btn right"><i className="flaticon-substract"></i>그룹삭제</button>
                                 </h5>
                                 <div className="tbody categoryEditer">
                                     <div className="t01">
-                                        <div className="title">그룹타이틀</div>
+                                        <div className="title">그룹 타이틀</div>
                                     </div>
                                     <div className="t02">
                                         <div className="txt">
@@ -127,18 +129,18 @@ export const CustomQuotationMaster: React.FC<IProp> = ({ items = [] }) => {
                                                     const title = e.currentTarget.value;
                                                     option.optionName = title;
                                                     updateOption(index, _index, option);
-                                                }} className="w30 mr10" placeholder="항목 타이틀" type="text" value={option.optionName} />
+                                                }} className="w20 mr10" placeholder="항목 타이틀" type="text" value={option.optionName} />
                                                 <input onChange={(e) => {
                                                     const _option = e.currentTarget.value;
                                                     option.option = _option;
                                                     updateOption(index, _index, option);
-                                                }} className="w30 mr10" placeholder="항목 옵션" type="text" value={option.option} />
+                                                }} className="w20 mr10" placeholder="항목 옵션" type="text" value={option.option} />
                                                 <input onChange={(e) => {
                                                     const price = e.currentTarget.value;
                                                     option.price = toNumber(price);
                                                     updateOption(index, _index, option);
-                                                }} className="w30" placeholder="금액" type="text" value={autoComma(option.price || 0)} />
-                                                <div className="switch">
+                                                }} className="w10" placeholder="금액" type="text" value={autoComma(option.price || 0)} />
+                                                <div className="switch big ml10">
                                                     <input onChange={() => {
                                                         const isUse = !option.isUse;
                                                         option.isUse = isUse;
@@ -149,21 +151,24 @@ export const CustomQuotationMaster: React.FC<IProp> = ({ items = [] }) => {
                                                 <div>
                                                     <button onClick={() => {
                                                         deleteOption(index, _index)
-                                                    }} className="btn add_btn right"><i className="flaticon-add"></i>항목삭제</button>
+                                                    }} className="btn add_btn right top"><i className="flaticon-substract"></i>항목삭제</button>
                                                 </div>
                                                 <p className="infotxt_gray">1개에 대한 금액을 설정해주세요. 최대 선택 가능한 갯수는 99개 입니다.</p>
                                             </div>
                                         </div>
                                     </div>
                                 )}
-                                <button onClick={() => {
-                                    addOption(index);
-                                }} className="btn add_btn right"><i className="flaticon-add"></i>항목추가</button>
+                                <div className="boardNavigation tr">
+                                    <button onClick={() => {
+                                        addOption(index);
+                                    }} className="btn add_btn right"><i className="flaticon-add"></i>항목추가</button>
+                                </div>
+
                             </div>
                         )}
                     </div>
 
-                    <button onClick={handleEstimateUpdate} className="btn add_btn right">저장하기</button>
+                    <button onClick={handleEstimateUpdate} className="btn medium right">저장하기</button>
                 </div>
             </div>
         </div>

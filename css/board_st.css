@@ -1961,6 +1961,14 @@ div.comment_box {
     padding: 0 5px;
     box-sizing: border-box;
 }
+.boardNavigation.tr {
+    text-align: right;
+    padding: 0;
+}
+.boardNavigation.tl {
+    text-align: left;
+    padding: 0;
+}
 .boardNavigation button {
    margin: 0 2px;
 }
@@ -1974,6 +1982,10 @@ div.comment_box {
         line-height: 32px;
         font-size: 12px;
         height: auto !important;
+    }
+    .boardNavigation .btn.add_btn {
+        color: #aeaeae !important;
+        border: 1px dotted rgb(195 195 195) !important;
     }
 
         .boardNavigation .btn:hover {
@@ -2414,6 +2426,9 @@ div.sum_div {
     }
 }
 @media (min-width:1000px) {
+    .board_box{
+        padding: 0;
+    }
     .board_list.st05 {
         width:100%;
     }
@@ -2629,7 +2644,9 @@ div.sum_div {
         padding: 0;
         align-items: center;
     }
-
+    ul.photo_ul {
+        display: flex;
+    }
 }
 
 @media (min-width:1200px) {
@@ -2652,9 +2669,7 @@ div.sum_div {
         ul.list_ul li .box {
             padding: 0 0 5px;
         }
-    ul.photo_ul {
-        display: flex;
-    }
+
 
     ul.photo_ul li .img {
         background-size: 150%;
@@ -2668,7 +2683,9 @@ div.sum_div {
 }
 
 @media (max-width:767px) {
-
+    .board_option{
+        text-align: center;
+    }
     .board_box .xe_content {
         margin-top: 50px;
     }

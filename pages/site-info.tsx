@@ -47,6 +47,9 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                     <span  {...edit("secondTitle")} />
                 </div>
                 {/* <Upload onUpload={imgEdit("mainBg")} /> */}
+                <div className="main__wave_box">
+                    <div className="main__wave"></div>
+                </div>
             </div>
         </Bg>
         <div className="w100 con01 con_block">
@@ -143,6 +146,9 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                         </li>
                     </ul>
                 </div>
+                <div className="main__wave_box">
+                    <div className="main__wave2"></div>
+                </div>
             </div>
             <div className="infoimg">
                 <div className="w1200">
@@ -174,13 +180,13 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                     </div>
                     <div className="li05" {...edit("info_img5_title")} />
                 </div>
-                <div className="wave_animation_wrap">
+                {/* <div className="wave_animation_wrap">
                     <div className="figure_wrap">
                         <div className="wave1 item"><span style={{ backgroundImage: 'url(/img/foot_wave01.png)' }}></span></div>
                         <div className="wave2 item"><span style={{ backgroundImage: 'url(/img/foot_wave02.png)' }}></span></div>
                         <div className="wave3 item" > <span style={{ backgroundImage: 'url(/img/foot_wave03.png)' }}></span></div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
         <div className="w100 con05 con_block" style={bg("historybg")}>
@@ -225,6 +231,9 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                         <ul {...ulEdit("history2012")} />
                     </div>
                 </div>
+            </div>
+            <div className="main__wave_box">
+                <div className="main__wave3"></div>
             </div>
         </div>
         <div className="w100 con06 con_block">
