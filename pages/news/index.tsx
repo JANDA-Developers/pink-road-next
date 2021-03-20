@@ -12,6 +12,7 @@ import { usePageEdit } from '../../hook/usePageEdit';
 import { PageEditor } from '../../components/common/PageEditer';
 import { getFromUrl } from '../../utils/url';
 import { AppContext } from '../_app';
+import { newTypeToKr } from '../../utils/enumToKr';
 
 export const getStaticProps = getStaticPageInfo("news");
 export const News: React.FC<Ipage> = (_pageInfo) => {
@@ -42,7 +43,7 @@ export const News: React.FC<Ipage> = (_pageInfo) => {
     return <div className="">
         <SubTopNav pageTools={pageTools} >
             <li className="homedeps1">News</li>
-            <li className="homedeps2"><a href="/news">언론보도</a></li>
+            <li className="homedeps2"><a href="/news">{newTypeToKr(type)}</a></li>
         </SubTopNav>
         <PageEditor pageTools={pageTools} />
         <BoardList

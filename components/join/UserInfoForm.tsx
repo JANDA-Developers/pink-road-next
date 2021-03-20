@@ -14,8 +14,9 @@ import dayjs from 'dayjs';
 import { VerifiEamilModal } from '../verifiModal/VerifiEmailModal';
 import { useVerification } from '../../hook/useVerification';
 import { closeModal, openModal } from '../../utils/popUp';
-import { ThreePhoneNumberInput } from '../phoneNumberInput/PhoneNumberInput';
+import { phoneNumberDivider, ThreePhoneNumberInput } from '../phoneNumberInput/PhoneNumberInput';
 import { NUMBER_OPS } from '../../types/const';
+import { setVal } from '../../utils/eventValueExtracter';
 
 const UserInfoForm: React.FC = () => {
     const verifiHook = useVerification();
@@ -26,6 +27,7 @@ const UserInfoForm: React.FC = () => {
         isPartner,
         verifiData
     } = useContext(JoinContext)!;
+
     const { target } = verifiData || {};
     const isPhoneVerified = target === VerificationTarget.PHONE;
 
@@ -44,6 +46,7 @@ const UserInfoForm: React.FC = () => {
         dayPickerMonth,
         birthdayPicker,
         setBirthDayPicker,
+        phoneNumberHack,
         handleNationality,
         errDisplay,
         setDaumAddress,
@@ -183,7 +186,7 @@ const UserInfoForm: React.FC = () => {
                                 onChange={handleData("name")}
                             />
                             {isPartner &&
-                                <select className="w30" onChange={handleData("blueBird")} value={data.blueBird} name="type">
+                                <select className="w30" onChange={handleData("blueBird")} value={data.blueBird || null} name="type">
                                     {NUMBER_OPS.map(op =>
                                         <option key={"blueBird" + op} value={op}>
                                             {op + "기 파랑새"}
@@ -200,9 +203,9 @@ const UserInfoForm: React.FC = () => {
                         <span className={`er red_font ${errDisplay.phoneNumber && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
                         <div className="w100 userInfoForm__phoneNumberWrap">
                             {/* <ThreePhoneNumberInput
-                            className={isPhoneVerified ? "w100" : "w80"}
-                            onChange={setValue} 
-                            value={value} 
+                                className={isPhoneVerified ? "w100" : "w80"}
+                                onChange={phoneNumberHack[1]}
+                                value={phoneNumberHack[0]}
                             /> */}
                             <input
                                 id="PhoneNumberInput"
@@ -347,6 +350,11 @@ const UserInfoForm: React.FC = () => {
                                 <label>대표 전화번호</label>
                                 <span className={`er red_font ${errDisplay.busi_contact && `on`}`}>*숫자만 입력이 가능합니다.</span>
                                 <div className="w100">
+                                    {/* <ThreePhoneNumberInput
+                                        className={isPhoneVerified ? "w100" : "w80"}
+                                        onChange={phoneNumberHack[1]}
+                                        value={phoneNumberHack[0]}
+                                    /> */}
                                     <input
                                         type="text"
                                         className="form-control w100"
@@ -470,17 +478,20 @@ const UserInfoForm: React.FC = () => {
                     id="ElseVeirifiModal"
                     target={isPhoneVerified ? VerificationTarget.EMAIL : VerificationTarget.PHONE}
                     onSuccess={() => {
+                        const payload = verifiHook.verifiData?.payload || "";
                         if (isPhoneVerified) {
-                            data.email = verifiHook.verifiData?.payload || ""
+                            data.email = payload
                             setData({ ...data })
                             closeModal("#ElseVeirifiModal")();
                         } else {
-                            data.phoneNumber = verifiHook.verifiData?.payload || ""
+                            data.phoneNumber = payload;
                             setData({ ...data })
+                            phoneNumberHack[1](phoneNumberDivider(payload));
                             closeModal("#ElseVeirifiModal")();
                         }
                     }} verifiHook={verifiHook} />
                 <RegisterCheck
+                    phoneNumberHack={phoneNumberHack}
                     registerInfo={data}
                 />
             </form>

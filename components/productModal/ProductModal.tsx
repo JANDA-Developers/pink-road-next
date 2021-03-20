@@ -293,7 +293,7 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                         <ul className="text_box">
                                             <li>
                                                 <div className="txta w100">
-                                                    <textarea readOnly value={requestMemo} style={{ height: "100px;" }} ></textarea>
+                                                    <textarea readOnly value={requestMemo} style={{ height: "100px" }} ></textarea>
                                                 </div>
                                             </li>
                                         </ul>
@@ -313,7 +313,7 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                                     <textarea onChange={(e) => {
                                                         const val = e.currentTarget.value;
                                                         setAdminMemo(val);
-                                                    }} value={adminMemo} style={{ height: "100px;" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
+                                                    }} value={adminMemo} style={{ height: "100px" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
                                                 </div>
                                             </li>
                                             <li className="tr count">{adminMemo?.length}/3000</li>

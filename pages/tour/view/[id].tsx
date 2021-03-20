@@ -14,7 +14,7 @@ import { useScroll } from "../../../hook/useScroll";
 import { handleTab, tabCheck } from "../../../components/tourView/tabUtils";
 import { addItem } from "../../../utils/Storage";
 import { useBasketCount } from "../../../hook/useBasket";
-import { getRangeString } from "../../../utils/product";
+import { checkIsExp, getRangeString } from "../../../utils/product";
 import { generateClientPaging } from "../../../utils/generateClientPaging";
 import { Paginater } from "../../../components/common/Paginator";
 import { QnaLi } from "../../../components/qna/QnaLi";
@@ -35,6 +35,7 @@ import { ProductDateSelecter } from "../../../components/ProductDateSelecter";
 import { Change } from "../../../components/loadingList/LoadingList";
 import OnImagesLoaded from "../../../components/onImageLoad/OnImageLoad";
 import { useImgLoading } from "../../../hook/useImgLoading";
+import { getFromUrl } from "../../../utils/url";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -47,6 +48,7 @@ export async function getStaticPaths() {
 }
 const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const router = useRouter();
+  const isExp = checkIsExp();
   const { item: group } = useGroupFind("Recommend")
   const groupExsist = !isEmpty(group?.members);
   const { handleLoaded, loaded } = useImgLoading()
@@ -212,8 +214,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         children={
           <>
             <li className="homedeps1">
-              <Link href="/tour/">
-                <a>Tour</a>
+              <Link href={isExp ? "/tour?exp=true" : "/tour"}>
+                <a>{isExp ? "Experience" : "Tour"}</a>
               </Link></li>
             <li className="homedeps2">
               <Link href="/tour/list">

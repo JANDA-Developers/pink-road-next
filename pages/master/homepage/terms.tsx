@@ -10,8 +10,29 @@ import { auth } from '../../../utils/with';
 import { ALLOW_ADMINS } from '../../../types/const';
 import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
 import { omits } from '../../../utils/omit';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 const Editor = LoadEditor();
+
+// 일반회원/개인파트너/기업파트너/
+// 이용약관
+// 개인정보 수집 및 이용
+
+//공통부분
+// 개인정보 제 3자 제공
+// SMS, E-mail 수신동의 [선택]
+// 여행자약관
+
+//하단
+// 이용약관
+// 국내여행약관
+// 개인정보처리방침
+// 취소 및 환불 정책
+
+// 예약받을때
+// -여행자약관 = 중첩
+// -개인정보수 집 및 이용
+// -개인정보 제3자제공
 
 interface IProp { }
 export const getStaticProps = getHomepage;
@@ -63,7 +84,44 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
 
     return <MasterLayout>
         <div className="in ">
-            <h4>홈페이지 설정</h4>
+
+            <Tabs>
+                <TabList>
+                    <Tab>이용약관 동의</Tab>
+                    <Tab>개인정보 수집 및 이용 동의</Tab>
+                    <Tab>SMS, E-mail 수신동의</Tab>
+                    <Tab>{userRoleToKR(userType)} 약관</Tab>
+                    <Tab>개인정보 제3자 제공</Tab>
+                </TabList>
+
+                <TabPanel>
+                    <Policy type="usePolicy" />
+                </TabPanel>
+                <TabPanel>
+                    <Policy type="PrivacyPolicy" />
+                </TabPanel>
+                <TabPanel>
+                    <Policy type="partnerPolicy" />
+                </TabPanel>
+                <TabPanel>
+                    <Policy type="marketingPolic" />
+                </TabPanel>
+                <TabPanel>
+                    {userType === UserRole.partnerB &&
+                        <Policy type="partnerBpolicy" />
+                    }
+                    {userType === UserRole.partner &&
+                        <Policy type="partnerPolicy" />
+                    }
+                    {userType === UserRole.individual &&
+                        <Policy type="travelerPolicy" />
+                    }
+                </TabPanel>
+                <TabPanel>
+                    <Policy type="thirdPolicy" />
+                </TabPanel>
+            </Tabs>
+            <h4>약관설정</h4>
             <div className="in_content">
                 <HomepageTopNav />
                 <div className="con terms">

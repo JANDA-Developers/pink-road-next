@@ -12,6 +12,7 @@ import pageInfoDefault from "info/searchAll.json";
 import { PageEditor } from '../components/common/PageEditer';
 import { useBoardList } from '../hook/useMyBoardList';
 import { generateClientPaging } from '../utils/generateClientPaging';
+import Link from 'next/link';
 
 type TSearchParam = {
     keyward?: string;
@@ -84,9 +85,10 @@ export const ProductSearch: React.FC<Ipage> = (_pageInfo) => {
 
     return <div>
         <SubTopNav pageTools={pageTools} >
-            <li className="homedeps1">Member</li>
-            <li className="homedeps2">
-                <a href="/">상품검색</a>
+            <li className="homedeps1">
+                <Link href="/" >
+                    <a >통합검색</a>
+                </Link>
             </li>
         </SubTopNav>
         <PageEditor pageTools={pageTools} />

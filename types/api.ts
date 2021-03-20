@@ -2926,12 +2926,62 @@ export interface homepage_Homepage_data {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  PrivacyPolicy: string;
-  partnerBpolicy: string;
-  usePolicy: string;
+  /**
+   * 일반회원(회원가입) - 이용약관
+   */
+  indiUsePolicy: string;
+  /**
+   * 개인파트너(회원가입) - 이용약관
+   */
+  partnerUsePolicy: string;
+  /**
+   * 기업파트너(회원가입) - 이용약관
+   */
+  busiUsePolicy: string;
+  /**
+   * 일반회원(회원가입) - 개인정보 수집 및 이용
+   */
+  indiPrivacyPolicy: string;
+  /**
+   * 개인파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  partnerPrivacyPolicy: string;
+  /**
+   * 기업파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  busiPartnerPrivacyPolicy: string;
+  /**
+   * 공통(회원가입) - 개인정보 제 3자 제공
+   */
+  privacyThirdPolicy: string;
+  /**
+   * 공통(회원가입) - SMS, E-mail 수신동의[선택]
+   */
+  marketingPolicy: string;
+  /**
+   * 공통(회원가입, 예약받을때) - 여행자약관
+   */
   travelerPolicy: string;
-  partnerPolicy: string;
-  marketingPolic: string;
+  /**
+   * (하단) - 이용약관
+   */
+  usePolicy: string;
+  /**
+   * (하단) - 국내 여행약관
+   */
+  krTravelPolicy: string;
+  /**
+   * (예약받을때, 하단) - 개인정보 수집 및 이용
+   */
+  bookingPrivacyPolicy: string;
+  /**
+   * 예약받을때 - 개인정보 제3자제공
+   */
+  bookingThirdPolicy: string;
+  /**
+   * (하단) - 취소 및 환불정책
+   */
+  refundPolicy: string;
   logoTop: homepage_Homepage_data_logoTop | null;
   logoBottom: homepage_Homepage_data_logoBottom | null;
   bannerA: homepage_Homepage_data_bannerA;
@@ -2942,7 +2992,6 @@ export interface homepage_Homepage_data {
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: homepage_Homepage_data_bankInfo | null;
-  thirdPolicy: string;
   modal: homepage_Homepage_data_modal[];
 }
 
@@ -3083,12 +3132,62 @@ export interface homepageUpdate_HomepageUpdate_data {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  PrivacyPolicy: string;
-  partnerBpolicy: string;
-  usePolicy: string;
+  /**
+   * 일반회원(회원가입) - 이용약관
+   */
+  indiUsePolicy: string;
+  /**
+   * 개인파트너(회원가입) - 이용약관
+   */
+  partnerUsePolicy: string;
+  /**
+   * 기업파트너(회원가입) - 이용약관
+   */
+  busiUsePolicy: string;
+  /**
+   * 일반회원(회원가입) - 개인정보 수집 및 이용
+   */
+  indiPrivacyPolicy: string;
+  /**
+   * 개인파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  partnerPrivacyPolicy: string;
+  /**
+   * 기업파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  busiPartnerPrivacyPolicy: string;
+  /**
+   * 공통(회원가입) - 개인정보 제 3자 제공
+   */
+  privacyThirdPolicy: string;
+  /**
+   * 공통(회원가입) - SMS, E-mail 수신동의[선택]
+   */
+  marketingPolicy: string;
+  /**
+   * 공통(회원가입, 예약받을때) - 여행자약관
+   */
   travelerPolicy: string;
-  partnerPolicy: string;
-  marketingPolic: string;
+  /**
+   * (하단) - 이용약관
+   */
+  usePolicy: string;
+  /**
+   * (하단) - 국내 여행약관
+   */
+  krTravelPolicy: string;
+  /**
+   * (예약받을때, 하단) - 개인정보 수집 및 이용
+   */
+  bookingPrivacyPolicy: string;
+  /**
+   * 예약받을때 - 개인정보 제3자제공
+   */
+  bookingThirdPolicy: string;
+  /**
+   * (하단) - 취소 및 환불정책
+   */
+  refundPolicy: string;
   logoTop: homepageUpdate_HomepageUpdate_data_logoTop | null;
   logoBottom: homepageUpdate_HomepageUpdate_data_logoBottom | null;
   bannerA: homepageUpdate_HomepageUpdate_data_bannerA;
@@ -3099,7 +3198,6 @@ export interface homepageUpdate_HomepageUpdate_data {
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: homepageUpdate_HomepageUpdate_data_bankInfo | null;
-  thirdPolicy: string;
   modal: homepageUpdate_HomepageUpdate_data_modal[];
 }
 
@@ -7502,12 +7600,62 @@ export interface getContext_Homepage_data {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  PrivacyPolicy: string;
-  partnerBpolicy: string;
-  usePolicy: string;
+  /**
+   * 일반회원(회원가입) - 이용약관
+   */
+  indiUsePolicy: string;
+  /**
+   * 개인파트너(회원가입) - 이용약관
+   */
+  partnerUsePolicy: string;
+  /**
+   * 기업파트너(회원가입) - 이용약관
+   */
+  busiUsePolicy: string;
+  /**
+   * 일반회원(회원가입) - 개인정보 수집 및 이용
+   */
+  indiPrivacyPolicy: string;
+  /**
+   * 개인파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  partnerPrivacyPolicy: string;
+  /**
+   * 기업파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  busiPartnerPrivacyPolicy: string;
+  /**
+   * 공통(회원가입) - 개인정보 제 3자 제공
+   */
+  privacyThirdPolicy: string;
+  /**
+   * 공통(회원가입) - SMS, E-mail 수신동의[선택]
+   */
+  marketingPolicy: string;
+  /**
+   * 공통(회원가입, 예약받을때) - 여행자약관
+   */
   travelerPolicy: string;
-  partnerPolicy: string;
-  marketingPolic: string;
+  /**
+   * (하단) - 이용약관
+   */
+  usePolicy: string;
+  /**
+   * (하단) - 국내 여행약관
+   */
+  krTravelPolicy: string;
+  /**
+   * (예약받을때, 하단) - 개인정보 수집 및 이용
+   */
+  bookingPrivacyPolicy: string;
+  /**
+   * 예약받을때 - 개인정보 제3자제공
+   */
+  bookingThirdPolicy: string;
+  /**
+   * (하단) - 취소 및 환불정책
+   */
+  refundPolicy: string;
   logoTop: getContext_Homepage_data_logoTop | null;
   logoBottom: getContext_Homepage_data_logoBottom | null;
   bannerA: getContext_Homepage_data_bannerA;
@@ -7518,7 +7666,6 @@ export interface getContext_Homepage_data {
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: getContext_Homepage_data_bankInfo | null;
-  thirdPolicy: string;
   modal: getContext_Homepage_data_modal[];
 }
 
@@ -10993,12 +11140,62 @@ export interface Fhomepage {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  PrivacyPolicy: string;
-  partnerBpolicy: string;
-  usePolicy: string;
+  /**
+   * 일반회원(회원가입) - 이용약관
+   */
+  indiUsePolicy: string;
+  /**
+   * 개인파트너(회원가입) - 이용약관
+   */
+  partnerUsePolicy: string;
+  /**
+   * 기업파트너(회원가입) - 이용약관
+   */
+  busiUsePolicy: string;
+  /**
+   * 일반회원(회원가입) - 개인정보 수집 및 이용
+   */
+  indiPrivacyPolicy: string;
+  /**
+   * 개인파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  partnerPrivacyPolicy: string;
+  /**
+   * 기업파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  busiPartnerPrivacyPolicy: string;
+  /**
+   * 공통(회원가입) - 개인정보 제 3자 제공
+   */
+  privacyThirdPolicy: string;
+  /**
+   * 공통(회원가입) - SMS, E-mail 수신동의[선택]
+   */
+  marketingPolicy: string;
+  /**
+   * 공통(회원가입, 예약받을때) - 여행자약관
+   */
   travelerPolicy: string;
-  partnerPolicy: string;
-  marketingPolic: string;
+  /**
+   * (하단) - 이용약관
+   */
+  usePolicy: string;
+  /**
+   * (하단) - 국내 여행약관
+   */
+  krTravelPolicy: string;
+  /**
+   * (예약받을때, 하단) - 개인정보 수집 및 이용
+   */
+  bookingPrivacyPolicy: string;
+  /**
+   * 예약받을때 - 개인정보 제3자제공
+   */
+  bookingThirdPolicy: string;
+  /**
+   * (하단) - 취소 및 환불정책
+   */
+  refundPolicy: string;
   logoTop: Fhomepage_logoTop | null;
   logoBottom: Fhomepage_logoBottom | null;
   bannerA: Fhomepage_bannerA;
@@ -11009,7 +11206,6 @@ export interface Fhomepage {
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: Fhomepage_bankInfo | null;
-  thirdPolicy: string;
   modal: Fhomepage_modal[];
 }
 
@@ -12578,15 +12774,20 @@ export interface HomepageUpdateInput {
   blacklist?: string[] | null;
   loginRedirect?: string | null;
   loginOutRedirect?: string | null;
-  PrivacyPolicy?: string | null;
-  usePolicy?: string | null;
-  partnerBpolicy?: string | null;
-  refundPolicy?: string | null;
+  indiUsePolicy?: string | null;
+  partnerUsePolicy?: string | null;
+  busiUsePolicy?: string | null;
+  indiPrivacyPolicy?: string | null;
+  partnerPrivacyPolicy?: string | null;
+  busiPartnerPrivacyPolicy?: string | null;
+  privacyThirdPolicy?: string | null;
+  marketingPolicy?: string | null;
   travelerPolicy?: string | null;
-  partnerPolicy?: string | null;
-  marketingPolic?: string | null;
+  usePolicy?: string | null;
+  bookingPrivacyPolicy?: string | null;
+  bookingThirdPolicy?: string | null;
+  refundPolicy?: string | null;
   tourismbusinessNumber?: string | null;
-  thirdPolicy?: string | null;
   ceoName?: string | null;
   address?: string | null;
   addressUrl?: string | null;

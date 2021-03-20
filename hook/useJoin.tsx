@@ -49,6 +49,7 @@ export const useJoin = () => {
 
 
 
+
     const markError = (key: keyof typeof errDisplay) => {
         errDisplay[key] = true;
         setErrDisplay({ ...errDisplay })
@@ -65,6 +66,12 @@ export const useJoin = () => {
         e.stopPropagation();
         setDaumAddress(true);
     }
+
+    const phoneNumberHack = useState({
+        one: data.phoneNumber?.substr(0, 3) || "",
+        two: data.phoneNumber?.substr(3, 4) || "",
+        three: data.phoneNumber?.substr(7, 4) || ""
+    })
 
     const [birthdayPicker, setBirthDayPicker] = useState(false);
     const [dayPickerMonth, setDayPickerMonth] = useState(fromMonth);
@@ -219,6 +226,7 @@ export const useJoin = () => {
         setData,
         handleDayPickerMonth,
         daumAddress,
+        phoneNumberHack,
         // nickNameChecked,
         setDaumAddress,
         handleData,

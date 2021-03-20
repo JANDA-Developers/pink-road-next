@@ -452,7 +452,7 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
                                                 const val = e.currentTarget.value;
                                                 if (memo.length > 3000) return;
                                                 setMemo(val);
-                                            }} value={memo || ""} style={{ height: "100px;" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
+                                            }} value={memo || ""} style={{ height: "100px" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
                                         </div>
                                     </li>
                                     <li className="tr count">{memo.length}/3000</li>

@@ -28,6 +28,7 @@ import { Prompt } from "../../../components/promptModal/Prompt";
 import { openModal } from "../../../utils/popUp";
 import { LocalStorageBoard } from "../../../components/localStorageBoard/LocalStorageBoard";
 import dayjs from "dayjs";
+import { checkIsExp } from "../../../utils/product";
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
@@ -61,6 +62,7 @@ export async function getStaticPaths() {
 export const getStaticProps = getStaticPageInfo("tourWrite")
 export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
+    const isExp = checkIsExp()
     const { query } = router;
     const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const id = query.id?.[0] as string | undefined;
@@ -220,8 +222,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         <SubTopNav pageTools={pageTools} children={
             <>
                 <li className="homedeps1">
-                    <Link href="/tour/">
-                        <a>Tour</a>
+                    <Link href={isExp ? "/tour?exp=true" : "/tour"}>
+                        <a>{isExp ? "Experience" : "Tour"}</a>
                     </Link></li>
                 <li className="homedeps2">
                     <Link href="/tour/write">

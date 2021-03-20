@@ -9,9 +9,20 @@ export interface Ivalue {
     three: string;
 }
 
-interface IProp extends Omit<IDiv,"onChange"> {
+interface IProp extends Omit<IDiv, "onChange"> {
     value: Ivalue
     onChange: (value: Ivalue) => void;
+}
+
+export const phoneNumberDivider = (val: string): Ivalue => {
+    const one = val.substr(0, 3);
+    const two = val.substr(3, 4);
+    const three = val.substr(7, 4);
+    return ({
+        one,
+        two,
+        three,
+    })
 }
 
 export const ThreePhoneNumberInput: React.FC<IProp> = ({ value: { one, three, two }, onChange }) => {
@@ -50,11 +61,7 @@ export const ThreePhoneNumberInput: React.FC<IProp> = ({ value: { one, three, tw
 
         if (!isDelete && val.length > (first ? 3 : 4)) {
 
-            const one = val.substr(0, 3);
-            const two = val.substr(3, 4);
-            const three = val.substr(7, 4);
-
-
+            const { one, two, three } = phoneNumberDivider(val);
             const nextInput = e.currentTarget.nextElementSibling;
             if (nextInput) {
                 console.count("triggered")

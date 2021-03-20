@@ -3203,7 +3203,7 @@ ul.rank_ul {
         text-align: left;
     }
 
-        .siteInfo_in .con04 h4 strong {
+        .siteInfo_in .con04 h4 .strong {
             color: #333;
             display: inline-block;
             font-size: 23px;
@@ -8588,6 +8588,8 @@ i.calendar {
     display: flex;
     text-align: center;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .quotation__table_fom{
     margin: 0;
@@ -8608,23 +8610,20 @@ i.calendar {
     margin-bottom: 2%;
     margin-top: 5%;
 }
+
 .quotation__table_list .content{
+    min-width: 49.5%;
+    width: 49.5%;
     position: relative;
-    width: auto;
     display: inline-block;
     font-weight: 100;
     border: 1px solid #ccc;
-    margin-right: 1%;
     margin-bottom: 1%;
     padding: 2%;
     box-sizing: border-box;
-    flex: 1 1;
-    flex-grow: 1;
+    flex-grow: 0;
 }
-.quotation__table_list .content:last-child{
-   
-    margin-right: 0;
-}
+
 .quotation__table_fom .content > div{
     display: inline-block;
     width: 49%;
@@ -8827,9 +8826,6 @@ i.calendar {
         padding: 50px;
     }
     .privacy_box .subtop_nav {
-        top: -117px !important;
-    }
-    .rule_box .subtop_nav {
         top: -117px !important;
     }
     .footer_in .f_detail_wrap,

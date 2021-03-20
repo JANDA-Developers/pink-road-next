@@ -4,7 +4,7 @@ import { isEmail, isPhone, isPassword, isName } from 'utils/validation';
 import { useSignUp } from '../../hook/useUser';
 import { Validater } from '../../utils/validate';
 import { JoinContext } from '../../pages/member/join';
-import { openModal } from '../../utils/popUp';
+import { closeModal, openModal } from '../../utils/popUp';
 import { ISignUpInput } from '../../hook/useJoin';
 import { omits } from '../../utils/omit';
 import { Modal } from '../modal/Modal';
@@ -12,6 +12,7 @@ import { Policy } from '../policy/PriviacyPolicy';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { userRoleToKR } from '../../utils/enumToKr';
+import { ISet } from '../../types/interface';
 
 type TSMS = {
   sns: true,
@@ -30,9 +31,12 @@ export type TPolicyChk = {
 
 interface IProps {
   registerInfo: ISignUpInput;
+  phoneNumberHack: any
 }
 
-const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
+const RegisterCheck: React.FC<IProps> = ({ registerInfo, phoneNumberHack }) => {
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const { userType, setJoinProcess, verifiData } = useContext(JoinContext)!;
 
@@ -163,11 +167,11 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
       failMsg: "이름 값이 올바르지 않습니다.",
       id: "NameInput"
     },
-    {
-      value: isPhone(registerInfo.phoneNumber || ""),
-      failMsg: "올바른 핸드폰 번호가 아닙니다.",
-      id: "PhoneNumberInput"
-    },
+    // {
+    //   value: isPhone(registerInfo.phoneNumber || ""),
+    //   failMsg: "올바른 핸드폰 번호가 아닙니다.",
+    //   id: "PhoneNumberInput"
+    // },
     ...sharedValidate
   ])
 
@@ -211,7 +215,10 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
     return false;
   }
 
-
+  const openPolicy = (index: number) => () => {
+    setSelectedIndex(index);
+    openModal('#PolicyModal')();
+  }
 
   const handleRegister = () => {
     const validatedData: AddUserInput = omits(registerInfo, ["pwcheck"]) as any
@@ -289,6 +296,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         </div>
         <div className="agreeChk_list">
           <ul>
+            {/* <Tab>이용약관</Tab> */}
             <li>
               {/* ALL */}
               <div className="in_box1">
@@ -301,12 +309,13 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#PolicyModal')}
+                  onClick={openPolicy(0)}
                 >
                   전문보기 &gt;
                 </a>
               </div>
             </li>
+            {/* <Tab>개인정보 수집 및 이용 동의</Tab> */}
             <li>
               {/* ALL */}
               <div className="in_box1">
@@ -319,12 +328,13 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#PolicyModal')}
+                  onClick={openPolicy(1)}
                 >
                   전문보기 &gt;
                   </a>
               </div>
             </li>
+            {/* <Tab>개인정보 제 3자 제공</Tab> */}
             <li>
               {/* ALL */}
               <div className="in_box1">
@@ -332,17 +342,18 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
                   checked={chkPolocy.policy_info_entrust}
                   onClick={() => { handlePolicy('policy_info_entrust') }} />
                 <span>
-                  <strong>개인정보처리 위탁</strong>[필수]
+                  <strong>개인정보 제 3자 제공</strong>[필수]
                   </span>
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#PolicyModal')}
+                  onClick={openPolicy(2)}
                 >
                   전문보기 &gt;
                   </a>
               </div>
             </li>
+            {/* <Tab>여행자약관</Tab> */}
             <li>
               {/* 개인 */}
               <div className="in_box1">
@@ -355,61 +366,25 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#PolicyModal')}
+                  onClick={openPolicy(3)}
                 >
                   전문보기 &gt;
                   </a>
               </div>
             </li>
+            {/* <Tab>SMS, E-mail 수신동의 [선택]</Tab> */}
             <li>
-              {/* 기업파트너/개인파트너 */}
               <div className="in_box1">
                 <input type="checkbox" className="checkbox"
                   checked={chkPolocy.policy_partner}
                   onClick={() => { handlePolicy('policy_partner') }} />
                 <span>
-                  <strong>파트너약관</strong>[필수]
+                  <strong>SMS, E-mail 수신동의</strong>[필수]
                   </span>
               </div>
               <div className="in_box2">
                 <a
-                  onClick={openModal('#PolicyModal')}
-                >
-                  전문보기 &gt;
-                  </a>
-              </div>
-            </li>
-            <li>
-              {/* ALL */}
-              <div className="in_box1">
-                <input type="checkbox" className="checkbox"
-                  checked={chkPolocy.policy_marketing}
-                  onClick={() => { handlePolicy('policy_marketing') }} />
-                <span>
-                  <strong>SMS, E-mail 수신동의</strong>
-                </span>
-              </div>
-              <div className="in_box2">
-                <a
-                  onClick={openModal('#PolicyModal')}
-                >
-                  전문보기 &gt;
-                  </a>
-              </div>
-            </li>
-            <li>
-              {/* ALL */}
-              <div className="in_box1">
-                <input type="checkbox" className="checkbox"
-                  checked={chkPolocy.policy_info_3rd}
-                  onClick={() => { handlePolicy('policy_info_3rd') }} />
-                <span>
-                  <strong>개인정보 제3자 제공</strong>
-                </span>
-              </div>
-              <div className="in_box2">
-                <a
-                  onClick={openModal('#PolicyModal')}
+                  onClick={openPolicy(4)}
                 >
                   전문보기 &gt;
                   </a>
@@ -419,43 +394,58 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
         </div>
       </div>
       <Modal id="PolicyModal" title="약관보기">
-        <Tabs>
+        <Tabs onSelect={setSelectedIndex} selectedIndex={selectedIndex}>
           <TabList>
-            <Tab>이용약관 동의</Tab>
+            <Tab>이용약관</Tab>
             <Tab>개인정보 수집 및 이용 동의</Tab>
-            <Tab>SMS, E-mail 수신동의</Tab>
-            <Tab>{userRoleToKR(userType)} 약관</Tab>
-            <Tab>개인정보 제3자 제공</Tab>
+            <Tab>개인정보 제 3자 제공</Tab>
+            <Tab>여행자약관</Tab>
+            <Tab>SMS, E-mail 수신동의 [선택]</Tab>
           </TabList>
-
           <TabPanel>
-            <Policy type="usePolicy" />
-          </TabPanel>
-          <TabPanel>
-            <Policy type="PrivacyPolicy" />
-          </TabPanel>
-          <TabPanel>
-            <Policy type="partnerPolicy" />
-          </TabPanel>
-          <TabPanel>
-            <Policy type="marketingPolic" />
-          </TabPanel>
-          <TabPanel>
+            {/* 이용약관 [분기] */}
             {userType === UserRole.partnerB &&
-              <Policy type="partnerBpolicy" />
+              <Policy type="busiUsePolicy" />
             }
             {userType === UserRole.partner &&
-              <Policy type="partnerPolicy" />
+              <Policy type="partnerUsePolicy" />
             }
             {userType === UserRole.individual &&
-              <Policy type="travelerPolicy" />
+              <Policy type="indiUsePolicy" />
             }
           </TabPanel>
+          {/* 개인정보 수집 및 이용 [분기] */}
           <TabPanel>
-            <Policy type="thirdPolicy" />
+            {userType === UserRole.partnerB &&
+              <Policy type="busiPartnerPrivacyPolicy" />
+            }
+            {userType === UserRole.partner &&
+              <Policy type="partnerPrivacyPolicy" />
+            }
+            {userType === UserRole.individual &&
+              <Policy type="indiPrivacyPolicy" />
+            }
+          </TabPanel>
+          {/* 개인정보 제 3자 제공 */}
+          <TabPanel>
+            <Policy type="privacyThirdPolicy" />
+          </TabPanel>
+          <TabPanel>
+            {/* SMS, E-mail 수신동의 [선택] */}
+            <Policy type="marketingPolicy" />
+          </TabPanel>
+          {/* 여행자약관 */}
+          <TabPanel>
+            <Policy type="travelerPolicy" />
           </TabPanel>
         </Tabs>
-        <button className="btn" >확인</button>
+        <button onClick={() => {
+          closeModal("#PolicyModal")();
+          handleAgreeAll();
+        }} className="btn mr10" >전체동의</button>
+        <button onClick={() => {
+          closeModal("#PolicyModal")();
+        }} className="btn" >확인</button>
       </Modal>
 
       <div className="fin">

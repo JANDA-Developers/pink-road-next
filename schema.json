@@ -2651,8 +2651,8 @@
             "deprecationReason": null
           },
           {
-            "name": "PrivacyPolicy",
-            "description": null,
+            "name": "indiUsePolicy",
+            "description": "일반회원(회원가입) - 이용약관",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2667,8 +2667,8 @@
             "deprecationReason": null
           },
           {
-            "name": "refundPolicy",
-            "description": null,
+            "name": "partnerUsePolicy",
+            "description": "개인파트너(회원가입) - 이용약관",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2683,8 +2683,8 @@
             "deprecationReason": null
           },
           {
-            "name": "usePolicy",
-            "description": null,
+            "name": "busiUsePolicy",
+            "description": "기업파트너(회원가입) - 이용약관",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2699,8 +2699,72 @@
             "deprecationReason": null
           },
           {
-            "name": "partnerBpolicy",
-            "description": null,
+            "name": "indiPrivacyPolicy",
+            "description": "일반회원(회원가입) - 개인정보 수집 및 이용",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "partnerPrivacyPolicy",
+            "description": "개인파트너(회원가입) - 개인정보 수집 및 이용",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "busiPartnerPrivacyPolicy",
+            "description": "기업파트너(회원가입) - 개인정보 수집 및 이용",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "privacyThirdPolicy",
+            "description": "공통(회원가입) - 개인정보 제 3자 제공",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "marketingPolicy",
+            "description": "공통(회원가입) - SMS, E-mail 수신동의[선택]",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2716,7 +2780,7 @@
           },
           {
             "name": "travelerPolicy",
-            "description": null,
+            "description": "공통(회원가입, 예약받을때) - 여행자약관",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2731,8 +2795,8 @@
             "deprecationReason": null
           },
           {
-            "name": "partnerPolicy",
-            "description": null,
+            "name": "usePolicy",
+            "description": "(하단) - 이용약관",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2747,8 +2811,56 @@
             "deprecationReason": null
           },
           {
-            "name": "marketingPolic",
-            "description": null,
+            "name": "refundPolicy",
+            "description": "(하단) - 취소 및 환불정책",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "krTravelPolicy",
+            "description": "(하단) - 국내 여행약관",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookingPrivacyPolicy",
+            "description": "(예약받을때, 하단) - 개인정보 수집 및 이용",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bookingThirdPolicy",
+            "description": "예약받을때 - 개인정보 제3자제공",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -27817,8 +27929,8 @@
             "defaultValue": null
           },
           {
-            "name": "PrivacyPolicy",
-            "description": null,
+            "name": "indiUsePolicy",
+            "description": "일반회원(회원가입) - 이용약관",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -27827,8 +27939,8 @@
             "defaultValue": null
           },
           {
-            "name": "usePolicy",
-            "description": null,
+            "name": "partnerUsePolicy",
+            "description": "개인파트너(회원가입) - 이용약관",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -27837,8 +27949,8 @@
             "defaultValue": null
           },
           {
-            "name": "partnerBpolicy",
-            "description": null,
+            "name": "busiUsePolicy",
+            "description": "기업파트너(회원가입) - 이용약관",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -27847,8 +27959,48 @@
             "defaultValue": null
           },
           {
-            "name": "refundPolicy",
-            "description": null,
+            "name": "indiPrivacyPolicy",
+            "description": "일반회원(회원가입) - 개인정보 수집 및 이용",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "partnerPrivacyPolicy",
+            "description": "개인파트너(회원가입) - 개인정보 수집 및 이용",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "busiPartnerPrivacyPolicy",
+            "description": "기업파트너(회원가입) - 개인정보 수집 및 이용",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "privacyThirdPolicy",
+            "description": "공통(회원가입) - 개인정보 제 3자 제공",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "marketingPolicy",
+            "description": "공통(회원가입) - SMS, E-mail 수신동의[선택]",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -27858,7 +28010,7 @@
           },
           {
             "name": "travelerPolicy",
-            "description": null,
+            "description": "공통(회원가입, 예약받을때) - 여행자약관",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -27867,8 +28019,8 @@
             "defaultValue": null
           },
           {
-            "name": "partnerPolicy",
-            "description": null,
+            "name": "usePolicy",
+            "description": "하단 이용약관",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -27877,8 +28029,28 @@
             "defaultValue": null
           },
           {
-            "name": "marketingPolic",
-            "description": null,
+            "name": "bookingPrivacyPolicy",
+            "description": "예약받을때 - 개인정보 수집 및 이용",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "bookingThirdPolicy",
+            "description": "예약받을때 - 개인정보 제3자제공",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "refundPolicy",
+            "description": "(하단) - 취소 및 환불정책",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -27888,16 +28060,6 @@
           },
           {
             "name": "tourismbusinessNumber",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "thirdPolicy",
             "description": null,
             "type": {
               "kind": "SCALAR",

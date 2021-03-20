@@ -310,7 +310,7 @@ export default PartnerMemberMaster;
 //                         <div className="info_page">
 //                             <div className="full_div">
 //                                 <h4>사업자회원 주의사항</h4>
-//                                 <textarea style={{ height: "100px;" }} placeholder=""></textarea>
+//                                 <textarea style={{ height: "100px" }} placeholder=""></textarea>
 //                             </div>
 //                         </div>
 
@@ -436,7 +436,7 @@ export default PartnerMemberMaster;
 //                                     <ul className="text_box">
 //                                         <li>
 //                                             <div className="txta w100">
-//                                                 <textarea style={{ height: "100px;" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
+//                                                 <textarea style={{ height: "100px" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
 //                                             </div>
 //                                         </li>
 //                                         <li className="tr count">0/3000</li>
