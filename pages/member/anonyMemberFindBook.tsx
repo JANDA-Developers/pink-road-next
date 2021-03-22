@@ -159,7 +159,7 @@ export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
                     <dd>
                         <ul className="bul_list">
                             <li><span className="dot_arr">전화번호와 성함이 일치해야만 조회가 가능합니다.</span></li>
-                            <li><span className="dot_arr">회원이신가요? 회원은 로그인을 하셔야 조회가 가능합니다. [Mypage > 예약조회]에서 조회를 해주세요.</span></li>
+                            <li><span className="dot_arr">{`회원이신가요? 회원은 로그인을 하셔야 조회가 가능합니다. [Mypage > 예약조회]에서 조회를 해주세요.`}</span></li>
                             <li><span className="dot_arr">비회원 예약만 조회가 가능합니다.</span></li>
                         </ul>
                     </dd>

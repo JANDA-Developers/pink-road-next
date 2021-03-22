@@ -458,24 +458,24 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 </div>
               </div>
             </div>
-            {/* <div className="boardNavigation">
+            <div className="boardNavigation">
               <div className="float_left">
               </div>
-              {(isManager || isAdmin || isMyProduct) && <div onClick={handleRight} className="float_right">
+              {(isManager || isAdmin || isMyProduct) && <div className="float_right">
                 <button type="submit" onClick={handleEdit} className="btn medium pointcolor">수정</button>
                 {(isManager || isAdmin) && <button type="submit" onClick={handleDelete} className="btn medium">삭제</button>}
               </div>}
             </div>
             <div className="add_list">
-              <h4>핑크로더 추천여행</h4> */}
-            {/* 랜덤노출 */}
-            {/* //슬라이스 한다음  ㅁ */}
-            {/* <ul className="tourView__recommendList  list_ul line3">
-                {randomSliced.map(item =>
+              <h4>핑크로더 추천여행</h4>
+              {/* 랜덤노출 */}
+              {/* //슬라이스 한다음  ㅁ */}
+              <ul className="tourView__recommendList  list_ul line3">
+                {randomSorted.slice(0, 3).map(item =>
                   <ProductPhotoBlock key={item._id} item={item} />
                 )}
-              </ul> */}
-            {/* </div> */}
+              </ul>
+            </div>
           </div>
         </div>
       </Change>

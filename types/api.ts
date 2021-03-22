@@ -72,12 +72,12 @@ export interface announceFindById_AnnounceFindById_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -286,12 +286,12 @@ export interface announceList_AnnounceList_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -1633,12 +1633,12 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -1741,7 +1741,7 @@ export interface bookingFindByCode_BookingFindByCode_data_booker {
 export interface bookingFindByCode_BookingFindByCode_data_travelers {
   __typename: "Traveler";
   name: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender: GENDER | null;
   age: string;
 }
@@ -3443,12 +3443,12 @@ export interface newsFindById_NewsFindById_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -3656,12 +3656,12 @@ export interface newsList_NewsList_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -4611,12 +4611,12 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -4820,12 +4820,12 @@ export interface portfolioList_PortfolioList_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -5595,12 +5595,12 @@ export interface productList_ProductList_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -5836,12 +5836,12 @@ export interface productFindById_ProductFindById_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -6162,12 +6162,12 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -6298,12 +6298,12 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -6761,12 +6761,12 @@ export interface qnaFindById_QnaFindById_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -6980,12 +6980,12 @@ export interface qnaList_QnaList_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -7370,12 +7370,12 @@ export interface getContext_GetProfile_data {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -8243,12 +8243,12 @@ export interface settlementFindById_SettlementFindById_data_product_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -8572,12 +8572,12 @@ export interface settlementList_SettlementList_data_seller {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -8719,12 +8719,12 @@ export interface settlementList_SettlementList_data_product_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -9698,12 +9698,12 @@ export interface userList_UserList_data {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -9899,12 +9899,12 @@ export interface userFindById_UserFindById_data_products_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -10071,12 +10071,12 @@ export interface userFindById_UserFindById_data {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -10304,12 +10304,12 @@ export interface Fannounce_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -10427,7 +10427,7 @@ export interface Fanswer {
 export interface Ftraveler {
   __typename: "Traveler";
   name: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender: GENDER | null;
   age: string;
 }
@@ -10842,12 +10842,12 @@ export interface Fuser {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -11297,12 +11297,12 @@ export interface Fnews_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -11626,12 +11626,12 @@ export interface Fportfolio_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -11764,12 +11764,12 @@ export interface Fqna_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -12815,6 +12815,7 @@ export interface HomepageUpdateInput {
   travelerPolicy?: string | null;
   usePolicy?: string | null;
   bookingPrivacyPolicy?: string | null;
+  krTravelPolicy?: string | null;
   bookingThirdPolicy?: string | null;
   refundPolicy?: string | null;
   tourismbusinessNumber?: string | null;
@@ -13139,7 +13140,7 @@ export interface SmsTemplateUpdateInput {
 
 export interface TravelerInput {
   name?: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender?: GENDER | null;
   age: string;
 }

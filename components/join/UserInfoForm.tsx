@@ -2,11 +2,9 @@ import React, { useContext, useEffect } from 'react'
 import DaumPostcode from 'react-daum-postcode';
 import DayPicker from 'react-day-picker';
 import RegisterCheck from './RegisterCheck';
-import Calendar from '../common/icon/CalendarIcon';
 import 'react-day-picker/lib/style.css';
 import { GENDER, VerificationTarget } from '../../types/api';
-import { fromMonth, toMonth, useJoin } from '../../hook/useJoin';
-import { YearMonthForm } from './YearMonthForm';
+import { useJoin } from '../../hook/useJoin';
 import { JoinContext } from '../../pages/member/join';
 import { autoHypenPhone } from '../../utils/formatter';
 import { BirthDayPicker } from '../birthdayPicker/BirthdayPicker';
@@ -14,9 +12,8 @@ import dayjs from 'dayjs';
 import { VerifiEamilModal } from '../verifiModal/VerifiEmailModal';
 import { useVerification } from '../../hook/useVerification';
 import { closeModal, openModal } from '../../utils/popUp';
-import { phoneNumberDivider, ThreePhoneNumberInput } from '../phoneNumberInput/PhoneNumberInput';
+import { phoneNumberDivider } from '../phoneNumberInput/PhoneNumberInput';
 import { NUMBER_OPS } from '../../types/const';
-import { setVal } from '../../utils/eventValueExtracter';
 
 const UserInfoForm: React.FC = () => {
     const verifiHook = useVerification();
@@ -186,7 +183,7 @@ const UserInfoForm: React.FC = () => {
                                 onChange={handleData("name")}
                             />
                             {isPartner &&
-                                <select className="w30" onChange={handleData("blueBird")} value={data.blueBird || null} name="type">
+                                <select className="w30" onChange={handleData("blueBird")} value={data.blueBird || undefined} name="type">
                                     {NUMBER_OPS.map(op =>
                                         <option key={"blueBird" + op} value={op}>
                                             {op + "기 파랑새"}

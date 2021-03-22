@@ -573,6 +573,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Board",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -1424,7 +1440,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "DateTime",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -4201,6 +4217,22 @@
             "deprecationReason": null
           },
           {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Board",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "type",
             "description": null,
             "args": [],
@@ -5770,6 +5802,22 @@
             "deprecationReason": null
           },
           {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Board",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "category",
             "description": null,
             "args": [],
@@ -6242,6 +6290,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Board",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -6532,6 +6596,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Board",
                 "ofType": null
               }
             },
@@ -9463,6 +9543,22 @@
             "deprecationReason": null
           },
           {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Board",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "type",
             "description": null,
             "args": [],
@@ -10103,6 +10199,22 @@
             "deprecationReason": null
           },
           {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Board",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "category",
             "description": null,
             "args": [],
@@ -10688,6 +10800,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Board",
                 "ofType": null
               }
             },
@@ -13063,24 +13191,24 @@
             "deprecationReason": null
           },
           {
-            "name": "beforeId",
+            "name": "before",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "nextId",
+            "name": "next",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
@@ -13834,6 +13962,22 @@
             "deprecationReason": null
           },
           {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Board",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "boardType",
             "description": null,
             "args": [],
@@ -14343,6 +14487,22 @@
             "deprecationReason": null
           },
           {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Board",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "questionStatus",
             "description": null,
             "args": [],
@@ -14787,24 +14947,24 @@
             "deprecationReason": null
           },
           {
-            "name": "beforeId",
+            "name": "before",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "nextId",
+            "name": "next",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
@@ -16850,24 +17010,24 @@
             "deprecationReason": null
           },
           {
-            "name": "beforeId",
+            "name": "before",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "nextId",
+            "name": "next",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
@@ -18717,24 +18877,24 @@
             "deprecationReason": null
           },
           {
-            "name": "beforeId",
+            "name": "before",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "nextId",
+            "name": "next",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
@@ -18792,24 +18952,24 @@
             "deprecationReason": null
           },
           {
-            "name": "beforeId",
+            "name": "before",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "nextId",
+            "name": "next",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
@@ -19507,24 +19667,24 @@
             "deprecationReason": null
           },
           {
-            "name": "beforeId",
+            "name": "before",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "nextId",
+            "name": "next",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "ID",
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
@@ -23135,7 +23295,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "DateTime",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -28049,6 +28209,16 @@
           {
             "name": "bookingPrivacyPolicy",
             "description": "예약받을때 - 개인정보 수집 및 이용",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "krTravelPolicy",
+            "description": "국내여행약관",
             "type": {
               "kind": "SCALAR",
               "name": "String",

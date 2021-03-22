@@ -228,7 +228,7 @@ export const peopleCurrentCountBracket = (info: Fproduct) => {
 interface Author {
     name: string;
     busi_name: string;
-    blueBird?: string;
+    blueBird?: number;
     [key: string]: any
 }
 export const withCompany = (info?: Author | null) => {

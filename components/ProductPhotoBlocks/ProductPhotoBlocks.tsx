@@ -4,9 +4,9 @@ import { ProductPhotoBlock } from '../list/ProductPhoto';
 
 interface IProp {
     item: Fproduct
- }
+}
 
 export const ProductPhotoBlocks: React.FC<IProp> = () => {
-    return <ProductPhotoBlock  item={item} />
-    ;
+    return null
+        ;
 };

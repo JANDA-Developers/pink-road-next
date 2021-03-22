@@ -192,6 +192,7 @@ export const F_USER = gql`
         manageContact
         resignDate
         gender
+        blueBird
         busi_num
         denyReason
         blueBird

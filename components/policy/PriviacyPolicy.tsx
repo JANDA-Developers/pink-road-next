@@ -12,13 +12,21 @@ export const Policy: React.FC<IProp> = ({ type }) => {
 
     const findPolicy = () => {
         if (!homepage) return ""
-        if (type === "marketingPolic") return homepage.marketingPolic
-        if (type === "partnerBpolicy") return homepage.partnerBpolicy
-        if (type === "partnerPolicy") return homepage.partnerPolicy
+        if (type === "indiUsePolicy") return homepage.indiUsePolicy
+        if (type === "partnerUsePolicy") return homepage.partnerUsePolicy
+        if (type === "busiUsePolicy") return homepage.busiUsePolicy
+        if (type === "indiPrivacyPolicy") return homepage.indiPrivacyPolicy
+        if (type === "partnerPrivacyPolicy") return homepage.partnerPrivacyPolicy
+        if (type === "busiPartnerPrivacyPolicy") return homepage.busiPartnerPrivacyPolicy
+        if (type === "privacyThirdPolicy") return homepage.privacyThirdPolicy
+        if (type === "marketingPolicy") return homepage.marketingPolicy
         if (type === "travelerPolicy") return homepage.travelerPolicy
-        if (type === "thirdPolicy") return homepage.thirdPolicy
-        if (type === "PrivacyPolicy") return homepage.PrivacyPolicy
         if (type === "usePolicy") return homepage.usePolicy
+        if (type === "refundPolicy") return homepage.refundPolicy
+        if (type === "krTravelPolicy") return homepage.krTravelPolicy
+        if (type === "bookingPrivacyPolicy") return homepage.bookingPrivacyPolicy
+        if (type === "bookingThirdPolicy") return homepage.bookingThirdPolicy
+
         return ""
     }
 
