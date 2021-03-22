@@ -10,7 +10,7 @@ class MyDocument extends Document {
         return (
             <Html lang="ko">
                 <Head >
-                    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+                    <meta httpEquiv="x-ua-compatible" content="IE=edge" />
                 </Head>
                 <body>
                     <Main />

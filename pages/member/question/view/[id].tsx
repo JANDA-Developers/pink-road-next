@@ -10,6 +10,8 @@ import { AppContext } from '../../../_app';
 import Comment from '../../../../components/comment/Comment';
 import { useAnswerCreate, useAnswerDelete, useAnswerUpdate } from '../../../../hook/useAnswer';
 import PageDeny from '../../../Deny';
+import { getFromUrl } from '../../../../utils/url';
+import isEmpty from '../../../../utils/isEmpty';
 
 interface IProp {
 }
@@ -17,6 +19,7 @@ interface IProp {
 export const QuestionDetail: React.FC<IProp> = () => {
     const router = useRouter();
     const questionId = router.query.id as string;
+    const pid = getFromUrl("pid");
     const { myProfile, isManager } = useContext(AppContext);
     const [createAnswerMu] = useAnswerCreate();
     const [answerDeleteMu] = useAnswerDelete();
@@ -27,7 +30,6 @@ export const QuestionDetail: React.FC<IProp> = () => {
         }
     })
 
-
     const { item: question, error } = useQuestionFindById(questionId);
     const myQuestion = question?.author?._id === myProfile?._id;
     const myProdQuestion = question?.product?.author?._id === myProfile?._id;
@@ -36,20 +38,27 @@ export const QuestionDetail: React.FC<IProp> = () => {
         return <PageDeny />
     }
 
-    console.log({ myProdQuestion });
-    2
     if (error) return <Page404 />
     if (!question) return <PageLoading />
     const { title, thumb, createdAt, contents, subTitle, _id, product, author, isOpen } = question;
+    const isMyQuestion = myProfile?._id === _id;
     const isMyProduct = myProfile?._id === product?.author?._id;
+    const replayAble = isManager || isMyProduct;
 
 
     const toDetail = () => {
         router.push(`/member/question/write/${_id}`)
     }
 
+
     const toList = () => {
-        router.push(`/member/question/`)
+        if (pid)
+            router.push(`/tour/view/${pid}`).then(() => {
+                const ele = document.getElementById("tap__05");
+                ele?.scrollIntoView(true);
+            })
+        else
+            router.push(`/member/question/`)
     }
 
     const handleDelete = () => {
@@ -62,12 +71,13 @@ export const QuestionDetail: React.FC<IProp> = () => {
     }
 
     const handleAnswerDelete = (answer: Fanswer) => () => {
-        answerDeleteMu({
-            variables: {
-                id: answer._id,
-                questionId
-            }
-        })
+        if (confirm("정말로 답변을 삭제 하시겠습니까?"))
+            answerDeleteMu({
+                variables: {
+                    id: answer._id,
+                    questionId
+                }
+            })
     }
 
     const handleAnswer = (content: string) => {
@@ -97,6 +107,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
     return <div>
         <BoardView
+            className="viewWithComment"
             isOpen={!!isOpen}
             authorId={author?._id || ""}
             onList={toList}
@@ -108,18 +119,19 @@ export const QuestionDetail: React.FC<IProp> = () => {
             onDelete={handleDelete}
             onEdit={toDetail}
             createAt={createdAt}
-
         />
-        {(isMyProduct || isManager) &&
-            <div className="w1200">
-                <div className="comment_box">
-                    <ul>
-                        {(question.answers || []).filter(answer => !answer?.isDelete).map(answer =>
-                            <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
-                        )}
-                    </ul>
-                </div>
-                {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.name} onSubmit={handleAnswer} />}
+        {(replayAble || isMyQuestion) &&
+            <div className="w1200 viewWithComment__commentBox">
+                {!isEmpty(question.answers) &&
+                    <div className="comment_box">
+                        <ul>
+                            {(question.answers || []).filter(answer => !answer?.isDelete).map(answer =>
+                                <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
+                            )}
+                        </ul>
+                    </div>
+                }
+                {replayAble && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.name} onSubmit={handleAnswer} />}
             </div>
         }
     </div>

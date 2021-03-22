@@ -1314,7 +1314,7 @@ div.comment_box {
                 margin-right: 5px;
                 vertical-align: sub;
                 background-position: center;
-                background-size: 100%;
+                background-size: cover;
                 border-radius: 100px;
             }
 
@@ -1374,7 +1374,7 @@ div.comment_box {
             margin-right: 5px;
             vertical-align: sub;
             background-position: center;
-            background-size: 100%;
+            background-size: cover;
             border-radius: 100px;
         }
 

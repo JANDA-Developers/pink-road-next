@@ -5878,6 +5878,12 @@ export interface productFindById_ProductFindById_data_author {
   bankImg: productFindById_ProductFindById_data_author_bankImg | null;
 }
 
+export interface productFindById_ProductFindById_data_questions_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
 export interface productFindById_ProductFindById_data_questions_answers_author_profileImg {
   __typename: "File";
   uri: string;
@@ -5948,6 +5954,7 @@ export interface productFindById_ProductFindById_data_questions {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  category: productFindById_ProductFindById_data_questions_category | null;
   answers: productFindById_ProductFindById_data_questions_answers[] | null;
   keyWards: string[] | null;
   attachFiles: productFindById_ProductFindById_data_questions_attachFiles[] | null;
@@ -7748,6 +7755,12 @@ export interface questionList_QuestionList_page {
   remainder: number;
 }
 
+export interface questionList_QuestionList_data_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
 export interface questionList_QuestionList_data_answers_author_profileImg {
   __typename: "File";
   uri: string;
@@ -7831,6 +7844,7 @@ export interface questionList_QuestionList_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  category: questionList_QuestionList_data_category | null;
   answers: questionList_QuestionList_data_answers[] | null;
   keyWards: string[] | null;
   attachFiles: questionList_QuestionList_data_attachFiles[] | null;
@@ -7983,6 +7997,12 @@ export interface questionFindById_QuestionFindById_error {
   message: string;
 }
 
+export interface questionFindById_QuestionFindById_data_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
 export interface questionFindById_QuestionFindById_data_answers_author_profileImg {
   __typename: "File";
   uri: string;
@@ -8066,6 +8086,7 @@ export interface questionFindById_QuestionFindById_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  category: questionFindById_QuestionFindById_data_category | null;
   answers: questionFindById_QuestionFindById_data_answers[] | null;
   keyWards: string[] | null;
   attachFiles: questionFindById_QuestionFindById_data_attachFiles[] | null;
@@ -10182,6 +10203,7 @@ export interface passwordFindByPhone {
 
 export interface passwordFindByPhoneVariables {
   email: string;
+  target: VerificationTarget;
 }
 
 /* tslint:disable */
@@ -11826,6 +11848,12 @@ export interface Fqna {
 // GraphQL fragment: Fquestion
 // ====================================================
 
+export interface Fquestion_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
 export interface Fquestion_answers_author_profileImg {
   __typename: "File";
   uri: string;
@@ -11896,6 +11924,7 @@ export interface Fquestion {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  category: Fquestion_category | null;
   answers: Fquestion_answers[] | null;
   keyWards: string[] | null;
   attachFiles: Fquestion_attachFiles[] | null;
@@ -12010,6 +12039,7 @@ export enum AddtionalFeesStatus {
  * 공고문 타입
  */
 export enum AnnounceType {
+  AATOP_ACCOUNCE = "AATOP_ACCOUNCE",
   ACCOUNCE = "ACCOUNCE",
   NOICE = "NOICE",
 }
@@ -13045,6 +13075,7 @@ export interface QuestionCreateInput {
   attachFiles?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   productId?: string | null;
+  categoryId: string;
 }
 
 export interface QuestionUpdateInput {
@@ -13059,6 +13090,7 @@ export interface QuestionUpdateInput {
   thumb?: FileUpdateInput | null;
   productId?: string | null;
   status?: QuestionStatus | null;
+  categoryId?: string | null;
 }
 
 /**
@@ -13595,6 +13627,9 @@ export interface _QnaFilter {
 export interface _QuestionFilter {
   AND?: _QuestionFilter[] | null;
   OR?: _QuestionFilter[] | null;
+  categoryId_eq?: string | null;
+  categoryId_not_eq?: string | null;
+  categoryId_in?: string[] | null;
   code_eq?: string | null;
   code_not_eq?: string | null;
   status_eq?: string | null;

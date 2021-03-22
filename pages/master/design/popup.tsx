@@ -239,10 +239,8 @@ export const MsDesignB: React.FC<IProp> = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </MasterLayout >
     </div>
 };

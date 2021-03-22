@@ -318,9 +318,11 @@ export const EMAIl_FIND_BY_INFO = gql`
 export const PASSWORD_FIND_BY_PHONE = gql`
   query passwordFindByPhone(
     $email: String!
+    $target: VerificationTarget!
     ) {
       PasswordFindByPhone(
-        email: $email
+        email: $email,
+        target: $target
       ) {
       ok
       error {

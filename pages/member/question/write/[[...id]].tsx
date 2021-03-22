@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from 'react';
-import { BoardWrite } from "components/board/Write";
+import React, { useContext, useEffect, useState } from 'react';
+import { BoardWrite, TCategory } from "components/board/Write";
 import { useBoard } from "hook/useBoard";
 import { omits } from "../../../../utils/omit";
 import { auth } from "../../../../utils/with";
@@ -9,16 +9,26 @@ import { ProductSearcher } from "../../../../components/productSearcher/ProductS
 import { Validater } from "../../../../utils/validate";
 import { useQuestionCreate, useQuestionDelete, useQuestionFindById, useQuestionUpdate } from "../../../../hook/useQuestion";
 import { getFromUrl } from "../../../../utils/url";
+import { AppContext } from "../../../_app";
 
 interface IProp { }
 
 export const QuestionWrite: React.FC<IProp> = () => {
     const router = useRouter();
+    const { categoriesMap } = useContext(AppContext);
     const id = router.query.id?.[0] as string;
     const { item: question } = useQuestionFindById(id);
     const mode = id ? "edit" : "create";
     const urlProductId = getFromUrl("pid") || "";
     const urlProductName = getFromUrl("name") || "";
+
+    const categoryList = categoriesMap?.QUESTION.map((cat): TCategory => ({
+        _id: cat._id,
+        label: cat.label
+    }))
+
+    //아래 대충 상품캣 찾는 로직
+    const productCat = categoryList.find(cat => cat.label.includes("상품"));
 
     const [questionUpdateMu] = useQuestionUpdate({
         onCompleted: ({ QuestionUpdate }) => {
@@ -34,7 +44,8 @@ export const QuestionWrite: React.FC<IProp> = () => {
         onCompleted: ({ QuestionCreate }) => {
             if (QuestionCreate.ok) {
                 const id = QuestionCreate.data!._id;
-                router.push(`/member/question/view/${id}`)
+                const pidParam = urlProductId ? "?pid=" + urlProductId : "";
+                router.push(`/member/question/view/${id}` + pidParam)
             }
         },
         awaitRefetchQueries: true
@@ -42,13 +53,14 @@ export const QuestionWrite: React.FC<IProp> = () => {
 
     const [questionDeleteMu] = useQuestionDelete({
         onCompleted: ({ QuestionDelete }) => {
-            if (QuestionDelete.ok)
-                router.push(`/member/question`)
+            if (QuestionDelete.ok) 2
+            router.push(`/member/question`)
         },
     })
 
     const boardHook = useBoard({
         ...question,
+        categoryId: question?.category?._id || (urlProductId ? productCat?._id : undefined)
     }, { storeKey: "questionWrite" });
 
     const [productId, setProductId] = useState(urlProductId);
@@ -101,8 +113,8 @@ export const QuestionWrite: React.FC<IProp> = () => {
         questionCreateMu({
             variables: {
                 params: {
-                    ...omits(next, ["categoryId", "files"]),
-                    productId: question ? question._id : undefined
+                    ...omits(next, ["files"]),
+                    productId: productId ? productId : undefined
                 }
             }
         })
@@ -112,25 +124,22 @@ export const QuestionWrite: React.FC<IProp> = () => {
         setBoardData({
             title: question?.title,
             contents: question?.contents,
+            categoryId: question?.category?._id,
         })
-        setProductId(question?.product?._id || "")
+        setProductId(urlProductId || question?.product?._id || "")
     }, [question?._id])
 
 
     return <BoardWrite
+        className={urlProductId ? "boardWrite--categoryFix" : ""}
+        categoryList={categoryList}
         WriteInjection={
             urlProductId ? <div className="write_type">
                 <div className="title">상품명</div>
                 <div className="input_form">
                     <input readOnly id="title" value={urlProductName} type="text" name="title" className="inputText w100" />
                 </div>
-            </div> :
-                <ProductSearcher
-                    selectProductId={productId}
-                    onSelectProduct={(product: any) => {
-                        setProductId(product._id);
-                    }}
-                />
+            </div> : undefined
         }
         boardHook={boardHook}
         key={loadKey + (question?._id || "") + productId}
@@ -142,6 +151,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
         onSave={handleTempSave}
         onLoad={handleLoad}
         opens={{
+            category: true,
             title: true,
             open: true,
         }}

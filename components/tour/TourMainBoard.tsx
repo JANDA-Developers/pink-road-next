@@ -32,23 +32,26 @@ export const TourMainBoard: React.FC<IProp> = ({ cat, group }) => {
         return url;
     }
 
+    console.log({ slicePage });
+
     return <div key={cat?._id} className="deal_list">
         <div className="alignment">
             <div className="left_div"><h4>{cat?.label}</h4></div>
             <div className="right_div">
                 <span onClick={() => {
-                    if (slicePage !== 0)
+                    if (slicePage !== 0) {
                         setSlicePage(slicePage - 1)
+                    }
                 }} className="move-left"><i className="jandaicon-arr4-left" /><button></button></span>
                 <span onClick={() => {
                     if ((items.length - (start + 3)) > 0)
                         setSlicePage(slicePage + 1)
                 }} className="move-right"><i className="jandaicon-arr4-right" /><button></button></span>
-                <Link href={getLink(cat._id)} >
+                {/* <Link href={getLink(cat._id)} >
                     <a>
                         <button className="btn plus">더보기</button>
                     </a>
-                </Link>
+                </Link> */}
             </div>
         </div>
         <ul className="tourMianListUl list_ul line3">

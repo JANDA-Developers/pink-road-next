@@ -130,6 +130,9 @@ export const AnnounceWrite: React.FC<IProp> = () => {
                             <option value={""} >
                                 선택없음
                             </option>
+                            <option value={AnnounceType.AATOP_ACCOUNCE} >
+                                공지
+                            </option>
                             <option value={AnnounceType.ACCOUNCE} >
                                 공지
                             </option>

@@ -16,8 +16,6 @@ export const getStaticProps = getStaticPageInfo("findmember")
 export const Search: React.FC<Ipage> = (pageInfo) => {
     const editTools = usePageEdit(pageInfo, defaultPageInfo)
     const verifiHook = useVerification();
-
-
     const [info, setInfo] = useState({
         email: "",
         name: "",
@@ -33,7 +31,7 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
     const { getData: getPassword } = usePasswordFindByPhone({
         onCompleted: ({ PasswordFindByPhone }) => {
             if (PasswordFindByPhone.ok) {
-                alert("임시 패스워드가 성공적으로 발신 되었습니다. 핸드폰을 확인 해주세요.");
+                alert("임시 패스워드가 성공적으로 발신 되었습니다. \n 로그인후 마이페이지에서 비밀번호를 변경 해주세요.");
             }
         }
     });
@@ -55,7 +53,18 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
         if (!info.email) alert("이메일을 입력 해주세요")
         getPassword({
             variables: {
-                email: info.email
+                email: info.email,
+                target: VerificationTarget.PHONE
+            }
+        })
+    }
+
+    const handleGetPassworByEmail = () => {
+        if (!info.email) alert("이메일을 입력 해주세요")
+        getPassword({
+            variables: {
+                email: info.email,
+                target: VerificationTarget.EMAIL
             }
         })
     }
@@ -104,7 +113,8 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
                             setInfo({ ...info })
                         }} value={info.email} type="text" placeholder="아이디를 입력해 주세요." /></div>
                         <div className="certification_sec">
-                            <button onClick={handleGetPassworByPhone} className="btn">임시 비밀번호 문자로 받기</button>
+                            <button onClick={handleGetPassworByPhone} className="btn mr20">임시 비밀번호 문자로 받기</button>
+                            <button onClick={handleGetPassworByEmail} className="btn">임시 비밀번호 이메일로 받기</button>
                         </div>
                     </div>
                 </div>

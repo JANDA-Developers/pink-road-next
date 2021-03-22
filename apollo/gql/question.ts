@@ -17,6 +17,10 @@ export const F_QUESTION = gql`
         summary
         subTitle
         status
+        category {
+          _id
+          label
+        }
         answers {
           ...Fanswer
         }

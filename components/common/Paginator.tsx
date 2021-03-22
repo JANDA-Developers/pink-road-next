@@ -27,8 +27,6 @@ export const Paginater: React.FC<IProp> = ({ pageInfo: {
         setPage(pageNumber + 1)
     }
 
-
-    console.log({ totalPageCount });
     const pageLength = totalPageCount;
     const pageStart = totalPageCount - 5;
     let pages = Array(totalPageCount).slice(pageStart, pageLength).fill(null).map((_, i) => (pageNumber - 3 > 0 ? pageNumber - 3 : 0) + (i + 1));
