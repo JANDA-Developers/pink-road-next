@@ -1,4 +1,4 @@
-import { AddtionalFeesStatus, AnnounceType, bookingFindByCode_BookingFindByCode_data_bankTransInfo, BookingStatus, CategoryType, ERR_CODE, Fbooking, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fproduct, Fuser, GENDER, MethodType, PaymentStatus, PayMethod, ProductReOpenReq, ProductStatus, ProductType, QuestionStatus, RequestStatus, SettlementStatus, UserRole, UserStatus } from "../types/api";
+import { AddtionalFeesStatus, AnnounceType, bookingFindByCode_BookingFindByCode_data_bankTransInfo, BookingStatus, CategoryType, ERR_CODE, Fbooking, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fproduct, Fuser, GENDER, MethodType, NEWS_TYPE, PaymentStatus, PayMethod, ProductReOpenReq, ProductStatus, ProductType, QuestionStatus, RequestStatus, SettlementStatus, UserRole, UserStatus } from "../types/api";
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if (status === BookingStatus.CANCEL) return "예약취소"
@@ -100,6 +100,13 @@ export const userRoleToKR = (role?: UserRole) => {
 export const genderToKR = (gender?: GENDER | null) => {
     if (gender === GENDER.FEMALE) return "여성"
     if (gender === GENDER.MAIL) return "남성"
+    return ""
+}
+
+export function newTypeToKr(type?: any) {
+    if (type === NEWS_TYPE.CULTURE) return "문화이야기"
+    if (type === NEWS_TYPE.MEDIA) return "언론보도"
+    if (type === NEWS_TYPE.TRAVEL) return "여행이야기"
     return ""
 }
 
@@ -221,7 +228,7 @@ export const peopleCurrentCountBracket = (info: Fproduct) => {
 interface Author {
     name: string;
     busi_name: string;
-    blueBird?: string;
+    blueBird?: number;
     [key: string]: any
 }
 export const withCompany = (info?: Author | null) => {

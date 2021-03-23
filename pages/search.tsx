@@ -24,6 +24,7 @@ import { AppContext } from './_app';
 import { useBoardList } from '../hook/useMyBoardList';
 import { generateClientPaging } from '../utils/generateClientPaging';
 import { BoardListBlock } from '../components/list/BoardListBlock';
+import Link from 'next/link';
 
 type TSearchParam = {
     keyward?: string;
@@ -151,9 +152,10 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
 
     return <div>
         <SubTopNav pageTools={pageTools} >
-            <li className="homedeps1">Member</li>
-            <li className="homedeps2">
-                <a href="/">통합검색</a>
+            <li className="homedeps1">
+                <Link href="/search" >
+                    <a >통합검색</a>
+                </Link>
             </li>
         </SubTopNav>
         <PageEditor pageTools={pageTools} />

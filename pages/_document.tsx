@@ -1,7 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
-    static async getInitialProps(ctx) {
+    static async getInitialProps(ctx: any) {
         const initialProps = await Document.getInitialProps(ctx)
         return { ...initialProps }
     }
@@ -10,7 +10,7 @@ class MyDocument extends Document {
         return (
             <Html lang="ko">
                 <Head >
-                    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+                    <meta httpEquiv="x-ua-compatible" content="IE=edge" />
                 </Head>
                 <body>
                     <Main />

@@ -1,3 +1,4 @@
+import { UserRole } from "aws-sdk/clients/quicksight";
 import dayjs from "dayjs";
 import React, { useContext } from "react";
 import { Ffile } from "types/api"
@@ -16,6 +17,7 @@ interface IProps extends IDiv {
     comments?: {
         count: 0,
     }
+    handleRole?: UserRole
     viewCount?: number
     subTitle?: string | null;
     files?: Ffile[]
@@ -94,11 +96,11 @@ export const BoardView: React.FC<IProps> = (data) => {
                     <div className="float_left">
                         {handleList && <button onClick={handleList} type="button" className="btn medium">목록</button>}
                     </div>
-                    <div className="float_right">
+                    {(isMyBoard || isManager) && <div className="float_right">
                         <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>
                         <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>
                         {Buttons}
-                    </div>
+                    </div>}
                 </div>
 
                 {(onPrev || onNext) && <div className="board_list_mini">

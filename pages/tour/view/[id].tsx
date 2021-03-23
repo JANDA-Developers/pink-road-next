@@ -14,7 +14,7 @@ import { useScroll } from "../../../hook/useScroll";
 import { handleTab, tabCheck } from "../../../components/tourView/tabUtils";
 import { addItem } from "../../../utils/Storage";
 import { useBasketCount } from "../../../hook/useBasket";
-import { getRangeString } from "../../../utils/product";
+import { checkIsExp, getRangeString } from "../../../utils/product";
 import { generateClientPaging } from "../../../utils/generateClientPaging";
 import { Paginater } from "../../../components/common/Paginator";
 import { QnaLi } from "../../../components/qna/QnaLi";
@@ -35,6 +35,7 @@ import { ProductDateSelecter } from "../../../components/ProductDateSelecter";
 import { Change } from "../../../components/loadingList/LoadingList";
 import OnImagesLoaded from "../../../components/onImageLoad/OnImageLoad";
 import { useImgLoading } from "../../../hook/useImgLoading";
+import { getFromUrl } from "../../../utils/url";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -47,6 +48,7 @@ export async function getStaticPaths() {
 }
 const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const router = useRouter();
+  const isExp = checkIsExp();
   const { item: group } = useGroupFind("Recommend")
   const groupExsist = !isEmpty(group?.members);
   const { handleLoaded, loaded } = useImgLoading()
@@ -57,7 +59,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     }
   });
 
-  const randomSorted: productList_ProductList_data[] = groupExsist ? cloneObject(items).sort((a, b) => group?.members.indexOf(a._id)! - group?.members.indexOf(b._id)!) : randomSort(items);
+
+  const randomSortedItems = useMemo(() => randomSort(items), [items.length]);
+  const randomSorted: productList_ProductList_data[] = groupExsist ? cloneObject(items).sort((a, b) => group?.members.indexOf(a._id)! - group?.members.indexOf(b._id)!) : randomSortedItems;
 
   const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const id = router.query.id as string;
@@ -65,9 +69,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const { isManager, isAdmin, myProfile, isSeller } = useContext(AppContext);
   const isMyProduct = product?.author?._id === myProfile?._id;
   const status = product?.status;
-
   const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
-
 
   const sliderRef = useRef<SLIDER>(null);
   const { count, handleCount, totalPrice } = useBasketCount({
@@ -134,7 +136,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   }
 
   const handleQnaClick = (id: string) => () => {
-    router.push("/member/qna/view/" + id);
+    router.push("/member/question/view/" + id);
   }
 
   const handleProductChange = (target?: productList_ProductList_data) => {
@@ -169,11 +171,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   }, [product])
 
 
-  const randomSliced = useMemo(() => randomSorted.slice(0, 3), [randomSorted.length])
-
   if (loading) return <PageLoading />
   if (!product) return <Page404 />
-
 
 
   const {
@@ -212,8 +211,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         children={
           <>
             <li className="homedeps1">
-              <Link href="/tour/">
-                <a>Tour</a>
+              <Link href={isExp ? "/tour?exp=true" : "/tour"}>
+                <a>{isExp ? "Experience" : "Tour"}</a>
               </Link></li>
             <li className="homedeps2">
               <Link href="/tour/list">
@@ -271,7 +270,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                       </tr>
                       <tr>
                         <td colSpan={2} className="tag bt_line">
-                          <div className="tt">키워드</div>
                           <ul>
                             {keyWards?.map((keyward, i) =>
                               <li key={i + "keyward"}>#{keyward}</li>
@@ -296,7 +294,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                       </tr>
                       <tr>
                         <th className="smtitle bt_line">최소/최대 인원</th>
-                        <td className="smtxt bt_line">최소{minMember}명 최대{maxMember}명</td>
+                        <td className="smtxt bt_line">최소{minMember}명 / 최대{maxMember}명</td>
                       </tr>
                       <tr>
                         <th className="smtitle bt_line">현재인원</th>
@@ -450,7 +448,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 <h4>주의사항</h4>
                 <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(caution) }} className="text" />
               </div>
-              <div className="in_box" id="tap__06">
+              <div className="in_box" id="tap__05">
                 <h4>문의하기</h4>
                 <div className="board_list_mini ln04">
                   <div className="thead">
@@ -486,9 +484,11 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               </div>}
             </div>
             <div className="add_list">
-              <h4>핑크로더 추천여행</h4>{/* 랜덤노출 */}
+              <h4>핑크로더 추천여행</h4>
+              {/* 랜덤노출 */}
+              {/* //슬라이스 한다음  ㅁ */}
               <ul className="tourView__recommendList  list_ul line3">
-                {randomSliced.map(item =>
+                {randomSorted.slice(0, 3).map(item =>
                   <ProductPhotoBlock key={item._id} item={item} />
                 )}
               </ul>

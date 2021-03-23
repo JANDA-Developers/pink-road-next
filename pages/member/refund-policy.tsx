@@ -24,9 +24,8 @@ const refundPolicy = () => {
                                 <a />
                             </Link>
                         </li>
-                        <li className="homedeps1">Member</li>
-                        <li className="homedeps2">
-                            <a href="/">취소 및 환불 정책</a>
+                        <li className="homedeps1">
+                            <a href="/refund-policy">취소 및 환불 정책</a>
                         </li>
                     </ul>
                 </div>
@@ -35,7 +34,7 @@ const refundPolicy = () => {
             <div className="privacy_box w1200">
                 <PolicyTopNav />
                 <div dangerouslySetInnerHTML={{
-                    __html: ""
+                    __html: homepage?.refundPolicy || ""
                 }} />
             </div>
 

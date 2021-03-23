@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Link from "next/link";
 import { getStaticPageInfo, Ipage } from '../../../utils/page';
 import { usePageEdit } from '../../../hook/usePageEdit';
@@ -19,13 +19,14 @@ import { announceList_AnnounceList_data, _AnnounceSort } from '../../../types/ap
 import { useRouter } from 'next/router';
 import { AppContext } from '../../_app';
 import { AnnotationBadge } from '../../../components/Status/StatusBadge';
+import { Change } from '../../../components/loadingList/LoadingList';
 
 export const getStaticProps = getStaticPageInfo("announce");
 export const Announce: React.FC<Ipage> = (page) => {
     const { isManager } = useContext(AppContext);
     const pageTools = usePageEdit(page, defaultPageInfo);
-    const { items, pageInfo, setPage, filter, setFilter, sort, setSort, viewCount, setViewCount } = useAnnounceList();
-    const singleSortHook = useSingleSort(sort, setSort, [_AnnounceSort.isNotice_desc, _AnnounceSort.type_desc]);
+    const { items, pageInfo, setPage, filter, setFilter, sort, setSort, viewCount, setViewCount, getLoading } = useAnnounceList();
+    const singleSortHook = useSingleSort(sort, setSort, [_AnnounceSort.isNotice_desc]);
     const router = useRouter();
 
     const doSearch = (search: string) => {
@@ -53,7 +54,7 @@ export const Announce: React.FC<Ipage> = (page) => {
             <div className="board_box">
                 <div className="alignment">
                     <div className="left_div">
-                        <span className="infotxt">총 <strong>{pageInfo.totalCount}</strong>개</span>
+                        {/* <span className="infotxt">총 <strong>{pageInfo.totalCount}</strong>개</span> */}
                     </div>
                     <div className="right_div">
                         <SingleSortSelect {...singleSortHook} />
@@ -63,19 +64,21 @@ export const Announce: React.FC<Ipage> = (page) => {
 
                 <div className="board_list st01">
                     <div className="tbody">
-                        <ul>
-                            {items.map((item, i) =>
-                                <li onClick={toView(item)} key={item._id}>
-                                    <div className="td01">{item.no}</div>
-                                    <div className="td02"><AnnotationBadge type={item.type} /></div>
-                                    <div className="td03">
-                                        {item.title}
-                                        <NewBadge createdAt={item.createdAt} />
-                                    </div>
-                                    <div className="td04">{yyyymmddHHmm(item.createdAt)}</div>
-                                </li>
-                            )}
-                        </ul>
+                        <Change change={!getLoading}>
+                            <ul>
+                                {items.map((item, i) =>
+                                    <li onClick={toView(item)} key={item._id}>
+                                        {/* <div className="td01">{item.no}</div> */}
+                                        <div className="td02"><AnnotationBadge type={item.type} /></div>
+                                        <div className="td03">
+                                            {item.title}
+                                            <NewBadge createdAt={item.createdAt} />
+                                        </div>
+                                        <div className="td04">{yyyymmddHHmm(item.createdAt)}</div>
+                                    </li>
+                                )}
+                            </ul>
+                        </Change>
                     </div>
                 </div>
                 <Paginater pageInfo={pageInfo} setPage={setPage} />

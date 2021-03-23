@@ -1,15 +1,16 @@
 import React from 'react';
-import { Estimate, EstimateOption } from '../../pages/customquotation';
-import { estimateItemList_EstimateItemList_data_options } from '../../types/api';
-import { ISet } from '../../types/interface';
-import { autoComma } from '../../utils/formatter';
+import { EstimateOption } from '../../pages/customquotation';
+import { Bracket } from '../../utils/formatter';
 
 interface IProp {
+    needtoGrow?: boolean;
     option: EstimateOption
     onChange: (option: EstimateOption) => void;
 }
 
-export const EstimateCounter: React.FC<IProp> = ({ onChange, option }) => {
+export const EstimateCounter: React.FC<IProp> = ({ needtoGrow, onChange, option }) => {
+
+    if (!option.isUse) return null;
 
     const handleCount = (isUp: boolean) => () => {
         let count = option.count;
@@ -17,22 +18,16 @@ export const EstimateCounter: React.FC<IProp> = ({ onChange, option }) => {
         if (count < 0) count = 0;
 
         option.count = count;
-        option.price = count * option.price;
+        option.calculatedPrice = count * option.price;
         onChange({ ...option })
     }
 
 
-    return <div className="content">
-        <div>{option.optionName}({option.option})</div>
+    return <div style={needtoGrow ? {
+        width: "100%"
+    } : undefined} className="content">
+        <div>{option.optionName}{Bracket(option.option)}</div>
         <div>
-            <div className="Number__box">
-                <span className="left_btn">
-                    <i className="flaticon-substract"></i>
-                </span><span className="number">{autoComma(option.price)}</span>
-                <span className="right_btn">
-                    <i className="flaticon-add"></i>
-                </span>
-            </div>
             <div className="Number__box">
                 <span onClick={handleCount(false)} className="left_btn">
                     <i className="flaticon-substract"></i>

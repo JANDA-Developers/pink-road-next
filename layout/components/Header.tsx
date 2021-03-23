@@ -127,6 +127,11 @@ export const Header: React.FC<IProp> = () => {
                         </Link>
                     </li>
                     }
+                    <li >
+                        <Link href="/customquotation">
+                            <a>맞춤견적</a>
+                        </Link>
+                    </li>
 
                     {!isLogin ? "" :
                         <li className="join">

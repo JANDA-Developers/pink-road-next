@@ -11,16 +11,19 @@ import { closeModal, openModal } from '../../utils/popUp';
 import { VERIFICATION_COMPLETE } from '../../apollo/gql/user';
 import { VerificationTarget } from '../../types/api';
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
+import dayjs from "dayjs";
+import { determinedKr, productStatus } from '../../utils/enumToKr';
+import { yyyymmddHHmm } from '../../utils/yyyymmdd';
 
 export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
-
     const verifiHook = useVerification();
 
     const [info, setInfo] = useState({
         name: "",
         phoneNumber: ""
     })
+
     const router = useRouter()
     const { getData, data } = useBookingFindByInfo({
         fetchPolicy: "network-only",
@@ -35,12 +38,11 @@ export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
         if (!verifiHook.verifiData?._id) {
             alert("본인인증을 진행 해주새요.")
         }
-        alert("getData occured");
         getData();
     }
 
-    const toProductBoard = (id: string) => {
-        router.push(id);
+    const handleToProduct = (id: string) => () => {
+        router.push(`/tour/view/${id}`)
     }
 
     return <div className="body AnonymouseFindBook" id="AnonymouseFindBook" >
@@ -111,18 +113,18 @@ export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
                         <div className="ReInput__box_line" key={data._id} >
                             <div className="t01">
                                 <span>{data.name}</span>
-                                <span>010-2324-2324</span>
+                                <span>{autoHypenPhone(data.phoneNumber)}</span>
                             </div>
                             <div className="t02 MypageGoods__infoBox">
                                 <div className="info goods__info_title">
-                                    <span className="ct">문화</span><span className="g-number">상품번호: wefwef</span>
-                                    <strong className="title">부산 서구 & 중구투어 1박2일</strong>
+                                    <span className="ct">{data.product.category?.label}</span><span className="g-number">상품번호: {data.code}</span>
+                                    <strong className="title">{data.name}</strong>
                                     <div className="txt">
-                                        <span className="s-day">출발일: 2020.03.03</span>
-                                        <span className="where">출발장소: 부산역앞</span>
-                                        <span className="s-day">예약일: 2020.03.03</span>
-                                        <span className="s-day">확정여부: 예약확정 (22/30)</span>
-                                        <span className="s-day">상품상태: 판매중</span>
+                                        <span className="s-day">출발일: {dayjs(data.product.startDate).format("YYYY.MM.DD")}</span>
+                                        <span className="where">출발장소: {data.product.startPoint}</span>
+                                        <span className="s-day">예약일: {dayjs(data.product.createdAt).format("YYYY.MM.DD")}</span>
+                                        <span className="s-day">확정여부: {determinedKr(data.product.determined)} ({data.product.compeltePeopleCnt}/{data.product.maxMember})</span>
+                                        <span className="s-day">상품상태: {productStatus(data.product.status)}</span>
                                     </div>
                                 </div>
                                 {/* <div className="info goods__info_title">
@@ -138,11 +140,11 @@ export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
                                 </div> */}
                             </div>
                             <div className="t03">
-                                <span>결제금액 : 230,000원</span>
-                                <span>결제일 : 2332.32.32</span>
+                                <span>결제금액 : {autoComma(data.bookingPrice)}원</span>
+                                <span>결제일 : {yyyymmddHHmm(data.payment?.createdAt)}</span>
                             </div>
                             <div className="t03">
-                                <button className="btn small">상품보기</button>
+                                <button onClick={handleToProduct(data.product._id)} className="btn small">상품보기</button>
                             </div>
                         </div>
                     </div>
@@ -157,7 +159,7 @@ export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
                     <dd>
                         <ul className="bul_list">
                             <li><span className="dot_arr">전화번호와 성함이 일치해야만 조회가 가능합니다.</span></li>
-                            <li><span className="dot_arr">회원이신가요? 회원은 로그인을 하셔야 조회가 가능합니다. [Mypage > 예약조회]에서 조회를 해주세요.</span></li>
+                            <li><span className="dot_arr">{`회원이신가요? 회원은 로그인을 하셔야 조회가 가능합니다. [Mypage > 예약조회]에서 조회를 해주세요.`}</span></li>
                             <li><span className="dot_arr">비회원 예약만 조회가 가능합니다.</span></li>
                         </ul>
                     </dd>

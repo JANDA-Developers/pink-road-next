@@ -23,6 +23,9 @@ export const getTab = (index: number) => {
 }
 
 export const handleTab = (index: number) => () => {
+
   const tab = getTab(index);
-  tab?.scrollIntoView();
+  if(!tab) return;
+  const y = tab.getBoundingClientRect().top + window.pageYOffset - 200;
+  window.scrollTo({top: y, behavior: 'smooth'});
 }

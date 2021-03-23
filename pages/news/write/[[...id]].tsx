@@ -133,8 +133,18 @@ export const NewsWrite: React.FC<IProp> = () => {
     }
 
     useEffect(() => {
+        console.log({ news });
+        if (news)
+            setBoardData({
+                ...news as any,
+                title: news.title,
+                subTitle: news.subTitle || "",
+                isOpen: news.isOpen || false,
+                thumb: news.thumb,
+                categoryId: news.type
+            })
         initStorage()
-    }, [])
+    }, [news?._id])
 
     return <BoardWrite
         boardHook={boardHook}

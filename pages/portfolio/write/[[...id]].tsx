@@ -51,9 +51,9 @@ export const PortFolioWrite: React.FC<IProps> = () => {
             if (PortfolioDelete.ok) {
                 router.push("/portfolio")
             }
-
         }
     });
+
     const [update] = useProtfolioUpdate(
         {
             onCompleted: ({ PortfolioUpdate }) => {
@@ -99,6 +99,7 @@ export const PortFolioWrite: React.FC<IProps> = () => {
 
     const handleTempSave = () => {
         Storage?.saveLocal("portfolioWrite", boardData);
+        alert("저장완료");
     }
 
     const handleCancel = () => {
@@ -112,6 +113,7 @@ export const PortFolioWrite: React.FC<IProps> = () => {
             alert("저장된 데이터가 없습니다.");
             return;
         }
+
         setBoardData(saveData);
         loadKeyAdd();
     }
@@ -138,9 +140,10 @@ export const PortFolioWrite: React.FC<IProps> = () => {
         onSave={handleTempSave}
         onLoad={handleLoad}
         opens={{
+            open: true,
             category: true,
             files: false,
-            subTitle: true,
+            subTitle: false,
             thumb: true,
             title: true
         }} />

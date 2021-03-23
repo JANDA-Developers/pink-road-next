@@ -72,12 +72,12 @@ export interface announceFindById_AnnounceFindById_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -286,12 +286,12 @@ export interface announceList_AnnounceList_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -1633,12 +1633,12 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -1741,7 +1741,7 @@ export interface bookingFindByCode_BookingFindByCode_data_booker {
 export interface bookingFindByCode_BookingFindByCode_data_travelers {
   __typename: "Traveler";
   name: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender: GENDER | null;
   age: string;
 }
@@ -2926,12 +2926,62 @@ export interface homepage_Homepage_data {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  PrivacyPolicy: string;
-  partnerBpolicy: string;
-  usePolicy: string;
+  /**
+   * 일반회원(회원가입) - 이용약관
+   */
+  indiUsePolicy: string;
+  /**
+   * 개인파트너(회원가입) - 이용약관
+   */
+  partnerUsePolicy: string;
+  /**
+   * 기업파트너(회원가입) - 이용약관
+   */
+  busiUsePolicy: string;
+  /**
+   * 일반회원(회원가입) - 개인정보 수집 및 이용
+   */
+  indiPrivacyPolicy: string;
+  /**
+   * 개인파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  partnerPrivacyPolicy: string;
+  /**
+   * 기업파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  busiPartnerPrivacyPolicy: string;
+  /**
+   * 공통(회원가입) - 개인정보 제 3자 제공
+   */
+  privacyThirdPolicy: string;
+  /**
+   * 공통(회원가입) - SMS, E-mail 수신동의[선택]
+   */
+  marketingPolicy: string;
+  /**
+   * 공통(회원가입, 예약받을때) - 여행자약관
+   */
   travelerPolicy: string;
-  partnerPolicy: string;
-  marketingPolic: string;
+  /**
+   * (하단) - 이용약관
+   */
+  usePolicy: string;
+  /**
+   * (하단) - 국내 여행약관
+   */
+  krTravelPolicy: string;
+  /**
+   * (예약받을때, 하단) - 개인정보 수집 및 이용
+   */
+  bookingPrivacyPolicy: string;
+  /**
+   * 예약받을때 - 개인정보 제3자제공
+   */
+  bookingThirdPolicy: string;
+  /**
+   * (하단) - 취소 및 환불정책
+   */
+  refundPolicy: string;
   logoTop: homepage_Homepage_data_logoTop | null;
   logoBottom: homepage_Homepage_data_logoBottom | null;
   bannerA: homepage_Homepage_data_bannerA;
@@ -2942,7 +2992,6 @@ export interface homepage_Homepage_data {
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: homepage_Homepage_data_bankInfo | null;
-  thirdPolicy: string;
   modal: homepage_Homepage_data_modal[];
 }
 
@@ -3083,12 +3132,62 @@ export interface homepageUpdate_HomepageUpdate_data {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  PrivacyPolicy: string;
-  partnerBpolicy: string;
-  usePolicy: string;
+  /**
+   * 일반회원(회원가입) - 이용약관
+   */
+  indiUsePolicy: string;
+  /**
+   * 개인파트너(회원가입) - 이용약관
+   */
+  partnerUsePolicy: string;
+  /**
+   * 기업파트너(회원가입) - 이용약관
+   */
+  busiUsePolicy: string;
+  /**
+   * 일반회원(회원가입) - 개인정보 수집 및 이용
+   */
+  indiPrivacyPolicy: string;
+  /**
+   * 개인파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  partnerPrivacyPolicy: string;
+  /**
+   * 기업파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  busiPartnerPrivacyPolicy: string;
+  /**
+   * 공통(회원가입) - 개인정보 제 3자 제공
+   */
+  privacyThirdPolicy: string;
+  /**
+   * 공통(회원가입) - SMS, E-mail 수신동의[선택]
+   */
+  marketingPolicy: string;
+  /**
+   * 공통(회원가입, 예약받을때) - 여행자약관
+   */
   travelerPolicy: string;
-  partnerPolicy: string;
-  marketingPolic: string;
+  /**
+   * (하단) - 이용약관
+   */
+  usePolicy: string;
+  /**
+   * (하단) - 국내 여행약관
+   */
+  krTravelPolicy: string;
+  /**
+   * (예약받을때, 하단) - 개인정보 수집 및 이용
+   */
+  bookingPrivacyPolicy: string;
+  /**
+   * 예약받을때 - 개인정보 제3자제공
+   */
+  bookingThirdPolicy: string;
+  /**
+   * (하단) - 취소 및 환불정책
+   */
+  refundPolicy: string;
   logoTop: homepageUpdate_HomepageUpdate_data_logoTop | null;
   logoBottom: homepageUpdate_HomepageUpdate_data_logoBottom | null;
   bannerA: homepageUpdate_HomepageUpdate_data_bannerA;
@@ -3099,7 +3198,6 @@ export interface homepageUpdate_HomepageUpdate_data {
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: homepageUpdate_HomepageUpdate_data_bankInfo | null;
-  thirdPolicy: string;
   modal: homepageUpdate_HomepageUpdate_data_modal[];
 }
 
@@ -3345,12 +3443,12 @@ export interface newsFindById_NewsFindById_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -3558,12 +3656,12 @@ export interface newsList_NewsList_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -4513,12 +4611,12 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -4722,12 +4820,12 @@ export interface portfolioList_PortfolioList_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -5497,12 +5595,12 @@ export interface productList_ProductList_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -5738,12 +5836,12 @@ export interface productFindById_ProductFindById_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -5778,6 +5876,12 @@ export interface productFindById_ProductFindById_data_author {
    * 통장사본
    */
   bankImg: productFindById_ProductFindById_data_author_bankImg | null;
+}
+
+export interface productFindById_ProductFindById_data_questions_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
 }
 
 export interface productFindById_ProductFindById_data_questions_answers_author_profileImg {
@@ -5850,6 +5954,7 @@ export interface productFindById_ProductFindById_data_questions {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  category: productFindById_ProductFindById_data_questions_category | null;
   answers: productFindById_ProductFindById_data_questions_answers[] | null;
   keyWards: string[] | null;
   attachFiles: productFindById_ProductFindById_data_questions_attachFiles[] | null;
@@ -6057,12 +6162,12 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -6193,12 +6298,12 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -6656,12 +6761,12 @@ export interface qnaFindById_QnaFindById_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -6875,12 +6980,12 @@ export interface qnaList_QnaList_data_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -7265,12 +7370,12 @@ export interface getContext_GetProfile_data {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -7502,12 +7607,62 @@ export interface getContext_Homepage_data {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  PrivacyPolicy: string;
-  partnerBpolicy: string;
-  usePolicy: string;
+  /**
+   * 일반회원(회원가입) - 이용약관
+   */
+  indiUsePolicy: string;
+  /**
+   * 개인파트너(회원가입) - 이용약관
+   */
+  partnerUsePolicy: string;
+  /**
+   * 기업파트너(회원가입) - 이용약관
+   */
+  busiUsePolicy: string;
+  /**
+   * 일반회원(회원가입) - 개인정보 수집 및 이용
+   */
+  indiPrivacyPolicy: string;
+  /**
+   * 개인파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  partnerPrivacyPolicy: string;
+  /**
+   * 기업파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  busiPartnerPrivacyPolicy: string;
+  /**
+   * 공통(회원가입) - 개인정보 제 3자 제공
+   */
+  privacyThirdPolicy: string;
+  /**
+   * 공통(회원가입) - SMS, E-mail 수신동의[선택]
+   */
+  marketingPolicy: string;
+  /**
+   * 공통(회원가입, 예약받을때) - 여행자약관
+   */
   travelerPolicy: string;
-  partnerPolicy: string;
-  marketingPolic: string;
+  /**
+   * (하단) - 이용약관
+   */
+  usePolicy: string;
+  /**
+   * (하단) - 국내 여행약관
+   */
+  krTravelPolicy: string;
+  /**
+   * (예약받을때, 하단) - 개인정보 수집 및 이용
+   */
+  bookingPrivacyPolicy: string;
+  /**
+   * 예약받을때 - 개인정보 제3자제공
+   */
+  bookingThirdPolicy: string;
+  /**
+   * (하단) - 취소 및 환불정책
+   */
+  refundPolicy: string;
   logoTop: getContext_Homepage_data_logoTop | null;
   logoBottom: getContext_Homepage_data_logoBottom | null;
   bannerA: getContext_Homepage_data_bannerA;
@@ -7518,7 +7673,6 @@ export interface getContext_Homepage_data {
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: getContext_Homepage_data_bankInfo | null;
-  thirdPolicy: string;
   modal: getContext_Homepage_data_modal[];
 }
 
@@ -7599,6 +7753,12 @@ export interface questionList_QuestionList_page {
    * 마지막 패이지의 갯수 (index계산 하는데 사용함)
    */
   remainder: number;
+}
+
+export interface questionList_QuestionList_data_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
 }
 
 export interface questionList_QuestionList_data_answers_author_profileImg {
@@ -7684,6 +7844,7 @@ export interface questionList_QuestionList_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  category: questionList_QuestionList_data_category | null;
   answers: questionList_QuestionList_data_answers[] | null;
   keyWards: string[] | null;
   attachFiles: questionList_QuestionList_data_attachFiles[] | null;
@@ -7836,6 +7997,12 @@ export interface questionFindById_QuestionFindById_error {
   message: string;
 }
 
+export interface questionFindById_QuestionFindById_data_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
 export interface questionFindById_QuestionFindById_data_answers_author_profileImg {
   __typename: "File";
   uri: string;
@@ -7919,6 +8086,7 @@ export interface questionFindById_QuestionFindById_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  category: questionFindById_QuestionFindById_data_category | null;
   answers: questionFindById_QuestionFindById_data_answers[] | null;
   keyWards: string[] | null;
   attachFiles: questionFindById_QuestionFindById_data_attachFiles[] | null;
@@ -8075,12 +8243,12 @@ export interface settlementFindById_SettlementFindById_data_product_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -8404,12 +8572,12 @@ export interface settlementList_SettlementList_data_seller {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -8551,12 +8719,12 @@ export interface settlementList_SettlementList_data_product_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -9530,12 +9698,12 @@ export interface userList_UserList_data {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -9731,12 +9899,12 @@ export interface userFindById_UserFindById_data_products_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -9903,12 +10071,12 @@ export interface userFindById_UserFindById_data {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -10035,6 +10203,7 @@ export interface passwordFindByPhone {
 
 export interface passwordFindByPhoneVariables {
   email: string;
+  target: VerificationTarget;
 }
 
 /* tslint:disable */
@@ -10135,12 +10304,12 @@ export interface Fannounce_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -10258,7 +10427,7 @@ export interface Fanswer {
 export interface Ftraveler {
   __typename: "Traveler";
   name: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender: GENDER | null;
   age: string;
 }
@@ -10673,12 +10842,12 @@ export interface Fuser {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -10993,12 +11162,62 @@ export interface Fhomepage {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
-  PrivacyPolicy: string;
-  partnerBpolicy: string;
-  usePolicy: string;
+  /**
+   * 일반회원(회원가입) - 이용약관
+   */
+  indiUsePolicy: string;
+  /**
+   * 개인파트너(회원가입) - 이용약관
+   */
+  partnerUsePolicy: string;
+  /**
+   * 기업파트너(회원가입) - 이용약관
+   */
+  busiUsePolicy: string;
+  /**
+   * 일반회원(회원가입) - 개인정보 수집 및 이용
+   */
+  indiPrivacyPolicy: string;
+  /**
+   * 개인파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  partnerPrivacyPolicy: string;
+  /**
+   * 기업파트너(회원가입) - 개인정보 수집 및 이용
+   */
+  busiPartnerPrivacyPolicy: string;
+  /**
+   * 공통(회원가입) - 개인정보 제 3자 제공
+   */
+  privacyThirdPolicy: string;
+  /**
+   * 공통(회원가입) - SMS, E-mail 수신동의[선택]
+   */
+  marketingPolicy: string;
+  /**
+   * 공통(회원가입, 예약받을때) - 여행자약관
+   */
   travelerPolicy: string;
-  partnerPolicy: string;
-  marketingPolic: string;
+  /**
+   * (하단) - 이용약관
+   */
+  usePolicy: string;
+  /**
+   * (하단) - 국내 여행약관
+   */
+  krTravelPolicy: string;
+  /**
+   * (예약받을때, 하단) - 개인정보 수집 및 이용
+   */
+  bookingPrivacyPolicy: string;
+  /**
+   * 예약받을때 - 개인정보 제3자제공
+   */
+  bookingThirdPolicy: string;
+  /**
+   * (하단) - 취소 및 환불정책
+   */
+  refundPolicy: string;
   logoTop: Fhomepage_logoTop | null;
   logoBottom: Fhomepage_logoBottom | null;
   bannerA: Fhomepage_bannerA;
@@ -11009,7 +11228,6 @@ export interface Fhomepage {
   degitalSalesNumber: string | null;
   copyRight: string | null;
   bankInfo: Fhomepage_bankInfo | null;
-  thirdPolicy: string;
   modal: Fhomepage_modal[];
 }
 
@@ -11079,12 +11297,12 @@ export interface Fnews_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -11408,12 +11626,12 @@ export interface Fportfolio_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -11546,12 +11764,12 @@ export interface Fqna_author {
   manageContact: string;
   resignDate: any | null;
   gender: GENDER;
+  blueBird: number;
   busi_num: string;
   /**
    * 회원가입 거절 사유
    */
   denyReason: string | null;
-  blueBird: number;
   /**
    * 부서명
    */
@@ -11630,6 +11848,12 @@ export interface Fqna {
 // GraphQL fragment: Fquestion
 // ====================================================
 
+export interface Fquestion_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
 export interface Fquestion_answers_author_profileImg {
   __typename: "File";
   uri: string;
@@ -11700,6 +11924,7 @@ export interface Fquestion {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  category: Fquestion_category | null;
   answers: Fquestion_answers[] | null;
   keyWards: string[] | null;
   attachFiles: Fquestion_attachFiles[] | null;
@@ -11814,6 +12039,7 @@ export enum AddtionalFeesStatus {
  * 공고문 타입
  */
 export enum AnnounceType {
+  AATOP_ACCOUNCE = "AATOP_ACCOUNCE",
   ACCOUNCE = "ACCOUNCE",
   NOICE = "NOICE",
 }
@@ -12578,15 +12804,21 @@ export interface HomepageUpdateInput {
   blacklist?: string[] | null;
   loginRedirect?: string | null;
   loginOutRedirect?: string | null;
-  PrivacyPolicy?: string | null;
-  usePolicy?: string | null;
-  partnerBpolicy?: string | null;
-  refundPolicy?: string | null;
+  indiUsePolicy?: string | null;
+  partnerUsePolicy?: string | null;
+  busiUsePolicy?: string | null;
+  indiPrivacyPolicy?: string | null;
+  partnerPrivacyPolicy?: string | null;
+  busiPartnerPrivacyPolicy?: string | null;
+  privacyThirdPolicy?: string | null;
+  marketingPolicy?: string | null;
   travelerPolicy?: string | null;
-  partnerPolicy?: string | null;
-  marketingPolic?: string | null;
+  usePolicy?: string | null;
+  bookingPrivacyPolicy?: string | null;
+  krTravelPolicy?: string | null;
+  bookingThirdPolicy?: string | null;
+  refundPolicy?: string | null;
   tourismbusinessNumber?: string | null;
-  thirdPolicy?: string | null;
   ceoName?: string | null;
   address?: string | null;
   addressUrl?: string | null;
@@ -12844,6 +13076,7 @@ export interface QuestionCreateInput {
   attachFiles?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   productId?: string | null;
+  categoryId: string;
 }
 
 export interface QuestionUpdateInput {
@@ -12858,6 +13091,7 @@ export interface QuestionUpdateInput {
   thumb?: FileUpdateInput | null;
   productId?: string | null;
   status?: QuestionStatus | null;
+  categoryId?: string | null;
 }
 
 /**
@@ -12906,7 +13140,7 @@ export interface SmsTemplateUpdateInput {
 
 export interface TravelerInput {
   name?: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender?: GENDER | null;
   age: string;
 }
@@ -13394,6 +13628,9 @@ export interface _QnaFilter {
 export interface _QuestionFilter {
   AND?: _QuestionFilter[] | null;
   OR?: _QuestionFilter[] | null;
+  categoryId_eq?: string | null;
+  categoryId_not_eq?: string | null;
+  categoryId_in?: string[] | null;
   code_eq?: string | null;
   code_not_eq?: string | null;
   status_eq?: string | null;

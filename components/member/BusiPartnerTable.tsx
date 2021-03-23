@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { foreginKR, genderToKR, userStatusKR, withCompany } from '../../utils/enumToKr';
-import { autoComma } from '../../utils/formatter';
+import { autoComma, autoHypenPhone } from '../../utils/formatter';
 import { closeModal, openModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 import { Paginater } from '../common/Paginator';
@@ -41,7 +41,7 @@ export const BusiPartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelec
                 </div> */}
                 <div className="td02">{withCompany(user)}</div>
                 <div className="td03">{user.email}</div>
-                <div className="td04"><i className="m_title">휴대폰:</i><a href={`tel:${user.phoneNumber}`}>{autoComma(user.phoneNumber)}</a></div>
+                <div className="td04"><i className="m_title">휴대폰:</i><a href={`tel:${user.phoneNumber}`}>{autoHypenPhone(user.phoneNumber)}</a></div>
                 <div className="td05"><i className="m_title">성별:</i>{genderToKR(user.gender)}</div>
                 <div className="td06"><i className="m_title">상태:</i>{userStatusKR(user)}
                     {!user.isVerifiedManager &&

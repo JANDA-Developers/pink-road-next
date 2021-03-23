@@ -545,11 +545,11 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                         />
                                         <input
                                             onChange={(e) => {
-                                                const format = cc_format(e.currentTarget.value);
+                                                const format = e.currentTarget.value;
                                                 profile.account_number = format;
                                                 setProfile({ ...profile })
                                             }}
-                                            value={cc_format(account_number)}
+                                            value={account_number}
                                             type="text"
                                             className="form-control w50"
                                             placeholder="- 없이 숫자만 입력해주세요."

@@ -247,6 +247,12 @@ div.popup_bg_full .in_txt {
 
 
 .tourBracketBtn--disabled a {
+    /* color: #999;
+    font-weight: 100;
+    background-color: #f5f5f5!important; */
+}
+
+.tourBracketBtn--disabled a {
     border: none!important;
     color: white!important;
     cursor: auto!important;
@@ -287,4 +293,34 @@ background-color: #fff;
     text-overflow: ellipsis;
     padding-right: 30px;
     overflow: hidden;
+}
+
+.Number__box .left_btn{
+    position: relative;
+}
+
+.Number__box .right_btn{
+    position: relative;
+}
+
+.Number__box .flaticon-add,.Number__box  .flaticon-substract {
+    position: absolute;
+    top:0;
+    right:0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boardWrite--categoryFix #category {
+    pointer-events: none!important;
+}
+
+.viewWithComment {
+    padding-bottom: 0px!important;
+}
+.viewWithComment__commentBox {
+    margin-bottom:  100px!important;
 }

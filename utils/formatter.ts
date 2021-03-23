@@ -17,6 +17,9 @@ const autoComma = (str: string | number = ''): string => {
 
 
 
+export const Bracket = (str: string) => {
+  return str ? `(${str})` : '';
+}
   
   export {
     autoComma

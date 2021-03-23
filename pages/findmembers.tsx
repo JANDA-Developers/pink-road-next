@@ -5,13 +5,17 @@ import SubTopNav from '../layout/components/SubTop';
 import { getStaticPageInfo, Ipage } from '../utils/page';
 import defaultPageInfo from "../info/findmember.json"
 import { autoHypenPhone } from '../utils/formatter';
+import { VerifiEamilModal } from '../components/verifiModal/VerifiEmailModal';
+import { VerificationTarget } from '../types/api';
+import { closeModal, openModal } from '../utils/popUp';
+import { useVerification } from '../hook/useVerification';
 
 interface IProp { }
 
 export const getStaticProps = getStaticPageInfo("findmember")
 export const Search: React.FC<Ipage> = (pageInfo) => {
     const editTools = usePageEdit(pageInfo, defaultPageInfo)
-
+    const verifiHook = useVerification();
     const [info, setInfo] = useState({
         email: "",
         name: "",
@@ -27,7 +31,7 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
     const { getData: getPassword } = usePasswordFindByPhone({
         onCompleted: ({ PasswordFindByPhone }) => {
             if (PasswordFindByPhone.ok) {
-                alert("임시 패스워드가 성공적으로 발신 되었습니다. 핸드폰을 확인 해주세요.");
+                alert("임시 패스워드가 성공적으로 발신 되었습니다. \n 로그인후 마이페이지에서 비밀번호를 변경 해주세요.");
             }
         }
     });
@@ -49,10 +53,23 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
         if (!info.email) alert("이메일을 입력 해주세요")
         getPassword({
             variables: {
-                email: info.email
+                email: info.email,
+                target: VerificationTarget.PHONE
             }
         })
     }
+
+    const handleGetPassworByEmail = () => {
+        if (!info.email) alert("이메일을 입력 해주세요")
+        getPassword({
+            variables: {
+                email: info.email,
+                target: VerificationTarget.EMAIL
+            }
+        })
+    }
+
+    const isVerified = verifiHook.verifiData?.isVerified;
 
     return <div>
         <SubTopNav pageTools={editTools} >
@@ -75,12 +92,14 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
                             setInfo({ ...info })
                         }} value={info.name} type="text" placeholder="이름을 입력해 주세요." /></div>
                         <h4>휴대폰번호</h4>
-                        <div className="input_box"><input onChange={(e) => {
+                        <div className="input_box"><input readOnly={isVerified} onChange={(e) => {
                             const val = e.currentTarget.value;
                             info.phoneNumber = val;
                             setInfo({ ...info })
                         }} value={autoHypenPhone(info.phoneNumber)} type="text" placeholder="가입시 입력한 휴대폰번호번호를 입력해 주세요." /></div>
-                        <div className="certification_sec"><button onClick={handleEmailFind} className="btn">아이디 찾기</button></div>
+                        <div className="certification_sec ">
+                            <button onClick={openModal("#emailVerifi")} className="btn mr20">인증받기</button>
+                        </div>
                     </div>
                 </div>
                 <div className="right">
@@ -94,7 +113,8 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
                             setInfo({ ...info })
                         }} value={info.email} type="text" placeholder="아이디를 입력해 주세요." /></div>
                         <div className="certification_sec">
-                            <button onClick={handleGetPassworByPhone} className="btn">임시 비밀번호 문자로 받기</button>
+                            <button onClick={handleGetPassworByPhone} className="btn mr20">임시 비밀번호 문자로 받기</button>
+                            <button onClick={handleGetPassworByEmail} className="btn">임시 비밀번호 이메일로 받기</button>
                         </div>
                     </div>
                 </div>
@@ -113,6 +133,12 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
                 </dl>
             </div>
         </div>
+        <VerifiEamilModal key={info.phoneNumber} defaultPayload={info.phoneNumber} target={VerificationTarget.PHONE} duplicateCheck onSuccess={() => {
+            closeModal("#emailVerifi")()
+            handleEmailFind();
+        }} verifiHook={{
+            ...verifiHook
+        }} />
     </div>
 
 }

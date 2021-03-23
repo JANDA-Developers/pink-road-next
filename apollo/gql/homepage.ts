@@ -56,12 +56,22 @@ export const F_HOMEPAGE = gql`
         loginRedirect
         loginOutRedirect
         tourismbusinessNumber
-        PrivacyPolicy
-        partnerBpolicy
-        usePolicy
-        travelerPolicy
-        partnerPolicy
-        marketingPolic
+
+    indiUsePolicy
+    partnerUsePolicy
+    busiUsePolicy
+    indiPrivacyPolicy
+    partnerPrivacyPolicy
+    busiPartnerPrivacyPolicy
+    privacyThirdPolicy
+    marketingPolicy
+    travelerPolicy
+    usePolicy
+    krTravelPolicy
+    bookingPrivacyPolicy
+    bookingThirdPolicy
+    refundPolicy
+
         logoTop {
           ...Ffile
         }
@@ -81,7 +91,6 @@ export const F_HOMEPAGE = gql`
           accountNumber
           bankName          
         }
-        thirdPolicy
         modal {
           ...Fmodal
         }

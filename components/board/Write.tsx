@@ -19,6 +19,7 @@ export interface IBoardOpen {
 
 export type TCategory = { _id: string, label: string };
 interface IProps {
+    className?: string;
     boardHook: IUseBoard
     categoryList?: TCategory[]
     WriteInjection?: TElements;
@@ -33,6 +34,7 @@ interface IProps {
 }
 
 export const BoardWrite: React.FC<IProps> = ({
+    className,
     boardHook,
     categoryList,
     opens,
@@ -83,7 +85,7 @@ export const BoardWrite: React.FC<IProps> = ({
     };
 
     return (
-        <div className="writing_in w100 board_write">
+        <div className={`writing_in w100 board_write ${className}`}>
             <div className="w1200">
                 <div className="write_box">
                     {opens.category && <div className="write_type">
@@ -192,15 +194,15 @@ export const BoardWrite: React.FC<IProps> = ({
                     <div className="float_left">
                         <button onClick={handleSave} type="button" className="btn medium">임시 저장</button>
                         <button onClick={handleLoad} type="button" className="btn medium">불러오기</button>
-                </div>
-                <div className="float_right">
-                    {isCreateMode || <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
-                    {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
-                    <button onClick={handleCancel} type="button" className=" btn medium impact">취소</button>
-                    <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>
+                    </div>
+                    <div className="float_right">
+                        {isCreateMode || <button onClick={handleEdit} type="submit" className="btn medium pointcolor">수정</button>}
+                        {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
+                        <button onClick={handleCancel} type="button" className=" btn medium impact">취소</button>
+                        <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>
+                    </div>
                 </div>
             </div>
-        </div>
         </div >
     )
 }

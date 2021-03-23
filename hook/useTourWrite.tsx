@@ -10,7 +10,7 @@ import { toNumber } from "../utils/toNumber";
 import { Validater } from "../utils/validate";
 import { useUpload } from "./useUpload";
 import { autoComma, deepCopy } from "../utils/formatter";
-import { useProductDelete, useProductUpdate } from "./useProduct";
+import { useProductCreate, useProductDelete, useProductUpdate } from "./useProduct";
 import { useMutation } from "@apollo/client";
 import { PRODUCTS_CREATE } from "../apollo/gql/product";
 import { useRouter } from "next/router";
@@ -143,7 +143,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         }
     })
 
-    const [ProductCreateMu, { loading: createLoading }] = useMutation<productCreate, productCreateVariables>(PRODUCTS_CREATE, {
+    const [ProductCreateMu, { loading: createLoading }] = useProductCreate({
         onCompleted: ({ ProductCreate }) => {
             if (ProductCreate.ok)
                 router.push(`/tour/view/${ProductCreate!.data!._id}`)
