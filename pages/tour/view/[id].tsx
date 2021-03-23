@@ -436,7 +436,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                   <div className="review__box">
                     <ul className="review__box_list">
                       <li className="review__box_rev">
-
+                        <div className=""></div>
                       </li>
                     </ul>
                     <div></div>
@@ -448,7 +448,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 <h4>주의사항</h4>
                 <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(caution) }} className="text" />
               </div>
-              <div className="in_box" id="tap__05">
+              <div className="in_box" id="tap__06">
                 <h4>문의하기</h4>
                 <div className="board_list_mini ln04">
                   <div className="thead">
