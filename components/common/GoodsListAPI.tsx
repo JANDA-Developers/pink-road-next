@@ -51,7 +51,9 @@ export const Goods: React.FC<IGoodsProp> = ({ item, ...props }) => {
   }
 
   return <li onClick={handleToDetail} {...props} key={item._id} className="list_in">
-    <div className="img" style={BG(item?.images?.[0]?.uri || "")}>상품이미지</div>
+    <div className="imgWrap">
+      <div className="img" style={BG(item?.images?.[0]?.uri || "")}>상품이미지</div>
+    </div>
     <div className="box">
       <div className="category"><span>{item.category?.label}</span></div>
       <div className="title">{item.title}</div>

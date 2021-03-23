@@ -16,7 +16,8 @@ const path = require("path");
 
 module.exports = {
     ...withTM(withCSS(
-    withImages({
+    withImages(
+      {
         webpack(config, {isServer}) {
             if (!isServer) {
                 config.node = {
@@ -31,8 +32,8 @@ module.exports = {
             config.resolve.alias['react'] = path.resolve(__dirname, '.', 'node_modules', 'react');
             return config;
         }
-    })
-    )),
+    }
+    ))),
     async redirects() {
         return [
           {

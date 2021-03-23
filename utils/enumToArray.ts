@@ -1,4 +1,1 @@
-export const enumToArray = (enumm: any) => {
-    return Object.keys(enumm)
-        .map(key => enumm[key]);
-}
+export const enumToArray = Object.values(myEnum);

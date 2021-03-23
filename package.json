@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.6",
-    "@ckeditor/ckeditor5-react": "^3.0.0",
+    "@ckeditor/ckeditor5-react": "^3.0.0", 
     "apollo-upload-client": "^14.1.2",
     "classnames": "^2.2.6",
     "dayjs": "^1.9.4",

@@ -76,7 +76,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const { categoriesMap, isAdmin, myProfile, isManager, isParterB, isParterNonB, productGroupList } = useContext(AppContext);
     const isMyProduct = product?.author?._id === myProfile?._id;
 
-
     const {
         tourSets, tourData,
         loadKey, validater: { validate },
@@ -90,7 +89,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     useEffect(() => {
         setTourData(getDefault(cloneObject(product)))
     }, [product])
-
 
     const { createFn, deleteFn, updateFn } = mutations;
     const { categoryId, its, simpleData, status, thumbs, keyWards, type, regionId } = tourData;

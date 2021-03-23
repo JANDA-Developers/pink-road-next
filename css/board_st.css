@@ -429,6 +429,9 @@ ul.list_ul li .bottom_txt div[class*=tag] span {
     font-size: 0.9em;
     color: #999;
 }
+ul.list_ul li .imgWrap { 
+    margin-bottom: 15px;
+}
 
 ul.list_ul li .img {
     width: 100%;
@@ -436,15 +439,25 @@ ul.list_ul li .img {
     background: #cccccc;
     overflow: hidden;
     text-indent: -999px;
-    background-position: center 0;
+    background-position: center center;
     background-size: 100%;
-    margin-bottom: 15px;
+    background-size: cover;
     background-repeat: no-repeat;
 }
+
+.list_ul li .img {
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+
+ul.list_ul li .imgWrap {
+    overflow: hidden;
+}
 ul.list_ul li:hover .img {
-    -moz-transition: background 0.4s ease;
-   transition: background 0.4s ease;
-    background-size: 110%;
+    transform: scale(1.2);
+
 }
 
 ul.list_ul.line3 li .img {

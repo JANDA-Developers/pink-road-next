@@ -163,7 +163,7 @@ export const MySettlement: React.FC<IProp> = () => {
                                                 <div className="th04">{productStatus(item.product?.status)}</div>
                                                 <div className="th05">{item.completeDate ? dayjs(item.completeDate).format("YYYY.MM.DD") : "미정산"}</div>
                                                 <div className="th06">{autoComma(item.totalPrice)}</div>
-                                                <div className="th07"> <SettlementStatusBadge status={item.status} productStatus={item.product.status} /></div>
+                                                <div className="th07"> <SettlementStatusBadge className="mypageSettlement__statusBadge" status={item.status} productStatus={item.product.status} /></div>
                                                 <div onClick={handleOpenModal(item._id)} className="th08"><i className="btn">상세보기</i></div>
                                             </li>
                                         )}
