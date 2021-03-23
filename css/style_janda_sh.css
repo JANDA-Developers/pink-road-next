@@ -8835,6 +8835,11 @@ i.calendar {
 .qna_box .board_box{
     padding: 0;
 }
+
+
+
+
+
 @media (min-width: 768px) {   
     .main_con_box4 .top_txt{
         background-color: #ffffff;
@@ -9943,7 +9948,7 @@ i.calendar {
         }
 
     .main_con_box5 .txt h2 {
-        font-size: 3em;
+        font-size: 2.2em;
         line-height: 120%;
         margin-bottom: 10px;
         width: 100%;
@@ -9959,7 +9964,7 @@ i.calendar {
         margin-bottom: 0;
     }
     .main_con_box5 .txt p {
-        font-size: 1.8em;
+        font-size: 1.2em;
     }
         .login_wrap .sign_in_form span a {
             border: 0;
