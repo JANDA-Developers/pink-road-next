@@ -379,9 +379,10 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             <div className="xe_content">
               <div className="con_top_tap">
                 <span onClick={handleTab(1)} className={tabOnCheck(1)}><a>여행상세설명</a></span>
-                <span onClick={handleTab(2)} className={tabOnCheck(2)}><a>안내 및 참고</a></span>
-                <span onClick={handleTab(3)} className={tabOnCheck(3)}><a >포함 및 불포함</a></span>
-                <span onClick={handleTab(4)} className={tabOnCheck(4)}><a >문의하기</a></span>
+                {/* <span onClick={handleTab(2)} className={tabOnCheck(2)}><a>안내 및 참고</a></span>
+                <span onClick={handleTab(3)} className={tabOnCheck(3)}><a >포함 및 불포함</a></span> */}
+                <span onClick={handleTab(4)} className={tabOnCheck(4)}><a >리뷰</a></span>
+                <span onClick={handleTab(6)} className={tabOnCheck(6)}><a >문의하기</a></span>
               </div>
               {/* 여행상세설명 */}
               <div className="in_box" id="tap__01">
@@ -422,11 +423,88 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                   __html: sanitizeHtml(inOrNor)
                 }} className="text ck-content" />
               </div>
-              <div className="in_box" id="tap__04" >
+
+              <div className="in_box" id="tap__05" >
                 <h4>주의사항</h4>
                 <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(caution) }} className="text" />
               </div>
+
+              {/* 리뷰 */}
               <div className="in_box" id="tap__04">
+                <h4>리뷰 </h4>
+                <div className="text ck-content">
+                  <div className="review__box">
+                    <ul className="review__list">
+                      <li>
+                        <div className="top">
+                          <div className="review__list_pr" />
+                          <div className="review__list_star">
+                            <div>별자리</div>
+                            <strong>234</strong>
+                          </div>
+                          <div className="review__list_info">
+                            <span className="name">이름</span><span className="day">2020.20.20</span>
+                          </div>
+                        </div>
+                        <div className="bottom">
+                          <p>지금 꽃이 많이펴서 분위기가 너무 좋아요~~~~!!!! 사람도 많고 꽃도 많고 날씨도 너무 좋아요~~~!!!!!!</p>
+                          <div className="img">review images</div>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="top">
+                          <div className="review__list_pr" />
+                          <div className="review__list_star">
+                            <div>별자리</div>
+                            <strong>234</strong>
+                          </div>
+                          <div className="review__list_info">
+                            <span className="name">이름</span><span className="day">2020.20.20</span>
+                          </div>
+                        </div>
+                        <div className="bottom">
+                          <p>지금 꽃이 많이펴서 분위기가 너무 좋아요~~~~!!!! 사람도 많고 꽃도 많고 날씨도 너무 좋아요~~~!!!!!!</p>
+                          <div className="img">review images</div>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="top">
+                          <div className="review__list_pr" />
+                          <div className="review__list_star">
+                            <div>별자리</div>
+                            <strong>234</strong>
+                          </div>
+                          <div className="review__list_info">
+                            <span className="name">이름</span><span className="day">2020.20.20</span>
+                          </div>
+                        </div>
+                        <div className="bottom">
+                          <p>지금 꽃이 많이펴서 분위기가 너무 좋아요~~~~!!!! 사람도 많고 꽃도 많고 날씨도 너무 좋아요~~~!!!!!!</p>
+                          <div className="img">review images</div>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="top">
+                          <div className="review__list_pr" />
+                          <div className="review__list_star">
+                            <div>별자리</div>
+                            <strong>234</strong>
+                          </div>
+                          <div className="review__list_info">
+                            <span className="name">이름</span><span className="day">2020.20.20</span>
+                          </div>
+                        </div>
+                        <div className="bottom">
+                          <p>지금 꽃이 많이펴서 분위기가 너무 좋아요~~~~!!!! 사람도 많고 꽃도 많고 날씨도 너무 좋아요~~~!!!!!!</p>
+
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="in_box" id="tap__06">
                 <h4>문의하기</h4>
                 <div className="board_list_mini ln04">
                   <div className="thead">
@@ -471,8 +549,57 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             </div>
           </div>
         </div>
+        <div className="popup_bg__review">
+          <div className="popup_bg__review__in in_txt">
+            <div className="popup_bg__review__headerWrap">
+              <a className="popup_bg__review__headerClose close_icon"><i className="flaticon-multiply"></i></a>
+            </div>
+            <div className="popup_bg__review__body">
+              <div className="popup_bg__review_page">
+                <div className="review__photo">
+                </div>
+                <div className="review__photo_cunt">
+                  <div className="left"></div>
+                  <div className="right"></div>
+                </div>
+                <div className="review__txt">
+                  <div className="con__01">
+                    <div className="review__box popup">
+                      <ul className="review__list">
+                        <li>
+                          <div className="top">
+                            <div className="review__list_pr" />
+                            <div className="review__list_star">
+                              <div>별자리</div>
+                              <strong>234</strong>
+                            </div>
+                            <div className="review__list_info">
+                              <span className="name">이름</span><span className="day">2020.20.20</span>
+                            </div>
+                          </div>
+                          <div className="bottom">
+                            <p>지금 꽃이 많이펴서 분위기가 너무 좋아요~~~~!!!! 사람도 많고 꽃도 많고 날씨도 너무 좋아요~~~!!!!!!</p>
+
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="con__02">
+                    <ul className="review__photoList">
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
       </Change>
-    </OnImagesLoaded>
+    </OnImagesLoaded >
   </div >
 }
 

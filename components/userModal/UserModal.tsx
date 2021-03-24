@@ -184,14 +184,10 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                         }
 
                     </div>
-                    <div className="fin ifMobile">
-                        <div className="float_left">
-                        </div>
-                        <div className="float_right">
-                            <button onClick={handleResignUser} type="submit" className="btn medium mr5">강제탈퇴</button>
-                            <button onClick={handleStopUser} type="submit" className="btn medium">활동정지</button>
-                            <button onClick={handleRestartUser} type="submit" className="btn medium">활동재개</button>
-                        </div>
+                    <div className="float_right">
+                        <button onClick={handleResignUser} type="submit" className="btn medium mr5">강제탈퇴</button>
+                        <button onClick={handleStopUser} type="submit" className="btn medium">활동정지</button>
+                        <button onClick={handleRestartUser} type="submit" className="btn medium">활동재개</button>
                     </div>
                 </div>
             </div>

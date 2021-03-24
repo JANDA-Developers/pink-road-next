@@ -3488,7 +3488,13 @@ div.master_popup div.alignment{
     }
     .master_box .con.family .td06 { 
         width: auto;
-        max-width: 5% !important;
+        max-width: 8% !important;
+    }
+    .master_box .con.family .td06 .btn { 
+        line-height: 15px !important;
+        white-space: nowrap;
+        font-size: 0.9em;
+        margin: 1px;
     }
     .master_box .con.family .td07 { 
         width: auto;

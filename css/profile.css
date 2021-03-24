@@ -19,6 +19,7 @@
 	background-repeat: no-repeat;
 	padding: 0 3%;
 	box-sizing: border-box;
+	background-position: center !important;
 }
 
 .profilePage .member_details_in .top_bg:before {
