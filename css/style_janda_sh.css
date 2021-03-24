@@ -287,7 +287,7 @@
             overflow: hidden;
         }
         
-            .main_con_box3:before {
+            .main_con_box3 .w1200:before {
                 background-color: #5dace9;
                 content: '';
                 width: 600px;
@@ -3275,13 +3275,14 @@ ul.rank_ul {
 
 
         .siteInfo_in .top_bg p {
-            font-size: 1em;
+            font-size: 1.3em;
             line-height: 100%;
             color: #fff;
             text-align: center;
             z-index: 10;
             position: relative;
             width: 100%;
+            font-weight: 100;
         }
         .siteInfo_in .top_bg .logo {
             display:none;
@@ -3299,7 +3300,58 @@ ul.rank_ul {
         background-size: 170%;
         background-repeat: no-repeat;
     }
-
+    .siteInfo_in .con01::before {
+        top: 0;
+        left: 10%;
+        position: absolute;
+        background-size: 100%;
+        opacity: 0.8 !important;
+        filter: alpha(opacity=80);
+        z-index: 0;
+        content: "";
+        width: 1px;
+        height: 100%;
+        background-color: #ffffff;
+    }
+    .siteInfo_in .con01:after {
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-size: 100%;
+        opacity: 0.8 !important;
+        filter: alpha(opacity=80);
+        z-index: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+    }
+    .siteInfo_in .con01 .line::before {
+        top: 0;
+        left: 50%;
+        position: absolute;
+        background-size: 100%;
+        opacity: 0.8 !important;
+        filter: alpha(opacity=80);
+        z-index: 0;
+        content: "";
+        width: 1px;
+        height: 100%;
+        background-color: #ffffff;
+    }
+    .siteInfo_in .con01 .line::after {
+        top: 0;
+        left: 90%;
+        position: absolute;
+        background-size: 100%;
+        opacity: 0.8 !important;
+        filter: alpha(opacity=80);
+        z-index: 0;
+        content: "";
+        width: 1px;
+        height: 100%;
+        background-color: #ffffff;
+    }
     .siteInfo_in .con02 {
         padding:3% 3%;
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAPElEQVQoU2OMXvPyPwMBwEhIkZsaDwNeRSAFu259wa8I5gqsJsFMwKkIXQFIIUGHoyjCZgKKdfgUgBQCAFVzKemHv4/EAAAAAElFTkSuQmCC) repeat;
@@ -3512,89 +3564,73 @@ ul.rank_ul {
 
     .siteInfo_in .con01 h4 {
         text-align: center;
-        font-size: 12px;
-        line-height: 172%;
+        font-size: 1.5em;
+        line-height: 130%;
         margin-top: 70px;
         font-weight: 500;
-        background-color: rgb(255 255 255 / 65%);
-        padding: 45px;
         box-sizing: border-box;
         position: relative;
+        z-index: 10;
     }
-
-        .siteInfo_in .con01 h4 .after {
-            position: absolute;
-            left: -18px;
-            top: -30px;
-            display: inline-block;
-            font-size: 101px;
-            color: #fff;
-        }
-
-        .siteInfo_in .con01 h4 .before {
-            position: absolute;
-            right: -18px;
-            bottom: -30px;
-            display: inline-block;
-            font-size: 101px;
-            color: #fff;
-        }
-
-        .siteInfo_in .con01 h4 strong {
-            color: #039ce0;
-        }
-
-    .siteInfo_in .con01 .bottom {
-        display: block;
+  .history__list{
         width: 100%;
-        padding: 30px 0 0;
-        text-align: center;
-    }
-
-    .siteInfo_in .con01 .haf {
-        display: inline-block;
-        width: 46%;
-        min-height: 381px;
-        padding: 53px;
-        box-sizing: border-box;
-        vertical-align: top;
-        border: 11px solid #ffcae0;
-        margin: 0 1%;
-        background-color: #ffffffeb;
-    }
-
-        .siteInfo_in .con01 .haf strong {
-            font-size: 38px;
-            color: #039ce0;
-        }
-
-    .siteInfo_in .con01 ul {
         display: block;
-        width: 100%;
-        text-align: center;
-        margin-top: 50px;
-    }
-
-    .siteInfo_in .con01 li {
-        display: inline-block;
         position: relative;
-        width: 30%;
-        margin: 1% 1%;
-        background-color: #ffffff;
-        border: 1px solid #e0e0e0;
+        text-align: left;
+        padding-left: 15%;
+        padding-right: 15%;
+        box-sizing: border-box;
+        z-index: 10;
     }
-
-        .siteInfo_in .con01 li:before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 1px;
-            background-color: #555;
-            border-radius: 100px;
-            position: absolute;
-            left: 0px;
-            top: 9px;
-        }
+    .history__list > li{
+        position: relative;
+        display: block;
+        margin-bottom: 20px;
+        padding-left: 27px;
+    }
+  .history__list > li > strong{
+      font-size: 3em;
+      position: absolute;
+      color: #333;
+    }
+  .history__list > li > strong::after{
+      position: absolute;
+      bottom: 10px;
+      right: -15px;
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #5bace9;
+      border-radius: 100px;
+    }
+    .history__yearlist{
+        font-size: 1em;
+        position: relative;
+        left: 150px;
+        padding-top: 21px;
+        line-height: 240%;
+      }
+    .history__yearlist > li{
+        padding-left: 15px;
+        color: #333;
+        font-weight: 100;
+        box-sizing: border-box;
+        line-height: 200%;
+        font-size: 1.2em;
+      }
+      .history__yearlist > li:before {
+        content: '';
+        display: inline-block;
+        width: 2px;
+        height: 2px;
+        position: relative;
+        top: -4px;
+        left: -9px;
+        border-radius: 50px;
+        background-color: #333333;
+    }
+       
 
     .siteInfo_in .con_block {
         position: relative;
@@ -4102,6 +4138,13 @@ ul.rank_ul {
             line-height: 160%;
             display: block;
             color: #333333;
+        }
+
+        .siteInfo_in .con06 h4 span {
+            font-size:1.3em;
+            line-height: 160%;
+            display: block;
+            color: #888888;
         }
 
     .siteInfo_in .con06 ul {
@@ -9039,8 +9082,8 @@ i.calendar {
     }
 
         .siteInfo_in .top_bg h3 {
-            font-size: 30px;
-            line-height: 45px;
+            font-size: 4em;
+            line-height: 160%;
         }
 
         .siteInfo_in .top_bg span {
@@ -9436,8 +9479,8 @@ i.calendar {
     }
 
         .siteInfo_in .top_bg h3 {
-            font-size: 50px;
-            line-height: 60px;
+            font-size: 4em;
+            line-height: 160%;
         }
 
         .siteInfo_in .top_bg span {
@@ -9449,26 +9492,16 @@ i.calendar {
             margin: 0 auto;
         }
         .siteInfo_in .con01 h4{
-            font-size: 15px;
+            font-size: 4em;
             margin-top: 0;
         }
     .siteInfo_in .con01 {
-        padding: 200px 0 240px;
+        padding: 200px 0 200px;
         height: 493px;
         background-size: 110%;
     }
 
-        .siteInfo_in .con01 .haf {
-            width: 47%;
-            min-height: 450px;
-            padding: 53px;
-            margin: 0 1%;
-        }
-
-            .siteInfo_in .con01 .haf strong {
-                font-size: 44px;
-            }
-
+       
     .siteInfo_in .con02 {
         padding: 22px 0;
     }
@@ -9478,11 +9511,12 @@ i.calendar {
         }
 
             .siteInfo_in .con02 .top_txt h4 {
-                font-size: 54px;
+                font-size: 4em;
+                line-height: 160%;
             }
 
             .siteInfo_in .con02 .top_txt p {
-                font-size: 18px;
+                font-size: 1.3em;
             }
 
         .siteInfo_in .con02 li {
@@ -9504,16 +9538,19 @@ i.calendar {
             display: block;
             position: relative;
             font-weight: 400;
-            font-size: 36px;
-            line-height: 100%;
+            font-size:1em;
+            line-height: 160%;
             color: #858585;
             margin-bottom: 50px;
         }
         .siteInfo_in .con06 h4 strong {
-            font-size: 50px;
+            font-size: 4em;
             line-height: 160%;
             display: block;
             color: #333333;
+        }
+        .siteInfo_in .con06 h4 span{
+            font-size: 1.3em;
         }
     .siteInfo_in .con03 {
         padding: 182px 0 0;
@@ -9523,12 +9560,12 @@ i.calendar {
     }
 
         .siteInfo_in .con03 h4 {
-            font-size: 54px;
-            line-height: 100%;
+            font-size: 4em;
+            line-height: 160%;
         }
 
         .siteInfo_in .con03 p {
-            font-size: 22px;
+            font-size: 1.3em;
             line-height: 52px;
         }
 
@@ -9657,11 +9694,12 @@ i.calendar {
         }
 
     .siteInfo_in .con06 h4 {
-        font-size: 2em;
+        font-size: 1em;
     }
 
         .siteInfo_in .con06 h4 strong {
-            font-size: 44px;
+            font-size: 4em;
+            line-height: 160%;
         }
 
     .siteInfo_in .con07 {
@@ -10053,7 +10091,7 @@ i.calendar {
     .main_con_box7 .box03 .left {
         background-size: 150%;
     }
-    .main_con_box3:before{
+    .main_con_box3 .w1200:before{
         right: -7%;
         bottom: -280px;
     }
@@ -10110,19 +10148,7 @@ i.calendar {
         box-sizing: border-box;
     }
 
-    .siteInfo_in .con01 .haf_first {
-        width: 30%;
-        min-height: 450px;
-        padding: 53px;
-        margin: 0 4% 0 1%;
-    }
-
-    .siteInfo_in .con01 .haf {
-        width: 27%;
-        min-height: 450px;
-        padding: 39px;
-        margin: 0 1%;
-    }
+   
 
     .login_box .login_page {
         width: 70%;
@@ -10201,7 +10227,7 @@ i.calendar {
         height: 30px;
     }
     .siteInfo_in .con01 {
-        padding: 150px 0 380px;
+        padding: 150px 0 210px;
         height: 493px;
         background-size: 110%;
     }
@@ -10270,7 +10296,7 @@ i.calendar {
     .main_con_box2 .top_txt {
         width: 250px;
     }
-    .main_con_box3:before {
+    .main_con_box3 .w1200:before {
         right: 9%;
         bottom: -256px;
     }
@@ -10331,7 +10357,7 @@ i.calendar {
     .main_con_box7 .box03 .right h3{
         font-size: 2.3em;
     }
-    .main_con_box3:before{
+    .main_con_box3 .w1200:before{
         right:0;
     }
     .main_con_box1 .ovj {
@@ -10530,6 +10556,9 @@ i.calendar {
 }
 
 @media (min-width: 1300px) {
+    .main_con_box3 .w1200:before{
+        right: 0;
+    }
     .main_con_box1 .main_top_images {
         background-size: 140%;
         min-height: 700px;
@@ -10576,9 +10605,14 @@ i.calendar {
     }
 }
 
+@media (min-width: 1400px) {
+    .main_con_box3 .w1200:before{
+        right: 0;
+    }
+}
 @media (min-width: 1500px) {
-    .main_con_box3:before{
-        right: 15%;
+    .main_con_box3 .w1200:before{
+        right: 0;
     }
     div.popup_bg_full .in_txt {
         height: 90%;
@@ -10761,7 +10795,7 @@ i.calendar {
     }
     .guide_box .guide_top_bn .btn_list li a {
         padding: 5px 10px;
-        font-size: 0.8em;
+        margin-bottom: 3px;
     }
     .sign_in {
         margin: 38px 0 50px;
@@ -10801,7 +10835,7 @@ i.calendar {
         text-align: center;
         padding: 22px 0 0px;
     }
-    .main_con_box3:before {
+    .main_con_box3 .w1200:before {
         width: 600px;
         height: 600px;
         right: 50%;
@@ -10912,6 +10946,7 @@ i.calendar {
     .main_con_box5 .man_box .photo {
         width: 100px;
         height: 100px;
+        margin: 0 10px 10px;
     }
     .main_con_box5 .man_list a{
         line-height: 189px;
@@ -11245,6 +11280,7 @@ i.calendar {
     .main_con_box5 .man_box .photo {
         width: 110px;
         height: 110px;
+        margin: 0 10px;
     }
     .main_con_box1 .main_top_images {
         min-height: 610px;

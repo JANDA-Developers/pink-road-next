@@ -82,12 +82,35 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
         </div>
 
         <div className="w100 con01 con_block">
+            <div className="line" />
             <div className="w1200">
-                <h4>
-                    <i className="after flaticon-cloud-computing-5"></i>
-                    <span {...edit("con03_txt")} />
-                    <i className="before flaticon-command"></i>
-                </h4>
+                <h4 {...edit("con03_title")} />
+                <ul className="history__list">
+                    <li>
+                        <strong {...edit("con03_yearTitle_03")} />
+                        <ul className="history__yearlist">
+                            <li {...edit("con03_yearText_0301")} />
+                            <li {...edit("con03_yearText_0302")} />
+                            <li {...edit("con03_yearText_0303")} />
+                        </ul>
+                    </li>
+                    <li>
+                        <strong {...edit("con03_yearTitle_02")} />
+                        <ul className="history__yearlist">
+                            <li {...edit("con03_yearText_0201")} />
+                            <li {...edit("con03_yearText_0202")} />
+                            <li {...edit("con03_yearText_0203")} />
+                        </ul>
+                    </li>
+                    <li>
+                        <strong {...edit("con03_yearTitle_01")} />
+                        <ul className="history__yearlist">
+                            <li {...edit("con03_yearText_0101")} />
+                            <li {...edit("con03_yearText_0102")} />
+                            <li {...edit("con03_yearText_0103")} />
+                        </ul>
+                    </li>
+                </ul>
 
             </div>
 
@@ -162,35 +185,22 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
             <div className="main_con_box7">
                 <div className="box01">
                     <div className="w1200">
-                        <span className="sidetxt">recruiting new guide</span>
-                        <h2>잇츠가이드 플랫폼에서<br /><strong>더 많은 <i>활동영역</i>을 넓혀보시기 바랍니다.</strong></h2>
-                        <div className="link"><a href="../sub/join.html">가이드지원<i></i></a></div>
+                        <span className="sidetxt" {...edit("con07_sidetitle")} />
+                        <h2 {...edit("con07_title")} />
+                        <div className="link"><a href="../sub/join.html" {...edit("con07_linktxt")} /></div>
 
                     </div>
-                    <div className="ovj">IT'S GUIDE</div>
+                    <div className="ovj" {...edit("con07_ovj")} />
                 </div>
                 <div className="box02">
                     <div className="left">
-                        <h3>
-                            가이드 고객 관리가<br />
-                                이젠 어렵지가 않아요.<br />
-                                예약관리프로그램이<br />
-                                가이드 고객의 예약을<br />
-                                관리해드립니다.
-
-                            </h3>
-                        <p>
-                            예약관리시스템에서 결제도 한번에 관리도 한번에
-                            관리해드립니다. 더 이상 어렵게 관리하지 마세요.
-                            </p>
+                        <h3 {...edit("con07_box2_title")} />
+                        <p {...edit("con07_box2_txt01")} />
                     </div>
                     <div className="right">
                         <div className="txt">
-                            <strong>01</strong>
-                            <p>
-                                reservation<br />
-                                    management
-                                </p>
+                            <strong {...edit("con07_box2_number")} />
+                            <p {...edit("con07_box2_English")} />
                         </div>
 
                     </div>
@@ -198,26 +208,13 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                 <div className="box03">
                     <div className="left">
                         <div className="txt">
-                            <strong>02</strong>
-                            <p>
-                                be free from<br />
-                                    marketing expenses
-                                </p>
+                            <strong {...edit("con07_box3_number")} />
+                            <p {...edit("con07_box3_English")} />
                         </div>
                     </div>
                     <div className="right">
-
-                        <h3>
-                            잇츠가이드에서는<br />
-                                마케팅 걱정이 없어요.<br />
-                                따로 광고하지 않아도<br />
-                                예약이 이루어집니다.
-
-                            </h3>
-                        <p>
-                            잇츠가이드에서 가이드만 하세요. 홍보와 마케팅은
-                            저희가 다 하겠습니다.
-                            </p>
+                        <h3 {...edit("con07_box3_title")} />
+                        <p {...edit("con07_box3_txt01")} />
                     </div>
                 </div>
             </div>

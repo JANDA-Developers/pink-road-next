@@ -36,8 +36,44 @@ const info: TStieInfo = {
     con02_icon03_txt: {
         kr: "편리한<br />예약관리"
     },
-    con03_txt: {
-        kr: "잇츠가이드는 가이드들의 불필요한 활동제약이 없습니다. 프리랜서로 활동하는 가이드에게 예약관리프로그램을 제공하고 자유로운 활동이 가능한 플랫폼을 제공하므로써 가이드와 여행자를 다이렉트로 이어주는 새로운 시장을 열어드립니다.이제는 고객관리 걱정을 하지마세요.간편한 예약관리프로그램과 함께 잇츠가이드로 꾸준한 수익을 보장해드릴게요."
+    con03_title: {
+        kr: "Company History"
+    },
+    con03_yearTitle_01: {
+        kr: "2020"
+    },
+    con03_yearTitle_02: {
+        kr: "2020"
+    },
+    con03_yearTitle_03: {
+        kr: "2020"
+    },
+    con03_yearText_0101: {
+        kr: "가나다라마바사"
+    },
+    con03_yearText_0102: {
+        kr: "가나다라마바사"
+    },
+    con03_yearText_0103: {
+        kr: "가나다라마바사"
+    },
+    con03_yearText_0201: {
+        kr: "가나다라마바사"
+    },
+    con03_yearText_0202: {
+        kr: "가나다라마바사"
+    },
+    con03_yearText_0203: {
+        kr: "가나다라마바사"
+    },
+    con03_yearText_0301: {
+        kr: "가나다라마바사"
+    },
+    con03_yearText_0302: {
+        kr: "가나다라마바사"
+    },
+    con03_yearText_0303: {
+        kr: "가나다라마바사"
     },
     con04_mainTitle: {
         kr: "함께 만들어가는 공정한 가이드 직거래 플랫폼"
@@ -63,9 +99,45 @@ const info: TStieInfo = {
     con05_secondTitle: {
         kr: "Change the world with It's GUIDE."
     },
+    con07_sidetitle: {
+        kr: "recruiting new guide"
+    },
+    con07_title: {
+        kr: "잇츠가이드 플랫폼에서<br /><strong>더 많은 <i>활동영역</i>을 넓혀보시기 바랍니다.</strong>"
+    },
+    con07_linktxt: {
+        kr: "가이드지원<i></i>"
+    },
+    con07_ovj: {
+        kr: "IT'S GUIDE"
+    },
+    con07_box2_title: {
+        kr: "가이드 고객 관리가<br/> 이젠 어렵지가 않아요.<br/>예약관리프로그램이<br/>가이드 고객의 예약을<br/>관리해드립니다."
+    },
+    con07_box2_txt01: {
+        kr: "예약관리시스템에서 결제도 한번에 관리도 한번에 관리해드립니다. 더 이상 어렵게 관리하지 마세요."
+    },
+    con07_box2_number: {
+        kr: "01"
+    },
+    con07_box2_English: {
+        kr: "reservation<br />management"
+    },
+    con07_box3_title: {
+        kr: "잇츠가이드에서는<br />마케팅 걱정이 없어요.<br />따로 광고하지 않아도<br />예약이 이루어집니다."
+    },
+    con07_box3_txt01: {
+        kr: "잇츠가이드에서 가이드만 하세요. 홍보와 마케팅은 저희가 다 하겠습니다."
+    },
+    con07_box3_number: {
+        kr: "02"
+    },
+    con07_box3_English: {
+        kr: "be free from<br />marketing expenses"
+    },
     partners: {
         value: [{
-            img:"",
+            img: "",
             link: ""
         }]
     }

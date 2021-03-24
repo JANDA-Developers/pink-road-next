@@ -3958,6 +3958,10 @@ margin-bottom:0;
 }
 
 @media (max-width:767px) {
+    #setting_link{
+        padding: 5px 18px;
+        font-size: 13px;
+    }
     .pc {
         display: none;
     }
