@@ -220,11 +220,10 @@
         }
 
     .main_con_box2 ul {
-        position: absolute;
-        display: inline-block;
         box-sizing: border-box;
-        padding: 97px 0 0;
+        padding: 97px 0 70px;
         text-align: left;
+        padding-bottom: 70px;
     }
 
     .main_con_box2 li {
@@ -4189,8 +4188,6 @@ ul.rank_ul {
                 }
 
             .guide_box .guide_content .con01 ul {
-                position: absolute;
-                display: inline-block;
                 box-sizing: border-box;
                 padding: 70px 0 0;
                 text-align: left;
@@ -9904,7 +9901,7 @@ i.calendar {
         padding: 0;
     }
     .main_con_box2 ul {
-        padding: 65px 0 0;
+        padding: 65px 0 60px;
     }
     .main_con_box2 li {
         width: 130px;

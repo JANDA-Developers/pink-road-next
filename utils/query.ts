@@ -155,7 +155,6 @@ export const generateQueryHook = <Q, R, V = undefined>(
         // @ts-ignore
         const data: Result = _data?.[operationName]?.data || undefined;
         
-        
         useEffect(()=> {
             // @ts-ignore
             userErrorHandle(_data?.[operationName])

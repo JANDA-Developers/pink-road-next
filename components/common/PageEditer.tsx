@@ -1,19 +1,24 @@
 import React from 'react';
 import { IUsePageEdit } from '../../hook/usePageEdit';
+import { sellerFindByKey_SellerFindByKeyPublic_data } from '../../types/api';
 import { EditBtn } from './EditBtn';
 
 interface IProp {
     allowToUser?: boolean;
     pageTools: IUsePageEdit<any>;
+    profileParams?: sellerFindByKey_SellerFindByKeyPublic_data
 }
 
-export const PageEditor: React.FC<IProp> = ({ pageTools, allowToUser }) => {
+export const PageEditor: React.FC<IProp> = ({ pageTools, allowToUser, profileParams }) => {
     const { editMode, reset, submitEdit, setEditMode } = pageTools;
 
     const submit = () => {
         if (editMode) {
             if (confirm("변경내용을 저장 하시겠습니까?")) {
-                submitEdit()
+                submitEdit({
+                    profileImg: profileParams.profileImg,
+                    keywards: profileParams.keywards
+                })
             } else {
             }
             setEditMode(false)

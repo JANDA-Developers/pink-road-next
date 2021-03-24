@@ -94,10 +94,12 @@ export const PAGE_INFO_UPDATE = gql`
   mutation pageInfoUpdate(
       $params: PageInfoUpdateInput!
       $key: String!
+      $guideParams: UserUpdateInput
     ) {
     PageInfoUpdate(
       key: $key
       params: $params
+      guideParams: $guideParams
       )  {
         ok
         error {

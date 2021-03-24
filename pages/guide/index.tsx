@@ -77,11 +77,11 @@ export const GuideMain: React.FC<Ipage> = (pageInfo) => {
                 </Bg>
 
                 <div className="guide_content w1200">
-                    <div className="con01">
-                        <div className="top_txt">
+                    <div className="con01" >
+                        {/* <div className="top_txt">
                             <h2><span {...edit("guideMain01_subtitle")} /></h2>
                             <strong {...edit("guideMain01_title")} />
-                        </div>
+                        </div> */}
                         <ProfileListAPI mode="short" />
                     </div>
                     <div className="con02">

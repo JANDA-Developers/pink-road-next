@@ -54,6 +54,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const [resign] = useUserResign();
 
     const { myProfile: defaultProfile, role, isManager, categoriesMap } = useContext(AppContext);
+
     const { code, setCode } = useVerification();
     const [nextPhoneNum, setNextPhoneNum] = useState("");
 
@@ -215,9 +216,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
         _id: key._id,
         label: key.label
     }))
-
-    console.log({ busiRegistration });
-    console.log({ bankImg });
 
     return <MypageLayout >
         <div className="in">

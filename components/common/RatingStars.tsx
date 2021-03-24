@@ -1,4 +1,5 @@
 import React from 'react';
+import { generateRandomStringCode } from '../../utils/codeGenerator';
 
 interface IProp {
     // 1 ~ 5
@@ -14,7 +15,7 @@ export const RatingStars: React.FC<IProp> = ({ rate = 5 }) => {
     const stars = new Array(5).fill(null);
     return <div className="rating-stars">
         {stars.map((star, i) =>
-            <span className={`fa fa-star ${check(i + 1)}`}></span>
+            <span key={generateRandomStringCode()} className={`fa fa-star ${check(i + 1)}`}></span>
         )}
     </div>;
 };

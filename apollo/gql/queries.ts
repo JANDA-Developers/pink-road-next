@@ -10,7 +10,6 @@ import { F_SYSTEMNOTI } from "./systemNoti";
 :::::::::::::::::::::::::::::::::::::: */
 
 
-
 export const PAGE_INFO_READ = gql`
   query pageInfoRead(
       $key: String!
@@ -20,11 +19,11 @@ export const PAGE_INFO_READ = gql`
       )  {
         ok
         error {
-      location
-      severity
-      code
-      message
-    }
+          location
+          severity
+          code
+          message
+        }
         data {
             ...FpageInfo
         }

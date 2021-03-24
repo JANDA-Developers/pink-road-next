@@ -18,17 +18,20 @@ export enum JDinputType {
     tag = "tag"
 }
 
-
 export const SHARED_INFO = {
     shareLabel: {
         description: "공유하기 라벨",
         kr: "공유하기",
-        GB: "SNS share"
+        GB: "SNS share",
+        CH: "SNS share",
+        JP: "SNS share"
     },
     langLabel: {
         description: "언어변경 텍스트",
         kr: "Language",
-        GB: "Language"
+        GB: "Language",
+        CH: "Language",
+        JP: "Language"
     },
     link_twitter: {
         value: ""
@@ -45,31 +48,45 @@ export const SHARED_INFO = {
     channelTalkLabel: {
         description: "채널톡 버튼 라벨",
         kr: "채널톡",
-        GB: "Open Channel Talk "
+        GB: "Open Channel Talk",
+        CH: "Open Channel Talk",
+        JP: "Open Channel Talk"
     },
     twitter: {
         kr: "https://facebook.com",
-        GB: "https://facebook.com"
+        GB: "https://facebook.com",
+        CH: "https://facebook.com",
+        JP: "https://facebook.com"
     },
     facebook: {
         kr: "https://facebook.com",
-        GB: "https://facebook.com"
+        GB: "https://facebook.com",
+        CH: "https://facebook.com",
+        JP: "https://facebook.com"
     },
     instaGram: {
         kr: "https://facebook.com",
-        GB: "https://facebook.com"
+        GB: "https://facebook.com",
+        CH: "https://facebook.com",
+        JP: "https://facebook.com"
     },
     email: {
         kr: "janda@stayjanda.com",
-        GB: "janda@stayjanda.com"
+        GB: "janda@stayjanda.com",
+        CH: "捷径",
+        JP: ""
     },
     goto: {
         kr: "바로가기",
         GB: "go to",
+        CH: "",
+        JP: ""
     },
     currency_kr: {
         kr: "원",
-        GB: "krW"
+        GB: "KRW",
+        CH: "KRW",
+        JP: "KRW"
     },
     get: function(key: string, lang:string, index?:number):any {
 
@@ -126,26 +143,24 @@ export const ITS_GUIDE_INFO =  {
         description: "잇츠가이드 연동 이메일",
         value: ""
     },
-    tags: {
-        description: "태그",
-        type: JDinputType.tag,
-        kr: ["부산가이드","여성가이드","뚜벅이여행","꽃놀이","버스투어","운전가능","일본어","영어","중국어"],
-        GB: ["BusanGuid","WomanGuid","WalkTravel","Flower","Bus","DrivingAble","Japaneses","Chinese"]
-    },
     topBg: {
         description: "최상단 이미지",
         type: JDinputType.img, 
         kr: "별나라호텔",
-        GB: "Star Hotel"
+        GB: "Star Hotel",
+        CH: "星级饭店",
+        JP: ""
     },
     channelTalk: {
         description: "채널톡",
         type: JDinputType.channelTak,
-        publickKey: ""
+        publickKey: "チャンネルフリック"
     },
     channelTalkLabel: {
         kr: "채널톡 문의하기",
-        GB: "Open Channel Talk "
+        GB: "Open Channel Talk ",
+        CH: "公开频道谈话",
+        JP: "チャンネルフリックお問い合わせ"
     },
     share: {
         type: JDinputType.share,
@@ -153,16 +168,22 @@ export const ITS_GUIDE_INFO =  {
     shareLabel: {
         type: JDinputType.share,
         kr: "공유하기",
-        GB: "SNS share"
+        GB: "SNS share",
+        CH: "SNS分享",
+        JP: "共有する"
     },
     langLabel: {
         kr: "Language",
-        GB: "Language"
+        GB: "Language",
+        CH: "Language",
+        JP: "Language"
     },
     contentTitle: {
         description: "소개글 라벨",
         kr: "소개글",
-        GB: "slef introduce"
+        GB: "self introduce",
+        CH: "自我介绍",
+        JP: "紹介文"
     },
     content: {
         description: "소개글 내용",
@@ -175,71 +196,100 @@ export const ITS_GUIDE_INFO =  {
         <br /> <br />
                      저와 함께 하시면 웰니스(Wellness)투어 즉 명상. 템플스테이. 아름다운경치를 바라보며 산책. 요트. 한방의 정보와 건강한 맛집탐방으로 편안하고 즐거운 체험으로 힐링 하실수 있을것입니다.`,
         GB: `Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.`
+        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.`,
+        CH: "性讓開參心，著演收同，一下的實。參只進……查學教了里算勢根，接發於，一開本綠麼安這、流他書，從開縣媽親公節引民我好過來超？女記路錢件……國能人把海。民多為叫得。相我成分動處我基為認中腦，而量地不說年等我管立具選大皮，走林得後會，清選程少時……嗎權是語一叫持合！那變大點發現汽成歡勢生金常由的圖政開人親般、已另外況者室。一比就讀中紀業代：空醫器事候而你心天種一是，特出知會白單氣前下玩生年合覺好今念，河行東女。營現感了用這到議領樂水他學展花出，管的單課傳寶中們題分我十業回？對商反關件東眼身二同……的分們大有用：經馬記它哥。開年有小一活？在發足要展到：口影們、朋二來眾重呢為刻強知日不層出……說相建進國，打次晚的，會半見推風其社傳前走青型民，地名知覺岸改！",
+        JP: "合カヤ輔市メトロホ降3役ミ契遠ヤ下12詳るぴれけ山客リさ制3全オヌメ古盗ト夜村円え宇残秋せてえぎ。行勝ほーし高裏会げぎほ身置フナチ経治むじちト少門はせけ書米づ手用ば響図ソヌア組著百ス回員倍門分使ー。成ニウアム洋材ばりち会伊ネアレ検野メヱ奥再ウハ朝著ア題最をほ故午ん閣47動つよょ江社ヱ真1席く般国載ずル化照式げ。"
     },
     title_guid: {
         kr: "가이드 정보",
-        GB: "Guid Info"
+        GB: "Guid Info",
+        CH: "引导信息",
+        JP: "ガイド情報"
     },
     guid_info1_label: {
         // 편집불가 
         kr: "총 가이드",
-        GB: "total Guid Count"
+        GB: "total Guid Count",
+        CH: "总引导计数",
+        JP: "総ガイド"
     },
     guid_info2_label: {
         // 편집불가 
         kr: "총 가이드인원",
-        GB: "Guided customer count"
+        GB: "Guided customer count",
+        CH: "导游总数",
+        JP: "総ガイド人員"
     },
     guid_info3_label: {
         // 편집불가 
         kr: "가이드 리뷰",
-        GB: "Guid Review"
+        GB: "Guid Review",
+        CH: "指南审查",
+        JP: "ガイドレビュー"
     },
     guid_info4_label: {
         // 편집불가 
         kr: "가이드 상품",
-        GB: "Guid Product"
+        GB: "Guid Product",
+        CH: "指导商品",
+        JP: "ガイド商品"
     },
     profile: {
         description: "프로필 이미지",
         type: JDinputType.img,
         kr: "/template/profile/img/man01.jpg",
-        GB: "/template/profile/img/man01.jpg"
+        GB: "/template/profile/img/man01.jpg",
+        CH: "/template/profile/img/man01.jpg",
+        JP: "/template/profile/img/man01.jpg"
     },
     portfolio_label: {
         // 편집불가 
         kr: "가이드 상품목록",
-        GB: "Guid Product"
+        GB: "Guid Product",
+        CH: "指导产品清单",
+        JP: "ガイド商品一覧"
     },
     productView:  {
         kr: "등록된 상품",
-        GB: "Product"
+        GB: "Product",
+        CH: "注册产品",
+        JP: "登録された商品"
     },
     noReviewData: {
         kr: "아직 리뷰한 상품이 없습니다.",
         GB: "No Review Product yet",
+        CH: "尚无产品经过审查。",
+        JP: "まだレビューした商品がありません。"
     },
     noProductData: {
         kr: "아직 등록한 상품이 없습니다.",
         GB: "No Regiseted Product yet",
+        CH: "暂无注册产品。",
+        JP: "まだ登録されて商品がありません。"
     },
     guid_info1_value: {
         kr: "0",
-        GB: "0"
+        GB: "0",
+        CH: "0",
+        JP: "0"
     },
     guid_info2_value: {
         kr: "0",
-        GB: "0"
+        GB: "0",
+        CH: "0",
+        JP: "0"
     },
     guid_info3_value: {
         kr: "0",
-        GB: "0"
+        GB: "0",
+        CH: "0",
+        JP: "0"
     },
     guid_info4_value: {
         kr: "0",
-        GB: "0"
+        GB: "0",
+        CH: "0",
+        JP: "0"
     },
 }
 

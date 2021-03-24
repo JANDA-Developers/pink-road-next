@@ -10,6 +10,7 @@ import { A } from '../components/A/A';
 import { Img } from '../components/Img/Img';
 import { CloseIcon } from '../components/common/icon/CloseIcon';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 type TGetProps = {
     pageInfo: typeof pageInfoDefault | "",
@@ -165,7 +166,11 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                     <div className="w1200">
                         <span className="sidetxt">recruiting new guide</span>
                         <h2>잇츠가이드 플랫폼에서<br /><strong>더 많은 <i>활동영역</i>을 넓혀보시기 바랍니다.</strong></h2>
-                        <div className="link"><a href="../sub/join.html">가이드지원<i></i></a></div>
+                        <div className="link">
+                            <Link href="/memeber/join">
+                                <a>가이드지원<i></i></a>
+                            </Link>
+                        </div>
 
                     </div>
                     <div className="ovj">IT'S GUIDE</div>

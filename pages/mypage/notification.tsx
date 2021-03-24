@@ -6,11 +6,9 @@ import { useSystemNotiHide, useSystemNotiList, useSystemNotiRead } from '../../h
 import { MypageLayout } from '../../layout/MypageLayout';
 import { SystemNotiType } from '../../types/api';
 import { ALLOW_LOGINED } from '../../types/const';
-import { enumToArray } from '../../utils/enumToArray';
 import { systemTypeToString } from '../../utils/enumToKr';
 import { groupDateArray } from '../../utils/group';
 import { auth } from '../../utils/with';
-import { yyyymmdd } from '../../utils/yyyymmdd';
 
 interface IProp { }
 

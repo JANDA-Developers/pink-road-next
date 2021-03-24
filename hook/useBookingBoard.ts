@@ -7,7 +7,7 @@ import { useModal } from "./useModal";
 import { useDateFilter } from "./useSearch";
 import { useSingleSort } from "./useSort";
 
-export type TBookingSearchType = keyof Pick<_BookingFilter, "code_eq" | "exField__sellerName_eq" | "exField__title_contains">
+export type TBookingSearchType = keyof Pick<_BookingFilter, "code_eq" | "exField__sellerName_eq" | "exField__title_contains" | "exField__bookerName_contains">
 
 export const useBookingBoard = () => {
     const [isTimeOverExcept, setIsTimeOverExcept] = useState(false);

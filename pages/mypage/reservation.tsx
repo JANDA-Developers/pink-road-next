@@ -101,6 +101,7 @@ export const MyReservation: React.FC<IProp> = () => {
                             }} value={filterType} className="option">
                                 <option value={"exField__title_contains" as TBookingSearchType}>상품명</option>
                                 <option value={"exField__sellerName_eq" as TBookingSearchType}>판매자명</option>
+                                <option value={"exField__bookerName_contains" as TBookingSearchType}>구매자명</option>
                                 <option value={"code_eq" as TBookingSearchType}>예약코드</option>
                             </select>
                         }

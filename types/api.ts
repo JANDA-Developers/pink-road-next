@@ -1579,7 +1579,7 @@ export interface bookingFindByCode_BookingFindByCode_data_booker {
 export interface bookingFindByCode_BookingFindByCode_data_travelers {
   __typename: "Traveler";
   name: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender: GENDER | null;
   age: string;
 }
@@ -3025,6 +3025,7 @@ export interface pageInfoUpdate {
 export interface pageInfoUpdateVariables {
   params: PageInfoUpdateInput;
   key: string;
+  guideParams?: UserUpdateInput | null;
 }
 
 /* tslint:disable */
@@ -10487,7 +10488,7 @@ export interface Fanswer {
 export interface Ftraveler {
   __typename: "Traveler";
   name: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender: GENDER | null;
   age: string;
 }
@@ -13144,7 +13145,7 @@ export interface SmsTemplateUpdateInput {
 
 export interface TravelerInput {
   name?: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender?: GENDER | null;
   age: string;
 }

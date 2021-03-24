@@ -16,6 +16,7 @@ import { arrayEquals } from '../utils/filter';
 import "node_modules/slick-carousel/slick/slick.css";
 import useRouterScroll from '../hook/useRouterScroll';
 import Head from 'next/head';
+import { getFromUrl } from '../utils/url';
 
 
 dayjs.locale('ko')
@@ -152,6 +153,16 @@ function App({ Component, pageProps }: any) {
     return <div></div>
   }
 
+
+  const token = getFromUrl("refreshToken");
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("jwt", token)
+      location.href = "/"
+    }
+  }, [])
+
+  if (token) return null;
   if (loading) return <PageLoading />
   return (
     <div className="App">
