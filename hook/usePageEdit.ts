@@ -2,10 +2,11 @@ import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import PinkClient from "../apollo/client";
 import { PAGE_INFO_CREATE, PAGE_INFO_UPDATE } from "../apollo/gql/mutations";
-import { pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables } from "../types/api";
+import { pageInfoCreate, pageInfoCreateVariables, pageInfoUpdate, pageInfoUpdateVariables, UserUpdateInput } from "../types/api";
 import { ISet, TPageKeys } from "../types/interface";
 import { cloneObject } from "../utils/clone";
 import {  mergeDeepOnlyExsistProperty } from "../utils/merge";
+import { omits } from "../utils/omit";
 import { Ipage } from "../utils/page";
 import { getEditUtils, IGetEditUtilsResult } from "../utils/pageEdit";
 import { usePageFindByKey } from "./usePageInfo";
@@ -14,7 +15,7 @@ export interface IUsePageEdit<Page = any> extends IGetEditUtilsResult<Page> {
     setPage: ISet<Page>
     setLang: any;
     page: Page;
-    submitEdit: () => void
+    submitEdit: (guideParams?:UserUpdateInput) => void
     editMode: boolean;
     setEditMode: ISet<boolean>;
     originPage:any;
@@ -46,7 +47,7 @@ export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultP
     client: PinkClient
     })
 
-    const submitEdit = () => {
+    const submitEdit = (guideParams?:UserUpdateInput) => {
         const params = {
             key: pageKey,
             value: page
@@ -59,7 +60,8 @@ export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultP
             pageInfoUpdateMu({
             variables: {
                 key: pageKey,
-                params
+                params,
+                guideParams: omits(guideParams)
             }
             })
         })

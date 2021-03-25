@@ -33,6 +33,10 @@
     background-color: #ffe4e4;
 }
 
+.settlementStatus.not-ready {
+    background-color: #ccc;
+}
+
 
 .settlementStatus.ready {
     background-color: #5f7bba;

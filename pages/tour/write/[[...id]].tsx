@@ -69,11 +69,11 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         onCompleted: ({ ProductUpdateReq }) => {
             if (ProductUpdateReq?.ok) {
                 alert("상품 수정요청이 접수 되었습니다.");
-                router.push(`/tour/view/${ProductUpdateReq?.data?._id}`).then(() => window.scrollTo(0, 0));
+                router.push(`/tour/view/${ProductUpdateReq?.data?._id}`);
             }
         }
     });
-    const { categoriesMap, isAdmin, myProfile, isManager, isParterB, isParterNonB } = useContext(AppContext);
+    const { categoriesMap, isAdmin, myProfile, isManager, isParterB, isParterNonB, productGroupList } = useContext(AppContext);
     const isMyProduct = product?.author?._id === myProfile?._id;
 
     const {
@@ -89,7 +89,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     useEffect(() => {
         setTourData(getDefault(cloneObject(product)))
     }, [product])
-
 
     const { createFn, deleteFn, updateFn } = mutations;
     const { categoryId, its, simpleData, status, thumbs, keyWards, type, regionId } = tourData;
@@ -199,6 +198,19 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         initStorage()
     }, [])
 
+
+    const handleBaseProdChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const val = e.currentTarget.value;
+        const target = productGroupList.find(g => g._id === val)
+        setGroupCode(target?.groupCode);
+        getData({
+            variables: {
+                _id: val
+            }
+        })
+    }
+
+
     const noram_partner_updateable_status = [ProductStatus.READY, ProductStatus.UPDATE_REQ, ProductStatus.UPDATE_REQ_REFUSED, ProductStatus.REFUSED]
     const updateAble = (!isCreateMode && (isParterB || isManager)) || noram_partner_updateable_status.includes(product?.status!);
     const normalPartnerUpdateReqAble = updateBtnDisableCheck(product!, isParterB || false)
@@ -242,7 +254,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     </div>
                 </div>
                 } */}
-                {/* {isCreateMode && <div className="write_type">
+                {isCreateMode && <div className="write_type">
                     <div className="title">회차연결</div>
                     <div className="input_form">
                         <span className="category r3">
@@ -259,7 +271,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         </span>
                     </div>
                 </div>
-                } */}
+                }
                 {/* <div className="write_type">
                     <div className="title">상품타입</div>
                     <div className="input_form">
@@ -339,7 +351,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     <div className="title">지역</div>
                     <div className="input_form">
                         <span className="category">
-                            <select onChange={handleRegionChange} value={regionId || ""} name="category_srl">
+                            <select id="RegionId" onChange={handleRegionChange} value={regionId || ""} name="category_srl">
                                 {regionCategories.map(cat =>
                                     <option value={cat._id} key={cat._id}>
                                         {cat.label}

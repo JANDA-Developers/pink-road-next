@@ -1,15 +1,29 @@
 import { DocumentNode, MutationHookOptions, QueryHookOptions, useMutation } from "@apollo/client";
 import { capitalize } from "./stirng";
 import { ListInitOptions, useListQuery } from "../hook/useListQuery";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {useLazyQuery} from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
 import { ERR_CODE, Fpage } from "../types/api";
-import { CustomErrorResponse } from "aws-sdk/clients/cloudfront";
+import { ErrorCode } from "./enumToKr";
 import { getFromUrl } from "./url";
+import { cloneObject } from "./clone";
+
+export const pageLoadingEffect = (loading:boolean) => {
+    if(typeof window === "undefined") return;
+    const MuPageLoading = document.getElementById("MuPageLoading");
+    if(MuPageLoading) {
+        if(loading) {
+                MuPageLoading.classList.add("muPageLoading--visible");
+        } else {
+            MuPageLoading?.classList.remove("muPageLoading--visible");
+        }
+    }
+}
 
 export interface genrateOption<Q,V> extends QueryHookOptions<Q,V> {
     queryName?: string;
+    skip?: boolean;
     skipInit?: boolean;
     overrideVariables?: Partial<V>
     getEditableobject?: boolean; 
@@ -72,7 +86,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             initialViewCount: 10
         }
         const initialData = Object.assign(defaultInitData, queryInitDefault, initialOption); 
-        const { variables, overrideVariables, ...ops } = options;
+        const { skipInit,skip,variables, overrideVariables, ...ops } = options;
         const { integratedVariable,...params } = useListQuery(initialData)
         const [getData, { data, loading: getLoading,...queryElse }] = useLazyQuery<Q,V>(QUERY,{
             fetchPolicy: "cache-first",
@@ -97,6 +111,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
 
 
         useEffect(()=>{
+            if(skip) return;
             getData()
         },[
             params.filter,
@@ -111,6 +126,8 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             params.viewCount,
             params.filter
         ])
+
+        pageLoadingEffect(getLoading);
 
         return { pageInfo,  getLoading, items, ...params,...queryElse }
     }
@@ -138,7 +155,6 @@ export const generateQueryHook = <Q, R, V = undefined>(
         // @ts-ignore
         const data: Result = _data?.[operationName]?.data || undefined;
         
-        
         useEffect(()=> {
             // @ts-ignore
             userErrorHandle(_data?.[operationName])
@@ -149,6 +165,8 @@ export const generateQueryHook = <Q, R, V = undefined>(
                 getData();
         },[])
         
+        pageLoadingEffect(getLoading);
+
         return {  getData, getLoading, data,...context }
     }
     return queryHook
@@ -165,13 +183,16 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
             onCompleted: (result) => {
                 const operationName = getQueryName(MUTATION);
                 // @ts-ignore
-                const err:CustomErrorResponse = result[operationName]?.error;
+                const err:any = result[operationName]?.error;
                 // @ts-ignore
                 userErrorHandle(result[operationName])
                 // @ts-ignore
                 options?.onCompleted?.(result) || defaultOptions?.onCompleted?.(result)
             }
         });
+
+        pageLoadingEffect(muHook[1].loading);
+
         return muHook
     }
     return mutationHook
@@ -202,6 +223,7 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:Doc
         // @ts-ignore
         userErrorHandle(data?.[operationName])
 
+        pageLoadingEffect(loading);
 
         useEffect(()=>{
             if(key)

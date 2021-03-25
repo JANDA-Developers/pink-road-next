@@ -40,6 +40,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
             price: totalPrice
         })
         updateComponent();
+        closeModal("#basketModal")()
     }
 
     return <Modal title="조건 추가/변경" id="basketModal" >

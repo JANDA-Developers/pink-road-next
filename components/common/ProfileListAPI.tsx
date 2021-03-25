@@ -2,31 +2,37 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import { ListInitOptions } from '../../hook/useListQuery';
 import { openListFilter } from '../../hook/useProduct';
-import { usePublicSellerList } from '../../hook/useUser';
-import { tourSearchLink } from '../../pages/search';
-import { sellerListPublic_SellerListPublic_data, _SellerFilter, _SellerSort, _UserSort } from '../../types/api';
+import { useRandomPublicSellerList } from '../../hook/useUser';
+import { randomSellerListPublicVariables, sellerListPublic_SellerListPublic_data, _SellerFilter, _SellerSort, _UserSort } from '../../types/api';
 import { BG, BGprofile } from '../../types/const';
 import { GoodsListAPI } from './GoodsListAPI';
+import Slider from "react-slick";
+import { useResizeDetector } from 'react-resize-detector';
 
 interface IProp {
     mode?: "wide" | "short"
-    listQueryFilter?: Partial<ListInitOptions<_SellerFilter, _SellerSort>>;
+    variables?: randomSellerListPublicVariables;
     selectedSeller?: sellerListPublic_SellerListPublic_data;
     setSelectedSeller?: React.Dispatch<React.SetStateAction<sellerListPublic_SellerListPublic_data | undefined>>
 }
 
-export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSeller, listQueryFilter, mode = "wide" }) => {
+export const ProfileListAPI: React.FC<IProp> = ({ variables, selectedSeller, setSelectedSeller, mode = "wide" }) => {
     const router = useRouter();
+    const { ref, width, height } = useResizeDetector<HTMLDivElement>()
     const guidesRef = useRef<HTMLDivElement>(null)
-    const { items } = usePublicSellerList({
-        ...listQueryFilter,
-        initialSort: [_SellerSort.profileImg_desc]
+    const { data: items = [] } = useRandomPublicSellerList({
+        variables: {
+            filter: {
+                profileImg_not_eq: null
+            },
+            random: 40,
+            ...variables
+        }
     });
 
     const handleSelectUser = (user: sellerListPublic_SellerListPublic_data) => () => {
         setSelectedSeller?.(user);
     }
-
 
     const handleScrollArrowClick = (plus: boolean) => () => {
         if (!guidesRef?.current) return;
@@ -39,42 +45,114 @@ export const ProfileListAPI: React.FC<IProp> = ({ selectedSeller, setSelectedSel
         if (items?.[0] && !selectedSeller) {
             setSelectedSeller?.(items[0])
         }
-    }, [items.length])
+    }, [items?.length]);
 
     const isShort = mode === "short"
 
     const toGuidePage = (code: string) => {
+
         router.push("/itsguid/" + code)
     }
 
     if (isShort) return <ul className="pr_list">
-        {items.map(item =>
-            <li className="pr_list__li" onClick={() => {
-                toGuidePage(item._id)
-            }} key={item._id} style={BGprofile(item.profileImg)} />
-        )}
-        <li className="plus"><a href="/guide-search">+</a></li>
+        <Slider
+            slidesToShow={10}
+            autoplay
+            draggable={false}
+            arrows={false}
+            dots={false}
+            infinite={true}
+        >
+            {items.map(item =>
+                <div key={item._id}>
+                    <li className="pr_list__li" onClick={() => {
+                        toGuidePage(item._id)
+                    }} style={BGprofile(item.profileImg)} />
+                </div>
+            )}
+        </Slider>
+        {/* <li className="plus"><a href="/guide-search">+</a></li> */}
     </ul>
 
-    return <div className="man_list">
-        <a onClick={handleScrollArrowClick(false)} className="left_mov"><i className="jandaicon-arr2-left"></i></a>
-        <div ref={guidesRef} className="man_box">
-            <ul>
-                {items.map((item, i) =>
-                    <li key={item._id + "guid"} className={selectedSeller?._id === item._id ? "on" : ""}>
-                        <span className="photo" onClick={handleSelectUser(item)} style={BG(item.profileImg?.uri || "/img/profile_default160.gif")} />
-                        <div className="home" onClick={() => {
-                            toGuidePage(item._id)
-                        }}></div>
-                        <div className="name" onClick={handleSelectUser(item)}><i>G</i>{item.nickName}</div>
 
-                    </li>
+
+    function Arrow(props) {
+        const { className, style, onClick, isLeft } = props;
+        return (
+            <div
+                className={className + " profileListBig__arrows"}
+                style={{ ...style }}
+                onClick={onClick}
+            >
+                <i className={isLeft ? "jandaicon-arr2-left" : "jandaicon-arr2-right"}></i>
+            </div>
+        );
+    }
+
+    const sizeSlideCount = (() => {
+        if (width < 500) return 4;
+        if (width < 800) return 5;
+        if (width < 1000) return 5;
+        return 6
+    })()
+
+
+    return <div>
+        {/* <div className="man_list">
+            <a onClick={handleScrollArrowClick(false)} className="left_mov"><i className="jandaicon-arr2-left"></i></a>
+            <div ref={guidesRef} className="man_box">
+                <ul>
+                    {items.map((item, i) =>
+                        <li key={item._id + "guid"} className={selectedSeller?._id === item._id ? "on" : ""}>
+                            <span className="photo" onClick={handleSelectUser(item)} style={BG(item.profileImg?.uri || "/img/profile_default160.gif")} />
+                            <div className="max_box__infoWrap">
+                                <div className="home" onClick={() => {
+                                    toGuidePage(item._id)
+                                }}></div>
+                                <div className="max_box__name name" onClick={handleSelectUser(item)}><i>G</i>{item.nickName}</div>
+                            </div>
+                        </li>
+                    )}
+                </ul>
+            </div>
+            <a onClick={handleScrollArrowClick(true)} className="right_mov"><i className="jandaicon-arr2-right"></i></a>
+        </div> */}
+        <div ref={ref} className="profileListBig">
+            <Slider
+                nextArrow={
+                    <Arrow />
+                }
+                prevArrow={
+                    <Arrow isLeft />
+                }
+                slidesToScroll={2}
+                slidesToShow={sizeSlideCount}
+                autoplay
+                draggable={false}
+                arrows={true}
+                dots={false}
+                infinite={true}
+            >
+                {items.map(item =>
+                    <div>
+                        <div className={`profileListBig__cell ${selectedSeller?._id === item._id ? "profileListBig__cell--selected" : ""}`} key={item._id}>
+                            <div className="profileListBig__photo" onClick={handleSelectUser(item)} style={BGprofile(item.profileImg)} />
+                            <div className="profileListBig__titleWrap">
+                                <div className="profileListBig__toGuide" onClick={() => {
+                                    toGuidePage(item._id)
+                                }}></div>
+                                <div className="profileListBig__toName" onClick={handleSelectUser(item)}><i className="profileListBig__G">G</i>{item.nickName}</div>
+                            </div>
+                        </div>
+                    </div>
                 )}
-            </ul>
+            </Slider>
         </div>
-        <a onClick={handleScrollArrowClick(true)} className="right_mov"><i className="jandaicon-arr2-right"></i></a>
-    </div>;
+    </div>
+        ;
+
 };
+
 
 
 export const ProfileListAPIwithGoods = () => {

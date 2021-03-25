@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 import SLIDER, { Settings } from 'react-slick';
 import classnames from 'classnames';
-import "../../css/slider.css"
 import { TElements } from '../../types/interface';
 
 interface IProps extends Settings {

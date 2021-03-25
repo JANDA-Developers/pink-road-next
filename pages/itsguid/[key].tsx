@@ -1,28 +1,29 @@
-import { GetStaticProps } from 'next';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { usePageEdit } from '../../hook/usePageEdit';
-import { usePageInfo } from '../../hook/usePageInfo';
+import { usePageInfoRead, useSellerFindByKey } from '../../hook/usePageInfo';
 import ITS_GUIDE_INFO from '../../info/itsGuide';
-import { sellerIdListForPublic, userFindByKey } from '../../hook/usePageInfo';
-import { Ipage, useHomepageServerSide } from '../../utils/page';
+import { Ipage } from '../../utils/page';
 import { Bg } from '../../components/Img/Img';
-import { autoComma } from '../../utils/formatter';
+import { autoComma, deepCopy, IselectedOption } from '../../utils/formatter';
 import { PageEditor } from '../../components/common/PageEditer';
 import isEmpty from '../../utils/isEmpty';
 import dynamic from 'next/dynamic';
-import sanitize from 'sanitize-html';
 import { Paginater } from '../../components/common/Paginator';
 import { generateClientPaging } from '../../utils/generateClientPaging';
 import { NoData } from '../../components/common/NoData';
 import { Modal } from '../../components/modal/Modal';
 import { openModal } from '../../utils/popUp';
 import { SHARE } from '../../css/component/Share';
-import { sellerFindByKey_SellerFindByKeyPublic_data } from '../../types/api';
+import { Ffile, sellerFindByKey_SellerFindByKeyPublic_data } from '../../types/api';
 import { useRouter } from 'next/router';
 import { AppContext } from '../_app';
 import Link from 'next/link';
-import { BGprofile } from '../../types/const';
-import { clean } from '../../utils/clearn';
+import { BG, BGprofile } from '../../types/const';
+import { tourSearchLink } from '../search';
+import { guideSearchLink } from '../guide-search';
+import { useUserUpdate } from '../../hook/useUser';
+import { omits } from '../../utils/omit';
+import { KeywardSelecter } from '../../components/keywardSelecter/KeywardSelecter';
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
 
 //URL 링크
@@ -37,39 +38,39 @@ interface IGudeProfilePage extends Ipage {
 }
 
 
-// This function gets called at build time
-export async function getStaticPaths() {
+// export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
-    // Call an external API endpoint to get posts
-    const result = await sellerIdListForPublic();
+//     const guideData = await userFindByKey("_id", key as string);
+//     const { data: homepage } = await useHomepageServerSide();
+//     console.timeEnd("SSR");
 
-    const paths = result.data.map(d => ({
-        params: { key: d._id },
-    }));
+//     return {
+//         props: {
+//             pageKey: key,
+//             guideData: guideData.data,
+//             pageInfo: data?.value || {},
+//             homepage,
+//         },
+//     }
+// }
 
-    console.log({ paths });
-    // We'll pre-render only these paths at build time.
-    // { fallback: false } means other routes should 404.
-    return { paths, fallback: false }
-}
+export const ItsGuideWrap = () => {
+    const router = useRouter();
+    const key = router.query.key as string | undefined;
 
+    const { item: pageData } = usePageInfoRead(key);
+    const { data: guideData } = useSellerFindByKey({ variables: { key: "_id", value: key } });
 
-export const getStaticProps: GetStaticProps = async ({ params: { key } }) => {
-    const { data } = await usePageInfo(key as any);
-    const guideData = await userFindByKey("_id", key as string);
-    const { data: homepage } = await useHomepageServerSide();
-    console.log({ data });
-
-    return {
-        revalidate: 1,
-        props: {
-            pageKey: key,
-            guideData: guideData.data,
-            pageInfo: data?.value || {},
-            homepage,
-        },
+    const wrapProp: any = {
+        pageKey: key,
+        guideData,
+        pageInfo: pageData?.value,
     }
+
+    if (!pageData || !guideData) return null;
+    return <ItsGuide key={pageData?._id} {...wrapProp} />
 }
+
 
 const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
     const { guideData } = pageInfo;
@@ -78,8 +79,10 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
     const key = query.key;
     const myId = myProfile?._id;
     const isMypage = isManager || (myId === key);
+    const [profile, setProfile] = useState(deepCopy(guideData));
+
     const filteredKeywards = categoriesMap.GUIDE_KEYWARD.filter(key => {
-        return guideData.keywards?.includes(key.label)
+        return profile.keywards?.includes(key.label)
     });
 
     const pageTools = usePageEdit(pageInfo, ITS_GUIDE_INFO);
@@ -91,7 +94,12 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
         openModal("#LangModal")();
     }
 
-    const handleLang = (lang: "kr" | "GB") => () => {
+    const keywardsOps: IselectedOption[] = filteredKeywards.map(key => ({
+        _id: key._id,
+        label: key.label
+    }))
+
+    const handleLang = (lang: "kr" | "GB" | "JP" | "CH") => () => {
         setLang(lang);
     }
 
@@ -99,11 +107,26 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
         push("/tour/view/" + id)
     }
 
+    const changeKeywards = (keywardLabels: string[]) => {
+        profile.keywards = keywardLabels;
+        setProfile({ ...profile });
+    }
+
+
+    const changeProfile = (file: Ffile) => {
+        profile.profileImg = file;
+        setProfile({ ...profile });
+    }
+
+    const toProductWrite = () => {
+        push("/tour/write/")
+    }
+
     const location = typeof window === "undefined" ? "" : window?.location?.href;
 
     return <div className="profilePage mypage_in myProfilePage"><div className="in myProfilePage__in profile_box">
         <div className="myProfilePage__inin member_details_in w100">
-            {(isManager || isMypage) && <PageEditor allowToUser pageTools={pageTools} />}
+            {(isManager || isMypage) && <PageEditor profileParams={profile} allowToUser pageTools={pageTools} />}
             <Bg className="top_bg" {...imgKit("topBg")}>
                 <div className="w1200 toolbuttons">
                     <div className="toolbuttons__right">
@@ -117,20 +140,41 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
                         </div>
                     </div>
                 </div>
+                {editMode && <div onClick={() => {
+                    if (confirm("정말로 이미지를 삭제 하시겠습니까?"))
+                        set("topBg", "")
+                }} className="top_bg__clear">이미지삭제</div>}
             </Bg>
             <div className="member_box">
                 <div className="w1200">
                     <div className="profile">
-                        <div className="photo"><div className="photo__bg" style={BGprofile(guideData?.profileImg)} /> </div>
+                        <div className="photo"><Bg editMode={editMode} upload={(uri) => {
+                            changeProfile({
+                                __typename: "File",
+                                name: "profileImage" + guideData._id,
+                                owner: guideData._id,
+                                uri
+                            });
+                        }} bg={BGprofile(profile?.profileImg)} className="photo__bg" />
+                        </div>
                         <div className="name"><i>G</i><span >{guideData.nickName || "닉네임 없음"}</span></div>
-                        <div className="tag">
+                        {!editMode && <div className="tag">
                             {filteredKeywards.map((t, i: number) =>
-                                <Link href={"/"} >
-                                    <a key={t._id} href={process.env.REACT_APP_ITS_GUIDE_CLIENT_URI + `/service/search&guideTag=${t._id}`} >
-                                        {t.label}
+                                <Link href={guideSearchLink({
+                                    keyward: t.label
+                                })} >
+                                    <a key={t._id} >
+                                        #{t.label}
                                     </a>
                                 </Link>
                             )}
+                        </div>}
+                        <div className="profile__keywardWrap">
+                            {editMode && <KeywardSelecter className="mypage__keywards" value={keywardsOps} handleChange={
+                                (keywards) => {
+                                    const keyLabels = keywards.map(keyward => keyward.label);
+                                    changeKeywards(keyLabels);
+                                }} />}
                         </div>
                     </div>
                     <div className="profile_txt">
@@ -172,7 +216,7 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
                                 <div className="left_div"><h3><span>{get("portfolio_label")}</span></h3></div>
                                 <div className="right_div">
                                     <span className="goto_page">
-                                        <a href={"/review"}>
+                                        <a href={tourSearchLink({ authorNick: guideData.nickName })}>
                                             <span>{get("portfolio_label")}</span>
                                         </a>
                                     </span>
@@ -182,7 +226,9 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
                                 <ul className="list_ul line4">
                                     {slice?.map((product) =>
                                         <li onClick={toProduct(product._id)} key={product._id} className="list_in">
-                                            <div className="img" style={{ backgroundImage: `url(${product?.images[0]?.uri})` }}>상품이미지</div>
+                                            <div className="imgWrap">
+                                                <div className="img" style={{ backgroundImage: `url(${product?.images[0]?.uri})` }}>상품이미지</div>
+                                            </div>
                                             <div className="box">
                                                 <div className="category"><span>{product.category.label}</span></div>
                                                 <div className="title">{product.title}</div>
@@ -202,6 +248,9 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
                                 <div className="mypage_in__paginator">
                                     <Paginater isMini pageInfo={paging} setPage={setPage} />
                                 </div>
+                                {isMypage &&
+                                    <button onClick={toProductWrite} className="btn small">상품 등록하기</button>
+                                }
                             </div>
                         </div>
 
@@ -245,13 +294,15 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
         </div>
     </div>
         <Modal id="LangModal" title="언어 교체하기">
-            <button onClick={handleLang("kr")} className="btn small">한국어</button>
-            <button onClick={handleLang("GB")} className="btn small">영어</button>
+            <button onClick={handleLang("kr")} className="btn mr20 small">한국어</button>
+            <button onClick={handleLang("GB")} className="btn mr20 small">영어</button>
+            <button onClick={handleLang("JP")} className="btn mr20 small">일본어</button>
+            <button onClick={handleLang("CH")} className="btn mr20 small">중국어</button>
         </Modal>
     </div >
 };
 
-export default ItsGuide;
+export default ItsGuideWrap;
 
 
 

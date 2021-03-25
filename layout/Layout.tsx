@@ -19,7 +19,9 @@ export const Layout: React.FC<IProp> = ({ children }) => {
             <script src="/normal.js"></script>
         </Head>
         <Header />
-        {children}
+        <div style={{ minHeight: "90vh" }}>
+            {children}
+        </div>
         <Footer />
         <ReactTooltip effect="solid" type="info" />
     </div>;

@@ -113,10 +113,6 @@ export const MsIndex: React.FC<IProp> = () => {
                 <div className="hang div01">
                     <div className="head">
                         <h5>상품</h5>
-                        <ul className="board_option">
-                            <li onClick={productTypeFilter(ProductType.TOUR)} className={checkOnProductType(ProductType.TOUR)}><a >여행<strong>{totalTourCount}</strong></a></li>
-                            <li onClick={productTypeFilter(ProductType.EXPERIENCE)} className={checkOnProductType(ProductType.EXPERIENCE)}><a>체험<strong>{totalExpCount}</strong></a></li>
-                        </ul>
                         <Link href="/master/goods"><a className="more">더보기<i className="jandaicon-arr4-right"></i></a></Link>
                     </div>
                     {/* <ul className="view">

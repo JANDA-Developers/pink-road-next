@@ -1,5 +1,3 @@
-import { Gender } from 'aws-sdk/clients/polly';
-import { UserRole } from 'aws-sdk/clients/workmail';
 import React, { useState } from 'react';
 import { useCustomCount } from '../../hook/useCount';
 import { useIdSelecter } from '../../hook/useIdSelecter';
@@ -7,7 +5,7 @@ import { useDateFilter } from '../../hook/useSearch';
 import { useSingleSort } from '../../hook/useSort';
 import { useRestartUsers, useSignUpAccept, useSignUpDeny, useStopUsers, useUserList, useUserResign, useUserUpdate } from '../../hook/useUser';
 import { MasterLayout } from '../../layout/MasterLayout';
-import { Fuser, GENDER, UserStatus, _UserFilter, _UserSort } from '../../types/api';
+import { Fuser, GENDER, UserRole, UserStatus, _UserFilter, _UserSort } from '../../types/api';
 import { TElements } from '../../types/interface';
 import { closeModal, openModal } from '../../utils/popUp';
 import { BoardModal } from '../boardModal/BoardModal';
@@ -98,7 +96,7 @@ export const MemberMaster: React.FC<IProp> = ({ type, Table, signOut, BoardOptio
         setFilter({ ...filter })
     }
 
-    const setGenderFilter = (gender?: Gender) => () => {
+    const setGenderFilter = (gender?: GENDER) => () => {
         filter.gender_eq = gender;
         setFilter({ ...filter });
     }
@@ -174,7 +172,7 @@ export const MemberMaster: React.FC<IProp> = ({ type, Table, signOut, BoardOptio
             setOR(["name_eq", "email_eq", "phoneNumber_eq"], search);
         }
     }
-    const checkOnGender = (gender?: Gender) => gender === filter.gender_eq ? "on" : "";
+    const checkOnGender = (gender?: GENDER) => gender === filter.gender_eq ? "on" : "";
     const checkOnForeginer = (isForeginer?: boolean) => isForeginer === filter.is_froreginer_eq ? "on" : "";
     const checkOnAllGender = () => filter.gender_eq === undefined ? "on" : "";
     const checkOnAllForgien = () => filter.is_froreginer_eq === undefined ? "on" : "";

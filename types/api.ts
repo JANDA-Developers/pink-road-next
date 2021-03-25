@@ -1579,7 +1579,7 @@ export interface bookingFindByCode_BookingFindByCode_data_booker {
 export interface bookingFindByCode_BookingFindByCode_data_travelers {
   __typename: "Traveler";
   name: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender: GENDER | null;
   age: string;
 }
@@ -3025,6 +3025,7 @@ export interface pageInfoUpdate {
 export interface pageInfoUpdateVariables {
   params: PageInfoUpdateInput;
   key: string;
+  guideParams?: UserUpdateInput | null;
 }
 
 /* tslint:disable */
@@ -7082,7 +7083,7 @@ export interface getContext_GetProfile_data {
    */
   bankImg: getContext_GetProfile_data_bankImg | null;
   /**
-   * 판매자에 대한 키워드
+   * 판매자에 대한 키워드 모음
    */
   keywards: string[] | null;
   unReadNoties: getContext_GetProfile_data_unReadNoties[] | null;
@@ -8925,7 +8926,7 @@ export interface sellerListPublic_SellerListPublic_data {
   email: string;
   gender: GENDER;
   /**
-   * 판매자에 대한 키워드
+   * 판매자에 대한 키워드 모음
    */
   keywards: string[] | null;
   /**
@@ -8956,6 +8957,74 @@ export interface sellerListPublicVariables {
   sort?: _SellerSort[] | null;
   filter?: _SellerFilter | null;
   pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: randomSellerListPublic
+// ====================================================
+
+export interface randomSellerListPublic_RandomSellerListPublic_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface randomSellerListPublic_RandomSellerListPublic_data_zoneinfo {
+  __typename: "Zoneinfo";
+  timezone: string;
+  offset: number;
+  callingCode: string;
+  alpha2Code: string;
+}
+
+export interface randomSellerListPublic_RandomSellerListPublic_data_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface randomSellerListPublic_RandomSellerListPublic_data {
+  __typename: "publicSellerData";
+  _id: string;
+  zoneinfo: randomSellerListPublic_RandomSellerListPublic_data_zoneinfo;
+  email: string;
+  gender: GENDER;
+  /**
+   * 판매자에 대한 키워드 모음
+   */
+  keywards: string[] | null;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  productCount: number;
+  bookingCount: number;
+  /**
+   * 프로필 사진
+   */
+  profileImg: randomSellerListPublic_RandomSellerListPublic_data_profileImg | null;
+}
+
+export interface randomSellerListPublic_RandomSellerListPublic {
+  __typename: "RandomSellerListPublicResponse";
+  ok: boolean;
+  error: randomSellerListPublic_RandomSellerListPublic_error | null;
+  data: randomSellerListPublic_RandomSellerListPublic_data[] | null;
+}
+
+export interface randomSellerListPublic {
+  RandomSellerListPublic: randomSellerListPublic_RandomSellerListPublic;
+}
+
+export interface randomSellerListPublicVariables {
+  random?: number | null;
+  filter?: _SellerFilter | null;
 }
 
 /* tslint:disable */
@@ -9677,7 +9746,7 @@ export interface sellerFindByKey_SellerFindByKeyPublic_data {
   email: string;
   gender: GENDER;
   /**
-   * 판매자에 대한 키워드
+   * 판매자에 대한 키워드 모음
    */
   keywards: string[] | null;
   /**
@@ -10419,7 +10488,7 @@ export interface Fanswer {
 export interface Ftraveler {
   __typename: "Traveler";
   name: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender: GENDER | null;
   age: string;
 }
@@ -10485,7 +10554,7 @@ export interface FpublicSellerData {
   email: string;
   gender: GENDER;
   /**
-   * 판매자에 대한 키워드
+   * 판매자에 대한 키워드 모음
    */
   keywards: string[] | null;
   /**
@@ -12000,7 +12069,11 @@ export enum BoardAction {
  * 보드종류
  */
 export enum BoardType {
+  ANNOUNCE = "ANNOUNCE",
+  News = "News",
+  PORTFOLIO = "PORTFOLIO",
   PRODUCT = "PRODUCT",
+  QNA = "QNA",
   QUESTION = "QUESTION",
 }
 
@@ -12747,9 +12820,11 @@ export interface HomepageUpdateInput {
   PrivacyPolicy?: string | null;
   usePolicy?: string | null;
   partnerBpolicy?: string | null;
+  refundPolicy?: string | null;
   travelerPolicy?: string | null;
   partnerPolicy?: string | null;
   marketingPolic?: string | null;
+  tourismbusinessNumber?: string | null;
   thirdPolicy?: string | null;
   ceoName?: string | null;
   address?: string | null;
@@ -12799,6 +12874,10 @@ export interface ItineraryUpdateInput {
 }
 
 export interface ModalInput {
+  _id?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
+  isDeleted?: boolean | null;
   link?: string | null;
   startDate: any;
   endDate: any;
@@ -13066,7 +13145,7 @@ export interface SmsTemplateUpdateInput {
 
 export interface TravelerInput {
   name?: string | null;
-  phoneNumber: any;
+  phoneNumber: string;
   gender?: GENDER | null;
   age: string;
 }
@@ -13118,6 +13197,8 @@ export interface _AnnounceFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13155,6 +13236,8 @@ export interface _BoardFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13311,6 +13394,8 @@ export interface _NewsFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13380,6 +13465,8 @@ export interface _PortfolioFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13462,6 +13549,8 @@ export interface _ProductFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13526,6 +13615,8 @@ export interface _QnaFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13569,6 +13660,8 @@ export interface _QuestionFilter {
   authorEmail_eq?: string | null;
   authorEmail_not_eq?: string | null;
   authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
   isOpen_eq?: boolean | null;
@@ -13626,6 +13719,13 @@ export interface _SellerFilter {
   keywards_not_in?: string[] | null;
   keywards_not_contains?: string | null;
   keywards_all?: string | null;
+  keywardString_eq?: string | null;
+  keywardString_not_eq?: string | null;
+  keywardString_in?: string[] | null;
+  keywardString_contains?: string | null;
+  keywardString_not_in?: string[] | null;
+  keywardString_not_contains?: string | null;
+  keywardString_all?: string | null;
   nickName_eq?: string | null;
   nickName_not_eq?: string | null;
   nickName_in?: string[] | null;
@@ -13636,6 +13736,8 @@ export interface _SellerFilter {
   name_eq?: string | null;
   name_not_eq?: string | null;
   name_contains?: string | null;
+  profileImg_eq?: string | null;
+  profileImg_not_eq?: string | null;
   createdAt_eq?: any | null;
   createdAt_not_eq?: any | null;
   createdAt_lte?: any | null;
@@ -13688,6 +13790,9 @@ export interface _SettlementFilter {
 export interface _SystemNotiFilter {
   AND?: _SystemNotiFilter[] | null;
   OR?: _SystemNotiFilter[] | null;
+  type_eq?: string | null;
+  type_not_eq?: string | null;
+  type_in?: string[] | null;
   _id_eq?: string | null;
   _id_not_eq?: string | null;
   _id_in?: string[] | null;
@@ -13731,6 +13836,13 @@ export interface _UserFilter {
   keywards_not_in?: string[] | null;
   keywards_not_contains?: string | null;
   keywards_all?: string | null;
+  keywardString_eq?: string | null;
+  keywardString_not_eq?: string | null;
+  keywardString_in?: string[] | null;
+  keywardString_contains?: string | null;
+  keywardString_not_in?: string[] | null;
+  keywardString_not_contains?: string | null;
+  keywardString_all?: string | null;
   nickName_eq?: string | null;
   nickName_not_eq?: string | null;
   nickName_in?: string[] | null;
@@ -13741,6 +13853,8 @@ export interface _UserFilter {
   name_eq?: string | null;
   name_not_eq?: string | null;
   name_contains?: string | null;
+  profileImg_eq?: string | null;
+  profileImg_not_eq?: string | null;
   createdAt_eq?: any | null;
   createdAt_not_eq?: any | null;
   createdAt_lte?: any | null;

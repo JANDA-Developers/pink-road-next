@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import pageInfoDefault from 'info/main.json';
 import { Meta } from 'components/common/meta/Meta';
 import { Upload } from 'components/common/Upload';
@@ -18,7 +18,6 @@ import { Bg } from '../components/Img/Img';
 import { LinkRoundIcon } from '../components/common/icon/LinkIcon';
 import { A } from '../components/A/A';
 import { tourSearchLink } from './search';
-import { openListFilter } from '../hook/useProduct';
 
 export const getStaticProps = getStaticPageInfo("main")
 export const Main: React.FC<Ipage> = (pageInfo) => {
@@ -27,8 +26,6 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
 
   const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const router = useRouter()
-
-
 
   const { bg, edit, imgEdit, imgKit, linkEdit, page, editMode, get } = pageTools;
 
@@ -93,18 +90,15 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
 
     <div className="main_con_box2">
       <div className="w1200">
-        <div className="top_txt">
+        {/* <div className="top_txt">
           <h2 >
             <span {...edit("m_02_title")} />
           </h2>
           <strong {...edit("m_02_number")} />
-        </div>
-        <ProfileListAPI listQueryFilter={{ initialViewCount: 7 }} mode="short" />
+        </div> */}
+        <ProfileListAPI mode="short" />
       </div>
-
     </div>
-
-
     <div className="main_con_box3">
       <div className="w1200">
         <div className="top_txt">
@@ -164,11 +158,9 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
               <span className="goto_page"><a href="/tour">바로가기<i className="flaticon-menu-1"></i></a></span>
             </div>
           </div>
-          <GoodsListAPI initialOption={{
-            initialViewCount: 4,
-            initialFilter: {
-              _id_in: groupsMap.Main2
-            }
+          <GoodsListAPI slide initialOption={{
+            initialViewCount: 8,
+            initialSort: []
           }} />
         </div>
 

@@ -177,14 +177,6 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo }) => {
   ])
 
   const { validate: BpartnerValidate } = new Validater([
-    {
-      value: isPhone(registerInfo.busi_contact || ""),
-      failMsg: "대표 연락처가 올바르지 않습니다."
-    },
-    {
-      value: isPhone(registerInfo.manageContact || ""),
-      failMsg: "담당자 연락처가 올바르지 않습니다."
-    },
     ...sharedValidate
   ])
 

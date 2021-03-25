@@ -220,11 +220,10 @@
         }
 
     .main_con_box2 ul {
-        position: absolute;
-        display: inline-block;
         box-sizing: border-box;
-        padding: 97px 0 0;
+        padding: 97px 0 70px;
         text-align: left;
+        padding-bottom: 70px;
     }
 
     .main_con_box2 li {
@@ -239,8 +238,8 @@
         padding: 10px;
         box-sizing: border-box;
         vertical-align: top;
-        background-size: 120%;
-        background-position: center;
+        background-size: cover;
+        background-position: center center;
         overflow: hidden;
         text-indent: -999px;
     }
@@ -502,7 +501,6 @@
                 display: inline-block;
                 width: auto;
                 text-align: center;
-                cursor: pointer;
                 padding: 20px;
                 box-sizing: border-box;
             }
@@ -518,6 +516,7 @@
                 background-position: center;
                 border-radius: 150px;
                 overflow: hidden;
+                cursor: pointer;
                 text-indent: -999px;
                 margin-bottom: 15px;
                 border: 2px solid #dfdfdf;
@@ -539,9 +538,11 @@
                 font-size: 13px;
                 font-weight: 600;
                 background-color: #ffffff;
+                cursor: pointer;
             }
             .main_con_box5 .man_box .home {
                 position: relative;
+                cursor: pointer;
                 display: inline-block;
                 width: 34px;
                     height: 34px;
@@ -4334,8 +4335,6 @@ ul.rank_ul {
                 }
 
             .guide_box .guide_content .con01 ul {
-                position: absolute;
-                display: inline-block;
                 box-sizing: border-box;
                 padding: 70px 0 0;
                 text-align: left;
@@ -9038,12 +9037,8 @@ i.calendar {
         
         padding: 50px;
     }
-    .privacy_box .subtop_nav {
-        top: -117px !important;
-    }
-    .rule_box .subtop_nav {
-        top: -117px !important;
-    }
+ 
+
     .footer_in .f_detail_wrap,
     #container .row1, 
     #container .row3, 
@@ -10284,7 +10279,7 @@ i.calendar {
         padding: 0;
     }
     .main_con_box2 ul {
-        padding: 65px 0 0;
+        padding: 65px 0 60px;
     }
     .main_con_box2 li {
         width: 130px;

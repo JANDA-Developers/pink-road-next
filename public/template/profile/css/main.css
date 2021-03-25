@@ -12692,12 +12692,8 @@ i.calendar {
         
         padding: 50px;
     }
-    .privacy_box .subtop_nav {
-        top: -117px !important;
-    }
-    .rule_box .subtop_nav {
-        top: -117px !important;
-    }
+
+
     .footer_in .f_detail_wrap,
     #container .row1, 
     #container .row3, 

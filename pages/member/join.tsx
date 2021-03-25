@@ -111,8 +111,11 @@ const Join: React.FC<Ipage> = (pageInfo) => {
     return (
         <div>
             <div >
-                <SubTopNav pageTools={editTools} />
-                {/* 개인 */}
+                <SubTopNav pageTools={editTools} >
+                    <li>
+                        <a>회원가입</a>
+                    </li>
+                </SubTopNav>
                 <div className="sign_in famile">
                     <div className="inner ">
                         <h4 className="join_title w100">

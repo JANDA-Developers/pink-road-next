@@ -46,7 +46,6 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
 
     const handleProductSelect = (pd: Fproduct) => {
         group.members.push(pd._id);
-        console.log({ group });
         setGroup({ ...group });
         closeModal("#ProductModal" + group._id)();
     }

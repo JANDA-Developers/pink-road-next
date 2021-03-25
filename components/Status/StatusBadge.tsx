@@ -1,13 +1,13 @@
-import { Annotation } from 'aws-sdk/clients/configservice';
 import React from 'react';
 import { AnnounceType, BookingStatus, Fbooking, ProductStatus, SettlementStatus } from '../../types/api';
 import { announceTypeKR, bookingStatus, productStatus, settlementStatus } from "../../utils/enumToKr";
 
 interface IProp {
     status: ProductStatus;
+    className?: string;
 }
 
-export const PordStatusBadge: React.FC<IProp> = ({ status }) => {
+export const PordStatusBadge: React.FC<IProp> = ({ status, className }) => {
 
     const getClass = () => {
         if (status === ProductStatus.CANCELD) return "tour-no"
@@ -22,7 +22,7 @@ export const PordStatusBadge: React.FC<IProp> = ({ status }) => {
 
     // <span> </span>
     const _class = getClass();
-    return <span className={`state_icon ${_class}`}>{productStatus(status)}</span>
+    return <span className={`state_icon ${_class + " " + className}`}>{productStatus(status)}</span>
 };
 
 interface IBookingStatusBadgeProp {
@@ -67,7 +67,7 @@ export const AnnotationBadge: React.FC<any> = ({ type }) => {
     return <span className={`annotationBadge` + " " + getClass(type)}>{announceTypeKR(type)}</span>
 };
 
-interface ISettlementStatusProp {
+interface ISettlementStatusProp extends React.HTMLAttributes<HTMLSpanElement> {
     status: SettlementStatus,
     productStatus?: ProductStatus
 }

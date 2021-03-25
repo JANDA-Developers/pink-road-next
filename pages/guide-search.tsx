@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Paginater } from '../components/common/Paginator';
 import { DayPickerModal } from '../components/dayPickerModal/DayPickerModal';
 import { ProductPhotoBlock } from '../components/list/ProductPhoto';
@@ -63,11 +63,11 @@ export const GuideSearch: React.FC<Ipage> = (_pageInfo) => {
     const all = getAllFromUrl<TSearchParam>()
     const { keyward, name } = all;
 
-    const defaultSearch = getFromUrl("search") || "";
+    const defaultSearch = getFromUrl("search") || keyward || name;
     const initialFilter = {
         ...openListFilter,
         initialFilter: {
-            ...integratedProductSearch(defaultSearch),
+            ...integratedUserSearch(defaultSearch),
             keywards_in: keyward ? [keyward] : undefined
         }
     }
@@ -100,6 +100,17 @@ export const GuideSearch: React.FC<Ipage> = (_pageInfo) => {
         setFilter(integratedUserSearch(search, filter))
     }
 
+
+    useEffect(() => {
+        if (!keyward) return;
+        const target = categoriesMap.GUIDE_KEYWARD.find(_keyward => {
+            return keyward?.trim() === _keyward.label?.trim()
+        })
+
+        if (target) {
+            onClickKeyward(target.label)()
+        }
+    }, [keyward, categoriesMap.GUIDE_KEYWARD.length])
 
     const noProduct = isEmpty(users);
     return <div className="guideSearch">

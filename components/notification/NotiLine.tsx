@@ -2,6 +2,8 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { useSystemNotiHide } from '../../hook/useSystemNoti';
 import { FsystemNoti, SystemNotiType } from '../../types/api';
+import { systemTypeToString } from '../../utils/enumToKr';
+import { SystemTypeBadge } from '../systemTypeBadge/SystemTypeBadge';
 
 interface IProp {
     systemNoti: FsystemNoti;
@@ -34,17 +36,8 @@ export const NotiLine: React.FC<IProp> = ({ systemNoti }) => {
         })
     }
 
-    const typeToString = () => {
-        if (type === SystemNotiType.booking) return "예약알림"
-        if (type === SystemNotiType.cancel) return "예약취소"
-        if (type === SystemNotiType.member) return "멤버아림"
-        if (type === SystemNotiType.system) return "시스템알림"
-        if (type === SystemNotiType.payment) return "결제알림"
-        return ""
-    }
-
     return <div className="hang">
-        <strong className="blue">{typeToString()}</strong>
+        <SystemTypeBadge type={type} />
         <span>{content}</span>
         <div className="time">{getDiffTimeString(createdAt)}</div>
         <span onClick={hide(_id)} className="del">

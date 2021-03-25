@@ -15,7 +15,7 @@ export const CustomerMemberMaster: React.FC<IProp> = () => {
             <option value={_UserSort.name_asc}>이름 &uarr;</option>
             <option value={_UserSort.name_desc}>이름 &darr;</option>
         </>
-    } type={"signOut"} Table={SignOutTable} />
+    } type={UserRole.individual} Table={SignOutTable} />
 };
 
 

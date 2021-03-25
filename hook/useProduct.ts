@@ -1,8 +1,8 @@
 import {  MutationHookOptions, useMutation } from "@apollo/client";
 import { PRODUCT_FIND_BY_ID_FOR_SELLER,
      PRODUCT_DELETE, 
-     PRODUCT_LIST, ACCEPT_PRODUCT_CREATE, ACCEPT_PRODUCT_UPDATE, REJECT_PRODUCT_UPDATE, REJECT_PRODUCT_CREATE, PRODUCT_POST_UPDATE_REQ, TRAVEL_CANCEL,  TRAVEL_DETERMINE, TRAVEL_WITDRWAL, PRODUCT_ELSE_DENY, PRODUCT_ELSE_ACCEPT, PRODUCT_ELSE_REQ } from "../apollo/gql/product";
-import { productCreateAccept,  productUpdateAccept, productDelete, productDeleteVariables, productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data, productFindById_ProductFindById_data, productList_ProductList_data, productUpdateReject, _BookingFilter, _BookingSort, _PortfolioFilter, productCreateReject, productUpdateAcceptVariables, productCreateAcceptVariables, productUpdateRejectVariables, ProductStatus, productCreateRejectVariables, productUpdateReq, productUpdateReqVariables, travelDetermine, travelDetermineVariables, travelCancel, travelCancelVariables, travelWithdrwal, travelWithdrwalVariables, UserRole } from "../types/api";
+     PRODUCT_LIST, ACCEPT_PRODUCT_CREATE, ACCEPT_PRODUCT_UPDATE, REJECT_PRODUCT_UPDATE, REJECT_PRODUCT_CREATE, PRODUCT_POST_UPDATE_REQ, TRAVEL_CANCEL,  TRAVEL_DETERMINE, TRAVEL_WITDRWAL, PRODUCT_ELSE_DENY, PRODUCT_ELSE_ACCEPT, PRODUCT_ELSE_REQ, PRODUCTS_CREATE } from "../apollo/gql/product";
+import { productCreateAccept,  productUpdateAccept, productDelete, productDeleteVariables, productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data, productFindById_ProductFindById_data, productList_ProductList_data, productUpdateReject, _BookingFilter, _BookingSort, _PortfolioFilter, productCreateReject, productUpdateAcceptVariables, productCreateAcceptVariables, productUpdateRejectVariables, ProductStatus, productCreateRejectVariables, productUpdateReq, productUpdateReqVariables, travelDetermine, travelDetermineVariables, travelCancel, travelCancelVariables, travelWithdrwal, travelWithdrwalVariables, UserRole, productCreate, productCreateVariables } from "../types/api";
 import { productFindById, productFindByIdVariables } from "../types/api";
 import { IlistQueryInit } from "../types/interface";
 import { PRODUCT_FIND_BY_ID } from "../apollo/gql/product";
@@ -15,6 +15,7 @@ import { generateFindQuery, generateListQueryHook, generateMutationHook } from "
 import { useContext } from "react";
 import { AppContext } from "../pages/_app";
 
+export const useProductCreate = generateMutationHook<productCreate, productCreateVariables>(PRODUCTS_CREATE);
 export const useProductDelete = generateMutationHook<productDelete,productDeleteVariables>(PRODUCT_DELETE);
 export const useProductFindById = generateFindQuery<productFindById, productFindByIdVariables, productFindById_ProductFindById_data>("_id",PRODUCT_FIND_BY_ID);
 export const useProductFindByIdForSeller = generateFindQuery<productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data>("_id", PRODUCT_FIND_BY_ID_FOR_SELLER);

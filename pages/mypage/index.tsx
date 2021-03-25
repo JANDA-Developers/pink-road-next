@@ -20,6 +20,8 @@ import { isPassword } from '../../utils/validation';
 import { Validater } from '../../utils/validate';
 import { SubmitPsswordModal } from '../../components/promptModal/Prompt';
 import { KeywardSelecter } from '../../components/keywardSelecter/KeywardSelecter';
+import { omits } from '../../utils/omit';
+import { CloseIcon } from '../../components/common/icon/CloseIcon';
 
 let SEND_LIMIT = 3;
 interface IProp { }
@@ -52,19 +54,25 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const [resign] = useUserResign();
 
     const { myProfile: defaultProfile, role, isManager, categoriesMap } = useContext(AppContext);
+
     const { code, setCode } = useVerification();
     const [nextPhoneNum, setNextPhoneNum] = useState("");
 
-    const { data,
+    const {
+        data,
+        setBankImg,
+        setBusiRegistration,
         setData,
         handlePassword,
         handleCompleteFindAddress,
         handleTextData,
         toggleCheck,
+        handleBankRegistration,
         handleChangeRegistration,
-        hiddenFileInput
+        hiddenBankFileInput,
+        hiddenBusiFileInput
     } = useMyProfile(defaultProfile!)
-    const { nextPw, profile, pw, busiRegistration } = data;
+    const { nextPw, profile, pw, busiRegistration, bankImg } = data;
     const { setPw, setProfile } = setData;
     const {
         nickName,
@@ -78,6 +86,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
         bank_name,
         busi_contact,
         busi_address,
+        phoneNumber,
         gender,
         is_froreginer,
         keywards,
@@ -87,7 +96,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
         _id,
         bookings,
         email,
-        phoneNumber,
         isVerifiedPhoneNumber,
         busi_name,
         connectionCount,
@@ -103,7 +111,9 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 id: "passwordCheckInput"
             }, {
                 value: isPassword(nextPw.password),
-                failMsg: "올바른 비밀번호가 아닙니다."
+                failMsg: `올바른 비밀번호가 아닙니다.
+*비밀번호는 특수문자 1개이상 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다
+                `
             }, {
                 value: nextPw.password === nextPw.passwordCheck,
                 failMsg: "패스워드가 일치하지 않습니다.",
@@ -125,12 +135,17 @@ export const MyPageProfile: React.FC<IProp> = () => {
         })
     }
 
+
+
     const handleUpdate = () => {
+        const nextData = omits({
+            ...profile,
+            bankImg,
+            busiRegistration
+        })
         userUpdate({
             variables: {
-                params: {
-                    ...profile,
-                },
+                params: nextData,
                 _id,
             }
         })
@@ -329,6 +344,9 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     </div>
                                 </div>
                             </li>
+                            <li>
+                                * 비밀번호는 특수문자 1개이상 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다
+                            </li>
                             {isSeller ?
                                 <li>
                                     <div className="title">이름</div>
@@ -369,15 +387,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     </div>
                                 </li> : ""
                             }
-                            <li>
-                                <div className="title">연락처</div>
-                                <div className="txt">
-                                    <span className="w100">{autoHypenPhone(phoneNumber)}</span>
-                                    {/* <button onClick={isVerifiedPhoneNumber ? handleChangePhoneNumber : handleVerifiPhoneNumber} type="button" className="btn btn_mini">
-                                        {isVerifiedPhoneNumber ? "변경" : "인증"}
-                                    </button> */}
-                                </div>
-                            </li>
                             {isSeller ||
                                 <li>
                                     <div className="title">주소</div>
@@ -410,10 +419,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
                     <div className="box_right">
                         <ul>
                             {isPartnerB && <li>
-                                <div className="title">가이드명</div>
-                                <div className="txt">{busi_name}</div>
-                            </li>}
-                            {isPartnerB && <li>
                                 <div className="title">사업자번호</div>
                                 <div className="txt">
                                     <select onChange={(e) => {
@@ -438,14 +443,14 @@ export const MyPageProfile: React.FC<IProp> = () => {
                             </li>
                             }
                             <li>
-                                <div className="title">대표 전화번호</div>
+                                <div className="title">전화번호</div>
                                 <div className="txt">
                                     <input
                                         onChange={(e) => {
                                             const val = e.currentTarget.value;
-                                            setProfile({ ...profile, busi_contact: val })
+                                            setProfile({ ...profile, phoneNumber: val })
                                         }}
-                                        value={autoHypenPhone(busi_contact)}
+                                        value={autoHypenPhone(phoneNumber)}
                                         type="text"
                                         className="form-control w100"
                                         placeholder="전화번호를 입력해주세요."
@@ -488,38 +493,34 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                 </div>
                             </li>
                             <li>
-                                <div className="title">담당자 연락처</div>
-                                <div className="txt">
-                                    <span className="w80">{phoneNumber}</span>
-                                    <button onClick={handleChangePhoneNumber} type="button" className="btn btn_mini">
-                                        변경
+                                <div className="title">사업자등록증</div>
+                                <div className="txt txt--flex">
+                                    <span className="w80 upload_out_box">
+                                        <span className="upload_out_box__fileName">{busiRegistration?.name}</span>
+                                        {busiRegistration && <CloseIcon onClick={() => {
+                                            setBusiRegistration(null)
+                                        }} className="upload_out_box__closer" style={{ width: "10px", height: "10px" }} />}
+                                    </span>
+                                    <button onClick={() => { hiddenBusiFileInput.current?.click() }} type="button" className="btn btn_mini">
+                                        업로드
                                     </button>
+                                    <input key={busiRegistration ? "busiImgExsit" : "busiImg"} onChange={handleChangeRegistration} ref={hiddenBusiFileInput} hidden type="file" />
                                 </div>
-                                {/* 변경시 변경아이콘 눌러 popup띄워서 핸드폰번호 인증절차 거치게됨 */}
                             </li>
 
                             <li>
-                                <div className="title">사업자등록증</div>
-                                <div className="txt">
-                                    <span className="w80 upload_out_box">
-                                        {busiRegistration?.name}
-                                    </span>
-                                    <button onClick={() => { hiddenFileInput.current?.click() }} type="button" className="btn btn_mini">
-                                        업로드
-                                    </button>
-                                    <input onChange={handleChangeRegistration} ref={hiddenFileInput} hidden type="file" />
-                                </div>
-                            </li>
-                            <li>
                                 <div className="title">통장사본</div>
-                                <div className="txt">
+                                <div className="txt txt--flex">
                                     <span className="w80 upload_out_box">
-                                        {busiRegistration?.name}
+                                        <span className="upload_out_box__fileName">{bankImg?.name}</span>
+                                        {bankImg && <CloseIcon onClick={() => {
+                                            setBankImg(null)
+                                        }} className="upload_out_box__closer" style={{ width: "10px", height: "10px" }} />}
                                     </span>
-                                    <button onClick={() => { hiddenFileInput.current?.click() }} type="button" className="btn btn_mini">
+                                    <button onClick={() => { hiddenBankFileInput.current?.click() }} type="button" className="btn btn_mini">
                                         업로드
                                     </button>
-                                    <input onChange={handleChangeRegistration} ref={hiddenFileInput} hidden type="file" />
+                                    <input key={bankImg ? "bankImgExsit" : "bankImg"} onChange={handleBankRegistration} ref={hiddenBankFileInput} hidden type="file" />
                                 </div>
                             </li>
                             <li>
@@ -538,11 +539,11 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                         />
                                         <input
                                             onChange={(e) => {
-                                                const format = cc_format(e.currentTarget.value);
+                                                const format = e.currentTarget.value;
                                                 profile.account_number = format;
                                                 setProfile({ ...profile })
                                             }}
-                                            value={cc_format(account_number)}
+                                            value={account_number}
                                             type="text"
                                             className="form-control w50"
                                             placeholder="- 없이 숫자만 입력해주세요."

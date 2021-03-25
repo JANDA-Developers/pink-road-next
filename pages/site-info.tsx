@@ -10,14 +10,16 @@ import { A } from '../components/A/A';
 import { Img } from '../components/Img/Img';
 import { CloseIcon } from '../components/common/icon/CloseIcon';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 type TGetProps = {
     pageInfo: typeof pageInfoDefault | "",
 }
 
-export const getStaticProps = getStaticPageInfo("main")
+export const getStaticProps = getStaticPageInfo("site-info")
 export const StieInfo: React.FC<Ipage> = (pageInfo) => {
     const original = pageInfo || pageInfoDefault;
+    console.log({ pageInfo });
     const router = useRouter();
     const { homepage, groupsMap } = useContext(AppContext);
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
@@ -188,7 +190,6 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                         <span className="sidetxt" {...edit("con07_sidetitle")} />
                         <h2 {...edit("con07_title")} />
                         <div className="link"><a href="../sub/join.html" {...edit("con07_linktxt")} /></div>
-
                     </div>
                     <div className="ovj" {...edit("con07_ovj")} />
                 </div>

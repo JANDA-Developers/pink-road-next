@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/all.css';
 import "dayjs/locale/ko"
 import dayjs from 'dayjs';
@@ -14,9 +14,20 @@ import { useRouter } from 'next/router';
 import PageLoading from './Loading';
 import { arrayEquals } from '../utils/filter';
 import "node_modules/slick-carousel/slick/slick.css";
+import useRouterScroll from '../hook/useRouterScroll';
+import Head from 'next/head';
+import { getFromUrl } from '../utils/url';
 
 
 dayjs.locale('ko')
+
+
+export type TProductGrop = {
+  _id: string;
+  label: string;
+  groupCode: string;
+}
+
 
 export type TContext = {
   categories: categoryList_CategoryList_data[]
@@ -31,6 +42,7 @@ export type TContext = {
   isParterNonB?: boolean;
   groupsMap: Record<GroupTypes, string[]>
   categoriesMap: Record<CategoryType, Fcategory[]>
+  productGroupList: TProductGrop[]
 }
 
 
@@ -47,14 +59,16 @@ const defaultContext: TContext = {
   isParterNonB: false,
   groupsMap: defaultGroupMap,
   categoriesMap: defaultCatsMap,
+  productGroupList: []
 }
 
 export const AppContext = React.createContext<TContext>(defaultContext);
 
-//APp파일은 서버사이드 렌더링만함
 function App({ Component, pageProps }: any) {
+  console.log(".....");
   const [editMode, setEditMode] = useState(false);
   const router = useRouter()
+  useRouterScroll();
 
   const ComponentLayout = Component.Layout ? Component.Layout : Layout;
   const ComponentAuth = Component.Auth ? Component.Auth : ALLOW_FULLESS;
@@ -73,7 +87,6 @@ function App({ Component, pageProps }: any) {
   const isSeller = [UserRole.partner, UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
   const isParterB = [UserRole.partnerB, UserRole.manager, UserRole.admin].includes(role);
   const isParterNonB = [UserRole.partner, UserRole.manager, UserRole.admin].includes(role);
-  {/* <DaumPostcode autoResize autoClose onSearch={() => { }} onComplete={(asd) => { }} /> */ }
 
   const groupsMap = groupMap(groups)
   const catsMap = categoryMap(catList);
@@ -88,6 +101,25 @@ function App({ Component, pageProps }: any) {
   }
 
 
+  const productList = data?.GetProfile.data?.products.map(p => ({
+    _id: p._id,
+    label: p.title,
+    groupCode: p.groupCode
+  }))
+
+  const productGroupList: {
+    _id: string;
+    label: string;
+    groupCode: string;
+  }[] = [];
+
+  productList?.forEach((p) => {
+    if (!productGroupList.find(g => g.groupCode === p.groupCode)) {
+      productGroupList.push({
+        ...p,
+      })
+    }
+  })
 
   if (
     //인증 받지 않았으며 일반 권한은 아닌경우
@@ -99,13 +131,45 @@ function App({ Component, pageProps }: any) {
     Component = () => <PageDeny msg="인증되지 않은 판매자 입니다. 인증 소요시간은 평균 24시간 입니다." />
   }
 
+  useEffect(() => {
+    function isItIE() {
+      if (typeof window === "undefined") return;
+      var user_agent = window.navigator.userAgent;
+      var is_it_ie = user_agent.indexOf("MSIE ") > -1 || user_agent.indexOf("Trident/") > -1;
+      return is_it_ie;
+    }
+
+    if (isItIE()) {
+      alert(`
+      현 사이트는 Internet Explor를 지원하지 않고 있습니다. 
+      Chorme 또는 Edge브라우저 사용을 권장 드립니다.
+      `)
+    } else {
+      console.log('It is not Internet Explorer');
+    }
+  }, [])
+
   if (router.isFallback) {
     return <div></div>
   }
 
+
+  const token = getFromUrl("refreshToken");
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("jwt", token)
+      location.href = "/"
+    }
+  }, [])
+
+  if (token) return null;
   if (loading) return <PageLoading />
   return (
     <div className="App">
+      <Head>
+        <script src="/ie.js" />
+      </Head>
+      <div id="MuPageLoading" className="muPageLoading" />
       <ApolloProvider client={PinkClient}>
         <AppContext.Provider value={{
           groupsMap: groupsMap,
@@ -120,6 +184,7 @@ function App({ Component, pageProps }: any) {
           isLogin: !!myProfile,
           isParterNonB,
           homepage,
+          productGroupList
         }}>
           <ComponentLayout>
             <Component {...pageProps} />

@@ -42,21 +42,38 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
     })
     const router = useRouter();
 
+
+    const handleSaveId = () => {
+        setSaveId(!saveId)
+        if (!saveId) {
+            localStorage.setItem("saveId?", "Y")
+        } else {
+            localStorage.removeItem("saveId?")
+        }
+    }
+
+
     const sessionSave = () => {
         const answer = confirm('브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.\n\n로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.')
         if (!answer) return;
-        setSaveSession(true);
-        // saveLocal("saveSession", "saved");
+        setSaveSession(!saveSession);
+
+
+        if (!saveSession) {
+            localStorage.setItem("saveSession?", "Y")
+        } else {
+            localStorage.removeItem("saveSession?")
+        }
+
     }
     // 로그인성공시
     // saveLocal("saveid", id);
     useEffect(() => {
         initStorage()
-        setId(Storage!.getLocal("saveid", ""))
+        setId(localStorage?.getItem("saveId") || "")
         setSaveId(!!Storage!.getLocal("saveId?", ""))
         setSaveSession(!!Storage!.getLocal("saveSession?", ""))
     }, [])
-
 
     useEffect(() => {
         Storage?.saveLocal("saveid", saveId)
@@ -100,6 +117,9 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
     return <div >
         <div className="top_visual">
             <SubTopNav pageTools={editTools} >
+                <li >
+                    <a>Login</a>
+                </li>
             </SubTopNav>
         </div>
         <PageEditor pageTools={editTools} />
@@ -167,13 +187,19 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                                         type="checkbox"
                                         name="keep_signed"
                                         id="keepid_opt"
-                                        defaultValue="Y"
                                         onClick={sessionSave}
+                                        checked={saveSession}
                                     />
                                     로그인 유지
                                 </label>
                                 <label htmlFor="keepid_opt2" className="checkbox-inline">
-                                    <input type="checkbox" id="keepid_opt2" defaultValue="Y" />{" "}
+                                    <input
+                                        onClick={handleSaveId}
+                                        checked={saveId}
+                                        type="checkbox"
+                                        id="keepid_opt2"
+                                        defaultValue="Y"
+                                    />{" "}
                                 아이디 기억
                                 </label>
                             </div>
@@ -181,17 +207,20 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                             <button type="submit" className="sum" onClick={handleLogin}>
                                 <span >로그인</span>
                             </button>
-                            {/* {userType === UserRole.individual &&
+                            {userType === UserRole.partnerB &&
                                 <div className="login__snslink">
                                     <img className="m" src="/img/google_logo.png" alt="google logo" />
                                     <img className="m" src="/img/kakao_logo.png" alt="kakao logo" />
                                     <ul>
                                         <li className="login__snslink_k"><a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/kakao"}><span className="login__snslink_icon"><i className="jandaicon-kakaotalk"></i></span><span className="login__snslink_txt">카카오 로그인</span></a></li>
                                         <li className="login__snslink_g"><a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/google"}><span className="login__snslink_icon"><i className="jandaicon-google1"></i></span><span className="login__snslink_txt">구글 로그인</span></a></li>
-                                        <li className="login__snslink_n"><a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/naver"}><span className="login__snslink_icon"><i className="jandaicon-google1"></i></span><span className="login__snslink_txt">네이버 로그인</span></a></li>
+                                        <li className="login__snslink_n">
+                                            <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/naver"}><span className="login__snslink_icon"><i></i></span><span className="login__snslink_txt">네이버 로그인</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
-                            } */}
+                            }
                             <div className="sign_in_form">
                                 <span>
                                     <Link href="/member/join">
