@@ -14,6 +14,7 @@ import { getStaticPageInfo, Ipage } from '../../utils/page';
 import { usePageEdit } from '../../hook/usePageEdit';
 import defaultPageInfo from "../../info/join.json"
 import { ALLOW_SELLERS } from '../../types/const';
+import { PageEditor } from '../../components/common/PageEditer';
 interface IchkPolocy {
     policy_use: boolean,
     policy_info_collect: boolean,
@@ -120,6 +121,7 @@ const Join: React.FC<Ipage> = (pageInfo) => {
                         <Link href="/member/join"><a>회원가입</a></Link>
                     </li>
                 </SubTopNav>
+                <PageEditor pageTools={editTools} />
                 {/* 개인 */}
                 <div className="sign_in famile">
                     <div className="inner ">
