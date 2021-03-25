@@ -11,12 +11,17 @@ interface IProp {
 export const AnnounceDetail: React.FC<IProp> = () => {
     const router = useRouter();
     const announceId = router.query.id as string;
+
+    const toList = () => {
+        router.push(`/member/announce/`)
+    }
+
     const [announceDeleteMu] = useAnnounceDelete({
         onCompleted: ({ AnnounceDelete }) => {
             if (AnnounceDelete.ok) toList();
         }
     })
-    const { item: announce, error } = useAnnounceFindById(announceId);
+    const { prev, next, item: announce, error } = useAnnounceFindById(announceId);
 
     if (error) return <Page404 />
     if (!announce) return <PageLoading />
@@ -28,9 +33,6 @@ export const AnnounceDetail: React.FC<IProp> = () => {
         router.push(`/member/announce/write/${_id}`)
     }
 
-    const toList = () => {
-        router.push(`/member/announce/`)
-    }
 
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
@@ -54,7 +56,8 @@ export const AnnounceDetail: React.FC<IProp> = () => {
             onDelete={handleDelete}
             onEdit={toDetail}
             createAt={createdAt}
-
+            next={next}
+            prev={prev}
         />
     </div>
 };

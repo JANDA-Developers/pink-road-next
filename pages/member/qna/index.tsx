@@ -11,20 +11,30 @@ import { useQnaList } from '../../../hook/useQna';
 import { qnaList_QnaList_data } from '../../../types/api';
 import sanitizeHtml from 'sanitize-html';
 import { Change } from '../../../components/loadingList/LoadingList';
+import { generateClientPaging } from '../../../utils/generateClientPaging';
+import { Paginater } from '../../../components/common/Paginator';
+import { Prompt } from '../../../components/promptModal/Prompt';
 
 
 export const getStaticProps = getStaticPageInfo("qna");
 export const Qna: React.FC<Ipage> = (pageInfo) => {
-    const { items, getLoading } = useQnaList({ initialViewCount: 999 })
-    const [filterCat, setFilterCat] = useState("")
+
+    const { isManager, categoriesMap, myProfile } = useContext(AppContext)
+    const { items, getLoading } = useQnaList({
+        initialViewCount: 999,
+        // fixingFilter: {
+        //     isOpen_eq: isManager ? undefined : true
+        // }
+    })
+    const [filterCat, setFilterCat] = useState<string>()
     const router = useRouter();
-    const { isManager, categoriesMap } = useContext(AppContext)
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
     const [openId, setOpenId] = useState("")
 
     const gotoWrite = () => {
         router.push("/member/qna/write/")
     }
+
 
     const checkCatEq = (catId?: string) => filterCat === catId ? "on" : "";
     const checkCatCount = (catId: string) => items.filter(item => item.category?._id === catId).length;
@@ -37,9 +47,13 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
         }
     }
 
-    const handleCatFilter = (catId: string) => () => {
+    const handleCatFilter = (catId?: string) => () => {
         setFilterCat(catId);
     }
+
+    const filteredItems = filterCat ? items.filter(item => item.category?._id === filterCat) : items;
+
+    const { slice, paging, setPage } = generateClientPaging(filteredItems || [], 10);
 
     return <div>
         <SubTopNav pageTools={pageTools} >
@@ -54,7 +68,7 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                 <div className="alignment">
                     <div className="left_div">
                         <ul className="board_option">
-                            <li className={checkCatEq(undefined)}><a>전체</a></li>
+                            <li onClick={handleCatFilter(undefined)} className={checkCatEq(undefined)}><a>전체</a></li>
                             {categoriesMap.QNA.map(cat =>
                                 <li className={checkCatEq(cat._id)} onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}<strong>{checkCatCount(cat._id)}</strong></a></li>
                             )}
@@ -64,10 +78,9 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                     </div>
                 </div>
                 <Change change={!getLoading}>
-                    {items.map(qna =>
+                    {slice.map(qna =>
                         <div onClick={handleToogle(qna)} key={qna._id} className={`dl ${openId === qna._id && "active"}`}>
                             <div className="dt"><span><i className="Q"></i>{qna.category?.label}</span>{qna.title}
-
                                 {isManager &&
                                     <button onClick={(e) => {
                                         e.preventDefault();
@@ -90,6 +103,7 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                     )}
                 </Change>
             </div>
+            <Paginater setPage={setPage} pageInfo={paging} />
 
             <div className="fin mt30 mb100">
                 <div className="float_left">

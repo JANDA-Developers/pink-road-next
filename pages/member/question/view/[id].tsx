@@ -40,7 +40,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
     if (error) return <Page404 />
     if (!question) return <PageLoading />
-    const { title, thumb, createdAt, contents, subTitle, _id, product, author, isOpen } = question;
+    const { files, title, thumb, createdAt, contents, subTitle, _id, product, author, isOpen } = question;
     const isMyQuestion = myProfile?._id === _id;
     const isMyProduct = myProfile?._id === product?.author?._id;
     const replayAble = isManager || isMyProduct;
@@ -107,6 +107,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
     return <div>
         <BoardView
+            files={files || []}
             className="viewWithComment"
             isOpen={!!isOpen}
             authorId={author?._id || ""}

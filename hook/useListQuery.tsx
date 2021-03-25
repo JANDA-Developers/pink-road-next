@@ -23,8 +23,6 @@ export interface IListHook<F, S> extends IUseQueryFilter<F>, IUseQuerySort<S> {
 }
 
 export function useListQuery<F, S>({ initialFilter, initialPageIndex, initialSort, initialViewCount, fixingFilter, fixingSort }: ListInitOptions<F, S>) {
-    console.log({ fixingSort });
-    console.log({ fixingSort });
     const { filter, setFilter: _setFilter, ...useFilters } = useQueryFilter<F>(initialFilter || {} as F);
     const { sort, ...useSort } = useQuerySort<S>(initialSort, fixingSort);
     const [viewCount, setViewCount] = useState(initialViewCount);

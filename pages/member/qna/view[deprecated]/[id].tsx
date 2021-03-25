@@ -24,8 +24,6 @@ export const QnaDetail: React.FC<IProp> = () => {
     if (!qna) return <PageLoading />
 
     const { title, thumb, createdAt, contents, subTitle, _id, author, isOpen } = qna;
-
-
     const toDetail = () => {
         router.push(`/member/qna/write/${_id}`)
     }

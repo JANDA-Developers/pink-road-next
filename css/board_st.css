@@ -1530,6 +1530,11 @@ div.comment_box {
     padding-top: 100px;
    padding-bottom: 100px;
 }
+.board_write__textarea {
+    resize: none;
+    width: 100%;
+    height: 450px;
+}
 .board_write .con_bottom {
     padding-bottom: 100px;
     padding-top: 50px;

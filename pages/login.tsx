@@ -241,7 +241,8 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                                         <li className="login__snslink_g">
                                             <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/google"}><span className="login__snslink_icon"><i className="jandaicon-google1"></i></span><span className="login__snslink_txt">구글 로그인</span></a></li>
                                         <li className="login__snslink_n">
-                                            <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/naver"}><span className="login__snslink_icon"><i></i></span><span className="login__snslink_txt">네이버 로그인</span></a></li>
+                                            <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/naver"}><span className="login__snslink_icon"><i></i></span><span className="login__snslink_txt">네이버 로그인</span>
+                                            </a></li>
                                     </ul>
                                 </div>
                             }

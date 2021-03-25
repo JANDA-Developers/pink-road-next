@@ -25,7 +25,11 @@ export const getStaticProps = getStaticPageInfo("announce");
 export const Announce: React.FC<Ipage> = (page) => {
     const { isManager } = useContext(AppContext);
     const pageTools = usePageEdit(page, defaultPageInfo);
-    const { items, pageInfo, setPage, filter, setFilter, sort, setSort, viewCount, setViewCount, getLoading } = useAnnounceList();
+    const { items, pageInfo, setPage, filter, setFilter, sort, setSort, viewCount, setViewCount, getLoading } = useAnnounceList({
+        fixingFilter: {
+            isOpen_eq: isManager ? undefined : true
+        }
+    });
     const singleSortHook = useSingleSort(sort, setSort, [_AnnounceSort.isNotice_desc]);
     const router = useRouter();
 
@@ -71,7 +75,7 @@ export const Announce: React.FC<Ipage> = (page) => {
                                         {/* <div className="td01">{item.no}</div> */}
                                         <div className="td02"><AnnotationBadge type={item.type} /></div>
                                         <div className="td03">
-                                            {item.title}
+                                            {item.title} {!item.isOpen && "[비공개(관리자노출)]"}
                                             <NewBadge createdAt={item.createdAt} />
                                         </div>
                                         <div className="td04">{yyyymmddHHmm(item.createdAt)}</div>

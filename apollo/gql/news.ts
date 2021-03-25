@@ -17,7 +17,7 @@ export const F_NEWS = gql`
         summary
         subTitle
         keyWards
-        attachFiles {
+        files {
             ...Ffile
         }
         thumb {
@@ -48,6 +48,14 @@ location
   data {
     ...Fnews
   }
+  next{
+    _id
+    title
+   }
+    before{
+      _id
+      title
+    }
 }
 }
 ${F_NEWS}

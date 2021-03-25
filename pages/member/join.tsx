@@ -52,7 +52,7 @@ const Join: React.FC<Ipage> = (pageInfo) => {
     const verifiedPhone = getFromUrl("phone") || undefined;
     const oauth = getFromUrl("oauth") || undefined;
     const [userType, setUserType] = useState<UserRole>(UserRole.individual);
-    const [joinProcess, joinSet] = useState<TJoinProcess>("userInfo");
+    const [joinProcess, joinSet] = useState<TJoinProcess>("userType");
     const verifiHook = useVerification({
         _id: verificationId,
         payload: verifiedEmail

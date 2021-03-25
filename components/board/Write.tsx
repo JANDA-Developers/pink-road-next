@@ -19,6 +19,7 @@ export interface IBoardOpen {
 
 export type TCategory = { _id: string, label: string };
 interface IProps {
+    useTextarea?: boolean;
     className?: string;
     boardHook: IUseBoard
     categoryList?: TCategory[]
@@ -36,6 +37,7 @@ interface IProps {
 export const BoardWrite: React.FC<IProps> = ({
     className,
     boardHook,
+    useTextarea,
     categoryList,
     opens,
     mode,
@@ -52,8 +54,8 @@ export const BoardWrite: React.FC<IProps> = ({
     const isCreateMode = mode === "create";
     const { signleUpload } = useUpload();
     const { boardData, boardSets } = boardHook;
-    const { categoryId, isOpen, subTitle, summary, thumb, title, contents } = boardData;
-    const { setCategoryId, setContents, setIsOpen, setSummary, setThumb, setTitle, setSubTitle } = boardSets;
+    const { categoryId, isOpen, subTitle, summary, thumb, title, contents, files } = boardData;
+    const { setCategoryId, setContents, setIsOpen, setSummary, setThumb, setTitle, setFiles, setSubTitle } = boardSets;
     const hiddenFileInput = React.useRef<HTMLInputElement>(null);
 
 
@@ -67,11 +69,30 @@ export const BoardWrite: React.FC<IProps> = ({
     }
 
     const handleAddFile = () => {
+        hiddenFileInput.current?.click();
     }
 
     const handleUploadClick = () => {
         hiddenFileInput.current?.click();
     }
+
+    const handleClearFile = (index: number) => () => {
+        files.splice(index, 1);
+        setFiles([...files])
+    }
+
+
+    const handleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (!event.target.files) return;
+        const fileUploaded = event.target.files;
+        const onUpload = (_: string, data: Ffile) => {
+            files.push(data);
+            setFiles([...files]);
+        }
+
+        signleUpload(fileUploaded, onUpload);
+        // data.images[FILE_SELECT_INDEX] = fileUploaded;
+    };
 
     const handleChangeSumbNail = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!event.target.files) return;
@@ -175,8 +196,12 @@ export const BoardWrite: React.FC<IProps> = ({
                             <div className="title">첨부파일</div>
                             <div className="img_box_add">
                                 <ul className="img_add">
-                                    <li onClick={handleAddFile}>파일추가<i className="flaticon-add icon_plus" /></li>
+                                    {files.map((file, i) =>
+                                        <li key={i + "thumb"} className="on_file">{file.name}<i onClick={handleClearFile(i)} className="flaticon-multiply icon_x"></i></li>
+                                    )}
+                                    {files.length < 4 && <li onClick={handleAddFile}>파일추가<i className="flaticon-add icon_plus" /></li>}
                                 </ul>
+                                <input onChange={handleChangeFile} multiple={false} ref={hiddenFileInput} hidden type="file" />
                                 <p className="input_form info_txt">- 20MB 제한이 있습니다.</p>
                             </div>
                         </div>
@@ -184,9 +209,13 @@ export const BoardWrite: React.FC<IProps> = ({
                 }
                 {/* 내용 */}
                 <div className="write_con">
-                    <Editor onChange={(data: any) => {
+                    {useTextarea && <textarea onChange={(e) => {
+                        const val = e.currentTarget.value;
+                        setContents(val);
+                    }} value={contents} className="board_write__textarea" />}
+                    {useTextarea || <Editor onChange={(data: any) => {
                         setContents(data);
-                    }} data={contents} />
+                    }} data={contents} />}
                 </div>
 
                 {/* 하단메뉴 */}

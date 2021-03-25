@@ -23,7 +23,7 @@ interface IUseBoardDefaultData {
     subTitle: string | null;
     categoryId: string;
     summary: string | null;
-    files: Ffile[]
+    files: Ffile[] | null;
     thumb: Ffile | null;
     contents: string
     loadKey: number;
@@ -52,16 +52,20 @@ interface IboardConfig {
 }
 
 export const useBoard = ({ ...defaults }: IUseBoardProps, config: IboardConfig = {}) => {
-    const [isOpen, setIsOpen] = useState<boolean>(defaults.isOpen || true);
+    const [isOpen, setIsOpen] = useState<boolean>(!!defaults.isOpen);
     const [title, setTitle] = useState<string>(defaults.title || "")
     const [categoryId, setCategoryId] = useState<string>(defaults.categoryId || "");
     const [subTitle, setSubTitle] = useState<string>(defaults.subTitle || "");
     const [summary, setSummary] = useState<string>(defaults.summary || "");
-    const [files, setFiles] = useState<Ffile[]>([]);
+    const [files, setFiles] = useState<Ffile[]>([...(defaults.files || [])]);
     const [thumb, setThumb] = useState<Ffile | null>(defaults.thumb || null);
     const [contents, setContents] = useState<string>(defaults.contents || "");
     const [loadKey, setLoadKey] = useState<number>(0);
     const router = useRouter();
+
+    const defaultFiles = defaults.files;
+    console.log({ defaultFiles });
+    console.log({ files });
 
     const validater = new Validater([{
         value: title,
@@ -108,7 +112,7 @@ export const useBoard = ({ ...defaults }: IUseBoardProps, config: IboardConfig =
         if (data.contents)
             setContents(data.contents)
         if (data.files)
-            setFiles(data.files)
+            setFiles([...data.files])
         if (data.summary)
             setSummary(data.summary)
         if (data.thumb)

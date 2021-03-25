@@ -25,7 +25,7 @@ export const F_QUESTION = gql`
           ...Fanswer
         }
         keyWards
-        attachFiles {
+        files {
             ...Ffile
         }
         thumb {
@@ -182,6 +182,14 @@ query questionFindById(
       }
     }
   }
+    next{
+    _id
+    title
+   }
+    before{
+      _id
+      title
+    }
 }
 }
 ${F_QUESTION}

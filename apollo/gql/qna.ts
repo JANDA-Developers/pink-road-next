@@ -17,7 +17,7 @@ export const F_QNA = gql`
         summary
         subTitle
         keyWards
-        attachFiles {
+        files {
             ...Ffile
         }
         thumb {
@@ -50,6 +50,14 @@ query qnaFindById(
     _id
     label
     }
+  }
+  next{
+    _id
+    title
+  }
+  before{
+    _id
+    title
   }
 }
 }

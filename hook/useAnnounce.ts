@@ -10,5 +10,5 @@ import { generateFindQuery, generateListQueryHook, generateMutationHook } from "
 export const useAnnounceFindById = generateFindQuery<announceFindById,announceFindByIdVariables,announceFindById_AnnounceFindById_data>("_id",ANNOUNCE_FIND_BY_ID);
 export const useAnnounceList = generateListQueryHook<_AnnounceFilter,_AnnounceSort,announceList,announceListVariables,announceList_AnnounceList_data>(ANNOUNCE_LIST, {initialSort: [_AnnounceSort.createdAt_desc],fixingSort: [_AnnounceSort.type_asc]});
 export const useAnnounceCreate = generateMutationHook<announceCreate,announceCreateVariables>(ANNOUNCE_CREATE,{...getRefetch(ANNOUNCE_FIND_BY_ID,ANNOUNCE_LIST)});
-export const useAnnounceDelete = generateMutationHook<announceDelete,announceDeleteVariables>(ANNOUNCE_DELETE,{...getRefetch(ANNOUNCE_FIND_BY_ID,ANNOUNCE_LIST)});
+export const useAnnounceDelete = generateMutationHook<announceDelete,announceDeleteVariables>(ANNOUNCE_DELETE,{...getRefetch(ANNOUNCE_LIST)});
 export const useAnnounceUpdate = generateMutationHook<announceUpdate, announceUpdateVariables>(ANNOUNCE_UPDAET,{...getRefetch(ANNOUNCE_FIND_BY_ID,ANNOUNCE_LIST)});

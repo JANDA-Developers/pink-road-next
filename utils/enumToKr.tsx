@@ -92,7 +92,7 @@ export const userRoleToKR = (role?: UserRole) => {
     if (role === UserRole.partner) return "파트너"
     if (role === UserRole.partnerB) return "기업파트너"
     if (role === UserRole.individual) return "개인유저"
-    if (role === UserRole.manager) return "매니저"
+    if (role === UserRole.manager) return "마스터"
     if (role === UserRole.admin) return "관리자(JANDA)"
     return ""
 }

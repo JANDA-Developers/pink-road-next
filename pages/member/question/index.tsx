@@ -20,13 +20,14 @@ import { Change } from '../../../components/loadingList/LoadingList';
 import { LockIcon } from '../../../components/common/icon/LockIcon';
 import dayjs from 'dayjs';
 import { AppContext } from '../../_app';
+import { Prompt } from '../../../components/promptModal/Prompt';
 
 
 export const getStaticProps = getStaticPageInfo("question")
 export const Question: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
     const { getLoading, filter, setFilter, viewCount, setViewCount, items: inquiries, pageInfo: pagingInfo, setPage, setOR, sort, setSort } = useQuestionList()
-    const { isManager } = useContext(AppContext);
+    const { isManager, myProfile } = useContext(AppContext);
     const pageTool = usePageEdit(pageInfo, defaultPageInfo);
     const { unAnsweredQuestionCount } = useCustomCount(["unAnsweredQuestionCount"])
     const signleSortHook = useSingleSort(sort, setSort)
@@ -42,10 +43,17 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
     }
 
     const handleSearch = (value: string) => {
-        setOR(["no_eq", "title_eq", "code_eq"], value)
+        setOR(["no_eq", "title_contains", "code_eq"], value)
     }
 
     const gotoView = (inq: questionList_QuestionList_data) => () => {
+        const isMyQuestion = myProfile?._id === inq.author?._id;
+        const isMyProductQuestion = myProfile?._id === inq.product?.author?._id;
+
+        if (!inq.isOpen) {
+            if (!isMyProductQuestion && !isManager && !isMyQuestion) return;
+        }
+
         router.push("/member/question/view/" + inq._id)
     }
 
@@ -83,7 +91,7 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                                         <div className="td01">{inq.product ? "상품문의" : "일반문의"}</div>
                                         {/* <div className="td02"><Link href={`/question/view/${inq._id}`}><a>{inq.title} {inq. && <LockIcon />} </a></Link></div> */}
                                         <div className="td03">
-                                            {inq.title}
+                                            {isManager ? inq.title : '[문의합니다.]'}
                                             {dayjs(inq.createdAt).isAfter(dayjs().add(-8, "hour")) && <img className="new" src="../img/svg/new.svg" alt="new" />}
                                             <i className="q_no">{questionSatus(inq.status)}</i>
                                         </div>
@@ -104,6 +112,8 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                 </div>
             </div>
         </div>
+        <Prompt title={"글 작성시 사용한 비밀번호를 입력 해주세요"} onSubmit={(password) => {
+        }} id="BoardPasswordChecker" />
     </div >;
 };
 

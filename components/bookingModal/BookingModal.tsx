@@ -201,7 +201,7 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
     // 취소가 가능하가:: 마스터일때는 취소가 가능할 것이다.
     const cancleAB = isManager && isComplete;
 
-    // 입금 완료처리:: 입금확인은 사실 매니저만 할 수 있는 부분
+    // 입금 완료처리:: 입금확인은 사실 마스터만 할 수 있는 부분
     const bankDepositAB = isManager && isBankBook && isReadyBook;
 
 

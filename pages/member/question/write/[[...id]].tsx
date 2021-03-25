@@ -10,6 +10,8 @@ import { Validater } from "../../../../utils/validate";
 import { useQuestionCreate, useQuestionDelete, useQuestionFindById, useQuestionUpdate } from "../../../../hook/useQuestion";
 import { getFromUrl } from "../../../../utils/url";
 import { AppContext } from "../../../_app";
+import { ProductSelectModal } from "../../../../components/ProductSelectModal";
+import { closeModal, openModal } from "../../../../utils/popUp";
 
 interface IProp { }
 
@@ -29,6 +31,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
 
     //아래 대충 상품캣 찾는 로직
     const productCat = categoryList.find(cat => cat.label.includes("상품"));
+
 
     const [questionUpdateMu] = useQuestionUpdate({
         onCompleted: ({ QuestionUpdate }) => {
@@ -63,7 +66,11 @@ export const QuestionWrite: React.FC<IProp> = () => {
         categoryId: question?.category?._id || (urlProductId ? productCat?._id : undefined)
     }, { storeKey: "questionWrite" });
 
+
+    const isProductMode = productCat?._id === boardHook.boardData.categoryId;
+
     const [productId, setProductId] = useState(urlProductId);
+    const [productName, setProductName] = useState(urlProductName)
     const { boardData, loadKey, handleCancel, handleLoad, handleTempSave, setBoardData } = boardHook
 
     const { validate } = new Validater([
@@ -87,7 +94,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
 
         questionUpdateMu({
             variables: {
-                params: omits(params, ["categoryId", "files"]),
+                params: omits(params, ["categoryId"]),
                 id
             }
         })
@@ -113,7 +120,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
         questionCreateMu({
             variables: {
                 params: {
-                    ...omits(next, ["files"]),
+                    ...omits(next),
                     productId: productId ? productId : undefined
                 }
             }
@@ -122,6 +129,8 @@ export const QuestionWrite: React.FC<IProp> = () => {
 
     useEffect(() => {
         setBoardData({
+            files: question?.files || [],
+            isOpen: !!question?.isOpen,
             title: question?.title,
             contents: question?.contents,
             categoryId: question?.category?._id,
@@ -130,32 +139,41 @@ export const QuestionWrite: React.FC<IProp> = () => {
     }, [question?._id])
 
 
-    return <BoardWrite
-        className={urlProductId ? "boardWrite--categoryFix" : ""}
-        categoryList={categoryList}
-        WriteInjection={
-            urlProductId ? <div className="write_type">
-                <div className="title">상품명</div>
-                <div className="input_form">
-                    <input readOnly id="title" value={urlProductName} type="text" name="title" className="inputText w100" />
-                </div>
-            </div> : undefined
-        }
-        boardHook={boardHook}
-        key={loadKey + (question?._id || "") + productId}
-        mode={mode}
-        onCancel={handleCancel}
-        onCreate={handleCreate}
-        onDelete={handleDelete}
-        onEdit={handleUpdate}
-        onSave={handleTempSave}
-        onLoad={handleLoad}
-        opens={{
-            category: true,
-            title: true,
-            open: true,
-        }}
-    />
+    return <div>
+        <BoardWrite
+            className={urlProductId ? "boardWrite--categoryFix" : ""}
+            categoryList={categoryList}
+            WriteInjection={
+                isProductMode ? <div className="write_type">
+                    <div className="title">상품명</div>
+                    <div className="input_form">
+                        <input onFocus={openModal("#ProductSelectModal")} readOnly={!!urlProductName} id="title" value={productName} type="text" name="title" className="inputText w100" />
+                    </div>
+                </div> : undefined
+            }
+            boardHook={boardHook}
+            key={loadKey + (question?._id || "") + productId}
+            mode={mode}
+            useTextarea
+            onCancel={handleCancel}
+            onCreate={handleCreate}
+            onDelete={handleDelete}
+            onEdit={handleUpdate}
+            onSave={handleTempSave}
+            onLoad={handleLoad}
+            opens={{
+                category: true,
+                title: true,
+                open: true,
+                files: true,
+            }}
+        />
+        <ProductSelectModal id="ProductSelectModal" onSelect={(pd) => {
+            setProductId(pd._id);
+            setProductName(pd.title);
+            closeModal("#ProductSelectModal")()
+        }} />
+    </div>
 };
 
 

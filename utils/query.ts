@@ -9,6 +9,7 @@ import { CustomErrorResponse } from "aws-sdk/clients/cloudfront";
 import { ErrorCode } from "./enumToKr";
 import { getFromUrl } from "./url";
 import { cloneObject } from "./clone";
+import { IBoardMoveData } from "../components/board/View";
 
 export const pageLoadingEffect = (loading:boolean) => {
     if(typeof window === "undefined") return;
@@ -90,7 +91,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
         const { skipInit,skip,variables, overrideVariables, ...ops } = options;
         const { integratedVariable,...params } = useListQuery(initialData)
         const [getData, { data, loading: getLoading,...queryElse }] = useLazyQuery<Q,V>(QUERY,{
-            fetchPolicy: "cache-first",
+            fetchPolicy: "cache-and-network",
             // @ts-ignore
             variables: {
                 ...integratedVariable,
@@ -182,6 +183,7 @@ export const generateMutationHook = <M,V>(MUTATION:DocumentNode,defaultOptions?:
         const muHook = useMutation<M, V>(MUTATION, {
             ...defaultOptions,
             ...options,
+            awaitRefetchQueries: true,
             onCompleted: (result) => {
                 const operationName = getQueryName(MUTATION);
                 // @ts-ignore
@@ -220,6 +222,13 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:Doc
         // @ts-ignore
         const errorFromServer:string = data?.[operationName]?.error;
         dataCheck(data,operationName,["data"])
+        // @ts-ignore
+        const _next = data?.[operationName]?.next
+        // @ts-ignore
+        const _prev = data?.[operationName]?.before
+
+        const next = _next as IBoardMoveData | undefined
+        const prev = _prev as IBoardMoveData | undefined
    
 
         // @ts-ignore
@@ -234,7 +243,7 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:Doc
 
         const error = apolloError || errorFromServer 
 
-        return {item, loading, error, getData,...context}
+        return {item, loading, error, getData, next, prev, ...context}
     }
 
     return findQueryHook

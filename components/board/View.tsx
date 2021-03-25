@@ -1,10 +1,17 @@
 import { UserRole } from "aws-sdk/clients/quicksight";
 import dayjs from "dayjs";
+import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { Ffile } from "types/api"
 import { AppContext } from "../../pages/_app";
 import { IDiv, TElements } from "../../types/interface";
 import { ContentViewer } from "../contentViewer/ContentViewer";
+
+export interface IBoardMoveData {
+    _id: string;
+    title: string;
+    [key: string]: any
+}
 
 interface IProps extends IDiv {
     authorId: string;
@@ -21,8 +28,8 @@ interface IProps extends IDiv {
     viewCount?: number
     subTitle?: string | null;
     files?: Ffile[]
-    onNext?: () => void;
-    onPrev?: () => void;
+    next?: IBoardMoveData;
+    prev?: IBoardMoveData;
     onList?: () => void;
     onEdit?: () => void;
     onDelete?: () => void;
@@ -33,12 +40,13 @@ interface IProps extends IDiv {
 
 export const BoardView: React.FC<IProps> = (data) => {
     const { isManager, myProfile } = useContext(AppContext);
-    const { authorId, isOpen, className, catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, onNext, onPrev, onDelete, subTitle, Buttons } = data;
+    const { authorId, isOpen, className, catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, next, prev, onDelete, subTitle, Buttons } = data;
     const isMyBoard = myProfile?._id === data.authorId;
-
-
-    const handlePrev = () => {
-        onPrev?.();
+    const router = useRouter();
+    const move = (id: string) => {
+        const splited = router.pathname.split("/");
+        splited[splited.length - 1] = id;
+        router.push(splited.join("/"));
     }
 
     const handleList = () => {
@@ -47,10 +55,6 @@ export const BoardView: React.FC<IProps> = (data) => {
 
     const handleEdit = () => {
         onEdit?.();
-    }
-
-    const handleNext = () => {
-        onNext?.();
     }
 
     const handleDelete = () => {
@@ -84,13 +88,25 @@ export const BoardView: React.FC<IProps> = (data) => {
                         <div className="download_box">
                             <ul>
                                 {files?.map((file, i) =>
-                                    <li key={`file${i}`}><a href="/"><i className="flaticon-folder-15" />{file.name}<i className="end jandaicon-check" /></a></li>
+                                    <li key={`file${i}`}><a href={file.uri} download><i className="flaticon-folder-15" />{file.name}<i className="end jandaicon-check" /></a></li>
                                 )}
                             </ul>
                         </div>
                     }
                 </div>
                 {/* 댓글 */}
+
+
+                {(next || prev) && <div className="board_list_mini">
+                    <ul>
+                        {prev && <li onClick={() => {
+                            move(prev._id)
+                        }} className="first"><span><i className="flaticon-cloud-computing" />이전글<i className="flaticon-command" /></span><div>{prev.title}</div></li>}
+                        {next && <li onClick={() => {
+                            move(next._id)
+                        }}><span><i className="flaticon-cloud-computing" />다음글<i className="flaticon-command" /></span><div>{next.title}</div></li>}
+                    </ul>
+                </div>}
 
                 <div className="boardNavigation">
                     <div className="float_left">
@@ -102,13 +118,6 @@ export const BoardView: React.FC<IProps> = (data) => {
                         {Buttons}
                     </div>}
                 </div>
-
-                {(onPrev || onNext) && <div className="board_list_mini">
-                    <ul>
-                        {onPrev && <li className="first"><span><i className="flaticon-cloud-computing" />이전글<i className="flaticon-command" /></span><div>행사를 합니다~!!!!!</div></li>}
-                        {onNext && <li><span><i className="flaticon-cloud-computing" />다음글<i className="flaticon-command" /></span><div>입금자 확인중입니다.</div></li>}
-                    </ul>
-                </div>}
             </div>
         </div>
     </div>

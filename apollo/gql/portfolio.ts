@@ -43,6 +43,14 @@ location
         code
         message
 }
+next{
+    _id
+    title
+   }
+    before{
+      _id
+      title
+    }
   data {
     ...Fportfolio
   }

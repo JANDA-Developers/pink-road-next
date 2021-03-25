@@ -58,7 +58,7 @@ export interface announceFindById_AnnounceFindById_data_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -114,7 +114,7 @@ export interface announceFindById_AnnounceFindById_data_author {
   bankImg: announceFindById_AnnounceFindById_data_author_bankImg | null;
 }
 
-export interface announceFindById_AnnounceFindById_data_attachFiles {
+export interface announceFindById_AnnounceFindById_data_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -143,10 +143,22 @@ export interface announceFindById_AnnounceFindById_data {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  attachFiles: announceFindById_AnnounceFindById_data_attachFiles[] | null;
+  files: announceFindById_AnnounceFindById_data_files[] | null;
   thumb: announceFindById_AnnounceFindById_data_thumb | null;
   viewCount: number;
   type: AnnounceType;
+}
+
+export interface announceFindById_AnnounceFindById_next {
+  __typename: "Board";
+  _id: string;
+  title: string;
+}
+
+export interface announceFindById_AnnounceFindById_before {
+  __typename: "Board";
+  _id: string;
+  title: string;
 }
 
 export interface announceFindById_AnnounceFindById {
@@ -154,6 +166,8 @@ export interface announceFindById_AnnounceFindById {
   ok: boolean;
   error: announceFindById_AnnounceFindById_error | null;
   data: announceFindById_AnnounceFindById_data | null;
+  next: announceFindById_AnnounceFindById_next | null;
+  before: announceFindById_AnnounceFindById_before | null;
 }
 
 export interface announceFindById {
@@ -272,7 +286,7 @@ export interface announceList_AnnounceList_data_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -328,7 +342,7 @@ export interface announceList_AnnounceList_data_author {
   bankImg: announceList_AnnounceList_data_author_bankImg | null;
 }
 
-export interface announceList_AnnounceList_data_attachFiles {
+export interface announceList_AnnounceList_data_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -357,7 +371,7 @@ export interface announceList_AnnounceList_data {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  attachFiles: announceList_AnnounceList_data_attachFiles[] | null;
+  files: announceList_AnnounceList_data_files[] | null;
   thumb: announceList_AnnounceList_data_thumb | null;
   viewCount: number;
   type: AnnounceType;
@@ -1619,7 +1633,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -3429,7 +3443,7 @@ export interface newsFindById_NewsFindById_data_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -3485,7 +3499,7 @@ export interface newsFindById_NewsFindById_data_author {
   bankImg: newsFindById_NewsFindById_data_author_bankImg | null;
 }
 
-export interface newsFindById_NewsFindById_data_attachFiles {
+export interface newsFindById_NewsFindById_data_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -3513,10 +3527,22 @@ export interface newsFindById_NewsFindById_data {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  attachFiles: newsFindById_NewsFindById_data_attachFiles[] | null;
+  files: newsFindById_NewsFindById_data_files[] | null;
   thumb: newsFindById_NewsFindById_data_thumb | null;
   viewCount: number;
   type: NEWS_TYPE;
+}
+
+export interface newsFindById_NewsFindById_next {
+  __typename: "Board";
+  _id: string;
+  title: string;
+}
+
+export interface newsFindById_NewsFindById_before {
+  __typename: "Board";
+  _id: string;
+  title: string;
 }
 
 export interface newsFindById_NewsFindById {
@@ -3524,6 +3550,8 @@ export interface newsFindById_NewsFindById {
   ok: boolean;
   error: newsFindById_NewsFindById_error | null;
   data: newsFindById_NewsFindById_data | null;
+  next: newsFindById_NewsFindById_next | null;
+  before: newsFindById_NewsFindById_before | null;
 }
 
 export interface newsFindById {
@@ -3642,7 +3670,7 @@ export interface newsList_NewsList_data_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -3698,7 +3726,7 @@ export interface newsList_NewsList_data_author {
   bankImg: newsList_NewsList_data_author_bankImg | null;
 }
 
-export interface newsList_NewsList_data_attachFiles {
+export interface newsList_NewsList_data_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -3726,7 +3754,7 @@ export interface newsList_NewsList_data {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  attachFiles: newsList_NewsList_data_attachFiles[] | null;
+  files: newsList_NewsList_data_files[] | null;
   thumb: newsList_NewsList_data_thumb | null;
   viewCount: number;
   type: NEWS_TYPE;
@@ -4554,6 +4582,18 @@ export interface portfolioFindById_PortfolioFindById_error {
   message: string;
 }
 
+export interface portfolioFindById_PortfolioFindById_next {
+  __typename: "Board";
+  _id: string;
+  title: string;
+}
+
+export interface portfolioFindById_PortfolioFindById_before {
+  __typename: "Board";
+  _id: string;
+  title: string;
+}
+
 export interface portfolioFindById_PortfolioFindById_data_author_busiRegistration {
   __typename: "File";
   name: string;
@@ -4597,7 +4637,7 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -4687,6 +4727,8 @@ export interface portfolioFindById_PortfolioFindById {
   __typename: "PortfolioFindByIdResponse";
   ok: boolean;
   error: portfolioFindById_PortfolioFindById_error | null;
+  next: portfolioFindById_PortfolioFindById_next | null;
+  before: portfolioFindById_PortfolioFindById_before | null;
   data: portfolioFindById_PortfolioFindById_data | null;
 }
 
@@ -4806,7 +4848,7 @@ export interface portfolioList_PortfolioList_data_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -5581,7 +5623,7 @@ export interface productList_ProductList_data_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -5822,7 +5864,7 @@ export interface productFindById_ProductFindById_data_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -5909,7 +5951,7 @@ export interface productFindById_ProductFindById_data_questions_answers {
   author: productFindById_ProductFindById_data_questions_answers_author;
 }
 
-export interface productFindById_ProductFindById_data_questions_attachFiles {
+export interface productFindById_ProductFindById_data_questions_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -5957,7 +5999,7 @@ export interface productFindById_ProductFindById_data_questions {
   category: productFindById_ProductFindById_data_questions_category | null;
   answers: productFindById_ProductFindById_data_questions_answers[] | null;
   keyWards: string[] | null;
-  attachFiles: productFindById_ProductFindById_data_questions_attachFiles[] | null;
+  files: productFindById_ProductFindById_data_questions_files[] | null;
   thumb: productFindById_ProductFindById_data_questions_thumb | null;
   viewCount: number;
   likeCount: number;
@@ -6148,7 +6190,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -6284,7 +6326,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -6747,7 +6789,7 @@ export interface qnaFindById_QnaFindById_data_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -6803,7 +6845,7 @@ export interface qnaFindById_QnaFindById_data_author {
   bankImg: qnaFindById_QnaFindById_data_author_bankImg | null;
 }
 
-export interface qnaFindById_QnaFindById_data_attachFiles {
+export interface qnaFindById_QnaFindById_data_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -6837,10 +6879,22 @@ export interface qnaFindById_QnaFindById_data {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  attachFiles: qnaFindById_QnaFindById_data_attachFiles[] | null;
+  files: qnaFindById_QnaFindById_data_files[] | null;
   thumb: qnaFindById_QnaFindById_data_thumb | null;
   viewCount: number;
   category: qnaFindById_QnaFindById_data_category | null;
+}
+
+export interface qnaFindById_QnaFindById_next {
+  __typename: "Board";
+  _id: string;
+  title: string;
+}
+
+export interface qnaFindById_QnaFindById_before {
+  __typename: "Board";
+  _id: string;
+  title: string;
 }
 
 export interface qnaFindById_QnaFindById {
@@ -6848,6 +6902,8 @@ export interface qnaFindById_QnaFindById {
   ok: boolean;
   error: qnaFindById_QnaFindById_error | null;
   data: qnaFindById_QnaFindById_data | null;
+  next: qnaFindById_QnaFindById_next | null;
+  before: qnaFindById_QnaFindById_before | null;
 }
 
 export interface qnaFindById {
@@ -6966,7 +7022,7 @@ export interface qnaList_QnaList_data_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -7022,7 +7078,7 @@ export interface qnaList_QnaList_data_author {
   bankImg: qnaList_QnaList_data_author_bankImg | null;
 }
 
-export interface qnaList_QnaList_data_attachFiles {
+export interface qnaList_QnaList_data_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -7056,7 +7112,7 @@ export interface qnaList_QnaList_data {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  attachFiles: qnaList_QnaList_data_attachFiles[] | null;
+  files: qnaList_QnaList_data_files[] | null;
   thumb: qnaList_QnaList_data_thumb | null;
   viewCount: number;
   category: qnaList_QnaList_data_category | null;
@@ -7356,7 +7412,7 @@ export interface getContext_GetProfile_data {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -7786,7 +7842,7 @@ export interface questionList_QuestionList_data_answers {
   author: questionList_QuestionList_data_answers_author;
 }
 
-export interface questionList_QuestionList_data_attachFiles {
+export interface questionList_QuestionList_data_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -7847,7 +7903,7 @@ export interface questionList_QuestionList_data {
   category: questionList_QuestionList_data_category | null;
   answers: questionList_QuestionList_data_answers[] | null;
   keyWards: string[] | null;
-  attachFiles: questionList_QuestionList_data_attachFiles[] | null;
+  files: questionList_QuestionList_data_files[] | null;
   thumb: questionList_QuestionList_data_thumb | null;
   viewCount: number;
   likeCount: number;
@@ -8028,7 +8084,7 @@ export interface questionFindById_QuestionFindById_data_answers {
   author: questionFindById_QuestionFindById_data_answers_author;
 }
 
-export interface questionFindById_QuestionFindById_data_attachFiles {
+export interface questionFindById_QuestionFindById_data_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -8089,7 +8145,7 @@ export interface questionFindById_QuestionFindById_data {
   category: questionFindById_QuestionFindById_data_category | null;
   answers: questionFindById_QuestionFindById_data_answers[] | null;
   keyWards: string[] | null;
-  attachFiles: questionFindById_QuestionFindById_data_attachFiles[] | null;
+  files: questionFindById_QuestionFindById_data_files[] | null;
   thumb: questionFindById_QuestionFindById_data_thumb | null;
   viewCount: number;
   likeCount: number;
@@ -8098,11 +8154,25 @@ export interface questionFindById_QuestionFindById_data {
   product: questionFindById_QuestionFindById_data_product | null;
 }
 
+export interface questionFindById_QuestionFindById_next {
+  __typename: "Board";
+  _id: string;
+  title: string;
+}
+
+export interface questionFindById_QuestionFindById_before {
+  __typename: "Board";
+  _id: string;
+  title: string;
+}
+
 export interface questionFindById_QuestionFindById {
   __typename: "QuestionFindByIdResponse";
   ok: boolean;
   error: questionFindById_QuestionFindById_error | null;
   data: questionFindById_QuestionFindById_data | null;
+  next: questionFindById_QuestionFindById_next | null;
+  before: questionFindById_QuestionFindById_before | null;
 }
 
 export interface questionFindById {
@@ -8229,7 +8299,7 @@ export interface settlementFindById_SettlementFindById_data_product_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -8558,7 +8628,7 @@ export interface settlementList_SettlementList_data_seller {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -8705,7 +8775,7 @@ export interface settlementList_SettlementList_data_product_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -9684,7 +9754,7 @@ export interface userList_UserList_data {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -9885,7 +9955,7 @@ export interface userFindById_UserFindById_data_products_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -10057,7 +10127,7 @@ export interface userFindById_UserFindById_data {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -10290,7 +10360,7 @@ export interface Fannounce_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -10346,7 +10416,7 @@ export interface Fannounce_author {
   bankImg: Fannounce_author_bankImg | null;
 }
 
-export interface Fannounce_attachFiles {
+export interface Fannounce_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -10375,7 +10445,7 @@ export interface Fannounce {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  attachFiles: Fannounce_attachFiles[] | null;
+  files: Fannounce_files[] | null;
   thumb: Fannounce_thumb | null;
   viewCount: number;
   type: AnnounceType;
@@ -10828,7 +10898,7 @@ export interface Fuser {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -11283,7 +11353,7 @@ export interface Fnews_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -11339,7 +11409,7 @@ export interface Fnews_author {
   bankImg: Fnews_author_bankImg | null;
 }
 
-export interface Fnews_attachFiles {
+export interface Fnews_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -11367,7 +11437,7 @@ export interface Fnews {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  attachFiles: Fnews_attachFiles[] | null;
+  files: Fnews_files[] | null;
   thumb: Fnews_thumb | null;
   viewCount: number;
   type: NEWS_TYPE;
@@ -11612,7 +11682,7 @@ export interface Fportfolio_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -11750,7 +11820,7 @@ export interface Fqna_author {
   status: UserStatus;
   acceptEamil: boolean;
   /**
-   * 매니저에 의한 회원가입 거절
+   * 마스터에 의한 회원가입 거절
    */
   isDenied: boolean | null;
   is_froreginer: boolean;
@@ -11806,7 +11876,7 @@ export interface Fqna_author {
   bankImg: Fqna_author_bankImg | null;
 }
 
-export interface Fqna_attachFiles {
+export interface Fqna_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -11834,7 +11904,7 @@ export interface Fqna {
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
-  attachFiles: Fqna_attachFiles[] | null;
+  files: Fqna_files[] | null;
   thumb: Fqna_thumb | null;
   viewCount: number;
 }
@@ -11879,7 +11949,7 @@ export interface Fquestion_answers {
   author: Fquestion_answers_author;
 }
 
-export interface Fquestion_attachFiles {
+export interface Fquestion_files {
   __typename: "File";
   name: string;
   uri: string;
@@ -11927,7 +11997,7 @@ export interface Fquestion {
   category: Fquestion_category | null;
   answers: Fquestion_answers[] | null;
   keyWards: string[] | null;
-  attachFiles: Fquestion_attachFiles[] | null;
+  files: Fquestion_files[] | null;
   thumb: Fquestion_thumb | null;
   viewCount: number;
   likeCount: number;
@@ -12315,6 +12385,7 @@ export enum SystemNotiType {
   cancel = "cancel",
   member = "member",
   payment = "payment",
+  question = "question",
   system = "system",
 }
 
@@ -12617,7 +12688,7 @@ export interface AnnounceCreateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileCreateInput[] | null;
+  files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   type: AnnounceType;
 }
@@ -12847,7 +12918,7 @@ export interface ItineraryCreateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileCreateInput[] | null;
+  files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   images?: FileCreateInput[] | null;
   date?: any | null;
@@ -12860,7 +12931,7 @@ export interface ItineraryUpdateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileUpdateInput[] | null;
+  files?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
   images?: FileUpdateInput[] | null;
   date?: any | null;
@@ -12890,7 +12961,7 @@ export interface NewsCreateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileCreateInput[] | null;
+  files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   type: NEWS_TYPE;
 }
@@ -12903,7 +12974,7 @@ export interface NewsUpdateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileUpdateInput[] | null;
+  files?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
   type: NEWS_TYPE;
 }
@@ -12933,7 +13004,7 @@ export interface PortfolioCreateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileCreateInput[] | null;
+  files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   categoryId: string;
 }
@@ -12946,7 +13017,7 @@ export interface PortfolioUpdateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileUpdateInput[] | null;
+  files?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
   categoryId?: string | null;
 }
@@ -12959,7 +13030,7 @@ export interface ProductCreateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileCreateInput[] | null;
+  files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   categoryId: string;
   itinerary: ItineraryCreateInput[];
@@ -12986,7 +13057,7 @@ export interface ProductUpdateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileUpdateInput[] | null;
+  files?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
   productId?: string | null;
   categoryId?: string | null;
@@ -13016,7 +13087,7 @@ export interface ProductUpdateReqInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileUpdateInput[] | null;
+  files?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
   productId?: string | null;
   categoryId?: string | null;
@@ -13047,7 +13118,7 @@ export interface QnaCreateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileCreateInput[] | null;
+  files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   categoryId: string;
 }
@@ -13060,7 +13131,7 @@ export interface QnaUpdateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileUpdateInput[] | null;
+  files?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
   categoryId?: string | null;
 }
@@ -13073,7 +13144,7 @@ export interface QuestionCreateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileCreateInput[] | null;
+  files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   productId?: string | null;
   categoryId: string;
@@ -13087,7 +13158,7 @@ export interface QuestionUpdateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileUpdateInput[] | null;
+  files?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
   productId?: string | null;
   status?: QuestionStatus | null;

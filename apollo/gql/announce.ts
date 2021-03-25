@@ -18,7 +18,7 @@ export const F_ANNOUNCE = gql`
         summary
         subTitle
         keyWards
-        attachFiles {
+        files {
             ...Ffile
         }
         thumb {
@@ -49,6 +49,14 @@ location
   data {
     ...Fannounce
   }
+  next{
+    _id
+    title
+   }
+    before{
+      _id
+      title
+    }
 }
 }
 ${F_ANNOUNCE}

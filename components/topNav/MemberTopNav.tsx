@@ -1,10 +1,7 @@
-import Link from "next/link";
 import { checkOn } from "./MasterTopNav";
 
-
-
 export const MemberTopNav = () => <ul className="memberTopNav subtop_nav">
-    <li className={checkOn("announce")}><Link href="/member/announce"><a>공지사항</a></Link></li>
-    <li className={checkOn("qna")}><Link href="/member/qna"><a>자주하는 질문</a></Link></li>
-    <li className={checkOn("question")}><Link href="/member/question"><a>고객문의</a></Link></li>
+    <li className={checkOn("announce")}><a href="/member/announce">공지사항</a></li>
+    <li className={checkOn("qna")}><a href="/member/qna">자주하는 질문</a></li>
+    <li className={checkOn("question")}><a href="/member/question">고객문의</a></li>
 </ul>

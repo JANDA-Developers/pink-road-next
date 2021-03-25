@@ -32,7 +32,6 @@ export const QnaWrite: React.FC<IProp> = () => {
     const [qnaCreateMu] = useQnaCreate({
         onCompleted: ({ QnaCreate }) => {
             if (QnaCreate.ok) {
-                const id = QnaCreate.data!._id;
                 router.push(`/member/qna`)
             }
         },
@@ -46,8 +45,10 @@ export const QnaWrite: React.FC<IProp> = () => {
         },
     })
 
+
+    console.log({ qna });
     const boardHook = useBoard({
-        ...qna,
+        ...qna
     }, { storeKey: "qnaWrite" });
 
     const { boardData, loadKey, handleCancel, handleLoad, handleTempSave, setBoardData } = boardHook
@@ -109,6 +110,8 @@ export const QnaWrite: React.FC<IProp> = () => {
             categoryId: qna?.category?._id
         })
     }, [qna?._id])
+
+    console.log({ boardHook });
 
     return <BoardWrite
         boardHook={boardHook}
