@@ -386,7 +386,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 <span onClick={handleTab(1)} className={tabOnCheck(1)}><a>여행상세설명</a></span>
                 <span onClick={handleTab(2)} className={tabOnCheck(2)}><a>안내 및 참고</a></span>
                 <span onClick={handleTab(3)} className={tabOnCheck(3)}><a >포함 및 불포함</a></span>
-                <span onClick={handleTab(4)} className={tabOnCheck(4)}><a >문의하기</a></span>
+                <span onClick={handleTab(4)} className={tabOnCheck(4)}><a >리뷰</a></span>
+                <span onClick={handleTab(5)} className={tabOnCheck(5)}><a >주의사항</a></span>
+                <span onClick={handleTab(6)} className={tabOnCheck(6)}><a >문의하기</a></span>
               </div>
               {/* 여행상세설명 */}
               <div className="in_box" id="tap__01">
@@ -427,11 +429,26 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                   __html: sanitizeHtml(inOrNor)
                 }} className="text ck-content" />
               </div>
-              <div className="in_box" id="tap__04" >
+              {/* 리뷰 신규추가 */}
+              <div className="in_box" id="tap__04">
+                <h4>리뷰 </h4>
+                <div className="text ck-content">
+                  <div className="review__box">
+                    <ul className="review__box_list">
+                      <li className="review__box_rev">
+                        <div className=""></div>
+                      </li>
+                    </ul>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+              {/* 주의사항 */}
+              <div className="in_box" id="tap__05" >
                 <h4>주의사항</h4>
                 <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(caution) }} className="text" />
               </div>
-              <div className="in_box" id="tap__05">
+              <div className="in_box" id="tap__06">
                 <h4>문의하기</h4>
                 <div className="board_list_mini ln04">
                   <div className="thead">
