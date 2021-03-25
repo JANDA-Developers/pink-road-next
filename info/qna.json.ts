@@ -1,6 +1,6 @@
 const info = {
     subTop_title: {
-        kr: "자주하는질문"
+        kr: "자주하는 질문"
     },
     subTop_desc: {
         kr: ""

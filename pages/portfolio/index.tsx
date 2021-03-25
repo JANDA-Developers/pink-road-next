@@ -106,12 +106,13 @@ export const PortFolio: React.FC<Ipage> = (_pageInfo) => {
                 )}
                 <div className="tap_nav_bg"></div>
 
-                <div className="portfolio_box box01" id="portfolio_box_1">
+                <div className="portfolio_box box01 BGimg__hover" id="portfolio_box_1">
                     <Change change={!getLoading}>
                         <ul>
                             {portfolioes.map((portfolio) =>
                                 <Link key={portfolio._id} href={`/portfolio/view/${portfolio._id}`}>
-                                    <li style={{ backgroundImage: `url(${portfolio.thumb?.uri})` }}>
+                                    <li>
+                                        <div className="BGimg__img" style={{ backgroundImage: `url(${portfolio.thumb?.uri})` }}></div>
                                         <div className="box">
                                             {portfolio?.category && <i className="category">{portfolio.category.label}</i>}
                                             {portfolio?.isOpen || <i className="category">비공개</i>}

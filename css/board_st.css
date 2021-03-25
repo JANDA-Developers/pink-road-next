@@ -2647,6 +2647,9 @@ div.sum_div {
     ul.photo_ul {
         display: flex;
     }
+    .portfolio_in .con02 h4{
+        line-height: 200%;
+    }
 }
 
 @media (min-width:1200px) {
@@ -2667,9 +2670,8 @@ div.sum_div {
         width: 100%;
     }
         ul.list_ul li .box {
-            padding: 0 0 5px;
+            padding: 4px 12px;
         }
-
 
     ul.photo_ul li .img {
         background-size: 150%;

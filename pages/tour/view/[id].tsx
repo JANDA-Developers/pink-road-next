@@ -386,8 +386,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 <span onClick={handleTab(1)} className={tabOnCheck(1)}><a>여행상세설명</a></span>
                 <span onClick={handleTab(2)} className={tabOnCheck(2)}><a>안내 및 참고</a></span>
                 <span onClick={handleTab(3)} className={tabOnCheck(3)}><a >포함 및 불포함</a></span>
-                <span onClick={handleTab(4)} className={tabOnCheck(4)}><a >리뷰</a></span>
-                <span onClick={handleTab(5)} className={tabOnCheck(5)}><a >주의사항</a></span>
+                {/* <span onClick={handleTab(4)} className={tabOnCheck(4)}><a >리뷰</a></span>
+                <span onClick={handleTab(5)} className={tabOnCheck(5)}><a >주의사항</a></span> */}
                 <span onClick={handleTab(6)} className={tabOnCheck(6)}><a >문의하기</a></span>
               </div>
               {/* 여행상세설명 */}
@@ -468,7 +468,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     <Paginater pageInfo={questionPageInfo} isMini setPage={setQuestionPage} />
                     <div className="float_right">
                       <Link href={`/member/question/write?pid=${id}&name=${title}`}>
-                        <a className="mini_btn small">고객센터 문의하기</a>
+                        <a className="mini_btn small">문의하기</a>
                       </Link>
                     </div>
                   </div>
