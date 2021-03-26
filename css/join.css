@@ -167,6 +167,12 @@ height: 41px !important;
 text-align: center;
 line-height: 38px;
 }
+.join__snslink .join__snslink_k i{
+    font-size: 18px;
+}
+.join__snslink .join__snslink_g i{
+    font-size: 15px;
+}
 
 
 .join__snslink_icon{
@@ -188,13 +194,15 @@ width: 60px;
 height: 40px;
 align-items: center;
 text-align: center;
-border-right: 1px solid rgba(255, 255, 255, 0.486);
+border-right: 1px solid #ff9cc5;
 }
 span.join__snslink_txt{
 text-align: right;
 width: 100%;
+padding-left: 15px;
 padding-right: 15px;
 font-weight: 600;
+line-height: 40px !important;
 }
 .login__snslink2{
 position: relative;
