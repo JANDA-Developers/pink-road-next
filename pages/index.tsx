@@ -173,7 +173,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
         </ul>
       </div>
       <div className="main__wave_box">
-        <div className="main__wave"></div>
+        <div className="main__wave4"></div>
       </div>
     </div>
 

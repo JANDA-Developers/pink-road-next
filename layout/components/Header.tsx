@@ -132,20 +132,21 @@ export const Header: React.FC<IProp> = () => {
                             <a>맞춤견적</a>
                         </Link>
                     </li>
-
-                    {!isLogin ? "" :
+                </ul>
+                <ul className="btnList__round">
+                    {isLogin ? "" :
                         <li className="join">
                             <Link href="/member/join">
                                 <a>JOIN</a>
                             </Link>
                         </li>
                     }
-                    <li className="login">
-                        {isLogin ? <a onClick={handleLogOut}>LOGOUT</a>
-                            : <Link href="/login">
-                                <a>LOGIN</a>
-                            </Link>}
-                    </li>
+                    {isLogin ? <li className="logout">
+                        <a onClick={handleLogOut}>LOGOUT</a>
+                    </li> : <li className="login"> <Link href="/login">
+                        <a>LOGIN</a>
+                    </Link>
+                    </li>}
 
                 </ul>
             </div>
