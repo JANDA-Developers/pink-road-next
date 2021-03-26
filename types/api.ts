@@ -9512,7 +9512,7 @@ export interface verificationStart_VerificationStart {
 
 export interface verificationStart {
   /**
-   * 인증 요청을 하는 함수, 이메일 또는 핸드폰으로 인증번호를 발신하고 인증 테이블에 요청 추가함
+   * 인증 요청을 하는 함수, 이메일 또는 휴대폰으로 인증번호를 발신하고 인증 테이블에 요청 추가함
    */
   VerificationStart: verificationStart_VerificationStart;
 }

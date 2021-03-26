@@ -353,25 +353,25 @@ export const Header: React.FC<IProp> = () => {
 
                                     </ul>
                                 </li>}
-                            {isManager &&
-                                <li className="a_menu_tit deps">
-                                    <Link href="/login"><a>Member<i className="jandaicon-arr4-right"></i></a></Link>
-                                    <ul className="depth1">
-                                        <li><Link href="/login"><a>로그인</a></Link></li>
-                                        <li><Link href="/member/join"><a>회원가입</a></Link></li>
-                                        <li><Link href="/findmembers"><a>아이디/비번 찾기</a></Link></li>
-                                        <li><Link href="/search"><a>통합검색</a></Link></li>
-                                        <li><Link href="/member/rule"><a>이용약관</a></Link></li>
-                                        <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
-                                        <li><Link href="/member/electron-terms"><a>전자상거래이용약관</a></Link></li>
-                                        <li><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
-                                        <li><Link href="/member/question"><a>고객문의</a></Link></li>
-                                        <li><Link href="/member/announce"><a>공지사항</a></Link></li>
-                                        <li><Link href="/member/qna"><a>자주하는 질문</a></Link></li>
-                                        <li><Link href="/customquotation"><a>맞춤견적</a></Link></li>
-                                        <li><Link href="/member/anonyMemberFindBook"><a>비회원 예약조회</a></Link></li>
-                                    </ul>
-                                </li>}
+
+                            <li className="a_menu_tit deps">
+                                <Link href="/login"><a>Member<i className="jandaicon-arr4-right"></i></a></Link>
+                                <ul className="depth1">
+                                    <li><Link href="/login"><a>로그인</a></Link></li>
+                                    <li><Link href="/member/join"><a>회원가입</a></Link></li>
+                                    <li><Link href="/findmembers"><a>아이디/비번 찾기</a></Link></li>
+                                    <li><Link href="/search"><a>통합검색</a></Link></li>
+                                    <li><Link href="/member/rule"><a>이용약관</a></Link></li>
+                                    <li><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
+                                    <li><Link href="/member/electron-terms"><a>전자상거래이용약관</a></Link></li>
+                                    <li><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
+                                    <li><Link href="/member/question"><a>고객문의</a></Link></li>
+                                    <li><Link href="/member/announce"><a>공지사항</a></Link></li>
+                                    <li><Link href="/member/qna"><a>자주하는 질문</a></Link></li>
+                                    <li><Link href="/customquotation"><a>맞춤견적</a></Link></li>
+                                    <li><Link href="/member/anonyMemberFindBook"><a>비회원 예약조회</a></Link></li>
+                                </ul>
+                            </li>
                         </ul>
                         <button className="btn_all_close" onClick={handleAllClose}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.15 26.15">

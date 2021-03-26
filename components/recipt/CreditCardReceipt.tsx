@@ -125,7 +125,7 @@ const CardRecipt = ({ tables }: IProps): JSX.Element => {
                             alt="info"
                             style={{ verticalAlign: 'text-top', width: '14px' }}
                           />{' '}
-                          신용카드 청구서에는 "잔다"로 표기됩니다.
+                          신용카드 청구서에는 "핑크로더"로 표기됩니다.
                         </div>
                         <div
                           style={{

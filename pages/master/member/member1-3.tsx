@@ -240,7 +240,7 @@ export const MsMemberC: React.FC<IProp> = () => {
                                         <div className="td01"><span>김홍이</span></div>
                                         <div className="th02">아이디</div>
                                         <div className="td02"><a href="mailto:gggg@naver.com">gggg@naver.com</a></div>
-                                        <div className="th03">핸드폰</div>
+                                        <div className="th03">휴대폰</div>
                                         <div className="td03"><input type="text" className="w100" /></div>
                                         <div className="th04">가입방법</div>
                                         <div className="td04">

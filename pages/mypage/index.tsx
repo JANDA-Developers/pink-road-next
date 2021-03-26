@@ -412,7 +412,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 {isSeller && <div className="box2">
                     <div className="box_left">
                         <div className="title">
-                            <h5>{isPartnerB ? "기업정보" : "개인파트너정보"}</h5>
+                            <h5>{isPartnerB ? "정보" : "정보"}</h5>
                         </div>
                     </div>
                     <div className="box_right">
@@ -503,7 +503,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                         변경
                                     </button>
                                 </div>
-                                {/* 변경시 변경아이콘 눌러 popup띄워서 핸드폰번호 인증절차 거치게됨 */}
+                                {/* 변경시 변경아이콘 눌러 popup띄워서 휴대폰번호 인증절차 거치게됨 */}
                             </li>
                             <li>
                                 <div className="title">사업자등록증</div>
@@ -618,7 +618,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-        <Modal id="phoneVerifiModal" title="핸드폰 번호 인증">
+        <Modal id="phoneVerifiModal" title="휴대폰 번호 인증">
             <div className="title">인증코드</div>
             <input placeholder="인증코드" value={code} onChange={(e) => {
                 setCode(e.currentTarget.value)
@@ -630,8 +630,8 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 인증번호 발송
             </button>
         </Modal>
-        <Modal id="phoneChangeModal" title="핸드폰 번호 변경">
-            <input placeholder="변경할 핸드폰 번호" value={nextPhoneNum} onChange={(e) => {
+        <Modal id="phoneChangeModal" title="휴대폰 번호 변경">
+            <input placeholder="변경할 휴대폰 번호" value={nextPhoneNum} onChange={(e) => {
                 setNextPhoneNum(e.currentTarget.value);
             }} />
             <input placeholder="비밀번호" value={pw} onChange={(e) => {

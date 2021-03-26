@@ -17,7 +17,7 @@ interface IProp {
 
 export const VerifiEamilModal: React.FC<IProp> = ({ defaultPayload, target = VerificationTarget.EMAIL, verifiHook, onSuccess, duplicateCheck, id }) => {
     const isEmailVerifi = target === VerificationTarget.EMAIL;
-    const targetName = isEmailVerifi ? `이메일` : "핸드폰번호";
+    const targetName = isEmailVerifi ? `이메일` : "휴대폰번호";
 
     const [payload, setPayload] = useState(defaultPayload || "")
     const [code, setCode] = useState("")
@@ -61,7 +61,7 @@ export const VerifiEamilModal: React.FC<IProp> = ({ defaultPayload, target = Ver
             payload: payload,
         }).then(({ ok }) => {
             if (ok) {
-                alert(`인증이 코드가 ${isEmailVerifi ? "이메일로" : "핸드폰으로"} 전송 되었습니다.`);
+                alert(`인증이 코드가 ${isEmailVerifi ? "이메일로" : "휴대폰으로"} 전송 되었습니다.`);
                 setSendEmailCount(sendEmailCount + 1)
             } else {
                 alert("인증번호 발송이 실패 했습니다.")

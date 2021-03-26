@@ -416,7 +416,7 @@
 
     .main_con_box4 .top_txt {
         text-align: center;
-        background-color: #ffffff;
+        background-color: #ed297b;
         display: block;
         width: 100%;
         height: 100%;
@@ -427,7 +427,7 @@
 
 
         .main_con_box4 .top_txt h2 {
-            color: #333333;
+            color: #ffffff;
             font-weight: 500;
             font-size: 54px;
             line-height: 100%;
@@ -438,7 +438,7 @@
         }
         .main_con_box4 .top_txt .txt {
             font-size: 16px;
-            color: #333333;
+            color: #ffffff;
             font-weight: 400;
             line-height: 38px;
         }
@@ -455,8 +455,8 @@
 
             .main_con_box4 .top_txt .btn_list a {
                 padding: 5px 15px;
-                border: 1px solid #333333;
-                color: #333333;
+                border: 1px solid #ffffff;
+                color: #ffffff;
                 font-size: 16px;
                 border-radius: 100px;
             }
@@ -472,7 +472,7 @@
         .main_con_box4 .top_txt svg {
             width: 73px;
             display: inline-block;
-            fill: #333333;
+            fill: #ffffff;
         }
 
     .main_con_box4 .photo_box {
@@ -2691,6 +2691,65 @@ ul.rank_ul {
     font-weight: 600;
     font-size: 0.9em;
 }
+
+.login__snslink2{
+    position: relative;
+    display: block;
+    margin-top: 15px;
+    }
+    
+    .login__snslink2 li{
+    position: relative;
+    display: block;
+    line-height: 40px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgb(201 201 201);
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 5px;  
+    opacity: 0.5;
+    }
+    .login__snslink2 li:hover{
+    opacity:1;
+    }
+    .login__snslink2 a{
+    position: relative;
+    display: flex;
+    }
+    .login__snslink2 span{
+    display: inline-block !important;
+    }
+    
+    
+    .login__snslink2_icon{
+    font-size: 1.4em;
+    }
+    .login__snslink2_g .login__snslink2_icon{
+    font-size: 1.2em;
+    }
+    .login__snslink2_n .login__snslink2_icon i{
+    background-image: url(/img/svg/icon-naver-b.svg);
+    background-size: 13px;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    width: 51px;
+    height: 41px;
+    }
+    .login__snslink2_icon{
+    width: 60px;
+    height: 40px;
+    align-items: center;
+    text-align: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    span.login__snslink2_txt{
+    text-align: right;
+    width: 100%;
+    padding-right: 15px;
+    font-weight: 600;
+    }
 /* siteInfo_ */
 
 .siteInfo_in {
@@ -5139,7 +5198,7 @@ div.bn_box {
             color: #757575;
         }
 
-        .join_wrap2 .choice_box ul {
+        .join_wrap2 .choice_box .choice__link {
             position: relative;
             display: block;
             width: 100%;
@@ -5148,7 +5207,7 @@ div.bn_box {
             margin-bottom: 20px;
         }
 
-        .join_wrap2 .choice_box li {
+        .join_wrap2 .choice_box .choice__link > li {
             position: relative;
             display: inline-block;
             width: 90%;
@@ -5162,14 +5221,28 @@ div.bn_box {
              margin-bottom: 10px;
         }
 
-            .join_wrap2 .choice_box li strong {
+            .join_wrap2 .choice_box .choice__link > li strong {
                 display: block;
                 font-size: 22px;
                 text-align: left;
-                color: #ffe3ef;
+                color: #ffffff;
+            }
+            .join_wrap2 .nomal_join_btn {
+                display: block;
+                cursor: pointer;
+                font-size: 12px;
+                font-weight: 600;
+                padding: 5px 12px;
+                line-height: 18px;
+                text-align: center;
+                border-radius: 3px;
+                border: 1px solid #ffffff;
+                background-color: #ffffff;
+                color: #ff9cc5;
+                margin-top: 9px;
             }
 
-            .join_wrap2 .choice_box li span {
+            .join_wrap2 .choice_box .choice__link > li span {
                 display: block;
                 text-align: left;
                 font-size: 13px;
@@ -5177,7 +5250,7 @@ div.bn_box {
                 color: #ffd0e4;
             }
 
-            .join_wrap2 .choice_box li.li01 {
+            .join_wrap2 .choice_box .choice__link > li.li01 {
                 width: 90%;
                 padding-top: 50px;
                 box-sizing: border-box;
@@ -5187,20 +5260,20 @@ div.bn_box {
            
             }
 
-                .join_wrap2 .choice_box li.li01 strong {
-                    text-align: center;
+                .join_wrap2 .choice_box .choice__linkhoice__link > li.li01 strong {
+                    text-align: left;
                     font-size: 33px;
                     color: #c42669;
                 }
 
-                .join_wrap2 .choice_box li.li01 span {
-                    text-align: center;
+                .join_wrap2 .choice_box .choice__link > li.li01 .txt {
+                    text-align: left;
                     font-size: 13px;
                     line-height: 19px;
-                    color: #b24573;
+                    color: #ffeff5;
                 }
 
-                .join_wrap2 .choice_box li.li01 i {
+                .join_wrap2 .choice_box .choice__link > li.li01 i {
                     width: 187px;
                     display: inline-block;
                     position: absolute;
@@ -5385,7 +5458,7 @@ div.bn_box {
         margin-right: 0px;
     }
     .join_wrap2 select.mr5 {
-        margin-right: 5px !important;
+        margin-right: 4px !important;
     }
     .join_wrap2 .country_check {
         margin-left: -10px !important;
@@ -5397,7 +5470,7 @@ div.bn_box {
         margin-left: -10px !important;
     }
     .join_wrap2 .gender_check li {
-        line-height: 40px !important;
+        line-height: 38px !important;
     }
 
     .join_wrap2 .upload_out_box {
@@ -5424,10 +5497,14 @@ div.bn_box {
         border: 1px solid #d2d2d2;
     }
 
+    .join_wrap2 input.w80 {
+        width: 89%;
+    }
+
     .join_wrap2 .btn_mini {
-        height: 41.7px !important;
+        height: 42px !important;
         width: auto !important;
-        padding: 8px 15px !important;
+        padding: 0px 15px !important;
         background-color: #c4c4c417 !important;
         color: #7a7a7a !important;
         border: 1px solid #c4c4c4 !important;
@@ -5435,6 +5512,7 @@ div.bn_box {
         border-radius: 5px !important;
         font-weight: 600;
         margin-left: 5px;
+        vertical-align: bottom;
     }
 
         .join_wrap2 .btn_mini:hover {
@@ -5494,7 +5572,7 @@ div.bn_box {
         color: #ffd4e6 !important;
         font-weight: 600 !important;
         box-shadow: 0 3px 0px #dd1c6c !important;
-        font-size: 16px !important;
+        font-size: 17px !important;
         padding: 16px 13px 12px !important;
     }
 
@@ -5509,7 +5587,7 @@ div.bn_box {
         border-color: #cccccc !important;
         font-weight: 600 !important;
         box-shadow: 0 3px 0px #ccc !important;
-        font-size: 16px !important;
+        font-size: 17px !important;
         padding: 16px 13px 12px !important;
     }
 
@@ -8006,7 +8084,7 @@ i.calendar {
             overflow: hidden;
         }
 
-            .portfolio_in .con04 .portfolio_box ul li:before {
+            /* .portfolio_in .con04 .portfolio_box ul li:before {
                 position: absolute;
                 top: 100%;
                 left: 0;
@@ -8017,7 +8095,7 @@ i.calendar {
                 width: 100%;
                 height: 100%;
                 transition: all 0.4s ease-out;
-            }
+            } */
 
             .portfolio_in .con04 .portfolio_box ul li:hover:before {
                 top: 0;
@@ -8034,6 +8112,7 @@ i.calendar {
         text-align: center;
         justify-content: center;
         align-items: center;
+        background-color: rgb(0 0 0 / 80%);
     }
 
     .portfolio_in .con04 .portfolio_box li:hover .box {
@@ -8897,9 +8976,21 @@ i.calendar {
 ul.photo_ul.main_photo_ul li .title {
     margin-bottom: 3px;
 }
+.product__statusIcon{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: inline-block;
+    padding: 3px 5px;
+    box-sizing: border-box;
+    border: 1px solid #000000;
+    background-color: rgb(0 0 0 / 1);
+    color: #ffffff; 
+    font-size: 13px;
+    text-indent: 0;
+}
 @media (min-width: 768px) {   
     .main_con_box4 .top_txt{
-        background-color: #ffffff;
         display: block;
         text-align: center;
         padding: 100px 0 30px;
@@ -8909,11 +9000,9 @@ ul.photo_ul.main_photo_ul li .title {
         margin-top: 31px;
     }
     .main_con_box4 .top_txt svg{
-        fill: #333333;
         width: 82px;
     }
     .main_con_box4 .top_txt h2 {
-        color: #333333;
         font-weight: 500;
         font-size: 5em;
         text-align: center;
@@ -8923,13 +9012,10 @@ ul.photo_ul.main_photo_ul li .title {
     }
     .main_con_box4 .top_txt .btn_list a {
         padding: 5px 15px;
-        border: 1px solid #333333;
-        color: #333333;
         font-size: 16px;
         border-radius: 100px;
     }
     .main_con_box4 .top_txt .txt{
-        color: #333333;
     }    
     .main_con_box4 {
         padding: 50px 3% 210px;
@@ -9482,8 +9568,7 @@ ul.photo_ul.main_photo_ul li .title {
         padding: 160px 3% 300px;
     }
     .main_con_box4 .top_txt{
-        padding: 20px;
-        border: 10px #333 solid;
+        padding: 20px 46px;
     }
     .main_con_box4 .top_txt .txt{
         text-align: left;
@@ -10203,15 +10288,15 @@ ul.photo_ul.main_photo_ul li .title {
         padding: 100px 50px;
         margin-bottom: 20px;
     }
-    .join_wrap2 .choice_box li {
+    .join_wrap2 .choice_box .choice__link > li {
         width: 34.6%;
         padding: 30px 40px;
         border-radius: 10px;
     }
-    .join_wrap2 .choice_box li.li02 {
+    .join_wrap2 .choice_box .choice__link > li.li02 {
         margin-right: 5px;
     }
-    .join_wrap2 .choice_box li.li01 {
+    .join_wrap2 .choice_box .choice__link > li.li01 {
         width: 70%;
         text-align: center;
         /* min-height: 250px; */
@@ -10684,7 +10769,7 @@ ul.photo_ul.main_photo_ul li .title {
 
     .siteInfo_in .top_bg {
         height: 692px;
-        padding: 279px 0 0;
+        padding: 250px 0 0;
         background-position: center;
         background-size: 105%;
     }
@@ -11013,7 +11098,7 @@ ul.photo_ul.main_photo_ul li .title {
 
     .siteInfo_in .top_bg {
         height: 700px;
-        padding: 236px 0 0;
+        padding: 250px 0 0;
         background-position: bottom 60%;
         background-size: 105%;
     }

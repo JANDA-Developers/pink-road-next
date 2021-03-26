@@ -42,7 +42,7 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
             return;
         }
         if (!info.phoneNumber) {
-            alert("핸드폰 번호를 입력해 주세요.");
+            alert("휴대폰 번호를 입력해 주세요.");
             return;
         }
         getData({ variables: { name: info.name, phoneNumber: info.phoneNumber } })
@@ -98,7 +98,7 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
                             setInfo({ ...info })
                         }} value={autoHypenPhone(info.phoneNumber)} type="text" placeholder="가입시 입력한 휴대폰번호번호를 입력해 주세요." /></div>
                         <div className="certification_sec ">
-                            <button onClick={openModal("#emailVerifi")} className="btn mr20">인증받기</button>
+                            <button onClick={openModal("#emailVerifi")} className="btn mr20">인증하기</button>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
                     <dd>
                         <ul className="bul_list">
                             <li><span className="dot_arr">혹시, 스팸 문자함에 임시비밀번호가 발급된 문자가 있는지 확인해 주세요.</span></li>
-                            <li><span className="dot_arr">혹시, 핸드폰이 통신 불가능 아닌지 비행기모드가 아닌지 확인해 주세요.</span></li>
+                            <li><span className="dot_arr">혹시, 휴대폰이 통신 불가능 아닌지 비행기모드가 아닌지 확인해 주세요.</span></li>
                             <li><span className="dot_arr">임시비밀번호로 로그인 후 정보수정에서 비밀번호를 변경하시기 바랍니다.</span></li>
                             <li><span className="dot_arr">기타문의 사항은 고객센터 문의하기 게시판을 이용해주시기 바랍니다.</span></li>
                         </ul>

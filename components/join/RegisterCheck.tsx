@@ -169,7 +169,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo, phoneNumberHack }) => {
     },
     // {
     //   value: isPhone(registerInfo.phoneNumber || ""),
-    //   failMsg: "올바른 핸드폰 번호가 아닙니다.",
+    //   failMsg: "올바른 휴대폰 번호가 아닙니다.",
     //   id: "PhoneNumberInput"
     // },
     ...sharedValidate

@@ -60,11 +60,12 @@ export const TourMainBoard: React.FC<IProp> = ({ cat, group }) => {
                     <li className="tourMianListUl__li list_in" >
                         <div className="tourMianListUl__imgWrap img">
                             <div className="tourMianListUl__img" style={BG(data.images?.[0]?.uri || "")}>상품이미지</div>
+                            <span className="product__statusIcon">{productStatus(data.status)}</span>
                         </div>
                         <div className="box">
                             <div className="category">
                                 <span className="category__cat">{data.category?.label}</span>
-                                <span>{productStatus(data.status)}</span>
+
                             </div>
                             <div className="title">{data.title}</div>
                             <div className="bottom_txt">

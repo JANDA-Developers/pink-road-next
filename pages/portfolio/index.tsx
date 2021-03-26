@@ -15,7 +15,7 @@ export const PortFolio: React.FC<Ipage> = (_pageInfo) => {
     const { isManager, categoriesMap } = useContext(AppContext);
     const editTools = usePageEdit(_pageInfo, defaultPageInfo);
 
-    const { items: portfolioes, getLoading, setPage, pageInfo, setFilter, filter } = usePortfolioList({ initialPageIndex: 1, initialViewCount: 8, initialFilter: { isOpen_eq: isManager ? undefined : true } })
+    const { items: portfolioes, getLoading, setPage, pageInfo, setFilter, filter } = usePortfolioList({ initialPageIndex: 1, initialViewCount: 12, initialFilter: { isOpen_eq: isManager ? undefined : true } })
     const { edit, imgKit } = editTools;
 
 
