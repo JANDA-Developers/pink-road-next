@@ -81,6 +81,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
             }
           }
         }}
+        accessibility={false}
         ref={sliderRef}
         key={"slider"}
         autoplay={currentSlide !== 0}

@@ -11,6 +11,7 @@ import { ALLOW_ADMINS } from '../../../types/const';
 import { auth } from '../../../utils/with';
 import { useUpdate } from '../../../hook/useUpdater';
 import { useCopy } from '../../../hook/useUpdate';
+import { DesignTopNav } from '../../../components/topNav/MasterTopNav';
 
 interface IProp { }
 
@@ -40,14 +41,15 @@ export const MsDesignA: React.FC<IProp> = () => {
         <div className="in ">
             <h4>디자인 설정</h4>
             <div className="in_content">
-                <div className="tab-nav">
+                <DesignTopNav />
+                {/* <div className="tab-nav">
                     <ul>
                         <li><Link href="/master/design"><a>기본설정</a></Link></li>
                         <li className="on"><Link href="/master/design/banner"><a>배너관리</a></Link></li>
                         <li><Link href="/master/design/popup"><a>팝업관리</a></Link></li>
                         <li><Link href="/master/design/display"><a>노출상품관리</a></Link></li>
                     </ul>
-                </div>
+                </div> */}
                 <div className="con design banner_setting">
                     <div className="fin">
                         <div className="float_left">

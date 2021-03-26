@@ -36,6 +36,7 @@ import { Change } from "../../../components/loadingList/LoadingList";
 import OnImagesLoaded from "../../../components/onImageLoad/OnImageLoad";
 import { useImgLoading } from "../../../hook/useImgLoading";
 import { getFromUrl } from "../../../utils/url";
+import { PageEditor } from "../../../components/common/PageEditer";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -206,6 +207,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   return <div className="edtiorView">
     {!loaded && <PageLoading />}
     <OnImagesLoaded delay={5000} onLoaded={handleLoaded} >
+      <PageEditor pageTools={pageTools} />
       <SubTopNav
         pageTools={pageTools}
         children={

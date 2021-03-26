@@ -1,35 +1,28 @@
 import Link from 'next/link'
 import React, { useContext } from 'react'
 import { PolicyTopNav } from '../../components/policyTopNav/PolicyTopNav'
+import { usePageEdit } from '../../hook/usePageEdit';
+import SubTopNav from '../../layout/components/SubTop';
+import { getStaticPageInfo, Ipage } from '../../utils/page';
 import { AppContext } from '../_app';
+import defaultPageInfo from "../../info/refundPolicy.json"
 
-const refundPolicy = () => {
+export const getStaticProps = getStaticPageInfo("refundPolicy");
+const refundPolicy: React.FC<Ipage> = (pageInfo) => {
     const { homepage } = useContext(AppContext);
+    const pageTools = usePageEdit(pageInfo, defaultPageInfo)
     return (
         <div>
-            <div className="top_visual">
-                <div
-                    className="sub_header sub_bg"
-                    style={{ backgroundImage: `url(/img/pr_img_06.jpg)` }}
-                >
-                    <div className="w1200">
-                        <h2 className="title">취소 및 환불 정책</h2>
-                        {/*<p className="text">지금 여행을 떠나세요~!~~!!!!!</p>*/}
-                    </div>
-                </div>
-                <div className="header_nav">
-                    <ul>
-                        <li className="home">
-                            <Link href="/">
-                                <a />
-                            </Link>
-                        </li>
-                        <li className="homedeps1">
-                            <a href="/refund-policy">취소 및 환불 정책</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <SubTopNav pageTools={pageTools}>
+                <li className="home">
+                    <Link href="/">
+                        <a />
+                    </Link>
+                </li>
+                <li className="homedeps1">
+                    <a href="/refund-policy">취소 및 환불 정책</a>
+                </li>
+            </SubTopNav>
 
             <div className="privacy_box w1200">
                 <PolicyTopNav />

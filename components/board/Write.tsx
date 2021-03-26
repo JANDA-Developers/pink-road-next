@@ -109,7 +109,8 @@ export const BoardWrite: React.FC<IProps> = ({
         <div className={`writing_in w100 board_write ${className}`}>
             <div className="w1200">
                 <div className="write_box">
-                    {opens.category && <div className="write_type">
+                    {
+                    opens.category && <div className="write_type">
                         <div className="title">카테고리</div>
                         <div className="input_form">
                             <span id="category" className="category r3">

@@ -11,11 +11,8 @@ import { Validater } from "../utils/validate";
 import { useUpload } from "./useUpload";
 import { autoComma, deepCopy } from "../utils/formatter";
 import { useProductCreate, useProductDelete, useProductUpdate } from "./useProduct";
-import { useMutation } from "@apollo/client";
-import { PRODUCTS_CREATE } from "../apollo/gql/product";
 import { useRouter } from "next/router";
 import { ProductTempBoard } from "../utils/Storage2";
-import { generateRandomStringCode } from "../utils/codeGenerator";
 import { openModal } from "../utils/popUp";
 
 type SimpleTypePart = "isOpen" | "title" | "address" | "adult_price" | "baby_price" | "kids_price" | "startPoint" | "maxMember" | "minMember" | "subTitle" | "caution" | "info" | "contents" | "inOrNor" | "isNotice"
@@ -340,7 +337,6 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         thumbs.splice(index, 1);
         setThumbs([...thumbs])
     }
-
 
     const setTourData = (data: Partial<IUseTourData>) => {
         if (data.categoryId)

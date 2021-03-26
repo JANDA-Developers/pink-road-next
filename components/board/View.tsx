@@ -78,7 +78,6 @@ export const BoardView: React.FC<IProps> = (data) => {
                     </div>
                 </div>
                 <div className="in_box">
-
                     {/*본문시작*/}
                     {subTitle && subTitle}
                     <br /><br />

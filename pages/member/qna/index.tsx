@@ -14,6 +14,7 @@ import { Change } from '../../../components/loadingList/LoadingList';
 import { generateClientPaging } from '../../../utils/generateClientPaging';
 import { Paginater } from '../../../components/common/Paginator';
 import { Prompt } from '../../../components/promptModal/Prompt';
+import { PageEditor } from '../../../components/common/PageEditer';
 
 
 export const getStaticProps = getStaticPageInfo("qna");
@@ -62,6 +63,7 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                 <Link href="/member/qna"><a>자주하는 질문</a></Link>
             </li>
         </SubTopNav>
+        <PageEditor pageTools={pageTools} />
         <div className="qna_box w1200">
             <MemberTopNav />
             <div className="board_qna board_box">

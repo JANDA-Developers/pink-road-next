@@ -8,6 +8,7 @@ import { omits } from '../../../utils/omit';
 import { cloneObject } from '../../../utils/clone';
 import { ALLOW_ADMINS } from '../../../types/const';
 import { auth } from '../../../utils/with';
+import { DesignTopNav } from '../../../components/topNav/MasterTopNav';
 
 interface IProp { }
 
@@ -56,14 +57,7 @@ export const MsDesignMain: React.FC<IProp> = () => {
         <div className="in ">
             <h4>디자인 설정</h4>
             <div className="in_content">
-                <div className="tab-nav">
-                    <ul>
-                        {/* <li className="on"><Link href="/master/design"><a>기본설정</a></Link></li> */}
-                        <li><Link href="/master/design/banner"><a>배너관리</a></Link></li>
-                        <li><Link href="/master/design/popup"><a>팝업관리</a></Link></li>
-                        <li><Link href="/master/design/display"><a>노출상품관리</a></Link></li>
-                    </ul>
-                </div>
+                <DesignTopNav />
                 <div className="con design">
                     <div className="fin">
                         <div className="float_left">

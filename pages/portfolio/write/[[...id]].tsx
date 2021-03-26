@@ -20,7 +20,6 @@ export const PortFolioWrite: React.FC<IProps> = () => {
     const { categoriesMap } = useContext(AppContext);
     const mode = id ? "edit" : "create";
 
-
     const categoryList = categoriesMap?.PORTPOLIO.map((cat): TCategory => ({
         _id: cat._id,
         label: cat.label
@@ -76,7 +75,6 @@ export const PortFolioWrite: React.FC<IProps> = () => {
                 }
             })
     }
-
 
     const handleDelete = () => {
         deleteMu({

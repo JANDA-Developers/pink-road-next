@@ -21,6 +21,7 @@ import { LockIcon } from '../../../components/common/icon/LockIcon';
 import dayjs from 'dayjs';
 import { AppContext } from '../../_app';
 import { Prompt } from '../../../components/promptModal/Prompt';
+import { PageEditor } from '../../../components/common/PageEditer';
 
 
 export const getStaticProps = getStaticPageInfo("question")
@@ -66,6 +67,7 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                 <Link href="/member/question"><a>고객문의</a></Link>
             </li>
         </SubTopNav>
+        <PageEditor pageTools={pageTool} />
         <div className="question_box w1200">
             <MemberTopNav />
             <div className="board_box">

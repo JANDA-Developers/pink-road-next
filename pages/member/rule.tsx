@@ -1,36 +1,32 @@
 import React, { useContext } from 'react';
 import SubTopNav from 'layout/components/SubTop';
 import Link from 'next/link';
+import defaultRuleInfo from "../../info/rule.json"
 import { AppContext } from '../_app';
 import { PolicyTopNav } from '../../components/policyTopNav/PolicyTopNav';
+import { getStaticPageInfo, Ipage } from '../../utils/page';
+import { usePageEdit } from '../../hook/usePageEdit';
+import { PageEditor } from '../../components/common/PageEditer';
 
-interface IProp { }
+interface IProp {
+}
 
-export const Rule: React.FC<IProp> = () => {
+export const getStaticProps = getStaticPageInfo("ruleJson");
+export const Rule: React.FC<Ipage> = (pageInfo) => {
+    const pageTools = usePageEdit(pageInfo, defaultRuleInfo);
     const { homepage } = useContext(AppContext);
     return <div>
         <div className="top_visual">
-            <div
-                className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/pr_img_01.jpg)` }}
-            >
-                <div className="w1200">
-                    <h2 className="title">이용약관</h2>
-                    {/*<p className="text">지금 여행을 떠나세요~!~~!!!!!</p>*/}
-                </div>
-            </div>
-            <div className="header_nav">
-                <ul>
-                    <li className="home">
-                        <a href="/index"></a>
-                    </li>
-                    <li className="homedeps1">
-                        <a href="/rule">이용약관</a>
-                    </li>
-                </ul>
-            </div>
+            <SubTopNav pageTools={pageTools} >
+                <li className="home">
+                    <a href="/index"></a>
+                </li>
+                <li className="homedeps1">
+                    <a href="/rule">이용약관</a>
+                </li>
+            </SubTopNav>
         </div>
-
+        <PageEditor pageTools={pageTools} />
         <div className="rule_box w1200">
             <PolicyTopNav />
             <div dangerouslySetInnerHTML={{ __html: homepage?.usePolicy || "" }} />

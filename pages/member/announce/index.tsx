@@ -20,6 +20,7 @@ import { useRouter } from 'next/router';
 import { AppContext } from '../../_app';
 import { AnnotationBadge } from '../../../components/Status/StatusBadge';
 import { Change } from '../../../components/loadingList/LoadingList';
+import { PageEditor } from '../../../components/common/PageEditer';
 
 export const getStaticProps = getStaticPageInfo("announce");
 export const Announce: React.FC<Ipage> = (page) => {
@@ -53,6 +54,7 @@ export const Announce: React.FC<Ipage> = (page) => {
                 <Link href="/member/announce"><a>공지사항</a></Link>
             </li>
         </SubTopNav>
+        <PageEditor pageTools={pageTools} />
         <div className="announce_box w1200">
             <MemberTopNav />
             <div className="board_box">

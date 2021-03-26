@@ -14,7 +14,9 @@ import { autoComma, autoHypenPhone } from '../../utils/formatter';
 import dayjs from "dayjs";
 import { determinedKr, productStatus } from '../../utils/enumToKr';
 import { yyyymmddHHmm } from '../../utils/yyyymmdd';
+import SubTopNav from '../../layout/components/SubTop';
 
+export const getStaticProps = getStaticPageInfo("anonymouseFindBook");
 export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
     const verifiHook = useVerification();
@@ -46,27 +48,15 @@ export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
     }
 
     return <div className="body AnonymouseFindBook" id="AnonymouseFindBook" >
-        <div className="top_visual">
-            <div
-                className="sub_header sub_bg"
-                style={{ backgroundImage: `url(/img/pr_img_02.jpg)` }}
-            >
-                <div className="w1200">
-                    <h2 className="title">비회원 예약조회</h2>
-                </div>
-            </div>
-            <div className="header_nav">
-                <ul>
-                    <li className="home">
-                        <a href="/index"></a>
-                    </li>
-                    <li className="homedeps1">Member</li>
-                    <li className="homedeps2">
-                        <a href="/">비회원 예약조회</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <SubTopNav pageTools={pageTools}>
+            <li className="home">
+                <a href="/"></a>
+            </li>
+            <li className="homedeps1">Member</li>
+            <li className="homedeps2">
+                <a href="/anonymouseFindBook">비회원 예약조회</a>
+            </li>
+        </SubTopNav>
         <div className="w1200 con_box">
             <h3>비회원 예약 조회하기</h3>
             <span>
@@ -169,5 +159,4 @@ export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
     </div >
 };
 
-export const getStaticProps = getStaticPageInfo("anonymouseFindBook");
 export default AnonymouseFindBook;

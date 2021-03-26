@@ -12,6 +12,7 @@ import { usePageEdit } from '../../hook/usePageEdit';
 import { useHomepage } from '../../hook/useHomepage';
 import { useGroupList } from '../../hook/useGroup';
 import isEmpty from '../../utils/isEmpty';
+import { PageEditor } from '../../components/common/PageEditer';
 
 interface IProp extends InferGetStaticPropsType<typeof getStaticProps> { }
 
@@ -46,6 +47,7 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
                 }
             </li>
         </SubTopNav>
+        <PageEditor pageTools={pageTools} />
         <div className="goods_box">
             <div className="w1200">
                 <div className="banner bn_box line2">

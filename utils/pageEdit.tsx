@@ -46,6 +46,23 @@ const keyDownUlManage = (e: any,) => {
 }
 
 
+function remove_tags(html: string) {
+    return html;
+    // if(typeof window === undefined) return html;
+    // var html = html.replace("<br>", "||br||");
+    // var tmp = document.createElement("DIV");
+    // tmp.innerHTML = html;
+    // html = tmp.textContent || tmp.innerText;
+    // return html.replace("||br||", "<br>");
+}
+
+export const stripInlineStyle = (str: string): string => {
+    const inlineStyleRegex = new RegExp(/style="[^\"]*"/gi);
+    const replaced = str.replace(inlineStyleRegex, "");
+    console.log({ replaced });
+    return replaced;
+}
+
 
 
 type TCommand = "bold"
@@ -221,7 +238,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         const html = index === undefined ? page[key][lang] : page[key][lang][index];
         return {
             dangerouslySetInnerHTML: {
-                __html: html
+                __html: stripInlineStyle(html)
             }
         }
     }

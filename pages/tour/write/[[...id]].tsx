@@ -29,6 +29,7 @@ import { openModal } from "../../../utils/popUp";
 import { LocalStorageBoard } from "../../../components/localStorageBoard/LocalStorageBoard";
 import dayjs from "dayjs";
 import { checkIsExp } from "../../../utils/product";
+import { PageEditor } from "../../../components/common/PageEditer";
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
@@ -232,6 +233,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 </li>
             </>
         } />
+        <PageEditor pageTools={pageTools} />
         <div className="w1200 con_bottom">
             <div className="write_box">
                 {product && <h3 className="write_top_tag">{productStatus(product.status)}</h3>}
