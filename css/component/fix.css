@@ -324,3 +324,12 @@ background-color: #fff;
 .viewWithComment__commentBox {
     margin-bottom:  100px!important;
 }
+
+
+.dragger__dargLi {
+    padding: 0px!important;
+    margin: 0px!important;
+    border:none!important
+
+
+}

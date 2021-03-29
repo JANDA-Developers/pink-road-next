@@ -9,6 +9,7 @@ import { AdditionFeePolicyBlock } from '../../../components/feePolicyBlock/Addit
 import { cloneObject } from '../../../utils/clone';
 import { ALLOW_ADMINS } from '../../../types/const';
 import { auth } from '../../../utils/with';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 interface IProp { }
 
@@ -48,6 +49,18 @@ export const MsHomepageA: React.FC<IProp> = () => {
     const handleAddtionFeeChange = (addtionFee: AddtionalFeesUpdateInput, index: number) => <_, T extends keyof AddtionalFeesUpdateInput>(value: AddtionalFeesUpdateInput[T], key: T) => {
         if (!feePolicy) throw Error
         addtionFee[key] = value;
+
+        if (key === "feePercent") {
+            addtionFee.fee = 0;
+        }
+
+        if (key === "fee") {
+            addtionFee.feePercent = 0;
+        }
+        if ((key === "fee" || key === "feePercent") && !value) {
+            // @ts-ignore
+            addtionFee[key] = 0;
+        }
         // @ts-ignore
         feePolicy.addtionalFees[index] = { ...addtionFee }
         setFeePolicy({ ...feePolicy });
@@ -87,24 +100,34 @@ export const MsHomepageA: React.FC<IProp> = () => {
                         </div>
                     </div>
                     <div className="design_table">
-                        <div className="block_box">
-                            <h5>기업파트너 - 추가금액<button onClick={handleAddPolicy(TargetStatus.BUSINESS)} className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
-                            {(addtionalFees || []).map((bpp, index) => {
-                                if (bpp.target !== TargetStatus.BUSINESS) return null;
-                                return <AdditionFeePolicyBlock onDelete={handleDelete(index)} addtionPolicy={bpp} onChange={handleAddtionFeeChange(bpp, index)} key={"businessFeePolicy" + index} />
-                            })}
-                        </div>
 
-                        <div className="block_box">
-                            <h5>개인파트너 - 추가금액<button onClick={handleAddPolicy(TargetStatus.PERSONAL)} className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
-                            {(addtionalFees || []).map((bpp, index) => {
-                                if (bpp.target !== TargetStatus.PERSONAL) return null;
-                                return <AdditionFeePolicyBlock onDelete={handleDelete(index)} addtionPolicy={bpp} onChange={handleAddtionFeeChange(bpp, index)} key={"indiPartner" + index} />
-                            })}
-                        </div>
+                        <Tabs>
+                            <TabList>
+                                <Tab>기업파트너</Tab>
+                                <Tab>개인파트너</Tab>
+                            </TabList>
+                            <TabPanel>
+                                <div className="block_box">
+                                    <h5>기업파트너 - 수수료항목<button onClick={handleAddPolicy(TargetStatus.BUSINESS)} className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
+                                    {(addtionalFees || []).map((bpp, index) => {
+                                        if (bpp.target !== TargetStatus.BUSINESS) return null;
+                                        return <AdditionFeePolicyBlock onDelete={handleDelete(index)} addtionPolicy={bpp} onChange={handleAddtionFeeChange(bpp, index)} key={"businessFeePolicy" + index} />
+                                    })}
+                                </div>
+                            </TabPanel>
+                            <TabPanel>
+                                <div className="block_box">
+                                    <h5>개인파트너 - 수수료항목<button onClick={handleAddPolicy(TargetStatus.PERSONAL)} className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
+                                    {(addtionalFees || []).map((bpp, index) => {
+                                        if (bpp.target !== TargetStatus.PERSONAL) return null;
+                                        return <AdditionFeePolicyBlock onDelete={handleDelete(index)} addtionPolicy={bpp} onChange={handleAddtionFeeChange(bpp, index)} key={"indiPartner" + index} />
+                                    })}
+                                </div>
+                            </TabPanel>
+                        </Tabs>
                         {/* 
                         <div className="block_box">
-                            <h5>기업파트너 - 추가금액<button className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
+                            <h5>기업파트너 - 수수료항목<button className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
                             <div className="tbody">
                                 <div className="t01">
                                     <div className="title">추가항목1</div>
@@ -125,7 +148,7 @@ export const MsHomepageA: React.FC<IProp> = () => {
                         </div>
 
                         <div className="block_box">
-                            <h5>개인파트너 - 추가금액<button className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
+                            <h5>개인파트너 - 수수료항목<button className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>
                             <div className="tbody">
                                 <div className="t01">
                                     <div className="title">추가항목1</div>
@@ -147,14 +170,6 @@ export const MsHomepageA: React.FC<IProp> = () => {
 
 
                     </div>
-                    <div className="fin ifMobile">
-                        <div className="float_left">
-                        </div>
-                        <div className="float_right">
-                            <button type="submit" className="btn medium">저장하기</button>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>

@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { Fcategory } from '../../types/api';
+import { CategoryUpdatesInput, Fcategory } from '../../types/api';
 import { whenEnter } from '../../utils/eventValueExtracter';
+import { Draager } from '../dragger/Dragger';
 
 interface IProp {
     wrapLabel: string;
     categories: Fcategory[]
     onAdd: (label: string) => void;
     onEdit: (cat: Fcategory, label: string) => void;
+    onUpdates: (params: CategoryUpdatesInput[]) => void;
     onDelete: (cat: Fcategory) => void;
 }
 
-export const CategoryEitdor: React.FC<IProp> = ({ categories, onAdd, onDelete, onEdit, wrapLabel }) => {
+export const CategoryEitdor: React.FC<IProp> = ({ categories, onAdd, onUpdates, onDelete, onEdit, wrapLabel }) => {
 
     const [selelcted, setSelected] = useState<Fcategory>();
     const [label, setLabel] = useState("");
@@ -40,6 +42,13 @@ export const CategoryEitdor: React.FC<IProp> = ({ categories, onAdd, onDelete, o
         setLabel("");
     }
 
+    const handleChange = (cats: Fcategory[]) => {
+        const ordered: Fcategory[] = cats.map((cat, i) => ({ ...cat, order: cats.length - i }))
+        onUpdates([...ordered])
+    }
+
+    console.log({ categories });
+
 
     return <div className="tbody categoryEditer">
         <div className="t01">
@@ -48,9 +57,11 @@ export const CategoryEitdor: React.FC<IProp> = ({ categories, onAdd, onDelete, o
         <div className="t02">
             <div className="txt">
                 <ul className="list">
-                    {categories.map((cat) =>
-                        <li className={`categoryEditer__cat ${cat._id === selelcted?._id ? "categoryEditer__cat--selected" : undefined}`} onClick={handleSelect(cat)} key={cat._id}>{cat.label}<i onClick={handleDelete(cat)} className="del categoryEditer__delete"></i></li>
-                    )}
+                    <Draager<Fcategory> onOrder={handleChange} idKey="_id" items={categories}
+                        ItemRender={(cat, index, props) =>
+                            <li {...props} className={`categoryEditer__cat ${cat._id === selelcted?._id ? "categoryEditer__cat--selected" : undefined}`} onClick={handleSelect(cat)} key={cat._id}>{cat.label}<i onClick={handleDelete(cat)} className="del categoryEditer__delete"></i></li>
+                        }
+                    />
                     <li className={`categoryEditer__cat ${selelcted ? undefined : "categoryEditer__cat--selected"}`} onClick={handleUnSelect} >추가</li>
                 </ul>
                 <input onKeyPress={whenEnter(selelcted ? handleUpdate : handleAdd)} value={label} onChange={(e) => {

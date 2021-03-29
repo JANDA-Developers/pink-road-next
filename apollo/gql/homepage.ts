@@ -42,6 +42,9 @@ export const F_HOMEPAGE = gql`
         siteName
         signUpRedirect
         blacklist
+        compnanyIntoduceFile {
+          ...Ffile
+        }
         partnerFooter {
           ...Ffile
         }

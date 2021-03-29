@@ -104,6 +104,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                 ...data,
             })
         }} />
+
     </MypageLayout>
 };
 

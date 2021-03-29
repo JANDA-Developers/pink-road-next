@@ -95,7 +95,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
           <Bg className="main_top_images"  {...imgKit("m_01_mainBg1")}>
             <div className="w1200">
               <strong {...edit("m_01_title1")} />
-              <span {...edit('m_01_subtitle1')}>
+              <span className="main_top_images__subTitle" {...edit('m_01_subtitle1')}>
               </span>
               <div className="btn_list onepick2">
                 <Link href="/guide">
@@ -112,10 +112,10 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
           <Bg className="main_top_images img2" {...imgKit("m_01_mainBg2")}>
             <div className="w1200">
               <strong {...edit("m_01_title2")} />
-              <span {...edit('m_01_subtitle2')}>
+              <span className="main_top_images__subTitle" {...edit('m_01_subtitle2')}>
               </span>
               <div className="btn_list onepick">
-                <a target="_blank" href="/pinkroader_company_introduction_letter.pdf" className="link" {...edit("m_01_mainLink2_1")} />
+                <a  target="_blank" href="/pinkroader_company_introduction_letter.pdf" className="link" {...edit("m_01_mainLink2_1")} />
               </div>
             </div>
           </Bg>
@@ -153,22 +153,22 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
           <li className="infolist__01" >
             <div className="pack">
               <p {...edit("purposeCircle1_ct")} />
-              <strong  {...edit("purposeCircle1")} />
-              <span {...edit("purposeCircle1_en")} />
+              <strong  ><span {...edit("purposeCircle1")} /></strong>
+              <span className="infolist__en" {...edit("purposeCircle1_en")} />
             </div>
           </li>
           <li className="infolist__02" >
             <div className="pack">
               <p {...edit("purposeCircle2_ct")} />
-              <strong  {...edit("purposeCircle2")} />
-              <span {...edit("purposeCircle2_en")} />
+              <strong  ><span {...edit("purposeCircle2")} /> </strong>
+              <span className="infolist__en" {...edit("purposeCircle2_en")} />
             </div>
           </li>
           <li className="infolist__03">
             <div className="pack">
               <p {...edit("purposeCircle3_ct")} />
-              <strong  {...edit("purposeCircle3")} />
-              <span {...edit("purposeCircle3_en")} />
+              <strong ><span {...edit("purposeCircle3")} /></strong>
+              <span className="infolist__en" {...edit("purposeCircle3_en")} />
             </div>
           </li>
         </ul>

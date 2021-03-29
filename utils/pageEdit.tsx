@@ -119,10 +119,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
             }
 
             this.name = 'EditError'
-            // 핵 ... 조사를 깊게 해봐야함
-            if (isEmpty(page)) {
-                // location.reload();
-            }
+
             const retry = localStorage.getItem("ERR_RE_TRY");
             if (retry !== "T") {
                 console.error("ERR")
@@ -152,7 +149,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
 
     const onSingleBlur = (e: React.FocusEvent<HTMLElement>, key: string, index?: number) => {
-        const text = e.currentTarget.innerHTML;
+        const text = stripInlineStyle(e.currentTarget.innerHTML);
         validateKey(key, index)
 
         if (index === undefined) {

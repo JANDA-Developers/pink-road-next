@@ -165,6 +165,7 @@ export const F_CATEGORY = gql`
         isDelete
         label
         type
+        order
     }
 `
 

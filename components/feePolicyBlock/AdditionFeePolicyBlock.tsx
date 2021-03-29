@@ -1,5 +1,6 @@
 import React from 'react';
 import { AddtionalFeesStatus, AddtionalFeesUpdateInput, FfeePolicy_addtionalFees } from '../../types/api';
+import { REGEX } from '../../types/const';
 
 interface IProp {
     addtionPolicy: AddtionalFeesUpdateInput;
@@ -8,7 +9,7 @@ interface IProp {
 }
 // key={"busiPartnerPolicy" + index}
 export const AdditionFeePolicyBlock: React.FC<IProp> = ({ addtionPolicy: bpp, onChange, onDelete: handleDelete }) => {
-    const isPer = bpp.type === AddtionalFeesStatus.DEFAULT;
+    const isPer = bpp.type === AddtionalFeesStatus.PERCNET;
     return <div className="tbody">
         <div className="t01">
             <div className="title">수수료 항목</div>
@@ -19,11 +20,18 @@ export const AdditionFeePolicyBlock: React.FC<IProp> = ({ addtionPolicy: bpp, on
                     const val = e.currentTarget.value;
                     onChange(val, "feeName");
                 }} value={bpp.feeName} className="w30 mr5" placeholder="항목명" type="text" />
-                <input onChange={e => {
-                    const val = e.currentTarget.value;
-                    onChange(parseInt(val), isPer ? "fee" : "feePercent");
-                }} value={isPer ? (bpp.fee || 0) : (bpp.feePercent || 0)} className="w30 mr5" placeholder="숫자만 입력해 주세요." type="text" />
-                <select onChange={(e) => {
+                <input onBlur={(e) => {
+                    let val = e.currentTarget.value
+                    if (isPer && val.length > 5) {
+                        val = val.substr(0, 5);
+                    }
+                    const valid = isPer ? parseFloat(val) : parseInt(val);
+                    onChange(valid, isPer ? "fee" : "feePercent");
+                }} type="number" step="0.01" min="0" max="100" onChange={e => {
+                    const val = e.target.value;
+                    onChange(val as any, isPer ? "fee" : "feePercent");
+                }} value={isPer ? (bpp.fee || "") : (bpp.feePercent || "")} className="w30 mr5" placeholder="숫자만 입력해 주세요." type="text" />
+                <select value={bpp.type} onChange={(e) => {
                     const val = e.currentTarget.value as any;
                     onChange(val, "type");
                 }} className="w10">

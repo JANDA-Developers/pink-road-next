@@ -98,15 +98,33 @@ export const CATEGORY_UPDATE = gql`
          ) {
       ok
       error {
-location
+        location
         severity
         code
         message
-}
+      }
       data {
           ...Fcategory
       }
     }
   }
   ${F_CATEGORY}
+`;
+
+export const CATEGORY_UPDATES = gql`
+  mutation categoryUpdates(
+        $params: [CategoryUpdatesInput!]!
+    ) {
+      CategoryUpdates(
+          params: $params
+      ) {
+      ok
+      error {
+        location
+        severity
+        code
+        message
+      }
+    }
+  }
 `;

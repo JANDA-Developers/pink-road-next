@@ -25,7 +25,7 @@ export const F_QUESTION = gql`
           ...Fanswer
         }
         keyWards
-        files {
+        attachFiles {
             ...Ffile
         }
         thumb {

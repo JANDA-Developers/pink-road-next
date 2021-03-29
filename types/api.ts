@@ -1865,6 +1865,7 @@ export interface categoryFindById_CategoryFindById_data {
   isDelete: boolean;
   label: string;
   type: CategoryType;
+  order: number;
 }
 
 export interface categoryFindById_CategoryFindById {
@@ -1907,6 +1908,7 @@ export interface categoryList_CategoryList_data {
   isDelete: boolean;
   label: string;
   type: CategoryType;
+  order: number;
 }
 
 export interface categoryList_CategoryList {
@@ -1945,6 +1947,7 @@ export interface categoryCreate_CategoryCreate_data {
   isDelete: boolean;
   label: string;
   type: CategoryType;
+  order: number;
 }
 
 export interface categoryCreate_CategoryCreate {
@@ -1987,6 +1990,7 @@ export interface categoryDelete_CategoryDelete_data {
   isDelete: boolean;
   label: string;
   type: CategoryType;
+  order: number;
 }
 
 export interface categoryDelete_CategoryDelete {
@@ -2029,6 +2033,7 @@ export interface categoryUpdate_CategoryUpdate_data {
   isDelete: boolean;
   label: string;
   type: CategoryType;
+  order: number;
 }
 
 export interface categoryUpdate_CategoryUpdate {
@@ -2045,6 +2050,37 @@ export interface categoryUpdate {
 export interface categoryUpdateVariables {
   params: CategoryUpdateInput;
   id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: categoryUpdates
+// ====================================================
+
+export interface categoryUpdates_CategoryUpdates_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface categoryUpdates_CategoryUpdates {
+  __typename: "CategoryUpdatesResponse";
+  ok: boolean;
+  error: categoryUpdates_CategoryUpdates_error | null;
+}
+
+export interface categoryUpdates {
+  CategoryUpdates: categoryUpdates_CategoryUpdates;
+}
+
+export interface categoryUpdatesVariables {
+  params: CategoryUpdatesInput[];
 }
 
 /* tslint:disable */
@@ -7537,6 +7573,7 @@ export interface getContext_CategoryList_data {
   isDelete: boolean;
   label: string;
   type: CategoryType;
+  order: number;
 }
 
 export interface getContext_CategoryList {
@@ -10844,6 +10881,7 @@ export interface Fcategory {
   isDelete: boolean;
   label: string;
   type: CategoryType;
+  order: number;
 }
 
 /* tslint:disable */
@@ -12701,7 +12739,7 @@ export interface AnnounceUpdateInput {
   summary?: string | null;
   subTitle?: string | null;
   keyWards?: string[] | null;
-  attachFiles?: FileUpdateInput[] | null;
+  files?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
   type?: AnnounceType | null;
 }
@@ -12804,6 +12842,13 @@ export interface CategoryCreateInput {
 }
 
 export interface CategoryUpdateInput {
+  label?: string | null;
+  order?: number | null;
+}
+
+export interface CategoryUpdatesInput {
+  _id: string;
+  order?: number | null;
   label?: string | null;
 }
 

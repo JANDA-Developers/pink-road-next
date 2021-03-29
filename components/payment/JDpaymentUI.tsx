@@ -1,14 +1,20 @@
 import React, { useContext, useState } from 'react';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import { useHomepage } from '../../hook/useHomepage';
 import Payment from '../../pages/payment';
 import { AppContext } from '../../pages/_app';
-import { Fbooking, Fhomepage_bankInfo, homepage_Homepage_data_bankInfo, PayMethod } from '../../types/api';
+import { Fbooking, Fhomepage, Fhomepage_bankInfo, homepage_Homepage_data_bankInfo, PayMethod } from '../../types/api';
 import { TElements } from '../../types/interface';
 import { setVal } from '../../utils/eventValueExtracter';
 import { autoHypenPhone } from '../../utils/formatter';
+import { closeModal, openModal } from '../../utils/popUp';
 import { getFromUrl } from '../../utils/url';
 import { Validater } from '../../utils/validate';
+import { Modal } from '../modal/Modal';
+import { Policy } from '../policy/PriviacyPolicy';
 
+type TRequirePolicy = Pick<Fhomepage, "bookingPrivacyPolicy" | "bookingThirdPolicy" | "travelerPolicy">;
+type CKlist = Record<keyof TRequirePolicy, boolean>
 export type TPaySubmitInfo = {
     buyerInfo: {
         phone: string;
@@ -37,6 +43,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
     const urlPhone = getFromUrl("phone") || "";
     const urlName = getFromUrl("name") || "";
     const { data: item } = useHomepage()
+    const [selectedIndex, setSelectedIndex] = useState(0);
     const [payMethod, setPayMethod] = useState<PayMethod>(PayMethod.BANK);
     const [buyerInfo, setBuyerInfo] = useState({
         phone: myProfile?.phoneNumber || "",
@@ -44,6 +51,9 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
         email: myProfile?.email || "",
         memo: ""
     })
+
+    const [chkAll, setChkAll] = useState(false);
+
     const [bankRefundInfo, setBankRefundInfo] = useState<IBankInput>({
         bankTransfter: "",
         accountHolder: "",
@@ -57,6 +67,9 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
     }, {
         value: buyerInfo.phone,
         failMsg: "구매자 연락처는 필수 입니다."
+    }, {
+        value: chkAll,
+        failMsg: "필수 약관에 동의 해주세요."
     }]);
 
     const submitInfo: TPaySubmitInfo = {
@@ -127,6 +140,60 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
             buyerInfo[key] = value;
             setBuyerInfo({ ...buyerInfo })
         }
+    }
+
+
+    const [chkPolocy, setChkPolicy] = useState<CKlist>({
+        bookingPrivacyPolicy: false,
+        bookingThirdPolicy: false,
+        travelerPolicy: false
+    });
+
+    const isCheckAll = () => {
+        let chkAll = true;
+        let policy: keyof CKlist;
+
+        for (policy in chkPolocy) {
+            const check = chkPolocy[policy];
+            if (!check) {
+                chkAll = false;
+                break;
+            }
+        }
+
+        return chkAll
+    }
+
+
+    const handleAgreeAll = () => {
+
+        if (!isCheckAll()) {
+            setChkAll(true);
+            let policy: keyof CKlist;
+            let agreeAll = chkPolocy;
+            for (policy in agreeAll) {
+                agreeAll[policy] = true;
+            }
+            setChkPolicy({
+                ...agreeAll
+            })
+        } else {
+            setChkAll(false);
+        }
+    }
+
+    const handlePolicy = (policyTarget: keyof CKlist) => {
+
+        let agreeNewState = chkPolocy;
+        agreeNewState[policyTarget] = !chkPolocy[policyTarget];
+        setChkPolicy({
+            ...agreeNewState
+        })
+    }
+
+    const openPolicy = (index: number) => () => {
+        setSelectedIndex(index);
+        openModal('#PolicyModal')();
     }
 
     // const { } = item;
@@ -297,9 +364,101 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                     </ul>
                 </div>
             </div>
+
+            <div className="agreeChk mb10">
+                <input checked={chkAll} type="checkbox" className="checkbox" onChange={handleAgreeAll} />
+                <span>모두 동의합니다</span>
+            </div>
+            <div className="agreeChk_list">
+                <ul>
+                    {/* <Tab>이용약관</Tab> */}
+                    <li>
+                        {/* ALL */}
+                        <div className="in_box1">
+                            <input type="checkbox" className="checkbox"
+                                checked={chkPolocy.travelerPolicy}
+                                onChange={() => { handlePolicy('travelerPolicy') }} />
+                            <span>
+                                <strong>여행자약관</strong>[필수]
+                            </span>
+                        </div>
+                        <div className="in_box2">
+                            <a
+                                onClick={openPolicy(0)}
+                            >
+                                전문보기 &gt;
+                            </a>
+                        </div>
+                    </li>
+                    {/* <Tab>개인정보 수집 및 이용 동의</Tab> */}
+                    <li>
+                        {/* ALL */}
+                        <div className="in_box1">
+                            <input type="checkbox" className="checkbox"
+                                checked={chkPolocy.bookingPrivacyPolicy}
+                                onClick={() => { handlePolicy('bookingPrivacyPolicy') }} />
+                            <span>
+                                <strong>개인정보수집 및 이용</strong>[필수]
+                            </span>
+                        </div>
+                        <div className="in_box2">
+                            <a
+                                onClick={openPolicy(1)}
+                            >
+                                전문보기 &gt;
+                  </a>
+                        </div>
+                    </li>
+                    {/* <Tab>개인정보 제 3자 제공</Tab> */}
+                    <li>
+                        {/* ALL */}
+                        <div className="in_box1">
+                            <input type="checkbox" className="checkbox"
+                                checked={chkPolocy.bookingThirdPolicy}
+                                onClick={() => { handlePolicy('bookingThirdPolicy') }} />
+                            <span>
+                                <strong>개인정보 제3자 제공</strong>[필수]
+                  </span>
+                        </div>
+                        <div className="in_box2">
+                            <a
+                                onClick={openPolicy(2)}
+                            >
+                                전문보기 &gt;
+                  </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <Modal id="PolicyModal" title="약관보기">
+                <Tabs onSelect={setSelectedIndex} selectedIndex={selectedIndex}>
+                    <TabList>
+                        <Tab>여행자약관</Tab>
+                        <Tab>개인정보수집 및 이용</Tab>
+                        <Tab>개인정보 제3자 제공</Tab>
+                    </TabList>
+                    <TabPanel>
+                        <Policy type="travelerPolicy" />
+                    </TabPanel>
+                    <TabPanel>
+                        <Policy type="bookingPrivacyPolicy" />
+                    </TabPanel>
+                    <TabPanel>
+                        <Policy type="bookingThirdPolicy" />
+                    </TabPanel>
+                </Tabs>
+                <button onClick={() => {
+                    closeModal("#PolicyModal")();
+                    handleAgreeAll();
+                }} className="btn mr10" >전체동의</button>
+                <button onClick={() => {
+                    closeModal("#PolicyModal")();
+                }} className="btn" >확인</button>
+            </Modal>
+
             <a onClick={handlePayment} className="paymentBtn">결제하기</a>
         </div>
-    </div>
+    </div >
 };
 
 

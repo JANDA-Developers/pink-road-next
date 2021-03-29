@@ -124,3 +124,7 @@ export const NUMBER_OPS = (() => {
     const blueBirds = new Array(100).fill(null).map((val, index) => index);
     return blueBirds;
 })()
+
+export const REGEX = {
+    float: new RegExp(/^[+-]?\d*(\.?\d*)$/)
+}
