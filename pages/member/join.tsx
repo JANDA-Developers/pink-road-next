@@ -278,7 +278,7 @@ const Verification: React.FC = () => {
                 </li>
                 <li onClick={handleSelfAuthPhone} className="socialVerify">
                     <span className="icon-email"></span>
-                    핸드폰 인증
+                    휴대폰 인증
                 </li>
             </ul>
             <p className="bt_txt">
@@ -310,15 +310,38 @@ const UserType: React.FC = () => {
         <div className="choice_box" id="con00">
             <h5>회원 종류 선택하기</h5>
             <p>회원가입을 하시고 더 많은 정보와 혜택을 누려보세요~!! </p>
-            <ul>
+            <ul className="choice__link">
                 {/* 커스텀디자인 */}
-                <li className="li01" onClick={handleTypeChoice(UserRole.individual)}>
-                    <strong>개인 회원</strong>
-                    <span>
+                <li className="li01">
+                    <strong className="title">개인 회원</strong>
+                    <span className="txt">
                         구매를 위한 개인회원입니다.
-                    <br />
-                    회원가입을 하고 여행을 떠나세요~!!
-                </span>
+                        <br />
+                        회원가입을 하고 여행을 떠나세요~!!
+                     </span>
+                    <button className="nomal_join_btn" onClick={handleTypeChoice(UserRole.individual)}>바로가기 </button>
+                    <div className="join__snslink">
+                        <ul>
+                            <li className="join__snslink_k">
+                                <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/kakao"}>
+                                    <span className="join__snslink_icon"><i className="jandaicon-kakaotalk"></i></span>
+                                    <span className="join__snslink_txt">카카오 계정으로 회원가입</span>
+                                </a>
+                            </li>
+                            <li className="join__snslink_n">
+                                <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/naver"}>
+                                    <span className="join__snslink_icon"><i></i></span>
+                                    <span className="join__snslink_txt">네이버 계정으로 회원가입</span>
+                                </a>
+                            </li>
+                            <li className="join__snslink_g">
+                                <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/google"}>
+                                    <span className="join__snslink_icon"><i className="jandaicon-google1"></i></span>
+                                    <span className="join__snslink_txt">구글 계정으로 회원가입</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li className="li02" onClick={handleTypeChoice(UserRole.partnerB)}>
                     <i />
