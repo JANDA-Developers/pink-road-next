@@ -65,9 +65,9 @@ export const ProfileListAPI: React.FC<IProp> = ({ variables, selectedSeller, set
         >
             {items.map(item =>
                 <div key={item._id}>
-                    <li className="pr_list__li" onClick={() => {
+                    <div className="pr_list__li peple" onClick={() => {
                         toGuidePage(item._id)
-                    }} style={BGprofile(item.profileImg)} />
+                    }} style={BGprofile(item.profileImg)}><i className="plus flaticon-add"></i></div>
                 </div>
             )}
         </Slider>

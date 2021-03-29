@@ -16,7 +16,8 @@
     text-align: center;
     box-sizing: border-box;
     vertical-align: top;
-    background-size: cover;
+    background-size: 120%;
+    background-repeat: no-repeat;
     background-position: center;
     border-radius: 150px;
     overflow: hidden;
@@ -39,7 +40,6 @@
     cursor: pointer;
     white-space: nowrap;
     max-width: 70px;
-    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -95,6 +95,16 @@
     box-shadow: 3px 2px 5px 0px #82828273;
     border: 2px solid #039ce0;
 }
+.profileListBig__cell--selected .profileListBig__toGuide {
+    background-color: #039ce0;
+}
+.profileListBig__cell--selected .profileListBig__G {
+    background-color: #039ce0;
+}
+.profileListBig__cell--selected .profileListBig__toName {
+    color: #039ce0;
+    border: 2px #039ce0 solid;
+}
 
 
 .profileListBig__arrows {
@@ -111,6 +121,7 @@
     color: #d9d9d9;    
     position: absolute;
     z-index: 1;
+    font-size: 4em;
     top: 0;
     bottom: 0;
 }
