@@ -17,15 +17,15 @@ export const F_QUESTION = gql`
         summary
         subTitle
         status
+        answers {
+          ...Fanswer
+        }
         category {
           _id
           label
         }
-        answers {
-          ...Fanswer
-        }
         keyWards
-        attachFiles {
+        files {
             ...Ffile
         }
         thumb {
@@ -37,8 +37,9 @@ export const F_QUESTION = gql`
         no
         author {
             _id
-            email
             name
+            nickName
+            email
             phoneNumber
             profileImg {
               uri
@@ -79,6 +80,7 @@ export const QUESTION_LIST = gql`
         author {
           _id
           name
+          nickName
         }
       }
     }
@@ -167,7 +169,7 @@ query questionFindById(
     ...Fquestion
     author {
       _id
-      name
+      nickName
       email
       profileImg {
         uri
@@ -179,17 +181,10 @@ query questionFindById(
       author {
         _id
         name
+        nickName
       }
     }
   }
-    next{
-    _id
-    title
-   }
-    before{
-      _id
-      title
-    }
 }
 }
 ${F_QUESTION}

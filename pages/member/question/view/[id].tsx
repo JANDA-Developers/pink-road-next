@@ -10,8 +10,6 @@ import { AppContext } from '../../../_app';
 import Comment from '../../../../components/comment/Comment';
 import { useAnswerCreate, useAnswerDelete, useAnswerUpdate } from '../../../../hook/useAnswer';
 import PageDeny from '../../../Deny';
-import { getFromUrl } from '../../../../utils/url';
-import isEmpty from '../../../../utils/isEmpty';
 
 interface IProp {
 }
@@ -19,7 +17,6 @@ interface IProp {
 export const QuestionDetail: React.FC<IProp> = () => {
     const router = useRouter();
     const questionId = router.query.id as string;
-    const pid = getFromUrl("pid");
     const { myProfile, isManager } = useContext(AppContext);
     const [createAnswerMu] = useAnswerCreate();
     const [answerDeleteMu] = useAnswerDelete();
@@ -29,6 +26,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
             if (QuestionDelete.ok) toList();
         }
     })
+
 
     const { item: question, error } = useQuestionFindById(questionId);
     const myQuestion = question?.author?._id === myProfile?._id;
@@ -40,25 +38,16 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
     if (error) return <Page404 />
     if (!question) return <PageLoading />
-    const { files, title, thumb, createdAt, contents, subTitle, _id, product, author, isOpen } = question;
-    const isMyQuestion = myProfile?._id === _id;
+    const { title, thumb, createdAt, contents, subTitle, _id, product, author, isOpen } = question;
     const isMyProduct = myProfile?._id === product?.author?._id;
-    const replayAble = isManager || isMyProduct;
 
 
     const toDetail = () => {
-        router.push(`/member/question/write/${_id}`)
+        router.push(`/service/question/write/${_id}`)
     }
 
-
     const toList = () => {
-        if (pid)
-            router.push(`/tour/view/${pid}`).then(() => {
-                const ele = document.getElementById("tap__05");
-                ele?.scrollIntoView(true);
-            })
-        else
-            router.push(`/member/question/`)
+        router.push(`/service/question/`)
     }
 
     const handleDelete = () => {
@@ -71,13 +60,13 @@ export const QuestionDetail: React.FC<IProp> = () => {
     }
 
     const handleAnswerDelete = (answer: Fanswer) => () => {
-        if (confirm("정말로 답변을 삭제 하시겠습니까?"))
-            answerDeleteMu({
-                variables: {
-                    id: answer._id,
-                    questionId
-                }
-            })
+        answerDeleteMu({
+            variables: {
+                id: answer._id,
+                target: "question",
+                targetId: questionId
+            }
+        })
     }
 
     const handleAnswer = (content: string) => {
@@ -86,7 +75,8 @@ export const QuestionDetail: React.FC<IProp> = () => {
                 params: {
                     content
                 },
-                questionId
+                target: "question",
+                targetId: questionId
             }
         })
     }
@@ -98,7 +88,8 @@ export const QuestionDetail: React.FC<IProp> = () => {
                 params: {
                     content
                 },
-                questionId
+                target: "question",
+                targetId: questionId
             }
         })
 
@@ -107,32 +98,29 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
     return <div>
         <BoardView
-            files={files || []}
-            className="viewWithComment"
             isOpen={!!isOpen}
             authorId={author?._id || ""}
             onList={toList}
             thumb={thumb}
             content={contents}
-            writer={author?.name || ""}
+            writer={author?.nickName || ""}
             title={title}
             subTitle={subTitle || ""}
             onDelete={handleDelete}
             onEdit={toDetail}
             createAt={createdAt}
+
         />
-        {(replayAble || isMyQuestion) &&
-            <div className="w1200 viewWithComment__commentBox">
-                {!isEmpty(question.answers) &&
-                    <div className="comment_box">
-                        <ul>
-                            {(question.answers || []).filter(answer => !answer?.isDelete).map(answer =>
-                                <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
-                            )}
-                        </ul>
-                    </div>
-                }
-                {replayAble && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.name} onSubmit={handleAnswer} />}
+        {(isMyProduct || isManager) &&
+            <div className="w1200">
+                <div className="comment_box">
+                    <ul>
+                        {(question.answers || []).filter(answer => !answer?.isDelete).map(answer =>
+                            <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
+                        )}
+                    </ul>
+                </div>
+                {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.nickName} onSubmit={handleAnswer} />}
             </div>
         }
     </div>
@@ -140,3 +128,10 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
 
 export default QuestionDetail;
+
+
+
+
+// 측정 Invocie 
+// CRUD
+// => Create 데코레이터 다는거....
