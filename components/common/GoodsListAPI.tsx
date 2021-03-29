@@ -24,7 +24,10 @@ export const GoodsListAPI: React.FC<IProp> = ({ slide, initialOption = {
   initialViewCount: 4
 }, options }) => {
   const router = useRouter();
-  const { items } = useProductList(initialOption, options)
+  const { items } = useProductList(initialOption, {
+    fetchPolicy: "cache-first",
+    ...options
+  })
   const { ref, width, height } = useResizeDetector<HTMLUListElement>()
 
   const itemIn = initialOption?.initialFilter?._id_in;
@@ -34,8 +37,6 @@ export const GoodsListAPI: React.FC<IProp> = ({ slide, initialOption = {
   const toProductBoard = (id: string) => () => {
     router.push("/tour/view/" + id);
   }
-
-
 
   console.log({ initialOption });
   console.log({ sortedItems });

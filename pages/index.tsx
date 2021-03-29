@@ -27,7 +27,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
   const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const router = useRouter()
 
-  const { bg, edit, imgEdit, imgKit, linkEdit, page, editMode, get } = pageTools;
+  const { edit, imgEdit, imgKit, linkEdit, page, editMode, get } = pageTools;
 
   useEffect(() => {
     if (homepage?.modal) {

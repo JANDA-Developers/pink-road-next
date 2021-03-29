@@ -171,7 +171,8 @@ export const ProfileListAPIwithGoods = () => {
                         cntPerPage: 12,
                         page: 1
                     }
-                }
+                },
+                nextFetchPolicy: "cache-first"
             }} />
         </div>
     </div>
