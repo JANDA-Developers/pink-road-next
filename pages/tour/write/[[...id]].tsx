@@ -418,7 +418,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         <p className="input_form info_txt">- 썸네일 이미지사이즈 720px * 434px</p>
                     </div>
                 </div>
-
             </div>
 
             <div className="write_con">

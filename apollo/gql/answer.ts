@@ -10,7 +10,6 @@ export const F_ANSWER = gql`
         author {
             _id
             name
-            nickName
             profileImg {
                 uri
             }
@@ -21,11 +20,13 @@ export const F_ANSWER = gql`
 export const ANSWER_CREATE = gql`
   mutation answerCreate(
     $params: AnswerCreateInput!
-    $questionId: String!
+    $targetId: String!
+    $target: String!
   ) {
     AnswerCreate(
       params:$params
-      questionId: $questionId
+      targetId: $targetId
+      target: $target
     ) {
     ok
     error {
@@ -41,43 +42,48 @@ export const ANSWER_CREATE = gql`
 }
 ${F_ANSWER}
 `
+
 export const ANSWER_DELETE = gql`
   mutation answerDelete(
-    $questionId: String!
     $id: String!
+    $targetId: String!
+    $target: String!
   ) {
     AnswerDelete(
       id:$id
-      questionId: $questionId 
+      targetId: $targetId 
+      target: $target,
     ) {
     ok
     error {
-location
+        location
         severity
         code
         message
-}
+    }
   }
 }
 `
 export const ANSWER_UPDAET = gql`
   mutation answerUpdate(
     $params: AnswerUpdateInput!
-    $questionId: String!
+    $targetId: String!
+    $target: String!
     $_id: String!
   ) {
   AnswerUpdate(
       params:$params
-      questionId: $questionId
+      targetId: $targetId
+      target: $target
       _id: $_id
     ) {
     ok
     error {
-location
-        severity
-        code
-        message
-}
+      location
+      severity
+      code
+      message
+    }
     data {
       _id
     }

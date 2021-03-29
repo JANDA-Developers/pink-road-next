@@ -57,7 +57,7 @@ export const useBoard = ({ ...defaults }: IUseBoardProps, config: IboardConfig =
     const [categoryId, setCategoryId] = useState<string>(defaults.categoryId || "");
     const [subTitle, setSubTitle] = useState<string>(defaults.subTitle || "");
     const [summary, setSummary] = useState<string>(defaults.summary || "");
-    const [files, setFiles] = useState<Ffile[]>([]);
+    const [files, setFiles] = useState<Ffile[]>(defaults.files || []);
     const [thumb, setThumb] = useState<Ffile | null>(defaults.thumb || null);
     const [contents, setContents] = useState<string>(defaults.contents || "");
     const [loadKey, setLoadKey] = useState<number>(0);

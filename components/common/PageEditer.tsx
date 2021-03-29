@@ -15,10 +15,10 @@ export const PageEditor: React.FC<IProp> = ({ pageTools, allowToUser, profilePar
     const submit = () => {
         if (editMode) {
             if (confirm("변경내용을 저장 하시겠습니까?")) {
-                submitEdit({
+                submitEdit(profileParams ? {
                     profileImg: profileParams.profileImg,
                     keywards: profileParams.keywards
-                })
+                } : undefined)
             } else {
             }
             setEditMode(false)

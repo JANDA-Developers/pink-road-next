@@ -10135,6 +10135,9 @@ i.important_icon {
         }
         .tour_details_in .boardReadBody .in_box .text strong{
             font-weight:600;
+            font-weight: 600;
+            min-width: 0px;
+            flex: 1;
         }
 
     .tour_details_in .boardReadFooter {

@@ -1,5 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 import { GetServerSideProps, GetStaticProps } from "next";
+import { useRouter } from "next/dist/client/router";
 import { HOMEPAGE } from "../apollo/gql/homepage";
 import { SERVER_URI } from "../apollo/uri";
 import { usePageInfo } from "../hook/usePageInfo";
@@ -44,11 +45,11 @@ export const useHomepageServerSide = async () => {
 }
 
 export const getStaticPageInfo = (key: TPageKeys):GetStaticProps => async () => {
+
     const { data } = await usePageInfo(key);
 
-    console.log({data});
     const { data: homepage } = await useHomepageServerSide();
-    
+
     return {
         revalidate: 1,
         props: {

@@ -1290,7 +1290,7 @@ div.search_mini {
 
     div.popup_bg__review {
         position: fixed;
-        display: flex;
+        display: none;
         top: 0;
         left: 0;
         bottom: 0;
@@ -1299,6 +1299,10 @@ div.search_mini {
         background-color: rgba(0, 0, 0, 0.80);
         justify-content: center;
         align-items: center;
+    }
+
+    div.popup_bg__review--open {
+        display: flex;
     }
  
     div.popup_bg__review .fin{
@@ -6649,6 +6653,9 @@ i.important_icon {
         }
         .tour_details_in .boardReadBody .in_box .text strong{
             font-weight:600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
     .tour_details_in .boardReadFooter {
@@ -8850,9 +8857,8 @@ i.calendar {
         display: flex;
     }
     .review__box .review__list .bottom p{
-        width: 319px;
-        margin-right: 30px;
         font-size: 1em;
+        margin-bottom: 10px;
     }
     .review__box .review__list .bottom .img{
        width: 100px;
@@ -8884,6 +8890,8 @@ i.calendar {
     .review__box.popup .review__list .bottom p {
         width: 100%;
         margin-right: 0;
+        height: 150px;
+        overflow: auto;
     }
    .review__photo_cunt {
         position: absolute;
@@ -8952,6 +8960,10 @@ i.calendar {
         height: 20px;
         width: auto;
         font-weight: 100;
+        display: flex;
+        overflow: hidden;
+        flex-wrap: nowrap;
+        text-overflow: ellipsis;
     }
     .review__list_info .name{
         margin-right: 15px;

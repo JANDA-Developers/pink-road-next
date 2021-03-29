@@ -65,7 +65,6 @@ const defaultContext: TContext = {
 export const AppContext = React.createContext<TContext>(defaultContext);
 
 function App({ Component, pageProps }: any) {
-  console.log(".....");
   const [editMode, setEditMode] = useState(false);
   const router = useRouter()
   useRouterScroll();
@@ -91,14 +90,33 @@ function App({ Component, pageProps }: any) {
   const groupsMap = groupMap(groups)
   const catsMap = categoryMap(catList);
 
-  if (!ComponentAuth.includes(role || null) && !loading) {
-    if (arrayEquals(ComponentAuth, ALLOW_LOGINED)) {
-      if (loading) return;
-      Component = () => <PageDeny redirect="/member/login" msg="해당 페이지는 로그인후 이용 가능합니다." />
-      return <Component />;
-    } else
-      Component = () => <PageDeny />
-  }
+
+
+  useEffect(() => {
+    function isItIE() {
+      if (typeof window === "undefined") return;
+      var user_agent = window.navigator.userAgent;
+      var is_it_ie = user_agent.indexOf("MSIE ") > -1 || user_agent.indexOf("Trident/") > -1;
+      return is_it_ie;
+    }
+
+    if (isItIE()) {
+      alert(`
+      현 사이트는 Internet Explor를 지원하지 않고 있습니다. 
+      Chorme 또는 Edge브라우저 사용을 권장 드립니다.
+      `)
+    } else {
+      console.log('It is not Internet Explorer');
+    }
+  }, [])
+
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("jwt", token)
+      location.href = "/"
+    }
+  }, [])
+
 
 
   const productList = data?.GetProfile.data?.products.map(p => ({
@@ -121,6 +139,7 @@ function App({ Component, pageProps }: any) {
     }
   })
 
+
   if (
     //인증 받지 않았으며 일반 권한은 아닌경우
     ALLOW_SELLERS.includes(role) &&
@@ -131,44 +150,30 @@ function App({ Component, pageProps }: any) {
     Component = () => <PageDeny msg="인증되지 않은 판매자 입니다. 인증 소요시간은 평균 24시간 입니다." />
   }
 
-  useEffect(() => {
-    function isItIE() {
-      if (typeof window === "undefined") return;
-      var user_agent = window.navigator.userAgent;
-      var is_it_ie = user_agent.indexOf("MSIE ") > -1 || user_agent.indexOf("Trident/") > -1;
-      return is_it_ie;
-    }
 
-    if (isItIE()) {
-      alert(`
-      현 사이트는 Internet Explor를 지원하지 않고 있습니다. 
-      Chorme 또는 Edge브라우저 사용을 권장 드립니다.
-      `)
+  const token = getFromUrl("refreshToken");
+
+
+
+  if (!ComponentAuth.includes(role || null) && !loading) {
+    if (arrayEquals(ComponentAuth, ALLOW_LOGINED)) {
+      if (loading) return null;
+      Component = () => <PageDeny redirect="/member/login" msg="해당 페이지는 로그인후 이용 가능합니다." />
+      return <Component />;
     } else {
-      console.log('It is not Internet Explorer');
+      Component = () => <PageDeny />
     }
-  }, [])
+  }
+
+  if (token) return null;
+  if (loading) return <PageLoading />
 
   if (router.isFallback) {
     return <div></div>
   }
 
-
-  const token = getFromUrl("refreshToken");
-  useEffect(() => {
-    if (token) {
-      localStorage.setItem("jwt", token)
-      location.href = "/"
-    }
-  }, [])
-
-  if (token) return null;
-  if (loading) return <PageLoading />
   return (
     <div className="App">
-      <Head>
-        <script src="/ie.js" />
-      </Head>
       <div id="MuPageLoading" className="muPageLoading" />
       <ApolloProvider client={PinkClient}>
         <AppContext.Provider value={{

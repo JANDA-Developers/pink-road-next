@@ -63,7 +63,8 @@ export const QuestionDetail: React.FC<IProp> = () => {
         answerDeleteMu({
             variables: {
                 id: answer._id,
-                questionId
+                target: "question",
+                targetId: questionId
             }
         })
     }
@@ -74,7 +75,8 @@ export const QuestionDetail: React.FC<IProp> = () => {
                 params: {
                     content
                 },
-                questionId
+                target: "question",
+                targetId: questionId
             }
         })
     }
@@ -86,7 +88,8 @@ export const QuestionDetail: React.FC<IProp> = () => {
                 params: {
                     content
                 },
-                questionId
+                target: "question",
+                targetId: questionId
             }
         })
 
@@ -113,7 +116,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
                 <div className="comment_box">
                     <ul>
                         {(question.answers || []).filter(answer => !answer?.isDelete).map(answer =>
-                            <Comment title={answer?.author?.nickName} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
+                            <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
                         )}
                     </ul>
                 </div>
@@ -125,3 +128,10 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
 
 export default QuestionDetail;
+
+
+
+
+// 측정 Invocie 
+// CRUD
+// => Create 데코레이터 다는거....

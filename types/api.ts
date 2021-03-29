@@ -512,10 +512,6 @@ export interface answerCreate_AnswerCreate_data_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: answerCreate_AnswerCreate_data_author_profileImg | null;
@@ -544,7 +540,8 @@ export interface answerCreate {
 
 export interface answerCreateVariables {
   params: AnswerCreateInput;
-  questionId: string;
+  targetId: string;
+  target: string;
 }
 
 /* tslint:disable */
@@ -575,8 +572,9 @@ export interface answerDelete {
 }
 
 export interface answerDeleteVariables {
-  questionId: string;
   id: string;
+  targetId: string;
+  target: string;
 }
 
 /* tslint:disable */
@@ -614,7 +612,8 @@ export interface answerUpdate {
 
 export interface answerUpdateVariables {
   params: AnswerUpdateInput;
-  questionId: string;
+  targetId: string;
+  target: string;
   _id: string;
 }
 
@@ -5450,6 +5449,59 @@ export interface productFindById_ProductFindById_data_thumb {
   uri: string;
 }
 
+export interface productFindById_ProductFindById_data_productReview_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface productFindById_ProductFindById_data_productReview_author {
+  __typename: "User";
+  _id: string;
+  email: string;
+  name: string;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: productFindById_ProductFindById_data_productReview_author_profileImg | null;
+}
+
+export interface productFindById_ProductFindById_data_productReview_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface productFindById_ProductFindById_data_productReview {
+  __typename: "ProductReview";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: productFindById_ProductFindById_data_productReview_author | null;
+  num: number;
+  boardTypeName: string | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  viewCount: number;
+  likeCount: number;
+  slug: string;
+  authorName: string;
+  productName: string;
+  attachFiles: productFindById_ProductFindById_data_productReview_attachFiles[] | null;
+  productAuthorName: string;
+  productAuthorId: string;
+  productCode: string;
+  groupCode: string;
+  rating: number;
+}
+
 export interface productFindById_ProductFindById_data_author_busiRegistration {
   __typename: "File";
   name: string;
@@ -5557,10 +5609,6 @@ export interface productFindById_ProductFindById_data_questions_answers_author {
   __typename: "User";
   _id: string;
   name: string;
-  /**
-   * 닉네임 유니크
-   */
-  nickName: string;
   /**
    * 프로필 사진
    */
@@ -5692,6 +5740,7 @@ export interface productFindById_ProductFindById_data {
   startDate: any;
   Dday: number;
   questionIds: string[] | null;
+  productReview: productFindById_ProductFindById_data_productReview[] | null;
   author: productFindById_ProductFindById_data_author | null;
   questions: productFindById_ProductFindById_data_questions[] | null;
 }
@@ -7388,10 +7437,6 @@ export interface questionList_QuestionList_data_answers_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: questionList_QuestionList_data_answers_author_profileImg | null;
@@ -7634,10 +7679,6 @@ export interface questionFindById_QuestionFindById_data_answers_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: questionFindById_QuestionFindById_data_answers_author_profileImg | null;
@@ -7741,6 +7782,335 @@ export interface questionFindById {
 }
 
 export interface questionFindByIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: productReviewFindById
+// ====================================================
+
+export interface productReviewFindById_ProductReviewFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productReviewFindById_ProductReviewFindById_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface productReviewFindById_ProductReviewFindById_data_author {
+  __typename: "User";
+  _id: string;
+  email: string;
+  name: string;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: productReviewFindById_ProductReviewFindById_data_author_profileImg | null;
+}
+
+export interface productReviewFindById_ProductReviewFindById_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface productReviewFindById_ProductReviewFindById_data {
+  __typename: "ProductReview";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: productReviewFindById_ProductReviewFindById_data_author | null;
+  num: number;
+  boardTypeName: string | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  viewCount: number;
+  likeCount: number;
+  slug: string;
+  authorName: string;
+  productName: string;
+  attachFiles: productReviewFindById_ProductReviewFindById_data_attachFiles[] | null;
+  productAuthorName: string;
+  productAuthorId: string;
+  productCode: string;
+  groupCode: string;
+  rating: number;
+}
+
+export interface productReviewFindById_ProductReviewFindById {
+  __typename: "ProductReviewFindByIdResponse";
+  ok: boolean;
+  error: productReviewFindById_ProductReviewFindById_error | null;
+  data: productReviewFindById_ProductReviewFindById_data | null;
+  nextId: string | null;
+  beforeId: string | null;
+}
+
+export interface productReviewFindById {
+  ProductReviewFindById: productReviewFindById_ProductReviewFindById;
+}
+
+export interface productReviewFindByIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: productreviewList
+// ====================================================
+
+export interface productreviewList_ProductReviewList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productreviewList_ProductReviewList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface productreviewList_ProductReviewList_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface productreviewList_ProductReviewList_data_author {
+  __typename: "User";
+  _id: string;
+  email: string;
+  name: string;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: productreviewList_ProductReviewList_data_author_profileImg | null;
+}
+
+export interface productreviewList_ProductReviewList_data_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface productreviewList_ProductReviewList_data {
+  __typename: "ProductReview";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: productreviewList_ProductReviewList_data_author | null;
+  num: number;
+  boardTypeName: string | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  viewCount: number;
+  likeCount: number;
+  slug: string;
+  authorName: string;
+  productName: string;
+  attachFiles: productreviewList_ProductReviewList_data_attachFiles[] | null;
+  productAuthorName: string;
+  productAuthorId: string;
+  productCode: string;
+  groupCode: string;
+  rating: number;
+}
+
+export interface productreviewList_ProductReviewList {
+  __typename: "ProductReviewListResponse";
+  ok: boolean;
+  error: productreviewList_ProductReviewList_error | null;
+  page: productreviewList_ProductReviewList_page;
+  data: productreviewList_ProductReviewList_data[];
+}
+
+export interface productreviewList {
+  ProductReviewList: productreviewList_ProductReviewList;
+}
+
+export interface productreviewListVariables {
+  sort?: _ProductReviewSort[] | null;
+  filter?: _ProductReviewFilter | null;
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: productreviewCreate
+// ====================================================
+
+export interface productreviewCreate_ProductReviewCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productreviewCreate_ProductReviewCreate_data {
+  __typename: "ProductReview";
+  _id: string;
+}
+
+export interface productreviewCreate_ProductReviewCreate {
+  __typename: "ProductReviewCreateResponse";
+  ok: boolean;
+  error: productreviewCreate_ProductReviewCreate_error | null;
+  data: productreviewCreate_ProductReviewCreate_data | null;
+}
+
+export interface productreviewCreate {
+  ProductReviewCreate: productreviewCreate_ProductReviewCreate;
+}
+
+export interface productreviewCreateVariables {
+  params: ProductReviewCreateInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: productreviewDelete
+// ====================================================
+
+export interface productreviewDelete_ProductReviewDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productreviewDelete_ProductReviewDelete {
+  __typename: "ProductReviewDeleteResponse";
+  ok: boolean;
+  error: productreviewDelete_ProductReviewDelete_error | null;
+}
+
+export interface productreviewDelete {
+  ProductReviewDelete: productreviewDelete_ProductReviewDelete;
+}
+
+export interface productreviewDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: productreviewUpdate
+// ====================================================
+
+export interface productreviewUpdate_ProductReviewUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productreviewUpdate_ProductReviewUpdate_data {
+  __typename: "ProductReview";
+  _id: string;
+}
+
+export interface productreviewUpdate_ProductReviewUpdate {
+  __typename: "ProductReviewUpdateResponse";
+  ok: boolean;
+  error: productreviewUpdate_ProductReviewUpdate_error | null;
+  data: productreviewUpdate_ProductReviewUpdate_data | null;
+}
+
+export interface productreviewUpdate {
+  ProductReviewUpdate: productreviewUpdate_ProductReviewUpdate;
+}
+
+export interface productreviewUpdateVariables {
+  params: ProductReviewUpdateInput;
   id: string;
 }
 
@@ -10457,10 +10827,6 @@ export interface Fanswer_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: Fanswer_author_profileImg | null;
@@ -11871,10 +12237,6 @@ export interface Fquestion_answers_author {
   _id: string;
   name: string;
   /**
-   * 닉네임 유니크
-   */
-  nickName: string;
-  /**
    * 프로필 사진
    */
   profileImg: Fquestion_answers_author_profileImg | null;
@@ -11946,6 +12308,68 @@ export interface Fquestion {
   likeCount: number;
   no: number;
   author: Fquestion_author | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FproductReview
+// ====================================================
+
+export interface FproductReview_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface FproductReview_author {
+  __typename: "User";
+  _id: string;
+  email: string;
+  name: string;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: FproductReview_author_profileImg | null;
+}
+
+export interface FproductReview_attachFiles {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface FproductReview {
+  __typename: "ProductReview";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: FproductReview_author | null;
+  num: number;
+  boardTypeName: string | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  viewCount: number;
+  likeCount: number;
+  slug: string;
+  authorName: string;
+  productName: string;
+  attachFiles: FproductReview_attachFiles[] | null;
+  productAuthorName: string;
+  productAuthorId: string;
+  productCode: string;
+  groupCode: string;
+  rating: number;
 }
 
 /* tslint:disable */
@@ -12500,6 +12924,24 @@ export enum _PortfolioSort {
 /**
  * Auto generated sort type
  */
+export enum _ProductReviewSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  isNotice_asc = "isNotice_asc",
+  isNotice_desc = "isNotice_desc",
+  likeCount_asc = "likeCount_asc",
+  likeCount_desc = "likeCount_desc",
+  subTitle_asc = "subTitle_asc",
+  subTitle_desc = "subTitle_desc",
+  title_asc = "title_asc",
+  title_desc = "title_desc",
+  viewCount_asc = "viewCount_asc",
+  viewCount_desc = "viewCount_desc",
+}
+
+/**
+ * Auto generated sort type
+ */
 export enum _ProductSort {
   address_asc = "address_asc",
   address_desc = "address_desc",
@@ -12983,6 +13425,33 @@ export interface ProductCreateInput {
   kids_price: number;
   baby_price: number;
   type?: ProductType | null;
+}
+
+export interface ProductReviewCreateInput {
+  title: string;
+  contents?: string | null;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileCreateInput[] | null;
+  thumb?: FileCreateInput | null;
+  product: string;
+  rating: number;
+}
+
+export interface ProductReviewUpdateInput {
+  title?: string | null;
+  contents?: string | null;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileUpdateInput[] | null;
+  thumb?: FileUpdateInput | null;
+  rating?: number | null;
 }
 
 export interface ProductUpdateInput {
@@ -13600,6 +14069,63 @@ export interface _ProductFilter {
   exField__endDate_gt?: any | null;
 }
 
+export interface _ProductReviewFilter {
+  AND?: _ProductReviewFilter[] | null;
+  OR?: _ProductReviewFilter[] | null;
+  authorName_eq?: string | null;
+  authorName_not_eq?: string | null;
+  authorName_in?: string[] | null;
+  productName_eq?: string | null;
+  productName_not_eq?: string | null;
+  productName_in?: string[] | null;
+  productAuthorName_eq?: string | null;
+  productAuthorName_not_eq?: string | null;
+  productAuthorName_in?: string[] | null;
+  productAuthorId_eq?: string | null;
+  productAuthorId_not_eq?: string | null;
+  productAuthorId_in?: string[] | null;
+  productCode_eq?: string | null;
+  productCode_not_eq?: string | null;
+  productCode_in?: string[] | null;
+  groupCode_eq?: string | null;
+  groupCode_not_eq?: string | null;
+  groupCode_in?: string[] | null;
+  title_eq?: string | null;
+  title_not_eq?: string | null;
+  title_contains?: string | null;
+  title_not_contains?: string | null;
+  title_in?: string[] | null;
+  title_not_in?: string[] | null;
+  authorEmail_eq?: string | null;
+  authorEmail_not_eq?: string | null;
+  authorEmail_in?: string[] | null;
+  authorNick_eq?: string | null;
+  authorNick_not_eq?: string | null;
+  isNotice_eq?: boolean | null;
+  isNotice_not_eq?: boolean | null;
+  isOpen_eq?: boolean | null;
+  isOpen_not_eq?: boolean | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
+  keyWards_eq?: string | null;
+  keyWards_not_eq?: string | null;
+  keyWards_in?: string[] | null;
+  keyWards_contains?: string | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
+}
+
 export interface _QnaFilter {
   AND?: _QnaFilter[] | null;
   OR?: _QnaFilter[] | null;
@@ -13645,6 +14171,9 @@ export interface _QnaFilter {
 export interface _QuestionFilter {
   AND?: _QuestionFilter[] | null;
   OR?: _QuestionFilter[] | null;
+  categoryId_eq?: string | null;
+  categoryId_not_eq?: string | null;
+  categoryId_in?: string[] | null;
   code_eq?: string | null;
   code_not_eq?: string | null;
   status_eq?: string | null;

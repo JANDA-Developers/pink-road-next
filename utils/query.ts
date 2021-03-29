@@ -89,7 +89,7 @@ export const generateListQueryHook = <F,S,Q,V,R>(
         const { skipInit,skip,variables, overrideVariables, ...ops } = options;
         const { integratedVariable,...params } = useListQuery(initialData)
         const [getData, { data, loading: getLoading,...queryElse }] = useLazyQuery<Q,V>(QUERY,{
-            fetchPolicy: "cache-first",
+            fetchPolicy: "cache-and-network",
             // @ts-ignore
             variables: {
                 ...integratedVariable,
@@ -232,7 +232,7 @@ export const generateFindQuery = <Q,V,ResultFragment>(findBy: keyof V, QUERY:Doc
 
         const error = apolloError || errorFromServer 
 
-        return {item, loading, error, getData,...context}
+        return {item, loading, error, getData, data,...context}
     }
 
     return findQueryHook

@@ -36,6 +36,13 @@ import { Change } from "../../../components/loadingList/LoadingList";
 import OnImagesLoaded from "../../../components/onImageLoad/OnImageLoad";
 import { useImgLoading } from "../../../hook/useImgLoading";
 import PageDeny from "../../Deny";
+import { IModalInfo, ReviewModal } from "../../../components/reviewModal/ReviewModal";
+import { useModal } from "../../../hook/useModal";
+import Rating from "react-rating";
+import { yyyymmdd } from "../../../utils/yyyymmdd";
+import { RatingStar } from "../../../components/rating/Rating";
+import { BG, BGprofile } from "../../../types/const";
+import { cutStr } from "../../../utils/cutStr";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -47,6 +54,8 @@ export async function getStaticPaths() {
   };
 }
 const TourDetail: React.FC<Ipage> = (pageInfo) => {
+
+  const reviewModalHook = useModal<IModalInfo>();
 
   const router = useRouter();
   const { item: group } = useGroupFind("Recommend")
@@ -67,6 +76,12 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const { isManager, isAdmin, myProfile, isSeller } = useContext(AppContext);
   const isMyProduct = product?.author?._id === myProfile?._id;
   const status = product?.status;
+  const reviews = product?.productReview || [];
+
+  const reviewPagination = generateClientPaging(reviews, 4);
+
+
+  const isMyReview = (authorId: string) => authorId === "";
 
   const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
 
@@ -176,9 +191,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const randomSliced = useMemo(() => randomSorted.slice(0, 3), [randomSorted.length])
 
   if (loading) return <PageLoading />
-  if (!product) return <Page404 />
-
-
+  if (!product) return <div></div>
 
   const {
     images,
@@ -438,71 +451,44 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 <div className="text ck-content">
                   <div className="review__box">
                     <ul className="review__list">
-                      <li>
-                        <div className="top">
-                          <div className="review__list_pr" />
-                          <div className="review__list_star">
-                            <div>별자리</div>
-                            <strong>234</strong>
+                      {reviewPagination.slice.map(review =>
+                        <li onClick={() => {
+                          reviewModalHook.openModal({
+                            reviewId: review._id
+                          })
+                        }} key={review._id}>
+                          <div className="top">
+                            <div className="review__list_pr" style={BGprofile(review.author?.profileImg)} />
+                            <div className="review__list_star">
+                              <RatingStar readonly initialRating={review.rating} />
+                            </div>
+                            <div className="review__list_info">
+                              <strong>{review.title}</strong>
+                              <span className="name">{review.authorName}</span><span className="day">{yyyymmdd(review.createdAt)}</span>
+                            </div>
                           </div>
-                          <div className="review__list_info">
-                            <span className="name">이름</span><span className="day">2020.20.20</span>
+                          <div className="bottom">
+                            <p>{cutStr(review.contents, 150)}</p>
                           </div>
-                        </div>
-                        <div className="bottom">
-                          <p>지금 꽃이 많이펴서 분위기가 너무 좋아요~~~~!!!! 사람도 많고 꽃도 많고 날씨도 너무 좋아요~~~!!!!!!</p>
-                          <div className="img">review images</div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="top">
-                          <div className="review__list_pr" />
-                          <div className="review__list_star">
-                            <div>별자리</div>
-                            <strong>234</strong>
-                          </div>
-                          <div className="review__list_info">
-                            <span className="name">이름</span><span className="day">2020.20.20</span>
-                          </div>
-                        </div>
-                        <div className="bottom">
-                          <p>지금 꽃이 많이펴서 분위기가 너무 좋아요~~~~!!!! 사람도 많고 꽃도 많고 날씨도 너무 좋아요~~~!!!!!!</p>
-                          <div className="img">review images</div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="top">
-                          <div className="review__list_pr" />
-                          <div className="review__list_star">
-                            <div>별자리</div>
-                            <strong>234</strong>
-                          </div>
-                          <div className="review__list_info">
-                            <span className="name">이름</span><span className="day">2020.20.20</span>
-                          </div>
-                        </div>
-                        <div className="bottom">
-                          <p>지금 꽃이 많이펴서 분위기가 너무 좋아요~~~~!!!! 사람도 많고 꽃도 많고 날씨도 너무 좋아요~~~!!!!!!</p>
-                          <div className="img">review images</div>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="top">
-                          <div className="review__list_pr" />
-                          <div className="review__list_star">
-                            <div>별자리</div>
-                            <strong>234</strong>
-                          </div>
-                          <div className="review__list_info">
-                            <span className="name">이름</span><span className="day">2020.20.20</span>
-                          </div>
-                        </div>
-                        <div className="bottom">
-                          <p>지금 꽃이 많이펴서 분위기가 너무 좋아요~~~~!!!! 사람도 많고 꽃도 많고 날씨도 너무 좋아요~~~!!!!!!</p>
-
-                        </div>
-                      </li>
+                          {
+                            true
+                            // isMyReview(review._id)
+                            &&
+                            <Link href={`/review/write/${review._id}?pid=${id}&name=${title}`}>
+                              <a onClick={(e) => { e.stopPropagation(); }} className="mini_btn small">수정하기</a>
+                            </Link>
+                          }
+                        </li>
+                      )}
                     </ul>
+                  </div>
+                </div>
+                <div className="boardNavigation">
+                  <Paginater pageInfo={reviewPagination.paging} isMini setPage={reviewPagination.setPage} />
+                  <div className="float_right">
+                    <Link href={`/review/write?pid=${id}&name=${title}`}>
+                      <a className="mini_btn small">리뷰 쓰러가기</a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -552,57 +538,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             </div>
           </div>
         </div>
-        <div className="popup_bg__review">
-          <div className="popup_bg__review__in in_txt">
-            <div className="popup_bg__review__headerWrap">
-              <a className="popup_bg__review__headerClose close_icon"><i className="flaticon-multiply"></i></a>
-            </div>
-            <div className="popup_bg__review__body">
-              <div className="popup_bg__review_page">
-                <div className="review__photo">
-                </div>
-                <div className="review__photo_cunt">
-                  <div className="left"></div>
-                  <div className="right"></div>
-                </div>
-                <div className="review__txt">
-                  <div className="con__01">
-                    <div className="review__box popup">
-                      <ul className="review__list">
-                        <li>
-                          <div className="top">
-                            <div className="review__list_pr" />
-                            <div className="review__list_star">
-                              <div>별자리</div>
-                              <strong>234</strong>
-                            </div>
-                            <div className="review__list_info">
-                              <span className="name">이름</span><span className="day">2020.20.20</span>
-                            </div>
-                          </div>
-                          <div className="bottom">
-                            <p>지금 꽃이 많이펴서 분위기가 너무 좋아요~~~~!!!! 사람도 많고 꽃도 많고 날씨도 너무 좋아요~~~!!!!!!</p>
-
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="con__02">
-                    <ul className="review__photoList">
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                    </ul>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
       </Change>
     </OnImagesLoaded >
+    <ReviewModal {...reviewModalHook} />
   </div >
 }
 

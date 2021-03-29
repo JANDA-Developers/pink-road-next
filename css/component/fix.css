@@ -428,3 +428,14 @@ background-color: #fff;
     outline: none;
 
 }
+
+.rate-start {
+    font-size: 1.5em!important;
+    color: gold;
+}
+
+.board_write__textarea {
+    resize: none;
+    width: 100%;
+    height: 350px;
+}

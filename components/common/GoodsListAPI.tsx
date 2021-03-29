@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { RatingStars } from 'components/common/RatingStars';
+import { RatingStars } from 'components/common/RatingStars[deprecated]';
 import { useProductList } from '../../hook/useProduct';
 import { ListInitOptions } from '../../hook/useListQuery';
 import { productList, productListVariables, productList_ProductList_data, _ProductFilter, _ProductSort } from '../../types/api';
