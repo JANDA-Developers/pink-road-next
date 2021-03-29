@@ -225,8 +225,33 @@
         text-align: left;
         padding-bottom: 70px;
     }
+    .main_con_box2 .pr_list {
+        position: relative;
+        display: block;
+    }
+    .main_con_box2 .pr_list:after {
+        right: 0;
+        background: linear-gradient(to left,#ffffff 0%,transparent 30%);
+        position: absolute;
+    top: 0;
+    width: 10%;
+    height: 100%;
+    content: "";
+    z-index: 1;
+    }
+    .main_con_box2 .pr_list::before {
+        left: 0;
+    background: linear-gradient(to right,#ffffff 0%,transparent 30%);
+    position: absolute;
+    top: 0;
+    width: 10%;
+    height: 100%;
+    content: "";
+    z-index: 1;
 
-    .main_con_box2 li {
+    }
+
+    .main_con_box2 .peple {
         width: 80px;
         height: 80px;
         display: inline-block;
@@ -237,50 +262,63 @@
         border: 2px #eee solid;
         padding: 10px;
         box-sizing: border-box;
+        background-repeat: no-repeat;
         vertical-align: top;
-        background-size: cover;
+        background-size: 120%;
         background-position: center center;
         overflow: hidden;
         text-indent: -999px;
+        position: relative;
     }
+ 
 
-        .main_con_box2 li.plus {
-            width: 70px;
-            height: auto;
-            display: inline-block;
+        .main_con_box2 .plus {
+            width: 100%;
+            display: none;
             font-size: 55px;
-            line-height: 57px;
+            line-height: 100%;
             color: #eeeeee;
             border: 0;
             background-image: none;
             position: relative;
             padding: 0;
+            z-index: 100;
         }
-
-            .main_con_box2 li.plus a {
-                color: #ccc;
-                display: block;
-                text-indent: 0;
-            }
-
-        .main_con_box2 li i {
+        .main_con_box2 .peple:hover .plus {
+            display: block;
+            align-items: center;
+        }
+        .main_con_box2 .slick-slide:hover .peple::after{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.77);
+            transition: all 0.4s ease-out;
+        }
+        .main_con_box2 .peple i {
             display: block;
             font-size: 55px;
-            margin-top: 44px;
+            margin-top: 44px;   
         }
 
-        .main_con_box2 li strong {
+        /* 
+        .main_con_box2 .peple strong {
             display: block;
             font-size: 22px;
             margin-top: 10px;
         }
 
-        .main_con_box2 li p {
+        .main_con_box2 .peple p {
             display: block;
             font-size: 14px;
             line-height: 20px;
             margin-top: 10px;
-        }
+        } 
+        */
+
         .main_con_box3 {
             background-color: #e8f3fc;
             overflow: hidden;
@@ -8969,6 +9007,7 @@ i.calendar {
         color: #797979;
         font-weight: 600;
     }
+  
 @media (min-width: 768px) {   
     .tour_details_in .boardReadBody .con_top_tap span a{
         line-height: 40px;
@@ -9449,7 +9488,7 @@ i.calendar {
         .main_con_box1 .main_top_images strong {
             margin-bottom: 15px;
             margin-top: 130px;
-            font-size:7.5em;
+            font-size:6.1em;
             padding-left: 100px;
            
         }
@@ -9802,13 +9841,12 @@ i.calendar {
             top: 16px;
             width: 79px;
         }
-        .main_con_box2 li {
+        .main_con_box2 .peple {
             width: 110px;
             height: 110px;
         }
-        .main_con_box2 li.plus {
+        .main_con_box2 .plus {
             font-size: 55px;
-            line-height: 110px;
         }
     .login_wrap .sign_in_form span {
         position: relative;
@@ -10281,12 +10319,9 @@ i.calendar {
     .main_con_box2 ul {
         padding: 65px 0 60px;
     }
-    .main_con_box2 li {
+    .main_con_box2 .peple {
         width: 130px;
         height: 130px;
-    }
-    .main_con_box2 li.plus {
-        line-height: 120px;
     }
     .main_con_box2 .top_txt {
         width: 250px;
@@ -10302,9 +10337,11 @@ i.calendar {
         padding: 120px 0 120px;
     }
     .main_con_box3 ul {
-        right: 110px;
-        width: 370px;
+        right: 0;
+        width: 593px;
         top: 137px;
+        padding: 0 82px;
+        box-sizing: border-box;
     }
     .main_con_box4 {
         padding: 130px 0;
@@ -10814,14 +10851,13 @@ i.calendar {
         padding: 15px 0 60px;
         text-align: center;
     }
-    .main_con_box2 li {
+    .main_con_box2.peple {
         width: 50px;
         height: 50px;
     }
-    .main_con_box2 li.plus {
+    .main_con_box2 .plus {
         width: auto;
         height: auto;
-        line-height: 50px;
         box-sizing: border-box;
         padding: 0 0 0 16px;
     }
