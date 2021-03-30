@@ -1031,7 +1031,7 @@ div.popup_bg_mini .page{
     height: 100%;
     width: 100%;
     border-radius: 20px;
-    padding: 20px 10px 10px 0px;
+    padding: 20px 10px 20px 10px;
     box-sizing: border-box;
     overflow: hidden;
     background-color: #fff;
@@ -9014,9 +9014,7 @@ ul.photo_ul.main_photo_ul li .title {
         padding: 5px 15px;
         font-size: 16px;
         border-radius: 100px;
-    }
-    .main_con_box4 .top_txt .txt{
-    }    
+    }  
     .main_con_box4 {
         padding: 50px 3% 210px;
     }
@@ -11141,6 +11139,20 @@ ul.photo_ul.main_photo_ul li .title {
 }
 
 @media (max-width: 767px) {
+    div.popup_bg_mini .in_txt{
+        max-width: 94%;
+    }
+    #payment .popup_bg_mini .in_txt {
+        min-width: 94% !important;
+     }
+    
+    #payment .popup_bg_mini .btn.w50 {
+        min-width:100% !important;
+     }
+    
+    div.popup_bg_mini .page{
+        padding: 20px 10px 20px 10px;
+    }
     .siteInfo_in .con04 .li05{
         padding-top: 25px;
     }
@@ -11435,10 +11447,20 @@ ul.photo_ul.main_photo_ul li .title {
 
 
 @media (max-width:360px) {
-    /* .top_visual{
-        height: auto;
-        min-height: 170px;
-    } */
+
+    div.popup_bg_mini .con {
+        padding: 25px 5% 0;
+    }
+     div.popup_bg_mini .page{
+         border-radius: 0;
+     }
+
+     div.popup_bg_mini h3 {
+        padding: 0 5%;
+    }
+    div.popup_bg_mini .close_icon {
+        right: 13px;
+    }
     ul.list_ul li .img {
         height: 160px;
     }

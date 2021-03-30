@@ -103,7 +103,7 @@ export const removeBracket = () => {
 }
 
 export const getBracket = () => {
-    return Storage?.getLocalObj<IBasketItem[]>("bracket", []);
+    return Storage?.getLocalObj<IBasketItem[]>("bracket", []) || [];
 }
 
 export const haveItem = (_id: string): boolean => {
