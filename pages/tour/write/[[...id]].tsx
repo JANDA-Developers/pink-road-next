@@ -18,7 +18,7 @@ import { changeVal } from "../../../utils/eventValueExtracter";
 import PageLoading from "../../Loading";
 import { auth } from "../../../utils/with";
 import { ALLOW_SELLERS } from "../../../types/const";
-import { EditorLoading } from "../../../components/edit/EdiotrLoading";
+import { LoadEditor } from "../../../components/edit/EdiotrLoading";
 import pageInfoDefault from "info/tourWrite.json"
 import { getStaticPageInfo, Ipage } from "../../../utils/page";
 import { usePageEdit } from "../../../hook/usePageEdit";
@@ -32,7 +32,7 @@ import { checkIsExp } from "../../../utils/product";
 import { PageEditor } from "../../../components/common/PageEditer";
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
-const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
+const Editor = LoadEditor();
 interface IProp {
 }
 

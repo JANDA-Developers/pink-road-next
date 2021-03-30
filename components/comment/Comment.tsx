@@ -5,8 +5,9 @@ import { AppContext } from '../../pages/_app';
 import { Fanswer, Fquestion } from '../../types/api';
 import { BG, BGprofile } from '../../types/const';
 import sanitizeHtml from 'sanitize-html';
+import { LoadEditor } from '../edit/EdiotrLoading';
 
-const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
+const Editor = LoadEditor();
 
 
 interface IProp extends Fanswer {

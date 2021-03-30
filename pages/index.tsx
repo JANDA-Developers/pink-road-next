@@ -115,7 +115,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
               <span className="main_top_images__subTitle" {...edit('m_01_subtitle2')}>
               </span>
               <div className="btn_list onepick">
-                <a  target="_blank" href="/pinkroader_company_introduction_letter.pdf" className="link" {...edit("m_01_mainLink2_1")} />
+                <a target="_blank" href={homepage?.compnanyIntoduceFile?.uri || "/pinkroader_company_introduction_letter.pdf"} className="link" {...edit("m_01_mainLink2_1")} />
               </div>
             </div>
           </Bg>

@@ -18,8 +18,9 @@ import { cloneObject } from '../../../utils/clone';
 import { DesignTopNav } from '../../../components/topNav/MasterTopNav';
 import { auth } from '../../../utils/with';
 import { useUpload } from '../../../hook/useUpload';
+import { LoadEditor } from '../../../components/edit/EdiotrLoading';
 
-const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
+const Editor = LoadEditor();
 
 interface IProp { }
 

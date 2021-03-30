@@ -2,9 +2,10 @@ import dynamic from 'next/dynamic';
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../../pages/_app';
 import { BG, BGprofile } from '../../types/const';
+import { LoadEditor } from '../edit/EdiotrLoading';
 
 
-const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
+const Editor = LoadEditor();
 
 interface IProp {
     title: string;

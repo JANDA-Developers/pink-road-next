@@ -125,6 +125,7 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="txt"><input onChange={upload("logoTop")} className="w50" type="file" /></div>
                                 </div>
                             </div>
+
                             <div className="tbody">
                                 <div className="t01">
                                     <div className="title">사이트로고(하단)</div>
@@ -132,6 +133,16 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                 <div className="t02">
                                     <p>{logoBottom?.name}</p>
                                     <div className="txt"><input onChange={upload("logoBottom")} className="w50" type="file" /></div>
+                                </div>
+                            </div>
+                            <div key={homepage.compnanyIntoduceFile?.uri.length} className="tbody">
+                                <div className="t01">
+                                    <div className="title">회사소개서</div>
+                                </div>
+                                <div className="t02">
+                                    <div className="txt">
+                                        <input name={"compnayIntorudceFile"} onChange={upload("compnanyIntoduceFile")} className="w50" type="file" />
+                                    </div>
                                 </div>
                             </div>
                             <div className="tbody">

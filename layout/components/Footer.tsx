@@ -57,13 +57,13 @@ export const Footer: React.FC<IProp> = () => {
                     <li className="link"><Link href="/member/refund-policy"><a>취소 및 환불 정책</a></Link></li>
                     <li className="sns">
                         <div>
-                            <Link href="https://www.facebook.com/PinkRoader"><a target="_blank"><i className="jandaicon-facebook"></i></a></Link>
-                            <Link href="https://twitter.com/PinkRoader"><a target="_blank"><i className="jandaicon-twitter"></i></a></Link>
-                            <Link href="https://www.instagram.com/pinkroader_"><a target="_blank"><i className="jandaicon-instagram2"></i></a></Link>
-                            <Link href="http://blog.naver.com/pinkroader"><a target="_blank"><i className="icon_blog"></i></a></Link>
+                            {homepage?.facebookLink && <a href={homepage?.facebookLink} target="_blank"><i className="jandaicon-facebook"></i></a>}
+                            {homepage?.twitterLink && <a href={homepage?.twitterLink} target="_blank"><i className="jandaicon-twitter"></i></a>}
+                            {homepage?.instaLink && <a href={homepage?.instaLink} target="_blank"><i className="jandaicon-instagram2"></i></a>}
+                            {homepage?.blogLink && <a href={homepage?.blogLink} target="_blank"><i className="icon_blog"></i></a>}
                         </div>
                     </li>
-                    <li className="cs"> <Link href="mailto:pinkroader@gmail.com"><a>CONTACT</a></Link></li>
+                    <li className="cs"> <a href={homepage?.contact}>CONTACT</a></li>
                 </ul>
             </div>
             <div className="f_detail_wrap">

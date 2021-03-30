@@ -8,6 +8,7 @@ import { Router, useRouter } from "next/router";
 import { NotiIcon } from "./NotiIcon";
 import { generateSearchLink } from "../../pages/search";
 import { userRoleToKR } from "../../utils/enumToKr";
+import homepage13 from "../../pages/master/homepage/homepage1-3";
 
 interface IProp { }
 export const handSearchClose = () => {
@@ -28,7 +29,7 @@ export const Header: React.FC<IProp> = () => {
     const rotuer = useRouter()
 
 
-    const { isLogin, myProfile, isManager } = useContext(AppContext);
+    const { isLogin, myProfile, isManager, homepage } = useContext(AppContext);
 
     const handleNav = () => {
         $('#header').attr("tabindex", -1);
@@ -162,7 +163,7 @@ export const Header: React.FC<IProp> = () => {
                         <div className="logo">
                             <h1>
                                 <Link href="/">
-                                    <a><img src={'/img/logo_1.png'} alt="logo" /></a>
+                                    <a><img src={homepage?.logoTop?.uri || '/img/logo.png'} alt="logo" /></a>
                                 </Link>
                             </h1>
                         </div>
