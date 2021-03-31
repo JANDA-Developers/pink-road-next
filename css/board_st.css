@@ -1534,8 +1534,15 @@ div.comment_box {
     display: block;
 }
 .board_write {
-    padding-top: 100px;
+    padding-top: 60px;
    padding-bottom: 100px;
+   box-sizing: border-box;
+   padding-left: 3%;
+   padding-right: 3%;
+   overflow: hidden;
+}
+.board_write .w1200{
+   width: 100%;
 }
 .board_write__textarea {
     resize: none;
@@ -2701,6 +2708,11 @@ div.sum_div {
         }
 }
 
+@media (min-width:1280px) {
+    .board_write .w1200 {
+        width: 1200px;
+    }
+}
 @media (max-width:1000px) {
     .board_list.st01 .tbody .td01,
     .board_list.st01 .tbody .td02,
@@ -2714,7 +2726,14 @@ div.sum_div {
     }
 }
 @media (max-width:767px) {
-  
+    .board_write{
+        padding-top: 30px;
+        padding-bottom: 50px;   
+         overflow: hidden;
+        padding-left: 3%;
+        padding-right: 3%;
+        box-sizing: border-box;
+    }
     .board_option{
         text-align: center;
     }
@@ -2751,10 +2770,16 @@ div.sum_div {
             display: inline-block;
         }
         .board_write .write_box{
-            padding: 60px 3% 20px;
+            padding: 30px 3% 30px;
         }
         .board_write .bottom_write{
             padding: 35px 3% 20px;
+        }
+        .board_write .write_type .category{
+            width: 100%;
+        }
+        .board_write .write_type input[type=text]{
+            width: 100% !important;
         }
         .board_write .write_type .title,
         .board_write .write_type .input_form {
