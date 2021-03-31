@@ -2636,7 +2636,6 @@ div.sum_div {
     }
     .board_list.st01 .tbody li {
         display: flex;
-        justify-content: space-around;
         align-items: center;
         padding: 0;
     }

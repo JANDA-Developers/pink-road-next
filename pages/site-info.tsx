@@ -81,7 +81,7 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
             </div>
         </div>
 
-        {/* <div className="w100 con01 con_block">
+        <div className="w100 con01 con_block">
             <div className="line" />
             <div className="w1200">
                 <h4 {...edit("con03_title")} />
@@ -113,7 +113,7 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                 </ul>
 
             </div>
-        </div> */}
+        </div>
 
 
         <div className="w100 con03 con_block" style={{ backgroundImage: "url(/its/siteinfo_bg04.jpg)" }}>
@@ -175,10 +175,8 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                         }}><i className="flaticon-add"></i>추가</li>
                     }
                 </ul>
-
             </div>
         </div>
-
 
         <div className="w100">
             <div className="main_con_box7">
@@ -200,7 +198,6 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                             <strong {...edit("con07_box2_number")} />
                             <p {...edit("con07_box2_English")} />
                         </div>
-
                     </div>
                 </div>
                 <div className="box03">

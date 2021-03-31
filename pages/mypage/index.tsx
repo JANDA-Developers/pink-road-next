@@ -70,9 +70,11 @@ export const MyPageProfile: React.FC<IProp> = () => {
         handleBankRegistration,
         handleChangeRegistration,
         hiddenBankFileInput,
-        hiddenBusiFileInput
+        hiddenBusiFileInput,
+        hiddenLicenseFileInput,
+        hanldeChangeLicense,
     } = useMyProfile(defaultProfile!)
-    const { nextPw, profile, pw, busiRegistration, bankImg } = data;
+    const { nextPw, profile, pw, busiRegistration, bankImg, license } = data;
     const { setPw, setProfile } = setData;
     const {
         nickName,
@@ -507,7 +509,21 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     <input key={busiRegistration ? "busiImgExsit" : "busiImg"} onChange={handleChangeRegistration} ref={hiddenBusiFileInput} hidden type="file" />
                                 </div>
                             </li>
-
+                            <li>
+                                <div className="title">가이드 자격증</div>
+                                <div className="txt txt--flex">
+                                    <span className="w80 upload_out_box">
+                                        <span className="upload_out_box__fileName">{license?.name}</span>
+                                        {license && <CloseIcon onClick={() => {
+                                            setBankImg(null)
+                                        }} className="upload_out_box__closer" style={{ width: "10px", height: "10px" }} />}
+                                    </span>
+                                    <button onClick={() => { hiddenLicenseFileInput.current?.click() }} type="button" className="btn btn_mini">
+                                        업로드
+                                    </button>
+                                    <input key={license ? "guideLiseneceexsit" : "noGuideLisecne"} onChange={hanldeChangeLicense} ref={hiddenLicenseFileInput} hidden type="file" />
+                                </div>
+                            </li>
                             <li>
                                 <div className="title">통장사본</div>
                                 <div className="txt txt--flex">

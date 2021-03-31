@@ -21,9 +21,10 @@ export const ProfileListAPI: React.FC<IProp> = ({ variables, selectedSeller, set
     const { ref, width, height } = useResizeDetector<HTMLDivElement>()
     const guidesRef = useRef<HTMLDivElement>(null)
     const { data: items = [] } = useRandomPublicSellerList({
+        nextFetchPolicy: "cache-first",
         variables: {
             filter: {
-                profileImg_not_eq: null
+                profileImg_not_eq: null,
             },
             random: 40,
             ...variables

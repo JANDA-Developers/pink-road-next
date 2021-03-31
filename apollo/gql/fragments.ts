@@ -238,6 +238,9 @@ export const F_USER = gql`
         profileImg {
             uri
         }
+        guideLicense {
+            ...Ffile
+        }
         bankImg {
             ...Ffile
         }

@@ -4,7 +4,9 @@ import dayjs from "dayjs";
 import { ItineraryCreateInput } from '../../types/api';
 import { ISet } from 'types/interface';
 import dynamic from 'next/dynamic';
-const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
+import { LoadEditor } from '../edit/EdiotrLoading';
+const Editor = LoadEditor();
+
 interface IProp {
     its: ItineraryCreateInput[];
     itinery: ItineraryCreateInput;

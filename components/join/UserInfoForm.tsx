@@ -1,12 +1,9 @@
 import React, { useContext, useEffect } from 'react'
 import DaumPostcode from 'react-daum-postcode';
-import DayPicker from 'react-day-picker';
 import RegisterCheck from './RegisterCheck';
-import Calendar from '../common/icon/CalendarIcon';
 import 'react-day-picker/lib/style.css';
 import { GENDER } from '../../types/api';
-import { fromMonth, toMonth, useJoin } from '../../hook/useJoin';
-import { YearMonthForm } from './YearMonthForm';
+import { useJoin } from '../../hook/useJoin';
 import { JoinContext } from '../../pages/member/join';
 import { autoHypenPhone } from '../../utils/formatter';
 import { BirthDayPicker } from '../birthdayPicker/BirthdayPicker';
@@ -36,6 +33,7 @@ const UserInfoForm: React.FC = () => {
         birthdayPicker,
         setBirthDayPicker,
         handleNationality,
+        handleGuidLicenseImg,
         errDisplay,
         setDaumAddress,
         handleBusinessLicense,
@@ -53,7 +51,7 @@ const UserInfoForm: React.FC = () => {
             window.removeEventListener("click", hideDaumAddress)
         }
     }, [])
-    
+
 
     return (
         <>
@@ -265,29 +263,6 @@ const UserInfoForm: React.FC = () => {
                     </div>
                     {isPartenerB &&
                         <div>
-                            {/* <div className="ph_wrap">
-                                <label>
-                                    <i className="important_icon" />
-                                    사업자번호
-                                </label>
-                                <span className="er red_font">
-                                    *사업자번호가 바르지 않습니다.
-                                </span>
-                                <div className="w100">
-                                    <select style={{ marginRight: "5px" }} className="w20 mr5" value={data.is_priv_corper ? "true" : "false"} onChange={handleData("is_priv_corper")}>
-                                        <option value={"false"}>개인</option>
-                                        <option value={"true"}>법인</option>
-                                    </select>
-                                    <input
-                                        type="text"
-                                        className="form-control w70"
-                                        name="business_number"
-                                        placeholder="사업자번호를 입력해주세요."
-                                        value={data.busi_num || ""}
-                                        onChange={handleData("busi_num")}
-                                    />
-                                </div>
-                            </div> */}
                             <div className="ph_wrap">
                                 <label>전화번호</label>
                                 <span className={`er red_font ${errDisplay.busi_contact && `on`}`}>*숫자만 입력이 가능합니다.</span>
@@ -302,74 +277,44 @@ const UserInfoForm: React.FC = () => {
                                     />
                                 </div>
                             </div>
-                            {/* <div className="ph_wrap">
-                                <label>담당자</label>
-                                <span className="er red_font">*숫자를 입력 할 수 없습니다.</span>
-                                <div className="w100">
-                                    <input
-                                        type="text"
-                                        className="form-control w20"
-                                        placeholder="부서명"
-                                        name="department"
-                                        value={data.busi_department || ""}
-                                        onChange={handleData("busi_department")}
-                                    />{" "}
-                                    <input
-                                        type="text"
-                                        className="form-control w70"
-                                        name="incharge_name"
-                                        placeholder="담당자를 입력해주세요."
-                                        value={data.manageName || ""}
-                                        onChange={handleData("manageName")}
-                                    />
-                                </div>
-                            </div>
-                            <div className="ph_wrap">
-                                <label>담당자 연락처</label>
-                                <span className="er red_font">*숫자이외에 입력이 안됩니다.</span>
-                                <div className="w100">
-                                    <input
-                                        type="text"
-                                        className="w100"
-                                        name="incharge_number"
-                                        placeholder="-를 제외한 휴대폰 번호를 입력해주세요"
-                                        value={autoHypenPhone(data.manageContact || "")}
-                                        onChange={handleData("manageContact")}
-                                    />
-                                </div>
-                            </div> */}
-                            {/* <div className="ph_wrap">
-                                <label>
-                                    <i className="important_icon" />
-                                사업자등록증
-                                </label>
-                                <span className="er red_font">
-                                    *jpg, gif, png 이외에 업로드 불가능합니다.
-                                </span>
-                                <div className="w100 apply_relative">
-                                    <span className="w80 upload_out_box">
-                                        {data.busiRegistration?.name}
-                                    </span>
-
-                                    <label htmlFor="business_license" className="cus_file_busi_license">
-                                        업로드
-                                    </label>
-                                    <input type="file" name="business_license" id="business_license"
-                                        className="file_busi_license"
-                                        onChange={handleBusinessLicense}></input>
-                                </div>
-                            </div> */}
                         </div>
                     }
                     <div className="ph_wrap">
                         <label>
                             <i className="important_icon" />
-                                통장사본
-                                </label>
+                                가이드 자격증
+                            </label>
                         <span className="er red_font">
                             *jpg, gif, png 이외에 업로드 불가능합니다.
                                 </span>
-                        <div className="w100 apply_relative">
+                        <div style={{
+                            display: "flex",
+                            alignItems: "center"
+                        }} className="w100 apply_relative">
+                            <span className="w80 upload_out_box">
+                                {data.guideLicense?.name}
+                            </span>
+
+                            <label htmlFor="busiLicense" className="cus_file_busi_license">
+                                업로드
+                                    </label>
+                            <input type="file" name="business_license" id="busiLicense"
+                                className="file_busi_license"
+                                onChange={handleGuidLicenseImg}></input>
+                        </div>
+                    </div>
+                    <div className="ph_wrap">
+                        <label>
+                            <i className="important_icon" />
+                                통장사본
+                        </label>
+                        <span className="er red_font">
+                            *jpg, gif, png 이외에 업로드 불가능합니다.
+                                </span>
+                        <div style={{
+                            display: "flex",
+                            alignItems: "center"
+                        }} className="w100 apply_relative">
                             <span className="w80 upload_out_box">
                                 {data.bankImg?.name}
                             </span>

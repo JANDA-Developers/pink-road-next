@@ -3658,6 +3658,7 @@ ul.rank_ul {
         padding-left: 15px;
         color: #333;
         font-weight: 100;
+        display: block;
         box-sizing: border-box;
         line-height: 200%;
         font-size: 1.2em;

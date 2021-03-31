@@ -2,8 +2,7 @@ import dayjs from "dayjs";
 import { useContext, useState } from "react";
 import { DayModifiers } from "react-day-picker";
 import { JoinContext } from "../pages/member/join";
-import { AddUserInput, GENDER, VerificationEvent, VerificationTarget } from "../types/api";
-import { E_INPUT } from "../types/interface";
+import { AddUserInput, GENDER } from "../types/api";
 import { useUpload } from "./useUpload";
 import { useDuplicateNickNameCheck } from "./useUser";
 
@@ -22,6 +21,7 @@ export const useJoin = () => {
         acceptEamil: false,
         acceptSms: false,
         account_number: false,
+        guideLicense: false,
         busi_department: false,
         address: false,
         address_detail: false,
@@ -55,7 +55,7 @@ export const useJoin = () => {
         setErrDisplay({ ...errDisplay })
     }
 
-    const { verifiData: { payload } = {} } = useContext(JoinContext)!;
+    const { verifiData: { payload } = { payload: "" } } = useContext(JoinContext)!;
     const [data, setData] = useState<ISignUpInput>({ email: payload })
     const [daumAddress, setDaumAddress] = useState(false);
     const { signleUpload } = useUpload();
@@ -165,10 +165,10 @@ export const useJoin = () => {
             })
     }
 
+
+
     const handleBusinessLicense = async (e: React.ChangeEvent<HTMLInputElement>) => {
-
         if (!e.target.files) return;
-
         await signleUpload(e.target.files, (url, file) => {
             setData({
                 ...data,
@@ -179,17 +179,25 @@ export const useJoin = () => {
     }
 
     const handleBankImg = async (e: React.ChangeEvent<HTMLInputElement>) => {
-
         if (!e.target.files) return;
-
         await signleUpload(e.target.files, (url, file) => {
             setData({
                 ...data,
                 bankImg: file
             })
         })
-
     }
+
+    const handleGuidLicenseImg = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files) return;
+        await signleUpload(e.target.files, (url, file) => {
+            setData({
+                ...data,
+                guideLicense: file
+            })
+        })
+    }
+
 
 
     const handleNationality = (isKorean: boolean) => () => {
@@ -218,6 +226,7 @@ export const useJoin = () => {
         setDaumAddress,
         handleData,
         handleBankImg,
+        handleGuidLicenseImg,
         handleBusinessLicense,
         handleGender,
         handleBirthPicker,

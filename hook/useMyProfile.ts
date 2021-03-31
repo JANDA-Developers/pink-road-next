@@ -11,6 +11,7 @@ type TProfile = Pick<getContext_GetProfile_data,TChangeAbleData>;
 
 export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
     const [pw,setPw] = useState("");
+    const [license, setLicense] = useState<Ffile | null>(defaultData.guideLicense)
     const [bankImg, setBankImg] = useState<Ffile | null>(defaultData.bankImg)
     const [busiRegistration, setBusiRegistration] = useState<Ffile | null>(defaultData.busiRegistration)
     const [nextPw, setNextPw] = useState({
@@ -20,6 +21,7 @@ export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
     
     const hiddenBusiFileInput = useRef<HTMLInputElement>(null);
     const hiddenBankFileInput = useRef<HTMLInputElement>(null);
+    const hiddenLicenseFileInput = useRef<HTMLInputElement>(null);
 
     const { signleUpload } = useUpload();
 
@@ -40,6 +42,16 @@ export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
         }
         signleUpload(fileUploaded, onUpload);
     };
+
+    const hanldeChangeLicense = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (!event.target.files) return;
+        const fileUploaded = event.target.files;
+        const onUpload = (_: string, data: Ffile) => {
+            setLicense(data)
+        }
+        signleUpload(fileUploaded, onUpload);
+    };
+    
     
     const [profile, setProfile] = useState<TProfile>({
         keywards: defaultData.keywards || [],
@@ -92,6 +104,7 @@ export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
 
 
     const data = {
+        license,
         bankImg,
         busiRegistration,
         profile,
@@ -100,6 +113,7 @@ export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
     }
 
     const setData = {
+        setLicense,
         setProfile,
         setNextPw,
         setPw
@@ -128,7 +142,9 @@ export const useMyProfile = (defaultData:getContext_GetProfile_data  ) => {
         setBusiRegistration,
         hiddenBusiFileInput,
         hiddenBankFileInput,
+        hiddenLicenseFileInput,
         handleBankRegistration,
-        handleChangeRegistration
+        handleChangeRegistration,
+        hanldeChangeLicense
     };
 }

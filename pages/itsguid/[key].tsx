@@ -12,7 +12,7 @@ import { Paginater } from '../../components/common/Paginator';
 import { generateClientPaging } from '../../utils/generateClientPaging';
 import { NoData } from '../../components/common/NoData';
 import { Modal } from '../../components/modal/Modal';
-import { openModal } from '../../utils/popUp';
+import { closeModal, openModal } from '../../utils/popUp';
 import { SHARE } from '../../css/component/Share';
 import { Ffile, sellerFindByKey_SellerFindByKeyPublic_data } from '../../types/api';
 import { useRouter } from 'next/router';
@@ -24,7 +24,8 @@ import { guideSearchLink } from '../guide-search';
 import { useUserUpdate } from '../../hook/useUser';
 import { omits } from '../../utils/omit';
 import { KeywardSelecter } from '../../components/keywardSelecter/KeywardSelecter';
-const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
+import { LoadEditor } from '../../components/edit/EdiotrLoading';
+const Editor = LoadEditor();
 
 //URL 링크
 //guideTag=
@@ -67,7 +68,7 @@ export const ItsGuideWrap = () => {
         pageInfo: pageData?.value,
     }
 
-    if (!pageData || !guideData) return null;
+    if (!guideData) return null;
     return <ItsGuide key={pageData?._id} {...wrapProp} />
 }
 
@@ -101,6 +102,7 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
 
     const handleLang = (lang: "kr" | "GB" | "JP" | "CH") => () => {
         setLang(lang);
+        closeModal("#LangModal")();
     }
 
     const toProduct = (id: string) => () => {
@@ -181,7 +183,7 @@ const ItsGuide: React.FC<IGudeProfilePage> = (pageInfo) => {
                         <div className="con01">
                             <h3 className="title" >{get("contentTitle")}</h3>
                             <div className="txt">
-                                {editMode ? <Editor data={get("content")} onChange={(content) => {
+                                {editMode ? <Editor key={lang + "editor"} data={get("content")} onChange={(content) => {
                                     set("content", content);
                                 }} /> : <div className="ck-content" dangerouslySetInnerHTML={{
                                     __html: get("content")

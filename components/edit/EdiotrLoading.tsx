@@ -7,4 +7,4 @@ export const EditorLoading: React.FC<IProp> = () => {
     return <img src="/img/svg/loading.svg" />;
 };
 
-export const LoadEditor = () => dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
+export const LoadEditor = () => dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <div dangerouslySetInnerHTML={{ __html: "에디터 로딩..." }} /> });

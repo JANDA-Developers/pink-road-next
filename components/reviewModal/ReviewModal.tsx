@@ -1,11 +1,15 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
+import { PRODUCT_REVIEW_FIND_BY_ID } from '../../apollo/gql/review';
 import { useAnswerCreate, useAnswerDelete, useAnswerUpdate } from '../../hook/useAnswer';
 import { IUseModal } from '../../hook/useModal';
 import { useProductReviewFindById } from '../../hook/useReview';
 import { AppContext } from '../../pages/_app';
+import { Fanswer } from '../../types/api';
 import { BG, BGprofile } from '../../types/const';
+import { getRefetch } from '../../utils/api';
 import { yyyymmdd } from '../../utils/yyyymmdd';
+import Comment from '../comment/Comment';
 import { CommentWrite } from '../comment/CommentWrite';
 import { Change } from '../loadingList/LoadingList';
 import { RatingStar } from '../rating/Rating';
@@ -21,14 +25,24 @@ export const ReviewModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
     const { isManager, myProfile } = useContext(AppContext);
 
     const [reply, setReply] = useState(false);
-    const [comment, setComment] = useState("")
 
     const router = useRouter();
 
     const [photoIndex, setPhotoIndex] = useState<number>(0);
-    const [answerCreate] = useAnswerCreate();
-    const [answerDelete] = useAnswerDelete();
-    const [answerUpdate] = useAnswerUpdate();
+    const [answerCreate] = useAnswerCreate({
+        ...getRefetch(PRODUCT_REVIEW_FIND_BY_ID),
+        onCompleted: ({ AnswerCreate }) => {
+            if (AnswerCreate.ok) {
+                setReply(false);
+            }
+        }
+    });
+    const [answerDeleteMu] = useAnswerDelete({
+        ...getRefetch(PRODUCT_REVIEW_FIND_BY_ID),
+    });
+    const [answerUpdateMu] = useAnswerUpdate({
+        ...getRefetch(PRODUCT_REVIEW_FIND_BY_ID),
+    });
 
     const { item: review, getData, data, loading } = useProductReviewFindById(info?.reviewId, {
         skip: !info?.reviewId
@@ -49,6 +63,45 @@ export const ReviewModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
 
     const handleReply = () => {
         setReply(true);
+    }
+
+    const handleSubmit = (comment) => {
+        answerCreate({
+            variables: {
+                params: {
+                    content: comment
+                },
+                target: "review",
+                targetId: review._id
+            }
+        })
+    }
+
+
+    const handleAnswerDelete = (answer: Fanswer) => () => {
+        answerDeleteMu({
+            variables: {
+                id: answer._id,
+                target: "question",
+                targetId: review._id
+            }
+        })
+    }
+
+
+    const handleEdit = async (_id: string, content: string) => {
+        const result = await answerUpdateMu({
+            variables: {
+                _id,
+                params: {
+                    content
+                },
+                target: "question",
+                targetId: review._id
+            }
+        })
+
+        return !!result.data?.AnswerUpdate.ok
     }
 
     if (!review) return null;
@@ -99,10 +152,17 @@ export const ReviewModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
                                     )}
                                 </ul>
                             </div>
+                            <ul>
+                                {(review?.answers || []).filter(answer => !answer?.isDelete).map(answer =>
+                                    <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
+                                )}
+                            </ul>
                             {/* {(question.answers || []).filter(answer => !answer?.isDelete).map(answer =>
                                 <Comment title={answer?.author?.nickName} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
                             )} */}
-                            <CommentWrite onSubmit={setComment} defaultContent="" title={comment} />
+                            {reply &&
+                                <CommentWrite defaultContent="" title="답변내용" className="review__textarea" textarea onSubmit={handleSubmit} />
+                            }
                             {isReplayAble &&
                                 <button onClick={handleReply} className="btn samll">답변하기</button>
                             }

@@ -12060,6 +12060,18 @@
             "deprecationReason": null
           },
           {
+            "name": "guideLicense",
+            "description": "가이드 자격증",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "File",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "profileImg",
             "description": "프로필 사진",
             "args": [],
@@ -23181,6 +23193,16 @@
           {
             "name": "bankImg",
             "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "FileCreateInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "guideLicense",
+            "description": "가이드 자격증",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "FileCreateInput",

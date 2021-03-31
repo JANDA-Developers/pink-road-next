@@ -17,7 +17,7 @@ import { useProductFindById, useProductUpdateReq } from "../../../hook/useProduc
 import PageLoading from "../../Loading";
 import { auth } from "../../../utils/with";
 import { ALLOW_SELLERS } from "../../../types/const";
-import { EditorLoading } from "../../../components/edit/EdiotrLoading";
+import { EditorLoading, LoadEditor } from "../../../components/edit/EdiotrLoading";
 import pageInfoDefault from "info/tourWrite.json"
 import { getStaticPageInfo, Ipage } from "../../../utils/page";
 import { usePageEdit } from "../../../hook/usePageEdit";
@@ -28,8 +28,8 @@ import { openModal } from "../../../utils/popUp";
 import { LocalStorageBoard } from "../../../components/localStorageBoard/LocalStorageBoard";
 import dayjs from "dayjs";
 const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
+const Editor = LoadEditor();
 
-const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false, loading: () => <EditorLoading /> });
 interface IProp {
 }
 

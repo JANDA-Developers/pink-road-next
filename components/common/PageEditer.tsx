@@ -29,7 +29,8 @@ export const PageEditor: React.FC<IProp> = ({ pageTools, allowToUser, profilePar
     }
 
     return <div >
-        <EditBtn allowToUser={allowToUser || false} onSubmit={submit} editMode={editMode} /><NewGoodsBtn />
+        <EditBtn allowToUser={allowToUser || false} onSubmit={submit} editMode={editMode} />
+        <NewGoodsBtn />
 
     </div>;
 };

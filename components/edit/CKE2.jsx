@@ -143,24 +143,26 @@ const editorConfiguration = {
 
 
   const CKEDITOR = ({data,onChange}) => {
+      const [loading, setLoading] = useState(true);
 
-      return (
-          <div className="myckeditor">
+        return (
+            <div className="myckeditor">
+               {loading && <div dangerouslySetInnerHTML={{__html: data }} />}
               <CKEditor
                   editor={ Editor }
                   config={ editorConfiguration }
                   data={data}
                   onReady={ editor => {
-                      // You can store the "editor" and use when it is needed.
-                  } }
-                  onChange={ ( event, editor ) => {
+                      setLoading(false);
+                  }}
+                  onChange={( event, editor ) => {
                       const data = editor.getData();
                       onChange(data);
-                  } }
-                  onBlur={ ( event, editor ) => {
-                  } }
-                  onFocus={ ( event, editor ) => {
-                  } }
+                  }}
+                  onBlur={( event, editor ) => {
+                  }}
+                  onFocus={( event, editor ) => {
+                  }}
               />
           </div>
       );

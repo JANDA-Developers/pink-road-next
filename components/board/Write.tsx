@@ -6,7 +6,9 @@ import React from "react";
 import { useUpload } from "hook/useUpload";
 import { IUseBoard } from "hook/useBoard";
 import { AppContext } from "../../pages/_app";
-const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
+import { LoadEditor } from "../edit/EdiotrLoading";
+const Editor = LoadEditor();
+
 export interface IBoardOpen {
     title: boolean
     subTitle: boolean;
