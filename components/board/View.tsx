@@ -72,7 +72,7 @@ export const BoardView: React.FC<IProps> = (data) => {
                     <div className="footer_txt">
                         <span>작성자<strong>{writer}</strong></span>
                         <span>{dayjs(createAt).format('YYYY.MM.DD HH:mm')}</span>
-                        {isOpen ? <span /> : <span>비밀글</span>}{/* 댓글기능 열렷을 때 */}
+                        {isOpen ? <i /> : <span>비밀글</span>}{/* 댓글기능 열렷을 때 */}
                         {comments?.count && <span>댓글 <strong>0</strong>건</span>}{/* 댓글기능 열렷을 때 */}
                         {viewCount && <span>조회수 <strong>{viewCount}</strong>회</span>}
                     </div>

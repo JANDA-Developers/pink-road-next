@@ -2701,7 +2701,20 @@ div.sum_div {
         }
 }
 
+@media (max-width:1000px) {
+    .board_list.st01 .tbody .td01,
+    .board_list.st01 .tbody .td02,
+    .board_list.st01 .tbody .td03, 
+    .board_list.st01 .tbody .td04 {
+        width:100%;
+        text-align: left;
+    }
+    .board_list.st01 .tbody .td04 {
+        line-height: 120%;
+    }
+}
 @media (max-width:767px) {
+  
     .board_option{
         text-align: center;
     }

@@ -319,8 +319,12 @@ const UserType: React.FC = () => {
                         <br />
                         회원가입을 하고 여행을 떠나세요~!!
                      </span>
-                    <button className="nomal_join_btn" onClick={handleTypeChoice(UserRole.individual)}>바로가기 </button>
+                    <button className="pink_join_btn" onClick={handleTypeChoice(UserRole.individual)}>회원가입</button>
+
+                </li>
+                <li className="li02">
                     <div className="join__snslink">
+                        <strong>SNS 계정 회원가입</strong>
                         <ul>
                             <li className="join__snslink_k">
                                 <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/kakao"}>
@@ -343,16 +347,24 @@ const UserType: React.FC = () => {
                         </ul>
                     </div>
                 </li>
-                <li className="li02" onClick={handleTypeChoice(UserRole.partnerB)}>
-                    <i />
-                    <strong>기업파트너 회원</strong>
-                    <span>기업파트너를 위한 회원입니다.</span>
+            </ul>
+            <ul className="choice__link">
+                <li>
+                    <div onClick={handleTypeChoice(UserRole.partnerB)} className="partner_01">
+                        <strong>기업파트너 회원</strong>
+                        <span>기업파트너를 위한 회원입니다.</span>
+                        <button className="nomal_join_btn" onClick={handleTypeChoice(UserRole.partnerB)}>회원가입</button>
+                    </div>
                 </li>
-                <li className="li03" onClick={handleTypeChoice(UserRole.partner)}>
-                    <i />
-                    <strong>개인파트너 회원</strong>
-                    <span>개인파트너를 위한 회원입니다.</span>
+                <li>
+                    <div onClick={handleTypeChoice(UserRole.partner)} className="partner_02">
+                        <strong>개인파트너 회원</strong>
+                        <span>개인파트너를 위한 회원입니다.</span>
+                        <button className="nomal_join_btn" onClick={handleTypeChoice(UserRole.partner)}>회원가입</button>
+                    </div>
                 </li>
+
+
             </ul>
             <p className="bt_txt">
                 ※ 기업파트너는 사업자번호가 필요합니다. 사업자번호가 없는 경우에는

@@ -337,8 +337,8 @@ figure:after {
 
 #addressFindModal {
     max-height: 100vh;
-    height: 500px;
-    margin-top: -250px;
+    /* height: 500px;
+    margin-top: -250px; */
 }
 
 #dayPickerModal {
