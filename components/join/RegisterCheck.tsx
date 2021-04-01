@@ -73,7 +73,6 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo, phoneNumberHack }) => {
 
   const optional: (keyof typeof chkPolocy)[] = ["policy_info_3rd", "policy_marketing"]
 
-  const [chkAll, setChkAll] = useState(false);
 
   const handleSMSAgree = (smsTarget: keyof TSMS) => {
 
@@ -102,22 +101,21 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo, phoneNumberHack }) => {
     return chkAll
   }
 
-  const handleAgreeAll = () => {
-
-    if (!isCheckAll()) {
-      setChkAll(true);
-      let policy: keyof TPolicyChk;
-      let agreeAll = chkPolocy;
+  const handleAgreeAlltoggle = (checkAll?: boolean) => {
+    let policy: keyof TPolicyChk;
+    let agreeAll = chkPolocy;
+    if (!isCheckAll() || checkAll) {
       for (policy in agreeAll) {
         agreeAll[policy] = true;
       }
-      setChkPolicy({
-        ...agreeAll
-      })
     } else {
-      setChkAll(false);
+      for (policy in agreeAll) {
+        agreeAll[policy] = false;
+      }
     }
-
+    setChkPolicy({
+      ...agreeAll
+    })
   }
 
   const handlePolicy = (policyTarget: keyof TPolicyChk) => {
@@ -132,10 +130,10 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo, phoneNumberHack }) => {
 
 
 
-  if (userType === UserRole.partnerB) {
-    //네이밍 얼라이어스
-    registerInfo.phoneNumber = registerInfo.manageContact || "";
-  }
+  // if (userType === UserRole.partnerB) {
+  //네이밍 얼라이어스
+  // registerInfo.phoneNumber = registerInfo.manageContact || "";
+  // }
 
   const { nodes: sharedValidate } = new Validater([{
     value: verificationId,
@@ -291,7 +289,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo, phoneNumberHack }) => {
           </div>
         </div>
         <div className="agreeChk mb10">
-          <input checked={chkAll} type="checkbox" className="checkbox" onChange={handleAgreeAll} />
+          <input checked={isCheckAll()} type="checkbox" className="checkbox" onChange={() => { handleAgreeAlltoggle(false) }} />
           <span>모두 동의합니다</span>
         </div>
         <div className="agreeChk_list">
@@ -441,7 +439,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo, phoneNumberHack }) => {
         </Tabs>
         <button onClick={() => {
           closeModal("#PolicyModal")();
-          handleAgreeAll();
+          handleAgreeAlltoggle(true);
         }} className="btn mr10" >전체동의</button>
         <button onClick={() => {
           closeModal("#PolicyModal")();

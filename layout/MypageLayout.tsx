@@ -88,7 +88,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         </div>
         <div className="mypage_in w100">
             {isLogin && <ul className="subtop_nav">
-                {isSeller || <li className={isTapOn(undefined)}><a href="/mypage">회원정보</a></li>}{/* 개인 -*/}
+                <li className={isTapOn(undefined)}><a href="/mypage">회원정보</a></li> {/* 개인 -*/}
                 <li className={isTapOn("notification")}><a href="/mypage/notification">알림</a></li>{/* 개인/기업파트너/개인파트너 -*/}
                 {isSeller || <li className={isTapOn("purchase")}><a href="/mypage/purchase">구매내역</a></li>}{/* 개인 -*/}
                 {isSeller || <li className={isTapOn("basket")}><a href="/mypage/basket">장바구니</a></li>}{/* 개인 -*/}

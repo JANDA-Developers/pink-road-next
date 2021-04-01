@@ -5,8 +5,7 @@ import defaultPageInfo from 'info/main.json';
 import { Meta } from 'components/common/meta/Meta';
 import { Upload } from 'components/common/Upload';
 import Link from 'next/link';
-import { GetStaticProps } from 'next';
-import { openListFilter, useProductList } from 'hook/useProduct';
+import { useProductList } from 'hook/useProduct';
 import { useRouter } from 'next/router';
 import { getStaticPageInfo, Ipage } from '../utils/page';
 import Slider from "react-slick";
@@ -14,11 +13,11 @@ import { usePageEdit } from '../hook/usePageEdit';
 import { Bg } from '../components/Img/img';
 import { useGroupFind } from '../hook/useGroup';
 import { AppContext } from './_app';
-import "."
-import { openAutos, usePopups } from '../hook/usePopups';
 import { usePhoneInput } from '../hook/usePhoneInput';
 import { BG } from '../types/const';
 import { PageEditor } from '../components/common/PageEditer';
+import { usePopups } from '../hook/usePopups';
+import { Popup } from '../components/popup/Popup';
 
 export const getStaticProps = getStaticPageInfo("main");
 export const Main: React.FC<Ipage> = (pageInfo) => {
@@ -26,6 +25,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
   const { homepage } = useContext(AppContext);
   const [currentSlide, setCurrentSlide] = useState(0)
   const sliderRef = useRef<any>()
+  const popupsHook = usePopups(homepage?.modal || []);
 
   const { items, setFilter, filter } = useProductList({
     initialPageIndex: 1, initialViewCount: 8, initialFilter: {
@@ -53,16 +53,11 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
     }
   }, [item?.members.length])
 
-  useEffect(() => {
-    if (homepage?.modal) {
-      openAutos(homepage?.modal)
-    }
-  }, [homepage?.modal])
-
-  const { setValue, value } = usePhoneInput("");
-
   const mainSliderImgs: string[] = get("main_slideImgs") || [];
   return <div className="body main" id="main" >
+    {popupsHook.popups.map((pop, index) =>
+      <Popup {...popupsHook} popup={pop} key={pop._id} />
+    )}
     <Meta title="Pinkroader" description="사람과 시간이 공존하는 여행플랫폼 핑크로더입니다." />
     <PageEditor pageTools={pageTools} />
     <div className="main_con_box1 Slider_box">

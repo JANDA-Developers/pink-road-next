@@ -3,14 +3,14 @@ import { MypageLayout } from 'layout/MypageLayout';
 import { AppContext } from '../_app';
 import { getItemCount } from '../../utils/Storage';
 import { arraySum } from '../../utils/math';
-import { GENDER, UserRole } from '../../types/api';
+import { GENDER, UserRole, VerificationTarget } from '../../types/api';
 import { autoHypenPhone, cc_format } from "../../utils/formatter";
 import { useMyProfile } from '../../hook/useMyProfile';
 import { auth } from '../../utils/with';
 import { ALLOW_LOGINED, NUMBER_OPS } from '../../types/const';
 import DaumPostcode from 'react-daum-postcode';
 import { Modal } from '../../components/modal/Modal';
-import { openModal } from '../../utils/popUp';
+import { closeModal, openModal } from '../../utils/popUp';
 import { useVerification } from '../../hook/useVerification';
 import { GET_CONTEXT } from '../../apollo/gql/queries';
 import { getOperationName } from '@apollo/client/utilities';
@@ -20,6 +20,9 @@ import { ResignModal } from '../../components/resign/ResignModal';
 import { isPassword } from '../../utils/validation';
 import { Validater } from '../../utils/validate';
 import { Prompt, SubmitPsswordModal } from '../../components/promptModal/Prompt';
+import { VerifiEamilModal } from '../../components/verifiModal/VerifiEmailModal';
+import { CloseIcon } from '../../components/common/icon/CloseIcon';
+import { omits } from '../../utils/omit';
 
 let SEND_LIMIT = 3;
 interface IProp { }
@@ -48,11 +51,14 @@ export const MyPageProfile: React.FC<IProp> = () => {
         }
     });
 
+    const [verifiTarget, setVerifiTarget] = useState(VerificationTarget.EMAIL)
+    const [VerifiChangeProfile, setVerifiChangeProfile] = useState<"phoneNumber" | "manageContact">("phoneNumber")
+
     const { salesTotalCount, productRegistCount } = useCustomCount(["productRegistCount", "salesTotalCount"])
     const [resign] = useUserResign();
-    const { myProfile: defaultProfile, role, isAdmin } = useContext(AppContext);
-    const { code, setCode } = useVerification();
-    const [nextPhoneNum, setNextPhoneNum] = useState("");
+    const { myProfile: defaultProfile, role } = useContext(AppContext);
+
+    const verifiHook = useVerification({ target: VerificationTarget.PHONE });
 
     const { data,
         setData,
@@ -61,10 +67,12 @@ export const MyPageProfile: React.FC<IProp> = () => {
         handleTextData,
         toggleCheck,
         handleChangeRegistration,
-        hiddenFileInput
+        handleBankRegistration,
+        hiddenBankFileInput,
+        hiddenBusiFileInput
     } = useMyProfile(defaultProfile!)
-    const { nextPw, profile, pw, busiRegistration } = data;
-    const { setPw, setProfile } = setData;
+    const { nextPw, profile, pw, busiRegistration, bankImg } = data;
+    const { setPw, setProfile, setBankImg, setBusiRegistration } = setData;
     const {
         nickName,
         address,
@@ -90,6 +98,9 @@ export const MyPageProfile: React.FC<IProp> = () => {
         busi_name,
         connectionCount,
     } = defaultProfile!;
+
+
+    console.log({ busiRegistration })
 
     const isFemale = gender === GENDER.FEMALE;
 
@@ -124,11 +135,14 @@ export const MyPageProfile: React.FC<IProp> = () => {
     }
 
     const handleUpdate = () => {
+        const nextData = omits({
+            ...profile,
+            bankImg,
+            busiRegistration
+        })
         userUpdate({
             variables: {
-                params: {
-                    ...profile,
-                },
+                params: nextData,
                 _id,
             }
         })
@@ -175,7 +189,9 @@ export const MyPageProfile: React.FC<IProp> = () => {
         openModal("#reSignModal")()
     }
 
-    const handleChangePhoneNumber = () => {
+    const handleChangePhoneNumber = (target: "phoneNumber" | "manageContact" = "phoneNumber") => {
+        setVerifiTarget(VerificationTarget.PHONE)
+        setVerifiChangeProfile(target)
         openModal("#phoneChangeModal")()
     }
     const handleVerifiPhoneNumber = () => {
@@ -263,28 +279,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
                     </div>
                     <div className="box_right">
                         <ul>
-                            {/* <li>
-                                <div className="title">닉네임</div>
-                                <div className="txt">
-                                    <div className="input_relative">
-                                        <input
-                                            style={{
-                                                border: "1px solid #e3e3e3"
-                                            }}
-                                            value={nickName}
-                                            onChange={(e) => {
-                                                const nickName = e.currentTarget.value
-                                                setProfile({
-                                                    ...profile,
-                                                    nickName
-                                                })
-                                            }}
-                                            className={`form-control w100`}
-                                            placeholder="닉네임을 입력 해주세요"
-                                        />
-                                    </div>
-                                </div>
-                            </li> */}
                             <li>
                                 <div className="title">아이디</div>
                                 <div className="txt">{email}</div>
@@ -380,10 +374,10 @@ export const MyPageProfile: React.FC<IProp> = () => {
                             <li>
                                 <div className="title">연락처</div>
                                 <div className="txt">
-                                    <span className="w100">{autoHypenPhone(phoneNumber)}</span>
-                                    {/* <button onClick={isVerifiedPhoneNumber ? handleChangePhoneNumber : handleVerifiPhoneNumber} type="button" className="btn btn_mini">
-                                        {isVerifiedPhoneNumber ? "변경" : "인증"}
-                                    </button> */}
+                                    <span className="w100 mr20">{autoHypenPhone(profile.phoneNumber)}</span>
+                                    <button onClick={() => { handleChangePhoneNumber("phoneNumber") }} type="button" className="btn btn_mini">
+                                        변경
+                                    </button>
                                 </div>
                             </li>
                             {isSeller ||
@@ -498,8 +492,8 @@ export const MyPageProfile: React.FC<IProp> = () => {
                             <li>
                                 <div className="title">담당자 연락처</div>
                                 <div className="txt">
-                                    <span className="w80">{phoneNumber}</span>
-                                    <button onClick={handleChangePhoneNumber} type="button" className="btn btn_mini">
+                                    <span className="w80">{autoHypenPhone(profile.manageContact) || "담당자 연락처가 없습니다."}</span>
+                                    <button onClick={() => { handleChangePhoneNumber("manageContact") }} type="button" className="btn btn_mini">
                                         변경
                                     </button>
                                 </div>
@@ -507,26 +501,32 @@ export const MyPageProfile: React.FC<IProp> = () => {
                             </li>
                             <li>
                                 <div className="title">사업자등록증</div>
-                                <div className="txt">
+                                <div className="txt txt--flex">
                                     <span className="w80 upload_out_box">
-                                        {busiRegistration?.name}
+                                        <span className="upload_out_box__fileName">{busiRegistration?.name}</span>
+                                        {busiRegistration && <CloseIcon onClick={() => {
+                                            setBusiRegistration(null)
+                                        }} className="upload_out_box__closer" style={{ width: "10px", height: "10px" }} />}
                                     </span>
-                                    <button onClick={() => { hiddenFileInput.current?.click() }} type="button" className="btn btn_mini">
+                                    <button onClick={() => { hiddenBusiFileInput.current?.click() }} type="button" className="btn btn_mini">
                                         업로드
                                     </button>
-                                    <input onChange={handleChangeRegistration} ref={hiddenFileInput} hidden type="file" />
+                                    <input key={busiRegistration ? "busiImgExsit" : "busiImg"} onChange={handleChangeRegistration} ref={hiddenBusiFileInput} hidden type="file" />
                                 </div>
                             </li>
                             <li>
                                 <div className="title">통장사본</div>
-                                <div className="txt">
+                                <div className="txt txt--flex">
                                     <span className="w80 upload_out_box">
-                                        {busiRegistration?.name}
+                                        <span className="upload_out_box__fileName">{bankImg?.name}</span>
+                                        {bankImg && <CloseIcon onClick={() => {
+                                            setBankImg(null)
+                                        }} className="upload_out_box__closer" style={{ width: "10px", height: "10px" }} />}
                                     </span>
-                                    <button onClick={() => { hiddenFileInput.current?.click() }} type="button" className="btn btn_mini">
+                                    <button onClick={() => { hiddenBankFileInput.current?.click() }} type="button" className="btn btn_mini">
                                         업로드
                                     </button>
-                                    <input onChange={handleChangeRegistration} ref={hiddenFileInput} hidden type="file" />
+                                    <input key={bankImg ? "bankImgExsit" : "bankImg"} onChange={handleBankRegistration} ref={hiddenBankFileInput} hidden type="file" />
                                 </div>
                             </li>
                             <li>
@@ -618,30 +618,18 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-        <Modal id="phoneVerifiModal" title="휴대폰 번호 인증">
-            <div className="title">인증코드</div>
-            <input placeholder="인증코드" value={code} onChange={(e) => {
-                setCode(e.currentTarget.value)
-            }} />
-            <button onClick={handleVerifyComplete}>
-                인증하기
-            </button>
-            <button onClick={handleVerifi}>
-                인증번호 발송
-            </button>
-        </Modal>
-        <Modal id="phoneChangeModal" title="휴대폰 번호 변경">
-            <input placeholder="변경할 휴대폰 번호" value={nextPhoneNum} onChange={(e) => {
-                setNextPhoneNum(e.currentTarget.value);
-            }} />
-            <input placeholder="비밀번호" value={pw} onChange={(e) => {
-                setPw(e.currentTarget.value);
-            }} />
-            <button onClick={handleChangePhoneNumber}>
-                변경하기
-            </button>
-        </Modal>
-
+        <VerifiEamilModal id="phoneChangeModal" target={verifiTarget} duplicateCheck onSuccess={() => {
+            closeModal("#phoneChangeModal")();
+            const payload = verifiHook.verifiData?.payload;
+            if (payload) {
+                profile[VerifiChangeProfile] = payload;
+                setProfile({
+                    ...profile
+                })
+            }
+        }} verifiHook={{
+            ...verifiHook
+        }} />
         <ResignModal />
         <Modal id="addressFindModal" title="주소찾기">
             <DaumPostcode onComplete={handleCompleteFindAddress} />

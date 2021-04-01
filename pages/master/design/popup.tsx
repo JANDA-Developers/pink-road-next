@@ -1,24 +1,23 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React, { useContext, useEffect, useState } from 'react';
-import Link from "next/link";
-import { PopupConfigViewBox } from '../../../components/popupconfig/PopupConfigViewBox';
+import { PopupConfigViewBox } from '../../../components/popupconfig/PopupConfigViewBox[dreprecated]';
 import { usePopups } from '../../../hook/usePopups';
 import { useHomepageUpdate } from '../../../hook/useHomepage';
 import { AppContext } from '../../_app';
 import dayjs from 'dayjs';
 import { Fmodal, LinkBehavior } from '../../../types/api';
-import { DayPickerModal } from '../../../components/dayPickerModal/DayPickerModal';
 import { closeModal, openModal } from '../../../utils/popUp';
 import { Ipopup } from '../../../types/interface';
 import { omits } from '../../../utils/omit';
-import dynamic from 'next/dynamic';
 import { ALLOW_ADMINS, defaultModalGet } from '../../../types/const';
 import { cloneObject } from '../../../utils/clone';
 import { DesignTopNav } from '../../../components/topNav/MasterTopNav';
 import { auth } from '../../../utils/with';
 import { useUpload } from '../../../hook/useUpload';
 import { LoadEditor } from '../../../components/edit/EdiotrLoading';
+import { DayPickerModal } from '../../../components/dayPickerModal/DayPickerModal';
+import { toNumber } from '../../../utils/toNumber';
 
 const Editor = LoadEditor();
 
@@ -26,10 +25,9 @@ interface IProp { }
 
 export const MsDesignB: React.FC<IProp> = () => {
     const { homepage } = useContext(AppContext);
-    const popupHook = usePopups([], "POPWRAP")
-    const [popModal, setPopModal] = useState<Fmodal>()
-    const [collapseList, setCollapseList] = useState<string[]>([]);
+    const popupHook = usePopups(homepage?.modal || []);
     const { signleUpload } = useUpload();
+    const [datePopUp, setDatePopUp] = useState<Ipopup>()
     const [homepageUpdate] = useHomepageUpdate({
         onCompleted: ({ HomepageUpdate }) => {
             if (HomepageUpdate.ok) {
@@ -40,15 +38,9 @@ export const MsDesignB: React.FC<IProp> = () => {
     const {
         selectedIndex,
         setSelcetedIndex,
-        hideIds,
-        setHideIds,
-        savePercentageInModal,
-        changeAllToPercentage
     } = popupHook;
 
     const handleUpdate = () => {
-        savePercentageInModal();
-        //업데이트 
         homepageUpdate({
             variables: {
                 params: {
@@ -71,15 +63,20 @@ export const MsDesignB: React.FC<IProp> = () => {
         popupHook.setPopups([...popupHook.popups, newPopUp]);
     }
 
+    const handleDelete = (popup: Fmodal) => () => {
+        const filtered = popupHook.popups.filter(pop => pop._id !== popup._id);
+        popupHook.setPopups([...filtered]);
+    }
+
     const handlePreview = (popup: Fmodal) => () => {
-        popupHook.openPercentage(popup);
+        popupHook.openPopup(popup);
     }
 
     const handleCollapesToggle = (popup: Fmodal) => () => {
         // setCollapseList([popup._id]);
     }
+
     const handleOpenDayPicker = (popup: Fmodal) => () => {
-        setPopModal(popup);
         setTimeout(() => {
             openModal("#dayPickerModal")()
         }, 100);
@@ -90,15 +87,17 @@ export const MsDesignB: React.FC<IProp> = () => {
             popupHook.setPopups(cloneObject(homepage.modal))
     }, [homepage?.modal])
 
-    return <div>
 
-        {popModal && <DayPickerModal defaultRange={{
-            from: popModal.startDate ? dayjs(popModal.startDate).toDate() : new Date(),
-            to: popModal.endDate ? dayjs(popModal.endDate).toDate() : dayjs().add(1, "d").toDate()
+    const defaultPopStartDate = new Date();
+    const defaultPopEndDate = dayjs().add(1, "d").toDate();
+    return <div>
+        {datePopUp && <DayPickerModal defaultRange={{
+            from: datePopUp.startDate ? dayjs(datePopUp.startDate).toDate() : defaultPopStartDate,
+            to: datePopUp.endDate ? dayjs(datePopUp.endDate).toDate() : defaultPopEndDate
         }} onSubmit={(range) => {
             closeModal("#dayPickerModal")()
-            popModal.startDate = range.from;
-            popModal.endDate = range.to;
+            datePopUp.startDate = range.from;
+            datePopUp.endDate = range.to;
             popupHook.setPopups([...popupHook.popups])
         }} />
         }
@@ -136,13 +135,15 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                 </span>
                                             </div>
                                             <div className="content">
-                                                <button className="btn small" onClick={handlePreview(modal)}>미리보기</button>
+                                                <button className="btn small mr10" onClick={handlePreview(modal)}>미리보기</button>
+                                                <button className="btn small" onClick={handleDelete(modal)}>삭제하기</button>
                                                 <div className="line">
                                                     <h6>우선순서</h6>
                                                     <div className="txt">
                                                         <select onChange={(e) => {
                                                             const order = e.currentTarget.value;
-
+                                                            modal.priority = toNumber(order);
+                                                            popupHook.setPopups([...popupHook.popups])
                                                         }} className="w50">
                                                             <option value={0}>0</option>
                                                             <option value={1}>1</option>
@@ -190,9 +191,9 @@ export const MsDesignB: React.FC<IProp> = () => {
 
                                                             signleUpload(e.currentTarget.files!, (url) => {
                                                                 modal.style.backgroundImage = url
-                                                                setPopModal({
-                                                                    ...modal
-                                                                })
+                                                                // setPopModal({
+                                                                //     ...modal
+                                                                // })
                                                             })
                                                         }} type="file" />
                                                     </div>
@@ -205,7 +206,7 @@ export const MsDesignB: React.FC<IProp> = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="hang_view">
+                            {/* <div className="hang_view">
                                 <div >
                                     <div className="view_box">
                                         <div className="head">
@@ -230,7 +231,7 @@ export const MsDesignB: React.FC<IProp> = () => {
                                     <p className="infotxt_gray">각 팝업을 더블클릭하여 편집 할 수 있습니다.</p>
                                 </div>
                                 {selectedModal && <Editor key={selectedIndex + "editor"} onChange={handleContentChange} data={selectedModal.content} />}
-                            </div>
+                            </div> */}
                         </div>
                         <div className="fin">
                             <div className="float_left">

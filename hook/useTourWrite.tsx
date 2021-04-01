@@ -397,6 +397,12 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
 
 
     const handleDateState = ({ from, to }: TRange) => {
+
+        if (!from && !to && its.length) {
+            if (!confirm("출발 날짜를 변경하시면 입력하신 일정 정보가 초기화 됩니다. 변경을 진행 하시겠습니까?")) {
+                return;
+            }
+        }
         const newItinerary = generateitinery({ from, to }, its);
         if (newItinerary)
             setits([...newItinerary]);

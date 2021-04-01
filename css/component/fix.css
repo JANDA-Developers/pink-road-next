@@ -287,12 +287,21 @@ background-color: #fff;
 
 .selectViewList--paddingTop0 {
     padding-top: 0px!important;
+
+}
+
+.txt--flex {
+    display: flex!important;
+    align-items: center;
 }
 
 .upload_out_box {
     text-overflow: ellipsis;
     padding-right: 30px;
     overflow: hidden;
+    position: relative;
+    display: flex!important;
+    align-items: center;
 }
 
 .Number__box .left_btn{
@@ -330,6 +339,29 @@ background-color: #fff;
     padding: 0px!important;
     margin: 0px!important;
     border:none!important
+}
 
+.upload_out_box__closer {
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+}
 
+.tourWrite__daypikcer .DayPicker {
+    margin-bottom: 10px;
+    
+}
+
+.itinerary__editor .editorHolder {
+    border: 1px solid #ddd;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.ck-content {
+    display: block!important;
+}
+
+.productGroup__del:hover {
+    background-color: red;
 }

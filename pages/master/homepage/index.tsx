@@ -367,7 +367,7 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                 <div className="t02">
                                     <div className="txt">
                                         <p>{logo?.name}</p>
-                                        <input onChange={upload("logo")} className="w50" type="file" />
+                                        <input  onChange={upload("logo")} className="w50" type="file" />
                                         <p className="infotxt_gray">페이스북 공유 시 문서에 이미지가 없으면 기본 이미지로 사용됩니다. (추천 : 1200x600, 600x315, 200x200)</p>
                                         {/* 첨부파일 미리보기 이미지 */}
                                         <img className="mt15 w50" src={homepage?.logo?.uri || DEFAULT_LOGO} alt="첨부파일 미리보기" />

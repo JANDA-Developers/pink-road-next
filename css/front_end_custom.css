@@ -493,6 +493,9 @@ figure:after {
     height: 15px;
     opacity: 0.5;
     z-index: 90;
+}
+
+.productGroupBox .del .svg_del {
     filter: brightness(0);
 }
 

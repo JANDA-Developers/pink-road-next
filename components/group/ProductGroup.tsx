@@ -22,22 +22,23 @@ interface IProp {
 
 export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTitle, onDelete: handleDelete, onSave: handleSave }) => {
     const [group, setGroup] = useCopy(defaultGroup);
-    const { isManager } = useContext(AppContext);
     const { items: products, filter, setFilter, getLoading } = useProductList({
+        initialViewCount: 40,
         initialFilter: {
-            ...openListFilter,
             _id_in: defaultGroup.members
         }
-    })
+    }, { fetchPolicy: "network-only" })
 
     const handleDrop = (result: DropResult) => {
         const ordered = reorder(group.members, result.source.index, result.destination?.index!);
-        group.members = ordered;
+        group.members = [...ordered];
+
         setGroup({ ...group })
     }
 
     const handleExtract = (index: number) => () => {
         group.members.splice(index, 1);
+        console.log(group.members);
         setGroup({ ...group });
     }
 
@@ -48,19 +49,17 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
     const handleProductSelect = (pd: Fproduct) => {
         group.members.push(pd._id);
         setGroup({ ...group });
-        closeModal("#ProductModal" + group._id)();
-    }
-
-
-    //그룹 업데이트후 다시 프로덕트 목록 가져옴
-    useEffect(() => {
-        filter._id_in = group.members
+        filter._id_in = group.members;
         setFilter({
             ...filter
         })
-    }, [
-        group
-    ])
+        closeModal("#ProductModal" + group._id)();
+    }
+
+    const groupMembersProd = cloneObject(products).filter(p => group.members.includes(p._id));
+    const arrangedProd = group.members.map(member => groupMembersProd.find(prod => prod._id === member)!).filter(prod => prod);
+
+    console.log({ arrangedProd });
 
     return <div className="block_box productGroupBox">
         <PageLoading />
@@ -74,14 +73,14 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
                     {group.label}
                 </div> */}
             </div>
-            <div className="body-list">
+            <div className=" productGroup body-list">
                 <Change change={!getLoading}>
                     <DragDropContext onDragEnd={handleDrop}>
                         <Droppable direction="horizontal" droppableId="droppable">
                             {(provided, snapshot) => (
                                 <ul className="droppable" ref={provided.innerRef}  {...provided.droppableProps}>
                                     {/* 오름차순 정렬 */}
-                                    {cloneObject(products).sort((a, b) => group.members.indexOf(a._id) - group.members.indexOf(b._id)).map((pd, index) =>
+                                    {arrangedProd.map((pd, index) =>
                                         <Draggable draggableId={pd._id} index={index} key={pd._id}>
                                             {(provided: any) => (
                                                 <li
@@ -89,7 +88,7 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}
                                                 >
-                                                    <span onClick={handleExtract(index)} className="del">
+                                                    <span onClick={handleExtract(index)} className="productGroup__del del">
                                                         <img src="/img/svg/del.svg" alt="삭제" className="svg_del" />
                                                         <button />
                                                     </span>
