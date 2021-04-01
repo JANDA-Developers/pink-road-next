@@ -357,7 +357,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                     setBuyerInfo({
                                         ...buyerInfo
                                     })
-                                }} value={buyerInfo.memo} className="payment__textarea" style={{ height: "100px" }} placeholder="메모는 꼼꼼하게 체크는 정확하게"></textarea>
+                                }} value={buyerInfo.memo} className="payment__textarea" style={{ height: "100px" }} placeholder="예약시 전달할 메모를 작성해 주세요 :)"></textarea>
                             </div>
                         </li>
                         <li className="tr count">{buyerInfo.memo.length}/3000</li>
@@ -365,96 +365,129 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                 </div>
             </div>
 
-            <div className="agreeChk mb10">
-                <input checked={chkAll} type="checkbox" className="checkbox" onChange={handleAgreeAll} />
-                <span>모두 동의합니다</span>
-            </div>
-            <div className="agreeChk_list">
-                <ul>
-                    {/* <Tab>이용약관</Tab> */}
-                    <li>
-                        {/* ALL */}
-                        <div className="in_box1">
-                            <input type="checkbox" className="checkbox"
-                                checked={chkPolocy.travelerPolicy}
-                                onChange={() => { handlePolicy('travelerPolicy') }} />
-                            <span>
-                                <strong>여행자약관</strong>[필수]
+
+
+            <div className="agreeChk__box">
+                <div className="agreeChk">
+                    {/* <input checked={chkAll} type="checkbox" className="checkbox" onChange={handleAgreeAll} /> */}
+                    <span className="checkbox">
+                        <input checked={chkAll} type="checkbox" className="checkbox" onChange={handleAgreeAll} name="agreeChek01" id="agreeChek01" title="전체선택" />
+                        <label htmlFor="agreeChek01" />
+                    </span>
+                    <span>모두 동의합니다</span>
+                </div>
+                <div className="agreeChk_list">
+                    <ul>
+                        {/* <Tab>이용약관</Tab> */}
+                        <li>
+                            {/* ALL */}
+                            <div className="in_box1">
+                                {/* <input type="checkbox" className="checkbox"
+                                    checked={chkPolocy.travelerPolicy}
+                                    onChange={() => { handlePolicy('travelerPolicy') }} /> */}
+                                <span className="checkbox">
+                                    <input checked={chkPolocy.travelerPolicy} type="checkbox" className="checkbox" onChange={() => { handlePolicy('travelerPolicy') }} name="agreeChek02" id="agreeChek02" title="선택" />
+                                    <label htmlFor="agreeChek02" />
+                                </span>
+                                <span className="txt">
+                                    <strong>여행자약관</strong>[필수]
                             </span>
-                        </div>
-                        <div className="in_box2">
-                            <a
-                                onClick={openPolicy(0)}
-                            >
-                                전문보기 &gt;
+                            </div>
+                            <div className="in_box2">
+                                <a
+                                    onClick={openPolicy(0)}
+                                >
+                                    전문보기 &gt;
                             </a>
-                        </div>
-                    </li>
-                    {/* <Tab>개인정보 수집 및 이용 동의</Tab> */}
-                    <li>
-                        {/* ALL */}
-                        <div className="in_box1">
-                            <input type="checkbox" className="checkbox"
-                                checked={chkPolocy.bookingPrivacyPolicy}
-                                onClick={() => { handlePolicy('bookingPrivacyPolicy') }} />
-                            <span>
-                                <strong>개인정보수집 및 이용</strong>[필수]
+                            </div>
+                        </li>
+                        {/* <Tab>개인정보 수집 및 이용 동의</Tab> */}
+                        <li>
+                            {/* ALL */}
+                            <div className="in_box1">
+                                {/* <input type="checkbox" className="checkbox"
+                                    checked={chkPolocy.bookingPrivacyPolicy}
+                                    onClick={() => { handlePolicy('bookingPrivacyPolicy') }} /> */}
+                                <span className="checkbox">
+                                    <input checked={chkPolocy.bookingPrivacyPolicy} type="checkbox" className="checkbox" onChange={() => { handlePolicy('bookingPrivacyPolicy') }} name="agreeChek04" id="agreeChek04" title="선택" />
+                                    <label htmlFor="agreeChek04" />
+                                </span>
+                                <span className="txt">
+                                    <strong>개인정보수집 및 이용</strong>[필수]
                             </span>
-                        </div>
-                        <div className="in_box2">
-                            <a
-                                onClick={openPolicy(1)}
-                            >
-                                전문보기 &gt;
-                  </a>
-                        </div>
-                    </li>
-                    {/* <Tab>개인정보 제 3자 제공</Tab> */}
-                    <li>
-                        {/* ALL */}
-                        <div className="in_box1">
-                            <input type="checkbox" className="checkbox"
-                                checked={chkPolocy.bookingThirdPolicy}
-                                onClick={() => { handlePolicy('bookingThirdPolicy') }} />
-                            <span>
-                                <strong>개인정보 제3자 제공</strong>[필수]
+                            </div>
+                            <div className="in_box2">
+                                <a
+                                    onClick={openPolicy(1)}
+                                >
+                                    전문보기 &gt;
+                                </a>
+                            </div>
+                        </li>
+                        {/* <Tab>개인정보 제 3자 제공</Tab> */}
+                        <li>
+                            {/* ALL */}
+                            <div className="in_box1">
+                                {/* <input type="checkbox" className="checkbox"
+                                    checked={chkPolocy.bookingThirdPolicy}
+                                    onClick={() => { handlePolicy('bookingThirdPolicy') }} /> */}
+                                <span className="checkbox">
+                                    <input checked={chkPolocy.bookingThirdPolicy} type="checkbox" className="checkbox" onClick={() => { handlePolicy('bookingThirdPolicy') }} name="agreeChek03" id="agreeChek03" title="선택" />
+                                    <label htmlFor="agreeChek03" />
+                                </span>
+                                <span className="txt">
+                                    <strong>개인정보 제3자 제공</strong>[필수]
                   </span>
-                        </div>
-                        <div className="in_box2">
-                            <a
-                                onClick={openPolicy(2)}
-                            >
-                                전문보기 &gt;
+                            </div>
+                            <div className="in_box2">
+                                <a
+                                    onClick={openPolicy(2)}
+                                >
+                                    전문보기 &gt;
                   </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <Modal id="PolicyModal" title="약관보기">
+                    <Tabs onSelect={setSelectedIndex} selectedIndex={selectedIndex}>
+                        <TabList>
+                            <Tab>여행자약관</Tab>
+                            <Tab>개인정보수집 및 이용</Tab>
+                            <Tab>개인정보 제3자 제공</Tab>
+                        </TabList>
+                        <TabPanel>
+                            <Policy type="travelerPolicy" />
+                        </TabPanel>
+                        <TabPanel>
+                            <Policy type="bookingPrivacyPolicy" />
+                        </TabPanel>
+                        <TabPanel>
+                            <Policy type="bookingThirdPolicy" />
+                        </TabPanel>
+                    </Tabs>
+                    <div className="alignment">
+                        <div className="left_div">
+                            <button onClick={() => {
+                                closeModal("#PolicyModal")();
+                                handleAgreeAll();
+                            }} className="btn w50" >전체동의</button>
                         </div>
-                    </li>
-                </ul>
+                        <div className="right_div">
+
+                            <button onClick={() => {
+                                closeModal("#PolicyModal")();
+                            }} className="btn w50" >확인</button>
+                        </div>
+                    </div>
+
+                </Modal>
+
             </div>
-            <Modal id="PolicyModal" title="약관보기">
-                <Tabs onSelect={setSelectedIndex} selectedIndex={selectedIndex}>
-                    <TabList>
-                        <Tab>여행자약관</Tab>
-                        <Tab>개인정보수집 및 이용</Tab>
-                        <Tab>개인정보 제3자 제공</Tab>
-                    </TabList>
-                    <TabPanel>
-                        <Policy type="travelerPolicy" />
-                    </TabPanel>
-                    <TabPanel>
-                        <Policy type="bookingPrivacyPolicy" />
-                    </TabPanel>
-                    <TabPanel>
-                        <Policy type="bookingThirdPolicy" />
-                    </TabPanel>
-                </Tabs>
-                <button onClick={() => {
-                    closeModal("#PolicyModal")();
-                    handleAgreeAll();
-                }} className="btn mr10" >전체동의</button>
-                <button onClick={() => {
-                    closeModal("#PolicyModal")();
-                }} className="btn" >확인</button>
-            </Modal>
+
+
+
+
 
             <a onClick={handlePayment} className="paymentBtn">결제하기</a>
         </div>

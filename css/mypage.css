@@ -2494,6 +2494,15 @@ div.reservation_popup .tr select {
     .basket_box .baket_bottom > div {
         display: inline-block;
     }
+    .basket_box .baket_bottom .sum01 {
+        margin: 0 10px 0 0;
+    }
+    .basket_box .baket_bottom .sum02 strong {
+        margin: 0 10px;
+    }
+    .basket_box .baket_bottom .sum04 strong {
+        margin: 0 10px;
+    }
 
 .basket_box .baket_check {
     position: relative;

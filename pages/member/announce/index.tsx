@@ -93,7 +93,6 @@ export const Announce: React.FC<Ipage> = (page) => {
                     {isManager && <div className="btn_footer">
                         <button onClick={toWrite} type="submit" className="btn medium pointcolor">글쓰기</button>
                     </div>}
-
                     <SearchMini onSubmit={doSearch} />
                 </div>
             </div>

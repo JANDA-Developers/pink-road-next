@@ -23,7 +23,7 @@ export const DayPickerModal: React.FC<IDayPickerModal> = ({ onSubmit, defaultRan
         display: "none"
     }} id="dayPickerModal" title="날짜선택">
         <DayRangePicker from={from} to={to} onRangeChange={setRange} />
-        <button onClick={handleSubmit} className="btn w100">변경하기</button>
+        <button onClick={handleSubmit} className="btn w100">확인</button>
     </Modal>, el);;
 
 };
