@@ -499,6 +499,7 @@ ul.list_ul li .tag2 {
     text-align: left;
     font-weight: 100;
     font-size:1em;
+    margin-top: 15px;
 }
 
     ul.list_ul li .tag2 span {
@@ -1459,6 +1460,10 @@ div.comment_box {
     position: relative;
     display: block;
 }
+.writing_in .w1200{
+    box-sizing: border-box;
+    padding: 50px 3% 100px;
+}
 .board_write .con_bottom {
     padding-bottom: 100px;
     padding-top: 50px;
@@ -1619,7 +1624,7 @@ div.comment_box {
 
     .board_write .write_con textarea {
         border: 1px solid #ccc;
-        padding: 15px;
+        padding: 30px;
         box-sizing: border-box;
         border-radius: 3px;
     }
@@ -2537,6 +2542,10 @@ div.sum_div {
 
 }
 @media (min-width:1000px) {
+    .writing_in .w1200{
+        box-sizing: border-box;
+        padding: 50px 0 100px;
+    }
     .tb_st__01 {
         width: 100%;
         min-width: 640px;
@@ -2895,7 +2904,7 @@ div.sum_div {
         margin-right: 1%;
     }
     ul.list_ul.line4 li .img {
-        height: 195px;
+        height: 156px;
     }
  
     ul.photo_ul {

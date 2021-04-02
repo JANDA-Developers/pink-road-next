@@ -2179,6 +2179,24 @@ footer .footer_in_bottom {
             color: #fff;
         }
 
+    .mini_btn.small2 {
+        line-height: 31px;
+        font-size: 12px;
+        padding: 0 16px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        background-color: #ffffff;
+        color: #a2a2a2;
+        border: 1px #dbdbdb solid;
+    }
+
+        .mini_btn.small2:hover {
+            border: 1px #979797 solid;
+            background-color: #f8f8f8;
+            color: #333333;
+        }
+
 .xet_btn {
     display: inline-block;
     zoom: 1;

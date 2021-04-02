@@ -129,10 +129,10 @@ export const ReviewModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
                                             <div className="top">
                                                 <div style={BGprofile(review.author?.profileImg)} className="review__list_pr" />
                                                 <div className="review__list_star">
-                                                    <RatingStar readonly initialRating={review.rating} />
+                                                    <RatingStar readonly initialRating={review.rating} /><strong>{review.num}</strong>
                                                 </div>
                                                 <div className="review__list_info">
-                                                    <strong>{review.num}</strong>
+
                                                     <span className="name">{review.authorName}</span><span className="day">{yyyymmdd(review.createdAt)}</span>
                                                 </div>
                                             </div>
@@ -140,6 +140,11 @@ export const ReviewModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
                                                 <p>{review.contents}</p>
                                             </div>
                                         </li>
+                                    </ul>
+                                    <ul>
+                                        {(review?.answers || []).filter(answer => !answer?.isDelete).map(answer =>
+                                            <Comment className="comment__review" title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
+                                        )}
                                     </ul>
                                 </div>
                             </div>
@@ -152,11 +157,7 @@ export const ReviewModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
                                     )}
                                 </ul>
                             </div>
-                            <ul>
-                                {(review?.answers || []).filter(answer => !answer?.isDelete).map(answer =>
-                                    <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
-                                )}
-                            </ul>
+
                             {/* {(question.answers || []).filter(answer => !answer?.isDelete).map(answer =>
                                 <Comment title={answer?.author?.nickName} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
                             )} */}
