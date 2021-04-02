@@ -212,7 +212,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const isBuyer = state === UserRole.individual;
     const isSeller = isPartnerB || isPartner;
 
-
     const filteredKeywards = categoriesMap.GUIDE_KEYWARD.filter(key => keywards.includes(key.label));
     const keywardsOps: IselectedOption[] = filteredKeywards.map(key => ({
         _id: key._id,

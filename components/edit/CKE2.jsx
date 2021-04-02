@@ -141,7 +141,6 @@ const editorConfiguration = {
     licenseKey: '',
   } 
 
-
   const CKEDITOR = ({data,onChange}) => {
       const [loading, setLoading] = useState(true);
 
@@ -166,8 +165,6 @@ const editorConfiguration = {
               />
           </div>
       );
-
-  }
-
+  } 
 export default CKEDITOR;
 
