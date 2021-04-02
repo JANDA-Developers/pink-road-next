@@ -297,14 +297,14 @@ export const Header: React.FC<IProp> = () => {
                                 </ul>
                             </li>}
 
-                            {isManager && <li className="a_menu_tit deps">
+                            <li className="a_menu_tit deps">
                                 <a href="/member/login">Member<i className="jandaicon-arr4-right"></i></a>
                                 <ul className="depth1">
                                     <li><a href="/member/login">로그인</a></li>
                                     <li><a href="/member/join">회원가입</a></li>
                                     <li><a href="/member/findmembers">아이디/비번 찾기</a></li>
                                 </ul>
-                            </li>}
+                            </li>
 
                         </ul>
                         <button className="btn_all_close" onClick={handleAllClose}>

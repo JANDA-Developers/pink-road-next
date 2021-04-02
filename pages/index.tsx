@@ -224,6 +224,42 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
       </div>
     </div>
 
+    <div className="main_con_box8">
+      <div className="w1200">
+
+        <div className="deal_list">
+          <div className="alignment">
+            <div className="left_div"><h2><span {...edit("goodsListA_title")} /></h2></div>
+            <div className="right_div">
+              <span className="goto_page"><a href="/tour">바로가기<i className="flaticon-menu-1"></i></a></span>
+            </div>
+          </div>
+          <GoodsListAPI initialOption={{
+            initialViewCount: 16,
+            initialFilter: {
+              _id_in: groupsMap.Main1
+            }
+          }} />
+        </div>
+
+        <div className="deal_list">
+          <div className="alignment">
+            <div className="left_div"><h2><span {...edit("goodsListB_title")} /></h2></div>
+            <div className="right_div">
+              <span className="goto_page"><a href="/tour">바로가기<i className="flaticon-menu-1"></i></a></span>
+            </div>
+          </div>
+          <GoodsListAPI initialOption={{
+            initialViewCount: 16,
+            initialFilter: {
+              _id_in: groupsMap.Main1
+            }
+          }} />
+        </div>
+      </div>
+    </div>
+
+
     <div className="main_con_box7">
       <div className="box01">
         <div className="w1200">
