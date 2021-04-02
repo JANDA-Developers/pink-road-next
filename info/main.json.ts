@@ -249,6 +249,7 @@ const info = {
     purposeCircle2: { kr: `잊히지 않는 <br class="no" />시대를 그리다` },
     purposeCircle2_en: { kr: `unforgettable period` },
     purposeCircle3: { kr: `상생하는 <br class="no" />사람을 그리다 ` },
+
     purposeCircle3_en: { kr: `co-prosperity person` },
     busi_area_title: { kr: `Business Area` },
     busi_area1_title: { kr: `Brand Consulting` },
@@ -293,6 +294,8 @@ const info = {
     bottom_title: { kr: `<strong>우리는</strong>새로운 변화속에서 <strong>사회적 가치</strong>를 지키며 서로 <strong>상생</strong>하는 일을 합니다.` },
     bottom_desc: { kr: `We keep our social values in new changes and work together` },
     bottom_bg_img: { kr: `2.jpg` },
+    goodsListA_title: { kr: `최신순` },
+    goodsListB_title: { kr: `인기순` },
 }
 
 //html edit 기능에 의존하지말고  style 오브젝트를 넣으면 안될까? 
