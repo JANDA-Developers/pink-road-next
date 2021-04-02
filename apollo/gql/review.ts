@@ -31,7 +31,7 @@ export const F_PRODUCT_REVIEW = gql`
     slug
     authorName
     productName
-    files {
+    attachFiles {
       ...Ffile
     }
     productAuthorName
@@ -58,10 +58,16 @@ query productReviewFindById(
         message
     }
     data {
+      answers {
+        ...Fanswer
+      }
         ...FproductReview
     }
+    nextId
+    beforeId
 }
 }
+${F_ANSWER}
 ${F_PRODUCT_REVIEW}
 `
 export const PRODUCT_REVIEW_LIST = gql`

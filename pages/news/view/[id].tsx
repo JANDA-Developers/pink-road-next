@@ -1,15 +1,17 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { BoardView } from "components/board/View";
+import { BoardView, IBoardMoveData } from "components/board/View";
 import { Fnews } from 'types/api';
 import Page404 from 'pages/404';
 import { useNewsDelete, useNewsFindById } from '../../../hook/useNews';
 
 interface IProp {
     item: Fnews
+    next?: IBoardMoveData,
+    prev?: IBoardMoveData
 }
 
-export const NewsDetail: React.FC<IProp> = ({ item }) => {
+export const NewsDetail: React.FC<IProp> = ({ item, next, prev }) => {
     const router = useRouter();
     const { isOpen, title, thumb, createdAt, contents, _id, subTitle, author } = item;
 
@@ -42,6 +44,8 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
         onList={toList}
         thumb={thumb}
         content={contents}
+        next={next}
+        prev={prev}
         writer={author?.name || ""}
         title={title}
         subTitle={subTitle || ""}
@@ -54,12 +58,13 @@ export const NewsDetail: React.FC<IProp> = ({ item }) => {
 export const NewsDetailWrap: React.FC<IProp> = () => {
     const { query } = useRouter()
     const id = query.id as string;
-    const { item, loading } = useNewsFindById(id)
+
+    const { item, loading, next, prev } = useNewsFindById(id)
 
     if (loading) return null;
     if (!item) return <Page404 />;
 
-    return <NewsDetail item={item} />
+    return <NewsDetail prev={prev} next={next} item={item} />
 }
 
 export default NewsDetailWrap;

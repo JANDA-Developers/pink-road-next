@@ -148,9 +148,9 @@ const editorConfiguration = {
     if(edit === undefined) edit = true;
 
       return (
-          <div {...props} className={`myckeditor ${props.className}`} >
-              {edit && loading && <div className="ck-content" style={{minHeight: holderHeight}} dangerouslySetInnerHTML={{__html: data }} />}
+          <div {...props} className={`myckeditor ${props.className} ${loading && "editor--loading"}`} >
               {!edit && <div className="ck-content editorHolder" style={{minHeight: holderHeight}} dangerouslySetInnerHTML={{__html: data }} />}
+              {edit && <div className="ck-content editorHolder editorHolder--loadingHolder" style={{minHeight: holderHeight}} dangerouslySetInnerHTML={{__html: data }} />}
               {edit && <CKEditor
                   editor={ Editor }
                   config={ editorConfiguration }

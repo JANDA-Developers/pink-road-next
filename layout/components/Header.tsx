@@ -27,8 +27,6 @@ export const handSearchClose = () => {
 export const Header: React.FC<IProp> = () => {
     const [search, setSearch] = useState("");
     const rotuer = useRouter()
-
-
     const { isLogin, myProfile, isManager, homepage } = useContext(AppContext);
 
     const handleNav = () => {
@@ -199,11 +197,10 @@ export const Header: React.FC<IProp> = () => {
                                     <Link href={`/news?type=${NEWS_TYPE.TRAVEL}`}>
                                         <a>News</a>
                                     </Link>
-
                                     <ul className="deps_nav">
-                                        <li><Link href={`news?type=${NEWS_TYPE.TRAVEL}`}><a>여행이야기</a></Link></li>
-                                        <li><Link href={`news?type=${NEWS_TYPE.CULTURE}`}><a>문화이야기</a></Link></li>
-                                        <li><Link href={`news?type=${NEWS_TYPE.MEDIA}`}><a>언론보도</a></Link></li>
+                                        <li><a href={`/news?type=${NEWS_TYPE.TRAVEL}`}>여행이야기</a></li>
+                                        <li><a href={`/news?type=${NEWS_TYPE.CULTURE}`}>문화이야기</a></li>
+                                        <li><a href={`/news?type=${NEWS_TYPE.MEDIA}`}>언론보도</a></li>
                                     </ul>
                                 </li>
                             </ul>

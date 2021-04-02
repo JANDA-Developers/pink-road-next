@@ -24,7 +24,7 @@ export const Layout: React.FC<IProp> = ({ children }) => {
             ></script>
         </Head>
         <Header />
-        <div style={{ minHeight: "90vh" }}>
+        <div style={{ minHeight: "50vh" }}>
             {children}
         </div>
         <Footer />

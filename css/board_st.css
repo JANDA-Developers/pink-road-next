@@ -1718,7 +1718,6 @@ div.comment_box {
 .board_write .write_con {
     padding: 0;
     box-sizing: border-box;
-    margin-top: 10px;
 }
 
     .board_write .write_con textarea {

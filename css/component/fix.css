@@ -351,11 +351,12 @@ background-color: #fff;
     margin-bottom: 10px;
     
 }
-
-.itinerary__editor .editorHolder {
+.editorHolder {
     border: 1px solid #ddd;
-    cursor: pointer;
     padding: 1rem;
+}
+.itinerary__editor .editorHolder {
+    cursor: pointer;
 }
 
 .ck-content {
@@ -364,4 +365,20 @@ background-color: #fff;
 
 .productGroup__del:hover {
     background-color: red;
+}
+
+.editor--loading .ck-content {
+    display: none!important;
+}
+
+.editor--loading .ck-content {
+    display: none!important;
+}
+
+.editorHolder--loadingHolder {
+    display: none!important;
+}
+
+.editor--loading .editorHolder--loading {
+    display: block;
 }
