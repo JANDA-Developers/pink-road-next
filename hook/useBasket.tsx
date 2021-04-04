@@ -38,7 +38,7 @@ export const useBasketCount = ({
         if (val < 0) val = 0;
         count[key] = val;
 
-        if (capacity < totalCount) {
+        if (isUp && (capacity < totalCount)) {
             alert("해당 상품은 더이상 예약을 받을 수 없습니다.");
             return;
         }
