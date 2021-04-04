@@ -3,12 +3,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { BoardWrite } from "components/board/Write";
 import { useBoard } from "hook/useBoard";
 import { omits } from "../../../../utils/omit";
-import { auth } from "../../../../utils/with";
-import { ALLOW_ADMINS, ALLOW_LOGINED } from "../../../../types/const";
 import { Validater } from "../../../../utils/validate";
 import { useQnaCreate, useQnaDelete, useQnaFindById, useQnaUpdate } from "../../../../hook/useQna";
-import { getFromUrl } from "../../../../utils/url";
 import { AppContext } from "../../../_app";
+import { LoginModal } from "../../../../components/loginModal/LoginModal";
+import { useModal } from "../../../../hook/useModal";
+import { ThreePhoneNumberInput } from "../../../../components/phoneNumberInput/PhoneNumberInput";
 
 interface IProp { }
 
@@ -16,8 +16,11 @@ export const QnaWrite: React.FC<IProp> = () => {
     const router = useRouter();
     const id = router.query.id?.[0] as string;
     const { item: qna } = useQnaFindById(id);
+    const loginModalHook = useModal();
     const mode = id ? "edit" : "create";
     const { categoriesMap } = useContext(AppContext);
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("")
 
     const [qnaUpdateMu] = useQnaUpdate({
         onCompleted: ({ QnaUpdate }) => {
@@ -45,8 +48,6 @@ export const QnaWrite: React.FC<IProp> = () => {
         },
     })
 
-
-    console.log({ qna });
     const boardHook = useBoard({
         ...qna
     }, { storeKey: "qnaWrite" });
@@ -111,28 +112,75 @@ export const QnaWrite: React.FC<IProp> = () => {
         })
     }, [qna?._id])
 
-    console.log({ boardHook });
-
-    return <BoardWrite
-        boardHook={boardHook}
-        key={loadKey + (qna?._id || "")}
-        mode={mode}
-        categoryList={categoriesMap.QNA}
-        onCancel={handleCancel}
-        onCreate={handleCreate}
-        onDelete={handleDelete}
-        onEdit={handleUpdate}
-        onSave={handleTempSave}
-        onLoad={handleLoad}
-        opens={{
-            title: true,
-            category: true,
-            open: true
-        }}
-    />
+    return <div>
+        <BoardWrite
+            WriteInjection={
+                <div>
+                    <div className="write_type">
+                        <div className="title">패스워드</div>
+                        <div className="input_form">
+                            <input
+                                onChange={(e) => {
+                                    const val = e.currentTarget.value
+                                    setPassword(val)
+                                }}
+                                value={password}
+                                type="text"
+                                name="summary"
+                                className="inputText w100"
+                            />
+                        </div>
+                    </div>
+                    <div className="write_type">
+                        <div className="title">성함</div>
+                        <div className="input_form">
+                            <input
+                                onChange={(e) => {
+                                    const val = e.currentTarget.value
+                                    setPassword(val)
+                                }}
+                                value={password}
+                                type="text"
+                                name="summary"
+                                className="inputText w100"
+                            />
+                        </div>
+                    </div>
+                    <div className="write_type">
+                        <div className="title">연락처</div>
+                        <div className="input_form">
+                            <ThreePhoneNumberInput
+                                onChange={() => { }}
+                                value={{
+                                    one: "",
+                                    three: "",
+                                    two: ""
+                                }} />
+                        </div>
+                    </div>
+                </div>
+            }
+            boardHook={boardHook}
+            key={loadKey + (qna?._id || "")}
+            mode={mode}
+            categoryList={categoriesMap.QNA}
+            onCancel={handleCancel}
+            onCreate={handleCreate}
+            onDelete={handleDelete}
+            onEdit={handleUpdate}
+            onSave={handleTempSave}
+            onLoad={handleLoad}
+            opens={{
+                title: true,
+                category: true,
+                open: true,
+                files: true
+            }}
+        />
+        <LoginModal modalHook={loginModalHook} onLogin={() => {
+            location.reload();
+        }} />
+    </div>
 };
 
-
-
-
-export default auth(ALLOW_ADMINS)(QnaWrite)
+export default QnaWrite

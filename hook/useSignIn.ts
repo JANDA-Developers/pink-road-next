@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { signInVariables, UserRole } from "../types/api";
+import { ERR_CODE, signInVariables, UserRole } from "../types/api";
 import { initStorage, Storage } from "../utils/Storage";
 import { Validater } from "../utils/validate";
 import { isEmail } from "../utils/validation";
+import { useLogin } from "./useUser";
+
+
 
 export const useSignIn = () => {
     const [saveId, setSaveId] = useState(false);
@@ -35,7 +38,6 @@ export const useSignIn = () => {
         },
     })
 
-    const router = useRouter();
 
     const sessionSave = () => {
         const answer = confirm('브라우저를 닫더라도 로그인이 계속 유지될 수 있습니다.\n\n로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.')
@@ -104,4 +106,5 @@ export const useSignIn = () => {
         getData({ variables: signInvar as any });
     }
 
+    return {handleLogin, handleId, handlePw,userType,handleUserType,userId,userPw,sessionSave,saveSession,handleSaveId,saveId }
 }

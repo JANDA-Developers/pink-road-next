@@ -260,7 +260,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
     <div className="main_con_box5">
       <div className="txt w1200">
         <h2 {...edit('bottom_title')} />
-        <p {...edit('bottom_desc')} />
+        <p><span {...edit('bottom_desc')} /></p>
         {/* <Bg className="ovj" {...imgKit("bottom_ovj")} /> */}
       </div>
       {/* <ul className="photo__listBottom">

@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import jwt from "jsonwebtoken";
 import dayjs from 'dayjs';
 import { Header } from './components/Header';
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
+// const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 interface IProp { }
 
@@ -28,7 +28,7 @@ export const Layout: React.FC<IProp> = ({ children }) => {
             {children}
         </div>
         <Footer />
-        <ReactTooltip effect="solid" type="info" />
+        {/* <ReactTooltip effect="solid" type="info" /> */}
     </div>;
 };
 

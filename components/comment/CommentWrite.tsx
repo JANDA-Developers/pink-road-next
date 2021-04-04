@@ -3,17 +3,17 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../../pages/_app';
 import { BG, BGprofile } from '../../types/const';
 import { LoadEditor } from '../edit/EdiotrLoading';
-
-
 const Editor = LoadEditor();
 
 interface IProp {
+    textarea?: boolean;
+    className?: string;
     title: string;
     defaultContent: string;
     onSubmit: (content: string) => void;
 }
 
-export const CommentWrite: React.FC<IProp> = ({ onSubmit, defaultContent, title }) => {
+export const CommentWrite: React.FC<IProp> = ({ className, textarea, onSubmit, defaultContent, title }) => {
     const { myProfile } = useContext(AppContext);
     const [content, setContent] = useState<string>(defaultContent);
     const length = content.length;
@@ -26,7 +26,7 @@ export const CommentWrite: React.FC<IProp> = ({ onSubmit, defaultContent, title 
         return true;
     }
 
-    return <div className="comment_box">
+    return <div className={`comment_box ${className}`}>
         <div className="write_comment">
             <div className="comment_layout">
                 <ul className="text_box">
@@ -40,19 +40,11 @@ export const CommentWrite: React.FC<IProp> = ({ onSubmit, defaultContent, title 
                         </div>
                     </li>
                     <li>
-                        <Editor onChange={setContent} data={content} />
+                        {textarea ? <textarea onChange={(e) => { setContent(e.currentTarget.value) }} value={content} /> : <Editor onChange={setContent} data={content} />}
                     </li>
                     <li className="tr count">{content.length}/3000</li>
                 </ul>
                 <div className="text_box_bottom">
-                    {/* <div className="float_left w50">
-                    <span onClick={() => {
-                        setIsSecret(!isSecret);
-                    }} className={isSecret ? `on` : undefined}>
-                        <i className="flaticon-locked" />
-                        비밀댓글
-                    </span>
-                </div> */}
                     <div className="btn_send float_right">
                         <button onClick={() => {
                             if (validate()) onSubmit(content)

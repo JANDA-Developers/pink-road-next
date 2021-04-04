@@ -13,7 +13,6 @@ import sanitizeHtml from 'sanitize-html';
 import { Change } from '../../../components/loadingList/LoadingList';
 import { generateClientPaging } from '../../../utils/generateClientPaging';
 import { Paginater } from '../../../components/common/Paginator';
-import { Prompt } from '../../../components/promptModal/Prompt';
 import { PageEditor } from '../../../components/common/PageEditer';
 
 

@@ -1,12 +1,34 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import { IUseModal } from '../../hook/useModal';
+import { useSignIn } from '../../hook/useSignIn';
+import { UserRole } from '../../types/api';
 
-interface IProp { }
+interface IProp {
+    onLogin: () => void;
+    modalHook: IUseModal;
+}
 
-export const LoginModal: React.FC<IProp> = () => {
-    return <div className="popup_bg_mini" style={{ display: "flex" }}>
+export const LoginModal: React.FC<IProp> = ({ modalHook, onLogin }) => {
+    const {
+        handleLogin,
+        handlePw,
+        handleSaveId,
+        handleUserType,
+        saveId,
+        saveSession,
+        sessionSave,
+        userId,
+        userPw,
+        userType,
+        handleId
+    } = useSignIn()
+
+    const { isOpen, closeModal } = modalHook;
+
+    return <div className="popup_bg_mini" style={{ display: isOpen ? "flex" : "none" }}>
         <div className="in_txt login_popup">
-            <a className="close_icon"><i className="flaticon-multiply"></i></a>
+            <a onClick={closeModal} className="close_icon"><i className="flaticon-multiply"></i></a>
             <div className="page">
                 <h3 className="popup__tittle">로그인</h3>
                 <div className="con ">
@@ -16,6 +38,9 @@ export const LoginModal: React.FC<IProp> = () => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-1"
+                            value={UserRole.individual}
+                            checked={UserRole.individual === userType}
+                            onChange={() => { handleUserType(UserRole.individual) }}
                         />
                         <label htmlFor="tab-1" className="tab-label-1 login_tap tap_01 ">
                             <b>개인</b>
@@ -25,6 +50,9 @@ export const LoginModal: React.FC<IProp> = () => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-2"
+                            value={UserRole.partnerB}
+                            checked={UserRole.partnerB === userType}
+                            onChange={() => { handleUserType(UserRole.partnerB) }}
                         />
                         <label htmlFor="tab-2" className="tab-label-2 login_tap tap_02">
                             <b>기업파트너</b>
@@ -34,6 +62,9 @@ export const LoginModal: React.FC<IProp> = () => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-3"
+                            value={UserRole.partner}
+                            checked={UserRole.partner === userType}
+                            onChange={() => { handleUserType(UserRole.partner) }}
                         />
                         <label htmlFor="tab-3" className="tab-label-3 login_tap tap_03">
                             <b>개인파트너</b>
@@ -43,6 +74,9 @@ export const LoginModal: React.FC<IProp> = () => {
                             type="radio"
                             name="radio-set"
                             className="tab-selector-4"
+                            value={UserRole.manager}
+                            checked={UserRole.manager === userType}
+                            onClick={() => { handleUserType(UserRole.manager) }}
                         />
                         <label htmlFor="tab-4" className="tab-label-4 login_tap tap_03">
                             <b>마스터</b>
@@ -50,6 +84,7 @@ export const LoginModal: React.FC<IProp> = () => {
                         <div className="login_wrap white_box">
                             <div className="form-group">
                                 <input
+                                    value={userId}
                                     type="text"
                                     name="user_id"
                                     id="uid"
@@ -57,10 +92,12 @@ export const LoginModal: React.FC<IProp> = () => {
                                     placeholder="아이디"
                                     className="txt_id"
                                     title="아이디"
+                                    onChange={(e) => { handleId(e.target.value) }}
                                 />
                             </div>
                             <div className="form-group mt10">
                                 <input
+                                    value={userPw}
                                     type="password"
                                     name="password"
                                     id="upw"
@@ -68,6 +105,7 @@ export const LoginModal: React.FC<IProp> = () => {
                                     placeholder="비밀번호"
                                     title="비밀번호"
                                     className="form-txt_pw"
+                                    onChange={(e) => { handlePw(e.target.value) }}
                                 />
                             </div>
                             <div className="form-group">
@@ -76,16 +114,20 @@ export const LoginModal: React.FC<IProp> = () => {
                                         type="checkbox"
                                         name="keep_signed"
                                         id="keepid_opt"
+                                        onClick={sessionSave}
+                                        checked={saveSession}
                                     />
                                 로그인 유지
                             </label>
                                 <label htmlFor="keepid_opt2" className="checkbox-inline">
                                     <input
+                                        onClick={handleSaveId}
+                                        checked={saveId}
                                         type="checkbox" id="keepid_opt2" />{" "}
                                 아이디 기억
                             </label>
                             </div>
-                            <button type="submit" className="sum">
+                            <button type="submit" className="sum" onClick={handleLogin}>
                                 <span >로그인</span>
                             </button>
                             <div className="sign_in_form">

@@ -341,7 +341,7 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                 </div>
                 {/* {selectedBookings.length === 1 && <BookingCancelModal booking={selectedOne} />} */}
                 <SmsSendModal bookings={selectedBookings} />
-                <ReactTooltip id="TooltipProductModal" effect="solid" type="info" />
+                {/* <ReactTooltip id="TooltipProductModal" effect="solid" type="info" /> */}
             </div>
         }
     </div>

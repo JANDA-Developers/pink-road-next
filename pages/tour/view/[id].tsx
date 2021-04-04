@@ -37,6 +37,11 @@ import OnImagesLoaded from "../../../components/onImageLoad/OnImageLoad";
 import { useImgLoading } from "../../../hook/useImgLoading";
 import { getFromUrl } from "../../../utils/url";
 import { PageEditor } from "../../../components/common/PageEditer";
+import { RatingStar } from "../../../components/rating/Rating";
+import { useModal } from "../../../hook/useModal";
+import { BGprofile } from "../../../types/const";
+import { cutStr } from "../../../utils/cutStr";
+import { IModalInfo, ReviewModal } from "../../../components/reviewModal/ReviewModal";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -50,6 +55,8 @@ export async function getStaticPaths() {
 const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const router = useRouter();
   const isExp = checkIsExp();
+  const reviewModalHook = useModal<IModalInfo>();
+
   const { item: group } = useGroupFind("Recommend")
   const groupExsist = !isEmpty(group?.members);
   const { handleLoaded, loaded } = useImgLoading()
@@ -84,6 +91,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
       kids: 0
     }
   });
+  const reviews = product?.productReview || [];
+
+
 
   const [sliderIndex, setSlideIndex] = useState(0);
   const { scrollY } = useScroll();
@@ -166,6 +176,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
       addBracket();
     router.push("/payment/")
   }
+  const reviewPagination = generateClientPaging(reviews, 4);
 
   useEffect(() => {
     if (!product) return;
@@ -436,12 +447,45 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 <h4>리뷰 </h4>
                 <div className="text ck-content">
                   <div className="review__box">
-                    <ul className="review__box_list">
-                      <li className="review__box_rev">
-                        <div className=""></div>
-                      </li>
+                    <ul className="review__list">
+                      {reviewPagination.slice.map(review =>
+                        <li onClick={() => {
+                          reviewModalHook.openModal({
+                            reviewId: review._id
+                          })
+                        }} key={review._id}>
+                          <div className="top">
+                            <div className="review__list_pr" style={BGprofile(review.author?.profileImg)} />
+                            <div className="review__list_star">
+                              <RatingStar readonly initialRating={review.rating} />
+                            </div>
+                            <div className="review__list_info">
+                              <strong>{review.title}</strong>
+                              <span className="name">{review.authorName}</span><span className="day">{yyyymmdd(review.createdAt)}</span>
+                            </div>
+                          </div>
+                          <div className="bottom">
+                            <p>{cutStr(review.contents, 150)}</p>
+                          </div>
+                          {
+                            true
+                            // isMyReview(review._id)
+                            &&
+                            <Link href={`/review/write/${review._id}?pid=${id}&name=${title}`}>
+                              <a onClick={(e) => { e.stopPropagation(); }} className="mini_btn small">수정하기</a>
+                            </Link>
+                          }
+                        </li>
+                      )}
                     </ul>
-                    <div></div>
+                  </div>
+                </div>
+                <div className="boardNavigation">
+                  <Paginater pageInfo={reviewPagination.paging} isMini setPage={reviewPagination.setPage} />
+                  <div className="float_right">
+                    <Link href={`/review/write?pid=${id}&name=${title}`}>
+                      <a className="mini_btn small">리뷰 쓰러가기</a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -498,6 +542,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
           </div>
         </div>
       </Change>
+      <ReviewModal {...reviewModalHook} />
     </OnImagesLoaded>
   </div >
 }

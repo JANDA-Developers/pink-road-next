@@ -56,7 +56,7 @@ export const ReviewWrite: React.FC<IProp> = () => {
 
     const boardHook = useBoard({
         ...productreview,
-        files: productreview?.attachFiles || []
+        files: productreview?.files || []
     }, { storeKey: "ReviewWrite" });
 
     const { boardData, loadKey, handleCancel, handleLoad, handleTempSave, setBoardData, boardSets } = boardHook
@@ -92,7 +92,7 @@ export const ReviewWrite: React.FC<IProp> = () => {
                 params: {
                     ...omits(params, ["categoryId", "files"]),
                     rating: rate,
-                    attachFiles: omits(files)
+                    files: omits(files)
                 },
                 id
             }
@@ -122,7 +122,7 @@ export const ReviewWrite: React.FC<IProp> = () => {
                     ...omits(next, ["categoryId", "files"]),
                     product: urlProductId,
                     rating: rate,
-                    attachFiles: omits(files)
+                    files: omits(files)
                 }
             }
         })
@@ -132,7 +132,7 @@ export const ReviewWrite: React.FC<IProp> = () => {
         setBoardData({
             title: productreview?.title,
             contents: productreview?.contents,
-            files: [...productreview?.attachFiles || []]
+            files: [...productreview?.files || []]
         })
         setRate(productreview?.rating || 0)
     }, [productreview?._id])

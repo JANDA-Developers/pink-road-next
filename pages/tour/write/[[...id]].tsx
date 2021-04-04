@@ -32,7 +32,7 @@ import { checkIsExp } from "../../../utils/product";
 import { PageEditor } from "../../../components/common/PageEditer";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
 import { DayPickerModal } from "../../../components/dayPickerModal/DayPickerModal";
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
+// const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = LoadEditor();
 interface IProp {
@@ -551,7 +551,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             <LocalStorageBoard key={loadKey} onLoad={setTourData} />
         </div>
         <Prompt id="UpdateMemo" onSubmit={handleSubmitUpdateReq} title="업데이트 변경 사항을 입력 해주세요." />
-        <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" />
+        {/* <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" /> */}
     </div>
 };
 
