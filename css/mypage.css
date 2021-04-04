@@ -2840,8 +2840,14 @@ div.reservation_popup .tr select {
 
     
 @media (min-width: 1000px) {  
+    .goods_div .btn{
+        width: 100%;
+    }
     .fuction_list_mini .tbody li > div{
         text-align: center !important;
+    }
+    .mypage_in .goods_div .fuction_list_mini .th09{
+        max-width: 100px;
     }
     .fuction_list_mini .thead > div{
         text-align: center !important;

@@ -475,7 +475,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                             // isMyReview(review._id)
                             &&
                             <Link href={`/review/write/${review._id}?pid=${id}&name=${title}`}>
-                              <a onClick={(e) => { e.stopPropagation(); }} className="mini_btn small">수정하기</a>
+                              <a onClick={(e) => { e.stopPropagation(); }} className="mini_btn small2">수정하기</a>
                             </Link>
                           }
                         </li>

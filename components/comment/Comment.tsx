@@ -10,12 +10,13 @@ const Editor = LoadEditor();
 
 
 interface IProp extends Fanswer {
+    className?: string;
     title: string;
     onDelete: (_id: string) => void;
     onCompleteEdit?: (id: string, content: string) => Promise<boolean>;
 }
 
-export const Comment: React.FC<IProp> = ({ _id, content, createdAt, title, onDelete: handleDelete, author, onCompleteEdit }) => {
+export const Comment: React.FC<IProp> = ({ _id, className, content, createdAt, title, onDelete: handleDelete, author, onCompleteEdit }) => {
     const [editMode, setEditMode] = useState(false);
     const [model, setModel] = useState(content);
     const { myProfile, isManager } = useContext(AppContext);
@@ -27,7 +28,7 @@ export const Comment: React.FC<IProp> = ({ _id, content, createdAt, title, onDel
                 setEditMode(false)
     }
 
-    return <li className="list_comment">
+    return <li className={`list_comment ${className}`}>
         <div className="title"><i className="profile" style={BGprofile(author?.profileImg)}></i>{title}</div>
         {editMode || <p dangerouslySetInnerHTML={{
             __html: sanitizeHtml(content)
@@ -35,7 +36,7 @@ export const Comment: React.FC<IProp> = ({ _id, content, createdAt, title, onDel
         {editMode && <div>
             <Editor data={model} onChange={setModel} />
         </div>}
-        <span className="date">{dayjs(createdAt).format("YYYY.M.DD HH:mm")}</span>
+        <span className="date">[{dayjs(createdAt).format("YYYY.M.DD HH:mm")}]</span>
         {isMyComment && <div className="btn_bottom">
             {editMode && <button onClick={handleEditComplete} className="comment_btn mini">완료</button>}
             {editMode && <button onClick={() => { setEditMode(false) }} className="comment_btn mini">취소</button>}

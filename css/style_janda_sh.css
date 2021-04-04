@@ -6583,6 +6583,7 @@ i.important_icon {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            display: block;
         }
 
     .tour_details_in .boardReadFooter {
@@ -10060,7 +10061,7 @@ i.calendar {
     .main_con_box3 ul {
         right: 0;
         width: 593px;
-        top: 137px;
+        top: 111px;
         padding: 0 82px;
         box-sizing: border-box;
     }

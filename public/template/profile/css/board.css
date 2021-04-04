@@ -1605,7 +1605,7 @@ div.comment_box {
 
     .board_write .write_con textarea {
         border: 1px solid #ccc;
-        padding: 15px;
+        padding:30px;
         box-sizing: border-box;
         border-radius: 3px;
     }
