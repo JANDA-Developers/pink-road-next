@@ -3,25 +3,40 @@ import React, { useContext, useEffect, useState } from 'react';
 import { BoardWrite, TCategory } from "components/board/Write";
 import { useBoard } from "hook/useBoard";
 import { omits } from "../../../../utils/omit";
-import { auth } from "../../../../utils/with";
-import { ALLOW_LOGINED } from "../../../../types/const";
 import { Validater } from "../../../../utils/validate";
 import { useQuestionCreate, useQuestionDelete, useQuestionFindById, useQuestionUpdate } from "../../../../hook/useQuestion";
 import { getFromUrl } from "../../../../utils/url";
 import { AppContext } from "../../../_app";
 import { ProductSelectModal } from "../../../../components/ProductSelectModal";
 import { closeModal, openModal } from "../../../../utils/popUp";
+import { ThreePhoneNumberInput } from "../../../../components/phoneNumberInput/PhoneNumberInput";
+import { isPhone } from "../../../../utils/validation";
+import { QuestionUpdateInput } from "../../../../types/api";
 
 interface IProp { }
 
 export const QuestionWrite: React.FC<IProp> = () => {
     const router = useRouter();
-    const { categoriesMap } = useContext(AppContext);
+    const { categoriesMap, isLogin } = useContext(AppContext);
     const id = router.query.id?.[0] as string;
-    const { item: question } = useQuestionFindById(id);
+    const pw = getFromUrl("pw");
+    const { item: question } = useQuestionFindById(id, {
+        variables: {
+            id,
+            password: pw
+        }
+    });
     const mode = id ? "edit" : "create";
     const urlProductId = getFromUrl("pid") || "";
     const urlProductName = getFromUrl("name") || "";
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState({
+        one: "",
+        two: "",
+        three: ""
+    })
+
 
     const categoryList = categoriesMap?.QUESTION.map((cat): TCategory => ({
         _id: cat._id,
@@ -71,8 +86,21 @@ export const QuestionWrite: React.FC<IProp> = () => {
     const [productId, setProductId] = useState(urlProductId);
     const [productName, setProductName] = useState(urlProductName)
     const { boardData, loadKey, handleCancel, handleLoad, handleTempSave, setBoardData } = boardHook
+    const contact = phoneNumber.one + phoneNumber.three + phoneNumber.two;
 
     const { validate } = new Validater([
+        {
+            value: isLogin || password.length >= 4,
+            failMsg: "패스워드를 입력 해주세요 (4자리이상).",
+        },
+        {
+            value: isLogin || name,
+            failMsg: "성함을 입력 해주세요",
+        },
+        {
+            value: isLogin || isPhone(contact),
+            failMsg: "연락처를 입력 해주세요.",
+        },
         {
             value: boardData.title,
             failMsg: "제목 값은 필수 입니다.",
@@ -83,6 +111,14 @@ export const QuestionWrite: React.FC<IProp> = () => {
         },
     ]
     );
+
+    const next: QuestionUpdateInput = {
+        ...boardData,
+        productId,
+        password,
+        anonymousContact: contact,
+        anonymousName: name,
+    }
 
     const handleUpdate = () => {
         if (!validate()) return;
@@ -111,15 +147,12 @@ export const QuestionWrite: React.FC<IProp> = () => {
     const handleCreate = () => {
         if (!validate()) return
 
-        const next = {
-            ...boardData,
-            productId,
-        }
+
 
         questionCreateMu({
             variables: {
                 params: {
-                    ...omits(next),
+                    ...omits(next, ["categoryId" as any]),
                     productId: productId ? productId : undefined
                 }
             }
@@ -143,12 +176,59 @@ export const QuestionWrite: React.FC<IProp> = () => {
             className={urlProductId ? "boardWrite--categoryFix" : ""}
             categoryList={categoryList}
             WriteInjection={
-                isProductMode ? <div className="write_type">
-                    <div className="title">상품명</div>
-                    <div className="input_form">
-                        <input onFocus={openModal("#ProductSelectModal")} readOnly={!!urlProductName} id="title" value={productName} type="text" name="title" className="inputText w100" />
-                    </div>
-                </div> : undefined
+                <div>
+                    {
+                        isProductMode ? <div className="write_type">
+                            <div className="title">상품명</div>
+                            <div className="input_form">
+                                <input onFocus={openModal("#ProductSelectModal")} readOnly={!!urlProductName} id="title" value={productName} type="text" name="title" className="inputText w100" />
+                            </div>
+                        </div> : <div />
+                    }
+                    {isLogin ||
+                        <div>
+                            <div className="write_type">
+                                <div className="title">패스워드</div>
+                                <div className="input_form">
+                                    <input
+                                        onChange={(e) => {
+                                            const val = e.currentTarget.value
+                                            setPassword(val)
+                                        }}
+                                        value={password}
+                                        type="password"
+                                        name="summary"
+                                        className="inputText"
+                                    />
+                                </div>
+                            </div>
+                            <div className="write_type">
+                                <div className="title">성함</div>
+                                <div className="input_form">
+                                    <input
+                                        onChange={(e) => {
+                                            const val = e.currentTarget.value
+                                            setName(val)
+                                        }}
+                                        value={name}
+                                        type="text"
+                                        name="summary"
+                                        className="inputText"
+                                    />
+                                </div>
+                            </div>
+                            <div className="write_type">
+                                <div className="title">연락처</div>
+                                <div className="input_form">
+                                    <ThreePhoneNumberInput
+                                        onChange={setPhoneNumber}
+                                        value={phoneNumber} />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
             }
             boardHook={boardHook}
             key={loadKey + (question?._id || "") + productId}
@@ -167,15 +247,17 @@ export const QuestionWrite: React.FC<IProp> = () => {
                 files: true,
             }}
         />
-        <ProductSelectModal id="ProductSelectModal" onSelect={(pd) => {
-            setProductId(pd._id);
-            setProductName(pd.title);
-            closeModal("#ProductSelectModal")()
-        }} />
+        <ProductSelectModal
+            id="ProductSelectModal"
+            onSelect={(pd) => {
+                setProductId(pd._id);
+                setProductName(pd.title);
+                closeModal("#ProductSelectModal")()
+            }} />
     </div>
 };
 
 
 
 
-export default auth(ALLOW_LOGINED)(QuestionWrite)
+export default QuestionWrite

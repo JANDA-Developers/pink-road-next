@@ -19,8 +19,6 @@ export const QnaWrite: React.FC<IProp> = () => {
     const loginModalHook = useModal();
     const mode = id ? "edit" : "create";
     const { categoriesMap } = useContext(AppContext);
-    const [password, setPassword] = useState("");
-    const [name, setName] = useState("")
 
     const [qnaUpdateMu] = useQnaUpdate({
         onCompleted: ({ QnaUpdate }) => {
@@ -114,52 +112,6 @@ export const QnaWrite: React.FC<IProp> = () => {
 
     return <div>
         <BoardWrite
-            WriteInjection={
-                <div>
-                    <div className="write_type">
-                        <div className="title">패스워드</div>
-                        <div className="input_form">
-                            <input
-                                onChange={(e) => {
-                                    const val = e.currentTarget.value
-                                    setPassword(val)
-                                }}
-                                value={password}
-                                type="text"
-                                name="summary"
-                                className="inputText w100"
-                            />
-                        </div>
-                    </div>
-                    <div className="write_type">
-                        <div className="title">성함</div>
-                        <div className="input_form">
-                            <input
-                                onChange={(e) => {
-                                    const val = e.currentTarget.value
-                                    setPassword(val)
-                                }}
-                                value={password}
-                                type="text"
-                                name="summary"
-                                className="inputText w100"
-                            />
-                        </div>
-                    </div>
-                    <div className="write_type">
-                        <div className="title">연락처</div>
-                        <div className="input_form">
-                            <ThreePhoneNumberInput
-                                onChange={() => { }}
-                                value={{
-                                    one: "",
-                                    three: "",
-                                    two: ""
-                                }} />
-                        </div>
-                    </div>
-                </div>
-            }
             boardHook={boardHook}
             key={loadKey + (qna?._id || "")}
             mode={mode}

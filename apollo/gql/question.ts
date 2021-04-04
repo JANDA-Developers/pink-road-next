@@ -154,9 +154,11 @@ location
 export const QUESTION_FIND_BY_ID = gql`
 query questionFindById(
   $id: String!
+  $password: String
 ) {
   QuestionFindById(
     id:$id
+    password: $password
   ) {
   ok
   error {

@@ -142,7 +142,7 @@ const editorConfiguration = {
   } 
 
 
-  const CKEDITOR = ({data,onChange, edit, holderHeight = 220, ...props}) => {
+  const CKEDITOR = ({data,onChange, edit = true, holderHeight = 220, ...props}) => {
     const [loading, setLoading] = useState(true);
 
     if(edit === undefined) edit = true;

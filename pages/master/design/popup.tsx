@@ -1,7 +1,6 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import CalendarIcon from 'components/common/icon/CalendarIcon';
 import React, { useContext, useEffect, useState } from 'react';
-import { PopupConfigViewBox } from '../../../components/popupconfig/PopupConfigViewBox[dreprecated]';
 import { usePopups } from '../../../hook/usePopups';
 import { useHomepageUpdate } from '../../../hook/useHomepage';
 import { AppContext } from '../../_app';

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { BoardView } from "components/board/View";
-import { Fanswer, Fquestion } from 'types/api';
+import { Fanswer } from 'types/api';
 import { useQuestionDelete, useQuestionFindById } from '../../../../hook/useQuestion';
 import PageLoading from '../../../Loading';
 import Page404 from '../../../404';
@@ -10,25 +10,34 @@ import { AppContext } from '../../../_app';
 import Comment from '../../../../components/comment/Comment';
 import { useAnswerCreate, useAnswerDelete, useAnswerUpdate } from '../../../../hook/useAnswer';
 import PageDeny from '../../../Deny';
+import { IPromptInfo, PormptModal } from '../../../../components/promptModal/PromptModal';
+import { useModal } from '../../../../hook/useModal';
+import { getFromUrl } from '../../../../utils/url';
 
 interface IProp {
 }
 
 export const QuestionDetail: React.FC<IProp> = () => {
     const router = useRouter();
+    const pw = getFromUrl("pw");
     const questionId = router.query.id as string;
     const { myProfile, isManager } = useContext(AppContext);
     const [createAnswerMu] = useAnswerCreate();
     const [answerDeleteMu] = useAnswerDelete();
     const [answerUpdateMu] = useAnswerUpdate();
+    const passwordModalHook = useModal<IPromptInfo>();
     const [questionDeleteMu] = useQuestionDelete({
         onCompleted: ({ QuestionDelete }) => {
             if (QuestionDelete.ok) toList();
         }
     })
 
-
-    const { item: question, error } = useQuestionFindById(questionId);
+    const { item: question, error } = useQuestionFindById(questionId, {
+        variables: {
+            id: questionId,
+            password: pw
+        }
+    });
     const myQuestion = question?.author?._id === myProfile?._id;
     const myProdQuestion = question?.product?.author?._id === myProfile?._id;
 
@@ -42,8 +51,12 @@ export const QuestionDetail: React.FC<IProp> = () => {
     const isMyProduct = myProfile?._id === product?.author?._id;
 
 
-    const toDetail = () => {
-        router.push(`/service/question/write/${_id}`)
+    const toEdit = () => {
+        if (isManager || myQuestion || myProdQuestion)
+            router.push(`/service/question/write/${_id}` + "?pw=" + pw)
+        else {
+            alert("비밀글 입니다.");
+        }
     }
 
     const toList = () => {
@@ -107,7 +120,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
             title={title}
             subTitle={subTitle || ""}
             onDelete={handleDelete}
-            onEdit={toDetail}
+            onEdit={toEdit}
             createAt={createdAt}
 
         />
@@ -123,6 +136,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
                 {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.nickName} onSubmit={handleAnswer} />}
             </div>
         }
+        <PormptModal modalHook={passwordModalHook} />
     </div>
 };
 

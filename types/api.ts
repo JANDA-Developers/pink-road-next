@@ -8314,6 +8314,7 @@ export interface questionFindById {
 
 export interface questionFindByIdVariables {
   id: string;
+  password?: string | null;
 }
 
 /* tslint:disable */
@@ -13754,6 +13755,7 @@ export interface QnaCreateInput {
   files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   categoryId: string;
+  password?: string | null;
 }
 
 export interface QnaUpdateInput {
@@ -13776,6 +13778,9 @@ export interface QuestionCreateInput {
   isOpen?: boolean | null;
   summary?: string | null;
   subTitle?: string | null;
+  password?: string | null;
+  anonymousName?: string | null;
+  anonymousContact?: string | null;
   keyWards?: string[] | null;
   files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
@@ -13794,6 +13799,9 @@ export interface QuestionUpdateInput {
   thumb?: FileUpdateInput | null;
   productId?: string | null;
   status?: QuestionStatus | null;
+  password?: string | null;
+  anonymousName?: string | null;
+  anonymousContact?: string | null;
 }
 
 /**
@@ -13896,6 +13904,8 @@ export interface _AnnounceFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -13933,6 +13943,8 @@ export interface _BoardFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -14089,6 +14101,8 @@ export interface _NewsFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -14158,6 +14172,8 @@ export interface _PortfolioFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -14240,6 +14256,8 @@ export interface _ProductFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -14319,6 +14337,8 @@ export interface _ProductReviewFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -14359,6 +14379,8 @@ export interface _QnaFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -14390,6 +14412,10 @@ export interface _QuestionFilter {
   categoryId_in?: string[] | null;
   code_eq?: string | null;
   code_not_eq?: string | null;
+  anonymousName_eq?: string | null;
+  anonymousName_not_eq?: string | null;
+  anonymousContact_eq?: string | null;
+  anonymousContact_not_eq?: string | null;
   status_eq?: string | null;
   status_not_eq?: string | null;
   no_eq?: string | null;
@@ -14405,6 +14431,8 @@ export interface _QuestionFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;

@@ -42,6 +42,7 @@ import { useModal } from "../../../hook/useModal";
 import { BGprofile } from "../../../types/const";
 import { cutStr } from "../../../utils/cutStr";
 import { IModalInfo, ReviewModal } from "../../../components/reviewModal/ReviewModal";
+import { yyyymmdd } from "../../../utils/yyyymmdd";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {

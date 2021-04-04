@@ -7,8 +7,11 @@ import { isEmail } from "../utils/validation";
 import { useLogin } from "./useUser";
 
 
+interface IUseSignInConfig { 
+    onLogin?: () => void;
+}
 
-export const useSignIn = () => {
+export const useSignIn = (config?:IUseSignInConfig) => {
     const [saveId, setSaveId] = useState(false);
     const [saveSession, setSaveSession] = useState(false);
     const [userId, setId] = useState("");
@@ -22,8 +25,12 @@ export const useSignIn = () => {
                 }
                 Storage?.saveLocal("lastLoginType", userType);
                 Storage?.saveLocal("jwt", SignIn.data?.token || "");
-                location.href = "/"
-                alert("환영합니다.")
+                if(config?.onLogin) {
+                    config.onLogin();
+                } else {
+                    location.href = "/"
+                    alert("환영합니다.")
+                }
             } else {
                 if (SignIn.error?.code === ERR_CODE.PASSWORD_NOT_EQUAL) {
                     alert("패스워드가 일치하지 않습니다.");

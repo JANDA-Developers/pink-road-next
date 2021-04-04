@@ -19,9 +19,6 @@ export const Prompt: React.FC<IProp> = ({ onSubmit: handleSubmit, title, id }) =
     const el = document.getElementById('portal');
     if (!el) return null;
 
-    const onSubmit = () => {
-        handleSubmit(submitData)
-    }
 
     return ReactDOM.createPortal(<Modal title={title} id={id}>
         <div className="write_comment popup__st01">

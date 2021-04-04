@@ -9,7 +9,7 @@ interface IProp {
     modalHook: IUseModal;
 }
 
-export const LoginModal: React.FC<IProp> = ({ modalHook, onLogin }) => {
+export const LoginModal: React.FC<IProp> = ({ modalHook, children, onLogin }) => {
     const {
         handleLogin,
         handlePw,
@@ -22,16 +22,19 @@ export const LoginModal: React.FC<IProp> = ({ modalHook, onLogin }) => {
         userPw,
         userType,
         handleId
-    } = useSignIn()
+    } = useSignIn({
+        onLogin
+    })
 
     const { isOpen, closeModal } = modalHook;
 
-    return <div className="popup_bg_mini" style={{ display: isOpen ? "flex" : "none" }}>
+    return <div className="question_box"><div className="popup_bg_mini" style={{ display: isOpen ? "flex" : "none" }}>
         <div className="in_txt login_popup">
             <a onClick={closeModal} className="close_icon"><i className="flaticon-multiply"></i></a>
             <div className="page">
                 <h3 className="popup__tittle">로그인</h3>
                 <div className="con ">
+                    {children}
                     <div className="login_page">
                         <input
                             id="tab-1"
@@ -40,7 +43,9 @@ export const LoginModal: React.FC<IProp> = ({ modalHook, onLogin }) => {
                             className="tab-selector-1"
                             value={UserRole.individual}
                             checked={UserRole.individual === userType}
-                            onChange={() => { handleUserType(UserRole.individual) }}
+                            onChange={() => {
+                                handleUserType(UserRole.individual)
+                            }}
                         />
                         <label htmlFor="tab-1" className="tab-label-1 login_tap tap_01 ">
                             <b>개인</b>
@@ -127,7 +132,7 @@ export const LoginModal: React.FC<IProp> = ({ modalHook, onLogin }) => {
                                 아이디 기억
                             </label>
                             </div>
-                            <button type="submit" className="sum" onClick={handleLogin}>
+                            <button type="submit" className="login_popup__loginBtn sum" onClick={handleLogin}>
                                 <span >로그인</span>
                             </button>
                             <div className="sign_in_form">
@@ -171,5 +176,6 @@ export const LoginModal: React.FC<IProp> = ({ modalHook, onLogin }) => {
             </div>
         </div>
 
+    </div>
     </div>;
 };
