@@ -314,6 +314,7 @@ select:focus {
         font-weight: 600;
         border-radius: 100px;
         font-style: unset;
+        white-space: nowrap;
     }
     .state_icon.tour-no {
         color: #f32121;

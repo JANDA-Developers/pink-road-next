@@ -6114,6 +6114,8 @@ export interface productFindById_ProductFindById_data_questions {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  anonymousName: string | null;
+  anonymousContact: string | null;
   answers: productFindById_ProductFindById_data_questions_answers[] | null;
   category: productFindById_ProductFindById_data_questions_category | null;
   keyWards: string[] | null;
@@ -8039,6 +8041,8 @@ export interface questionList_QuestionList_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  anonymousName: string | null;
+  anonymousContact: string | null;
   answers: questionList_QuestionList_data_answers[] | null;
   category: questionList_QuestionList_data_category | null;
   keyWards: string[] | null;
@@ -8289,6 +8293,8 @@ export interface questionFindById_QuestionFindById_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  anonymousName: string | null;
+  anonymousContact: string | null;
   answers: questionFindById_QuestionFindById_data_answers[] | null;
   category: questionFindById_QuestionFindById_data_category | null;
   keyWards: string[] | null;
@@ -12509,6 +12515,8 @@ export interface Fquestion {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  anonymousName: string | null;
+  anonymousContact: string | null;
   answers: Fquestion_answers[] | null;
   category: Fquestion_category | null;
   keyWards: string[] | null;

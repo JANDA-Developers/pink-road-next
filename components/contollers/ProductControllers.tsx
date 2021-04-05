@@ -31,6 +31,8 @@ export const ProductControllers: React.FC<IProp> = ({ product, acceptCreate, acc
     const [proptTarget, setPomptTarget] = useState<IPromptInfo>();
     const { isManager, isParterB, isParterNonB, role, isSeller } = useContext(AppContext);
 
+    const status = product?.status;
+
     // 인원없음
     const noPeople = product?.peopleCount === 0;
     // 출발7일전
@@ -42,14 +44,14 @@ export const ProductControllers: React.FC<IProp> = ({ product, acceptCreate, acc
     const unDetermindAble = (left7overDay || isManager || isParterB) && product?.determined === true && product.status === ProductStatus.OPEN;
 
     // 취소 가능: 일반파트너일경우 인원이 없을때 
-    const cancelAvailable = (noPeople || isManager || isParterB) && product?.status === ProductStatus.OPEN && product?.determined === false; // Travel 캔슬함수 사용하면됨
+    const cancelAvailable = (noPeople || isManager || isParterB) && status === ProductStatus.OPEN && product?.determined === false; // Travel 캔슬함수 사용하면됨
     // 삭제 가능: 사람없을때 || 오픈이거나 마감 상태가 아닐떄 
 
-    const deleteAvailable = (noPeople || isManager) && product && DELETE_AVAIABLE_PRODUCTS.includes(product?.status);
+    const deleteAvailable = (noPeople || isManager) && product && DELETE_AVAIABLE_PRODUCTS.includes(status);
     // 다시 오픈이 가능한가
-    const reopenAvailable = (isManager || isParterB) && product?.status === ProductStatus.CANCELD;
+    const reopenAvailable = (isManager || isParterB) && status === ProductStatus.CANCELD;
     // 다시 오픈 요청이 가능한가
-    const reopenReqAB = !isManager && isParterNonB && product?.status === ProductStatus.CANCELD && product?.elseReq !== ProductReOpenReq.REOPEN;
+    const reopenReqAB = !isManager && isParterNonB && status === ProductStatus.CANCELD && product?.elseReq !== ProductReOpenReq.REOPEN;
     // 다시 오픈 요청 접수가 가능한가
     const elseReopenAcceptAB = isManager && product?.elseReq === ProductReOpenReq.REOPEN;
     // 다시 오픈 요청 거절이 가능한가
@@ -200,6 +202,9 @@ export const ProductControllers: React.FC<IProp> = ({ product, acceptCreate, acc
         return () => { }
     })() as () => void;
 
+
+    console.log({ isManager })
+    console.log({ status })
 
 
     return <div>

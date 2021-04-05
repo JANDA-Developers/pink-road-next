@@ -17,6 +17,8 @@ export const F_QUESTION = gql`
         summary
         subTitle
         status
+        anonymousName
+        anonymousContact
         answers {
           ...Fanswer
         }
