@@ -1801,7 +1801,6 @@ div.comment_box {
         border-radius: 3px;
     }
         .board_write .RangeExample .info_txt {
-            position: absolute;
             top: 44px;
             right: 14px;
             padding: 5px;
