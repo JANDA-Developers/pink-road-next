@@ -197,12 +197,10 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     peopleCount
   } = product;
 
-
-
   const isPast = dayjs(startDate).isBefore(new Date());
 
   if (!isSeller && !product.isOpen) return <Page404 />
-  if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
+  // if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
 
   return <div className="edtiorView">
     {!loaded && <PageLoading />}
