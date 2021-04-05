@@ -194,19 +194,27 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         id: "title"
     }, {
         value: simpleData.contents,
-        failMsg: "안내 및 유의사항 값은 필수 입니다.",
+        failMsg: "안내 및 참고를 입력 해주세요.",
         failFn: () => {
-            document.getElementById("tap4")?.click();
+            document.getElementById("tap2")?.click();
         },
         id: "content",
     },
     {
         value: simpleData.inOrNor,
-        failMsg: "포함 미포함 값은 필수 입니다.",
+        failMsg: "포함 및 불포함 내용을 입력 해주세요.",
         failFn: () => {
             document.getElementById("tap3")?.click()
         },
         id: "inOrNor"
+    },
+    {
+        value: simpleData.caution && simpleData.info,
+        failMsg: "유의사항 및 안내문 내용을 입력 해주세요.",
+        failFn: () => {
+            document.getElementById("tap4")?.click()
+        },
+        id: "info"
     }, {
         value: categoryId,
         failMsg: "카테고리 값은 필수 입니다.",

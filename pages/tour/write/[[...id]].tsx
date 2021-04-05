@@ -466,7 +466,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     <li id="tap1" onClick={handleTab(1)} className={tabOnCheck(1)}><span><i>01.</i>여행상세설명</span></li>
                     <li id="tap2" onClick={handleTab(2)} className={tabOnCheck(2)}><span><i>02.</i>안내 및 참고</span></li>
                     <li id="tap3" onClick={handleTab(3)} className={tabOnCheck(3)}><span><i>03.</i>포함 및 불포함</span></li>
-                    <li id="tap4" onClick={handleTab(4)} className={tabOnCheck(4)}><span><i>04.</i>기타 설정</span></li>
+                    <li id="tap4" onClick={handleTab(4)} className={tabOnCheck(4)}><span><i>04.</i>유의사항 및 안내문</span></li>
                 </ul>
                 <div {...tapDisplay(1)} id="texta_01" className="texta tourWrite__daypikcer">
                     <h5 id="itinerary">여행일정</h5>
