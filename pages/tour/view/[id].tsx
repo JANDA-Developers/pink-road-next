@@ -43,6 +43,7 @@ import { BGprofile } from "../../../types/const";
 import { cutStr } from "../../../utils/cutStr";
 import { IModalInfo, ReviewModal } from "../../../components/reviewModal/ReviewModal";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
+import PageDeny from "../../Deny";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -63,11 +64,13 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const { handleLoaded, loaded } = useImgLoading()
   const { items, filter, setFilter } = useProductList({
     initialFilter: {
-      ...openListFilter,
+      // ...openListFilter,
+      isOpen_eq: true,
       _id_in: groupExsist ? group?.members : undefined
     }
   });
 
+  console.log({ items });
 
   const randomSortedItems = useMemo(() => randomSort(items), [items.length]);
   const randomSorted: productList_ProductList_data[] = groupExsist ? cloneObject(items).sort((a, b) => group?.members.indexOf(a._id)! - group?.members.indexOf(b._id)!) : randomSortedItems;
@@ -211,7 +214,11 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
 
   const isPast = dayjs(startDate).isBefore(new Date());
 
-  if (!isSeller && !product.isOpen) return <Page404 />
+
+  // 프로덕트 없을떄 로딩처리
+  if (!product) return null;
+  // 오픈상태가 아닌 페이지 가드처리
+  if (!isSeller && !product.isOpen) return <PageDeny />
   // if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
 
   return <div className="edtiorView">
