@@ -9159,6 +9159,25 @@ font-size: 1em;
     line-height: initial;
     background-color: #fff;
 }
+.Allsearch__plusBtn{
+    position: relative;
+    display: block;
+    border:solid 1px #e2e2e2;
+    background-color: #f7f9fa;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #aaaaaa;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.Allsearch__plusBtn:hover{
+    color: #404040;
+}
+.Allsearch__plusBtn .plus{
+    font-size: 0.7em;
+}
 
 @media (min-width: 768px) {   
     .main_con_box4 .top_txt{

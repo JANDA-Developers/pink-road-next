@@ -210,10 +210,12 @@
 
     }
     .board_list.st05 li{
-        border-bottom: 1px solid #ccc;
+        border: 1px solid #e2e2e2;
         position: relative;
         box-sizing: border-box;
-        padding: 5% 0;
+        padding: 5%;
+        margin-top: 10px;
+        border-radius: 10px;
     }
     .board_list.st05 .textbox__img{
         max-width: 100%;
@@ -224,20 +226,32 @@
         background-size: 100%;
         margin-bottom: 15px;
     }
-    .board_list.st05 .textbox__01{
+    .textbox__01{
         width: 100%;
        display: block;
     }
-    .board_list.st05 .textbox__01 .txt{
-        margin-bottom:6px;
+    .textbox__01 .textbox__01_top{
+        width: 100%;
+       display: flex;
+       align-self: center;
+       margin-bottom: 5px;
     }
-    .board_list.st05 .textbox__01 .title{
+   .textbox__01 .txt{
+        margin-bottom:6px;
+        color: #666666;
+        font-weight: 100;
+    }
+    .textbox__01 .title{
         width: 100%;
        display: block;
        font-size: 1.3em;
        font-weight: 600;
+       color: #5bace9;
     }
-    .board_list.st05 .textbox__01 .tag > a{
+   .textbox__01:hover .title{
+        text-decoration: underline;
+    }
+    .textbox__01 .tag > a{
         margin-right: 5px;
         background-color: #f3f3f3;
         color: #888;
@@ -245,17 +259,30 @@
         font-weight: 400;
         font-size: 0.8em;
     }
-    .board_list.st05 .textbox__01 .cash{
+    .textbox__01 .cash{
         text-align: left;
         font-size: 16px;
         margin-top: 10px;
         line-height: 28px;
     }
-    .board_list.st05 .textbox__01 .cash strong{
+    .textbox__01 .cash strong{
         font-size: 20px;
         color: #ed297b;
     }
-    .board_list.st05 .textbox__01 .day{
+    .textbox__01 .location{
+        font-weight: 100;
+        font-size: 0.75em;
+        position: relative;
+    }
+    .textbox__01 .location::after{
+        content: '';
+         display: inline-block;
+        width: 1px;
+        height: 9px;
+        margin: 0 6px;
+        background-color: #eff2f4;
+    }
+    .textbox__01 .day{
         font-weight: 100;
         font-size: 0.8em;
     }
@@ -2449,7 +2476,7 @@ div.sum_div {
         position: relative;
         display: flex;
         align-items: center;
-        padding: 15px 0;
+        padding: 25px;
         cursor: pointer;
     }
     .board_list.st05 li > div{
@@ -2458,18 +2485,18 @@ div.sum_div {
         
     }
     .board_list.st05 .textbox__img{
-        max-width: 400px;
+        max-width: 180px;
         height: 120px;
         margin-right: 15px;
         margin-bottom: 0;
     }
-    .board_list.st05 .textbox__01 .title{
+   .textbox__01 .title{
         font-size: 1.4em;
         font-weight: 600;
     }
-    .board_list.st05 .textbox__01{
+    .textbox__01{
         width: auto;
-        max-width: 560px;
+        /* max-width: 560px; */
     }
     .board_list.st05 .textbox__02{
         width: auto;
