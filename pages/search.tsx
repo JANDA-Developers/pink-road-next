@@ -283,6 +283,348 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                     <Paginater setPage={setBoardPage} pageInfo={paging} />
                     {/* <Paginater setPage={setPage} pageInfo={pageInfo} /> */}
                 </div>
+
+                <div id="ProductViewer" className="con_box">
+                    <div className="alignment">
+                        <div className="left_div">
+                            <h5>QnA</h5>
+                        </div>
+                        <div className="right_div">
+                            <SortSelect onChange={setSort} sort={sort} />
+                            <ViewCount value={viewCount} onChange={setViewCount} />
+                            {isProdView && <ViewSelect select={view} onChange={setView} />}
+                        </div>
+                    </div>
+
+                    {isProdView || <div className="board_list st05">
+                        <div className="tbody">
+                            <div >
+                                <ul >
+                                    {slice.map(baord => (
+                                        <BoardListBlock board={baord} key={baord._id} />
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>}
+
+                    {isProdView && <div>
+
+                        {/*검색결과가 없을때*/}
+                        {noProduct && <div className="no_search">
+                            <i className="jandaicon-info3" />
+                            <div>검색결과 없음</div>
+                        </div>}
+                        {/*리스트로 보기*/}
+                        {view === "line" && <div className="list selectViewList">
+                            <ul className="list_ul">
+                                {filteredProducts.map(product =>
+                                    <ProductListBlock key={product._id} product={product} />
+                                )}
+                            </ul>
+                        </div>}
+                        {/*이미지로 보기*/}
+                        {view === "gal" &&
+                            <div className="list selectViewImg">
+                                <ul className="list_ul line3">
+                                    {filteredProducts.map(product =>
+                                        <ProductPhotoBlock key={product._id} item={product} />
+                                    )}
+                                </ul>
+                            </div>}
+                    </div>}
+                    <Paginater setPage={setBoardPage} pageInfo={paging} />
+                    {/* <Paginater setPage={setPage} pageInfo={pageInfo} /> */}
+                </div>
+
+
+
+                <div id="ProductViewer" className="con_box">
+                    <div className="alignment">
+                        <div className="left_div">
+                            <h5>공지사항</h5>
+                        </div>
+                        <div className="right_div">
+                            <SortSelect onChange={setSort} sort={sort} />
+                            <ViewCount value={viewCount} onChange={setViewCount} />
+                            {isProdView && <ViewSelect select={view} onChange={setView} />}
+                        </div>
+                    </div>
+
+                    {isProdView || <div className="board_list st05">
+                        <div className="tbody">
+                            <div >
+                                <ul >
+                                    {slice.map(baord => (
+                                        <BoardListBlock board={baord} key={baord._id} />
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>}
+
+                    {isProdView && <div>
+
+                        {/*검색결과가 없을때*/}
+                        {noProduct && <div className="no_search">
+                            <i className="jandaicon-info3" />
+                            <div>검색결과 없음</div>
+                        </div>}
+                        {/*리스트로 보기*/}
+                        {view === "line" && <div className="list selectViewList">
+                            <ul className="list_ul">
+                                {filteredProducts.map(product =>
+                                    <ProductListBlock key={product._id} product={product} />
+                                )}
+                            </ul>
+                        </div>}
+                        {/*이미지로 보기*/}
+                        {view === "gal" &&
+                            <div className="list selectViewImg">
+                                <ul className="list_ul line3">
+                                    {filteredProducts.map(product =>
+                                        <ProductPhotoBlock key={product._id} item={product} />
+                                    )}
+                                </ul>
+                            </div>}
+                    </div>}
+                    <Paginater setPage={setBoardPage} pageInfo={paging} />
+                    {/* <Paginater setPage={setPage} pageInfo={pageInfo} /> */}
+                </div>
+
+
+                <div id="ProductViewer" className="con_box">
+                    <div className="alignment">
+                        <div className="left_div">
+                            <h5>News</h5>
+                        </div>
+                        <div className="right_div">
+                            <SortSelect onChange={setSort} sort={sort} />
+                            <ViewCount value={viewCount} onChange={setViewCount} />
+                            {isProdView && <ViewSelect select={view} onChange={setView} />}
+                        </div>
+                    </div>
+
+                    {isProdView || <div className="board_list st05">
+                        <div className="tbody">
+                            <div >
+                                <ul >
+                                    {slice.map(baord => (
+                                        <BoardListBlock board={baord} key={baord._id} />
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>}
+
+                    {isProdView && <div>
+
+                        {/*검색결과가 없을때*/}
+                        {noProduct && <div className="no_search">
+                            <i className="jandaicon-info3" />
+                            <div>검색결과 없음</div>
+                        </div>}
+                        {/*리스트로 보기*/}
+                        {view === "line" && <div className="list selectViewList">
+                            <ul className="list_ul">
+                                {filteredProducts.map(product =>
+                                    <ProductListBlock key={product._id} product={product} />
+                                )}
+                            </ul>
+                        </div>}
+                        {/*이미지로 보기*/}
+                        {view === "gal" &&
+                            <div className="list selectViewImg">
+                                <ul className="list_ul line3">
+                                    {filteredProducts.map(product =>
+                                        <ProductPhotoBlock key={product._id} item={product} />
+                                    )}
+                                </ul>
+                            </div>}
+                    </div>}
+                    <Paginater setPage={setBoardPage} pageInfo={paging} />
+                    {/* <Paginater setPage={setPage} pageInfo={pageInfo} /> */}
+                </div>
+
+
+
+                <div id="ProductViewer" className="con_box">
+                    <div className="alignment">
+                        <div className="left_div">
+                            <h5>Portfolio</h5>
+                        </div>
+                        <div className="right_div">
+                            <SortSelect onChange={setSort} sort={sort} />
+                            <ViewCount value={viewCount} onChange={setViewCount} />
+                            {isProdView && <ViewSelect select={view} onChange={setView} />}
+                        </div>
+                    </div>
+
+                    {isProdView || <div className="board_list st05">
+                        <div className="tbody">
+                            <div >
+                                <ul >
+                                    {slice.map(baord => (
+                                        <BoardListBlock board={baord} key={baord._id} />
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>}
+
+                    {isProdView && <div>
+
+                        {/*검색결과가 없을때*/}
+                        {noProduct && <div className="no_search">
+                            <i className="jandaicon-info3" />
+                            <div>검색결과 없음</div>
+                        </div>}
+                        {/*리스트로 보기*/}
+                        {view === "line" && <div className="list selectViewList">
+                            <ul className="list_ul">
+                                {filteredProducts.map(product =>
+                                    <ProductListBlock key={product._id} product={product} />
+                                )}
+                            </ul>
+                        </div>}
+                        {/*이미지로 보기*/}
+                        {view === "gal" &&
+                            <div className="list selectViewImg">
+                                <ul className="list_ul line3">
+                                    {filteredProducts.map(product =>
+                                        <ProductPhotoBlock key={product._id} item={product} />
+                                    )}
+                                </ul>
+                            </div>}
+                    </div>}
+                    <Paginater setPage={setBoardPage} pageInfo={paging} />
+                    {/* <Paginater setPage={setPage} pageInfo={pageInfo} /> */}
+                </div>
+
+
+
+
+
+
+                <div id="ProductViewer" className="con_box">
+                    <div className="alignment">
+                        <div className="left_div">
+                            <h5>Question</h5>
+                        </div>
+                        <div className="right_div">
+                            <SortSelect onChange={setSort} sort={sort} />
+                            <ViewCount value={viewCount} onChange={setViewCount} />
+                            {isProdView && <ViewSelect select={view} onChange={setView} />}
+                        </div>
+                    </div>
+
+                    {isProdView || <div className="board_list st05">
+                        <div className="tbody">
+                            <div >
+                                <ul >
+                                    {slice.map(baord => (
+                                        <BoardListBlock board={baord} key={baord._id} />
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>}
+
+                    {isProdView && <div>
+
+                        {/*검색결과가 없을때*/}
+                        {noProduct && <div className="no_search">
+                            <i className="jandaicon-info3" />
+                            <div>검색결과 없음</div>
+                        </div>}
+                        {/*리스트로 보기*/}
+                        {view === "line" && <div className="list selectViewList">
+                            <ul className="list_ul">
+                                {filteredProducts.map(product =>
+                                    <ProductListBlock key={product._id} product={product} />
+                                )}
+                            </ul>
+                        </div>}
+                        {/*이미지로 보기*/}
+                        {view === "gal" &&
+                            <div className="list selectViewImg">
+                                <ul className="list_ul line3">
+                                    {filteredProducts.map(product =>
+                                        <ProductPhotoBlock key={product._id} item={product} />
+                                    )}
+                                </ul>
+                            </div>}
+                    </div>}
+                    <Paginater setPage={setBoardPage} pageInfo={paging} />
+                    {/* <Paginater setPage={setPage} pageInfo={pageInfo} /> */}
+                </div>
+
+
+
+
+
+
+                <div id="ProductViewer" className="con_box">
+                    <div className="alignment">
+                        <div className="left_div">
+                            <h5>Product</h5>
+                        </div>
+                        <div className="right_div">
+                            <SortSelect onChange={setSort} sort={sort} />
+                            <ViewCount value={viewCount} onChange={setViewCount} />
+                            {isProdView && <ViewSelect select={view} onChange={setView} />}
+                        </div>
+                    </div>
+
+                    {isProdView || <div className="board_list st05">
+                        <div className="tbody">
+                            <div >
+                                <ul >
+                                    {slice.map(baord => (
+                                        <BoardListBlock board={baord} key={baord._id} />
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>}
+
+                    {isProdView && <div>
+
+                        {/*검색결과가 없을때*/}
+                        {noProduct && <div className="no_search">
+                            <i className="jandaicon-info3" />
+                            <div>검색결과 없음</div>
+                        </div>}
+                        {/*리스트로 보기*/}
+                        {view === "line" && <div className="list selectViewList">
+                            <ul className="list_ul">
+                                {filteredProducts.map(product =>
+                                    <ProductListBlock key={product._id} product={product} />
+                                )}
+                            </ul>
+                        </div>}
+                        {/*이미지로 보기*/}
+                        {view === "gal" &&
+                            <div className="list selectViewImg">
+                                <ul className="list_ul line3">
+                                    {filteredProducts.map(product =>
+                                        <ProductPhotoBlock key={product._id} item={product} />
+                                    )}
+                                </ul>
+                            </div>}
+                    </div>}
+                    <Paginater setPage={setBoardPage} pageInfo={paging} />
+                    {/* <Paginater setPage={setPage} pageInfo={pageInfo} /> */}
+                </div>
+
+
+
+
+
+
+
+
+
             </div>
         </div>
         <DayPickerModal defaultRange={filterToRange(filter, "startDate")} onSubmit={(range) => {

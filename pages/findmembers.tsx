@@ -96,7 +96,7 @@ export const Search: React.FC<Ipage> = (pageInfo) => {
                             const val = e.currentTarget.value;
                             info.phoneNumber = val;
                             setInfo({ ...info })
-                        }} value={autoHypenPhone(info.phoneNumber)} type="text" placeholder="가입시 입력한 휴대폰번호번호를 입력해 주세요." /></div>
+                        }} value={autoHypenPhone(info.phoneNumber)} type="text" placeholder="가입시 입력한 휴대폰번호를 입력해 주세요." /></div>
                         <div className="certification_sec ">
                             <button onClick={openModal("#emailVerifi")} className="btn mr20">인증하기</button>
                         </div>
