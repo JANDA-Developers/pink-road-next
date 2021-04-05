@@ -5981,6 +5981,59 @@ export interface productFindById_ProductFindById_data_author {
   bankImg: productFindById_ProductFindById_data_author_bankImg | null;
 }
 
+export interface productFindById_ProductFindById_data_productReview_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface productFindById_ProductFindById_data_productReview_author {
+  __typename: "User";
+  _id: string;
+  email: string;
+  name: string;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: productFindById_ProductFindById_data_productReview_author_profileImg | null;
+}
+
+export interface productFindById_ProductFindById_data_productReview_files {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+}
+
+export interface productFindById_ProductFindById_data_productReview {
+  __typename: "ProductReview";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: productFindById_ProductFindById_data_productReview_author | null;
+  num: number;
+  boardTypeName: string | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  summary: string | null;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  viewCount: number;
+  likeCount: number;
+  slug: string;
+  authorName: string;
+  productName: string;
+  files: productFindById_ProductFindById_data_productReview_files[] | null;
+  productAuthorName: string;
+  productAuthorId: string;
+  productCode: string;
+  groupCode: string;
+  rating: number;
+}
+
 export interface productFindById_ProductFindById_data_questions_answers_author_profileImg {
   __typename: "File";
   uri: string;
@@ -6129,6 +6182,7 @@ export interface productFindById_ProductFindById_data {
   Dday: number;
   questionIds: string[] | null;
   author: productFindById_ProductFindById_data_author | null;
+  productReview: productFindById_ProductFindById_data_productReview[] | null;
   questions: productFindById_ProductFindById_data_questions[] | null;
 }
 
@@ -8260,6 +8314,7 @@ export interface questionFindById {
 
 export interface questionFindByIdVariables {
   id: string;
+  password?: string | null;
 }
 
 /* tslint:disable */
@@ -8277,6 +8332,31 @@ export interface productReviewFindById_ProductReviewFindById_error {
   severity: ERR_SEVERITY;
   code: ERR_CODE;
   message: string;
+}
+
+export interface productReviewFindById_ProductReviewFindById_data_answers_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface productReviewFindById_ProductReviewFindById_data_answers_author {
+  __typename: "User";
+  _id: string;
+  name: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: productReviewFindById_ProductReviewFindById_data_answers_author_profileImg | null;
+}
+
+export interface productReviewFindById_ProductReviewFindById_data_answers {
+  __typename: "Answer";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  content: string;
+  author: productReviewFindById_ProductReviewFindById_data_answers_author;
 }
 
 export interface productReviewFindById_ProductReviewFindById_data_author_profileImg {
@@ -8305,6 +8385,7 @@ export interface productReviewFindById_ProductReviewFindById_data_files {
 
 export interface productReviewFindById_ProductReviewFindById_data {
   __typename: "ProductReview";
+  answers: productReviewFindById_ProductReviewFindById_data_answers[] | null;
   _id: string;
   createdAt: any;
   updatedAt: any;
@@ -8332,11 +8413,23 @@ export interface productReviewFindById_ProductReviewFindById_data {
   rating: number;
 }
 
+export interface productReviewFindById_ProductReviewFindById_next {
+  __typename: "Board";
+  _id: string;
+}
+
+export interface productReviewFindById_ProductReviewFindById_before {
+  __typename: "Board";
+  _id: string;
+}
+
 export interface productReviewFindById_ProductReviewFindById {
   __typename: "ProductReviewFindByIdResponse";
   ok: boolean;
   error: productReviewFindById_ProductReviewFindById_error | null;
   data: productReviewFindById_ProductReviewFindById_data | null;
+  next: productReviewFindById_ProductReviewFindById_next | null;
+  before: productReviewFindById_ProductReviewFindById_before | null;
 }
 
 export interface productReviewFindById {
@@ -13453,13 +13546,17 @@ export interface ModalInput {
   updatedAt?: string | null;
   isDeleted?: boolean | null;
   link?: string | null;
-  startDate: any;
-  endDate: any;
+  useMobile?: boolean | null;
+  usePc?: boolean | null;
+  useCurtain?: boolean | null;
+  startDate?: any | null;
+  endDate?: any | null;
   open?: boolean | null;
   title?: string | null;
+  image?: FileCreateInput | null;
   content?: string | null;
   linkBehavior?: LinkBehavior | null;
-  style: any;
+  style?: any | null;
   priority?: number | null;
 }
 
@@ -13658,6 +13755,7 @@ export interface QnaCreateInput {
   files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   categoryId: string;
+  password?: string | null;
 }
 
 export interface QnaUpdateInput {
@@ -13680,11 +13778,13 @@ export interface QuestionCreateInput {
   isOpen?: boolean | null;
   summary?: string | null;
   subTitle?: string | null;
+  password?: string | null;
+  anonymousName?: string | null;
+  anonymousContact?: string | null;
   keyWards?: string[] | null;
   files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   productId?: string | null;
-  categoryId: string;
 }
 
 export interface QuestionUpdateInput {
@@ -13699,7 +13799,9 @@ export interface QuestionUpdateInput {
   thumb?: FileUpdateInput | null;
   productId?: string | null;
   status?: QuestionStatus | null;
-  categoryId?: string | null;
+  password?: string | null;
+  anonymousName?: string | null;
+  anonymousContact?: string | null;
 }
 
 /**
@@ -13802,6 +13904,8 @@ export interface _AnnounceFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -13839,6 +13943,8 @@ export interface _BoardFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -13995,6 +14101,8 @@ export interface _NewsFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -14064,6 +14172,8 @@ export interface _PortfolioFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -14146,6 +14256,8 @@ export interface _ProductFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -14225,6 +14337,8 @@ export interface _ProductReviewFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -14265,6 +14379,8 @@ export interface _QnaFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;
@@ -14296,6 +14412,10 @@ export interface _QuestionFilter {
   categoryId_in?: string[] | null;
   code_eq?: string | null;
   code_not_eq?: string | null;
+  anonymousName_eq?: string | null;
+  anonymousName_not_eq?: string | null;
+  anonymousContact_eq?: string | null;
+  anonymousContact_not_eq?: string | null;
   status_eq?: string | null;
   status_not_eq?: string | null;
   no_eq?: string | null;
@@ -14311,6 +14431,8 @@ export interface _QuestionFilter {
   authorEmail_in?: string[] | null;
   isNotice_eq?: boolean | null;
   isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
   isOpen_eq?: boolean | null;
   isOpen_not_eq?: boolean | null;
   subTitle_eq?: string | null;

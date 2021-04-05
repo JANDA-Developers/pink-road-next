@@ -5,7 +5,7 @@ import { initStorage } from '../../../utils/Storage';
 import "react-day-picker/lib/style.css";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
-import { Fproduct, ProductStatus, ProductType } from '../../../types/api';
+import { Fproduct, ItineraryCreateInput, ProductStatus, ProductType } from '../../../types/api';
 import DayRangePicker from "components/dayPicker/DayRangePicker"
 import dynamic from 'next/dynamic'
 import { ItineryForm } from "components/tourWrite/ItineryForm";
@@ -30,7 +30,9 @@ import { LocalStorageBoard } from "../../../components/localStorageBoard/LocalSt
 import dayjs from "dayjs";
 import { checkIsExp } from "../../../utils/product";
 import { PageEditor } from "../../../components/common/PageEditer";
-const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
+import { yyyymmdd } from "../../../utils/yyyymmdd";
+import { DayPickerModal } from "../../../components/dayPickerModal/DayPickerModal";
+// const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = LoadEditor();
 interface IProp {
@@ -69,6 +71,11 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const id = query.id?.[0] as string | undefined;
     const isCreateMode = id ? false : true;
     const { item: product, getData, loading } = useProductFindById(id);
+    const [tempSavedIts, setTempSavedIts] = useState<ItineraryCreateInput[]>()
+    const [selectEditorIndex, setSelectEditorIndex] = useState({
+        itsIndex: 0,
+        contentIndex: 0,
+    });
     const [updateReq, { loading: updateReqLoading }] = useProductUpdateReq({
         onCompleted: ({ ProductUpdateReq }) => {
             if (ProductUpdateReq?.ok) {
@@ -90,8 +97,18 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         hiddenFileInput, lastDate,
     } = useTourWrite(getDefault(cloneObject(product)));
 
+
     useEffect(() => {
-        setTourData(getDefault(cloneObject(product)))
+        const newProductData = getDefault(cloneObject(product));
+
+        // 수정일때는 회차연결을 신경쓰지 말아야함
+        if (isCreateMode) {
+            // 회차연결을 위한 조치
+            setTempSavedIts(newProductData.its);
+            newProductData.its = [];
+        }
+
+        setTourData(newProductData)
     }, [product])
 
 
@@ -195,8 +212,16 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
 
     const tapDisplay = tapCheck.bind(tapCheck, tab);
 
+    const setAsNewProduct = () => {
+        location.reload();
+    }
+
     const handleBaseProdChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const val = e.currentTarget.value;
+        if (!val) {
+            setAsNewProduct();
+            return;
+        }
         const target = productGroupList.find(g => g._id === val)
         setGroupCode(target?.groupCode);
         getData({
@@ -204,6 +229,18 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 _id: val
             }
         })
+    }
+
+    const handleTempDateMove = ({ from }: {
+        from?: Date,
+        to?: Date
+    }) => {
+        const temps = tempSavedIts?.map((data, index) => {
+            data.date = dayjs(from).add(index, "day").toDate();
+            return data;
+        }) || [];
+        setits(temps)
+        setTempSavedIts(undefined);
     }
 
     useEffect(() => {
@@ -216,6 +253,9 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
 
     const categories = type === ProductType.TOUR ? categoriesMap.TOUR : categoriesMap.EXPERIENCE;
     const regionCategories = categoriesMap.REGION;
+
+    const startDate = its[0]?.date;
+    const endDate = its[its.length - 1]?.date;
 
     // if (!isManager && !isMyProduct) return <PageDeny />
     if (loading) return <PageLoading />
@@ -428,16 +468,24 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     <li id="tap3" onClick={handleTab(3)} className={tabOnCheck(3)}><span><i>03.</i>포함 및 불포함</span></li>
                     <li id="tap4" onClick={handleTab(4)} className={tabOnCheck(4)}><span><i>04.</i>기타 설정</span></li>
                 </ul>
-                <div {...tapDisplay(1)} id="texta_01" className="texta">
+                <div {...tapDisplay(1)} id="texta_01" className="texta tourWrite__daypikcer">
                     <h5 id="itinerary">여행일정</h5>
                     <DayRangePicker
+                        Header={tempSavedIts && <h2 style={{ marginBottom: "1rem" }}>새로운 출발일을 선택 해주세요 </h2>}
                         month={dayjs().add(20, "day").toDate()}
                         disabledDays={
                             {
                                 before: dayjs().add(30, "day").toDate(),
                                 after: dayjs().add(90, "day").toDate()
                             }}
-                        isRange={type === ProductType.TOUR} onRangeChange={handleDateState} from={firstDate} to={lastDate} >
+                        isRange={type === ProductType.TOUR}
+                        onRangeChange={tempSavedIts ? handleTempDateMove : handleDateState}
+                        from={firstDate}
+                        to={lastDate}
+                    >
+                        <div className="tourWrite__dayPikcerRangeViewer  mb10">
+                            <div>투어 {yyyymmdd(startDate)} ~ {yyyymmdd(endDate)}</div>
+                        </div>
                         <div className="info_txt">
                             <h4><i className="jandaicon-info2"></i>여행일정 등록시 유의점</h4>
                             <ul>
@@ -450,22 +498,22 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         </div>
                     </DayRangePicker>
                     {its.map((itinery, index) => <div key={"itineryForm" + index}>
-                        <ItineryForm index={index} setits={setits} itinery={itinery} its={its} />
+                        <ItineryForm setSelectEditorIndex={setSelectEditorIndex} selectEditorIndex={selectEditorIndex} index={index} setits={setits} itinery={itinery} its={its} />
                     </div>)}
                 </div>
                 <div {...tapDisplay(2)} id="texta_02" className="texta">
                     <h5>상품 안내문</h5>
-                    <Editor data={contents} onChange={handleTextData("contents")} />
+                    <Editor edit={tab === 2} data={contents} onChange={handleTextData("contents")} />
                 </div>
                 <div {...tapDisplay(3)} id="texta_03" className="texta">
                     <h5>포함 / 불포함</h5>
-                    <Editor data={inOrNor} onChange={handleTextData("inOrNor")} />
+                    <Editor edit={tab === 3} data={inOrNor} onChange={handleTextData("inOrNor")} />
                 </div>
                 <div {...tapDisplay(4)} id="texta_04" className="texta">
                     <h5>커리큐럼 유의사항</h5>
-                    <Editor data={caution} onChange={handleTextData("caution")} />
+                    <Editor edit={tab === 4} data={caution} onChange={handleTextData("caution")} />
                     <h5>간략한 안내문</h5>
-                    <Editor data={info} onChange={handleTextData("info")} />
+                    <Editor edit={tab === 4} data={info} onChange={handleTextData("info")} />
                 </div>
             </div>
             <div className="boardNavigation">
@@ -503,7 +551,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             <LocalStorageBoard key={loadKey} onLoad={setTourData} />
         </div>
         <Prompt id="UpdateMemo" onSubmit={handleSubmitUpdateReq} title="업데이트 변경 사항을 입력 해주세요." />
-        <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" />
+        {/* <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" /> */}
     </div>
 };
 

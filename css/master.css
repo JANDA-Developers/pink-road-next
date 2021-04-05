@@ -2119,9 +2119,10 @@
     }
     .master_box .design .body-list ul{
         position: relative;
-        display:block;
+        display:flex;
         width: 100%;
         margin-top: 10px;
+        display: flex;
     }
     .master_box .design .body-list li{
         position: relative;

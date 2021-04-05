@@ -18,9 +18,6 @@ export const Rule: React.FC<Ipage> = (pageInfo) => {
     return <div>
         <div className="top_visual">
             <SubTopNav pageTools={pageTools} >
-                <li className="home">
-                    <a href="/index"></a>
-                </li>
                 <li className="homedeps1">
                     <a href="/rule">이용약관</a>
                 </li>

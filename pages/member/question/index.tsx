@@ -22,24 +22,34 @@ import dayjs from 'dayjs';
 import { AppContext } from '../../_app';
 import { Prompt } from '../../../components/promptModal/Prompt';
 import { PageEditor } from '../../../components/common/PageEditer';
+import display from 'pages/master/design/display';
+import { LoginModal } from '../../../components/loginModal/LoginModal';
+import { useModal } from '../../../hook/useModal';
+import { IPromptInfo, PormptModal } from '../../../components/promptModal/PromptModal';
 
 
 export const getStaticProps = getStaticPageInfo("question")
 export const Question: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
     const { getLoading, filter, setFilter, viewCount, setViewCount, items: inquiries, pageInfo: pagingInfo, setPage, setOR, sort, setSort } = useQuestionList()
-    const { isManager, myProfile } = useContext(AppContext);
+    const { isManager, myProfile, isLogin } = useContext(AppContext);
     const pageTool = usePageEdit(pageInfo, defaultPageInfo);
     const { unAnsweredQuestionCount } = useCustomCount(["unAnsweredQuestionCount"])
     const signleSortHook = useSingleSort(sort, setSort)
-
+    const loginModalHook = useModal();
+    const passwordModalHook = useModal<IPromptInfo>();
 
     const handleSetFilter = (status?: QuestionStatus) => () => {
         filter.status_eq = status;
         setFilter({ ...filter })
     }
 
-    const handleWrite = () => {
+    const handleWrite = (useAnonyWrite?: boolean) => {
+        const shouldOpenModal = !useAnonyWrite && !isLogin;
+        if (shouldOpenModal) {
+            loginModalHook.openModal();
+            return
+        }
         router.push("/member/question/write")
     }
 
@@ -48,11 +58,20 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
     }
 
     const gotoView = (inq: questionList_QuestionList_data) => () => {
-        const isMyQuestion = myProfile?._id === inq.author?._id;
-        const isMyProductQuestion = myProfile?._id === inq.product?.author?._id;
+        const isMyQuestion = myProfile?._id === inq.author?._id && myProfile !== undefined;
+        const isMyProductQuestion = myProfile?._id === inq.product?.author?._id && myProfile !== undefined;
 
         if (!inq.isOpen) {
-            if (!isMyProductQuestion && !isManager && !isMyQuestion) return;
+            if (!isMyProductQuestion && !isManager && !isMyQuestion) {
+                passwordModalHook.openModal({
+                    callBack: (password) => {
+                        router.push("/member/question/view/" + inq._id + "/?pw=" + password)
+                    },
+                    title: "패스워드를 입력 해주세요",
+                    messageLabel: "패스워드"
+                })
+                return;
+            };
         }
 
         router.push("/member/question/view/" + inq._id)
@@ -97,7 +116,7 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                                             {dayjs(inq.createdAt).isAfter(dayjs().add(-8, "hour")) && <img className="new" src="../img/svg/new.svg" alt="new" />}
                                             <i className="q_no">{questionSatus(inq.status)}</i>
                                         </div>
-                                        <div className="td04">{inq.author?.name}</div>
+                                        <div className="td04">{inq.author?.name || "익명"}</div>
                                         <div className="td05">{yyyymmddHHmm(inq.createdAt)}</div>
                                     </li>
                                 )}
@@ -108,14 +127,25 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                 <Paginater pageInfo={pagingInfo} setPage={setPage} />
                 <div className="tl list_bottom">
                     <div className="btn_footer">
-                        <button onClick={handleWrite} type="submit" className="btn medium pointcolor">글쓰기</button>
+                        <button onClick={() => { handleWrite(undefined) }} type="submit" className="btn medium pointcolor">글쓰기</button>
                     </div>
                     <SearchMini onSubmit={handleSearch} />
                 </div>
+
             </div>
         </div>
-        <Prompt title={"글 작성시 사용한 비밀번호를 입력 해주세요"} onSubmit={(password) => {
-        }} id="BoardPasswordChecker" />
+        <PormptModal modalHook={passwordModalHook} />
+        <LoginModal
+            onLogin={() => {
+                alert("환영합니다.")
+                location.reload()
+            }}
+            modalHook={loginModalHook}
+        >
+            <div className="mb10">
+                <button onClick={() => { handleWrite(true) }} type="submit" className="btn medium pointcolor">비회원 문의하기</button>
+            </div>
+        </LoginModal>
     </div >;
 };
 

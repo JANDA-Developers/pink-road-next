@@ -142,15 +142,21 @@ const editorConfiguration = {
   } 
 
 
-  const CKEDITOR = ({data,onChange}) => {
+  const CKEDITOR = ({data,onChange, edit = true, holderHeight = 220, ...props}) => {
+    const [loading, setLoading] = useState(true);
+
+    if(edit === undefined) edit = true;
 
       return (
-          <div className="myckeditor">
-              <CKEditor
+          <div {...props} className={`myckeditor ${props.className} ${loading && "editor--loading"}`} >
+              {!edit && <div className="ck-content editorHolder" style={{minHeight: holderHeight}} dangerouslySetInnerHTML={{__html: data }} />}
+              {edit && <div className="ck-content editorHolder editorHolder--loadingHolder" style={{minHeight: holderHeight}} dangerouslySetInnerHTML={{__html: data }} />}
+              {edit && <CKEditor
                   editor={ Editor }
                   config={ editorConfiguration }
                   data={data}
                   onReady={ editor => {
+                    setLoading(false);
                       // You can store the "editor" and use when it is needed.
                   } }
                   onChange={ ( event, editor ) => {
@@ -161,7 +167,7 @@ const editorConfiguration = {
                   } }
                   onFocus={ ( event, editor ) => {
                   } }
-              />
+              />}
           </div>
       );
 

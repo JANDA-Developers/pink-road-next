@@ -159,9 +159,9 @@ export const NewsWrite: React.FC<IProp> = () => {
         onLoad={handleLoad}
         opens={{
             category: true,
-            summary: true,
             thumb: true,
-            title: true
+            title: true,
+            open: true
         }}
     />
 };

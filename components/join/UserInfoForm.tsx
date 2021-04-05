@@ -103,11 +103,12 @@ const UserInfoForm: React.FC = () => {
                                 value={data.email}
                             />
                             {isPhoneVerified ?
-                                <button style={{ lineHeight: "100%" }} className="btn btn_mini" onClick={() => {
+                                <button disabled={verifiHook.verifiData?.isVerified} style={{ lineHeight: "100%" }} className="btn btn_mini" onClick={() => {
                                     openModal("#ElseVeirifiModal")();
                                 }}>
                                     {verifiHook.verifiData?.isVerified ? "인증완료" : "인증하기"}
-                                </button> : <></>}
+                                </button> : <></>
+                            }
                         </div>
                     </div>
                     <div className="pw_wrap">
@@ -192,13 +193,19 @@ const UserInfoForm: React.FC = () => {
                                 </select>}
                         </div>
                     </div>
-                    {isPartenerB || <div className="ph_wrap">
+                    <div className="ph_wrap">
                         <label>
                             <i className="important_icon" />
                         휴대폰번호
                         </label>
                         <span className={`er red_font ${errDisplay.phoneNumber && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
-                        <div className="w100 userInfoForm__phoneNumberWrap">
+                        <div
+                            onClick={() => {
+                                if (!isPhoneVerified && !verifiHook.verifiData?.isVerified) {
+                                    openModal("#ElseVeirifiModal")();
+                                }
+                            }}
+                            className="w100 userInfoForm__phoneNumberWrap">
                             {/* <ThreePhoneNumberInput
                                 className={isPhoneVerified ? "w100" : "w80"}
                                 onChange={phoneNumberHack[1]}
@@ -209,19 +216,19 @@ const UserInfoForm: React.FC = () => {
                                 type="text"
                                 placeholder="인증하기를 통해 번호를 입력 해주세요"
                                 name="contact"
-                                readOnly={isPhoneVerified}
+                                readOnly
                                 value={autoHypenPhone(data.phoneNumber)}
                                 onChange={handleData("phoneNumber")}
                             />
                             {!isPhoneVerified ?
-                                <button style={{ lineHeight: "100%" }} className="btn btn_mini" onClick={() => {
+                                <button disabled={verifiHook.verifiData?.isVerified} style={{ lineHeight: "100%" }} className="btn btn_mini" onClick={() => {
                                     openModal("#ElseVeirifiModal")();
                                 }}>
                                     {verifiHook.verifiData?.isVerified ? "인증완료" : "인증하기"}
                                 </button> : null
                             }
                         </div>
-                    </div>}
+                    </div>
                     {isIndi &&
                         <div>
                             <div className="ph_wrap">

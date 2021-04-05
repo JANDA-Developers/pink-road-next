@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import RCDayPicker, { DateUtils, DayPickerProps } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { ISet } from 'types/interface';
+import { ISet, TElements } from 'types/interface';
 import dayjs from 'dayjs';
 
 type Range = {
@@ -15,9 +15,10 @@ interface IProps extends DayPickerProps {
     to?: Date,
     isRange?: boolean
     onRangeChange: ThandleSate
+    Header?: TElements
 }
 
-export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange, isRange = true, children, ...props }) => {
+export const DayRangePicker: React.FC<IProps> = ({ Header, from, to, onRangeChange, isRange = true, children, ...props }) => {
     const defaultProps = {
         numberOfMonths: 2,
     };
@@ -57,6 +58,7 @@ export const DayRangePicker: React.FC<IProps> = ({ from, to, onRangeChange, isRa
 
     return (
         <div className="RangeExample">
+            {Header}
             {/* @ts-ignore */}
             <RCDayPicker
                 {...props}

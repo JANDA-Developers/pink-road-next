@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { IPageInfo, Ipopup } from "./interface"
-import { Fquestion_author_profileImg, ItineraryCreateInput, LinkBehavior, ProductStatus, SettlementStatus, UserRole, } from "./api";
+import { Fquestion_author_profileImg, Fuser, ItineraryCreateInput, LinkBehavior, ProductStatus, SettlementStatus, UserRole, } from "./api";
 import { generateRandomStringCode } from "../utils/codeGenerator";
 
 export const DEFAULT_LOGO = "/img/logo_1.png";
@@ -11,7 +11,6 @@ export const thisMonthLastDate = dayjs().endOf("month").toDate();
 export const thisMonthFirstDate = dayjs().startOf("month").toDate();
 export const oneYearBefore = dayjs().add(-1, "y").toDate();
 export const sixMonthBefore = dayjs().add(-6, "month").toDate();
-
 
 export const DEFAULTS = {
     logo: "src/img/logo_1.png",
@@ -127,4 +126,9 @@ export const NUMBER_OPS = (() => {
 
 export const REGEX = {
     float: new RegExp(/^[+-]?\d*(\.?\d*)$/)
+}
+
+export const userNameWith = (user: Fuser) => {
+    const bracket = user.blueBird ? user.blueBird : user.busi_name;
+    return user.name + bracket ? "(" + bracket + ")" : ""
 }

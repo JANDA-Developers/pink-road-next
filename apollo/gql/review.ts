@@ -58,10 +58,20 @@ query productReviewFindById(
         message
     }
     data {
+      answers {
+        ...Fanswer
+      }
         ...FproductReview
+    }
+    next {
+      _id
+    }
+    before {
+      _id
     }
 }
 }
+${F_ANSWER}
 ${F_PRODUCT_REVIEW}
 `
 export const PRODUCT_REVIEW_LIST = gql`

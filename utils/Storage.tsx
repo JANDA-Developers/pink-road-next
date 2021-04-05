@@ -65,7 +65,7 @@ export class LocalManager<T extends string> {
 }
 
 
-export type TStoreKeys = "productTempBoard" | "lastLoginType" | "qnaWrite" | "announceWrite" | "lastProd" | "signUpRole" | "questionWrite" | "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin";
+export type TStoreKeys = "ReviewWrite" | "productTempBoard" | "lastLoginType" | "qnaWrite" | "announceWrite" | "lastProd" | "signUpRole" | "questionWrite" | "newsWrite" | "write" | "bracket" | "saveid" | "saveSession?" | "saveId?" | "portfolioWrite" | "jwt" | "lastLogin";
 
 export let Storage: LocalManager<TStoreKeys> | null = null;
 
@@ -103,7 +103,7 @@ export const removeBracket = () => {
 }
 
 export const getBracket = () => {
-    return Storage?.getLocalObj<IBasketItem[]>("bracket", []);
+    return Storage?.getLocalObj<IBasketItem[]>("bracket", []) || [];
 }
 
 export const haveItem = (_id: string): boolean => {

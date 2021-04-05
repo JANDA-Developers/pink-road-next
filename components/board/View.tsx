@@ -72,7 +72,7 @@ export const BoardView: React.FC<IProps> = (data) => {
                     <div className="footer_txt">
                         <span>작성자<strong>{writer}</strong></span>
                         <span>{dayjs(createAt).format('YYYY.MM.DD HH:mm')}</span>
-                        {isOpen ? <span /> : <span>비밀글</span>}{/* 댓글기능 열렷을 때 */}
+                        {isOpen ? <span>Open</span> : <span>비밀글</span>}{/* 댓글기능 열렷을 때 */}
                         {comments?.count && <span>댓글 <strong>0</strong>건</span>}{/* 댓글기능 열렷을 때 */}
                         {viewCount && <span>조회수 <strong>{viewCount}</strong>회</span>}
                     </div>
@@ -100,10 +100,14 @@ export const BoardView: React.FC<IProps> = (data) => {
                     <ul>
                         {prev && <li onClick={() => {
                             move(prev._id)
-                        }} className="first"><span><i className="flaticon-cloud-computing" />이전글<i className="flaticon-command" /></span><div>{prev.title}</div></li>}
+                        }} className="first">
+                            <span><i className="flaticon-cloud-computing" />이전글<i className="flaticon-command" /></span>
+                            <div>{prev.title}</div></li>}
                         {next && <li onClick={() => {
                             move(next._id)
-                        }}><span><i className="flaticon-cloud-computing" />다음글<i className="flaticon-command" /></span><div>{next.title}</div></li>}
+                        }}>
+                            <span><i className="flaticon-cloud-computing" />다음글<i className="flaticon-command" /></span>
+                            <div>{next.title}</div></li>}
                     </ul>
                 </div>}
 

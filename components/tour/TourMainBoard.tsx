@@ -27,6 +27,8 @@ export const TourMainBoard: React.FC<IProp> = ({ cat, group }) => {
     const start = slicePage * 3;
     const nextPage = items.slice(start, start * 3 + 3)
 
+    const hasNext = start * 3 < items.length;
+
     const getLink = (catId: string) => {
         const url = updateURLParameters("/tour/list", [{ param: "exp", paramVal: isExp ? "true" : "false" }, { param: "catId", paramVal: catId }]);
         return url;

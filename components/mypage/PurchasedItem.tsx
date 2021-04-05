@@ -65,6 +65,6 @@ export const PurChasedItem: React.FC<IProp> = ({ item, onDetail: handleDetail })
                 결제 및 상세내역
             </span>
         </div>
-        <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" />
+        {/* <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" /> */}
     </li>;
 };

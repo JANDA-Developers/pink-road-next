@@ -3220,8 +3220,11 @@ i.icon_plus {
     display: inline-block;
     vertical-align: middle;
     position: relative;
-    width: 44%;
-    margin-left: 5px;
+    width: 49%;
+    margin-left: 0;
+}
+.search_top .input_box:first-child {
+    margin-right: 1%;
 }
 .search_top span.pc{
     margin: 0 5px;
@@ -3926,16 +3929,15 @@ i.icon_plus {
         #all_menu ul {
             display: block;
         }
-/* 
-            #all_menu ul .a_menu_tit {
-                width: 10%;
-                min-width: 168px;
-            } */
     .header .hd_center .nav_wrap .deps1 > li > a {
         font-size: 19px;
     }
 }
-
+@media (max-width:1230px) {
+    .header .main_menu > .w1200 {
+        padding: 12px 35px;
+    }
+}
 @media (max-width:1000px) {
     .search_top .day_ul {
         border-radius: 3px;
