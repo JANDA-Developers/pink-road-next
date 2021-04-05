@@ -215,7 +215,6 @@
         box-sizing: border-box;
         padding: 5%;
         margin-top: 10px;
-        border-radius: 10px;
     }
     .board_list.st05 .textbox__img{
         max-width: 100%;
@@ -246,7 +245,7 @@
        display: block;
        font-size: 1.3em;
        font-weight: 600;
-       color: #5bace9;
+       color: #2196f3;
     }
    .textbox__01:hover .title{
         text-decoration: underline;

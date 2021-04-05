@@ -327,7 +327,6 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                     </div>}
 
                     {isProdView && <div>
-
                         {/*검색결과가 없을때*/}
                         {noProduct && <div className="no_search">
                             <i className="jandaicon-info3" />

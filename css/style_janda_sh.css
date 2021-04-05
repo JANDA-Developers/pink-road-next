@@ -6254,6 +6254,10 @@ i.important_icon {
     background-size: 20px;
     
  }
+ .link05.tourBracketBtn--disabled .icon_basket {
+    background-image: url(/img/svg/basket_w.svg);
+    
+ }
     #viewControl .box {
         border: 1px solid #cccdcf;
         padding: 0 15px 15px;
@@ -6324,9 +6328,10 @@ i.important_icon {
         }
 
         #viewControl .btn_box .link02 {
-            width: 49%;
-            display: inline-block;margin-right: 2%;
-            background-color: #ed297b;
+            width: 79.9%;
+            display: inline-block;
+            margin-right: 2%;
+            /* background-color: #ed297b; */
         }
 
         #viewControl .btn_box .link03 {
@@ -6347,6 +6352,9 @@ i.important_icon {
             background-color: #fff;
             border: 1px solid #ed297b;
             display: inline-block;
+        }
+        #viewControl .btn_box .link05.tourBracketBtn--disabled {
+            border: 0;
         }
 
         #viewControl .btn_box .link04 {
@@ -9170,7 +9178,6 @@ font-size: 1em;
     cursor: pointer;
     color: #aaaaaa;
     margin-top: 10px;
-    border-radius: 10px;
 }
 .Allsearch__plusBtn:hover{
     color: #404040;
