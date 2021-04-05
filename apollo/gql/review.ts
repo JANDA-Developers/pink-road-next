@@ -1,65 +1,80 @@
-import { gql } from "graphql-request";
+import { gql } from "@apollo/client";
 import { F_ANSWER } from "./answer";
+import { F_FILE, F_PRODUCT } from "./fragments";
 
 export const F_PRODUCT_REVIEW = gql`
     fragment FproductReview  on ProductReview {
-_id
-createdAt
-updatedAt
-isDelete
-title
-contents
-authorId
-author {
     _id
-    email
-    name
-    phoneNumber
-    profileImg {
-      uri
+    createdAt
+    updatedAt
+    isDelete
+    title
+    contents
+    author {
+        _id
+        email
+        name
+        phoneNumber
+        profileImg {
+            uri
+        }
     }
+    num
+    boardTypeName
+    isNotice
+    isOpen
+    summary
+    subTitle
+    keyWards
+    viewCount
+    likeCount
+    slug
+    authorName
+    productName
+    files {
+      ...Ffile
+    }
+    productAuthorName
+    productAuthorId
+    productCode
+    groupCode
+    rating
 }
-boardTypeName
-isNotice
-isOpen
-summary
-subTitle
-keyWards
-viewCount
-likeCount
-slug
-authorName
-productName
-productAuthorName
-productAuthorId
-productCode
-groupCode
-rating
-    }
+${F_FILE}
 `
 
-export const PRODUCTREVIEW_FIND_BY_ID = gql`
-query productreviewFindById(
+export const PRODUCT_REVIEW_FIND_BY_ID = gql`
+query productReviewFindById(
   $id: String!
 ) {
   ProductReviewFindById(
-    id:$id
+    _id:$id
   ) {
-  ok
-  error {
-    location
-            severity
-            code
-            message
+    ok
+    error {
+        location
+        severity
+        code
+        message
     }
     data {
+      answers {
         ...Fanswer
+      }
+        ...FproductReview
+    }
+    next {
+      _id
+    }
+    before {
+      _id
     }
 }
 }
 ${F_ANSWER}
+${F_PRODUCT_REVIEW}
 `
-export const PRODUCTREVIEW_LIST = gql`
+export const PRODUCT_REVIEW_LIST = gql`
 query productreviewList(
 $sort: [_ProductReviewSort!]
 $filter: _ProductReviewFilter
@@ -81,11 +96,11 @@ filter: $filter
     ...Fpage
   }
   data  {
-    ...Fanswer
+    ...FproductReview
   }
 }
 }
-${F_ANSWER}
+${F_PRODUCT_REVIEW}
 `
 
 
@@ -137,11 +152,11 @@ export const PRODUCTREVIEW_UPDAET = gql`
     ) {
     ok
     error {
-      location
-              severity
-              code
-              message
-      }
+        location
+        severity
+        code
+        message
+    }
     data {
       _id
     }

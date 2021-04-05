@@ -1249,7 +1249,6 @@ div.alignment {
 
         div.alignment .left_div strong {
             color: #2196F3;
-            display: none;
         }
 
         div.alignment .left_div .infotxt {
@@ -4960,10 +4959,10 @@ div.bn_box {
                 color: #333333;
             }
 
-        .login_box .login_page .tab-selector-1:checked ~ .tab-label-1,
-        .login_box .login_page .tab-selector-2:checked ~ .tab-label-2,
-        .login_box .login_page .tab-selector-3:checked ~ .tab-label-3,
-        .login_box .login_page .tab-selector-4:checked ~ .tab-label-4 {
+            .App .login_page .tab-selector-1:checked ~ .tab-label-1,
+            .App .login_page .tab-selector-2:checked ~ .tab-label-2,
+            .App .login_page .tab-selector-3:checked ~ .tab-label-3,
+            .App .login_page .tab-selector-4:checked ~ .tab-label-4 {
             border: 1px solid #e2e2e2;
             border-bottom: 0;
             color: #333;
@@ -9063,7 +9062,7 @@ ul.photo_ul.main_photo_ul li .title {
     font-weight: 500;
     cursor: pointer;
 }
-.question_box .popup_bg_mini button {
+.question_box .popup_bg_mini .login_popup__loginBtn {
     width: 100%;
     text-align: center;
     height: unset;

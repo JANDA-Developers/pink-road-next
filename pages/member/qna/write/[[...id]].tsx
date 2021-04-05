@@ -3,12 +3,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { BoardWrite } from "components/board/Write";
 import { useBoard } from "hook/useBoard";
 import { omits } from "../../../../utils/omit";
-import { auth } from "../../../../utils/with";
-import { ALLOW_ADMINS, ALLOW_LOGINED } from "../../../../types/const";
 import { Validater } from "../../../../utils/validate";
 import { useQnaCreate, useQnaDelete, useQnaFindById, useQnaUpdate } from "../../../../hook/useQna";
-import { getFromUrl } from "../../../../utils/url";
 import { AppContext } from "../../../_app";
+import { LoginModal } from "../../../../components/loginModal/LoginModal";
+import { useModal } from "../../../../hook/useModal";
+import { ThreePhoneNumberInput } from "../../../../components/phoneNumberInput/PhoneNumberInput";
 
 interface IProp { }
 
@@ -16,6 +16,7 @@ export const QnaWrite: React.FC<IProp> = () => {
     const router = useRouter();
     const id = router.query.id?.[0] as string;
     const { item: qna } = useQnaFindById(id);
+    const loginModalHook = useModal();
     const mode = id ? "edit" : "create";
     const { categoriesMap } = useContext(AppContext);
 
@@ -45,8 +46,6 @@ export const QnaWrite: React.FC<IProp> = () => {
         },
     })
 
-
-    console.log({ qna });
     const boardHook = useBoard({
         ...qna
     }, { storeKey: "qnaWrite" });
@@ -111,28 +110,29 @@ export const QnaWrite: React.FC<IProp> = () => {
         })
     }, [qna?._id])
 
-    console.log({ boardHook });
-
-    return <BoardWrite
-        boardHook={boardHook}
-        key={loadKey + (qna?._id || "")}
-        mode={mode}
-        categoryList={categoriesMap.QNA}
-        onCancel={handleCancel}
-        onCreate={handleCreate}
-        onDelete={handleDelete}
-        onEdit={handleUpdate}
-        onSave={handleTempSave}
-        onLoad={handleLoad}
-        opens={{
-            title: true,
-            category: true,
-            open: true
-        }}
-    />
+    return <div>
+        <BoardWrite
+            boardHook={boardHook}
+            key={loadKey + (qna?._id || "")}
+            mode={mode}
+            categoryList={categoriesMap.QNA}
+            onCancel={handleCancel}
+            onCreate={handleCreate}
+            onDelete={handleDelete}
+            onEdit={handleUpdate}
+            onSave={handleTempSave}
+            onLoad={handleLoad}
+            opens={{
+                title: true,
+                category: true,
+                open: true,
+                files: true
+            }}
+        />
+        <LoginModal modalHook={loginModalHook} onLogin={() => {
+            location.reload();
+        }} />
+    </div>
 };
 
-
-
-
-export default auth(ALLOW_ADMINS)(QnaWrite)
+export default QnaWrite

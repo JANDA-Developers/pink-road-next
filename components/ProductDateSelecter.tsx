@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { useFindProductsByGroup } from '../hook/useProduct';
 import { productList_ProductList_data } from '../types/api';
+import isEmpty from '../utils/isEmpty';
 
 interface IProp {
     currentId: string;
@@ -19,11 +20,13 @@ export const ProductDateSelecter: React.FC<IProp> = ({ currentId, groupCode, onC
     }
 
     let availableExsist = false;
+
     for (let item of items) {
         if (dayjs(item.startDate).isAfter(new Date(), "day")) {
             availableExsist = true;
         }
     }
+    if (isEmpty(items)) return <span>예약이 가능한 상태가 아닙니다..</span>
     if (!availableExsist) return <span>예약가능 기간이 지났습니다.</span>
     if (!groupCode) return <span>{ }</span>
     return <div className="productDateSelecter write_type">

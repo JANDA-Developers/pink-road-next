@@ -9,21 +9,13 @@ import { DayPickerModal } from '../../components/dayPickerModal/DayPickerModal';
 import { Change } from '../../components/loadingList/LoadingList';
 import { Nodata } from '../../components/noData/Nodata';
 import { SearchBar } from '../../components/searchBar/SearchBar';
-import { useBookingList } from '../../hook/useBooking';
 import { TBookingSearchType, useBookingBoard } from '../../hook/useBookingBoard';
-import { useModal } from '../../hook/useModal';
-import { useQueryFilter } from '../../hook/useQueryFilter';
-import { useDateFilter } from '../../hook/useSearch';
 import { BookingStatus, _BookingFilter, _ProductFilter } from '../../types/api';
-import { filterToRange, rangeToFilter } from '../../utils/filter';
+import { rangeToFilter } from '../../utils/filter';
 import isEmpty from '../../utils/isEmpty';
 import { closeModal, openModal } from '../../utils/popUp';
 
 interface IProp { }
-
-
-
-
 export const MyPagePurchase: React.FC<IProp> = () => {
     const { filterType, bookingModalHook, bookingListHook, checkOnStatus, doSearch, handleDetail, dateFilterHook, isTimeOverExcept, setFilterType, setIsTimeOverExcept, setType } = useBookingBoard()
     const { setPage, filter, filterToRange, getLoading, items, setFilter, viewCount, sort, setSort, setViewCount, pageInfo } = bookingListHook;

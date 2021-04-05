@@ -101,7 +101,9 @@ const Join: React.FC<Ipage> = (pageInfo) => {
             setJoinProcess("verification")
         }
         if (verificationId) {
-            setJoinProcess("userInfo")
+            // Oauth 인증과 함꼐 들어온경우
+            setUserType(UserRole.individual);
+            setJoinProcess("userInfo");
         }
     }, [])
 
@@ -191,7 +193,7 @@ const JoinResult = () => {
         <div className="wellcom" id="con03">
             {/* <img src="/img/join_img01.png" alt="환영합니다 이미지" /> */}
             <h5>회원가입을 축하드립니다!</h5>
-            {isSeller && <p>
+            {!isSeller && <p>
                 회원가입이 완료 되었습니다.  <br className="no" />
                 로그인 후 핑크로더의 알차고 즐거운 컨텐츠를 사용하실 수 있습니다.
             </p>}

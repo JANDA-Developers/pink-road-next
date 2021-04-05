@@ -495,7 +495,7 @@
             "deprecationReason": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "args": [],
             "type": {
@@ -568,22 +568,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "next",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Board",
                 "ofType": null
               }
             },
@@ -1683,6 +1667,66 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "image",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "File",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "useMobile",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "usePc",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "useCurtain",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },
@@ -4165,7 +4209,7 @@
             "deprecationReason": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "args": [],
             "type": {
@@ -4238,22 +4282,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "next",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Board",
                 "ofType": null
               }
             },
@@ -5750,7 +5778,7 @@
             "deprecationReason": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "args": [],
             "type": {
@@ -5823,22 +5851,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "next",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Board",
                 "ofType": null
               }
             },
@@ -6347,7 +6359,7 @@
             "deprecationReason": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "args": [],
             "type": {
@@ -6420,22 +6432,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "next",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Board",
                 "ofType": null
               }
             },
@@ -6569,6 +6565,22 @@
                   "name": "Answer",
                   "ofType": null
                 }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "num",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               }
             },
             "isDeprecated": false,
@@ -6790,7 +6802,7 @@
             "deprecationReason": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "args": [],
             "type": {
@@ -6863,22 +6875,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "next",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Board",
                 "ofType": null
               }
             },
@@ -8148,6 +8144,12 @@
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
+          {
+            "name": "question",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "system",
             "description": null,
@@ -9730,7 +9732,7 @@
             "deprecationReason": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "args": [],
             "type": {
@@ -9803,22 +9805,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "next",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Board",
                 "ofType": null
               }
             },
@@ -10279,7 +10265,7 @@
             "deprecationReason": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "args": [],
             "type": {
@@ -10359,22 +10345,6 @@
             "deprecationReason": null
           },
           {
-            "name": "next",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Board",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "category",
             "description": null,
             "args": [],
@@ -10410,6 +10380,30 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "anonymousName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "anonymousContact",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -10887,7 +10881,7 @@
             "deprecationReason": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "args": [],
             "type": {
@@ -10967,16 +10961,20 @@
             "deprecationReason": null
           },
           {
-            "name": "next",
+            "name": "productReview",
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
+              "kind": "LIST",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "Board",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ProductReview",
+                  "ofType": null
+                }
               }
             },
             "isDeprecated": false,
@@ -12022,7 +12020,7 @@
           },
           {
             "name": "isDenied",
-            "description": "매니저에 의한 회원가입 거절",
+            "description": "마스터에 의한 회원가입 거절",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -14042,7 +14040,7 @@
             "deprecationReason": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "args": [],
             "type": {
@@ -14115,22 +14113,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "next",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Board",
                 "ofType": null
               }
             },
@@ -14567,7 +14549,7 @@
             "deprecationReason": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "args": [],
             "type": {
@@ -14640,22 +14622,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "next",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Board",
                 "ofType": null
               }
             },
@@ -17616,6 +17582,30 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "before",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Board",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Board",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -18705,6 +18695,30 @@
             "type": {
               "kind": "OBJECT",
               "name": "Portfolio",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "before",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Board",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "next",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Board",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24334,7 +24348,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -24572,6 +24586,26 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -24985,7 +25019,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -25130,7 +25164,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -25766,6 +25800,26 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -28206,16 +28260,42 @@
             "defaultValue": null
           },
           {
+            "name": "useMobile",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "usePc",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "useCurtain",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "startDate",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -28223,13 +28303,9 @@
             "name": "endDate",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "DateTime",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -28249,6 +28325,16 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "image",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "FileCreateInput",
               "ofType": null
             },
             "defaultValue": null
@@ -28277,13 +28363,9 @@
             "name": "style",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "JSONObject",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "JSONObject",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -28507,6 +28589,16 @@
           {
             "name": "bookingPrivacyPolicy",
             "description": "예약받을때 - 개인정보 수집 및 이용",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "krTravelPolicy",
+            "description": "국내여행약관",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -28868,7 +28960,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -29124,6 +29216,26 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -29464,7 +29576,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -30784,7 +30896,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -31078,6 +31190,26 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -31414,7 +31546,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -31533,7 +31665,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -31686,7 +31818,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -32631,6 +32763,26 @@
             "defaultValue": null
           },
           {
+            "name": "password_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "isOpen_eq",
             "description": null,
             "type": {
@@ -33553,7 +33705,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -33880,7 +34032,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -34345,6 +34497,26 @@
             "defaultValue": null
           },
           {
+            "name": "password_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "isOpen_eq",
             "description": null,
             "type": {
@@ -34676,7 +34848,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -34807,7 +34979,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -34845,6 +35017,16 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null
           }
@@ -35063,6 +35245,26 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -35399,7 +35601,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -35512,6 +35714,36 @@
             "defaultValue": null
           },
           {
+            "name": "password",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "anonymousName",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "anonymousContact",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "keyWards",
             "description": null,
             "type": {
@@ -35530,7 +35762,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -35564,20 +35796,6 @@
               "kind": "SCALAR",
               "name": "ID",
               "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "categoryId",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
             },
             "defaultValue": null
           }
@@ -35678,6 +35896,46 @@
           },
           {
             "name": "code_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "anonymousName_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "anonymousName_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "anonymousContact_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "anonymousContact_not_eq",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -35856,6 +36114,26 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "password_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -36192,7 +36470,7 @@
             "defaultValue": null
           },
           {
-            "name": "attachFiles",
+            "name": "files",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -36240,7 +36518,27 @@
             "defaultValue": null
           },
           {
-            "name": "categoryId",
+            "name": "password",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "anonymousName",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "anonymousContact",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -40708,6 +41006,16 @@
             "description": null,
             "args": [
               {
+                "name": "password",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "id",
                 "description": null,
                 "type": {
@@ -43869,7 +44177,7 @@
           },
           {
             "name": "VerificationStart",
-            "description": "인증 요청을 하는 함수, 이메일 또는 휴대폰으로 인증번호를 발신하고 인증 테이블에 요청 추가함",
+            "description": "인증 요청을 하는 함수, 이메일 또는 핸드폰으로 인증번호를 발신하고 인증 테이블에 요청 추가함",
             "args": [
               {
                 "name": "target",

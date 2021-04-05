@@ -6,7 +6,8 @@ import React from "react";
 import { useUpload } from "hook/useUpload";
 import { IUseBoard } from "hook/useBoard";
 import { AppContext } from "../../pages/_app";
-const Editor = dynamic(() => import("components/edit/CKE2"), { ssr: false });
+import { LoadEditor } from "../edit/EdiotrLoading";
+const Editor = LoadEditor();
 export interface IBoardOpen {
     title: boolean
     subTitle: boolean;
@@ -110,30 +111,30 @@ export const BoardWrite: React.FC<IProps> = ({
             <div className="w1200">
                 <div className="write_box">
                     {
-                    opens.category && <div className="write_type">
-                        <div className="title">카테고리</div>
-                        <div className="input_form">
-                            <span id="category" className="category r3">
-                                <select className="" onChange={handleCatChange} value={categoryId} name="category_srl">
-                                    <option value={""} >
-                                        선택없음
+                        opens.category && <div className="write_type">
+                            <div className="title">카테고리</div>
+                            <div className="input_form">
+                                <span id="category" className="category r3">
+                                    <select className="" onChange={handleCatChange} value={categoryId} name="category_srl">
+                                        <option value={""} >
+                                            선택없음
                                     </option>
-                                    {categoryList?.map(cat =>
-                                        <option value={cat._id} key={cat._id}>
-                                            {cat.label}
-                                        </option>
-                                    )}
-                                </select>
-                            </span>
+                                        {categoryList?.map(cat =>
+                                            <option value={cat._id} key={cat._id}>
+                                                {cat.label}
+                                            </option>
+                                        )}
+                                    </select>
+                                </span>
+                            </div>
                         </div>
-                    </div>
                     }
-                    <div className="write_type">
+                    {/* <div className="write_type">
                         <div className="title">작성자</div>
                         <div className="input_form">
-                            <input readOnly value={name} type="text" name="title" className="inputText w50 fix" />{/* 자동출력 고정 */}
+                            <input readOnly value={name} type="text" name="title" className="inputText w50 fix" />
                         </div>
-                    </div>
+                    </div> */}
                     <div className="write_type">
                         <div className="title">제목</div>
                         <div className="input_form">

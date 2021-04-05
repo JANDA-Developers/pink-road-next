@@ -30,7 +30,7 @@ export const AdditionFeePolicyBlock: React.FC<IProp> = ({ addtionPolicy: bpp, on
                 }} type="number" step="0.01" min="0" max="100" onChange={e => {
                     const val = e.target.value;
                     onChange(val as any, isPer ? "fee" : "feePercent");
-                }} value={isPer ? (bpp.fee || "") : (bpp.feePercent || "")} className="w30 mr5" placeholder="숫자만 입력해 주세요." type="text" />
+                }} value={isPer ? (bpp.fee || "") : (bpp.feePercent || "")} className="w30 mr5" placeholder="숫자만 입력해 주세요." />
                 <select value={bpp.type} onChange={(e) => {
                     const val = e.currentTarget.value as any;
                     onChange(val, "type");

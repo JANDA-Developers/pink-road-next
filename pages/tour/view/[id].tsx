@@ -37,6 +37,13 @@ import OnImagesLoaded from "../../../components/onImageLoad/OnImageLoad";
 import { useImgLoading } from "../../../hook/useImgLoading";
 import { getFromUrl } from "../../../utils/url";
 import { PageEditor } from "../../../components/common/PageEditer";
+import { RatingStar } from "../../../components/rating/Rating";
+import { useModal } from "../../../hook/useModal";
+import { BGprofile } from "../../../types/const";
+import { cutStr } from "../../../utils/cutStr";
+import { IModalInfo, ReviewModal } from "../../../components/reviewModal/ReviewModal";
+import { yyyymmdd } from "../../../utils/yyyymmdd";
+import PageDeny from "../../Deny";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -50,16 +57,20 @@ export async function getStaticPaths() {
 const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const router = useRouter();
   const isExp = checkIsExp();
+  const reviewModalHook = useModal<IModalInfo>();
+
   const { item: group } = useGroupFind("Recommend")
   const groupExsist = !isEmpty(group?.members);
   const { handleLoaded, loaded } = useImgLoading()
   const { items, filter, setFilter } = useProductList({
     initialFilter: {
-      ...openListFilter,
+      // ...openListFilter,
+      isOpen_eq: true,
       _id_in: groupExsist ? group?.members : undefined
     }
   });
 
+  console.log({ items });
 
   const randomSortedItems = useMemo(() => randomSort(items), [items.length]);
   const randomSorted: productList_ProductList_data[] = groupExsist ? cloneObject(items).sort((a, b) => group?.members.indexOf(a._id)! - group?.members.indexOf(b._id)!) : randomSortedItems;
@@ -84,6 +95,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
       kids: 0
     }
   });
+  const reviews = product?.productReview || [];
+
+
 
   const [sliderIndex, setSlideIndex] = useState(0);
   const { scrollY } = useScroll();
@@ -133,6 +147,10 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   }
 
   const handleAddBracket = () => {
+    if (isDisable) {
+      alert("예약 가능한 시간이 지났습니다.")
+      return;
+    }
     addBracket();
   }
 
@@ -150,6 +168,11 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   }
 
   const handleDoPay = () => {
+    if (isDisable) {
+      alert("예약 가능한 기간이 지났습니다.");
+      return;
+    }
+
     const addPeople = count.adult + count.baby + count.kids;
     if (addPeople === 0) {
       alert("인원을 먼저 선택 해주세요.");
@@ -166,6 +189,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
       addBracket();
     router.push("/payment/")
   }
+  const reviewPagination = generateClientPaging(reviews, 4);
 
   useEffect(() => {
     if (!product) return;
@@ -197,12 +221,16 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     peopleCount
   } = product;
 
-
-
   const isPast = dayjs(startDate).isBefore(new Date());
+  const productStatusIsNotOk = status !== ProductStatus.OPEN;
+  const isDisable = isPast || productStatusIsNotOk;
 
-  if (!isSeller && !product.isOpen) return <Page404 />
-  if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
+
+  // 프로덕트 없을떄 로딩처리
+  if (!product) return null;
+  // 오픈상태가 아닌 페이지 가드처리
+  if (!isSeller && !product.isOpen) return <PageDeny />
+  // if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
 
   return <div className="edtiorView">
     {!loaded && <PageLoading />}
@@ -364,13 +392,13 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 <div className="btn_box">
                   <div className="links_wrap">
 
-                    <div className={`link02 ${isPast && "tourBracketBtn--disabled"}`}>
+                    <div className={`link02 ${isDisable && "tourBracketBtn--disabled"}`}>
                       <a onClick={handleDoPay}>
                         예약하기
                       </a>
                     </div>
 
-                    <div onClick={handleAddBracket} className={`link05 ${isPast && "tourBracketBtn--disabled"}`}>
+                    <div onClick={handleAddBracket} className={`link05 ${isDisable && "tourBracketBtn--disabled"}`}>
                       <a>
                         <i className="icon_basket"></i>
                       </a>
@@ -436,12 +464,45 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 <h4>리뷰 </h4>
                 <div className="text ck-content">
                   <div className="review__box">
-                    <ul className="review__box_list">
-                      <li className="review__box_rev">
-                        <div className=""></div>
-                      </li>
+                    <ul className="review__list">
+                      {reviewPagination.slice.map(review =>
+                        <li onClick={() => {
+                          reviewModalHook.openModal({
+                            reviewId: review._id
+                          })
+                        }} key={review._id}>
+                          <div className="top">
+                            <div className="review__list_pr" style={BGprofile(review.author?.profileImg)} />
+                            <div className="review__list_star">
+                              <RatingStar readonly initialRating={review.rating} />
+                            </div>
+                            <div className="review__list_info">
+                              <strong>{review.title}</strong>
+                              <span className="name">{review.authorName}</span><span className="day">{yyyymmdd(review.createdAt)}</span>
+                            </div>
+                          </div>
+                          <div className="bottom">
+                            <p>{cutStr(review.contents, 150)}</p>
+                          </div>
+                          {
+                            true
+                            // isMyReview(review._id)
+                            &&
+                            <Link href={`/review/write/${review._id}?pid=${id}&name=${title}`}>
+                              <a onClick={(e) => { e.stopPropagation(); }} className="mini_btn small">수정하기</a>
+                            </Link>
+                          }
+                        </li>
+                      )}
                     </ul>
-                    <div></div>
+                  </div>
+                </div>
+                <div className="boardNavigation">
+                  <Paginater pageInfo={reviewPagination.paging} isMini setPage={reviewPagination.setPage} />
+                  <div className="float_right">
+                    <Link href={`/review/write?pid=${id}&name=${title}`}>
+                      <a className="mini_btn small">리뷰 쓰러가기</a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -498,6 +559,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
           </div>
         </div>
       </Change>
+      <ReviewModal {...reviewModalHook} />
     </OnImagesLoaded>
   </div >
 }

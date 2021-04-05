@@ -6,6 +6,7 @@ import SubTopNav from '../../layout/components/SubTop';
 import { getStaticPageInfo, Ipage } from '../../utils/page';
 import { AppContext } from '../_app';
 import defaultPageInfo from "../../info/refundPolicy.json"
+import { PageEditor } from '../../components/common/PageEditer';
 
 export const getStaticProps = getStaticPageInfo("refundPolicy");
 const refundPolicy: React.FC<Ipage> = (pageInfo) => {
@@ -13,17 +14,12 @@ const refundPolicy: React.FC<Ipage> = (pageInfo) => {
     const pageTools = usePageEdit(pageInfo, defaultPageInfo)
     return (
         <div>
+            <PageEditor pageTools={pageTools} />
             <SubTopNav pageTools={pageTools}>
-                <li className="home">
-                    <Link href="/">
-                        <a />
-                    </Link>
-                </li>
                 <li className="homedeps1">
                     <a href="/refund-policy">취소 및 환불 정책</a>
                 </li>
             </SubTopNav>
-
             <div className="privacy_box w1200">
                 <PolicyTopNav />
                 <div dangerouslySetInnerHTML={{

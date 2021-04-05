@@ -117,6 +117,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     }
 
     const reset = () => {
+        setFilter({});
         setSearch("");
     }
 
@@ -133,7 +134,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
 
     const filterStart = filter.startDate_gte ? dayjs(filter.startDate_gte).format("YYYY.MM.DD") : "";
     const filterEnd = filter.startDate_lte ? dayjs(filter.startDate_lte).format("YYYY.MM.DD") : "";
-    const noSearch = search === "";
+    const noSearch = filter.title_contains === "";
     const filteredProducts = noSearch ? [] : products;
     const noProduct = isEmpty(filteredProducts);
 
@@ -280,8 +281,10 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                                 </ul>
                             </div>}
                     </div>}
-                    <Paginater setPage={setBoardPage} pageInfo={paging} />
-                    {/* <Paginater setPage={setPage} pageInfo={pageInfo} /> */}
+                    {isProdView ?
+                        <Paginater setPage={setPage} pageInfo={pageInfo} />
+                        : <Paginater setPage={setBoardPage} pageInfo={paging} />
+                    }
                 </div>
 
                 <div id="ProductViewer" className="con_box">
@@ -634,7 +637,9 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                 ...filter,
                 ...data,
             })
-        }} />
+        }} >
+            * 출발날짜 기준 검색
+        </DayPickerModal>
     </div>
 }
 
