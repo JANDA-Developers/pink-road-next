@@ -3943,7 +3943,7 @@ div.reservation_popup .tr select {
         text-align: left;
     }
 
-    .main_con_box2 .peple {
+    .App .peple {
         width: 130px;
         height: 130px;
         display: inline-block;
@@ -3978,7 +3978,7 @@ div.reservation_popup .tr select {
                 text-indent: 0;
             }
 
-        .main_con_box2 .peple i {
+        .App .peple i {
             display: block;
             font-size: 55px;
             margin-top: 44px;

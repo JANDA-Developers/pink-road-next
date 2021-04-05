@@ -18,8 +18,7 @@ interface IProp {
 
 export const ProfileListAPI: React.FC<IProp> = ({ variables, selectedSeller, setSelectedSeller, mode = "wide" }) => {
     const router = useRouter();
-    const { ref, width, height } = useResizeDetector<HTMLDivElement>()
-    const guidesRef = useRef<HTMLDivElement>(null)
+    const { ref, width } = useResizeDetector<HTMLDivElement | HTMLUListElement>()
     const { data: items = [] } = useRandomPublicSellerList({
         nextFetchPolicy: "cache-first",
         variables: {
@@ -35,18 +34,6 @@ export const ProfileListAPI: React.FC<IProp> = ({ variables, selectedSeller, set
         setSelectedSeller?.(user);
     }
 
-    const handleScrollArrowClick = (plus: boolean) => () => {
-        if (!guidesRef?.current) return;
-        const guidesLeft = guidesRef.current.scrollLeft;
-        let nextLeft = guidesLeft + (plus ? 500 : -500);
-        guidesRef.current.scroll({ left: nextLeft, behavior: "smooth" })
-    }
-
-    useEffect(() => {
-        if (items?.[0] && !selectedSeller) {
-            setSelectedSeller?.(items[0])
-        }
-    }, [items?.length]);
 
     const isShort = mode === "short"
 
@@ -55,9 +42,44 @@ export const ProfileListAPI: React.FC<IProp> = ({ variables, selectedSeller, set
         router.push("/itsguid/" + code)
     }
 
-    if (isShort) return <ul className="pr_list">
+    function Arrow(props) {
+        const { className, style, onClick, isLeft } = props;
+        return (
+            <div
+                className={className + " profileListBig__arrows"}
+                style={{ ...style }}
+                onClick={onClick}
+            >
+                <i className={isLeft ? "jandaicon-arr2-left" : "jandaicon-arr2-right"}></i>
+            </div>
+        );
+    }
+
+    const sizeSlideCountMini = (() => {
+        if (width < 500) return 5;
+        if (width < 800) return 7;
+        if (width < 1000) return 9;
+        return 10
+    })()
+
+
+    const sizeSlideCount = (() => {
+        if (width < 500) return 3;
+        if (width < 800) return 4;
+        if (width < 1000) return 5;
+        return 6
+    })()
+
+    useEffect(() => {
+        if (items?.[0] && !selectedSeller) {
+            setSelectedSeller?.(items[0])
+        }
+    }, [items?.length]);
+
+
+    if (isShort) return <ul ref={ref as React.MutableRefObject<HTMLUListElement>} className="pr_list">
         <Slider
-            slidesToShow={10}
+            slidesToShow={sizeSlideCountMini}
             autoplay
             draggable={false}
             arrows={false}
@@ -74,29 +96,6 @@ export const ProfileListAPI: React.FC<IProp> = ({ variables, selectedSeller, set
         </Slider>
         {/* <li className="plus"><a href="/guide-search">+</a></li> */}
     </ul>
-
-
-
-    function Arrow(props) {
-        const { className, style, onClick, isLeft } = props;
-        return (
-            <div
-                className={className + " profileListBig__arrows"}
-                style={{ ...style }}
-                onClick={onClick}
-            >
-                <i className={isLeft ? "jandaicon-arr2-left" : "jandaicon-arr2-right"}></i>
-            </div>
-        );
-    }
-
-    const sizeSlideCount = (() => {
-        if (width < 500) return 4;
-        if (width < 800) return 5;
-        if (width < 1000) return 5;
-        return 6
-    })()
-
 
     return <div>
         {/* <div className="man_list">

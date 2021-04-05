@@ -192,11 +192,11 @@
         }
           
          
-.main_con_box2 {
-    background-color: #ffffff;
-    box-sizing: border-box;
-    padding: 0 3%;
-}
+    .main_con_box2 {
+        background-color: #ffffff;
+        box-sizing: border-box;
+        padding: 0 3%;
+    }
 
     .main_con_box2 .top_txt {
         display: inline-block;
@@ -225,11 +225,11 @@
         text-align: left;
         padding-bottom: 70px;
     }
-    .main_con_box2 .pr_list {
+    .pr_list {
         position: relative;
         display: block;
     }
-    .main_con_box2 .pr_list:after {
+    .pr_list:after {
         right: 0;
         background: linear-gradient(to left,#ffffff 0%,transparent 30%);
         position: absolute;
@@ -239,7 +239,7 @@
     content: "";
     z-index: 1;
     }
-    .main_con_box2 .pr_list::before {
+    .pr_list::before {
         left: 0;
     background: linear-gradient(to right,#ffffff 0%,transparent 30%);
     position: absolute;
@@ -251,7 +251,7 @@
 
     }
 
-    .main_con_box2 .peple {
+    .App .peple {
         width: 80px;
         height: 80px;
         display: inline-block;
@@ -284,7 +284,7 @@
             padding: 0;
             z-index: 100;
         }
-        .main_con_box2 .peple:hover .plus {
+        .App .peple:hover .plus {
             display: block;
             align-items: center;
         }
@@ -298,20 +298,20 @@
             background-color: rgba(0, 0, 0, 0.77);
             transition: all 0.4s ease-out;
         }
-        .main_con_box2 .peple i {
+        .App .peple i {
             display: block;
             font-size: 55px;
             margin-top: 44px;   
         }
 
         /* 
-        .main_con_box2 .peple strong {
+        .App .peple strong {
             display: block;
             font-size: 22px;
             margin-top: 10px;
         }
 
-        .main_con_box2 .peple p {
+        .App .peple p {
             display: block;
             font-size: 14px;
             line-height: 20px;
@@ -9585,7 +9585,7 @@ i.calendar {
             top: 16px;
             width: 79px;
         }
-        .main_con_box2 .peple {
+        .App .peple {
             width: 110px;
             height: 110px;
         }
@@ -10041,7 +10041,7 @@ i.calendar {
     .main_con_box2 ul {
         padding: 65px 0 60px;
     }
-    .main_con_box2 .peple {
+    .App .peple {
         width: 130px;
         height: 130px;
     }
@@ -11041,7 +11041,7 @@ i.calendar {
         background-color: #333333;
         transform: rotate(-45deg);
     }
-    .main_con_box2 .peple{
+    .App .peple{
         width: 100px;
         height: 100px;
     }

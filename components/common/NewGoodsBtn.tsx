@@ -15,3 +15,15 @@ export const NewGoodsBtn: React.FC<IProp> = ({ }) => {
         </a>
     </Link>
 };
+export const NewProfileBtn: React.FC<IProp> = ({ }) => {
+    const { isManager, isParterB, myProfile } = useContext(AppContext)
+    if (isManager) return null;
+    if (!isParterB) return null;
+    const { _id } = myProfile;
+
+    return <Link href={`/tour/itsguid/${_id}`}>
+        <a>
+            <div id="float_profile_link" ><i className="flaticon-add"></i>프로필수정</div>
+        </a>
+    </Link>
+};

@@ -1,32 +1,32 @@
-*[contenteditable="true"]{
+*[contenteditable="plaintext-only"]{
     line-height: normal;
     display: inline-block;
     outline: 1px dashed;
     min-width: 10px!important;
     cursor: auto!important;
 }
-*[contenteditable="true"]:focus{
+*[contenteditable="plaintext-only"]:focus{
     outline: 1px solid;
 }
 
-div[contenteditable="true"]{
+div[contenteditable="plaintext-only"]{
     width: 100%;
 }
 
-h5[contenteditable="true"],
-h4[contenteditable="true"],
-h3[contenteditable="true"],
-h2[contenteditable="true"],
-h1[contenteditable="true"]
+h5[contenteditable="plaintext-only"],
+h4[contenteditable="plaintext-only"],
+h3[contenteditable="plaintext-only"],
+h2[contenteditable="plaintext-only"],
+h1[contenteditable="plaintext-only"]
 {
     width: 100%;
 }
 
-.ck *[contenteditable="true"],.quill *[contenteditable="true"]{
+.ck *[contenteditable="plaintext-only"],.quill *[contenteditable="plaintext-only"]{
     outline: none;
 }
 
-ul[contenteditable="true"] li {
+ul[contenteditable="plaintext-only"] li {
     min-height: 20px;
     display: block!important;
     width: revert!important;
@@ -107,12 +107,12 @@ td {
     display: flex;
 }
 
-[data-edit="img"] [contenteditable="true"] {
+[data-edit="img"] [contenteditable="plaintext-only"] {
     position: relative;
     z-index: 10;
 }
 
-[data-edit="bg"] [contenteditable="true"] {
+[data-edit="bg"] [contenteditable="plaintext-only"] {
     position: relative;
     cursor: auto;
     z-index: 10;

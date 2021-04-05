@@ -2,7 +2,7 @@ import React from 'react';
 import { IUsePageEdit } from '../../hook/usePageEdit';
 import { sellerFindByKey_SellerFindByKeyPublic_data } from '../../types/api';
 import { EditBtn } from './EditBtn';
-import { NewGoodsBtn } from './NewGoodsBtn';
+import { NewGoodsBtn, NewProfileBtn } from './NewGoodsBtn';
 
 interface IProp {
     allowToUser?: boolean;
@@ -31,7 +31,7 @@ export const PageEditor: React.FC<IProp> = ({ pageTools, allowToUser, profilePar
     return <div >
         <EditBtn allowToUser={allowToUser || false} onSubmit={submit} editMode={editMode} />
         <NewGoodsBtn />
-
+        <NewProfileBtn />
     </div>;
 };
 
