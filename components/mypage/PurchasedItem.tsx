@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import ReactTooltip from 'react-tooltip';
+// import ReactTooltip from 'react-tooltip';
 import { tourSearchLink } from '../../pages/search';
 import { bookingList_BookingList_data, BookingStatus, Fbooking, ProductStatus } from '../../types/api';
 import { BG } from '../../types/const';
@@ -65,6 +65,6 @@ export const PurChasedItem: React.FC<IProp> = ({ item, onDetail: handleDetail })
                 결제 및 상세내역
             </span>
         </div>
-        <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" />
+        {/* <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" /> */}
     </li>;
 };
