@@ -147,6 +147,10 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   }
 
   const handleAddBracket = () => {
+    if (isDisable) {
+      alert("예약 가능한 시간이 지났습니다.")
+      return;
+    }
     addBracket();
   }
 
@@ -164,6 +168,11 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   }
 
   const handleDoPay = () => {
+    if (isDisable) {
+      alert("예약 가능한 기간이 지났습니다.");
+      return;
+    }
+
     const addPeople = count.adult + count.baby + count.kids;
     if (addPeople === 0) {
       alert("인원을 먼저 선택 해주세요.");
@@ -213,6 +222,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   } = product;
 
   const isPast = dayjs(startDate).isBefore(new Date());
+  const productStatusIsNotOk = status !== ProductStatus.OPEN;
+  const isDisable = isPast || productStatusIsNotOk;
 
 
   // 프로덕트 없을떄 로딩처리
@@ -381,13 +392,13 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 <div className="btn_box">
                   <div className="links_wrap">
 
-                    <div className={`link02 ${isPast && "tourBracketBtn--disabled"}`}>
+                    <div className={`link02 ${isDisable && "tourBracketBtn--disabled"}`}>
                       <a onClick={handleDoPay}>
                         예약하기
                       </a>
                     </div>
 
-                    <div onClick={handleAddBracket} className={`link05 ${isPast && "tourBracketBtn--disabled"}`}>
+                    <div onClick={handleAddBracket} className={`link05 ${isDisable && "tourBracketBtn--disabled"}`}>
                       <a>
                         <i className="icon_basket"></i>
                       </a>
