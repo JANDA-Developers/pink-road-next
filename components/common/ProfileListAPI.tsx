@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
-import { ListInitOptions } from '../../hook/useListQuery';
 import { openListFilter } from '../../hook/useProduct';
 import { useRandomPublicSellerList } from '../../hook/useUser';
 import { randomSellerListPublicVariables, sellerListPublic_SellerListPublic_data, _SellerFilter, _SellerSort, _UserSort } from '../../types/api';
-import { BG, BGprofile } from '../../types/const';
+import { BGprofile } from '../../types/const';
 import { GoodsListAPI } from './GoodsListAPI';
 import Slider from "react-slick";
 import { useResizeDetector } from 'react-resize-detector';
+import { IRef } from '../../types/interface';
 
 interface IProp {
     mode?: "wide" | "short"
@@ -77,7 +77,7 @@ export const ProfileListAPI: React.FC<IProp> = ({ variables, selectedSeller, set
     }, [items?.length]);
 
 
-    if (isShort) return <ul ref={ref as React.MutableRefObject<HTMLUListElement>} className="pr_list">
+    if (isShort) return <ul ref={ref as IRef<HTMLUListElement>} className="pr_list">
         <Slider
             slidesToShow={sizeSlideCountMini}
             autoplay
@@ -117,7 +117,7 @@ export const ProfileListAPI: React.FC<IProp> = ({ variables, selectedSeller, set
             </div>
             <a onClick={handleScrollArrowClick(true)} className="right_mov"><i className="jandaicon-arr2-right"></i></a>
         </div> */}
-        <div ref={ref} className="profileListBig">
+        <div ref={ref as IRef<HTMLDivElement>} className="profileListBig">
             <Slider
                 nextArrow={
                     <Arrow />
