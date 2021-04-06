@@ -2,7 +2,6 @@ import { CSSProperties } from "react";
 import $ from "jquery"
 import { ISet } from "../types/interface";
 import isEmpty from "./isEmpty";
-import sanitizeHtml from 'sanitize-html';
 import { IEditKit } from "../components/Img/Img";
 import { ILinkEditProps } from "../components/A/A";
 
@@ -175,7 +174,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         const html = index === undefined ? get(key) : get(key)[index];
         return {
             dangerouslySetInnerHTML: {
-                __html: sanitizeHtml(html)
+                __html: html
             }
         }
     }

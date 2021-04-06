@@ -31,9 +31,6 @@
     "react-resize-detector": "^6.0.0-alpha.1",
     "react-select": "^4.1.0",
     "react-slick": "^0.27.13",
-    "react-toastify": "^6.1.0",
-    "react-tooltip": "^4.2.11",
-    "sanitize-html": "^2.3.2",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {

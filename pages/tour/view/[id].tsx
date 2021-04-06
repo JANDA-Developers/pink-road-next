@@ -29,7 +29,6 @@ import { randomSort } from "../../../utils/randomSort";
 import isEmpty from "../../../utils/isEmpty";
 import { cloneObject } from "../../../utils/clone";
 import { productList_ProductList_data, ProductStatus } from "../../../types/api";
-import sanitizeHtml from "sanitize-html";
 import { productStatus } from "../../../utils/enumToKr";
 import { ProductDateSelecter } from "../../../components/ProductDateSelecter";
 import { Change } from "../../../components/loadingList/LoadingList";
@@ -260,7 +259,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                   )}
                 </ul>
                 <div className="details_info_txt">
-                  <div className="ck-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(info) }} />
+                  <div className="ck-content" dangerouslySetInnerHTML={{ __html: info }} />
                 </div>
               </div>
             </div>
