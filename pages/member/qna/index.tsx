@@ -108,7 +108,7 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
 
             <div className="fin mt30 mb100">
                 <div className="float_left">
-                    {isManager && <button onClick={gotoWrite} type="submit" className="btn medium">새글쓰기</button>}
+                    {isManager && <button onClick={gotoWrite} type="submit" className="btn medium">글쓰기</button>}
                 </div>
                 <div className="float_right">
                 </div>

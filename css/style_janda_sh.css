@@ -395,6 +395,7 @@
         box-sizing: border-box;
         padding: 3%;
         text-align: center;
+        background-position: center;
         background-repeat: no-repeat;
         background-size: 110%;
         justify-content: center;
@@ -7756,7 +7757,7 @@ i.calendar {
 /* news */
 .board_box  {
     padding-top: 63px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     box-sizing: border-box;
 }
 
@@ -7766,7 +7767,7 @@ i.calendar {
 /* tourstory */
 .tourstory_box {
     padding-top: 63px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     box-sizing: border-box;
 }
 
@@ -7777,7 +7778,7 @@ i.calendar {
 /* news */
 .news_box  {
     padding-top: 63px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     box-sizing: border-box;
 }
 
@@ -7788,12 +7789,10 @@ i.calendar {
 /* culture */
 .culture_box {
     padding-top: 63px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     box-sizing: border-box;
 }
 
-    .culture_box .subtop_nav {
-    }
 /* rule */
 .rule_box {
     margin-top: 60px !important;
@@ -9946,7 +9945,7 @@ font-size: 1em;
     .main_con_box3 li {
         width: 25%;
         min-height: 450px;
-        background-size: 200%;
+        background-size: 240%;
 
     }
 

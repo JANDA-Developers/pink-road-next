@@ -784,12 +784,29 @@ ul.boardlist_ul li .cash {
     position: relative;
     display: block;
     width: 100%;
-}
-
+        border-top: 2px solid #333;
+    } 
+    .board_list.st01 .thead {
+        display: flex;
+        width: 100%;
+        line-height: 25px;
+        box-sizing: border-box;
+        padding: 10px 0;
+        border-bottom: 1px solid rgb(153, 153, 153);
+    }
+    .board_list.st01 .thead > div{
+        display: inline-block;
+        padding: 0px;
+        width: auto;
+        flex: 1 1;
+        flex-grow: 1;
+        font-size: 13px;
+        box-sizing: border-box;
+        text-align: center;
+    }
     .board_list.st01 .tbody {
         display: block;
         width: 100%;
-        border-top: 2px solid #333;
     }
 
         .board_list.st01 .tbody li {
@@ -2619,12 +2636,14 @@ div.sum_div {
         flex-grow: 1;
         padding: 10px;
     }
-    .board_list.st01 .tbody .td01 {
+    .board_list.st01 .tbody .td01,
+    .board_list.st01 .thead .td01 {
         margin-right: 0;
         max-width: 100px;
     }
 
-    .board_list.st01 .tbody .td02 {
+    .board_list.st01 .tbody .td02,
+    .board_list.st01 .thead .td02 {
         text-align: center;
         max-width: 100px;
     }
@@ -2636,7 +2655,8 @@ div.sum_div {
         font-size: 1em;
     }
 
-    .board_list.st01 .tbody .td04 {
+    .board_list.st01 .tbody .td04,
+    .board_list.st01 .thead .td04 {
         text-align: center;
         color: #555555;
         font-weight: 100;
