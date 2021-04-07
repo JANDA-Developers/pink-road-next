@@ -318,7 +318,7 @@ i.tooltip{
     position: relative;
     display: -webkit-flex;
     display: block;
-    height: 80px;
+    height: 67px;
     box-sizing: border-box;
     background-color: #fff;
     z-index: 50;
@@ -333,7 +333,7 @@ i.tooltip{
     }    
     .header .main_menu > .w1200 {
         box-sizing: border-box;
-        padding: 25px 15px;
+        padding: 13px 15px;
     } 
     .header .top-menu {
         display: none;
@@ -423,7 +423,7 @@ i.tooltip{
     }
 
         .header .hd_left .logo img {
-            margin-top: -2px;
+            margin-top: 3px;
             height: 30px;
         }
 
@@ -438,7 +438,7 @@ i.tooltip{
 
         .header .hd_center .nav_wrap {
             position: relative;
-            top: 7px;
+            top:7px;
             display:none;
         }
 
@@ -579,7 +579,7 @@ rect.allmenu_svg {
     display: inline-block;
     position: absolute;
     right: 22px;
-    top: 20px;
+    top: 14px;
     text-align: right;
 }
 
@@ -711,7 +711,7 @@ rect.allmenu_svg {
         height: 36px;
         position: relative;
         top: 0;
-        margin-right: 5px;
+        margin-right: 7px;
         display: inline-block;
         vertical-align: middle;
     }
@@ -720,8 +720,8 @@ rect.allmenu_svg {
             position: relative;
             display: inline-block;
             vertical-align: middle;
-            width: 27px;
-            padding-top: 4px;
+            width: 24px;
+            padding-top: 6px;
         }
 
             .header .searchtop .search_btn img {
@@ -862,7 +862,7 @@ rect.allmenu_svg {
     z-index:49;
 }
     .header .all_menu_btn {
-        width: 27px;
+        width: 24px;
         background-color: transparent;
         border: none;
         cursor: pointer;
@@ -870,7 +870,7 @@ rect.allmenu_svg {
         top: 0;
         display: inline-block;
         vertical-align: middle;
-        padding-left: 13px;
+        padding-left: 11px;
         cursor: pointer;
 
     }
@@ -897,13 +897,13 @@ rect.allmenu_svg {
 .header .inform_top {
     display:inline-block;
     position:relative;
-    margin:0 10px 0 5px;
+    margin:0 15px 0 5px;
     vertical-align:middle;
 }
     .header .inform_top .inform_icon {
         cursor: pointer;
-        width: 27px;
-        height: 27px;
+        width: 24px;
+        height: 24px;
         position: relative;
     }
     .header .inform_top .inform_icon object {
@@ -3303,6 +3303,12 @@ i.icon_plus {
     .m {
         display: none;
     }
+    .header .searchtop{
+        margin-right: 5px;
+    }
+    .header .inform_top {
+        margin: 0 0 0 5px;
+    }
    .search_top .hang {
         width: auto;
         margin-top: 0;
@@ -3524,7 +3530,7 @@ margin-bottom:0;
         display:inline-block;
     }
     .header {
-        height: 133px;
+        height: 103px;
         margin-bottom: 0;
     }
         .header > .w1200 {
@@ -3533,7 +3539,7 @@ margin-bottom:0;
         .header .hidden {
             width: 100%;
             height: 77px;
-            top: 133px;
+            top: 103px;
             right: 0;
         }
     .header .hd_center .nav_wrap {
@@ -3544,6 +3550,10 @@ margin-bottom:0;
     }  
      .header .top-menu {
         display: block;
+    }
+     .header .top-menu .w1200{
+        padding: 0 18px;
+        box-sizing: border-box;
     }
         .header .search_wrap {
             width: 30%;
@@ -3563,8 +3573,8 @@ margin-bottom:0;
             }
         .header .hd_right {
             width: auto;
-            right: 41px;
-            top:24px;
+            right: 20px;
+            top:8px;
         }
     #all_menu {
         position:fixed;
@@ -3685,7 +3695,8 @@ margin-bottom:0;
         margin-top: 0;
     }
     .header .hd_left .logo img {
-        height: 42px;
+        margin-top: 0;
+        height: 32px;
     }
     .search_box .check {
         position: relative;
@@ -3705,6 +3716,10 @@ margin-bottom:0;
         background: #ffffff;
         border: 1px solid #ccc;
     }
+    .header .main_menu > .w1200 {
+        box-sizing: border-box;
+        padding: 18px 15px;
+    }
 }
 
 @media (min-width:1200px) {
@@ -3719,12 +3734,66 @@ margin-bottom:0;
     .pad_pc {
         display: inline-block;
     }
-
     .m {
         display: none;
     }
+    .header {
+        height: 103px;
+        margin-bottom: 0;
+    }
+    .header .hidden {
+        width: 100%;
+        height: 77px;
+        top: 103px;
+        right: 0;
+    }
+    .header .hd_left .logo img {
+        margin-top: 3px;
+    }
+    .header .hd_center .nav_wrap .deps1 > li > a:before {
+        content: '';
+        width: 100%;
+        height: 8px;
+        position: absolute;
+        bottom: -12px;
+        left: 0;
+        background: #5bace9;
+        display: block;
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: all 0.25s ease-in-out 0s;
+    }
+
+    .header .main_menu > .w1200 {
+        padding: 13px 15px;
+    }
+   
+    .header .hd_right {
+        right: 41px;
+    }
+    .header .top-menu .w1200{
+        padding: 0;
+    }
+    .header .searchtop .search_btn {
+        width: 24px;
+        padding-top: 6px;
+    }
+    .header .searchtop .search_wrap .search_btn {
+        width: 24px;
+        padding-top: 4px;
+        top: -16px;
+        right: 29px;
+    }
+    .header .inform_top .inform_icon {
+        width: 24px;
+        height: 24px;
+    }
+    .header .all_menu_btn {
+        width: 24px;
+        padding-left: 13px;
+    }
     .header .inform_top {
-        margin: 0 5px 0 5px;
+        margin: 0 0 0 5px;
     }
     .footer_in .sns {
         width: auto;
@@ -3861,7 +3930,7 @@ margin-bottom:0;
         }
     .header .hd_right {
         right: 0;
-        top: 23px;
+        top: 7px;
     }
     .header .hd_right .login,
     .header .hd_right .mypage {
@@ -3977,6 +4046,11 @@ margin-bottom:0;
 
 }
 
+@media (min-width:1230px) {
+    .header .main_menu > .w1200{
+        padding: 13px 0;
+    }
+}
 @media (min-width:1400px) {
     .header_nav ul .home a {
         height: 50px;
@@ -4000,6 +4074,18 @@ margin-bottom:0;
 }
 
 @media (max-width:767px) {
+    .footer_in .bottom_nav .cs{
+        margin-top: 0px;
+    }
+    .footer_in .sns{
+        margin-top: 0px;
+    }
+    .footer_in .bottom_nav .cs a{
+        padding: 3px 12px;
+    }
+    .header .all_menu_btn{
+        padding-left: 0;
+    }
     #setting_link{
         padding: 5px 18px;
         font-size: 13px;

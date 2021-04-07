@@ -371,7 +371,7 @@ ul.list_ul li {
 }
 
 ul.list_ul.line3 li {
-    width: 31.7%;
+    width: 33.3%;
 }
 ul.list_ul.line3 li:last-child {
     display:none;
@@ -499,7 +499,7 @@ ul.list_ul li .tag2 {
     text-align: left;
     font-weight: 100;
     font-size:1em;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
     ul.list_ul li .tag2 span {
@@ -2927,6 +2927,11 @@ div.sum_div {
         }
 }
 
+@media (max-width:1000px) {
+    ul.list_ul.line3 li .img {
+        height: 150px;
+    }
+}
 @media (max-width:767px) {
     ul.list_ul.line4 li .img{
         height: 170px;

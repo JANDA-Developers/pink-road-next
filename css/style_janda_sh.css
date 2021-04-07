@@ -441,12 +441,12 @@
                 position: relative;
                 display: block;
                 width: 100%;
-                padding: 30px 0 20px;
+                padding: 0;
                 box-sizing: border-box;
             }
             .main_con_box4 .deal_list .alignment{
                 display: flex;
-                padding: 30px 0 0;
+                padding: 0 0 10px;
             }
             .main_con_box4 .deal_list .alignment .right_div{
                text-align: right;
@@ -10066,7 +10066,7 @@ i.calendar {
         box-sizing: border-box;
     }
     .main_con_box4 {
-        padding: 130px 0;
+        padding: 80px 0;
     }
     .main_con_box4 .deal_list .alignment{
         padding: 30px 0 15px;
@@ -10482,6 +10482,19 @@ i.calendar {
     }
    
 }
+@media (max-width: 1000px) {
+    .tour_details_in .Read_box{
+        width: 100%;
+        position: relative;
+    }
+    #viewControl{
+        width: 100%;
+        margin-left: 0;
+    }
+    .tour_details_in .boardReadBody .in_box{
+        padding: 50px 30px;
+    }
+}
 @media (max-width: 767px) {
  
     .main_con_box8 .alignment .right_div{
@@ -10505,9 +10518,7 @@ i.calendar {
         text-align: center;
         width: 50%;
     }
-    .header .all_menu_btn{
-        padding-left: 0;
-    }
+
     .siteInfo_in .con02 li br {
         display: none;
     }
@@ -10589,7 +10600,7 @@ i.calendar {
         margin-right: -350px;
     }
     .main_con_box3 .top_txt {
-        padding: 120px 3% 140px;
+        padding: 120px 3% 80px;
         text-align: center;
     }
     .main_con_box3 .top_txt h2{
@@ -10608,7 +10619,7 @@ i.calendar {
         left: 10%;
         padding: 0;
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
     .main_con_box3 li {
         font-size: 1.2em;
@@ -10677,10 +10688,10 @@ i.calendar {
         background-size: 52%;
 }
     .main_con_box5 div.goods_list .line4 li{
-        width:48.6%;
+        width:100%;
     }
     .main_con_box5 div.goods_list .line4 li .img {
-        height: 100px;
+        height:200px;
     }
     .main_con_box6{ 
         padding: 80px 3% 165px;
@@ -10973,14 +10984,7 @@ i.calendar {
         top: 27px;
     }
 
-    .tour_details_in .Read_box{
-        width: 100%;
-        position: relative;
-    }
-    #viewControl{
-        width: 100%;
-        margin-left: 0;
-    }
+  
     #viewControl .links_wrap {
        text-align: center;
     }

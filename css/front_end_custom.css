@@ -219,7 +219,7 @@ td {
 }
 
 .deps {
-    padding-bottom: 15px;
+    padding-bottom: 1px;
 }
 .deps:hover .deps_nav {
     /* padding-top: 15px!important;
