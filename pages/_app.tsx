@@ -167,6 +167,8 @@ function App({ Component, pageProps }: any) {
     return <div></div>
   }
 
+  console.log({ productGroupList });
+
   return (
     <div className="App">
       <div id="MuPageLoading" className="muPageLoading" />
