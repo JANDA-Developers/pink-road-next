@@ -1,5 +1,7 @@
 import React from 'react'
+import { getStaticPageInfo } from '../utils/page'
 
+export const getStaticProps = getStaticPageInfo("main")
 const TermsOfUse = () => {
     return (
         <div>

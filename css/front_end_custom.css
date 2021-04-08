@@ -4,10 +4,16 @@
     outline: 1px dashed;
     min-width: 10px!important;
     cursor: auto!important;
+    white-space: pre;
 }
 *[contenteditable="plaintext-only"]:focus{
     outline: 1px solid;
 }
+
+*[contenteditable="ready"] {
+    white-space: pre;;
+}
+
 
 div[contenteditable="plaintext-only"]{
     width: 100%;

@@ -2,12 +2,15 @@
 const info = {
     goods_list1_title: {
         kr: `BEST`,
+        en: ``,
     },
     goods_list2_title: {
         kr: `DM추천`,
+        en: ``,
     },
     m_01_title: {
         kr: `특별한 여행<br/>즐거운 추억<br/>소중한 당신`,
+        en: ``,
     },
     m_01_subtitle: {
         kr: `It's가이드와 함께 지금 떠나세요.`

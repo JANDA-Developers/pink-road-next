@@ -235,10 +235,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
             </div>
           </div>
           <GoodsListAPI initialOption={{
-            initialViewCount: 16,
-            initialFilter: {
-              _id_in: groupsMap.Main1
-            }
+            initialViewCount: 8,
           }} />
         </div>
 
@@ -250,7 +247,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
             </div>
           </div>
           <GoodsListAPI initialOption={{
-            initialViewCount: 16,
+            initialViewCount: 8,
             initialFilter: {
               _id_in: groupsMap.Main1
             }

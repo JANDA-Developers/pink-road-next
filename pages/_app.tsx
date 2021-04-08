@@ -1,3 +1,5 @@
+import "../utils/polifill";
+
 import React, { useEffect, useState } from 'react';
 import '../css/all.css';
 import "dayjs/locale/ko"
@@ -28,7 +30,6 @@ export type TProductGrop = {
   groupCode: string;
 }
 
-
 export type TContext = {
   categories: categoryList_CategoryList_data[]
   role: UserRole
@@ -44,7 +45,6 @@ export type TContext = {
   categoriesMap: Record<CategoryType, Fcategory[]>
   productGroupList: TProductGrop[]
 }
-
 
 const defaultContext: TContext = {
   categories: [],
@@ -89,8 +89,6 @@ function App({ Component, pageProps }: any) {
 
   const groupsMap = groupMap(groups)
   const catsMap = categoryMap(catList);
-
-
 
   useEffect(() => {
     function isItIE() {
@@ -150,10 +148,7 @@ function App({ Component, pageProps }: any) {
     Component = () => <PageDeny msg="인증되지 않은 판매자 입니다. 인증 소요시간은 평균 24시간 입니다." />
   }
 
-
   const token = getFromUrl("refreshToken");
-
-
 
   if (!ComponentAuth.includes(role || null) && !loading) {
     if (arrayEquals(ComponentAuth, ALLOW_LOGINED)) {

@@ -20,7 +20,6 @@ const info: TStieInfo = {
     m_07_box02_text: {
         kr: '예약관리시스템에서 결제도 한번에 관리도 한번에 관리해드립니다. 더 이상 어렵게 관리하지 마세요.',
     },
-
     m_07_box02_rigthnumber: {
         kr: '01',
     },

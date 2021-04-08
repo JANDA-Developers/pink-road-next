@@ -10,8 +10,7 @@ export interface IPortfolio extends portfolioFindById_PortfolioFindById_data {};
 export interface IPageInfo extends  productList_ProductList_page {}
 export interface ILi extends React.HTMLAttributes<HTMLLIElement> {
 }
-export interface IRef<T> extends React.MutableRefObject<T> {}
-
+export interface IRef<T = HTMLDivElement> extends React.MutableRefObject<T> {}
 export declare type TElements = string | JSX.Element | JSX.Element[] | string[];
 export interface IDiv extends React.HTMLAttributes<HTMLDivElement> {
 }
