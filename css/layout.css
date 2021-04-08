@@ -3352,7 +3352,10 @@ i.icon_plus {
 }
 
 @media (min-width:1000px) {
-   
+    .header .hd_left .logo img {
+        margin-top: 11px;
+        height: 29px;
+    }
     .search_box {
         padding: 50px 49px;
     }
@@ -3781,6 +3784,7 @@ i.icon_plus {
     }
     .header .main_menu > .w1200{
         width: 100% !important ;
+        padding: 0 15px;
     }
     .header .hd_right {
         width: auto;
@@ -3809,6 +3813,11 @@ i.icon_plus {
     .m {
         display: none;
     }
+    .header .hd_left .logo img {
+        margin-top: 5px;
+        height: 38px;
+    }
+
     .header .main_menu > .w1200 {
         padding: 12px 20px; 
         width: 100%;

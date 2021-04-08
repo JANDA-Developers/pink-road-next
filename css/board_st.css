@@ -73,6 +73,49 @@
             font-weight: 600;
             color: #333;
         }
+.board_option__btn {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    border-radius: 3px;
+    line-height: 10px;
+    clear: both;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+    .board_option__btn li {
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        border-radius: 3px;
+        border: 1px solid #cfcfcf;
+        background-color: #ffffff;
+        margin-right: 5px;
+    }
+    .board_option__btn a {
+        display: block;
+        padding: 10px 12px;
+        box-sizing: border-box;
+        color: #999999;
+        font-weight: 600;
+        font-size: 11px;
+    }
+    .board_option__btn a strong {
+        font-weight: 400;
+    }
+
+        .board_option__btn a:hover {
+            color: #333;
+        }
+        .board_option__btn li.on {
+            border: 1px solid #ed297b;
+        }
+        .board_option__btn li.on a {
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #ed297b;
+        }
 .board_title {
     position: relative;
     display: block;
@@ -800,7 +843,8 @@ ul.boardlist_ul li .cash {
         width: auto;
         flex: 1 1;
         flex-grow: 1;
-        font-size: 13px;
+        font-size: 1em;
+        font-weight: 600 !important;
         box-sizing: border-box;
         text-align: center;
     }
@@ -851,6 +895,7 @@ ul.boardlist_ul li .cash {
             padding-left: 0;
             font-weight: 600;
             font-size: 1.2em;
+            line-height: 130%;
         }
 
         .board_list.st01 .tbody .td04 {
@@ -2338,9 +2383,7 @@ div.sum_div {
         border-radius: 5px;
         overflow: hidden;
     }
-    .board_qna .dl:hover{
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.089);
-}
+
     .board_qna .dt{
         position: relative;
         display: block;
@@ -2377,7 +2420,7 @@ div.sum_div {
     .board_qna .dt span{
         display: inline-block;
         padding-right: 15px;
-        color: #2196F3;
+        color: #ed297b;
         font-size: 1.2em;
     }
     .board_qna .dd{
@@ -2410,7 +2453,7 @@ div.sum_div {
     }
     .board_qna .dd p{
         display: block;
-        margin-left: 30px;
+        margin-left: 15px;
         line-height: 220%;
         
     }
@@ -2419,7 +2462,7 @@ div.sum_div {
     }
     .board_qna .dl.active .dt i[class*=jandaicon]{
         transform: rotate(180deg);
-
+        opacity: 1;
     }
 
 

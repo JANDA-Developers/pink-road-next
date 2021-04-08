@@ -135,7 +135,7 @@
 
 .mainSlider .slick-dots > li.slick-active {
     background-color: rgba(255,255,255,.9);
-    width: 10%;
+    width: 5%;
     transition: transform .3s;
 }
 
@@ -1236,6 +1236,16 @@ div.alignment {
     position: relative;
     padding: 30px 0 15px;
     height: auto;
+    box-sizing: border-box;
+}
+
+div.alignment .center_div{
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    font-size: 14px;
+    line-height: 22px;
     box-sizing: border-box;
 }
 
@@ -2974,7 +2984,7 @@ ul.rank_ul {
         width: 100%;
         display: block;
         box-sizing: border-box;
-        padding: 0px 0 20px 10%;
+        padding: 0px 0 20px 50px;
         overflow: hidden;
     }
     .siteInfo_in .con02 .top_txt::after {
@@ -3006,7 +3016,7 @@ ul.rank_ul {
         display: block;
         box-sizing: border-box;
         padding: 35px 0 0 50px;
-        text-align: center;
+        text-align: left;
     }
 
     .siteInfo_in .con02 li {
@@ -9018,7 +9028,7 @@ i.calendar {
     border: 1px solid #999;
 }
 .btnList__round .join a{
-    color: #d17fa1;
+    color: #d17fa1 !important;
     border: 1px solid #d17fa1;
 }
 .btnList__round .join a:hover{
@@ -9345,8 +9355,8 @@ font-size: 1em;
     }
 
     .siteInfo_in .top_bg {
-        height: 560px;
-        padding: 250px 0 0;
+        height: 590px;
+        padding: 190px 0 0;
         background-position: center 650px;
         background-size: 200%;
     }
@@ -9374,7 +9384,7 @@ font-size: 1em;
     }
 
         .siteInfo_in .con02 li {
-            width: 26%;
+            width: 24.4%;
             margin: 0 7% 0 0;
             padding: 0;
         }
@@ -9394,10 +9404,13 @@ font-size: 1em;
             }
             .siteInfo_in .con02 li span {
                 display: block;
-                font-size: 1.5em;
+                font-size: 1.4em;
                 line-height: 120%;
+                font-weight: 100;
             }
-
+            .siteInfo_in .con01{
+                padding: 0px 5% 90px;
+            }
     .siteInfo_in .con01 .haf_first {
         width: 95%;
         min-height: unset;
@@ -9521,7 +9534,7 @@ font-size: 1em;
         }
 
     .siteInfo_in .con04 .infopp {
-        padding: 270px 5% 90px;
+        padding: 270px 5% 250px;
     }
 
     div.bn_box {
@@ -9656,9 +9669,13 @@ font-size: 1em;
                     text-decoration: none;
                     
                 }
+          
 }
 
 @media (min-width: 1000px) {
+    .mainSlider .slick-dots > li.slick-active{
+        width: 8%;
+    }
     .quotation__table{
         width: 80%;
         padding: 60px;
@@ -9694,7 +9711,7 @@ font-size: 1em;
     }
     
     .siteInfo_in .con02 ul{
-        padding: 35px 0 0 0;
+        padding: 35px 0 0 50px;
     }
     .option_tb .category {
         padding: 0 7px;
@@ -9873,16 +9890,18 @@ font-size: 1em;
                 padding: 150px 0 130px;
             }
     .main_con_box2 .top_txt {
-        padding: 25px 0 0;
+        padding: 25px 0 0 50px;
         overflow: unset;
+        position: relative;
     }
 
         .main_con_box2 ul {
-            padding: 35px 0 70px;
+            padding: 35px 0 70px 50px;
+            text-align: left;
         }
 
         .infolist li {
-            width: 29%;
+            width: 26%;
             height: 300px;
             margin: 8px;
             padding: 0;
@@ -9920,7 +9939,7 @@ font-size: 1em;
             height: 3px;
             background-color: #555555;
             position: absolute;
-            left: 3px;
+            left: 50px;
             bottom: -24px;
         }
         .main_con_box2 {
@@ -9945,12 +9964,12 @@ font-size: 1em;
     .main_con_box3 li {
         width: 25%;
         min-height: 450px;
-        background-size: 240%;
+        background-size: 270%;
 
     }
 
     .siteInfo_in .top_bg {
-        height: 580px;
+        height: 730px;
         padding: 250px 0 0;
         background-position: center;
         background-size: 180%;
@@ -9985,7 +10004,7 @@ font-size: 1em;
     }
 
         .siteInfo_in .con02 .top_txt {
-            padding: 0;
+            padding: 0 0 0 50px;
             overflow: unset;
         }
         .siteInfo_in .con02 .top_txt::after {
@@ -9995,7 +10014,7 @@ font-size: 1em;
             height: 3px;
             background-color: #555555;
             position: absolute;
-            left: 3px;
+            left: 50px;
             bottom: -24px;
         }
             .siteInfo_in .con02 .top_txt h4 {
@@ -10013,7 +10032,7 @@ font-size: 1em;
         .siteInfo_in .con02 li {
             width: 25%;
             height: 220px;
-            margin: 60px 8% 0px 0;
+            margin: 30px 8% 0px 0;
             padding: 0;
         }
 
@@ -10071,7 +10090,7 @@ font-size: 1em;
         background-size: 150%;
     }
     .siteInfo_in .con03 div[class*="bg0"]{
-        background-size: 120%;
+        background-size: 170%;
     }
         .siteInfo_in .con03 h4 {
             font-size: 2.7em;
