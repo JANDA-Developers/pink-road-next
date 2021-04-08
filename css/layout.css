@@ -4074,10 +4074,10 @@ margin-bottom:0;
 }
 
 @media (max-width:767px) {
-    .footer_in .bottom_nav .cs{
+    .footer_in .sns{
         margin-top: 0px;
     }
-    .footer_in .sns{
+    .footer_in .bottom_nav .cs{
         margin-top: 0px;
     }
     .footer_in .bottom_nav .cs a{
