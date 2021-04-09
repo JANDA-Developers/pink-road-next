@@ -942,7 +942,7 @@ ul.boardlist_ul li .cash {
 .board_list.st03 {
     position: relative;
     display: block;
-    width: 94%;
+    width: 100%;
 }
 
     .board_list.st03 .tbody {
@@ -2790,7 +2790,7 @@ div.sum_div {
         }
 }
 
-@media (min-width:1280px) {
+@media (min-width:1230px) {
     .board_write .w1200 {
         width: 1200px;
     }

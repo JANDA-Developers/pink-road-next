@@ -37,7 +37,7 @@
 .mypage_in {
     position: relative;
     display: block;
-    padding: 59px 0 !important;
+    padding: 59px 3% 100px !important;
     background-color: #fbfbfb;
     box-sizing: border-box;
 }    
@@ -3469,7 +3469,7 @@ div.reservation_popup .tr select {
         width: 24%;
     }
     .myboard_box .paper_div{
-        padding: 50px;
+        padding: 50px 30px;
     }
     .goods_div .paper_div{
         padding: 50px;
@@ -3694,10 +3694,19 @@ div.reservation_popup .tr select {
         display: block !important;
         margin-left: 0;
     }
+  
 }
     
     
 @media (min-width: 1200px) {
+    .myboard_box .paper_div{
+        padding: 50px;
+    }
+}
+@media (min-width: 1230px) {
+    .mypage_in {
+        padding: 59px 0 100px !important;
+    }
 }
     
 @media (max-width: 1000px) {

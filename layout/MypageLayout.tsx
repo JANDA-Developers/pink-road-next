@@ -70,7 +70,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
     const isTapOn = (value?: string) => current === value ? "on" : "";
 
     return <div>
-        <div className="top_visual">
+        <div>
             <SubTopNav pageTools={pageTools} >
                 <li className="homedeps1">
                     <Link href="/mypage">

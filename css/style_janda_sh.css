@@ -455,7 +455,7 @@
         width: 100%;
         height: 100%;
         box-sizing: border-box;
-        padding: 90px 3% 0;
+        padding: 56px 3% 0;
         cursor: default;
     }
 
@@ -1065,7 +1065,7 @@ div.popup_bg_mini .page{
     height: 100%;
     width: 100%;
     border-radius: 20px;
-    padding: 20px 10px 20px 10px;
+    padding:20px 0px 30px 0px;
     box-sizing: border-box;
     overflow: hidden;
     background-color: #fff;
@@ -1146,6 +1146,10 @@ div.popup_bg_mini .page{
         padding: 0 7%;
         box-sizing: border-box;
     }
+    div.popup_bg_mini h4 {
+        font-size: 1em;
+        line-height: 240%;
+    }
     div.popup_bg_mini .input {
             background-color: #ffffff;
             border: #e3e3e3 1px solid;
@@ -1172,7 +1176,7 @@ div.popup_bg_mini .page{
         display: block;
         position: relative;
         width: 100%;
-        padding: 25px 30px 0;
+        padding: 15px 30px 0;
         box-sizing: border-box;
     }
 
@@ -1658,7 +1662,7 @@ ul.rank_ul {
 
 .inner {
     margin: 38px 0 150px;
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
 }
@@ -1913,7 +1917,7 @@ ul.rank_ul {
 }
 
 .place_inner {
-    width: 1200px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: flex-start;
@@ -2319,7 +2323,7 @@ ul.rank_ul {
 
 .pri_in {
     padding: 50px 0 150px;
-    width: 1200px;
+    width: 100%;
     margin: 42px auto;
 }
 
@@ -2354,7 +2358,7 @@ ul.rank_ul {
 
 .rule_in {
     padding: 50px 0 150px;
-    width: 1200px;
+    width: 100%;
     margin: 42px auto;
 }
 
@@ -2387,7 +2391,7 @@ ul.rank_ul {
 /* profile */
 
 .profile_in {
-    width: 1200px;
+    width: 100%;
     margin: 110px auto 150px;
 }
 
@@ -4397,7 +4401,7 @@ div.bn_box {
     top: 50%;
     left: 50%;
     display: none;
-    width: 1200px;
+    width:100%;
     height: 600px;
     margin-top: -300px;
     margin-left: -600px;
@@ -7789,6 +7793,8 @@ i.calendar {
 .news_box  {
     padding-top: 63px;
     padding-bottom: 150px;
+    padding-left: 3%;
+    padding-right: 3%;
     box-sizing: border-box;
 }
 
@@ -9194,6 +9200,9 @@ font-size: 1em;
 .Allsearch__plusBtn .plus{
     font-size: 0.7em;
 }
+.fix__top{
+    background-color: #f5f5f5 !important;
+}
 
 @media (min-width: 768px) {   
     .main_con_box4 .top_txt{
@@ -9674,7 +9683,7 @@ font-size: 1em;
 
 @media (min-width: 1000px) {
     .mainSlider .slick-dots > li.slick-active{
-        width: 8%;
+        width: 5%;
     }
     .quotation__table{
         width: 80%;
@@ -9868,7 +9877,7 @@ font-size: 1em;
 
         .main_con_box1 .main_top_images strong {
             margin-bottom: 50px;
-            margin-top: 125px;
+            margin-top: 152px;
             font-size: 5em;
         }
         .main_con_box1 .main_top_images strong::after {
@@ -10395,15 +10404,15 @@ font-size: 1em;
     div.alignment {
         width:100%;
         margin: 0 auto;
-        display: flex;
+        display: block;
         position: relative;
         padding: 30px 5px 5px;
-        height: 68px;
+        height: 80px;
         box-sizing: border-box;
     }
     div.alignment .left_div {
             display: inline-block;
-            width:100%;
+            width:auto;
             text-align: left;
             font-size: 14px;
             line-height: 22px;
@@ -10411,9 +10420,10 @@ font-size: 1em;
         }
     div.alignment .right_div {
             display: inline-block;
-            width:100%;
-            text-align: right;
+            width:auto;
+            text-align: left;
             font-size: 14px;
+            margin-left: 10px;
         }
 
     div.alignment select {
@@ -10724,15 +10734,11 @@ font-size: 1em;
     div.popup_bg_mini h3{
         padding: 0 30px 0;
     }
-    div.alignment .left_div {
-        width:50%;
-    }
+ 
     .siteInfo_in .con02 li strong {
         font-size: 2.3em;
     }
-    div.alignment .right_div {
-        width:50%;
-    }
+ 
     .selectViewList ul.list_ul .list_in .txt1 {
         display: inline-block;
         width: 46%;
@@ -10828,9 +10834,10 @@ font-size: 1em;
 
 }
 
-.main_top_images--added::after {
-    display: none!important;
-}
+    .main_top_images--added::after {
+        display: none!important;
+    }
+  
 }
 @media (min-width: 1200px) {
     .sign_in {
@@ -10844,9 +10851,7 @@ font-size: 1em;
         width: 430px;
         height: 250px;
     }
-    .sign_in .inner .join_address ul {
-        width: 1200px;
-    }
+  
     .mainSlider .slick-dots {
         bottom: 30px;
     }
@@ -10868,11 +10873,7 @@ font-size: 1em;
         div.popup_bg_full .in_txt {
             padding:50px 20px 20px;
         }
-    .main_con_box1 .ovj {
-        width: 1200px;
-        margin: 0 auto;
-        position: relative;
-    }
+   
         .main_con_box1 .ovj:before {
             top: 70px;
             left: 50px;
@@ -10910,42 +10911,10 @@ font-size: 1em;
 
     }
 
-    .main_con_box4 .photo_box {
-        width: 1200px;
-        padding: 0 0 0 0;
-    }
-
-    .footer_in .f_detail_wrap,
-    #container .row1,
-    #container .row3,
-    #container .row5,
-    #container .row2 .row_inner,
-    #container .row4 .row_inner,
-    .w1200,
-    #content .xm {
-        width: 1200px;
-        margin: 0 auto;
-    }
-
         #container .row1 ul {
             width: 983px;
         }
 
-    .iframe_box {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        width: 1200px;
-        height: 600px;
-        margin-top: -300px;
-        margin-left: -600px;
-        z-index: 101;
-        padding: 59px 15px 15px;
-        box-sizing: border-box;
-        border-radius: 20px;
-        overflow: hidden;
-        background-color: #fff;
-    }
 
     .portfolio_in .con04 {
         min-height: 590px;
@@ -11035,12 +11004,7 @@ font-size: 1em;
         padding: 150px 3%;
         background-size: 130%;
     }
-
-    div.alignment {
-        width: 100%;
-        padding: 30px 5px 5px;
-        height: 68px;
-    }
+   
 
     div.search_mini {
         width: 45%;
@@ -11161,10 +11125,96 @@ font-size: 1em;
     }
 }
 
-@media (min-width: 1250px) {
+@media (min-width: 1230px) {
     
+    .footer_in .f_detail_wrap,
+    #container .row1,
+    #container .row3,
+    #container .row5,
+    #container .row2 .row_inner,
+    #container .row4 .row_inner,
+    .w1200,
+    #content .xm {
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+    .iframe_box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 1200px;
+        height: 600px;
+        margin-top: -300px;
+        margin-left: -600px;
+        z-index: 101;
+        padding: 59px 15px 15px;
+        box-sizing: border-box;
+        border-radius: 20px;
+        overflow: hidden;
+        background-color: #fff;
+    }
+    .main_con_box4 .photo_box {
+        width: 1200px;
+        padding: 0 0 0 0;
+    }
+
+    .main_con_box1 .ovj {
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .sign_in .inner .join_address ul {
+        width: 1200px;
+    }
+    .inner {
+        width: 1200px;
+    }
+    .place_inner {
+        width: 1200px;
+    }
+    .pri_in {
+        width: 1200px;
+    }
+    .rule_in {
+        width: 1200px;
+    }
+    .iframe_box {
+        width: 1200px;
+    }
+    
+    .profile_in {
+        width: 1200px;
+    }
+    
+    div.alignment .right_div {
+        width: 50%;
+    }
+    div.alignment .left_div {
+        width:50%;
+    }
     .main_con_box1 .w1200 {
         padding: 0 0;
+    }
+    div.alignment {
+        width:100%;
+        display: flex;
+        padding: 30px 5px 5px;
+        height: 68px;
+    }
+    div.alignment .left_div {
+        display: inline-block;
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        line-height: 22px;
+        color: #999;
+    }
+    div.alignment .right_div {
+        display: inline-block;
+        width: 100%;
+        text-align: right;
+        font-size: 14px;
     }
 }
 @media (min-width: 1300px) {
@@ -11693,6 +11743,9 @@ font-size: 1em;
 
 
 @media (max-width:360px) {
+    .main_con_box4 .top_txt .btn_list {
+        margin-top: 22px;
+    }
     .question_box .popup_bg_mini .in_txt{
         min-width: 100%;
         max-width: 100%;
@@ -11732,7 +11785,7 @@ font-size: 1em;
         height: 184px;
     }
     .main_con_box4 .top_txt h2 {
-        font-size: 36px;
+        font-size: 3em;
     }
     .photo_ul.line3 li{
         height: 190px;

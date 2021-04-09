@@ -83,7 +83,7 @@ export const News: React.FC<Ipage> = (_pageInfo) => {
             viewCount={viewCount}
             onWrite={gotoWrite}
             pageInfo={pageInfo}
-            addBtnLabel={isManager ? "뉴스 등록하기" : undefined}
+            addBtnLabel={isManager ? "글쓰기" : undefined}
         >
             {view === "gal" && <div >
                 <div className="board_list st02">

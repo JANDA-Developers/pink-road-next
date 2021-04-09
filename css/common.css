@@ -881,7 +881,7 @@ br.no {
         padding: 0 15px;
     }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1230px) {
     div.w1200 {
         width: 1200px;
     }

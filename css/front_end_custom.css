@@ -223,11 +223,9 @@ td {
 }
 
 .deps {
-    padding-bottom: 15px;
+    padding-bottom:8px;
 }
 .deps:hover .deps_nav {
-    /* padding-top: 15px!important;
-    padding-bottom: 15px!important; */
    min-height: 100px;
     opacity: 1;
 }
@@ -521,8 +519,15 @@ figure:after {
         min-width: 50%;
     }
 }
-@media (min-width:1000px) {
-    .main_photo_ul li{
-        min-width: 33.3%;
+@media (min-width:1100px) {
+    
+.deps {
+    padding-bottom: 8px;
+}
+}
+@media (min-width:1230px) {
+
+    .deps {
+        padding-bottom: 5px;
     }
 }
