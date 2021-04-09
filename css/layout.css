@@ -3300,12 +3300,14 @@ i.icon_plus {
     display: none;
     width: 94%;
     line-height: 15px;
+    color: #9d9d9d;
     border: 1px solid #cccccc;
-    background-color: #ffffff;
+    background-color: #f6f6f6;
     box-sizing: border-box;
     padding: 12px;
     margin-top: 3%;
     margin-left: 3%;
+    border-radius: 3px;
 }
 .mobile__select input[type="checkbox"]{
     display: none;
@@ -3317,9 +3319,9 @@ i.icon_plus {
     margin-left: -13px;
     width: 100%;
     line-height: 45px;
-    color: #9d9d9d;
+   
     border: 1px solid #cccccc;
-    background-color: #f6f6f6;
+    background-color: #ffffff;
     z-index: 9999;
 }
 .mobile__select .mobile-select-label-1{

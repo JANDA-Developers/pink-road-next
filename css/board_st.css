@@ -877,8 +877,8 @@ ul.boardlist_ul li .cash {
             }
 
         .board_list.st01 .tbody .td01 {
-            width:auto;
-            max-width: 10%;
+            width:100%;
+            display: block;
             text-align: center;
             margin-right: 15px;
            
@@ -2524,9 +2524,7 @@ div.sum_div {
     }
 }
 @media (min-width:1000px) {
-    .board_box{
-        padding: 0;
-    }
+ 
     .board_list.st05 {
         width:100%;
     }
@@ -2690,7 +2688,9 @@ div.sum_div {
         text-align: center;
         max-width: 100px;
     }
-
+    .board_list.st01 .tbody .td01{
+        max-width: 10%;
+    }
     .board_list.st01 .tbody .td03 {
         text-align: left;
         padding-left: 10px;
@@ -2793,6 +2793,9 @@ div.sum_div {
 @media (min-width:1230px) {
     .board_write .w1200 {
         width: 1200px;
+    }
+    .board_box{
+        padding: 0;
     }
 }
 @media (max-width:1000px) {
