@@ -16,7 +16,7 @@ import { useContext } from "react";
 import { AppContext } from "../pages/_app";
 
 export const useProductCreate = generateMutationHook<productCreate, productCreateVariables>(PRODUCTS_CREATE);
-export const useProductDelete = generateMutationHook<productDelete,productDeleteVariables>(PRODUCT_DELETE);
+export const useProductDelete = generateMutationHook<productDelete,productDeleteVariables>(PRODUCT_DELETE, {...getRefetch(PRODUCT_LIST)});
 export const useProductFindById = generateFindQuery<productFindById, productFindByIdVariables, productFindById_ProductFindById_data>("_id",PRODUCT_FIND_BY_ID);
 export const useProductFindByIdForSeller = generateFindQuery<productFindByIdForSeller, productFindByIdForSellerVariables, productFindByIdForSeller_ProductFindByIdForSeller_data>("_id", PRODUCT_FIND_BY_ID_FOR_SELLER);
 

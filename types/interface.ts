@@ -3,6 +3,7 @@ import { CSSProperties, Dispatch } from "react";
 import { IPopupStyle } from "../components/popupconfig/PopupBox";
 import { ListInitOptions } from "../hook/useListQuery";
 import {  Fmodal, NotificationTriggerEvent, portfolioFindById_PortfolioFindById_data, productFindById_ProductFindById_data, productFindById_ProductFindById_data_itinerary, productList_ProductList_data, productList_ProductList_page, ReplaceString, _UserFilter} from "../types/api";
+import { genrateOption } from "../utils/query";
 export interface Iitineraries extends productFindById_ProductFindById_data_itinerary {}
 export interface IproductFindById  extends productFindById_ProductFindById_data {}
 export interface IProduct extends productList_ProductList_data { };
@@ -89,3 +90,6 @@ export const ReplaceKr:ReplaceKR = {
 export interface Ipopup extends Fmodal {
     style: IPopupStyle
 }
+
+
+export type TListQueryVariables<F,S,Q,V> = [Partial<ListInitOptions<F, S>>, genrateOption<Q, V>]

@@ -218,7 +218,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   if (!isSeller && !product.isOpen) return <PageDeny msg="해당 게시글은 비공개 상태입니다." />
   // if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
 
-
   return <div className="edtiorView">
     {!loaded && <PageLoading />}
     <OnImagesLoaded delay={5000} onLoaded={handleLoaded} >
@@ -524,7 +523,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               </div>
               {(isManager || isAdmin || isMyProduct) && <div className="float_right">
                 <button type="submit" onClick={handleEdit} className="btn medium pointcolor">수정</button>
-                {(isManager || isAdmin) && <button type="submit" onClick={handleDelete} className="btn medium">삭제</button>}
+                {(isManager || isAdmin || isMyProduct) && <button type="submit" onClick={handleDelete} className="btn medium">삭제</button>}
               </div>}
             </div>
             <div className="add_list">

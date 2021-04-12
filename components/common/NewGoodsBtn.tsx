@@ -17,13 +17,13 @@ export const NewGoodsBtn: React.FC<IProp> = ({ }) => {
 };
 export const NewProfileBtn: React.FC<IProp> = ({ }) => {
     const { isManager, isParterB, myProfile } = useContext(AppContext)
-    if (isManager) return null;
+    // if (isManager) return null;
     if (!isParterB) return null;
-    const { _id } = myProfile;
+    const _id = myProfile?._id;
 
-    return <Link href={`/tour/itsguid/${_id}`}>
+    return <Link href={`/itsguid/${_id}`}>
         <a>
-            <div id="float_profile_link" ><i className="flaticon-add"></i>프로필수정</div>
+            <div id="profile_link" ><i className="flaticon-add"></i>프로필</div>
         </a>
     </Link>
 };

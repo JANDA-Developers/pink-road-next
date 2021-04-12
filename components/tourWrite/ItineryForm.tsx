@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 // import { Iitineraries } from "../TourWrite";
 import dayjs from "dayjs";
 import { ItineraryCreateInput } from '../../types/api';
@@ -8,13 +8,21 @@ import { LoadEditor } from '../edit/EdiotrLoading';
 const Editor = LoadEditor();
 
 interface IProp {
+    selectEditorIndex: {
+        itsIndex: number;
+        contentIndex: number;
+    };
+    setSelectEditorIndex: React.Dispatch<React.SetStateAction<{
+        itsIndex: number;
+        contentIndex: number;
+    }>>
     its: ItineraryCreateInput[];
     itinery: ItineraryCreateInput;
     setits: ISet<any[]>
     index: number;
 }
 
-export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) => {
+export const ItineryForm: React.FC<IProp> = ({ selectEditorIndex, setSelectEditorIndex, itinery, its, setits, index }) => {
 
     const handleAddContent = () => {
         itinery.contents = [...(itinery.contents || []), ""]
@@ -30,6 +38,14 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) =>
         itinery.contents?.splice(index, 1);
         setits([...its]);
     }
+
+    const handleEditContent = (_index: number) => () => {
+        setSelectEditorIndex({
+            contentIndex: _index,
+            itsIndex: index
+        })
+    }
+
 
     const handleOnChange = (i: number) => (value: string) => {
         if (typeof itinery.contents?.[index] === undefined) return;
@@ -51,12 +67,12 @@ export const ItineryForm: React.FC<IProp> = ({ itinery, its, setits, index }) =>
 
     return <div className="day_tap">
         <div className="texta_title">
-            <input type="text" className="input_01" onChange={handleTitle} value={itinery.title} placeholder={single ? "OO체험" : `${index}일차`} />
+            <input type="text" className="input_01" onChange={handleTitle} value={itinery.title} placeholder={single ? "OO체험" : `${index + 1}일차`} />
             <input readOnly type="text" className="input_02" value={dayjs(itinery.date).format("YYYY.MM.DD (ddd)")} />
         </div>
         {itinery.contents?.map((content, contentIndex) =>
             <div key={`${contentIndex}${index}content`}>
-                <Editor onChange={handleOnChange(contentIndex)} key={"initeryFrom__content" + contentIndex} data={content} />
+                <Editor holderHeight={150} edit={index === selectEditorIndex.itsIndex && selectEditorIndex.contentIndex === contentIndex} onClick={handleEditContent(contentIndex)} className="itinerary__editor" onChange={handleOnChange(contentIndex)} key={"initeryFrom__content" + contentIndex} data={content} />
                 <button onClick={handleDeleteContent(contentIndex)} className="comment_btn mini elimination">
                     일정삭제
                 </button>

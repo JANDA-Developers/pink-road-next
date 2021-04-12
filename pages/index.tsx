@@ -227,6 +227,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
     <div className="main_con_box8">
       <div className="w1200">
 
+        {/* 최신순 */}
         <div className="deal_list">
           <div className="alignment">
             <div className="left_div"><h2><span {...edit("goodsListA_title")} /></h2></div>
@@ -235,10 +236,11 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
             </div>
           </div>
           <GoodsListAPI initialOption={{
-            initialViewCount: 8,
+            initialViewCount: 4,
           }} />
         </div>
 
+        {/* 리뷰순 */}
         <div className="deal_list">
           <div className="alignment">
             <div className="left_div"><h2><span {...edit("goodsListB_title")} /></h2></div>
@@ -247,7 +249,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
             </div>
           </div>
           <GoodsListAPI initialOption={{
-            initialViewCount: 8,
+            initialViewCount: 4,
             initialFilter: {
               _id_in: groupsMap.Main1
             }

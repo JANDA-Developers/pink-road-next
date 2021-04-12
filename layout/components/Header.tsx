@@ -166,6 +166,9 @@ export const Header: React.FC<IProp> = () => {
                                         <a href="/service/announce">서비스</a>
                                     </li>
                                     <li className="deps">
+                                        <a href="/tour?searchData=%EB%A1%9C%EC%BB%AC%EC%B6%95%EC%A0%9C">로컬축제</a>
+                                    </li>
+                                    <li className="deps">
                                         <a href="/site-info">소개</a>
                                     </li>
 

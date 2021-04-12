@@ -62,11 +62,9 @@ i.tooltip{
 /* 편집모드 활성화 아이콘 */
 
 #setting_link {
-    position: fixed;
     display: flex;
     align-items: center;
-    bottom: 20px;
-    right: 20px;
+    margin-bottom: 10px;
     padding: 10px 30px;
     text-align: center;
     background-color: #2196F3;
@@ -90,12 +88,9 @@ i.tooltip{
        margin-right:3px;
         vertical-align: text-top;
     }
-   #registering_link{
-        position: fixed;
+   #registering_link,#profile_link{
         display: flex;
         align-items: center;
-        bottom: 72px;
-        right: 20px;
         padding: 10px 30px;
         text-align: center;
         background-color: #46adff;
@@ -107,12 +102,15 @@ i.tooltip{
         z-index: 1000;
         box-shadow:2px 2px 4px #00000040;
     }
-    #registering_link:hover{
+    #registering_link:hover,#profile_link:hover{
         background-color: #3a98e6;
     }
-    #registering_link i{
+    #registering_link i, #profile_link i{
         margin-right: 5px;
         font-size: 0.7em;
+    }
+    #registering_link {
+        margin-bottom: 10px;
     }
 #gotop {
     position: fixed;

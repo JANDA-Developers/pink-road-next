@@ -1,20 +1,28 @@
 import React, { useContext } from 'react';
+import { ListInitOptions } from '../../hook/useListQuery';
 import { useProductList } from '../../hook/useProduct';
 import { useSingleSort } from '../../hook/useSort';
 import { AppContext } from '../../pages/_app';
+import { productList, productListVariables, _ProductFilter, _ProductSort } from '../../types/api';
+import { TListQueryVariables } from '../../types/interface';
 import { autoComma } from '../../utils/formatter';
 import isEmpty from '../../utils/isEmpty';
+import { genrateOption } from '../../utils/query';
 import { Goods } from './GoodsListAPI';
 import { NoData } from './NoData';
 import SortSelect from './SortMethod';
 import { ViewCount } from './ViewCount';
 import { ViewSelect } from './ViewSelect';
 
-interface IProp { }
+interface IProp {
+    initialOption?: Parameters<typeof useProductList>
+}
 
-export const GoodsListTable: React.FC<IProp> = () => {
+export const GoodsListTable: React.FC<IProp> = (
+    { initialOption = [] }
+) => {
     const { categoriesMap } = useContext(AppContext);
-    const { items, filter, setFilter, sort, setSort, viewCount, setViewCount, pageInfo } = useProductList()
+    const { items, filter, setFilter, sort, setSort, viewCount, setViewCount, pageInfo } = useProductList(...initialOption)
 
     return <div className="deal_list">
         <div className="search">
@@ -26,16 +34,19 @@ export const GoodsListTable: React.FC<IProp> = () => {
                     })
                 }} className={filter.categoryId_eq === undefined ? "on" : ""}><a>#전체</a></li>
                 {categoriesMap.TOUR.map(cat =>
-                    <li onClick={() => {
-                        filter.categoryId_eq = cat._id;
-                        setFilter({
-                            ...filter
-                        })
-                    }} key={cat._id} className={cat._id === filter.categoryId_eq ? `on` : ""}><a>#{cat.label}</a></li>
+                    <li
+                        // 로컬 부분을 나중에 다국어로서 검증하도록 변경
+                        id={cat.label.includes("로컬") ? "localFestival" : undefined}
+                        onClick={() => {
+                            filter.categoryId_eq = cat._id;
+                            setFilter({
+                                ...filter
+                            })
+                        }} key={cat._id} className={cat._id === filter.categoryId_eq ? `on` : ""}><a>#{cat.label}</a></li>
                 )}
             </ul>
         </div>
-        <div className="alignment">
+        <div id="GoodsListTable" className="alignment">
             <div className="left_div"><span>총 <strong>{autoComma(pageInfo.totalCount)}</strong>개</span></div>
             <div className="right_div">
                 <SortSelect onChange={setSort} sort={sort} />
