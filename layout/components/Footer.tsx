@@ -49,12 +49,25 @@ export const Footer: React.FC<IProp> = () => {
         </div>
         <div className="footer_in">
             <div className="bottom_nav">
+                <div className="mobile__select">
+                    <input id="mobile-select-1" type="checkbox" name="checkbox-set" className="mobile-select-1" />
+                    <label htmlFor="mobile-select-1" className="mobile-select-label-1"><strong>서비스 바로가기</strong><i className="jandaicon-arr4-bottom"></i></label>
+                    <div className="mobile__select_box" id="mobile-selectbox-1">
+                        <ul>
+                            <li className="link"><a href="/site-info">회사소개</a></li>
+                            <li className="link"><a href="/member/rule">이용약관</a></li>
+                            <li className="link"><a href="/member/kr-terms">국내여행약관</a></li>
+                            <li className="link"><a href="/member/privacy-policy">개인정보처리방침</a></li>
+                            <li className="link"><a href="/member/refund-policy">취소 및 환불 정책</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <ul className="w1200">
-                    <li className="link"><Link href="/site-info"><a>회사소개</a></Link></li>
-                    <li className="link"><Link href="/member/rule"><a>이용약관</a></Link></li>
-                    <li className="link"><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
-                    <li className="link"><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
-                    <li className="link"><Link href="/member/refund-policy"><a>취소 및 환불 정책</a></Link></li>
+                    <li className="link pc"><Link href="/site-info"><a>회사소개</a></Link></li>
+                    <li className="link pc"><Link href="/member/rule"><a>이용약관</a></Link></li>
+                    <li className="link pc"><Link href="/member/kr-terms"><a>국내여행약관</a></Link></li>
+                    <li className="link pc"><Link href="/member/privacy-policy"><a>개인정보처리방침</a></Link></li>
+                    <li className="link pc"><Link href="/member/refund-policy"><a>취소 및 환불 정책</a></Link></li>
                     <li className="sns">
                         <div>
                             {homepage?.facebookLink && <a href={homepage?.facebookLink} target="_blank"><i className="jandaicon-facebook"></i></a>}

@@ -355,9 +355,7 @@
     #payment .payment_box {
         padding: 40px 40px 15px;
     }
-    #payment .payment_top {
-        width: 1200px;
-    }
+
     #payment .payment_box h2 {
         font-size: 2em;
     }
@@ -402,6 +400,11 @@
 }
 
 
+@media (min-width: 1230px) {
+    #payment .payment_top {
+        width: 1200px;
+    }
+}
 @media (max-width: 767px) {
     #payment .react-tabs__tab-list {
         border-bottom:0;

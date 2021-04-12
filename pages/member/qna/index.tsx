@@ -67,15 +67,14 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
             <MemberTopNav />
             <div className="board_qna board_box">
                 <div className="alignment">
-                    <div className="left_div">
-                        <ul className="board_option">
+                    <div className="center_div">
+                        <ul className="board_option__btn">
                             <li onClick={handleCatFilter(undefined)} className={checkCatEq(undefined)}><a>전체</a></li>
                             {categoriesMap.QNA.map(cat =>
-                                <li className={checkCatEq(cat._id)} onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}<strong>{checkCatCount(cat._id)}</strong></a></li>
+                                // <li className={checkCatEq(cat._id)} onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}<strong>{checkCatCount(cat._id)}</strong></a></li>
+                                <li className={checkCatEq(cat._id)} onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}</a></li>
                             )}
                         </ul>
-                    </div>
-                    <div className="right_div">
                     </div>
                 </div>
                 <Change change={!getLoading}>
