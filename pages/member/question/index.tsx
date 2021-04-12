@@ -92,9 +92,9 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
             <div className="board_box">
                 <div className="alignment">
                     <div className="left_div">
-                        <ul className="board_option">
+                        <ul className="board_option__btn">
                             <li onClick={handleSetFilter(undefined)} className={checkOnStatus(undefined)}><a>전체</a></li>
-                            <li onClick={handleSetFilter(QuestionStatus.READY)} className={checkOnStatus(QuestionStatus.READY)}><a>미답변<strong>{unAnsweredQuestionCount}</strong></a></li>
+                            <li onClick={handleSetFilter(QuestionStatus.READY)} className={checkOnStatus(QuestionStatus.READY)}><a>미답변<strong>{/*{unAnsweredQuestionCount}*/}</strong></a></li>
                         </ul>
                     </div>
                     <div className="right_div">
@@ -104,6 +104,12 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                 </div>
 
                 <div className="board_list st01">
+                    <div className="thead">
+                        <div className="td01">형태</div>
+                        <div className="td03">제목</div>
+                        <div className="td04">작성자</div>
+                        <div className="td05">작성일</div>
+                    </div>
                     <div className="tbody">
                         <Change change={!getLoading}  >
                             <ul>
@@ -112,7 +118,7 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                                         <div className="td01">{inq.product ? "상품문의" : "일반문의"}</div>
                                         {/* <div className="td02"><Link href={`/question/view/${inq._id}`}><a>{inq.title} {inq. && <LockIcon />} </a></Link></div> */}
                                         <div className="td03">
-                                            {isManager ? inq.title : '[문의합니다.]'}
+                                            <i className="icon__lock"></i>{inq.product ? "상품 문의합니다." : "일반 문의합니다."} {isManager ? inq.title : ''}
                                             {dayjs(inq.createdAt).isAfter(dayjs().add(-8, "hour")) && <img className="new" src="../img/svg/new.svg" alt="new" />}
                                             <i className="q_no">{questionSatus(inq.status)}</i>
                                         </div>
@@ -127,7 +133,7 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                 <Paginater pageInfo={pagingInfo} setPage={setPage} />
                 <div className="tl list_bottom">
                     <div className="btn_footer">
-                        <button onClick={() => { handleWrite(undefined) }} type="submit" className="btn medium pointcolor">글쓰기</button>
+                        <button onClick={() => { handleWrite(undefined) }} type="submit" className="btn medium pointcolor">문의하기</button>
                     </div>
                     <SearchMini onSubmit={handleSearch} />
                 </div>
