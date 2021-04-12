@@ -461,7 +461,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               </div>
               {/* 리뷰 신규추가 */}
               <div className="in_box" id="tap__04">
-                <h4>리뷰 </h4>
+                <h4>리뷰</h4>
                 <div className="text ck-content">
                   <div className="review__box">
                     <ul className="review__list">

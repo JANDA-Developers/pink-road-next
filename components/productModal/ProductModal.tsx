@@ -1,7 +1,5 @@
-import dayjs from 'dayjs';
 import Link from 'next/link';
 import React, { useContext, useState } from 'react';
-import ReactTooltip from 'react-tooltip';
 import { useIdSelecter } from '../../hook/useIdSelecter';
 import { useProductController, useProductFindByIdForSeller, useProductUpdate, } from '../../hook/useProduct';
 import { generateSearchLink } from '../../pages/search';
@@ -14,7 +12,6 @@ import { generateClientPaging } from '../../utils/generateClientPaging';
 import { arraySum } from '../../utils/math';
 import { closeModal, openModal } from '../../utils/popUp';
 import { yyyymmdd } from '../../utils/yyyymmdd';
-import { BookingCancelModal } from '../cacnelModal/BookingCancelModal';
 import { Paginater } from '../common/Paginator';
 import { ProductControllers } from '../contollers/ProductControllers';
 import { HistoryTable } from '../historyTable/HistoryTable';
@@ -23,8 +20,6 @@ import { SmsSendModal } from '../smsSnedModal/SmsSendModal';
 interface IProp {
     productId: string;
 }
-
-
 
 export const ProductModal: React.FC<IProp> = ({ productId }) => {
     const ProductId = productId;
@@ -49,8 +44,6 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
     const { title, code, createdAt, keyWards, status, bookings = [], _id, adminMemo: _adminMemo, requestMemo } = product || {};
     const { check, toggle, isChecked, selectAll, selectedIds, setSelectedIds } = useIdSelecter(bookings.map(bk => bk._id));
     const [adminMemo, setAdminMemo] = useState(_adminMemo);
-
-
 
     const settlement = product?.settlement
     const seller = product?.author;
@@ -333,15 +326,12 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                 <ProductControllers {...productControllHook} product={product} />
                             </div>
                             <div className="float_right">
-                                {/* <button disabled={selectedBookings.length !== 1} type="submit" onClick={handleCancel} className="btn medium">예약취소</button> */}
-                                <Link href={`/tour/write/${_id}`}><a className="btn medium">수정하러가기</a></Link>{/* 상품수정폼 가기 */}
+                                <Link href={`/tour/write/${_id}`}><a className="btn medium">수정하러가기</a></Link>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* {selectedBookings.length === 1 && <BookingCancelModal booking={selectedOne} />} */}
                 <SmsSendModal bookings={selectedBookings} />
-                {/* <ReactTooltip id="TooltipProductModal" effect="solid" type="info" /> */}
             </div>
         }
     </div>

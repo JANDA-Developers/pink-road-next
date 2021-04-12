@@ -18,7 +18,6 @@ interface IPromptInfo {
     target: promptTarget;
 }
 
-
 interface IProduct extends Fproduct {
 
 }
@@ -201,10 +200,6 @@ export const ProductControllers: React.FC<IProp> = ({ product, acceptCreate, acc
         if (proptTarget?.target === "denyReq") return handleDenyElseReq
         return () => { }
     })() as () => void;
-
-
-    console.log({ isManager })
-    console.log({ status })
 
 
     return <div>

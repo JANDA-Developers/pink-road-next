@@ -247,7 +247,7 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
                 if (typeof key === "string")
                     singleBlur(e, key, index)
             },
-            contentEditable: editable,
+            contentEditable: editable ? "plaintext-only" : "ready",
             suppressContentEditableWarning: true,
             onClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
                 if (editMode)
