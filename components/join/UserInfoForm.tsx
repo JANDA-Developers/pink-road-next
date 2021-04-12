@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 import DaumPostcode from 'react-daum-postcode';
-import DayPicker from 'react-day-picker';
 import RegisterCheck from './RegisterCheck';
 import 'react-day-picker/lib/style.css';
 import { GENDER, VerificationTarget } from '../../types/api';
