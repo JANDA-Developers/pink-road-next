@@ -18,10 +18,10 @@
 
 /* 기본설정 */
 * {
+    /* font-family: -apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",helvetica,"Apple SD Gothic Neo",sans-serif; */
     font-family: "Montserrat",'Noto Sans KR',"Malgun Gothic",sans-serif;
 }
 html, body {
-    font-family: 'Montserrat', 'montserrat', 'noto', 'Roboto', sans-serif;
     color: #333333;
     font-weight: 400;
     letter-spacing: 0;

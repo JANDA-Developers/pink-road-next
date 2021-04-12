@@ -395,6 +395,7 @@
         box-sizing: border-box;
         padding: 3%;
         text-align: center;
+        background-position: center;
         background-repeat: no-repeat;
         background-size: 110%;
         justify-content: center;
@@ -2930,7 +2931,7 @@ ul.rank_ul {
     }
 
     .siteInfo_in .con06 {
-        background-color: #928787;
+        background-color: #ffffff;
         padding: 100px 5%;
         box-sizing: border-box;
         text-align: center;
@@ -6254,6 +6255,10 @@ i.important_icon {
     background-size: 20px;
     
  }
+ .link05.tourBracketBtn--disabled .icon_basket {
+    background-image: url(/img/svg/basket_w.svg);
+    
+ }
     #viewControl .box {
         border: 1px solid #cccdcf;
         padding: 0 15px 15px;
@@ -6324,9 +6329,10 @@ i.important_icon {
         }
 
         #viewControl .btn_box .link02 {
-            width: 49%;
-            display: inline-block;margin-right: 2%;
-            background-color: #ed297b;
+            width: 79.9%;
+            display: inline-block;
+            margin-right: 2%;
+            /* background-color: #ed297b; */
         }
 
         #viewControl .btn_box .link03 {
@@ -6347,6 +6353,9 @@ i.important_icon {
             background-color: #fff;
             border: 1px solid #ed297b;
             display: inline-block;
+        }
+        #viewControl .btn_box .link05.tourBracketBtn--disabled {
+            border: 0;
         }
 
         #viewControl .btn_box .link04 {
@@ -7748,7 +7757,7 @@ i.calendar {
 /* news */
 .board_box  {
     padding-top: 63px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     box-sizing: border-box;
 }
 
@@ -7758,7 +7767,7 @@ i.calendar {
 /* tourstory */
 .tourstory_box {
     padding-top: 63px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     box-sizing: border-box;
 }
 
@@ -7769,7 +7778,7 @@ i.calendar {
 /* news */
 .news_box  {
     padding-top: 63px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     box-sizing: border-box;
 }
 
@@ -7780,12 +7789,10 @@ i.calendar {
 /* culture */
 .culture_box {
     padding-top: 63px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     box-sizing: border-box;
 }
 
-    .culture_box .subtop_nav {
-    }
 /* rule */
 .rule_box {
     margin-top: 60px !important;
@@ -8733,8 +8740,6 @@ i.calendar {
     padding: 0;
     position: relative;
     width: 80%;
-    /* border-radius: 5px;
-    box-shadow:  0 0 5px #cccccc; */
     box-sizing: border-box;
     padding: 60px;
 }
@@ -8785,9 +8790,11 @@ i.calendar {
 }
 .quotation__table_fom .content > div:first-child{
   text-align: left;
+  width: 70%;
 }
 .quotation__table_fom .content > div:last-child{
   text-align: right;
+  width: 30%;
 }
 
 .quotation__sumbox{
@@ -9158,6 +9165,24 @@ font-size: 1em;
     border-radius: 100px;
     line-height: initial;
     background-color: #fff;
+}
+.Allsearch__plusBtn{
+    position: relative;
+    display: block;
+    border:solid 1px #e2e2e2;
+    background-color: #f7f9fa;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #aaaaaa;
+    margin-top: 10px;
+}
+.Allsearch__plusBtn:hover{
+    color: #404040;
+}
+.Allsearch__plusBtn .plus{
+    font-size: 0.7em;
 }
 
 @media (min-width: 768px) {   
@@ -9550,7 +9575,10 @@ font-size: 1em;
             text-align: center;
             padding-top: 57px;
         }
-
+        .quotation__table{
+            width: 100%;
+            padding: 30px 3%;
+        }
         .portfolio_in .con05 .txt {
             padding-top: 115px;
         }
@@ -9631,7 +9659,10 @@ font-size: 1em;
 }
 
 @media (min-width: 1000px) {
-
+    .quotation__table{
+        width: 80%;
+        padding: 60px;
+    }
     .question_box .popup_bg_mini .in_txt{
         min-width: 400px;
     }
@@ -9914,7 +9945,7 @@ font-size: 1em;
     .main_con_box3 li {
         width: 25%;
         min-height: 450px;
-        background-size: 200%;
+        background-size: 240%;
 
     }
 
@@ -10145,7 +10176,7 @@ font-size: 1em;
             vertical-align: middle;
         }
             .siteInfo_in .con04 .li03 span {
-                margin-top: 61px;
+                margin-top: 51px;
             }
 
             .siteInfo_in .con04 .li03 > div {
@@ -10195,11 +10226,11 @@ font-size: 1em;
             display: inline-block;
             width: 300px;
             height: 300px;
-            line-height: 48px;
+            line-height: 39px;
             font-size: 27px;
             font-weight: 600;
             position: relative;
-            padding-top: 100px;
+            padding-top: 113px;
             box-sizing: border-box;
             border-radius: 500px;
             margin-top: 20px;
