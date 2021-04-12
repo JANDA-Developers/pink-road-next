@@ -1327,18 +1327,24 @@ div.download_box {
         }
 
 
+div.comment__div {
+    position: relative;
+    margin-top: 20px 0;
+    box-sizing: border-box;
+}
 div.comment_box {
     position: relative;
     display: block;
-    padding: 20px 0 20px;
+    padding:0;
     margin-top: 10px;
     box-sizing: border-box;
 }
 
+    div.comment__div h3,
     div.comment_box h3 {
-        font-size: 22px;
+        font-size: 2em;
         font-weight: 600;
-        line-height: 47px;
+        line-height: 32px;
         border-bottom: 2px solid #333;
     }
 
@@ -1351,15 +1357,24 @@ div.comment_box {
     div.comment_box .write_comment {
         position: relative;
         display: block;
-        border: 1px solid #b2b2b2;
+        border: 1px solid #dcdcdc;
         background-color: #fff;
     }
-
+    div.comment_box .comment_box_list {
+        position: relative;
+        display: block;
+        border: 1px solid #dcdcdc;
+    }
+/* 
+    div.comment_box .comment_box_list > li:first-child {
+        border-top: 2px solid #999999;
+    } */
     div.comment_box .list_comment {
         position: relative;
         display: block;
-        padding: 0 0 45px;
+        padding: 32px;
         box-sizing: border-box;
+        border-bottom: 1px solid #dcdcdc;
     }
 
         div.comment_box .list_comment .text_box {

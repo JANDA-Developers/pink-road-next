@@ -35,12 +35,13 @@ interface IProps extends IDiv {
     onDelete?: () => void;
     content?: string;
     Buttons?: TElements
+    Foot?: TElements
 }
 
 
 export const BoardView: React.FC<IProps> = (data) => {
     const { isManager, myProfile } = useContext(AppContext);
-    const { authorId, isOpen, className, catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, next, prev, onDelete, subTitle, Buttons } = data;
+    const { authorId, isOpen, className, catName, createAt, title = "", writer, comments, files, viewCount, content = "", onEdit, onList, next, prev, onDelete, subTitle, Buttons, Foot } = data;
     const isMyBoard = myProfile?._id === data.authorId;
     const router = useRouter();
     const move = (id: string) => {
@@ -122,6 +123,7 @@ export const BoardView: React.FC<IProps> = (data) => {
                     </div>}
                 </div>
             </div>
+            {Foot}
         </div>
     </div>
 }

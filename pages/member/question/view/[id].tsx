@@ -22,7 +22,13 @@ export const QuestionDetail: React.FC<IProp> = () => {
     const pw = getFromUrl("pw");
     const questionId = router.query.id as string;
     const { myProfile, isManager } = useContext(AppContext);
-    const [createAnswerMu] = useAnswerCreate();
+    const [createAnswerMu] = useAnswerCreate({
+        onCompleted: ({ AnswerCreate }) => {
+            if (AnswerCreate.ok) {
+                alert("답변이 작성 되었습니다.")
+            }
+        }
+    });
     const [answerDeleteMu] = useAnswerDelete();
     const [answerUpdateMu] = useAnswerUpdate();
     const passwordModalHook = useModal<IPromptInfo>();
@@ -53,14 +59,14 @@ export const QuestionDetail: React.FC<IProp> = () => {
 
     const toEdit = () => {
         if (isManager || myQuestion || myProdQuestion)
-            router.push(`/service/question/write/${_id}` + "?pw=" + pw)
+            router.push(`/member/question/write/${_id}` + "?pw=" + pw)
         else {
             alert("비밀글 입니다.");
         }
     }
 
     const toList = () => {
-        router.push(`/service/question/`)
+        router.push(`/member/question/`)
     }
 
     const handleDelete = () => {
@@ -76,7 +82,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
         answerDeleteMu({
             variables: {
                 id: answer._id,
-                target: "question",
+                target: "Question",
                 targetId: questionId
             }
         })
@@ -88,7 +94,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
                 params: {
                     content
                 },
-                target: "question",
+                target: "Question",
                 targetId: questionId
             }
         })
@@ -101,13 +107,14 @@ export const QuestionDetail: React.FC<IProp> = () => {
                 params: {
                     content
                 },
-                target: "question",
+                target: "Question",
                 targetId: questionId
             }
         })
 
         return !!result.data?.AnswerUpdate.ok
     }
+
 
     return <div>
         <BoardView
@@ -122,20 +129,26 @@ export const QuestionDetail: React.FC<IProp> = () => {
             onDelete={handleDelete}
             onEdit={toEdit}
             createAt={createdAt}
-
-        />
-        {(isMyProduct || isManager) &&
-            <div className="w1200">
-                <div className="comment_box">
-                    <ul>
-                        {(question.answers || []).filter(answer => !answer?.isDelete).map(answer =>
-                            <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
-                        )}
-                    </ul>
+            Foot={
+                <div className="comment__div">
+                    {(isMyProduct || isManager) &&
+                        <div>
+                            <h3>Comment</h3>
+                            <div className="comment_box">
+                                <ul className="comment_box_list">
+                                    {(question.answers || []).filter(answer => !answer?.isDelete).map(answer => {
+                                        return <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
+                                    }
+                                    )}
+                                </ul>
+                            </div>
+                            {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.nickName} onSubmit={handleAnswer} />}
+                        </div>
+                    }
                 </div>
-                {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.nickName} onSubmit={handleAnswer} />}
-            </div>
-        }
+            }
+        />
+
         <PormptModal modalHook={passwordModalHook} />
     </div>
 };
