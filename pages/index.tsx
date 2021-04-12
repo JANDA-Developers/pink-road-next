@@ -13,7 +13,6 @@ import { usePageEdit } from '../hook/usePageEdit';
 import { Bg } from '../components/Img/img';
 import { useGroupFind } from '../hook/useGroup';
 import { AppContext } from './_app';
-import { usePhoneInput } from '../hook/usePhoneInput';
 import { BG } from '../types/const';
 import { PageEditor } from '../components/common/PageEditer';
 import { usePopups } from '../hook/usePopups';

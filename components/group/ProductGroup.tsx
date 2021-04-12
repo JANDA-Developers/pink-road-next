@@ -119,7 +119,6 @@ export const ProductGroup: React.FC<IProp> = ({ group: defaultGroup, onChangeTit
                     <button onClick={handleDelete} type="submit" className="btn medium">삭제하기</button>
                 } */}
                 <button onClick={() => {
-
                     handleSave(group)
                 }} type="submit" className="btn medium">저장하기</button>
             </div>
