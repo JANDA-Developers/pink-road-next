@@ -9,7 +9,7 @@ interface IProp {
 }
 
 export const HistoryTable: React.FC<IProp> = ({ histories }) => {
-    return <div >
+    return <div className="info_page">
         <h4 className="historyTable__head">요청기록</h4>
         <div id="HistoryTable" className=" historyTable fuction_list_mini">
             <div className="thead historyTable__thead">
@@ -23,7 +23,7 @@ export const HistoryTable: React.FC<IProp> = ({ histories }) => {
                     {histories.map(h =>
                         <li className="historyTable__li" key={dayjs(h.date).valueOf()}>
                             <div className="historyTable__cell">{requestStatusKr(h.reqType)}</div>
-                            <div className="historyTable__cell">{methodTypeKr(h.methodType)} </div>
+                            <div className="historyTable__cell">{methodTypeKr(h.methodType)}</div>
                             <div className="historyTable__cell">{yyyymmddHHmm(h.date)}</div>
                             <div className="historyTable__cell">{h.reason}</div>
                         </li>

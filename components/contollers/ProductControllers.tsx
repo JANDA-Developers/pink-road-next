@@ -202,7 +202,7 @@ export const ProductControllers: React.FC<IProp> = ({ product, acceptCreate, acc
     })() as () => void;
 
 
-    return <div>
+    return <div className="side__form">
 
         {/* 출발확정 */}
         {determindAble && <button onClick={handleOpenPrompt("determine", "출발 확정 메세지를 입력 해주세요.")} type="submit" className="btn medium">출발확정

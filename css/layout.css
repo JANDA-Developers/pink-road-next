@@ -799,7 +799,7 @@ rect.allmenu_svg {
         top: 0;
         display: inline-block;
         vertical-align: middle;
-        padding-left: 5px;
+        padding-left: 0;
         cursor: pointer;
 
     }
@@ -2835,6 +2835,7 @@ i.icon_plus {
         border-radius: 5px;
         cursor: pointer;
         margin-right: 5px;
+        margin-bottom: 5px;
         padding: 0px 10px;
         background: #ffffff;
         border: 1px solid #ccc;
@@ -3489,6 +3490,7 @@ i.icon_plus {
         border-radius: 100px;
         cursor: pointer;
         margin-right: 5px;
+        margin-bottom: 0;
         padding: 0px 21px;
         background: #ffffff;
         border: 1px solid #ccc;
@@ -3641,7 +3643,7 @@ i.icon_plus {
         }
         .header .all_menu_btn {
             width: 25px;
-            padding-left: 5px;
+            padding-left: 0;
         }
     .header .hd_center .nav_wrap {
         display: inline-block;
@@ -4081,7 +4083,7 @@ i.icon_plus {
     }
     .header .all_menu_btn {
         width: 25px;
-        padding-left: 8px;
+        padding-left: 0;
     }
     
     .footer_in .bottom_nav ul{
