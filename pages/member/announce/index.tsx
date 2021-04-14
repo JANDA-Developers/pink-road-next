@@ -86,7 +86,7 @@ export const Announce: React.FC<Ipage> = (page) => {
                                         <div className="td01">{item.no}</div>
                                         <div className="td02"><AnnotationBadge type={item.type} /></div>
                                         <div className="td03">
-                                            {item.title} {!item.isOpen && "[비공개(관리자노출)]"}
+                                            <i className="icon__fix"></i>{item.title} {!item.isOpen && "[비공개(관리자노출)]"}
                                             <NewBadge createdAt={item.createdAt} />
                                         </div>
                                         <div className="td04">{dayjs(item.createdAt).format("YYYY년MM월DD일")}</div>
@@ -98,7 +98,7 @@ export const Announce: React.FC<Ipage> = (page) => {
                                         <div className="td01">{item.no}</div>
                                         <div className="td02"><AnnotationBadge type={item.type} /></div>
                                         <div className="td03">
-                                            {item.title} {!item.isOpen && "[비공개(관리자노출)]"}
+                                            <i className="icon__fix"></i>{item.title} {!item.isOpen && "[비공개(관리자노출)]"}
                                             <NewBadge createdAt={item.createdAt} />
                                         </div>
                                         <div className="td04">{dayjs(item.createdAt).format("YYYY년MM월DD일")}</div>

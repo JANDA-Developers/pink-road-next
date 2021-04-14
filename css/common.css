@@ -864,6 +864,7 @@ br.no {
     .fin{
         display: flex;
     }
+  
     .fin .float_left{
         width: 50%;
         text-align: left;
@@ -872,6 +873,9 @@ br.no {
         width: 50%;
         text-align: right;
         float: right;
+    }
+    .fin.ifMobile{
+        display: flex;
     }
     .fin.ifMobile .float_left, 
     .fin.ifMobile .float_right {

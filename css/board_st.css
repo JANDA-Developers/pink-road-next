@@ -839,7 +839,7 @@ ul.boardlist_ul li .cash {
     }
     .board_list.st01 .thead > div{
         display: inline-block;
-        padding: 0px;
+        padding: 10px;
         width: auto;
         flex: 1 1;
         flex-grow: 1;
@@ -1327,18 +1327,24 @@ div.download_box {
         }
 
 
+div.comment__div {
+    position: relative;
+    margin-top: 20px 0;
+    box-sizing: border-box;
+}
 div.comment_box {
     position: relative;
     display: block;
-    padding: 20px 0 20px;
+    padding:0;
     margin-top: 10px;
     box-sizing: border-box;
 }
 
+    div.comment__div h3,
     div.comment_box h3 {
-        font-size: 22px;
+        font-size: 2em;
         font-weight: 600;
-        line-height: 47px;
+        line-height: 32px;
         border-bottom: 2px solid #333;
     }
 
@@ -1351,15 +1357,27 @@ div.comment_box {
     div.comment_box .write_comment {
         position: relative;
         display: block;
-        border: 1px solid #b2b2b2;
+        border: 1px solid #dcdcdc;
         background-color: #fff;
     }
-
+    div.comment_box .comment_box_list {
+        position: relative;
+        display: block;
+        border: 1px solid #dcdcdc;
+    }
+/* 
+    div.comment_box .comment_box_list > li:first-child {
+        border-top: 2px solid #999999;
+    } */
     div.comment_box .list_comment {
         position: relative;
         display: block;
-        padding: 0 0 45px;
+        padding: 32px;
         box-sizing: border-box;
+        border-bottom: 1px dotted #dcdcdc;
+    }
+    div.comment_box .list_comment:last-child {
+        border-bottom: 0;
     }
 
         div.comment_box .list_comment .text_box {
@@ -1379,7 +1397,7 @@ div.comment_box {
             width: 100%;
             padding: 30px 10px;
             box-sizing: border-box;
-            border-bottom: dotted #ccc 1px;
+            border-bottom: dotted #dcdcdc 1px;
         }   
         
         div.comment_box .list_comment li.re {
@@ -1440,7 +1458,7 @@ div.comment_box {
                 font-size: 12px;
                 padding: 2px 10px;
                 box-sizing: border-box;
-                border: 1px #ccc solid;
+                border: 1px #dcdcdc solid;
                 color: #999;
                 background-color:#fff;
             } 
@@ -1497,7 +1515,7 @@ div.comment_box {
         height: 59px;
         text-align: left;
         margin-top: 5px;
-        border-top: 1px solid #ccc;
+        border-top: 1px solid #dcdcdc;
     }
 
         div.comment_box .write_comment .text_box_bottom .float_left {
@@ -1515,7 +1533,7 @@ div.comment_box {
             border: 0;
             color: #333;
             font-weight: 600;
-            border-left: 1px solid #ccc;
+            border-left: 1px solid #dcdcdc;
             background-color: #ffffff;
         }
 
@@ -2430,12 +2448,13 @@ div.sum_div {
         line-height: 150%;
         font-weight: 100;
         font-size: 0.9em;
-        border: 1px solid #eee;
-        padding: 30px 20px 50px;   
+        border: 1px solid #d6d6d6;
+        background-color: #f5f5f5;
+        padding: 30px 20px 50px;
         margin-top: -7px;
         box-sizing: border-box;
         border-radius: 5px;
-        z-index:1;
+        z-index: 1;
      
     }
     .board_qna .dd i.A{
@@ -2689,7 +2708,7 @@ div.sum_div {
         max-width: 100px;
     }
     .board_list.st01 .tbody .td01{
-        max-width: 10%;
+        max-width: 100px;
     }
     .board_list.st01 .tbody .td03 {
         text-align: left;

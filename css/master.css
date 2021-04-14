@@ -2540,6 +2540,7 @@ div.master_popup .info_txt {
 
 div.master_popup .info_page {
    position: relative;
+   display: grid;
    box-sizing: border-box;
    margin-bottom: 20px;
    text-align: left;
@@ -2655,8 +2656,9 @@ div.master_popup .info_page h4 {
     }
      div.master_popup .peoplelist .tr.first > div {
         margin-bottom: 5px;
+        margin-right: 10px;
         text-align: center !important;
-        width: 100% !important;
+        width: auto !important;
     }
     div.master_popup .peoplelist .tr.first .re01 {
         width: 100% !important;
@@ -3014,8 +3016,6 @@ div.master_popup .btn.small{
     } 
      div.master_popup .info_page .info_table .td{
       font-weight: 100 !important;
-      margin-right: 30px;
-      margin-left: 3px;
     }
      div.master_popup .info_page .info_table .th{
       font-weight: 600 !important;
@@ -4255,6 +4255,8 @@ div.master_popup .info_table .th01,
     }
     div.master_popup .peoplelist .tr.first > div {
         margin-bottom: 0;
+        margin-right: 0;
+        width: 100% !important;
     }
     div.master_popup .tr .re01{
         width: 15% !important;
@@ -4374,6 +4376,11 @@ div.master_popup .info_table .th01,
         width: 80px !important;
         margin-right: 0;
      } 
+     div.master_popup .info_page .info_table .td{
+        font-weight: 100 !important;
+        margin-right: 30px;
+        margin-left: 3px;
+      }
      div.master_popup .info_page .info_table .td span {
     
         max-width: 115px;

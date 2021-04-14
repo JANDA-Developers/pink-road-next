@@ -58,6 +58,13 @@
     text-align: center;
     color: #999;
 }
+.mypage_in .master_popup .btn {
+    width: auto;
+    margin: 3px 3px 3px 0;
+}
+.mypage_in .master_popup .side__form {
+    display: inline-block;
+}
 .reservation_div .t07{
     max-width: 100%;
 }
@@ -920,6 +927,7 @@
         text-align: left;
         margin-top: 5px;
     }
+  
     .goods_div .fuction_list_mini .th08 .btn {
         width: 49%;
         padding: 0 12px;
@@ -928,7 +936,15 @@
         text-align: center;
         margin: 1px;
     }
-   
+    .goods_div .fuction_list_mini .th09 {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        margin-top: 15px;
+    }
+    .goods_div .fuction_list_mini .th09 .btn {
+        line-height: 33px;
+    }
         .goods_div .btn{
             width: 39%;
             padding: 0 12px;
@@ -966,8 +982,8 @@
     }
     .goods_div .present {
         position: relative;
-        display: block;
-        width: 100%;
+        display: inline-block;
+        width:auto;
         text-align: center;
     }
 
@@ -2836,6 +2852,15 @@ div.reservation_popup .tr select {
 
     
 @media (min-width: 1000px) {  
+    .goods_div .fuction_list_mini .th09 {
+        width: 100%;
+        text-align: center;
+        display: block;
+        margin-top: 0;
+    }
+    .goods_div .fuction_list_mini .th09 .btn {
+        line-height: initial;
+    }
     .mypage_in .in .fin .btn{
         width: auto !important;
         padding: 5px 20px !important;
@@ -2858,7 +2883,7 @@ div.reservation_popup .tr select {
         font-style:unset;
     }
     .mypage_in .btn {
-        width: 100%;
+        width: auto;
         box-sizing: border-box;
         padding: 0 15px;
         font-size: 12px;
@@ -2870,6 +2895,10 @@ div.reservation_popup .tr select {
         border-radius: 3px;
         text-align: center;
         color: #999;
+    }
+
+    .mypage_in .master_popup .side__form {
+        display: inline-block;
     }
     .reservation_div .t04 .img {
         display:inline-block !important;
@@ -3009,24 +3038,9 @@ div.reservation_popup .tr select {
         text-align: center;
         margin-top: 0;
     }
-    /* .goods_div .fuction_list_mini .tbody .th02{
-        padding-top: 29px;
+    .goods_div .fuction_list_mini .th09 {
+        max-width:10%;
     }
-    .goods_div .fuction_list_mini .tbody .th03{
-        padding-top: 29px;
-    }
-    .goods_div .fuction_list_mini .tbody .th04{
-        padding-top: 13px;
-    }
-    .goods_div .fuction_list_mini .tbody .th05{
-        padding-top: 29px;
-    }
-    .goods_div .fuction_list_mini .tbody .th06{
-        padding-top: 13px;
-    }
-    .goods_div .fuction_list_mini .tbody .th07{
-        padding-top: 13px;
-    } */
     .goods_div .fuction_list_mini .tbody .th04 {
         text-align: left !important;
     }
