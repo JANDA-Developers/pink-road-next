@@ -135,9 +135,9 @@ export const TopBox: React.FC<IProp> = ({ doSearch, filterStart, filterEnd, onDa
         <div className="alignment">
             <div className="left_div">
                 <ul className="board_option">
-                    <li className="on"><a href="/">전체<strong>46</strong></a></li>
-                    <li><a href="/">여행<strong>23</strong></a></li>
-                    <li><a href="/">체험<strong>23</strong></a></li>
+                    <li className="on"><a href="/">전체</a></li>
+                    <li><a href="/">여행</a></li>
+                    <li><a href="/">체험</a></li>
                 </ul>
                 {/* <ul className="board_option">
                 <li className="on"><a href="/">전체<strong>46</strong></a></li>

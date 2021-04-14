@@ -85,7 +85,7 @@ export const ReservationTable: React.FC<IReservationTableProp> = ({ bookingListH
             </div>
         )}
         <Paginater pageInfo={pageInfo} setPage={setPage} />
-        <div className="fin ifMobile">
+        <div className="fin ifMobile bottom">
             <div className="float_left">
                 <button onClick={selectAll} type="submit" className="btn medium">전체선택</button>
             </div>

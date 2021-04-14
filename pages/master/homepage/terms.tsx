@@ -90,122 +90,124 @@ export const MsHomepageA: React.FC<InferGetStaticPropsType<typeof getStaticProps
 
     return <MasterLayout>
         <div className="in ">
-
-            <Tabs>
-                <TabList>
-                    <Tab>일반회원</Tab>
-                    <Tab>개인파트너</Tab>
-                    <Tab>기업파트너</Tab>
-                    <Tab>공통</Tab>
-                </TabList>
-
-                <TabPanel>
-                    <div className="jul">
-                        <h5>{textReverse("indiUsePolicy")}</h5>
-                        <Editor data={datas.indiUsePolicy} onChange={setPoliicy("indiUsePolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("indiUsePolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
-                        </div>
+            <div className="in_content">
+                <Tabs>
+                    <div className="tab-nav topline">
+                        <TabList >
+                            <Tab className="on"><a>일반회원</a></Tab>
+                            <Tab><a>개인파트너</a></Tab>
+                            <Tab><a>기업파트너</a></Tab>
+                            <Tab><a>공통</a></Tab>
+                        </TabList>
                     </div>
-                    <div className="jul">
-                        <h5>{textReverse("indiPrivacyPolicy")}</h5>
-                        <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("indiPrivacyPolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("indiPrivacyPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                    <TabPanel className="con homepage terms">
+                        <div className="jul">
+                            <h5>{textReverse("indiUsePolicy")}</h5>
+                            <Editor data={datas.indiUsePolicy} onChange={setPoliicy("indiUsePolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("indiUsePolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                </TabPanel>
-                <TabPanel>
-                    <div className="jul">
-                        <h5>{textReverse("partnerUsePolicy")}</h5>
-                        <Editor data={datas.indiUsePolicy} onChange={setPoliicy("partnerUsePolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("partnerUsePolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                        <div className="jul">
+                            <h5>{textReverse("indiPrivacyPolicy")}</h5>
+                            <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("indiPrivacyPolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("indiPrivacyPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="jul">
-                        <h5>{textReverse("partnerPrivacyPolicy")}</h5>
-                        <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("partnerPrivacyPolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("partnerPrivacyPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                    </TabPanel>
+                    <TabPanel className="con homepage terms">
+                        <div className="jul">
+                            <h5>{textReverse("partnerUsePolicy")}</h5>
+                            <Editor data={datas.indiUsePolicy} onChange={setPoliicy("partnerUsePolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("partnerUsePolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                </TabPanel>
-                <TabPanel>
-                    <div className="jul">
-                        <h5>{textReverse("busiUsePolicy")}</h5>
-                        <Editor data={datas.busiUsePolicy} onChange={setPoliicy("busiUsePolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("busiUsePolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                        <div className="jul">
+                            <h5>{textReverse("partnerPrivacyPolicy")}</h5>
+                            <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("partnerPrivacyPolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("partnerPrivacyPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="jul">
-                        <h5>{textReverse("busiPartnerPrivacyPolicy")}</h5>
-                        <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("busiPartnerPrivacyPolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("busiPartnerPrivacyPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                    </TabPanel>
+                    <TabPanel className="con homepage terms">
+                        <div className="jul">
+                            <h5>{textReverse("busiUsePolicy")}</h5>
+                            <Editor data={datas.busiUsePolicy} onChange={setPoliicy("busiUsePolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("busiUsePolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                </TabPanel>
-                <TabPanel>
-                    <div className="jul">
-                        <h5>{textReverse("privacyThirdPolicy")}</h5>
-                        <Editor data={datas.busiUsePolicy} onChange={setPoliicy("privacyThirdPolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("privacyThirdPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                        <div className="jul">
+                            <h5>{textReverse("busiPartnerPrivacyPolicy")}</h5>
+                            <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("busiPartnerPrivacyPolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("busiPartnerPrivacyPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="jul">
-                        <h5>{textReverse("marketingPolicy")}</h5>
-                        <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("marketingPolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("marketingPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                    </TabPanel>
+                    <TabPanel className="con homepage terms">
+                        <div className="jul">
+                            <h5>{textReverse("privacyThirdPolicy")}</h5>
+                            <Editor data={datas.busiUsePolicy} onChange={setPoliicy("privacyThirdPolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("privacyThirdPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="jul">
-                        <h5>{textReverse("travelerPolicy")}</h5>
-                        <Editor data={datas.busiUsePolicy} onChange={setPoliicy("travelerPolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("travelerPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                        <div className="jul">
+                            <h5>{textReverse("marketingPolicy")}</h5>
+                            <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("marketingPolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("marketingPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="jul">
-                        <h5>{textReverse("usePolicy")}</h5>
-                        <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("usePolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("usePolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                        <div className="jul">
+                            <h5>{textReverse("travelerPolicy")}</h5>
+                            <Editor data={datas.busiUsePolicy} onChange={setPoliicy("travelerPolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("travelerPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="jul">
-                        <h5>{textReverse("bookingPrivacyPolicy")}</h5>
-                        <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("bookingPrivacyPolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("bookingPrivacyPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                        <div className="jul">
+                            <h5>{textReverse("usePolicy")}</h5>
+                            <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("usePolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("usePolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="jul">
-                        <h5>{textReverse("krTravelPolicy")}</h5>
-                        <Editor data={datas.krTravelPolicy} onChange={setPoliicy("krTravelPolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("krTravelPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                        <div className="jul">
+                            <h5>{textReverse("bookingPrivacyPolicy")}</h5>
+                            <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("bookingPrivacyPolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("bookingPrivacyPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="jul">
-                        <h5>{textReverse("bookingThirdPolicy")}</h5>
-                        <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("bookingThirdPolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("bookingThirdPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                        <div className="jul">
+                            <h5>{textReverse("krTravelPolicy")}</h5>
+                            <Editor data={datas.krTravelPolicy} onChange={setPoliicy("krTravelPolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("krTravelPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="jul">
-                        <h5>{textReverse("refundPolicy")}</h5>
-                        <Editor data={datas.krTravelPolicy} onChange={setPoliicy("refundPolicy")} />
-                        <div className="terms__termBox fin ifMobile">
-                            <button onClick={handleSave("refundPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                        <div className="jul">
+                            <h5>{textReverse("bookingThirdPolicy")}</h5>
+                            <Editor data={datas.partnerUsePolicy} onChange={setPoliicy("bookingThirdPolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("bookingThirdPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
                         </div>
-                    </div>
-                </TabPanel>
-            </Tabs>
+                        <div className="jul">
+                            <h5>{textReverse("refundPolicy")}</h5>
+                            <Editor data={datas.krTravelPolicy} onChange={setPoliicy("refundPolicy")} />
+                            <div className="terms__termBox fin ifMobile">
+                                <button onClick={handleSave("refundPolicy")} type="submit" className="terms__saveBtn btn medium">저장하기</button>
+                            </div>
+                        </div>
+                    </TabPanel>
+                </Tabs>
+            </div>
         </div>
 
     </MasterLayout >

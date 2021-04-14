@@ -860,6 +860,7 @@
         width: auto;
         z-index: 60;
     }
+   
     div.tab-nav li:first-child{
         margin-left: 5px;
     }
@@ -888,7 +889,33 @@
         border-top: 1px solid #ccc;
     }
 
+    .tab-nav.topline ul{
+        margin-bottom: 0;
+    }
+    .tab-nav.topline li{
+        margin: 0 !important;
+        padding: 0 !important;
+        bottom: 0;
+        background-color: inherit;
+    }
+  
+    .tab-nav.topline li:first-child a{
+        margin-left: 5px;
+    }
+    .tab-nav.topline li a{
+        border: 1px 1px 0 1px solid #ccc;
+    }
 
+
+    .tab-nav.topline li.on{
+        border-bottom: 0 !important;
+    }
+    .tab-nav.topline li.on a{
+        border-bottom: 0;
+    }
+
+
+    
     /*goods*/
     .master_box .goods .board_option a{
         padding: 10px 5px;
@@ -1412,6 +1439,13 @@
         width:100% !important;
         padding: 0;
         border-left: 0;
+        display: flex;
+    }
+    .master_box .reservation.calculate .master__table .t08 .btn {
+        padding: 0 20px;
+        display: block;
+        flex: 1 1;
+        flex-grow: 1;
     }
     .master_box .reservation.calculate .all_men {
         width:auto !important;
@@ -2119,10 +2153,9 @@
     }
     .master_box .design .body-list ul{
         position: relative;
-        display:flex;
+        display:block;
         width: 100%;
         margin-top: 10px;
-        display: flex;
     }
     .master_box .design .body-list li{
         position: relative;
@@ -2193,7 +2226,8 @@
     padding: 30px !important;
     box-sizing: border-box;
 }
-    .master_box .homepage input[type*=text] {
+    .master_box .homepage input[type*=text],
+    .master_box .homepage input[type*=number] {
         border-radius: 3px;
         height: 34px;
         padding-left: 10px;
@@ -2582,6 +2616,9 @@ div.master_popup .info_page h4 {
             right: -10px;
             top:8px;
             background-color: #ccc;
+        } 
+         div.master_popup .info_txt span:last-child:after {
+            display: none;
         } 
          div.master_popup .info_txt .pay-day:after {
             display: none;
@@ -3234,7 +3271,36 @@ div.master_popup div.alignment{
     padding: 0 0 15px;
 }
 
+.master_box .react-tabs__tab-list {
+    border-bottom: 0;
+    margin: 0 0 10px;
+    padding: 0;
+  }
 
+.master_box .react-tabs__tab-list li {
+    color: #999;
+    /* border-bottom: 3px solid #cfcfcf; */
+    padding: 0 0px;
+    font-size: 1em;
+    display: inline-block;
+    line-height: 23px;
+    font-weight: 600;
+    margin: 8px 8px 3px 3px;
+  }
+
+.master_box .react-tabs__tab-list li.on {
+    border-bottom: 5px solid #333333;
+    color: #333333;
+   
+  }
+
+.master_box div.alignment .right_div {
+    margin-left: 0;
+  }
+
+.master_box .board_option a {
+    padding: 12px 12px;
+  }
 
 
 @media (min-width: 768px) {
@@ -3352,6 +3418,15 @@ div.master_popup div.alignment{
         padding: 0 11px;
         line-height: 43px;
     }
+/*    
+    .master_box div.alignment .board_option li{
+        float: left;
+    } */
+ 
+}
+
+    
+@media (min-width: 1000px) {   
     .master_box div.alignment .left_div{
         width: 30%;
     }
@@ -3363,15 +3438,10 @@ div.master_popup div.alignment{
         margin-bottom: 0;
         text-align: left;
         vertical-align: middle;
+    } 
+    .master_box .design .body-list ul{
+        display:block;
     }
-    .master_box div.alignment .board_option li{
-        float: left;
-    }
- 
-}
-
-    
-@media (min-width: 1000px) {    
     div.master_popup .info_page div[class*=th0] {
         width:auto !important;
         max-width: 30%;
@@ -3819,6 +3889,9 @@ div.master_popup div.alignment{
     .master_box .reservation.calculate .master__table .t08 {
         width:auto !important;
         max-width:10%;
+        display: block;
+        flex-grow: 1;
+        flex: 1 1;
     /* border-left: 1px #eee solid; */
     }
     /* .master_box .reservation.calculate .master__table .t08 .align {
@@ -3949,8 +4022,12 @@ div.master_popup div.alignment{
         padding: 20px;
     }
     .master_box .fin {
+        padding: 0;
+        height: 54px;
+    }
+    .master_box .fin.bottom {
         padding: 20px;
-        height: 77px;
+        height: 74px;
     }
   
   
@@ -4105,6 +4182,7 @@ div.master_popup .info_table .info {
 }
 .master_box .design .body-list .img {
     height: 126px;
+    margin-bottom: 0;
 }
 div.master_popup .info_page .info_table .tr {
     display: flex;

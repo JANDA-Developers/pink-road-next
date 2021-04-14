@@ -64,7 +64,7 @@ export const MsDesignA: React.FC<IProp> = () => {
                                 <h5>배너 기본설정</h5>
                                 <div className="tbody">
                                     <div className="t01">
-                                        <div className="title">사용여부</div>
+                                        <div className="title">배너A - 사용여부</div>
                                     </div>
                                     <div className="t02">
                                         <div className="txt">
@@ -120,7 +120,7 @@ export const MsDesignA: React.FC<IProp> = () => {
                                 </div>
                                 <div className="tbody">
                                     <div className="t01">
-                                        <div className="title">사용여부</div>
+                                        <div className="title">배너B - 사용여부</div>
                                     </div>
                                     <div className="t02">
                                         <div className="txt">

@@ -1,7 +1,7 @@
 import { MasterLayout } from 'layout/MasterLayout';
 import React, { useEffect, useState } from 'react';
 import Link from "next/link";
-import { HomepageTopNav } from '../../../components/topNav/MasterTopNav';
+import { check, HomepageTopNav } from '../../../components/topNav/MasterTopNav';
 import { useFeePolicy, useFeePolicyUpdate } from '../../../hook/useFeePolicy';
 import { AddtionalFeesStatus, AddtionalFeesUpdateInput, FeePolicyStatus, FeePolicyUpdateInput, TargetStatus } from '../../../types/api';
 import { omits } from '../../../utils/omit';
@@ -13,6 +13,7 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 interface IProp { }
 
+export const checkOn = (key: string, exact?: boolean) => check(key, exact) ? "on" : ""
 export const MsHomepageA: React.FC<IProp> = () => {
     const { data: defaultFeePolicy } = useFeePolicy();
     const [updatePolicy] = useFeePolicyUpdate({
@@ -92,20 +93,22 @@ export const MsHomepageA: React.FC<IProp> = () => {
             <div className="in_content">
                 <HomepageTopNav />
                 <div className="con homepage terms">
-                    <div className="fin ifMobile">
-                        <div className="float_left">
-                        </div>
-                        <div className="float_right">
-                            <button onClick={handleSave} type="submit" className="btn medium">저장하기</button>
-                        </div>
-                    </div>
+
                     <div className="design_table">
 
                         <Tabs>
-                            <TabList>
-                                <Tab>기업파트너</Tab>
-                                <Tab>개인파트너</Tab>
-                            </TabList>
+                            <div className="fin ifMobile">
+                                <div className="float_left">
+                                    <TabList>
+                                        <Tab className="on">기업파트너</Tab>
+                                        <Tab className="">개인파트너</Tab>
+                                    </TabList>
+                                </div>
+                                <div className="float_right">
+                                    <button onClick={handleSave} type="submit" className="btn medium">저장하기</button>
+                                </div>
+                            </div>
+
                             <TabPanel>
                                 <div className="block_box">
                                     <h5>기업파트너 - 수수료항목<button onClick={handleAddPolicy(TargetStatus.BUSINESS)} className="btn float_right"><i className="flaticon-add"></i>항목추가</button></h5>

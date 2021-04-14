@@ -60,6 +60,9 @@ div.popup_bg_full h3 {
 div.popup_bg_full .in_txt {
     padding-top: 0px!important;
 }
+div.popup_bg_full .in_txt.statement_popup {
+    padding-top: 50px!important;
+}
 
 .productModal__close {
  position: initial!important;   

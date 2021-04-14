@@ -826,7 +826,7 @@ rect.allmenu_svg {
 .header .inform_top {
     display:inline-block;
     position:relative;
-    margin:0 12px 0 0;
+    margin:0 16px 0 0;
     vertical-align:middle;
 }
     .header .inform_top .inform_icon {
@@ -2106,8 +2106,9 @@ footer .footer_in_bottom {
 .btn.add_btn.right.top{
     float: right;
     position: absolute;
+    line-height: 21px !important;
     right: 3px;
-    top: 3px;
+    top: 16px;
 }
 
 .btn.add_btn{
@@ -3244,6 +3245,7 @@ i.icon_plus {
 .search_top .input_box:first-child {
     margin-right: 1%;
 }
+
 .search_top span.pc{
     margin: 0 5px;
 }
@@ -3437,6 +3439,9 @@ i.icon_plus {
 }
 
 @media (min-width:1000px) {
+    .search_top .hang .input_box:first-child {
+        margin-right: 0;
+    }
     .header .hd_left .logo img {
         margin-top: 14px;
         height: 29px;
@@ -3631,7 +3636,7 @@ i.icon_plus {
             margin-right: 14px;
         }
         .header .inform_top {
-            margin: 0 9px 0 0;
+            margin: 0 16px 0 0;
         }
         .header .searchtop .search_btn {
             width: 23px;
@@ -4180,7 +4185,7 @@ i.icon_plus {
         display: none;
     }
     .header .inform_top{
-        margin: 0 10px 0 0;
+        margin: 0 16px 0 0;
     }
     .header .searchtop {
         margin-right: 14px;
