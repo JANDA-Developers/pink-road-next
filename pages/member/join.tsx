@@ -275,11 +275,11 @@ const Verification: React.FC = () => {
                     카카오톡 인증
                 </li> */}
                 <li onClick={handleSelfAuthEmail} className="socialVerify">
-                    <span className="icon-email"></span>
+                    <span className="verification_icons icon-email"></span>
                     이메일 인증
                 </li>
                 <li onClick={handleSelfAuthPhone} className="socialVerify">
-                    <span className="icon-email"></span>
+                    <span className="verification_icons icon-sms"></span>
                     휴대폰 인증
                 </li>
             </ul>

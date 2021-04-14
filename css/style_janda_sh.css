@@ -5431,7 +5431,7 @@ div.bn_box {
                 .join_wrap2 .certified li:hover i {
                     color: #ffffff;
                 }
-                .join_wrap2 .certified .icon-email {
+                .join_wrap2 .certified .verification_icons {
                     display: inline-block;
                     width: 45px;
                     height: 27px;
@@ -5445,6 +5445,12 @@ div.bn_box {
                 }
                 .join_wrap2 .certified li:hover .icon-email {
                     background-image: url(/img/svg/email-icon_on.svg);
+                }
+                .join_wrap2 .certified .icon-sms {
+                    background-image: url(/img/svg/sms-icon.svg);
+                }
+                .join_wrap2 .certified li:hover .icon-sms {
+                    background-image: url(/img/svg/sms-icon_on.svg);
                 }
     .join_wrap2 .wellcom {
         display: block;
@@ -10609,7 +10615,7 @@ font-size: 1em;
         margin: 10px 24px;
         font-weight: 100;
     }
-    .join_wrap2 .certified .icon-email {
+    .join_wrap2 .certified .verification_icons {
         display: block;
         width: 100%;
         height: 45px;
