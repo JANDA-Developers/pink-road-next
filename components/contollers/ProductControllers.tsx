@@ -45,7 +45,6 @@ export const ProductControllers: React.FC<IProp> = ({ product, acceptCreate, acc
     // 취소 가능: 일반파트너일경우 인원이 없을때 
     const cancelAvailable = (noPeople || isManager || isParterB) && status === ProductStatus.OPEN && product?.determined === false; // Travel 캔슬함수 사용하면됨
     // 삭제 가능: 사람없을때 || 오픈이거나 마감 상태가 아닐떄 
-
     const deleteAvailable = (noPeople || isManager) && product && DELETE_AVAIABLE_PRODUCTS.includes(status);
     // 다시 오픈이 가능한가
     const reopenAvailable = (isManager || isParterB) && status === ProductStatus.CANCELD;

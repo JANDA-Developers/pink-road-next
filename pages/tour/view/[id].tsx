@@ -78,7 +78,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const id = router.query.id as string;
   const { loading, item: product, getData } = useProductFindById(id);
-  const { isManager, isAdmin, myProfile, isSeller } = useContext(AppContext);
+  const { isManager, isAdmin, myProfile, isSeller, isParterB } = useContext(AppContext);
   const isMyProduct = product?.author?._id === myProfile?._id;
   const status = product?.status;
   const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
@@ -543,7 +543,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               </div>
               {(isManager || isAdmin || isMyProduct) && <div className="float_right">
                 <button type="submit" onClick={handleEdit} className="btn medium pointcolor">수정</button>
-                {(isManager || isAdmin) && <button type="submit" onClick={handleDelete} className="btn medium">삭제</button>}
+                {(isManager || isAdmin || isMyProduct || isParterB) && <button type="submit" onClick={handleDelete} className="btn medium">삭제</button>}
               </div>}
             </div>
             <div className="add_list">
