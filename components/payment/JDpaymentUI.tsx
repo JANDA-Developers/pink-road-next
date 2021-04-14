@@ -61,6 +61,8 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
         bankName: ""
     })
 
+    console.log({ buyerInfo });
+
     const { validate } = new Validater([{
         value: buyerInfo.name,
         failMsg: "구매자 이름은 필수 입니다."
