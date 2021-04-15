@@ -2146,6 +2146,7 @@ div.comment_box {
     display: block;
     width: 100%;
     border-top: 3px #333 solid;
+    font-family: NanumSquareRoundOTFB,NanumSquareRoundOTF, '돋음',sans-serif;
 }
 
     .fuction_list_mini .thead {

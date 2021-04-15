@@ -7,6 +7,42 @@
     line-height: 10px;
 }
 
+
+/* font all style */
+.s-day,
+.r-day,
+.where,
+.r-number,
+.name,
+.goods-state1,
+.ct,
+.pay-day,
+.pay,
+.goods-state2,
+.money,
+.refund-txt,
+.count,
+.g-number,
+.ph,
+.state,
+.date,
+.men,
+.search_box .day_ul span,
+div.master_popup .top03 span,
+div.master_popup .info_page div[class*=td0],
+.mypage_in .box_right .txt,
+.search_top .day_ul span,
+.notification_box .right .hang,
+.master__table .list_line div[class*=td],
+.patner-name,
+.fuction_list_mini .tbody li > div{
+    font-family: NanumSquareRoundOTFB,NanumSquareRoundOTF, '돋음',sans-serif;
+}
+div.master_popup .info_page div[class*=td0],
+div.master_popup .top03 span{
+    font-weight: 100;
+
+}
 /* styleguide */
 .styleguidebox{
     position: relative;
@@ -984,11 +1020,9 @@ div.popup_bg_full .fin{
     }
 
     div.popup_bg_full h3 {
-        font-size: 2em;
-        line-height: 100%;
+        font-size: 1.6em;
+        line-height: 250%;
         font-weight: 600;
-        position: fixed;
-        top: 14px;
     }    
     div.popup_bg_full h3 strong {
         color: #2196F3;

@@ -391,6 +391,7 @@ i.tooltip{
                         color: #333333;
                         letter-spacing: -1px;
                         cursor: pointer;
+                        font-family: "Montserrat",'Noto Sans KR',"Malgun Gothic",sans-serif;
                     }
                     .header .hd_center .nav_wrap .deps1 > li > a:before {
                         content: '';
@@ -2480,7 +2481,7 @@ i.icon_plus {
     position: relative;
     display: block;
     color: #aaa;
-    padding-left:21px;
+    padding-left:3px;
     box-sizing: border-box;
     margin-top: 10px;
     font-weight: 100;
@@ -4019,7 +4020,7 @@ i.icon_plus {
 }
 @media (min-width:1230px) {
     .header .hd_center .nav_wrap > .deps1 .deps_nav{
-        top:47px;
+        top:45px;
     }
     .footer_in .f_detail_wrap {
         width: 1200px;

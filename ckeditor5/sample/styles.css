@@ -419,6 +419,7 @@ main .message h2 {
 	border-color: var(--ck-sample-color-button-blue);
 	color: var(--ck-sample-color-white);
 	display: inline-block;
+	
 }
 
 .btn--tiny {

@@ -17,7 +17,7 @@ const TableRender: React.FC<ITableInfo> = ({ infos, title }) => {
         <div style={{ padding: '20px 10px 0 10px' }}>
           <div
             style={{
-              fontSize: '15px',
+              fontSize: '14px',
               fontWeight: 'bold',
               color: '#333333',
               lineHeight: '1.5em',

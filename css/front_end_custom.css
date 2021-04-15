@@ -532,6 +532,6 @@ figure:after {
 @media (min-width:1230px) {
 
     .deps {
-        padding-bottom: 5px;
+        padding-bottom:3px;
     }
 }

@@ -4,6 +4,8 @@
     margin-top: 0 !important;
     margin-bottom: 100px !important;
     padding-top: 50px !important;
+    padding-left: 3%;
+    padding-right: 3%;
     box-sizing: border-box;
     min-height: 800px;
     vertical-align: top;
@@ -1094,7 +1096,7 @@
         box-sizing: border-box;
         border: 1px solid rgb(179, 179, 179);
         font-size: 0.9em;   
-        font-weight: 100;
+        font-weight: 600;
         opacity: 0.8;
      }
     button.btn_mini:hover  {
@@ -1166,9 +1168,14 @@
         padding: 0;
         border-left:0;
     }
+    .master_box .reservation .master__table .t07 .align {
+        display: flex;
+        align-items: center;
+    }
     .master_box .reservation .master__table .t07 .btn {
-        width: 47% !important;
-      
+        width: 100%;
+        flex-grow: 1 1;
+        flex: 1;
     }
      .master__table .thead {
         position: relative;
@@ -1222,18 +1229,6 @@
         padding-left: 0px;
         box-sizing: border-box;
     }
-    /* .master_box .reservation .ct {
-        position: relative;
-        width: auto !important;
-        display: inline-block;
-        line-height: 100%;
-        border: 1px solid #ccc;
-        padding: 4px 5px 3px !important;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        font-size: 10px;
-        color: #555;
-    } */
     .master_box .reservation .pay-day {
         width: auto !important;
         display: inline-block;
@@ -1375,10 +1370,9 @@
         display: inline-block;
         line-height: 122%;
         border: 1px solid #ccc;
-        padding: 3px 15px !important;
-        -webkit-box-sizing: border-box;
+        padding: 1px 6px !important;
         box-sizing: border-box;
-        font-size: 13px;
+        font-size: 0.9em;
         color: #555;
         font-weight: 600;
         border-radius: 100px;
@@ -1507,17 +1501,6 @@
         padding-top: 0px !important;
         vertical-align: middle;
     }
-    /* .master_box .calculate .ct {
-        width: auto !important;
-        display: inline-block;
-        line-height: 100%;
-        border: 1px solid #ccc;
-        padding: 4px 5px 3px !important;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        font-size: 10px;
-        color: #555;
-    } */
     .master_box .calculate .pay-day {
         width: auto !important;
         display: inline-block;
@@ -2005,34 +1988,26 @@
             box-sizing: border-box;
             padding: 1px 4px 0;
             border-radius: 3px;
-            background-color: rgba(228, 33, 33, 0.15);
             margin-right: 5px;
-            color: #c91919;
         }
         .master_box .notification_box .right .hang strong.pink {
             box-sizing: border-box;
             padding: 1px 2px 0;
             border-radius: 3px;
-            background-color: rgba(237, 41, 123, 0.15);
             margin-right: 5px;
-            color: #c1129a;
         }
         .master_box .notification_box .right .hang strong.blue {
             box-sizing: border-box;
             padding: 1px 2px 0;
             border-radius: 3px;
-            background-color: rgba(33, 150, 243, 0.15);
             margin-right: 5px;
-            color: #1552b6;
         }
         .master_box .notification_box .right .hang strong.green {
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
             padding: 1px 2px 0;
             border-radius: 3px;
-            background-color: rgb(78 255 66 / 28%);
             margin-right: 5px;
-            color: #2b9700;
         }
         .master_box .notification_box .right .hang {
             display: block;
@@ -2641,11 +2616,11 @@ div.master_popup .info_page h4 {
     width: 100%;
     margin-bottom:30px;
     border-top: 3px #333 solid;
+    box-sizing: border-box;
 }
  div.master_popup .goodsinfo {
     border-top: 0;
-    border: 1px #ccc solid;
-    border-radius: 10px;
+    border: 5px #838383 solid;
     overflow: hidden;
 }
      div.master_popup .info_table .top_info {
@@ -3099,9 +3074,7 @@ div.master_popup .btn.small{
 }
  div.master_popup .info_page div[class*=td0] {
     text-align: left !important;
-    font-weight: 500 !important;
     width: 100% !important;
-    font-family: '돋음';
     font-size: 1.1em;
     padding-left: 10px !important;
     padding-bottom: 10px !important;
@@ -3115,8 +3088,6 @@ div.master_popup .btn.small{
  div.master_popup .info_page .line8 div[class*=td0]{
     width: 100% !important;
     text-align: left !important;
-    font-weight: 500 !important;
-    font-family: '돋음';
     font-size: 1em;
     border-bottom: 1px solid #c4c4c4;
 }
@@ -3301,6 +3272,11 @@ div.master_popup div.alignment{
 .master_box .board_option a {
     padding: 12px 12px;
   }
+  .master_box .reservation .alignment .left_div,
+  .master_box .reservation .alignment .right_div{
+      width: auto;
+  }
+
 
 
 @media (min-width: 768px) {
@@ -3418,21 +3394,12 @@ div.master_popup div.alignment{
         padding: 0 11px;
         line-height: 43px;
     }
-/*    
-    .master_box div.alignment .board_option li{
-        float: left;
-    } */
  
 }
 
     
 @media (min-width: 1000px) {   
-    .master_box div.alignment .left_div{
-        width: 30%;
-    }
-    .master_box div.alignment .right_div{
-        width: 70%;
-    }
+   
     .master_box div.alignment .board_option{
         width: auto;
         margin-bottom: 0;
@@ -3448,7 +3415,6 @@ div.master_popup div.alignment{
         border-bottom: 1px solid #c4c4c4;
     }
      div.master_popup .info_page div[class*=td0] {
-        font-weight: 500 !important;
         width: auto !important;
     }
     div.master_popup .info_page .line8 div[class*=th0] {
@@ -4068,7 +4034,7 @@ div.master_popup div.alignment{
         border:5px solid #ccc;
         padding:15px;
         box-sizing:border-box;
-        margin-bottom:20px;
+        margin-bottom:10px;
         text-align:left;
         line-height:28px;
     }
@@ -4209,7 +4175,6 @@ div.master_popup .info_page div[class*=th0] {
 }
  div.master_popup .info_page div[class*=td0] {
     text-align: left !important;
-    font-weight: 500 !important;
     width: 32% !important;
     font-size: 1.1em;
     border-bottom:0;
@@ -4556,8 +4521,7 @@ div.master_popup .info_table .th01,
         padding-left:10px;
     }
     div.master_popup .goodsinfo {
-        border: 0;
-        border-top: 3px #333 solid;
+        border: 5px #838383 solid;
         border-radius: 0;
     }
     div.master_popup .top01 {
@@ -4638,10 +4602,20 @@ div.master_popup .info_table .th01,
         flex: 1 1;
         text-align: left
     }
+    .master_box .reservation .master__table .t07 .align {
+        display: inline-block;
+    }
+    .master_box .reservation .master__table .t07 .btn {
+        width: auto;
+    }
 }
     
     
 @media (min-width: 1200px) {
+    .master_box .reservation .alignment .left_div,
+    .master_box .reservation .alignment .right_div{
+        width: 50%;
+    }
     .master_box{
         padding-left: 0;
         padding-right: 0;
@@ -4654,6 +4628,12 @@ div.master_popup .info_table .th01,
     }
     .master_box div.alignment .right_div{
         width: 50%;
+    }
+}
+@media (min-width: 1230px) {
+    .master_box {
+        padding-left: 0;
+        padding-right: 0;
     }
 }
     
