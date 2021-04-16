@@ -319,7 +319,7 @@ i.tooltip{
         position:relative;
     }
         .header .top-menu a {
-            font-weight: 100;
+            font-weight:600;
             color: #aaa;
             font-size: 11px;
             cursor:pointer;
@@ -640,8 +640,8 @@ rect.allmenu_svg {
             position: relative;
             display: inline-block;
             vertical-align: middle;
-            width: 22px;
-            padding-top: 7px;
+            width: 23px;
+            padding-top: 5px;
         }
 
             .header .searchtop .search_btn img {
@@ -828,6 +828,7 @@ rect.allmenu_svg {
     display:inline-block;
     position:relative;
     margin:0 16px 0 0;
+    height: 29px;
     vertical-align:middle;
 }
     .header .inform_top .inform_icon {
@@ -3714,7 +3715,6 @@ i.icon_plus {
                 box-sizing: border-box;
                 text-align: left;
                 font-size: 16px;
-                font-weight: 500;
                 color: #ffffff;
                 border: 1px solid #878787;
                 background-color: #ffffff1a;
