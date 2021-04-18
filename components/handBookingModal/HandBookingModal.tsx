@@ -61,7 +61,7 @@ export const HandBookingModal: React.FC<IProp> = ({ defaultProductId }) => {
         value: defaultProductId || input.product,
         failMsg: "올바른 상품이 아닙니다."
     }, {
-        value: availableCount > selectCount,
+        value: availableCount >= selectCount,
         failMsg: "해당 인원을 수용 할 수 없습니다."
     }, {
         value: input.name,

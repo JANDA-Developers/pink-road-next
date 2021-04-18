@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import { useHomepage } from '../../hook/useHomepage';
-import Payment from '../../pages/payment';
 import { AppContext } from '../../pages/_app';
 import { Fbooking, Fhomepage, Fhomepage_bankInfo, homepage_Homepage_data_bankInfo, PayMethod } from '../../types/api';
 import { TElements } from '../../types/interface';
-import { setVal } from '../../utils/eventValueExtracter';
+import { nameOf, phoneNumberOf } from '../../utils/enumToKr';
 import { autoHypenPhone } from '../../utils/formatter';
 import { closeModal, openModal } from '../../utils/popUp';
 import { getFromUrl } from '../../utils/url';
@@ -46,13 +45,12 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [payMethod, setPayMethod] = useState<PayMethod>(PayMethod.BANK);
     const [buyerInfo, setBuyerInfo] = useState({
-        phone: myProfile?.phoneNumber || "",
-        name: myProfile?.name || "",
+        phone: phoneNumberOf(myProfile),
+        name: nameOf(myProfile) || "",
         email: myProfile?.email || "",
         memo: ""
     })
 
-    const [chkAll, setChkAll] = useState(false);
 
     const [bankRefundInfo, setBankRefundInfo] = useState<IBankInput>({
         bankTransfter: "",
@@ -61,18 +59,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
         bankName: ""
     })
 
-    console.log({ buyerInfo });
 
-    const { validate } = new Validater([{
-        value: buyerInfo.name,
-        failMsg: "구매자 이름은 필수 입니다."
-    }, {
-        value: buyerInfo.phone,
-        failMsg: "구매자 연락처는 필수 입니다."
-    }, {
-        value: chkAll,
-        failMsg: "필수 약관에 동의 해주세요."
-    }]);
 
     const submitInfo: TPaySubmitInfo = {
         buyerInfo,
@@ -131,12 +118,6 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
     </div>
 
 
-    const handlePayment = () => {
-        if (validate()) {
-            onDoPay(submitInfo)
-        }
-    }
-
     function set<T extends keyof typeof buyerInfo>(key: T) {
         return (value: any) => {
             buyerInfo[key] = value;
@@ -150,6 +131,35 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
         bookingThirdPolicy: false,
         travelerPolicy: false
     });
+
+    let chkAll = true;
+    (() => {
+        let policy: keyof CKlist;
+        let agreeAll = chkPolocy;
+        for (policy in agreeAll) {
+            if (!agreeAll[policy]) {
+                chkAll = false;
+            }
+        }
+    })()
+
+
+    const { validate } = new Validater([{
+        value: buyerInfo.name,
+        failMsg: "구매자 이름은 필수 입니다."
+    }, {
+        value: buyerInfo.phone,
+        failMsg: "구매자 연락처는 필수 입니다."
+    }, {
+        value: chkAll,
+        failMsg: "필수 약관에 동의 해주세요."
+    }]);
+
+    const handlePayment = () => {
+        if (validate()) {
+            onDoPay(submitInfo)
+        }
+    }
 
     const isCheckAll = () => {
         let chkAll = true;
@@ -169,20 +179,24 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
 
     const handleAgreeAll = () => {
 
-        if (!isCheckAll()) {
-            setChkAll(true);
+        const toggle = (flag: boolean) => {
             let policy: keyof CKlist;
             let agreeAll = chkPolocy;
             for (policy in agreeAll) {
-                agreeAll[policy] = true;
+                agreeAll[policy] = flag;
             }
             setChkPolicy({
                 ...agreeAll
             })
+        }
+
+        if (!isCheckAll()) {
+            toggle(true);
         } else {
-            setChkAll(false);
+            toggle(false);
         }
     }
+
 
     const handlePolicy = (policyTarget: keyof CKlist) => {
 
@@ -312,41 +326,6 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                     </span>
                 </div>
             </div>
-
-            {/* {isLogin ||
-                <div>
-                    <div className="write_type mb10">
-                        <div className="title">구매자성함</div>
-                        <div className="input_form">
-                            <input readOnly type="text" name="title" className="inputText w100 fix" />
-                        </div>
-                    </div>
-                    <div className="write_type mb10">
-                        <div className="title">연락처</div>
-                        <div className="input_form">
-                            <input id="title" onChange={(e) => {
-                                // setTitle(e.currentTarget.value)
-                            }} type="text" name="title" className="inputText w100" />
-                        </div>
-                    </div>
-                    <div className="write_type mb10">
-                        <div className="title">이메일</div>
-                        <div className="input_form">
-                            <input id="title" onChange={(e) => {
-                                // setTitle(e.currentTarget.value)
-                            }} type="text" name="title" className="inputText w100" />
-                        </div>
-                    </div>
-                    <div className="write_type mb10">
-                        <div className="write_con">
-                            <div className="title">예약자메모</div>
-                            <div className="input_form">
-                                <textarea className="inputText input_box w100" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            } */}
             <div className="write_comment payment__memoForm">
                 <h3>예약메모</h3>
                 <div className="comment_layout">
@@ -366,9 +345,6 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                     </ul>
                 </div>
             </div>
-
-
-
             <div className="agreeChk__box">
                 <div className="agreeChk">
                     {/* <input checked={chkAll} type="checkbox" className="checkbox" onChange={handleAgreeAll} /> */}
@@ -482,15 +458,8 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                             }} className="btn w50" >확인</button>
                         </div>
                     </div>
-
                 </Modal>
-
             </div>
-
-
-
-
-
             <a onClick={handlePayment} className="paymentBtn">결제하기</a>
         </div>
     </div >

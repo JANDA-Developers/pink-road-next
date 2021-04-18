@@ -58,6 +58,10 @@ export const QnaWrite: React.FC<IProp> = () => {
             failMsg: "제목 값은 필수 입니다.",
         },
         {
+            value: boardData.categoryId,
+            failMsg: "카테고리 값은 필수 입니다.",
+        },
+        {
             value: boardData.contents,
             failMsg: "콘텐츠 값은 필수 입니다.",
         },

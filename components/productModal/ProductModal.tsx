@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import { useIdSelecter } from '../../hook/useIdSelecter';
 import { useProductController, useProductFindByIdForSeller, useProductUpdate, } from '../../hook/useProduct';
-import { generateSearchLink } from '../../pages/search';
+import { generateSearchLink } from '../../pages/search[drepreacted]';
 import { AppContext } from '../../pages/_app';
 import { PaymentStatus, BookingStatus, ProductStatus, } from '../../types/api';
 import { AFTER_OPEN_PRODUCT_STATUS } from '../../types/const';

@@ -29,7 +29,6 @@ import { randomSort } from "../../../utils/randomSort";
 import isEmpty from "../../../utils/isEmpty";
 import { cloneObject } from "../../../utils/clone";
 import { productList_ProductList_data, ProductStatus } from "../../../types/api";
-import sanitizeHtml from "sanitize-html";
 import { productStatus } from "../../../utils/enumToKr";
 import { ProductDateSelecter } from "../../../components/ProductDateSelecter";
 import { Change } from "../../../components/loadingList/LoadingList";
@@ -277,7 +276,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                   )}
                 </ul>
                 <div className="details_info_txt">
-                  <div className="ck-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(info) }} />
+                  <div className="ck-content" dangerouslySetInnerHTML={{ __html: info }} />
                 </div>
               </div>
             </div>
@@ -337,7 +336,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     </tbody>
                   </table>
                 </div>
-                <div className="box">
+                {isPast && <div className="box">
                   <table cellSpacing={0} summary="Extra Form" className="option_tb">
                     <tbody>
                       <tr>
@@ -388,13 +387,14 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     </table>
                   </div>
                 </div>
+                }
                 {/* btn */}
                 <div className="btn_box">
                   <div className="links_wrap">
 
                     <div className={`link02 ${isDisable && "tourBracketBtn--disabled"}`}>
                       <a onClick={handleDoPay}>
-                        예약하기
+                        {isPast ? "기간종료" : "예약하기"}
                       </a>
                     </div>
 
@@ -431,7 +431,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     </div>
                     <div className="tour_list">
                       {it.contents.map((con, index) => <div key={index + "con" + it._id}>
-                        <div className="ck-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(con) }} />
+                        <div className="ck-content" dangerouslySetInnerHTML={{ __html: con }} />
                       </div>
                       )}
                     </div>
@@ -449,14 +449,14 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               <div className="in_box" id="tap__02">
                 <h4>안내 및 참고</h4>
                 <div dangerouslySetInnerHTML={{
-                  __html: sanitizeHtml(contents)
+                  __html: contents
                 }} className="text ck-content" />
               </div>
               {/* 포함 및 불포함 */}
               <div className="in_box" id="tap__03">
                 <h4>포함 및 불포함 </h4>
                 <div dangerouslySetInnerHTML={{
-                  __html: sanitizeHtml(inOrNor)
+                  __html: inOrNor
                 }} className="text ck-content" />
               </div>
               {/* 리뷰 신규추가 */}
@@ -509,7 +509,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               {/* 주의사항 */}
               <div className="in_box" id="tap__05" >
                 <h4>주의사항</h4>
-                <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(caution) }} className="text" />
+                <div dangerouslySetInnerHTML={{ __html: caution }} className="text" />
               </div>
               <div className="in_box" id="tap__06">
                 <h4>문의하기</h4>

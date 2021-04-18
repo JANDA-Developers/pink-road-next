@@ -7,10 +7,23 @@ import PageLoading from '../../pages/Loading';
 import { AppContext } from '../../pages/_app';
 import { paymentStatus, paymentStatus2, payMethodToKR } from '../../utils/enumToKr';
 import { autoComma, card_hypen } from '../../utils/formatter';
+import isEmpty from '../../utils/isEmpty';
 import { getFromUrl } from '../../utils/url';
 import { yyyymmddHHmm } from '../../utils/yyyymmdd';
 
 interface IProp { }
+
+
+const getData = (): any[] => {
+    let result: any[] = []
+    try {
+        const bnks = JSON.parse(decodeURIComponent(getFromUrl("encbks") || ""));
+        result = bnks;
+    } catch {
+    }
+
+    return result;
+}
 
 export const JDpayCompleteUI: React.FC<IProp> = () => {
     const { isLogin } = useContext(AppContext);
@@ -21,13 +34,16 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
         }
     })
 
+    const urlResult = getData();
+    const _itmes = isEmpty(items) ? urlResult : items;
+
     if (getLoading) return <PageLoading />
     return <PaymentLayout>
         <div className="payment_box">
             <div className="head">
                 <h2><i>예약</i>이 완료되었습니다.</h2>
             </div>
-            {items.map(booking =>
+            {_itmes.map(booking =>
                 <div key={booking._id} className="table">
                     <div className="payment_tr">
                         <div className="payment_th">

@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
-import Search from '../../pages/search';
+import Search from '../../pages/search[drepreacted]';
 import { lastMonthFirstDate, lastMonthLastDate, thisMonthFirstDate, thisMonthLastDate } from '../../types/const';
 import { ISet, TElements } from '../../types/interface';
 import { onKeyPressEnter } from '../../utils/onKeyPress';

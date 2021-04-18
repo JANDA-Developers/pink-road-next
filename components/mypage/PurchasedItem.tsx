@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
-import { generateSearchLink } from '../../pages/search';
+import { generateSearchLink } from '../../pages/search[drepreacted]';
 import { bookingList_BookingList_data, BookingStatus, Fbooking, ProductStatus } from '../../types/api';
 import { BG } from '../../types/const';
 import { autoComma } from '../../utils/formatter';

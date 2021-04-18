@@ -8,14 +8,20 @@ import { getContext_GetProfile_data as IProfile, categoryList_CategoryList_data,
 import PinkClient from "apollo/client"
 import { ALLOW_ADMINS, ALLOW_FULLESS, ALLOW_LOGINED, ALLOW_SELLERS } from '../types/const';
 import { GET_CONTEXT } from '../apollo/gql/queries';
-import { bracketVergionChange } from '../utils/Storage';
 import PageDeny from './Deny';
 import { categoryMap, defaultCatsMap } from '../utils/categoryMap';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import PageLoading from './Loading';
 import { arrayEquals } from '../utils/filter';
 import "slick-carousel/slick/slick.css";
 import useRouterScroll from '../hook/useRouterScroll';
+import { pageLoadingEffect } from '../utils/query';
+
+
+
+Router.events.on('routeChangeStart', () => { pageLoadingEffect(true) });
+Router.events.on('routeChangeComplete', () => { pageLoadingEffect(false) });
+Router.events.on('routeChangeError', () => { pageLoadingEffect(false) });
 
 
 dayjs.locale('ko')

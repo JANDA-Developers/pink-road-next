@@ -205,32 +205,6 @@ export const MsDesignB: React.FC<IProp> = () => {
                                     </li>
                                 </ul>
                             </div>
-                            {/* <div className="hang_view">
-                                <div >
-                                    <div className="view_box">
-                                        <div className="head">
-                                            <ul className="top">
-                                                <li><i className="flaticon-multiply"></i></li>
-                                            </ul>
-                                            <div className="bottomnav">
-                                                <div className="tap"></div>
-                                                <div className="input">
-                                                    <i className="flaticon-menu"></i>
-                                                    <i className="flaticon-menu-1"></i>
-                                                    <span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <PopupConfigViewBox height={360} onBoxClick={(view, index) => {
-                                            setSelcetedIndex(index)
-                                        }} {...popupHook} />
-                                    </div>
-                                    <p className="infotxt_gray">우측 팝업리스트에서 'ON'으로 표시하시면 좌측 화면에서 팝업위치와 크기를 설정할 수 있는 미니팝업이 생성됩니다.<br />'OFF'시엔 미니팝업이 사라집니다. 'ON'표시는 3개 이하로 권장드립니다.</p>
-                                    <p className="infotxt_gray">각 팝업의 사이즈와 위치는 전체화면에 대한 비례 위치 입니다.</p>
-                                    <p className="infotxt_gray">각 팝업을 더블클릭하여 편집 할 수 있습니다.</p>
-                                </div>
-                                {selectedModal && <Editor key={selectedIndex + "editor"} onChange={handleContentChange} data={selectedModal.content} />}
-                            </div> */}
                         </div>
                         <div className="fin">
                             <div className="float_left">

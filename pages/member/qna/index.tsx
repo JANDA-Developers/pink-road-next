@@ -9,7 +9,6 @@ import { useRouter } from 'next/router';
 import { MemberTopNav } from '../../../components/topNav/MemberTopNav';
 import { useQnaList } from '../../../hook/useQna';
 import { qnaList_QnaList_data } from '../../../types/api';
-import sanitizeHtml from 'sanitize-html';
 import { Change } from '../../../components/loadingList/LoadingList';
 import { generateClientPaging } from '../../../utils/generateClientPaging';
 import { Paginater } from '../../../components/common/Paginator';
@@ -22,9 +21,9 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
     const { isManager, categoriesMap, myProfile } = useContext(AppContext)
     const { items, getLoading } = useQnaList({
         initialViewCount: 999,
-        // fixingFilter: {
-        //     isOpen_eq: isManager ? undefined : true
-        // }
+        fixingFilter: {
+            isOpen_eq: isManager ? undefined : true
+        }
     })
     const [filterCat, setFilterCat] = useState<string>()
     const router = useRouter();
@@ -71,7 +70,6 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                         <ul className="board_option__btn">
                             <li onClick={handleCatFilter(undefined)} className={checkCatEq(undefined)}><a>전체</a></li>
                             {categoriesMap.QNA.map(cat =>
-                                // <li className={checkCatEq(cat._id)} onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}<strong>{checkCatCount(cat._id)}</strong></a></li>
                                 <li className={checkCatEq(cat._id)} onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}</a></li>
                             )}
                         </ul>
@@ -95,7 +93,7 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                                 <div className="form">
                                     <i className="A" />
                                     <p dangerouslySetInnerHTML={{
-                                        __html: sanitizeHtml(qna.contents)
+                                        __html: qna.contents
                                     }} />
                                 </div>
                             </div>

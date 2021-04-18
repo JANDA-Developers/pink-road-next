@@ -1,12 +1,13 @@
 import dayjs from 'dayjs';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { IPopupBox, IUsePopups } from '../../hook/usePopups';
 
 interface IPopUp extends IUsePopups {
     popup: IPopupBox
 }
 
-export const Popup: React.FC<IPopUp> = ({ closePopup, popup }) => {
+//리팩토링중!!
+export const Popup: React.FC<IPopUp> = ({ closePopup, popup, openPopup }) => {
 
     const handleClose = (notToday: boolean) => () => {
         closePopup(popup._id, notToday ? dayjs().add(1, "d").set("h", 0).toDate() : undefined)
@@ -17,6 +18,10 @@ export const Popup: React.FC<IPopUp> = ({ closePopup, popup }) => {
     const pcUse = false
 
     const ismobile = typeof window === "undefined" ? false : window.innerWidth < 500;
+
+    useEffect(()=>{
+        openPopup(popup);
+    },[])
 
     if (ismobile && !mobileUse) return null;
     if (!ismobile && !pcUse) return null;

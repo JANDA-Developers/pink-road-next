@@ -1,4 +1,4 @@
-import { AddtionalFeesStatus, AnnounceType, bookingFindByCode_BookingFindByCode_data_bankTransInfo, BookingStatus, CategoryType, ERR_CODE, Fbooking, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fproduct, Fuser, GENDER, MethodType, NEWS_TYPE, PaymentStatus, PayMethod, ProductReOpenReq, ProductStatus, ProductType, QuestionStatus, RequestStatus, SettlementStatus, UserRole, UserStatus } from "../types/api";
+import { AddtionalFeesStatus, AnnounceType, bookingFindByCode_BookingFindByCode_data_bankTransInfo, BookingStatus, CategoryType, ERR_CODE, Fbooking, feePolicyFindOne_FeePolicyFindOne_data_addtionalFees, Fproduct, Fuser, GENDER, getContext_GetProfile_data, MethodType, NEWS_TYPE, PaymentStatus, PayMethod, ProductReOpenReq, ProductStatus, ProductType, QuestionStatus, RequestStatus, SettlementStatus, UserRole, UserStatus } from "../types/api";
 
 export const bookingStatus = (status?: BookingStatus | null) => {
     if (status === BookingStatus.CANCEL) return "예약취소"
@@ -243,3 +243,9 @@ export const bankrefundTransInfo = (bankTransInfo?: bookingFindByCode_BookingFin
     return `${accountHolder} ${accountNumber}(${bankName})`
 };
 
+export const nameOf = (myProfile?: getContext_GetProfile_data | null) => {
+    return myProfile?.manageName || myProfile?.name || myProfile?.busi_name || "";
+}
+export const phoneNumberOf = (myProfile?: getContext_GetProfile_data | null) => {
+    return myProfile?.manageContact || myProfile?.phoneNumber || myProfile?.busi_contact || ""
+}

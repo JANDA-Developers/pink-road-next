@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Ipopup } from '../types/interface';
 import dayjs from 'dayjs';
 import { Storage } from '../utils/Storage';
+import { useCopy } from "./useUpdate";
 
 export interface IPopupBox extends Ipopup {
     isOpen?: boolean;
@@ -15,7 +16,7 @@ export const setNextPop = (id: string, date: Date = dayjs().add(1, "h").toDate()
 export interface IUsePopups extends ReturnType<typeof usePopups> { }
 //뭐가 필요한지 알았으니 구조에 대해서 다시 생각해 봐야겠다.
 export const usePopups = (defaultModals: Ipopup[]) => {
-    const [popups, setPopups] = useState<IPopupBox[]>(defaultModals)
+    const [popups, setPopups] = useCopy<IPopupBox[]>(defaultModals)
     const [selectedIndex, setSelcetedIndex] = useState<number>(0);
     const selectedPopup = popups[selectedIndex] || undefined;
 
@@ -42,6 +43,10 @@ export const usePopups = (defaultModals: Ipopup[]) => {
     const closePopup = (id: string, nextTime?: Date) => {
         setNextPop(id, nextTime);
     }
+
+    useEffect(()=>{
+        openAllAuto();
+    },[])
 
     return { closePopup, openAllAuto, selectedIndex, selectedPopup, setSelcetedIndex, popups, setPopups, openPopup }
 }

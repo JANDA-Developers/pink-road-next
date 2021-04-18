@@ -13,6 +13,7 @@ import PageDeny from '../../../Deny';
 import { IPromptInfo, PormptModal } from '../../../../components/promptModal/PromptModal';
 import { useModal } from '../../../../hook/useModal';
 import { getFromUrl } from '../../../../utils/url';
+import isEmpty from '../../../../utils/isEmpty';
 
 interface IProp {
 }
@@ -134,15 +135,17 @@ export const QuestionDetail: React.FC<IProp> = () => {
                     {(isMyProduct || isManager) &&
                         <div>
                             <h3>Comment</h3>
-                            <div className="comment_box">
-                                <ul className="comment_box_list">
-                                    {(question.answers || []).filter(answer => !answer?.isDelete).map(answer => {
-                                        return <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
-                                    }
-                                    )}
-                                </ul>
-                            </div>
-                            {isMyProduct && <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.nickName} onSubmit={handleAnswer} />}
+                            {!isEmpty(question.answers) &&
+                                <div className="comment_box">
+                                    <ul className="comment_box_list">
+                                        {(question.answers).filter(answer => !answer?.isDelete).map(answer => {
+                                            return <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
+                                        }
+                                        )}
+                                    </ul>
+                                </div>
+                            }
+                            <CommentWrite defaultContent={""} title={`${title} : ` + myProfile?.nickName} onSubmit={handleAnswer} />
                         </div>
                     }
                 </div>
