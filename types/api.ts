@@ -2946,13 +2946,15 @@ export interface homepage_Homepage_data_modal {
   __typename: "Modal";
   _id: string;
   link: string | null;
+  useMobile: boolean;
+  usePc: boolean;
   startDate: any;
   endDate: any;
   content: string | null;
   linkBehavior: LinkBehavior | null;
   style: any;
   title: string;
-  priority: number | null;
+  priority: number;
   createdAt: any;
   open: boolean;
 }
@@ -3163,13 +3165,15 @@ export interface homepageUpdate_HomepageUpdate_data_modal {
   __typename: "Modal";
   _id: string;
   link: string | null;
+  useMobile: boolean;
+  usePc: boolean;
   startDate: any;
   endDate: any;
   content: string | null;
   linkBehavior: LinkBehavior | null;
   style: any;
   title: string;
-  priority: number | null;
+  priority: number;
   createdAt: any;
   open: boolean;
 }
@@ -7752,13 +7756,15 @@ export interface getContext_Homepage_data_modal {
   __typename: "Modal";
   _id: string;
   link: string | null;
+  useMobile: boolean;
+  usePc: boolean;
   startDate: any;
   endDate: any;
   content: string | null;
   linkBehavior: LinkBehavior | null;
   style: any;
   title: string;
-  priority: number | null;
+  priority: number;
   createdAt: any;
   open: boolean;
 }
@@ -11585,13 +11591,15 @@ export interface Fmodal {
   __typename: "Modal";
   _id: string;
   link: string | null;
+  useMobile: boolean;
+  usePc: boolean;
   startDate: any;
   endDate: any;
   content: string | null;
   linkBehavior: LinkBehavior | null;
   style: any;
   title: string;
-  priority: number | null;
+  priority: number;
   createdAt: any;
   open: boolean;
 }
@@ -11705,13 +11713,15 @@ export interface Fhomepage_modal {
   __typename: "Modal";
   _id: string;
   link: string | null;
+  useMobile: boolean;
+  usePc: boolean;
   startDate: any;
   endDate: any;
   content: string | null;
   linkBehavior: LinkBehavior | null;
   style: any;
   title: string;
-  priority: number | null;
+  priority: number;
   createdAt: any;
   open: boolean;
 }
@@ -12801,8 +12811,8 @@ export enum GENDER {
  * 링크 행동설정
  */
 export enum LinkBehavior {
-  blank = "blank",
-  individual = "individual",
+  _blank = "_blank",
+  _self = "_self",
 }
 
 /**

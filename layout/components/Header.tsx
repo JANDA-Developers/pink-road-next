@@ -8,7 +8,6 @@ import { Router, useRouter } from "next/router";
 import { NotiIcon } from "./NotiIcon";
 import { generateSearchLink } from "../../pages/search[drepreacted]";
 import { userRoleToKR } from "../../utils/enumToKr";
-import homepage13 from "../../pages/master/homepage/homepage1-3";
 
 interface IProp { }
 export const handSearchClose = () => {

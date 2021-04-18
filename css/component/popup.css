@@ -1,0 +1,60 @@
+.JDpopup  {
+    background-color: white;
+    position: fixed;
+    z-index: 100;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    background-size: cover;
+}
+.JDpopup__bottomController {
+    display: flex;
+    padding: 0.4rem;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(0,0,0,0.25);
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.JDpopup__dayCloser,.JDpopup__close {
+    cursor: pointer;
+}
+
+.JDpopup__box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.JDpopupMobile {
+    z-index: 100;
+
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom: 0;
+    backdrop-filter: brightness(24%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.JDpopupMobile__contents {
+    border-radius: 5px;
+    background-color: white;
+}
+
+.JDpopup__mobile-bottomController {
+    top:100%;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.JDpopup__boxContent {
+    overflow: auto;
+    line-break: anywhere;
+}

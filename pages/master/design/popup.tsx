@@ -17,6 +17,7 @@ import { useUpload } from '../../../hook/useUpload';
 import { LoadEditor } from '../../../components/edit/EdiotrLoading';
 import { DayPickerModal } from '../../../components/dayPickerModal/DayPickerModal';
 import { toNumber } from '../../../utils/toNumber';
+import { Popup } from '../../../components/popup/Popup';
 
 const Editor = LoadEditor();
 
@@ -24,7 +25,7 @@ interface IProp { }
 
 export const MsDesignB: React.FC<IProp> = () => {
     const { homepage } = useContext(AppContext);
-    const popupHook = usePopups(homepage?.modal || []);
+    const popupHook = usePopups(homepage?.modal || [], {autoOpen: false});
     const { signleUpload } = useUpload();
     const [datePopUp, setDatePopUp] = useState<Ipopup>()
     const [homepageUpdate] = useHomepageUpdate({
@@ -44,7 +45,7 @@ export const MsDesignB: React.FC<IProp> = () => {
             variables: {
                 params: {
                     ...omits(homepage),
-                    modal: omits(popupHook.popups, ['_id' as any, '__typename'])
+                    modal: omits(popupHook.popups, ['_id' as any, '__typename', 'isOpen'])
                 }
             }
         })
@@ -78,6 +79,7 @@ export const MsDesignB: React.FC<IProp> = () => {
     const handleOpenDayPicker = (popup: Fmodal) => () => {
         setTimeout(() => {
             openModal("#dayPickerModal")()
+            setDatePopUp(popup);
         }, 100);
     }
 
@@ -90,10 +92,12 @@ export const MsDesignB: React.FC<IProp> = () => {
     const defaultPopStartDate = new Date();
     const defaultPopEndDate = dayjs().add(1, "d").toDate();
     return <div>
-        {datePopUp && <DayPickerModal defaultRange={{
+        {datePopUp && <DayPickerModal 
+        defaultRange={{
             from: datePopUp.startDate ? dayjs(datePopUp.startDate).toDate() : defaultPopStartDate,
             to: datePopUp.endDate ? dayjs(datePopUp.endDate).toDate() : defaultPopEndDate
-        }} onSubmit={(range) => {
+        }} 
+        onSubmit={(range) => {
             closeModal("#dayPickerModal")()
             datePopUp.startDate = range.from;
             datePopUp.endDate = range.to;
@@ -101,6 +105,9 @@ export const MsDesignB: React.FC<IProp> = () => {
         }} />
         }
         <MasterLayout>
+            {popupHook.popups.map((pop, index) =>
+                <Popup {...popupHook} popup={pop} key={pop._id} />
+            )}
             <div className="in ">
                 <h4>디자인 설정</h4>
                 <div className="in_content">
@@ -137,9 +144,9 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                 <button className="btn small mr10" onClick={handlePreview(modal)}>미리보기</button>
                                                 <button className="btn small" onClick={handleDelete(modal)}>삭제하기</button>
                                                 <div className="line">
-                                                    <h6>우선순서</h6>
+                                                    <h6>우선순위</h6>
                                                     <div className="txt">
-                                                        <select onChange={(e) => {
+                                                        <select value={modal.priority} onChange={(e) => {
                                                             const order = e.currentTarget.value;
                                                             modal.priority = toNumber(order);
                                                             popupHook.setPopups([...popupHook.popups])
@@ -169,15 +176,90 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                 </div>
                                                 <div className="line">
                                                     <h6>링크연결</h6>
+
                                                     <div className="txt">
                                                         <input onChange={(e) => {
                                                             modal.link = e.currentTarget.value;
                                                             popupHook.setPopups([...popupHook.popups]);
                                                         }} value={modal.link || undefined} type="text" className="w100" placeholder="https://" />
-                                                        <select className="w100 mt5">
-                                                            <option value={LinkBehavior.blank}>새창</option>
-                                                            <option value={LinkBehavior.individual}>현재창</option>
+                                                        <select value={modal.linkBehavior || LinkBehavior._blank} onChange={(e)=> {
+                                                            modal.linkBehavior = e.currentTarget.value as LinkBehavior
+                                                            popupHook.setPopups([...popupHook.popups]);
+                                                     }} className="w100 mt5">
+                                                            <option value={LinkBehavior._blank}>새창</option>
+                                                            <option value={LinkBehavior._self}>현재창</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div className="line">
+                                                    <h6>좌표설정</h6>
+                                                    <p>
+                                                        모바일일떄는 가운데 정렬 됩니다.
+                                                    </p>
+                                                    <div className="txt">
+                                                        left
+                                                        <input onChange={(e) => {
+                                                            modal.style = {
+                                                                ...modal.style,
+                                                                left: toNumber(e.currentTarget.value)
+                                                            }
+                                                            popupHook.setPopups([...popupHook.popups]);
+                                                        }} value={modal.style.left || undefined} type="text" className="w100" />
+                                                        top
+                                                        <input onChange={(e) => {
+                                                            modal.style = {
+                                                                ...modal.style,
+                                                                top: toNumber(e.currentTarget.value)
+                                                            }
+                                                            popupHook.setPopups([...popupHook.popups]);
+                                                        }} value={modal.style.top || undefined} type="text" className="w100"  />
+                                                    </div>
+                                                </div>
+                                                <div className="line">
+                                                    <h6>PC/Mobile</h6>
+                                                    <div className="txt">
+                                                    <div className="switch">
+                                                    모바일 사용 
+                                                        <input onChange={() => {
+                                                            modal.useMobile = !modal.useMobile 
+                                                            popupHook.setPopups([...popupHook.popups]);
+                                                        }} checked={modal.useMobile} className="tgl tgl-skewed" id={`cbpc${index}`} type="checkbox" />
+                                                        <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor={`cbpc${index}`} />
+                                                    </div>
+                                                    <div className="switch">
+                                                        
+                                                        PC사용
+                                                        <input onChange={() => {
+                                                            modal.usePc = !modal.usePc
+                                                            popupHook.setPopups([...popupHook.popups]);
+                                                        }} checked={modal.usePc} className="tgl tgl-skewed" id={`cbmb${index}`} type="checkbox" />
+                                                        <label className="tgl-btn" data-tg-off="OFF" data-tg-on="ON" htmlFor={`cbmb${index}`} />
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div className="line">
+                                                    <h6>크기조절</h6>
+                                                    <p>
+                                                        최대 화면 크기를 초과할 수 없습니다.
+                                                    </p>
+                                                    <div className="txt">
+                                                        width
+                                                        <input onChange={(e) => {
+                                                            modal.style = {
+                                                                ...modal.style,
+                                                                width: toNumber(e.currentTarget.value)
+                                                            }
+                                                            popupHook.setPopups([...popupHook.popups]);
+                                                        }} value={modal.style.width || undefined} type="text" className="w100"  />
+                                                        height
+                                                        <input onChange={(e) => {
+                                                            modal.style =
+                                                            {
+                                                                ...modal.style,
+                                                                height: toNumber(e.currentTarget.value)
+                                                            }
+                                                            popupHook.setPopups([...popupHook.popups]);
+                                                        }} value={modal.style.height || undefined} type="text" className="w100"  />
                                                     </div>
                                                 </div>
                                                 <div className="line">
@@ -189,12 +271,25 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                             if (!file || !homepage) return;
 
                                                             signleUpload(e.currentTarget.files!, (url) => {
-                                                                modal.style.backgroundImage = url
+                                                                modal.style = {
+                                                                    ...modal.style,
+                                                                    backgroundImage: `url(${url})`
+                                                                }
                                                                 // setPopModal({
                                                                 //     ...modal
                                                                 // })
                                                             })
                                                         }} type="file" />
+                                                    </div>
+                                                </div>
+                                                <div className="line">
+                                                    <h6>컨텐츠 설정</h6>
+                                                    <div className="txt">
+                                                        <div className="fileNameInputLabel">{modal.style?.backgroundImage}</div>
+                                                        <Editor onChange={(data:any) => {
+                                                            modal.content = data;
+                                                            popupHook.setPopups([...popupHook.popups]);
+                                                        }} data={modal.content} />
                                                     </div>
                                                 </div>
                                             </div>

@@ -3969,7 +3969,7 @@ div.master_popup div.alignment{
         right: 0;
     }
     .master_box .popupst_box .hang_list{
-        width: 330px;
+        /* width: 330px; */
         padding: 10px;
     }
     .master_box .popupst_box .hang_view{
