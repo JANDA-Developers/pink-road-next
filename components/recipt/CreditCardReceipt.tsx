@@ -142,7 +142,7 @@ const CardRecipt = ({ tables }: IProps): JSX.Element => {
                             alt="info"
                             style={{ verticalAlign: 'text-top', width: '14px' }}
                           />
-                          부가세법시행령 제57조2항에 따라 결제대행업체를 총한
+                           부가세법시행령 제57조2항에 따라 결제대행업체를 총한
                           신용카드 매출전표는 사업자가 별도의 세금계산서를
                           교부하지 아니한 경우, 매입세금계산서로 사용하실 수
                           있습니다.

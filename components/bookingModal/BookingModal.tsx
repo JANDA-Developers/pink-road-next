@@ -292,7 +292,7 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
                     <div className="info_page">
                         <div className="left_div">
                             <h4>예약 정보
-                                <button style={{ marginLeft: "5px", lineHeight: "26px!important" }} className="btn small" onClick={reciptOpen}>
+                                <button style={{ marginLeft: "5px", lineHeight: "26px!important" }} className="btn mini2" onClick={reciptOpen}>
                                     전표출력
                                 </button>
                             </h4>

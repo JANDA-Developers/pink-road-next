@@ -261,7 +261,7 @@ td {
 .JDtagInput__tag {
     white-space: nowrap;
     display: inline-block;
-    padding: 8px 19px;
+    padding: 2px 16px;
     font-size: 14px;
     color: #696969;
     font-weight: 600;
@@ -269,7 +269,7 @@ td {
     border-radius: 100px;
     line-height: initial;
     background-color: #fff;
-    margin-right: 8px;
+    margin-right: 5px;
     vertical-align: bottom;
     position: relative;
 }
@@ -532,6 +532,6 @@ figure:after {
 @media (min-width:1230px) {
 
     .deps {
-        padding-bottom: 5px;
+        padding-bottom:3px;
     }
 }

@@ -7,6 +7,74 @@
     line-height: 10px;
 }
 
+
+/* font all style */
+.s-day,
+.r-day,
+.where,
+.r-number,
+.name,
+.goods-state1,
+.ct,
+.pay-day,
+.pay,
+.goods-state2,
+.money,
+.refund-txt,
+.count,
+.g-number,
+.ph,
+.state,
+.day_cunt,
+.date,
+.men,
+.men_cunt,
+.paymethod__Check_table .th,
+.paymethod__Check_table .td,
+.paymethod__Check_table .tr > div span,
+.basket_box .basket_list .code,
+.profile_box .welcometxt,
+ul.list_ul li .category span,
+.search_box .day_ul span,
+.option_tb .smtxt,
+ul.list_ul li .tag2,
+.textbox__01 .txt,
+.search_in .alignment2,
+div.master_popup .top03 span,
+div.master_popup .info_page div[class*=td0],
+.mypage_in .box_right .txt,
+.search_top .day_ul span,
+.Allsearch__plusBtn,
+.product__statusIcon,
+.textbox__01 .day,
+.textbox__01 .location,
+.footer_in .copyright .footer_homepage_info li,
+ul.list_ul li .bottom_txt,
+.notification_box .right .hang,
+#all_menu ul .a_menu_tit .depth1 li a,
+.master__table .list_line div[class*=td],
+.patner-name,
+.board_list.st05 .textbox__02 > span,
+.textbox__01 .tag > a,
+.tour_details_in .boardReadBody .in_box .text,
+.option_tb .code,
+div.sum_div .body div,
+.board_list_mini .tbody li > div,
+ul.list_ul li .bottom_txt span,
+.tour_details_in .boardReadBody .top_day span,
+.option_tb .tag li,
+.tour_details_in .boardReadBody .tour_list,
+.fuction_list_mini .tbody li > div{
+    font-family: NanumSquareRoundOTFB,NanumSquareRoundOTF, '돋음',sans-serif;
+}
+div.master_popup .info_page div[class*=td0],
+div.master_popup .top03 span{
+    font-weight: 100;
+
+}
+.basket_box .basket_list .title a{
+    font-family: 'montserrat', 'noto', 'Roboto', sans-serif;
+}
 /* styleguide */
 .styleguidebox{
     position: relative;
@@ -872,6 +940,8 @@ div.search_mini {
     .goodsall__list__img {
         display: inline-block;
         width: 20%;
+        height: 100px;
+        overflow: hidden;
         vertical-align: top;
     }
     .goodsall__list__img img {
@@ -982,11 +1052,9 @@ div.popup_bg_full .fin{
     }
 
     div.popup_bg_full h3 {
-        font-size: 20px;
-        line-height: 76px;
+        font-size: 1.6em;
+        line-height: 250%;
         font-weight: 600;
-        position: fixed;
-        top: 14px;
     }    
     div.popup_bg_full h3 strong {
         color: #2196F3;
@@ -6281,7 +6349,7 @@ i.important_icon {
     
  }
  .link05.tourBracketBtn--disabled .icon_basket {
-    background-image: url(/img/svg/basket_w.svg);
+    background-image: url(/img/svg/basket_w.svg) !important;
     
  }
     #viewControl .box {
@@ -6433,12 +6501,10 @@ i.important_icon {
         }
 
         #viewControl .btn_box .link05 a {
-            border: 1px solid #ed297b;
             color: #ed297b;
         }
 
             #viewControl .btn_box .link05 a:hover {
-                border: 1px solid #ed297b;
                 color: #ed297b;
             }
 
@@ -6637,7 +6703,7 @@ i.important_icon {
         box-sizing: border-box;
         font-size: 1.1em;
         color: #999;
-        font-weight: 100;
+        font-weight: 600;
         background-color: #f5f5f5;
     }
 
@@ -6822,7 +6888,7 @@ i.important_icon {
                 background-color: #f3f3f3;
                 color: #888;
                 padding: 2px 4px;
-                font-weight: 400;
+                font-weight: 500;
                 font-size: 0.8em;
             }
 
@@ -9049,10 +9115,12 @@ i.calendar {
 }
 .btnList__round .join a{
     color: #d17fa1 !important;
+    font-weight: 600;
     border: 1px solid #d17fa1;
 }
 .btnList__round .join a:hover{
     color: #ed297b;
+ 
     border: 1px solid #ed297b;
 }
 .btnList__round li a::after{
@@ -9205,6 +9273,7 @@ font-size: 1em;
     box-sizing: border-box;
     cursor: pointer;
     color: #aaaaaa;
+    font-weight: 600;
     margin-top: 10px;
 }
 .Allsearch__plusBtn:hover{
@@ -9239,6 +9308,9 @@ font-size: 1em;
     background-repeat: no-repeat;
     margin-right: 5px;
     margin-top: -2px;
+}
+.profile_box .welcometxt{
+    font-weight: 600;
 }
 @media (min-width: 768px) {   
     .main_con_box4 .top_txt{
@@ -10690,7 +10762,7 @@ font-size: 1em;
         line-height: 25px !important;
     }
     .country_check  {
-        margin-left: 10px;
+        margin-left: 0;
         max-width: 180px;
      }
     .country_check li{

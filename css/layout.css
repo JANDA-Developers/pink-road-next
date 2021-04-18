@@ -319,7 +319,7 @@ i.tooltip{
         position:relative;
     }
         .header .top-menu a {
-            font-weight: 100;
+            font-weight:600;
             color: #aaa;
             font-size: 11px;
             cursor:pointer;
@@ -391,6 +391,7 @@ i.tooltip{
                         color: #333333;
                         letter-spacing: -1px;
                         cursor: pointer;
+                        font-family: "Montserrat",'Noto Sans KR',"Malgun Gothic",sans-serif;
                     }
                     .header .hd_center .nav_wrap .deps1 > li > a:before {
                         content: '';
@@ -639,8 +640,8 @@ rect.allmenu_svg {
             position: relative;
             display: inline-block;
             vertical-align: middle;
-            width: 22px;
-            padding-top: 7px;
+            width: 23px;
+            padding-top: 5px;
         }
 
             .header .searchtop .search_btn img {
@@ -826,7 +827,8 @@ rect.allmenu_svg {
 .header .inform_top {
     display:inline-block;
     position:relative;
-    margin:0 12px 0 0;
+    margin:0 16px 0 0;
+    height: 29px;
     vertical-align:middle;
 }
     .header .inform_top .inform_icon {
@@ -2106,8 +2108,9 @@ footer .footer_in_bottom {
 .btn.add_btn.right.top{
     float: right;
     position: absolute;
+    line-height: 21px !important;
     right: 3px;
-    top: 3px;
+    top: 16px;
 }
 
 .btn.add_btn{
@@ -2479,7 +2482,7 @@ i.icon_plus {
     position: relative;
     display: block;
     color: #aaa;
-    padding-left:21px;
+    padding-left:3px;
     box-sizing: border-box;
     margin-top: 10px;
     font-weight: 100;
@@ -3244,6 +3247,7 @@ i.icon_plus {
 .search_top .input_box:first-child {
     margin-right: 1%;
 }
+
 .search_top span.pc{
     margin: 0 5px;
 }
@@ -3437,6 +3441,9 @@ i.icon_plus {
 }
 
 @media (min-width:1000px) {
+    .search_top .hang .input_box:first-child {
+        margin-right: 0;
+    }
     .header .hd_left .logo img {
         margin-top: 14px;
         height: 29px;
@@ -3631,7 +3638,7 @@ i.icon_plus {
             margin-right: 14px;
         }
         .header .inform_top {
-            margin: 0 9px 0 0;
+            margin: 0 16px 0 0;
         }
         .header .searchtop .search_btn {
             width: 23px;
@@ -3708,7 +3715,6 @@ i.icon_plus {
                 box-sizing: border-box;
                 text-align: left;
                 font-size: 16px;
-                font-weight: 500;
                 color: #ffffff;
                 border: 1px solid #878787;
                 background-color: #ffffff1a;
@@ -4014,7 +4020,7 @@ i.icon_plus {
 }
 @media (min-width:1230px) {
     .header .hd_center .nav_wrap > .deps1 .deps_nav{
-        top:47px;
+        top:45px;
     }
     .footer_in .f_detail_wrap {
         width: 1200px;
@@ -4180,7 +4186,7 @@ i.icon_plus {
         display: none;
     }
     .header .inform_top{
-        margin: 0 10px 0 0;
+        margin: 0 16px 0 0;
     }
     .header .searchtop {
         margin-right: 14px;

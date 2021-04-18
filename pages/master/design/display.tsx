@@ -88,8 +88,7 @@ export const MsDesignC: React.FC<IProp> = () => {
                         <ProductGroup onSave={handleSave} onDelete={handleDeleteGroup(g)} onChangeTitle={handleTitleChange(g)} key={g.members.length + g._id} group={g} />
                     )}
                     <div className="fin">
-                        <div className="float_left">
-                        </div>
+                        <div className="float_left" />
                         <div className="float_right">
                             {/* <button onClick={handleAddGroup} type="submit" className="btn medium">추가하기</button> */}
                         </div>

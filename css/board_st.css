@@ -262,9 +262,9 @@
     .board_list.st05 .textbox__img{
         max-width: 100%;
         height: 150px;
-        background-color: #eeeeee;
+        background-color: #ffffff;
         background-repeat: no-repeat;
-        background-position: center;
+        background-position: center top;
         background-size: 100%;
         margin-bottom: 15px;
     }
@@ -281,7 +281,8 @@
    .textbox__01 .txt{
         margin-bottom:6px;
         color: #666666;
-        font-weight: 100;
+        font-weight: 500;
+        font-size: 0.9em;
     }
     .textbox__01 .title{
         width: 100%;
@@ -299,7 +300,7 @@
         color: #888;
         padding: 2px 4px;
         font-weight: 400;
-        font-size: 0.8em;
+        font-size: 0.9em;
     }
     .textbox__01 .cash{
         text-align: left;
@@ -312,8 +313,8 @@
         color: #ed297b;
     }
     .textbox__01 .location{
-        font-weight: 100;
-        font-size: 0.75em;
+        font-weight: 500;
+        font-size: 0.9em;
         position: relative;
     }
     .textbox__01 .location::after{
@@ -325,8 +326,8 @@
         background-color: #eff2f4;
     }
     .textbox__01 .day{
-        font-weight: 100;
-        font-size: 0.8em;
+        font-weight: 500;
+        font-size:0.9em;
     }
     .board_list.st05 .textbox__02{
         width: 100%;
@@ -337,7 +338,7 @@
        display: inline-block;
        margin-right: 15px;
        line-height: 160%;
-       font-weight: 100;
+       font-weight:500;
     }
 /* statement */
 .statement_div {
@@ -443,13 +444,11 @@
         text-align: left;   
         font-weight: 100;
     }
-
-    /* .board_list_mini.ln04 .thead .th01 .checkbox {
-        top:10px;
-    }   
-     .board_list_mini.ln04 .tbody .th01 .checkbox {
-        top:10px;
-    } */
+    .board_list_mini.ln04 .thead .th01 {
+        width: 100%;
+        text-align: center;   
+        font-weight: 600;
+    }
 
     .board_list_mini.ln04 .th02 {
         text-align: left;
@@ -466,6 +465,10 @@
     .board_list_mini.ln04 .th04 {
         width: auto;
         font-weight: 100;
+    }
+    .board_list_mini.ln04 .thead .th04 {
+        width: auto;
+        font-weight: 600;
     }
 
     .board_list_mini.ln04 .thead .th02 {
@@ -2150,6 +2153,7 @@ div.comment_box {
     display: block;
     width: 100%;
     border-top: 3px #333 solid;
+    font-family: NanumSquareRoundOTFB,NanumSquareRoundOTF, '돋음',sans-serif;
 }
 
     .fuction_list_mini .thead {
@@ -2555,7 +2559,7 @@ div.sum_div {
         width: 100%;
         position: relative;
         display: flex;
-        align-items: center;
+        /* align-items: center; */
         padding: 25px;
         cursor: pointer;
     }
@@ -2590,7 +2594,6 @@ div.sum_div {
         width: 100%;
        display: block;
        line-height: 160%;
-       font-weight: 100;
     }
     .new {
         width: 14px;

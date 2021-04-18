@@ -67,6 +67,7 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                     </div>
                     <div className="alignment">
                         <div className="left_div"><span className="infotxt"><i>{yyyymmdd(createdAt)} ~ {yyyymmdd(startDate)} 예약</i>이 총 <strong>{bookings?.length}</strong>건</span></div>
+                        <div className="right_div" />
                     </div>
                     <div className="fuction_list_mini">
                         <div className="thead">
@@ -98,6 +99,7 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                     </div>
                     <div className="alignment ">
                         <div className="left_div"><span className="infotxt"><i>취소건이</i>이 총 <strong>{canceldBooking.length}</strong>건</span></div>
+                        <div className="right_div" />
                     </div>
                     <div className="fuction_list_mini">
                         <div className="thead">
@@ -162,8 +164,7 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                         <div className="float_left">
                             <SettlementController settlement={settlement} product={product} />
                         </div>
-                        <div className="float_right">
-                        </div>
+                        <div className="right_div" />
                     </div>
                 </div>
             </div>

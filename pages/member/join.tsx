@@ -201,7 +201,7 @@ const JoinResult = () => {
                 기업파트너or개인파트너는 가입승인 후에 서비스를 이용할 수 있습니다. <br className="no" />
                 핑크로더의 파트너 담당자가 승인 절차 메일을 발송 합니다. 조금만 기다려 주세요.
             </p>}
-            <div className="fin">
+            <div className="fin last">
                 <Link href="/">
                     <button
                         className="sum btn"

@@ -64,6 +64,10 @@ export const MsHomepageA: React.FC<IProp> = () => {
                 <HomepageTopNav />
                 <div className="con homepage board">
                     <div className="design_table">
+                        <div className="fin ifMobile">
+                            <div className="float_left" />
+                            <div className="float_right" />
+                        </div>
                         <div className="block_box">
                             <h5>게시판 카테고리 설정</h5>
                             <Change change={!getLoading} >

@@ -37,10 +37,15 @@ table {
     word-wrap: break-word;
     word-break: keep-all;
 }
-html, body, form, div, p, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, pre, input, blockquote, th, td, thead, tbody, legend, label, select, option, button, fieldset, select, textarea {
+html, body, form, div, p, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, pre, blockquote, th, td, thead, tbody, legend, label {
     margin: 0;
     padding: 0;
     font-family: 'montserrat', 'noto', 'Roboto', sans-serif;
+}
+input, select, option, fieldset, select, textarea {
+    margin: 0;
+    padding: 0;
+    font-family: NanumSquareRoundOTFB,NanumSquareRoundOTF, '돋음',sans-serif;
 }
 button {
     cursor: pointer;
@@ -91,6 +96,7 @@ a {
     color: #333;
     text-decoration: none;
     transition: all 0.3s ease 0s;
+    font-family: NanumSquareRoundOTFB,NanumSquareRoundOTF, '돋음',sans-serif;
 }
 
     a:link {
@@ -112,6 +118,9 @@ img {
 
 ul {
     list-style: none;
+}
+p{
+    font-family: NanumSquareRoundOTFB,NanumSquareRoundOTF, '돋음',sans-serif;
 }
 
 button:focus {
@@ -178,15 +187,19 @@ select:focus {
     font-weight: 600;
     line-height: 32px;
     padding: 0 24px;
-    border-color: #999;
-    color: #777;
+    border-color: #555;
+    color: #333;
     cursor:pointer;
     font-style:normal;
+    opacity: 0.8;
+    font-family: NanumSquareRoundOTFB,NanumSquareRoundOTF, '돋음',sans-serif;
 }
 
     .btn:hover {
         border-color: #555;
         color: #333;
+         opacity: 1;
+
     }
 
     .btn.small {
@@ -216,6 +229,22 @@ select:focus {
         margin: 3px;
     }
     .btn.mini:hover {
+        border: 1px solid rgb(170, 170, 170);
+        color: #333;
+    }
+    .btn.mini2 {
+        color: #999;
+        border: 1px solid #cfcfcf;
+        border-radius: 3px;
+        box-sizing: border-box;
+        padding: 0 10px;
+        font-size: 12px;
+        display: inline-block;
+        line-height: 21px;
+        margin: 3px;
+        vertical-align: bottom;
+    }
+    .btn.mini2:hover {
         border: 1px solid rgb(170, 170, 170);
         color: #333;
     }

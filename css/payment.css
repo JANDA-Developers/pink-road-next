@@ -50,6 +50,12 @@
 #payment .popup_bg_mini .in_txt {
    min-width: 80%;
 }
+.basket_box .popup_bg_mini .in_txt {
+   min-width: 30% !important;
+}
+.basket_box .Chash__box .chash_tb {
+   margin-top: 0 !important;
+}
 
 #payment .payment_box h2 {
     position: relative;
@@ -410,7 +416,7 @@
         border-bottom:0;
      }
     #payment .popup_bg_mini .in_txt {
-        min-width: 100% !important;
+        min-width: 90% !important;
      }
         #payment .popup_bg_mini .in_txt {
         min-width: 94% !important;
