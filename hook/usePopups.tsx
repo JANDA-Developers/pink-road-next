@@ -38,10 +38,10 @@ export const usePopups = (defaultModals: Ipopup[], config: Partial<IUsePopupsCon
             const nextPopDateStr = localStorage.getItem("popup" + popup._id) || ""
             const nextPopDate = nextPopDateStr ? new Date(nextPopDateStr) : new Date();
             const lastOpenCheck = !nextPopDate || dayjs(nextPopDate).isAfter(new Date());
-
+            
+            if(popup.open)
             if (validDate) {
                 if (!nextPopDateStr || lastOpenCheck) {
-                    console.log(popup._id);
                     openPopup(popup);
                 }
             }
