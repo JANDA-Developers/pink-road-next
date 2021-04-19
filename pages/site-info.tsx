@@ -54,19 +54,21 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
         </Bg>
         <div className="w100 con01 con_block">
             <div className="w1200">
-                <div className="bottom">
-                    <div className="haf_first">
-                        <div className="mb20" {...ulEdit("pinkVision")} />
-                        <Img {...imgKit("pinkload_intro")} />
+                <div className="top">
+                    <div className="haf01">
+                        <strong {...ulEdit("pinkVision_title")} />
+                        <ul {...ulEdit("pinkVision")} />
                     </div>
-                    <div className="haf">
-                        <strong {...edit("visionBox1_title")} />
-                        <ul onKeyDown {...ulEdit("visionBox1_cotnent")}
-                        />
-                    </div>
-                    <div className="haf">
-                        <strong {...edit("visionBox2_title")} />
-                        <ul {...ulEdit("visionBox2_cotnent")} />
+                    <div className="center">
+                        <div className="haf02">
+                            <Img {...imgKit("pinkload_intro")} />
+                        </div>
+                        <div className="haf03">
+                            <strong {...edit("visionBox1_title")} />
+                            <ul onKeyDown {...ulEdit("visionBox1_cotnent")} />
+                            <strong {...edit("visionBox2_title")} />
+                            <ul {...ulEdit("visionBox2_cotnent")} />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -7,15 +7,12 @@ const info = {
     },
     mainBg: { kr: '/img/pr_img_16.jpg' },
     pinkload_intro: { kr: '/img/pr_img_13.jpg' },
+    pinkVision_title: {
+        kr: `핑크로더(PinkRoader)는`
+    },
     pinkVision: {
-        kr: `<strong>핑크로더(PinkRoader)</strong>는 <br> ‘핑크빛 희망의 길을 만들어가는
-    사람들’이라는 뜻을 가지고 사람-시간-공간의 상생을
-    위해 컨텐츠를 개발하고 잊혀져 가는 소중한 것들의 가치를 지키는 <br/>일을 하는
-    소셜커뮤니티 컴퍼니 입니다.
-    우리는 사회와 지역기반의 가치 있는 문화 컨텐츠를 발굴·개발하여 자체
-    스토리텔링을 기반으로 종합 브랜드<br/>
-    컨설팅을 진행하며 서로 상생하며 발전할 수 있도록 실질적인 비즈니스
-    컨텐츠 구현을 지향합니다.`},
+        kr: `사라져가는 소중한 것들의 가치를 재조명하여, 새로운 라이프 스타일을 창조하는 로컬콘텐츠 컴퍼니 입니다새로운 라이프 스타일을 창조하는 로컬콘텐츠 컴퍼니 입니다`
+    },
     visionBox1_title: { kr: "MISSION" },
     visionBox1_cotnent: {
         kr: `<li >새로운 라이프스타일의 창조(creat new life style)와 공유</li>

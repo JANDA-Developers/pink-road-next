@@ -7,12 +7,13 @@ interface IProp {
 
 export const ViewSelect: React.FC<IProp> = ({ onChange, select }) => {
 
-    return <ul className="al_02">
-        <li onClick={() => {
+    return <ul className="al_02 option__box">
+        <li className="option__list01" onClick={() => {
             onChange("line")
-        }}><a className={`view_icon ${select === "line" && "on"}`}><svg><rect width={4} height={2} style={{ fill: '#b7b7b7' }} /><rect x={7} width={13} height={2} style={{ fill: '#b7b7b7' }} /><rect y={7} width={4} height={2} style={{ fill: '#b7b7b7' }} /><rect x={7} y={7} width={13} height={2} style={{ fill: '#b7b7b7' }} /><rect y={15} width={4} height={2} style={{ fill: '#b7b7b7' }} /><rect x={7} y={15} width={13} height={2} style={{ fill: '#b7b7b7' }} /></svg></a></li>
-        <li onClick={() => {
+        }}><a className={`view_icon ${select === "line" && "on"}`}></a></li>
+        <li className="option__list02" onClick={() => {
             onChange("gal")
-        }}><a className={`view_icon ${select === "gal" && "on"}`}><svg><rect width={9} height={8} style={{ fill: '#b7b7b7' }} /><rect x={11} width={9} height={8} style={{ fill: '#b7b7b7' }} /><rect y={10} width={9} height={8} style={{ fill: '#b7b7b7' }} /><rect x={11} y={10} width={9} height={8} style={{ fill: '#b7b7b7' }} /></svg></a></li>
+        }}><a className={`view_icon ${select === "gal" && "on"}`}></a></li>
     </ul>;
 };
+

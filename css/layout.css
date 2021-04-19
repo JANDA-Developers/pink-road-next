@@ -3923,6 +3923,9 @@ i.icon_plus {
     .m {
         display: none;
     }
+    .header {
+        height: 115px;
+    }
     .header .hd_left .logo img {
         margin-top: 9px;
         height: 33px;
