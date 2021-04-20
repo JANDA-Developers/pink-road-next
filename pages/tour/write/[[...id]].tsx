@@ -259,7 +259,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
 
     // if (!isManager && !isMyProduct) return <PageDeny />
     if (loading) return <PageLoading />
-    return <div key={loadKey} className="tour_box w100 board_write">
+    return <div>
         <SubTopNav pageTools={pageTools} children={
             <>
                 <li className="homedeps1">
@@ -273,12 +273,14 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 </li>
             </>
         } />
-        <PageEditor pageTools={pageTools} />
-        <div className="w1200 con_bottom">
-            <div className="write_box">
-                {product && <h3 className="write_top_tag">{productStatus(product.status)}</h3>}
-                {/* 아래는 오직 관리자만 적용할 수 있음 아래는 상태가 CANCEL상태이거나  */}
-                {/* {isManager && <div className="write_type">
+        <div key={loadKey} className="tour_box w100 board_write">
+
+            <PageEditor pageTools={pageTools} />
+            <div className="w1200 con_bottom">
+                <div className="write_box">
+                    {product && <h3 className="write_top_tag">{productStatus(product.status)}</h3>}
+                    {/* 아래는 오직 관리자만 적용할 수 있음 아래는 상태가 CANCEL상태이거나  */}
+                    {/* {isManager && <div className="write_type">
                     <div className="title">상태관리</div>
                     <div className="input_form">
                         <ul>
@@ -294,237 +296,237 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     </div>
                 </div>
                 } */}
-                {isCreateMode && <div className="write_type">
-                    <div className="title">회차연결</div>
-                    <div className="input_form">
-                        <span className="category r3">
-                            <select onChange={handleBaseProdChange} value={product?._id} name="type">
-                                <option value={""}>
-                                    새로운상품
+                    {isCreateMode && <div className="write_type">
+                        <div className="title">회차연결</div>
+                        <div className="input_form">
+                            <span className="category r3">
+                                <select onChange={handleBaseProdChange} value={product?._id} name="type">
+                                    <option value={""}>
+                                        새로운상품
                                 </option>
-                                {productGroupList.map(p =>
-                                    <option key={p._id} value={p._id}>
-                                        {p.label}
-                                    </option>
-                                )}
-                            </select>
-                        </span>
-                    </div>
-                </div>
-                }
-                <div className="write_type">
-                    <div className="title">상품타입</div>
-                    <div className="input_form">
-                        <span className="category r3">
-                            <select onChange={changeVal(setType)} value={type} name="type">
-                                <option value={ProductType.TOUR}>
-                                    투어(연일)
-                                </option>
-                                <option value={ProductType.EXPERIENCE}>
-                                    체험(당일)
-                                </option>
-                                <option value="">
-                                    선택없음
-                                </option>
-                            </select>
-                        </span>
-                    </div>
-                </div>
-                <div className="write_type">
-                    <div className="title">카테고리</div>
-                    <div className="input_form">
-                        <span className="category r3">
-                            <select onChange={handleCatChange} value={categoryId} name="category_srl">
-                                {categories.map(cat =>
-                                    <option value={cat._id} key={cat._id}>
-                                        {cat.label}
-                                    </option>
-                                )}
-                                <option value="">
-                                    선택없음
-                                </option>
-                            </select>
-                        </span>
-                    </div>
-                </div>
-                <div className="write_type">
-                    <div className="title">제목</div>
-                    <div className="input_form">
-                        <input id="title" onChange={handleInputChange("title")} value={title} type="text" name="title" className="inputText w100" />
-                    </div>
-                </div>
-                <div className="write_type">
-                    <div className="title">부제목</div>
-                    <div className="input_form">
-                        <input onChange={handleInputChange("subTitle")} value={subTitle || ""} type="text" name="title" className="inputText w100" />
-                    </div>
-                </div>
-
-                <div className="write_type">
-                    <div className="title">판매금액</div>
-                    <div className="input_form">
-                        <div>
-                            <span className="mr5">성인</span>
-                            <input onChange={handleInputCommaChange("adult_price")} value={adult_price} type="text" className="text w20 mr15" />
-                            <span className="mr5">소인</span>
-                            <input onChange={handleInputCommaChange("kids_price")} value={kids_price} type="text" className="text w20 mr15" />
-                            <span className="mr5">유아</span>
-                            <input onChange={handleInputCommaChange("baby_price")} value={baby_price} type="text" className="text w20" />
-                        </div>
-                        <p className="info_txt">- 원을 빼고 ','를 넣어서 구분해서 입력해주세요. ex) 50,000</p>
-                    </div>
-                </div>
-
-                <div className="write_type">
-                    <div className="title">인원설정</div>
-                    <div className="input_form">
-                        <div>
-                            <span className="mr5">최소인원</span>
-                            <input onChange={handleInputChange("minMember")} value={minMember} type="text" className="text w20 mr15" />
-                            <span className="mr5">최대인원</span>
-                            <input onChange={handleInputChange("maxMember")} value={maxMember} type="text" className="text w20" />
+                                    {productGroupList.map(p =>
+                                        <option key={p._id} value={p._id}>
+                                            {p.label}
+                                        </option>
+                                    )}
+                                </select>
+                            </span>
                         </div>
                     </div>
-                </div>
-
-                <div className="write_type">
-                    <div className="title">지역</div>
-                    <div className="input_form">
-                        <span className="category">
-                            <select id="RegionId" onChange={handleRegionChange} value={regionId || ""} name="category_srl">
-                                {regionCategories.map(cat =>
-                                    <option value={cat._id} key={cat._id}>
-                                        {cat.label}
-                                    </option>
-                                )}
-                                <option value="">
-                                    선택없음
+                    }
+                    <div className="write_type">
+                        <div className="title">상품타입</div>
+                        <div className="input_form">
+                            <span className="category r3">
+                                <select onChange={changeVal(setType)} value={type} name="type">
+                                    <option value={ProductType.TOUR}>
+                                        투어(연일)
                                 </option>
-                            </select>
-                        </span>
-                    </div>
-                </div>
-
-                <div className="write_type">
-                    <div className="title">장소</div>
-                    <div className="input_form">
-                        <div>
-                            <input onChange={handleInputChange("address")} value={address} type="text" className="text w100" />
+                                    <option value={ProductType.EXPERIENCE}>
+                                        체험(당일)
+                                </option>
+                                    <option value="">
+                                        선택없음
+                                </option>
+                                </select>
+                            </span>
                         </div>
                     </div>
-                </div>
-
-                <div className="write_type">
-                    <div className="title">출발장소</div>
-                    <div className="input_form">
-                        <div>
-                            <input onChange={handleInputChange("startPoint")} value={startPoint} type="text" className="text w100" />
+                    <div className="write_type">
+                        <div className="title">카테고리</div>
+                        <div className="input_form">
+                            <span className="category r3">
+                                <select onChange={handleCatChange} value={categoryId} name="category_srl">
+                                    {categories.map(cat =>
+                                        <option value={cat._id} key={cat._id}>
+                                            {cat.label}
+                                        </option>
+                                    )}
+                                    <option value="">
+                                        선택없음
+                                </option>
+                                </select>
+                            </span>
                         </div>
                     </div>
-                </div>
-
-
-
-                <div className="write_type">
-                    <div className="title">키워드</div>
-                    <div className="input_form">
-                        <TagInput tags={keyWards} setTags={setkeyWards} />
-                        <p className="input_form info_txt">- 'enter'로 구분시 자동으로 키워드가 생성됩니다.</p>
-                    </div>
-                </div>
-                <div className="write_type">
-                    <div className="title">공개/비공개</div>
-                    <div className="input_form">
-                        <ul>
-                            <li><input onChange={handleChangeOpen} type="radio" name="isOpen" id="status-open" value={"true"} checked={!!isOpen} className="radio" /><label htmlFor="status-open">공개</label></li>
-                            <li><input onChange={handleChangeOpen} type="radio" name="isOpen" id="status-sold" value={"false"} checked={!isOpen} className="radio" /><label htmlFor="status-sold">비공개</label></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div className="write_type bottom_write">
-
-                <div className="write_type">
-                    <div className="title">썸네일</div>
-                    <div className="img_box_add">
-                        <ul className="img_add">
-                            {thumbs.map((thumb, i) =>
-                                <li key={i + "thumb"} className="on_file">{thumb.name}<i onClick={handleClearThumb(i)} className="flaticon-multiply icon_x"></i></li>
-                            )}
-                            {thumbs.length < 4 && <li id="thumb" onClick={handleUploadClick}>이미지추가<i className="flaticon-add icon_plus"></i></li>}
-                            <input onChange={handleChangeSumbNail} ref={hiddenFileInput} hidden type="file" />
-                        </ul>
-                        <p className="input_form info_txt">- 썸네일 이미지사이즈 720px * 434px</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div className="write_con">
-                <ul className="con_tap">
-                    <li id="tap1" onClick={handleTab(1)} className={tabOnCheck(1)}><span><i>01.</i>여행상세설명</span></li>
-                    <li id="tap2" onClick={handleTab(2)} className={tabOnCheck(2)}><span><i>02.</i>안내 및 참고</span></li>
-                    <li id="tap3" onClick={handleTab(3)} className={tabOnCheck(3)}><span><i>03.</i>포함 및 불포함</span></li>
-                    <li id="tap4" onClick={handleTab(4)} className={tabOnCheck(4)}><span><i>04.</i>유의사항 및 안내문</span></li>
-                </ul>
-                <div {...tapDisplay(1)} id="texta_01" className="texta tourWrite__daypikcer">
-                    <h5 id="itinerary">여행일정</h5>
-                    <DayRangePicker
-                        Header={tempSavedIts && <h2 style={{ marginBottom: "1rem" }}>새로운 출발일을 선택 해주세요 </h2>}
-                        month={dayjs().add(20, "day").toDate()}
-                        disabledDays={
-                            {
-                                before: dayjs().add(30, "day").toDate(),
-                                after: dayjs().add(90, "day").toDate()
-                            }}
-                        isRange={type === ProductType.TOUR}
-                        onRangeChange={tempSavedIts ? handleTempDateMove : handleDateState}
-                        from={firstDate}
-                        to={lastDate}
-                    >
-                        <div className="tourWrite__dayPikcerRangeViewer  mb10">
-                            <div>투어 {yyyymmdd(startDate)} ~ {yyyymmdd(endDate)}</div>
+                    <div className="write_type">
+                        <div className="title">제목</div>
+                        <div className="input_form">
+                            <input id="title" onChange={handleInputChange("title")} value={title} type="text" name="title" className="inputText w100" />
                         </div>
-                        <div className="info_txt">
-                            <h4><i className="jandaicon-info2"></i>여행일정 등록시 유의점</h4>
+                    </div>
+                    <div className="write_type">
+                        <div className="title">부제목</div>
+                        <div className="input_form">
+                            <input onChange={handleInputChange("subTitle")} value={subTitle || ""} type="text" name="title" className="inputText w100" />
+                        </div>
+                    </div>
+
+                    <div className="write_type">
+                        <div className="title">판매금액</div>
+                        <div className="input_form">
+                            <div>
+                                <span className="mr5">성인</span>
+                                <input onChange={handleInputCommaChange("adult_price")} value={adult_price} type="text" className="text w20 mr15" />
+                                <span className="mr5">소인</span>
+                                <input onChange={handleInputCommaChange("kids_price")} value={kids_price} type="text" className="text w20 mr15" />
+                                <span className="mr5">유아</span>
+                                <input onChange={handleInputCommaChange("baby_price")} value={baby_price} type="text" className="text w20" />
+                            </div>
+                            <p className="info_txt">- 원을 빼고 ','를 넣어서 구분해서 입력해주세요. ex) 50,000</p>
+                        </div>
+                    </div>
+
+                    <div className="write_type">
+                        <div className="title">인원설정</div>
+                        <div className="input_form">
+                            <div>
+                                <span className="mr5">최소인원</span>
+                                <input onChange={handleInputChange("minMember")} value={minMember} type="text" className="text w20 mr15" />
+                                <span className="mr5">최대인원</span>
+                                <input onChange={handleInputChange("maxMember")} value={maxMember} type="text" className="text w20" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="write_type">
+                        <div className="title">지역</div>
+                        <div className="input_form">
+                            <span className="category">
+                                <select id="RegionId" onChange={handleRegionChange} value={regionId || ""} name="category_srl">
+                                    {regionCategories.map(cat =>
+                                        <option value={cat._id} key={cat._id}>
+                                            {cat.label}
+                                        </option>
+                                    )}
+                                    <option value="">
+                                        선택없음
+                                </option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="write_type">
+                        <div className="title">장소</div>
+                        <div className="input_form">
+                            <div>
+                                <input onChange={handleInputChange("address")} value={address} type="text" className="text w100" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="write_type">
+                        <div className="title">출발장소</div>
+                        <div className="input_form">
+                            <div>
+                                <input onChange={handleInputChange("startPoint")} value={startPoint} type="text" className="text w100" />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div className="write_type">
+                        <div className="title">키워드</div>
+                        <div className="input_form">
+                            <TagInput tags={keyWards} setTags={setkeyWards} />
+                            <p className="input_form info_txt">- 'enter'로 구분시 자동으로 키워드가 생성됩니다.</p>
+                        </div>
+                    </div>
+                    <div className="write_type">
+                        <div className="title">공개/비공개</div>
+                        <div className="input_form">
                             <ul>
-                                <li>- 여행일은 최소 30일 이전 최대 90일 이상해주세요.</li>
-                                <li>- 달력에서 여행기간을 선택해 주세요. 그래야 아래에 입력창이 생성됩니다.</li>
-                                <li>- 이미지를 첨부시에 이미지 내부에 이미지를 입력할 경우 텍스트를 크게 써주세요.<br />모바일 화면도 고려해야합니다.</li>
-                                <li>- 이미지를 꼭 한번 용량을 압축해서 올려주세요. 로딩시에 시간이 단축됩니다.<br /><a href="https://www.iloveimg.com/ko/compress-image" target="_blank">(추천사이트 이동)</a></li>
-                                <li>- 일정에 관련된 내용만 간략하게 써주세요.</li>
+                                <li><input onChange={handleChangeOpen} type="radio" name="isOpen" id="status-open" value={"true"} checked={!!isOpen} className="radio" /><label htmlFor="status-open">공개</label></li>
+                                <li><input onChange={handleChangeOpen} type="radio" name="isOpen" id="status-sold" value={"false"} checked={!isOpen} className="radio" /><label htmlFor="status-sold">비공개</label></li>
                             </ul>
                         </div>
-                    </DayRangePicker>
-                    {its.map((itinery, index) => <div key={"itineryForm" + index}>
-                        <ItineryForm setSelectEditorIndex={setSelectEditorIndex} selectEditorIndex={selectEditorIndex} index={index} setits={setits} itinery={itinery} its={its} />
-                    </div>)}
+                    </div>
                 </div>
-                <div {...tapDisplay(2)} id="texta_02" className="texta">
-                    <h5>상품 안내문</h5>
-                    <Editor edit={tab === 2} data={contents} onChange={handleTextData("contents")} />
-                </div>
-                <div {...tapDisplay(3)} id="texta_03" className="texta">
-                    <h5>포함 / 불포함</h5>
-                    <Editor edit={tab === 3} data={inOrNor} onChange={handleTextData("inOrNor")} />
-                </div>
-                <div {...tapDisplay(4)} id="texta_04" className="texta">
-                    <h5>커리큐럼 유의사항</h5>
-                    <Editor edit={tab === 4} data={caution} onChange={handleTextData("caution")} />
-                    <h5>간략한 안내문</h5>
-                    <Editor edit={tab === 4} data={info} onChange={handleTextData("info")} />
-                </div>
-            </div>
-            <div className="boardNavigation">
-                <div className="float_left">
-                    <button onClick={handleTempSave} type="button" className="btn medium">임시 저장</button>
-                    <button onClick={handleLoad} type="button" className="btn medium">불러오기</button>
-                </div>
-                <div className="float_right">
 
-                    {/* 차라리 여기서 상품을 취소 상태로 변경하거나, 다시 오픈 상태로 변경 하거나 요청을 수락 하거나  */}
-                    {/* {isManager && status === ProductStatus.OPEN && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                <div className="write_type bottom_write">
+
+                    <div className="write_type">
+                        <div className="title">썸네일</div>
+                        <div className="img_box_add">
+                            <ul className="img_add">
+                                {thumbs.map((thumb, i) =>
+                                    <li key={i + "thumb"} className="on_file">{thumb.name}<i onClick={handleClearThumb(i)} className="flaticon-multiply icon_x"></i></li>
+                                )}
+                                {thumbs.length < 4 && <li id="thumb" onClick={handleUploadClick}>이미지추가<i className="flaticon-add icon_plus"></i></li>}
+                                <input onChange={handleChangeSumbNail} ref={hiddenFileInput} hidden type="file" />
+                            </ul>
+                            <p className="input_form info_txt">- 썸네일 이미지사이즈 720px * 434px</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className="write_con">
+                    <ul className="con_tap">
+                        <li id="tap1" onClick={handleTab(1)} className={tabOnCheck(1)}><span><i>01.</i>여행상세설명</span></li>
+                        <li id="tap2" onClick={handleTab(2)} className={tabOnCheck(2)}><span><i>02.</i>안내 및 참고</span></li>
+                        <li id="tap3" onClick={handleTab(3)} className={tabOnCheck(3)}><span><i>03.</i>포함 및 불포함</span></li>
+                        <li id="tap4" onClick={handleTab(4)} className={tabOnCheck(4)}><span><i>04.</i>유의사항 및 안내문</span></li>
+                    </ul>
+                    <div {...tapDisplay(1)} id="texta_01" className="texta tourWrite__daypikcer">
+                        <h5 id="itinerary">여행일정</h5>
+                        <DayRangePicker
+                            Header={tempSavedIts && <h2 style={{ marginBottom: "1rem" }}>새로운 출발일을 선택 해주세요 </h2>}
+                            month={dayjs().add(20, "day").toDate()}
+                            disabledDays={
+                                {
+                                    before: dayjs().add(30, "day").toDate(),
+                                    after: dayjs().add(90, "day").toDate()
+                                }}
+                            isRange={type === ProductType.TOUR}
+                            onRangeChange={tempSavedIts ? handleTempDateMove : handleDateState}
+                            from={firstDate}
+                            to={lastDate}
+                        >
+                            <div className="tourWrite__dayPikcerRangeViewer  mb10">
+                                <div>투어 {yyyymmdd(startDate)} ~ {yyyymmdd(endDate)}</div>
+                            </div>
+                            <div className="info_txt">
+                                <h4><i className="jandaicon-info2"></i>여행일정 등록시 유의점</h4>
+                                <ul>
+                                    <li>- 여행일은 최소 30일 이전 최대 90일 이상해주세요.</li>
+                                    <li>- 달력에서 여행기간을 선택해 주세요. 그래야 아래에 입력창이 생성됩니다.</li>
+                                    <li>- 이미지를 첨부시에 이미지 내부에 이미지를 입력할 경우 텍스트를 크게 써주세요.<br />모바일 화면도 고려해야합니다.</li>
+                                    <li>- 이미지를 꼭 한번 용량을 압축해서 올려주세요. 로딩시에 시간이 단축됩니다.<br /><a href="https://www.iloveimg.com/ko/compress-image" target="_blank">(추천사이트 이동)</a></li>
+                                    <li>- 일정에 관련된 내용만 간략하게 써주세요.</li>
+                                </ul>
+                            </div>
+                        </DayRangePicker>
+                        {its.map((itinery, index) => <div key={"itineryForm" + index}>
+                            <ItineryForm setSelectEditorIndex={setSelectEditorIndex} selectEditorIndex={selectEditorIndex} index={index} setits={setits} itinery={itinery} its={its} />
+                        </div>)}
+                    </div>
+                    <div {...tapDisplay(2)} id="texta_02" className="texta">
+                        <h5>상품 안내문</h5>
+                        <Editor edit={tab === 2} data={contents} onChange={handleTextData("contents")} />
+                    </div>
+                    <div {...tapDisplay(3)} id="texta_03" className="texta">
+                        <h5>포함 / 불포함</h5>
+                        <Editor edit={tab === 3} data={inOrNor} onChange={handleTextData("inOrNor")} />
+                    </div>
+                    <div {...tapDisplay(4)} id="texta_04" className="texta">
+                        <h5>커리큐럼 유의사항</h5>
+                        <Editor edit={tab === 4} data={caution} onChange={handleTextData("caution")} />
+                        <h5>간략한 안내문</h5>
+                        <Editor edit={tab === 4} data={info} onChange={handleTextData("info")} />
+                    </div>
+                </div>
+                <div className="boardNavigation">
+                    <div className="float_left">
+                        <button onClick={handleTempSave} type="button" className="btn medium">임시 저장</button>
+                        <button onClick={handleLoad} type="button" className="btn medium">불러오기</button>
+                    </div>
+                    <div className="float_right">
+
+                        {/* 차라리 여기서 상품을 취소 상태로 변경하거나, 다시 오픈 상태로 변경 하거나 요청을 수락 하거나  */}
+                        {/* {isManager && status === ProductStatus.OPEN && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
                         상품취소
                     </button>}
                     {isManager && status === ProductStatus.CANCELD && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
@@ -536,22 +538,23 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     {isManager && status === ProductStatus.READY && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
                         생성수락
                     </button>} */}
-                    {!updateAble && !isCreateMode && isParterNonB && <button disabled={!normalPartnerUpdateReqAble} onClick={handleEditReq} type="submit" className="btn medium pointcolor">
-                        {status === ProductStatus.UPDATE_REQ_REFUSED ? "재신청" : "수정요청"}
-                        <i data-for="ToolTipLayOut" className="jandaicon-info2 tooltip" data-iscapture={true} data-tip="수정요청은 예약인원이 없을때만 가능합니다." />
-                    </button>}
-                    {updateAble && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
-                        {status === ProductStatus.REFUSED ? "재신청" : "수정"}
-                    </button>}
-                    {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
-                    <button onClick={handleCancel} type="button" className="btn medium impact">취소</button>
-                    {!isCreateMode && <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>}
+                        {!updateAble && !isCreateMode && isParterNonB && <button disabled={!normalPartnerUpdateReqAble} onClick={handleEditReq} type="submit" className="btn medium pointcolor">
+                            {status === ProductStatus.UPDATE_REQ_REFUSED ? "재신청" : "수정요청"}
+                            <i data-for="ToolTipLayOut" className="jandaicon-info2 tooltip" data-iscapture={true} data-tip="수정요청은 예약인원이 없을때만 가능합니다." />
+                        </button>}
+                        {updateAble && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
+                            {status === ProductStatus.REFUSED ? "재신청" : "수정"}
+                        </button>}
+                        {isCreateMode && <button onClick={handleCreate} type="submit" className="btn medium pointcolor">등록</button>}
+                        <button onClick={handleCancel} type="button" className="btn medium impact">취소</button>
+                        {!isCreateMode && <button onClick={handleDelete} type="submit" className="btn medium">삭제</button>}
+                    </div>
                 </div>
+                <LocalStorageBoard key={loadKey} onLoad={setTourData} />
             </div>
-            <LocalStorageBoard key={loadKey} onLoad={setTourData} />
+            <Prompt id="UpdateMemo" onSubmit={handleSubmitUpdateReq} title="업데이트 변경 사항을 입력 해주세요." />
+            {/* <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" /> */}
         </div>
-        <Prompt id="UpdateMemo" onSubmit={handleSubmitUpdateReq} title="업데이트 변경 사항을 입력 해주세요." />
-        {/* <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" /> */}
     </div>
 };
 

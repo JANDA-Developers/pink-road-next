@@ -297,6 +297,7 @@ i.tooltip{
             width: auto;
             font-size: 11px;
             color: #aaa;
+            margin: 0;
         } 
         .header .top-menu .welcome_ms::after {
             display: inline-block;
@@ -2482,7 +2483,7 @@ i.icon_plus {
     position: relative;
     display: block;
     color: #aaa;
-    padding-left:3px;
+    padding-left:21px;
     box-sizing: border-box;
     margin-top: 10px;
     font-weight: 100;
@@ -3924,7 +3925,7 @@ i.icon_plus {
         display: none;
     }
     .header {
-        height: 115px;
+        height: 94px;
     }
     .header .hd_left .logo img {
         margin-top: 9px;

@@ -39,16 +39,17 @@ export const TagInput: React.FC<IProp> = ({
                     <span className="JDtagInput__tag" key={`tag${i}`}>
                         {name}
                         <i
-                            className="JDtagInput__close"
+                            className="JDtagInput__close flaticon-multiply"
                             onClick={() => {
                                 handleDelete(i);
-                            }}>X</i>
+                            }}></i>
                     </span>
                 ))}
             </div>
             <input
                 ref={ref}
                 className="JDtagInput__input"
+                placeholder="추가할 키워드를 입력해주세요."
                 onKeyDown={e => {
                     const value = e.currentTarget.value;
                     if (e.key === "Enter") {

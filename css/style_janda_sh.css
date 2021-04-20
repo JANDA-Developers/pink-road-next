@@ -32,10 +32,13 @@
 .paymethod__Check_table .th,
 .portfolio_in .con05 .txt span,
 .paymethod__Check_table .td,
+div.master_popup .info_page div[class*=td0],
+div.master_popup .info_page div[class*=td0] span,
 .siteInfo_in .con05 .in_txt .year li,
 .paymethod__Check_table .tr > div span,
 .basket_box .basket_list .code,
 .profile_box .welcometxt,
+.board_write .write_type .img_box_add .img_add li,
 .siteInfo_in .con01 .haf01 li,
 .siteInfo_in .con01 li,
 ul.list_ul li .category span,
@@ -5717,7 +5720,7 @@ div.bn_box {
     }
 
     .join_wrap2 input.w80 {
-        width: 89%;
+        width: 85%;
     }
 
     .join_wrap2 .btn_mini {
@@ -5817,13 +5820,20 @@ div.bn_box {
     .join_wrap2 .fin {
         text-align: center;
         clear: both;
-        display: block;
+        display: flex;
         position: relative;
         width: 100%;
         margin: 0 auto 20px;
     }
     .join_wrap2 .fin .btn {
         margin-left: 5px;
+    }
+    .join_wrap2 .fin.last .btn.sum{
+        margin: 0 10px;
+        padding: 8px 13px 5px !important;
+        border: 0;
+        font-size: 14px !important;
+        width: 30% !important;
     }
 
     .join_wrap2 .agreeChk {
@@ -5995,6 +6005,7 @@ i.important_icon {
 
     .tour_details_in .Document {
         position: relative;
+        margin-bottom: 60px;
     }
 
     .tour_details_in .Read_box {
@@ -6003,7 +6014,6 @@ i.important_icon {
         width: 60%;
         top: 9px;
         left: 0;
-        margin-bottom: 20px;
     }
 
         .tour_details_in .Read_box .details_photo {
@@ -6321,7 +6331,7 @@ i.important_icon {
                     content: '';
                     position: absolute;
                     left: -9px;
-                    top: 18px;
+                    top: 19px;
                     width: 7px;
                     height: 7px;
                     background-color: #ed297b;
@@ -6331,10 +6341,10 @@ i.important_icon {
                 .tour_details_in .boardReadBody .tour_list > div:before {
                     content: '';
                     position: absolute;
-                    left: -13px;
-                    top: 14px;
-                    width: 15px;
-                    height: 15px;
+                    left: -16px;
+                    top: 12px;
+                    width: 20px;
+                    height: 20px;
                     background-color: #ffd4e9;
                     border-radius: 50px;
                 }
@@ -9421,7 +9431,18 @@ font-size: 1em;
 .option__box .option__list02 a.on {
     background-image: url(/img/svg/icon_option_list022.svg);
 }
-
+.announce_box{
+    position: relative;
+    padding-bottom: 150px;
+    padding-top: 30px;
+}
+.img__viewbox{
+    position: relative;
+}
+.question_box{
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
 @media (min-width: 768px) {   
     .portfolio_in .con02 ul li .img{
         width: 80%;
@@ -10021,14 +10042,15 @@ font-size: 1em;
         top: 0;
         right: 0;
         left: unset;
-        width: auto;
+        width: 100%;
     }
     div.popup_bg_full h4 .full_div__right .btn {
         padding: 4px 10px;
         margin-left: 5px;
         font-size: 0.8em;
-        position: relative;
-        top: unset;
+        top: -9px;
+        display: block;
+        border: 1px #959595 solid;
     }
     div.popup_bg_full h4 .full_div__right strong {
         font-weight: 600;
@@ -10880,7 +10902,7 @@ font-size: 1em;
     .join_wrap2 .fin{
         text-align: center;
         clear: both;
-        display: block;
+        display: flex;
         position: relative;
         width: 80%;
         margin: 0 auto 20px;
@@ -11686,6 +11708,25 @@ font-size: 1em;
     }
 }
 @media (max-width: 767px) {
+  
+    div.popup_bg_full h4 .full_div__right {
+        top: 6px;
+    }
+ 
+    .tour_details_in .boardReadBody .tour_list > div:after {
+        left: 1px;
+        top: 17px;
+        width: 6px;
+        height: 6px;
+    }
+
+    .tour_details_in .boardReadBody .tour_list > div:before {
+        left: -4px;
+        top: 12px;
+        width: 16px;
+        height: 16px;
+    }
+    
     .portfolio_in .con05 .txt{
         width: 100%;
     }
@@ -11970,6 +12011,7 @@ font-size: 1em;
     .tour_details_in .Read_box{
         width: 100%;
         position: relative;
+        margin-bottom: 50px;
     }
     #viewControl{
         width: 100%;

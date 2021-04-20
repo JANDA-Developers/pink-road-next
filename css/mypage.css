@@ -2502,15 +2502,15 @@ div.reservation_popup .tr select {
     }
 
         .basket_box .baket_btn .btn.orders {
-            border: 1px solid #2196F3;
+            border: 1px solid #ed297b;
             color: #fff;
-            background-color: #2196F3;
+            background-color: #ed297b;
         }
 
             .basket_box .baket_btn .btn.orders:hover {
-                border: 1px solid #1589e5;
+                border: 1px solid #ed297b;
                 color: #fff;
-                background-color: #1589e5;
+                background-color: #ed297b;
             }
             .basket_box .baket_btn .btn:hover {
                 border: 1px solid #333333;
@@ -2790,6 +2790,15 @@ div.reservation_popup .tr select {
     position: relative; 
     width: 100%;
 }
+.baskebt_box .paper_div{
+    position: relative;
+    border-radius: 0;
+    background-color: #ffffff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 3%;
+    box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+}
 
 @media (min-width: 768px) {
 
@@ -2798,7 +2807,10 @@ div.reservation_popup .tr select {
 
     
 @media (min-width: 1000px) {  
-    
+    .baskebt_box .paper_div{
+        padding: 30px 50px 100px;
+        border-radius: 5px;
+    }
     .basket_box .basket_list .t01 {
         max-width: 5%;
     }
@@ -3513,12 +3525,7 @@ div.reservation_popup .tr select {
         text-align: center;
         font-size: 1em;
     }
-    .mypage_purchase .fuction_list_mini .tbody .th02,
-    .mypage_purchase .fuction_list_mini .tbody .th03,
-    .mypage_purchase .fuction_list_mini .tbody .th05,
-    .mypage_purchase .fuction_list_mini .tbody .th06,
-    .mypage_purchase .fuction_list_mini .tbody .th07 {
-    }
+ 
     .mypage_in .statement_div li {
         padding: 0 32px;
         margin-top: 22px;
@@ -3705,7 +3712,8 @@ div.reservation_popup .tr select {
     
 @media (max-width: 1000px) {
     .country_check{
-        margin-left: 16px;
+        margin-left: -15px;
+
     }
     .country_check li {
         line-height: 30px !important;
@@ -3735,6 +3743,7 @@ div.reservation_popup .tr select {
 
     .gender_check {
         max-width: 200px;
+        margin-left: -12px;
     }
     .gender_check li {
         line-height: 30px !important;
@@ -3772,9 +3781,19 @@ div.reservation_popup .tr select {
     .popup_bg_full .goods__info_title {
         background-color: #f5f5f5;
     }
+    .mypage_in .lnb .profile_box .point{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .mypage_in .lnb li {
+        padding: 0;
+    }
 }
 
 @media (max-width: 767px) {
+    .mypage_in .box_right .btn_mini{
+        width: auto !important;
+    }
     .reservation_div .money{
         font-size: 1em;
     }
@@ -3858,9 +3877,7 @@ div.reservation_popup .tr select {
     .basket_box .basket_list .option_btn{
         margin: 10px 0 0 0;
     }
-    .mypage_in .lnb .profile_box .point{
-        margin-top: 10px;
-    }
+    
     .mypage_in .lnb ul{
         width: auto !important;
     }

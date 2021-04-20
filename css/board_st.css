@@ -508,20 +508,11 @@ ul.list_ul {
 ul.list_ul li {
     display: inline-block;
     cursor: pointer;
-    width: auto;
+    width: 100%;
     flex: 1 1;
     flex-grow: 1;
 }
 
-ul.list_ul.line3 li {
-    /* width: 31.7%; */
-} /* 
-ul.list_ul.line3 li:last-child {
-    display:none;
-}
-ul.list_ul.line4 li {
-    width: 23.3%;
-}*/
 
 ul.list_ul .list_in {
     position: relative;
@@ -1657,13 +1648,13 @@ div.comment_box {
 .writing_in {
     position: relative;
     display: block;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 .board_write {
     padding-top: 60px;
    padding-bottom: 100px;
    box-sizing: border-box;
-   padding-left: 3%;
-   padding-right: 3%;
    overflow: hidden;
 }
 .board_write .w1200{
@@ -1768,8 +1759,8 @@ div.comment_box {
 
     .board_write .write_type .category select {
         border: 0;
-        padding: 0 0 0 4%;
-        width: 96%;
+        padding: 0 0 0 15px;
+        width: 100%;
         height: 34px;
     }
 
@@ -1780,7 +1771,7 @@ div.comment_box {
         line-height: 40px;
         padding: 0 15px;
         box-sizing: border-box;
-        color: #777;
+        color: #333333;
         background: #fff;
         border: 0;
         box-shadow: unset;
@@ -1824,7 +1815,7 @@ div.comment_box {
                 display: inline-block;
                 border: #ccc solid 1px;
                 margin-bottom: 5px;
-                padding: 11px 20px 8px;
+                padding: 8px 20px 8px;
                 box-sizing: border-box;
                 border-radius: 5px;
                 color: #a7a7a7;
@@ -1917,7 +1908,7 @@ div.comment_box {
             height: 3px;
             background-color: #333;
             position: absolute;
-            bottom: -7px;
+            bottom: -19px;
             left: 0;
         }
 
@@ -1987,7 +1978,7 @@ div.comment_box {
         height: 40px;
         line-height: 40px;
         padding: 0 1.5%;
-        color: #777;
+        color: #333333;
         background: #fff;
         border: 0;
         box-shadow: unset;
@@ -2531,9 +2522,21 @@ div.sum_div {
 
 
 @media (min-width:768px) {
-    /* .board_option__btn{
-        margin-bottom: 0;
-    } */
+
+    .board_write .write_type .img_box_add .img_add li{
+        padding: 11px 20px 8px;
+        line-height: 24px;
+    }
+    .board_write .con_tap li.on span:after {
+        bottom: -7px;
+    }
+    ul.list_ul {
+       display: flex;
+    }
+    ul.list_ul li {
+        width: auto;
+    }
+    
     ul.list_ul li .img{
         height: 143px;
     }
@@ -2574,6 +2577,7 @@ div.sum_div {
     }
 }
 @media (min-width:1000px) {
+
     .board_list.st01 .thead{
         display: flex;
     }
@@ -2698,7 +2702,7 @@ div.sum_div {
         display: inline-block;
     }
     ul.list_ul.line3{
-        display: block;
+        display: flex;
     } 
     .photo_ul.line4 li {
         width: 25%;
@@ -2837,9 +2841,14 @@ div.sum_div {
     ul.list_ul li .img {
         height:190px;
     }
+  
 }
 
 @media (min-width:1200px) {
+    .writing_in{
+        padding-left: 0;
+        padding-right: 0;
+    }
     .board_write .RangeExample .info_txt{
         display: block;
     }
@@ -2892,13 +2901,13 @@ div.sum_div {
     }
 }
 @media (max-width:767px) {
-  
+    .board_list_mini.ln04 .th03{
+        margin-right: 0;
+    }
     .board_write{
         padding-top: 30px;
         padding-bottom: 50px;   
          overflow: hidden;
-        padding-left: 3%;
-        padding-right: 3%;
         box-sizing: border-box;
     }
     .board_option{
@@ -2960,8 +2969,12 @@ div.sum_div {
         }
         .board_write .con_tap li{
             margin: 0px 2px;
-            font-size: 15px;
+            font-size: 0.8em;
             line-height: 13px;
+        }
+      
+        .board_write .con_tap li.on span:after {
+            bottom: -17px;
         }
         .board_write .RangeExample .info_txt {
             position: relative;

@@ -374,7 +374,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                             <li>
                                 <div className="title">연락처</div>
                                 <div className="txt">
-                                    <span className="w100 mr20">{autoHypenPhone(profile.phoneNumber)}</span>
+                                    <span className="w80 mr20">{autoHypenPhone(profile.phoneNumber) || "연락처가 없습니다."}</span>
                                     <button onClick={() => { handleChangePhoneNumber("phoneNumber") }} type="button" className="btn btn_mini">
                                         변경
                                     </button>
@@ -385,7 +385,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                                     <div className="title">주소</div>
                                     <div className="txt line2">
 
-                                        <input onChange={handleTextData("address")} value={address} type="text" className="form-control w70" />
+                                        <input onChange={handleTextData("address")} value={address} type="text" className="form-control w70 mr5" />
                                         <button onClick={openModal("#addressFindModal")} type="button" className="btn btn_mini">
                                             주소찾기
                                     </button>
@@ -457,7 +457,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
                             <li>
                                 <div className="title">주소</div>
                                 <div className="txt line2">
-                                    <input onChange={handleTextData("address")} value={address} type="text" className="form-control w70" />
+                                    <input onChange={handleTextData("address")} value={address} type="text" className="form-control w70 mr5" />
                                     <button onClick={openModal("#addressFindModal")} type="button" className="btn btn_mini">
                                         주소찾기
                                     </button>

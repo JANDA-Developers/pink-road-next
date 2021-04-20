@@ -3018,6 +3018,8 @@ div.master_popup .btn.small{
         line-height: 32px;
         padding:0;
         box-sizing:border-box;
+        flex-grow: 1;
+        flex: 1 1;
     }
      div.master_popup .peoplelist .tr.first > div {
         line-height: 22px;
@@ -3277,7 +3279,15 @@ div.master_popup div.alignment{
       width: auto;
   }
 
-
+.master_box .flaticon-multiply{
+    cursor: pointer;
+    opacity: 0.5;
+    margin-left: 10px;
+    font-size: 0.8em;
+}
+.master_box .flaticon-multiply:hover{
+    opacity: 1;
+}
 
 @media (min-width: 768px) {
     
@@ -3291,15 +3301,18 @@ div.master_popup div.alignment{
         width: 32%;
         margin-top: 2%;
         margin-right: 2%;
+        min-height: 370px;
      }
     .master_box .main_paper_div .hang.div06{
         width: 32%;
         margin-top: 2%;
         margin-right: 2%;
+        min-height: 370px;
      }
     .master_box .main_paper_div .hang.div07{
         width: 32%;
         margin-top: 2%;
+        min-height: 370px;
      }
     .master_box .main_paper_div .hang .table .head{
         display: block;
@@ -3418,12 +3431,12 @@ div.master_popup div.alignment{
         width: auto !important;
     }
     div.master_popup .info_page .line8 div[class*=th0] {
-        width:30% !important;
+        max-width:20% !important;
         padding-left: 10px !important;
         border-bottom: 1px solid #c4c4c4;
     }
      div.master_popup .info_page .line8 div[class*=td0]{
-        width: 70% !important;
+        max-width: 80% !important;
         border-bottom: 1px solid #c4c4c4;
     }
    .master_box div.popup_bg_full h3 {
@@ -4333,14 +4346,14 @@ div.master_popup .info_table .th01,
         line-height: 40px !important;
     }
     div.master_popup .info_page .line8 div[class*=th0] {
-       width:30% !important;
+       width:auto !important;
        text-align: center !important;
        padding-left: 0 !important;
        border-bottom: 0;
        font-weight: 600 !important;
    }
     div.master_popup .info_page .line8 div[class*=td0] {
-       width: 70% !important;
+       width: auto !important;
        text-align: left !important;
        font-weight: 500 !important;
        font-family: '돋음';
@@ -4713,12 +4726,18 @@ div.master_popup .info_table .th01,
 }
 
 @media (max-width: 767px) {
+    .master__table .list_line div[class*=td]{
+        font-size: 1em;
+    }
+    .accept__btn_link .btn{
+        line-height: 16px !important;
+    }
     .master_box .design .body-title .w50{
         width: 100%;
     }
     .master_box .con.family .td02 { 
         width: 100% !important;
-        font-size: 1.2em !important;
+        font-size: 1.4em !important;
         display: block !important;
         font-weight: 600 !important;
         text-align: left !important;
