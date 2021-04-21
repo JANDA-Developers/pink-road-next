@@ -278,6 +278,7 @@ select:focus {
         border: 1px solid rgb(170, 170, 170);
         color: #333;
     }
+    
     .btn.full {
         color: #999;
         border: 1px solid #cfcfcf;
@@ -285,13 +286,15 @@ select:focus {
         padding: 0 15px;
         font-size: 14px !important;
         display: inline-block;
-        line-height: 28px;
+        line-height: 46px;
         margin: 0 !important;
         width: 100%;
         display: block;
+        text-align: center;
     }
     .btn.full i {
         margin-right: 5px;
+        margin-left: 5px;
         font-size: 12px !important;
     }
     .btn.full:hover {

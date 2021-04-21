@@ -66,6 +66,30 @@
     line-height: 60%;
     margin-right: 5px;
 }
+.search__info_box{
+    position: relative;
+    width: 100%;
+    display: block;
+    padding:50px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 1px solid #d0d0d0;
+    margin-top: 30px;
+}
+.search__info_box h3{
+
+    color: #adadad;
+}
+.search__info_box li{
+    line-height: 180%;
+    font-weight: 100;
+    font-size: 0.9em;
+    color: #adadad;
+}
+.master_box .search_info_box li i{
+    line-height: 60%;
+    margin-right: 5px;
+}
 .master_box div.alignment{
     width: 100%;
     display: block;
@@ -3373,10 +3397,10 @@ div.master_popup div.alignment{
         display: block;
     }
     .master_box .main_paper_div .hang .table.typeC .td02{
-        width: 25%;
+        max-width: 25%;
     }
     .master_box .main_paper_div .hang .table.typeC .td03{
-        width: 25%;
+        max-width: 25%;
     }
     .master_box .main_paper_div .hang .table.typeD .td01{
         width: 55%;

@@ -3631,7 +3631,7 @@ i.icon_plus {
         .header .hidden {
             width: 100%;
             height: 77px;
-            top: 94px;
+            top: 92px;
             right: 0;
         }
 
@@ -3925,7 +3925,7 @@ i.icon_plus {
         display: none;
     }
     .header {
-        height: 94px;
+        height: 92px;
     }
     .header .hd_left .logo img {
         margin-top: 9px;
@@ -4112,8 +4112,20 @@ i.icon_plus {
         #all_menu ul {
             display: block;
         }
+        .header{
+            height: 91px;
+        }
+        .header .hd_center .nav_wrap > .deps1 .deps_nav{
+            top: 46px;
+        }
     .header .hd_center .nav_wrap .deps1 > li > a {
         font-size: 19px;
+    }
+    .header .top-menu p.welcome_ms {
+        margin-bottom: -9px;
+    }
+    .header .hidden {
+        top: 91px;
     }
 }
 

@@ -30,6 +30,8 @@
 .men,
 .men_cunt,
 .paymethod__Check_table .th,
+.master_box .main_paper_div .hang .table .body > div span,
+.master_box .main_paper_div .hang .table .body > div strong,
 .portfolio_in .con05 .txt span,
 .paymethod__Check_table .td,
 div.master_popup .info_page div[class*=td0],
@@ -1396,7 +1398,7 @@ div.alignment .center_div{
 
         div.alignment .right_div .al_01 a,
         div.alignment .right_div .al_02 a {
-            display: inline-block;
+            display: inline-block !important;
         }
 
         div.alignment .right_div .al_01 svg,
@@ -8464,6 +8466,10 @@ i.calendar {
 /* tour */
 .tour_box {
     padding-top: 0;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 150px;
+    box-sizing: border-box;
 }
 .tour_box .con_bottom {
     box-sizing: border-box;
@@ -9443,7 +9449,15 @@ font-size: 1em;
     padding-top: 50px;
     padding-bottom: 100px;
 }
+.tourWrite__Choiceday{
+    background-color: #cce9ff;
+    padding: 11px 10px;
+    box-sizing: border-box;
+}
 @media (min-width: 768px) {   
+    .selectViewList ul.list_ul{
+        display: block;
+    }
     .portfolio_in .con02 ul li .img{
         width: 80%;
     }
@@ -10024,9 +10038,7 @@ font-size: 1em;
         text-align: left;
     }
    
-    .tour_box {
-        padding: 0 0 100px;
-    }
+ 
     div.popup_bg_full .in_txt {
         height: 95%;
         width: 95%;
@@ -10755,12 +10767,6 @@ font-size: 1em;
     .tour_details_in .Read_box {
         margin-bottom: 10px;
     }
-    .tour_details_in .Read_box .details_photo .photo_list li {
-        /* height: 104px; */
-    }
-    .tour_details_in .Read_box .details_photo .main_photo{
-        /* height: 434px; */
-    }
     
     .option_tb .tag .tt,
     .option_tb .smtitle {
@@ -11124,7 +11130,9 @@ font-size: 1em;
     .portfolio_in .con04 .portfolio_box .box{
         padding: 30% 10% 0;
     }
-  
+    .tour_box {
+        padding: 0 0 100px;
+    }
 }
 @media (min-width: 1200px) {
     .sign_in {
@@ -11415,6 +11423,10 @@ font-size: 1em;
 }
 
 @media (min-width: 1230px) {
+    .tour_box .con_bottom{
+        padding-left: 0;
+        padding-right: 0;
+    }
     .tour_details_in{
         padding: 50px 0 100px;
     }
