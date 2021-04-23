@@ -132,14 +132,13 @@ export const TourList: React.FC<Ipage> = (_pageInfo) => {
           )}
           <div className="fin">
             <div className="left_div"></div>
-            {(isParterB || isParterNonB || isManager) && (
-              <div className="right_div">
-                {" "}
+            <div className="right_div">
+              {(isParterB || isParterNonB || isManager) && (
                 <Link href="/tour/write">
                   <a className="btn medium pointcolor">상품 생성하기</a>
                 </Link>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </BoardList>
       </div>

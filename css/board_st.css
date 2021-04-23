@@ -1113,6 +1113,10 @@ ul.photo_ul li .title {
 ul.photo_ul li .subTitle {
   font-size: 14px;
   font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 ul.photo_ul li .category {
@@ -2224,7 +2228,7 @@ i.q_no {
 }
 div.sum_div {
   position: relative;
-  border: solid #eee 3px;
+  border: solid #bababa 10px;
   box-sizing: border-box;
   margin-top: 30px;
 }
@@ -2285,7 +2289,7 @@ div.sum_div .last_ul {
   width: 100%;
   font-size: 22px;
   border-bottom: 0;
-  background-color: #797979;
+  background-color: #dedede;
 }
 div.sum_div .last_ul li {
   width: 100%;
@@ -2295,7 +2299,7 @@ div.sum_div .last_ul li {
 }
 div.sum_div .last_ul li div {
   font-size: 22px;
-  color: #ffffff;
+  color: #333333;
 }
 div.sum_div .last_ul i {
   margin-right: 20px;
@@ -2538,7 +2542,7 @@ div.sum_div .last_ul i {
     margin-left: 10px;
   }
   .board_list .boardlist_ul {
-    display: flex;
+    display: block;
   }
   ul.boardlist_ul li {
     display: inline-block;
@@ -2548,6 +2552,9 @@ div.sum_div .last_ul i {
   }
   .board_list .boardlist_ul li {
     width: auto;
+  }
+  .board_list .boardlist_ul.line3 li {
+    width: 31.7%;
   }
   ul.boardlist_ul .list_in {
     margin-bottom: 30px;
