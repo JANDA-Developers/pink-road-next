@@ -28908,7 +28908,7 @@
             "defaultValue": null
           },
           {
-            "name": "content",
+            "name": "contents",
             "description": null,
             "type": {
               "kind": "NON_NULL",

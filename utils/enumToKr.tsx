@@ -243,8 +243,9 @@ export const bankrefundTransInfo = (bankTransInfo?: bookingFindByCode_BookingFin
     return `${accountHolder} ${accountNumber}(${bankName})`
 };
 
-export const nameOf = (myProfile?: getContext_GetProfile_data | null) => {
-    return myProfile?.manageName || myProfile?.name || myProfile?.busi_name || "";
+export const nameOf = (myProfile?: any) => {
+    console.log({myProfile})
+    return myProfile?.name || myProfile?.busi_name ||  myProfile?.manageName || "";
 }
 export const phoneNumberOf = (myProfile?: getContext_GetProfile_data | null) => {
     return myProfile?.manageContact || myProfile?.phoneNumber || myProfile?.busi_contact || ""

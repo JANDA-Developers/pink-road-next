@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { openListFilter, useProductFindById, useProductList } from "hook/useProduct";
+import {  useProductFindById, useProductList } from "hook/useProduct";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -34,7 +34,6 @@ import { ProductDateSelecter } from "../../../components/ProductDateSelecter";
 import { Change } from "../../../components/loadingList/LoadingList";
 import OnImagesLoaded from "../../../components/onImageLoad/OnImageLoad";
 import { useImgLoading } from "../../../hook/useImgLoading";
-import { getFromUrl } from "../../../utils/url";
 import { PageEditor } from "../../../components/common/PageEditer";
 import { RatingStar } from "../../../components/rating/Rating";
 import { useModal } from "../../../hook/useModal";
@@ -262,7 +261,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     <span className="sell">{productStatus(product.status)}</span>
                     <span className="open">{product.isOpen ? "공개" : "비공개"}</span>
                   </div>}
-                  <Slider ref={sliderRef} >
+                  <Slider dots={false} ref={sliderRef} >
                     {images?.map((img, i) =>
                       <Slide key={i + "sliderImg"} >
                         <img src={img?.uri} alt={img.name} />
@@ -336,7 +335,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     </tbody>
                   </table>
                 </div>
-                {isPast && <div className="box">
+                <div className="box">
                   <table cellSpacing={0} summary="Extra Form" className="option_tb">
                     <tbody>
                       <tr>
@@ -387,7 +386,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     </table>
                   </div>
                 </div>
-                }
                 {/* btn */}
                 <div className="btn_box">
                   <div className="links_wrap">

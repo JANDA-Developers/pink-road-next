@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useBookingList } from '../../hook/useBooking';
 import PaymentLayout from '../../layout/PaymentLayout';
 import PageLoading from '../../pages/Loading';
@@ -8,6 +8,7 @@ import { AppContext } from '../../pages/_app';
 import { paymentStatus, paymentStatus2, payMethodToKR } from '../../utils/enumToKr';
 import { autoComma, card_hypen } from '../../utils/formatter';
 import isEmpty from '../../utils/isEmpty';
+import { getBracket, removeItem } from '../../utils/Storage';
 import { getFromUrl } from '../../utils/url';
 import { yyyymmddHHmm } from '../../utils/yyyymmdd';
 
@@ -34,8 +35,28 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
         }
     })
 
+
     const urlResult = getData();
     const _itmes = isEmpty(items) ? urlResult : items;
+
+
+    useEffect(()=>{
+        if(!items[0]) return;
+        const basketItems = getBracket();
+        const itemIds = items.map(item => item.product._id);
+        const itemsCreatedAt = items[0].createdAt;
+
+        //pickupDate가 booking의 createdAt보다 큰거는 걸러야함
+        
+        const removeTargets = basketItems.filter(
+            basketItem => itemIds.includes(basketItem._id) && basketItem.pickupAt < itemsCreatedAt 
+        );
+        removeTargets.forEach(target => {
+            removeItem(target._id);
+        })
+        
+    },[items.length])
+
 
     if (getLoading) return <PageLoading />
     return <PaymentLayout>

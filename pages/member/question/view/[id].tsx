@@ -14,6 +14,7 @@ import { IPromptInfo, PormptModal } from '../../../../components/promptModal/Pro
 import { useModal } from '../../../../hook/useModal';
 import { getFromUrl } from '../../../../utils/url';
 import isEmpty from '../../../../utils/isEmpty';
+import { nameOf } from '../../../../utils/enumToKr';
 
 interface IProp {
 }
@@ -124,7 +125,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
             onList={toList}
             thumb={thumb}
             content={contents}
-            writer={author?.nickName || ""}
+            writer={nameOf(author) || ""}
             title={title}
             subTitle={subTitle || ""}
             onDelete={handleDelete}
@@ -139,7 +140,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
                                 <div className="comment_box">
                                     <ul className="comment_box_list">
                                         {(question.answers).filter(answer => !answer?.isDelete).map(answer => {
-                                            return <Comment title={answer?.author?.name} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
+                                            return <Comment title={nameOf(answer?.author)} onCompleteEdit={handleEdit} onDelete={handleAnswerDelete(answer!)} key={answer?._id}  {...answer!} />
                                         }
                                         )}
                                     </ul>

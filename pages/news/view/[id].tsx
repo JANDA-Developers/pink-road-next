@@ -4,6 +4,7 @@ import { BoardView, IBoardMoveData } from "components/board/View";
 import { Fnews } from 'types/api';
 import Page404 from 'pages/404';
 import { useNewsDelete, useNewsFindById } from '../../../hook/useNews';
+import { nameOf } from '../../../utils/enumToKr';
 
 interface IProp {
     item: Fnews
@@ -13,13 +14,13 @@ interface IProp {
 
 export const NewsDetail: React.FC<IProp> = ({ item, next, prev }) => {
     const router = useRouter();
-    const { isOpen, title, thumb, createdAt, contents, _id, subTitle, author } = item;
+    const { isOpen, title, thumb, createdAt, contents, _id, subTitle, author,type } = item;
 
     const toDetail = () => {
         router.push(`/news/write/${_id}`)
     }
     const toList = () => {
-        router.push(`/news#list`)
+        router.push(`/news?type=` + type);
     }
 
 
@@ -46,7 +47,7 @@ export const NewsDetail: React.FC<IProp> = ({ item, next, prev }) => {
         content={contents}
         next={next}
         prev={prev}
-        writer={author?.name || ""}
+        writer={nameOf(author)}
         title={title}
         subTitle={subTitle || ""}
         onDelete={handleDelete}

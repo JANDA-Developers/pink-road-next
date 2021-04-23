@@ -6,7 +6,7 @@ import { BG } from '../../types/const';
 import { Ipopup } from '../../types/interface';
 
 
-export interface IPopupStyle {
+export interface IPopupStyle extends React.CSSProperties {
     left: number;
     top: number;
     width: number;

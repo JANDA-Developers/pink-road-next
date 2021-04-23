@@ -334,7 +334,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     <div className="title">카테고리</div>
                     <div className="input_form">
                         <span className="category r3">
-                            <select onChange={handleCatChange} value={categoryId} name="category_srl">
+                            <select id="category" onChange={handleCatChange} value={categoryId} name="category_srl">
                                 {categories.map(cat =>
                                     <option value={cat._id} key={cat._id}>
                                         {cat.label}

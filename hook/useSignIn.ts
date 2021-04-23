@@ -93,7 +93,7 @@ export const useSignIn = (config?:IUseSignInConfig) => {
 
     const { validate } = new Validater([{
         value: isEmail(userId),
-        failMsg: "이메일을 입력 해주세요"
+        failMsg: "올바른 이메일이 아닙니다."
     }, {
         value: userPw.length > 4,
         failMsg: "패스워드를 입력 해주세요"

@@ -10,6 +10,7 @@ import {  mergeDeepOnlyExsistProperty } from "../utils/merge";
 import { Ipage } from "../utils/page";
 import { getEditUtils, IGetEditUtilsResult } from "../utils/pageEdit";
 import { usePageFindByKey, usePageInfo } from "./usePageInfo";
+import useWarnIfUnsavedChanges from "./useUnSaveChange";
 
 export interface IUsePageEdit<Page = any> extends IGetEditUtilsResult<Page> {
     setPage: ISet<Page>
@@ -30,13 +31,16 @@ export const usePageEdit = <Page>({pageInfo:originPage, pageKey}:Ipage, defaultP
     const pageMerge = () => cloneObject(mergeDeepOnlyExsistProperty(cloneObject(defaultPage), originPage || {}))
     const [page, setPage] = useState(pageMerge());
  
-    //page는 이전 값을 조회하고있음 왜 ? => state니까 
-    //페이지가 바뀌면 setPage는 초기화 되어야함. 
-    //useEffect를 통해서 바꾸는게 좋을까? 아마도..
-    //하지만 한번의 렌더는 일어나고 맘
+    // page는 이전 값을 조회하고있음 왜 ? => state니까 
+    // 페이지가 바뀌면 setPage는 초기화 되어야함. 
+    // useEffect를 통해서 바꾸는게 좋을까? 아마도..
+    // 하지만 한번의 렌더는 일어나고 맘
     // 여기서 state를 사용하는데 구조적 문제가있음 
-    //_app에서 state를 사용하는것이 위험함
+    // _app에서 state를 사용하는것이 위험함
     // 어떻게든 값을 업데이트 할 필요는 있어보임
+    
+    useWarnIfUnsavedChanges(editMode);
+
     const editUtils = getEditUtils<Page>(editMode, page, setPage,lang);
 
     const [pageInfoCreateMu] = useMutation<pageInfoCreate, pageInfoCreateVariables>(PAGE_INFO_CREATE, {

@@ -107,6 +107,7 @@ export const NEWS_CREATE = gql`
     }
     data {
       _id
+      type
     }
   }
 }
@@ -145,6 +146,7 @@ export const NEWS_UPDAET = gql`
               message
       }
     data {
+      type
       _id
     }
   }

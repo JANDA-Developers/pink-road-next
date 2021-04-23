@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useBookingCancelReject, useBookingCancelReq, useBookingFindByCode, useBookingUpdate } from '../../hook/useBooking';
 import { IUseModal } from '../../hook/useModal';
 import { useBankDepositConfirm, useBankRefund } from '../../hook/usePayment';
+import { useCopy } from '../../hook/useUpdate';
 import { AppContext } from '../../pages/_app';
 import { BookingStatus, PaymentStatus, PayMethod, ProductStatus } from '../../types/api';
 import { bankrefundTransInfo, determinedKr, genderToKR, paymentStatus, paymentStatus2, payMethodToKR, peopleCurrentCountBracket, personCountBracket, productStatus } from '../../utils/enumToKr';
@@ -16,6 +17,7 @@ import { Prompt } from '../promptModal/Prompt';
 import { IRefundModalSubmit, RefundModal } from '../promptModal/RefundModal';
 import { ITableInfo } from '../recipt/components/TableRender';
 import { BookingStatusBadge, RequestBadge } from '../Status/StatusBadge';
+import { Traveler } from '../traveler/Traveler';
 
 export interface IBookingModalInfo {
     code: string;
@@ -40,6 +42,7 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
         title: "",
         target: "cancelReq"
     });
+    const [bookingCopy, setBookingCopy] = useCopy(booking);
 
     const paymentId = booking?.payment?._id
 
@@ -174,7 +177,7 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
         if (booking) {
             setMemo(booking.memo || "");
         }
-    }, [booking])
+    }, [booking._id])
 
 
     if (!booking) {
@@ -359,6 +362,11 @@ export const BookingModal: React.FC<IProp> = ({ info, isOpen, closeModal: modalC
                                 }
                             </div>
                         </div>
+                        {bookingCopy.travelers.map((traveler,index) => 
+                            <Traveler traveler={traveler} key={index + "traveler"} onChange={()=>{
+                                setBookingCopy({...bookingCopy});
+                            }}  />
+                        )}
                         {payment?.totalCancelPrice ? <div className="right_div">
                             <h4>환불 정보</h4>
                             <div className="info_table w50">
