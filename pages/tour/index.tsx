@@ -90,14 +90,14 @@ export const TourMain: React.FC<Ipage> = (pageInfo) => {
           <div className="fin mt30">
             {!isExp && (
               <Link href="/tour/list">
-                <a className="btn full">
+                <a className="btn full mt30">
                   투어상품 더보기<i className="jandaicon-arr4-bottom"></i>
                 </a>
               </Link>
             )}
             {isExp && (
               <Link href="/tour/list?exp=true">
-                <a className="btn full">
+                <a className="btn full mt30">
                   체험상품 더보기<i className="jandaicon-arr4-bottom"></i>
                 </a>
               </Link>

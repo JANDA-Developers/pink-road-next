@@ -3977,10 +3977,6 @@ i.icon_plus {
     width: 100%;
   }
 
-  .top_visual .sub_header {
-    padding: 138px 0 0;
-  }
-
   .top_visual .sub_header .title {
     font-size: 3em;
     text-align: left;
@@ -3994,6 +3990,10 @@ i.icon_plus {
 @media (min-width: 1230px) {
   .header .hd_center .nav_wrap > .deps1 .deps_nav {
     top: 45px;
+  }
+
+  .top_visual .sub_header {
+    padding: 138px 0 0;
   }
   .footer_in .f_detail_wrap {
     width: 1200px;

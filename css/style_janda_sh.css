@@ -28,7 +28,9 @@
 .date,
 .men,
 .men_cunt,
+#payment .payment_box .payment_td span,
 .mypage_in .lnb a i,
+#payment .payment_box .payment_td strong,
 .paymethod__Check_table .th,
 .master_box .main_paper_div .hang .table .body > div span,
 .master_box .main_paper_div .hang .table .body > div strong,
@@ -708,7 +710,7 @@ div.search_mini {
   width: 100%;
   position: relative;
   right: 0;
-  margin: 20px 0;
+  margin: 10px 0;
   padding: 0;
   display: inline-block;
   box-sizing: border-box;
@@ -1415,6 +1417,10 @@ div.alignment select {
 div.alignment select.sel02 {
   margin-left: 5px;
 }
+.news_box .board_list.st02 {
+  padding-top: 10px;
+  border-top: 2px solid #333;
+}
 .news_box div.alignment select {
   width: 30%;
 }
@@ -1464,12 +1470,8 @@ div.alignment .move-right button {
   top: 0;
   right: 0;
 }
-div.alignment .left_div .infotxt {
-  margin-top: 15px;
-  display: inline-block;
-}
 div.alignment .left_div i {
-  color: #6f6f6f;
+  color: #2196f3;
   font-weight: 600;
   font-style: unset;
 }
@@ -4022,8 +4024,8 @@ span.login__snslink2_txt {
 /* tour */
 .goods_box {
   position: relative;
-  margin-bottom: 100px !important;
-  margin-top: 60px !important;
+  margin-bottom: 150px !important;
+  margin-top: 100px !important;
   padding-left: 3%;
   padding-right: 3%;
 }
@@ -8714,6 +8716,27 @@ i.calendar svg {
   box-sizing: border-box;
   padding: 0 3%;
 }
+.notice_box h4 {
+  padding-left: 0;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 70px;
+  font-size: 1.6em;
+}
+.announce_box h4 {
+  padding-left: 0;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 21px;
+  font-size: 1.6em;
+}
+.announce_box div.alignment {
+  line-height: 60px;
+  padding: 12px 5px 5px;
+}
+
 /*qna_box*/
 .qna_box {
   margin: 0 auto;
@@ -8722,8 +8745,19 @@ i.calendar svg {
   box-sizing: border-box;
   padding: 0 3%;
 }
-.qna_box .alignment {
-  padding: 30px 0 0;
+
+.board_qna h4 {
+  padding-left: 0;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 60px;
+  font-size: 1.6em;
+}
+
+.board_qna .alignment {
+  padding: 0px 5px 5px;
+  height: 47px;
 }
 
 /*question_box*/
@@ -8732,6 +8766,14 @@ i.calendar svg {
   margin-top: 0px !important;
   box-sizing: border-box;
   padding: 0;
+}
+.question_box h4 {
+  padding-left: 0;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 60px;
+  font-size: 1.6em;
 }
 .question_box .div.alignment {
   padding: 30px 0 5px;
@@ -9204,6 +9246,10 @@ i.calendar svg {
 }
 ul.photo_ul.main_photo_ul li .title {
   margin-bottom: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .product__statusIcon {
   position: absolute;
@@ -9922,6 +9968,14 @@ ul.photo_ul.main_photo_ul li .title {
 }
 
 @media (min-width: 1000px) {
+  .board_qna h4,
+  .notice_box h4,
+  .question_box h4,
+  .announce_box h4 {
+    padding-left: 0;
+    text-align: left;
+  }
+
   .option__box .view_icon {
     width: 24px;
     height: 30px;
@@ -11253,20 +11307,24 @@ ul.photo_ul.main_photo_ul li .title {
     padding: 150px 3%;
     background-size: 130%;
   }
-
+  div.list_bottom .btn {
+    float: right;
+  }
   div.search_mini {
-    width: 45%;
-    position: absolute;
-    right: 0;
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+    float: right;
     padding: 0;
-    margin: 20px 0;
+    margin: 0 15px;
     text-align: left;
   }
+
   div.search_mini .in {
     text-align: right;
   }
   div.search_mini input {
-    width: 53%;
+    width: 100%;
     margin: 0 auto;
     display: inline-block;
     border-radius: 111px;
@@ -11275,8 +11333,8 @@ ul.photo_ul.main_photo_ul li .title {
     box-sizing: border-box;
   }
   div.search_mini svg {
-    top: 9px;
-    right: 11px;
+    top: 11px;
+    right: 14px;
   }
   div.bn_box {
     width: 100%;
@@ -11324,7 +11382,7 @@ ul.photo_ul.main_photo_ul li .title {
     font-size: 21px;
   }
   .qna_box {
-    padding: 0;
+    padding: 50px 0 100px;
   }
 
   .question_box {
@@ -11372,6 +11430,10 @@ ul.photo_ul.main_photo_ul li .title {
 }
 
 @media (min-width: 1230px) {
+  .news_box {
+    padding-left: 0;
+    padding-right: 0;
+  }
   .tour_box .con_bottom {
     padding-left: 0;
     padding-right: 0;
@@ -11459,7 +11521,8 @@ ul.photo_ul.main_photo_ul li .title {
     height: 68px;
   }
   .question_box div.alignment {
-    padding: 30px 0 5px !important;
+    padding: 5px 0 5px !important;
+    height: 47px;
   }
   div.alignment .left_div {
     display: inline-block;

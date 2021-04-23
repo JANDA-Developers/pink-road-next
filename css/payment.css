@@ -1,4 +1,3 @@
-
 /************************************** 
     D.seun hwa board style 2020
 **
@@ -7,428 +6,428 @@
 
 /* pay ment */
 #payment {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 50px 0 0;
-    box-sizing: border-box;
-    background-color: #f5f5f5;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 50px 0 0;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
 }
-#payment .comment_layout .count{
-   font-weight: 100;
+#payment .comment_layout .count {
+  font-weight: 100;
 }
-#payment .w1200{
-    padding: 0 3%;
-    box-sizing: border-box;
+#payment .w1200 {
+  padding: 0 3%;
+  box-sizing: border-box;
 }
 
 #payment iframe {
-    min-height:2000px;
-    width:100%;
-    display:block;
-    position:relative;
-    border:0;
+  min-height: 2000px;
+  width: 100%;
+  display: block;
+  position: relative;
+  border: 0;
 }
 #payment .payment_box {
-    position: relative;
-    display: block;
-    padding: 40px 3% 15px;
-    border-radius: 10px;
-    box-sizing: border-box;
-    background-color: #fff;
-    background-image: url(/img/payment_bg.gif);
-    background-repeat: repeat-x;
-    margin-bottom: 20px;
-
-}     #payment .payment_box .head{
-    position: relative;
-    display: block;
-    padding-bottom:20px;
-}   
+  position: relative;
+  display: block;
+  padding: 40px 3% 15px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+  background-image: url(/img/payment_bg.gif);
+  background-repeat: repeat-x;
+  margin-bottom: 20px;
+}
+#payment .payment_box .head {
+  position: relative;
+  display: block;
+  padding-bottom: 20px;
+}
 #payment .popup_bg_mini .in_txt {
-   min-width: 80%;
+  min-width: 80%;
 }
 .basket_box .popup_bg_mini .in_txt {
-   min-width: 30% !important;
+  min-width: 30% !important;
 }
 .basket_box .Chash__box .chash_tb {
-   margin-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 #payment .payment_box h2 {
-    position: relative;
-    display: block;
-    text-align:left;
+  position: relative;
+  display: block;
+  text-align: left;
+}
+#payment .payment_box h2.endtxt {
+  text-align: center;
+  margin-top: 80px;
 }
 #payment .payment_box h3 {
-    position: relative;
-    display: block;
-    text-align:left;
-    margin-bottom: 10px;
+  position: relative;
+  display: block;
+  text-align: left;
+  margin-bottom: 10px;
 }
 #payment .popup_bg_mini h2 {
-    font-size: 1.3em !important;
+  font-size: 1.3em !important;
 }
 #payment .popup_bg_mini p {
-   line-height: 180%;
-   font-weight: 100px;
+  line-height: 180%;
+  font-weight: 100px;
 }
 
-    #payment .payment_box h2 i {
-        font-style: normal;
-        color: #2196F3;
-    }
-    #payment .payment_box h4 {
-        position: relative;
-        display: block;
-        text-align:left;
-        font-size: 1.4em;
-        line-height: 200%;
-    }
-    #payment .payment_box .write_type_box {
-        margin-top: 50px;
-        padding-top: 30px;
-        padding-bottom: 30px;
+#payment .payment_box h2 i {
+  font-style: normal;
+  color: #2196f3;
+}
+#payment .payment_box h4 {
+  position: relative;
+  display: block;
+  text-align: left;
+  font-size: 1.4em;
+  line-height: 200%;
+}
+#payment .payment_box .write_type_box {
+  margin-top: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 
-        border-top: 2px dotted #e5e5e5;
-    }
-    #payment .payment_box .table {
-        position: relative;
-        display: block;
-        text-align: center;
-        border-top: 1px dotted #d8d8d8;
-    }
-    #payment .payment_box .payment_tr {
-        width: 100%;
-        display: inline-block;
-        border-bottom: 1px dotted #d8d8d8;
-        text-align: left;
-    }
-    #payment .payment_box .payment_th {
-        width: 20%;
-        text-align: center;
-        display: inline-block;
-        line-height: 130%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        font-weight: 600;
-        color: #acacac;
-        vertical-align: top;
-    }
-    #payment .payment_box .payment_td {
-        width: 70%;
-        text-align: left;
-        display: inline-block;
-        line-height: 130%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        color: #333333;
-        font-weight: normal;
-        font-family: '����';
-        vertical-align: top;
-    }
-        #payment .payment_box .payment_td span {
-            display: block;
-            margin-right: 0;
-        }
-    #payment .payment_box .btn_box {
-        position: relative;
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-        #payment .payment_box .btn_box a {
-            width: 48% !important;
-            margin: 1%;
-            display: inline-block;
-            background-color: #888;
-            color: #fff;
-            border: 0;
-            padding: 3px 0;
-            border-radius: 3px;
-            box-shadow: 0 3px 0 #777;
-        }   
-        #payment .payment_box .btn_box a:hover {
-            background-color: #0D1E42;
-            color: #fff;
-            box-shadow: 0 3px 0 #050d1d;
-        }
+  border-top: 2px dotted #e5e5e5;
+}
+#payment .payment_box .table {
+  position: relative;
+  display: block;
+  text-align: center;
+  border-top: 1px dotted #d8d8d8;
+}
+#payment .payment_box .payment_tr {
+  width: 100%;
+  display: inline-block;
+  border-bottom: 1px dotted #d8d8d8;
+  text-align: left;
+}
+#payment .payment_box .payment_th {
+  width: 20%;
+  text-align: center;
+  display: inline-block;
+  line-height: 130%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 600;
+  color: #acacac;
+  vertical-align: top;
+}
+#payment .payment_box .payment_td {
+  width: 70%;
+  text-align: left;
+  display: inline-block;
+  line-height: 130%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #333333;
+  font-weight: normal;
+  font-family: "����";
+  vertical-align: top;
+}
+#payment .payment_box .payment_td span {
+  display: block;
+  margin-right: 0;
+}
+#payment .payment_box .btn_box {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#payment .payment_box .btn_box a {
+  width: 48% !important;
+  margin: 1%;
+  display: inline-block;
+  background-color: #888;
+  color: #fff;
+  border: 0;
+  padding: 3px 0;
+  border-radius: 3px;
+  box-shadow: 0 3px 0 #777;
+}
+#payment .payment_box .btn_box a:hover {
+  background-color: #ed297b;
+  color: #fff;
+  box-shadow: 0 3px 0 #ed297b;
+}
 #payment .payment_bottom {
-    position: relative;
-    display: block;
-    width: 100%;
-    line-height: 34px;
-    background-color: #999;
-    text-align: center;
-    box-sizing: border-box;
-    margin-top:50px;
-    color: #c9c9c9;
-    font-size:12px;
-    font-weight:100;
+  position: relative;
+  display: block;
+  width: 100%;
+  line-height: 34px;
+  background-color: #999;
+  text-align: center;
+  box-sizing: border-box;
+  margin-top: 50px;
+  color: #c9c9c9;
+  font-size: 12px;
+  font-weight: 100;
 }
 
 #payment .payment_top {
-    position: relative;
-    display: block;
-    width: 100%;
-    margin: 0 auto;
-    line-height: 50px;
-    text-align: left;
-    color: #eee;
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  line-height: 50px;
+  text-align: left;
+  color: #eee;
 }
-    #payment .payment_top .logo {
-        width: 170px;
-        display: inline-block;
-    }
-    #payment .react-tabs__tab {
-       padding: 9px 2%;
-       background-color: #aaaaaa;
-       color: #f1f1f1;
-       border-radius: 5px;
-       margin-right: 5px;
-       margin-bottom: 5px;
-    }
-    #payment .react-tabs__tab.react-tabs__tab--selected {
-       border-top: 1px solid #aaaaaa;
-       border-left: 1px solid #aaaaaa;
-       border-right: 1px solid #aaaaaa;
-       border-bottom: 1px solid #aaaaaa;
-       background-color: #ffffff;
-       color: #333333;
-    }
-
-.paymethod__Check{
-    position: relative;
-    width: 100%;
-    border-top: 2px solid #888;
-    box-sizing: border-box;
-    padding: 0;
+#payment .payment_top .logo {
+  width: 170px;
+  display: inline-block;
 }
-.paymethod__Check > li{
-    position: relative;
-    width: 100%;
-    box-sizing: border-box;
+#payment .react-tabs__tab {
+  padding: 9px 2%;
+  background-color: #aaaaaa;
+  color: #f1f1f1;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
-.paymethod__Check > li:last-child{
-    border-bottom: 1px solid #cccccc;
+#payment .react-tabs__tab.react-tabs__tab--selected {
+  border-top: 1px solid #aaaaaa;
+  border-left: 1px solid #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+  border-bottom: 1px solid #aaaaaa;
+  background-color: #ffffff;
+  color: #333333;
 }
 
-.paymethod__Check .paymethod__Check_head{
-    position: relative;
-    line-height: 40px;
-    font-size: 1.1em;
-    font-weight: 600;
-    cursor: pointer;
-    box-sizing: border-box;
-    padding: 1%;
-    border-bottom: 1px solid #aaaaaa;
+.paymethod__Check {
+  position: relative;
+  width: 100%;
+  border-top: 2px solid #888;
+  box-sizing: border-box;
+  padding: 0;
 }
-.paymethod__Check .paymethod__Check_head button{
-    display: block;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
+.paymethod__Check > li {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
-.paymethod__Check .paymethod__Check_head input{
-    margin-right: 10px;
-}
-.paymethod__Check_body{
-    position: relative;
-    width: 100%;
-    display: block;
-    box-sizing: border-box;
-    padding: 2%;
-}
-.paymethod__Check_table{
-    position: relative;
-    width: 100%;
-    display: block;
-    line-height: 100%;
-    padding-left: 2%;
-    box-sizing: border-box;
-}
-.paymethod__Check_table .tr{
-    position: relative;
-    width: 100%;
-    display: flex;
-    line-height: 40px;
-    box-sizing: border-box;
-    padding: 6px 0;
-}
-.paymethod__Check_table .tr > div{
-    width:auto;
-    flex: 1 1 ;
-    flex-grow: 1;
-}
-.paymethod__Check_table .th{
-    max-width: 30%;
-    text-align: left;
-    font-weight: 600;
-}
-.paymethod__Check_table .td{
-    text-align: left;
+.paymethod__Check > li:last-child {
+  border-bottom: 1px solid #cccccc;
 }
 
-.agreeChk__box{
-    position: relative;
-    border-top: 2px dotted #e5e5e5;
-    margin-top:30px;
-    padding-top: 50px;
-    margin-bottom: 100px;
+.paymethod__Check .paymethod__Check_head {
+  position: relative;
+  line-height: 40px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 1%;
+  border-bottom: 1px solid #aaaaaa;
 }
-.agreeChk__box .agreeChk{
-    position: relative;
-    border-top: 2px solid #555;
-    border-bottom: 1px solid #555;
-    line-height: 60px;
-    display: flex;
-    align-self: center;
-    font-size: 1.2em;
-    font-weight: 600;
+.paymethod__Check .paymethod__Check_head button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-.agreeChk__box .agreeChk .checkbox{
-    margin-left: 10px;
-    margin-right: 15px;
+.paymethod__Check .paymethod__Check_head input {
+  margin-right: 10px;
 }
-.agreeChk__box .agreeChk .checkbox{
-    margin-left: 10px;
-    margin-right: 15px;
+.paymethod__Check_body {
+  position: relative;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 2%;
 }
-.agreeChk__box .agreeChk_list li{
-    display: flex;
-    align-self: center;
-    line-height: 20px;
-    border-bottom: 1px solid rgb(224 224 224);
-    padding: 20px 0 20px 20px;
-    box-sizing: border-box;
+.paymethod__Check_table {
+  position: relative;
+  width: 100%;
+  display: block;
+  line-height: 100%;
+  padding-left: 2%;
+  box-sizing: border-box;
 }
-.agreeChk__box .agreeChk_list li > div{
-    flex-grow: 1;
-    flex: 1 1;
+.paymethod__Check_table .tr {
+  position: relative;
+  width: 100%;
+  display: flex;
+  line-height: 40px;
+  box-sizing: border-box;
+  padding: 6px 0;
 }
-.agreeChk__box .agreeChk_list li .txt{
-    line-height: 100% !important;
+.paymethod__Check_table .tr > div {
+  width: auto;
+  flex: 1 1;
+  flex-grow: 1;
 }
-.agreeChk__box .agreeChk_list .checkbox{
-    margin-right: 10px;
+.paymethod__Check_table .th {
+  max-width: 30%;
+  text-align: left;
+  font-weight: 600;
 }
-.agreeChk__box .agreeChk_list .in_box2{
-    text-align: right;
-}
-.agreeChk__box .agreeChk_list .in_box2 a{
-    cursor: pointer;
+.paymethod__Check_table .td {
+  text-align: left;
 }
 
+.agreeChk__box {
+  position: relative;
+  border-top: 2px dotted #e5e5e5;
+  margin-top: 30px;
+  padding-top: 50px;
+  margin-bottom: 100px;
+}
+.agreeChk__box .agreeChk {
+  position: relative;
+  border-top: 2px solid #555;
+  border-bottom: 1px solid #555;
+  line-height: 60px;
+  display: flex;
+  align-self: center;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+.agreeChk__box .agreeChk .checkbox {
+  margin-left: 10px;
+  margin-right: 15px;
+}
+.agreeChk__box .agreeChk .checkbox {
+  margin-left: 10px;
+  margin-right: 15px;
+}
+.agreeChk__box .agreeChk_list li {
+  display: flex;
+  align-self: center;
+  line-height: 20px;
+  border-bottom: 1px solid rgb(224 224 224);
+  padding: 20px 0 20px 20px;
+  box-sizing: border-box;
+}
+.agreeChk__box .agreeChk_list li > div {
+  flex-grow: 1;
+  flex: 1 1;
+}
+.agreeChk__box .agreeChk_list li .txt {
+  line-height: 100% !important;
+}
+.agreeChk__box .agreeChk_list .checkbox {
+  margin-right: 10px;
+}
+.agreeChk__box .agreeChk_list .in_box2 {
+  text-align: right;
+}
+.agreeChk__box .agreeChk_list .in_box2 a {
+  cursor: pointer;
+}
 
 @media (min-width: 768px) {
-
 }
 @media (min-width: 1200px) {
-    #payment .react-tabs__tab {
-        padding: 9px 2%;
-        background-color: #aaaaaa;
-        color: #f1f1f1;
-        border-radius: 5px 5px 0 0;
-        margin-right: 5px;
-        margin-bottom: 0;
-     }
-     #payment .react-tabs__tab.react-tabs__tab--selected {
-        border-top: 1px solid #aaaaaa;
-        border-left: 1px solid #aaaaaa;
-        border-right: 1px solid #aaaaaa;
-        border-bottom:0;
-        background-color: #ffffff;
-        color: #333333;
-     }
-    .agreeChk__box {
-        margin-top: 80px;
-        padding-top: 100px;
-        margin-bottom: 100px;
-    }
-    .paymethod__Check_table .th{
-        max-width: 20%;
-    }
-    #payment {
-        padding: 100px 0 0;
-    }
-    #payment .payment_box {
-        padding: 40px 40px 15px;
-    }
+  #payment .react-tabs__tab {
+    padding: 9px 2%;
+    background-color: #aaaaaa;
+    color: #f1f1f1;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+    margin-bottom: 0;
+  }
+  #payment .react-tabs__tab.react-tabs__tab--selected {
+    border-top: 1px solid #aaaaaa;
+    border-left: 1px solid #aaaaaa;
+    border-right: 1px solid #aaaaaa;
+    border-bottom: 0;
+    background-color: #ffffff;
+    color: #333333;
+  }
+  .agreeChk__box {
+    margin-top: 80px;
+    padding-top: 100px;
+    margin-bottom: 100px;
+  }
+  .paymethod__Check_table .th {
+    max-width: 20%;
+  }
+  #payment {
+    padding: 100px 0 0;
+  }
+  #payment .payment_box {
+    padding: 40px 40px 15px;
+  }
 
-    #payment .payment_box h2 {
-        font-size: 2em;
-    }
-    #payment .payment_box .btn_box a {
-        width: 22% !important;
-        padding:6px 0;
-    }
-  
-    #payment .payment_box .head {
-        padding-bottom:30px;
-    }
-        #payment .payment_box .btn_box {
-            padding-bottom: 110px;
-        }
-        #payment .payment_box .table {
-            margin: 0 auto;
-            width: 70%;
-        }  
-        #payment .payment_box .payment_tr {
-            width:100%;
-        }
-        #payment .payment_box .payment_th {
-            width: 20%;
-            padding-left:20px;
-            box-sizing:border-box;
-            text-align:left;
-        }
+  #payment .payment_box h2 {
+    font-size: 2em;
+  }
+  #payment .payment_box .btn_box a {
+    width: 22% !important;
+    padding: 6px 0;
+  }
 
-        #payment .payment_box .payment_td {
-            width: 70%;
-        } 
-        #payment .payment_box .payment_td tr {
-            display:none;
-        }  
-        #payment .payment_box .payment_td span {
-            display:inline-block;
-            margin-right:10px;
-        }
-    #payment .payment_bottom {
-        margin-top: 100px;
-    }
+  #payment .payment_box .head {
+    padding-bottom: 30px;
+  }
+  #payment .payment_box .btn_box {
+    padding-bottom: 110px;
+  }
+  #payment .payment_box .table {
+    margin: 0 auto;
+    width: 70%;
+  }
+  #payment .payment_box .payment_tr {
+    width: 100%;
+  }
+  #payment .payment_box .payment_th {
+    width: 20%;
+    padding-left: 20px;
+    box-sizing: border-box;
+    text-align: left;
+  }
+
+  #payment .payment_box .payment_td {
+    width: 70%;
+  }
+  #payment .payment_box .payment_td tr {
+    display: none;
+  }
+  #payment .payment_box .payment_td span {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  #payment .payment_bottom {
+    margin-top: 100px;
+  }
 }
-
 
 @media (min-width: 1230px) {
-    #payment .payment_top {
-        width: 1200px;
-    }
+  #payment .payment_top {
+    width: 1200px;
+  }
 }
 @media (max-width: 767px) {
-    #payment .react-tabs__tab-list {
-        border-bottom:0;
-     }
-    #payment .popup_bg_mini .in_txt {
-        min-width: 90% !important;
-     }
-        #payment .popup_bg_mini .in_txt {
-        min-width: 94% !important;
-     }
-    #payment .basket_box .baket_check .btn{
-        padding: 0 15px 0 0;
-    }
-    #payment .popup_bg_mini .in_txt {
-        min-width:100% !important;
-    }
+  #payment .react-tabs__tab-list {
+    border-bottom: 0;
+  }
+  #payment .popup_bg_mini .in_txt {
+    min-width: 90% !important;
+  }
+  #payment .popup_bg_mini .in_txt {
+    min-width: 94% !important;
+  }
+  #payment .basket_box .baket_check .btn {
+    padding: 0 15px 0 0;
+  }
+  #payment .popup_bg_mini .in_txt {
+    min-width: 100% !important;
+  }
 }
 
 @media (max-width: 360px) {
-   
 }
