@@ -24,7 +24,7 @@ export const DayPickerModal: React.FC<IDayPickerModal> = ({ children, isRange = 
         display: "none"
     }} id="dayPickerModal" title="날짜선택">
         {children}
-        <DayRangePicker isRange={isRange} from={from} to={to} onRangeChange={setRange} />
+        <DayRangePicker initialMonth={from} isRange={isRange} from={from} to={to} onRangeChange={setRange} />
         <button onClick={handleSubmit} className="btn w100">변경하기</button>
     </Modal>, el);;
 

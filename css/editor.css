@@ -340,3 +340,7 @@
     clear: both;
     display: block;
 }
+
+*[contenteditable="ready"] {
+    white-space: pre-wrap;
+}

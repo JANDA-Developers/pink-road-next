@@ -7,10 +7,8 @@ import { Fhomepage, Fpage, homepage } from "../types/api"
 import { TPageKeys } from "../types/interface";
 
 export const getQueryIndex = (inPageIndex: number, pageInfo: Fpage) => {
-    const { remainder, cntPerPage, totalPageSize } = pageInfo;
-    const diff = cntPerPage - remainder;
-    const inPageReverse = cntPerPage - inPageIndex;
-    return ((pageInfo.totalPageSize - 2) * pageInfo.cntPerPage) + inPageReverse + diff;
+    const {  cntPerPage, page } = pageInfo;
+    return ((page - 1) * pageInfo.cntPerPage) + inPageIndex + 1 ;
 }
 
 const graphQLClient = new GraphQLClient(SERVER_URI, {

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { generateSearchLink } from '../../pages/search';
+import { generateSearchLink } from '../../pages/search[drepreacted]';
 import { Fproduct } from '../../types/api';
 import { BG } from '../../types/const';
 import { autoComma } from '../../utils/formatter';
@@ -33,7 +33,7 @@ export const ProductListBlock: React.FC<IProp> = ({ product }) => {
         </div>
         <div className="txt2">
             <span>장소 : {product.address}</span>
-            <span>모집인원 : {product.bookingCount}/{product.maxMember}</span>
+            <span>모집인원 : {product.peopleCount}/{product.maxMember}</span>
             <span>기간 : 당일체험</span>
             <Link href={"/tour/view/" + product._id}>
                 <span className="btn">바로가기</span>

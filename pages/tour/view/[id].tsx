@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { openListFilter, useProductFindById, useProductList } from "hook/useProduct";
+import {  useProductFindById, useProductList } from "hook/useProduct";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -29,13 +29,11 @@ import { randomSort } from "../../../utils/randomSort";
 import isEmpty from "../../../utils/isEmpty";
 import { cloneObject } from "../../../utils/clone";
 import { productList_ProductList_data, ProductStatus } from "../../../types/api";
-import sanitizeHtml from "sanitize-html";
 import { productStatus } from "../../../utils/enumToKr";
 import { ProductDateSelecter } from "../../../components/ProductDateSelecter";
 import { Change } from "../../../components/loadingList/LoadingList";
 import OnImagesLoaded from "../../../components/onImageLoad/OnImageLoad";
 import { useImgLoading } from "../../../hook/useImgLoading";
-import { getFromUrl } from "../../../utils/url";
 import { PageEditor } from "../../../components/common/PageEditer";
 import { RatingStar } from "../../../components/rating/Rating";
 import { useModal } from "../../../hook/useModal";
@@ -78,7 +76,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
   const pageTools = usePageEdit(pageInfo, defaultPageInfo);
   const id = router.query.id as string;
   const { loading, item: product, getData } = useProductFindById(id);
-  const { isManager, isAdmin, myProfile, isSeller } = useContext(AppContext);
+  const { isManager, isAdmin, myProfile, isSeller, isParterB } = useContext(AppContext);
   const isMyProduct = product?.author?._id === myProfile?._id;
   const status = product?.status;
   const { paging: questionPageInfo, slice: questionSliced, setPage: setQuestionPage } = generateClientPaging(product?.questions || [], 4);
@@ -263,7 +261,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     <span className="sell">{productStatus(product.status)}</span>
                     <span className="open">{product.isOpen ? "공개" : "비공개"}</span>
                   </div>}
-                  <Slider ref={sliderRef} >
+                  <Slider dots={false} ref={sliderRef} >
                     {images?.map((img, i) =>
                       <Slide key={i + "sliderImg"} >
                         <img src={img?.uri} alt={img.name} />
@@ -277,7 +275,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                   )}
                 </ul>
                 <div className="details_info_txt">
-                  <div className="ck-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(info) }} />
+                  <div className="ck-content" dangerouslySetInnerHTML={{ __html: info }} />
                 </div>
               </div>
             </div>
@@ -394,7 +392,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
 
                     <div className={`link02 ${isDisable && "tourBracketBtn--disabled"}`}>
                       <a onClick={handleDoPay}>
-                        예약하기
+                        {isPast ? "기간종료" : "예약하기"}
                       </a>
                     </div>
 
@@ -431,7 +429,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     </div>
                     <div className="tour_list">
                       {it.contents.map((con, index) => <div key={index + "con" + it._id}>
-                        <div className="ck-content" dangerouslySetInnerHTML={{ __html: sanitizeHtml(con) }} />
+                        <div className="ck-content" dangerouslySetInnerHTML={{ __html: con }} />
                       </div>
                       )}
                     </div>
@@ -449,14 +447,14 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               <div className="in_box" id="tap__02">
                 <h4>안내 및 참고</h4>
                 <div dangerouslySetInnerHTML={{
-                  __html: sanitizeHtml(contents)
+                  __html: contents
                 }} className="text ck-content" />
               </div>
               {/* 포함 및 불포함 */}
               <div className="in_box" id="tap__03">
                 <h4>포함 및 불포함 </h4>
                 <div dangerouslySetInnerHTML={{
-                  __html: sanitizeHtml(inOrNor)
+                  __html: inOrNor
                 }} className="text ck-content" />
               </div>
               {/* 리뷰 신규추가 */}
@@ -509,7 +507,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               {/* 주의사항 */}
               <div className="in_box" id="tap__05" >
                 <h4>주의사항</h4>
-                <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(caution) }} className="text" />
+                <div dangerouslySetInnerHTML={{ __html: caution }} className="text" />
               </div>
               <div className="in_box" id="tap__06">
                 <h4>문의하기</h4>
@@ -543,7 +541,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
               </div>
               {(isManager || isAdmin || isMyProduct) && <div className="float_right">
                 <button type="submit" onClick={handleEdit} className="btn medium pointcolor">수정</button>
-                {(isManager || isAdmin) && <button type="submit" onClick={handleDelete} className="btn medium">삭제</button>}
+                {(isManager || isAdmin || isMyProduct || isParterB) && <button type="submit" onClick={handleDelete} className="btn medium">삭제</button>}
               </div>}
             </div>
             <div className="add_list">

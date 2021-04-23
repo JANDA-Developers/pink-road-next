@@ -103,7 +103,7 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                                     placeholder="아이디"
                                     className="txt_id"
                                     title="아이디"
-                                    onChange={(e) => { handleId(e.target.value) }}
+                                    onChange={(e) => { handleId(e.target.value.trim()) }}
                                 />
                             </div>
                             <div className="form-group">
@@ -116,7 +116,7 @@ export const Login: React.FC<Ipage> = (pageInfo) => {
                                     placeholder="비밀번호"
                                     title="비밀번호"
                                     className="form-txt_pw"
-                                    onChange={(e) => { handlePw(e.target.value) }}
+                                    onChange={(e) => { handlePw(e.target.value.trim()) }}
                                 />
                             </div>
                             <div className="form-group">

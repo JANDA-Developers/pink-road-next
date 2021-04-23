@@ -85,10 +85,12 @@ export const generateListQueryHook = <F,S,Q,V,R>(
             initialPageIndex: getPageNumber(),
             initialSort: [],
             initialFilter: {} as F,
-            initialViewCount: 10
+            initialViewCount: 10,
+            fixingFilter: {}
         }
         const initialData = Object.assign(defaultInitData, queryInitDefault, initialOption); 
         const { skipInit,skip,variables, overrideVariables, ...ops } = options;
+        console.log({initialData});
         const { integratedVariable,...params } = useListQuery(initialData)
         const [getData, { data, loading: getLoading,...queryElse }] = useLazyQuery<Q,V>(QUERY,{
             fetchPolicy: "cache-and-network",

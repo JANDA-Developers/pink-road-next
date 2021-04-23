@@ -13,7 +13,7 @@ export interface IuseQuestionFindByIdProp extends QueryHookOptions<questionFindB
 export const useQuestionFindById = generateFindQuery<questionFindById,questionFindByIdVariables,questionFindById_QuestionFindById_data>("id",QUESTION_FIND_BY_ID);
 export const useQuestionList = generateListQueryHook<_QuestionFilter,_QuestionSort,questionList,questionCreateVariables,questionList_QuestionList_data>(QUESTION_LIST,{initialSort:[_QuestionSort.createdAt_desc]});
 export const useQuestionCreate = generateMutationHook<questionCreate,questionCreateVariables>(QUESTION_CREATE,{...getRefetch(QUESTION_FIND_BY_ID,QUESTION_LIST)});
-export const useQuestionDelete = generateMutationHook<questionDelete,questionDeleteVariables>(QUESTION_DELETE,{...getRefetch(QUESTION_FIND_BY_ID,QUESTION_LIST)});
+export const useQuestionDelete = generateMutationHook<questionDelete,questionDeleteVariables>(QUESTION_DELETE,{...getRefetch(QUESTION_LIST)});
 export const useQuestionUpdate = generateMutationHook<questionUpdate, questionUpdateVariables>(QUESTION_UPDAET,{...getRefetch(QUESTION_FIND_BY_ID,QUESTION_LIST)});
 
 

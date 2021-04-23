@@ -59,7 +59,6 @@ function remove_tags(html: string) {
 export const stripInlineStyle = (str: string): string => {
     const inlineStyleRegex = new RegExp(/style="[^\"]*"/gi);
     const replaced = str.replace(inlineStyleRegex, "");
-    console.log({ replaced });
     return replaced;
 }
 

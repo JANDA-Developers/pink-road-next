@@ -5,6 +5,8 @@ export const F_MODAL = gql`
   fragment Fmodal on Modal {
     _id
     link
+    useMobile
+    usePc
     startDate
     endDate
     content

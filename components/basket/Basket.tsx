@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+import dayjs from 'dayjs';
+import React, { useEffect, useState } from 'react';
+import { useIdSelecter } from '../../hook/useIdSelecter';
+import { useUpdate } from '../../hook/useUpdater';
+import { Fproduct } from '../../types/api';
+import { BG } from '../../types/const';
+import { TElements } from '../../types/interface';
+import { autoComma } from '../../utils/formatter';
+import isEmpty from '../../utils/isEmpty';
+import { arraySum } from '../../utils/math';
+import { openModal } from '../../utils/popUp';
+import { getTypeTextOfProduct } from '../../utils/product';
+import { getBracket, getTotalCount, IBasketItem, removeBracket, removeItem } from '../../utils/Storage';
+import { BasketModal } from '../basketModal/BasketModal';
+import { Nodata } from '../noData/Nodata';
+=======
 import dayjs from "dayjs";
 import React, { useState } from "react";
 import { useIdSelecter } from "../../hook/useIdSelecter";
@@ -19,6 +36,7 @@ import {
 } from "../../utils/Storage";
 import { BasketModal } from "../basketModal/BasketModal";
 import { Nodata } from "../noData/Nodata";
+>>>>>>> origin/design
 
 interface IProp {
   Buttons?: TElements;

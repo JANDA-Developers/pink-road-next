@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from "next/link";
 import { useProductList } from '../../../hook/useProduct';
 import { yyyymmdd } from '../../../utils/yyyymmdd';
-import { generateSearchLink } from '../../search';
+import { generateSearchLink } from '../../search[drepreacted]';
 import { getTypeTextOfProduct } from '../../../utils/product';
 import { PordStatusBadge } from '../../../components/Status/StatusBadge';
 import { useCustomCount } from '../../../hook/useCount';

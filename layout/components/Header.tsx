@@ -6,7 +6,7 @@ import { NEWS_TYPE } from "../../types/api";
 import { setVal, whenEnter } from "../../utils/eventValueExtracter";
 import { Router, useRouter } from "next/router";
 import { NotiIcon } from "./NotiIcon";
-import { generateSearchLink } from "../../pages/search";
+import { generateSearchLink } from "../../pages/search[drepreacted]";
 import { userRoleToKR } from "../../utils/enumToKr";
 
 interface IProp {}

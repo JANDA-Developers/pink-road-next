@@ -4,6 +4,7 @@ import { BoardView } from "components/board/View";
 import { useAnnounceDelete, useAnnounceFindById } from '../../../../hook/useAnnounce';
 import PageLoading from '../../../Loading';
 import Page404 from '../../../404';
+import { nameOf } from '../../../../utils/enumToKr';
 
 interface IProp {
 }
@@ -50,7 +51,7 @@ export const AnnounceDetail: React.FC<IProp> = () => {
             onList={toList}
             thumb={thumb}
             content={contents}
-            writer={author?.name || ""}
+            writer={nameOf(author)}
             title={title}
             subTitle={subTitle || ""}
             onDelete={handleDelete}

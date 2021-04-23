@@ -17,145 +17,152 @@ import { PageEditor } from "../../../components/common/PageEditer";
 
 export const getStaticProps = getStaticPageInfo("qna");
 export const Qna: React.FC<Ipage> = (pageInfo) => {
-  const { isManager, categoriesMap, myProfile } = useContext(AppContext);
-  const { items, getLoading } = useQnaList({
-    initialViewCount: 999,
-    // fixingFilter: {
-    //     isOpen_eq: isManager ? undefined : true
-    // }
-  });
-  const [filterCat, setFilterCat] = useState<string>();
-  const router = useRouter();
-  const pageTools = usePageEdit(pageInfo, defaultPageInfo);
-  const [openId, setOpenId] = useState("");
+    const { isManager, categoriesMap, myProfile } = useContext(AppContext);
+    const { items, getLoading } = useQnaList({
+        initialViewCount: 999,
+        // fixingFilter: {
+        //     isOpen_eq: isManager ? undefined : true
+        // }
+    });
+    const [filterCat, setFilterCat] = useState<string>();
+    const router = useRouter();
+    const pageTools = usePageEdit(pageInfo, defaultPageInfo);
+    const [openId, setOpenId] = useState("");
 
-  const gotoWrite = () => {
-    router.push("/member/qna/write/");
-  };
+    const gotoWrite = () => {
+        router.push("/member/qna/write/");
+    };
 
-  const checkCatEq = (catId?: string) => (filterCat === catId ? "on" : "");
-  const checkCatCount = (catId: string) =>
-    items.filter((item) => item.category?._id === catId).length;
+    const checkCatEq = (catId?: string) => (filterCat === catId ? "on" : "");
+    const checkCatCount = (catId: string) =>
+        items.filter((item) => item.category?._id === catId).length;
 
-  const handleToogle = (qna: qnaList_QnaList_data) => () => {
-    if (openId === qna._id) {
-      setOpenId("");
-    } else {
-      setOpenId(qna._id);
-    }
-  };
+    const handleToogle = (qna: qnaList_QnaList_data) => () => {
+        if (openId === qna._id) {
+            setOpenId("");
+        } else {
+            setOpenId(qna._id);
+        }
+    };
 
-  const handleCatFilter = (catId?: string) => () => {
-    setFilterCat(catId);
-  };
+    const handleCatFilter = (catId?: string) => () => {
+        setFilterCat(catId);
+    };
 
-  const filteredItems = filterCat
-    ? items.filter((item) => item.category?._id === filterCat)
-    : items;
+    const filteredItems = filterCat
+        ? items.filter((item) => item.category?._id === filterCat)
+        : items;
 
-  const { slice, paging, setPage } = generateClientPaging(
-    filteredItems || [],
-    10
-  );
+    const { slice, paging, setPage } = generateClientPaging(
+        filteredItems || [],
+        10
+    );
 
-  return (
-    <div>
-      <SubTopNav pageTools={pageTools}>
-        <li className="homedeps1">고객센터</li>
-        <li className="homedeps2">
-          <Link href="/member/qna">
-            <a>자주하는 질문</a>
-          </Link>
-        </li>
-      </SubTopNav>
-      <PageEditor pageTools={pageTools} />
-      <div className="qna_box w1200">
-        <MemberTopNav />
-        <div className="board_qna board_box">
-          <h4>자주하는 질문</h4>
-          <div className="alignment">
-            <div className="center_div">
-              <ul className="board_option__btn">
-                <li
-                  onClick={handleCatFilter(undefined)}
-                  className={checkCatEq(undefined)}
-                >
-                  <a>전체</a>
+    return (
+        <div>
+            <SubTopNav pageTools={pageTools}>
+                <li className="homedeps1">고객센터</li>
+                <li className="homedeps2">
+                    <Link href="/member/qna">
+                        <a>자주하는 질문</a>
+                    </Link>
                 </li>
-                {categoriesMap.QNA.map((cat) => (
-                  // <li className={checkCatEq(cat._id)} onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}<strong>{checkCatCount(cat._id)}</strong></a></li>
-                  <li
-                    className={checkCatEq(cat._id)}
-                    onClick={handleCatFilter(cat._id)}
-                    key={cat._id}
-                  >
-                    <a>{cat.label}</a>
-                  </li>
-                ))}
-              </ul>
+            </SubTopNav>
+            <PageEditor pageTools={pageTools} />
+            <div className="qna_box w1200">
+                <MemberTopNav />
+                <div className="board_qna board_box">
+                    <h4>자주하는 질문</h4>
+                    <div className="alignment">
+                        <div className="center_div">
+                            <ul className="board_option__btn">
+                                <li
+                                    onClick={handleCatFilter(undefined)}
+                                    className={checkCatEq(undefined)}
+                                >
+                                    <a>전체</a>
+                                </li>
+                                {categoriesMap.QNA.map((cat) => (
+                                    // <li className={checkCatEq(cat._id)} onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}<strong>{checkCatCount(cat._id)}</strong></a></li>
+                                    <li
+                                        className={checkCatEq(cat._id)}
+                                        onClick={handleCatFilter(cat._id)}
+                                        key={cat._id}
+                                    >
+                                        <a>{cat.label}</a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                    <Change change={!getLoading}>
+                        {slice.map((qna) => (
+                            <div
+                                onClick={handleToogle(qna)}
+                                key={qna._id}
+                                className={`dl ${
+                                    openId === qna._id && "active"
+                                }`}
+                            >
+                                <div className="dt">
+                                    <span>
+                                        <i className="Q"></i>
+                                        {qna.category?.label}
+                                    </span>
+                                    {qna.title}
+
+                                    <i className="jandaicon-arr4-bottom"></i>
+
+                                    {isManager && (
+                                        <button
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                router.push(
+                                                    "/member/qna/write/" +
+                                                        qna._id
+                                                );
+                                            }}
+                                            type="submit"
+                                            className="btn mini mr15"
+                                        >
+                                            수정하기
+                                        </button>
+                                    )}
+                                </div>
+
+                                <div className="dd panel-collapse collapse in">
+                                    <div className="form">
+                                        <i className="A" />
+                                        <p
+                                            dangerouslySetInnerHTML={{
+                                                __html: sanitizeHtml(
+                                                    qna.contents
+                                                ),
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </Change>
+                </div>
+                <Paginater setPage={setPage} pageInfo={paging} />
+
+                <div className="list_bottom mt30 mb100">
+                    {isManager && (
+                        <button
+                            onClick={gotoWrite}
+                            type="submit"
+                            className="btn medium footer"
+                        >
+                            글쓰기
+                        </button>
+                    )}
+                </div>
             </div>
-          </div>
-          <Change change={!getLoading}>
-            {slice.map((qna) => (
-              <div
-                onClick={handleToogle(qna)}
-                key={qna._id}
-                className={`dl ${openId === qna._id && "active"}`}
-              >
-                <div className="dt">
-                  <span>
-                    <i className="Q"></i>
-                    {qna.category?.label}
-                  </span>
-                  {qna.title}
-
-                  <i className="jandaicon-arr4-bottom"></i>
-
-                  {isManager && (
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        router.push("/member/qna/write/" + qna._id);
-                      }}
-                      type="submit"
-                      className="btn mini mr15"
-                    >
-                      수정하기
-                    </button>
-                  )}
-                </div>
-
-                <div className="dd panel-collapse collapse in">
-                  <div className="form">
-                    <i className="A" />
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: sanitizeHtml(qna.contents),
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Change>
         </div>
-        <Paginater setPage={setPage} pageInfo={paging} />
-
-        <div className="list_bottom mt30 mb100">
-          {isManager && (
-            <button
-              onClick={gotoWrite}
-              type="submit"
-              className="btn medium footer"
-            >
-              글쓰기
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Qna;

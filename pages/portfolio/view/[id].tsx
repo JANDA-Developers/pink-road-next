@@ -7,6 +7,7 @@ import { portfolioDelete, portfolioDeleteVariables } from 'types/api';
 import Page404 from 'pages/404';
 import { PORTFOLIO_DELETE } from '../../../apollo/gql/portfolio';
 import { usePortfolioFind } from '../../../hook/usePortfolio';
+import { nameOf } from '../../../utils/enumToKr';
 
 interface IProp {
     item: IPortfolio
@@ -47,7 +48,7 @@ export const PorfolioDetail: React.FC<IProp> = ({ item }) => {
         onList={toList}
         thumb={thumb}
         content={contents}
-        writer={author?.name || ""}
+        writer={nameOf(author)}
         title={title}
         onDelete={handleDelete}
         onEdit={toDetail}

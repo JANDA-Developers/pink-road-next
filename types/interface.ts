@@ -1,6 +1,6 @@
 import { QueryHookOptions } from "@apollo/client";
 import { CSSProperties, Dispatch } from "react";
-import { IPopupStyle } from "../components/popupconfig/PopupBox";
+import { IPopupStyle } from "../components/popupconfig/PopupBox[deprecated]";
 import { ListInitOptions } from "../hook/useListQuery";
 import {  Fmodal, NotificationTriggerEvent, portfolioFindById_PortfolioFindById_data, productFindById_ProductFindById_data, productFindById_ProductFindById_data_itinerary, productList_ProductList_data, productList_ProductList_page, ReplaceString, _UserFilter} from "../types/api";
 export interface Iitineraries extends productFindById_ProductFindById_data_itinerary {}

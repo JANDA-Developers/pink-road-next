@@ -25,6 +25,7 @@ export const PordStatusBadge: React.FC<IProp> = ({ status }) => {
     return <span className={`state_icon ${_class}`}>{productStatus(status)}</span>
 };
 
+
 interface IBookingStatusBadgeProp {
     status: BookingStatus | null;
     square?: boolean;
@@ -55,7 +56,6 @@ export const RequestBadge: React.FC<any> = ({ isCancelRequest, className }) => {
         return <span className={`requestBadge` + " " + className}>취소요청</span>
     else return null
 };
-
 
 export const AnnotationBadge: React.FC<any> = ({ type }) => {
 

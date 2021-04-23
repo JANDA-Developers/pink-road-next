@@ -55,7 +55,8 @@ export const Payment: React.FC<IProp> = ({ }) => {
                 const bks = result.data.BookingsCreate.data || []
                 const groupCode = bks[0]?.groupCode;
 
-                const redirectPath = "/payment/complete?groupCode=" + groupCode;
+                const encbksParam = "&encbks=" + encodeURIComponent(JSON.stringify(bks));
+                const redirectPath = "/payment/complete?groupCode=" + groupCode + encbksParam;
                 const redirectUrl = process.env.NEXT_PUBLIC_CLIENT_DOMAIN + redirectPath;
                 const failRedirectUrl = process.env.NEXT_PUBLIC_CLIENT_DOMAIN + "/payment/fail";
 
@@ -64,12 +65,18 @@ export const Payment: React.FC<IProp> = ({ }) => {
                     redirectUrl,
                     failRedirectUrl
                 }
+
                 setCreatedBookings(bks);
                 setCustomParams(customParams);
                 if (param.payMethod === PayMethod.NICEPAY_CARD) {
                     auth(totalPrice);
                 } else {
                     router.push(redirectPath)
+                }
+            } else {
+                const err = result.data?.BookingsCreate.error;
+                if (err?.code === "BOOKING_MEMBER_OVER") {
+                    alert("[마감] 예약 가능인원이 초과하였습니다.");
                 }
             }
         })

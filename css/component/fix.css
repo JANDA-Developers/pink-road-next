@@ -341,13 +341,6 @@ background-color: #fff;
     margin-bottom: 10px;
     
 }
-.editorHolder {
-    border: 1px solid #ddd;
-    padding: 1rem;
-}
-.itinerary__editor .editorHolder {
-    cursor: pointer;
-}
 
 .ck-content {
     display: block!important;
@@ -356,16 +349,6 @@ background-color: #fff;
 .productGroup__del:hover {
     background-color: red;
 }
-
-
-.editorHolder--loadingHolder {
-    display: none!important;
-}
-
-.editor--loading .editorHolder--loading {
-    display: block;
-}
-
 
 
 .tourBracketBtn--disabled a {

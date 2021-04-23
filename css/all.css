@@ -34,8 +34,10 @@
 @import "./component/muPageLoading.css";
 @import "./component/searchTap.css";
 @import "./component/privacy.css";
+@import "./component/popup.css";
 @import "./component/rating_stars.css";
 @import "./component/reviewModal.css";
+@import "./component/editor/editor.css";
 
 .policyViewer {
     max-height: 50vh;

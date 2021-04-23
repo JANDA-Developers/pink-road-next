@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { generateSearchLink } from '../../pages/search';
+import { generateSearchLink } from '../../pages/search[drepreacted]';
 import { BoardList_BoardList_data, BoardType } from '../../types/api';
 import { BG } from '../../types/const';
 import { productStatus } from '../../utils/enumToKr';
