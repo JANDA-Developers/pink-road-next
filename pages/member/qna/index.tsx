@@ -79,15 +79,18 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                     {slice.map(qna =>
                         <div onClick={handleToogle(qna)} key={qna._id} className={`dl ${openId === qna._id && "active"}`}>
                             <div className="dt"><span><i className="Q"></i>{qna.category?.label}</span>{qna.title}
+
+
+                                <i className="jandaicon-arr4-bottom"></i>
+
                                 {isManager &&
                                     <button onClick={(e) => {
                                         e.preventDefault();
                                         e.stopPropagation();
                                         router.push("/member/qna/write/" + qna._id)
-                                    }} type="submit" className="btn mini ml10">수정하기</button>
+                                    }} type="submit" className="btn mini mr15">수정하기</button>
                                 }
-
-                                <i className="jandaicon-arr4-bottom"></i></div>
+                            </div>
 
                             <div className="dd panel-collapse collapse in">
                                 <div className="form">

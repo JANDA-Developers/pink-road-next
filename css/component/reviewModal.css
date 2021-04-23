@@ -231,7 +231,6 @@
             box-sizing: border-box;
             padding: 20px;
             border-right: #bbbbbb 1px solid;
-            background-image: url("https://itsguide-storage.s3.ap-northeast-2.amazonaws.com/1614071055653_goods_01.jpg");
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
@@ -270,7 +269,6 @@
     background-position: center;
     border-right: #bbbbbb 1px solid;
     cursor: pointer;
-    background-image: url("https://itsguide-storage.s3.ap-northeast-2.amazonaws.com/1614071055653_goods_01.jpg");
 }
 
 .list_comment.comment__review{
@@ -339,7 +337,7 @@
         height: 30px;
     }   .review__box .review__list li{
         width: 48%;
-        min-height: 185px;
+        min-height: 231px;
         margin-right: 1%;
         margin-bottom: 1%;
         border: 1px solid #eeeeee;

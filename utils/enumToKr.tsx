@@ -53,7 +53,7 @@ export const confirmKr = (flag: boolean) => {
 }
 
 export const questionSatus = (status: QuestionStatus) => {
-    if (status === QuestionStatus.COMPLETE) return "답변"
+    if (status === QuestionStatus.COMPLETE) return "답변완료"
     if (status === QuestionStatus.READY) return "미답변"
     return ""
 }

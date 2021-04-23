@@ -1,23 +1,23 @@
-import React, { useContext, useState } from 'react';
-import { Paginater } from '../components/common/Paginator';
-import { DayPickerModal } from '../components/dayPickerModal/DayPickerModal';
-import { ProductPhotoBlock } from '../components/list/ProductPhoto';
-import { openListFilter, useProductList } from '../hook/useProduct';
-import isEmpty from '../utils/isEmpty';
+import React, { useContext, useState } from "react";
+import { Paginater } from "../components/common/Paginator";
+import { DayPickerModal } from "../components/dayPickerModal/DayPickerModal";
+import { ProductPhotoBlock } from "../components/list/ProductPhoto";
+import { openListFilter, useProductList } from "../hook/useProduct";
+import isEmpty from "../utils/isEmpty";
 import dayjs from "dayjs";
-import { filterToRange, rangeToFilter } from '../utils/filter';
-import { ProductListBlock } from '../components/list/ProductList';
-import { ViewCount } from '../components/common/ViewCount';
-import { closeModal, openModal } from '../utils/popUp';
-import { ViewSelect } from '../components/common/ViewSelect';
-import SubTopNav from '../layout/components/SubTop';
-import { integratedProductSearch } from '../utils/genFilter';
-import SortSelect from '../components/common/SortMethod';
-import { ProductType } from '../types/api';
-import { whenEnter } from '../utils/eventValueExtracter';
-import { getFromUrl, getAllFromUrl } from '../utils/url';
-import { getStaticPageInfo, Ipage } from '../utils/page';
-import { usePageEdit } from '../hook/usePageEdit';
+import { filterToRange, rangeToFilter } from "../utils/filter";
+import { ProductListBlock } from "../components/list/ProductList";
+import { ViewCount } from "../components/common/ViewCount";
+import { closeModal, openModal } from "../utils/popUp";
+import { ViewSelect } from "../components/common/ViewSelect";
+import SubTopNav from "../layout/components/SubTop";
+import { integratedProductSearch } from "../utils/genFilter";
+import SortSelect from "../components/common/SortMethod";
+import { ProductType } from "../types/api";
+import { whenEnter } from "../utils/eventValueExtracter";
+import { getFromUrl, getAllFromUrl } from "../utils/url";
+import { getStaticPageInfo, Ipage } from "../utils/page";
+import { usePageEdit } from "../hook/usePageEdit";
 import pageInfoDefault from "info/search.json";
 import { PageEditor } from '../components/common/PageEditer';
 import { AppContext } from './_app';
@@ -32,35 +32,33 @@ import { usePortfolioList } from '../hook/usePortfolio';
 import { useQuestionList } from '../hook/useQuestion';
 
 type TSearchParam = {
-    keyward?: string;
-    title?: string;
-}
+  keyward?: string;
+  title?: string;
+};
 
 export const generateSearchLink = (param: TSearchParam) => {
-    let link = `/search`
+  let link = `/search`;
 
-    const attach = (key: string, value: string) => {
-        if (!link.includes("?")) {
-            link = link + "?" + key + "=" + value
-            return;
-        }
-        if (!link.endsWith("&")) {
-            link = link + "&" + key + "=" + value
-        }
+  const attach = (key: string, value: string) => {
+    if (!link.includes("?")) {
+      link = link + "?" + key + "=" + value;
+      return;
     }
-
-    for (let key in param) {
-        // @ts-ignore
-        const val = param[key];
-        attach(key, val);
+    if (!link.endsWith("&")) {
+      link = link + "&" + key + "=" + value;
     }
+  };
 
-    return link;
-}
+  for (let key in param) {
+    // @ts-ignore
+    const val = param[key];
+    attach(key, val);
+  }
 
+  return link;
+};
 
-
-interface IProp { }
+interface IProp {}
 
 type TboardTapType = "board" | "product";
 
@@ -165,64 +163,108 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                     <span onClick={handleBoardType("board")} className={`searchTap__type ${checkOnType("board")}`}>통합검색</span>
                     <span onClick={handleBoardType("product")} className={`searchTap__type ${checkOnType("product")}`}>상품검색</span>
                 </div>
-                <div className="search_box">
-
-                    <div className="jul0">
-                        <span onClick={reset}>검색조건 초기화</span>
-                    </div>
-                    {isProdView &&
-                        <div>
-                            <div className="jul2">
-                                <div className="title">유형</div>
-                                <div className="in">
-                                    <span onClick={handleTypeFilter(undefined)} className={`check ${typeOn(undefined)}`}>전체상품</span>
-                                    <span onClick={handleTypeFilter(ProductType.TOUR)} className={`check ${typeOn(ProductType.TOUR)}`}>여행상품</span>
-                                    <span onClick={handleTypeFilter(ProductType.EXPERIENCE)} className={`check ${typeOn(ProductType.EXPERIENCE)}`}>체험상품</span>
-                                </div>
-                            </div>
-                            <div className="jul3">
-                                <div className="title">지역</div>
-                                <div className="in">
-                                    <span onClick={onClickDistrict()} className={`check ${districtOn()}`}>전국</span>
-                                    {categoriesMap.REGION.map(region =>
-                                        <span key={region._id} onClick={onClickDistrict(region.label)} className={`check ${districtOn(region.label)}`}>{region.label}</span>
-                                    )}
-                                </div>
-                            </div>
-                            <div className="jul4">
-                                <div className="title">날짜</div>
-                                <div className="in">
-                                    <div className="inf">
-                                        <input value={filterStart} onFocus={openDayPicker} type="text" className="day" />
-                                        <span onClick={openDayPicker} className="calendar">
-                                            <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
-                                        </span>
-                                    </div>
-                                    <div className="ovj">~</div>
-                                    <div className="inf">
-                                        <input value={filterEnd} onFocus={openDayPicker} type="text" className="day" />
-                                        <span onClick={openDayPicker} className="calendar">
-                                            <img src="/img/svg/CalendarIcon.svg" className="svg_calendar" />
-                                            <button />
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    <div className="jul1">
-                        <div className="srearch__input search_div">
-                            <input onKeyPress={whenEnter(doSearch)} onChange={(e) => {
-                                setSearch(e.currentTarget.value);
-                            }} value={search} type="text" placeholder="검색 내용을 입력해주세요." />
-                            <div onClick={doSearch} className="svg_img">
-                                <img src="/img/svg/search_icon.svg" alt="search icon" />
-                                <button />
-                            </div>
-                        </div>
-                    </div>
+                <div className="jul3">
+                  <div className="title">지역</div>
+                  <div className="in">
+                    <span
+                      onClick={onClickDistrict()}
+                      className={`check ${districtOn()}`}
+                    >
+                      전국
+                    </span>
+                    {categoriesMap.REGION.map((region) => (
+                      <span
+                        key={region._id}
+                        onClick={onClickDistrict(region.label)}
+                        className={`check ${districtOn(region.label)}`}
+                      >
+                        {region.label}
+                      </span>
+                    ))}
+                  </div>
                 </div>
+                <div className="jul4">
+                  <div className="title">날짜</div>
+                  <div className="in">
+                    <div className="inf">
+                      <input
+                        value={filterStart}
+                        onFocus={openDayPicker}
+                        type="text"
+                        className="day"
+                        placeholder="시작날짜를 선택해 주세요."
+                      />
+                      <span onClick={openDayPicker} className="calendar">
+                        <img
+                          src="/img/svg/CalendarIcon.svg"
+                          className="svg_calendar"
+                        />
+                      </span>
+                    </div>
+                    <div className="ovj">~</div>
+                    <div className="inf">
+                      <input
+                        value={filterEnd}
+                        onFocus={openDayPicker}
+                        type="text"
+                        className="day"
+                        placeholder="끝날짜를 선택해 주세요."
+                      />
+                      <span onClick={openDayPicker} className="calendar">
+                        <img
+                          src="/img/svg/CalendarIcon.svg"
+                          className="svg_calendar"
+                        />
+                        <button />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            <div className="jul1">
+              <div className="srearch__input search_div">
+                <input
+                  onKeyPress={whenEnter(doSearch)}
+                  onChange={(e) => {
+                    setSearch(e.currentTarget.value);
+                  }}
+                  value={search}
+                  type="text"
+                  placeholder="검색 내용을 입력해주세요."
+                />
+                <div onClick={doSearch} className="svg_img">
+                  <img src="/img/svg/search_icon.svg" alt="search icon" />
+                  <button />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="con_bottom">
+          {!isEmpty(filteredProducts) && (
+            <div className="alignment2">
+              <div className="left_div">
+                총 <strong>{getTotalCount()}</strong>건의 검색결과가 있습니다.
+              </div>
+            </div>
+          )}
 
+          {/* 여행상품만 노출 */}
+          <div id="ProductViewer" className="con_box">
+            <div className="alignment">
+              <div className="left_div">
+                {/* <h5>{isProdView ? "여행상품" : "게시글"}<strong>{getTotalCount()}</strong></h5> */}
+                <h5>
+                  {isProdView ? "여행상품" : "여행상품"}
+                  <strong>{getTotalCount()}</strong>
+                </h5>
+              </div>
+              <div className="right_div">
+                <SortSelect onChange={setSort} sort={sort} />
+                <ViewCount value={viewCount} onChange={setViewCount} />
+                {isProdView && <ViewSelect select={view} onChange={setView} />}
+              </div>
             </div>
             <div className="con_bottom">
 
@@ -333,19 +375,24 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                     </div>
                 </div>}
             </div>
+          </div>
         </div>
-        <DayPickerModal defaultRange={filterToRange(filter, "startDate")} onSubmit={(range) => {
-            closeModal("#dayPickerModal")()
-            const data = rangeToFilter(range, "startDate")
-            setFilter({
-                ...filter,
-                ...data,
-            })
-        }} >
-            * 출발날짜 기준 검색
-        </DayPickerModal>
+      </div>
+      <DayPickerModal
+        defaultRange={filterToRange(filter, "startDate")}
+        onSubmit={(range) => {
+          closeModal("#dayPickerModal")();
+          const data = rangeToFilter(range, "startDate");
+          setFilter({
+            ...filter,
+            ...data,
+          });
+        }}
+      >
+        * 출발날짜 기준 검색
+      </DayPickerModal>
     </div>
-}
-
+  );
+};
 
 export default Search;

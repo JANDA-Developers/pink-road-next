@@ -204,7 +204,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                             setViewCount={setViewCount}
                             handleSelectAll={selectAll}
                             rightDiv={
-                                <li onClick={handleOpenWrite}><a>신규여행작성</a></li>
+                                <li onClick={handleOpenWrite}><Link href="/tour/write"><a>신규여행작성</a></Link></li>
                             }
                         />
                     </div>
