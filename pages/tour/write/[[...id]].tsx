@@ -289,14 +289,14 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     // if (!isManager && !isMyProduct) return <PageDeny />
     if (loading) return <PageLoading />;
     return (
-        <div>
+        <div key={loadKey} className="tour_box w100 board_write">
             <SubTopNav
                 pageTools={pageTools}
                 children={
                     <>
                         <li className="homedeps1">
-                            <Link href="">
-                                <a>상품</a>
+                            <Link href={isExp ? "/tour?exp=true" : "/tour"}>
+                                <a>{isExp ? "Experience" : "Tour"}</a>
                             </Link>
                         </li>
                         <li className="homedeps2">
@@ -307,17 +307,16 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     </>
                 }
             />
-            <div key={loadKey} className="tour_box w100 board_write">
-                <PageEditor pageTools={pageTools} />
-                <div className="w1200 con_bottom">
-                    <div className="write_box">
-                        {product && (
-                            <h3 className="write_top_tag">
-                                {productStatus(product.status)}
-                            </h3>
-                        )}
-                        {/* 아래는 오직 관리자만 적용할 수 있음 아래는 상태가 CANCEL상태이거나  */}
-                        {/* {isManager && <div className="write_type">
+            <PageEditor pageTools={pageTools} />
+            <div className="w1200 con_bottom">
+                <div className="write_box">
+                    {product && (
+                        <h3 className="write_top_tag">
+                            {productStatus(product.status)}
+                        </h3>
+                    )}
+                    {/* 아래는 오직 관리자만 적용할 수 있음 아래는 상태가 CANCEL상태이거나  */}
+                    {/* {isManager && <div className="write_type">
                     <div className="title">상태관리</div>
                     <div className="input_form">
                         <ul>
@@ -333,191 +332,27 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     </div>
                 </div>
                 } */}
-                        {isCreateMode && (
-                            <div className="write_type">
-                                <div className="title">회차연결</div>
-                                <div className="input_form">
-                                    <span className="category r3">
-                                        <select
-                                            id="category"
-                                            onChange={handleBaseProdChange}
-                                            value={product?._id}
-                                            name="type"
-                                        >
-                                            <option value={""}>
-                                                새로운상품
-                                            </option>
-                                            {productGroupList.map((p) => (
-                                                <option
-                                                    key={p._id}
-                                                    value={p._id}
-                                                >
-                                                    {p.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </span>
-                                </div>
-                            </div>
-                        )}
+                    {isCreateMode && (
                         <div className="write_type">
-                            <div className="title">상품타입</div>
+                            <div className="title">회차연결</div>
                             <div className="input_form">
                                 <span className="category r3">
                                     <select
-                                        onChange={changeVal(setType)}
-                                        value={type}
+                                        onChange={handleBaseProdChange}
+                                        value={product?._id}
                                         name="type"
                                     >
-                                        <option value={ProductType.TOUR}>
-                                            투어(연일)
-                                        </option>
-                                        <option value={ProductType.EXPERIENCE}>
-                                            체험(당일)
-                                        </option>
-                                        <option value="">선택없음</option>
-                                    </select>
-                                </span>
-                            </div>
-                        </div>
-                        <div className="write_type">
-                            <div className="title">카테고리</div>
-                            <div className="input_form">
-                                <span className="category r3">
-                                    <select
-                                        id="category"
-                                        onChange={handleCatChange}
-                                        value={categoryId}
-                                        name="category_srl"
-                                    >
-                                        {categories.map((cat) => (
-                                            <option
-                                                value={cat._id}
-                                                key={cat._id}
-                                            >
-                                                {cat.label}
+                                        <option value={""}>새로운상품</option>
+                                        {productGroupList.map((p) => (
+                                            <option key={p._id} value={p._id}>
+                                                {p.label}
                                             </option>
                                         ))}
-                                        <option value="">선택없음</option>
                                     </select>
                                 </span>
                             </div>
                         </div>
-                        <div className="write_type">
-                            <div className="title">제목</div>
-                            <div className="input_form">
-                                <input
-                                    id="title"
-                                    onChange={handleInputChange("title")}
-                                    value={title}
-                                    type="text"
-                                    name="title"
-                                    className="inputText w100"
-                                />
-                            </div>
-                        </div>
-                        <div className="write_type">
-                            <div className="title">부제목</div>
-                            <div className="input_form">
-                                <input
-                                    onChange={handleInputChange("subTitle")}
-                                    value={subTitle || ""}
-                                    type="text"
-                                    name="title"
-                                    className="inputText w100"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="write_type">
-                            <div className="title">판매금액</div>
-                            <div className="input_form">
-                                <div>
-                                    <span className="mr5">성인</span>
-                                    <input
-                                        onChange={handleInputCommaChange(
-                                            "adult_price"
-                                        )}
-                                        value={adult_price}
-                                        type="text"
-                                        className="text w20 mr15"
-                                    />
-                                    <span className="mr5">소인</span>
-                                    <input
-                                        onChange={handleInputCommaChange(
-                                            "kids_price"
-                                        )}
-                                        value={kids_price}
-                                        type="text"
-                                        className="text w20 mr15"
-                                    />
-                                    <span className="mr5">유아</span>
-                                    <input
-                                        onChange={handleInputCommaChange(
-                                            "baby_price"
-                                        )}
-                                        value={baby_price}
-                                        type="text"
-                                        className="text w20"
-                                    />
-                                </div>
-                                <p className="info_txt">
-                                    - 원을 빼고 ','를 넣어서 구분해서
-                                    입력해주세요. ex) 50,000
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="write_type">
-                            <div className="title">인원설정</div>
-                            <div className="input_form">
-                                <div>
-                                    <span className="mr5">최소인원</span>
-                                    <input
-                                        onChange={handleInputChange(
-                                            "minMember"
-                                        )}
-                                        value={minMember}
-                                        type="text"
-                                        className="text w20 mr15"
-                                    />
-                                    <span className="mr5">최대인원</span>
-                                    <input
-                                        onChange={handleInputChange(
-                                            "maxMember"
-                                        )}
-                                        value={maxMember}
-                                        type="text"
-                                        className="text w20"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="write_type">
-                            <div className="title">지역</div>
-                            <div className="input_form">
-                                <span className="category">
-                                    <select
-                                        id="RegionId"
-                                        onChange={handleRegionChange}
-                                        value={regionId || ""}
-                                        name="category_srl"
-                                    >
-                                        {regionCategories.map((cat) => (
-                                            <option
-                                                value={cat._id}
-                                                key={cat._id}
-                                            >
-                                                {cat.label}
-                                            </option>
-                                        ))}
-                                        <option value="">선택없음</option>
-                                    </select>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    )}
                     <div className="write_type">
                         <div className="title">상품타입</div>
                         <div className="input_form">
@@ -536,11 +371,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     <option value="">선택없음</option>
                                 </select>
                             </span>
-                            <p className="info_txt">
-                                <i className="jandaicon-info2 mini"></i> 여행과
-                                체험은 글쓰기 화면이 동일합니다. 구분은
-                                상품타입으로 이루어집니다.
-                            </p>
                         </div>
                     </div>
                     <div className="write_type">
@@ -560,10 +390,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     <option value="">선택없음</option>
                                 </select>
                             </span>
-                            <p className="info_txt">
-                                <i className="jandaicon-info2 mini"></i>{" "}
-                                카테고리 추가는 마스터에게 문의를 해주세요.
-                            </p>
                         </div>
                     </div>
                     <div className="write_type">
@@ -625,9 +451,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 />
                             </div>
                             <p className="info_txt">
-                                <i className="jandaicon-info2 mini"></i> 원을
-                                빼고 ','를 넣어서 구분해서 입력해주세요. ex)
-                                50,000
+                                - 원을 빼고 ','를 넣어서 구분해서 입력해주세요.
+                                ex) 50,000
                             </p>
                         </div>
                     </div>
@@ -686,11 +511,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     className="text w100"
                                 />
                             </div>
-                            <p className="info_txt">
-                                <i className="jandaicon-info2 mini"></i> 해당
-                                상품이 도착하는 장소 or 체험이 이루어지는 장소를
-                                뜻합니다. ex:) 강원도, @@주민센터
-                            </p>
                         </div>
                     </div>
 
@@ -705,24 +525,15 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     className="text w100"
                                 />
                             </div>
-                            <p className="info_txt">
-                                <i className="jandaicon-info2 mini"></i>{" "}
-                                출발장소 or 모임장소를 뜻합니다.
-                            </p>
                         </div>
                     </div>
 
                     <div className="write_type">
                         <div className="title">키워드</div>
                         <div className="input_form">
-                            <TagInput
-                                id="keyw"
-                                tags={keyWards}
-                                setTags={setkeyWards}
-                            />
+                            <TagInput tags={keyWards} setTags={setkeyWards} />
                             <p className="input_form info_txt">
-                                <i className="jandaicon-info2 mini"></i>{" "}
-                                'enter'로 구분시 자동으로 키워드가 생성됩니다.
+                                - 'enter'로 구분시 자동으로 키워드가 생성됩니다.
                             </p>
                         </div>
                     </div>
@@ -755,12 +566,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     <label htmlFor="status-sold">비공개</label>
                                 </li>
                             </ul>
-                            <p className="input_form info_txt">
-                                <i className="jandaicon-info2 mini"></i> 심사
-                                이후에 '구매자'에게 노출여부를 체크합니다. 심사
-                                이후에 비공개를 하셔도 '마스터'와 '판매자'는
-                                상품을 볼 수 있습니다.
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -793,8 +598,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 />
                             </ul>
                             <p className="input_form info_txt">
-                                <i className="jandaicon-info2 mini"></i> 썸네일
-                                이미지사이즈 720px * 434px
+                                - 썸네일 이미지사이즈 720px * 434px
                             </p>
                         </div>
                     </div>
@@ -808,7 +612,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             className={tabOnCheck(1)}
                         >
                             <span>
-                                <i>01.</i>상품상세설명
+                                <i>01.</i>여행상세설명
                             </span>
                         </li>
                         <li
@@ -844,12 +648,12 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         id="texta_01"
                         className="texta tourWrite__daypikcer"
                     >
-                        <h5 id="itinerary">상품일정</h5>
+                        <h5 id="itinerary">여행일정</h5>
                         <DayRangePicker
                             Header={
                                 tempSavedIts && (
                                     <h2 style={{ marginBottom: "1rem" }}>
-                                        새로운 상품일정 일을 선택 해주세요{" "}
+                                        새로운 출발일을 선택 해주세요{" "}
                                     </h2>
                                 )
                             }
@@ -868,15 +672,15 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             to={lastDate}
                         >
                             <div className="tourWrite__dayPikcerRangeViewer  mb10">
-                                <div className="tourWrite__Choiceday">
-                                    <strong>선택된 상품날짜</strong>{" "}
-                                    {yyyymmdd(startDate)} ~ {yyyymmdd(endDate)}
+                                <div>
+                                    투어 {yyyymmdd(startDate)} ~{" "}
+                                    {yyyymmdd(endDate)}
                                 </div>
                             </div>
                             <div className="info_txt">
                                 <h4>
-                                    <i className="jandaicon-info2 mini"></i>
-                                    상품일정 등록시 유의점
+                                    <i className="jandaicon-info2"></i>여행일정
+                                    등록시 유의점
                                 </h4>
                                 <ul>
                                     <li>
@@ -890,11 +694,14 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     <li>
                                         - 이미지를 첨부시에 이미지 내부에
                                         이미지를 입력할 경우 텍스트를 크게
-                                        써주세요. 모바일 화면도 고려 해야합니다.
+                                        써주세요.
+                                        <br />
+                                        모바일 화면도 고려해야합니다.
                                     </li>
                                     <li>
                                         - 이미지를 꼭 한번 용량을 압축해서
-                                        올려주세요. 로딩시에 시간이 단축됩니다.{" "}
+                                        올려주세요. 로딩시에 시간이 단축됩니다.
+                                        <br />
                                         <a
                                             href="https://www.iloveimg.com/ko/compress-image"
                                             target="_blank"
