@@ -15,11 +15,21 @@ export interface announceFindById_AnnounceFindById_error {
   message: string;
 }
 
+export interface announceFindById_AnnounceFindById_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface announceFindById_AnnounceFindById_data_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: announceFindById_AnnounceFindById_data_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface announceFindById_AnnounceFindById_data_author_profileImg {
@@ -27,11 +37,21 @@ export interface announceFindById_AnnounceFindById_data_author_profileImg {
   uri: string;
 }
 
+export interface announceFindById_AnnounceFindById_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface announceFindById_AnnounceFindById_data_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: announceFindById_AnnounceFindById_data_author_bankImg_imgScaleUrl | null;
 }
 
 export interface announceFindById_AnnounceFindById_data_author {
@@ -114,11 +134,30 @@ export interface announceFindById_AnnounceFindById_data_author {
   bankImg: announceFindById_AnnounceFindById_data_author_bankImg | null;
 }
 
+export interface announceFindById_AnnounceFindById_data_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface announceFindById_AnnounceFindById_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: announceFindById_AnnounceFindById_data_files_imgScaleUrl | null;
+}
+
+export interface announceFindById_AnnounceFindById_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface announceFindById_AnnounceFindById_data_thumb {
@@ -126,6 +165,7 @@ export interface announceFindById_AnnounceFindById_data_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: announceFindById_AnnounceFindById_data_thumb_imgScaleUrl | null;
 }
 
 export interface announceFindById_AnnounceFindById_data {
@@ -136,6 +176,7 @@ export interface announceFindById_AnnounceFindById_data {
   isDelete: boolean;
   title: string;
   no: number;
+  boardType: BoardType;
   contents: string;
   author: announceFindById_AnnounceFindById_data_author | null;
   isNotice: boolean | null;
@@ -243,11 +284,21 @@ export interface announceList_AnnounceList_page {
   remainder: number;
 }
 
+export interface announceList_AnnounceList_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface announceList_AnnounceList_data_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: announceList_AnnounceList_data_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface announceList_AnnounceList_data_author_profileImg {
@@ -255,11 +306,21 @@ export interface announceList_AnnounceList_data_author_profileImg {
   uri: string;
 }
 
+export interface announceList_AnnounceList_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface announceList_AnnounceList_data_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: announceList_AnnounceList_data_author_bankImg_imgScaleUrl | null;
 }
 
 export interface announceList_AnnounceList_data_author {
@@ -342,11 +403,30 @@ export interface announceList_AnnounceList_data_author {
   bankImg: announceList_AnnounceList_data_author_bankImg | null;
 }
 
+export interface announceList_AnnounceList_data_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface announceList_AnnounceList_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: announceList_AnnounceList_data_files_imgScaleUrl | null;
+}
+
+export interface announceList_AnnounceList_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface announceList_AnnounceList_data_thumb {
@@ -354,6 +434,7 @@ export interface announceList_AnnounceList_data_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: announceList_AnnounceList_data_thumb_imgScaleUrl | null;
 }
 
 export interface announceList_AnnounceList_data {
@@ -364,6 +445,7 @@ export interface announceList_AnnounceList_data {
   isDelete: boolean;
   title: string;
   no: number;
+  boardType: BoardType;
   contents: string;
   author: announceList_AnnounceList_data_author | null;
   isNotice: boolean | null;
@@ -891,11 +973,21 @@ export interface bookingList_BookingList_data_product_category {
   label: string;
 }
 
+export interface bookingList_BookingList_data_product_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface bookingList_BookingList_data_product_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: bookingList_BookingList_data_product_images_imgScaleUrl | null;
 }
 
 export interface bookingList_BookingList_data_product_author {
@@ -1049,11 +1141,21 @@ export interface bookingFindByInfo_BookingFindByInfo_data_product_category {
   label: string;
 }
 
+export interface bookingFindByInfo_BookingFindByInfo_data_product_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface bookingFindByInfo_BookingFindByInfo_data_product_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: bookingFindByInfo_BookingFindByInfo_data_product_images_imgScaleUrl | null;
 }
 
 export interface bookingFindByInfo_BookingFindByInfo_data_product_author {
@@ -1567,11 +1669,21 @@ export interface bookingFindByCode_BookingFindByCode_data_product_bookerSummary 
   cancelBookCount: number;
 }
 
+export interface bookingFindByCode_BookingFindByCode_data_product_itinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface bookingFindByCode_BookingFindByCode_data_product_itinerary_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: bookingFindByCode_BookingFindByCode_data_product_itinerary_images_imgScaleUrl | null;
 }
 
 export interface bookingFindByCode_BookingFindByCode_data_product_itinerary {
@@ -1586,11 +1698,30 @@ export interface bookingFindByCode_BookingFindByCode_data_product_itinerary {
   date: any;
 }
 
+export interface bookingFindByCode_BookingFindByCode_data_product_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface bookingFindByCode_BookingFindByCode_data_product_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: bookingFindByCode_BookingFindByCode_data_product_images_imgScaleUrl | null;
+}
+
+export interface bookingFindByCode_BookingFindByCode_data_product_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface bookingFindByCode_BookingFindByCode_data_product_author_busiRegistration {
@@ -1598,6 +1729,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author_busiReg
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: bookingFindByCode_BookingFindByCode_data_product_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface bookingFindByCode_BookingFindByCode_data_product_author_profileImg {
@@ -1605,11 +1737,21 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author_profile
   uri: string;
 }
 
+export interface bookingFindByCode_BookingFindByCode_data_product_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface bookingFindByCode_BookingFindByCode_data_product_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: bookingFindByCode_BookingFindByCode_data_product_author_bankImg_imgScaleUrl | null;
 }
 
 export interface bookingFindByCode_BookingFindByCode_data_product_author {
@@ -1747,6 +1889,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   type: ProductType;
   startDate: any;
   Dday: number;
+  boardType: BoardType;
   author: bookingFindByCode_BookingFindByCode_data_product_author | null;
 }
 
@@ -1759,7 +1902,7 @@ export interface bookingFindByCode_BookingFindByCode_data_travelers {
   __typename: "Traveler";
   name: string | null;
   phoneNumber: string;
-  gender: GENDER | null;
+  gender: string | null;
   age: string;
 }
 
@@ -2870,11 +3013,30 @@ export interface homepage_Homepage_error {
   message: string;
 }
 
+export interface homepage_Homepage_data_logo_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface homepage_Homepage_data_logo {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepage_Homepage_data_logo_imgScaleUrl | null;
+}
+
+export interface homepage_Homepage_data_compnanyIntoduceFile_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface homepage_Homepage_data_compnanyIntoduceFile {
@@ -2882,6 +3044,16 @@ export interface homepage_Homepage_data_compnanyIntoduceFile {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepage_Homepage_data_compnanyIntoduceFile_imgScaleUrl | null;
+}
+
+export interface homepage_Homepage_data_partnerFooter_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface homepage_Homepage_data_partnerFooter {
@@ -2889,6 +3061,16 @@ export interface homepage_Homepage_data_partnerFooter {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepage_Homepage_data_partnerFooter_imgScaleUrl | null;
+}
+
+export interface homepage_Homepage_data_logoTop_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface homepage_Homepage_data_logoTop {
@@ -2896,6 +3078,16 @@ export interface homepage_Homepage_data_logoTop {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepage_Homepage_data_logoTop_imgScaleUrl | null;
+}
+
+export interface homepage_Homepage_data_logoBottom_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface homepage_Homepage_data_logoBottom {
@@ -2903,6 +3095,16 @@ export interface homepage_Homepage_data_logoBottom {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepage_Homepage_data_logoBottom_imgScaleUrl | null;
+}
+
+export interface homepage_Homepage_data_bannerA_img_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface homepage_Homepage_data_bannerA_img {
@@ -2910,6 +3112,7 @@ export interface homepage_Homepage_data_bannerA_img {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepage_Homepage_data_bannerA_img_imgScaleUrl | null;
 }
 
 export interface homepage_Homepage_data_bannerA {
@@ -2920,11 +3123,21 @@ export interface homepage_Homepage_data_bannerA {
   use: boolean;
 }
 
+export interface homepage_Homepage_data_bannerB_img_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface homepage_Homepage_data_bannerB_img {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepage_Homepage_data_bannerB_img_imgScaleUrl | null;
 }
 
 export interface homepage_Homepage_data_bannerB {
@@ -3089,11 +3302,30 @@ export interface homepageUpdate_HomepageUpdate_error {
   message: string;
 }
 
+export interface homepageUpdate_HomepageUpdate_data_logo_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface homepageUpdate_HomepageUpdate_data_logo {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepageUpdate_HomepageUpdate_data_logo_imgScaleUrl | null;
+}
+
+export interface homepageUpdate_HomepageUpdate_data_compnanyIntoduceFile_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface homepageUpdate_HomepageUpdate_data_compnanyIntoduceFile {
@@ -3101,6 +3333,16 @@ export interface homepageUpdate_HomepageUpdate_data_compnanyIntoduceFile {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepageUpdate_HomepageUpdate_data_compnanyIntoduceFile_imgScaleUrl | null;
+}
+
+export interface homepageUpdate_HomepageUpdate_data_partnerFooter_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface homepageUpdate_HomepageUpdate_data_partnerFooter {
@@ -3108,6 +3350,16 @@ export interface homepageUpdate_HomepageUpdate_data_partnerFooter {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepageUpdate_HomepageUpdate_data_partnerFooter_imgScaleUrl | null;
+}
+
+export interface homepageUpdate_HomepageUpdate_data_logoTop_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface homepageUpdate_HomepageUpdate_data_logoTop {
@@ -3115,6 +3367,16 @@ export interface homepageUpdate_HomepageUpdate_data_logoTop {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepageUpdate_HomepageUpdate_data_logoTop_imgScaleUrl | null;
+}
+
+export interface homepageUpdate_HomepageUpdate_data_logoBottom_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface homepageUpdate_HomepageUpdate_data_logoBottom {
@@ -3122,6 +3384,16 @@ export interface homepageUpdate_HomepageUpdate_data_logoBottom {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepageUpdate_HomepageUpdate_data_logoBottom_imgScaleUrl | null;
+}
+
+export interface homepageUpdate_HomepageUpdate_data_bannerA_img_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface homepageUpdate_HomepageUpdate_data_bannerA_img {
@@ -3129,6 +3401,7 @@ export interface homepageUpdate_HomepageUpdate_data_bannerA_img {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepageUpdate_HomepageUpdate_data_bannerA_img_imgScaleUrl | null;
 }
 
 export interface homepageUpdate_HomepageUpdate_data_bannerA {
@@ -3139,11 +3412,21 @@ export interface homepageUpdate_HomepageUpdate_data_bannerA {
   use: boolean;
 }
 
+export interface homepageUpdate_HomepageUpdate_data_bannerB_img_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface homepageUpdate_HomepageUpdate_data_bannerB_img {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: homepageUpdate_HomepageUpdate_data_bannerB_img_imgScaleUrl | null;
 }
 
 export interface homepageUpdate_HomepageUpdate_data_bannerB {
@@ -3343,11 +3626,21 @@ export interface multiUpload_MultiUpload_error {
   message: string;
 }
 
+export interface multiUpload_MultiUpload_data_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface multiUpload_MultiUpload_data {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: multiUpload_MultiUpload_data_imgScaleUrl | null;
 }
 
 export interface multiUpload_MultiUpload {
@@ -3465,11 +3758,21 @@ export interface newsFindById_NewsFindById_error {
   message: string;
 }
 
+export interface newsFindById_NewsFindById_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface newsFindById_NewsFindById_data_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: newsFindById_NewsFindById_data_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface newsFindById_NewsFindById_data_author_profileImg {
@@ -3477,11 +3780,21 @@ export interface newsFindById_NewsFindById_data_author_profileImg {
   uri: string;
 }
 
+export interface newsFindById_NewsFindById_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface newsFindById_NewsFindById_data_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: newsFindById_NewsFindById_data_author_bankImg_imgScaleUrl | null;
 }
 
 export interface newsFindById_NewsFindById_data_author {
@@ -3564,11 +3877,30 @@ export interface newsFindById_NewsFindById_data_author {
   bankImg: newsFindById_NewsFindById_data_author_bankImg | null;
 }
 
+export interface newsFindById_NewsFindById_data_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface newsFindById_NewsFindById_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: newsFindById_NewsFindById_data_files_imgScaleUrl | null;
+}
+
+export interface newsFindById_NewsFindById_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface newsFindById_NewsFindById_data_thumb {
@@ -3576,6 +3908,7 @@ export interface newsFindById_NewsFindById_data_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: newsFindById_NewsFindById_data_thumb_imgScaleUrl | null;
 }
 
 export interface newsFindById_NewsFindById_data {
@@ -3585,6 +3918,7 @@ export interface newsFindById_NewsFindById_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  boardType: BoardType;
   contents: string;
   author: newsFindById_NewsFindById_data_author | null;
   isNotice: boolean | null;
@@ -3692,11 +4026,21 @@ export interface newsList_NewsList_page {
   remainder: number;
 }
 
+export interface newsList_NewsList_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface newsList_NewsList_data_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: newsList_NewsList_data_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface newsList_NewsList_data_author_profileImg {
@@ -3704,11 +4048,21 @@ export interface newsList_NewsList_data_author_profileImg {
   uri: string;
 }
 
+export interface newsList_NewsList_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface newsList_NewsList_data_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: newsList_NewsList_data_author_bankImg_imgScaleUrl | null;
 }
 
 export interface newsList_NewsList_data_author {
@@ -3791,11 +4145,30 @@ export interface newsList_NewsList_data_author {
   bankImg: newsList_NewsList_data_author_bankImg | null;
 }
 
+export interface newsList_NewsList_data_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface newsList_NewsList_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: newsList_NewsList_data_files_imgScaleUrl | null;
+}
+
+export interface newsList_NewsList_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface newsList_NewsList_data_thumb {
@@ -3803,6 +4176,7 @@ export interface newsList_NewsList_data_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: newsList_NewsList_data_thumb_imgScaleUrl | null;
 }
 
 export interface newsList_NewsList_data {
@@ -3812,6 +4186,7 @@ export interface newsList_NewsList_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  boardType: BoardType;
   contents: string;
   author: newsList_NewsList_data_author | null;
   isNotice: boolean | null;
@@ -4661,11 +5036,21 @@ export interface portfolioFindById_PortfolioFindById_before {
   title: string;
 }
 
+export interface portfolioFindById_PortfolioFindById_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface portfolioFindById_PortfolioFindById_data_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: portfolioFindById_PortfolioFindById_data_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface portfolioFindById_PortfolioFindById_data_author_profileImg {
@@ -4673,11 +5058,21 @@ export interface portfolioFindById_PortfolioFindById_data_author_profileImg {
   uri: string;
 }
 
+export interface portfolioFindById_PortfolioFindById_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface portfolioFindById_PortfolioFindById_data_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: portfolioFindById_PortfolioFindById_data_author_bankImg_imgScaleUrl | null;
 }
 
 export interface portfolioFindById_PortfolioFindById_data_author {
@@ -4760,11 +5155,21 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   bankImg: portfolioFindById_PortfolioFindById_data_author_bankImg | null;
 }
 
+export interface portfolioFindById_PortfolioFindById_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface portfolioFindById_PortfolioFindById_data_thumb {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: portfolioFindById_PortfolioFindById_data_thumb_imgScaleUrl | null;
 }
 
 export interface portfolioFindById_PortfolioFindById_data_category {
@@ -4783,6 +5188,7 @@ export interface portfolioFindById_PortfolioFindById_data {
   isOpen: boolean | null;
   keyWards: string[] | null;
   summary: string | null;
+  boardType: BoardType;
   subTitle: string | null;
   contents: string;
   author: portfolioFindById_PortfolioFindById_data_author | null;
@@ -4872,11 +5278,21 @@ export interface portfolioList_PortfolioList_page {
   remainder: number;
 }
 
+export interface portfolioList_PortfolioList_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface portfolioList_PortfolioList_data_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: portfolioList_PortfolioList_data_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface portfolioList_PortfolioList_data_author_profileImg {
@@ -4884,11 +5300,21 @@ export interface portfolioList_PortfolioList_data_author_profileImg {
   uri: string;
 }
 
+export interface portfolioList_PortfolioList_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface portfolioList_PortfolioList_data_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: portfolioList_PortfolioList_data_author_bankImg_imgScaleUrl | null;
 }
 
 export interface portfolioList_PortfolioList_data_author {
@@ -4971,11 +5397,21 @@ export interface portfolioList_PortfolioList_data_author {
   bankImg: portfolioList_PortfolioList_data_author_bankImg | null;
 }
 
+export interface portfolioList_PortfolioList_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface portfolioList_PortfolioList_data_thumb {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: portfolioList_PortfolioList_data_thumb_imgScaleUrl | null;
 }
 
 export interface portfolioList_PortfolioList_data_category {
@@ -4994,6 +5430,7 @@ export interface portfolioList_PortfolioList_data {
   isOpen: boolean | null;
   keyWards: string[] | null;
   summary: string | null;
+  boardType: BoardType;
   subTitle: string | null;
   contents: string;
   author: portfolioList_PortfolioList_data_author | null;
@@ -5430,11 +5867,21 @@ export interface productDelete_ProductDelete_data_bookerSummary {
   cancelBookCount: number;
 }
 
+export interface productDelete_ProductDelete_data_itinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productDelete_ProductDelete_data_itinerary_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productDelete_ProductDelete_data_itinerary_images_imgScaleUrl | null;
 }
 
 export interface productDelete_ProductDelete_data_itinerary {
@@ -5449,11 +5896,21 @@ export interface productDelete_ProductDelete_data_itinerary {
   date: any;
 }
 
+export interface productDelete_ProductDelete_data_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productDelete_ProductDelete_data_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productDelete_ProductDelete_data_images_imgScaleUrl | null;
 }
 
 export interface productDelete_ProductDelete_data {
@@ -5511,6 +5968,7 @@ export interface productDelete_ProductDelete_data {
   type: ProductType;
   startDate: any;
   Dday: number;
+  boardType: BoardType;
 }
 
 export interface productDelete_ProductDelete {
@@ -5615,11 +6073,21 @@ export interface productList_ProductList_data_bookerSummary {
   cancelBookCount: number;
 }
 
+export interface productList_ProductList_data_itinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productList_ProductList_data_itinerary_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productList_ProductList_data_itinerary_images_imgScaleUrl | null;
 }
 
 export interface productList_ProductList_data_itinerary {
@@ -5634,11 +6102,21 @@ export interface productList_ProductList_data_itinerary {
   date: any;
 }
 
+export interface productList_ProductList_data_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productList_ProductList_data_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productList_ProductList_data_images_imgScaleUrl | null;
 }
 
 export interface productList_ProductList_data_bookings {
@@ -5647,11 +6125,21 @@ export interface productList_ProductList_data_bookings {
   status: BookingStatus | null;
 }
 
+export interface productList_ProductList_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productList_ProductList_data_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productList_ProductList_data_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface productList_ProductList_data_author_profileImg {
@@ -5659,11 +6147,21 @@ export interface productList_ProductList_data_author_profileImg {
   uri: string;
 }
 
+export interface productList_ProductList_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productList_ProductList_data_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productList_ProductList_data_author_bankImg_imgScaleUrl | null;
 }
 
 export interface productList_ProductList_data_author {
@@ -5801,6 +6299,7 @@ export interface productList_ProductList_data {
   type: ProductType;
   startDate: any;
   Dday: number;
+  boardType: BoardType;
   bookings: productList_ProductList_data_bookings[];
   author: productList_ProductList_data_author | null;
 }
@@ -5862,11 +6361,21 @@ export interface productFindById_ProductFindById_data_bookerSummary {
   cancelBookCount: number;
 }
 
+export interface productFindById_ProductFindById_data_itinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productFindById_ProductFindById_data_itinerary_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindById_ProductFindById_data_itinerary_images_imgScaleUrl | null;
 }
 
 export interface productFindById_ProductFindById_data_itinerary {
@@ -5881,11 +6390,30 @@ export interface productFindById_ProductFindById_data_itinerary {
   date: any;
 }
 
+export interface productFindById_ProductFindById_data_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productFindById_ProductFindById_data_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindById_ProductFindById_data_images_imgScaleUrl | null;
+}
+
+export interface productFindById_ProductFindById_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface productFindById_ProductFindById_data_author_busiRegistration {
@@ -5893,6 +6421,7 @@ export interface productFindById_ProductFindById_data_author_busiRegistration {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindById_ProductFindById_data_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface productFindById_ProductFindById_data_author_profileImg {
@@ -5900,11 +6429,21 @@ export interface productFindById_ProductFindById_data_author_profileImg {
   uri: string;
 }
 
+export interface productFindById_ProductFindById_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productFindById_ProductFindById_data_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindById_ProductFindById_data_author_bankImg_imgScaleUrl | null;
 }
 
 export interface productFindById_ProductFindById_data_author {
@@ -6004,11 +6543,21 @@ export interface productFindById_ProductFindById_data_productReview_author {
   profileImg: productFindById_ProductFindById_data_productReview_author_profileImg | null;
 }
 
+export interface productFindById_ProductFindById_data_productReview_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productFindById_ProductFindById_data_productReview_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindById_ProductFindById_data_productReview_files_imgScaleUrl | null;
 }
 
 export interface productFindById_ProductFindById_data_productReview {
@@ -6021,6 +6570,7 @@ export interface productFindById_ProductFindById_data_productReview {
   contents: string;
   author: productFindById_ProductFindById_data_productReview_author | null;
   num: number;
+  boardType: BoardType;
   boardTypeName: string | null;
   isNotice: boolean | null;
   isOpen: boolean | null;
@@ -6071,11 +6621,30 @@ export interface productFindById_ProductFindById_data_questions_category {
   label: string;
 }
 
+export interface productFindById_ProductFindById_data_questions_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productFindById_ProductFindById_data_questions_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindById_ProductFindById_data_questions_files_imgScaleUrl | null;
+}
+
+export interface productFindById_ProductFindById_data_questions_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface productFindById_ProductFindById_data_questions_thumb {
@@ -6083,6 +6652,7 @@ export interface productFindById_ProductFindById_data_questions_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindById_ProductFindById_data_questions_thumb_imgScaleUrl | null;
 }
 
 export interface productFindById_ProductFindById_data_questions_author_profileImg {
@@ -6113,6 +6683,7 @@ export interface productFindById_ProductFindById_data_questions {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  boardType: BoardType;
   contents: string;
   code: string;
   isNotice: boolean | null;
@@ -6188,6 +6759,7 @@ export interface productFindById_ProductFindById_data {
   type: ProductType;
   startDate: any;
   Dday: number;
+  boardType: BoardType;
   questionIds: string[] | null;
   author: productFindById_ProductFindById_data_author | null;
   productReview: productFindById_ProductFindById_data_productReview[] | null;
@@ -6248,11 +6820,21 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookerSu
   cancelBookCount: number;
 }
 
+export interface productFindByIdForSeller_ProductFindByIdForSeller_data_itinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_itinerary_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindByIdForSeller_ProductFindByIdForSeller_data_itinerary_images_imgScaleUrl | null;
 }
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_itinerary {
@@ -6267,11 +6849,30 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_itinerar
   date: any;
 }
 
+export interface productFindByIdForSeller_ProductFindByIdForSeller_data_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindByIdForSeller_ProductFindByIdForSeller_data_images_imgScaleUrl | null;
+}
+
+export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_busiRegistration {
@@ -6279,6 +6880,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_b
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindByIdForSeller_ProductFindByIdForSeller_data_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_profileImg {
@@ -6286,11 +6888,21 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_p
   uri: string;
 }
 
+export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindByIdForSeller_ProductFindByIdForSeller_data_author_bankImg_imgScaleUrl | null;
 }
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
@@ -6410,11 +7022,21 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_settleme
   cancelDate: any | null;
 }
 
+export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker_busiRegistration_imgScaleUrl | null;
 }
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker_profileImg {
@@ -6422,11 +7044,21 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   uri: string;
 }
 
+export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker_bankImg_imgScaleUrl | null;
 }
 
 export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings_booker {
@@ -6625,6 +7257,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   type: ProductType;
   startDate: any;
   Dday: number;
+  boardType: BoardType;
   author: productFindByIdForSeller_ProductFindByIdForSeller_data_author | null;
   requestHistory: productFindByIdForSeller_ProductFindByIdForSeller_data_requestHistory[];
   settlement: productFindByIdForSeller_ProductFindByIdForSeller_data_settlement | null;
@@ -6873,11 +7506,21 @@ export interface qnaFindById_QnaFindById_error {
   message: string;
 }
 
+export interface qnaFindById_QnaFindById_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface qnaFindById_QnaFindById_data_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: qnaFindById_QnaFindById_data_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface qnaFindById_QnaFindById_data_author_profileImg {
@@ -6885,11 +7528,21 @@ export interface qnaFindById_QnaFindById_data_author_profileImg {
   uri: string;
 }
 
+export interface qnaFindById_QnaFindById_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface qnaFindById_QnaFindById_data_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: qnaFindById_QnaFindById_data_author_bankImg_imgScaleUrl | null;
 }
 
 export interface qnaFindById_QnaFindById_data_author {
@@ -6972,11 +7625,30 @@ export interface qnaFindById_QnaFindById_data_author {
   bankImg: qnaFindById_QnaFindById_data_author_bankImg | null;
 }
 
+export interface qnaFindById_QnaFindById_data_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface qnaFindById_QnaFindById_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: qnaFindById_QnaFindById_data_files_imgScaleUrl | null;
+}
+
+export interface qnaFindById_QnaFindById_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface qnaFindById_QnaFindById_data_thumb {
@@ -6984,6 +7656,7 @@ export interface qnaFindById_QnaFindById_data_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: qnaFindById_QnaFindById_data_thumb_imgScaleUrl | null;
 }
 
 export interface qnaFindById_QnaFindById_data_category {
@@ -7003,6 +7676,7 @@ export interface qnaFindById_QnaFindById_data {
   author: qnaFindById_QnaFindById_data_author | null;
   isNotice: boolean | null;
   isOpen: boolean | null;
+  boardType: BoardType;
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
@@ -7106,11 +7780,21 @@ export interface qnaList_QnaList_page {
   remainder: number;
 }
 
+export interface qnaList_QnaList_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface qnaList_QnaList_data_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: qnaList_QnaList_data_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface qnaList_QnaList_data_author_profileImg {
@@ -7118,11 +7802,21 @@ export interface qnaList_QnaList_data_author_profileImg {
   uri: string;
 }
 
+export interface qnaList_QnaList_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface qnaList_QnaList_data_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: qnaList_QnaList_data_author_bankImg_imgScaleUrl | null;
 }
 
 export interface qnaList_QnaList_data_author {
@@ -7205,11 +7899,30 @@ export interface qnaList_QnaList_data_author {
   bankImg: qnaList_QnaList_data_author_bankImg | null;
 }
 
+export interface qnaList_QnaList_data_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface qnaList_QnaList_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: qnaList_QnaList_data_files_imgScaleUrl | null;
+}
+
+export interface qnaList_QnaList_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface qnaList_QnaList_data_thumb {
@@ -7217,6 +7930,7 @@ export interface qnaList_QnaList_data_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: qnaList_QnaList_data_thumb_imgScaleUrl | null;
 }
 
 export interface qnaList_QnaList_data_category {
@@ -7236,6 +7950,7 @@ export interface qnaList_QnaList_data {
   author: qnaList_QnaList_data_author | null;
   isNotice: boolean | null;
   isOpen: boolean | null;
+  boardType: BoardType;
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
@@ -7427,11 +8142,21 @@ export interface getContext_GetProfile_error {
   message: string;
 }
 
+export interface getContext_GetProfile_data_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface getContext_GetProfile_data_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: getContext_GetProfile_data_busiRegistration_imgScaleUrl | null;
 }
 
 export interface getContext_GetProfile_data_profileImg {
@@ -7439,11 +8164,21 @@ export interface getContext_GetProfile_data_profileImg {
   uri: string;
 }
 
+export interface getContext_GetProfile_data_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface getContext_GetProfile_data_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: getContext_GetProfile_data_bankImg_imgScaleUrl | null;
 }
 
 export interface getContext_GetProfile_data_unReadNoties {
@@ -7682,11 +8417,30 @@ export interface getContext_Homepage_error {
   message: string;
 }
 
+export interface getContext_Homepage_data_logo_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface getContext_Homepage_data_logo {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: getContext_Homepage_data_logo_imgScaleUrl | null;
+}
+
+export interface getContext_Homepage_data_compnanyIntoduceFile_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface getContext_Homepage_data_compnanyIntoduceFile {
@@ -7694,6 +8448,16 @@ export interface getContext_Homepage_data_compnanyIntoduceFile {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: getContext_Homepage_data_compnanyIntoduceFile_imgScaleUrl | null;
+}
+
+export interface getContext_Homepage_data_partnerFooter_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface getContext_Homepage_data_partnerFooter {
@@ -7701,6 +8465,16 @@ export interface getContext_Homepage_data_partnerFooter {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: getContext_Homepage_data_partnerFooter_imgScaleUrl | null;
+}
+
+export interface getContext_Homepage_data_logoTop_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface getContext_Homepage_data_logoTop {
@@ -7708,6 +8482,16 @@ export interface getContext_Homepage_data_logoTop {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: getContext_Homepage_data_logoTop_imgScaleUrl | null;
+}
+
+export interface getContext_Homepage_data_logoBottom_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface getContext_Homepage_data_logoBottom {
@@ -7715,6 +8499,16 @@ export interface getContext_Homepage_data_logoBottom {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: getContext_Homepage_data_logoBottom_imgScaleUrl | null;
+}
+
+export interface getContext_Homepage_data_bannerA_img_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface getContext_Homepage_data_bannerA_img {
@@ -7722,6 +8516,7 @@ export interface getContext_Homepage_data_bannerA_img {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: getContext_Homepage_data_bannerA_img_imgScaleUrl | null;
 }
 
 export interface getContext_Homepage_data_bannerA {
@@ -7732,11 +8527,21 @@ export interface getContext_Homepage_data_bannerA {
   use: boolean;
 }
 
+export interface getContext_Homepage_data_bannerB_img_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface getContext_Homepage_data_bannerB_img {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: getContext_Homepage_data_bannerB_img_imgScaleUrl | null;
 }
 
 export interface getContext_Homepage_data_bannerB {
@@ -7983,11 +8788,30 @@ export interface questionList_QuestionList_data_category {
   label: string;
 }
 
+export interface questionList_QuestionList_data_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface questionList_QuestionList_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: questionList_QuestionList_data_files_imgScaleUrl | null;
+}
+
+export interface questionList_QuestionList_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface questionList_QuestionList_data_thumb {
@@ -7995,6 +8819,7 @@ export interface questionList_QuestionList_data_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: questionList_QuestionList_data_thumb_imgScaleUrl | null;
 }
 
 export interface questionList_QuestionList_data_author_profileImg {
@@ -8042,6 +8867,7 @@ export interface questionList_QuestionList_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  boardType: BoardType;
   contents: string;
   code: string;
   isNotice: boolean | null;
@@ -8235,11 +9061,30 @@ export interface questionFindById_QuestionFindById_data_category {
   label: string;
 }
 
+export interface questionFindById_QuestionFindById_data_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface questionFindById_QuestionFindById_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: questionFindById_QuestionFindById_data_files_imgScaleUrl | null;
+}
+
+export interface questionFindById_QuestionFindById_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface questionFindById_QuestionFindById_data_thumb {
@@ -8247,6 +9092,7 @@ export interface questionFindById_QuestionFindById_data_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: questionFindById_QuestionFindById_data_thumb_imgScaleUrl | null;
 }
 
 export interface questionFindById_QuestionFindById_data_author_profileImg {
@@ -8294,6 +9140,7 @@ export interface questionFindById_QuestionFindById_data {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  boardType: BoardType;
   contents: string;
   code: string;
   isNotice: boolean | null;
@@ -8390,11 +9237,21 @@ export interface productReviewFindById_ProductReviewFindById_data_author {
   profileImg: productReviewFindById_ProductReviewFindById_data_author_profileImg | null;
 }
 
+export interface productReviewFindById_ProductReviewFindById_data_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productReviewFindById_ProductReviewFindById_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productReviewFindById_ProductReviewFindById_data_files_imgScaleUrl | null;
 }
 
 export interface productReviewFindById_ProductReviewFindById_data {
@@ -8408,6 +9265,7 @@ export interface productReviewFindById_ProductReviewFindById_data {
   contents: string;
   author: productReviewFindById_ProductReviewFindById_data_author | null;
   num: number;
+  boardType: BoardType;
   boardTypeName: string | null;
   isNotice: boolean | null;
   isOpen: boolean | null;
@@ -8536,11 +9394,21 @@ export interface productreviewList_ProductReviewList_data_author {
   profileImg: productreviewList_ProductReviewList_data_author_profileImg | null;
 }
 
+export interface productreviewList_ProductReviewList_data_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface productreviewList_ProductReviewList_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: productreviewList_ProductReviewList_data_files_imgScaleUrl | null;
 }
 
 export interface productreviewList_ProductReviewList_data {
@@ -8553,6 +9421,7 @@ export interface productreviewList_ProductReviewList_data {
   contents: string;
   author: productreviewList_ProductReviewList_data_author | null;
   num: number;
+  boardType: BoardType;
   boardTypeName: string | null;
   isNotice: boolean | null;
   isOpen: boolean | null;
@@ -8743,11 +9612,21 @@ export interface settlementFindById_SettlementFindById_data_product_bookerSummar
   cancelBookCount: number;
 }
 
+export interface settlementFindById_SettlementFindById_data_product_itinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface settlementFindById_SettlementFindById_data_product_itinerary_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: settlementFindById_SettlementFindById_data_product_itinerary_images_imgScaleUrl | null;
 }
 
 export interface settlementFindById_SettlementFindById_data_product_itinerary {
@@ -8762,11 +9641,30 @@ export interface settlementFindById_SettlementFindById_data_product_itinerary {
   date: any;
 }
 
+export interface settlementFindById_SettlementFindById_data_product_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface settlementFindById_SettlementFindById_data_product_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: settlementFindById_SettlementFindById_data_product_images_imgScaleUrl | null;
+}
+
+export interface settlementFindById_SettlementFindById_data_product_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface settlementFindById_SettlementFindById_data_product_author_busiRegistration {
@@ -8774,6 +9672,7 @@ export interface settlementFindById_SettlementFindById_data_product_author_busiR
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: settlementFindById_SettlementFindById_data_product_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface settlementFindById_SettlementFindById_data_product_author_profileImg {
@@ -8781,11 +9680,21 @@ export interface settlementFindById_SettlementFindById_data_product_author_profi
   uri: string;
 }
 
+export interface settlementFindById_SettlementFindById_data_product_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface settlementFindById_SettlementFindById_data_product_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: settlementFindById_SettlementFindById_data_product_author_bankImg_imgScaleUrl | null;
 }
 
 export interface settlementFindById_SettlementFindById_data_product_author {
@@ -8983,6 +9892,7 @@ export interface settlementFindById_SettlementFindById_data_product {
   type: ProductType;
   startDate: any;
   Dday: number;
+  boardType: BoardType;
   author: settlementFindById_SettlementFindById_data_product_author | null;
   bookings: settlementFindById_SettlementFindById_data_product_bookings[];
 }
@@ -9098,11 +10008,21 @@ export interface settlementList_SettlementList_page {
   remainder: number;
 }
 
+export interface settlementList_SettlementList_data_seller_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface settlementList_SettlementList_data_seller_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: settlementList_SettlementList_data_seller_busiRegistration_imgScaleUrl | null;
 }
 
 export interface settlementList_SettlementList_data_seller_profileImg {
@@ -9110,11 +10030,21 @@ export interface settlementList_SettlementList_data_seller_profileImg {
   uri: string;
 }
 
+export interface settlementList_SettlementList_data_seller_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface settlementList_SettlementList_data_seller_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: settlementList_SettlementList_data_seller_bankImg_imgScaleUrl | null;
 }
 
 export interface settlementList_SettlementList_data_seller {
@@ -9219,11 +10149,21 @@ export interface settlementList_SettlementList_data_product_category {
   label: string;
 }
 
+export interface settlementList_SettlementList_data_product_itinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface settlementList_SettlementList_data_product_itinerary_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: settlementList_SettlementList_data_product_itinerary_images_imgScaleUrl | null;
 }
 
 export interface settlementList_SettlementList_data_product_itinerary {
@@ -9238,11 +10178,30 @@ export interface settlementList_SettlementList_data_product_itinerary {
   date: any;
 }
 
+export interface settlementList_SettlementList_data_product_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface settlementList_SettlementList_data_product_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: settlementList_SettlementList_data_product_images_imgScaleUrl | null;
+}
+
+export interface settlementList_SettlementList_data_product_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface settlementList_SettlementList_data_product_author_busiRegistration {
@@ -9250,6 +10209,7 @@ export interface settlementList_SettlementList_data_product_author_busiRegistrat
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: settlementList_SettlementList_data_product_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface settlementList_SettlementList_data_product_author_profileImg {
@@ -9257,11 +10217,21 @@ export interface settlementList_SettlementList_data_product_author_profileImg {
   uri: string;
 }
 
+export interface settlementList_SettlementList_data_product_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface settlementList_SettlementList_data_product_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: settlementList_SettlementList_data_product_author_bankImg_imgScaleUrl | null;
 }
 
 export interface settlementList_SettlementList_data_product_author {
@@ -9399,6 +10369,7 @@ export interface settlementList_SettlementList_data_product {
   type: ProductType;
   startDate: any;
   Dday: number;
+  boardType: BoardType;
   author: settlementList_SettlementList_data_product_author | null;
 }
 
@@ -10224,11 +11195,21 @@ export interface userList_UserList_page {
   remainder: number;
 }
 
+export interface userList_UserList_data_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface userList_UserList_data_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: userList_UserList_data_busiRegistration_imgScaleUrl | null;
 }
 
 export interface userList_UserList_data_profileImg {
@@ -10236,11 +11217,21 @@ export interface userList_UserList_data_profileImg {
   uri: string;
 }
 
+export interface userList_UserList_data_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface userList_UserList_data_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: userList_UserList_data_bankImg_imgScaleUrl | null;
 }
 
 export interface userList_UserList_data {
@@ -10358,11 +11349,21 @@ export interface userFindById_UserFindById_error {
   message: string;
 }
 
+export interface userFindById_UserFindById_data_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface userFindById_UserFindById_data_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: userFindById_UserFindById_data_busiRegistration_imgScaleUrl | null;
 }
 
 export interface userFindById_UserFindById_data_profileImg {
@@ -10370,11 +11371,21 @@ export interface userFindById_UserFindById_data_profileImg {
   uri: string;
 }
 
+export interface userFindById_UserFindById_data_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface userFindById_UserFindById_data_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: userFindById_UserFindById_data_bankImg_imgScaleUrl | null;
 }
 
 export interface userFindById_UserFindById_data_products_region {
@@ -10399,11 +11410,21 @@ export interface userFindById_UserFindById_data_products_bookerSummary {
   cancelBookCount: number;
 }
 
+export interface userFindById_UserFindById_data_products_itinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface userFindById_UserFindById_data_products_itinerary_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: userFindById_UserFindById_data_products_itinerary_images_imgScaleUrl | null;
 }
 
 export interface userFindById_UserFindById_data_products_itinerary {
@@ -10418,11 +11439,30 @@ export interface userFindById_UserFindById_data_products_itinerary {
   date: any;
 }
 
+export interface userFindById_UserFindById_data_products_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface userFindById_UserFindById_data_products_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: userFindById_UserFindById_data_products_images_imgScaleUrl | null;
+}
+
+export interface userFindById_UserFindById_data_products_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface userFindById_UserFindById_data_products_author_busiRegistration {
@@ -10430,6 +11470,7 @@ export interface userFindById_UserFindById_data_products_author_busiRegistration
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: userFindById_UserFindById_data_products_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface userFindById_UserFindById_data_products_author_profileImg {
@@ -10437,11 +11478,21 @@ export interface userFindById_UserFindById_data_products_author_profileImg {
   uri: string;
 }
 
+export interface userFindById_UserFindById_data_products_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface userFindById_UserFindById_data_products_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: userFindById_UserFindById_data_products_author_bankImg_imgScaleUrl | null;
 }
 
 export interface userFindById_UserFindById_data_products_author {
@@ -10579,6 +11630,7 @@ export interface userFindById_UserFindById_data_products {
   type: ProductType;
   startDate: any;
   Dday: number;
+  boardType: BoardType;
   author: userFindById_UserFindById_data_products_author | null;
 }
 
@@ -10830,11 +11882,21 @@ export interface passwordChangeVariables {
 // GraphQL fragment: Fannounce
 // ====================================================
 
+export interface Fannounce_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fannounce_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fannounce_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface Fannounce_author_profileImg {
@@ -10842,11 +11904,21 @@ export interface Fannounce_author_profileImg {
   uri: string;
 }
 
+export interface Fannounce_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fannounce_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fannounce_author_bankImg_imgScaleUrl | null;
 }
 
 export interface Fannounce_author {
@@ -10929,11 +12001,30 @@ export interface Fannounce_author {
   bankImg: Fannounce_author_bankImg | null;
 }
 
+export interface Fannounce_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fannounce_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fannounce_files_imgScaleUrl | null;
+}
+
+export interface Fannounce_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface Fannounce_thumb {
@@ -10941,6 +12032,7 @@ export interface Fannounce_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fannounce_thumb_imgScaleUrl | null;
 }
 
 export interface Fannounce {
@@ -10951,6 +12043,7 @@ export interface Fannounce {
   isDelete: boolean;
   title: string;
   no: number;
+  boardType: BoardType;
   contents: string;
   author: Fannounce_author | null;
   isNotice: boolean | null;
@@ -11011,7 +12104,7 @@ export interface Ftraveler {
   __typename: "Traveler";
   name: string | null;
   phoneNumber: string;
-  gender: GENDER | null;
+  gender: string | null;
   age: string;
 }
 
@@ -11094,14 +12187,42 @@ export interface FfeePolicy {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: FimgScaleUrl
+// ====================================================
+
+export interface FimgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Ffile
 // ====================================================
+
+export interface Ffile_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
 
 export interface Ffile {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Ffile_imgScaleUrl | null;
 }
 
 /* tslint:disable */
@@ -11156,11 +12277,21 @@ export interface Fbooking {
 // GraphQL fragment: Fitinerary
 // ====================================================
 
+export interface Fitinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fitinerary_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fitinerary_images_imgScaleUrl | null;
 }
 
 export interface Fitinerary {
@@ -11223,11 +12354,21 @@ export interface Fproduct_bookerSummary {
   cancelBookCount: number;
 }
 
+export interface Fproduct_itinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fproduct_itinerary_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fproduct_itinerary_images_imgScaleUrl | null;
 }
 
 export interface Fproduct_itinerary {
@@ -11242,11 +12383,21 @@ export interface Fproduct_itinerary {
   date: any;
 }
 
+export interface Fproduct_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fproduct_images {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fproduct_images_imgScaleUrl | null;
 }
 
 export interface Fproduct {
@@ -11304,6 +12455,7 @@ export interface Fproduct {
   type: ProductType;
   startDate: any;
   Dday: number;
+  boardType: BoardType;
 }
 
 /* tslint:disable */
@@ -11369,11 +12521,21 @@ export interface Fcategory {
 // GraphQL fragment: Fuser
 // ====================================================
 
+export interface Fuser_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fuser_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fuser_busiRegistration_imgScaleUrl | null;
 }
 
 export interface Fuser_profileImg {
@@ -11381,11 +12543,21 @@ export interface Fuser_profileImg {
   uri: string;
 }
 
+export interface Fuser_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fuser_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fuser_bankImg_imgScaleUrl | null;
 }
 
 export interface Fuser {
@@ -11615,11 +12787,21 @@ export interface Fmodal {
 // GraphQL fragment: Fbanner
 // ====================================================
 
+export interface Fbanner_img_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fbanner_img {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fbanner_img_imgScaleUrl | null;
 }
 
 export interface Fbanner {
@@ -11639,11 +12821,30 @@ export interface Fbanner {
 // GraphQL fragment: Fhomepage
 // ====================================================
 
+export interface Fhomepage_logo_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fhomepage_logo {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fhomepage_logo_imgScaleUrl | null;
+}
+
+export interface Fhomepage_compnanyIntoduceFile_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface Fhomepage_compnanyIntoduceFile {
@@ -11651,6 +12852,16 @@ export interface Fhomepage_compnanyIntoduceFile {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fhomepage_compnanyIntoduceFile_imgScaleUrl | null;
+}
+
+export interface Fhomepage_partnerFooter_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface Fhomepage_partnerFooter {
@@ -11658,6 +12869,16 @@ export interface Fhomepage_partnerFooter {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fhomepage_partnerFooter_imgScaleUrl | null;
+}
+
+export interface Fhomepage_logoTop_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface Fhomepage_logoTop {
@@ -11665,6 +12886,16 @@ export interface Fhomepage_logoTop {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fhomepage_logoTop_imgScaleUrl | null;
+}
+
+export interface Fhomepage_logoBottom_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface Fhomepage_logoBottom {
@@ -11672,6 +12903,16 @@ export interface Fhomepage_logoBottom {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fhomepage_logoBottom_imgScaleUrl | null;
+}
+
+export interface Fhomepage_bannerA_img_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface Fhomepage_bannerA_img {
@@ -11679,6 +12920,7 @@ export interface Fhomepage_bannerA_img {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fhomepage_bannerA_img_imgScaleUrl | null;
 }
 
 export interface Fhomepage_bannerA {
@@ -11689,11 +12931,21 @@ export interface Fhomepage_bannerA {
   use: boolean;
 }
 
+export interface Fhomepage_bannerB_img_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fhomepage_bannerB_img {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fhomepage_bannerB_img_imgScaleUrl | null;
 }
 
 export interface Fhomepage_bannerB {
@@ -11839,11 +13091,21 @@ export interface Fhomepage {
 // GraphQL fragment: Fnews
 // ====================================================
 
+export interface Fnews_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fnews_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fnews_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface Fnews_author_profileImg {
@@ -11851,11 +13113,21 @@ export interface Fnews_author_profileImg {
   uri: string;
 }
 
+export interface Fnews_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fnews_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fnews_author_bankImg_imgScaleUrl | null;
 }
 
 export interface Fnews_author {
@@ -11938,11 +13210,30 @@ export interface Fnews_author {
   bankImg: Fnews_author_bankImg | null;
 }
 
+export interface Fnews_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fnews_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fnews_files_imgScaleUrl | null;
+}
+
+export interface Fnews_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface Fnews_thumb {
@@ -11950,6 +13241,7 @@ export interface Fnews_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fnews_thumb_imgScaleUrl | null;
 }
 
 export interface Fnews {
@@ -11959,6 +13251,7 @@ export interface Fnews {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  boardType: BoardType;
   contents: string;
   author: Fnews_author | null;
   isNotice: boolean | null;
@@ -12168,11 +13461,21 @@ export interface FnotificationSender {
 // GraphQL fragment: Fportfolio
 // ====================================================
 
+export interface Fportfolio_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fportfolio_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fportfolio_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface Fportfolio_author_profileImg {
@@ -12180,11 +13483,21 @@ export interface Fportfolio_author_profileImg {
   uri: string;
 }
 
+export interface Fportfolio_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fportfolio_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fportfolio_author_bankImg_imgScaleUrl | null;
 }
 
 export interface Fportfolio_author {
@@ -12267,11 +13580,21 @@ export interface Fportfolio_author {
   bankImg: Fportfolio_author_bankImg | null;
 }
 
+export interface Fportfolio_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fportfolio_thumb {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fportfolio_thumb_imgScaleUrl | null;
 }
 
 export interface Fportfolio_category {
@@ -12290,6 +13613,7 @@ export interface Fportfolio {
   isOpen: boolean | null;
   keyWards: string[] | null;
   summary: string | null;
+  boardType: BoardType;
   subTitle: string | null;
   contents: string;
   author: Fportfolio_author | null;
@@ -12306,11 +13630,21 @@ export interface Fportfolio {
 // GraphQL fragment: Fqna
 // ====================================================
 
+export interface Fqna_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fqna_author_busiRegistration {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fqna_author_busiRegistration_imgScaleUrl | null;
 }
 
 export interface Fqna_author_profileImg {
@@ -12318,11 +13652,21 @@ export interface Fqna_author_profileImg {
   uri: string;
 }
 
+export interface Fqna_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fqna_author_bankImg {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fqna_author_bankImg_imgScaleUrl | null;
 }
 
 export interface Fqna_author {
@@ -12405,11 +13749,30 @@ export interface Fqna_author {
   bankImg: Fqna_author_bankImg | null;
 }
 
+export interface Fqna_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fqna_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fqna_files_imgScaleUrl | null;
+}
+
+export interface Fqna_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface Fqna_thumb {
@@ -12417,6 +13780,7 @@ export interface Fqna_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fqna_thumb_imgScaleUrl | null;
 }
 
 export interface Fqna {
@@ -12430,6 +13794,7 @@ export interface Fqna {
   author: Fqna_author | null;
   isNotice: boolean | null;
   isOpen: boolean | null;
+  boardType: BoardType;
   summary: string | null;
   subTitle: string | null;
   keyWards: string[] | null;
@@ -12478,11 +13843,30 @@ export interface Fquestion_category {
   label: string;
 }
 
+export interface Fquestion_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface Fquestion_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fquestion_files_imgScaleUrl | null;
+}
+
+export interface Fquestion_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
 }
 
 export interface Fquestion_thumb {
@@ -12490,6 +13874,7 @@ export interface Fquestion_thumb {
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: Fquestion_thumb_imgScaleUrl | null;
 }
 
 export interface Fquestion_author_profileImg {
@@ -12520,6 +13905,7 @@ export interface Fquestion {
   updatedAt: any;
   isDelete: boolean;
   title: string;
+  boardType: BoardType;
   contents: string;
   code: string;
   isNotice: boolean | null;
@@ -12566,11 +13952,21 @@ export interface FproductReview_author {
   profileImg: FproductReview_author_profileImg | null;
 }
 
+export interface FproductReview_files_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
 export interface FproductReview_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
+  imgScaleUrl: FproductReview_files_imgScaleUrl | null;
 }
 
 export interface FproductReview {
@@ -12583,6 +13979,7 @@ export interface FproductReview {
   contents: string;
   author: FproductReview_author | null;
   num: number;
+  boardType: BoardType;
   boardTypeName: string | null;
   isNotice: boolean | null;
   isOpen: boolean | null;
@@ -12728,6 +14125,7 @@ export enum BoardType {
   News = "News",
   PORTFOLIO = "PORTFOLIO",
   PRODUCT = "PRODUCT",
+  PRODUCT_REVIEW = "PRODUCT_REVIEW",
   QNA = "QNA",
   QUESTION = "QUESTION",
 }
@@ -13457,6 +14855,7 @@ export interface FileCreateInput {
   extension?: string | null;
   fileType?: string | null;
   uri: string;
+  imgScaleUrl?: ImgScaleUrlInput | null;
   owner?: string | null;
 }
 
@@ -13533,6 +14932,14 @@ export interface HomepageUpdateInput {
   modal?: ModalInput[] | null;
   partnerFooter?: FileUpdateInput[] | null;
   bankInfo?: BankInfoInput | null;
+}
+
+export interface ImgScaleUrlInput {
+  tiny?: string | null;
+  small?: string | null;
+  medium?: string | null;
+  large?: string | null;
+  huge?: string | null;
 }
 
 export interface ItineraryCreateInput {
@@ -13871,7 +15278,7 @@ export interface SmsTemplateUpdateInput {
 export interface TravelerInput {
   name?: string | null;
   phoneNumber: string;
-  gender?: GENDER | null;
+  gender?: string | null;
   age: string;
 }
 
@@ -13911,6 +15318,8 @@ export interface UserUpdateInput {
 export interface _AnnounceFilter {
   AND?: _AnnounceFilter[] | null;
   OR?: _AnnounceFilter[] | null;
+  type_eq?: AnnounceType | null;
+  type_not_eq?: AnnounceType | null;
   no_eq?: string | null;
   no_not_eq?: string | null;
   title_eq?: string | null;

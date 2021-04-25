@@ -52,6 +52,14 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
     }
   }, [item?.members.length])
 
+  useEffect(()=>{
+    if(editMode) {
+      const slide = sliderRef?.current
+      if(slide)
+      slide.slickPause()
+    }
+  },[editMode])
+
   const mainSliderImgs: string[] = get("main_slideImgs") || [];
   return <div className="body main" id="main" >
     {popupsHook.popups.map((pop, index) =>

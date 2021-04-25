@@ -100,6 +100,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
 
     const {
         tourSets,
+        imgUploading,
         tourData,
         loadKey,
         validater: { validate },
@@ -633,9 +634,15 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     {thumbs.length < 4 && (
                                         <li
                                             id="thumb"
-                                            onClick={handleUploadClick}
+                                            onClick={
+                                                imgUploading
+                                                    ? undefined
+                                                    : handleUploadClick
+                                            }
                                         >
-                                            이미지추가
+                                            {imgUploading
+                                                ? "파입업로드중..."
+                                                : "이미지추가"}
                                             <i className="flaticon-add icon_plus"></i>
                                         </li>
                                     )}

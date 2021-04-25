@@ -3006,6 +3006,8 @@ div.master_popup .info_page .info_table .tr > div {
   box-sizing: border-box;
   flex-grow: 1;
   flex: 1 1;
+  text-align: center!important;
+  margin:0px!important;
 }
 div.master_popup .peoplelist .tr.first > div {
   line-height: 22px;

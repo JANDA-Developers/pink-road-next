@@ -1,14 +1,26 @@
 import { gql } from "@apollo/client";
 
+export const F_IMG_SCALE_URL = gql`
+    fragment FimgScaleUrl on ImgScaleUrl {
+        tiny
+        small
+        medium
+        large
+        huge
+    }
+`;
 
 export const F_FILE = gql`
     fragment Ffile on File {
         name
         uri
         owner
+        imgScaleUrl {
+            ...FimgScaleUrl
+        }
     }
-`
-
+    ${F_IMG_SCALE_URL}
+`;
 
 export const F_BOOKING = gql`
     fragment Fbooking on Booking {
@@ -40,10 +52,10 @@ export const F_BOOKING = gql`
         phoneNumber
         isPaid
     }
-`
+`;
 
 export const F_ITINERARY = gql`
-    fragment Fitinerary on Itinerary  {
+    fragment Fitinerary on Itinerary {
         _id
         createdAt
         updatedAt
@@ -56,17 +68,17 @@ export const F_ITINERARY = gql`
         date
     }
     ${F_FILE}
-`
+`;
 
 export const F_REQUEST_HISTORY = gql`
-    fragment FrequestHistory on RequestHistory  {
+    fragment FrequestHistory on RequestHistory {
         methodType
         reqType
         date
         reason
     }
     ${F_FILE}
-`
+`;
 
 export const F_PRODUCT = gql`
     fragment Fproduct on Product {
@@ -128,13 +140,14 @@ export const F_PRODUCT = gql`
         type
         startDate
         Dday
+        boardType
     }
     ${F_FILE}
     ${F_ITINERARY}
-`
+`;
 
 export const F_PAYMENT = gql`
-    fragment Fpayment  on Payment  {
+    fragment Fpayment on Payment {
         _id
         createdAt
         updatedAt
@@ -154,8 +167,7 @@ export const F_PAYMENT = gql`
             updatedAt
         }
     }
-`
-
+`;
 
 export const F_CATEGORY = gql`
     fragment Fcategory on Category {
@@ -167,11 +179,10 @@ export const F_CATEGORY = gql`
         type
         order
     }
-`
-
+`;
 
 export const F_USER = gql`
-    fragment Fuser  on User  {
+    fragment Fuser on User {
         _id
         createdAt
         updatedAt
@@ -202,7 +213,7 @@ export const F_USER = gql`
         isVerifiedPhoneNumber
         busiRegistration {
             ...Ffile
-        },
+        }
         is_priv_corper
         busi_name
         busi_address
@@ -223,7 +234,7 @@ export const F_USER = gql`
         busi_department
     }
     ${F_FILE}
-`
+`;
 
 export const F_PAGE_INFO = gql`
     fragment FpageInfo on PageInfo {
@@ -233,8 +244,7 @@ export const F_PAGE_INFO = gql`
         key
         value
     }
-`
-
+`;
 
 export const F_PAGE = gql`
     fragment Fpage on Page {
@@ -250,7 +260,7 @@ export const F_PAGE = gql`
         totalCount
         remainder
     }
-`
+`;
 
 export const F_GROUP = gql`
     fragment Fgroup on Group {
@@ -267,4 +277,4 @@ export const F_GROUP = gql`
             value
         }
     }
-`
+`;

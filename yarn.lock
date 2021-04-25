@@ -6837,6 +6837,11 @@ react-google-login@^5.1.22:
     "@types/react" "*"
     prop-types "^15.6.0"
 
+react-image-file-resizer@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.npmjs.org/react-image-file-resizer/-/react-image-file-resizer-0.4.3.tgz#b6dc28a65aa9435ee02a393d34be0e1966fa6735"
+  integrity sha512-G1+z2iihTEmQs6B9m1iXaUwfMpi78AjKYZYK5HnEH5SeW9OwqvJ2DlKmiFXHmm+eixFfGlj5c+nehd1LEd03kA==
+
 react-is@16.13.1, react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"

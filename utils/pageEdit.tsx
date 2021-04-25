@@ -1,22 +1,25 @@
 import { CSSProperties } from "react";
-import $ from "jquery"
+import $ from "jquery";
 import { ISet } from "../types/interface";
 import isEmpty from "./isEmpty";
 import { IEditKit } from "../components/Img/img";
+import { IEditableUlProp } from "../components/edit/Ul";
+import { getRangeString } from "./product";
+import { ImgResizeSizes, ResizeKeys } from "../types/const";
 interface Style {
-    style?: CSSProperties,
+    style?: CSSProperties;
 }
 interface TInfoCell extends Style {
-    [key: string]: any
+    [key: string]: any;
 }
 export type TWebPageInfo = {
-    [key: string]: TInfoCell
-}
+    [key: string]: TInfoCell;
+};
 
-const keyDownUlManage = (e: any,) => {
+const keyDownUlManage = (e: any) => {
     const $this = $(e.currentTarget);
     if (!$this.html()) {
-        const $li = $('<li></li>');
+        const $li = $("<li></li>");
 
         const sel = window.getSelection()!;
 
@@ -29,22 +32,27 @@ const keyDownUlManage = (e: any,) => {
         range.collapse(false);
         sel.removeAllRanges();
         sel.addRange(range);
-
     } else {
         //are there any tags that AREN'T LIs?
         //this should only occur on a paste
-        const $nonLI = $this.find(':not(li, br)');
+        const $nonLI = $this.find(":not(li, br)");
 
         if ($nonLI.length) {
             $this.contents().replaceWith(function () {
                 //we create a fake div, add the text, then get the html in order to strip out html code. we then clean up a bit by replacing nbsp's with real spaces
-                return '<li>' + $('<div />').text($(this).text()).html().replace(/&nbsp;/g, ' ') + '</li>';
+                return (
+                    "<li>" +
+                    $("<div />")
+                        .text($(this).text())
+                        .html()
+                        .replace(/&nbsp;/g, " ") +
+                    "</li>"
+                );
             });
             //we could make this better by putting the caret at the end of the last LI, or something similar
         }
     }
-}
-
+};
 
 function remove_tags(html: string) {
     return html;
@@ -57,41 +65,60 @@ function remove_tags(html: string) {
 }
 
 export const stripInlineStyle = (str: string): string => {
+    if (typeof str !== "string") {
+        console.trace("...!");
+        throw Error("");
+    }
     const inlineStyleRegex = new RegExp(/style="[^\"]*"/gi);
     const replaced = str.replace(inlineStyleRegex, "");
     return replaced;
-}
+};
 
-
-
-type TCommand = "bold"
+type TCommand = "bold";
 
 export const effectDoc = (command: TCommand) => {
-    document.execCommand(command)
-}
-
+    document.execCommand(command);
+};
 
 export interface IGetEditUtilsResult<Page> {
     page: Page;
     setPage: React.Dispatch<any>;
     lang: string;
-    edit: (key: keyof Page, index?: number) => any;
-    ulEdit: (key: keyof Page) => any;
+    edit: (key: keyof Page, index?: number, key2?: string) => any;
+    ulEdit: (key: keyof Page, key2?: string) => IEditableUlProp;
     imgEdit: (key: keyof Page) => (url: string) => void;
     editArray: (key: keyof Page, index: number, value: any) => void;
     addArray: (key: keyof Page, value: any) => void;
-    removeArray: (key: keyof Page, index: number) => void
-    bg: (key: keyof Page) => {
-        backgroundImage: string;
-    } | undefined;
-    src: (key: keyof Page) => {
-        src: any;
-        "data-imgkey": keyof Page;
-        "data-img": string;
-    } | undefined;
+    removeArray: (key: keyof Page, index: number) => void;
+    unShiftArray: (key: keyof Page, value: any) => void;
+    objectArrayUlEdit: (
+        key: keyof Page,
+        index: number,
+        key2: string
+    ) => IEditableUlProp;
+    bg: (
+        key: keyof Page
+    ) =>
+        | {
+              backgroundImage: string;
+          }
+        | undefined;
+    src: (
+        key: keyof Page
+    ) =>
+        | {
+              src: any;
+              "data-imgkey": keyof Page;
+              "data-img": string;
+          }
+        | undefined;
     get: (key: keyof Page) => any;
     imgKit: (key: keyof Page) => IEditKit<Page>;
-    arrayImgKit: (index: number, key: keyof Page, arrayOrigin: any) => {
+    arrayImgKit: (
+        index: number,
+        key: keyof Page,
+        arrayOrigin: any
+    ) => {
         src: {
             "data-edit": string;
             "data-img": string;
@@ -99,33 +126,34 @@ export interface IGetEditUtilsResult<Page> {
             src: any;
         };
         upload: (url: string) => void;
-    }
+    };
 }
 
-
-
-
-export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean, page: T, setPage: ISet<any>, lang = "kr"): IGetEditUtilsResult<T> => {
-
+export const getEditUtils = <T extends { [key: string]: any }>(
+    editMode: boolean,
+    page: T,
+    setPage: ISet<any>,
+    lang = "kr"
+): IGetEditUtilsResult<T> => {
     class EditError extends Error {
         constructor(message: string) {
             // Pass remaining arguments (including vendor specific ones) to parent constructor
-            super(message)
+            super(message);
 
             // Maintains proper stack trace for where our error was thrown (only available on V8)
             if (Error.captureStackTrace) {
-                Error.captureStackTrace(this, EditError)
+                Error.captureStackTrace(this, EditError);
             }
 
-            this.name = 'EditError'
+            this.name = "EditError";
 
             const retry = localStorage.getItem("ERR_RE_TRY");
             if (retry !== "T") {
-                console.error("ERR")
+                console.error("ERR");
                 localStorage.setItem("ERR_RE_TRY", "T");
                 // location.reload();
             } else {
-                console.error("ERR")
+                console.error("ERR");
                 localStorage.removeItem("ERR_RE_TRY");
             }
         }
@@ -135,41 +163,42 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         const target = page[key];
         if (!target) throw Error(`키값 ${key}은 존재하지 않습니다.`);
         if (target.value === undefined)
-            if (target[lang] === undefined) throw Error(`언어 ${lang}은 ${key}에 없으며 value 또한 없습니다..`);
+            if (target[lang] === undefined)
+                throw Error(
+                    `언어 ${lang}은 ${key}에 없으며 value 또한 없습니다..`
+                );
 
         if (array !== undefined) {
             if (!Array.isArray(target.value))
-                if (!Array.isArray(target[lang])) throw Error(`the ${key} object is not array!!`);
+                if (!Array.isArray(target[lang]))
+                    throw Error(`the ${key} object is not array!!`);
             // if (array !== true) {
             //     if (target.value[array] === undefined && target[lang][array] === undefined) throw Error(`the object key ${key} dose not  have index ${array}!!`)
             // }
         }
-    }
+    };
 
-
-    const onSingleBlur = (e: React.FocusEvent<HTMLElement>, key: string, index?: number) => {
+    const onSingleBlur = (
+        e: React.FocusEvent<HTMLElement>,
+        key: string,
+        index?: number,
+        key2?: string
+    ) => {
         const text = stripInlineStyle(e.currentTarget.innerHTML);
-        validateKey(key, index)
-
-        if (index === undefined) {
-            page[key][lang] = text || "";
-        } else {
-            page[key][lang][index] = text || "";
-        }
-        setPage({ ...page })
-    }
+        validateKey(key, index);
+        set(key, text, index, key2);
+        setPage({ ...page });
+    };
 
     const editable: "true" | undefined = editMode === true ? "true" : undefined;
 
     const singleBlur = onSingleBlur.bind(onSingleBlur);
 
-
     const set = (key: keyof T, value: any, index?: number, key2?: string) => {
-        validateKey(key, index)
-
+        validateKey(key, index);
 
         const setPageData = () => {
-            const isArray = index !== undefined
+            const isArray = index !== undefined;
             const hasKey2 = !!key2;
             const target = page[key];
             const hasValue = target.value !== undefined;
@@ -182,7 +211,12 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
                 }
             }
 
-            if (isArray && hasKey2 && index !== undefined && key2 !== undefined) {
+            if (
+                isArray &&
+                hasKey2 &&
+                index !== undefined &&
+                key2 !== undefined
+            ) {
                 if (hasValue) {
                     target.value[index][key2] = value;
                 } else {
@@ -192,98 +226,181 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
 
             if (!isArray) {
                 if (hasValue) {
-                    target.value = value
+                    target.value = value;
                 } else {
                     target[lang] = value;
                 }
             }
-        }
+        };
 
         setPageData();
-        setPage({ ...page })
+        setPage({ ...page });
+    };
 
-    }
-
-
-    const editArray = (key: keyof T, index: number, value: any, key2?: string) => {
-        validateKey(key, index)
-        set(key, value, index, key2)
-    }
-
+    const editArray = (
+        key: keyof T,
+        index: number,
+        value: any,
+        key2?: string
+    ) => {
+        validateKey(key, index);
+        set(key, value, index, key2);
+    };
 
     const addArray = (key: keyof T, value: any) => {
-        validateKey(key, true)
+        validateKey(key, true);
         get(key).push(value);
         setPage({ ...page });
-    }
+    };
+
+    const unShiftArray = (key: keyof T, value: any) => {
+        validateKey(key, true);
+        get(key).unshift(value);
+        setPage({ ...page });
+    };
 
     const removeArray = (key: keyof T, index: number) => {
-        validateKey(key, index)
-        get(key).splice(index, 1)
+        validateKey(key, index);
+        get(key).splice(index, 1);
         setPage({ ...page });
-    }
+    };
 
     type Data = {
         dangerouslySetInnerHTML: {
             __html: T[keyof T];
         };
-    }
+    };
 
-    const data = (key: keyof T, index?: number) => {
+    const data = (key: keyof T, index?: number, key2?: string) => {
         validateKey(key, index);
-        const html = index === undefined ? page[key][lang] : page[key][lang][index];
+        const html = get(key, index, key2);
         return {
             dangerouslySetInnerHTML: {
-                __html: stripInlineStyle(html)
-            }
-        }
-    }
+                __html: stripInlineStyle(html),
+            },
+        };
+    };
 
-    const edit = (key: keyof T, index?: number): any => {
-
+    const edit = (key: keyof T, index?: number, key2?: string): any => {
         const editObj = {
             onBlur: (e: any) => {
-                if (typeof key === "string")
-                    singleBlur(e, key, index)
+                if (typeof key === "string") singleBlur(e, key, index, key2);
             },
             contentEditable: editable ? "plaintext-only" : "ready",
             suppressContentEditableWarning: true,
             onClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-                if (editMode)
-                    e.preventDefault();
+                if (editMode) e.preventDefault();
             },
-            ...data(key, index) as Data
-        }
+            ...(data(key, index, key2) as Data),
+        };
 
-        return editObj
+        return editObj;
+    };
 
-    }
+    // const ulEdit = (key: keyof T) => ({
+    //     onKeyDown: keyDownUlManage,
+    //     onKeyUp: keyDownUlManage,
+    //     ...edit(key)
+    // })
+    const ulEdit = (key: keyof T): IEditableUlProp => {
+        validateKey(key);
+        const _addArray = addArray.bind(addArray, key);
+        const _removeArray = removeArray.bind(removeArray, key);
+        const editObj = {
+            addArray: _addArray,
+            editArray: (index: number, value: any) => {
+                editArray(key, index, value);
+            },
+            editMode,
+            removeArray: _removeArray,
+            data: get(key) as string[],
+            contentEditable: editable ? "plaintext-only" : "ready",
+            id: key as string,
+        };
 
-    const ulEdit = (key: keyof T) => ({
-        onKeyDown: keyDownUlManage,
-        onKeyUp: keyDownUlManage,
-        ...edit(key)
-    })
+        return {
+            ...editObj,
+        };
+    };
+
+    const objectArrayUlEdit = (key: keyof T, index: number, key2: string) => {
+        const target = get(key, index, key2);
+
+        const editObj = {
+            addArray: (val: string) => {
+                target.push(val);
+                setPage({ ...page });
+            },
+            editArray: (index: number, value: any) => {
+                target[index] = value;
+                setPage({ ...page });
+            },
+            removeArray: (index) => {
+                target.splice(index, 1);
+                setPage({ ...page });
+            },
+            editMode,
+            data: get(key, index, key2) as string[],
+            contentEditable: editable ? "plaintext-only" : "ready",
+            id: key as string,
+        };
+
+        return {
+            ...editObj,
+        };
+    };
 
     const onImgUpload = (key: keyof T, url: string) => {
-        validateKey(key)
-        page[key][lang] = url
-        setPage({ ...page })
-    }
+        validateKey(key);
+        page[key][lang] = url;
+        setPage({ ...page });
+    };
 
     const imgEdit = (key: keyof T) => onImgUpload.bind(onImgUpload, key);
-    const bg = (key: keyof T) => {
-        validateKey(key)
-        return ({ backgroundImage: `url(${page[key][lang]})`, "data-edit": editable ? "bg" : "" })
-    }
+
+    const bg = (key: keyof T, hopeSize?: ResizeKeys) => {
+        let endFix = hopeSize;
+        const windowSize =
+            typeof window === "undefined" ? 0 : window.outerWidth;
+        const hopeSizeNumber = ImgResizeSizes[hopeSize];
+        const needResize = !hopeSizeNumber || windowSize < hopeSizeNumber;
+
+        console.log({ windowSize });
+        if (needResize) {
+            if (windowSize < 1500) {
+                hopeSize = "large";
+            }
+
+            if (windowSize < 800) {
+                hopeSize = "medium";
+            }
+            if (windowSize < 400) {
+                hopeSize = "small";
+            }
+        }
+        endFix = hopeSize;
+        const endFixStr = endFix ? "--" + endFix : "";
+        const ready = false;
+
+        validateKey(key);
+        return {
+            backgroundImage: `url(${get(key)}${ready ? endFixStr : ""})`,
+            "data-edit": editable ? "bg" : "",
+        };
+    };
 
     const src = (key: keyof T) => {
-        validateKey(key)
-        return ({ "data-edit": editable ? "img" : "", src: page[key][lang], "data-imgkey": key, "data-img": "img", })
-    }
+        validateKey(key);
+        return {
+            "data-edit": editable ? "img" : "",
+            src: page[key][lang],
+            "data-imgkey": key,
+            "data-img": "img",
+        };
+    };
 
     const imgKit = (key: string): IEditKit<any> => {
-        validateKey(key)
+        validateKey(key);
         const upload = imgEdit.bind(imgEdit, key)();
         const _bg = bg.bind(bg, key)();
         const _src = src.bind(src, key)();
@@ -291,9 +408,9 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         return {
             upload,
             bg: _bg,
-            src: _src
-        }
-    }
+            src: _src,
+        };
+    };
 
     const arrayImgKit = (index: number, key: keyof T, arrayOrigin: any) => {
         validateKey(key, index);
@@ -304,31 +421,43 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
                 "data-edit": editable ? "img" : "",
                 "data-img": "img",
                 "data-imgkey": "partner",
-                src: page[key][lang][index]["img"]
+                src: page[key][lang][index]["img"],
             },
             upload: (url: string) => {
-                editArray("partners", index, { ...arrayOrigin, img: url })
+                editArray("partners", index, { ...arrayOrigin, img: url });
             },
-        }
-    }
+        };
+    };
 
-    const get = (key: keyof T, index?: number) => {
-        validateKey(key)
+    const get = (key: keyof T, index?: number, key2?: string) => {
+        validateKey(key, index);
 
-        if (index !== undefined) {
-            if (page[key].value) {
-                return page[key].value[index]
+        //인덱스가 있는지 검사하고 인데스를 리턴한다.
+        const getIndex = (val: any) => {
+            if (index !== undefined) {
+                return val[index];
             } else {
-                return page[key][lang][index];
+                return val;
             }
-        }
+        };
+        const getSecondKey = (val: any) => {
+            if (key2 !== undefined) {
+                return val[key2];
+            } else {
+                return val;
+            }
+        };
+        // value가 있는지 검사하고 value를 리턴한데
+        const getLangCheck = (val: any) => {
+            if (val.value !== undefined) {
+                return val.value;
+            } else {
+                return val[lang];
+            }
+        };
 
-        if (page[key].value) {
-            return page[key].value
-        } else {
-            return page[key][lang];
-        }
-    }
+        return getSecondKey(getIndex(getLangCheck(page[key])));
+    };
 
     const linkEdit = (key: keyof T) => {
         validateKey(key);
@@ -338,16 +467,15 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
             link,
             editable: !!editable,
             editLink: (link: string) => {
-                page[key][lang] = link
-            }
-        }
-    }
-
+                page[key][lang] = link;
+            },
+        };
+    };
 
     // 에디터 모드이거나 값이 있으면 출력함
-    const view = (key: keyof T) => editMode || get(key)
+    const view = (key: keyof T) => editMode || get(key);
 
-    arrayImgKit
+    arrayImgKit;
     return {
         get,
         page,
@@ -358,10 +486,12 @@ export const getEditUtils = <T extends { [key: string]: any }>(editMode: boolean
         imgEdit,
         editArray,
         addArray,
+        unShiftArray,
         removeArray,
         arrayImgKit,
+        objectArrayUlEdit,
         bg,
         src,
         imgKit: imgKit as any,
-    }
-}
+    };
+};

@@ -358,3 +358,32 @@ background-color: #fff;
     pointer-events: none;
     background-color: #999!important;
 }
+
+.RangeExample .DayPicker  {
+    width: 100%;
+}
+
+.RangeExample .DayPicker-Month {
+    flex: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.master_box  .productGroup .droppable {
+    display: flex!important;
+    overflow: auto;
+}
+
+.master_box  .productGroup .droppable li {
+    min-width: 130px;
+}

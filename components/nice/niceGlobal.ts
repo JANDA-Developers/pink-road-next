@@ -1,4 +1,6 @@
 import $ from "jquery";
+import { removeBracket } from "../../utils/Storage";
+import { Basket } from "../basket/Basket";
 //pc, mobile chack script (sample code)
 export function checkPlatform(ua: any) {
   if (ua === undefined) {
@@ -55,7 +57,8 @@ export function checkPlatform(ua: any) {
 }
 
 
-function jdPayCallBackSucess() {}
+function jdPayCallBackSucess() {
+}
 //[PC Only]
 export function PCnicepaySubmit() {
   const target = $("form[name=payForm]");
