@@ -124,7 +124,7 @@ export const BookingModal: React.FC<IProp> = ({
             variables: {
                 id: booking?._id || "",
                 params: {
-                    travelers: omits(bookingCopy.travelers),
+                    travelers: omits(bookingCopy?.travelers),
                     memo,
                 },
             },
