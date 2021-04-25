@@ -6,6 +6,7 @@ import PageLoading from '../../../Loading';
 import Page404 from '../../../404';
 import { auth } from '../../../../utils/with';
 import { ALLOW_ADMINS } from '../../../../types/const';
+import { nameOf } from '../../../../utils/enumToKr';
 
 interface IProp {
 }
@@ -48,7 +49,7 @@ export const QnaDetail: React.FC<IProp> = () => {
             onList={toList}
             thumb={thumb}
             content={contents}
-            writer={author?.name || ""}
+            writer={nameOf(author)}
             title={title}
             subTitle={subTitle || ""}
             onDelete={handleDelete}

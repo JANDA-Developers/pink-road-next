@@ -121,7 +121,7 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">사이트로고</div>
                                 </div>
                                 <div className="t02">
-                                    <p>{logoTop?.name}</p>
+                                    <p>{logoTop?.name}<i className="flaticon-multiply" /></p>
                                     <div className="txt"><input onChange={upload("logoTop")} className="w50" type="file" /></div>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                     <div className="title">사이트로고(하단)</div>
                                 </div>
                                 <div className="t02">
-                                    <p>{logoBottom?.name}</p>
+                                    <p>{logoBottom?.name}<i className="flaticon-multiply" /></p>
                                     <div className="txt"><input onChange={upload("logoBottom")} className="w50" type="file" /></div>
                                 </div>
                             </div>
@@ -141,6 +141,7 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                 </div>
                                 <div className="t02">
                                     <div className="txt">
+                                        {/* <p>{compnanyIntoduceFile?.name}<i className="flaticon-multiply" /></p> */}
                                         <input name={"compnayIntorudceFile"} onChange={upload("compnanyIntoduceFile")} className="w50" type="file" />
                                     </div>
                                 </div>
@@ -289,16 +290,18 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                 <div className="tbody">
                                     <div className="t01">
                                         <div className="title overflowEllipsis">{name}</div>
+
                                     </div>
                                     <div className="t02">
                                         <div className="txt">
                                             <input name={"bottomLogo" + index} onChange={uploadPartnerFooter} className="w50" type="file" />
                                         </div>
                                     </div>
-                                    <button style={{
+                                    {/* <button style={{
                                         height: "min-content",
                                         whiteSpace: "nowrap"
-                                    }} onClick={removePartnerFooter(index)} type="submit" className="btn medium">삭제하기</button>
+                                    }} onClick={removePartnerFooter(index)} type="submit" className="btn medium">삭제하기</button> */}
+                                    <i onClick={removePartnerFooter(index)} className="flaticon-multiply"></i>
                                 </div>
                             )}
 
@@ -367,10 +370,13 @@ export const MsHomepageMain: React.FC<IProps> = ({ }) => {
                                 <div className="t02">
                                     <div className="txt">
                                         <p>{logo?.name}</p>
-                                        <input  onChange={upload("logo")} className="w50" type="file" />
+                                        <input onChange={upload("logo")} className="w50" type="file" />
                                         <p className="infotxt_gray">페이스북 공유 시 문서에 이미지가 없으면 기본 이미지로 사용됩니다. (추천 : 1200x600, 600x315, 200x200)</p>
                                         {/* 첨부파일 미리보기 이미지 */}
-                                        <img className="mt15 w50" src={homepage?.logo?.uri || DEFAULT_LOGO} alt="첨부파일 미리보기" />
+                                        <div className="img__viewbox">
+                                            <img className="mt15 w50" src={homepage?.logo?.uri || DEFAULT_LOGO} alt="첨부파일 미리보기" />
+                                            <i className="flaticon-multiply"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

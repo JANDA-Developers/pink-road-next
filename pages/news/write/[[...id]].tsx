@@ -31,8 +31,8 @@ export const NewsWrite: React.FC<IProp> = () => {
     const { item: news } = useNewsFindById(id);
     const mode = id ? "edit" : "create";
 
-    const goToView = (id: string) => {
-        router.push(`/news/view/${id}`)
+    const goToView = (id: string, type: NEWS_TYPE) => {
+        router.push(`/news/view/${id}?type=` + type)
     }
 
     const [newsUpdate] = useNewsUpdate({
@@ -40,7 +40,8 @@ export const NewsWrite: React.FC<IProp> = () => {
         onCompleted: ({ NewsUpdate }) => {
             if (NewsUpdate.ok) {
                 const id = NewsUpdate.data!._id;
-                goToView(id)
+                const type = NewsUpdate.data.type
+                goToView(id, type)
             }
         },
     })
@@ -50,7 +51,8 @@ export const NewsWrite: React.FC<IProp> = () => {
         onCompleted: ({ NewsCreate }) => {
             if (NewsCreate.ok) {
                 const id = NewsCreate.data!._id;
-                goToView(id)
+                const type = NewsCreate.data.type
+                goToView(id, type)
             }
         },
     })
@@ -99,11 +101,10 @@ export const NewsWrite: React.FC<IProp> = () => {
 
         const createParams = {
             ...boardData,
-            content: boardData.contents,
             type: boardData.categoryId as NEWS_TYPE
         }
 
-        const next = omits(createParams, ["contents", "categoryId"])
+        const next = omits(createParams, ["categoryId"])
 
         newsCreate({
             variables: {
@@ -161,7 +162,6 @@ export const NewsWrite: React.FC<IProp> = () => {
             category: true,
             thumb: true,
             title: true,
-            open: true
         }}
     />
 };

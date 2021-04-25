@@ -1,10 +1,15 @@
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import { BoardWrite, TCategory } from "components/board/Write";
 import { useBoard } from "hook/useBoard";
 import { omits } from "../../../../utils/omit";
 import { Validater } from "../../../../utils/validate";
-import { useQuestionCreate, useQuestionDelete, useQuestionFindById, useQuestionUpdate } from "../../../../hook/useQuestion";
+import {
+    useQuestionCreate,
+    useQuestionDelete,
+    useQuestionFindById,
+    useQuestionUpdate,
+} from "../../../../hook/useQuestion";
 import { getFromUrl } from "../../../../utils/url";
 import { AppContext } from "../../../_app";
 import { ProductSelectModal } from "../../../../components/ProductSelectModal";
@@ -13,7 +18,7 @@ import { ThreePhoneNumberInput } from "../../../../components/phoneNumberInput/P
 import { isPhone } from "../../../../utils/validation";
 import { QuestionUpdateInput } from "../../../../types/api";
 
-interface IProp { }
+interface IProp {}
 
 export const QuestionWrite: React.FC<IProp> = () => {
     const router = useRouter();
@@ -23,69 +28,84 @@ export const QuestionWrite: React.FC<IProp> = () => {
     const { item: question } = useQuestionFindById(id, {
         variables: {
             id,
-            password: pw
-        }
+            password: pw,
+        },
     });
     const mode = id ? "edit" : "create";
     const urlProductId = getFromUrl("pid") || "";
     const urlProductName = getFromUrl("name") || "";
     const [password, setPassword] = useState("");
-    const [name, setName] = useState("")
+    const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState({
         one: "",
         two: "",
-        three: ""
-    })
+        three: "",
+    });
 
-
-    const categoryList = categoriesMap?.QUESTION.map((cat): TCategory => ({
-        _id: cat._id,
-        label: cat.label
-    }))
+    const categoryList = categoriesMap?.QUESTION.map(
+        (cat): TCategory => ({
+            _id: cat._id,
+            label: cat.label,
+        })
+    );
 
     //아래 대충 상품캣 찾는 로직
-    const productCat = categoryList.find(cat => cat.label.includes("상품"));
-
+    const productCat = categoryList.find((cat) => cat.label.includes("상품"));
 
     const [questionUpdateMu] = useQuestionUpdate({
         onCompleted: ({ QuestionUpdate }) => {
             if (QuestionUpdate.ok) {
+                const _pw = password || pw;
                 const id = QuestionUpdate.data!._id;
-                router.push(`/member/question/view/${id}`)
+                const to = `/member/question/view/${id}`;
+
+                router.push(to + "?pw=" + _pw);
             }
         },
-        awaitRefetchQueries: true
-    })
+        awaitRefetchQueries: true,
+    });
 
     const [questionCreateMu] = useQuestionCreate({
         onCompleted: ({ QuestionCreate }) => {
             if (QuestionCreate.ok) {
                 const id = QuestionCreate.data!._id;
-                const pidParam = urlProductId ? "?pid=" + urlProductId : "";
-                router.push(`/member/question/view/${id}` + pidParam)
+                const toPid = password || urlProductId;
+                const pidParam = urlProductId ? "?pid=" + toPid : "";
+                router.push(`/member/question/view/${id}` + pidParam);
             }
         },
-        awaitRefetchQueries: true
-    })
+        awaitRefetchQueries: true,
+    });
 
     const [questionDeleteMu] = useQuestionDelete({
         onCompleted: ({ QuestionDelete }) => {
-            if (QuestionDelete.ok) 2
-            router.push(`/member/question`)
+            if (QuestionDelete.ok) 2;
+            router.push(`/member/question`);
         },
-    })
+    });
 
-    const boardHook = useBoard({
-        ...question,
-        categoryId: question?.category?._id || (urlProductId ? productCat?._id : undefined)
-    }, { storeKey: "questionWrite" });
-
+    const boardHook = useBoard(
+        {
+            ...question,
+            categoryId:
+                question?.category?._id ||
+                (urlProductId ? productCat?._id : undefined),
+        },
+        { storeKey: "questionWrite" }
+    );
 
     const isProductMode = productCat?._id === boardHook.boardData.categoryId;
 
     const [productId, setProductId] = useState(urlProductId);
-    const [productName, setProductName] = useState(urlProductName)
-    const { boardData, loadKey, handleCancel, handleLoad, handleTempSave, setBoardData } = boardHook
+    const [productName, setProductName] = useState(urlProductName);
+    const {
+        boardData,
+        loadKey,
+        handleCancel,
+        handleLoad,
+        handleTempSave,
+        setBoardData,
+    } = boardHook;
     const contact = phoneNumber.one + phoneNumber.three + phoneNumber.two;
 
     const { validate } = new Validater([
@@ -109,8 +129,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
             value: boardData.contents,
             failMsg: "콘텐츠 값은 필수 입니다.",
         },
-    ]
-    );
+    ]);
 
     const next: QuestionUpdateInput = {
         ...boardData,
@@ -118,46 +137,44 @@ export const QuestionWrite: React.FC<IProp> = () => {
         password,
         anonymousContact: contact,
         anonymousName: name,
-    }
+    };
 
     const handleUpdate = () => {
         if (!validate()) return;
 
         const params = {
             ...boardData,
-        }
+        };
 
         questionUpdateMu({
             variables: {
                 params: omits(params, ["categoryId"]),
-                id
-            }
-        })
-    }
+                id,
+            },
+        });
+    };
 
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
             questionDeleteMu({
                 variables: {
-                    id
-                }
-            })
-    }
+                    id,
+                },
+            });
+    };
 
     const handleCreate = () => {
-        if (!validate()) return
-
-
+        if (!validate()) return;
 
         questionCreateMu({
             variables: {
                 params: {
                     ...omits(next, ["categoryId" as any]),
-                    productId: productId ? productId : undefined
-                }
-            }
-        })
-    }
+                    productId: productId ? productId : undefined,
+                },
+            },
+        });
+    };
 
     useEffect(() => {
         setBoardData({
@@ -166,98 +183,111 @@ export const QuestionWrite: React.FC<IProp> = () => {
             title: question?.title,
             contents: question?.contents,
             categoryId: question?.category?._id,
-        })
-        setProductId(urlProductId || question?.product?._id || "")
-    }, [question?._id])
+        });
+        setProductId(urlProductId || question?.product?._id || "");
+    }, [question?._id]);
 
-
-    return <div>
-        <BoardWrite
-            className={urlProductId ? "boardWrite--categoryFix" : ""}
-            categoryList={categoryList}
-            WriteInjection={
-                <div>
-                    {
-                        isProductMode ? <div className="write_type">
-                            <div className="title">상품명</div>
-                            <div className="input_form">
-                                <input onFocus={openModal("#ProductSelectModal")} readOnly={!!urlProductName} id="title" value={productName} type="text" name="title" className="inputText w100" />
-                            </div>
-                        </div> : <div />
-                    }
-                    {isLogin ||
-                        <div>
+    return (
+        <div>
+            <BoardWrite
+                className={urlProductId ? "boardWrite--categoryFix" : ""}
+                categoryList={categoryList}
+                WriteInjection={
+                    <div>
+                        {isProductMode ? (
                             <div className="write_type">
-                                <div className="title">패스워드</div>
+                                <div className="title">상품명</div>
                                 <div className="input_form">
                                     <input
-                                        onChange={(e) => {
-                                            const val = e.currentTarget.value
-                                            setPassword(val)
-                                        }}
-                                        value={password}
-                                        type="password"
-                                        name="summary"
-                                        className="inputText"
-                                    />
-                                </div>
-                            </div>
-                            <div className="write_type">
-                                <div className="title">성함</div>
-                                <div className="input_form">
-                                    <input
-                                        onChange={(e) => {
-                                            const val = e.currentTarget.value
-                                            setName(val)
-                                        }}
-                                        value={name}
+                                        onFocus={openModal(
+                                            "#ProductSelectModal"
+                                        )}
+                                        readOnly={!!urlProductName}
+                                        id="title"
+                                        value={productName}
                                         type="text"
-                                        name="summary"
-                                        className="inputText"
+                                        name="title"
+                                        className="inputText w100"
                                     />
                                 </div>
                             </div>
-                            <div className="write_type">
-                                <div className="title">연락처</div>
-                                <div className="input_form">
-                                    <ThreePhoneNumberInput
-                                        onChange={setPhoneNumber}
-                                        value={phoneNumber} />
+                        ) : (
+                            <div />
+                        )}
+                        {isLogin || (
+                            <div>
+                                <div className="write_type">
+                                    <div className="title">패스워드</div>
+                                    <div className="input_form">
+                                        <input
+                                            onChange={(e) => {
+                                                const val =
+                                                    e.currentTarget.value;
+                                                setPassword(val);
+                                            }}
+                                            value={password}
+                                            type="password"
+                                            name="summary"
+                                            className="inputText"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="write_type">
+                                    <div className="title">성함</div>
+                                    <div className="input_form">
+                                        <input
+                                            onChange={(e) => {
+                                                const val =
+                                                    e.currentTarget.value;
+                                                setName(val);
+                                            }}
+                                            value={name}
+                                            type="text"
+                                            name="summary"
+                                            className="inputText"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="write_type">
+                                    <div className="title">연락처</div>
+                                    <div className="input_form">
+                                        <ThreePhoneNumberInput
+                                            onChange={setPhoneNumber}
+                                            value={phoneNumber}
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    }
-
-                </div>
-            }
-            boardHook={boardHook}
-            key={loadKey + (question?._id || "") + productId}
-            mode={mode}
-            useTextarea
-            onCancel={handleCancel}
-            onCreate={handleCreate}
-            onDelete={handleDelete}
-            onEdit={handleUpdate}
-            onSave={handleTempSave}
-            onLoad={handleLoad}
-            opens={{
-                category: true,
-                title: true,
-                open: true,
-                files: true,
-            }}
-        />
-        <ProductSelectModal
-            id="ProductSelectModal"
-            onSelect={(pd) => {
-                setProductId(pd._id);
-                setProductName(pd.title);
-                closeModal("#ProductSelectModal")()
-            }} />
-    </div>
+                        )}
+                    </div>
+                }
+                boardHook={boardHook}
+                key={loadKey + (question?._id || "") + productId}
+                mode={mode}
+                useTextarea
+                onCancel={handleCancel}
+                onCreate={handleCreate}
+                onDelete={handleDelete}
+                onEdit={handleUpdate}
+                onSave={handleTempSave}
+                onLoad={handleLoad}
+                opens={{
+                    category: true,
+                    title: true,
+                    open: true,
+                    files: true,
+                }}
+            />
+            <ProductSelectModal
+                id="ProductSelectModal"
+                onSelect={(pd) => {
+                    setProductId(pd._id);
+                    setProductName(pd.title);
+                    closeModal("#ProductSelectModal")();
+                }}
+            />
+        </div>
+    );
 };
 
-
-
-
-export default QuestionWrite
+export default QuestionWrite;

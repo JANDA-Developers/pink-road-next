@@ -10,5 +10,5 @@ import { generateFindQuery, generateListQueryHook, generateMutationHook } from "
 export const useQnaFindById = generateFindQuery<qnaFindById,qnaFindByIdVariables,qnaFindById_QnaFindById_data>("_id",QNA_FIND_BY_ID);
 export const useQnaList = generateListQueryHook<_QnaFilter,_QnaSort,qnaList,qnaListVariables,qnaList_QnaList_data>(QNA_LIST, {initialSort: [_QnaSort.createdAt_desc]});
 export const useQnaCreate = generateMutationHook<qnaCreate,qnaCreateVariables>(QNA_CREATE,{...getRefetch(QNA_FIND_BY_ID,QNA_LIST)});
-export const useQnaDelete = generateMutationHook<qnaDelete,qnaDeleteVariables>(QNA_DELETE,{...getRefetch(QNA_FIND_BY_ID,QNA_LIST)});
+export const useQnaDelete = generateMutationHook<qnaDelete,qnaDeleteVariables>(QNA_DELETE,{...getRefetch(QNA_LIST)});
 export const useQnaUpdate = generateMutationHook<qnaUpdate, qnaUpdateVariables>(QNA_UPDAET,{...getRefetch(QNA_FIND_BY_ID,QNA_LIST)});

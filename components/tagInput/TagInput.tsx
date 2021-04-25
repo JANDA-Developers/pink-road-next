@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { IDiv } from "../../types/interface";
-import classnames from 'classnames';
+import classnames from "classnames";
 
 interface IProp extends IDiv {
     tags: string[];
@@ -42,27 +42,42 @@ export const TagInput: React.FC<IProp> = ({
                             className="JDtagInput__close"
                             onClick={() => {
                                 handleDelete(i);
-                            }}>X</i>
+                            }}
+                        >
+                            X
+                        </i>
                     </span>
                 ))}
             </div>
-            <input
-                ref={ref}
-                className="JDtagInput__input"
-                onKeyDown={e => {
-                    const value = e.currentTarget.value;
-                    if (e.key === "Enter") {
-                        if (value) {
-                            handleAddition(value);
-                            if (ref.current) ref.current.value = "";
+
+            <div style={{ display: "flex" }}>
+                <input
+                    ref={ref}
+                    className="JDtagInput__input"
+                    onKeyDown={(e) => {
+                        const value = e.currentTarget.value;
+                        if (e.key === "Enter") {
+                            if (value) {
+                                handleAddition(value);
+                                if (ref.current) ref.current.value = "";
+                            }
+                        } else if (e.key == "Backspace") {
+                            if (!value) {
+                                handleDelete(tags.length - 1);
+                            }
                         }
-                    } else if (e.key == "Backspace") {
-                        if (!value) {
-                            handleDelete(tags.length - 1);
-                        }
-                    }
-                }}
-            />
+                    }}
+                />
+                <button
+                    className="btn JDtagInput__tagsBtn"
+                    onClick={() => {
+                        const val = ref.current.value;
+                        handleAddition(val);
+                    }}
+                >
+                    추가하기
+                </button>
+            </div>
         </div>
     );
 };
