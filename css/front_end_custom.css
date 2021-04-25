@@ -99,6 +99,11 @@ td {
 }
 
 /* 아래 Deprecated 예정*/
+[data-edit="editUl"] li {
+    width: 100%; 
+}
+
+/* 아래 Deprecated 예정*/
 [data-edit="bg"] { 
     position: relative;
 }

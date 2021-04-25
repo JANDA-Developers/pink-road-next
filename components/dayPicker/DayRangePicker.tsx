@@ -1,24 +1,32 @@
-import React from 'react';
-import Head from 'next/head';
-import RCDayPicker, { DateUtils, DayPickerProps } from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
-import { ISet, TElements } from 'types/interface';
-import dayjs from 'dayjs';
+import React from "react";
+import Head from "next/head";
+import RCDayPicker, { DateUtils, DayPickerProps } from "react-day-picker";
+import "react-day-picker/lib/style.css";
+import { ISet, TElements } from "types/interface";
+import dayjs from "dayjs";
 
 type Range = {
-    from?: Date,
-    to?: Date
-}
+    from?: Date;
+    to?: Date;
+};
 type ThandleSate = (range: Range) => void;
 interface IProps extends DayPickerProps {
-    from?: Date,
-    to?: Date,
-    isRange?: boolean
-    onRangeChange: ThandleSate
-    Header?: TElements
+    from?: Date;
+    to?: Date;
+    isRange?: boolean;
+    onRangeChange: ThandleSate;
+    Header?: TElements;
 }
 
-export const DayRangePicker: React.FC<IProps> = ({ Header, from, to, onRangeChange, isRange = true, children, ...props }) => {
+export const DayRangePicker: React.FC<IProps> = ({
+    Header,
+    from,
+    to,
+    onRangeChange,
+    isRange = true,
+    children,
+    ...props
+}) => {
     const defaultProps = {
         numberOfMonths: 2,
     };
@@ -26,7 +34,7 @@ export const DayRangePicker: React.FC<IProps> = ({ Header, from, to, onRangeChan
     function handleDayClick(day: any) {
         if (!isRange) {
             onRangeChange({ from: day, to: day });
-            return
+            return;
         }
 
         // 선택한 날자 뒤를 누른경우에
@@ -47,7 +55,6 @@ export const DayRangePicker: React.FC<IProps> = ({ Header, from, to, onRangeChan
         } else {
             onRangeChange({ from: from, to: day });
         }
-
     }
 
     function handleResetClick() {
@@ -78,18 +85,18 @@ export const DayRangePicker: React.FC<IProps> = ({ Header, from, to, onRangeChan
     border-radius: 0 !important;
   }
   .Selectable .DayPicker-Day--start {
-    border-top-left-radius: 50% !important;
-    border-bottom-left-radius: 50% !important;
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
   }
   .Selectable .DayPicker-Day--end {
-    border-top-right-radius: 50% !important;
-    border-bottom-right-radius: 50% !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
   }
 `}</style>
             </Head>
             {children}
         </div>
     );
-}
+};
 
 export default DayRangePicker;

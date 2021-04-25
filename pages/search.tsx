@@ -344,7 +344,6 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
                                     router.push("tour/list");
                                 }}
                             />
-
                             {/* QnA만 노출 */}
                             <SearchList
                                 title="QnA"

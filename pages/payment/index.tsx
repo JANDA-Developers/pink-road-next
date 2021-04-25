@@ -30,7 +30,6 @@ export const Payment: React.FC<IProp> = ({ }) => {
     const { items, totalPrice, updateComponent, getLoading }: IUseBasket = useBasket()
     const router = useRouter();
 
-
     const handleBooking = (param: TPaySubmitInfo) => {
         const params: BookingsCreateInput[] = items.map((item, i) => ({
             adultCount: item.count.adult,
@@ -64,6 +63,10 @@ export const Payment: React.FC<IProp> = ({ }) => {
                     groupCode,
                     redirectUrl,
                     failRedirectUrl
+                }
+
+                window.jdPayCallBackSucess = () => {
+
                 }
 
                 setCreatedBookings(bks);

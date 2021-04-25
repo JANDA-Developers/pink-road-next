@@ -1,55 +1,77 @@
-import React, { useState } from 'react';
-import { useNewsList } from '../../hook/useNews';
-import { useProductList } from '../../hook/useProduct';
-import { generateListQueryHook } from '../../utils/query';
-import SortSelect from '../common/SortMethod';
-import { ViewCount } from '../common/ViewCount';
-import { ViewSelect } from '../common/ViewSelect';
-import { BoardListBlock } from '../list/BoardListBlock';
-import { ProductListBlock } from '../list/ProductList';
-import { ProductPhotoBlock } from '../list/ProductPhoto';
+import React, { useState } from "react";
+import { useNewsList } from "../../hook/useNews";
+import { useProductList } from "../../hook/useProduct";
+import isEmpty from "../../utils/isEmpty";
+import { generateListQueryHook } from "../../utils/query";
+import SortSelect from "../common/SortMethod";
+import { ViewCount } from "../common/ViewCount";
+import { ViewSelect } from "../common/ViewSelect";
+import { BoardListBlock } from "../list/BoardListBlock";
+import { ProductListBlock } from "../list/ProductList";
+import { ProductPhotoBlock } from "../list/ProductPhoto";
 
 interface IProp {
     onClickViewMore: () => void;
     title: string;
-    listQuery: ReturnType<typeof generateListQueryHook>
-    listQueryVariables: Parameters<ReturnType<typeof generateListQueryHook>>
+    listQuery: ReturnType<typeof generateListQueryHook>;
+    listQueryVariables: Parameters<ReturnType<typeof generateListQueryHook>>;
 }
 
-export const SearchList: React.FC<IProp> = ({ listQuery, title, onClickViewMore, listQueryVariables }) => {
-    const { setSort, setViewCount, sort, viewCount, pageInfo, items } = listQuery(...listQueryVariables);
+export const SearchList: React.FC<IProp> = ({
+    listQuery,
+    title,
+    onClickViewMore,
+    listQueryVariables,
+}) => {
+    const {
+        setSort,
+        setViewCount,
+        sort,
+        viewCount,
+        pageInfo,
+        items,
+    } = listQuery(...listQueryVariables);
 
-
-    return <div>
-        <div id="ProductViewer" className="con_box">
-            <div className="alignment">
-                <div className="left_div">
-                    <h5>{title}<strong>{pageInfo.totalCount}</strong></h5>
-                </div>
-                <div className="right_div">
-                    <SortSelect onChange={setSort} sort={sort as any} />
-                    {/* <ViewCount value={viewCount} onChange={setViewCount} /> */}
-                </div>
-            </div>
-
-            <div className="board_list st05">
-                <div className="tbody">
-                    <div >
-                        <ul >
-                            {items.map(baord => (
-                                <BoardListBlock board={baord as any} key={(baord as any)._id} />
-                            ))}
-                        </ul>
+    return (
+        <div>
+            <div id="ProductViewer" className="con_box">
+                <div className="alignment">
+                    <div className="left_div">
+                        <h5>
+                            {title}
+                            <strong>{pageInfo.totalCount}</strong>
+                        </h5>
+                    </div>
+                    <div className="right_div">
+                        <SortSelect onChange={setSort} sort={sort as any} />
+                        {/* <ViewCount value={viewCount} onChange={setViewCount} /> */}
                     </div>
                 </div>
-            </div>
-            {/*   <Paginater setPage={setBoardPage} pageInfo={paging} />
+
+                <div className="board_list st05">
+                    <div className="tbody">
+                        <div>
+                            {isEmpty(items) && "검색 결과가 없습니다."}
+                            <ul>
+                                {items.map((baord) => (
+                                    <BoardListBlock
+                                        board={baord as any}
+                                        key={(baord as any)._id}
+                                    />
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {/*   <Paginater setPage={setBoardPage} pageInfo={paging} />
     <Paginater setPage={setPage} pageInfo={pageInfo} /> */}
-            <div onClick={onClickViewMore} className="Allsearch__plusBtn">
-                {title} 더보기 <i className="jandaicon-arr4-right plus "></i>
+                <div onClick={onClickViewMore} className="Allsearch__plusBtn">
+                    {title} 더보기{" "}
+                    <i className="jandaicon-arr4-right plus "></i>
+                </div>
             </div>
         </div>
-    </div>
+    );
 };
 
 // {isProdView && <div>
