@@ -79,7 +79,16 @@ export const PurChasedItem: React.FC<IProp> = ({
                     </div>
                 </div>
                 <div className="bottom_info">
-                    {status && <BookingStatusBadge square status={status} />}
+                    {status && (
+                        <BookingStatusBadge
+                            square
+                            status={status}
+                            title={
+                                status === BookingStatus.READY &&
+                                "24시간이내에 입금을 완료하지 않으면 자동 예약취소가 됩니다."
+                            }
+                        />
+                    )}
                 </div>
             </div>
             <div className="txt2">

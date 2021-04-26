@@ -3336,7 +3336,21 @@ i.icon_plus {
 .mobile__select .mobile-select-1:checked ~ label i {
   transform: rotate(180deg);
 }
-
+.login__text{
+  position: relative;
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  padding: 7px 0px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.login__text strong{
+  font-size: 1.3em !important;
+ position: relative !important;
+ left: inherit !important;
+ top: inherit !important;
+}
 @media (min-width: 768px) {
   .pc {
     display: none;
@@ -3417,6 +3431,13 @@ i.icon_plus {
 }
 
 @media (min-width: 1000px) {
+  .login__text{
+    display: none;
+    text-align: right;
+    width: 78%;
+    margin: 0 auto;
+    padding: 0;
+  }
   .search_top .hang .input_box:first-child {
     margin-right: 0;
   }
@@ -3896,6 +3917,7 @@ i.icon_plus {
   .m {
     display: none;
   }
+
   .header {
     height: 92px;
   }

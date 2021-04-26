@@ -389,13 +389,12 @@ export const BookingModal: React.FC<IProp> = ({
                                             <i className="jandaicon-info2"></i>
                                             예약은 걸었으나 입금이 되지
                                             않았습니다. <br />
-                                            1일 이내에 입금을 하지 않으시면 취소
-                                            됩니다.
-                                            <br />
-                                            남은시간{" "}
+                                            24시간 이내에 입금을 하지 않으시면
+                                            예약은 취소 됩니다.
+                                            {/*  <br /> 남은시간{" "}
                                             {dayjs(booking.leftTime).format(
                                                 "HH:mm"
-                                            )}
+                                            )} */}
                                         </span>
                                     )}
                                 </div>
@@ -418,7 +417,12 @@ export const BookingModal: React.FC<IProp> = ({
                                 </h4>
                                 <div className="info_table w50">
                                     <div className="tr">
-                                        <div className="th01">예약메모</div>
+                                        <div
+                                            className="th01"
+                                            title="예약자가 예약시에 입력한 메모입니다."
+                                        >
+                                            예약메모
+                                        </div>
                                         <div className="td01">
                                             <span className="lineHeight-2">
                                                 {booking.message}
@@ -472,7 +476,12 @@ export const BookingModal: React.FC<IProp> = ({
                                     )}
                                     {booking.isCancelRequest && (
                                         <div className="tr">
-                                            <div className="th01">취소사유</div>
+                                            <div
+                                                className="th01"
+                                                title="관리자가 최종으로 취소할때 입력한 취소사유입니다."
+                                            >
+                                                취소사유
+                                            </div>
                                             <div className="td01">
                                                 <span className="lineHeight-2">
                                                     {booking.cancelMemo}
@@ -698,73 +707,79 @@ export const BookingModal: React.FC<IProp> = ({
                                 </div>
                             </div>
                         )}
-
+                        {/* 
                         {(cancelReqAB ||
                             cancleAB ||
                             cancelDenyAB ||
-                            bankDepositAB) && (
-                            <div className="fin ifMobile">
-                                <div className="float_left">
-                                    {/* 취소요청 */}
-                                    {cancelReqAB && (
-                                        <button
-                                            onClick={handleOpenPrompt(
-                                                "cancelReq",
-                                                "취소 요청 사유를 입력 해주세요."
-                                            )}
-                                            type="submit"
-                                            className="btn medium"
-                                        >
-                                            취소요청
-                                        </button>
-                                    )}
+                            bankDepositAB) && ( */}
+                        <div className="fin ifMobile mb30">
+                            <div className="float_left">
+                                {/* 취소요청 */}
+                                {cancelReqAB && (
+                                    <button
+                                        onClick={handleOpenPrompt(
+                                            "cancelReq",
+                                            "취소 요청 사유를 입력 해주세요."
+                                        )}
+                                        type="submit"
+                                        className="btn medium"
+                                    >
+                                        취소요청
+                                    </button>
+                                )}
 
-                                    {/* 취소완료 */}
-                                    {cancleAB && (
-                                        <button
-                                            onClick={handleOpenRefundModal}
-                                            type="submit"
-                                            className="btn medium"
-                                        >
-                                            취소하기
-                                        </button>
-                                    )}
+                                {/* 취소완료 */}
+                                {cancleAB && (
+                                    <button
+                                        onClick={handleOpenRefundModal}
+                                        type="submit"
+                                        className="btn medium"
+                                    >
+                                        취소하기
+                                    </button>
+                                )}
 
-                                    {/* 취소거절 */}
-                                    {cancelDenyAB && (
-                                        <button
-                                            onClick={handleOpenPrompt(
-                                                "cancelReject",
-                                                "취소를 거절 사유를 입력해주세요."
-                                            )}
-                                            type="submit"
-                                            className="btn medium"
-                                        >
-                                            취소거절
-                                        </button>
-                                    )}
+                                {/* 취소거절 */}
+                                {cancelDenyAB && (
+                                    <button
+                                        onClick={handleOpenPrompt(
+                                            "cancelReject",
+                                            "취소를 거절 사유를 입력해주세요."
+                                        )}
+                                        type="submit"
+                                        className="btn medium"
+                                    >
+                                        취소거절
+                                    </button>
+                                )}
 
-                                    {/* 입금완료 처리 */}
-                                    {bankDepositAB && (
-                                        <button
-                                            onClick={handleBankDeposit}
-                                            type="submit"
-                                            className="btn medium"
-                                        >
-                                            입금완료
-                                        </button>
-                                    )}
-                                </div>
-                                <div className="float_right">
-                                    {/* <button type="submit" className="btn medium mr5">
+                                {/* 입금완료 처리 */}
+                                {bankDepositAB && (
+                                    <button
+                                        onClick={handleBankDeposit}
+                                        type="submit"
+                                        className="btn medium"
+                                    >
+                                        입금완료
+                                    </button>
+                                )}
+                            </div>
+                            <div className="float_right">
+                                <button
+                                    onClick={handleUpdateBooking}
+                                    className="btn medium"
+                                >
+                                    저장
+                                </button>
+                                {/* <button type="submit" className="btn medium mr5">
                                 수정하기
                                 </button>
                             <button type="submit" className="btn medium">
                                 저장하기
                             </button> */}
-                                </div>
                             </div>
-                        )}
+                        </div>
+                        {/* )} */}
                     </div>
                 </div>
                 <RefundModal

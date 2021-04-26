@@ -2999,14 +2999,13 @@ div.master_popup .info_page .info_table .tr > div {
   display: inline-block;
   width: auto;
   vertical-align: top;
-  text-align: center;
   font-weight: 600;
   line-height: 32px;
   padding: 0;
   box-sizing: border-box;
   flex-grow: 1;
   flex: 1 1;
-  text-align: center!important;
+  text-align: left !important;
   margin:0px!important;
 }
 div.master_popup .peoplelist .tr.first > div {
@@ -3282,6 +3281,9 @@ div.master_popup div.alignment {
   text-align: left;
   box-sizing: border-box;
   padding: 0 20px;
+}
+.master_box .master__table .tbody.no__recervation{
+  background-color:rgb(255 245 245);
 }
 @media (min-width: 768px) {
   .master_box .goods .td10 .btn {
@@ -4161,6 +4163,7 @@ div.master_popup div.alignment {
     font-size: 1em;
     line-height: 34px;
     margin-bottom: 0;
+    text-align: center !important;
   }
 
   div.master_popup .info_page div[class*="th0"] {
@@ -4704,6 +4707,39 @@ div.master_popup div.alignment {
 }
 
 @media (max-width: 767px) {
+  div.master_popup .cut_nev > i{
+    transform: scale(0.6); 
+  }
+  div.master_popup .info_page div[class*="th0"],
+  div.master_popup .info_page .info_table .tr .re02,
+  div.master_popup .info_page .info_table .tr .re04,
+  div.master_popup .info_page .info_table .tr .re06,
+  div.master_popup .info_page .info_table .tr .re08{
+    padding-top: 7px !important;
+  }
+  div.master_popup .peoplelist .tr .re01{
+    font-size: 1.5em;
+    padding-bottom: 9px !important;
+  }
+  div.master_popup .info_page div[class*="td0"]{
+    padding-bottom: 7px !important;
+  }
+
+  div.master_popup .top02{
+    margin: 0;
+  }
+  div.master_popup div[class*="top0"]{
+    width: 100% !important;
+  }
+  div.master_popup .s-day{
+    width:auto !important;
+  }
+  div.master_popup .info_page .info_table .tr > div{
+    line-height: 24px;
+  }
+  div.master_popup .info_page div[class*="td0"]{
+    font-weight: 100 !important;
+  }
   .master__table .list_line div[class*="td"] {
     font-size: 1em;
   }
