@@ -3182,6 +3182,11 @@ span.login__snslink2_txt {
   z-index: 10;
 }
 
+.siteInfo_in .con01 .haf01 strong {
+  font-size: 2em;
+  font-weight: 600;
+}
+
 .siteInfo_in .con01 .haf_first br {
   display: none;
 }
