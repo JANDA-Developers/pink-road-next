@@ -11,7 +11,6 @@ import {
     ProductType,
 } from "../../../types/api";
 import DayRangePicker from "components/dayPicker/DayRangePicker";
-import dynamic from "next/dynamic";
 import { ItineryForm } from "components/tourWrite/ItineryForm";
 import { AppContext } from "pages/_app";
 import { tapCheck } from "../../../utils/style";
@@ -38,7 +37,6 @@ import dayjs from "dayjs";
 import { checkIsExp } from "../../../utils/product";
 import { PageEditor } from "../../../components/common/PageEditer";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
-import { DayPickerModal } from "../../../components/dayPickerModal/DayPickerModal";
 // const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = LoadEditor();

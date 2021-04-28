@@ -5,13 +5,13 @@ import { CloseIcon } from "../common/icon/CloseIcon";
 
 interface IProp extends React.InputHTMLAttributes<any> {
     TagName?: keyof JSX.IntrinsicElements;
-    wrapProp: any;
-    onClickDelete: () => void;
+    wrapProp?: any;
+    onClickDelete?: () => void;
     onUpload: (data: Ffile) => void;
 }
 
 export const FileInput: React.FC<IProp> = ({
-    TagName,
+    TagName = "div",
     wrapProp,
     onClickDelete,
     id,
@@ -33,11 +33,19 @@ export const FileInput: React.FC<IProp> = ({
     };
     return (
         <TagName {...wrapProp}>
-            {children}
-            <CloseIcon
-                style={{ width: "10px", height: "10px" }}
-                onClick={onClickDelete}
-            />
+            <div
+                onClick={() => {
+                    hiddenInput.current?.click();
+                }}
+            >
+                {children}
+            </div>
+            {onClickDelete && (
+                <CloseIcon
+                    style={{ width: "10px", height: "10px" }}
+                    onClick={onClickDelete}
+                />
+            )}
             <input
                 ref={hiddenInput}
                 hidden
@@ -50,3 +58,5 @@ export const FileInput: React.FC<IProp> = ({
         </TagName>
     );
 };
+
+export default FileInput;

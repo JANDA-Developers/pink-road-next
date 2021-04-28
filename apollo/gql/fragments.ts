@@ -193,6 +193,7 @@ export const F_USER = gql`
         connectionCount
         role
         brith_date
+        account_holder
         address
         address_detail
         acceptSms

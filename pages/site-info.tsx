@@ -235,11 +235,13 @@ export const StieInfo: React.FC<Ipage> = (pageInfo) => {
                                             "content"
                                         )}
                                     />
+                                    {editMode && 
                                     <CloseIcon
                                         onClick={() => {
                                             removeArray("history", index);
                                         }}
                                     />
+                                    }
                                 </div>
                             </div>
                         ))}

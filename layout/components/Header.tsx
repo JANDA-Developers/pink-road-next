@@ -467,21 +467,9 @@ export const Header: React.FC<IProp> = () => {
                                                 <a>투어 리스트</a>
                                             </Link>
                                         </li>
-                                        {isParterNonB && (
-                                            <li onClick={handleAllClose}>
-                                                <Link href="/tour/write">
-                                                    <a>상품 등록하기</a>
-                                                </Link>
-                                            </li>
-                                        )}
-                                        {isParterB && (
-                                            <li onClick={handleAllClose}>
-                                                <Link href="/tour/write">
-                                                    <a>상품 등록하기</a>
-                                                </Link>
-                                            </li>
-                                        )}
-                                        {isManager && (
+                                        {(isManager ||
+                                            isParterNonB ||
+                                            isParterB) && (
                                             <li onClick={handleAllClose}>
                                                 <Link href="/tour/write">
                                                     <a>상품 등록하기</a>

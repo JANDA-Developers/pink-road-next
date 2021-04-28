@@ -420,7 +420,7 @@ export const MemberMaster: React.FC<IProp> = ({
                                                 </a>
                                             </li>
                                         </ul>
-                                        {/* <ul className="board_option">
+                                        <ul className="board_option">
                                             <li
                                                 onClick={() => {
                                                     userWriteModal.openModal();
@@ -428,7 +428,7 @@ export const MemberMaster: React.FC<IProp> = ({
                                             >
                                                 <a>수기등록</a>
                                             </li>
-                                        </ul> */}
+                                        </ul>
                                     </div>
                                 }
                             />
