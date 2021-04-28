@@ -1,89 +1,120 @@
-import { Annotation } from 'aws-sdk/clients/configservice';
-import React from 'react';
-import { AnnounceType, BookingStatus, Fbooking, ProductStatus, SettlementStatus } from '../../types/api';
-import { announceTypeKR, bookingStatus, productStatus, settlementStatus } from "../../utils/enumToKr";
+import { Annotation } from "aws-sdk/clients/configservice";
+import React from "react";
+import {
+    AnnounceType,
+    BookingStatus,
+    Fbooking,
+    ProductStatus,
+    SettlementStatus,
+} from "../../types/api";
+import {
+    announceTypeKR,
+    bookingStatus,
+    productStatus,
+    settlementStatus,
+} from "../../utils/enumToKr";
 
 interface IProp {
     status: ProductStatus;
 }
 
 export const PordStatusBadge: React.FC<IProp> = ({ status }) => {
-
     const getClass = () => {
-        if (status === ProductStatus.CANCELD) return "tour-no"
-        if (status === ProductStatus.READY) return "tour-yes"
-        if (status === ProductStatus.EXPIRED) return "tour-no"
-        if (status === ProductStatus.OPEN) return "tour-ok"
-        if (status === ProductStatus.REFUSED) return "plainning-no"
-        if (status === ProductStatus.UPDATE_REQ) return "plainning-yes"
-        if (status === ProductStatus.UPDATE_REQ_REFUSED) return "plainning-no"
-    }
-
+        if (status === ProductStatus.CANCELD) return "tour-no";
+        if (status === ProductStatus.READY) return "tour-yes";
+        if (status === ProductStatus.EXPIRED) return "tour-no";
+        if (status === ProductStatus.OPEN) return "tour-ok";
+        if (status === ProductStatus.REFUSED) return "plainning-no";
+        if (status === ProductStatus.UPDATE_REQ) return "plainning-yes";
+        if (status === ProductStatus.UPDATE_REQ_REFUSED) return "plainning-no";
+    };
 
     // <span> </span>
     const _class = getClass();
-    return <span className={`state_icon ${_class}`}>{productStatus(status)}</span>
+    return (
+        <span className={`state_icon ${_class}`}>{productStatus(status)}</span>
+    );
 };
-
 
 interface IBookingStatusBadgeProp {
     status: BookingStatus | null;
     square?: boolean;
+    [key: string]: any;
 }
 
-export const BookingStatusBadge: React.FC<IBookingStatusBadgeProp> = ({ status, square }) => {
-
+export const BookingStatusBadge: React.FC<IBookingStatusBadgeProp> = ({
+    status,
+    square,
+    ...props
+}) => {
     const getClass = () => {
-        if (status === BookingStatus.COMPLETE) return "re-ok"
-        if (status === BookingStatus.READY) return "re-stay"
-        if (status === BookingStatus.CANCEL) return "re-refund"
-    }
+        if (status === BookingStatus.COMPLETE) return "re-ok";
+        if (status === BookingStatus.READY) return "re-stay";
+        if (status === BookingStatus.CANCEL) return "re-refund";
+    };
 
     if (square)
-        return <span className={`status_square ${getClass()}`}>{bookingStatus(status)}</span>
-    return <i className={`state ${getClass()}`}>{bookingStatus(status)}</i>
+        return (
+            <span className={`status_square ${getClass()}`} {...props}>
+                {bookingStatus(status)}
+            </span>
+        );
+    return (
+        <i {...props} className={`state ${getClass()}`}>
+            {bookingStatus(status)}
+        </i>
+    );
 };
 
 export const RequestBadge: React.FC<any> = ({ isCancelRequest, className }) => {
-
     const getClass = () => {
-        if (status === BookingStatus.COMPLETE) return "re-ok"
-        if (status === BookingStatus.READY) return "re-stay"
-        if (status === BookingStatus.CANCEL) return "re-refund"
-    }
+        if (status === BookingStatus.COMPLETE) return "re-ok";
+        if (status === BookingStatus.READY) return "re-stay";
+        if (status === BookingStatus.CANCEL) return "re-refund";
+    };
 
     if (isCancelRequest)
-        return <span className={`requestBadge` + " " + className}>취소요청</span>
-    else return null
+        return (
+            <span className={`requestBadge` + " " + className}>취소요청</span>
+        );
+    else return null;
 };
 
 export const AnnotationBadge: React.FC<any> = ({ type }) => {
-
     const getClass = (type: AnnounceType) => {
-        if (type === AnnounceType.ACCOUNCE) return "up"
-        if (type === AnnounceType.NOICE) return "-"
-    }
+        if (type === AnnounceType.ACCOUNCE) return "up";
+        if (type === AnnounceType.NOICE) return "-";
+    };
 
-    return <span className={`annotationBadge` + " " + getClass(type)}>{announceTypeKR(type)}</span>
+    return (
+        <span className={`annotationBadge` + " " + getClass(type)}>
+            {announceTypeKR(type)}
+        </span>
+    );
 };
 
 interface ISettlementStatusProp {
-    status: SettlementStatus,
-    productStatus?: ProductStatus
+    status: SettlementStatus;
+    productStatus?: ProductStatus;
 }
-export const SettlementStatusBadge: React.FC<ISettlementStatusProp> = ({ status, productStatus }) => {
-
+export const SettlementStatusBadge: React.FC<ISettlementStatusProp> = ({
+    status,
+    productStatus,
+}) => {
     const getClass = () => {
-        if (productStatus && productStatus !== ProductStatus.COMPLETED) return "not-ready"
-        if (status === SettlementStatus.COMPLETE) return "complete"
-        if (status === SettlementStatus.READY) return "ready"
-        if (status === SettlementStatus.REQUEST) return "request"
-    }
+        if (productStatus && productStatus !== ProductStatus.COMPLETED)
+            return "not-ready";
+        if (status === SettlementStatus.COMPLETE) return "complete";
+        if (status === SettlementStatus.READY) return "ready";
+        if (status === SettlementStatus.REQUEST) return "request";
+    };
 
-    return <span className={`settlementStatus ${getClass()}`}>
-        {settlementStatus(status, productStatus)}
-    </span>
-}
+    return (
+        <span className={`settlementStatus ${getClass()}`}>
+            {settlementStatus(status, productStatus)}
+        </span>
+    );
+};
 
 // .state_icon.tour-no { // 여행취소
 //     color: #f32121;

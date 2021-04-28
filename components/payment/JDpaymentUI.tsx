@@ -308,6 +308,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                                             }
                                                         </span>
                                                         <span>
+                                                            예금주:
                                                             {
                                                                 bankInfo?.accountHolder
                                                             }
@@ -426,6 +427,12 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <p className="info__txt gray">
+                                                <i className="jandaicon-info2 mini"></i>{" "}
+                                                무통장 입금은 24시간 이내에
+                                                입금하지 않으시면 예약이
+                                                자동취소 됩니다.
+                                            </p>
                                         </div>
                                     )}
                                 </li>
@@ -461,6 +468,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                     </div>
                 </div>
                 <div className="agreeChk__box">
+                    <h4 className="title">약관동의</h4>
                     <div className="agreeChk">
                         {/* <input checked={chkAll} type="checkbox" className="checkbox" onChange={handleAgreeAll} /> */}
                         <span className="checkbox">

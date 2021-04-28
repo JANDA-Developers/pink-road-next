@@ -51,7 +51,11 @@ export const SearchList: React.FC<IProp> = ({
                 <div className="board_list st05">
                     <div className="tbody">
                         <div>
-                            {isEmpty(items) && "검색 결과가 없습니다."}
+                            {isEmpty(items) && (
+                                <div className="no__data">
+                                    <span>검색 결과가 없습니다.</span>
+                                </div>
+                            )}
                             <ul>
                                 {items.map((baord) => (
                                     <BoardListBlock
@@ -65,10 +69,16 @@ export const SearchList: React.FC<IProp> = ({
                 </div>
                 {/*   <Paginater setPage={setBoardPage} pageInfo={paging} />
     <Paginater setPage={setPage} pageInfo={pageInfo} /> */}
-                <div onClick={onClickViewMore} className="Allsearch__plusBtn">
-                    {title} 더보기{" "}
-                    <i className="jandaicon-arr4-right plus "></i>
-                </div>
+
+                {!isEmpty(items) && (
+                    <div
+                        onClick={onClickViewMore}
+                        className="Allsearch__plusBtn"
+                    >
+                        {title} 더보기{" "}
+                        <i className="jandaicon-arr4-right plus "></i>
+                    </div>
+                )}
             </div>
         </div>
     );

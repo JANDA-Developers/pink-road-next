@@ -5,6 +5,29 @@
 	position: relative;
 	overflow: hidden;
 }
+#slider__add{
+	position: absolute;
+	display: inline-block;
+	padding: 5px;
+	bottom: 3px;
+	z-index: 55;
+	background-color: #5bace9;
+	color: #fff;
+	opacity: 0.7;
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
+	font-weight: 600;
+	cursor: pointer;
+	line-height: 50px;
+}
+#slider__add i{
+	transform: scale(0.8);
+	margin-right: 10px;
+}
+#slider__add:hover{
+	opacity: 1;
+}
 .Slider_box .main_top_images{
 	outline: none;
 }

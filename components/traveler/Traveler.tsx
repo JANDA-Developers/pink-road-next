@@ -28,10 +28,15 @@ export const Traveler: React.FC<IProp> = ({
                         <i
                             onClick={handleDelete}
                             className="flaticon-substract"
+                            title="추가하기"
                         ></i>
                     )}
                     {isLast && (
-                        <i onClick={handleAdd} className="flaticon-add"></i>
+                        <i
+                            onClick={handleAdd}
+                            className="flaticon-add"
+                            title="삭제하기"
+                        ></i>
                     )}
                 </span>
             </div>
@@ -80,7 +85,7 @@ export const Traveler: React.FC<IProp> = ({
             <div className="re08">나이</div>
             <div className="re09">
                 <span>
-                    <input type="text" /> (만 --세)
+                    <input type="text" placeholder="YYYYMMDD" /> (만 --세)
                 </span>
                 {/*input박스 클릭시 달력이 나와야 함, 우측 나이 계산은 자동으로 출력*/}
             </div>
