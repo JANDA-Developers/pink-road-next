@@ -11,7 +11,6 @@ import {
     ProductType,
 } from "../../../types/api";
 import DayRangePicker from "components/dayPicker/DayRangePicker";
-import dynamic from "next/dynamic";
 import { ItineryForm } from "components/tourWrite/ItineryForm";
 import { AppContext } from "pages/_app";
 import { tapCheck } from "../../../utils/style";
@@ -38,15 +37,11 @@ import dayjs from "dayjs";
 import { checkIsExp } from "../../../utils/product";
 import { PageEditor } from "../../../components/common/PageEditer";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
-<<<<<<< Updated upstream
-import { DayPickerModal } from "../../../components/dayPickerModal/DayPickerModal";
-=======
 import {
     filterOver,
     generateitinery,
 } from "../../../components/tourWrite/helper";
 import { ProductSelectModal } from "../../../components/ProductSelectModal";
->>>>>>> Stashed changes
 // const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = LoadEditor();
@@ -377,11 +372,11 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         <option value="">선택없음</option>
                                     </select>
                                 </span>
-                                <p className="info_txt">
+                                {/* <p className="info_txt">
                                     <i className="jandaicon-info2 mini"></i>{" "}
                                     여행과 체험은 글쓰기 화면이 동일합니다.
                                     구분은 상품타입으로 이루어집니다.
-                                </p>
+                                </p> */}
                             </div>
                         </div>
                         <div className="write_type">
@@ -627,7 +622,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 </ul>
                                 <p className="input_form info_txt">
                                     <i className="jandaicon-info2 mini"></i>{" "}
-                                    썸네일 이미지사이즈 720px * 434px
+                                    유의사항에 최대 4개까지 등록 가능. 썸네일
+                                    이미지사이즈 720px * 434px
                                 </p>
                             </div>
                         </div>

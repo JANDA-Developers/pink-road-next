@@ -29,10 +29,15 @@ export const Traveler: React.FC<IProp> = ({
                         <i
                             onClick={handleDelete}
                             className="flaticon-substract"
+                            title="추가하기"
                         ></i>
                     )}
                     {isLast && (
-                        <i onClick={handleAdd} className="flaticon-add"></i>
+                        <i
+                            onClick={handleAdd}
+                            className="flaticon-add"
+                            title="삭제하기"
+                        ></i>
                     )}
                 </span>
             </div>

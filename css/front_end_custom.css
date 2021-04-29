@@ -90,12 +90,16 @@ td {
     right:0;
     bottom:0;
     cursor: pointer;
-    background-color: rgba(0,0,0,.5);
+    background-color:#5bace9;
     display: none;
     align-items: center;
     justify-content: center;
     color: white;
     z-index: 5;
+    opacity: 0.7;
+}
+.imgEdit:hover {
+    opacity: 1;
 }
 
 /* 아래 Deprecated 예정*/
@@ -427,8 +431,8 @@ figure:after {
 
 
 .mainSlider .imgEdit {
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height:60px;
 }
 
 .overflowEllipsis {

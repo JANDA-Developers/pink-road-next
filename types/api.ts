@@ -72,6 +72,7 @@ export interface announceFindById_AnnounceFindById_data_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -341,6 +342,7 @@ export interface announceList_AnnounceList_data_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -1772,6 +1774,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -3815,6 +3818,7 @@ export interface newsFindById_NewsFindById_data_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -4083,6 +4087,7 @@ export interface newsList_NewsList_data_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -5093,6 +5098,7 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -5335,6 +5341,7 @@ export interface portfolioList_PortfolioList_data_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -6182,6 +6189,7 @@ export interface productList_ProductList_data_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -6464,6 +6472,7 @@ export interface productFindById_ProductFindById_data_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -6923,6 +6932,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -7079,6 +7089,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -7563,6 +7574,7 @@ export interface qnaFindById_QnaFindById_data_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -7837,6 +7849,7 @@ export interface qnaList_QnaList_data_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -8268,6 +8281,7 @@ export interface getContext_GetProfile_data {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -9715,6 +9729,7 @@ export interface settlementFindById_SettlementFindById_data_product_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -10065,6 +10080,7 @@ export interface settlementList_SettlementList_data_seller {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -10252,6 +10268,7 @@ export interface settlementList_SettlementList_data_product_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -11252,6 +11269,7 @@ export interface userList_UserList_data {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -11513,6 +11531,7 @@ export interface userFindById_UserFindById_data_products_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -11686,6 +11705,7 @@ export interface userFindById_UserFindById_data {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -11939,6 +11959,7 @@ export interface Fannounce_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -12578,6 +12599,7 @@ export interface Fuser {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -13148,6 +13170,7 @@ export interface Fnews_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -13518,6 +13541,7 @@ export interface Fportfolio_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -13687,6 +13711,7 @@ export interface Fqna_author {
   connectionCount: number;
   role: UserRole;
   brith_date: string;
+  account_holder: string;
   address: string;
   address_detail: string;
   acceptSms: boolean;
@@ -14574,6 +14599,8 @@ export enum _ProductReviewSort {
  * Auto generated sort type
  */
 export enum _ProductSort {
+  acceptDate_asc = "acceptDate_asc",
+  acceptDate_desc = "acceptDate_desc",
   address_asc = "address_asc",
   address_desc = "address_desc",
   createdAt_asc = "createdAt_asc",
@@ -15662,6 +15689,12 @@ export interface _ProductFilter {
   type_in?: ProductType[] | null;
   groupCode_eq?: string | null;
   groupCode_not_eq?: string | null;
+  acceptDate_eq?: any | null;
+  acceptDate_not_eq?: any | null;
+  acceptDate_lte?: any | null;
+  acceptDate_lt?: any | null;
+  acceptDate_gte?: any | null;
+  acceptDate_gt?: any | null;
   startDate_eq?: any | null;
   startDate_not_eq?: any | null;
   startDate_lte?: any | null;

@@ -19,3 +19,4 @@ export const CustomerMemberMaster: React.FC<IProp> = () => {
 
 
 export default auth(ALLOW_ADMINS)(CustomerMemberMaster);;
+

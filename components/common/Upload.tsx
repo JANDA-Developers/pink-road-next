@@ -9,8 +9,9 @@ export interface IUploadProps extends IDiv {
 
 export const Upload: React.FC<IUploadProps> = ({
     onUpload,
-    text = "이미지교체+",
+    text = "이미지교체 +",
     className,
+    title = "이미지 교체를 위해서 파일을 첨부해주세요. 최대 width:11000px 이 넘지 않도록 주의해주세요.",
     ...props
 }) => {
     const { signleUpload } = useUpload();
@@ -32,6 +33,7 @@ export const Upload: React.FC<IUploadProps> = ({
         <div
             {...props}
             className={`imgEdit ${className}`}
+            title="이미지 교체를 위해서 파일을 첨부해주세요. 가로사이즈:1100px 이 넘지 않도록 주의해주세요."
             onClick={() => {
                 hiddenImgInput.current?.click();
             }}

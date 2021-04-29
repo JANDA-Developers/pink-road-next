@@ -12,7 +12,9 @@
 .BookingModal__headerTitle {
     position: initial!important;
 }
-
+.LocalStorageBoard__title{
+    padding:  0 !important;
+}
 .BookingModal__in {
     display: flex;
     flex-direction: column;

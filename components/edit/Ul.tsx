@@ -11,6 +11,7 @@ export interface IEditableUlProp {
     editMode?: boolean;
     ulProp?: React.LiHTMLAttributes<HTMLUListElement>;
     liProp?: React.LiHTMLAttributes<HTMLLIElement>;
+    buttonProp?: React.ButtonHTMLAttributes<HTMLButtonElement>;
 }
 
 export const Ul: React.FC<IEditableUlProp> = ({
@@ -23,6 +24,7 @@ export const Ul: React.FC<IEditableUlProp> = ({
     contentEditable,
     removeArray,
     id,
+    buttonProp,
 }) => {
     return (
         <ul data-edit={editMode ? "editUl" : undefined} {...ulProp}>
@@ -44,6 +46,7 @@ export const Ul: React.FC<IEditableUlProp> = ({
             ))}
             {editMode && (
                 <button
+                    {...buttonProp}
                     className="btn"
                     onClick={() => {
                         addArray("");

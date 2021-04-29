@@ -2147,11 +2147,7 @@ div.board_list_mini div.w100 {
 }
 
 .fuction_list_mini .thead {
-  position: relative;
-  display: flex;
-  width: 100%;
-  border-bottom: 2px solid #ccc;
-  background-color: #fff;
+  display: none;
 }
 
 .fuction_list_mini .thead > div {
@@ -2535,6 +2531,14 @@ div.sum_div .last_ul i {
   }
 }
 @media (min-width: 1000px) {
+  
+.fuction_list_mini .thead {
+  position: relative;
+  display: flex;
+  width: 100%;
+  border-bottom: 2px solid #ccc;
+  background-color: #fff;
+}
   .board_list.st01 .thead {
     display: flex;
   }
