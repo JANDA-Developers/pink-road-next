@@ -18,6 +18,8 @@ interface IProps extends DayPickerProps {
     Header?: TElements;
 }
 
+const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 export const DayRangePicker: React.FC<IProps> = ({
     Header,
     from,
@@ -72,6 +74,23 @@ export const DayRangePicker: React.FC<IProps> = ({
                 className="Selectable"
                 selectedDays={[from, { from, to }]}
                 modifiers={modifiers}
+                locale="ko"
+                months={[
+                    "1월",
+                    "2월",
+                    "3월",
+                    "4월",
+                    "5월",
+                    "6월",
+                    "7월",
+                    "8월",
+                    "9월",
+                    "10월",
+                    "11월",
+                    "12월",
+                ]}
+                weekdaysShort={weekDays}
+                weekdaysLong={weekDays}
                 onDayClick={handleDayClick}
                 {...defaultProps}
             />

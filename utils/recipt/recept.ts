@@ -1,11 +1,12 @@
-import { ITableInfo } from '../../components/recipt/components/TableRender';
-import CardRecipt from '../../components/recipt/CreditCardReceipt';
-import { openForPrint } from './openForPrint';
+import CardRecipt, {
+    IReciptProp,
+} from "../../components/recipt/CreditCardReceipt";
+import { openForPirntWithReactPortal, openForPrint } from "./openForPrint";
 
-export const printRecipt = (tables: ITableInfo[]) => {
-  const markUp = CardRecipt({
-    tables,
-  });
+export const printRecipt = (props: IReciptProp) => {
+    const markUp = CardRecipt({
+        ...props,
+    });
 
-  openForPrint(markUp);
+    openForPirntWithReactPortal(markUp);
 };

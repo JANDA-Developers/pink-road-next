@@ -72,8 +72,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         },
     });
 
-    console.log({ items });
-
     const randomSortedItems = useMemo(() => randomSort(items), [items.length]);
     const randomSorted: productList_ProductList_data[] = groupExsist
         ? cloneObject(items).sort(
@@ -131,11 +129,12 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     };
 
     const handleDelete = () => {
-        productDelete({
-            variables: {
-                id: product!._id,
-            },
-        });
+        if (confirm("정말로 상품을 삭제 하시겠습니까?"))
+            productDelete({
+                variables: {
+                    id: product!._id,
+                },
+            });
     };
 
     const handleSliderMove = (index: number) => () => {
@@ -210,10 +209,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     };
     const reviewPagination = generateClientPaging(reviews, 4);
 
-    useEffect(() => {
-        if (!product) return;
-    }, [product]);
-
     if (loading) return <PageLoading />;
     if (!product) return <Page404 />;
 
@@ -235,6 +230,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         inOrNor,
         caution,
         code,
+        category,
         peopleCount,
     } = product;
 
@@ -348,7 +344,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                                         className="category bt_no"
                                                     >
                                                         <span className="pnt">
-                                                            문화/예술
+                                                            {category.label}
                                                         </span>
                                                         <span className="code">
                                                             상품코드 {code}

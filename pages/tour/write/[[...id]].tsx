@@ -32,13 +32,21 @@ import { usePageEdit } from "../../../hook/usePageEdit";
 import { cloneObject } from "../../../utils/clone";
 import { productStatus } from "../../../utils/enumToKr";
 import { Prompt } from "../../../components/promptModal/Prompt";
-import { openModal } from "../../../utils/popUp";
+import { closeModal, openModal } from "../../../utils/popUp";
 import { LocalStorageBoard } from "../../../components/localStorageBoard/LocalStorageBoard";
 import dayjs from "dayjs";
 import { checkIsExp } from "../../../utils/product";
 import { PageEditor } from "../../../components/common/PageEditer";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
+<<<<<<< Updated upstream
 import { DayPickerModal } from "../../../components/dayPickerModal/DayPickerModal";
+=======
+import {
+    filterOver,
+    generateitinery,
+} from "../../../components/tourWrite/helper";
+import { ProductSelectModal } from "../../../components/ProductSelectModal";
+>>>>>>> Stashed changes
 // const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = LoadEditor();
@@ -123,6 +131,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             // 회차연결을 위한 조치
             setTempSavedIts(newProductData.its);
             newProductData.its = [];
+            //하지만 여기서 상태값에 대해서는 신경쓰지 말아야함.
+            newProductData.status = undefined;
         }
 
         setTourData(newProductData);
@@ -235,29 +245,36 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         location.reload();
     };
 
+    const openProductSelecter = () => {
+        openModal("#ProductSearchModal")();
+    };
+
     const handleBaseProdChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const val = e.currentTarget.value;
         if (!val) {
             setAsNewProduct();
             return;
         }
-        const target = productGroupList.find((g) => g._id === val);
+        openProductSelecter();
+    };
+
+    const changeBaseProd = (code: string) => {
+        const target = productGroupList.find((g) => g.groupCode === code);
         setGroupCode(target?.groupCode);
         getData({
             variables: {
-                _id: val,
+                _id: target._id,
             },
         });
+        closeModal("#ProductSearchModal")();
     };
 
-    const handleTempDateMove = ({ from }: { from?: Date; to?: Date }) => {
-        const temps =
-            tempSavedIts?.map((data, index) => {
-                data.date = dayjs(from).add(index, "day").toDate();
-                return data;
-            }) || [];
-        setits(temps);
-        setTempSavedIts(undefined);
+    const handleTempDateMove = ({ from, to }: { from?: Date; to?: Date }) => {
+        const newIts = generateitinery({ from, to }, tempSavedIts);
+        if (newIts) {
+            setits(newIts);
+            setTempSavedIts(undefined);
+        }
     };
 
     useEffect(() => {
@@ -283,9 +300,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             ? categoriesMap.TOUR
             : categoriesMap.EXPERIENCE;
     const regionCategories = categoriesMap.REGION;
-
-    const startDate = its[0]?.date;
-    const endDate = its[its.length - 1]?.date;
 
     // if (!isManager && !isMyProduct) return <PageDeny />
     if (loading) return <PageLoading />;
@@ -319,7 +333,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         )}
                         {isCreateMode && (
                             <div className="write_type">
-                                <div className="title">회차연결</div>
+                                <div className="title">등록타입</div>
                                 <div className="input_form">
                                     <span className="category r3">
                                         <select
@@ -330,20 +344,17 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                             <option value={""}>
                                                 새로운상품
                                             </option>
-                                            {productGroupList.map((p) => (
-                                                <option
-                                                    key={p._id}
-                                                    value={p._id}
-                                                >
-                                                    {p.label}
-                                                </option>
-                                            ))}
+                                            <option>
+                                                회차연결(기존 상품 재오픈)
+                                            </option>
                                         </select>
                                     </span>
                                     <p className="info_txt">
                                         <i className="jandaicon-info2 mini"></i>{" "}
-                                        기존의 상품을 불러와서 회차 연결이
-                                        가능합니다. 구분은 날짜로 합니다.
+                                        회차연결 상품은 내용에 중대한 변경 없이
+                                        재오픈하는 상품을 뜻합니다.
+                                        <br /> 일정에 큰 변경이 있을 때는
+                                        신규상품으로 등록해 주세요.
                                     </p>
                                 </div>
                             </div>
@@ -401,13 +412,14 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             </div>
                         </div>
                         <div className="write_type">
-                            <div className="title">제목</div>
+                            <div className="title">상품명</div>
                             <div className="input_form">
                                 <input
                                     id="title"
                                     onChange={handleInputChange("title")}
                                     value={title}
                                     type="text"
+                                    maxLength={40}
                                     name="title"
                                     className="inputText w100"
                                 />
@@ -417,6 +429,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             <div className="title">부제목</div>
                             <div className="input_form">
                                 <input
+                                    maxLength={40}
                                     onChange={handleInputChange("subTitle")}
                                     value={subTitle || ""}
                                     type="text"
@@ -571,47 +584,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 </p>
                             </div>
                         </div>
-                        <div className="write_type">
-                            <div className="title">공개/비공개</div>
-                            <div className="input_form">
-                                <ul>
-                                    <li>
-                                        <input
-                                            onChange={handleChangeOpen}
-                                            type="radio"
-                                            name="isOpen"
-                                            id="status-open"
-                                            value={"true"}
-                                            checked={!!isOpen}
-                                            className="radio"
-                                        />
-                                        <label htmlFor="status-open">
-                                            공개
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input
-                                            onChange={handleChangeOpen}
-                                            type="radio"
-                                            name="isOpen"
-                                            id="status-sold"
-                                            value={"false"}
-                                            checked={!isOpen}
-                                            className="radio"
-                                        />
-                                        <label htmlFor="status-sold">
-                                            비공개
-                                        </label>
-                                    </li>
-                                </ul>
-                                <p className="input_form info_txt">
-                                    <i className="jandaicon-info2 mini"></i>{" "}
-                                    심사 이후에 '구매자'에게 노출여부를
-                                    체크합니다. 심사 이후에 비공개를 하셔도
-                                    '마스터'와 '판매자'는 상품을 볼 수 있습니다.
-                                </p>
-                            </div>
-                        </div>
                     </div>
 
                     <div className="write_type bottom_write">
@@ -731,8 +703,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 <div className="tourWrite__dayPikcerRangeViewer  mb10">
                                     <div className="tourWrite__Choiceday">
                                         <strong>선택된 상품날짜</strong>{" "}
-                                        {yyyymmdd(startDate)} ~{" "}
-                                        {yyyymmdd(endDate)}
+                                        {yyyymmdd(firstDate)} ~{" "}
+                                        {yyyymmdd(lastDate)}
                                     </div>
                                 </div>
                                 <div className="info_txt">
@@ -773,7 +745,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     </ul>
                                 </div>
                             </DayRangePicker>
-                            {its.map((itinery, index) => (
+
+                            {filterOver(its).map((itinery, index) => (
                                 <div key={"itineryForm" + index}>
                                     <ItineryForm
                                         setSelectEditorIndex={
@@ -915,6 +888,15 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 />
                 {/* <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" /> */}
             </div>
+            <ProductSelectModal
+                filter={{
+                    authorEmail_eq: isAdmin ? undefined : myProfile.email,
+                }}
+                onSelect={(pd) => {
+                    const groupdCode = pd.groupCode;
+                    changeBaseProd(groupdCode);
+                }}
+            />
         </div>
     );
 };

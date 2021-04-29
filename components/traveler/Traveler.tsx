@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import React, { useState } from "react";
 import { Ftraveler, GENDER } from "../../types/api";
 import { autoComma, autoHypenPhone } from "../../utils/formatter";
@@ -80,7 +81,20 @@ export const Traveler: React.FC<IProp> = ({
             <div className="re08">나이</div>
             <div className="re09">
                 <span>
+<<<<<<< Updated upstream
                     <input type="text" /> (만 --세)
+=======
+                    <input
+                        value={traveler.age}
+                        onChange={(e) => {
+                            const age = e.currentTarget.value;
+                            traveler.age = age;
+                            onChange(traveler);
+                        }}
+                        type="text"
+                        placeholder="YYYYMMDD"
+                    />{" "}
+>>>>>>> Stashed changes
                 </span>
                 {/*input박스 클릭시 달력이 나와야 함, 우측 나이 계산은 자동으로 출력*/}
             </div>

@@ -73,7 +73,7 @@ export const BookingModal: React.FC<IProp> = ({
     const [bookingUpdate, { loading: updateLoading }] = useBookingUpdate({
         onCompleted: ({ BookingUpdate }) => {
             if (BookingUpdate.ok) {
-                alert("업데이트 완료");
+                alert("수정 완료");
             }
         },
     });
@@ -149,7 +149,20 @@ export const BookingModal: React.FC<IProp> = ({
             partialCancelCode: "0",
             cancelMemo: cancelInfo.cancelMemo || "",
             reqStatus: cancelInfo.reqStatus,
-        });
+        })
+            .then((response) => {
+                console.log({ response });
+                if (response.ok) {
+                    alert("환불처리가 완료 되었습니다.");
+                } else if (response.error) {
+                    alert(response.error);
+                }
+            })
+            .catch((e) => {
+                const errString = JSON.stringify(e);
+                alert("문제가 발생했습니다.\n" + errString);
+                console.error(e);
+            });
     };
 
     const handleBankRefund = (cancelInfo: IRefundModalSubmit) => {
@@ -222,6 +235,7 @@ export const BookingModal: React.FC<IProp> = ({
         booking.payMethod === PayMethod.BANK ||
         booking.payMethod === PayMethod.HAND;
     const isReadyBook = booking.status === BookingStatus.READY;
+    const isCanceled = booking.status === BookingStatus.CANCEL;
     const isCancelReq = booking?.isCancelRequest;
     const isCardBooking = booking?.payMethod === PayMethod.NICEPAY_CARD;
 
@@ -230,7 +244,7 @@ export const BookingModal: React.FC<IProp> = ({
     const cancelReqAB = (isAuthor || isBuyer) && isComplete && !isCancelReq;
 
     // 취소 거절이 가능한가:: CANCEL_REQ 상태일때 이행위는 마스터만 가능하다.
-    const cancelDenyAB = isManager && isCancelReq;
+    const cancelDenyAB = isManager && isCancelReq && !isCanceled;
 
     // 취소가 가능하가:: 마스터일때는 취소가 가능할 것이다.
     const cancleAB = isManager && isComplete;
@@ -238,7 +252,7 @@ export const BookingModal: React.FC<IProp> = ({
     // 입금 완료처리:: 입금확인은 사실 마스터만 할 수 있는 부분
     const bankDepositAB = isManager && isBankBook && isReadyBook;
 
-    const dummyTable: ITableInfo[] = [
+    const approveTable: ITableInfo[] = [
         {
             title: "결제정보",
             infos: [
@@ -291,8 +305,76 @@ export const BookingModal: React.FC<IProp> = ({
         },
     ];
 
+    const cancelTable: ITableInfo[] = [
+        {
+            title: "결제정보",
+            infos: [
+                [
+                    {
+                        label: "결제수단",
+                        value: payMethodToKR(booking.payMethod),
+                    },
+                    {
+                        label: "결제금액",
+                        value: autoComma(booking.bookingPrice),
+                    },
+                ],
+                [
+                    {
+                        label: "취소일",
+                        value: yyyymmdd(booking.cancelDate),
+                    },
+                    {
+                        label: "취소승인일",
+                        value: yyyymmdd(booking.payment?.cancelDate),
+                    },
+                ],
+                [
+                    {
+                        label: "취소금",
+                        value: booking.payment?.totalCancelPrice || 0,
+                    },
+                    {
+                        label: "부분취소 여부",
+                        value: booking.payment?.isPartialCancel
+                            ? "부분취소"
+                            : "전체취소",
+                    },
+                ],
+            ],
+        },
+        {
+            title: "상품정보",
+            infos: [
+                [
+                    {
+                        label: "상품명",
+                        value: product.title,
+                    },
+                    {
+                        label: "예약인원",
+                        value: booking.totalCount,
+                    },
+                ],
+                [
+                    {
+                        label: "인원정보",
+                        value: personCountBracket(booking),
+                    },
+                    {
+                        label: "상품상태",
+                        value: productStatus(product.status),
+                    },
+                ],
+            ],
+        },
+    ];
+
     const reciptOpen = () => {
-        printRecipt(dummyTable);
+        printRecipt({
+            approveTable,
+            cancelTable,
+        });
     };
 
     return (
@@ -595,46 +677,56 @@ export const BookingModal: React.FC<IProp> = ({
                                             </span>
                                         </div>
                                     </div>
-                                    {bookingCopy?.travelers?.map(
-                                        (traveler, index) => (
-                                            <Traveler
-                                                isFisrt={index === 0}
-                                                isLast={
-                                                    index ===
-                                                    bookingCopy?.travelers
-                                                        .length -
-                                                        1
-                                                }
-                                                handleDelete={() => {
-                                                    bookingCopy.travelers.splice(
-                                                        index,
-                                                        1
-                                                    );
-                                                    setBookingCopy({
-                                                        ...bookingCopy,
-                                                    });
-                                                }}
-                                                handleAdd={() => {
-                                                    bookingCopy.travelers.push({
-                                                        __typename: "Traveler",
-                                                        age: "",
-                                                        gender: GENDER.FEMALE,
-                                                        name: "",
-                                                        phoneNumber: "",
-                                                    });
-                                                    setBookingCopy({
-                                                        ...bookingCopy,
-                                                    });
-                                                }}
-                                                traveler={traveler}
-                                                key={index + "traveler"}
-                                                onChange={() => {
-                                                    setBookingCopy({
-                                                        ...bookingCopy,
-                                                    });
-                                                }}
-                                            />
-                                        )
+                                    {isSeller && (
+                                        <div>
+                                            {bookingCopy?.travelers?.map(
+                                                (traveler, index) => (
+                                                    <Traveler
+                                                        isFisrt={index === 0}
+                                                        isLast={
+                                                            index ===
+                                                            bookingCopy
+                                                                ?.travelers
+                                                                .length -
+                                                                1
+                                                        }
+                                                        handleDelete={() => {
+                                                            bookingCopy.travelers.splice(
+                                                                index,
+                                                                1
+                                                            );
+                                                            setBookingCopy({
+                                                                ...bookingCopy,
+                                                            });
+                                                        }}
+                                                        handleAdd={() => {
+                                                            bookingCopy.travelers.push(
+                                                                {
+                                                                    __typename:
+                                                                        "Traveler",
+                                                                    age: "",
+                                                                    gender:
+                                                                        GENDER.FEMALE,
+                                                                    name: "",
+                                                                    phoneNumber:
+                                                                        "",
+                                                                }
+                                                            );
+                                                            setBookingCopy({
+                                                                ...bookingCopy,
+                                                            });
+                                                        }}
+                                                        traveler={traveler}
+                                                        key={index + "traveler"}
+                                                        onChange={() => {
+                                                            setBookingCopy({
+                                                                ...bookingCopy,
+                                                            });
+                                                        }}
+                                                    />
+                                                )
+                                            )}
+                                        </div>
                                     )}
                                 </div>
                             </div>
@@ -744,6 +836,7 @@ export const BookingModal: React.FC<IProp> = ({
                                         </button>
                                     )}
 
+<<<<<<< Updated upstream
                                     {/* 입금완료 처리 */}
                                     {bankDepositAB && (
                                         <button
@@ -757,6 +850,29 @@ export const BookingModal: React.FC<IProp> = ({
                                 </div>
                                 <div className="float_right">
                                     {/* <button type="submit" className="btn medium mr5">
+=======
+                                {/* 입금완료 처리 */}
+                                {bankDepositAB && (
+                                    <button
+                                        onClick={handleBankDeposit}
+                                        type="submit"
+                                        className="btn medium"
+                                    >
+                                        입금완료
+                                    </button>
+                                )}
+                            </div>
+                            <div className="float_right">
+                                {isSeller && (
+                                    <button
+                                        onClick={handleUpdateBooking}
+                                        className="btn medium"
+                                    >
+                                        저장
+                                    </button>
+                                )}
+                                {/* <button type="submit" className="btn medium mr5">
+>>>>>>> Stashed changes
                                 수정하기
                                 </button>
                             <button type="submit" className="btn medium">
