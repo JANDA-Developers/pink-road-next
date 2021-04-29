@@ -836,7 +836,6 @@ export const BookingModal: React.FC<IProp> = ({
                                         </button>
                                     )}
 
-<<<<<<< Updated upstream
                                     {/* 입금완료 처리 */}
                                     {bankDepositAB && (
                                         <button
@@ -849,30 +848,15 @@ export const BookingModal: React.FC<IProp> = ({
                                     )}
                                 </div>
                                 <div className="float_right">
+                                    {isSeller && (
+                                        <button
+                                            onClick={handleUpdateBooking}
+                                            className="btn medium"
+                                        >
+                                            저장
+                                        </button>
+                                    )}
                                     {/* <button type="submit" className="btn medium mr5">
-=======
-                                {/* 입금완료 처리 */}
-                                {bankDepositAB && (
-                                    <button
-                                        onClick={handleBankDeposit}
-                                        type="submit"
-                                        className="btn medium"
-                                    >
-                                        입금완료
-                                    </button>
-                                )}
-                            </div>
-                            <div className="float_right">
-                                {isSeller && (
-                                    <button
-                                        onClick={handleUpdateBooking}
-                                        className="btn medium"
-                                    >
-                                        저장
-                                    </button>
-                                )}
-                                {/* <button type="submit" className="btn medium mr5">
->>>>>>> Stashed changes
                                 수정하기
                                 </button>
                             <button type="submit" className="btn medium">
