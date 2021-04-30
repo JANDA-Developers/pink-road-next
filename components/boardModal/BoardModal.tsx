@@ -61,13 +61,16 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
     return (
         <div id="BoardModal" className="popup_bg_full">
             <div className="in_txt master_popup">
-                <a className="close_icon" onClick={closeModal("#BoardModal")}>
-                    <i className="flaticon-multiply"></i>
-                </a>
                 <div className="page">
                     <h3>
                         <strong>{name}</strong>님이 작성한 글{" "}
                     </h3>
+                    <a
+                        className="close_icon"
+                        onClick={closeModal("#BoardModal")}
+                    >
+                        <i className="flaticon-multiply"></i>
+                    </a>
                     {/* 작성한글 */}
                     <div className="info_page">
                         <div className="alignment">

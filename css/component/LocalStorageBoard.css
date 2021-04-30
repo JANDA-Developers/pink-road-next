@@ -2,14 +2,15 @@
 
 .LocalStorageBoard__block {
     border: 1px solid #ccc;
-    padding: 12px;
+    padding: 25px;
     margin-bottom: 12px;
     border-radius: 5px;
 }
 
 .LocalStorageBoard__date {
     font-weight: 100;
-    font-size: 12px;
+    font-size: 0.8em;
+    color: #969696;
     letter-spacing: normal;
 }
 
@@ -56,9 +57,20 @@ div.popup_bg_mini h3:after {
     margin-right: 20px;
     margin-top: 0px;
     padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
     border-bottom:  1px solid #b8b8b8;
 }
 
 .LocalStorageBoard {
     display: flex;
 }
+
+
+@media (min-width: 1000px) {
+    .LocalStorageBoard__block{
+        min-width: 500px;
+    }
+
+}
+

@@ -83,11 +83,11 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
     <div id="SettlementModal" className="popup_bg_full">
       {settlement && (
         <div className="in_txt statement_popup master_popup">
+          <div className="page">
+            <h3>정산계산</h3>
           <a className="close_icon" onClick={closeModal("#SettlementModal")}>
             <i className="flaticon-multiply"></i>
           </a>
-          <div className="page">
-            <h3>정산계산</h3>
             <div className="statement_popup__topBox info_txt">
               <span className="r-number">
                 상품명: <i>{product.title}</i>

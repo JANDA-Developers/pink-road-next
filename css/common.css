@@ -602,7 +602,8 @@ input[type="email"] {
   padding-left: 10px;
   box-sizing: border-box;
   border: 1px solid #d2d2d2;
-  font-weight: 100;
+  font-weight: 600;
+  color: #888888;
 }
 select {
   border-radius: 3px;
@@ -616,6 +617,8 @@ select {
   display: inline-block;
   margin-right: 0;
   cursor: pointer;
+  font-weight: 600;
+  color: #888888;
 }
 
 .none {

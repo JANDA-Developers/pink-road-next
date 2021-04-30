@@ -109,6 +109,8 @@
   display: inline-block;
   margin-right: 0;
   color: #ed297b;
+  font-weight: 600;
+  font-size: 1em;
 }
 
 .mypage_in .lnb .profile_box .time,
@@ -144,9 +146,9 @@
   border-radius: 3px;
   color: #333333;
   box-sizing: border-box;
-  padding: 0 10px;
+  padding: 0 5px;
   margin-right: 5px;
-  vertical-align: middle;
+  vertical-align: inherit;
 }
 
 .mypage_in .lnb .profile_box [class*="name"] i.ct_family {
@@ -263,6 +265,9 @@
   margin-right: 10px;
   border-radius: 5px;
 }
+.mypage_in .lnb li:hover {
+  border: 1px solid #ed297b;
+}
 
 .mypage_in .lnb a {
   display: block;
@@ -276,6 +281,9 @@
   font-weight: 600;
   display: inline-block;
   padding: 13px 15px 13px;
+}
+.mypage_in .lnb li:hover a {
+  color: #ed297b;
 }
 
 .mypage_in .lnb i {
@@ -2525,14 +2533,16 @@ div.reservation_popup .tr select {
   padding: 12px 0 20px 0;
 }
 .selectViewList ul.list_ul .list_in .txt2 span {
-  width: 100%;
+  width:auto;
   line-height: 22px;
   font-size: 14px;
-  font-weight: 100;
+  font-weight: 600;
+  margin-right: 15px;
 }
 .selectViewList ul.list_ul .list_in .txt2 .btn {
-  float: left;
+  float: none;
   font-weight: 600;
+  line-height: 45px !important;
 }
 
 /* myplanning_box */
@@ -2780,12 +2790,8 @@ div.reservation_popup .tr select {
   .mypage_in .statement_div {
     display: block;
   }
-}
-
-@media (min-width: 1000px) {
-  .baskebt_box .paper_div {
-    padding: 30px 50px 100px;
-    border-radius: 5px;
+  .selectViewList ul.list_ul li .img {
+    height: 320px;
   }
   .basket_box .basket_list .t01 {
     max-width: 5%;
@@ -2806,6 +2812,26 @@ div.reservation_popup .tr select {
   .basket_box .basket_list .t05 {
     max-width: 18%;
   }
+}
+
+@media (min-width: 1000px) {
+  .selectViewList ul.list_ul .list_in .txt2 .btn {
+    float: left;
+    font-weight: 600;
+    line-height: 33px !important;
+  }
+  
+  .selectViewList ul.list_ul .list_in .txt2 span {
+    width: 100%;
+    line-height: 22px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .baskebt_box .paper_div {
+    padding: 30px 50px 100px;
+    border-radius: 5px;
+  }
+  
   .goods_div .fuction_list_mini .th09 {
     width: 100%;
     text-align: center;
@@ -3756,9 +3782,16 @@ div.reservation_popup .tr select {
   .mypage_in .lnb li {
     padding: 0;
   }
+  .basket_box .basket_list .img{
+    display: none !important;
+  }
+  .basket_box .basket_list .right {
+    padding-left: 0;
+}
 }
 
 @media (max-width: 767px) {
+
   .mypage_in .lnb a {
     padding: 4px 15px 4px;
   }
@@ -3776,7 +3809,7 @@ div.reservation_popup .tr select {
   }
   .basket_box .basket_list .td {
     display: block !important;
-    padding: 2% 5% 100px 5%;
+    padding: 2% 5% 55px 5%;
     box-sizing: border-box;
     border: 1px solid #eee;
   }
@@ -3813,7 +3846,7 @@ div.reservation_popup .tr select {
   .basket_box .basket_list .td .t05 {
     display: block !important;
     width: 100% !important;
-    padding: 20px 0 0;
+    padding: 15px 0 0;
     border-left: 0;
     margin-top: 20px;
     border-top: 1px solid #d5d5d5;

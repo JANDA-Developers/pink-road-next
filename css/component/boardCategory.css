@@ -11,5 +11,9 @@
     flex: 1 1;
     padding:0;
     white-space: nowrap;
-    min-width: 70px;
+}
+@media (min-width: 1000px) {
+    .BoardCategories__li {
+        min-width: 70px;
+    }
 }

@@ -12,6 +12,7 @@ import {
     UserRole,
     UserUpdateInput,
 } from "../../types/api";
+import { closeModal, openModal } from "../../utils/popUp";
 import { autoComma, autoHypenPhone } from "../../utils/formatter";
 import { omits } from "../../utils/omit";
 import { Validater } from "../../utils/validate";
@@ -419,7 +420,11 @@ export const UserHandWriteModal: React.FC<IHandWriteModalProp> = ({
                                     className="w50"
                                     placeholder=""
                                 />
-                                <button onClick={} type="button" className="btn small">
+                                <button
+                                    onClick={openModal("#addressFindModal")}
+                                    type="button"
+                                    className="btn small"
+                                >
                                     주소찾기
                                 </button>
                                 <br />

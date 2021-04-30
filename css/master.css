@@ -2148,11 +2148,14 @@ button.btn_mini:hover {
 }
 .master_box .design .body-list .title {
   position: relative;
-  display: inline-block;
+  display: block;
   width: 100%;
   font-size: 0.9em;
   font-weight: 600;
   line-height: 150%;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .master_box .design .body-list .date {
@@ -3005,10 +3008,6 @@ div.master_popup .info_page .info_table .tr > div {
   box-sizing: border-box;
   flex-grow: 1;
   flex: 1 1;
-<<<<<<< HEAD
-=======
-  text-align: left !important;
->>>>>>> 71c25f2be1a2e49a831f75f2d20b9045a3796dc0
   margin:0px!important;
 }
 div.master_popup .peoplelist .tr.first > div {
@@ -3271,7 +3270,6 @@ div.master_popup div.alignment {
 .master_box .flaticon-multiply {
   cursor: pointer;
   opacity: 0.5;
-  margin-left: 10px;
   font-size: 0.8em;
 }
 .master_box .flaticon-multiply:hover {
@@ -3925,6 +3923,8 @@ div.master_popup div.alignment {
 
   .master_box .design .body-list li {
     width: 20%;
+    min-width: 150px;
+    max-width: 152px;
   }
   .master_box .design .body-list .add button {
     line-height: 126px;
@@ -4164,7 +4164,7 @@ div.master_popup div.alignment {
     font-weight: 100;
     padding: 10px 0;
     font-size: 1em;
-    line-height: 34px;
+    line-height: 20px;
     margin-bottom: 0;
     text-align: center !important;
   }
@@ -4633,6 +4633,9 @@ div.master_popup div.alignment {
   .master_box {
     padding-left: 0;
     padding-right: 0;
+  }
+  .master_box .design .body-list .img{
+    height: 76px;
   }
 }
 
