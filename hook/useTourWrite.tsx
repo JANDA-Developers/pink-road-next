@@ -443,16 +443,6 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     };
 
     const handleLoad = () => {
-        const savedData = Storage!.getLocalObj<IUseTourData>(
-            "write",
-            undefined
-        );
-        // if (!savedData) {
-        //     alert("저장된 정보가 없습니다.");
-        //     return;
-        // }
-        // setTourData(savedData);
-        // alert("로드완료");
         openModal("#LocalStorageBoard")();
     };
 

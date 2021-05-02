@@ -3,11 +3,26 @@ import { useState } from "react";
 import { MULTI_UPLOAD } from "../apollo/gql/mutations";
 import { Ffile, multiUpload, multiUploadVariables } from "../types/api";
 import { ImgResizeSizes, ResizeKeys } from "../types/const";
-import { resizeImage } from "../utils/fileResize";
+import { checkFileSize } from "../utils/checkFileSIze";
+import { fileExtendDivider } from "../utils/fileExtendDivider";
+import {
+    getFileImageSize,
+    IResizeImageOptions,
+    resizeImage,
+} from "../utils/fileResize";
 import { isImgFile } from "../utils/isImgFile";
+
+function renameFile(originalFile: File, newName: string) {
+    return new File([originalFile], newName, {
+        type: originalFile.type,
+        lastModified: originalFile.lastModified,
+    });
+}
 
 interface IuploadConfigs {
     resizes?: ResizeKeys[];
+    fixResizeOnUri?: boolean;
+    maxSiszeMb?: number;
 }
 
 export const useUpload = (
@@ -21,41 +36,41 @@ export const useUpload = (
         ...options,
     });
 
-    const getResized = async (
-        file: File,
-        maxWdith: number,
-        suffix: string,
-        changedFileName: string
-    ) => {
-        if (isImgFile(file)) {
-            try {
-                const resized = await resizeImage({
-                    file,
-                    maxSize: maxWdith,
-                    suffix,
-                    changedFileName,
-                });
-                return await multMu({
-                    variables: {
-                        file: [resized],
-                    },
-                }).then(({ data }) => {
-                    return data?.MultiUpload?.data?.[0]?.uri;
-                });
-            } catch {
-                alert("error occured");
-                return file;
-            }
-        } else return file;
-    };
-
-    const signleUpload = (
-        files: FileList,
+    const signleUpload = async (
+        fileList: FileList,
         onSucess?: (url: string, data: Ffile) => void,
         config?: IuploadConfigs
     ) => {
-        if (!files) return;
+        if (!fileList) return;
+        const file = fileList.item(0);
+        let files = [file];
 
+        if (!file) return;
+        if (!checkFileSize(file, config?.maxSiszeMb)) return;
+
+        if (isImgFile(file)) {
+            const resizes = ["500", "1000", "2000", "3000"];
+
+            const { extend, namePart } = fileExtendDivider(file.name);
+            const newName = namePart + "__resized__" + "." + extend;
+            const reNamedFile = renameFile(file, newName);
+
+            const resizeFiles: IResizeImageOptions[] = resizes.map(
+                (resize) => ({
+                    file: reNamedFile,
+                    maxSize: parseInt(resize),
+                    suffix: resize,
+                })
+            );
+
+            const resizeImages = await Promise.all(
+                resizeFiles
+                    .map((resize) => resizeImage(resize))
+                    .filter((val) => val)
+            );
+
+            files = [reNamedFile, ...resizeImages];
+        }
         setLoading(true);
 
         multMu({
@@ -63,29 +78,9 @@ export const useUpload = (
                 file: files,
             },
         }).then(async ({ data }) => {
+            data?.MultiUpload.data?.map((data) => 1);
             const file = data?.MultiUpload.data?.[0];
             const url = file?.uri;
-
-            const defaultResizes = ["small", "medium", "large"];
-
-            try {
-                for (const resize of config.resizes || defaultResizes) {
-                    const resized = await getResized(
-                        files.item(0),
-                        ImgResizeSizes[resize],
-                        resize,
-                        file.name
-                    );
-                    if (file && typeof resized === "string") {
-                        file.imgScaleUrl = {
-                            ...file.imgScaleUrl,
-                            [resize]: resized,
-                        };
-                    }
-                }
-            } catch {
-                console.warn("resizedFail");
-            }
 
             if (url && file) {
                 onSucess?.(url, file);

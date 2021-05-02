@@ -4,9 +4,9 @@ import { useIdSelecter } from '../../hook/useIdSelecter';
 import { useProductController, useProductFindByIdForSeller, useProductUpdate, } from '../../hook/useProduct';
 import { generateSearchLink } from '../../pages/search[drepreacted]';
 import { AppContext } from '../../pages/_app';
-import { PaymentStatus, BookingStatus, ProductStatus, } from '../../types/api';
+import { PaymentStatus, BookingStatus, ProductStatus, RequestStatus, } from '../../types/api';
 import { AFTER_OPEN_PRODUCT_STATUS } from '../../types/const';
-import { bookingStatus, determinedKr, genderToKR, productStatus, reqToKr, withCompany } from '../../utils/enumToKr';
+import { bookingStatus, determinedKr, genderToKR, productStatus, reqToKr, requestStatusKr, withCompany } from '../../utils/enumToKr';
 import { autoComma, autoHypenPhone } from '../../utils/formatter';
 import { generateClientPaging } from '../../utils/generateClientPaging';
 import { arraySum } from '../../utils/math';
@@ -101,11 +101,10 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
             params: {
                 adminMemo
             },
-            reason: ""
+            type: RequestStatus.ELSE,
+            reason: "메모수정"
         })
     }
-
-
 
     return <div id="ProductModal" className="productModal popup_bg_full" >
         {product &&

@@ -2090,6 +2090,30 @@
             "deprecationReason": null
           },
           {
+            "name": "productSamples",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "logo",
             "description": null,
             "args": [],
@@ -2937,6 +2961,12 @@
           },
           {
             "name": "EXPIRED",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ELSE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -25728,6 +25758,16 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "imgScaleUrl",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ImgScaleUrlInput",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -29132,6 +29172,24 @@
             "defaultValue": null
           },
           {
+            "name": "productSamples",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
             "name": "image",
             "description": null,
             "type": {
@@ -29252,6 +29310,24 @@
           },
           {
             "name": "blacklist",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "productSamples",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -44819,6 +44895,16 @@
             "name": "ProductUpdate",
             "description": null,
             "args": [
+              {
+                "name": "type",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "RequestStatus",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
               {
                 "name": "reason",
                 "description": null,

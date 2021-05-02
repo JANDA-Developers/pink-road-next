@@ -10320,7 +10320,7 @@ ul.photo_ul.main_photo_ul li .title {
   .main_con_box3 li {
     width: 25%;
     min-height: 450px;
-    background-size: 270%;
+    background-size: cover;
   }
 
   .siteInfo_in .top_bg {
@@ -12269,7 +12269,7 @@ ul.photo_ul.main_photo_ul li .title {
   }
   .main_con_box1 .main_top_images {
     min-height: 490px;
-    background-size: 379%;
+    background-size: cover;
   }
   .main_con_box3 li {
     min-height: 190px;

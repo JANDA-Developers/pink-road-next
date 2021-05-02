@@ -200,6 +200,7 @@ export const requestStatusKr = (req?: RequestStatus) => {
     if (req === RequestStatus.REJECT) return "거절";
     if (req === RequestStatus.REQUEST) return "요청";
     if (req === RequestStatus.WITHDRAWAL) return "출발철회";
+    if (req === RequestStatus.ELSE) return "기타수정";
     return "";
 };
 

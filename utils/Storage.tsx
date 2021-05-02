@@ -29,7 +29,7 @@ export class LocalManager<T extends string> {
                 _value = JSON.stringify(value);
             } catch (e) {
                 this.storage?.removeItem(key);
-                console.error('LocalManager::saveLocal:stringFyFailed');
+                console.error('LocalManager::saveLocal:stringFyFailed');t
                 console.error(e);
             }
         }

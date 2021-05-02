@@ -32,7 +32,10 @@ import { cloneObject } from "../../../utils/clone";
 import { productStatus } from "../../../utils/enumToKr";
 import { Prompt } from "../../../components/promptModal/Prompt";
 import { closeModal, openModal } from "../../../utils/popUp";
-import { LocalStorageBoard } from "../../../components/localStorageBoard/LocalStorageBoard";
+import {
+    LocalStorageBoard,
+    SampleBoard,
+} from "../../../components/localStorageBoard/LocalStorageBoard";
 import dayjs from "dayjs";
 import { checkIsExp } from "../../../utils/product";
 import { PageEditor } from "../../../components/common/PageEditer";
@@ -42,6 +45,7 @@ import {
     generateitinery,
 } from "../../../components/tourWrite/helper";
 import { ProductSelectModal } from "../../../components/ProductSelectModal";
+import { useHomepage, useHomepageUpdate } from "../../../hook/useHomepage";
 // const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = LoadEditor();
@@ -80,6 +84,61 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         itsIndex: 0,
         contentIndex: 0,
     });
+
+    const { data: homepage } = useHomepage();
+    const sampleProducts = homepage?.productSamples || [];
+    const [homepageUpdate] = useHomepageUpdate();
+    const [sampleIndex, setSampleIndex] = useState<number>(-1);
+    const notSample = sampleIndex === -1;
+
+    const updateSampels = (nextSample: string[], suecssMessage: string) => {
+        homepageUpdate({
+            variables: {
+                params: {
+                    productSamples: nextSample,
+                },
+            },
+        }).then(({ data }) => {
+            if (data?.HomepageUpdate.ok) {
+                alert(suecssMessage);
+            }
+        });
+    };
+
+    const sampleUpdate = (sample: string, index: number) => {
+        const newSamples = [...sampleProducts].splice(index, 1, sample);
+        updateSampels(newSamples, "업데이트 완료");
+    };
+
+    const sampleCreate = (sample: string) => {
+        const nextSampls = [sample, ...sampleProducts];
+        updateSampels(nextSampls, "추가 완료");
+    };
+
+    const handleSampleDelete = (index: number) => {
+        const newSamples = [...sampleProducts].splice(index, 1);
+        const nextSampls = [...newSamples];
+        updateSampels(nextSampls, "추가 완료");
+    };
+
+    const handleSampleCreate = () => {
+        const sample = JSON.stringify(tourData);
+        sampleCreate(sample);
+    };
+
+    const handleSampleUpdate = () => {
+        const sample = JSON.stringify(tourData);
+        sampleUpdate(sample, sampleIndex);
+    };
+
+    const handleSampleLoad = (index: number) => {
+        const target = sampleProducts[index];
+        const val = JSON.parse(target);
+        if (val) {
+            setTourData(val);
+        }
+    };
+
     const [updateReq, { loading: updateReqLoading }] = useProductUpdateReq({
         onCompleted: ({ ProductUpdateReq }) => {
             if (ProductUpdateReq?.ok) {
@@ -249,8 +308,11 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         if (!val) {
             setAsNewProduct();
             return;
-        }
-        openProductSelecter();
+        } else if (val === "ProductLink") openProductSelecter();
+    };
+
+    const sampleSelectOpen = () => {
+        openModal("#SampleSelecter")();
     };
 
     const changeBaseProd = (code: string) => {
@@ -258,7 +320,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         setGroupCode(target?.groupCode);
         getData({
             variables: {
-                _id: target._id,
+                _id: target?._id || "",
             },
         });
         closeModal("#ProductSearchModal")();
@@ -330,20 +392,29 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             <div className="write_type">
                                 <div className="title">등록타입</div>
                                 <div className="input_form">
-                                    <span className="category r3">
-                                        <select
-                                            onChange={handleBaseProdChange}
-                                            value={product?._id}
-                                            name="type"
+                                    <div style={{ display: "flex" }}>
+                                        <span className="category r3">
+                                            <select
+                                                onChange={handleBaseProdChange}
+                                                value={product?._id}
+                                                name="type"
+                                            >
+                                                <option value={""}>
+                                                    새로운상품
+                                                </option>
+                                                <option value="ProductLink">
+                                                    회차연결(기존 상품 재오픈)
+                                                </option>
+                                            </select>
+                                        </span>
+                                        <button
+                                            onClick={sampleSelectOpen}
+                                            className="btn"
                                         >
-                                            <option value={""}>
-                                                새로운상품
-                                            </option>
-                                            <option>
-                                                회차연결(기존 상품 재오픈)
-                                            </option>
-                                        </select>
-                                    </span>
+                                            샘플 불러오기
+                                        </button>
+                                    </div>
+
                                     <p className="info_txt">
                                         <i className="jandaicon-info2 mini"></i>{" "}
                                         회차연결 상품은 내용에 중대한 변경 없이
@@ -524,7 +595,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             </div>
                         </div>
 
-                        <div className="write_type">
+                        {/* <div className="write_type">
                             <div className="title">장소</div>
                             <div className="input_form">
                                 <div>
@@ -542,7 +613,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     @@주민센터
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="write_type">
                             <div className="title">출발장소</div>
@@ -617,6 +688,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         onChange={handleChangeSumbNail}
                                         ref={hiddenFileInput}
                                         hidden
+                                        accept="image/*"
                                         type="file"
                                     />
                                 </ul>
@@ -684,8 +756,12 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 }
                                 month={dayjs().add(20, "day").toDate()}
                                 disabledDays={{
-                                    before: dayjs().add(30, "day").toDate(),
-                                    after: dayjs().add(90, "day").toDate(),
+                                    before: dayjs()
+                                        .add(isManager ? 0 : 30, "day")
+                                        .toDate(),
+                                    after: dayjs()
+                                        .add(isManager ? 9999 : 90, "day")
+                                        .toDate(),
                                 }}
                                 isRange={type === ProductType.TOUR}
                                 onRangeChange={
@@ -857,6 +933,21 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     등록
                                 </button>
                             )}
+                            {isManager && (
+                                <button
+                                    onClick={
+                                        notSample
+                                            ? handleSampleCreate
+                                            : handleSampleUpdate
+                                    }
+                                    type="submit"
+                                    className="btn medium pointcolor"
+                                >
+                                    {notSample
+                                        ? "샘플로 등록하기"
+                                        : "샘플 업데이트"}
+                                </button>
+                            )}
                             <button
                                 onClick={handleCancel}
                                 type="button"
@@ -876,6 +967,11 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         </div>
                     </div>
                     <LocalStorageBoard key={loadKey} onLoad={setTourData} />
+                    <SampleBoard
+                        items={sampleProducts}
+                        onDelete={handleSampleDelete}
+                        onLoad={handleSampleLoad}
+                    />
                 </div>
                 <Prompt
                     id="UpdateMemo"
@@ -886,7 +982,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             </div>
             <ProductSelectModal
                 filter={{
-                    authorEmail_eq: isAdmin ? undefined : myProfile.email,
+                    authorEmail_eq: isAdmin ? undefined : myProfile?.email,
                 }}
                 onSelect={(pd) => {
                     const groupdCode = pd.groupCode;
