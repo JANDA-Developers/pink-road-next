@@ -14,6 +14,8 @@
 }
 .LocalStorageBoard__title{
     padding:  0 !important;
+    font-size: 1.3em !important;
+    line-height: 130%!important;
 }
 .BookingModal__in {
     display: flex;

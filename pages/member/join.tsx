@@ -1,50 +1,50 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import SubTopNav from 'layout/components/SubTop';
-import { useVerification } from '../../hook/useVerification';
-import { ISet } from '../../types/interface';
-import { UserRole, VerificationTarget } from '../../types/api';
-import { getFromUrl } from '../../utils/url';
-import { closeModal, openModal } from '../../utils/popUp';
-import { VerifiEamilModal } from '../../components/verifiModal/VerifiEmailModal';
-import { Storage } from '../../utils/Storage';
-import UserInfoForm from 'components/join/UserInfoForm';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { getStaticPageInfo, Ipage } from '../../utils/page';
-import { usePageEdit } from '../../hook/usePageEdit';
-import defaultPageInfo from "../../info/join.json"
-import { ALLOW_SELLERS } from '../../types/const';
-import { PageEditor } from '../../components/common/PageEditer';
+import React, { createContext, useContext, useEffect, useState } from "react";
+import SubTopNav from "layout/components/SubTop";
+import { useVerification } from "../../hook/useVerification";
+import { ISet } from "../../types/interface";
+import { UserRole, VerificationTarget } from "../../types/api";
+import { getFromUrl } from "../../utils/url";
+import { closeModal, openModal } from "../../utils/popUp";
+import { VerifiEamilModal } from "../../components/verifiModal/VerifiEmailModal";
+import { Storage } from "../../utils/Storage";
+import UserInfoForm from "components/join/UserInfoForm";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { getStaticPageInfo, Ipage } from "../../utils/page";
+import { usePageEdit } from "../../hook/usePageEdit";
+import defaultPageInfo from "../../info/join.json";
+import { ALLOW_SELLERS } from "../../types/const";
+import { PageEditor } from "../../components/common/PageEditer";
 interface IchkPolocy {
-    policy_use: boolean,
-    policy_info_collect: boolean,
-    policy_info_entrust: boolean,
-    policy_traveler: boolean,
-    policy_partner: boolean,
-    policy_marketing: boolean,
-    policy_info_3rd: boolean
+    policy_use: boolean;
+    policy_info_collect: boolean;
+    policy_info_entrust: boolean;
+    policy_traveler: boolean;
+    policy_partner: boolean;
+    policy_marketing: boolean;
+    policy_info_3rd: boolean;
 }
 
 export const ContextPolicyChk = createContext<IchkPolocy | null>(null);
 
-type TJoinProcess = "userType" | "verification" | "userInfo" | "registered"
+type TJoinProcess = "userType" | "verification" | "userInfo" | "registered";
 interface IjoinContext extends ReturnType<typeof useVerification> {
     joinProcess: TJoinProcess;
-    setJoinProcess: ISet<TJoinProcess> | any
-    userType: UserRole,
-    setUserType: ISet<UserRole>
-    isPartenerB: boolean,
-    isPartner: boolean,
-    isIndi: boolean,
-    verifiedPhone?: string
-    verificationId?: string
-    verifiedEmail?: string
-    oauth?: string
+    setJoinProcess: ISet<TJoinProcess> | any;
+    userType: UserRole;
+    setUserType: ISet<UserRole>;
+    isPartenerB: boolean;
+    isPartner: boolean;
+    isIndi: boolean;
+    verifiedPhone?: string;
+    verificationId?: string;
+    verifiedEmail?: string;
+    oauth?: string;
 }
 
 export const JoinContext = React.createContext<null | IjoinContext>(null);
 
-export const getStaticProps = getStaticPageInfo("join")
+export const getStaticProps = getStaticPageInfo("join");
 const Join: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
     const editTools = usePageEdit(pageInfo, defaultPageInfo);
@@ -56,22 +56,22 @@ const Join: React.FC<Ipage> = (pageInfo) => {
     const [joinProcess, joinSet] = useState<TJoinProcess>("userType");
     const verifiHook = useVerification({
         _id: verificationId,
-        payload: verifiedEmail
+        payload: verifiedEmail,
     });
 
     const setJoinProcess = (process: TJoinProcess) => {
         history.pushState({ joinProcess: joinProcess }, "회원가입 절차");
         history.pushState({ joinProcess: joinProcess }, "회원가입 절차");
-        joinSet(process)
-    }
+        joinSet(process);
+    };
 
     const checkProcess = (process: TJoinProcess) => process === joinProcess;
-    const checkProcessOn = (process: TJoinProcess) => checkProcess(process) ? "on" : "";
+    const checkProcessOn = (process: TJoinProcess) =>
+        checkProcess(process) ? "on" : "";
 
     const isPartenerB = userType === UserRole.partnerB;
     const isPartner = userType === UserRole.partner;
     const isIndi = userType === UserRole.individual;
-
 
     const context: IjoinContext = {
         ...verifiHook,
@@ -85,42 +85,42 @@ const Join: React.FC<Ipage> = (pageInfo) => {
         isPartenerB,
         isPartner,
         isIndi,
-        oauth
-    }
+        oauth,
+    };
 
     useEffect(() => {
         const lastRole = Storage?.getLocal("signUpRole", "") as UserRole;
         if (lastRole) {
-            setUserType(lastRole)
+            setUserType(lastRole);
         }
-    }, [])
-
+    }, []);
 
     useEffect(() => {
         if (oauth) {
-            setJoinProcess("verification")
+            setJoinProcess("verification");
         }
         if (verificationId) {
             // Oauth 인증과 함꼐 들어온경우
             setUserType(UserRole.individual);
             setJoinProcess("userInfo");
         }
-    }, [])
-
+    }, []);
 
     useEffect(() => {
         window.onpopstate = function (event: any) {
             joinSet(event.state.joinProcess);
         };
-    }, [])
+    }, []);
 
     return (
         <div>
-            <div >
-                <SubTopNav pageTools={editTools} >
+            <div>
+                <SubTopNav pageTools={editTools}>
                     <li className="homedeps1">Member</li>
                     <li className="homedeps2">
-                        <Link href="/member/join"><a>회원가입</a></Link>
+                        <Link href="/member/join">
+                            <a>회원가입</a>
+                        </Link>
                     </li>
                 </SubTopNav>
                 <PageEditor pageTools={editTools} />
@@ -134,7 +134,8 @@ const Join: React.FC<Ipage> = (pageInfo) => {
                             <ul>
                                 <li
                                     key={joinProcess}
-                                    className={checkProcessOn("userType")}>
+                                    className={checkProcessOn("userType")}
+                                >
                                     <i className="text">Step.01</i>
                                     <i className="svg01"></i>
                                     <br />
@@ -156,35 +157,32 @@ const Join: React.FC<Ipage> = (pageInfo) => {
                                     <i className="text">Step.04</i>
                                     <i className="svg04"></i>
                                     <br />
-                                    {userType === UserRole.individual ? "가입완료" : "가입요청완료"}
+                                    {userType === UserRole.individual
+                                        ? "가입완료"
+                                        : "가입요청완료"}
                                 </li>
                             </ul>
                         </div>
                         <div className="join_wrap2 w1200">
                             <JoinContext.Provider value={context}>
-                                {checkProcess("userType") &&
-                                    <UserType />
-                                }
-                                {checkProcess("verification") &&
+                                {checkProcess("userType") && <UserType />}
+                                {checkProcess("verification") && (
                                     <Verification />
-                                }
-                                {checkProcess("userInfo") && userType &&
+                                )}
+                                {checkProcess("userInfo") && userType && (
                                     <div className="w1200 " id="con02">
                                         <UserInfoForm />
                                     </div>
-                                }
-                                {checkProcess("registered") &&
-                                    <JoinResult />
-                                }
+                                )}
+                                {checkProcess("registered") && <JoinResult />}
                             </JoinContext.Provider>
                         </div>
                     </div>
                 </div>
             </div>
-        </div >
-    )
-}
-
+        </div>
+    );
+};
 
 const JoinResult = () => {
     const { userType } = useContext(JoinContext)!;
@@ -193,51 +191,50 @@ const JoinResult = () => {
         <div className="wellcom" id="con03">
             {/* <img src="/img/join_img01.png" alt="환영합니다 이미지" /> */}
             <h5>회원가입을 축하드립니다!</h5>
-            {!isSeller && <p>
-                회원가입이 완료 되었습니다.  <br className="no" />
-                로그인 후 핑크로더의 알차고 즐거운 컨텐츠를 사용하실 수 있습니다.
-            </p>}
-            {isSeller && <p>
-                기업파트너or개인파트너는 가입승인 후에 서비스를 이용할 수 있습니다. <br className="no" />
-                핑크로더의 파트너 담당자가 승인 절차 메일을 발송 합니다. 조금만 기다려 주세요.
-            </p>}
+            {!isSeller && (
+                <p>
+                    회원가입이 완료 되었습니다. <br className="no" />
+                    로그인 후 핑크로더의 알차고 즐거운 컨텐츠를 사용하실 수
+                    있습니다.
+                </p>
+            )}
+            {isSeller && (
+                <p>
+                    기업파트너or개인파트너는 가입승인 후에 서비스를 이용할 수
+                    있습니다. <br className="no" />
+                    핑크로더의 파트너 담당자가 승인 절차 메일을 발송 합니다.
+                    조금만 기다려 주세요.
+                </p>
+            )}
             <div className="fin last">
                 <Link href="/">
-                    <button
-                        className="sum btn"
-                    >
-                        홈으로
-                </button>
+                    <button className="sum btn">홈으로</button>
                 </Link>
                 <Link href="/login">
-                    <button
-                        className="sum btn"
-                    >
-                        로그인 하러가기
-                </button>
+                    <button className="sum btn">로그인 하러가기</button>
                 </Link>
-            </div >
-        </div >
-    )
-}
-
+            </div>
+        </div>
+    );
+};
 
 const Verification: React.FC = () => {
     const { setJoinProcess, oauth, ...verifiHook } = useContext(JoinContext)!;
-    const [verifiTarget, setVerifiTarget] = useState(VerificationTarget.EMAIL)
+    const [verifiTarget, setVerifiTarget] = useState(VerificationTarget.EMAIL);
     const handleAuth = (target: "google" | "kakao") => () => {
-        window.location.href = process.env.NEXT_PUBLIC_SERVER_URI + "/login/" + target
-    }
+        window.location.href =
+            process.env.NEXT_PUBLIC_SERVER_URI + "/login/" + target;
+    };
 
     const handleSelfAuthEmail = () => {
-        setVerifiTarget(VerificationTarget.EMAIL)
-        openModal("#emailVerifi")()
-    }
+        setVerifiTarget(VerificationTarget.EMAIL);
+        openModal("#emailVerifi")();
+    };
 
     const handleSelfAuthPhone = () => {
-        setVerifiTarget(VerificationTarget.PHONE)
-        openModal("#emailVerifi")()
-    }
+        setVerifiTarget(VerificationTarget.PHONE);
+        openModal("#emailVerifi")();
+    };
 
     useEffect(() => {
         if (!oauth) return;
@@ -249,21 +246,21 @@ const Verification: React.FC = () => {
              - 다른 브라우저를 사용
              - 다른 기기를 사용
              - 브라우저 쿠키를 삭제
-             `)
+             `);
         // const googleLogout = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://www.example.com";
         // const kakakoLogout = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://www.example.com";
-    }, [oauth])
+    }, [oauth]);
 
     return (
         <div className="certified" id="con01">
             <h5>본인인증을 해주세요.</h5>
             <p>
                 {" "}
-                원활한 서비스 이용과 온라인에서의 익명 사용으로 인한 피해 등을 최소한으로
-                방지하기 위해 실명제를 시행하고 있습니다.
+                원활한 서비스 이용과 온라인에서의 익명 사용으로 인한 피해 등을
+                최소한으로 방지하기 위해 실명제를 시행하고 있습니다.
                 <br />
-                본인확인을 위해 아래의 구글인증 또는 카카오톡인증 중에 하나를 선택하여
-                본인확인을 받으시기 바랍니다.
+                본인확인을 위해 아래의 구글인증 또는 카카오톡인증 중에 하나를
+                선택하여 본인확인을 받으시기 바랍니다.
             </p>
             <ul>
                 {/* <li onClick={handleAuth("google")} className="socialVerify">
@@ -284,29 +281,32 @@ const Verification: React.FC = () => {
                 </li>
             </ul>
             <p className="bt_txt">
-                ※ 본인인증 시 제공되는 정보로 회원가입시 필요한 정보를 연동합니다.
+                ※ 본인인증 시 제공되는 정보로 회원가입시 필요한 정보를
+                연동합니다.
             </p>
-            <VerifiEamilModal target={verifiTarget} duplicateCheck onSuccess={() => {
-                closeModal("#emailVerifi")()
-                setJoinProcess("userInfo");
-            }} verifiHook={{
-                ...verifiHook
-            }} />
+            <VerifiEamilModal
+                target={verifiTarget}
+                duplicateCheck
+                onSuccess={() => {
+                    closeModal("#emailVerifi")();
+                    setJoinProcess("userInfo");
+                }}
+                verifiHook={{
+                    ...verifiHook,
+                }}
+            />
         </div>
-    )
-}
-
-
-
+    );
+};
 
 const UserType: React.FC = () => {
     const { setJoinProcess, setUserType } = useContext(JoinContext)!;
 
     const handleTypeChoice = (userType: UserRole) => () => {
         setJoinProcess("verification");
-        Storage?.saveLocal("signUpRole", userType)
-        setUserType(userType)
-    }
+        Storage?.saveLocal("signUpRole", userType);
+        setUserType(userType);
+    };
 
     return (
         <div className="choice_box" id="con00">
@@ -320,30 +320,61 @@ const UserType: React.FC = () => {
                         구매를 위한 개인회원입니다.
                         <br />
                         회원가입을 하고 여행을 떠나세요~!!
-                     </span>
-                    <button className="pink_join_btn" onClick={handleTypeChoice(UserRole.individual)}>회원가입</button>
-
+                    </span>
+                    <button
+                        className="pink_join_btn"
+                        onClick={handleTypeChoice(UserRole.individual)}
+                    >
+                        회원가입
+                    </button>
                 </li>
                 <li className="li02">
                     <div className="join__snslink">
                         <strong>SNS 계정 회원가입</strong>
                         <ul>
                             <li className="join__snslink_k">
-                                <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/kakao"}>
-                                    <span className="join__snslink_icon"><i className="jandaicon-kakaotalk"></i></span>
-                                    <span className="join__snslink_txt">카카오 계정으로 회원가입</span>
+                                <a
+                                    href={
+                                        process.env.NEXT_PUBLIC_SERVER_URI +
+                                        "/login/kakao"
+                                    }
+                                >
+                                    <span className="join__snslink_icon">
+                                        <i className="jandaicon-kakaotalk"></i>
+                                    </span>
+                                    <span className="join__snslink_txt">
+                                        카카오 계정으로 회원가입
+                                    </span>
                                 </a>
                             </li>
                             <li className="join__snslink_n">
-                                <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/naver"}>
-                                    <span className="join__snslink_icon"><i></i></span>
-                                    <span className="join__snslink_txt">네이버 계정으로 회원가입</span>
+                                <a
+                                    href={
+                                        process.env.NEXT_PUBLIC_SERVER_URI +
+                                        "/login/naver"
+                                    }
+                                >
+                                    <span className="join__snslink_icon">
+                                        <i></i>
+                                    </span>
+                                    <span className="join__snslink_txt">
+                                        네이버 계정으로 회원가입
+                                    </span>
                                 </a>
                             </li>
                             <li className="join__snslink_g">
-                                <a href={process.env.NEXT_PUBLIC_SERVER_URI + "/login/google"}>
-                                    <span className="join__snslink_icon"><i className="jandaicon-google1"></i></span>
-                                    <span className="join__snslink_txt">구글 계정으로 회원가입</span>
+                                <a
+                                    href={
+                                        process.env.NEXT_PUBLIC_SERVER_URI +
+                                        "/login/google"
+                                    }
+                                >
+                                    <span className="join__snslink_icon">
+                                        <i className="jandaicon-google1"></i>
+                                    </span>
+                                    <span className="join__snslink_txt">
+                                        구글 계정으로 회원가입
+                                    </span>
                                 </a>
                             </li>
                         </ul>
@@ -352,30 +383,43 @@ const UserType: React.FC = () => {
             </ul>
             <ul className="choice__link">
                 <li>
-                    <div onClick={handleTypeChoice(UserRole.partnerB)} className="partner_01">
+                    <div
+                        onClick={handleTypeChoice(UserRole.partnerB)}
+                        className="partner_01"
+                    >
                         <strong>기업파트너 회원</strong>
                         <span>기업파트너를 위한 회원입니다.</span>
-                        <button className="nomal_join_btn" onClick={handleTypeChoice(UserRole.partnerB)}>회원가입</button>
+                        <button
+                            className="nomal_join_btn"
+                            onClick={handleTypeChoice(UserRole.partnerB)}
+                        >
+                            회원가입
+                        </button>
                     </div>
                 </li>
                 <li>
-                    <div onClick={handleTypeChoice(UserRole.partner)} className="partner_02">
+                    <div
+                        onClick={handleTypeChoice(UserRole.partner)}
+                        className="partner_02"
+                    >
                         <strong>개인파트너 회원</strong>
                         <span>개인파트너를 위한 회원입니다.</span>
-                        <button className="nomal_join_btn" onClick={handleTypeChoice(UserRole.partner)}>회원가입</button>
+                        <button
+                            className="nomal_join_btn"
+                            onClick={handleTypeChoice(UserRole.partner)}
+                        >
+                            회원가입
+                        </button>
                     </div>
                 </li>
-
-
             </ul>
             <p className="bt_txt">
-                ※ 기업파트너는 사업자번호가 필요합니다. 사업자번호가 없는 경우에는
-                개인파트너로 회원가입을 해주세요.
+                ※ 기업파트너는 사업자번호가 필요합니다. 사업자번호가 없는
+                경우에는 개인파트너로 회원가입을 해주세요.
             </p>
             <p className="bt_txt">※ 상품구입을 위해서 회원가입은 필수입니다.</p>
         </div>
-    )
-}
+    );
+};
 
-export default Join
-
+export default Join;

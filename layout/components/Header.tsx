@@ -498,20 +498,6 @@ export const Header: React.FC<IProp> = () => {
                                                 </Link>
                                             </li>
                                         )}
-                                        {isParterB && (
-                                            <li onClick={handleAllClose}>
-                                                <Link href="/tour/write?type=exp">
-                                                    <a>상품 등록하기</a>
-                                                </Link>
-                                            </li>
-                                        )}
-                                        {isManager && (
-                                            <li onClick={handleAllClose}>
-                                                <Link href="/tour/write?type=exp">
-                                                    <a>상품 등록하기</a>
-                                                </Link>
-                                            </li>
-                                        )}
                                     </ul>
                                 </li>
                                 <li className="a_menu_tit deps solo_nav">
@@ -599,8 +585,8 @@ export const Header: React.FC<IProp> = () => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="/member/electron-terms">
-                                                <a>전자상거래이용약관</a>
+                                            <Link href="/member/refund-policy">
+                                                <a>취소 및 환불 정책</a>
                                             </Link>
                                         </li>
                                         <li>
@@ -688,7 +674,7 @@ export const Header: React.FC<IProp> = () => {
                                                 isParterNonB ||
                                                 isManager) && (
                                                 <li>
-                                                    <Link href="/mypage/goods">
+                                                    <Link href="/mypage/plainning">
                                                         <a>상품관리</a>
                                                     </Link>
                                                 </li>
@@ -741,7 +727,7 @@ export const Header: React.FC<IProp> = () => {
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/master/design">
+                                                <Link href="/master/design/display">
                                                     <a>디자인 설정</a>
                                                 </Link>
                                             </li>

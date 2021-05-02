@@ -615,14 +615,14 @@ ul.list_ul li .tag2 {
   display: block;
   text-align: left;
   font-size: 12px;
-  font-weight: 100;
+  font-weight: 600;
   margin-top: 10px;
 }
 
 ul.list_ul li .tag2 span {
   display: inline-block;
   margin-right: 5px;
-  color: #666666;
+  color: #969696;
   padding: 1px 2px;
   box-sizing: border-box;
   background-color: #f5f5f5;
@@ -1269,9 +1269,16 @@ ul.photo_ul li .category span {
   max-width: 100%;
 }
 
+.board_box .xe_content h2,
+.board_box .xe_content h3,
+.board_box .xe_content h4,
+.board_box .xe_content h5 {
+  line-height: 170%;
+}
+
 .board_box .xe_content .in_box p {
   font-size: 14px;
-  line-height: 30px;
+  line-height: 170%;
 }
 
 div.download_box {
@@ -1759,7 +1766,7 @@ div.board_list_mini div.w100 {
   line-height: 40px;
   padding: 0 15px;
   box-sizing: border-box;
-  color: #333333;
+  color: #888888;
   background: #fff;
   border: 0;
   box-shadow: unset;
@@ -1974,6 +1981,7 @@ div.board_list_mini div.w100 {
   box-shadow: unset;
   border-radius: 3px;
   border: 1px solid #ccc;
+  font-weight: 600;
 }
 
 .board_write .write_con .texta_title {
@@ -2484,11 +2492,9 @@ div.sum_div .last_ul i {
   .board_write .con_tap li.on span:after {
     bottom: -7px;
   }
-  ul.list_ul {
-    display: flex;
-  }
+  
   ul.list_ul li {
-    width: auto;
+    width: 49%;
   }
 
   ul.list_ul li .img {
@@ -2531,7 +2537,9 @@ div.sum_div .last_ul i {
   }
 }
 @media (min-width: 1000px) {
-  
+  ul.list_ul {
+    display: flex;
+  }
 .fuction_list_mini .thead {
   position: relative;
   display: flex;
@@ -2813,6 +2821,7 @@ div.sum_div .last_ul i {
   }
   .board_write .write_con .day_tap .elimination {
     left: 90%;
+    margin-bottom: 10px;
   }
   .board_write .write_con .day_tap .add {
     left: 90%;
@@ -2860,6 +2869,13 @@ div.sum_div .last_ul i {
   }
 }
 @media (max-width: 767px) {
+  div.alignment .right_div .al_01, div.alignment .right_div .al_02{
+    display: none !important;
+  }
+  div.search li a {
+    font-size: 0.95em;
+    padding: 6px 10px;
+}
   .board_list_mini.ln04 .th03 {
     margin-right: 0;
   }

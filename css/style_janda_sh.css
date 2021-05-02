@@ -28,6 +28,19 @@
 .date,
 .men,
 .men_cunt,
+.ce-paragraph,
+.ce-block,
+.option_tb td,
+.JDtagInput__tag,
+.LocalStorageBoard__date,
+.basket_box .basket_list .subtitle,
+.selectViewList ul.list_ul li .subtitle,
+.board_box .xe_content .xe_top .footer_txt span,
+.main_con_box2 .top_txt span,
+.board_box .xe_content .in_box p span,
+.board_box .xe_content .in_box p,
+.codex-editor__redactor,
+.ce-block__content,
 #payment .payment_box .payment_td span,
 .mypage_in .lnb a i,
 #payment .payment_box .payment_td strong,
@@ -57,6 +70,7 @@ div.master_popup .info_page div[class*="td0"],
 .search_top .day_ul span,
 .Allsearch__plusBtn,
 .product__statusIcon,
+.selectViewList ul.list_ul .list_in .txt2 span,
 .textbox__01 .day,
 .textbox__01 .location,
 .footer_in .copyright .footer_homepage_info li,
@@ -79,7 +93,7 @@ ul.list_ul li .bottom_txt span,
 .board_list .tbody li,
 .tour_details_in .boardReadBody .tour_list,
 .fuction_list_mini .tbody li > div {
-  font-family: NanumSquareRoundOTFB, NanumSquareRoundOTF, "돋음", sans-serif;
+  font-family: NanumSquareRoundOTFB, NanumSquareRoundOTF, "돋음", sans-serif !important;
 }
 div.master_popup .info_page div[class*="td0"],
 div.master_popup .top03 span {
@@ -260,7 +274,7 @@ div.master_popup .top03 span {
 }
 .main_con_box1 .main_top_images .main_top_images__subTitle {
   position: relative;
-  font-weight: 100;
+  font-weight: 600;
   font-size: 13px;
   color: #fff;
   display: block;
@@ -361,7 +375,7 @@ div.master_popup .top03 span {
 .main_con_box2 .top_txt span {
   font-size: 1.4em;
   color: #666666;
-  font-weight: 100;
+  font-weight: 500;
   display: block;
   text-align: left;
 }
@@ -994,13 +1008,14 @@ div.popup_bg_full .in_txt {
   box-shadow: 2px 2px 2px #00000052;
 }
 div.popup_bg_full .in_txt .page {
+  position: relative;
   height: 100%;
   width: 100%;
   overflow-y: auto;
   margin: 0 auto;
   text-align: left;
   font-size: 12px;
-  padding: 20px 10px 10px 0px;
+  padding: 10px 10px 10px 0px;
   box-sizing: border-box;
   text-align: center;
 }
@@ -1013,11 +1028,11 @@ div.popup_bg_full .in_txt2 {
 
 div.popup_bg_full .close_icon {
   position: absolute;
-  top: 23px;
-  right: 3px;
+  top: 15px;
+  right: 15px;
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
 }
 
 div.popup_bg_full .close_icon i {
@@ -1059,11 +1074,11 @@ div.popup_bg_full h3 strong {
   color: #2196f3;
 }
 div.popup_bg_full h4 {
-  font-size: 1.5em;
-  line-height: 160%;
+  font-size: 16px !important;
+  line-height: 160% !important;
   font-weight: 600;
   position: relative;
-  top: 19px;
+  top: 0;
   text-align: left;
 }
 div.popup_bg_full h4 i {
@@ -1103,6 +1118,7 @@ div.popup_bg_full h4 .full_div__right .btn {
   right: 0;
   top: -34px;
   line-height: 24px;
+  border: 1px solid #d8d8d8;
 }
 div.popup_bg_full h4 .full_div__right strong {
   font-weight: 600;
@@ -1195,6 +1211,12 @@ div.popup_bg_mini .close_icon {
   cursor: pointer;
   z-index: 30;
 }
+div.popup_bg_mini .close_icon.mini {
+  top: 25px;
+  right: 20px;
+  width: 16px;
+  height: 16px;
+}
 
 div.popup_bg_mini .close_icon i {
   line-height: 19px;
@@ -1246,6 +1268,9 @@ div.popup_bg_mini .con {
   width: 100%;
   padding: 15px 30px 0;
   box-sizing: border-box;
+}
+div.popup_bg_mini .con.mini {
+  padding: 15px 22px 0;
 }
 
 div.popup_bg_mini .input_box {
@@ -1339,7 +1364,7 @@ div.alignment .left_div .infotxt {
 }
 
 div.alignment .right_div {
-  display: inline-block;
+  display: flex;
   width: 100%;
   text-align: left;
   font-size: 14px;
@@ -1369,12 +1394,13 @@ div.alignment h4 {
 div.alignment .right_div .al_01,
 div.alignment .right_div .al_02 {
   display: inline-block;
-  text-align: center;
-  clear: both;
-  width: auto;
-  height: 40px;
-  vertical-align: top;
-  overflow: hidden;
+    text-align: left;
+    clear: both;
+    width: auto;
+    min-width: 30%;
+    height: 40px;
+    vertical-align: top;
+    overflow: hidden;
 }
 
 div.alignment .right_div .al_01 select,
@@ -1487,18 +1513,16 @@ div.search {
   margin: 0 auto;
   display: block;
   position: relative;
-  margin-bottom: 10px;
-  background-color: #f5f5f5;
-  padding: 20px 3% 20px;
-  text-align: center;
+  margin-bottom: 0;
+  padding: 0;
+  text-align: left;
   box-sizing: border-box;
-  margin-top: 100px;
-  border-top: 2px solid #333;
+  margin-top:50px;
 }
 div.search li {
   display: inline-block;
   width: auto;
-  margin: 0 11px;
+  margin: 0 1% 1% 0;
   position: relative;
 }
 
@@ -1507,10 +1531,13 @@ div.search li a {
   display: inline-block;
   width: auto;
   box-sizing: border-box;
-  font-size: 14px;
-  color: #898989;
+  font-size: 1em;
+  color: #a0a0a0;
   font-weight: 600;
   cursor: pointer;
+  padding: 10px 15px;
+  border: 1px solid #cccc;
+  border-radius: 3px;
 }
 
 div.search li:hover a {
@@ -1520,19 +1547,12 @@ div.search li:hover a {
 div.search li.on a {
   color: #333;
   font-weight: 600;
+  border: 0;
+  background-color: #ed297b;
+  color: #ffffff;
 }
 
-div.search .on a:after {
-  content: "";
-  display: block;
-  height: 3px;
-  width: 110%;
-  background-color: #ed297b;
-  position: absolute;
-  bottom: -7px;
-  left: -5%;
-  opacity: 0.8;
-}
+
 
 ul.profile_ul li {
   display: inline-block;
@@ -2979,7 +2999,7 @@ span.login__snslink2_txt {
   margin-bottom: 0;
 }
 .siteInfo_in .con03 p {
-  font-size: 1.1em;
+  font-size: 1.3em;
   line-height: 120%;
   color: #333;
   text-align: center;
@@ -3070,7 +3090,7 @@ span.login__snslink2_txt {
 .siteInfo_in .con02 .top_txt p {
   font-size: 1.3em;
   color: #333333;
-  font-weight: 100;
+  font-weight: 600;
 }
 
 .siteInfo_in .con02 ul {
@@ -3218,7 +3238,7 @@ span.login__snslink2_txt {
   display: block;
   width: 100%;
   text-align: center;
-  margin-top: 19px;
+  margin-top: 5px;
 }
 
 .siteInfo_in .con01 li {
@@ -3228,11 +3248,12 @@ span.login__snslink2_txt {
   vertical-align: top;
   text-align: left;
   font-size: 1.3em;
-  font-weight: 100;
+  font-weight: 600;
   line-height: 160%;
   margin-bottom: 2px;
   padding-left: 15px;
   box-sizing: border-box;
+  color: #4b4b4b;
 }
 .siteInfo_in .con01 .haf01 li {
   font-size: 1.2em;
@@ -3482,7 +3503,7 @@ span.login__snslink2_txt {
   color: #666;
   display: block;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 1.3em;
   padding: 0;
 }
 
@@ -3641,7 +3662,7 @@ span.login__snslink2_txt {
   display: block;
   width: 100%;
   padding-left: 0;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 20px;
 }
 
@@ -3674,7 +3695,9 @@ span.login__snslink2_txt {
   margin-bottom: 4px;
   margin-top: 30px;
 }
-
+.siteInfo_in .con04 .li03 span br{
+  display: none;
+}
 .siteInfo_in .con04 .li03 i {
   display: block;
   font-weight: 400;
@@ -3690,7 +3713,7 @@ span.login__snslink2_txt {
   vertical-align: top;
   width: 41%;
   margin: 2%;
-  min-height: 158px;
+  min-height: 135px;
   border-radius: 20px;
   color: #fff;
   text-align: center;
@@ -3722,7 +3745,7 @@ span.login__snslink2_txt {
 .siteInfo_in .con04 .li05 {
   display: inline-block;
   width: 86%;
-  height: 112px;
+  height: 89px;
   line-height: 48px;
   font-size: 23px;
   line-height: 130%;
@@ -3737,7 +3760,9 @@ span.login__snslink2_txt {
   vertical-align: middle;
   z-index: 22;
 }
-
+.siteInfo_in .con04 .li05 br{
+  display: none;
+}
 .siteInfo_in .con05 .w1200 {
   position: relative;
   padding: 260px 0 250px 0;
@@ -3890,8 +3915,8 @@ span.login__snslink2_txt {
 
 .siteInfo_in .con05 .in_txt .year li {
   padding-left: 0;
-  color: #fff;
-  font-weight: 100;
+  color: #d5d5d5;
+  font-weight: 600;
   box-sizing: border-box;
 }
 
@@ -5581,7 +5606,7 @@ div.bn_box.line2 a:first-child {
   width: 45px;
   height: 27px;
   vertical-align: sub;
-  background-image: url(/img/svg/email-icon.svg);
+  background-image: url(/img/svg/email-icon2.svg);
   background-size: 39px;
   background-repeat: no-repeat;
   background-position: center;
@@ -5589,7 +5614,22 @@ div.bn_box.line2 a:first-child {
   margin-top: 12px;
 }
 .join_wrap2 .certified li:hover .icon-email {
-  background-image: url(/img/svg/email-icon_on.svg);
+  background-image: url(/img/svg/email-icon2_on.svg);
+}
+.join_wrap2 .certified .icon-sms {
+  display: inline-block;
+  width: 45px;
+  height: 27px;
+  vertical-align: sub;
+  background-image: url(/img/svg/sms-icon.svg);
+  background-size: 39px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 10px;
+  margin-top: 12px;
+}
+.join_wrap2 .certified li:hover .icon-sms {
+  background-image: url(/img/svg/sms-icon_on.svg);
 }
 .join_wrap2 .wellcom {
   display: block;
@@ -6016,7 +6056,7 @@ i.important_icon {
   display: block;
   position: relative;
   width: 100%;
-  /* height: 264px; */
+  height: 264px;
   background-color: #f3f3f3;
   margin-bottom: 5px;
   overflow: hidden;
@@ -6061,7 +6101,7 @@ i.important_icon {
 
 .tour_details_in .Read_box .details_photo .photo_list li {
   width: 25%;
-  /* height: 65px; */
+  height: 65px;
   display: inline-block;
   margin: 0.5%;
   background-color: #f3f3f3;
@@ -6096,7 +6136,7 @@ i.important_icon {
   padding: 20px;
   box-sizing: border-box;
   font-size: 12px;
-  /* color: #8a6300; */
+  color: #808080;
 }
 
 .tour_details_in .Read_box .details_photo .details_info_txt i {
@@ -6173,8 +6213,8 @@ i.important_icon {
 
 .tour_details_in .boardReadBody .con_top_tap {
   position: sticky;
-  top: 67px;
-  background-color: white;
+  top: 65px;
+  background-color: #ffffff;
   display: flex;
   text-align: left;
   border-bottom: 1px solid #ccc;
@@ -6312,7 +6352,7 @@ i.important_icon {
 .tour_details_in .boardReadBody .tour_list div {
   position: relative;
   box-sizing: border-box;
-  padding: 5px 10px 30px 15px;
+  padding: 5px 10px 30px 30px;
   font-size: 16px;
   color: #555;
 }
@@ -6643,6 +6683,7 @@ i.important_icon {
   border-bottom: 1px dotted;
   border-color: #e1e1e1;
   color: #555;
+  font-weight: 600;
 }
 
 .option_tb th {
@@ -6749,10 +6790,11 @@ i.important_icon {
 }
 
 .option_tb .smtxt {
-  color: #333;
+  color: #949494;
   text-align: left;
   letter-spacing: 0px;
   position: relative;
+  font-weight: 600;
 }
 
 .option_tb .tag .tt {
@@ -6777,7 +6819,7 @@ i.important_icon {
   margin-bottom: 5px;
   padding: 2px 5px;
   box-sizing: border-box;
-  font-size: 1.1em;
+  font-size: 1em;
   color: #999;
   font-weight: 600;
   background-color: #f5f5f5;
@@ -6905,10 +6947,10 @@ i.important_icon {
   position: relative;
   display: inline-block;
   width: 100% !important;
-  height: 33px !important;
+  /* height: 33px !important; */
   border: 1px solid #ccc;
   font-size: 14px;
-  line-height: 33px !important;
+  line-height: 45px !important;
   position: relative;
   padding: 0px 21px;
   margin-top: 15px;
@@ -6939,7 +6981,7 @@ i.important_icon {
 
 .selectViewList ul.list_ul li .img {
   width: 100%;
-  height: 230px;
+  height: 320px;
   background: #cccccc;
   overflow: hidden;
   display: inline-block;
@@ -6976,6 +7018,10 @@ i.important_icon {
   line-height: 150%;
   margin-top: 0;
   font-weight: 600;
+}
+.selectViewList ul.list_ul li .subtitle {
+  font-weight: 600;
+  color: #7d7d7d;
 }
 
 .selectViewList ul.list_ul li .cash {
@@ -8103,7 +8149,7 @@ i.calendar svg {
   position: relative;
   display: block;
   line-height: 150%;
-  font-weight: 100;
+  font-weight: 600;
 }
 
 .portfolio_in .con02 h4 strong {
@@ -8163,7 +8209,7 @@ i.calendar svg {
 }
 
 .portfolio_in .con02 ul li span {
-  font-size: 14px;
+  font-size: 1.1em;
 }
 
 .portfolio_in .con03 {
@@ -8186,6 +8232,7 @@ i.calendar svg {
 .portfolio_in .con03 span {
   color: #bcbcbc;
   line-height: 42px;
+  font-size: 1.1em;
 }
 
 .portfolio_in .con04 {
@@ -9532,8 +9579,18 @@ ul.photo_ul.main_photo_ul li .title {
     margin-right: 5px;
     font-size: 0.9em;
 }
-
+/* div.login__text{
+  position: relative;
+}
+div.login__text .welcome_ms strong{
+  position: relative;
+  top: unset;
+  left: unset;
+} */
 @media (min-width: 768px) {
+  .siteInfo_in .con03 {
+    padding: 136px 25% 0;
+  }
   .selectViewList ul.list_ul {
     display: block;
   }
@@ -10019,9 +10076,22 @@ ul.photo_ul.main_photo_ul li .title {
     border: 1px solid #ed297b;
     text-decoration: none;
   }
+  .tour_details_in .Read_box .details_photo .main_photo{
+    height:185px;
+  }
+  .tour_details_in .Read_box .details_photo .photo_list li{
+    height: 48px;
+  }
 }
 
 @media (min-width: 1000px) {
+  .tour_details_in .Read_box .details_photo .main_photo{
+    /* height: 414px; */
+    height:auto;
+  }
+  .tour_details_in .Read_box .details_photo .photo_list li{
+    height: auto;
+  }
   .board_qna h4,
   .notice_box h4,
   .question_box h4,
@@ -10036,10 +10106,10 @@ ul.photo_ul.main_photo_ul li .title {
     margin-top: 4px;
   }
   .tour_details_in .boardReadBody .tour_list {
-    padding: 10px 20px 20px 90px;
+    padding: 10px 20px 20px 40px;
   }
   .tour_details_in .boardReadBody .tour_list:before {
-    left: 83px;
+    left: 33px;
   }
   .mainSlider .slick-dots > li.slick-active {
     width: 5%;
@@ -10134,12 +10204,12 @@ ul.photo_ul.main_photo_ul li .title {
     width: 100%;
   }
   div.popup_bg_full h4 .full_div__right .btn {
-    padding: 4px 10px;
+    padding: 0px 10px;
     margin-left: 5px;
     font-size: 0.8em;
-    top: -9px;
+    top: -5px;
     display: block;
-    border: 1px #959595 solid;
+    border: 1px #d8d8d8 solid;
   }
   div.popup_bg_full h4 .full_div__right strong {
     font-weight: 600;
@@ -10147,11 +10217,11 @@ ul.photo_ul.main_photo_ul li .title {
 
   div.popup_bg_full .close_icon {
     position: absolute;
-    top: 15px;
-    right: 2px;
+    top:21px;
+    right: 11px;
     display: block;
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
   }
   .main_con_box4 {
     padding: 160px 3% 300px;
@@ -10312,7 +10382,6 @@ ul.photo_ul.main_photo_ul li .title {
     font-size: 3.1em;
     text-align: left;
     display: block;
-    font-weight: 100;
   }
   .main_con_box3 ul {
     display: flex;
@@ -10412,7 +10481,6 @@ ul.photo_ul.main_photo_ul li .title {
     font-size: 3.1em;
     display: block;
     text-align: left;
-    font-weight: 100;
   }
 
   .siteInfo_in .con02 li {
@@ -10579,7 +10647,9 @@ ul.photo_ul.main_photo_ul li .title {
   .siteInfo_in .con04 .li03 span {
     margin-top: 51px;
   }
-
+  .siteInfo_in .con04 .li03 span br{
+    display: inline-block;
+  }
   .siteInfo_in .con04 .li03 > div {
     width: 200px;
     height: 200px;
@@ -10636,7 +10706,9 @@ ul.photo_ul.main_photo_ul li .title {
     border-radius: 500px;
     margin-top: 20px;
   }
-
+  .siteInfo_in .con04 .li05 br{
+    display: inline-block;
+  }
   .siteInfo_in .con04 .li03 strong {
     font-size: 48px;
     margin-top: 15px;
@@ -10791,7 +10863,7 @@ ul.photo_ul.main_photo_ul li .title {
   }
   div.alignment .right_div {
     display: inline-block;
-    width: auto;
+    width: 50%;
     text-align: left;
     font-size: 14px;
     margin-left: 10px;
@@ -10836,7 +10908,19 @@ ul.photo_ul.main_photo_ul li .title {
     display: inline-block;
     margin: 3px;
   }
-
+  div.search {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    padding: 20px 3% 20px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 100px;
+    border-top: 2px solid #333;
+}
   div.search {
     width: 100%;
     padding: 40px 3%;
@@ -10844,9 +10928,25 @@ ul.photo_ul.main_photo_ul li .title {
   div.search li {
     margin: 0 36px;
   }
-  /* div.search li.on a{
-        font-size: 18px;
-    } */
+  div.search li a{
+    padding: 0;
+    border: 0;
+  }
+  div.search li.on a{
+    background-color:initial ;
+    color: #ed297b;
+  }
+  div.search .on a:after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 110%;
+    background-color: #ed297b;
+    position: absolute;
+    bottom: -7px;
+    left: -5%;
+    opacity: 0.8;
+  }
   div.search .on a:after {
     bottom: -5px;
   }
@@ -10856,7 +10956,7 @@ ul.photo_ul.main_photo_ul li .title {
 
   .option_tb .tag .tt,
   .option_tb .smtitle {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 
   .big_pd th,
@@ -11214,9 +11314,7 @@ ul.photo_ul.main_photo_ul li .title {
   .portfolio_in .con04 .portfolio_box .box {
     padding: 30% 10% 0;
   }
-  .tour_box {
-    padding: 0 0 100px;
-  }
+
 }
 @media (min-width: 1200px) {
   .siteInfo_in .con01 .top .center .haf02 {
@@ -11261,7 +11359,7 @@ ul.photo_ul.main_photo_ul li .title {
     padding: 0;
   }
   div.popup_bg_full .in_txt {
-    padding: 50px 20px 20px;
+    padding: 50px 10px 20px 20px;
   }
 
   .main_con_box1 .ovj:before {
@@ -11515,6 +11613,15 @@ ul.photo_ul.main_photo_ul li .title {
 }
 
 @media (min-width: 1230px) {
+  .tour_details_in .boardReadBody .con_top_tap {
+    top: 89px;
+}
+  div.alignment .right_div .al_01, div.alignment .right_div .al_02{
+    min-width: auto;
+  }
+  .tour_box {
+    padding: 0 0 100px;
+  }
   .news_box {
     padding-left: 0;
     padding-right: 0;
@@ -11819,6 +11926,10 @@ ul.photo_ul.main_photo_ul li .title {
     margin-left: 43%;
   }  .Number__box {
     margin-left: 0 !important;
+
+}
+.tour_details_in .boardReadBody .in_box{
+  padding: 20px 3%;
 }
 }
 @media (max-width: 767px) {
