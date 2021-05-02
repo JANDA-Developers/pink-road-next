@@ -454,6 +454,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                                 ...buyerInfo,
                                             });
                                         }}
+                                        maxLength={3000}
                                         value={buyerInfo.memo}
                                         className="payment__textarea"
                                         style={{ height: "100px" }}

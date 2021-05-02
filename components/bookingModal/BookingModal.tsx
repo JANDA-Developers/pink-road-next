@@ -31,13 +31,14 @@ import {
 import { autoComma, autoHypenPhone } from "../../utils/formatter";
 import { omits } from "../../utils/omit";
 import { closeModal, openModal } from "../../utils/popUp";
-import { printRecipt } from "../../utils/recipt/recept";
+import { MyWindowPortal } from "../../utils/recipt/portalPrint";
 import { yyyymmdd, yyyymmddHHmm } from "../../utils/yyyymmdd";
 import { HistoryTable } from "../historyTable/HistoryTable";
 import { cardRefund } from "../nice/refund";
 import { Prompt } from "../promptModal/Prompt";
 import { IRefundModalSubmit, RefundModal } from "../promptModal/RefundModal";
 import { ITableInfo } from "../recipt/components/TableRender";
+import CardRecipt from "../recipt/CreditCardReceipt";
 import { BookingStatusBadge, RequestBadge } from "../Status/StatusBadge";
 import { Traveler } from "../traveler/Traveler";
 
@@ -60,6 +61,7 @@ export const BookingModal: React.FC<IProp> = ({
     closeModal: modalClose,
 }) => {
     const code = info?.code;
+    const [showWindowPortal, setShowWindowPortal] = useState(false);
     const { isSeller, isManager, myProfile } = useContext(AppContext);
     const { item: booking } = useBookingFindByCode(code);
     const [proptTarget, setPomptTarget] = useState<IPromptInfo>({
@@ -105,7 +107,7 @@ export const BookingModal: React.FC<IProp> = ({
             }
         },
     });
-    const [memo, setMemo] = useState("");
+    const [memo, setMemo] = useState(booking?.memo || "");
 
     const totalLoading =
         updateLoading ||
@@ -241,13 +243,14 @@ export const BookingModal: React.FC<IProp> = ({
 
     // 취소는 마스터만 가능!
     // 취소 요청이 가능한가:: COMPLETE 상태일때 아마도 해당 판매자 이거나 본인일때 가능할 것 같다.
-    const cancelReqAB = (isAuthor || isBuyer) && isComplete && !isCancelReq;
+    const cancelReqAB =
+        !isManager && (isAuthor || isBuyer) && isComplete && !isCancelReq;
 
     // 취소 거절이 가능한가:: CANCEL_REQ 상태일때 이행위는 마스터만 가능하다.
     const cancelDenyAB = isManager && isCancelReq && !isCanceled;
 
     // 취소가 가능하가:: 마스터일때는 취소가 가능할 것이다.
-    const cancleAB = isManager && isComplete;
+    const cancelAB = isManager && isComplete;
 
     // 입금 완료처리:: 입금확인은 사실 마스터만 할 수 있는 부분
     const bankDepositAB = isManager && isBankBook && isReadyBook;
@@ -305,76 +308,83 @@ export const BookingModal: React.FC<IProp> = ({
         },
     ];
 
-    const cancelTable: ITableInfo[] = [
-        {
-            title: "결제정보",
-            infos: [
-                [
-                    {
-                        label: "결제수단",
-                        value: payMethodToKR(booking.payMethod),
-                    },
-                    {
-                        label: "결제금액",
-                        value: autoComma(booking.bookingPrice),
-                    },
-                ],
-                [
-                    {
-                        label: "취소일",
-                        value: yyyymmdd(booking.cancelDate),
-                    },
-                    {
-                        label: "취소승인일",
-                        value: yyyymmdd(booking.payment?.cancelDate),
-                    },
-                ],
-                [
-                    {
-                        label: "취소금",
-                        value: booking.payment?.totalCancelPrice || 0,
-                    },
-                    {
-                        label: "부분취소 여부",
-                        value: booking.payment?.isPartialCancel
-                            ? "부분취소"
-                            : "전체취소",
-                    },
-                ],
-            ],
-        },
-        {
-            title: "상품정보",
-            infos: [
-                [
-                    {
-                        label: "상품명",
-                        value: product.title,
-                    },
-                    {
-                        label: "예약인원",
-                        value: booking.totalCount,
-                    },
-                ],
-                [
-                    {
-                        label: "인원정보",
-                        value: personCountBracket(booking),
-                    },
-                    {
-                        label: "상품상태",
-                        value: productStatus(product.status),
-                    },
-                ],
-            ],
-        },
-    ];
+    const cancelTable: ITableInfo[] | undefined =
+        booking.status === BookingStatus.CANCEL
+            ? [
+                  {
+                      title: "결제정보",
+                      infos: [
+                          [
+                              {
+                                  label: "결제수단",
+                                  value: payMethodToKR(booking.payMethod),
+                              },
+                              {
+                                  label: "결제금액",
+                                  value: autoComma(booking.bookingPrice),
+                              },
+                          ],
+                          [
+                              {
+                                  label: "취소일",
+                                  value: yyyymmdd(booking.cancelDate),
+                              },
+                              {
+                                  label: "취소승인일",
+                                  value: yyyymmdd(booking.payment?.cancelDate),
+                              },
+                          ],
+                          [
+                              {
+                                  label: "취소금",
+                                  value: booking.payment?.totalCancelPrice || 0,
+                              },
+                              {
+                                  label: "부분취소 여부",
+                                  value: booking.payment?.isPartialCancel
+                                      ? "부분취소"
+                                      : "전체취소",
+                              },
+                          ],
+                      ],
+                  },
+                  {
+                      title: "상품정보",
+                      infos: [
+                          [
+                              {
+                                  label: "상품명",
+                                  value: product.title,
+                              },
+                              {
+                                  label: "예약인원",
+                                  value: booking.totalCount,
+                              },
+                          ],
+                          [
+                              {
+                                  label: "인원정보",
+                                  value: personCountBracket(booking),
+                              },
+                              {
+                                  label: "상품상태",
+                                  value: productStatus(product.status),
+                              },
+                          ],
+                      ],
+                  },
+              ]
+            : undefined;
 
-    const reciptOpen = () => {
-        printRecipt({
-            approveTable,
-            cancelTable,
-        });
+    // const reciptOpen = () => {
+    //     printRecipt({
+    //         approveTable,
+    //         cancelTable,
+    //     });
+    // };
+
+    const toggleWindowPortal = () => {
+        setShowWindowPortal(!showWindowPortal);
     };
 
     return (
@@ -382,6 +392,24 @@ export const BookingModal: React.FC<IProp> = ({
             id="BookingModal"
             className={`popup_bg_full ${isOpen && "OPEN_MODAL"}`}
         >
+            {showWindowPortal && (
+                <MyWindowPortal
+                    openParam={{
+                        left: 100,
+                        top: 100,
+                        height: 600,
+                        width: 500,
+                    }}
+                    closeWindowPortal={() => {
+                        setShowWindowPortal(false);
+                    }}
+                >
+                    <CardRecipt
+                        approveTable={approveTable}
+                        cancelTable={cancelTable}
+                    />
+                </MyWindowPortal>
+            )}
             <div className="BookingModal__in in_txt master_popup">
                 <div className="BookingModal__headerWrap">
                     <h3 className="BookingModal__headerTitle">예약 상세정보</h3>
@@ -492,7 +520,7 @@ export const BookingModal: React.FC<IProp> = ({
                                             lineHeight: "26px!important",
                                         }}
                                         className="btn mini2"
-                                        onClick={reciptOpen}
+                                        onClick={toggleWindowPortal}
                                     >
                                         전표출력
                                     </button>
@@ -752,6 +780,7 @@ export const BookingModal: React.FC<IProp> = ({
                                             <li>
                                                 <div className="txta w100">
                                                     <textarea
+                                                        maxLength={3000}
                                                         onChange={(e) => {
                                                             const val =
                                                                 e.currentTarget
@@ -801,7 +830,7 @@ export const BookingModal: React.FC<IProp> = ({
                         )}
                         {/* 
                         {(cancelReqAB ||
-                            cancleAB ||
+                            cancelAB ||
                             cancelDenyAB ||
                             bankDepositAB) && ( */}
                         <div className="fin ifMobile mb30">
@@ -821,7 +850,7 @@ export const BookingModal: React.FC<IProp> = ({
                                 )}
 
                                 {/* 취소완료 */}
-                                {cancleAB && (
+                                {cancelAB && (
                                     <button
                                         onClick={handleOpenRefundModal}
                                         type="submit"

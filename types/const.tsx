@@ -211,7 +211,7 @@ export const getImg = (
     const size = largetThans.find((size) => checkExist(size));
 
     if (size) {
-        return file.imgScaleUrl[size];
+        return file.imgScaleUrl?.[size];
     }
     return file.uri;
 };

@@ -63,7 +63,6 @@ export const BoardListBlock: React.FC<IProp> = ({ board }) => {
             )}
             <div className="textbox__01">
                 <div className="textbox__01_top">
-                    <div className="location">공지사항</div>
                     <div className="day">{yyyymmdd(createdAt)}</div>
                 </div>
 
@@ -91,10 +90,19 @@ export const BoardListBlock: React.FC<IProp> = ({ board }) => {
             </div>
             {isProduct && (
                 <div className="textbox__02">
-                    <span>장소 : {address}</span>
-                    <span>{productStatus(status as any)}</span>
-                    {/* <span>모집인원 : {compeltePeopleCnt}/{maxMember}</span> */}
-                    {/* <span>기간 : {dateRange}</span> */}
+                    {/* @ts-ignore */}
+                    <span>지역 : {board.regionLabel}</span>
+                    {/* @ts-ignore */}
+                    <span>출발장소 : {board.startPoint}</span>
+                    {/* @ts-ignore */}
+                    <span>모집인원 : {board.maxMember}</span>
+                    <span>
+                        기간 : {/* @ts-ignore */}
+                        {yyyymmdd(board.startDate) +
+                            "~" +
+                            // @ts-ignore
+                            yyyymmdd(board.endDate)}
+                    </span>
                 </div>
             )}
         </li>

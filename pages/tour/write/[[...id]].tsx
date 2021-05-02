@@ -106,7 +106,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     };
 
     const sampleUpdate = (sample: string, index: number) => {
-        const newSamples = [...sampleProducts].splice(index, 1, sample);
+        const newSamples = [...sampleProducts];
+        newSamples.splice(index, 1, sample);
         updateSampels(newSamples, "업데이트 완료");
     };
 
@@ -116,9 +117,10 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     };
 
     const handleSampleDelete = (index: number) => {
-        const newSamples = [...sampleProducts].splice(index, 1);
+        const newSamples = [...sampleProducts];
+        newSamples.splice(index, 1);
         const nextSampls = [...newSamples];
-        updateSampels(nextSampls, "추가 완료");
+        updateSampels(nextSampls, "삭제 완료");
     };
 
     const handleSampleCreate = () => {
@@ -135,6 +137,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         const target = sampleProducts[index];
         const val = JSON.parse(target);
         if (val) {
+            alert("불러오기 완료");
+            setSampleIndex(index);
             setTourData(val);
         }
     };
@@ -218,7 +222,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         caution,
         inOrNor,
         info,
-        isOpen,
     } = simpleData;
     const {
         handleRegionChange,
@@ -235,13 +238,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         handleUploadClick,
     } = handles;
     const [tab, setTab] = useState<number>(1);
-    const handleChangeOpen = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const bool = e.currentTarget.value === "true";
-        setSimpleData({
-            ...simpleData,
-            isOpen: bool,
-        });
-    };
 
     const tabOnCheck = (index: number) => (tab === index ? "on" : undefined);
 
@@ -327,7 +323,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     };
 
     const handleTempDateMove = ({ from, to }: { from?: Date; to?: Date }) => {
-        const newIts = generateitinery({ from, to }, tempSavedIts);
+        const newIts = generateitinery({ from, to }, tempSavedIts || []);
         if (newIts) {
             setits(newIts);
             setTempSavedIts(undefined);
@@ -750,7 +746,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 Header={
                                     tempSavedIts && (
                                         <h2 style={{ marginBottom: "1rem" }}>
-                                            새로운 상품일정 일을 선택 해주세요{" "}
+                                            새로운 상품일정 시작일을 선택 해주세요{" "}
                                         </h2>
                                     )
                                 }

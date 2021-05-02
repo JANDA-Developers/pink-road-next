@@ -5,16 +5,20 @@ import { SERVER_URI } from "../apollo/uri";
 import { usePageInfo } from "../hook/usePageInfo";
 import { Fhomepage, Fpage, homepage } from "../types/api";
 import { TPageKeys } from "../types/interface";
+import { Page } from "./generateClientPaging";
 
 export const getQueryIndex = (
     inPageIndex: number,
-    pageInfo: Fpage,
+    pageInfo: Fpage | Page,
     currentPageCnt: number
 ) => {
     const { cntPerPage, page } = pageInfo;
-    return (
-        (page - 1) * pageInfo.cntPerPage + (inPageIndex - currentPageCnt) * -1
-    );
+    let pageStartNumber = (page - 1) * pageInfo.cntPerPage;
+    if (pageStartNumber < 0) {
+        pageStartNumber = 0;
+    }
+    const reverseIndex = inPageIndex - currentPageCnt;
+    return pageStartNumber + reverseIndex * -1;
 };
 
 const graphQLClient = new GraphQLClient(SERVER_URI, {

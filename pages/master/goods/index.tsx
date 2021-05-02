@@ -584,7 +584,7 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                 </div>
                 <Paginater setPage={setPage} pageInfo={pageInfo} />
                 <SearcfInfoBox />
-                <ProductModal productId={popProductId} />
+                <ProductModal key={popProductId} productId={popProductId} />
                 {/* popup-기획반려 사유 */}
             </div>
         </MasterLayout>

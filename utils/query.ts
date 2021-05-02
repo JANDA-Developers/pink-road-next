@@ -6,24 +6,29 @@ import {
 } from "@apollo/client";
 import { capitalize } from "./stirng";
 import { ListInitOptions, useListQuery } from "../hook/useListQuery";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { DEFAULT_PAGE } from "../types/const";
 import { ERR_CODE, Fpage } from "../types/api";
 import { CustomErrorResponse } from "aws-sdk/clients/cloudfront";
-import { ErrorCode } from "./enumToKr";
 import { getFromUrl } from "./url";
-import { cloneObject } from "./clone";
 import { IBoardMoveData } from "../components/board/View";
+import { useRouter } from "next/router";
 
-export const pageLoadingEffect = (loading: boolean) => {
-    if (typeof window === "undefined") return;
+export const pageLoadingEffect = (loading: boolean, operationName: string) => {
+    if (typeof document === "undefined") return;
     const MuPageLoading = document.getElementById("MuPageLoading");
     if (MuPageLoading) {
+        const fetches = MuPageLoading.dataset.fetchingid?.split(",");
         if (loading) {
-            MuPageLoading.classList.add("muPageLoading--visible");
+            if (!fetches?.includes(operationName)) {
+                fetches?.push(operationName);
+                MuPageLoading.dataset.fetchingid = fetches?.join(",");
+            }
         } else {
-            MuPageLoading?.classList.remove("muPageLoading--visible");
+            MuPageLoading.dataset.fetchingid = fetches
+                ?.filter((fetch) => fetch !== operationName)
+                .join(",");
         }
     }
 };
@@ -145,7 +150,13 @@ export const generateListQueryHook = <F, S, Q, V, R>(
             params.setPage(1);
         }, [params.viewCount, params.filter]);
 
-        pageLoadingEffect(getLoading);
+        pageLoadingEffect(getLoading, operationName);
+
+        useEffect(() => {
+            return () => {
+                pageLoadingEffect(false, operationName);
+            };
+        }, []);
 
         return { pageInfo, getLoading, items, ...params, ...queryElse };
     };
@@ -162,7 +173,7 @@ export const generateQueryHook = <Q, R, V = undefined>(
             getData,
             { data: _data, error, loading: getLoading, ...context },
         ] = useLazyQuery<Q, V>(QUERY, {
-            nextFetchPolicy: "network-only",
+            nextFetchPolicy: "cache-and-network",
             ...initOptions,
             ...defaultOptions,
         });
@@ -183,7 +194,13 @@ export const generateQueryHook = <Q, R, V = undefined>(
             if (!skipInit) getData();
         }, []);
 
-        pageLoadingEffect(getLoading);
+        pageLoadingEffect(getLoading, operationName);
+
+        useEffect(() => {
+            return () => {
+                pageLoadingEffect(false, operationName);
+            };
+        }, []);
 
         return { getData, getLoading, data, ...context };
     };
@@ -197,12 +214,12 @@ export const generateMutationHook = <M, V>(
     defaultOptions?: MutationHookOptions<M, V>
 ) => {
     const mutationHook = (options?: MutationHookOptions<M, V>) => {
+        const operationName = getQueryName(MUTATION);
         const muHook = useMutation<M, V>(MUTATION, {
             ...defaultOptions,
             ...options,
             awaitRefetchQueries: true,
             onCompleted: (result) => {
-                const operationName = getQueryName(MUTATION);
                 // @ts-ignore
                 const err: CustomErrorResponse = result[operationName]?.error;
                 // @ts-ignore
@@ -213,7 +230,22 @@ export const generateMutationHook = <M, V>(
             },
         });
 
-        pageLoadingEffect(muHook[1].loading);
+        const muFn = muHook[0];
+
+        const duplicatePreventFn = (() => {
+            if (muHook?.[1]?.loading) return () => {};
+            return muFn;
+        })() as typeof muFn;
+
+        muHook[0] = duplicatePreventFn;
+
+        pageLoadingEffect(muHook[1].loading, operationName);
+
+        useEffect(() => {
+            return () => {
+                pageLoadingEffect(false, operationName);
+            };
+        }, []);
 
         return muHook;
     };
@@ -242,8 +274,8 @@ export const generateFindQuery = <Q, V, ResultFragment>(
 
         const operationName = getQueryName(QUERY);
 
-        // @ts-ignore
         const item: ResultFragment | undefined =
+            // @ts-ignore
             data?.[operationName]?.data || undefined;
         // @ts-ignore
         const errorFromServer: string = data?.[operationName]?.error;
@@ -259,13 +291,19 @@ export const generateFindQuery = <Q, V, ResultFragment>(
         // @ts-ignore
         userErrorHandle(data?.[operationName]);
 
-        pageLoadingEffect(loading);
+        pageLoadingEffect(loading, operationName);
 
         useEffect(() => {
             if (key) {
                 getData();
             }
         }, [key]);
+
+        useEffect(() => {
+            return () => {
+                pageLoadingEffect(false, operationName);
+            };
+        }, []);
 
         const error = apolloError || errorFromServer;
 

@@ -370,7 +370,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             startPoint,
             title,
             isNotice,
-            isOpen,
+            isOpen: true,
             subTitle,
             type,
         };
@@ -387,6 +387,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     };
 
     const handleUploadClick = () => {
+        if (!hiddenFileInput.current) return;
         hiddenFileInput.current.value = "";
         hiddenFileInput.current?.click();
     };
@@ -409,6 +410,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     };
 
     const setTourData = (data: Partial<IUseTourData>) => {
+        if (data.simpleData) data.simpleData.isOpen = true;
         if (data.categoryId) setCategoryId(data.categoryId);
         if (data.its) setits(data.its);
         if (data.simpleData) setSimpleData(data.simpleData);

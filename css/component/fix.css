@@ -348,6 +348,7 @@ background-color: #fff;
 
 .ck-content {
     display: block!important;
+    overflow: auto!important;
 }
 
 .productGroup__del:hover {

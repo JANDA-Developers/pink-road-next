@@ -6,10 +6,7 @@ export interface IReciptProp {
     cancelTable?: ITableInfo[];
 }
 
-const CardRecipt = ({
-    approveTable,
-    cancelTable,
-}: IReciptProp): JSX.Element => {
+const CardRecipt: React.FC<IReciptProp> = ({ approveTable, cancelTable }) => {
     const [target, setTarget] = useState<"cancel" | "approval">("approval");
 
     const targetTable = target === "cancel" ? cancelTable : approveTable;
@@ -120,7 +117,7 @@ const CardRecipt = ({
                                 }}
                             >
                                 <tbody>
-                                    {targetTable.map((table, i) => {
+                                    {targetTable?.map((table, i) => {
                                         return (
                                             <TableRender key={i} {...table} />
                                         );
