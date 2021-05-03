@@ -32,6 +32,7 @@
 .ce-block,
 .option_tb td,
 .JDtagInput__tag,
+div.master_popup .info_table .top_info span,
 .LocalStorageBoard__date,
 .basket_box .basket_list .subtitle,
 .selectViewList ul.list_ul li .subtitle,
@@ -95,10 +96,7 @@ ul.list_ul li .bottom_txt span,
 .fuction_list_mini .tbody li > div {
   font-family: NanumSquareRoundOTFB, NanumSquareRoundOTF, "돋음", sans-serif !important;
 }
-div.master_popup .info_page div[class*="td0"],
-div.master_popup .top03 span {
-  font-weight: 100;
-}
+
 .basket_box .basket_list .title a {
   font-family: "montserrat", "noto", "Roboto", sans-serif;
 }
@@ -1074,7 +1072,7 @@ div.popup_bg_full h3 strong {
   color: #2196f3;
 }
 div.popup_bg_full h4 {
-  font-size: 16px !important;
+  font-size: 1.7em !important;
   line-height: 160% !important;
   font-weight: 600;
   position: relative;
@@ -1113,9 +1111,10 @@ div.popup_bg_full h4 .full_div__right {
 div.popup_bg_full h4 .full_div__right .btn {
   padding: 0px 15px;
   margin-left: 5px;
-  font-size: 0.8em;
+  font-size: 0.7em;
   position: absolute;
   right: 0;
+  font-weight: 600;
   top: -34px;
   line-height: 24px;
   border: 1px solid #d8d8d8;
@@ -1334,9 +1333,6 @@ div.alignment {
   height: auto;
   box-sizing: border-box;
 }
-div.alignment select {
-  font-weight: 600;
-}
 
 div.alignment .center_div {
   width: 100%;
@@ -1437,8 +1433,8 @@ div.alignment select {
   width: 49%;
   font-size: 12px;
   padding: 0 10px;
-  margin-top: 5px;
-  font-weight: 100;
+  margin-top: 0;
+  font-weight: 600;
   box-sizing: border-box;
   border: 1px solid #d2d2d2;
 }
@@ -9598,6 +9594,16 @@ ul.photo_ul.main_photo_ul li .title {
     font-size: 0.9em;
 }
 @media (min-width: 768px) {
+  div.alignment select {
+    height: 32px;
+    width: auto;
+    margin-top: 0;
+    font-size: 12px;
+    padding: 0 10px;
+    font-weight: 600;
+    box-sizing: border-box;
+    border: 1px solid #d2d2d2;
+  }
   .sign_in .inner {
     padding: 0 5%;
   }
@@ -10235,7 +10241,7 @@ ul.photo_ul.main_photo_ul li .title {
   div.popup_bg_full h4 .full_div__right .btn {
     padding: 0px 10px;
     margin-left: 5px;
-    font-size: 0.8em;
+    font-size: 0.7em;
     top: -5px;
     display: block;
     border: 1px #d8d8d8 solid;
@@ -10904,7 +10910,7 @@ ul.photo_ul.main_photo_ul li .title {
     margin-top: 0;
     font-size: 12px;
     padding: 0 10px;
-    font-weight: 100;
+    font-weight: 600;
     box-sizing: border-box;
     border: 1px solid #d2d2d2;
   }
@@ -11962,15 +11968,17 @@ ul.photo_ul.main_photo_ul li .title {
 .tour_details_in .boardReadBody .in_box{
   padding: 20px 3%;
 }
+.historyTable__li > div{
+  margin-right: 15px;
+}
+.historyTable__li > div:first-child{
+  font-weight: 600 !important;
+  color: #333333 !important;
+}
 }
 @media (max-width: 767px) {
 
-  .historyTable__li > div{
-    margin-right: 15px;
-  }
-  .historyTable__li > div:first-child{
-    font-weight: 600 !important;
-  }
+
   .siteInfo_in .con01 .top .center .haf02 img {
     width: 200%;
     margin-left: -100%;

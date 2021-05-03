@@ -292,7 +292,7 @@ select:focus {
   border: 1px solid #cfcfcf;
   border-radius: 3px;
   box-sizing: border-box;
-  padding: 0 10px;
+  padding: 0 10px !important;
   font-size: 12px;
   display: inline-block;
   line-height: 21px;
@@ -406,36 +406,33 @@ select:focus {
   width: auto;
   display: inline-block;
   line-height: 122%;
-  border: 1px solid #595959;
+  background-color: #888888;
   padding: 4px 9px;
   box-sizing: border-box;
   font-size: 0.9em;
   letter-spacing: -1px;
-  color: #555;
+  color: #ffffff;
   font-weight: 600;
-  border-radius: 100px;
   font-style: unset;
   white-space: nowrap;
+  position: absolute;
+  top:0;
+  right: 15px;
 }
 .state_icon.tour-no {
-  color: #f32121;
-  border: 1px solid #f32121;
+  background-color: #f32121;
 }
 .state_icon.tour-ok {
-  color: #2196f3;
-  border: 1px solid #2196f3;
+  background-color: #2196f3;
 }
 .state_icon.tour-yes {
-  color: #005394;
-  border: 1px solid #005394;
+  background-color: #005394;
 }
 .state_icon.plainning-no {
-  color: #f38721;
-  border: 1px solid #f38721;
+  background-color: #f38721;
 }
 .state_icon.plainning-yes {
-  color: #059600;
-  border: 1px solid #059600;
+  background-color: #059600;
 }
 /* calculate */
 .sel {
@@ -968,7 +965,7 @@ br.no {
   .fin {
     display: flex;
   }
-
+ 
   .fin .float_left {
     width: 50%;
     text-align: left;
@@ -988,17 +985,51 @@ br.no {
   .btn.topside {
     padding: 0 15px;
   }
+  .state_icon{
+    position: relative;
+    top: initial;
+    right: initial;
+    border-radius: 100px;
+  }
 }
 @media (min-width: 1230px) {
   div.w1200 {
     width: 1200px;
   }
+
+ 
+  .state_icon.tour-no {
+    color: #f32121;
+    border: 1px solid #f32121;
+    background-color: initial;
+  }
+  .state_icon.tour-ok {
+    color: #2196f3;
+    border: 1px solid #2196f3;
+    background-color: initial;
+  }
+  .state_icon.tour-yes {
+    color: #005394;
+    border: 1px solid #005394;
+    background-color: initial;
+  }
+  .state_icon.plainning-no {
+    color: #f38721;
+    border: 1px solid #f38721;
+    background-color: initial;
+  }
+  .state_icon.plainning-yes {
+    color: #059600;
+    border: 1px solid #059600;
+    background-color: initial;
+  }
 }
 @media (max-width: 1000px) {
   .state_icon {
     font-size: 12px;
+    
   }
-  .state_icon.plainning-yes {
+  /* .state_icon.plainning-yes {
     color: #059600;
     border: 0;
     background-color: #daf7da;
@@ -1032,7 +1063,7 @@ br.no {
     background-color: #e1f2ff;
     padding: 2px 8px;
     border-radius: 2px;
-  }
+  } */
   .sel.ok {
     border: 0;
     color: #2196f3;

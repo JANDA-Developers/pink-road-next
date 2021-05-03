@@ -2190,18 +2190,19 @@ div.board_list_mini div.w100 {
   width: 100%;
   border-bottom: 1px solid #eeeeee;
   box-sizing: border-box;
-  padding: 3%;
+  padding: 12px 0;
+ 
 }
 
 .fuction_list_mini .tbody li > div {
   display: inline-block;
   width: auto;
   text-align: center;
-  font-size: 12px;
+  font-size: 1.2em;
   padding: 0;
   box-sizing: border-box;
-  position: relative;
-  font-weight: 100;
+  font-weight: 600;
+  color: #888888;
 }
 .new {
   width: 12px;
@@ -2341,7 +2342,7 @@ div.sum_div .last_ul i {
   border-bottom: 1px solid #c4c4c4;
   line-height: 22px;
   box-sizing: border-box;
-  padding: 5% 5% 80px 5%;
+  padding: 5% 0 80px 0;
 }
 .master__table .th div[class*="t0"] {
   display: inline-block;
