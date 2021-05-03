@@ -1,6 +1,10 @@
 import dayjs from "dayjs";
 import { Dispatch, RefObject, SetStateAction, useRef, useState } from "react";
-import { generateitinery, TRange } from "../components/tourWrite/helper";
+import {
+    filterOver,
+    generateitinery,
+    TRange,
+} from "../components/tourWrite/helper";
 import {
     Ffile,
     ItineraryCreateInput,
@@ -64,7 +68,7 @@ export const DEFAULT_SIMPLE_TOUR_DATA: TSimpleTypePart = {
     contents: "",
     inOrNor: "",
     isNotice: false,
-    isOpen: false,
+    isOpen: true,
 };
 
 export interface IUseTourData {
@@ -151,6 +155,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const [its, setits] = useState<ItineraryCreateInput[]>(
         deepCopy(defaults.its || [])
     );
+    const filterOverIts = filterOver(its);
     const [simpleData, setSimpleData] = useState<TSimpleTypePart>(
         defaults.simpleData || DEFAULT_SIMPLE_TOUR_DATA
     );
@@ -293,7 +298,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             id: "type",
         },
         {
-            value: !its.find((it) => Boolean(it.title) === false),
+            value: !filterOverIts?.find((it) => Boolean(it.title) === false),
             failMsg: "일정 타이틀 값은 필수 입니다.",
             failFn: () => {
                 document.getElementById("tap01")?.click();
@@ -361,11 +366,11 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             inOrNor,
             info,
             regionId,
-            itinerary: its,
+            itinerary: omits(filterOverIts, ["isOver" as any]),
             startPoint,
             title,
             isNotice,
-            isOpen,
+            isOpen: true,
             subTitle,
             type,
         };
@@ -382,6 +387,8 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     };
 
     const handleUploadClick = () => {
+        if (!hiddenFileInput.current) return;
+        hiddenFileInput.current.value = "";
         hiddenFileInput.current?.click();
     };
 
@@ -403,6 +410,7 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     };
 
     const setTourData = (data: Partial<IUseTourData>) => {
+        if (data.simpleData) data.simpleData.isOpen = true;
         if (data.categoryId) setCategoryId(data.categoryId);
         if (data.its) setits(data.its);
         if (data.simpleData) setSimpleData(data.simpleData);
@@ -437,30 +445,12 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     };
 
     const handleLoad = () => {
-        const savedData = Storage!.getLocalObj<IUseTourData>(
-            "write",
-            undefined
-        );
-        // if (!savedData) {
-        //     alert("저장된 정보가 없습니다.");
-        //     return;
-        // }
-        // setTourData(savedData);
-        // alert("로드완료");
         openModal("#LocalStorageBoard")();
     };
 
     const handleDateState = ({ from, to }: TRange) => {
-        if (!from && !to && its.length) {
-            if (
-                !confirm(
-                    "출발 날짜를 변경하시면 입력하신 일정 정보가 초기화 됩니다. 변경을 진행 하시겠습니까?"
-                )
-            ) {
-                return;
-            }
-        }
         const newItinerary = generateitinery({ from, to }, its);
+        console.log({ newItinerary });
         if (newItinerary) setits([...newItinerary]);
     };
 
@@ -485,9 +475,9 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         set(key, data);
     };
 
-    const fistItDate = its[0]?.date;
+    const fistItDate = filterOverIts[0]?.date;
     const firstDate = fistItDate ? dayjs(fistItDate).toDate() : undefined;
-    const lastItDate = its[its.length - 1]?.date;
+    const lastItDate = filterOverIts[filterOverIts.length - 1]?.date;
     const lastDate = lastItDate ? dayjs(lastItDate).toDate() : undefined;
 
     return {
@@ -543,6 +533,7 @@ export const getDefault = (
         kids_price,
         maxMember,
         minMember,
+        type,
         startPoint,
         status,
         subTitle,
@@ -577,6 +568,7 @@ export const getDefault = (
         keyWards: keyWards || [],
         simpleData,
         status,
+        type,
         thumbs: thumbs || [],
     };
 };

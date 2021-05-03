@@ -802,7 +802,6 @@
 }
 .master_box .board_option li strong {
   margin-left: 3px;
-  display: none;
 }
 .master_box h5 {
   font-size: 1.1em;
@@ -2642,7 +2641,6 @@ div.master_popup .info_table .tr {
   box-sizing: border-box;
   display: block;
   border-bottom: 0;
-  line-height: 22px;
   text-align: left;
 }
 div.master_popup .peoplelist .tr {
@@ -3003,12 +3001,15 @@ div.master_popup .info_page .info_table .tr > div {
   width: auto;
   vertical-align: top;
   font-weight: 600;
-  line-height: 32px;
   padding: 0;
   box-sizing: border-box;
   flex-grow: 1;
   flex: 1 1;
   margin:0px!important;
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 div.master_popup .peoplelist .tr.first > div {
   line-height: 22px;
@@ -4164,7 +4165,6 @@ div.master_popup div.alignment {
     font-weight: 100;
     padding: 10px 0;
     font-size: 1em;
-    line-height: 20px;
     margin-bottom: 0;
     text-align: center !important;
   }
@@ -4741,7 +4741,6 @@ div.master_popup div.alignment {
     width:auto !important;
   }
   div.master_popup .info_page .info_table .tr > div{
-    line-height: 24px;
   }
   div.master_popup .info_page div[class*="td0"]{
     font-weight: 100 !important;

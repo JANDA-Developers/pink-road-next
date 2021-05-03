@@ -92,13 +92,7 @@ export const PurChasedItem: React.FC<IProp> = ({
                 </div>
             </div>
             <div className="txt2">
-                {/* 투두! */}
-                <span>
-                    결제일 :{" "}
-                    {item.payment
-                        ? yyyymmdd(item.payment?.createdAt)
-                        : "미결제"}
-                </span>
+                <span>출발일 : {yyyymmdd(item.product.startDate)}</span>
                 <span>예약일 : {yyyymmdd(item.createdAt)}</span>
                 <span>집합장소 : {product.startPoint}</span>
                 <span>

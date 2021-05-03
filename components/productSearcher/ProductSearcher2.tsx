@@ -1,23 +1,26 @@
 
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useProductList } from '../../hook/useProduct';
 import { handSearchClose } from '../../layout/components/Header';
-import { Fproduct } from '../../types/api';
+import { AppContext } from '../../pages/_app';
+import { Fproduct, _ProductFilter } from '../../types/api';
 import { setVal, whenEnter } from '../../utils/eventValueExtracter';
 import { integratedProductSearch } from '../../utils/genFilter';
 import { yyyymmdd } from '../../utils/yyyymmdd';
 
 interface IProp {
+    filter?: _ProductFilter
     defaultSearch?: string;
     defaultProductId?: string;
     onSelectProduct: (product: Fproduct) => void;
 }
 
-export const ProductSearcher: React.FC<IProp> = ({ defaultSearch, onSelectProduct, defaultProductId }) => {
+export const ProductSearcher: React.FC<IProp> = ({ defaultSearch, onSelectProduct, defaultProductId, filter }) => {
     const [search, setSearch] = useState(defaultSearch);
     const { setFilter, items } = useProductList({
         initialFilter: {
+            ...filter,
             _id_eq: defaultProductId
         }
     });

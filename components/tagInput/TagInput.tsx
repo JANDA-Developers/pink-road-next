@@ -73,6 +73,7 @@ export const TagInput: React.FC<IProp> = ({
                     onClick={() => {
                         const val = ref.current.value;
                         handleAddition(val);
+                        if (ref.current) ref.current.value = "";
                     }}
                 >
                     추가하기

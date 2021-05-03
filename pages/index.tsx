@@ -17,6 +17,7 @@ import { BG } from "../types/const";
 import { PageEditor } from "../components/common/PageEditer";
 import { usePopups } from "../hook/usePopups";
 import { Popup } from "../components/popup/Popup";
+import { getResized } from "../utils/pageEdit";
 
 export const getStaticProps = getStaticPageInfo("main");
 export const Main: React.FC<Ipage> = (pageInfo) => {
@@ -75,9 +76,13 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
     useEffect(() => {
         if (editMode) {
             const slide = sliderRef?.current;
-            if (slide) slide.slickPause();
+            if (slide) {
+                setTimeout(() => {
+                    slide.slickPause();
+                });
+            }
         }
-    }, [editMode]);
+    });
 
     const mainSliderImgs: string[] = get("main_slideImgs") || [];
     return (
@@ -103,16 +108,20 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
                         const slide = sliderRef?.current;
                         if (slide) {
                             if (currentSlide === 0) {
-                                slide.slickPause();
-                            } else {
-                                slide.slickPlay();
+                                setTimeout(() => {
+                                    slide.slickPause();
+                                });
+                            } else if (!editMode) {
+                                setTimeout(() => {
+                                    slide.slickPlay();
+                                });
                             }
                         }
                     }}
                     accessibility={false}
                     ref={sliderRef}
                     key={"slider"}
-                    autoplay={currentSlide !== 0}
+                    autoplay={!editMode && currentSlide !== 0}
                     prevArrow={
                         <div className="rev">
                             <img src="/img/svg/arr_left_w.svg" alt="이전" />
@@ -190,7 +199,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
                                 upload={(src) => {
                                     editArray("main_slideImgs", i, src);
                                 }}
-                                bg={BG(slideImg)}
+                                bg={BG(getResized(slideImg))}
                             >
                                 <div className="w1200"></div>
                                 {/* 삭제버튼 */}
@@ -291,7 +300,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
                         <Bg
                             tag="li"
                             className="img01 busiAreaList__li"
-                            {...imgKit("busi_area1_bg")}
+                            {...imgKit("busi_area1_bg", 1000)}
                         >
                             <div className="bgtxt">
                                 <strong {...edit("busi_area1_title")} />
@@ -304,7 +313,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
                         <Bg
                             tag="li"
                             className="img02 busiAreaList__li"
-                            {...imgKit("busi_area2_bg")}
+                            {...imgKit("busi_area2_bg", 1000)}
                         >
                             <div className="bgtxt">
                                 <strong {...edit("busi_area2_title")} />
@@ -317,7 +326,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
                         <Bg
                             tag="li"
                             className="img03 busiAreaList__li"
-                            {...imgKit("busi_area3_bg")}
+                            {...imgKit("busi_area3_bg", 1000)}
                         >
                             <div className="bgtxt">
                                 <strong {...edit("busi_area3_title")} />
@@ -330,7 +339,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
                         <Bg
                             tag="li"
                             className="img04 busiAreaList__li"
-                            {...imgKit("busi_area4_bg")}
+                            {...imgKit("busi_area4_bg", 1000)}
                         >
                             <div className="bgtxt">
                                 <strong {...edit("busi_area4_title")} />

@@ -31,12 +31,21 @@ import { usePageEdit } from "../../../hook/usePageEdit";
 import { cloneObject } from "../../../utils/clone";
 import { productStatus } from "../../../utils/enumToKr";
 import { Prompt } from "../../../components/promptModal/Prompt";
-import { openModal } from "../../../utils/popUp";
-import { LocalStorageBoard } from "../../../components/localStorageBoard/LocalStorageBoard";
+import { closeModal, openModal } from "../../../utils/popUp";
+import {
+    LocalStorageBoard,
+    SampleBoard,
+} from "../../../components/localStorageBoard/LocalStorageBoard";
 import dayjs from "dayjs";
 import { checkIsExp } from "../../../utils/product";
 import { PageEditor } from "../../../components/common/PageEditer";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
+import {
+    filterOver,
+    generateitinery,
+} from "../../../components/tourWrite/helper";
+import { ProductSelectModal } from "../../../components/ProductSelectModal";
+import { useHomepage, useHomepageUpdate } from "../../../hook/useHomepage";
 // const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = LoadEditor();
@@ -75,6 +84,65 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         itsIndex: 0,
         contentIndex: 0,
     });
+
+    const { data: homepage } = useHomepage();
+    const sampleProducts = homepage?.productSamples || [];
+    const [homepageUpdate] = useHomepageUpdate();
+    const [sampleIndex, setSampleIndex] = useState<number>(-1);
+    const notSample = sampleIndex === -1;
+
+    const updateSampels = (nextSample: string[], suecssMessage: string) => {
+        homepageUpdate({
+            variables: {
+                params: {
+                    productSamples: nextSample,
+                },
+            },
+        }).then(({ data }) => {
+            if (data?.HomepageUpdate.ok) {
+                alert(suecssMessage);
+            }
+        });
+    };
+
+    const sampleUpdate = (sample: string, index: number) => {
+        const newSamples = [...sampleProducts];
+        newSamples.splice(index, 1, sample);
+        updateSampels(newSamples, "업데이트 완료");
+    };
+
+    const sampleCreate = (sample: string) => {
+        const nextSampls = [sample, ...sampleProducts];
+        updateSampels(nextSampls, "추가 완료");
+    };
+
+    const handleSampleDelete = (index: number) => {
+        const newSamples = [...sampleProducts];
+        newSamples.splice(index, 1);
+        const nextSampls = [...newSamples];
+        updateSampels(nextSampls, "삭제 완료");
+    };
+
+    const handleSampleCreate = () => {
+        const sample = JSON.stringify(tourData);
+        sampleCreate(sample);
+    };
+
+    const handleSampleUpdate = () => {
+        const sample = JSON.stringify(tourData);
+        sampleUpdate(sample, sampleIndex);
+    };
+
+    const handleSampleLoad = (index: number) => {
+        const target = sampleProducts[index];
+        const val = JSON.parse(target);
+        if (val) {
+            alert("불러오기 완료");
+            setSampleIndex(index);
+            setTourData(val);
+        }
+    };
+
     const [updateReq, { loading: updateReqLoading }] = useProductUpdateReq({
         onCompleted: ({ ProductUpdateReq }) => {
             if (ProductUpdateReq?.ok) {
@@ -121,6 +189,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             // 회차연결을 위한 조치
             setTempSavedIts(newProductData.its);
             newProductData.its = [];
+            //하지만 여기서 상태값에 대해서는 신경쓰지 말아야함.
+            newProductData.status = undefined;
         }
 
         setTourData(newProductData);
@@ -152,7 +222,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         caution,
         inOrNor,
         info,
-        isOpen,
     } = simpleData;
     const {
         handleRegionChange,
@@ -169,13 +238,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         handleUploadClick,
     } = handles;
     const [tab, setTab] = useState<number>(1);
-    const handleChangeOpen = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const bool = e.currentTarget.value === "true";
-        setSimpleData({
-            ...simpleData,
-            isOpen: bool,
-        });
-    };
 
     const tabOnCheck = (index: number) => (tab === index ? "on" : undefined);
 
@@ -233,29 +295,39 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         location.reload();
     };
 
+    const openProductSelecter = () => {
+        openModal("#ProductSearchModal")();
+    };
+
     const handleBaseProdChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const val = e.currentTarget.value;
         if (!val) {
             setAsNewProduct();
             return;
-        }
-        const target = productGroupList.find((g) => g._id === val);
+        } else if (val === "ProductLink") openProductSelecter();
+    };
+
+    const sampleSelectOpen = () => {
+        openModal("#SampleSelecter")();
+    };
+
+    const changeBaseProd = (code: string) => {
+        const target = productGroupList.find((g) => g.groupCode === code);
         setGroupCode(target?.groupCode);
         getData({
             variables: {
-                _id: val,
+                _id: target?._id || "",
             },
         });
+        closeModal("#ProductSearchModal")();
     };
 
-    const handleTempDateMove = ({ from }: { from?: Date; to?: Date }) => {
-        const temps =
-            tempSavedIts?.map((data, index) => {
-                data.date = dayjs(from).add(index, "day").toDate();
-                return data;
-            }) || [];
-        setits(temps);
-        setTempSavedIts(undefined);
+    const handleTempDateMove = ({ from, to }: { from?: Date; to?: Date }) => {
+        const newIts = generateitinery({ from, to }, tempSavedIts || []);
+        if (newIts) {
+            setits(newIts);
+            setTempSavedIts(undefined);
+        }
     };
 
     useEffect(() => {
@@ -281,9 +353,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             ? categoriesMap.TOUR
             : categoriesMap.EXPERIENCE;
     const regionCategories = categoriesMap.REGION;
-
-    const startDate = its[0]?.date;
-    const endDate = its[its.length - 1]?.date;
 
     // if (!isManager && !isMyProduct) return <PageDeny />
     if (loading) return <PageLoading />;
@@ -317,31 +386,37 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         )}
                         {isCreateMode && (
                             <div className="write_type">
-                                <div className="title">회차연결</div>
+                                <div className="title">등록타입</div>
                                 <div className="input_form">
-                                    <span className="category r3">
-                                        <select
-                                            onChange={handleBaseProdChange}
-                                            value={product?._id}
-                                            name="type"
-                                        >
-                                            <option value={""}>
-                                                새로운상품
-                                            </option>
-                                            {productGroupList.map((p) => (
-                                                <option
-                                                    key={p._id}
-                                                    value={p._id}
-                                                >
-                                                    {p.label}
+                                    <div style={{ display: "flex" }}>
+                                        <span className="category r3">
+                                            <select
+                                                onChange={handleBaseProdChange}
+                                                value={product?._id}
+                                                name="type"
+                                            >
+                                                <option value={""}>
+                                                    새로운상품
                                                 </option>
-                                            ))}
-                                        </select>
-                                    </span>
+                                                <option value="ProductLink">
+                                                    회차연결(기존 상품 재오픈)
+                                                </option>
+                                            </select>
+                                        </span>
+                                        <button
+                                            onClick={sampleSelectOpen}
+                                            className="btn"
+                                        >
+                                            샘플 불러오기
+                                        </button>
+                                    </div>
+
                                     <p className="info_txt">
                                         <i className="jandaicon-info2 mini"></i>{" "}
-                                        기존의 상품을 불러와서 회차 연결이
-                                        가능합니다. 구분은 날짜로 합니다.
+                                        회차연결 상품은 내용에 중대한 변경 없이
+                                        재오픈하는 상품을 뜻합니다.
+                                        <br /> 일정에 큰 변경이 있을 때는
+                                        신규상품으로 등록해 주세요.
                                     </p>
                                 </div>
                             </div>
@@ -364,11 +439,11 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         <option value="">선택없음</option>
                                     </select>
                                 </span>
-                                <p className="info_txt">
+                                {/* <p className="info_txt">
                                     <i className="jandaicon-info2 mini"></i>{" "}
                                     여행과 체험은 글쓰기 화면이 동일합니다.
                                     구분은 상품타입으로 이루어집니다.
-                                </p>
+                                </p> */}
                             </div>
                         </div>
                         <div className="write_type">
@@ -399,13 +474,14 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             </div>
                         </div>
                         <div className="write_type">
-                            <div className="title">제목</div>
+                            <div className="title">상품명</div>
                             <div className="input_form">
                                 <input
                                     id="title"
                                     onChange={handleInputChange("title")}
                                     value={title}
                                     type="text"
+                                    maxLength={40}
                                     name="title"
                                     className="inputText w100"
                                 />
@@ -415,6 +491,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             <div className="title">부제목</div>
                             <div className="input_form">
                                 <input
+                                    maxLength={40}
                                     onChange={handleInputChange("subTitle")}
                                     value={subTitle || ""}
                                     type="text"
@@ -514,7 +591,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             </div>
                         </div>
 
-                        <div className="write_type">
+                        {/* <div className="write_type">
                             <div className="title">장소</div>
                             <div className="input_form">
                                 <div>
@@ -532,7 +609,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     @@주민센터
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="write_type">
                             <div className="title">출발장소</div>
@@ -566,47 +643,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     <i className="jandaicon-info2 mini"></i>{" "}
                                     'enter'로 구분시 자동으로 키워드가
                                     생성됩니다.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="write_type">
-                            <div className="title">공개/비공개</div>
-                            <div className="input_form">
-                                <ul>
-                                    <li>
-                                        <input
-                                            onChange={handleChangeOpen}
-                                            type="radio"
-                                            name="isOpen"
-                                            id="status-open"
-                                            value={"true"}
-                                            checked={!!isOpen}
-                                            className="radio"
-                                        />
-                                        <label htmlFor="status-open">
-                                            공개
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input
-                                            onChange={handleChangeOpen}
-                                            type="radio"
-                                            name="isOpen"
-                                            id="status-sold"
-                                            value={"false"}
-                                            checked={!isOpen}
-                                            className="radio"
-                                        />
-                                        <label htmlFor="status-sold">
-                                            비공개
-                                        </label>
-                                    </li>
-                                </ul>
-                                <p className="input_form info_txt">
-                                    <i className="jandaicon-info2 mini"></i>{" "}
-                                    심사 이후에 '구매자'에게 노출여부를
-                                    체크합니다. 심사 이후에 비공개를 하셔도
-                                    '마스터'와 '판매자'는 상품을 볼 수 있습니다.
                                 </p>
                             </div>
                         </div>
@@ -648,12 +684,14 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         onChange={handleChangeSumbNail}
                                         ref={hiddenFileInput}
                                         hidden
+                                        accept="image/*"
                                         type="file"
                                     />
                                 </ul>
                                 <p className="input_form info_txt">
                                     <i className="jandaicon-info2 mini"></i>{" "}
-                                    썸네일 이미지사이즈 720px * 434px
+                                    유의사항에 최대 4개까지 등록 가능. 썸네일
+                                    이미지사이즈 720px * 434px
                                 </p>
                             </div>
                         </div>
@@ -708,14 +746,18 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 Header={
                                     tempSavedIts && (
                                         <h2 style={{ marginBottom: "1rem" }}>
-                                            새로운 상품일정 일을 선택 해주세요{" "}
+                                            새로운 상품일정 시작일을 선택 해주세요{" "}
                                         </h2>
                                     )
                                 }
                                 month={dayjs().add(20, "day").toDate()}
                                 disabledDays={{
-                                    before: dayjs().add(30, "day").toDate(),
-                                    after: dayjs().add(90, "day").toDate(),
+                                    before: dayjs()
+                                        .add(isManager ? 0 : 30, "day")
+                                        .toDate(),
+                                    after: dayjs()
+                                        .add(isManager ? 9999 : 90, "day")
+                                        .toDate(),
                                 }}
                                 isRange={type === ProductType.TOUR}
                                 onRangeChange={
@@ -729,8 +771,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 <div className="tourWrite__dayPikcerRangeViewer  mb10">
                                     <div className="tourWrite__Choiceday">
                                         <strong>선택된 상품날짜</strong>{" "}
-                                        {yyyymmdd(startDate)} ~{" "}
-                                        {yyyymmdd(endDate)}
+                                        {yyyymmdd(firstDate)} ~{" "}
+                                        {yyyymmdd(lastDate)}
                                     </div>
                                 </div>
                                 <div className="info_txt">
@@ -771,7 +813,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     </ul>
                                 </div>
                             </DayRangePicker>
-                            {its.map((itinery, index) => (
+
+                            {filterOver(its).map((itinery, index) => (
                                 <div key={"itineryForm" + index}>
                                     <ItineryForm
                                         setSelectEditorIndex={
@@ -886,6 +929,21 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     등록
                                 </button>
                             )}
+                            {isManager && (
+                                <button
+                                    onClick={
+                                        notSample
+                                            ? handleSampleCreate
+                                            : handleSampleUpdate
+                                    }
+                                    type="submit"
+                                    className="btn medium pointcolor"
+                                >
+                                    {notSample
+                                        ? "샘플로 등록하기"
+                                        : "샘플 업데이트"}
+                                </button>
+                            )}
                             <button
                                 onClick={handleCancel}
                                 type="button"
@@ -905,6 +963,11 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         </div>
                     </div>
                     <LocalStorageBoard key={loadKey} onLoad={setTourData} />
+                    <SampleBoard
+                        items={sampleProducts}
+                        onDelete={handleSampleDelete}
+                        onLoad={handleSampleLoad}
+                    />
                 </div>
                 <Prompt
                     id="UpdateMemo"
@@ -913,6 +976,15 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 />
                 {/* <ReactTooltip id="ToolTipLayOut" effect="solid" type="info" /> */}
             </div>
+            <ProductSelectModal
+                filter={{
+                    authorEmail_eq: isAdmin ? undefined : myProfile?.email,
+                }}
+                onSelect={(pd) => {
+                    const groupdCode = pd.groupCode;
+                    changeBaseProd(groupdCode);
+                }}
+            />
         </div>
     );
 };

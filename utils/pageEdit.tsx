@@ -6,6 +6,7 @@ import { IEditKit } from "../components/Img/img";
 import { IEditableUlProp } from "../components/edit/Ul";
 import { getRangeString } from "./product";
 import { ImgResizeSizes, ResizeKeys } from "../types/const";
+import { fileExtendDivider } from "./fileExtendDivider";
 interface Style {
     style?: CSSProperties;
 }
@@ -15,6 +16,10 @@ interface TInfoCell extends Style {
 export type TWebPageInfo = {
     [key: string]: TInfoCell;
 };
+
+type TSizes = 200 | 500 | 1000 | 2000 | 3000 | 4000;
+
+const Resizes: TSizes[] = [200, 500, 1000, 2000, 3000, 4000];
 
 const keyDownUlManage = (e: any) => {
     const $this = $(e.currentTarget);
@@ -113,7 +118,7 @@ export interface IGetEditUtilsResult<Page> {
           }
         | undefined;
     get: (key: keyof Page) => any;
-    imgKit: (key: keyof Page) => IEditKit<Page>;
+    imgKit: (key: keyof Page, hopeSize?: any) => IEditKit<Page>;
     arrayImgKit: (
         index: number,
         key: keyof Page,
@@ -196,6 +201,10 @@ export const getEditUtils = <T extends { [key: string]: any }>(
 
     const set = (key: keyof T, value: any, index?: number, key2?: string) => {
         validateKey(key, index);
+
+        if (value.include("__resized__")) {
+            value = value.replace(/---[0-9]{3,4}/, "");
+        }
 
         const setPageData = () => {
             const isArray = index !== undefined;
@@ -358,52 +367,42 @@ export const getEditUtils = <T extends { [key: string]: any }>(
 
     const imgEdit = (key: keyof T) => onImgUpload.bind(onImgUpload, key);
 
-    const bg = (key: keyof T, hopeSize?: ResizeKeys) => {
-        let endFix = hopeSize;
-        const windowSize =
-            typeof window === "undefined" ? 0 : window.outerWidth;
-        const hopeSizeNumber = ImgResizeSizes[hopeSize];
-        const needResize = !hopeSizeNumber || windowSize < hopeSizeNumber;
-
-        console.log({ windowSize });
-        if (needResize) {
-            if (windowSize < 1500) {
-                hopeSize = "large";
-            }
-
-            if (windowSize < 800) {
-                hopeSize = "medium";
-            }
-            if (windowSize < 400) {
-                hopeSize = "small";
-            }
-        }
-        endFix = hopeSize;
-        const endFixStr = endFix ? "--" + endFix : "";
-        const ready = false;
-
+    const bg = (
+        key: keyof T,
+        hopeSize?: 200 | 500 | 1000 | 2000 | 3000 | 4000
+    ) => {
         validateKey(key);
+        const src = get(key);
+        const resized = getResized(src, hopeSize);
         return {
-            backgroundImage: `url(${get(key)}${ready ? endFixStr : ""})`,
+            backgroundImage: `url(${resized})`,
             "data-edit": editable ? "bg" : "",
         };
     };
 
-    const src = (key: keyof T) => {
+    const src = (
+        key: keyof T,
+        hopeSize?: 200 | 500 | 1000 | 2000 | 3000 | 4000
+    ) => {
         validateKey(key);
+        const src = get(key);
+        const resized = getResized(src, hopeSize);
         return {
             "data-edit": editable ? "img" : "",
-            src: page[key][lang],
+            src: resized,
             "data-imgkey": key,
             "data-img": "img",
         };
     };
 
-    const imgKit = (key: string): IEditKit<any> => {
+    const imgKit = (
+        key: string,
+        hopeSize?: 200 | 500 | 1000 | 2000 | 3000 | 4000
+    ): IEditKit<any> => {
         validateKey(key);
         const upload = imgEdit.bind(imgEdit, key)();
-        const _bg = bg.bind(bg, key)();
-        const _src = src.bind(src, key)();
+        const _bg = bg.bind(bg, key)(hopeSize);
+        const _src = src.bind(src, key)(hopeSize);
 
         return {
             upload,
@@ -494,4 +493,32 @@ export const getEditUtils = <T extends { [key: string]: any }>(
         src,
         imgKit: imgKit as any,
     };
+};
+
+export const getResized = (
+    src: string,
+    hopeSize?: 200 | 500 | 1000 | 2000 | 3000 | 4000
+) => {
+    let endFix;
+    if (src.includes("__resized__")) {
+        const windowSize =
+            typeof window === "undefined" ? 0 : window.outerWidth;
+
+        console.log({ windowSize });
+        const validSizes = Resizes.filter((size) => windowSize * 3 < size);
+
+        if (validSizes.length !== 0) {
+            let targetSize = validSizes.find((size) => size === hopeSize);
+            if (!targetSize) {
+                targetSize = validSizes[0];
+            }
+
+            endFix = targetSize;
+        }
+    }
+    const { extend, namePart } = fileExtendDivider(src);
+    const endFixStr = endFix ? "---" + endFix : "";
+    const ready = true;
+
+    return namePart + (ready ? endFixStr : "") + "." + extend;
 };

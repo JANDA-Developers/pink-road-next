@@ -48,11 +48,13 @@ import {
 } from "../../../components/reviewModal/ReviewModal";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
 import PageDeny from "../../Deny";
+import { getResized } from "../../../utils/pageEdit";
+import { getClientIndex } from "../../../utils/getClientIndex";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
     return {
-        paths: [{ params: { id: "1" } }],
+        paths: [{ params: { id: "608e5f72a020a437e83ece87" } }],
         fallback: true,
     };
 }
@@ -72,8 +74,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         },
     });
 
-    console.log({ items });
-
     const randomSortedItems = useMemo(() => randomSort(items), [items.length]);
     const randomSorted: productList_ProductList_data[] = groupExsist
         ? cloneObject(items).sort(
@@ -85,10 +85,11 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
 
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
     const id = router.query.id as string;
-    const { loading, item: product, getData } = useProductFindById(id);
+    const { loading, item: product, getData, called } = useProductFindById(id);
     const { isManager, isAdmin, myProfile, isSeller, isParterB } = useContext(
         AppContext
     );
+    console.log({ product });
     const isMyProduct = product?.author?._id === myProfile?._id;
     const status = product?.status;
     const {
@@ -131,11 +132,12 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     };
 
     const handleDelete = () => {
-        productDelete({
-            variables: {
-                id: product!._id,
-            },
-        });
+        if (confirm("정말로 상품을 삭제 하시겠습니까?"))
+            productDelete({
+                variables: {
+                    id: product!._id,
+                },
+            });
     };
 
     const handleSliderMove = (index: number) => () => {
@@ -210,12 +212,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     };
     const reviewPagination = generateClientPaging(reviews, 4);
 
-    useEffect(() => {
-        if (!product) return;
-    }, [product]);
-
-    if (loading) return <PageLoading />;
-    if (!product) return <Page404 />;
+    if (!called && loading) return <PageLoading />;
+    if (!product) return <PageLoading />;
 
     const {
         images,
@@ -235,6 +233,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         inOrNor,
         caution,
         code,
+        category,
         peopleCount,
     } = product;
 
@@ -283,21 +282,18 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                                         product.status
                                                     )}
                                                 </span>
-                                                <span className="open">
-                                                    {product.isOpen
-                                                        ? "공개"
-                                                        : "비공개"}
-                                                </span>
                                             </div>
                                         )}
                                         <Slider dots={false} ref={sliderRef}>
                                             {images?.map((img, i) => (
                                                 <Slide key={i + "sliderImg"}>
                                                     <img
-                                                        src={getImg(
-                                                            img,
-                                                            "medium"
-                                                        )}
+                                                        src={
+                                                            getResized(
+                                                                img.uri,
+                                                                1000
+                                                            ) || ""
+                                                        }
                                                         alt={img.name}
                                                     />
                                                 </Slide>
@@ -313,9 +309,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                             >
                                                 <span>
                                                     <img
-                                                        src={getImg(
-                                                            img,
-                                                            "medium"
+                                                        src={getResized(
+                                                            img.uri,
+                                                            500
                                                         )}
                                                         alt={img.name}
                                                     />
@@ -348,7 +344,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                                         className="category bt_no"
                                                     >
                                                         <span className="pnt">
-                                                            문화/예술
+                                                            {category?.label}
                                                         </span>
                                                         <span className="code">
                                                             상품코드 {code}
@@ -843,15 +839,22 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                         </div>
                                         <div className="tbody">
                                             <ul>
-                                                {questionSliced.map((qs) => (
-                                                    <QnaLi
-                                                        onClick={handleQnaClick(
-                                                            qs._id
-                                                        )}
-                                                        key={qs._id}
-                                                        question={qs}
-                                                    />
-                                                ))}
+                                                {questionSliced.map(
+                                                    (qs, index) => (
+                                                        <QnaLi
+                                                            no={getClientIndex(
+                                                                index,
+                                                                questionPageInfo,
+                                                                questionSliced.length
+                                                            )}
+                                                            onClick={handleQnaClick(
+                                                                qs._id
+                                                            )}
+                                                            key={qs._id}
+                                                            question={qs}
+                                                        />
+                                                    )
+                                                )}
                                             </ul>
                                         </div>
                                         <div className="boardNavigation">

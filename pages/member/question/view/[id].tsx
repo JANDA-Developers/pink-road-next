@@ -31,6 +31,7 @@ interface IProp {}
 export const QuestionDetail: React.FC<IProp> = () => {
     const router = useRouter();
     const pw = getFromUrl("pw");
+    const pid = getFromUrl("pid");
     const questionId = router.query.id as string;
     const { myProfile, isManager } = useContext(AppContext);
     const [createAnswerMu] = useAnswerCreate({
@@ -92,7 +93,9 @@ export const QuestionDetail: React.FC<IProp> = () => {
     };
 
     const toList = () => {
-        router.push(`/member/question/`);
+        if (pid) {
+            location.href = `/tour/view/` + pid;
+        } else router.push(`/member/question/`);
     };
 
     const handleDelete = () => {

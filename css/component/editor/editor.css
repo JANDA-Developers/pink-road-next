@@ -1,10 +1,12 @@
 
 .editorHolder {
-    border: 1px solid #ddd;
+    word-break: break-word;
+     border: 1px solid #ddd;
     padding: 1rem;
 }
 .itinerary__editor .editorHolder {
     cursor: pointer;
+    word-break: break-all;
 }
 .editorHolder--loadingHolder {
     display: none!important;

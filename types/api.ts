@@ -3208,6 +3208,7 @@ export interface homepage_Homepage_data {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
+  productSamples: string[];
   /**
    * 일반회원(회원가입) - 이용약관
    */
@@ -3497,6 +3498,7 @@ export interface homepageUpdate_HomepageUpdate_data {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
+  productSamples: string[];
   /**
    * 일반회원(회원가입) - 이용약관
    */
@@ -5794,6 +5796,7 @@ export interface productUpdateVariables {
   params: ProductUpdateInput;
   _id: string;
   reason: string;
+  type?: RequestStatus | null;
 }
 
 /* tslint:disable */
@@ -8623,6 +8626,7 @@ export interface getContext_Homepage_data {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
+  productSamples: string[];
   /**
    * 일반회원(회원가입) - 이용약관
    */
@@ -13035,6 +13039,7 @@ export interface Fhomepage {
    * 관광사업등록번호
    */
   tourismbusinessNumber: string;
+  productSamples: string[];
   /**
    * 일반회원(회원가입) - 이용약관
    */
@@ -14380,6 +14385,7 @@ export enum RequestStatus {
   CANCEL_REQ = "CANCEL_REQ",
   COMPLETE = "COMPLETE",
   DETERMIN = "DETERMIN",
+  ELSE = "ELSE",
   EXPIRED = "EXPIRED",
   REJECT = "REJECT",
   REQUEST = "REQUEST",
@@ -14893,6 +14899,7 @@ export interface FileUpdateInput {
   fileType?: string | null;
   uri: string;
   owner?: string | null;
+  imgScaleUrl?: ImgScaleUrlInput | null;
 }
 
 export interface GqlTagInput {
@@ -14921,6 +14928,7 @@ export interface HomepageUpdateInput {
   siteName?: string | null;
   signUpRedirect?: string | null;
   blacklist?: string[] | null;
+  productSamples?: string[] | null;
   loginRedirect?: string | null;
   loginOutRedirect?: string | null;
   indiUsePolicy?: string | null;
@@ -15007,6 +15015,7 @@ export interface ModalInput {
   endDate?: any | null;
   open?: boolean | null;
   title?: string | null;
+  productSamples?: string[] | null;
   image?: FileCreateInput | null;
   content?: string | null;
   linkBehavior?: LinkBehavior | null;

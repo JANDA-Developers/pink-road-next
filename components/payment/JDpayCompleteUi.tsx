@@ -2,9 +2,11 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { useBookingList } from "../../hook/useBooking";
+import { useHomepage } from "../../hook/useHomepage";
 import PaymentLayout from "../../layout/PaymentLayout";
 import PageLoading from "../../pages/Loading";
 import { AppContext } from "../../pages/_app";
+import { homepage_Homepage_data_bankInfo, PayMethod } from "../../types/api";
 import {
     paymentStatus,
     paymentStatus2,
@@ -27,6 +29,7 @@ const getData = (): any[] => {
 };
 
 export const JDpayCompleteUI: React.FC<IProp> = () => {
+    const { data: item } = useHomepage();
     const { isLogin } = useContext(AppContext);
     const groupCode = getFromUrl("groupCode");
     const { items, getLoading } = useBookingList({
@@ -34,6 +37,11 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
             groupCode_eq: groupCode,
         },
     });
+
+    const isBank = items[0]?.payMethod === PayMethod.BANK;
+
+    const bankInfo: homepage_Homepage_data_bankInfo | undefined =
+        item?.bankInfo || undefined;
 
     if (getLoading) return <PageLoading />;
     return (
@@ -90,6 +98,30 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
                                 </strong>
                             </div>
                         </div>
+                        {isBank && (
+                            <div className="payment_tr">
+                                <div className="payment_th">입금은행</div>
+                                <div className="payment_td">
+                                    <span className="mr5">
+                                        {bankInfo?.bankName}
+                                    </span>
+                                    <span className="mr15">
+                                        {bankInfo?.accountNumber}
+                                    </span>
+                                    <span>
+                                        예금주:
+                                        {bankInfo?.accountHolder}
+                                    </span>
+                                </div>
+                            </div>
+                        )}
+                        {isBank && (
+                            <p className="info__txt gray">
+                                <i className="jandaicon-info2 mini"></i> 무통장
+                                입금은 24시간 이내에 입금하지 않으시면 예약이
+                                자동취소 됩니다.
+                            </p>
+                        )}
                     </div>
                 ))}
                 <div className="btn_box">

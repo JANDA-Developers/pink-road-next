@@ -31,13 +31,13 @@ import useRouterScroll from "../hook/useRouterScroll";
 import { pageLoadingEffect } from "../utils/query";
 
 Router.events.on("routeChangeStart", () => {
-    pageLoadingEffect(true);
+    pageLoadingEffect(true, "page");
 });
 Router.events.on("routeChangeComplete", () => {
-    pageLoadingEffect(false);
+    pageLoadingEffect(false, "page");
 });
 Router.events.on("routeChangeError", () => {
-    pageLoadingEffect(false);
+    pageLoadingEffect(false, "page");
 });
 
 dayjs.locale("ko");
@@ -180,7 +180,11 @@ function App({ Component, pageProps }: any) {
     if (loading) return <PageLoading />;
     return (
         <div className="App">
-            <div id="MuPageLoading" className="muPageLoading" />
+            <div
+                id="MuPageLoading"
+                data-fetchingid=""
+                className="muPageLoading"
+            />
 
             <ApolloProvider client={PinkClient}>
                 <AppContext.Provider

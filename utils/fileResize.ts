@@ -1,5 +1,6 @@
-import { FimgScaleUrl } from "../types/api";
 import dataURLtoFile from "./dataURLtoFile";
+import { fileExtendDivider } from "./fileExtendDivider";
+import { resample_single } from "./resizeCanvas";
 
 // 그 파일들을 일제히 업로드한다.
 export const getFileImageSize = (
@@ -17,11 +18,7 @@ export const getFileImageSize = (
     };
 };
 
-interface IFileResizeOption {
-    size: keyof FimgScaleUrl[];
-}
-
-interface IResizeImageOptions {
+export interface IResizeImageOptions {
     suffix?: string;
     changedFileName?: string;
     maxSize: number;
@@ -51,20 +48,25 @@ export const resizeImage = (settings: IResizeImageOptions): Promise<File> => {
             }
         }
 
+        const canvasContext = canvas.getContext("2d");
         canvas.width = width;
         canvas.height = height;
-        canvas.getContext("2d").drawImage(image, 0, 0, width, height);
-        let dataUrl = canvas.toDataURL("image/jpeg");
-        return dataURLtoFile(
-            dataUrl,
-            (settings.changedFileName || file.name) +
-                `--${settings.suffix || maxSize}`
-        );
+        canvasContext?.drawImage(image, 0, 0, width, height);
+        resample_single(canvas, width, height, true);
+
+        let dataUrl = canvas.toDataURL(file.type);
+        const fileName = settings.changedFileName || file.name;
+        const { extend, namePart } = fileExtendDivider(fileName);
+        const suffixStr = `---${settings.suffix || maxSize}`;
+
+        const newfileName = namePart + suffixStr + "." + extend;
+
+        return dataURLtoFile(dataUrl, newfileName);
     };
 
     return new Promise((ok, no) => {
         if (!file.type.match(/image.*/)) {
-            no(new Error("Not an image"));
+            no(false);
             return;
         }
 
