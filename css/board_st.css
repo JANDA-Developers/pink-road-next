@@ -855,6 +855,7 @@ ul.boardlist_ul li .cash strong {
 }
 
 .board_list.st01 .tbody li {
+  position: relative;
   display: block;
   align-items: center;
   width: 100%;
@@ -873,7 +874,7 @@ ul.boardlist_ul li .cash strong {
   flex-grow: 1;
   font-size: 13px;
   box-sizing: border-box;
-  font-weight: 100;
+  font-weight: 600;
 }
 
 .board_list.st01 .tbody .td01 {
@@ -901,7 +902,7 @@ ul.boardlist_ul li .cash strong {
   width: auto;
   text-align: left;
   color: #555555;
-  font-weight: 100;
+  font-weight: 600;
 }
 
 .board_list.st02 {
@@ -2210,25 +2211,31 @@ div.board_list_mini div.w100 {
 i.q_ok {
   font-style: unset;
   display: inline-block;
-  padding: 4px 10px;
+  padding: 6px 10px;
   margin-left: 15px;
   font-size: 10px;
   color: #002faa;
   border: 1px solid #768fd1;
   background-color: #e2eaff;
   line-height: 1;
+  position: absolute;
+  top: 10px;
+  right: 0;
 }
 
 i.q_no {
   font-style: unset;
   display: inline-block;
-  padding: 4px 10px;
+  padding: 6px 10px;
   margin-left: 15px;
   font-size: 10px;
-  color: #3f65c9;
-  border: 1px solid #bccbf0;
-  background-color: #ffffff;
+  color: #989898;
+  border: 1px solid #d0d0d0;
+  background-color: #eeeeee;
   line-height: 1;
+  position: absolute;
+  top: 10px;
+  right: 0;
 }
 div.sum_div {
   position: relative;
@@ -2354,7 +2361,7 @@ div.sum_div .last_ul i {
   vertical-align: top;
   text-align: center;
   box-sizing: border-box;
-  position: relative;
+  /* position: relative; */
   font-weight: 100;
 }
 
@@ -2537,6 +2544,18 @@ div.sum_div .last_ul i {
   }
 }
 @media (min-width: 1000px) {
+  i.q_no{
+    position: relative;
+    right: initial;
+    top: initial;
+    padding: 4px 10px;
+  }
+  i.q_ok{
+    position: relative;
+    right: initial;
+    top: initial;
+    padding: 4px 10px;
+  }
   ul.list_ul {
     display: flex;
   }
@@ -2723,6 +2742,7 @@ div.sum_div .last_ul i {
     flex: 1 1;
     flex-grow: 1;
     padding: 10px;
+    font-weight: 100;
   }
   .board_list.st01 .tbody .td01,
   .board_list.st01 .thead .td01 {

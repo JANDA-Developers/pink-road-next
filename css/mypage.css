@@ -169,6 +169,10 @@
 .mypage_in .lnb .profile_box [class*="name"] i.ct_manager {
   background-color: #ed297b;
   color: #ffffff;
+  font-size: 10px;
+  line-height: 15px;
+  font-weight: 100;
+  vertical-align: text-top;
 }
 
 .mypage_in .lnb .profile_box .point {
@@ -293,10 +297,6 @@
   display: block;
   font-size: 11px;
 }
-
-.mypage_in .lnb a:hover {
-}
-
 .mypage_in .lnb .on a {
   font-weight: 600;
 }
@@ -482,7 +482,15 @@
   margin-right: 5px;
   font-size: 1.1em;
 }
-
+.mypage_in .reservation_div div.alignment .right_div{
+  display: block;
+}
+.mypage_in .reservation_div div.alignment .right_div .board_option{
+  width: 100%;
+}
+.mypage_in .reservation_div .btn{
+  width: 100%;
+}
 .mypage_in .box_right > ul {
   width: 100%;
   border-top: 1px solid #cccccc52;
@@ -616,6 +624,8 @@
 
 .mypage_in .box_right .btn_mini {
   height: auto !important;
+  width: auto !important;
+  display: inline-block !important;
   padding: 8px 15px !important;
   background-color: #c4c4c417 !important;
   color: #7a7a7a !important;
@@ -1039,7 +1049,7 @@
   display: inline-block;
   width: 100%;
   vertical-align: middle;
-  position: relative;
+  /* position: relative; */
 }
 
 .reservation_div .paper_div {
@@ -1127,6 +1137,7 @@
   padding-top: 0px !important;
   vertical-align: middle;
   margin-right: 15px;
+  font-weight: 600;
 }
 .reservation_div .pay-day {
   width: auto !important;
@@ -1136,6 +1147,7 @@
   color: #333;
   padding-top: 0px !important;
   vertical-align: middle;
+  font-weight: 600;
 }
 .reservation_div .name {
   width: auto !important;
@@ -1156,6 +1168,7 @@
   padding-top: 0px !important;
   vertical-align: middle;
   margin-right: 15px;
+  font-weight: 600;
 }
 
 .reservation_div .con_box .title {
@@ -1220,6 +1233,7 @@
   color: #333;
   vertical-align: middle;
   margin-right: 10px;
+  font-weight: 600;
 }
 .reservation_div .men {
   width: auto !important;
@@ -1230,6 +1244,7 @@
   color: #2196f3 !important;
   padding-top: 0px !important;
   vertical-align: middle;
+  font-weight: 600;
 }
 .reservation_div .men br {
   display: none;
@@ -1279,31 +1294,30 @@
   margin-left: 15px;
 }
 .reservation_div .state {
-  width: 100% !important;
+  width: auto !important;
   display: inline-block;
   line-height: 210%;
-  border: 1px solid #ccc;
   padding: 3px 15px !important;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 13px;
-  color: #555;
+  color: #ffffff;
+  background-color: #888888;
   font-weight: 600;
-  border-radius: 3px;
   font-style: unset;
+  position: absolute;
+  right: 0;
+  top: 10px;
 }
 
 .reservation_div .state.re-ok {
-  border: 1px solid #2196f3 !important;
-  color: #2196f3 !important;
+  background-color: #2196f3 !important;
 }
 .reservation_div .state.re-stay {
-  border: 1px solid #616161 !important;
-  color: #616161 !important;
+  background-color: #616161 !important;
 }
 .reservation_div .state.re-refund {
-  border: 1px solid #cf3932 !important;
-  color: #cf3932 !important;
+  background-color: #cf3932 !important;
 }
 div.reservation_popup .info_txt {
   position: relative;
@@ -1878,11 +1892,24 @@ div.reservation_popup .tr select {
 }
 
 .myboard_box .con_bottom .th02 {
+  position: relative;
   width: auto;
   margin-right: 15px;
+  font-weight: 600;
+}
+.myboard_box .con_bottom .th02::after {
+  display: inline-block;
+  content: "";
+  position: absolute;
+  right: -9px;
+  top: 9px;
+  background-color: #b3b3b3;
+  width: 1px;
+  height: 7px;
 }
 .myboard_box .con_bottom .th03 {
   width: auto;
+  font-weight: 600;
 }
 .myboard_box .con_bottom .th04 {
   width: 100%;
@@ -2812,9 +2839,41 @@ div.reservation_popup .tr select {
   .basket_box .basket_list .t05 {
     max-width: 18%;
   }
+  .mypage_in .reservation_div div.alignment .right_div .board_option{
+    width: auto;
+  }
+  .mypage_in .reservation_div div.alignment select{
+    width: auto;
+  }
 }
 
 @media (min-width: 1000px) {
+  .mypage_in .reservation_div div.alignment{
+    display: flex;
+    height: 67px;
+  }
+  .mypage_in .reservation_div div.alignment .right_div{
+    display: flex;
+    margin-left: 0;
+  }
+
+  .mypage_in .box_right .btn_mini {
+    height: auto !important;
+    padding: 8px 15px !important;
+    background-color: #c4c4c417 !important;
+    color: #7a7a7a !important;
+    border-color: #a5a5a552 !important;
+    font-size: 12px !important;
+    border-radius: 3px !important;
+    line-height: 16px;
+}
+.mypage_in .lnb .profile_box [class*="name"] i.ct_manager {
+  background-color: #ed297b;
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 19px;
+  font-weight: 400;
+}
   .selectViewList ul.list_ul .list_in .txt2 .btn {
     float: left;
     font-weight: 600;
@@ -2851,9 +2910,7 @@ div.reservation_popup .tr select {
   .mypage_in .in .fin.last .btn {
     margin: 0 5px;
   }
-  .mypage_in .box_right .btn_mini {
-    width: auto !important;
-  }
+ 
   .reservation_div .state {
     width: auto !important;
     display: inline-block;
@@ -3447,10 +3504,15 @@ div.reservation_popup .tr select {
     width: auto;
     max-width: 15%;
     margin-right: 0;
+    font-weight: 100;
+  }
+  .myboard_box .con_bottom .th02::after {
+    display: none
   }
   .myboard_box .con_bottom .th03 {
     width: auto;
     max-width: 10%;
+    font-weight: 100;
   }
   .myboard_box .con_bottom .th04 {
     width: auto;
@@ -3603,26 +3665,6 @@ div.reservation_popup .tr select {
     padding: 0;
     text-align: center !important;
   }
-  /* .reservation_div .td .t01 .checkbox {
-        top: 50%;
-        margin-top: -8px;
-    }
-    .reservation_div .align {
-        top: 50%;
-        margin-top: -40px;
-    }    
-    .reservation_div .t02 .align {
-        top: 50%;
-        margin-top: 4px;
-    }  
-    .reservation_div .t06 .align {
-        top: 50%;
-        margin-top: -35px;
-    }   
-    .reservation_div .t07 .align {
-        top: 50%;
-        margin-top: -30px;
-    } */
   .reservation_div .t04 .img {
     width: 150px !important;
     height: 90px;
@@ -3638,6 +3680,7 @@ div.reservation_popup .tr select {
     color: #333;
     vertical-align: middle;
     margin-right: 0;
+    font-weight: 100;
   }
   .reservation_div .t04 .info {
     padding-left: 170px;
@@ -3658,6 +3701,7 @@ div.reservation_popup .tr select {
     width: 100% !important;
     display: block !important;
     margin-right: 0;
+    font-weight: 100;
   }
   .reservation_div .money {
     width: 100% !important;
@@ -3668,11 +3712,17 @@ div.reservation_popup .tr select {
     width: 100% !important;
     display: block !important;
     margin-right: 0;
+    font-weight: 100;
   }
   .reservation_div .pay-day {
     width: 100% !important;
     display: block !important;
     margin-right: 0;
+    font-weight: 100;
+  }
+
+  .reservation_div .men {
+    font-weight: 100;
   }
 
   .reservation_div .men br {
@@ -3682,6 +3732,10 @@ div.reservation_popup .tr select {
     width: 100% !important;
     display: block !important;
     margin-left: 0;
+  }
+  div.alignment .left_div .infotxt{
+    margin-top: 10px;
+    margin-right: 10px;
   }
 }
 
@@ -3700,6 +3754,41 @@ div.reservation_popup .tr select {
   }
 }
 @media (min-width: 1230px) {
+  .reservation_div .state{
+    position: relative;
+    top: initial;
+    right: initial;
+    color: #333333;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: initial;
+  }
+  
+.reservation_div .state.re-ok {
+  border: 1px solid #2196f3 !important;
+  color: #2196f3 !important;
+  background-color: initial;
+}
+.reservation_div .state.re-stay {
+  border: 1px solid #616161 !important;
+  color: #616161 !important;
+  background-color: initial;
+}
+.reservation_div .state.re-refund {
+  border: 1px solid #cf3932 !important;
+  color: #cf3932 !important;
+  background-color: initial;
+}
+  div.alignment .left_div .infotxt{
+    margin-top: 15px;
+    margin-right: 0px;
+  }
+  .mypage_in .reservation_div div.alignment .right_div{
+    display: block;
+  }
+  .mypage_in .reservation_div .btn{
+    width: auto;
+  }
   .mypage_in {
     padding: 59px 0 100px !important;
   }
@@ -3788,18 +3877,22 @@ div.reservation_popup .tr select {
   .basket_box .basket_list .right {
     padding-left: 0;
 }
+.mypage_in .btn{
+  width: auto;
+  margin-right: 10px;
+}
 }
 
 @media (max-width: 767px) {
-
+  .mypage_in .btn{
+    width: 100%;
+    margin-right: 0;
+  }
   .mypage_in .lnb a {
     padding: 4px 15px 4px;
   }
   .mypage_in .lnb a i {
     font-size: 0.9em;
-  }
-  .mypage_in .box_right .btn_mini {
-    width: auto !important;
   }
   .reservation_div .money {
     font-size: 1em;
