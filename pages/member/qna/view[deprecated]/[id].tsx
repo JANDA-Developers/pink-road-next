@@ -1,15 +1,16 @@
-import { useRouter } from 'next/router';
-import React from 'react';
+import { useRouter } from "next/router";
+import React from "react";
 import { BoardView } from "components/board/View";
-import { useQnaDelete, useQnaFindById } from '../../../../hook/useQna';
-import PageLoading from '../../../Loading';
-import Page404 from '../../../404';
-import { auth } from '../../../../utils/with';
-import { ALLOW_ADMINS } from '../../../../types/const';
-import { nameOf } from '../../../../utils/enumToKr';
+import { useQnaDelete, useQnaFindById } from "../../../../hook/useQna";
+import PageLoading from "../../../Loading";
+import Page404 from "../../../404";
+import { auth } from "../../../../utils/with";
+import { ALLOW_ADMINS } from "../../../../types/const";
+import { nameOf } from "../../../../utils/enumToKr";
+import { getFromUrl } from "../../../../utils/url";
+import { updateURLParameter } from "../../../../utils/getUpdateUrlParam";
 
-interface IProp {
-}
+interface IProp {}
 
 export const QnaDetail: React.FC<IProp> = () => {
     const router = useRouter();
@@ -17,48 +18,59 @@ export const QnaDetail: React.FC<IProp> = () => {
     const [qnaDeleteMu] = useQnaDelete({
         onCompleted: ({ QnaDelete }) => {
             if (QnaDelete.ok) toList();
-        }
-    })
+        },
+    });
     const { item: qna, error } = useQnaFindById(qnaId);
 
-    if (error) return <Page404 />
-    if (!qna) return <PageLoading />
+    if (error) return <Page404 />;
+    if (!qna) return <PageLoading />;
 
-    const { title, thumb, createdAt, contents, subTitle, _id, author, isOpen } = qna;
+    const {
+        title,
+        thumb,
+        createdAt,
+        contents,
+        subTitle,
+        _id,
+        author,
+        isOpen,
+    } = qna;
     const toDetail = () => {
-        router.push(`/member/qna/write/${_id}`)
-    }
+        router.push(`/member/qna/write/${_id}`);
+    };
 
     const toList = () => {
-        router.push(`/member/qna/`)
-    }
+        const page = getFromUrl("page");
+        const to = updateURLParameter("/member/qna", "page", page);
+        router.push(to);
+    };
 
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
             qnaDeleteMu({
                 variables: {
-                    id: _id
-                }
-            })
-    }
+                    id: _id,
+                },
+            });
+    };
 
-    return <div>
-        <BoardView
-            isOpen={!!isOpen}
-            authorId={author?._id || ""}
-            onList={toList}
-            thumb={thumb}
-            content={contents}
-            writer={nameOf(author)}
-            title={title}
-            subTitle={subTitle || ""}
-            onDelete={handleDelete}
-            onEdit={toDetail}
-            createAt={createdAt}
-
-        />
-    </div>
+    return (
+        <div>
+            <BoardView
+                isOpen={!!isOpen}
+                authorId={author?._id || ""}
+                onList={toList}
+                thumb={thumb}
+                content={contents}
+                writer={nameOf(author)}
+                title={title}
+                subTitle={subTitle || ""}
+                onDelete={handleDelete}
+                onEdit={toDetail}
+                createAt={createdAt}
+            />
+        </div>
+    );
 };
-
 
 export default auth(ALLOW_ADMINS)(QnaDetail);

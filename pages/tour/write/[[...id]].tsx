@@ -410,7 +410,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                             샘플 불러오기
                                         </button>
                                     </div>
-
                                     <p className="info_txt">
                                         <i className="jandaicon-info2 mini"></i>{" "}
                                         회차연결 상품은 내용에 중대한 변경 없이
@@ -746,7 +745,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 Header={
                                     tempSavedIts && (
                                         <h2 style={{ marginBottom: "1rem" }}>
-                                            새로운 상품일정 시작일을 선택 해주세요{" "}
+                                            새로운 상품일정 시작일을 선택
+                                            해주세요{" "}
                                         </h2>
                                     )
                                 }
@@ -874,7 +874,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 type="button"
                                 className="btn medium"
                             >
-                                불러오기
+                                작성중 상품 불러오기
                             </button>
                         </div>
                         <div className="float_right">
@@ -926,7 +926,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     type="submit"
                                     className="btn medium pointcolor"
                                 >
-                                    등록
+                                    {false ? "등록" : ""}
                                 </button>
                             )}
                             {isManager && (

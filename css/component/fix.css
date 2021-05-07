@@ -372,18 +372,6 @@ background-color: #fff;
     flex: 1;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 .master_box  .productGroup .droppable {
     display: flex!important;
     overflow: auto;
@@ -391,4 +379,11 @@ background-color: #fff;
 
 .master_box  .productGroup .droppable li {
     min-width: 130px;
+}
+
+button:disabled {
+    pointer-events: none;
+    color: #d2d2d2;
+    border-color: #d2d2d2;
+    
 }

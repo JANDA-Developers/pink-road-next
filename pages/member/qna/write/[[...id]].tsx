@@ -1,16 +1,21 @@
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import { BoardWrite } from "components/board/Write";
 import { useBoard } from "hook/useBoard";
 import { omits } from "../../../../utils/omit";
 import { Validater } from "../../../../utils/validate";
-import { useQnaCreate, useQnaDelete, useQnaFindById, useQnaUpdate } from "../../../../hook/useQna";
+import {
+    useQnaCreate,
+    useQnaDelete,
+    useQnaFindById,
+    useQnaUpdate,
+} from "../../../../hook/useQna";
 import { AppContext } from "../../../_app";
 import { LoginModal } from "../../../../components/loginModal/LoginModal";
 import { useModal } from "../../../../hook/useModal";
 import { ThreePhoneNumberInput } from "../../../../components/phoneNumberInput/PhoneNumberInput";
 
-interface IProp { }
+interface IProp {}
 
 export const QnaWrite: React.FC<IProp> = () => {
     const router = useRouter();
@@ -24,33 +29,42 @@ export const QnaWrite: React.FC<IProp> = () => {
         onCompleted: ({ QnaUpdate }) => {
             if (QnaUpdate.ok) {
                 const id = QnaUpdate.data!._id;
-                router.push(`/member/qna`)
+                router.push(`/member/qna`);
             }
         },
-        awaitRefetchQueries: true
-    })
+        awaitRefetchQueries: true,
+    });
 
     const [qnaCreateMu] = useQnaCreate({
         onCompleted: ({ QnaCreate }) => {
             if (QnaCreate.ok) {
-                router.push(`/member/qna`)
+                router.push(`/member/qna`);
             }
         },
-        awaitRefetchQueries: true
-    })
+        awaitRefetchQueries: true,
+    });
 
     const [qnaDeleteMu] = useQnaDelete({
         onCompleted: ({ QnaDelete }) => {
-            if (QnaDelete.ok)
-                router.push(`/member/qna`)
+            if (QnaDelete.ok) router.push(`/member/qna`);
         },
-    })
+    });
 
-    const boardHook = useBoard({
-        ...qna
-    }, { storeKey: "qnaWrite" });
+    const boardHook = useBoard(
+        {
+            ...qna,
+        },
+        { storeKey: "qnaWrite" }
+    );
 
-    const { boardData, loadKey, handleCancel, handleLoad, handleTempSave, setBoardData } = boardHook
+    const {
+        boardData,
+        loadKey,
+        handleCancel,
+        handleLoad,
+        handleTempSave,
+        setBoardData,
+    } = boardHook;
 
     const { validate } = new Validater([
         {
@@ -65,78 +79,81 @@ export const QnaWrite: React.FC<IProp> = () => {
             value: boardData.contents,
             failMsg: "콘텐츠 값은 필수 입니다.",
         },
-    ]
-    );
+    ]);
 
     const handleUpdate = () => {
         if (!validate()) return;
 
         const params = {
             ...boardData,
-        }
+        };
 
         qnaUpdateMu({
             variables: {
                 params: omits(params, ["files"]),
-                id
-            }
-        })
-    }
+                id,
+            },
+        });
+    };
 
     const handleDelete = () => {
         if (confirm("정말로 게시글을 삭제 하시겠습니까?"))
             qnaDeleteMu({
                 variables: {
-                    id
-                }
-            })
-    }
+                    id,
+                },
+            });
+    };
 
     const handleCreate = () => {
-        if (!validate()) return
+        if (!validate()) return;
 
         const next = {
             ...boardData,
-        }
+        };
 
         qnaCreateMu({
             variables: {
-                params: omits(next, ["files"])
-            }
-        })
-    }
-
+                params: omits(next, ["files"]),
+            },
+        });
+    };
 
     useEffect(() => {
         setBoardData({
-            ...qna as any,
-            categoryId: qna?.category?._id
-        })
-    }, [qna?._id])
+            ...(qna as any),
+            categoryId: qna?.category?._id,
+        });
+    }, [qna?._id]);
 
-    return <div>
-        <BoardWrite
-            boardHook={boardHook}
-            key={loadKey + (qna?._id || "")}
-            mode={mode}
-            categoryList={categoriesMap.QNA}
-            onCancel={handleCancel}
-            onCreate={handleCreate}
-            onDelete={handleDelete}
-            onEdit={handleUpdate}
-            onSave={handleTempSave}
-            onLoad={handleLoad}
-            opens={{
-                title: true,
-                category: true,
-                open: true,
-                files: true
-            }}
-        />
-        <LoginModal modalHook={loginModalHook} onLogin={() => {
-            location.reload();
-        }} />
-    </div>
+    return (
+        <div>
+            <BoardWrite
+                boardHook={boardHook}
+                key={loadKey + (qna?._id || "")}
+                mode={mode}
+                categoryList={categoriesMap.QNA}
+                onCancel={handleCancel}
+                onCreate={handleCreate}
+                onDelete={handleDelete}
+                onEdit={handleUpdate}
+                onSave={handleTempSave}
+                onLoad={handleLoad}
+                opens={{
+                    title: true,
+                    category: true,
+                    open: true,
+                    files: true,
+                }}
+            />
+            <LoginModal
+                modalHook={loginModalHook}
+                onLogin={() => {
+                    location.reload();
+                }}
+            />
+        </div>
+    );
 };
 
-export default QnaWrite
+export default QnaWrite;

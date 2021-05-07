@@ -87,6 +87,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
     const boardHook = useBoard(
         {
             ...question,
+            isOpen: false,
             categoryId:
                 question?.category?._id ||
                 (urlProductId ? productCat?._id : undefined),
@@ -274,7 +275,6 @@ export const QuestionWrite: React.FC<IProp> = () => {
                 opens={{
                     category: true,
                     title: true,
-                    open: true,
                     files: true,
                 }}
             />
