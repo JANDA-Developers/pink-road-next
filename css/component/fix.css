@@ -65,12 +65,12 @@ div.popup_bg_full .in_txt {
     padding-top: 0px!important;
 }
 div.popup_bg_full .in_txt.statement_popup {
-    padding-top: 50px!important;
+    padding-top: 19px!important;
 }
-
+/* 
 .productModal__close {
  position: initial!important;   
-}
+} */
 
 .productModal__head {
     display: flex;
@@ -89,25 +89,18 @@ div.popup_bg_full .in_txt.statement_popup {
     overflow: initial!important;
 }
 
-.productModal__inWrap {
-}
-
 .productDateSelecter__categoryWrap  {
     padding: 0px!important;
 }
 
 
-.masterMain {
-
-}
 
 .masterMain .table .body{ 
-    display: flex!important;
+   
     align-items: center!important;
 }
 
 .masterMain .table .head  {
-    display: flex!important;
     height: 35px;
     align-items: center;
 }
@@ -118,15 +111,7 @@ div.popup_bg_full .in_txt.statement_popup {
 
 
 
-.masterMain .table .td01, .masterMain .table .td02,.masterMain .table .td03,.masterMain .table .td04 { 
-    width: auto!important;
-    
-}
 
-
-.masterMain .table .td01 { 
-    /* min-width: 25%; */
-}
 
 .master_box .in_content .alignment {
     margin-bottom: 20px;
@@ -183,7 +168,7 @@ div.popup_bg_full .in_txt.statement_popup {
 }
 
 .mypageSettlement__list {
-    text-align: center;
+    text-align: left;
 }
 
 .mypageSettlement__list .th02 {
@@ -191,9 +176,23 @@ div.popup_bg_full .in_txt.statement_popup {
 }
 
 .settlementModal__li {
-    display: flex!important;
+    display: block !important;
     justify-content: space-around!important;
     align-items: center!important;
+    padding: 10px 0 !important;
+}
+.statement_popup__topBox  .settlementModal__li {
+    display: block !important;
+}
+.mypage_purchase div.master_popup .info_page div[class*="th0"] {
+    display:inline-block !important;
+    width: auto !important;
+}
+div.master_popup .info_page div[class*="th0"]{
+    display:inline-block !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
 }
 
 .settlementModal__li-th3 {
@@ -211,9 +210,8 @@ div.popup_bg_full .in_txt.statement_popup {
 }
 
 .peoplelist__li {
-    display: flex!important;
-    align-items: center;
-    justify-content: center;
+    display: inline-block!important;
+
 }
 
 .emailVerifiModal__btns {
@@ -381,9 +379,27 @@ background-color: #fff;
     min-width: 130px;
 }
 
+<<<<<<< HEAD
 button:disabled {
     pointer-events: none;
     color: #d2d2d2;
     border-color: #d2d2d2;
     
+=======
+@media (min-width: 1230px) {
+.mypageSettlement__list{
+    text-align: center;
+    
+}
+
+.masterMain .table .td01, .masterMain .table .td02,.masterMain .table .td03,.masterMain .table .td04 { 
+    width: auto!important;
+    
+}
+.peoplelist__li {
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+}
+>>>>>>> origin/design
 }

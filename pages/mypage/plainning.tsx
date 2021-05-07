@@ -343,9 +343,9 @@ export const Plainning: React.FC<IProp> = () => {
                                                     </div>
                                                     <div className="th07">
                                                         {/* 단위 : 건 */}
-                                                        <span className="m_title">
+                                                        {/* <span className="m_title">
                                                             상태:{" "}
-                                                        </span>
+                                                        </span> */}
                                                         <PordStatusBadge
                                                             status={item.status}
                                                         />
@@ -389,19 +389,19 @@ export const Plainning: React.FC<IProp> = () => {
                                                         </span>
                                                     </div>
                                                     <div className="th09">
-                                                        <i className="btn">
-                                                            <Link
-                                                                href={`/tour/write/${item._id}`}
-                                                            >
-                                                                <a>상품수정</a>
-                                                            </Link>
-                                                        </i>
+                                                        <Link
+                                                            href={`/tour/write/${item._id}`}
+                                                        >
+                                                            <a className="btn medium">
+                                                                상품수정
+                                                            </a>
+                                                        </Link>
                                                         {/*글수정으로 가기 */}
                                                         <i
                                                             onClick={handleOpenProductModal(
                                                                 item._id
                                                             )}
-                                                            className="btn"
+                                                            className="btn medium"
                                                         >
                                                             상세보기
                                                         </i>
@@ -427,7 +427,7 @@ export const Plainning: React.FC<IProp> = () => {
                                         pageInfo={pageInfo}
                                     />
                                 </div>
-                                <div className="boardNavigation">
+                                <div className="fin boardNavigation">
                                     <div className="float_left"></div>
                                     <div className="float_right">
                                         {(isParterB ||

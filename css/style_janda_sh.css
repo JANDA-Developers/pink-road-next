@@ -32,6 +32,7 @@
 .ce-block,
 .option_tb td,
 .JDtagInput__tag,
+div.master_popup .info_table .top_info span,
 .LocalStorageBoard__date,
 .basket_box .basket_list .subtitle,
 .selectViewList ul.list_ul li .subtitle,
@@ -95,10 +96,7 @@ ul.list_ul li .bottom_txt span,
 .fuction_list_mini .tbody li > div {
   font-family: NanumSquareRoundOTFB, NanumSquareRoundOTF, "돋음", sans-serif !important;
 }
-div.master_popup .info_page div[class*="td0"],
-div.master_popup .top03 span {
-  font-weight: 100;
-}
+
 .basket_box .basket_list .title a {
   font-family: "montserrat", "noto", "Roboto", sans-serif;
 }
@@ -1074,7 +1072,7 @@ div.popup_bg_full h3 strong {
   color: #2196f3;
 }
 div.popup_bg_full h4 {
-  font-size: 16px !important;
+  font-size: 1.7em !important;
   line-height: 160% !important;
   font-weight: 600;
   position: relative;
@@ -1113,9 +1111,10 @@ div.popup_bg_full h4 .full_div__right {
 div.popup_bg_full h4 .full_div__right .btn {
   padding: 0px 15px;
   margin-left: 5px;
-  font-size: 0.8em;
+  font-size: 0.7em;
   position: absolute;
   right: 0;
+  font-weight: 600;
   top: -34px;
   line-height: 24px;
   border: 1px solid #d8d8d8;
@@ -1434,8 +1433,8 @@ div.alignment select {
   width: 49%;
   font-size: 12px;
   padding: 0 10px;
-  margin-top: 5px;
-  font-weight: 100;
+  margin-top: 0;
+  font-weight: 600;
   box-sizing: border-box;
   border: 1px solid #d2d2d2;
 }
@@ -2687,7 +2686,7 @@ ul.rank_ul li .number {
   margin-top: 40px;
   display: block;
   text-align: center;
-  padding: 0 5%;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -4314,6 +4313,7 @@ div.bn_box.line2 a:first-child {
   vertical-align: middle;
   background-color: #fff;
   position: relative;
+  cursor: pointer;
 }
 
 .pagenate .page a.on {
@@ -5436,6 +5436,13 @@ div.bn_box.line2 a:first-child {
   box-sizing: border-box;
   padding: 20px 0;
 }
+.join_wrap2 .choice_box .choice__link .txt {
+  display: block;
+  width: 100%;
+}
+.join_wrap2 .choice_box .choice__link .txt br{
+  display: none;
+}
 
 .join_wrap2 .choice_box .choice__link > li {
   position: relative;
@@ -5447,11 +5454,12 @@ div.bn_box.line2 a:first-child {
 }
 
 .join_wrap2 .choice_box .choice__link > li strong {
-  display: block;
+  display: inline-block;
   font-size: 22px;
   line-height: 173%;
   text-align: left;
   color: #333333;
+  margin-right: 15px;
 }
 .join_wrap2 .pink_join_btn {
   display: block;
@@ -5480,9 +5488,13 @@ div.bn_box.line2 a:first-child {
   color: #ffffff;
   margin-top: 9px;
 }
-
-.join_wrap2 .choice_box .choice__link > li span {
+.join_wrap2 .partner_01 .nomal_join_btn,
+.join_wrap2 .partner_02 .nomal_join_btn{
   display: block;
+  width: 100%;
+}
+.join_wrap2 .choice_box .choice__link > li span {
+  display: inline-block;
   text-align: left;
   font-size: 13px;
   line-height: 25px;
@@ -5503,7 +5515,7 @@ div.bn_box.line2 a:first-child {
 }
 
 .join_wrap2 .choice_box .choice__link > li.li01 .txt {
-  text-align: left;
+  text-align: center;
   font-size: 13px;
   line-height: 19px;
   color: #555555;
@@ -8865,9 +8877,11 @@ i.calendar svg {
   width: auto;
   text-align: center;
   margin-right: 15px;
+  color: #888888;
 }
 .question_box .board_list.st01 .tbody .td05 {
   width: auto;
+  color: #888888;
   text-align: center;
 }
 
@@ -9579,15 +9593,20 @@ ul.photo_ul.main_photo_ul li .title {
     margin-right: 5px;
     font-size: 0.9em;
 }
-/* div.login__text{
-  position: relative;
-}
-div.login__text .welcome_ms strong{
-  position: relative;
-  top: unset;
-  left: unset;
-} */
 @media (min-width: 768px) {
+  div.alignment select {
+    height: 32px;
+    width: auto;
+    margin-top: 0;
+    font-size: 12px;
+    padding: 0 10px;
+    font-weight: 600;
+    box-sizing: border-box;
+    border: 1px solid #d2d2d2;
+  }
+  .sign_in .inner {
+    padding: 0 5%;
+  }
   .siteInfo_in .con03 {
     padding: 136px 25% 0;
   }
@@ -10085,6 +10104,22 @@ div.login__text .welcome_ms strong{
 }
 
 @media (min-width: 1000px) {
+  .join_wrap2 .partner_01 .nomal_join_btn,
+.join_wrap2 .partner_02 .nomal_join_btn{
+  display: inline-block;
+}.join_wrap2 .choice_box .choice__link > li.li01 .txt{
+  text-align: left;
+}
+  .join_wrap2 .choice_box .choice__link .txt br{
+    display: inline-block;
+  }
+  .join_wrap2 .choice_box .choice__link > li strong {
+    display: block;
+    margin-right: 0;
+  }
+.join_wrap2 .choice_box .choice__link > li span {
+  display: block;
+}
   .tour_details_in .Read_box .details_photo .main_photo{
     /* height: 414px; */
     height:auto;
@@ -10206,7 +10241,7 @@ div.login__text .welcome_ms strong{
   div.popup_bg_full h4 .full_div__right .btn {
     padding: 0px 10px;
     margin-left: 5px;
-    font-size: 0.8em;
+    font-size: 0.7em;
     top: -5px;
     display: block;
     border: 1px #d8d8d8 solid;
@@ -10875,7 +10910,7 @@ div.login__text .welcome_ms strong{
     margin-top: 0;
     font-size: 12px;
     padding: 0 10px;
-    font-weight: 100;
+    font-weight: 600;
     box-sizing: border-box;
     border: 1px solid #d2d2d2;
   }
@@ -10898,11 +10933,13 @@ div.login__text .welcome_ms strong{
     width: auto;
     margin-right: 0;
     max-width: 200px;
+    color: #555555;
   }
   .question_box .board_list.st01 .tbody .td05,
   .question_box .board_list.st01 .thead .td05 {
     width: auto;
     max-width: 200px;
+    color: #555555;
   }
   .selectViewList ul.list_ul .bottom_info span {
     display: inline-block;
@@ -11931,15 +11968,17 @@ div.login__text .welcome_ms strong{
 .tour_details_in .boardReadBody .in_box{
   padding: 20px 3%;
 }
+.historyTable__li > div{
+  margin-right: 15px;
+}
+.historyTable__li > div:first-child{
+  font-weight: 600 !important;
+  color: #333333 !important;
+}
 }
 @media (max-width: 767px) {
 
-  .historyTable__li > div{
-    margin-right: 15px;
-  }
-  .historyTable__li > div:first-child{
-    font-weight: 600 !important;
-  }
+
   .siteInfo_in .con01 .top .center .haf02 img {
     width: 200%;
     margin-left: -100%;
@@ -12307,6 +12346,7 @@ div.login__text .welcome_ms strong{
   .DayPicker-Month {
     margin-bottom: 20px !important;
   }
+  
 }
 
 @media (max-width: 580px) {

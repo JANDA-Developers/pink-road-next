@@ -9,3 +9,7 @@
 .historyTable__head {
     top: auto!important
 }
+.historyTable__head strong,
+.historyTable__head i{
+    color: #2196f3;
+}

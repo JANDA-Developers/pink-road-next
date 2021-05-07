@@ -20,14 +20,16 @@
 .settlementStatus {
     display: inline-block;
     color: #ffffff;
-    font-size: 0.9em;
+    font-size:1em;
     font-weight: 600;
     padding: 2px 6px;
-    border-radius: 3px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 .settlementStatus.not-ready {
-    background-color:#cf8986;
+    background-color:#dc3e37;
 }
 
 
@@ -41,7 +43,7 @@
 
 
 .settlementStatus.ready {
-    background-color: #5f7bba;
+    background-color: #254fb1;
 }
 
 .settlementStatus.request {
@@ -52,3 +54,14 @@
     background-color: #86a5cf;
 }
 
+
+
+@media (min-width: 1230px) {
+    .settlementStatus{
+        position: relative;
+        right: initial;
+        top: initial;
+        border-radius: 3px;
+        font-size: 0.9em;
+    }
+}
