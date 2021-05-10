@@ -59,6 +59,7 @@
 
 div.popup_bg_full h3 {
     position: initial!important;
+    text-align: left;
 }
 
 div.popup_bg_full .in_txt {
@@ -67,10 +68,6 @@ div.popup_bg_full .in_txt {
 div.popup_bg_full .in_txt.statement_popup {
     padding-top: 19px!important;
 }
-/* 
-.productModal__close {
- position: initial!important;   
-} */
 
 .productModal__head {
     display: flex;
@@ -200,11 +197,6 @@ div.master_popup .info_page div[class*="th0"]{
     font-weight: initial!important;
     width: auto!important;
 }
-
-.statement_popup__topBox {
-    margin-top: 20px;
-}
-
 .goods__productinfo {
     min-width: 300px;
 }
@@ -391,6 +383,17 @@ background-color: #fff;
     min-width: 130px;
 }
 
+@media (min-width: 1000px) {
+    .master_box  .settlementModal__li{
+        display: flex !important;
+        align-items: center;
+    }
+    div.master_popup .info_page div[class*="th0"] {
+        width: auto !important;
+        padding: 17px 0 !important;
+        text-align: center !important;
+      }
+}
 @media (min-width: 1230px) {
 .mypageSettlement__list{
     text-align: center;

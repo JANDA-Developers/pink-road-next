@@ -405,7 +405,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         </span>
                                         <button
                                             onClick={sampleSelectOpen}
-                                            className="btn"
+                                            className="btn medium write"
                                         >
                                             샘플 불러오기
                                         </button>
@@ -746,7 +746,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 Header={
                                     tempSavedIts && (
                                         <h2 style={{ marginBottom: "1rem" }}>
-                                            새로운 상품일정 시작일을 선택 해주세요{" "}
+                                            새로운 상품일정 시작일을 선택
+                                            해주세요{" "}
                                         </h2>
                                     )
                                 }

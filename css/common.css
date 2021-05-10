@@ -330,6 +330,20 @@ select:focus {
   border: 1px solid rgb(170, 170, 170);
   color: #333;
 }
+.btn.medium.write {
+  color: #999;
+  border: 1px solid #cfcfcf;
+  border-radius: 3px;
+  padding: 0 15px;
+  font-size: 12px;
+  display: inline-block;
+  line-height: 30px;
+  margin: 0 0 0 3px;
+}
+.btn.medium.write:hover {
+  border: 1px solid rgb(170, 170, 170);
+  color: #333;
+}
 .btn.medium.footer {
   display: inline-block;
   width: auto !important;
@@ -1029,41 +1043,7 @@ br.no {
     font-size: 12px;
     
   }
-  /* .state_icon.plainning-yes {
-    color: #059600;
-    border: 0;
-    background-color: #daf7da;
-    padding: 2px 8px;
-    border-radius: 2px;
-  }
-  .state_icon.plainning-no {
-    color: #f38721;
-    border: 0;
-    background-color: #fff3e9;
-    padding: 2px 8px;
-    border-radius: 2px;
-  }
-  .state_icon.tour-no {
-    color: #f32121;
-    border: 0;
-    background-color: #ffe4e4;
-    padding: 2px 8px;
-    border-radius: 2px;
-  }
-  .state_icon.tour-ok {
-    color: #2196f3;
-    border: 0;
-    background-color: #eaf6ff;
-    padding: 2px 8px;
-    border-radius: 2px;
-  }
-  .state_icon.tour-yes {
-    color: #005394;
-    border: 0;
-    background-color: #e1f2ff;
-    padding: 2px 8px;
-    border-radius: 2px;
-  } */
+
   .sel.ok {
     border: 0;
     color: #2196f3;
@@ -1130,5 +1110,9 @@ br.no {
     width: 100% !important;
     border-radius: 3px;
     line-height: 44px;
+  }
+  .mypage_in .in .fin.ifMobile{
+    box-sizing: border-box;
+    padding: 0 5% !important;
   }
 }

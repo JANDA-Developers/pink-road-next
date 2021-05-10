@@ -198,7 +198,6 @@ export const LoginModal: React.FC<IProp> = ({
                                             </Link>
                                         </span>
                                     </div>
-
                                     <div className="login__snslink2">
                                         <ul>
                                             <li className="login__snslink2_k">

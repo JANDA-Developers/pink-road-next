@@ -56,7 +56,7 @@
 
 
 
-@media (min-width: 1230px) {
+@media (min-width: 1000px) {
     .settlementStatus{
         position: relative;
         right: initial;

@@ -3371,6 +3371,7 @@ i.icon_plus {
   .m {
     display: none;
   }
+  .search_top span.pc{}
   #all_menu ul .a_menu_tit {
     padding: 1% 3%;
   }
@@ -3923,7 +3924,7 @@ i.icon_plus {
   }
 
   .header {
-    height: 90px;
+    height: 92px;
   }
   .header .hd_left .logo img {
     margin-top: 9px;
@@ -4096,6 +4097,10 @@ i.icon_plus {
   .footer_in .bottom_nav .cs {
     right: 0;
   }
+  .footer_in .sns {
+    padding: 16px 15px 0 0 !important;
+    right: 90px;
+} 
 }
 @media (min-width: 1400px) {
   .header_nav ul .home a {
@@ -4107,7 +4112,7 @@ i.icon_plus {
     display: block;
   }
   .header {
-    height: 91px;
+    height: 89px;
   }
   .header .hd_center .nav_wrap > .deps1 .deps_nav {
     top: 44px;
