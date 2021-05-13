@@ -94,9 +94,25 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                         <li className={isTapOn("notification")}>
                             <a href="/mypage/notification">알림</a>
                         </li>
-                        <li className={isTapOn(undefined)}>
-                            <a href="/mypage">회원정보</a>
-                        </li>{" "}
+                        {/* 기업파트너/개인파트너/마스터 -*/}
+                        {/* {isParterB && <li className={isTapOn("goods")}><Link href="/mypage/goods"><a >상품관리</a></Link></li>}기업파트너 - */}
+                        {isSeller && (
+                            <li className={isTapOn("plainning")}>
+                                <a href="/mypage/plainning">상품관리</a>
+                            </li>
+                        )}
+                        {/* 개인/기업파트너/개인파트너 -*/}
+                        {isSeller && (
+                            <li className={isTapOn("reservation")}>
+                                <a href="/mypage/reservation">예약관리</a>
+                            </li>
+                        )}
+                        {/* 기업파트너/개인파트너 -*/}
+                        {(isParterB || isParterNonB) && (
+                            <li className={isTapOn("settlement")}>
+                                <a href="/mypage/settlement">매출/정산관리</a>
+                            </li>
+                        )}
                         {/* 개인/기업파트너/개인파트너/마스터 -*/}
                         {isSeller || (
                             <li className={isTapOn("purchase")}>
@@ -113,26 +129,11 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                         <li className={isTapOn("my-board")}>
                             <a href="/mypage/my-board">나의 게시글</a>
                         </li>
-                        {/* 개인/기업파트너/개인파트너 -*/}
-                        {isSeller && (
-                            <li className={isTapOn("reservation")}>
-                                <a href="/mypage/reservation">예약관리</a>
-                            </li>
-                        )}
-                        {/* 기업파트너/개인파트너/마스터 -*/}
-                        {/* {isParterB && <li className={isTapOn("goods")}><Link href="/mypage/goods"><a >상품관리</a></Link></li>}기업파트너 - */}
-                        {isSeller && (
-                            <li className={isTapOn("plainning")}>
-                                <a href="/mypage/plainning">상품관리</a>
-                            </li>
-                        )}
+
                         {/* 기업파트너/개인파트너 -*/}
-                        {(isParterB || isParterNonB) && (
-                            <li className={isTapOn("settlement")}>
-                                <a href="/mypage/settlement">매출/정산관리</a>
-                            </li>
-                        )}
-                        {/* 기업파트너/개인파트너 -*/}
+                        <li className={isTapOn(undefined)}>
+                            <a href="/mypage">회원정보</a>
+                        </li>
                     </ul>
                 )}
                 <div className="w1200">

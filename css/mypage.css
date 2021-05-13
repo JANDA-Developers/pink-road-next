@@ -132,9 +132,9 @@
 
 .mypage_in .lnb .profile_box .name1 {
   width: 100%;
-  color: #848484;
+  color: #333333;
   margin-bottom: 10px;
-  font-size: 1em;
+  font-size: 1.2em;
   padding-top: 13px;
   font-family: "돋음", "NanumGothic";
 }
@@ -153,8 +153,8 @@
   border-radius: 3px;
   color: #333333;
   box-sizing: border-box;
-  padding: 0 5px;
-  margin-right: 5px;
+  padding: 2 8px;
+  margin-right: 10px;
   vertical-align: inherit;
 }
 
@@ -164,7 +164,7 @@
 }
 
 .mypage_in .lnb .profile_box [class*="name"] i.ct_guide {
-  background-color: #00bc0b;
+  background-color: #ed297b;
   color: #ffffff;
 }
 
@@ -2096,11 +2096,12 @@ div.reservation_popup .tr select {
 }
 .notification_box .right .hang strong.blue {
   box-sizing: border-box;
-  padding: 1px 2px 0;
+  padding: 5px 7px;
   border-radius: 3px;
-  background-color: rgb(145 206 255 / 15%);
-  margin-right: 5px;
-  color: #1552b6;
+  background-color: #ed297b21;
+  margin-right: 8px;
+  color: #e41773;
+  font-size: 12px;
 }
 .notification_box .right .hang strong.green {
   -webkit-box-sizing: border-box;
@@ -2142,6 +2143,8 @@ div.reservation_popup .tr select {
 .notification_box .right .time {
   color: #999;
   font-size: 0.8em;
+  margin-top: 8px;
+  margin-left: 5px;
 }
 .notification_box .right .hang i {
   font-weight: 600;
@@ -3899,17 +3902,17 @@ div.reservation_popup .tr select {
 .reservation_div .state.re-ok {
   border: 1px solid #2196f3 !important;
   color: #2196f3 !important;
-  background-color: initial;
+  background-color: #ffffff !important;
 }
 .reservation_div .state.re-stay {
   border: 1px solid #616161 !important;
   color: #616161 !important;
-  background-color: initial;
+  background-color: #ffffff !important;
 }
 .reservation_div .state.re-refund {
   border: 1px solid #cf3932 !important;
   color: #cf3932 !important;
-  background-color: initial;
+  background-color: #ffffff !important;
 }
   div.alignment .left_div .infotxt{
     margin-top: 15px;
@@ -3998,7 +4001,7 @@ div.reservation_popup .tr select {
     background-color: #f5f5f5;
   }
   .mypage_in .lnb .profile_box .point {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-bottom: 10px;
   }
   .mypage_in .lnb li {

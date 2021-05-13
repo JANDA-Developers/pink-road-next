@@ -103,6 +103,9 @@ ul.list_ul li .bottom_txt span,
   font-family: "montserrat", "noto", "Roboto", sans-serif;
 }
 /* styleguide */
+.dp_inb{
+  display: inline-block;
+}
 .styleguidebox {
   position: relative;
   width: 100%;
