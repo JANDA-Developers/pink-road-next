@@ -15,7 +15,7 @@ import { useVerification } from '../../hook/useVerification';
 import { GET_CONTEXT } from '../../apollo/gql/queries';
 import { getOperationName } from '@apollo/client/utilities';
 import { useCustomCount } from '../../hook/useCount';
-import { usePasswordChange, useUserResign, useUserUpdate } from '../../hook/useUser';
+import { useCheckCanResign, usePasswordChange, useUserResign, useUserUpdate } from '../../hook/useUser';
 import { ResignModal } from '../../components/resign/ResignModal';
 import { isPassword } from '../../utils/validation';
 import { Validater } from '../../utils/validate';
@@ -55,7 +55,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
     const [VerifiChangeProfile, setVerifiChangeProfile] = useState<"phoneNumber" | "manageContact">("phoneNumber")
 
     const { salesTotalCount, productRegistCount } = useCustomCount(["productRegistCount", "salesTotalCount"])
-    const [resign] = useUserResign();
+    const [checkResignAble] = useCheckCanResign();
     const { myProfile: defaultProfile, role } = useContext(AppContext);
 
     const verifiHook = useVerification({ target: VerificationTarget.PHONE });
@@ -99,8 +99,6 @@ export const MyPageProfile: React.FC<IProp> = () => {
         connectionCount,
     } = defaultProfile!;
 
-
-    console.log({ busiRegistration })
 
     const isFemale = gender === GENDER.FEMALE;
 
@@ -186,7 +184,18 @@ export const MyPageProfile: React.FC<IProp> = () => {
 
 
     const handleResign2 = () => {
-        openModal("#reSignModal")()
+        checkResignAble().then((result)=>{
+            const {haveProductOpend,haveUnSolvedReservation,haveUnSolvedSettlement} = result.data.CheckUserCanResign.problems;
+            if(haveProductOpend) {
+                alert("판매중인 상품이 있습니다. 먼저 판매중인 상품을 닫아주세요.");
+                return;
+            } 
+            if (haveUnSolvedSettlement) {
+                alert("정산이 진행되지 않은 부분이 있습니다. 먼저 정산을 진행 해주세요.");
+                return;
+            }
+            openModal("#reSignModal")()
+        })
     }
 
     const handleChangePhoneNumber = (target: "phoneNumber" | "manageContact" = "phoneNumber") => {
