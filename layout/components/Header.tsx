@@ -406,7 +406,7 @@ export const Header: React.FC<IProp> = () => {
                                 )}
                                 {isLogin && (
                                     <span>
-                                        <Link href="/mypage">
+                                        <Link href="/mypage/notification">
                                             <a>MY PAGE</a>
                                         </Link>
                                     </span>
@@ -625,7 +625,7 @@ export const Header: React.FC<IProp> = () => {
 
                                 {isLogin && (
                                     <li className="a_menu_tit deps">
-                                        <Link href="/mypage">
+                                        <Link href="/mypage/notification">
                                             <a target="_blank">
                                                 My page
                                                 <i className="jandaicon-arr4-right"></i>

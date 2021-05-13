@@ -36,7 +36,7 @@ export const MyPageBasket: React.FC<IProp> = ({ context, pageInfo }) => {
     const SubNav = isLogin ? (
         <>
             <li className="homedeps1">
-                <Link href="/mypage">
+                <Link href="/mypage/notification">
                     <a>My page</a>
                 </Link>
             </li>

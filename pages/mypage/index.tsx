@@ -618,18 +618,23 @@ export const MyPageProfile: React.FC<IProp> = () => {
                 </div>
             </div>
         </div>
-        <VerifiEamilModal id="phoneChangeModal" target={verifiTarget} duplicateCheck onSuccess={() => {
-            closeModal("#phoneChangeModal")();
-            const payload = verifiHook.verifiData?.payload;
-            if (payload) {
-                profile[VerifiChangeProfile] = payload;
-                setProfile({
-                    ...profile
-                })
-            }
-        }} verifiHook={{
-            ...verifiHook
-        }} />
+        <VerifiEamilModal 
+            id="phoneChangeModal" 
+            target={verifiTarget} 
+            duplicateCheck onSuccess={() => {
+                closeModal("#phoneChangeModal")();
+                const payload = verifiHook.verifiData?.payload;
+                if (payload) {
+                    profile[VerifiChangeProfile] = payload;
+                    setProfile({
+                        ...profile
+                    })
+                }
+            }} 
+            verifiHook={{
+                ...verifiHook
+            }} 
+        />
         <ResignModal />
         <Modal id="addressFindModal" title="주소찾기">
             <DaumPostcode onComplete={handleCompleteFindAddress} />

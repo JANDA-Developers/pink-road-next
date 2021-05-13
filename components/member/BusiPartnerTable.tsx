@@ -55,7 +55,7 @@ export const BusiPartnerTable: React.FC<IMemberTableProp> = ({ userHook, idSelec
                         </div>
                     }
                 </div>
-                <div className="td07"><i className="m_title">가입일:</i>{yyyymmdd(user.createdAt)}</div>
+                <div className="td07"><i className="m_title">가입일:</i>{yyyymmdd(user.createdAt)}{user.}</div>
                 <div className="td08"><i className="m_title">주소:</i>{user.address.slice(0, 10) + "..."}</div>
                 <div className="td09">
                     <i className="btn small" onClick={handleViewDetailUser(user._id)}>상세보기</i>

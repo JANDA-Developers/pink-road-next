@@ -485,7 +485,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                             className="w10 mr10"
                                             type="text"
                                             readOnly
-                                            value={(range + 1 ||) ""}
+                                            value={range + 1 || ""}
                                         />
                                         일
                                     </div>
