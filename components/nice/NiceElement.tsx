@@ -11,7 +11,7 @@ export interface INiceElementProp {
     BuyerName: string;
     BuyerEmail: string;
     BuyerTel: string;
-    // 
+    //
     ReturnURL: string;
     // yyyymmdd
     VbankExpDate?: string;
@@ -48,12 +48,11 @@ const NiceElments: React.FC<INiceElementProp> = ({
     sid,
     EdiDate,
     endPoint,
-    ReqReserved
+    ReqReserved,
 }) => {
-
     useEffect(() => {
-        import("./niceGlobal")
-    }, [])
+        import("./niceGlobal");
+    }, []);
 
     return (
         <div
@@ -71,84 +70,104 @@ const NiceElments: React.FC<INiceElementProp> = ({
                     type="text/javascript"
                 />
             </Head>
-            <form method="POST" id="NICE_PAY_FORM" name="payForm" data-url={endPoint}>
+            <form
+                method="POST"
+                id="NICE_PAY_FORM"
+                name="payForm"
+                data-url={endPoint}
+            >
                 <span>결제 수단</span>
                 <input
                     type="text"
                     name="PayMethod"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     value={PayMethod}
                 />
                 <span>결제 상품명</span>
                 <input
                     type="text"
                     name="GoodsName"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     value={GoodsName}
                 />
                 <span>결제 상품개수</span>
                 <input
                     type="text"
                     name="GoodsCnt"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     defaultValue={1}
                 />
                 <span>결제 상품금액</span>
-                <input type="text" name="Amt" onChange={() => { }} value={Amt} />
+                <input type="text" name="Amt" onChange={() => {}} value={Amt} />
                 <span>구매자명</span>
                 <input
                     type="text"
                     name="BuyerName"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     value={BuyerName}
                 />
                 <span>구매자 연락처</span>
                 <input
                     type="text"
                     name="BuyerTel"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     value={BuyerTel}
                 />
                 <span>상품 주문번호</span>
-                <input type="text" name="Moid" onChange={() => { }} value={Moid} />
+                <input
+                    type="text"
+                    name="Moid"
+                    onChange={() => {}}
+                    value={Moid}
+                />
                 <span>상점 아이디</span>
-                <input type="text" name="MID" onChange={() => { }} value={MID} />
+                <input type="text" name="MID" onChange={() => {}} value={MID} />
                 <input
                     type="hidden"
                     name="CharSet"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     value="utf-8"
                 />{" "}
                 <input
                     type="hidden"
                     name="BuyerEmail"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     defaultValue={BuyerEmail}
                 />{" "}
                 <input
                     type="hidden"
                     name="GoodsCl"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     defaultValue={1}
                 />{" "}
                 <input
                     type="hidden"
                     name="TransType"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     defaultValue={0}
                 />{" "}
                 <input
                     type="hidden"
                     name="EdiDate"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     value={EdiDate}
                 />{" "}
-                <input type="hidden" name="SignData" onChange={() => { }} value={hex} />{" "}
-                <input type="hidden" name="GoodsCl" onChange={() => { }} value={hex} />{" "}
+                <input
+                    type="hidden"
+                    name="SignData"
+                    onChange={() => {}}
+                    value={hex}
+                />{" "}
+                <input
+                    type="hidden"
+                    name="GoodsCl"
+                    onChange={() => {}}
+                    value={hex}
+                />{" "}
                 <input
                     type="hidden"
                     name="IspCancelUrl"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     value={IspCancelUrl}
                 />{" "}
                 <input
@@ -156,18 +175,28 @@ const NiceElments: React.FC<INiceElementProp> = ({
                     name="ReqReserved"
                     value={ReqReserved}
                 />{" "}
-                <input name="ReturnURL" onChange={() => { }} value={ReturnURL} />
-                <input type="hidden" name="AcsNoIframe" onChange={() => { }} value="Y" />
+                <input name="ReturnURL" onChange={() => {}} value={ReturnURL} />
+                <input
+                    type="hidden"
+                    name="AcsNoIframe"
+                    onChange={() => {}}
+                    value="Y"
+                />
                 <input
                     type="text"
                     name="LogoImage"
-                    onChange={() => { }}
+                    onChange={() => {}}
                     value={logo}
                 ></input>
-                <input type="hidden" name="NpLang" onChange={() => { }} value="KO" />
-                <a href="#" className="btn_blue" onClick={() => { }}>
+                <input
+                    type="hidden"
+                    name="NpLang"
+                    onChange={() => {}}
+                    value="KO"
+                />
+                <a href="#" className="btn_blue" onClick={() => {}}>
                     REQUEST
-        </a>
+                </a>
             </form>
         </div>
     );

@@ -104,7 +104,7 @@ export interface IBasketItem extends Partial<Fproduct> {
 export const deleteExpireBracket = () => {
     const bracket = getBracket();
     const unExpiredSet = bracket?.filter(
-        (bk) => dayjs(bk.startDate).add(1, "day").toDate() > new Date()
+        (bk) => dayjs(bk.startDate).add(30, "day").toDate() > new Date()
     );
     saveBracket(unExpiredSet || []);
 };

@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import Editor from 'pinkloader-ckeditor5-custom-build/build/ckeditor';
+import Editor from '../../ckeditor52/ckeditor';
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import { SERVER_URI } from 'apollo/uri';
 
@@ -67,24 +67,15 @@ const editorConfiguration = {
             'bulletedList',
             'numberedList',
             '|',
-            'indent',
-            'outdent',
-            '|',
             'imageUpload',
-            'blockQuote',
             'insertTable',
             'mediaEmbed',
-            'undo',
-            'redo',
-            'fontBackgroundColor',
             'alignment',
             'fontColor',
             'fontSize',
             'fontFamily',
             'highlight',
             'horizontalLine',
-            'specialCharacters',
-            'imageInsert',
             'underline',
             'strikethrough'
         ]

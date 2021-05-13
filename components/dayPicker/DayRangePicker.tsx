@@ -16,6 +16,7 @@ interface IProps extends DayPickerProps {
     isRange?: boolean;
     onRangeChange: ThandleSate;
     Header?: TElements;
+    intercept?: boolean;
 }
 
 const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -27,6 +28,7 @@ export const DayRangePicker: React.FC<IProps> = ({
     onRangeChange,
     isRange = true,
     children,
+    intercept,
     ...props
 }) => {
     const defaultProps = {
@@ -34,6 +36,11 @@ export const DayRangePicker: React.FC<IProps> = ({
     };
 
     function handleDayClick(day: any) {
+        if (intercept) {
+            onRangeChange({ from: day });
+            return;
+        }
+
         if (!isRange) {
             onRangeChange({ from: day, to: day });
             return;

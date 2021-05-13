@@ -32,6 +32,10 @@ import {
     IPromptInfo,
     PormptModal,
 } from "../../../components/promptModal/PromptModal";
+import {
+    updateURLParameter,
+    updateURLParameters,
+} from "../../../utils/getUpdateUrlParam";
 
 export const getStaticProps = getStaticPageInfo("question");
 export const Question: React.FC<Ipage> = (pageInfo) => {
@@ -83,16 +87,17 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
             myProfile?._id === inq.product?.author?._id &&
             myProfile !== undefined;
 
+        const link = updateURLParameter(
+            "/member/question/view/" + inq._id,
+            "page",
+            pagingInfo.page.toString()
+        );
+
         if (!inq.isOpen) {
             if (!isMyProductQuestion && !isManager && !isMyQuestion) {
                 passwordModalHook.openModal({
                     callBack: (password) => {
-                        router.push(
-                            "/member/question/view/" +
-                                inq._id +
-                                "/?pw=" +
-                                password
-                        );
+                        updateURLParameter(link, "pw", password);
                     },
                     title: "패스워드를 입력 해주세요",
                     messageLabel: "패스워드",
@@ -101,7 +106,7 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
             }
         }
 
-        router.push("/member/question/view/" + inq._id);
+        router.push(link);
     };
 
     const checkOnStatus = (status?: QuestionStatus) =>

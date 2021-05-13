@@ -79,7 +79,7 @@ const dataCheck = (
 };
 
 const getPageNumber = () => {
-    const pageNum = getFromUrl("pageNum");
+    const pageNum = getFromUrl("page");
     return pageNum ? parseInt(pageNum) : 1;
 };
 
@@ -102,11 +102,17 @@ export const generateListQueryHook = <F, S, Q, V, R>(
             initialViewCount: 10,
             fixingFilter: {},
         };
+
+        console.log("defaultInitData.initialPageIndex");
+        console.log(defaultInitData.initialPageIndex);
         const initialData = Object.assign(
             defaultInitData,
             queryInitDefault,
             initialOption
         );
+
+        console.log("initialData.initialPageIndex");
+        console.log(initialData.initialPageIndex);
         const {
             skipInit,
             skip,
@@ -115,7 +121,12 @@ export const generateListQueryHook = <F, S, Q, V, R>(
             ...ops
         } = options;
         console.log({ initialData });
+        console.log({ variables });
+        console.log({ overrideVariables });
+        console.log({ ops });
+        initialData.initialPageIndex;
         const { integratedVariable, ...params } = useListQuery(initialData);
+        console.log({ integratedVariable });
         const [
             getData,
             { data, loading: getLoading, ...queryElse },
@@ -150,6 +161,10 @@ export const generateListQueryHook = <F, S, Q, V, R>(
             params.setPage(1);
         }, [params.viewCount, params.filter]);
 
+        useEffect(() => {
+            params.setPage(initialData.initialPageIndex);
+        }, []);
+
         pageLoadingEffect(getLoading, operationName);
 
         useEffect(() => {
@@ -168,7 +183,7 @@ export const generateQueryHook = <Q, R, V = undefined>(
     QUERY: DocumentNode,
     { skipInit, ...initOptions }: genrateOption<Q, V> | undefined = {}
 ) => {
-    const queryHook = (defaultOptions?: QueryHookOptions<Q, V>) => {
+    const queryHook = (defaultOptions?: genrateOption<Q, V>) => {
         const [
             getData,
             { data: _data, error, loading: getLoading, ...context },
@@ -191,7 +206,7 @@ export const generateQueryHook = <Q, R, V = undefined>(
         }, [_data]);
 
         useEffect(() => {
-            if (!skipInit) getData();
+            if (!defaultOptions?.skipInit && !skipInit) getData();
         }, []);
 
         pageLoadingEffect(getLoading, operationName);
@@ -256,7 +271,7 @@ export const generateFindQuery = <Q, V, ResultFragment>(
     findBy: keyof V,
     QUERY: DocumentNode
 ) => {
-    const findQueryHook = (key?: any, options: QueryHookOptions<Q, V> = {}) => {
+    const findQueryHook = (key?: any, options: genrateOption<Q, V> = {}) => {
         const [
             getData,
             { data, loading, error: apolloError, ...context },
@@ -294,6 +309,7 @@ export const generateFindQuery = <Q, V, ResultFragment>(
         pageLoadingEffect(loading, operationName);
 
         useEffect(() => {
+            if (options.skipInit) return;
             if (key) {
                 getData();
             }

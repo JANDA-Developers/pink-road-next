@@ -132,13 +132,11 @@ export const Header: React.FC<IProp> = () => {
                                 <a>고객센터</a>
                             </Link>
                         </li>
-                        {!isLogin && (
-                            <li>
-                                <Link href="/login">
-                                    <a>장바구니 </a>
-                                </Link>
-                            </li>
-                        )}
+                        <li>
+                            <Link href="/mypage/basket">
+                                <a>장바구니 </a>
+                            </Link>
+                        </li>
                         <li>
                             <Link href="/customquotation">
                                 <a>맞춤견적</a>

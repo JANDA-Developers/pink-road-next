@@ -385,21 +385,27 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                         </div>
                         <div className="float_right">
                             <button
-                                onClick={handleResignUser}
+                                onClick={() => {
+                                    handleResignUser(item._id);
+                                }}
                                 type="submit"
                                 className="btn medium mr5"
                             >
                                 강제탈퇴
                             </button>
                             <button
-                                onClick={handleStopUser}
+                                onClick={() => {
+                                    handleStopUser([item._id]);
+                                }}
                                 type="submit"
                                 className="btn medium"
                             >
                                 활동정지
                             </button>
                             <button
-                                onClick={handleRestartUser}
+                                onClick={() => {
+                                    handleRestartUser([item._id]);
+                                }}
                                 type="submit"
                                 className="btn medium"
                             >

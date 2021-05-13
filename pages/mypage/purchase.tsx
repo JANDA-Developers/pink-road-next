@@ -36,6 +36,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
         setIsTimeOverExcept,
         setType,
     } = useBookingBoard();
+
     const {
         setPage,
         filter,

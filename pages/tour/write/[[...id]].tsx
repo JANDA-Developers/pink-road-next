@@ -15,7 +15,11 @@ import { ItineryForm } from "components/tourWrite/ItineryForm";
 import { AppContext } from "pages/_app";
 import { tapCheck } from "../../../utils/style";
 import TagInput from "../../../components/tagInput/TagInput";
-import { getDefault, useTourWrite } from "../../../hook/useTourWrite";
+import {
+    getDefault,
+    TRangeType,
+    useTourWrite,
+} from "../../../hook/useTourWrite";
 import {
     useProductFindById,
     useProductUpdateReq,
@@ -46,6 +50,7 @@ import {
 } from "../../../components/tourWrite/helper";
 import { ProductSelectModal } from "../../../components/ProductSelectModal";
 import { useHomepage, useHomepageUpdate } from "../../../hook/useHomepage";
+import { toNumber } from "../../../utils/toNumber";
 // const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = LoadEditor();
@@ -79,7 +84,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const id = query.id?.[0] as string | undefined;
     const isCreateMode = id ? false : true;
     const { item: product, getData, loading } = useProductFindById(id);
-    const [tempSavedIts, setTempSavedIts] = useState<ItineraryCreateInput[]>();
     const [selectEditorIndex, setSelectEditorIndex] = useState({
         itsIndex: 0,
         contentIndex: 0,
@@ -165,6 +169,10 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const isMyProduct = product?.author?._id === myProfile?._id;
 
     const {
+        rangeType,
+        setRangeType,
+        range,
+        setRange,
         tourSets,
         imgUploading,
         tourData,
@@ -179,6 +187,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         setGroupCode,
         hiddenFileInput,
         lastDate,
+        setTempSavedIts,
+        tempSavedIts,
     } = useTourWrite(getDefault(cloneObject(product)));
 
     useEffect(() => {
@@ -322,14 +332,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         closeModal("#ProductSearchModal")();
     };
 
-    const handleTempDateMove = ({ from, to }: { from?: Date; to?: Date }) => {
-        const newIts = generateitinery({ from, to }, tempSavedIts || []);
-        if (newIts) {
-            setits(newIts);
-            setTempSavedIts(undefined);
-        }
-    };
-
     useEffect(() => {
         initStorage();
     }, []);
@@ -399,7 +401,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                                     새로운상품
                                                 </option>
                                                 <option value="ProductLink">
-                                                    회차연결(기존 상품 재오픈)
+                                                    등록타입(기존 상품 재오픈)
                                                 </option>
                                             </select>
                                         </span>
@@ -410,7 +412,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                             샘플 불러오기
                                         </button>
                                     </div>
-
                                     <p className="info_txt">
                                         <i className="jandaicon-info2 mini"></i>{" "}
                                         회차연결 상품은 내용에 중대한 변경 없이
@@ -424,26 +425,71 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         <div className="write_type">
                             <div className="title">상품타입</div>
                             <div className="input_form">
-                                <span className="category r3">
+                                <span className="category r3 mr20">
                                     <select
                                         onChange={changeVal(setType)}
                                         value={type}
                                         name="type"
                                     >
                                         <option value={ProductType.TOUR}>
-                                            투어(연일)
+                                            투어
                                         </option>
                                         <option value={ProductType.EXPERIENCE}>
-                                            체험(당일)
+                                            체험
                                         </option>
                                         <option value="">선택없음</option>
                                     </select>
                                 </span>
-                                {/* <p className="info_txt">
-                                    <i className="jandaicon-info2 mini"></i>{" "}
-                                    여행과 체험은 글쓰기 화면이 동일합니다.
-                                    구분은 상품타입으로 이루어집니다.
-                                </p> */}
+                                <input
+                                    onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        setRangeType(val as TRangeType);
+                                    }}
+                                    type="radio"
+                                    id="single"
+                                    name="gender"
+                                    value="Single"
+                                    checked={rangeType === "Single"}
+                                />
+                                <label htmlFor="single">당일여행</label>
+                                <input
+                                    onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        setRangeType(val as TRangeType);
+                                    }}
+                                    type="radio"
+                                    id="range"
+                                    name="gender"
+                                    value="Range"
+                                    checked={
+                                        rangeType === ("Range" as TRangeType)
+                                    }
+                                />
+                                <label htmlFor="range">연일여행</label>
+                                {rangeType === "Range" && (
+                                    <div>
+                                        <input
+                                            onChange={(e) => {
+                                                const range = toNumber(
+                                                    e.currentTarget.value
+                                                );
+                                                setRange(range);
+                                            }}
+                                            className="w10 mr10"
+                                            type="text"
+                                            value={range || ""}
+                                        />
+                                        박
+                                        <span className="mr10" />
+                                        <input
+                                            className="w10 mr10"
+                                            type="text"
+                                            readOnly
+                                            value={(range + 1 ||) ""}
+                                        />
+                                        일
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className="write_type">
@@ -467,10 +513,10 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         <option value="">선택없음</option>
                                     </select>
                                 </span>
-                                <p className="info_txt">
+                                {/* <p className="info_txt">
                                     <i className="jandaicon-info2 mini"></i>{" "}
                                     카테고리 추가는 마스터에게 문의를 해주세요.
-                                </p>
+                                </p> */}
                             </div>
                         </div>
                         <div className="write_type">
@@ -626,7 +672,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 </div>
                                 <p className="info_txt">
                                     <i className="jandaicon-info2 mini"></i>{" "}
-                                    출발장소 or 모임장소를 뜻합니다.
+                                    고객이 모여서 출발하는 장소(미팅포인트)를
+                                    뜻합니다.
                                 </p>
                             </div>
                         </div>
@@ -743,6 +790,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                         >
                             <h5 id="itinerary">상품일정</h5>
                             <DayRangePicker
+                                intercept
                                 Header={
                                     tempSavedIts && (
                                         <h2 style={{ marginBottom: "1rem" }}>
@@ -761,11 +809,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         .toDate(),
                                 }}
                                 isRange={type === ProductType.TOUR}
-                                onRangeChange={
-                                    tempSavedIts
-                                        ? handleTempDateMove
-                                        : handleDateState
-                                }
+                                onRangeChange={handleDateState}
                                 from={firstDate}
                                 to={lastDate}
                             >
@@ -779,37 +823,39 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 <div className="info_txt">
                                     <h4>
                                         <i className="jandaicon-info2 mini"></i>
-                                        상품일정 등록시 유의점
+                                        일정 등록 시 유의사항
                                     </h4>
                                     <ul>
                                         <li>
-                                            - 여행일은 최소 30일 이전 최대 90일
-                                            이상해주세요.
+                                            - 출발일이 최소 30일 ~ 최대 90일
+                                            이상 남은 시점으로 등록해 주세요.
                                         </li>
                                         <li>
-                                            - 달력에서 여행기간을 선택해 주세요.
-                                            그래야 아래에 입력창이 생성됩니다.
+                                            - 달력에서 선택한 기간만큼 일별
+                                            일정등록 창이 생성됩니다.
                                         </li>
                                         <li>
-                                            - 이미지를 첨부시에 이미지 내부에
-                                            이미지를 입력할 경우 텍스트를 크게
-                                            써주세요. 모바일 화면도 고려
-                                            해야합니다.
+                                            - 다회차 출발상품은 동일한 일정에
+                                            출발일만 상이한 상품을 말합니다.
+                                            (회차별 일정 등록 불가)
                                         </li>
                                         <li>
-                                            - 이미지를 꼭 한번 용량을 압축해서
-                                            올려주세요. 로딩시에 시간이
-                                            단축됩니다.{" "}
-                                            <a
+                                            - 상세설명에 이미지 첨부 시에는
+                                            모바일 화면을 고려해 이미지 내
+                                            텍스트 크기를 크게 작업해주세요.
+                                            {/* <a
                                                 href="https://www.iloveimg.com/ko/compress-image"
                                                 target="_blank"
                                             >
                                                 (추천사이트 이동)
-                                            </a>
+                                            </a> */}
                                         </li>
                                         <li>
-                                            - 일정에 관련된 내용만 간략하게
-                                            써주세요.
+                                            - 일정에 관련된 내용만 기입해 주세요
+                                        </li>
+                                        <li className="red_font">
+                                            - 이동하는 장소별 일정추가 버튼을
+                                            눌러 개별 입력해 주세요.
                                         </li>
                                     </ul>
                                 </div>
@@ -868,14 +914,14 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 type="button"
                                 className="btn medium"
                             >
-                                임시 저장
+                                임시저장
                             </button>
                             <button
                                 onClick={handleLoad}
                                 type="button"
                                 className="btn medium"
                             >
-                                불러오기
+                                작성중 상품 불러오기
                             </button>
                         </div>
                         <div className="float_right">
@@ -918,7 +964,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 >
                                     {status === ProductStatus.REFUSED
                                         ? "재신청"
-                                        : "수정"}
+                                        : "수정완료"}
                                 </button>
                             )}
                             {isCreateMode && (
@@ -927,7 +973,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     type="submit"
                                     className="btn medium pointcolor"
                                 >
-                                    등록
+                                    {isParterNonB ? "등록요청 " : "등록완료"}
                                 </button>
                             )}
                             {isManager && (
