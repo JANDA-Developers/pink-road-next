@@ -384,11 +384,20 @@ export const Header: React.FC<IProp> = () => {
                             <div className="login__text">
                                 {isLogin ? (
                                     <p className="welcome_ms">
+                                        {!isManager && !isSeller && (
+                                            <strong>{myProfile?.name}</strong>
+                                        )}
+                                        {!isManager && isSeller && (
+                                            <strong>
+                                                {myProfile?.name}파트너
+                                            </strong>
+                                        )}
                                         {!isManager && (
                                             <strong>{myProfile?.name}</strong>
                                         )}
                                         {isManager && <strong>핑크로더</strong>}
-                                        님 어서오세요
+                                        {!isManager && isParterB && "파트너"}님
+                                        어서오세요
                                     </p>
                                 ) : (
                                     ""
