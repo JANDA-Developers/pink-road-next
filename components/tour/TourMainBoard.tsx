@@ -17,6 +17,7 @@ export const TourMainBoard: React.FC<IProp> = ({ cat, group }) => {
     // const { initialFilter } = getTypeFilterByUrl(isExp);
     const [slicePage, setSlicePage] = useState(0);
     const { items, filter, setFilter } = useProductList({
+        fixingFilter: 
         initialViewCount: 80,
         initialFilter: {
             // ...initialFilter,

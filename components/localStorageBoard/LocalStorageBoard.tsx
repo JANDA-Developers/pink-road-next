@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { useUpdate } from "../../hook/useUpdater";
+import { AppContext } from "../../pages/_app";
 import isEmpty from "../../utils/isEmpty";
 import { IProductTemp, ProductTempBoard } from "../../utils/Storage2";
 import { Modal } from "../modal/Modal";
@@ -81,6 +82,7 @@ export const SampleBoard: React.FC<ISampleBoardProp> = ({
     items,
     onDelete,
 }) => {
+    const { isManager } = useContext(AppContext);
     const handleDelete = (index: number) => () => {
         onDelete(index);
     };
@@ -125,12 +127,14 @@ export const SampleBoard: React.FC<ISampleBoardProp> = ({
                             >
                                 불러오기
                             </button>
-                            <button
-                                className="LocalStorageBoard__btn btn small"
-                                onClick={handleDelete(index)}
-                            >
-                                삭제하기
-                            </button>
+                            {isManager && (
+                                <button
+                                    className="LocalStorageBoard__btn btn small"
+                                    onClick={handleDelete(index)}
+                                >
+                                    삭제하기
+                                </button>
+                            )}
                         </div>
                     </div>
                 ))}

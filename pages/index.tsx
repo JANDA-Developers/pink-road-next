@@ -16,8 +16,9 @@ import { AppContext } from "./_app";
 import { BG } from "../types/const";
 import { PageEditor } from "../components/common/PageEditer";
 import { usePopups } from "../hook/usePopups";
-import { Popup } from "../components/popup/Popup";
+import { JDPCpopup } from "../components/popup/PCPopup";
 import { getResized } from "../utils/pageEdit";
+import { JDpopup } from "../components/popup/JDpopup";
 
 export const getStaticProps = getStaticPageInfo("main");
 export const Main: React.FC<Ipage> = (pageInfo) => {
@@ -87,9 +88,7 @@ export const Main: React.FC<Ipage> = (pageInfo) => {
     const mainSliderImgs: string[] = get("main_slideImgs") || [];
     return (
         <div className="body main" id="main">
-            {popupsHook.popups.map((pop, index) => (
-                <Popup {...popupsHook} popup={pop} key={pop._id} />
-            ))}
+            <JDpopup popupHook={popupsHook} />
             <Meta
                 title="Pinkroader"
                 description="사람과 시간이 공존하는 여행플랫폼 핑크로더입니다."

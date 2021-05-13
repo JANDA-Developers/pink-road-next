@@ -132,13 +132,11 @@ export const Header: React.FC<IProp> = () => {
                                 <a>고객센터</a>
                             </Link>
                         </li>
-                        {!isLogin && (
-                            <li>
-                                <Link href="/login">
-                                    <a>장바구니 </a>
-                                </Link>
-                            </li>
-                        )}
+                        <li>
+                            <Link href="/mypage/basket">
+                                <a>장바구니 </a>
+                            </Link>
+                        </li>
                         <li>
                             <Link href="/customquotation">
                                 <a>맞춤견적</a>
@@ -417,7 +415,7 @@ export const Header: React.FC<IProp> = () => {
                                 )}
                                 {isLogin && (
                                     <span>
-                                        <Link href="/mypage">
+                                        <Link href="/mypage/notification">
                                             <a>MY PAGE</a>
                                         </Link>
                                     </span>
@@ -636,7 +634,7 @@ export const Header: React.FC<IProp> = () => {
 
                                 {isLogin && (
                                     <li className="a_menu_tit deps">
-                                        <Link href="/mypage">
+                                        <Link href="/mypage/notification">
                                             <a target="_blank">
                                                 My page
                                                 <i className="jandaicon-arr4-right"></i>

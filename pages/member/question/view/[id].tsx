@@ -25,6 +25,7 @@ import { useModal } from "../../../../hook/useModal";
 import { getFromUrl } from "../../../../utils/url";
 import isEmpty from "../../../../utils/isEmpty";
 import { nameOf } from "../../../../utils/enumToKr";
+import { updateURLParameter } from "../../../../utils/getUpdateUrlParam";
 
 interface IProp {}
 
@@ -93,9 +94,12 @@ export const QuestionDetail: React.FC<IProp> = () => {
     };
 
     const toList = () => {
+        const page = getFromUrl("page");
+        const to = updateURLParameter("/member/question", "page", page);
+
         if (pid) {
             location.href = `/tour/view/` + pid;
-        } else router.push(`/member/question/`);
+        } else router.push(to);
     };
 
     const handleDelete = () => {

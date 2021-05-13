@@ -17,7 +17,8 @@ import { useUpload } from "../../../hook/useUpload";
 import { LoadEditor } from "../../../components/edit/EdiotrLoading";
 import { DayPickerModal } from "../../../components/dayPickerModal/DayPickerModal";
 import { toNumber } from "../../../utils/toNumber";
-import { Popup } from "../../../components/popup/Popup";
+import { JDPCpopup } from "../../../components/popup/PCPopup";
+import { JDpopup } from "../../../components/popup/JDpopup";
 
 const Editor = LoadEditor();
 
@@ -114,9 +115,7 @@ export const MsDesignB: React.FC<IProp> = () => {
                 />
             )}
             <MasterLayout>
-                {popupHook.popups.map((pop, index) => (
-                    <Popup {...popupHook} popup={pop} key={pop._id} />
-                ))}
+                <JDpopup popupHook={popupHook} />
                 <div className="in ">
                     <h4>디자인 설정</h4>
                     <div className="in_content">

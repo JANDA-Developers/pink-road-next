@@ -39,9 +39,9 @@ import { UserHandWriteModalWrap } from "../userWriteModal/UserWriteModal";
 
 export type UserMasterHandler = {
     handleViewDetailUser: (id: string) => () => void;
-    handleStopUser: () => void;
-    handleRestartUser: () => void;
-    handleResignUser: () => void;
+    handleStopUser: (userids?: string[]) => void;
+    handleRestartUser: (userids?: string[]) => void;
+    handleResignUser: (userId?: string) => void;
     handleViewUserBoard: (user: Fuser) => () => void;
     handleSignUpAccept: (userIds: string[]) => void;
     handleSignUpDeny: (userIds: string[], reason: string) => void;
@@ -185,7 +185,7 @@ export const MemberMaster: React.FC<IProp> = ({
 
     const handleStopUser = (userIds?: string[]) => {
         if (
-            !confirm(`정말로 유저 ${selectedIds.length}명을 정지 시키겠습니까?`)
+            !confirm(`정말로 유저를 정지 시키겠습니까?`)
         )
             return;
         stopUsers({
@@ -245,7 +245,7 @@ export const MemberMaster: React.FC<IProp> = ({
     const checkOnAllForgien = () =>
         filter.is_froreginer_eq === undefined ? "on" : "";
 
-    const handlers = {
+    const handlers: UserMasterHandler = {
         handleViewDetailUser,
         handleRestartUser,
         handleStopUser,

@@ -1,5 +1,12 @@
 import dayjs from "dayjs";
-import { Dispatch, RefObject, SetStateAction, useRef, useState } from "react";
+import {
+    Dispatch,
+    RefObject,
+    SetStateAction,
+    useContext,
+    useRef,
+    useState,
+} from "react";
 import {
     filterOver,
     generateitinery,
@@ -31,6 +38,7 @@ import {
 import { useRouter } from "next/router";
 import { ProductTempBoard } from "../utils/Storage2";
 import { openModal } from "../utils/popUp";
+import { AppContext } from "../pages/_app";
 
 type SimpleTypePart =
     | "isOpen"
@@ -52,6 +60,8 @@ export type TSimpleTypePart = Pick<
     Required<ProductCreateInput>,
     SimpleTypePart
 >;
+
+export type TRangeType = "Range" | "Single";
 
 export const DEFAULT_SIMPLE_TOUR_DATA: TSimpleTypePart = {
     address: "",
@@ -107,6 +117,12 @@ interface ITourDataSet {
 }
 
 export interface IUseTour {
+    rangeType: TRangeType;
+    setRangeType: ISet<TRangeType>;
+    tempSavedIts: ItineraryCreateInput[];
+    setTempSavedIts: ISet<ItineraryCreateInput[]>;
+    range: number;
+    setRange: ISet<number>;
     imgUploading: boolean;
     loadKeyAdd: () => void;
     tourData: IUseTourData;
@@ -149,6 +165,10 @@ export interface IUseTour {
 
 interface IUseTourProps extends Partial<IUseTourDefaultData> {}
 export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
+    const { isParterB, isParterNonB, isManager } = useContext(AppContext);
+    const [range, setRange] = useState(1);
+    const [rangeType, setRangeType] = useState<TRangeType>("Single");
+    const [tempSavedIts, setTempSavedIts] = useState<ItineraryCreateInput[]>();
     const [type, setType] = useState<ProductType>(
         defaults.type || ProductType.TOUR
     );
@@ -193,8 +213,16 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
 
     const [ProductCreateMu, { loading: createLoading }] = useProductCreate({
         onCompleted: ({ ProductCreate }) => {
-            if (ProductCreate.ok)
+            if (ProductCreate.ok) {
+                if (!isManager) {
+                    if (isParterB)
+                        alert(
+                            "등록 요청이 완료되었습니다. 핑크로더 승인 후 홈페이지에 상품이 바로 오픈 됩니다."
+                        );
+                    if (isParterNonB) alert("상품 등록이 완료되었습니다.");
+                }
                 router.push(`/tour/view/${ProductCreate!.data!._id}`);
+            }
         },
     });
 
@@ -419,6 +447,8 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         if (data.type) setType(data.type);
         if (data.keyWards) setkeyWards(data.keyWards);
         if (data.regionId) setRegionId(data.regionId);
+        if (data.its) setRange(data.its?.length || 1);
+        if (data.its) setRangeType(data.its?.length === 1 ? "Single" : "Range");
     };
 
     const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -441,7 +471,9 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         });
         loadKeyAdd();
         Storage!.saveLocal("write", tourData);
-        alert("저장완료");
+        alert(
+            "임시저장이 완료되었습니다. 작성 중인 상품은 마이페이지에서 확인 가능합니다."
+        );
     };
 
     const handleLoad = () => {
@@ -449,9 +481,13 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     };
 
     const handleDateState = ({ from, to }: TRange) => {
-        const newItinerary = generateitinery({ from, to }, its);
-        console.log({ newItinerary });
+        if (from) {
+            const addRagne = rangeType === "Range" ? range : 0;
+            to = dayjs(from).add(addRagne, "day").toDate();
+        }
+        const newItinerary = generateitinery({ from, to }, tempSavedIts || its);
         if (newItinerary) setits([...newItinerary]);
+        setTempSavedIts(undefined);
     };
 
     function set<T extends keyof TSimpleTypePart>(key: T, value: any) {
@@ -481,6 +517,12 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const lastDate = lastItDate ? dayjs(lastItDate).toDate() : undefined;
 
     return {
+        rangeType,
+        setRangeType,
+        tempSavedIts,
+        setTempSavedIts,
+        range,
+        setRange,
         imgUploading,
         tourData,
         loadKey,
