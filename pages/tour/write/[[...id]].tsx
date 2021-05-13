@@ -407,7 +407,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         </span>
                                         <button
                                             onClick={sampleSelectOpen}
-                                            className="btn"
+                                            className="btn medium write"
                                         >
                                             샘플 불러오기
                                         </button>

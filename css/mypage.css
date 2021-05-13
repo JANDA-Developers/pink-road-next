@@ -39,6 +39,10 @@
   background-color: #fbfbfb;
   box-sizing: border-box;
 }
+.mypage_in .w1200 {
+  padding: 0 3%;
+  box-sizing: border-box;
+}
 .mypage_in h6 {
   display: none;
 }
@@ -3862,6 +3866,9 @@ div.reservation_popup .tr select {
 
 }
 @media (min-width: 1230px) {
+  .mypage_in .w1200 {
+    padding: 0;
+  }
   .goods__info_title .title{
     padding-top: 0 !important;
     padding-bottom: 0 !important;

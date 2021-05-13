@@ -31,6 +31,7 @@ export const Header: React.FC<IProp> = () => {
         myProfile,
         isManager,
         homepage,
+        isSeller,
         isParterB,
         isParterNonB,
     } = useContext(AppContext);
@@ -636,55 +637,54 @@ export const Header: React.FC<IProp> = () => {
                                                     <a>회원정보</a>
                                                 </Link>
                                             </li>
-                                            {(isParterB || isParterNonB) && (
+                                            {!isManager && isSeller && (
                                                 <li>
                                                     <Link href="/mypage/notification">
                                                         <a>알림</a>
                                                     </Link>
                                                 </li>
                                             )}
-
-                                            <li>
-                                                <Link href="/mypage/purchase">
-                                                    <a>구매내역</a>
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/mypage/basket">
-                                                    <a>장바구니</a>
-                                                </Link>
-                                            </li>
+                                            {!isManager && isSeller && (
+                                                <li>
+                                                    <Link href="/mypage/purchase">
+                                                        <a>구매내역</a>
+                                                    </Link>
+                                                </li>
+                                            )}
+                                            {!isManager && isSeller && (
+                                                <li>
+                                                    <Link href="/mypage/basket">
+                                                        <a>장바구니</a>
+                                                    </Link>
+                                                </li>
+                                            )}
                                             <li>
                                                 <Link href="/mypage/write">
                                                     <a>나의 게시글</a>
                                                 </Link>
                                             </li>
-                                            {(isParterB ||
-                                                isParterNonB ||
-                                                isManager) && (
+                                            {!isManager && isSeller && (
                                                 <li>
                                                     <Link href="/mypage/reservation">
                                                         <a>예약관리</a>
                                                     </Link>
                                                 </li>
                                             )}
-                                            {(isParterB ||
-                                                isParterNonB ||
-                                                isManager) && (
+                                            {!isManager && isSeller && (
                                                 <li>
                                                     <Link href="/mypage/plainning">
                                                         <a>상품관리</a>
                                                     </Link>
                                                 </li>
                                             )}
-                                            {(isParterB || isParterNonB) && (
+                                            {!isManager && isSeller && (
                                                 <li>
                                                     <Link href="/mypage/plainning">
                                                         <a>기획관리</a>
                                                     </Link>
                                                 </li>
                                             )}
-                                            {(isParterB || isParterNonB) && (
+                                            {!isManager && isSeller && (
                                                 <li>
                                                     <Link href="/mypage/settlement">
                                                         <a>매출/정산관리</a>
