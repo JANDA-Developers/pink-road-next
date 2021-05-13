@@ -379,13 +379,6 @@ background-color: #fff;
     min-width: 130px;
 }
 
-<<<<<<< HEAD
-button:disabled {
-    pointer-events: none;
-    color: #d2d2d2;
-    border-color: #d2d2d2;
-    
-=======
 @media (min-width: 1230px) {
 .mypageSettlement__list{
     text-align: center;
@@ -401,5 +394,4 @@ button:disabled {
     align-items: center;
     justify-content: center;
 }
->>>>>>> origin/design
 }

@@ -5,17 +5,24 @@
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     background-size: cover;
 }
+.JDpopup__handler {
+    cursor: grab;
+    background-color: white;
+}
+.JDpopup__handler:active {
+    cursor: grabbing;
+}
 .JDpopup__bottomController {
     display: flex;
     padding: 0.4rem;
     align-items: center;
     width: 100%;
-    background-color: rgba(0,0,0,0.25);
+    background-color: white;
     box-sizing: border-box;
     justify-content: space-between;
 }
 
-.JDpopup__dayCloser,.JDpopup__close {
+.JDpopup__dayCloser,.JDpopupMobile__close {
     cursor: pointer;
 }
 
@@ -28,7 +35,6 @@
 
 .JDpopupMobile {
     z-index: 100;
-
     position: fixed;
     top:0;
     right:0;
@@ -42,11 +48,24 @@
 }
 
 .JDpopupMobile__contents {
-    border-radius: 5px;
-    background-color: white;
+    max-width: 100vw;
+    max-height: 100vh;
 }
 
-.JDpopup__mobile-bottomController {
+.JDpopupMobile__slideInner {
+    justify-content: center;
+    background-size: cover;
+    background-position: center center;
+    background-color: white;
+}
+.JDpopupMobile__slide {
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+}
+
+.JDpopupMobile__bottomController {
+    width: 90vw;
     top:100%;
     display: flex;
     justify-content: space-around;
@@ -55,6 +74,14 @@
 }
 
 .JDpopup__boxContent {
+    background-position: center center;
+    background-size: cover;
     overflow: auto;
     line-break: anywhere;
+}
+
+.JDpopupMobile .slick-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

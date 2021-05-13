@@ -871,7 +871,7 @@ ul {
 }
 
 .red_font {
-  color: #e80000;
+  color: #e80000!important;
 }
 
 .blue_font {

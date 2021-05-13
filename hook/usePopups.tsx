@@ -3,7 +3,7 @@ import { Ipopup } from '../types/interface';
 import dayjs from 'dayjs';
 import { Storage } from '../utils/Storage';
 import { useCopy } from "./useUpdate";
-import { ismobile } from "../components/popup/Popup";
+import { ismobile } from "../components/popup/PCPopup";
 
 export interface IPopupBox extends Ipopup {
     isOpen?: boolean;
