@@ -15,6 +15,7 @@ import { omits } from "../utils/omit";
 import { getItemCount, Storage } from "../utils/Storage";
 import mypageLayout from "../info/mypageLayout.json";
 import SubTopNav from "./components/SubTop";
+import { Tip } from "../components/tip/Tip";
 
 interface IProp {}
 
@@ -227,11 +228,15 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                         {/*개인*/}
                                         {/* //최근접속시간은 최근에 본 상품으로 변경함 */}
                                         <ul>
-                                            <li>
+                                            <Tip
+                                                Tag="li"
+                                                message={"읽지않은 알림"}
+                                            >
                                                 <a href="/mypage/notification">
-                                                    알림<i>{items.length}</i>
+                                                    알림
+                                                    <i>{items.length}</i>
                                                 </a>
-                                            </li>
+                                            </Tip>
                                             {/* 개인/기업파트너/개인파트너 -*/}
                                             {isSeller || (
                                                 <li>
@@ -260,7 +265,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                             )}
                                             {/* 개인 -*/}
                                             {isSeller && (
-                                                <li>
+                                                <Tip Tag="li" message="안녕">
                                                     <Link href="/mypage/reservation">
                                                         <a>
                                                             예약
@@ -271,7 +276,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                                             </i>
                                                         </a>
                                                     </Link>
-                                                </li>
+                                                </Tip>
                                             )}
                                             {/* 기업파트너/개인파트너 -*/}
                                             {isSeller && (

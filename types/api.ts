@@ -60,6 +60,7 @@ export interface announceFindById_AnnounceFindById_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -330,6 +331,7 @@ export interface announceList_AnnounceList_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -1022,7 +1024,7 @@ export interface bookingList_BookingList_data_product {
    */
   peopleCount: number;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -1190,7 +1192,7 @@ export interface bookingFindByInfo_BookingFindByInfo_data_product {
    */
   peopleCount: number;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -1762,6 +1764,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -1869,7 +1872,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   caution: string;
   images: bookingFindByCode_BookingFindByCode_data_product_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -3808,6 +3811,7 @@ export interface newsFindById_NewsFindById_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -4077,6 +4081,7 @@ export interface newsList_NewsList_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -5088,6 +5093,7 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -5331,6 +5337,7 @@ export interface portfolioList_PortfolioList_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -5955,7 +5962,7 @@ export interface productDelete_ProductDelete_data {
   caution: string;
   images: productDelete_ProductDelete_data_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -6180,6 +6187,7 @@ export interface productList_ProductList_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -6287,7 +6295,7 @@ export interface productList_ProductList_data {
   caution: string;
   images: productList_ProductList_data_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -6463,6 +6471,7 @@ export interface productFindById_ProductFindById_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -6748,7 +6757,7 @@ export interface productFindById_ProductFindById_data {
   caution: string;
   images: productFindById_ProductFindById_data_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -6923,6 +6932,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -7080,6 +7090,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -7248,7 +7259,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   caution: string;
   images: productFindByIdForSeller_ProductFindByIdForSeller_data_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -7565,6 +7576,7 @@ export interface qnaFindById_QnaFindById_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -7840,6 +7852,7 @@ export interface qnaList_QnaList_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -8272,6 +8285,7 @@ export interface getContext_GetProfile_data {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -9721,6 +9735,7 @@ export interface settlementFindById_SettlementFindById_data_product_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -9888,7 +9903,7 @@ export interface settlementFindById_SettlementFindById_data_product {
   caution: string;
   images: settlementFindById_SettlementFindById_data_product_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -10072,6 +10087,7 @@ export interface settlementList_SettlementList_data_seller {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -10260,6 +10276,7 @@ export interface settlementList_SettlementList_data_product_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -10367,7 +10384,7 @@ export interface settlementList_SettlementList_data_product {
   caution: string;
   images: settlementList_SettlementList_data_product_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -10996,6 +11013,36 @@ export interface signUpAcceptVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: checkUserCanResign
+// ====================================================
+
+export interface checkUserCanResign_CheckUserCanResign_problems {
+  __typename: "UserResignProblem";
+  haveProductOpend: boolean;
+  haveUnSolvedReservation: boolean;
+  haveUnSolvedSettlement: boolean;
+}
+
+export interface checkUserCanResign_CheckUserCanResign {
+  __typename: "CheckUserResignResult";
+  ok: boolean;
+  problems: checkUserCanResign_CheckUserCanResign_problems;
+}
+
+export interface checkUserCanResign {
+  CheckUserCanResign: checkUserCanResign_CheckUserCanResign;
+}
+
+export interface checkUserCanResignVariables {
+  _idToCheck?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: stopUser
 // ====================================================
 
@@ -11261,6 +11308,7 @@ export interface userList_UserList_data {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -11523,6 +11571,7 @@ export interface userFindById_UserFindById_data_products_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -11630,7 +11679,7 @@ export interface userFindById_UserFindById_data_products {
   caution: string;
   images: userFindById_UserFindById_data_products_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -11697,6 +11746,7 @@ export interface userFindById_UserFindById_data {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -11951,6 +12001,7 @@ export interface Fannounce_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -12457,7 +12508,7 @@ export interface Fproduct {
   caution: string;
   images: Fproduct_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -12591,6 +12642,7 @@ export interface Fuser {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -13163,6 +13215,7 @@ export interface Fnews_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -13534,6 +13587,7 @@ export interface Fportfolio_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -13704,6 +13758,7 @@ export interface Fqna_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
+  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -14210,6 +14265,7 @@ export enum ERR_CODE {
   PASSWORD_NOT_EQUAL = "PASSWORD_NOT_EQUAL",
   PAY_TIME_OVER = "PAY_TIME_OVER",
   POPULATED_DOC_INVALID = "POPULATED_DOC_INVALID",
+  SIGN_OUT_CONDITION_FAIL = "SIGN_OUT_CONDITION_FAIL",
   SYSTEM_ERROR = "SYSTEM_ERROR",
 }
 
@@ -14483,6 +14539,8 @@ export enum _AnnounceSort {
   title_desc = "title_desc",
   type_asc = "type_asc",
   type_desc = "type_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14501,6 +14559,8 @@ export enum _BoardSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14527,6 +14587,8 @@ export enum _INotificationHistoryItemSort {
   sender_desc = "sender_desc",
   successCount_asc = "successCount_asc",
   successCount_desc = "successCount_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
 }
 
 /**
@@ -14537,6 +14599,8 @@ export enum _ITemplateSort {
   createdAt_desc = "createdAt_desc",
   name_asc = "name_asc",
   name_desc = "name_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
 }
 
 /**
@@ -14553,6 +14617,8 @@ export enum _NewsSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14563,6 +14629,8 @@ export enum _NewsSort {
 export enum _PaymentSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
 }
 
 /**
@@ -14579,6 +14647,8 @@ export enum _PortfolioSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14597,6 +14667,8 @@ export enum _ProductReviewSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14619,6 +14691,8 @@ export enum _ProductSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14637,6 +14711,8 @@ export enum _QnaSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14655,6 +14731,8 @@ export enum _QuestionSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14665,6 +14743,8 @@ export enum _QuestionSort {
 export enum _SettlementSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
 }
 
 /**
@@ -14673,6 +14753,8 @@ export enum _SettlementSort {
 export enum _SystemNotiSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
 }
 
 /**
@@ -14685,6 +14767,8 @@ export enum _UserSort {
   name_desc = "name_desc",
   resignDate_asc = "resignDate_asc",
   resignDate_desc = "resignDate_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
 }
 
 export interface AddUserInput {
@@ -15108,7 +15192,7 @@ export interface ProductCreateInput {
   info: string;
   caution: string;
   images?: FileCreateInput[] | null;
-  address: string;
+  address?: string | null;
   regionId?: string | null;
   startPoint: string;
   maxMember: number;
@@ -15996,6 +16080,8 @@ export interface _UserFilter {
   status_contains?: string | null;
   isResigned_eq?: boolean | null;
   isResigned_not_eq?: boolean | null;
+  isHandWrited_eq?: boolean | null;
+  isHandWrited_not_eq?: boolean | null;
   isVerifiedManager_eq?: boolean | null;
   isVerifiedManager_not_eq?: boolean | null;
   role_eq?: string | null;

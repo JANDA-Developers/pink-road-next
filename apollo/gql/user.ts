@@ -1,212 +1,226 @@
 import { gql } from "@apollo/client";
-import {  F_BOOKING, F_FILE, F_PAGE, F_PRODUCT, F_USER } from "./fragments";
-
+import { F_BOOKING, F_FILE, F_PAGE, F_PRODUCT, F_USER } from "./fragments";
 
 export const SIGN_UP = gql`
-  mutation signUp(
-      $params: AddUserInput!
-      $verificationId: String!
-    ) {
-      SignUp(
-        params:$params
-        verificationId: $verificationId
-      ) {
-      ok
-      error {
-      location
-        severity
-        code
-        message
-      }
-      data {
-          email
-      }
+    mutation signUp($params: AddUserInput!, $verificationId: String!) {
+        SignUp(params: $params, verificationId: $verificationId) {
+            ok
+            error {
+                location
+                severity
+                code
+                message
+            }
+            data {
+                email
+            }
+        }
     }
-  }
 `;
 
-
 export const RESIGN = gql`
-  mutation userResign(
-      $_id: String!
-      $pw: String!
-      $reason: String!
-      $resignReasonType: String!
+    mutation userResign(
+        $_id: String!
+        $pw: String!
+        $reason: String!
+        $resignReasonType: String!
     ) {
-    UserResign(
-        _id: $_id,
-        pw: $pw,
-        reason: $reason,
-        resignReasonType: $resignReasonType
-      ) {
-        ok
-        error {
-        location
-          severity
-          code
-          message
+        UserResign(
+            _id: $_id
+            pw: $pw
+            reason: $reason
+            resignReasonType: $resignReasonType
+        ) {
+            ok
+            error {
+                location
+                severity
+                code
+                message
+            }
         }
-      }
     }
 `;
 
 export const SIGN_IN = gql`
-  query signIn(
-    $email: Email!
-    $pw: String!
-    $hopeRole: UserRole
-    $permanence: Boolean
+    query signIn(
+        $email: Email!
+        $pw: String!
+        $hopeRole: UserRole
+        $permanence: Boolean
     ) {
-    SignIn(
-      email:$email,
-      pw:$pw
-      hopeRole: $hopeRole
-      permanence: $permanence
-      )  {
-        ok
-        error {
-          location
-          severity
-          code
-          message
+        SignIn(
+            email: $email
+            pw: $pw
+            hopeRole: $hopeRole
+            permanence: $permanence
+        ) {
+            ok
+            error {
+                location
+                severity
+                code
+                message
+            }
+            data {
+                token
+            }
         }
-        data {
-          token
-        }
-      }
-  }
+    }
 `;
 
-
-
 export const USER_UPDATE = gql`
-    mutation userUpdate($params:UserUpdateInput!,$_id: String!, $currentPw: String) {
-        UserUpdate(params:$params, currentPw:$currentPw, _id:$_id) {
+    mutation userUpdate(
+        $params: UserUpdateInput!
+        $_id: String!
+        $currentPw: String
+    ) {
+        UserUpdate(params: $params, currentPw: $currentPw, _id: $_id) {
             ok
             error {
-      location
-      severity
-      code
-      message
-    }
+                location
+                severity
+                code
+                message
+            }
             data {
                 _id
-            createdAt
+                createdAt
             }
         }
     }
-`
+`;
 
 export const EMAIL_DUPLIOCATE_CHECK = gql`
-    mutation emailDuplicateCheck($email:String!) {
-      EmailDuplicateCheck(email:$email) {
+    mutation emailDuplicateCheck($email: String!) {
+        EmailDuplicateCheck(email: $email) {
             ok
             error {
-              location
-              severity
-              code
-              message
+                location
+                severity
+                code
+                message
             }
             data {
-              duplicated
+                duplicated
             }
         }
     }
-`
-
+`;
 
 export const SIGN_UP_DENY = gql`
-    mutation signUpDeny($userIds:[String!]!, $reason:String!) {
-      SignUpDeny(userIds:$userIds, reason: $reason) {
+    mutation signUpDeny($userIds: [String!]!, $reason: String!) {
+        SignUpDeny(userIds: $userIds, reason: $reason) {
             ok
             error {
-              location
-              severity
-              code
-              message
+                location
+                severity
+                code
+                message
             }
         }
     }
-`
+`;
 
 export const SIGN_UP_ACCEPT = gql`
-    mutation signUpAccept($userIds:[String!]!) {
-      SignUpAccept(userIds:$userIds) {
+    mutation signUpAccept($userIds: [String!]!) {
+        SignUpAccept(userIds: $userIds) {
             ok
             error {
-              location
-              severity
-              code
-              message
+                location
+                severity
+                code
+                message
             }
         }
     }
-`
+`;
 
+export const CHECK_USER_CAN_RESIGN = gql`
+    mutation checkUserCanResign($_idToCheck: String) {
+        CheckUserCanResign(_idToCheck: $_idToCheck) {
+            ok
+            problems {
+                haveProductOpend
+                haveUnSolvedReservation
+                haveUnSolvedSettlement
+            }
+        }
+    }
+`;
 
 export const STOP_USER = gql`
-    mutation stopUser($userIds:[String!]!,$reason: String!) {
-      StopUser(userIds:$userIds,reason:$reason) {
+    mutation stopUser($userIds: [String!]!, $reason: String!) {
+        StopUser(userIds: $userIds, reason: $reason) {
             ok
             error {
-              location
-              severity
-              code
-              message
+                location
+                severity
+                code
+                message
             }
         }
     }
-`
+`;
 
 export const RESTART_USER = gql`
-    mutation restartUser($userIds:[String!]!) {
-      RestartUser(userIds:$userIds) {
+    mutation restartUser($userIds: [String!]!) {
+        RestartUser(userIds: $userIds) {
             ok
             error {
-              location
-              severity
-              code
-              message
+                location
+                severity
+                code
+                message
             }
         }
     }
-`
+`;
 
-export const VERIFICATION_START =gql`
-mutation verificationStart($target: VerificationTarget!, $payload: String!, $event: VerificationEvent!){
-    VerificationStart(target : $target, payload : $payload, event : $event){
-      ok
-      error {
-      location
-      severity
-      code
-      message
-    }
-      data {
-        _id
-        payload
-        target
-        isVerified
-      }
-    }
-  }
-  `
-
-export const VERIFICATION_COMPLETE=gql`
-mutation verificationComplete(
-    $verificationId: ID!
-    $target: VerificationTarget!
-    $code: String!
-    $payload: String!
+export const VERIFICATION_START = gql`
+    mutation verificationStart(
+        $target: VerificationTarget!
+        $payload: String!
+        $event: VerificationEvent!
     ) {
-        VerificationComplete(verificationId:$verificationId, target:$target,code:$code,payload:$payload) {
+        VerificationStart(target: $target, payload: $payload, event: $event) {
             ok
             error {
-      location
-      severity
-      code
-      message
+                location
+                severity
+                code
+                message
+            }
+            data {
+                _id
+                payload
+                target
+                isVerified
+            }
+        }
     }
+`;
+
+export const VERIFICATION_COMPLETE = gql`
+    mutation verificationComplete(
+        $verificationId: ID!
+        $target: VerificationTarget!
+        $code: String!
+        $payload: String!
+    ) {
+        VerificationComplete(
+            verificationId: $verificationId
+            target: $target
+            code: $code
+            payload: $payload
+        ) {
+            ok
+            error {
+                location
+                severity
+                code
+                message
+            }
             data {
                 _id
                 createdAt
@@ -221,123 +235,100 @@ mutation verificationComplete(
             }
         }
     }
-`
-
-
-export const USER_LIST = gql`
-query userList(
-    $sort: [_UserSort!]
-    $filter: _UserFilter
-    $pageInput: pageInput!
-) {
-  UserList(
-    sort: $sort
-    pageInput: $pageInput
-    filter: $filter
-  ) {
-    ok
-    error {
-      location
-      severity
-      code
-      message
-    }
-    page {
-      ...Fpage
-    }
-    data  {
-      ...Fuser
-    }
-  }
-}
-${F_USER}
-${F_PAGE}
-`
-
-export const USER_FIND_BY_ID = gql`
-  query userFindById(
-      $id:String!
-    ) {
-      UserFindById(
-        id: $id
-      ) {
-      ok
-      error {
-      location
-      severity
-      code
-      message
-    }
-      data {
-        ...Fuser
-        products {
-          ...Fproduct
-          category {
-              _id
-              label
-          }
-          author {
-              ...Fuser
-          }
-        }
-        bookings {
-          ...Fbooking
-        }
-      }
-    }
-  }
-  ${F_PRODUCT}
-  ${F_BOOKING}
-  ${F_USER}
 `;
 
+export const USER_LIST = gql`
+    query userList(
+        $sort: [_UserSort!]
+        $filter: _UserFilter
+        $pageInput: pageInput!
+    ) {
+        UserList(sort: $sort, pageInput: $pageInput, filter: $filter) {
+            ok
+            error {
+                location
+                severity
+                code
+                message
+            }
+            page {
+                ...Fpage
+            }
+            data {
+                ...Fuser
+            }
+        }
+    }
+    ${F_USER}
+    ${F_PAGE}
+`;
+
+export const USER_FIND_BY_ID = gql`
+    query userFindById($id: String!) {
+        UserFindById(id: $id) {
+            ok
+            error {
+                location
+                severity
+                code
+                message
+            }
+            data {
+                ...Fuser
+                products {
+                    ...Fproduct
+                    category {
+                        _id
+                        label
+                    }
+                    author {
+                        ...Fuser
+                    }
+                }
+                bookings {
+                    ...Fbooking
+                }
+            }
+        }
+    }
+    ${F_PRODUCT}
+    ${F_BOOKING}
+    ${F_USER}
+`;
 
 export const EMAIl_FIND_BY_INFO = gql`
-  query emailFindByInfo(
-    $phoneNumber: String!
-    $name: String!
-    ) {
-      EmailFindByInfo(
-        phoneNumber: $phoneNumber
-        name: $name
-      ) {
-      ok
-      error {
-      location
-      severity
-      code
-      message
+    query emailFindByInfo($phoneNumber: String!, $name: String!) {
+        EmailFindByInfo(phoneNumber: $phoneNumber, name: $name) {
+            ok
+            error {
+                location
+                severity
+                code
+                message
+            }
+            data {
+                foundEmails
+            }
+        }
     }
-    data {
-      foundEmails
-    }
-  }
-}
 `;
 
 export const PASSWORD_FIND_BY_PHONE = gql`
-  query passwordFindByPhone(
-    $email: String!
-    $target: VerificationTarget!
-    ) {
-      PasswordFindByPhone(
-        email: $email,
-        target: $target
-      ) {
-      ok
-      error {
-        location
-        severity
-        code
-        message
-      }
-      data {
-      resultObj
-      }
-  }
-}
+    query passwordFindByPhone($email: String!, $target: VerificationTarget!) {
+        PasswordFindByPhone(email: $email, target: $target) {
+            ok
+            error {
+                location
+                severity
+                code
+                message
+            }
+            data {
+                resultObj
+            }
+        }
+    }
 `;
-
 
 // export const NICK_NAME_DUPLICATE_CHECK = gql`
 //   mutation nickNameDuplicateCheck(
@@ -361,22 +352,15 @@ export const PASSWORD_FIND_BY_PHONE = gql`
 // `;
 
 export const PASSWORD_CHNAGE = gql`
-  mutation passwordChange(
-    $newPassword: String!
-    $currentPw: String!
-    ) {
-      PasswordChange(
-        newPassword: $newPassword
-        currentPw: $currentPw
-      ) {
-      ok
-      error {
-        location
-        severity
-        code
-        message
-      }
-  }
-}
+    mutation passwordChange($newPassword: String!, $currentPw: String!) {
+        PasswordChange(newPassword: $newPassword, currentPw: $currentPw) {
+            ok
+            error {
+                location
+                severity
+                code
+                message
+            }
+        }
+    }
 `;
-
