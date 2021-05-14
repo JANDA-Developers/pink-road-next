@@ -23,6 +23,7 @@ interface IProps {
     className?: string;
     boardHook: IUseBoard;
     categoryList?: TCategory[];
+    WriteInjectionTop?: TElements;
     WriteInjection?: TElements;
     mode: "create" | "edit";
     onSave?: () => void;
@@ -41,6 +42,7 @@ export const BoardWrite: React.FC<IProps> = ({
     categoryList,
     opens,
     mode,
+    WriteInjectionTop,
     WriteInjection,
     onCancel: handleCancel,
     onCreate: handleCreate,
@@ -129,6 +131,7 @@ export const BoardWrite: React.FC<IProps> = ({
         <div className={`writing_in w100 board_write ${className}`}>
             <div className="w1200">
                 <div className="write_box">
+                    {WriteInjectionTop}
                     {opens.category && (
                         <div className="write_type">
                             <div className="title">카테고리</div>

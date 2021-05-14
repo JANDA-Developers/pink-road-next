@@ -23,6 +23,7 @@ export const QnaWrite: React.FC<IProp> = () => {
     const { item: qna } = useQnaFindById(id);
     const loginModalHook = useModal();
     const [target, setTarget] = useState<QnaTarget>(QnaTarget.ALL);
+    const isTargetAll = target === QnaTarget.ALL;
     const mode = id ? "edit" : "create";
     const { categoriesMap } = useContext(AppContext);
 
@@ -132,38 +133,45 @@ export const QnaWrite: React.FC<IProp> = () => {
     return (
         <div>
             <BoardWrite
-                WriteInjection={
+                WriteInjectionTop={
                     <div>
-                        <input
-                            onChange={(e) => {
-                                const val = e.currentTarget.value;
-                                setTarget(val as QnaTarget);
-                            }}
-                            type="radio"
-                            id="all"
-                            name="gender"
-                            value={QnaTarget.ALL}
-                            checked={target === QnaTarget.ALL}
-                        />
-                        <label htmlFor="all">모두에게</label>
-                        <input
-                            onChange={(e) => {
-                                const val = e.currentTarget.value;
-                                setTarget(val as QnaTarget.SELLER);
-                            }}
-                            type="radio"
-                            id="partner"
-                            name="gender"
-                            value="Range"
-                            checked={target === QnaTarget.SELLER}
-                        />
-                        <label htmlFor="partner">파트너에게</label>
+                        <div className="write_type">
+                            <div className="title">안내대상</div>
+                            <div className="input_form">
+                                <input
+                                    onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        setTarget(val as QnaTarget);
+                                    }}
+                                    type="radio"
+                                    id="all"
+                                    name="all"
+                                    value={QnaTarget.ALL}
+                                    checked={target === QnaTarget.ALL}
+                                />
+                                <label htmlFor="all">모두에게</label>
+                                <input
+                                    onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        setTarget(val as QnaTarget.SELLER);
+                                    }}
+                                    type="radio"
+                                    id="partner"
+                                    name="partner"
+                                    value={QnaTarget.SELLER}
+                                    checked={target === QnaTarget.SELLER}
+                                />
+                                <label htmlFor="partner">파트너에게</label>
+                            </div>
+                        </div>
                     </div>
                 }
                 boardHook={boardHook}
                 key={loadKey + (qna?._id || "")}
                 mode={mode}
-                categoryList={categoriesMap.QNA}
+                categoryList={
+                    isTargetAll ? categoriesMap.QNA : categoriesMap.EXPERIENCE
+                }
                 onCancel={handleCancel}
                 onCreate={handleCreate}
                 onDelete={handleDelete}
