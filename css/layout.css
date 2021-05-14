@@ -3410,7 +3410,6 @@ i.icon_plus {
   .subtop_nav {
     padding: 0 15px;
     line-height: 53px;
-    top: -116px;
   }
 
   .top_visual {
@@ -4258,7 +4257,6 @@ i.icon_plus {
     width: 100%;
   }
   .subtop_nav {
-    top: -98px;
     overflow: auto;
     white-space: nowrap;
   }
@@ -4315,6 +4313,9 @@ i.icon_plus {
 }
 
 @media (max-width: 360px) {
+  .search_box .day_ul span{
+    font-size: 0.8em;
+  }
   #viewControl .btn_box .link02 {
     width: 69.9%;
   }

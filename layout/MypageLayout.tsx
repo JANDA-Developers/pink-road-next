@@ -103,7 +103,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         current = window.location.href.split("/mypage/")[1];
     }
 
-    const isTapOn = (value?: string) => (current.includes(value) ? "on" : "");
+    const isTapOn = (value?: string) => (current?.includes(value) ? "on" : "");
 
     return (
         <div>

@@ -21,6 +21,7 @@ import {
 } from "../../../components/reviewModal/ReviewModal";
 import { useModal } from "../../../hook/useModal";
 import { AppContext } from "../../_app";
+import Link from "next/link";
 
 interface IProp {}
 
@@ -69,6 +70,20 @@ export const MyPageBoardReviews: React.FC<IProp> = () => {
         <MypageLayout>
             <div className="in myboard_box">
                 <h4>나의 게시글</h4>
+                <div className="mypage__tap">
+                    <ul>
+                        <li>
+                            <Link href="/mypage/my-board/questions">
+                                <a>질문목록</a>
+                            </Link>
+                        </li>
+                        <li className="on">
+                            <Link href="/mypage/my-board/reviews">
+                                <a>리뷰목록</a>
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
                 <div className="paper_div">
                     <div className="con_top">
                         <h6>상세검색</h6>

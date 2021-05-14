@@ -12408,6 +12408,12 @@ div.popup_bg_full h4{
   }
 }
 @media (max-width: 360px) {
+  .profile_box .welcometxt{
+    font-size: 0.8em;
+  }
+  .mypage_in .lnb .profile_box .point strong {
+    font-size: 1em;
+}
   .siteInfo_in .top_bg {
     height: 400px;
   }
