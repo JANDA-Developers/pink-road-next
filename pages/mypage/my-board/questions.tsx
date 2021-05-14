@@ -1,40 +1,55 @@
-import React from "react";
-import { MypageLayout } from "../../layout/MypageLayout";
-import { ALLOW_LOGINED } from "../../types/const";
-import { auth } from "../../utils/with";
+import React, { useContext } from "react";
+import { MypageLayout } from "../../../layout/MypageLayout";
+import { ALLOW_LOGINED } from "../../../types/const";
+import { auth } from "../../../utils/with";
 import dayjs from "dayjs";
-import isEmpty from "../../utils/isEmpty";
-import { ViewCount } from "../../components/common/ViewCount";
-import { SingleSortSelect } from "../../components/common/SortSelect";
-import { autoComma } from "../../utils/formatter";
-import { SearchBar } from "../../components/searchBar/SearchBar";
-import { useMyBoardList } from "../../hook/useMyBoardList";
-import { useDateFilter } from "../../hook/useSearch";
-import { useSingleSort } from "../../hook/useSort";
-import { Change } from "../../components/loadingList/LoadingList";
-import Link from "next/link";
-import { BoardType, myBoardList_MyBoardList_data } from "../../types/api";
+import isEmpty from "../../../utils/isEmpty";
+import { ViewCount } from "../../../components/common/ViewCount";
+import { SingleSortSelect } from "../../../components/common/SortSelect";
+import { autoComma } from "../../../utils/formatter";
+import { SearchBar } from "../../../components/searchBar/SearchBar";
+import { useDateFilter } from "../../../hook/useSearch";
+import { useSingleSort } from "../../../hook/useSort";
+import { Change } from "../../../components/loadingList/LoadingList";
+import {
+    questionList_QuestionList_data,
+    QuestionStatus,
+} from "../../../types/api";
 import { useRouter } from "next/router";
-import { isOpenKr } from "../../utils/enumToKr";
-import { generateClientPaging } from "../../utils/generateClientPaging";
-import { Paginater } from "../../components/common/Paginator";
+import { isOpenKr } from "../../../utils/enumToKr";
+import { Paginater } from "../../../components/common/Paginator";
+import { useQuestionList } from "../../../hook/useQuestion";
+import { AppContext } from "../../_app";
 
 interface IProp {}
 
-export const MyPageBoard: React.FC<IProp> = () => {
+export const MyPageBoardQuestions: React.FC<IProp> = () => {
+    const { myProfile } = useContext(AppContext);
     const rotuer = useRouter();
     const {
+        setPage,
+        pageInfo,
         items,
         filter,
         setFilter,
         sort,
         setSort,
-        pageInfo,
         viewCount,
         setViewCount,
         setUniqFilter,
         getLoading,
-    } = useMyBoardList();
+    } = useQuestionList({
+        fixingFilter: {
+            OR: [
+                {
+                    productOwner_eq: myProfile._id,
+                },
+                {
+                    authorEmail_eq: myProfile.email,
+                },
+            ],
+        },
+    });
     const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({
         filter,
         setFilter,
@@ -46,25 +61,25 @@ export const MyPageBoard: React.FC<IProp> = () => {
         setUniqFilter("title_contains", ["title_contains"], search);
     };
 
-    const handleClickBoard = (item: myBoardList_MyBoardList_data) => () => {
-        const isProduct = item.boardType === BoardType.PRODUCT;
-        const isQuestion = item.boardType === BoardType.QUESTION;
-        if (isProduct) rotuer.push(`/tour/view/${item._id}`);
-        if (isQuestion) rotuer.push(`/member/qna/view/${item._id}`);
+    const handleClickBoard = (item: questionList_QuestionList_data) => () => {
+        rotuer.push(`/member/question/view/${item._id}`);
     };
 
-    const { slice, paging, setPage } = generateClientPaging(items, viewCount);
+    const checkOnStatus = (status?: QuestionStatus) =>
+        filter.status_eq === status ? "on" : "";
+
+    const handleSetFilter = (status?: QuestionStatus) => () => {
+        filter.status_eq = status;
+        setFilter({ ...filter });
+    };
 
     return (
         <MypageLayout>
             <div className="in myboard_box">
                 <h4>나의 게시글</h4>
-                <Link href="/mypage/my-board/questions">
-                    <a>질문목록</a>
-                </Link>
-                <Link href="/mypage/my-board/reviews">
-                    <a>리뷰목록</a>
-                </Link>
+                <button>전체</button>
+                <button>답변</button>
+                <button>미답변</button>
                 <div className="paper_div">
                     <div className="con_top">
                         <h6>상세검색</h6>
@@ -90,9 +105,41 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                     <div className="left_div">
                                         총{" "}
                                         <strong>
-                                            {autoComma(items.length)}
+                                            {autoComma(pageInfo.totalCount)}
                                         </strong>
                                         개
+                                        <ul className="board_option">
+                                            <li
+                                                className={checkOnStatus(
+                                                    undefined
+                                                )}
+                                                onClick={handleSetFilter(
+                                                    undefined
+                                                )}
+                                            >
+                                                <a>전체</a>
+                                            </li>
+                                            <li
+                                                className={checkOnStatus(
+                                                    QuestionStatus.COMPLETE
+                                                )}
+                                                onClick={handleSetFilter(
+                                                    QuestionStatus.COMPLETE
+                                                )}
+                                            >
+                                                <a>답변</a>
+                                            </li>
+                                            <li
+                                                className={checkOnStatus(
+                                                    QuestionStatus.READY
+                                                )}
+                                                onClick={handleSetFilter(
+                                                    QuestionStatus.READY
+                                                )}
+                                            >
+                                                <a>미답변</a>
+                                            </li>
+                                        </ul>
                                     </div>
                                     <div className="right_div">
                                         <SingleSortSelect {...singoeSort} />
@@ -111,7 +158,7 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                     </div>
                                     <div className="tbody">
                                         <ul>
-                                            {slice.map((item, index) => (
+                                            {items.map((item, index) => (
                                                 <li
                                                     onClick={handleClickBoard(
                                                         item
@@ -129,10 +176,10 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                                     <div className="th04">
                                                         <a>
                                                             {item.title}
-                                                            {item.questionStatus && (
+                                                            {item.status && (
                                                                 <i className="q_ok">
                                                                     {
-                                                                        item.questionStatus
+                                                                        item.status
                                                                     }
                                                                 </i>
                                                             )}
@@ -160,7 +207,7 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                     </div>
                                     <Paginater
                                         setPage={setPage}
-                                        pageInfo={paging}
+                                        pageInfo={pageInfo}
                                     />
                                 </div>
                             </div>
@@ -172,4 +219,4 @@ export const MyPageBoard: React.FC<IProp> = () => {
     );
 };
 
-export default auth(ALLOW_LOGINED)(MyPageBoard);
+export default auth(ALLOW_LOGINED)(MyPageBoardQuestions);

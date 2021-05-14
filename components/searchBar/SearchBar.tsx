@@ -133,7 +133,7 @@ export const SearchBar: React.FC<IProp> = ({
                             onFocus={openDayPicker}
                             type="text"
                             className="day w100"
-                            placeholder="시작날짜를 선택해 주세요."
+                            placeholder="시작날짜를 선택"
                         />
                         <CalendarIcon onClick={openDayPicker} />
                     </div>
@@ -145,7 +145,7 @@ export const SearchBar: React.FC<IProp> = ({
                             onFocus={openDayPicker}
                             type="text"
                             className="day w100"
-                            placeholder="끝날짜를 선택해 주세요."
+                            placeholder="끝날짜를 선택"
                         />
                         <CalendarIcon onClick={openDayPicker} />
                     </div>

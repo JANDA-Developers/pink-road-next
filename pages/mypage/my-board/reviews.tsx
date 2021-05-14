@@ -1,44 +1,63 @@
-import React from "react";
-import { MypageLayout } from "../../layout/MypageLayout";
-import { ALLOW_LOGINED } from "../../types/const";
-import { auth } from "../../utils/with";
+import React, { useContext } from "react";
+import { MypageLayout } from "../../../layout/MypageLayout";
+import { ALLOW_LOGINED } from "../../../types/const";
+import { auth } from "../../../utils/with";
 import dayjs from "dayjs";
-import isEmpty from "../../utils/isEmpty";
-import { ViewCount } from "../../components/common/ViewCount";
-import { SingleSortSelect } from "../../components/common/SortSelect";
-import { autoComma } from "../../utils/formatter";
-import { SearchBar } from "../../components/searchBar/SearchBar";
-import { useMyBoardList } from "../../hook/useMyBoardList";
-import { useDateFilter } from "../../hook/useSearch";
-import { useSingleSort } from "../../hook/useSort";
-import { Change } from "../../components/loadingList/LoadingList";
-import Link from "next/link";
-import { BoardType, myBoardList_MyBoardList_data } from "../../types/api";
+import isEmpty from "../../../utils/isEmpty";
+import { ViewCount } from "../../../components/common/ViewCount";
+import { SingleSortSelect } from "../../../components/common/SortSelect";
+import { autoComma } from "../../../utils/formatter";
+import { SearchBar } from "../../../components/searchBar/SearchBar";
+import { useDateFilter } from "../../../hook/useSearch";
+import { useSingleSort } from "../../../hook/useSort";
+import { Change } from "../../../components/loadingList/LoadingList";
 import { useRouter } from "next/router";
-import { isOpenKr } from "../../utils/enumToKr";
-import { generateClientPaging } from "../../utils/generateClientPaging";
-import { Paginater } from "../../components/common/Paginator";
+import { isOpenKr } from "../../../utils/enumToKr";
+import { Paginater } from "../../../components/common/Paginator";
+import { useProductReviewList } from "../../../hook/useReview";
+import {
+    IModalInfo,
+    ReviewModal,
+} from "../../../components/reviewModal/ReviewModal";
+import { useModal } from "../../../hook/useModal";
+import { AppContext } from "../../_app";
 
 interface IProp {}
 
-export const MyPageBoard: React.FC<IProp> = () => {
+export const MyPageBoardReviews: React.FC<IProp> = () => {
     const rotuer = useRouter();
+    const { myProfile } = useContext(AppContext);
     const {
         items,
+        pageInfo,
         filter,
         setFilter,
         sort,
         setSort,
-        pageInfo,
         viewCount,
         setViewCount,
         setUniqFilter,
         getLoading,
-    } = useMyBoardList();
+        setPage,
+        page,
+    } = useProductReviewList({
+        fixingFilter: {
+            OR: [
+                {
+                    productAuthorId_eq: myProfile._id,
+                },
+                {
+                    authorEmail_eq: myProfile.email,
+                },
+            ],
+        },
+    });
     const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({
         filter,
         setFilter,
     });
+
+    const modalHook = useModal<IModalInfo>();
 
     const singoeSort = useSingleSort(sort, setSort);
 
@@ -46,25 +65,10 @@ export const MyPageBoard: React.FC<IProp> = () => {
         setUniqFilter("title_contains", ["title_contains"], search);
     };
 
-    const handleClickBoard = (item: myBoardList_MyBoardList_data) => () => {
-        const isProduct = item.boardType === BoardType.PRODUCT;
-        const isQuestion = item.boardType === BoardType.QUESTION;
-        if (isProduct) rotuer.push(`/tour/view/${item._id}`);
-        if (isQuestion) rotuer.push(`/member/qna/view/${item._id}`);
-    };
-
-    const { slice, paging, setPage } = generateClientPaging(items, viewCount);
-
     return (
         <MypageLayout>
             <div className="in myboard_box">
                 <h4>나의 게시글</h4>
-                <Link href="/mypage/my-board/questions">
-                    <a>질문목록</a>
-                </Link>
-                <Link href="/mypage/my-board/reviews">
-                    <a>리뷰목록</a>
-                </Link>
                 <div className="paper_div">
                     <div className="con_top">
                         <h6>상세검색</h6>
@@ -88,11 +92,13 @@ export const MyPageBoard: React.FC<IProp> = () => {
                             <div className="con_bottom">
                                 <div className="alignment">
                                     <div className="left_div">
-                                        총{" "}
-                                        <strong>
-                                            {autoComma(items.length)}
-                                        </strong>
-                                        개
+                                        <span className="infotxt">
+                                            총
+                                            <strong>
+                                                {autoComma(pageInfo.totalCount)}
+                                            </strong>
+                                            개
+                                        </span>
                                     </div>
                                     <div className="right_div">
                                         <SingleSortSelect {...singoeSort} />
@@ -111,11 +117,13 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                     </div>
                                     <div className="tbody">
                                         <ul>
-                                            {slice.map((item, index) => (
+                                            {items.map((item, index) => (
                                                 <li
-                                                    onClick={handleClickBoard(
-                                                        item
-                                                    )}
+                                                    onClick={() => {
+                                                        modalHook.openModal({
+                                                            reviewId: item._id,
+                                                        });
+                                                    }}
                                                     key={item._id}
                                                 >
                                                     <div className="th02">
@@ -127,16 +135,7 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                                         )}
                                                     </div>
                                                     <div className="th04">
-                                                        <a>
-                                                            {item.title}
-                                                            {item.questionStatus && (
-                                                                <i className="q_ok">
-                                                                    {
-                                                                        item.questionStatus
-                                                                    }
-                                                                </i>
-                                                            )}
-                                                        </a>
+                                                        <a>{item.title}</a>
                                                     </div>
                                                     <div className="th05">
                                                         {dayjs(
@@ -160,7 +159,7 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                     </div>
                                     <Paginater
                                         setPage={setPage}
-                                        pageInfo={paging}
+                                        pageInfo={pageInfo}
                                     />
                                 </div>
                             </div>
@@ -168,8 +167,9 @@ export const MyPageBoard: React.FC<IProp> = () => {
                     </div>
                 </div>
             </div>
+            <ReviewModal {...modalHook} />
         </MypageLayout>
     );
 };
 
-export default auth(ALLOW_LOGINED)(MyPageBoard);
+export default auth(ALLOW_LOGINED)(MyPageBoardReviews);

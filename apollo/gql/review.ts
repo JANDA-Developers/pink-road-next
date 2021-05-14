@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 import { F_ANSWER } from "./answer";
-import { F_FILE, F_PRODUCT } from "./fragments";
+import { F_FILE, F_PAGE, F_PRODUCT } from "./fragments";
 
 export const F_PRODUCT_REVIEW = gql`
     fragment FproductReview on ProductReview {
@@ -72,7 +72,7 @@ export const PRODUCT_REVIEW_FIND_BY_ID = gql`
     ${F_PRODUCT_REVIEW}
 `;
 export const PRODUCT_REVIEW_LIST = gql`
-    query productreviewList(
+    query productReviewList(
         $sort: [_ProductReviewSort!]
         $filter: _ProductReviewFilter
         $pageInput: pageInput!
@@ -93,6 +93,7 @@ export const PRODUCT_REVIEW_LIST = gql`
             }
         }
     }
+    ${F_PAGE}
     ${F_PRODUCT_REVIEW}
 `;
 

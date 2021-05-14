@@ -176,13 +176,13 @@ div.popup_bg_full .in_txt.statement_popup {
 }
 
 .settlementModal__li {
-    display: block !important;
+    display: flex !important;
     justify-content: space-around!important;
     align-items: center!important;
     padding: 10px 0 !important;
 }
 .statement_popup__topBox  .settlementModal__li {
-    display: block !important;
+    display: flex !important;
 }
 .mypage_purchase div.master_popup .info_page div[class*="th0"] {
     display:inline-block !important;

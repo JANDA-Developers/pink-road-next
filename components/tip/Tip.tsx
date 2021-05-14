@@ -24,7 +24,11 @@ export const Tip: React.FC<IProp> = ({
     };
 
     return (
-        <Tag style={{ width: "max-content" }} {...tooltipObj} {...props}>
+        <Tag
+            style={{ width: "max-content" }}
+            {...tooltipObj}
+            {...(props as any)}
+        >
             {children}
             <ReactTooltip type="dark" effect="solid" id={`Tip${newId}`}>
                 <span>{message}</span>
