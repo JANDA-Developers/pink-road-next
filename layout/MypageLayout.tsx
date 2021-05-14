@@ -17,6 +17,7 @@ import mypageLayout from "../info/mypageLayout.json";
 import SubTopNav from "./components/SubTop";
 import { Tip } from "../components/tip/Tip";
 import { useMyProfile } from "hook/useMyProfile";
+import { closeModal } from "../utils/popUp";
 
 interface IProp {}
 
@@ -402,6 +403,50 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                             </div>
                         </div>
                     )}
+                    <div className="popup_bg_mini">
+                        <div className="in_txt">
+                            <div className="page">
+                                <h3 className="popup__tittle">
+                                    프로필이미지 변경
+                                </h3>
+                                <a className="close_icon">
+                                    <i className="flaticon-multiply" />
+                                </a>
+                                <div className="con">
+                                    <div className="upload__outbox">
+                                        <span className="upload_out_box__fileName">
+                                            1620975963813_ddd__resized__.png
+                                            <i className="flaticon-multiply"></i>
+                                        </span>
+                                        <button
+                                            type="button"
+                                            className="btn btn_mini"
+                                        >
+                                            업로드
+                                        </button>
+                                        <input type="file"></input>
+                                    </div>
+                                    <div className="fin ifMobile">
+                                        <div className="float_left">
+                                            <button
+                                                type="submit"
+                                                className="btn medium"
+                                            >
+                                                등록
+                                            </button>
+                                            <button
+                                                type="submit"
+                                                className="btn medium"
+                                            >
+                                                취소
+                                            </button>
+                                        </div>
+                                        <div className="float_right"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {children}
                 </div>
             </div>
