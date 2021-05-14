@@ -111,9 +111,6 @@
   box-sizing: border-box;
 }
 
-.master_box .subtop_nav {
-  top: -37px;
-}
 .master_box h4 {
   padding-left: 0;
   display: block;
@@ -3458,10 +3455,7 @@ div.master_popup div.alignment {
     max-width:  10%;
     margin-right: 0;
   }
-  .master_box .subtop_nav {
-    top: -55px;
-  }
-
+  
   div.tab-nav li a {
     font-size: 12px;
     padding: 0 11px;
@@ -4690,9 +4684,7 @@ div.master_popup div.alignment {
     padding-left: 0;
     padding-right: 0;
   }
-  .master_box .subtop_nav {
-    top: -57px;
-  }
+
   .master_box div.alignment .left_div {
     width: 50%;
   }
@@ -4747,9 +4739,7 @@ div.master_popup .state.re-refund {
 }
 
 @media (min-width: 1500px) {
-  .master_box .subtop_nav {
-    top: -57px;
-  }
+ 
 }
 
 @media (max-width: 1000px) {

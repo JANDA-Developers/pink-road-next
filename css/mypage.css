@@ -60,31 +60,39 @@
   text-align: center;
   color: #999;
 }
+
 .mypage_in .master_popup .btn {
   width: auto;
   margin: 3px 3px 3px 0;
 }
+
 .mypage_in .master_popup .btn.mini2 {
   line-height: 26px;
 }
+
 .mypage_in .master_popup .side__form {
   display: inline-block;
 }
+
 .reservation_div .t07 {
   max-width: 100%;
 }
+
 .mypage_in .fuction_list_mini .thead {
   display: none;
 }
+
 .mypage_in .fuction_list_mini .tbody li {
   display: block;
 }
+
 .mypage_in .search_box .jul1 input {
   box-shadow: none;
 }
 
 .mypage_in .subtop_nav {
-  top: -57px;
+  top: auto;
+  bottom: 100%;
 }
 
 .mypage_in .lnb {
@@ -3571,9 +3579,6 @@ div.reservation_popup .tr select {
     box-sizing: border-box;
     height: 130px;
   }
-  .mypage_in .subtop_nav {
-    top: -57px;
-  }
   .mypage_in .lnb .profile_box .welcome ul li i {
     display: block;
   }
@@ -4061,9 +4066,6 @@ div.reservation_popup .tr select {
   }
   .reservation_div .money {
     font-size: 1em;
-  }
-  .mypage_in .subtop_nav {
-    top: -39px;
   }
   .basket_box .basket_list .td {
     display: block !important;

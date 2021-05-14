@@ -218,7 +218,8 @@ i.tooltip {
 
 .subtop_nav {
   position: absolute;
-  top: -117px;
+  top: auto;
+  bottom: 100%;
   left: 0;
   width: 100%;
   display: block;
