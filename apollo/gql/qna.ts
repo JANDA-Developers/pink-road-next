@@ -12,6 +12,7 @@ export const F_QNA = gql`
         author {
             ...Fuser
         }
+        target
         isNotice
         isOpen
         boardType

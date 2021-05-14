@@ -7701,6 +7701,7 @@ export interface qnaFindById_QnaFindById_data {
   title: string;
   contents: string;
   author: qnaFindById_QnaFindById_data_author | null;
+  target: QnaTarget;
   isNotice: boolean | null;
   isOpen: boolean | null;
   boardType: BoardType;
@@ -7977,6 +7978,7 @@ export interface qnaList_QnaList_data {
   title: string;
   contents: string;
   author: qnaList_QnaList_data_author | null;
+  target: QnaTarget;
   isNotice: boolean | null;
   isOpen: boolean | null;
   boardType: BoardType;
@@ -13877,6 +13879,7 @@ export interface Fqna {
   title: string;
   contents: string;
   author: Fqna_author | null;
+  target: QnaTarget;
   isNotice: boolean | null;
   isOpen: boolean | null;
   boardType: BoardType;
@@ -14401,6 +14404,14 @@ export enum ProductStatus {
 export enum ProductType {
   EXPERIENCE = "EXPERIENCE",
   TOUR = "TOUR",
+}
+
+/**
+ * QNA 타겟
+ */
+export enum QnaTarget {
+  ALL = "ALL",
+  SELLER = "SELLER",
 }
 
 /**
@@ -15302,6 +15313,7 @@ export interface QnaCreateInput {
   files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   categoryId: string;
+  target: QnaTarget;
   password?: string | null;
 }
 
@@ -15315,6 +15327,7 @@ export interface QnaUpdateInput {
   keyWards?: string[] | null;
   files?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
+  target: QnaTarget;
   categoryId?: string | null;
 }
 

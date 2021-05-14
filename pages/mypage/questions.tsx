@@ -8,20 +8,22 @@ import { ViewCount } from "../../components/common/ViewCount";
 import { SingleSortSelect } from "../../components/common/SortSelect";
 import { autoComma } from "../../utils/formatter";
 import { SearchBar } from "../../components/searchBar/SearchBar";
-import { useMyBoardList } from "../../hook/useMyBoardList";
 import { useDateFilter } from "../../hook/useSearch";
 import { useSingleSort } from "../../hook/useSort";
 import { Change } from "../../components/loadingList/LoadingList";
-import Link from "next/link";
-import { BoardType, myBoardList_MyBoardList_data } from "../../types/api";
+import {
+    questionList_QuestionList_data,
+    QuestionStatus,
+} from "../../types/api";
 import { useRouter } from "next/router";
 import { isOpenKr } from "../../utils/enumToKr";
 import { generateClientPaging } from "../../utils/generateClientPaging";
 import { Paginater } from "../../components/common/Paginator";
+import { useQuestionList } from "../../hook/useQuestion";
 
 interface IProp {}
 
-export const MyPageBoard: React.FC<IProp> = () => {
+export const MyPageBoardQuestions: React.FC<IProp> = () => {
     const rotuer = useRouter();
     const {
         items,
@@ -33,7 +35,7 @@ export const MyPageBoard: React.FC<IProp> = () => {
         setViewCount,
         setUniqFilter,
         getLoading,
-    } = useMyBoardList();
+    } = useQuestionList();
     const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({
         filter,
         setFilter,
@@ -45,25 +47,27 @@ export const MyPageBoard: React.FC<IProp> = () => {
         setUniqFilter("title_contains", ["title_contains"], search);
     };
 
-    const handleClickBoard = (item: myBoardList_MyBoardList_data) => () => {
-        const isProduct = item.boardType === BoardType.PRODUCT;
-        const isQuestion = item.boardType === BoardType.QUESTION;
-        if (isProduct) rotuer.push(`/tour/view/${item._id}`);
-        if (isQuestion) rotuer.push(`/member/qna/view/${item._id}`);
+    const handleClickBoard = (item: questionList_QuestionList_data) => () => {
+        rotuer.push(`/member/question/view/${item._id}`);
     };
 
     const { slice, paging, setPage } = generateClientPaging(items, viewCount);
+
+    const checkOnStatus = (status?: QuestionStatus) =>
+        filter.status_eq === status ? "on" : "";
+
+    const handleSetFilter = (status?: QuestionStatus) => () => {
+        filter.status_eq = status;
+        setFilter({ ...filter });
+    };
 
     return (
         <MypageLayout>
             <div className="in myboard_box">
                 <h4>나의 게시글</h4>
-                <Link href="/questions">
-                    <a>리뷰목록</a>
-                </Link>
-                <Link href="/reviews">
-                    <a>질문목록</a>
-                </Link>
+                <button>전체</button>
+                <button>답변</button>
+                <button>미답변</button>
                 <div className="paper_div">
                     <div className="con_top">
                         <h6>상세검색</h6>
@@ -128,10 +132,10 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                                     <div className="th04">
                                                         <a>
                                                             {item.title}
-                                                            {item.questionStatus && (
+                                                            {item.status && (
                                                                 <i className="q_ok">
                                                                     {
-                                                                        item.questionStatus
+                                                                        item.status
                                                                     }
                                                                 </i>
                                                             )}
@@ -171,4 +175,4 @@ export const MyPageBoard: React.FC<IProp> = () => {
     );
 };
 
-export default auth(ALLOW_LOGINED)(MyPageBoard);
+export default auth(ALLOW_LOGINED)(MyPageBoardQuestions);

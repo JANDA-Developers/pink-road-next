@@ -264,7 +264,10 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                             )}
                                             {/* 개인 -*/}
                                             {isSeller && (
-                                                <Tip Tag="li" message="안녕">
+                                                <Tip
+                                                    Tag="li"
+                                                    message="총예약집계"
+                                                >
                                                     <Link href="/mypage/reservation">
                                                         <a>
                                                             예약
@@ -279,7 +282,10 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                             )}
                                             {/* 기업파트너/개인파트너 -*/}
                                             {isSeller && (
-                                                <li>
+                                                <Tip
+                                                    message="처리되지않은 정산요청"
+                                                    Tag="li"
+                                                >
                                                     <Link href="/mypage/settlement">
                                                         <a>
                                                             정산
@@ -290,7 +296,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                                             </i>
                                                         </a>
                                                     </Link>
-                                                </li>
+                                                </Tip>
                                             )}
                                             {/* 기업파트너/개인파트너 -*/}
                                         </ul>

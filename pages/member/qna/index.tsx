@@ -8,7 +8,7 @@ import { AppContext } from "../../_app";
 import { useRouter } from "next/router";
 import { MemberTopNav } from "../../../components/topNav/MemberTopNav";
 import { useQnaList } from "../../../hook/useQna";
-import { qnaList_QnaList_data } from "../../../types/api";
+import { qnaList_QnaList_data, QnaTarget } from "../../../types/api";
 import sanitizeHtml from "sanitize-html";
 import { Change } from "../../../components/loadingList/LoadingList";
 import { generateClientPaging } from "../../../utils/generateClientPaging";
@@ -17,13 +17,16 @@ import { PageEditor } from "../../../components/common/PageEditer";
 
 export const getStaticProps = getStaticPageInfo("qna");
 export const Qna: React.FC<Ipage> = (pageInfo) => {
-    const { isManager, categoriesMap, myProfile } = useContext(AppContext);
+    const { isManager, categoriesMap, myProfile, isSeller } =
+        useContext(AppContext);
     const { items, getLoading } = useQnaList({
         initialViewCount: 999,
         // fixingFilter: {
         //     isOpen_eq: isManager ? undefined : true
         // }
     });
+    const [target, setTarget] = useState<QnaTarget>(QnaTarget.ALL);
+    const isTargetAll = target === QnaTarget.ALL;
     const [filterCat, setFilterCat] = useState<string>();
     const router = useRouter();
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
@@ -93,6 +96,21 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                                     </li>
                                 ))}
                             </ul>
+                            {isSeller && (
+                                <button
+                                    onClick={() => {
+                                        setTarget(
+                                            isTargetAll
+                                                ? QnaTarget.SELLER
+                                                : QnaTarget.ALL
+                                        );
+                                    }}
+                                >
+                                    {isTargetAll
+                                        ? "파트너 문의하기"
+                                        : "일반 문의하기"}
+                                </button>
+                            )}
                         </div>
                     </div>
                     <Change change={!getLoading}>

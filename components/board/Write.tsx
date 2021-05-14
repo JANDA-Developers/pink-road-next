@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import { useContext } from "react";
 import { Ffile } from "types/api";
 import { TElements } from "types/interface";
