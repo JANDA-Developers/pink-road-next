@@ -700,14 +700,14 @@ export const Header: React.FC<IProp> = () => {
                                                     <a>나의 게시글</a>
                                                 </Link>
                                             </li>
-                                            {!isManager && isSeller && (
+                                            {isSeller && (
                                                 <li>
                                                     <Link href="/mypage/reservation">
                                                         <a>예약관리</a>
                                                     </Link>
                                                 </li>
                                             )}
-                                            {!isManager && isSeller && (
+                                            {isSeller && (
                                                 <li>
                                                     <Link href="/mypage/plainning">
                                                         <a>상품관리</a>

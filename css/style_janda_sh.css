@@ -8017,18 +8017,16 @@ i.calendar svg {
 
 /* rule */
 .rule_box {
-  margin-top: 60px !important;
   margin-bottom: 100px !important;
   box-sizing: border-box;
-  padding: 0 3%;
+  padding: 60px 3%;
 }
 
 /* privacy */
 .privacy_box {
-  margin-top: 60px !important;
   margin-bottom: 100px !important;
   box-sizing: border-box;
-  padding: 0 3%;
+  padding: 60px 3%;
 }
 .privacy_box ul.txtul {
   position: relative;
@@ -8045,16 +8043,14 @@ i.calendar svg {
 
 /*krterms */
 .krterms_box {
-  margin-top: 60px !important;
   margin-bottom: 100px !important;
   box-sizing: border-box;
-  padding: 0 3%;
+  padding: 60px 3%;
 }
 /*electronterms_box */
 .electronterms_box {
-  margin-top: 60px !important;
   margin-bottom: 100px !important;
-  padding: 0 3%;
+  padding: 60px 3%;
   box-sizing: border-box;
 }
 

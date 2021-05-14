@@ -127,9 +127,11 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
             <div className="mypage_in w100">
                 {isLogin && (
                     <ul className="subtop_nav">
-                        <li className={isTapOn("notification")}>
-                            <a href="/mypage/notification">알림</a>
-                        </li>
+                        {!isManager && (
+                            <li className={isTapOn("notification")}>
+                                <a href="/mypage/notification">알림</a>
+                            </li>
+                        )}
                         {/* 기업파트너/개인파트너/마스터 -*/}
                         {/* {isParterB && <li className={isTapOn("goods")}><Link href="/mypage/goods"><a >상품관리</a></Link></li>}기업파트너 - */}
                         {isSeller && (
@@ -144,7 +146,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                             </li>
                         )}
                         {/* 기업파트너/개인파트너 -*/}
-                        {(isParterB || isParterNonB) && (
+                        {!isManager && (isParterB || isParterNonB) && (
                             <li className={isTapOn("settlement")}>
                                 <a href="/mypage/settlement">매출/정산관리</a>
                             </li>
