@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import { userInfo } from "os";
 import React, { useContext, useRef } from "react";
-import { useCount } from "../hook/useCount";
+import { useCount, useCustomCount } from "../hook/useCount";
 import { usePageEditClientSide } from "../hook/usePageEdit";
 import { useUnReadSystemNotiFind } from "../hook/useSystemNoti";
 import { useUpload } from "../hook/useUpload";
@@ -16,17 +16,31 @@ import { getItemCount, Storage } from "../utils/Storage";
 import mypageLayout from "../info/mypageLayout.json";
 import SubTopNav from "./components/SubTop";
 import { Tip } from "../components/tip/Tip";
+import { useMyProfile } from "hook/useMyProfile";
 
 interface IProp {}
 
 export const MypageLayout: React.FC<IProp> = ({ children }) => {
     const pageTools = usePageEditClientSide("mypageLayout", mypageLayout);
-
+    const { todayBookingCount, countOfExpBooking } = useCustomCount([
+        "salesofLastMonth",
+        "salesOfThisMonth",
+        "countOfTourBooking",
+        "countOfExpBooking",
+        "todayBookingCount",
+    ]);
     const [userUpdate] = useUserUpdate();
     const { signleUpload } = useUpload();
     const { items } = useUnReadSystemNotiFind();
-    const { isSeller, isParterB, isParterNonB, myProfile, isManager, isLogin } =
-        useContext(AppContext);
+    const {
+        isSeller,
+        isParterB,
+        isParterNonB,
+        myProfile,
+        isManager,
+        isLogin,
+        myProfile: defaultProfile,
+    } = useContext(AppContext);
     const { data: count } = useCount();
     const hiddenFileInput = useRef<HTMLInputElement>(null);
 
@@ -52,7 +66,18 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         };
         signleUpload(fileUploaded, onUpload);
     };
-
+    const {
+        data,
+        setData,
+        handlePassword,
+        handleCompleteFindAddress,
+        handleTextData,
+        toggleCheck,
+        handleChangeRegistration,
+        handleBankRegistration,
+        hiddenBankFileInput,
+        hiddenBusiFileInput,
+    } = useMyProfile(defaultProfile!);
     const {
         buyTotalCount = 0,
         productRegistCount = 0,
@@ -63,13 +88,22 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         settleUnsolvedRequestCount = 0,
         totalSalesCount = 0,
     } = count || {};
+    const {
+        _id,
+        bookings,
+        email,
+        phoneNumber,
+        isVerifiedPhoneNumber,
+        busi_name,
+        connectionCount,
+    } = defaultProfile!;
 
     let current = "";
     if (typeof window !== "undefined") {
         current = window.location.href.split("/mypage/")[1];
     }
 
-    const isTapOn = (value?: string) => (current === value ? "on" : "");
+    const isTapOn = (value?: string) => (current.includes(value) ? "on" : "");
 
     return (
         <div>
@@ -95,9 +129,25 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                         <li className={isTapOn("notification")}>
                             <a href="/mypage/notification">알림</a>
                         </li>
-                        <li className={isTapOn(undefined)}>
-                            <a href="/mypage">회원정보</a>
-                        </li>{" "}
+                        {/* 기업파트너/개인파트너/마스터 -*/}
+                        {/* {isParterB && <li className={isTapOn("goods")}><Link href="/mypage/goods"><a >상품관리</a></Link></li>}기업파트너 - */}
+                        {isSeller && (
+                            <li className={isTapOn("plainning")}>
+                                <a href="/mypage/plainning">상품관리</a>
+                            </li>
+                        )}
+                        {/* 개인/기업파트너/개인파트너 -*/}
+                        {isSeller && (
+                            <li className={isTapOn("reservation")}>
+                                <a href="/mypage/reservation">예약관리</a>
+                            </li>
+                        )}
+                        {/* 기업파트너/개인파트너 -*/}
+                        {(isParterB || isParterNonB) && (
+                            <li className={isTapOn("settlement")}>
+                                <a href="/mypage/settlement">매출/정산관리</a>
+                            </li>
+                        )}
                         {/* 개인/기업파트너/개인파트너/마스터 -*/}
                         {isSeller || (
                             <li className={isTapOn("purchase")}>
@@ -114,29 +164,76 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                         <li className={isTapOn("my-board")}>
                             <a href="/mypage/my-board">나의 게시글</a>
                         </li>
-                        {/* 개인/기업파트너/개인파트너 -*/}
-                        {isSeller && (
-                            <li className={isTapOn("reservation")}>
-                                <a href="/mypage/reservation">예약관리</a>
-                            </li>
-                        )}
-                        {/* 기업파트너/개인파트너/마스터 -*/}
-                        {/* {isParterB && <li className={isTapOn("goods")}><Link href="/mypage/goods"><a >상품관리</a></Link></li>}기업파트너 - */}
-                        {isSeller && (
-                            <li className={isTapOn("plainning")}>
-                                <a href="/mypage/plainning">상품관리</a>
-                            </li>
-                        )}
+
                         {/* 기업파트너/개인파트너 -*/}
-                        {(isParterB || isParterNonB) && (
-                            <li className={isTapOn("settlement")}>
-                                <a href="/mypage/settlement">매출/정산관리</a>
-                            </li>
-                        )}
-                        {/* 기업파트너/개인파트너 -*/}
+                        <li className={isTapOn(undefined)}>
+                            <a href="/mypage">회원정보</a>
+                        </li>
                     </ul>
                 )}
                 <div className="w1200">
+                    <div className="mypage__topcunt">
+                        <div className="top_info">
+                            <ul className={`line${isSeller ? "5" : "4"}`}>
+                                {isSeller && (
+                                    <>
+                                        <li className="ct">
+                                            <span id="SellCount">
+                                                {salesofLastMonth}
+                                            </span>
+                                            <p>저번달 총 예약</p>
+                                        </li>
+                                        <li className="ct">
+                                            <span id="SellCount">
+                                                {salesOfThisMonth}
+                                            </span>
+                                            <p>이번달 총 예약</p>
+                                        </li>
+                                        <li className="ct">
+                                            <span id="SellCount">
+                                                {todayBookingCount}
+                                            </span>
+                                            <p>오늘 총 예약</p>
+                                        </li>
+                                        <li className="ct">
+                                            <span>{salesTotalCount}</span>
+                                            <p>
+                                                총 판매 수
+                                                <i
+                                                    className="jandaicon-info2"
+                                                    data-tip="총 예약자 수"
+                                                />
+                                            </p>
+                                        </li>
+                                        <li className="ct">
+                                            <span>{productRegistCount}</span>
+                                            <p>상품 등록 수</p>
+                                        </li>
+                                    </>
+                                )}
+                                {isSeller || (
+                                    <>
+                                        <li className="ct">
+                                            <span>{bookings.length}</span>
+                                            <p>총 구매 수</p>
+                                        </li>
+                                        <li className="ct">
+                                            <span>{connectionCount}</span>
+                                            <p>총 접속 수</p>
+                                        </li>
+                                        <li className="ct">
+                                            <span>{countOfExpBooking}</span>
+                                            <p>총 체험 수</p>
+                                        </li>
+                                        <li className="ct">
+                                            <span>{getItemCount()}</span>
+                                            <p>장바구니</p>
+                                        </li>
+                                    </>
+                                )}
+                            </ul>
+                        </div>
+                    </div>
                     {isLogin && (
                         <div className="lnb">
                             <div className="profile_box">
@@ -172,13 +269,13 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                         {/* 개인파트너 Personal Partner -*/}
                                         {!isManager && isParterNonB && (
                                             <i className="ct_partner">
-                                                Personal Partner
+                                                Solo Partner
                                             </i>
                                         )}
-                                        {/* 개인파트너 Personal Partner -*/}
+                                        {/* 기업파트너 Personal Partner -*/}
                                         {!isManager && isParterB && (
                                             <i className="ct_guide">
-                                                Corporation Partner
+                                                Group Partner
                                             </i>
                                         )}
                                         {/* 기업파트너 Corporation Partner -*/}

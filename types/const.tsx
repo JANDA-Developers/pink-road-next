@@ -99,8 +99,7 @@ export const ALLOW_SELLERS = [
     UserRole.admin,
 ];
 
-export const DEFAULT_PROFILE_IMG =
-    "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png";
+export const DEFAULT_PROFILE_IMG = "/img/svg/icon_men.svg";
 
 export const DEFAULT_PAGEINFO = {
     pageInfo: {},
@@ -215,5 +214,3 @@ export const getImg = (
     }
     return file.uri;
 };
-
-

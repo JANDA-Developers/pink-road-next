@@ -187,7 +187,6 @@ export const F_USER = gql`
         createdAt
         updatedAt
         isDelete
-        isHandWrited
         email
         nickName
         manageName

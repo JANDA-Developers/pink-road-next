@@ -1,8 +1,8 @@
-.BookingModal__top02 {
+/* .BookingModal__top02 {
     display: flex!important;
     align-items: center!important;
     justify-content: center!important;
-}
+} */
 
 .BookingModal__top02Align {
     margin: 0!important;
@@ -30,6 +30,9 @@
 
 .goods__info_title {
     padding: 10px!important;
+}
+div.master_popup .goods__info_title {
+    padding: 20px!important;
 }
 
 .MypageGoods__img {
@@ -155,14 +158,14 @@ div.popup_bg_full .in_txt.statement_popup {
         flex-direction: column;
     }
 }
-
+/* 
 
 .BookingModal__statusBox {
     display: flex!important;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .mypageSettlement__list {
     text-align: left;
@@ -381,6 +384,11 @@ background-color: #fff;
         padding: 17px 0 !important;
         text-align: center !important;
       }
+}
+@media (min-width: 1200px) {
+    div.master_popup .info_page div[class*="th0"]{
+      padding: 8px !important;
+    }
 }
 @media (min-width: 1230px) {
 .mypageSettlement__list{

@@ -6841,26 +6841,6 @@
             "deprecationReason": null
           },
           {
-            "name": "attributes",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ReviewAttribute",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "num",
             "description": null,
             "args": [],
@@ -11241,6 +11221,18 @@
             "type": {
               "kind": "OBJECT",
               "name": "Product",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "productOwner",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -37306,6 +37298,26 @@
             "defaultValue": null
           },
           {
+            "name": "target_eq",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "QnaTarget",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "target_not_eq",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "QnaTarget",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "categoryId_eq",
             "description": null,
             "type": {
@@ -38123,6 +38135,26 @@
                   "ofType": null
                 }
               }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "productOwner_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "productOwner_not_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null
           },

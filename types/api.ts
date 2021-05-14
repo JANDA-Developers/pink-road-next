@@ -60,7 +60,6 @@ export interface announceFindById_AnnounceFindById_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -331,7 +330,6 @@ export interface announceList_AnnounceList_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -1764,7 +1762,6 @@ export interface bookingFindByCode_BookingFindByCode_data_product_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -3811,7 +3808,6 @@ export interface newsFindById_NewsFindById_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -4081,7 +4077,6 @@ export interface newsList_NewsList_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -5093,7 +5088,6 @@ export interface portfolioFindById_PortfolioFindById_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -5337,7 +5331,6 @@ export interface portfolioList_PortfolioList_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -6187,7 +6180,6 @@ export interface productList_ProductList_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -6471,7 +6463,6 @@ export interface productFindById_ProductFindById_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -6932,7 +6923,6 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -7090,7 +7080,6 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -7576,7 +7565,6 @@ export interface qnaFindById_QnaFindById_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -7853,7 +7841,6 @@ export interface qnaList_QnaList_data_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -8287,7 +8274,6 @@ export interface getContext_GetProfile_data {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -9352,10 +9338,10 @@ export interface productReviewFindByIdVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: productreviewList
+// GraphQL query operation: productReviewList
 // ====================================================
 
-export interface productreviewList_ProductReviewList_error {
+export interface productReviewList_ProductReviewList_error {
   __typename: "CustomError";
   location: string;
   severity: ERR_SEVERITY;
@@ -9363,7 +9349,7 @@ export interface productreviewList_ProductReviewList_error {
   message: string;
 }
 
-export interface productreviewList_ProductReviewList_page {
+export interface productReviewList_ProductReviewList_page {
   __typename: "Page";
   /**
    * 현재 페이지 번호
@@ -9411,12 +9397,12 @@ export interface productreviewList_ProductReviewList_page {
   remainder: number;
 }
 
-export interface productreviewList_ProductReviewList_data_author_profileImg {
+export interface productReviewList_ProductReviewList_data_author_profileImg {
   __typename: "File";
   uri: string;
 }
 
-export interface productreviewList_ProductReviewList_data_author {
+export interface productReviewList_ProductReviewList_data_author {
   __typename: "User";
   _id: string;
   email: string;
@@ -9425,10 +9411,10 @@ export interface productreviewList_ProductReviewList_data_author {
   /**
    * 프로필 사진
    */
-  profileImg: productreviewList_ProductReviewList_data_author_profileImg | null;
+  profileImg: productReviewList_ProductReviewList_data_author_profileImg | null;
 }
 
-export interface productreviewList_ProductReviewList_data_files_imgScaleUrl {
+export interface productReviewList_ProductReviewList_data_files_imgScaleUrl {
   __typename: "ImgScaleUrl";
   tiny: string | null;
   small: string | null;
@@ -9437,15 +9423,15 @@ export interface productreviewList_ProductReviewList_data_files_imgScaleUrl {
   huge: string | null;
 }
 
-export interface productreviewList_ProductReviewList_data_files {
+export interface productReviewList_ProductReviewList_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
-  imgScaleUrl: productreviewList_ProductReviewList_data_files_imgScaleUrl | null;
+  imgScaleUrl: productReviewList_ProductReviewList_data_files_imgScaleUrl | null;
 }
 
-export interface productreviewList_ProductReviewList_data {
+export interface productReviewList_ProductReviewList_data {
   __typename: "ProductReview";
   _id: string;
   createdAt: any;
@@ -9453,7 +9439,7 @@ export interface productreviewList_ProductReviewList_data {
   isDelete: boolean;
   title: string;
   contents: string;
-  author: productreviewList_ProductReviewList_data_author | null;
+  author: productReviewList_ProductReviewList_data_author | null;
   num: number;
   boardType: BoardType;
   boardTypeName: string | null;
@@ -9467,7 +9453,7 @@ export interface productreviewList_ProductReviewList_data {
   slug: string;
   authorName: string;
   productName: string;
-  files: productreviewList_ProductReviewList_data_files[] | null;
+  files: productReviewList_ProductReviewList_data_files[] | null;
   productAuthorName: string;
   productAuthorId: string;
   productCode: string;
@@ -9475,19 +9461,19 @@ export interface productreviewList_ProductReviewList_data {
   rating: number;
 }
 
-export interface productreviewList_ProductReviewList {
+export interface productReviewList_ProductReviewList {
   __typename: "ProductReviewListResponse";
   ok: boolean;
-  error: productreviewList_ProductReviewList_error | null;
-  page: productreviewList_ProductReviewList_page;
-  data: productreviewList_ProductReviewList_data[];
+  error: productReviewList_ProductReviewList_error | null;
+  page: productReviewList_ProductReviewList_page;
+  data: productReviewList_ProductReviewList_data[];
 }
 
-export interface productreviewList {
-  ProductReviewList: productreviewList_ProductReviewList;
+export interface productReviewList {
+  ProductReviewList: productReviewList_ProductReviewList;
 }
 
-export interface productreviewListVariables {
+export interface productReviewListVariables {
   sort?: _ProductReviewSort[] | null;
   filter?: _ProductReviewFilter | null;
   pageInput: pageInput;
@@ -9737,7 +9723,6 @@ export interface settlementFindById_SettlementFindById_data_product_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -10089,7 +10074,6 @@ export interface settlementList_SettlementList_data_seller {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -10278,7 +10262,6 @@ export interface settlementList_SettlementList_data_product_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -11310,7 +11293,6 @@ export interface userList_UserList_data {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -11573,7 +11555,6 @@ export interface userFindById_UserFindById_data_products_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -11748,7 +11729,6 @@ export interface userFindById_UserFindById_data {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -12003,7 +11983,6 @@ export interface Fannounce_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -12644,7 +12623,6 @@ export interface Fuser {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -13217,7 +13195,6 @@ export interface Fnews_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -13589,7 +13566,6 @@ export interface Fportfolio_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -13760,7 +13736,6 @@ export interface Fqna_author {
   createdAt: any;
   updatedAt: any;
   isDelete: boolean;
-  isHandWrited: boolean | null;
   email: string;
   /**
    * 닉네임 유니크
@@ -15933,6 +15908,8 @@ export interface _ProductReviewFilter {
 export interface _QnaFilter {
   AND?: _QnaFilter[] | null;
   OR?: _QnaFilter[] | null;
+  target_eq?: QnaTarget | null;
+  target_not_eq?: QnaTarget | null;
   categoryId_eq?: string | null;
   categoryId_not_eq?: string | null;
   categoryId_in?: string[] | null;
@@ -15978,6 +15955,8 @@ export interface _QuestionFilter {
   categoryId_eq?: string | null;
   categoryId_not_eq?: string | null;
   categoryId_in?: string[] | null;
+  productOwner_eq?: string | null;
+  productOwner_not_eq?: string | null;
   code_eq?: string | null;
   code_not_eq?: string | null;
   anonymousName_eq?: string | null;

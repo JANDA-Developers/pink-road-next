@@ -1,33 +1,35 @@
-import React from "react";
-import { MypageLayout } from "../../layout/MypageLayout";
-import { ALLOW_LOGINED } from "../../types/const";
-import { auth } from "../../utils/with";
+import React, { useContext } from "react";
+import { MypageLayout } from "../../../layout/MypageLayout";
+import { ALLOW_LOGINED } from "../../../types/const";
+import { auth } from "../../../utils/with";
 import dayjs from "dayjs";
-import isEmpty from "../../utils/isEmpty";
-import { ViewCount } from "../../components/common/ViewCount";
-import { SingleSortSelect } from "../../components/common/SortSelect";
-import { autoComma } from "../../utils/formatter";
-import { SearchBar } from "../../components/searchBar/SearchBar";
-import { useDateFilter } from "../../hook/useSearch";
-import { useSingleSort } from "../../hook/useSort";
-import { Change } from "../../components/loadingList/LoadingList";
+import isEmpty from "../../../utils/isEmpty";
+import { ViewCount } from "../../../components/common/ViewCount";
+import { SingleSortSelect } from "../../../components/common/SortSelect";
+import { autoComma } from "../../../utils/formatter";
+import { SearchBar } from "../../../components/searchBar/SearchBar";
+import { useDateFilter } from "../../../hook/useSearch";
+import { useSingleSort } from "../../../hook/useSort";
+import { Change } from "../../../components/loadingList/LoadingList";
 import { useRouter } from "next/router";
-import { isOpenKr } from "../../utils/enumToKr";
-import { generateClientPaging } from "../../utils/generateClientPaging";
-import { Paginater } from "../../components/common/Paginator";
-import { useProductReviewList } from "../../hook/useReview";
+import { isOpenKr } from "../../../utils/enumToKr";
+import { Paginater } from "../../../components/common/Paginator";
+import { useProductReviewList } from "../../../hook/useReview";
 import {
     IModalInfo,
     ReviewModal,
-} from "../../components/reviewModal/ReviewModal";
-import { useModal } from "../../hook/useModal";
+} from "../../../components/reviewModal/ReviewModal";
+import { useModal } from "../../../hook/useModal";
+import { AppContext } from "../../_app";
 
 interface IProp {}
 
 export const MyPageBoardReviews: React.FC<IProp> = () => {
     const rotuer = useRouter();
+    const { myProfile } = useContext(AppContext);
     const {
         items,
+        pageInfo,
         filter,
         setFilter,
         sort,
@@ -36,7 +38,20 @@ export const MyPageBoardReviews: React.FC<IProp> = () => {
         setViewCount,
         setUniqFilter,
         getLoading,
-    } = useProductReviewList();
+        setPage,
+        page,
+    } = useProductReviewList({
+        fixingFilter: {
+            OR: [
+                {
+                    productAuthorId_eq: myProfile._id,
+                },
+                {
+                    authorEmail_eq: myProfile.email,
+                },
+            ],
+        },
+    });
     const { filterStart, filterEnd, hanldeCreateDateChange } = useDateFilter({
         filter,
         setFilter,
@@ -50,15 +65,10 @@ export const MyPageBoardReviews: React.FC<IProp> = () => {
         setUniqFilter("title_contains", ["title_contains"], search);
     };
 
-    const { slice, paging, setPage } = generateClientPaging(items, viewCount);
-
     return (
         <MypageLayout>
             <div className="in myboard_box">
                 <h4>나의 게시글</h4>
-                <button>전체</button>
-                <button>답변</button>
-                <button>미답변</button>
                 <div className="paper_div">
                     <div className="con_top">
                         <h6>상세검색</h6>
@@ -82,11 +92,13 @@ export const MyPageBoardReviews: React.FC<IProp> = () => {
                             <div className="con_bottom">
                                 <div className="alignment">
                                     <div className="left_div">
-                                        총{" "}
-                                        <strong>
-                                            {autoComma(items.length)}
-                                        </strong>
-                                        개
+                                        <span className="infotxt">
+                                            총
+                                            <strong>
+                                                {autoComma(pageInfo.totalCount)}
+                                            </strong>
+                                            개
+                                        </span>
                                     </div>
                                     <div className="right_div">
                                         <SingleSortSelect {...singoeSort} />
@@ -105,7 +117,7 @@ export const MyPageBoardReviews: React.FC<IProp> = () => {
                                     </div>
                                     <div className="tbody">
                                         <ul>
-                                            {slice.map((item, index) => (
+                                            {items.map((item, index) => (
                                                 <li
                                                     onClick={() => {
                                                         modalHook.openModal({
@@ -147,7 +159,7 @@ export const MyPageBoardReviews: React.FC<IProp> = () => {
                                     </div>
                                     <Paginater
                                         setPage={setPage}
-                                        pageInfo={paging}
+                                        pageInfo={pageInfo}
                                     />
                                 </div>
                             </div>
