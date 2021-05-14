@@ -7990,9 +7990,7 @@ i.calendar svg {
   box-sizing: border-box;
 }
 
-.board_box .subtop_nav {
-  top: -57px;
-}
+
 /* tourstory */
 .tourstory_box {
   padding-top: 63px;
@@ -8000,9 +7998,6 @@ i.calendar svg {
   box-sizing: border-box;
 }
 
-.tourstory_box .subtop_nav {
-  top: -57px;
-}
 
 /* news */
 .news_box {
@@ -8013,10 +8008,6 @@ i.calendar svg {
   box-sizing: border-box;
 }
 
-.news_box .subtop_nav {
-  top: auto !important;
-  bottom: 100%;
-}
 /* culture */
 .culture_box {
   padding-top: 63px;
@@ -9757,9 +9748,7 @@ ul.photo_ul.main_photo_ul li .title {
   .notification_box .paper_div {
     padding: 50px;
   }
-  .privacy_box .subtop_nav {
-    top: -117px !important;
-  }
+
   .footer_in .f_detail_wrap,
   #container .row1,
   #container .row3,
@@ -9824,12 +9813,6 @@ ul.photo_ul.main_photo_ul li .title {
     width: 100%;
   }
 
-  .tourstory_box .subtop_nav {
-    top: -52px;
-  }
-  .culture_box .subtop_nav {
-    top: -52px;
-  }
 
   .siteInfo_in .top_bg {
     height: 590px;
@@ -11907,9 +11890,7 @@ ul.photo_ul.main_photo_ul li .title {
 }
 
 @media (min-width: 1500px) {
-  .master_box .subtop_nav {
-    top: -56px;
-  }
+
   .portfolio_in .top_bg .w1200 {
     top: 312px;
   }
@@ -12427,6 +12408,12 @@ div.popup_bg_full h4{
   }
 }
 @media (max-width: 360px) {
+  .profile_box .welcometxt{
+    font-size: 0.8em;
+  }
+  .mypage_in .lnb .profile_box .point strong {
+    font-size: 1em;
+}
   .siteInfo_in .top_bg {
     height: 400px;
   }
