@@ -69,7 +69,6 @@ export const BookingModal: React.FC<IProp> = ({
         target: "cancelReq",
     });
     const [bookingCopy, setBookingCopy] = useCopy(booking);
-
     const paymentId = booking?.payment?._id;
 
     const [bookingUpdate, { loading: updateLoading }] = useBookingUpdate({

@@ -82,6 +82,11 @@ export const MyPageBoardReviews: React.FC<IProp> = () => {
                                 <a>리뷰목록</a>
                             </Link>
                         </li>
+                        <li className="on">
+                            <Link href="/mypage/my-board/ticket">
+                                <a>1:1문의</a>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
                 <div className="paper_div">

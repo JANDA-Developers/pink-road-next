@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useFeePolicy } from "../../hook/useFeePolicy";
 import {
     useSettlementFindById,
     useSettlementsRequest,
+    useSettlementUpdate,
 } from "../../hook/useSettlement";
+import { AppContext } from "../../pages/_app";
 import {
     BookingStatus,
     ProductStatus,
@@ -32,8 +34,11 @@ interface IProp {
 }
 
 export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
+    const { isSeller } = useContext(AppContext);
     const { item: settlement } = useSettlementFindById(settlementId);
+    const [settlementUpdate] = useSettlementUpdate();
     const { data: policy } = useFeePolicy();
+    const [memo, setMemo] = useState(settlement?.memo || "");
 
     const {
         product,
@@ -62,15 +67,16 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
     if (!settlement) return <div />;
     if (!product) return <div />;
 
-    // const handleCancelBooking = (bookingId: string) => {
-    //     confirm("정말로 예약을 취소 하시겠습니까?")
-    //     cancelBooking({
-    //         variables: {
-    //             bookingId,
-    //             reason
-    //         }
-    //     })
-    // }
+    const handleMemo = () => {
+        settlementUpdate({
+            variables: {
+                params: {
+                    memo,
+                },
+                settlementId: settlement._id,
+            },
+        });
+    };
 
     const bookingStatusColor = (status?: BookingStatus | null) => {
         if (status === BookingStatus.CANCEL) return "no";
@@ -254,6 +260,61 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                                 </div>
                             </div>
                         </div>
+                        {isSeller && (
+                            <div className="info_page">
+                                <h4>메모(판매자)</h4>
+                                <div className="write_comment">
+                                    <div className="comment_layout">
+                                        <ul className="text_box">
+                                            <li>
+                                                <div className="txta w100">
+                                                    <textarea
+                                                        maxLength={3000}
+                                                        onChange={(e) => {
+                                                            const val =
+                                                                e.currentTarget
+                                                                    .value;
+                                                            if (
+                                                                memo.length >
+                                                                3000
+                                                            )
+                                                                return;
+                                                            setMemo(val);
+                                                        }}
+                                                        value={memo || ""}
+                                                        style={{
+                                                            height: "100px",
+                                                        }}
+                                                        placeholder="메모는 꼼꼼하게 체크는 정확하게"
+                                                    ></textarea>
+                                                </div>
+                                            </li>
+                                            <li className="tr count">
+                                                {memo.length}/3000
+                                            </li>
+                                        </ul>
+                                        <div className="text_box_bottom">
+                                            <div className="float_left w50">
+                                                <span>
+                                                    <i className="jandaicon-info2"></i>
+                                                    기존의 메모를 삭제하시면
+                                                    되돌릴 수 없습니다. 신중하게
+                                                    입력해 주세요.
+                                                </span>
+                                            </div>
+                                            <div className="btn_send float_right">
+                                                <button
+                                                    onClick={handleMemo}
+                                                    className="comment_btn"
+                                                >
+                                                    저장
+                                                </button>{" "}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                         <HistoryTable histories={settlement.requestHistory} />
                         <div className="sum_div mt50">
                             <ul className="first_ul">

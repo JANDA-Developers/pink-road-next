@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { IBookingModalInfo } from "../components/bookingModal/BookingModal";
-import { BookingStatus, _BookingFilter } from "../types/api";
+import { BookingStatus, _BookingFilter, _BookingSort } from "../types/api";
 import { useBookingList } from "./useBooking";
 import { useIdSelecter } from "./useIdSelecter";
+import { ListInitOptions } from "./useListQuery";
 import { useModal } from "./useModal";
 import { useDateFilter } from "./useSearch";
 import { useSingleSort } from "./useSort";
@@ -12,11 +13,16 @@ export type TBookingSearchType = keyof Pick<
     "code_eq" | "exField__sellerName_eq" | "exField__title_contains"
 >;
 
-export const useBookingBoard = () => {
+export type TUseBookingBoard = ReturnType<typeof useBookingBoard>;
+export const useBookingBoard = (
+    listProp?: Partial<ListInitOptions<_BookingFilter, _BookingSort>>
+) => {
     const [isTimeOverExcept, setIsTimeOverExcept] = useState(false);
     const bookingModalHook = useModal<IBookingModalInfo>();
     const bookingListHook = useBookingList(
-        {},
+        {
+            ...listProp,
+        },
         {
             overrideVariables: {
                 isTimeOverExcept,

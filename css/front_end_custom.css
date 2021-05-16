@@ -29,6 +29,7 @@ ul[contenteditable="plaintext-only"] li {
     display: block!important;
     width: revert!important;
 }
+
 td {
     display: table-cell!important;
     vertical-align: inherit;
