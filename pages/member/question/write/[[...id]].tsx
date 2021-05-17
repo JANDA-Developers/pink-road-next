@@ -16,13 +16,13 @@ import { ProductSelectModal } from "../../../../components/ProductSelectModal";
 import { closeModal, openModal } from "../../../../utils/popUp";
 import { ThreePhoneNumberInput } from "../../../../components/phoneNumberInput/PhoneNumberInput";
 import { isPhone } from "../../../../utils/validation";
-import { QuestionUpdateInput } from "../../../../types/api";
+import { QuestionAS, QuestionUpdateInput } from "../../../../types/api";
 
 interface IProp {}
 
 export const QuestionWrite: React.FC<IProp> = () => {
     const router = useRouter();
-    const { categoriesMap, isLogin } = useContext(AppContext);
+    const { categoriesMap, isLogin, isSeller } = useContext(AppContext);
     const id = router.query.id?.[0] as string;
     const pw = getFromUrl("pw");
     const { item: question } = useQuestionFindById(id, {
@@ -34,6 +34,11 @@ export const QuestionWrite: React.FC<IProp> = () => {
     const mode = id ? "edit" : "create";
     const urlProductId = getFromUrl("pid") || "";
     const urlProductName = getFromUrl("name") || "";
+    const defaulQuestionAs =
+        question?.questionAS ||
+        (isSeller ? QuestionAS.PARTNER : QuestionAS.NORMAL);
+    const [target, setTarget] = useState<QuestionAS>(defaulQuestionAs);
+    const isTargetAll = target === QuestionAS.NORMAL;
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState({
@@ -42,7 +47,11 @@ export const QuestionWrite: React.FC<IProp> = () => {
         three: "",
     });
 
-    const categoryList = categoriesMap?.QUESTION.map(
+    const targetCats = isTargetAll
+        ? categoriesMap?.QUESTION
+        : categoriesMap?.QUESTION_FOR_PARTNER;
+
+    const categoryList = (targetCats || [])?.map(
         (cat): TCategory => ({
             _id: cat._id,
             label: cat.label,
@@ -79,8 +88,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
 
     const [questionDeleteMu] = useQuestionDelete({
         onCompleted: ({ QuestionDelete }) => {
-            if (QuestionDelete.ok) 2;
-            router.push(`/member/question`);
+            if (QuestionDelete.ok) router.push(`/member/question`);
         },
     });
 
@@ -138,6 +146,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
         password,
         anonymousContact: contact,
         anonymousName: name,
+        questionAS: target,
     };
 
     const handleUpdate = () => {
@@ -193,6 +202,39 @@ export const QuestionWrite: React.FC<IProp> = () => {
             <BoardWrite
                 className={urlProductId ? "boardWrite--categoryFix" : ""}
                 categoryList={categoryList}
+                WriteInjectionTop={
+                    <div>
+                        <div className="write_type">
+                            <div className="title">문의타입</div>
+                            <div className="input_form">
+                                <input
+                                    onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        setTarget(val as QuestionAS);
+                                    }}
+                                    type="radio"
+                                    id="all"
+                                    name="all"
+                                    value={QuestionAS.NORMAL}
+                                    checked={target === QuestionAS.NORMAL}
+                                />
+                                <label htmlFor="all">일반문의</label>
+                                <input
+                                    onChange={(e) => {
+                                        const val = e.currentTarget.value;
+                                        setTarget(val as QuestionAS.PARTNER);
+                                    }}
+                                    type="radio"
+                                    id="partner"
+                                    name="partner"
+                                    value={QuestionAS.PARTNER}
+                                    checked={target === QuestionAS.PARTNER}
+                                />
+                                <label htmlFor="partner">파트너문의</label>
+                            </div>
+                        </div>
+                    </div>
+                }
                 WriteInjection={
                     <div>
                         {isProductMode ? (

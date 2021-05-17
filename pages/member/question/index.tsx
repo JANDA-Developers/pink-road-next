@@ -53,7 +53,7 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
         sort,
         setSort,
     } = useQuestionList();
-    const { isManager, myProfile, isLogin } = useContext(AppContext);
+    const { isManager, myProfile, isLogin, isSeller } = useContext(AppContext);
     const pageTool = usePageEdit(pageInfo, defaultPageInfo);
     const { unAnsweredQuestionCount } = useCustomCount([
         "unAnsweredQuestionCount",
@@ -127,6 +127,14 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                 <MemberTopNav />
                 <div className="board_box">
                     <h4>고객문의</h4>
+                    {isSeller && (
+                        <button
+                            className="btn samll mb10"
+                            onClick={handleTargetChange}
+                        >
+                            {isTargetAll ? "파트너 문의" : "일반문의"}
+                        </button>
+                    )}
                     <div className="alignment">
                         <div className="left_div">
                             <ul className="board_option__btn">

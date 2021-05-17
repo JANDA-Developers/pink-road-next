@@ -1,20 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useFeePolicy } from "../../hook/useFeePolicy";
 import {
     useSettlementFindById,
-    useSettlementsRequest,
     useSettlementUpdate,
 } from "../../hook/useSettlement";
 import { AppContext } from "../../pages/_app";
-import {
-    BookingStatus,
-    ProductStatus,
-    SettlementStatus,
-} from "../../types/api";
+import { BookingStatus } from "../../types/api";
 import {
     bookingStatus,
     feePresent,
-    itemTypeToKr,
     paymentStatus,
     payMethodToKR,
     productStatus,
@@ -58,6 +52,13 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
         bankPrice,
         additionFeeSum,
     } = settlement || {};
+
+    useEffect(() => {
+        if (settlement) {
+            setMemo(settlement.memo || "");
+        }
+    }, [settlement?._id]);
+
     const { bookings, createdAt, startDate } = product || {};
     const canceldBooking = (bookings || []).filter(
         (bk) => bk.status === BookingStatus.CANCEL

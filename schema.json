@@ -835,6 +835,12 @@
             "deprecationReason": null
           },
           {
+            "name": "QUESTION_FOR_PARTNER",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "PORTPOLIO",
             "description": null,
             "isDeprecated": false,
@@ -11292,6 +11298,22 @@
             "deprecationReason": null
           },
           {
+            "name": "questionAS",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "QuestionAS",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "category",
             "description": null,
             "args": [],
@@ -11423,6 +11445,29 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "QuestionAS",
+        "description": "",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "PARTNER",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NORMAL",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -38854,6 +38899,16 @@
             "defaultValue": null
           },
           {
+            "name": "questionAS",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "QuestionAS",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "productId",
             "description": null,
             "type": {
@@ -38907,6 +38962,26 @@
                   "ofType": null
                 }
               }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "questionAS_eq",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "QuestionAS",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "questionAS_not_eq",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "QuestionAS",
+              "ofType": null
             },
             "defaultValue": null
           },
@@ -39597,6 +39672,16 @@
             "type": {
               "kind": "ENUM",
               "name": "QuestionStatus",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "questionAS",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "QuestionAS",
               "ofType": null
             },
             "defaultValue": null

@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import Link from "next/link";
 import { userInfo } from "os";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useCount, useCustomCount } from "../hook/useCount";
 import { usePageEditClientSide } from "../hook/usePageEdit";
 import { useUnReadSystemNotiFind } from "../hook/useSystemNoti";
@@ -17,7 +17,8 @@ import mypageLayout from "../info/mypageLayout.json";
 import SubTopNav from "./components/SubTop";
 import { Tip } from "../components/tip/Tip";
 import { useMyProfile } from "hook/useMyProfile";
-import { closeModal } from "../utils/popUp";
+import { Modal2 } from "../components/modal/Modal";
+import { useModal } from "../hook/useModal";
 
 interface IProp {}
 
@@ -30,6 +31,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         "countOfExpBooking",
         "todayBookingCount",
     ]);
+    const profileModalHook = useModal();
     const [userUpdate] = useUserUpdate();
     const { signleUpload } = useUpload();
     const { items } = useUnReadSystemNotiFind();
@@ -44,16 +46,19 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
     } = useContext(AppContext);
     const { data: count } = useCount();
     const hiddenFileInput = useRef<HTMLInputElement>(null);
+    const [tempProfileFile, setTempFile] = useState<Ffile>();
 
-    const changeProfile = (file: Ffile) => {
+    const changeProfile = () => {
         if (!myProfile) throw Error("profile is not exsit");
         userUpdate({
             variables: {
                 _id: myProfile._id!,
                 params: {
-                    profileImg: omits(file),
+                    profileImg: omits(tempProfileFile),
                 },
             },
+        }).then(() => {
+            profileModalHook.closeModal();
         });
     };
 
@@ -63,10 +68,11 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
         if (!event.target.files) return;
         const fileUploaded = event.target.files;
         const onUpload = (_: string, data: Ffile) => {
-            changeProfile(data);
+            setTempFile(data);
         };
         signleUpload(fileUploaded, onUpload);
     };
+
     const {
         data,
         setData,
@@ -182,35 +188,50 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                 {isSeller && (
                                     <>
                                         <li className="ct">
-                                            <span id="SellCount">
+                                            <span
+                                                className="mypage__topcntSpan"
+                                                id="SellCount"
+                                            >
                                                 {salesofLastMonth}
                                             </span>
                                             <p>저번달 총 예약</p>
                                         </li>
                                         <li className="ct">
-                                            <span id="SellCount">
+                                            <span
+                                                className="mypage__topcntSpan"
+                                                id="SellCount"
+                                            >
                                                 {salesOfThisMonth}
                                             </span>
                                             <p>이번달 총 예약</p>
                                         </li>
                                         <li className="ct">
-                                            <span id="SellCount">
+                                            <span
+                                                className="mypage__topcntSpan"
+                                                id="SellCount"
+                                            >
                                                 {todayBookingCount}
                                             </span>
                                             <p>오늘 총 예약</p>
                                         </li>
                                         <li className="ct">
-                                            <span>{salesTotalCount}</span>
+                                            <span className="mypage__topcntSpan">
+                                                {salesTotalCount}
+                                            </span>
                                             <p>
                                                 총 판매 수
-                                                <i
-                                                    className="jandaicon-info2"
-                                                    data-tip="총 예약자 수"
-                                                />
+                                                <Tip
+                                                    Tag="i"
+                                                    message="총 예약자 수"
+                                                >
+                                                    <i className="jandaicon-info2" />
+                                                </Tip>
                                             </p>
                                         </li>
                                         <li className="ct">
-                                            <span>{productRegistCount}</span>
+                                            <span className="mypage__topcntSpan">
+                                                {productRegistCount}
+                                            </span>
                                             <p>상품 등록 수</p>
                                         </li>
                                     </>
@@ -248,9 +269,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                                 myProfile?.profileImg
                                             )}
                                             onClick={() => {
-                                                if (hiddenFileInput.current) {
-                                                    hiddenFileInput.current.click();
-                                                }
+                                                profileModalHook.openModal();
                                             }}
                                             className="mypageLayout__profileImg img"
                                         >
@@ -406,50 +425,63 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                             </div>
                         </div>
                     )}
-                    <div className="popup_bg_mini">
-                        <div className="in_txt">
-                            <div className="page">
-                                <h3 className="popup__tittle">
-                                    프로필이미지 변경
-                                </h3>
-                                <a className="close_icon">
-                                    <i className="flaticon-multiply" />
-                                </a>
-                                <div className="con">
-                                    <div className="upload__outbox">
-                                        <span className="upload_out_box__fileName">
-                                            1620975963813_ddd__resized__.png
-                                            <i className="flaticon-multiply"></i>
-                                        </span>
-                                        <button
-                                            type="button"
-                                            className="btn btn_mini"
-                                        >
-                                            업로드
-                                        </button>
-                                        <input type="file"></input>
-                                    </div>
-                                    <div className="fin ifMobile">
-                                        <div className="float_left">
-                                            <button
-                                                type="submit"
-                                                className="btn medium"
-                                            >
-                                                등록
-                                            </button>
-                                            <button
-                                                type="submit"
-                                                className="btn medium"
-                                            >
-                                                취소
-                                            </button>
-                                        </div>
-                                        <div className="float_right"></div>
-                                    </div>
-                                </div>
-                            </div>
+                    <Modal2
+                        UpCon={
+                            <h3 className="popup__tittle">프로필이미지 변경</h3>
+                        }
+                        {...profileModalHook}
+                    >
+                        <div className="upload__outbox">
+                            <span className="upload_out_box__fileName">
+                                <span className="mr10">
+                                    {tempProfileFile?.name ||
+                                        "프로필 사진이 없습니다."}
+                                </span>
+                                <i
+                                    onClick={() => {
+                                        setTempFile(undefined);
+                                    }}
+                                    className="flaticon-multiply mr10"
+                                ></i>
+                            </span>
+                            <button
+                                style={{
+                                    padding: "0 24",
+                                }}
+                                onClick={() => {
+                                    if (hiddenFileInput.current) {
+                                        hiddenFileInput.current.click();
+                                    }
+                                }}
+                                type="button"
+                                className="btn btn_mini"
+                            >
+                                업로드
+                            </button>
                         </div>
-                    </div>
+                        <div className="fin ifMobile">
+                            <div className="float_left">
+                                <button
+                                    onClick={changeProfile}
+                                    type="submit"
+                                    className="btn medium"
+                                >
+                                    등록
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setTempFile(undefined);
+                                        profileModalHook.closeModal();
+                                    }}
+                                    type="submit"
+                                    className="btn medium"
+                                >
+                                    취소
+                                </button>
+                            </div>
+                            <div className="float_right"></div>
+                        </div>
+                    </Modal2>
                     {children}
                 </div>
             </div>

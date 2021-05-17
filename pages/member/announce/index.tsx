@@ -121,11 +121,7 @@ export const Announce: React.FC<Ipage> = (page) => {
                                             className="fix__top"
                                         >
                                             <div className="td01">
-                                                {getClientIndex(
-                                                    i,
-                                                    noticiePageInfo,
-                                                    notices.length
-                                                )}
+                                                <i className="icon__fix"></i>
                                             </div>
                                             <div className="td02">
                                                 <AnnotationBadge
@@ -133,7 +129,6 @@ export const Announce: React.FC<Ipage> = (page) => {
                                                 />
                                             </div>
                                             <div className="td03">
-                                                <i className="icon__fix"></i>
                                                 {item.title}{" "}
                                                 {!item.isOpen &&
                                                     "[비공개(관리자노출)]"}

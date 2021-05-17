@@ -6703,6 +6703,7 @@ export interface productFindById_ProductFindById_data_questions {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  questionAS: QuestionAS;
   anonymousName: string | null;
   anonymousContact: string | null;
   answers: productFindById_ProductFindById_data_questions_answers[] | null;
@@ -8897,6 +8898,7 @@ export interface questionList_QuestionList_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  questionAS: QuestionAS;
   anonymousName: string | null;
   anonymousContact: string | null;
   answers: questionList_QuestionList_data_answers[] | null;
@@ -9170,6 +9172,7 @@ export interface questionFindById_QuestionFindById_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  questionAS: QuestionAS;
   anonymousName: string | null;
   anonymousContact: string | null;
   answers: questionFindById_QuestionFindById_data_answers[] | null;
@@ -14606,6 +14609,7 @@ export interface Fquestion {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  questionAS: QuestionAS;
   anonymousName: string | null;
   anonymousContact: string | null;
   answers: Fquestion_answers[] | null;
@@ -15037,6 +15041,7 @@ export enum CategoryType {
   QNA = "QNA",
   QNA_FOR_PARTNER = "QNA_FOR_PARTNER",
   QUESTION = "QUESTION",
+  QUESTION_FOR_PARTNER = "QUESTION_FOR_PARTNER",
   REGION = "REGION",
   TOUR = "TOUR",
 }
@@ -15214,6 +15219,11 @@ export enum ProductType {
 export enum QnaTarget {
   ALL = "ALL",
   SELLER = "SELLER",
+}
+
+export enum QuestionAS {
+  NORMAL = "NORMAL",
+  PARTNER = "PARTNER",
 }
 
 /**
@@ -16166,6 +16176,7 @@ export interface QuestionCreateInput {
   keyWards?: string[] | null;
   files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
+  questionAS?: QuestionAS | null;
   productId?: string | null;
 }
 
@@ -16181,6 +16192,7 @@ export interface QuestionUpdateInput {
   thumb?: FileUpdateInput | null;
   productId?: string | null;
   status?: QuestionStatus | null;
+  questionAS?: QuestionAS | null;
   password?: string | null;
   anonymousName?: string | null;
   anonymousContact?: string | null;
@@ -16829,6 +16841,8 @@ export interface _QnaFilter {
 export interface _QuestionFilter {
   AND?: _QuestionFilter[] | null;
   OR?: _QuestionFilter[] | null;
+  questionAS_eq?: QuestionAS | null;
+  questionAS_not_eq?: QuestionAS | null;
   categoryId_eq?: string | null;
   categoryId_not_eq?: string | null;
   categoryId_in?: string[] | null;

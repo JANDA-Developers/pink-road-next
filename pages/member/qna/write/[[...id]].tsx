@@ -22,7 +22,9 @@ export const QnaWrite: React.FC<IProp> = () => {
     const id = router.query.id?.[0] as string;
     const { item: qna } = useQnaFindById(id);
     const loginModalHook = useModal();
-    const [target, setTarget] = useState<QnaTarget>(QnaTarget.ALL);
+    const [target, setTarget] = useState<QnaTarget>(
+        qna?.target || QnaTarget.ALL
+    );
     const isTargetAll = target === QnaTarget.ALL;
     const mode = id ? "edit" : "create";
     const { categoriesMap } = useContext(AppContext);

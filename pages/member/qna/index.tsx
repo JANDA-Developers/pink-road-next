@@ -85,9 +85,14 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                 <MemberTopNav />
                 <div className="board_qna board_box">
                     <h4>자주하는 질문</h4>
-                    <button onClick={handleTargetChange}>
-                        {isTargetAll ? "파트너 문의하기" : "일반 문의하기"}
-                    </button>
+                    {isSeller && (
+                        <button
+                            className="btn samll mb10"
+                            onClick={handleTargetChange}
+                        >
+                            {isTargetAll ? "파트너" : "일반"}
+                        </button>
+                    )}
                     <div className="alignment">
                         <div className="center_div">
                             <ul className="board_option__btn">
@@ -166,7 +171,16 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                     </Change>
                 </div>
                 <Paginater setPage={setPage} pageInfo={paging} />
-
+                {isSeller && (
+                    <button
+                        className="btn samll mb10"
+                        onClick={() => {
+                            router.push("/member/question/write");
+                        }}
+                    >
+                        더 궁금하신 내용이 있으신가요?
+                    </button>
+                )}
                 <div className="list_bottom mt30 mb100">
                     {isManager && (
                         <button

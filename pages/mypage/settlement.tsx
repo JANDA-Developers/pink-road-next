@@ -288,7 +288,7 @@ export const MySettlement: React.FC<IProp> = () => {
                                     <div className="tbody">
                                         <ul>
                                             {items.map((item, i) => (
-                                                <li className="mypageSettlement__list">
+                                                <li key={item._id + "settlementLi"} className="mypageSettlement__list">
                                                     <div className="th02">
                                                         {item.product.code}
                                                     </div>
