@@ -30,7 +30,11 @@ export function useListQuery<F, S>({
     fixingFilter,
     fixingSort,
 }: ListInitOptions<F, S>) {
-    const { filter, setFilter: _setFilter, ...useFilters } = useQueryFilter<F>({
+    const {
+        filter,
+        setFilter: _setFilter,
+        ...useFilters
+    } = useQueryFilter<F>({
         ...initialFilter,
         ...fixingFilter,
     });

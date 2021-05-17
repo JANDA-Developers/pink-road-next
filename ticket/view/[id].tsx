@@ -2,20 +2,19 @@ import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { BoardView } from "components/board/View";
 import { Fanswer, Fticket } from "types/api";
-import { useTicketDelete, useTicketFindById } from "../../../hook/useTicket";
-import PageLoading from "../../Loading";
-import Page404 from "../../404";
-import { CommentWrite } from "../../../components/comment/CommentWrite";
-import { AppContext } from "../../_app";
-import Comment from "../../../components/comment/Comment";
+import { useTicketDelete, useTicketFindById } from "../../hook/useTicket";
+import { CommentWrite } from "../../components/comment/CommentWrite";
+import Comment from "../../components/comment/Comment";
 import {
     useAnswerCreate,
     useAnswerDelete,
     useAnswerUpdate,
-} from "../../../hook/useAnswer";
-import PageDeny from "../../Deny";
-import isEmpty from "../../../utils/isEmpty";
-import { getFromUrl } from "../../../utils/url";
+} from "../../hook/useAnswer";
+import isEmpty from "../../utils/isEmpty";
+import { getFromUrl } from "../../utils/url";
+import { AppContext } from "../../pages/_app";
+import Page404 from "../../pages/404";
+import PageLoading from "../../pages/Loading";
 
 interface IProp {}
 

@@ -2,19 +2,19 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { BoardWrite } from "components/board/Write";
 import { useBoard } from "hook/useBoard";
-import { omits } from "../../../utils/omit";
-import { auth } from "../../../utils/with";
-import { ALLOW_LOGINED } from "../../../types/const";
-import { Validater } from "../../../utils/validate";
+import { omits } from "../../utils/omit";
+import { auth } from "../../utils/with";
+import { ALLOW_LOGINED } from "../../types/const";
+import { Validater } from "../../utils/validate";
 import {
     useTicketCreate,
     useTicketDelete,
     useTicketFindById,
     useTicketUpdate,
-} from "../../../hook/useTicket";
-import { getFromUrl } from "../../../utils/url";
-import { UserSelectModal } from "../../../components/UserSelectModal";
-import { closeModal, openModal } from "../../../utils/popUp";
+} from "../../hook/useTicket";
+import { getFromUrl } from "../../utils/url";
+import { closeModal, openModal } from "../../utils/popUp";
+import { UserSelectModal } from "../../components/UserSearcher/UserSelectModal";
 
 interface IProp {}
 
@@ -137,7 +137,6 @@ export const TicketWrite: React.FC<IProp> = () => {
     return (
         <div>
             <BoardWrite
-                author={ticket?.author}
                 WriteInjection={
                     <div className="write_type">
                         <div className="title">상대</div>

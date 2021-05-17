@@ -20,9 +20,9 @@ import {
     productReviewFindById_ProductReviewFindById_data,
     _ProductReviewFilter,
     _ProductReviewSort,
-    productreviewList,
-    productreviewListVariables,
-    productreviewList_ProductReviewList_data,
+    productReviewList,
+    productReviewListVariables,
+    productReviewList_ProductReviewList_data,
 } from "../types/api";
 import { getRefetch } from "../utils/api";
 import {
@@ -73,7 +73,7 @@ export const useProductReviewFindById = generateFindQuery<
 export const useProductReviewList = generateListQueryHook<
     _ProductReviewFilter,
     _ProductReviewSort,
-    productreviewList,
-    productreviewListVariables,
-    productreviewList_ProductReviewList_data
+    productReviewList,
+    productReviewListVariables,
+    productReviewList_ProductReviewList_data
 >(PRODUCT_REVIEW_LIST, { initialSort: [_ProductReviewSort.createdAt_desc] });

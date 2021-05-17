@@ -1,23 +1,22 @@
 import React, { useContext } from "react";
 import Link from "next/link";
-import SubTopNav from "../../layout/components/SubTop";
-import { usePageEdit } from "../../hook/usePageEdit";
-import { getStaticPageInfo, Ipage } from "../../utils/page";
-import defaultPageInfo from "../../info/ticket.json";
-import { useTicketList } from "../../hook/useTicket";
-import { yyyymmddHHmm } from "../../utils/yyyymmdd";
-import { Paginater } from "../../components/common/Paginator";
+import SubTopNav from "../layout/components/SubTop";
+import { usePageEdit } from "../hook/usePageEdit";
+import { getStaticPageInfo, Ipage } from "../utils/page";
+import defaultPageInfo from "../info/ticket.json";
+import { useTicketList } from "../hook/useTicket";
+import { yyyymmddHHmm } from "../utils/yyyymmdd";
+import { Paginater } from "../components/common/Paginator";
 import { useRouter } from "next/router";
-import SearchMini from "../../components/common/SearchMini";
-import { useCustomCount } from "../../hook/useCount";
-import { SingleSortSelect } from "../../components/common/SortSelect";
-import { useSingleSort } from "../../hook/useSort";
-import { ViewCount } from "../../components/common/ViewCount";
-import { ticketList_TicketList_data } from "../../types/api";
-import { MemberTopNav } from "../../components/topNav/MemberTopNav";
-import { Change } from "../../components/loadingList/LoadingList";
+import SearchMini from "../components/common/SearchMini";
+import { SingleSortSelect } from "../components/common/SortSelect";
+import { useSingleSort } from "../hook/useSort";
+import { ViewCount } from "../components/common/ViewCount";
+import { ticketList_TicketList_data } from "../types/api";
+import { MemberTopNav } from "../components/topNav/MemberTopNav";
+import { Change } from "../components/loadingList/LoadingList";
 import dayjs from "dayjs";
-import { AppContext } from "../_app";
+import { AppContext } from "../pages/_app";
 
 export const getStaticProps = getStaticPageInfo("ticket");
 export const Ticket: React.FC<Ipage> = (pageInfo) => {

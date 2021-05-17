@@ -9,6 +9,7 @@ export const defaultCatsMap: Record<CategoryType, Fcategory[]> = {
     TOUR: [],
     REGION: [],
     QNA_FOR_PARTNER: [],
+    QUESTION_FOR_PARTNER: [],
 };
 
 export const categoryMap = (catList: Fcategory[]) => {
