@@ -205,4 +205,9 @@ export const MyPagePurchase: React.FC<IProp> = () => {
     );
 };
 
-export default MyPagePurchase;
+export const MyPagePurchaseWrap = () => {
+    if (typeof window === "undefined") return null;
+    return <MyPagePurchase />;
+};
+
+export default MyPagePurchaseWrap;

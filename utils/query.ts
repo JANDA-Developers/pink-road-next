@@ -108,25 +108,16 @@ export const generateListQueryHook = <F, S, Q, V, R>(
             fixingFilter: {},
         };
 
-        console.log("defaultInitData.initialPageIndex");
-        console.log(defaultInitData.initialPageIndex);
         const initialData = Object.assign(
             defaultInitData,
             queryInitDefault,
             initialOption
         );
 
-        console.log("initialData.initialPageIndex");
-        console.log(initialData.initialPageIndex);
         const { skipInit, skip, variables, overrideVariables, ...ops } =
             options;
-        console.log({ initialData });
-        console.log({ variables });
-        console.log({ overrideVariables });
-        console.log({ ops });
         initialData.initialPageIndex;
         const { integratedVariable, ...params } = useListQuery(initialData);
-        console.log({ integratedVariable });
         const [getData, { data, loading: getLoading, ...queryElse }] =
             useLazyQuery<Q, V>(QUERY, {
                 fetchPolicy: "cache-and-network",
