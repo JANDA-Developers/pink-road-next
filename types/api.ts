@@ -10483,6 +10483,7 @@ export interface settlementRequest {
 
 export interface settlementRequestVariables {
   settlementId: string;
+  photos: FileCreateInput[];
 }
 
 /* tslint:disable */

@@ -18,6 +18,7 @@ import {
     ProductReOpenReq,
     ProductStatus,
     ProductType,
+    QuestionAS,
     QuestionStatus,
     RequestStatus,
     SettlementStatus,
@@ -90,6 +91,12 @@ export const questionSatus = (status: QuestionStatus) => {
 export const itemTypeToKr = (type: ProductType) => {
     if (type === ProductType.EXPERIENCE) return "체험";
     if (type === ProductType.TOUR) return "체험";
+    return "";
+};
+
+export const questionAsKr = (type: QuestionAS) => {
+    if (type === QuestionAS.NORMAL) return "일반문의";
+    if (type === QuestionAS.PARTNER) return "파트너문의";
     return "";
 };
 

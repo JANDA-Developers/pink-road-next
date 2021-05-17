@@ -146,8 +146,11 @@ export const SETTLEMENT_LIST = gql`
 `;
 
 export const SETTLEMENT_REQUEST = gql`
-    mutation settlementRequest($settlementId: String!) {
-        SettlementRequest(settlementId: $settlementId) {
+    mutation settlementRequest(
+        $settlementId: String!
+        $photos: [FileCreateInput!]!
+    ) {
+        SettlementRequest(settlementId: $settlementId, photos: $photos) {
             ok
             error {
                 location
