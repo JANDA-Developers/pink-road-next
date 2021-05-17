@@ -48,19 +48,17 @@ export const MsIndex: React.FC<IProp> = () => {
         setUniqFilter: setBookingFilter,
         filter: bookingFilter,
     } = useBookingList({ initialViewCount: 4, fixingSort: updateAtSort });
-    const {
-        items: cancelBookings,
-        setUniqFilter: setCancelBookingFilter,
-    } = useBookingList({
-        initialViewCount: 4,
-        fixingSort: updateAtSort,
-        initialFilter: {
-            OR: [
-                { status_eq: BookingStatus.CANCEL },
-                { isCancelRequest_eq: true },
-            ],
-        },
-    });
+    const { items: cancelBookings, setUniqFilter: setCancelBookingFilter } =
+        useBookingList({
+            initialViewCount: 4,
+            fixingSort: updateAtSort,
+            initialFilter: {
+                OR: [
+                    { status_eq: BookingStatus.CANCEL },
+                    { isCancelRequest_eq: true },
+                ],
+            },
+        });
     const {
         items: settlements,
         setUniqFilter: setSettlementFilter,
@@ -809,6 +807,9 @@ export const MsIndex: React.FC<IProp> = () => {
                     {/* <UserModal /> */}
                     {/* <BookingModal code={""} /> */}
                     {/* <ProductModal productId={} /> */}
+                </div>
+                <div className="infobox__bottom">
+                    <i className="jandaicon-info3" /> 주의사항
                 </div>
             </div>
         </MasterLayout>

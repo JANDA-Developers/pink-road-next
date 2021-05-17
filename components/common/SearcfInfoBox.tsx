@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 
-interface IProp {
-}
+interface IProp {}
 
 export const SearcfInfoBox: React.FC<IProp> = () => {
     return null;
-    // return <div className="search_info_box">
+    // return <div className="infobox__bottom">
     //     <ul>
     //         <li><h3><i className="jandaicon-info2 tooltip"></i> 검색조건 안내</h3></li>
     //         <li>승인여부 : 승인대기 / 승인 / 미승인</li>
@@ -20,4 +19,3 @@ export const SearcfInfoBox: React.FC<IProp> = () => {
     //     </ul>
     // </div>;
 };
-
