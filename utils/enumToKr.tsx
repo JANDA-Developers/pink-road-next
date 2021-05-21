@@ -1,5 +1,6 @@
 import {
     AddtionalFeesStatus,
+    AgeType,
     AnnounceType,
     bookingFindByCode_BookingFindByCode_data_bankTransInfo,
     BookingStatus,
@@ -130,6 +131,12 @@ export const userRoleToKR = (role?: UserRole) => {
     if (role === UserRole.manager) return "마스터";
     if (role === UserRole.admin) return "관리자(JANDA)";
     return "";
+};
+
+export const AgeTypeToKR: Record<AgeType, string> = {
+    adult: "성인",
+    kid: "소인",
+    baby: "유아",
 };
 
 export const genderToKR = (gender?: GENDER | null) => {

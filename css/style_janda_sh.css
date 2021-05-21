@@ -1162,6 +1162,16 @@ div.popup_bg_mini .page {
   box-shadow: 2px 2px 2px #00000052;
   position: relative;
 }
+div.popup_bg_mini .con {
+  max-height: 90vh;
+  max-width: 80vw;
+  overflow: auto;
+  overscroll-behavior: none;
+}
+
+
+
+
 
 .popup_bg_mini .fade {
   display: block !important;

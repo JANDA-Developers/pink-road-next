@@ -42,6 +42,7 @@ import { ITableInfo } from "../recipt/components/TableRender";
 import CardRecipt from "../recipt/CreditCardReceipt";
 import { BookingStatusBadge, RequestBadge } from "../Status/StatusBadge";
 import { Traveler } from "../traveler/Traveler";
+import { TravlerControlTable } from "./TravelerControlTable";
 
 export interface IBookingModalInfo {
     code: string;
@@ -679,160 +680,24 @@ export const BookingModal: React.FC<IProp> = ({
                                         ? "실제여행자 정보"
                                         : "실제참여자 정보"}
                                 </h4>
-                                <div className="info_table peoplelist">
-                                    <div className="top_info">
-                                        <span className="tt">
-                                            선택된 예약 인원
-                                        </span>
-                                        <span>
-                                            총 {booking.totalCount}명 ( 성인
-                                            {booking.adultCount} / 소아
-                                            {booking.kidCount} / 유아
-                                            {booking.babyCount} )
-                                        </span>
-                                        <span className="float_right">
-                                            {bookingCopy.bookerInclue ? (
-                                                <i
-                                                    onClick={() => {
-                                                        bookingCopy.bookerInclue =
-                                                            false;
-                                                        bookingCopy.travelers =
-                                                            [
-                                                                {
-                                                                    __typename:
-                                                                        "Traveler",
-                                                                    name: bookingCopy.name,
-                                                                    phoneNumber:
-                                                                        bookingCopy.phoneNumber,
-                                                                    age: "",
-                                                                    gender: "",
-                                                                },
-                                                                ...bookingCopy.travelers,
-                                                            ];
-                                                        setBookingCopy({
-                                                            ...bookingCopy,
-                                                        });
-                                                    }}
-                                                    className="menok"
-                                                >
-                                                    예약자-포함
-                                                </i>
-                                            ) : (
-                                                <i
-                                                    onClick={() => {
-                                                        bookingCopy.bookerInclue =
-                                                            true;
-
-                                                        bookingCopy.travelers.splice(
-                                                            0,
-                                                            1
-                                                        );
-                                                        setBookingCopy({
-                                                            ...bookingCopy,
-                                                        });
-                                                    }}
-                                                    className="menno"
-                                                >
-                                                    예약자-미포함
-                                                </i>
-                                            )}
-                                        </span>
-                                    </div>
-                                    {/* <div className="tr first peoplelist__wrap">
-                                        <div className="re01 peoplelist__li">
-                                            예약자{" "}
-                                            {bookingCopy.bookerInclue &&
-                                                "(본인)"}
-                                        </div>
-                                        <div className="re02 peoplelist__li">
-                                            예약자명
-                                        </div>
-                                        <div className="re03 peoplelist__li">
-                                            <span>{booking.name}</span>
-                                        </div>
-                                        <div className="re04 peoplelist__li">
-                                            연락처
-                                        </div>
-                                        <div className="re05 peoplelist__li">
-                                            <a
-                                                href={`tel:${autoHypenPhone(
-                                                    booking.phoneNumber
-                                                )}`}
-                                            >
-                                                {autoHypenPhone(
-                                                    booking.phoneNumber
-                                                )}
-                                            </a>
-                                        </div>
-                                        <div className="re06 peoplelist__li">
-                                            성별
-                                        </div>
-                                        <div className="re07 peoplelist__li">
-                                            <span>
-                                                {genderToKR(booking.gender) ||
-                                                    "정보없음"}
-                                            </span>
-                                        </div>
-                                        <div className="re08 peoplelist__li">
-                                            나이
-                                        </div>
-                                        <div className="re09 peoplelist__li">
-                                            <span>
-                                                {booking.age || "정보없음"}
-                                            </span>
-                                        </div>
-                                    </div> */}
-                                    {isSeller && (
-                                        <div>
-                                            {bookingCopy?.travelers?.map(
-                                                (traveler, index) => (
-                                                    <Traveler
-                                                        isFisrt={index === 0}
-                                                        isLast={
-                                                            index ===
-                                                            bookingCopy
-                                                                ?.travelers
-                                                                .length -
-                                                                1
-                                                        }
-                                                        handleDelete={() => {
-                                                            bookingCopy.travelers.splice(
-                                                                index,
-                                                                1
-                                                            );
-                                                            setBookingCopy({
-                                                                ...bookingCopy,
-                                                            });
-                                                        }}
-                                                        handleAdd={() => {
-                                                            bookingCopy.travelers.push(
-                                                                {
-                                                                    __typename:
-                                                                        "Traveler",
-                                                                    age: "",
-                                                                    gender: GENDER.FEMALE,
-                                                                    name: "",
-                                                                    phoneNumber:
-                                                                        "",
-                                                                }
-                                                            );
-                                                            setBookingCopy({
-                                                                ...bookingCopy,
-                                                            });
-                                                        }}
-                                                        traveler={traveler}
-                                                        key={index + "traveler"}
-                                                        onChange={() => {
-                                                            setBookingCopy({
-                                                                ...bookingCopy,
-                                                            });
-                                                        }}
-                                                    />
-                                                )
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
+                                <TravlerControlTable
+                                    adultCount={bookingCopy?.adultCount}
+                                    totalCount={bookingCopy?.totalCount}
+                                    babyCount={bookingCopy?.babyCount}
+                                    kidsCount={bookingCopy?.kidCount}
+                                    bookerInclue={bookingCopy?.bookerInclue}
+                                    bookerName={bookingCopy?.name}
+                                    bookerPhoneNumber={bookingCopy?.phoneNumber}
+                                    onChangeTravlers={(travlers) => {
+                                        bookingCopy.travelers = travlers;
+                                        setBookingCopy({ ...bookingCopy });
+                                    }}
+                                    onChnageBookerInclude={(include) => {
+                                        bookingCopy.bookerInclue = include;
+                                        setBookingCopy({ ...bookingCopy });
+                                    }}
+                                    travelers={bookingCopy?.travelers}
+                                />
                             </div>
                         </div>
 

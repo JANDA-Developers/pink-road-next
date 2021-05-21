@@ -228,17 +228,6 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                     <h4 className="title">결제정보</h4>
                     <div className="input_form">
                         <span id="category" className="category r3">
-                            {/* <select onChange={(e) => {
-                            const val = e.currentTarget.value;
-                            setPayMethod(val as PayMethod)
-                        }} value={payMethod} name="category_srl">
-                            <option value={PayMethod.BANK}>
-                                카드결제
-                            </option>
-                            <option value={PayMethod.NICEPAY_CARD} >
-                                무통장입금
-                            </option>
-                        </select> */}
                             <ul className="paymethod__Check">
                                 <li>
                                     <div

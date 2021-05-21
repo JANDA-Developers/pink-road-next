@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Basket } from "../../components/basket/Basket";
+import { TravlerControlTable } from "../../components/bookingModal/TravelerControlTable";
 import { getAuth } from "../../components/nice/getAuth";
 import NiceElments from "../../components/nice/NiceElement";
 import { generateNiceData } from "../../components/nice/niceUtils";
@@ -168,12 +169,14 @@ export const Payment: React.FC<IProp> = ({}) => {
                     getLoading ? (
                         <div />
                     ) : (
-                        <Basket
-                            mode="single"
-                            handleSingleOrder={handleSingleOrder}
-                            updateComponent={updateComponent}
-                            items={items}
-                        />
+                        <div>
+                            <Basket
+                                mode="single"
+                                handleSingleOrder={handleSingleOrder}
+                                updateComponent={updateComponent}
+                                items={items}
+                            />
+                        </div>
                     )
                 }
             />

@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { IHumanCount, IProduct, TCount } from "types/interface";
-import { Fproduct } from "../types/api";
+import { Fproduct, Ftraveler } from "../types/api";
 
 export type LocalManagerConfig = {
     readonly storage: "localStorage" | "sessionStorage";
@@ -100,6 +100,7 @@ export interface IBasketItem extends Partial<Fproduct> {
     count: IHumanCount;
     pickupAt?: Date;
     version?: number;
+    travlers?: Ftraveler[];
 }
 
 export const deleteExpireBracket = () => {

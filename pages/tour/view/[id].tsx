@@ -50,6 +50,9 @@ import { yyyymmdd } from "../../../utils/yyyymmdd";
 import PageDeny from "../../Deny";
 import { getResized } from "../../../utils/pageEdit";
 import { getClientIndex } from "../../../utils/getClientIndex";
+import { Validater } from "../../../utils/validate";
+import { Modal2 } from "../../../components/modal/Modal";
+import { TravlerControlTable } from "../../../components/bookingModal/TravelerControlTable";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -62,6 +65,10 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
     const isExp = checkIsExp();
     const reviewModalHook = useModal<IModalInfo>();
+    const travelersModalHook =
+        useModal<{
+            nextAction: "bracket" | "pay";
+        }>(true);
 
     const { item: group } = useGroupFind("Recommend");
     const groupExsist = !isEmpty(group?.members);
@@ -86,10 +93,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
     const id = router.query.id as string;
     const { loading, item: product, getData, called } = useProductFindById(id);
-    const { isManager, isAdmin, myProfile, isSeller, isParterB } = useContext(
-        AppContext
-    );
-    console.log({ product });
+    const { isManager, isAdmin, myProfile, isSeller, isParterB } =
+        useContext(AppContext);
     const isMyProduct = product?.author?._id === myProfile?._id;
     const status = product?.status;
     const {
@@ -99,17 +104,18 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     } = generateClientPaging(product?.questions || [], 4);
 
     const sliderRef = useRef<SLIDER>(null);
-    const { count, handleCount, totalPrice } = useBasketCount({
-        adult_price: product?.adult_price,
-        baby_price: product?.baby_price,
-        kids_price: product?.kids_price,
-        capacity: product ? product.maxMember - product.peopleCount : 999,
-        defaultCount: {
-            adult: 0,
-            baby: 0,
-            kids: 0,
-        },
-    });
+    const { count, handleCount, totalPrice, setTravlers, travelers } =
+        useBasketCount({
+            adult_price: product?.adult_price,
+            baby_price: product?.baby_price,
+            kids_price: product?.kids_price,
+            capacity: product ? product.maxMember - product.peopleCount : 999,
+            defaultCount: {
+                adult: 0,
+                baby: 0,
+                kids: 0,
+            },
+        });
     const reviews = product?.productReview || [];
 
     const [sliderIndex, setSlideIndex] = useState(0);
@@ -155,14 +161,12 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             price: totalPrice,
             name: product!.title,
             _id: product!._id,
+            travlers: [],
         });
     };
 
     const handleAddBracket = () => {
-        if (isDisable) {
-            alert("예약 가능한 시간이 지났습니다.");
-            return;
-        }
+        if (!validate()) return;
         if (haveItem(product!._id)) {
             if (
                 !confirm(
@@ -188,28 +192,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         });
     };
 
-    const handleDoPay = () => {
-        if (isDisable) {
-            alert("예약 가능한 기간이 지났습니다.");
-            return;
-        }
-
-        const addPeople = count.adult + count.baby + count.kids;
-        if (addPeople === 0) {
-            alert("인원을 먼저 선택 해주세요.");
-            return;
-        }
-
-        const availableCount =
-            (product?.maxMember || 0) - (product?.peopleCount || 0);
-
-        if (availableCount < addPeople) {
-            alert(`해당 인원을 수용 할 수 없습니다. 전화문의 부탁드립니다.`);
-        }
-
-        if (availableCount) addBracket();
-        router.push("/payment/");
-    };
     const reviewPagination = generateClientPaging(reviews, 4);
 
     if (!called && loading) return <PageLoading />;
@@ -240,6 +222,41 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     const isPast = dayjs(startDate).isBefore(new Date());
     const productStatusIsNotOk = status !== ProductStatus.OPEN;
     const isDisable = isPast || productStatusIsNotOk;
+    const totalResvCount = count.adult + count.baby + count.kids;
+    const availableCount =
+        (product?.maxMember || 0) - (product?.peopleCount || 0);
+
+    const { validate } = new Validater([
+        {
+            value: !product.determined,
+            failMsg:
+                "예약이 마감되었습니다. 추가 예약문의는 고객센터를 이용해주세요",
+            failFn: moveToQuestionTap,
+        },
+        {
+            value: !isDisable,
+            failMsg: "예약 가능한 기간이 지났습니다.",
+        },
+        {
+            value: totalResvCount,
+            failMsg: "인원을 먼저 선택 해주세요.",
+        },
+        {
+            value: availableCount >= totalResvCount,
+            failMsg: `해당 인원을 수용 할 수 없습니다. 전화문의 부탁드립니다.`,
+        },
+    ]);
+
+    const handleDoPay = () => {
+        if (!validate()) return;
+        addBracket();
+        router.push("/payment/");
+    };
+
+    const handleSubmitTravelers = () => {
+        if (travelersModalHook.info.nextAction === "pay") handleDoPay();
+        else handleAddBracket();
+    };
 
     // 프로덕트 없을떄 로딩처리
     if (!product) return null;
@@ -592,25 +609,31 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                     {/* btn */}
                                     <div className="btn_box">
                                         <div className="links_wrap">
-                                            <div
-                                                className={`link02 ${
-                                                    isDisable &&
-                                                    "tourBracketBtn--disabled"
-                                                }`}
-                                            >
-                                                <a onClick={handleDoPay}>
-                                                    {isPast
-                                                        ? "기간종료"
-                                                        : "예약하기"}
+                                            <div className={`link02`}>
+                                                <a
+                                                    onClick={() => {
+                                                        travelersModalHook.openModal(
+                                                            {
+                                                                nextAction:
+                                                                    "pay",
+                                                            }
+                                                        );
+                                                    }}
+                                                >
+                                                    예약하기
                                                 </a>
                                             </div>
 
                                             <div
-                                                onClick={handleAddBracket}
-                                                className={`link05 ${
-                                                    isDisable &&
-                                                    "tourBracketBtn--disabled"
-                                                }`}
+                                                onClick={() => {
+                                                    travelersModalHook.openModal(
+                                                        {
+                                                            nextAction:
+                                                                "bracket",
+                                                        }
+                                                    );
+                                                }}
+                                                className={`link05`}
                                             >
                                                 <a>
                                                     <i className="icon_basket"></i>
@@ -920,6 +943,27 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 </Change>
                 <ReviewModal {...reviewModalHook} />
             </OnImagesLoaded>
+            <Modal2
+                UpCon={<h3 className="popup__tittle">실여행자 정보등록</h3>}
+                {...travelersModalHook}
+            >
+                <TravlerControlTable
+                    withIncludeBooker={false}
+                    bookerInclue={false}
+                    bookerName={""}
+                    bookerPhoneNumber={""}
+                    onChangeTravlers={setTravlers}
+                    onChnageBookerInclude={() => {}}
+                    travelers={travelers}
+                    totalCount={totalResvCount}
+                    kidsCount={count.kids}
+                    adultCount={count.adult}
+                    babyCount={count.baby}
+                />
+                <button onClick={handleSubmitTravelers} className="btn">
+                    제출하기
+                </button>
+            </Modal2>
         </div>
     );
 };
@@ -927,3 +971,13 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
 export default TourDetail;
 
 // 5분 //
+
+export const moveToQuestionTap = () => {
+    const toQuestionEl = document.getElementById("tap__04");
+    if (toQuestionEl) {
+        toQuestionEl.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+        });
+    }
+};

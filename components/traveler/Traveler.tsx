@@ -1,30 +1,35 @@
-import dayjs from "dayjs";
-import React, { useState } from "react";
+import React from "react";
 import { Ftraveler, GENDER } from "../../types/api";
-import { autoComma, autoHypenPhone } from "../../utils/formatter";
+import { AgeTypeToKR } from "../../utils/enumToKr";
+import { autoHypenPhone } from "../../utils/formatter";
 
 interface IProp {
+    index?: number;
     isLast?: boolean;
     isFisrt?: boolean;
     handleDelete: () => void;
     handleAdd: () => void;
     onChange: (traveler: Ftraveler) => void;
     traveler: Ftraveler;
+    isBooker?: boolean;
 }
 
 export const Traveler: React.FC<IProp> = ({
+    index,
     traveler,
     handleDelete,
     handleAdd,
     onChange,
     isLast,
     isFisrt,
+    isBooker,
 }) => {
     return (
         <div className="tr">
             <div className="re01">
-                여행자1
-                <span className="cut_nev">
+                {AgeTypeToKR[traveler.ageType]}
+                {isBooker ? "(예약자)" : ""}
+                {/* <span className="cut_nev">
                     {!isFisrt && (
                         <i
                             onClick={handleDelete}
@@ -39,12 +44,13 @@ export const Traveler: React.FC<IProp> = ({
                             title="삭제하기"
                         ></i>
                     )}
-                </span>
+                </span> */}
             </div>
             <div className="re02">여행자명</div>
             <div className="re03">
                 <span>
                     <input
+                        readOnly={isBooker}
                         type="text"
                         onChange={(e) => {
                             const val = e.currentTarget.value;
@@ -59,6 +65,7 @@ export const Traveler: React.FC<IProp> = ({
             <div className="re05">
                 <span>
                     <input
+                        readOnly={isBooker}
                         type="text"
                         onChange={(e) => {
                             const val = e.currentTarget.value;
@@ -83,21 +90,19 @@ export const Traveler: React.FC<IProp> = ({
                     <option value={GENDER.MAIL}>남성</option>
                 </select>
             </div>
-            <div className="re08">나이</div>
+            <div className="re08">내/외국인</div>
             <div className="re09">
-                <span>
-                    <input
-                        value={traveler.age}
-                        onChange={(e) => {
-                            const age = e.currentTarget.value;
-                            traveler.age = age;
-                            onChange(traveler);
-                        }}
-                        type="text"
-                        placeholder="YYYYMMDD"
-                    />{" "}
-                </span>
-                {/*input박스 클릭시 달력이 나와야 함, 우측 나이 계산은 자동으로 출력*/}
+                <select
+                    value={traveler.isForegin ? "true" : "false"}
+                    onChange={(op) => {
+                        const val = op.currentTarget.value;
+                        traveler.gender = val as GENDER;
+                        onChange(traveler);
+                    }}
+                >
+                    <option value={"true"}>내국인</option>
+                    <option value={"false"}>외국인</option>
+                </select>
             </div>
         </div>
     );

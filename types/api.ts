@@ -1906,7 +1906,8 @@ export interface bookingFindByCode_BookingFindByCode_data_travelers {
   name: string | null;
   phoneNumber: string;
   gender: string | null;
-  age: string;
+  ageType: AgeType;
+  isForegin: boolean;
 }
 
 export interface bookingFindByCode_BookingFindByCode_data_payment_history {
@@ -1970,7 +1971,7 @@ export interface bookingFindByCode_BookingFindByCode_data {
    */
   isPaid: boolean | null;
   booker: bookingFindByCode_BookingFindByCode_data_booker | null;
-  travelers: bookingFindByCode_BookingFindByCode_data_travelers[] | null;
+  travelers: bookingFindByCode_BookingFindByCode_data_travelers[];
   payment: bookingFindByCode_BookingFindByCode_data_payment | null;
 }
 
@@ -12796,7 +12797,8 @@ export interface Ftraveler {
   name: string | null;
   phoneNumber: string;
   gender: string | null;
-  age: string;
+  ageType: AgeType;
+  isForegin: boolean;
 }
 
 /* tslint:disable */
@@ -14994,6 +14996,15 @@ export enum AddtionalFeesStatus {
 }
 
 /**
+ * AgeType
+ */
+export enum AgeType {
+  adult = "adult",
+  baby = "baby",
+  kid = "kid",
+}
+
+/**
  * 공고문 타입
  */
 export enum AnnounceType {
@@ -15762,6 +15773,7 @@ export interface BookingsCreateInput {
   bankTransfter?: BankTransInfoInput | null;
   payMethod: PayMethod;
   product: string;
+  travelers?: TravelerInput[] | null;
   message?: string | null;
   babyCount: number;
   kidCount: number;
@@ -16277,7 +16289,8 @@ export interface TravelerInput {
   name?: string | null;
   phoneNumber: string;
   gender?: string | null;
-  age: string;
+  isForegin: boolean;
+  ageType: AgeType;
 }
 
 export interface UserUpdateInput {

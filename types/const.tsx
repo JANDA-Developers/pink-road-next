@@ -1,10 +1,13 @@
 import dayjs from "dayjs";
 import { IPageInfo, Ipopup } from "./interface";
 import {
+    AgeType,
     Ffile,
     FimgScaleUrl,
     Fquestion_author_profileImg,
+    Ftraveler,
     Fuser,
+    GENDER,
     ItineraryCreateInput,
     LinkBehavior,
     ProductStatus,
@@ -213,4 +216,13 @@ export const getImg = (
         return file.imgScaleUrl?.[size];
     }
     return file.uri;
+};
+
+export const DEFAULT_TRAVLER: Ftraveler = {
+    __typename: "Traveler",
+    isForegin: false,
+    ageType: AgeType.adult,
+    gender: GENDER.FEMALE,
+    name: "",
+    phoneNumber: "",
 };
