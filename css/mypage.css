@@ -60,31 +60,39 @@
   text-align: center;
   color: #999;
 }
+
 .mypage_in .master_popup .btn {
   width: auto;
   margin: 3px 3px 3px 0;
 }
+
 .mypage_in .master_popup .btn.mini2 {
   line-height: 26px;
 }
+
 .mypage_in .master_popup .side__form {
   display: inline-block;
 }
+
 .reservation_div .t07 {
   max-width: 100%;
 }
+
 .mypage_in .fuction_list_mini .thead {
   display: none;
 }
+
 .mypage_in .fuction_list_mini .tbody li {
   display: block;
 }
+
 .mypage_in .search_box .jul1 input {
   box-shadow: none;
 }
 
 .mypage_in .subtop_nav {
-  top: -57px;
+  top: auto;
+  bottom: 100%;
 }
 
 .mypage_in .lnb {
@@ -132,9 +140,9 @@
 
 .mypage_in .lnb .profile_box .name1 {
   width: 100%;
-  color: #848484;
+  color: #333333;
   margin-bottom: 10px;
-  font-size: 1em;
+  font-size: 1.2em;
   padding-top: 13px;
   font-family: "돋음", "NanumGothic";
 }
@@ -153,9 +161,9 @@
   border-radius: 3px;
   color: #333333;
   box-sizing: border-box;
-  padding: 0 5px;
-  margin-right: 5px;
-  vertical-align: inherit;
+  padding: 2px 8px;
+  margin-right: 10px;
+  vertical-align: text-bottom;
 }
 
 .mypage_in .lnb .profile_box [class*="name"] i.ct_family {
@@ -164,12 +172,12 @@
 }
 
 .mypage_in .lnb .profile_box [class*="name"] i.ct_guide {
-  background-color: #00bc0b;
+  background-color: #ed297b;
   color: #ffffff;
 }
 
 .mypage_in .lnb .profile_box [class*="name"] i.ct_partner {
-  background-color: #e2a600;
+  background-color: #ed297b;
   color: #ffffff;
 }
 
@@ -185,7 +193,7 @@
 .mypage_in .lnb .profile_box .point {
   width: 100%;
   color: #333;
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: 400;
 }
 
@@ -207,9 +215,9 @@
   background-color: #f5f5f5;
   border: 1px solid #ccc;
   border-radius: 300px;
-  background-size: 100%;
   background-position: center center;
   background-image: url(/img/pr_base_img.png);
+  background-size: cover;
   cursor: pointer;
   z-index: 50;
 }
@@ -243,7 +251,7 @@
 }
 
 .mypage_in .lnb .profile_box .point strong {
-  font-size: 1.5em;
+  font-size:1.1em;
   font-weight: 600;
 }
 
@@ -841,6 +849,35 @@
   cursor: pointer;
   font-style: normal;
   font-weight: 600;
+}
+
+.mypage__topcunt{
+  position: relative;
+  width: 100%;
+  border-radius: 5px;
+  display: block;
+  background-color: #e1e1e1;
+  box-sizing: border-box;
+  padding: 30px;
+  box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+  margin-bottom: 5px;
+}
+.mypage__topcunt ul{
+  display: flex;
+  align-items: center;
+}
+.mypage__topcunt li{
+  width: auto;
+  flex-grow: 1;
+  flex: 1 1;
+  display: inline-block;
+  text-align: center;
+}
+.mypage__topcunt .mypage__topcntSpan {
+  font-size: 2.7em;
+}
+.mypage__topcunt p{
+  color: #555;
 }
 
 /*goods_div */
@@ -1926,6 +1963,7 @@ div.reservation_popup .tr select {
   box-sizing: border-box;
   padding: 30px 3%;
   box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+  border-radius: 0 !important;
 }
 
 .myboard_box .board_list_mini .thead {
@@ -2096,11 +2134,12 @@ div.reservation_popup .tr select {
 }
 .notification_box .right .hang strong.blue {
   box-sizing: border-box;
-  padding: 1px 2px 0;
+  padding: 5px 7px;
   border-radius: 3px;
-  background-color: rgb(145 206 255 / 15%);
-  margin-right: 5px;
-  color: #1552b6;
+  background-color: #ed297b21;
+  margin-right: 8px;
+  color: #e41773;
+  font-size: 12px;
 }
 .notification_box .right .hang strong.green {
   -webkit-box-sizing: border-box;
@@ -2142,6 +2181,8 @@ div.reservation_popup .tr select {
 .notification_box .right .time {
   color: #999;
   font-size: 0.8em;
+  margin-top: 8px;
+  margin-left: 5px;
 }
 .notification_box .right .hang i {
   font-weight: 600;
@@ -2893,8 +2934,83 @@ div.reservation_popup .tr select {
   padding: 0 3%;
   box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
 }
+.mypage__tap{
+  width: 100%;
+  display: block;
+  text-align: left;
+  margin-bottom: -1px;
+  position: relative;
+}
+.mypage__tap {
+  width: 100%;
+  display: block;
+  text-align: left;
+  margin-bottom: -1px;
+  position: relative;
+  background-color: #f0f0f0;
+  border-radius: 0;
+  padding-left: 0;
+  box-sizing: border-box;
+  /* border: 1px solid #ccc; */
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
+}
+.mypage__tap li {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  z-index: 60;
+}
+.mypage__tap li:first-child {
+  margin-left: 5px;
+}
+.mypage__tap li a {
+  display: block;
+  font-weight: 600;
+  color: #999;
+  font-size: 1em;
+  line-height: 36px;
+  box-sizing: border-box;
+  margin-top: -7px;
+  margin-bottom: 0;
+  padding: 0 5px;
+  border-bottom: 0;
+  cursor: pointer;
+}
 
+.mypage__tap li.on a {
+  display: block;
+  background-color: #fff;
+  z-index: 51;
+  padding: 5px 16px 0;
+  color: #333;
+  border-radius: 5px 5px 0 0;
+  border-left: 1px solid #e9e9e9;
+  border-right: 1px solid #e9e9e9;
+  border-top: 1px solid #e9e9e9;
+}
+.upload_out_box__fileName{
+  line-height: 31px;
+  color: #999;
+  height: 33px;
+  display: inline-block;
+  padding-left: 10px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  border-radius: 5px;
+  background-color: #fbfbfb;
+  border: #e3e3e3 1px solid;
+  margin-right: 3px;
+}
+.popup_bg_mini .upload_out_box__fileName{
+  vertical-align: bottom;
+}
 @media (min-width: 768px) {
+  .mypage__tap li a {
+    font-size: 12px;
+    padding: 0 11px;
+    line-height: 43px;
+}
   .goods_div .fin .btn {
     width: auto;
   }
@@ -2932,6 +3048,9 @@ div.reservation_popup .tr select {
 }
 
 @media (min-width: 1000px) {
+  .myboard_box .board_list_mini .thead > div{
+    font-weight: 600;
+  }
   .goods_div .fuction_list_mini .th05,
   .goods_div .fuction_list_mini .th06,
   .goods_div .fuction_list_mini .th07,
@@ -3539,9 +3658,6 @@ div.reservation_popup .tr select {
     box-sizing: border-box;
     height: 130px;
   }
-  .mypage_in .subtop_nav {
-    top: -56px;
-  }
   .mypage_in .lnb .profile_box .welcome ul li i {
     display: block;
   }
@@ -3899,17 +4015,17 @@ div.reservation_popup .tr select {
 .reservation_div .state.re-ok {
   border: 1px solid #2196f3 !important;
   color: #2196f3 !important;
-  background-color: initial;
+  background-color: #ffffff !important;
 }
 .reservation_div .state.re-stay {
   border: 1px solid #616161 !important;
   color: #616161 !important;
-  background-color: initial;
+  background-color: #ffffff !important;
 }
 .reservation_div .state.re-refund {
   border: 1px solid #cf3932 !important;
   color: #cf3932 !important;
-  background-color: initial;
+  background-color: #ffffff !important;
 }
   div.alignment .left_div .infotxt{
     margin-top: 15px;
@@ -3998,7 +4114,7 @@ div.reservation_popup .tr select {
     background-color: #f5f5f5;
   }
   .mypage_in .lnb .profile_box .point {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-bottom: 10px;
   }
   .mypage_in .lnb li {
@@ -4017,6 +4133,15 @@ div.reservation_popup .tr select {
 }
 
 @media (max-width: 767px) {
+  .mypage__topcunt .mypage__topcntSpan{
+    font-size: 1.5em;
+  }
+  .mypage__topcunt p {
+    font-size: 0.8em;
+}
+.mypage__tap li a {
+  font-size: 0.9em;
+}
   .mypage_in .btn{
     width: 100%;
     margin-right: 0;
@@ -4029,9 +4154,6 @@ div.reservation_popup .tr select {
   }
   .reservation_div .money {
     font-size: 1em;
-  }
-  .mypage_in .subtop_nav {
-    top: -39px;
   }
   .basket_box .basket_list .td {
     display: block !important;

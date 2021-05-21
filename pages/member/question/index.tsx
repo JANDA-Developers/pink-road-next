@@ -53,7 +53,7 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
         sort,
         setSort,
     } = useQuestionList();
-    const { isManager, myProfile, isLogin } = useContext(AppContext);
+    const { isManager, myProfile, isLogin, isSeller } = useContext(AppContext);
     const pageTool = usePageEdit(pageInfo, defaultPageInfo);
     const { unAnsweredQuestionCount } = useCustomCount([
         "unAnsweredQuestionCount",

@@ -225,7 +225,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
             <div className="head">
                 {Preview}
                 <div className="write_type write_type_box mt20">
-                    <h4 className="title">결제수단</h4>
+                    <h4 className="title">결제정보</h4>
                     <div className="input_form">
                         <span id="category" className="category r3">
                             {/* <select onChange={(e) => {
@@ -326,7 +326,8 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                                                     e
                                                                         .currentTarget
                                                                         .value;
-                                                                bankRefundInfo.bankTransfter = val;
+                                                                bankRefundInfo.bankTransfter =
+                                                                    val;
                                                                 setBankRefundInfo(
                                                                     {
                                                                         ...bankRefundInfo,
@@ -363,7 +364,8 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                                                         e
                                                                             .currentTarget
                                                                             .value;
-                                                                    bankRefundInfo.bankName = val;
+                                                                    bankRefundInfo.bankName =
+                                                                        val;
                                                                     setBankRefundInfo(
                                                                         {
                                                                             ...bankRefundInfo,
@@ -386,7 +388,8 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                                                         e
                                                                             .currentTarget
                                                                             .value;
-                                                                    bankRefundInfo.accountHolder = val;
+                                                                    bankRefundInfo.accountHolder =
+                                                                        val;
                                                                     setBankRefundInfo(
                                                                         {
                                                                             ...bankRefundInfo,
@@ -409,7 +412,8 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                                                         e
                                                                             .currentTarget
                                                                             .value;
-                                                                    bankRefundInfo.accountNumber = val;
+                                                                    bankRefundInfo.accountNumber =
+                                                                        val;
                                                                     setBankRefundInfo(
                                                                         {
                                                                             ...bankRefundInfo,

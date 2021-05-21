@@ -17,15 +17,21 @@
     padding: 0.4rem;
     align-items: center;
     width: 100%;
-    background-color: white;
+    background-color: #333333;
     box-sizing: border-box;
     justify-content: space-between;
 }
 
-.JDpopup__dayCloser,.JDpopupMobile__close {
+.JDpopup__dayCloser, .JDpopupMobile__close, .JDpopup__close {
     cursor: pointer;
+    color: #ffffff !important;
+    font-weight: 600;
 }
-
+.JDpopup__close {
+    cursor: pointer;
+    color: #ffffff !important;
+    font-weight: 600;
+}
 .JDpopup__box {
     display: flex;
     flex-direction: column;

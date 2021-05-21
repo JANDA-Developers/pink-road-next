@@ -7,22 +7,11 @@ import { DesignTopNav } from '../../../components/topNav/MasterTopNav';
 import { generateRandomStringCode } from '../../../utils/codeGenerator';
 import { cloneObject } from '../../../utils/clone';
 import { omits } from '../../../utils/omit';
-import { ProductSelectModal } from '../../../components/ProductSelectModal';
 import { auth } from '../../../utils/with';
 import { ALLOW_ADMINS } from '../../../types/const';
 
 interface IProp { }
 
-const popupOpen = () => {
-    $('#Popup01').css({
-        'display': 'flex'
-    });
-}
-const popupClose = () => {
-    $('#Popup01').css({
-        'display': 'none'
-    });
-}
 export const MsDesignC: React.FC<IProp> = () => {
     const { data: defaultGrupList } = useGroupList()
     const [groupList, setGroupList] = useState<Fgroup[]>([]);

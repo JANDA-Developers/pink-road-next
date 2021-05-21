@@ -25,13 +25,8 @@ export const ReservationTable: React.FC<IReservationTableProp> = ({
         openBookingModal,
         handleHandWriteModal,
     } = handlers;
-    const {
-        isAllSelected,
-        selectAll,
-        toggle,
-        toggleAll,
-        isChecked,
-    } = idSelectHook;
+    const { isAllSelected, selectAll, toggle, toggleAll, isChecked } =
+        idSelectHook;
     const { items, pageInfo, setPage } = bookingListHook;
 
     return (

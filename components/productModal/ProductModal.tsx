@@ -26,11 +26,13 @@ import {
 } from "../../utils/enumToKr";
 import { autoComma, autoHypenPhone } from "../../utils/formatter";
 import { generateClientPaging } from "../../utils/generateClientPaging";
+import { getExcelByBookings } from "../../utils/getExcelData";
 import { arraySum } from "../../utils/math";
 import { closeModal, openModal } from "../../utils/popUp";
 import { yyyymmdd } from "../../utils/yyyymmdd";
 import { Paginater } from "../common/Paginator";
 import { ProductControllers } from "../contollers/ProductControllers";
+import Excel from "../excel/Execel";
 import { HistoryTable } from "../historyTable/HistoryTable";
 import { SmsSendModal } from "../smsSnedModal/SmsSendModal";
 
@@ -60,6 +62,7 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
     const {
         title,
         code,
+        determined,
         createdAt,
         keyWards,
         status,
@@ -68,14 +71,8 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
         adminMemo: _adminMemo,
         requestMemo,
     } = product || {};
-    const {
-        check,
-        toggle,
-        isChecked,
-        selectAll,
-        selectedIds,
-        setSelectedIds,
-    } = useIdSelecter(bookings.map((bk) => bk._id));
+    const { check, toggle, isChecked, selectAll, selectedIds, setSelectedIds } =
+        useIdSelecter(bookings.map((bk) => bk._id));
     const [adminMemo, setAdminMemo] = useState(_adminMemo);
 
     console.log({ product });
@@ -375,10 +372,20 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                     <div className="full_div">
                                         <h4>
                                             예약자 정보
-                                            <span className="full_div__right__btn">
-                                                {/* <button onClick={selectAll} className="btn topside">전체선택</button>
-                                        <button onClick={handleSelectComplete} className="btn topside">예약완료 선택</button> */}
-                                            </span>
+                                            {determined && (
+                                                <span className="full_div__right__btn">
+                                                    <Excel
+                                                        data={getExcelByBookings(
+                                                            bookings
+                                                        )}
+                                                        element={
+                                                            <button>
+                                                                엑셀파일
+                                                            </button>
+                                                        }
+                                                    />
+                                                </span>
+                                            )}
                                         </h4>
                                         <div className="info_table peoplelist">
                                             <div className="top_info">

@@ -117,11 +117,25 @@ export const Header: React.FC<IProp> = () => {
             <div className="top-menu">
                 <div className="w1200">
                     {isLogin ? (
-                        <p className="welcome_ms">
-                            {!isManager && <strong>{myProfile?.name}</strong>}
-                            {isManager && <strong>핑크로더</strong>}님
-                            어서오세요
-                        </p>
+                        <div className="dp_inb">
+                            {!isManager && !isSeller && (
+                                <p className="welcome_ms">
+                                    <strong>{myProfile?.name}</strong>님
+                                    어서오세요
+                                </p>
+                            )}
+                            {!isManager && isSeller && (
+                                <p className="welcome_ms">
+                                    <strong>{myProfile?.name}</strong> 파트너님
+                                    어서오세요
+                                </p>
+                            )}
+                            {isManager && (
+                                <p className="welcome_ms">
+                                    <strong>핑크로더</strong>님 어서오세요
+                                </p>
+                            )}
+                        </div>
                     ) : (
                         ""
                         // {isLogin ? <p className="welcome_ms"><strong>{userRoleToKR(myProfile?.role)}</strong> {myProfile?.name}님 어서오세요</p>
@@ -379,19 +393,42 @@ export const Header: React.FC<IProp> = () => {
                             ) : (
                                 ""
                             )}
-                            <div className="login__text">
-                                {isLogin ? (
-                                    <p className="welcome_ms">
+                            {isLogin ? (
+                                <div className="login__text">
+                                    {!isManager && !isSeller && (
+                                        <p className="welcome_ms">
+                                            <strong>{myProfile?.name}</strong>님
+                                            어서오세요
+                                        </p>
+                                    )}
+                                    {!isManager && isSeller && (
+                                        <p className="welcome_ms">
+                                            <strong>{myProfile?.name}</strong>{" "}
+                                            파트너님 어서오세요
+                                        </p>
+                                    )}
+                                    {isManager && (
+                                        <p className="welcome_ms">
+                                            <strong>핑크로더</strong>님
+                                            어서오세요
+                                        </p>
+                                    )}
+                                    {/* <p className="welcome_ms">
+                                        {!isManager && !isSeller && (
+                                            <strong>{myProfile?.name}</strong>
+                                        )}
+                                        {!isManager && isSeller && (
+                                            <strong>{myProfile?.name}</strong>
+                                        )}
                                         {!isManager && (
                                             <strong>{myProfile?.name}</strong>
                                         )}
                                         {isManager && <strong>핑크로더</strong>}
-                                        님 어서오세요
-                                    </p>
-                                ) : (
-                                    ""
-                                )}
-                            </div>
+                                    </p> */}
+                                </div>
+                            ) : (
+                                ""
+                            )}
                             <div className="m_all_menu_in">
                                 {isLogin ? (
                                     <span>
@@ -406,7 +443,7 @@ export const Header: React.FC<IProp> = () => {
                                 )}
                                 {isLogin && (
                                     <span>
-                                        <Link href="/mypage">
+                                        <Link href="/mypage/notification">
                                             <a>MY PAGE</a>
                                         </Link>
                                     </span>
@@ -625,7 +662,7 @@ export const Header: React.FC<IProp> = () => {
 
                                 {isLogin && (
                                     <li className="a_menu_tit deps">
-                                        <Link href="/mypage">
+                                        <Link href="/mypage/notification">
                                             <a target="_blank">
                                                 My page
                                                 <i className="jandaicon-arr4-right"></i>
@@ -663,14 +700,14 @@ export const Header: React.FC<IProp> = () => {
                                                     <a>나의 게시글</a>
                                                 </Link>
                                             </li>
-                                            {!isManager && isSeller && (
+                                            {isSeller && (
                                                 <li>
                                                     <Link href="/mypage/reservation">
                                                         <a>예약관리</a>
                                                     </Link>
                                                 </li>
                                             )}
-                                            {!isManager && isSeller && (
+                                            {isSeller && (
                                                 <li>
                                                     <Link href="/mypage/plainning">
                                                         <a>상품관리</a>

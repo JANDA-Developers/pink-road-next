@@ -1,6 +1,5 @@
 import { QueryHookOptions } from "@apollo/client";
 import { CSSProperties, Dispatch } from "react";
-import { IPopupStyle } from "../components/popupconfig/PopupBox[deprecated]";
 import { ListInitOptions } from "../hook/useListQuery";
 import {
     Fmodal,
@@ -50,6 +49,7 @@ export enum QStatus {
 export declare type ISet<T> = Dispatch<React.SetStateAction<T>>;
 
 export type TPageKeys =
+    | "ticket"
     | "anonymousBracket"
     | "krPolicy"
     | "privacyPolicy"
@@ -118,5 +118,5 @@ export const ReplaceKr: ReplaceKR = {
 };
 
 export interface Ipopup extends Fmodal {
-    style: IPopupStyle;
+    style: any;
 }

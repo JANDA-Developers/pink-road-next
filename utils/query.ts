@@ -58,16 +58,21 @@ const dataCheck = (
     checkProperty: string[] = ["data", "page"]
 ) => {
     try {
+        console.log({ data });
+        console.log({ operationName });
         if (data?.hasOwnProperty(operationName) === false) {
             console.warn(
                 `result data object dose not have property ${operationName} look this above object ↑ `
             );
         }
 
+        console.log("data?.[operationName]");
+        console.log(data?.[operationName]);
+
         checkProperty.forEach((p) => {
             if (data?.[operationName].hasOwnProperty(p) === false) {
                 console.error(p);
-                console.warn(
+                console.error(
                     `result data object dose not have property ${p} look this above object ↑ `
                 );
             }
@@ -103,43 +108,27 @@ export const generateListQueryHook = <F, S, Q, V, R>(
             fixingFilter: {},
         };
 
-        console.log("defaultInitData.initialPageIndex");
-        console.log(defaultInitData.initialPageIndex);
         const initialData = Object.assign(
             defaultInitData,
             queryInitDefault,
             initialOption
         );
 
-        console.log("initialData.initialPageIndex");
-        console.log(initialData.initialPageIndex);
-        const {
-            skipInit,
-            skip,
-            variables,
-            overrideVariables,
-            ...ops
-        } = options;
-        console.log({ initialData });
-        console.log({ variables });
-        console.log({ overrideVariables });
-        console.log({ ops });
+        const { skipInit, skip, variables, overrideVariables, ...ops } =
+            options;
         initialData.initialPageIndex;
         const { integratedVariable, ...params } = useListQuery(initialData);
-        console.log({ integratedVariable });
-        const [
-            getData,
-            { data, loading: getLoading, ...queryElse },
-        ] = useLazyQuery<Q, V>(QUERY, {
-            fetchPolicy: "cache-and-network",
-            // @ts-ignore
-            variables: {
-                ...integratedVariable,
-                ...variables,
-                ...overrideVariables,
-            },
-            ...ops,
-        });
+        const [getData, { data, loading: getLoading, ...queryElse }] =
+            useLazyQuery<Q, V>(QUERY, {
+                fetchPolicy: "cache-and-network",
+                // @ts-ignore
+                variables: {
+                    ...integratedVariable,
+                    ...variables,
+                    ...overrideVariables,
+                },
+                ...ops,
+            });
 
         const operationName = defaultOptions?.queryName || getQueryName(QUERY);
 
@@ -272,20 +261,18 @@ export const generateFindQuery = <Q, V, ResultFragment>(
     QUERY: DocumentNode
 ) => {
     const findQueryHook = (key?: any, options: genrateOption<Q, V> = {}) => {
-        const [
-            getData,
-            { data, loading, error: apolloError, ...context },
-        ] = useLazyQuery<Q, V>(QUERY, {
-            skip: !key,
-            nextFetchPolicy: "network-only",
-            // @ts-ignore
-            variables: findBy
-                ? {
-                      [findBy]: key,
-                  }
-                : undefined,
-            ...options,
-        });
+        const [getData, { data, loading, error: apolloError, ...context }] =
+            useLazyQuery<Q, V>(QUERY, {
+                skip: !key,
+                nextFetchPolicy: "network-only",
+                // @ts-ignore
+                variables: findBy
+                    ? {
+                          [findBy]: key,
+                      }
+                    : undefined,
+                ...options,
+            });
 
         const operationName = getQueryName(QUERY);
 

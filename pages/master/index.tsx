@@ -1,5 +1,6 @@
 import { MasterLayout } from "layout/MasterLayout";
 import Link from "next/link";
+import { Router } from "next/router";
 import React from "react";
 import { BoardOption } from "../../components/boardOption/BoardOption";
 import { MasterBookingLi } from "../../components/bookingLi/MasterBookingLi";
@@ -21,6 +22,7 @@ import { ALLOW_ADMINS } from "../../types/const";
 import {
     confirmKr,
     productStatus,
+    questionAsKr,
     questionSatus,
     settlementStatus,
     userStatusKR,
@@ -48,19 +50,17 @@ export const MsIndex: React.FC<IProp> = () => {
         setUniqFilter: setBookingFilter,
         filter: bookingFilter,
     } = useBookingList({ initialViewCount: 4, fixingSort: updateAtSort });
-    const {
-        items: cancelBookings,
-        setUniqFilter: setCancelBookingFilter,
-    } = useBookingList({
-        initialViewCount: 4,
-        fixingSort: updateAtSort,
-        initialFilter: {
-            OR: [
-                { status_eq: BookingStatus.CANCEL },
-                { isCancelRequest_eq: true },
-            ],
-        },
-    });
+    const { items: cancelBookings, setUniqFilter: setCancelBookingFilter } =
+        useBookingList({
+            initialViewCount: 4,
+            fixingSort: updateAtSort,
+            initialFilter: {
+                OR: [
+                    { status_eq: BookingStatus.CANCEL },
+                    { isCancelRequest_eq: true },
+                ],
+            },
+        });
     const {
         items: settlements,
         setUniqFilter: setSettlementFilter,
@@ -770,7 +770,7 @@ export const MsIndex: React.FC<IProp> = () => {
                         </div>
                         <ul className="table typeD">
                             <li className="head">
-                                <div className="td02">No.</div>
+                                <div className="td02">문의타입</div>
                                 <div className="td01">제목</div>
                                 <div className="td03">답변여부</div>
                                 <div className="td04">작성일</div>
@@ -779,11 +779,12 @@ export const MsIndex: React.FC<IProp> = () => {
                             {questions.map((q) => (
                                 <li key={q._id} className="body">
                                     <div className="td02">
-                                        <span className="m_title">No: </span>
-                                        <span>{q.no}</span>
+                                        <span>
+                                            {questionAsKr(q.questionAS)}
+                                        </span>
                                     </div>
                                     <div className="td01">
-                                        <strong>{q.title}</strong>
+                                        <strong>{q.title} []</strong>
                                     </div>
                                     <div className="td03">
                                         <span>{questionSatus(q.status)}</span>
@@ -809,6 +810,9 @@ export const MsIndex: React.FC<IProp> = () => {
                     {/* <UserModal /> */}
                     {/* <BookingModal code={""} /> */}
                     {/* <ProductModal productId={} /> */}
+                </div>
+                <div className="infobox__bottom">
+                    <i className="jandaicon-info3" /> 주의사항
                 </div>
             </div>
         </MasterLayout>

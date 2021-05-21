@@ -68,6 +68,7 @@ export type TStoreKeys =
     | "lastLoginType"
     | "qnaWrite"
     | "announceWrite"
+    | "ticketWrite"
     | "lastProd"
     | "signUpRole"
     | "questionWrite"

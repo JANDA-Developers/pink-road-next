@@ -1022,7 +1022,7 @@ export interface bookingList_BookingList_data_product {
    */
   peopleCount: number;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -1190,7 +1190,7 @@ export interface bookingFindByInfo_BookingFindByInfo_data_product {
    */
   peopleCount: number;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -1869,7 +1869,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   caution: string;
   images: bookingFindByCode_BookingFindByCode_data_product_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -5955,7 +5955,7 @@ export interface productDelete_ProductDelete_data {
   caution: string;
   images: productDelete_ProductDelete_data_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -6287,7 +6287,7 @@ export interface productList_ProductList_data {
   caution: string;
   images: productList_ProductList_data_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -6703,6 +6703,7 @@ export interface productFindById_ProductFindById_data_questions {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  questionAS: QuestionAS;
   anonymousName: string | null;
   anonymousContact: string | null;
   answers: productFindById_ProductFindById_data_questions_answers[] | null;
@@ -6748,7 +6749,7 @@ export interface productFindById_ProductFindById_data {
   caution: string;
   images: productFindById_ProductFindById_data_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -7016,6 +7017,8 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_settleme
   totalPrice: number;
   cardPrice: number;
   bankPrice: number;
+  adminMemo: string;
+  memo: string;
   settlementPrice: number;
   totalFee: number;
   cardFee: number;
@@ -7248,7 +7251,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   caution: string;
   images: productFindByIdForSeller_ProductFindByIdForSeller_data_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -7689,6 +7692,7 @@ export interface qnaFindById_QnaFindById_data {
   title: string;
   contents: string;
   author: qnaFindById_QnaFindById_data_author | null;
+  target: QnaTarget;
   isNotice: boolean | null;
   isOpen: boolean | null;
   boardType: BoardType;
@@ -7964,6 +7968,7 @@ export interface qnaList_QnaList_data {
   title: string;
   contents: string;
   author: qnaList_QnaList_data_author | null;
+  target: QnaTarget;
   isNotice: boolean | null;
   isOpen: boolean | null;
   boardType: BoardType;
@@ -8893,6 +8898,7 @@ export interface questionList_QuestionList_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  questionAS: QuestionAS;
   anonymousName: string | null;
   anonymousContact: string | null;
   answers: questionList_QuestionList_data_answers[] | null;
@@ -9166,6 +9172,7 @@ export interface questionFindById_QuestionFindById_data {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  questionAS: QuestionAS;
   anonymousName: string | null;
   anonymousContact: string | null;
   answers: questionFindById_QuestionFindById_data_answers[] | null;
@@ -9336,10 +9343,10 @@ export interface productReviewFindByIdVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: productreviewList
+// GraphQL query operation: productReviewList
 // ====================================================
 
-export interface productreviewList_ProductReviewList_error {
+export interface productReviewList_ProductReviewList_error {
   __typename: "CustomError";
   location: string;
   severity: ERR_SEVERITY;
@@ -9347,7 +9354,7 @@ export interface productreviewList_ProductReviewList_error {
   message: string;
 }
 
-export interface productreviewList_ProductReviewList_page {
+export interface productReviewList_ProductReviewList_page {
   __typename: "Page";
   /**
    * 현재 페이지 번호
@@ -9395,12 +9402,12 @@ export interface productreviewList_ProductReviewList_page {
   remainder: number;
 }
 
-export interface productreviewList_ProductReviewList_data_author_profileImg {
+export interface productReviewList_ProductReviewList_data_author_profileImg {
   __typename: "File";
   uri: string;
 }
 
-export interface productreviewList_ProductReviewList_data_author {
+export interface productReviewList_ProductReviewList_data_author {
   __typename: "User";
   _id: string;
   email: string;
@@ -9409,10 +9416,10 @@ export interface productreviewList_ProductReviewList_data_author {
   /**
    * 프로필 사진
    */
-  profileImg: productreviewList_ProductReviewList_data_author_profileImg | null;
+  profileImg: productReviewList_ProductReviewList_data_author_profileImg | null;
 }
 
-export interface productreviewList_ProductReviewList_data_files_imgScaleUrl {
+export interface productReviewList_ProductReviewList_data_files_imgScaleUrl {
   __typename: "ImgScaleUrl";
   tiny: string | null;
   small: string | null;
@@ -9421,15 +9428,15 @@ export interface productreviewList_ProductReviewList_data_files_imgScaleUrl {
   huge: string | null;
 }
 
-export interface productreviewList_ProductReviewList_data_files {
+export interface productReviewList_ProductReviewList_data_files {
   __typename: "File";
   name: string;
   uri: string;
   owner: string;
-  imgScaleUrl: productreviewList_ProductReviewList_data_files_imgScaleUrl | null;
+  imgScaleUrl: productReviewList_ProductReviewList_data_files_imgScaleUrl | null;
 }
 
-export interface productreviewList_ProductReviewList_data {
+export interface productReviewList_ProductReviewList_data {
   __typename: "ProductReview";
   _id: string;
   createdAt: any;
@@ -9437,7 +9444,7 @@ export interface productreviewList_ProductReviewList_data {
   isDelete: boolean;
   title: string;
   contents: string;
-  author: productreviewList_ProductReviewList_data_author | null;
+  author: productReviewList_ProductReviewList_data_author | null;
   num: number;
   boardType: BoardType;
   boardTypeName: string | null;
@@ -9451,7 +9458,7 @@ export interface productreviewList_ProductReviewList_data {
   slug: string;
   authorName: string;
   productName: string;
-  files: productreviewList_ProductReviewList_data_files[] | null;
+  files: productReviewList_ProductReviewList_data_files[] | null;
   productAuthorName: string;
   productAuthorId: string;
   productCode: string;
@@ -9459,19 +9466,19 @@ export interface productreviewList_ProductReviewList_data {
   rating: number;
 }
 
-export interface productreviewList_ProductReviewList {
+export interface productReviewList_ProductReviewList {
   __typename: "ProductReviewListResponse";
   ok: boolean;
-  error: productreviewList_ProductReviewList_error | null;
-  page: productreviewList_ProductReviewList_page;
-  data: productreviewList_ProductReviewList_data[];
+  error: productReviewList_ProductReviewList_error | null;
+  page: productReviewList_ProductReviewList_page;
+  data: productReviewList_ProductReviewList_data[];
 }
 
-export interface productreviewList {
-  ProductReviewList: productreviewList_ProductReviewList;
+export interface productReviewList {
+  ProductReviewList: productReviewList_ProductReviewList;
 }
 
-export interface productreviewListVariables {
+export interface productReviewListVariables {
   sort?: _ProductReviewSort[] | null;
   filter?: _ProductReviewFilter | null;
   pageInput: pageInput;
@@ -9888,7 +9895,7 @@ export interface settlementFindById_SettlementFindById_data_product {
   caution: string;
   images: settlementFindById_SettlementFindById_data_product_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -9927,6 +9934,8 @@ export interface settlementFindById_SettlementFindById_data {
   totalPrice: number;
   cardPrice: number;
   bankPrice: number;
+  adminMemo: string;
+  memo: string;
   settlementPrice: number;
   totalFee: number;
   cardFee: number;
@@ -10367,7 +10376,7 @@ export interface settlementList_SettlementList_data_product {
   caution: string;
   images: settlementList_SettlementList_data_product_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -10404,6 +10413,8 @@ export interface settlementList_SettlementList_data {
   totalPrice: number;
   cardPrice: number;
   bankPrice: number;
+  adminMemo: string;
+  memo: string;
   settlementPrice: number;
   totalFee: number;
   cardFee: number;
@@ -10472,6 +10483,7 @@ export interface settlementRequest {
 
 export interface settlementRequestVariables {
   settlementId: string;
+  photos: FileCreateInput[];
 }
 
 /* tslint:disable */
@@ -10535,6 +10547,38 @@ export interface settlementReject {
 export interface settlementRejectVariables {
   settlementId: string;
   reason: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: settlementUpdate
+// ====================================================
+
+export interface settlementUpdate_SettlementUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface settlementUpdate_SettlementUpdate {
+  __typename: "settlementResponse";
+  ok: boolean;
+  error: settlementUpdate_SettlementUpdate_error | null;
+}
+
+export interface settlementUpdate {
+  SettlementUpdate: settlementUpdate_SettlementUpdate;
+}
+
+export interface settlementUpdateVariables {
+  settlementId: string;
+  params: SettlementUpdateInput;
 }
 
 /* tslint:disable */
@@ -10736,6 +10780,598 @@ export interface systemNotiHide {
 
 export interface systemNotiHideVariables {
   ids: string[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: ticketFindById
+// ====================================================
+
+export interface ticketFindById_TicketFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface ticketFindById_TicketFindById_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface ticketFindById_TicketFindById_data_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: ticketFindById_TicketFindById_data_author_busiRegistration_imgScaleUrl | null;
+}
+
+export interface ticketFindById_TicketFindById_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface ticketFindById_TicketFindById_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface ticketFindById_TicketFindById_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: ticketFindById_TicketFindById_data_author_bankImg_imgScaleUrl | null;
+}
+
+export interface ticketFindById_TicketFindById_data_author {
+  __typename: "User";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  account_holder: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  status: UserStatus;
+  acceptEamil: boolean;
+  /**
+   * 마스터에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  blueBird: number;
+  busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: ticketFindById_TicketFindById_data_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  resignReasonType: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: ticketFindById_TicketFindById_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: ticketFindById_TicketFindById_data_author_bankImg | null;
+}
+
+export interface ticketFindById_TicketFindById_data_answers_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface ticketFindById_TicketFindById_data_answers_author {
+  __typename: "User";
+  _id: string;
+  name: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: ticketFindById_TicketFindById_data_answers_author_profileImg | null;
+}
+
+export interface ticketFindById_TicketFindById_data_answers {
+  __typename: "Answer";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  content: string;
+  author: ticketFindById_TicketFindById_data_answers_author;
+}
+
+export interface ticketFindById_TicketFindById_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface ticketFindById_TicketFindById_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: ticketFindById_TicketFindById_data_thumb_imgScaleUrl | null;
+}
+
+export interface ticketFindById_TicketFindById_data {
+  __typename: "Ticket";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: ticketFindById_TicketFindById_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  answers: (ticketFindById_TicketFindById_data_answers | null)[] | null;
+  summary: string | null;
+  subTitle: string | null;
+  recipientId: string;
+  keyWards: string[] | null;
+  thumb: ticketFindById_TicketFindById_data_thumb | null;
+  viewCount: number;
+  recipientName: string;
+  recipientEmail: string;
+  url: string;
+}
+
+export interface ticketFindById_TicketFindById {
+  __typename: "TicketFindByIdResponse";
+  ok: boolean;
+  error: ticketFindById_TicketFindById_error | null;
+  data: ticketFindById_TicketFindById_data | null;
+}
+
+export interface ticketFindById {
+  TicketFindById: ticketFindById_TicketFindById;
+}
+
+export interface ticketFindByIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: ticketList
+// ====================================================
+
+export interface ticketList_TicketList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface ticketList_TicketList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface ticketList_TicketList_data_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface ticketList_TicketList_data_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: ticketList_TicketList_data_author_busiRegistration_imgScaleUrl | null;
+}
+
+export interface ticketList_TicketList_data_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface ticketList_TicketList_data_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface ticketList_TicketList_data_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: ticketList_TicketList_data_author_bankImg_imgScaleUrl | null;
+}
+
+export interface ticketList_TicketList_data_author {
+  __typename: "User";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  account_holder: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  status: UserStatus;
+  acceptEamil: boolean;
+  /**
+   * 마스터에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  blueBird: number;
+  busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: ticketList_TicketList_data_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  resignReasonType: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: ticketList_TicketList_data_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: ticketList_TicketList_data_author_bankImg | null;
+}
+
+export interface ticketList_TicketList_data_answers_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface ticketList_TicketList_data_answers_author {
+  __typename: "User";
+  _id: string;
+  name: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: ticketList_TicketList_data_answers_author_profileImg | null;
+}
+
+export interface ticketList_TicketList_data_answers {
+  __typename: "Answer";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  content: string;
+  author: ticketList_TicketList_data_answers_author;
+}
+
+export interface ticketList_TicketList_data_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface ticketList_TicketList_data_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: ticketList_TicketList_data_thumb_imgScaleUrl | null;
+}
+
+export interface ticketList_TicketList_data {
+  __typename: "Ticket";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: ticketList_TicketList_data_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  answers: (ticketList_TicketList_data_answers | null)[] | null;
+  summary: string | null;
+  subTitle: string | null;
+  recipientId: string;
+  keyWards: string[] | null;
+  thumb: ticketList_TicketList_data_thumb | null;
+  viewCount: number;
+  recipientName: string;
+  recipientEmail: string;
+  url: string;
+}
+
+export interface ticketList_TicketList {
+  __typename: "TicketListResponse";
+  ok: boolean;
+  error: ticketList_TicketList_error | null;
+  page: ticketList_TicketList_page;
+  data: ticketList_TicketList_data[];
+}
+
+export interface ticketList {
+  TicketList: ticketList_TicketList;
+}
+
+export interface ticketListVariables {
+  sort?: _TicketSort[] | null;
+  filter?: _TicketFilter | null;
+  pageInput: pageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ticketCreate
+// ====================================================
+
+export interface ticketCreate_TicketCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface ticketCreate_TicketCreate_data {
+  __typename: "Ticket";
+  _id: string;
+}
+
+export interface ticketCreate_TicketCreate {
+  __typename: "TicketCreateResponse";
+  ok: boolean;
+  error: ticketCreate_TicketCreate_error | null;
+  data: ticketCreate_TicketCreate_data | null;
+}
+
+export interface ticketCreate {
+  TicketCreate: ticketCreate_TicketCreate;
+}
+
+export interface ticketCreateVariables {
+  params: TicketCreateInput;
+  recipientId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ticketDelete
+// ====================================================
+
+export interface ticketDelete_TicketDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface ticketDelete_TicketDelete {
+  __typename: "TicketDeleteResponseResponse";
+  ok: boolean;
+  error: ticketDelete_TicketDelete_error | null;
+}
+
+export interface ticketDelete {
+  TicketDelete: ticketDelete_TicketDelete;
+}
+
+export interface ticketDeleteVariables {
+  id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ticketUpdate
+// ====================================================
+
+export interface ticketUpdate_TicketUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface ticketUpdate_TicketUpdate_data {
+  __typename: "Ticket";
+  _id: string;
+}
+
+export interface ticketUpdate_TicketUpdate {
+  __typename: "TicketUpdateResponse";
+  ok: boolean;
+  error: ticketUpdate_TicketUpdate_error | null;
+  data: ticketUpdate_TicketUpdate_data | null;
+}
+
+export interface ticketUpdate {
+  TicketUpdate: ticketUpdate_TicketUpdate;
+}
+
+export interface ticketUpdateVariables {
+  params: TicketUpdateInput;
+  id: string;
 }
 
 /* tslint:disable */
@@ -10988,6 +11624,36 @@ export interface signUpAccept {
 
 export interface signUpAcceptVariables {
   userIds: string[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: checkUserCanResign
+// ====================================================
+
+export interface checkUserCanResign_CheckUserCanResign_problems {
+  __typename: "UserResignProblem";
+  haveProductOpend: boolean;
+  haveUnSolvedReservation: boolean;
+  haveUnSolvedSettlement: boolean;
+}
+
+export interface checkUserCanResign_CheckUserCanResign {
+  __typename: "CheckUserResignResult";
+  ok: boolean;
+  problems: checkUserCanResign_CheckUserCanResign_problems;
+}
+
+export interface checkUserCanResign {
+  CheckUserCanResign: checkUserCanResign_CheckUserCanResign;
+}
+
+export interface checkUserCanResignVariables {
+  _idToCheck?: string | null;
 }
 
 /* tslint:disable */
@@ -11630,7 +12296,7 @@ export interface userFindById_UserFindById_data_products {
   caution: string;
   images: userFindById_UserFindById_data_products_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -12457,7 +13123,7 @@ export interface Fproduct {
   caution: string;
   images: Fproduct_images[] | null;
   keyWards: string[] | null;
-  address: string;
+  address: string | null;
   startPoint: string;
   maxMember: number;
   minMember: number;
@@ -13822,6 +14488,7 @@ export interface Fqna {
   title: string;
   contents: string;
   author: Fqna_author | null;
+  target: QnaTarget;
   isNotice: boolean | null;
   isOpen: boolean | null;
   boardType: BoardType;
@@ -13943,6 +14610,7 @@ export interface Fquestion {
   summary: string | null;
   subTitle: string | null;
   status: QuestionStatus;
+  questionAS: QuestionAS;
   anonymousName: string | null;
   anonymousContact: string | null;
   answers: Fquestion_answers[] | null;
@@ -14070,6 +14738,8 @@ export interface Fsettlement {
   totalPrice: number;
   cardPrice: number;
   bankPrice: number;
+  adminMemo: string;
+  memo: string;
   settlementPrice: number;
   totalFee: number;
   cardFee: number;
@@ -14110,6 +14780,200 @@ export interface FsystemNoti {
    */
   content: string;
   isRead: boolean;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: Fticket
+// ====================================================
+
+export interface Fticket_author_busiRegistration_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface Fticket_author_busiRegistration {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: Fticket_author_busiRegistration_imgScaleUrl | null;
+}
+
+export interface Fticket_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface Fticket_author_bankImg_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface Fticket_author_bankImg {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: Fticket_author_bankImg_imgScaleUrl | null;
+}
+
+export interface Fticket_author {
+  __typename: "User";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  email: string;
+  /**
+   * 닉네임 유니크
+   */
+  nickName: string;
+  /**
+   * 담당자명
+   */
+  manageName: string;
+  connectionCount: number;
+  role: UserRole;
+  brith_date: string;
+  account_holder: string;
+  address: string;
+  address_detail: string;
+  acceptSms: boolean;
+  status: UserStatus;
+  acceptEamil: boolean;
+  /**
+   * 마스터에 의한 회원가입 거절
+   */
+  isDenied: boolean | null;
+  is_froreginer: boolean;
+  /**
+   * 기업 전화번호
+   */
+  busi_contact: string;
+  /**
+   * 담당자 연락처
+   */
+  manageContact: string;
+  resignDate: any | null;
+  gender: GENDER;
+  blueBird: number;
+  busi_num: string;
+  /**
+   * 회원가입 거절 사유
+   */
+  denyReason: string | null;
+  /**
+   * 부서명
+   */
+  busi_department: string;
+  isVerifiedManager: boolean;
+  isVerifiedPhoneNumber: boolean;
+  /**
+   * 사업자 등록증
+   */
+  busiRegistration: Fticket_author_busiRegistration | null;
+  /**
+   * 개인 법인인지 아닌지 체크함 True = 법인
+   */
+  is_priv_corper: boolean;
+  /**
+   * 사업자명
+   */
+  busi_name: string;
+  busi_address: string;
+  account_number: string;
+  name: string;
+  bank_name: string;
+  resignReason: string | null;
+  resignReasonType: string | null;
+  isResigned: boolean | null;
+  phoneNumber: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: Fticket_author_profileImg | null;
+  /**
+   * 통장사본
+   */
+  bankImg: Fticket_author_bankImg | null;
+}
+
+export interface Fticket_answers_author_profileImg {
+  __typename: "File";
+  uri: string;
+}
+
+export interface Fticket_answers_author {
+  __typename: "User";
+  _id: string;
+  name: string;
+  /**
+   * 프로필 사진
+   */
+  profileImg: Fticket_answers_author_profileImg | null;
+}
+
+export interface Fticket_answers {
+  __typename: "Answer";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  content: string;
+  author: Fticket_answers_author;
+}
+
+export interface Fticket_thumb_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface Fticket_thumb {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: Fticket_thumb_imgScaleUrl | null;
+}
+
+export interface Fticket {
+  __typename: "Ticket";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string;
+  author: Fticket_author | null;
+  isNotice: boolean | null;
+  isOpen: boolean | null;
+  answers: (Fticket_answers | null)[] | null;
+  summary: string | null;
+  subTitle: string | null;
+  recipientId: string;
+  keyWards: string[] | null;
+  thumb: Fticket_thumb | null;
+  viewCount: number;
+  recipientName: string;
+  recipientEmail: string;
+  url: string;
 }
 
 /* tslint:disable */
@@ -14176,7 +15040,9 @@ export enum CategoryType {
   EXPERIENCE = "EXPERIENCE",
   PORTPOLIO = "PORTPOLIO",
   QNA = "QNA",
+  QNA_FOR_PARTNER = "QNA_FOR_PARTNER",
   QUESTION = "QUESTION",
+  QUESTION_FOR_PARTNER = "QUESTION_FOR_PARTNER",
   REGION = "REGION",
   TOUR = "TOUR",
 }
@@ -14210,6 +15076,7 @@ export enum ERR_CODE {
   PASSWORD_NOT_EQUAL = "PASSWORD_NOT_EQUAL",
   PAY_TIME_OVER = "PAY_TIME_OVER",
   POPULATED_DOC_INVALID = "POPULATED_DOC_INVALID",
+  SIGN_OUT_CONDITION_FAIL = "SIGN_OUT_CONDITION_FAIL",
   SYSTEM_ERROR = "SYSTEM_ERROR",
 }
 
@@ -14348,6 +15215,19 @@ export enum ProductType {
 }
 
 /**
+ * QNA 타겟
+ */
+export enum QnaTarget {
+  ALL = "ALL",
+  SELLER = "SELLER",
+}
+
+export enum QuestionAS {
+  NORMAL = "NORMAL",
+  PARTNER = "PARTNER",
+}
+
+/**
  * 질문 상태
  */
 export enum QuestionStatus {
@@ -14483,6 +15363,8 @@ export enum _AnnounceSort {
   title_desc = "title_desc",
   type_asc = "type_asc",
   type_desc = "type_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14501,6 +15383,8 @@ export enum _BoardSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14527,6 +15411,8 @@ export enum _INotificationHistoryItemSort {
   sender_desc = "sender_desc",
   successCount_asc = "successCount_asc",
   successCount_desc = "successCount_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
 }
 
 /**
@@ -14537,6 +15423,8 @@ export enum _ITemplateSort {
   createdAt_desc = "createdAt_desc",
   name_asc = "name_asc",
   name_desc = "name_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
 }
 
 /**
@@ -14553,6 +15441,8 @@ export enum _NewsSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14563,6 +15453,8 @@ export enum _NewsSort {
 export enum _PaymentSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
 }
 
 /**
@@ -14579,6 +15471,8 @@ export enum _PortfolioSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14597,6 +15491,8 @@ export enum _ProductReviewSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14619,6 +15515,8 @@ export enum _ProductSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14637,6 +15535,8 @@ export enum _QnaSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14655,6 +15555,8 @@ export enum _QuestionSort {
   subTitle_desc = "subTitle_desc",
   title_asc = "title_asc",
   title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
   viewCount_asc = "viewCount_asc",
   viewCount_desc = "viewCount_desc",
 }
@@ -14665,6 +15567,8 @@ export enum _QuestionSort {
 export enum _SettlementSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
 }
 
 /**
@@ -14673,6 +15577,28 @@ export enum _SettlementSort {
 export enum _SystemNotiSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
+}
+
+/**
+ * Auto generated sort type
+ */
+export enum _TicketSort {
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  isNotice_asc = "isNotice_asc",
+  isNotice_desc = "isNotice_desc",
+  likeCount_asc = "likeCount_asc",
+  likeCount_desc = "likeCount_desc",
+  subTitle_asc = "subTitle_asc",
+  subTitle_desc = "subTitle_desc",
+  title_asc = "title_asc",
+  title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
+  viewCount_asc = "viewCount_asc",
+  viewCount_desc = "viewCount_desc",
 }
 
 /**
@@ -14685,6 +15611,8 @@ export enum _UserSort {
   name_desc = "name_desc",
   resignDate_asc = "resignDate_asc",
   resignDate_desc = "resignDate_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
 }
 
 export interface AddUserInput {
@@ -15108,7 +16036,7 @@ export interface ProductCreateInput {
   info: string;
   caution: string;
   images?: FileCreateInput[] | null;
-  address: string;
+  address?: string | null;
   regionId?: string | null;
   startPoint: string;
   maxMember: number;
@@ -15218,6 +16146,7 @@ export interface QnaCreateInput {
   files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
   categoryId: string;
+  target: QnaTarget;
   password?: string | null;
 }
 
@@ -15231,6 +16160,7 @@ export interface QnaUpdateInput {
   keyWards?: string[] | null;
   files?: FileUpdateInput[] | null;
   thumb?: FileUpdateInput | null;
+  target: QnaTarget;
   categoryId?: string | null;
 }
 
@@ -15247,6 +16177,7 @@ export interface QuestionCreateInput {
   keyWards?: string[] | null;
   files?: FileCreateInput[] | null;
   thumb?: FileCreateInput | null;
+  questionAS?: QuestionAS | null;
   productId?: string | null;
 }
 
@@ -15262,6 +16193,7 @@ export interface QuestionUpdateInput {
   thumb?: FileUpdateInput | null;
   productId?: string | null;
   status?: QuestionStatus | null;
+  questionAS?: QuestionAS | null;
   password?: string | null;
   anonymousName?: string | null;
   anonymousContact?: string | null;
@@ -15278,6 +16210,11 @@ export interface ReceiverWithReplacementSetsInput {
 export interface ReplacementSetInput {
   key: string;
   value: string;
+}
+
+export interface SettlementUpdateInput {
+  memo?: string | null;
+  adminMemo?: string | null;
 }
 
 export interface SmsSendInput {
@@ -15309,6 +16246,31 @@ export interface SmsTemplateUpdateInput {
   description?: string | null;
   trigger?: NotificationTriggerCreateInput | null;
   tags?: GqlTagInput[] | null;
+}
+
+export interface TicketCreateInput {
+  title: string;
+  contents: string;
+  url: string;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileCreateInput[] | null;
+  thumb?: FileCreateInput | null;
+}
+
+export interface TicketUpdateInput {
+  title?: string | null;
+  contents: string;
+  isNotice?: boolean | null;
+  isOpen?: boolean | null;
+  summary?: string | null;
+  subTitle?: string | null;
+  keyWards?: string[] | null;
+  attachFiles?: FileUpdateInput[] | null;
+  thumb?: FileUpdateInput | null;
 }
 
 export interface TravelerInput {
@@ -15836,6 +16798,8 @@ export interface _ProductReviewFilter {
 export interface _QnaFilter {
   AND?: _QnaFilter[] | null;
   OR?: _QnaFilter[] | null;
+  target_eq?: QnaTarget | null;
+  target_not_eq?: QnaTarget | null;
   categoryId_eq?: string | null;
   categoryId_not_eq?: string | null;
   categoryId_in?: string[] | null;
@@ -15878,9 +16842,13 @@ export interface _QnaFilter {
 export interface _QuestionFilter {
   AND?: _QuestionFilter[] | null;
   OR?: _QuestionFilter[] | null;
+  questionAS_eq?: QuestionAS | null;
+  questionAS_not_eq?: QuestionAS | null;
   categoryId_eq?: string | null;
   categoryId_not_eq?: string | null;
   categoryId_in?: string[] | null;
+  productOwner_eq?: string | null;
+  productOwner_not_eq?: string | null;
   code_eq?: string | null;
   code_not_eq?: string | null;
   anonymousName_eq?: string | null;
@@ -15982,6 +16950,63 @@ export interface _SystemNotiFilter {
   createdAt_gt?: any | null;
 }
 
+export interface _TicketFilter {
+  AND?: _TicketFilter[] | null;
+  OR?: _TicketFilter[] | null;
+  recipientId_eq?: string | null;
+  recipientId_not_eq?: string | null;
+  recipientId_contains?: string | null;
+  recipientId_not_contains?: string | null;
+  recipientId_in?: string[] | null;
+  recipientId_not_in?: string[] | null;
+  recipientName_eq?: string | null;
+  recipientName_not_eq?: string | null;
+  recipientName_contains?: string | null;
+  recipientName_not_contains?: string | null;
+  recipientName_in?: string[] | null;
+  recipientName_not_in?: string[] | null;
+  recipientEmail_eq?: string | null;
+  recipientEmail_not_eq?: string | null;
+  recipientEmail_contains?: string | null;
+  recipientEmail_not_contains?: string | null;
+  recipientEmail_in?: string[] | null;
+  recipientEmail_not_in?: string[] | null;
+  title_eq?: string | null;
+  title_not_eq?: string | null;
+  title_contains?: string | null;
+  title_not_contains?: string | null;
+  title_in?: string[] | null;
+  title_not_in?: string[] | null;
+  authorEmail_eq?: string | null;
+  authorEmail_not_eq?: string | null;
+  authorEmail_in?: string[] | null;
+  isNotice_eq?: boolean | null;
+  isNotice_not_eq?: boolean | null;
+  password_eq?: string | null;
+  password_not_eq?: string | null;
+  isOpen_eq?: boolean | null;
+  isOpen_not_eq?: boolean | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
+  keyWards_eq?: string | null;
+  keyWards_not_eq?: string | null;
+  keyWards_in?: string[] | null;
+  keyWards_contains?: string | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
+}
+
 export interface _UserFilter {
   AND?: _UserFilter[] | null;
   OR?: _UserFilter[] | null;
@@ -15996,6 +17021,8 @@ export interface _UserFilter {
   status_contains?: string | null;
   isResigned_eq?: boolean | null;
   isResigned_not_eq?: boolean | null;
+  isHandWrited_eq?: boolean | null;
+  isHandWrited_not_eq?: boolean | null;
   isVerifiedManager_eq?: boolean | null;
   isVerifiedManager_not_eq?: boolean | null;
   role_eq?: string | null;

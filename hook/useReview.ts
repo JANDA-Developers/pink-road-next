@@ -18,9 +18,18 @@ import {
     productReviewFindById,
     productReviewFindByIdVariables,
     productReviewFindById_ProductReviewFindById_data,
+    _ProductReviewFilter,
+    _ProductReviewSort,
+    productReviewList,
+    productReviewListVariables,
+    productReviewList_ProductReviewList_data,
 } from "../types/api";
 import { getRefetch } from "../utils/api";
-import { generateFindQuery, generateMutationHook } from "../utils/query";
+import {
+    generateFindQuery,
+    generateListQueryHook,
+    generateMutationHook,
+} from "../utils/query";
 
 export const useProductReviewCreate = generateMutationHook<
     productreviewCreate,
@@ -60,3 +69,11 @@ export const useProductReviewFindById = generateFindQuery<
     productReviewFindByIdVariables,
     productReviewFindById_ProductReviewFindById_data
 >("id", PRODUCT_REVIEW_FIND_BY_ID);
+
+export const useProductReviewList = generateListQueryHook<
+    _ProductReviewFilter,
+    _ProductReviewSort,
+    productReviewList,
+    productReviewListVariables,
+    productReviewList_ProductReviewList_data
+>(PRODUCT_REVIEW_LIST, { initialSort: [_ProductReviewSort.createdAt_desc] });

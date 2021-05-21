@@ -19,6 +19,8 @@ import { DayPickerModal } from "../../../components/dayPickerModal/DayPickerModa
 import { toNumber } from "../../../utils/toNumber";
 import { JDPCpopup } from "../../../components/popup/PCPopup";
 import { JDpopup } from "../../../components/popup/JDpopup";
+import { Modal2 } from "components/modal/Modal";
+import { useModal } from "hook/useModal";
 
 const Editor = LoadEditor();
 
@@ -28,6 +30,7 @@ export const MsDesignB: React.FC<IProp> = () => {
     const { homepage } = useContext(AppContext);
     const popupHook = usePopups(homepage?.modal || [], { autoOpen: false });
     const { signleUpload } = useUpload();
+    const modalHook = useModal();
     const [datePopUp, setDatePopUp] = useState<Ipopup>();
     const [homepageUpdate] = useHomepageUpdate({
         onCompleted: ({ HomepageUpdate }) => {
@@ -133,7 +136,7 @@ export const MsDesignB: React.FC<IProp> = () => {
                                     </button>
                                 </div>
                             </div>
-                            <div className="popupst_box">
+                            {/* <div className="popupst_box">
                                 <div className="hang_list">
                                     <ul className="list_setting">
                                         {popupHook.popups.map(
@@ -150,7 +153,8 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                             <div className="switch">
                                                                 <input
                                                                     onChange={() => {
-                                                                        modal.open = !modal.open;
+                                                                        modal.open =
+                                                                            !modal.open;
                                                                         popupHook.setPopups(
                                                                             [
                                                                                 ...popupHook.popups,
@@ -212,9 +216,10 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                                             e
                                                                                 .currentTarget
                                                                                 .value;
-                                                                        modal.priority = toNumber(
-                                                                            order
-                                                                        );
+                                                                        modal.priority =
+                                                                            toNumber(
+                                                                                order
+                                                                            );
                                                                         popupHook.setPopups(
                                                                             [
                                                                                 ...popupHook.popups,
@@ -349,9 +354,10 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                                     onChange={(
                                                                         e
                                                                     ) => {
-                                                                        modal.linkBehavior = e
-                                                                            .currentTarget
-                                                                            .value as LinkBehavior;
+                                                                        modal.linkBehavior =
+                                                                            e
+                                                                                .currentTarget
+                                                                                .value as LinkBehavior;
                                                                         popupHook.setPopups(
                                                                             [
                                                                                 ...popupHook.popups,
@@ -390,14 +396,15 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                                     onChange={(
                                                                         e
                                                                     ) => {
-                                                                        modal.style = {
-                                                                            ...modal.style,
-                                                                            left: toNumber(
-                                                                                e
-                                                                                    .currentTarget
-                                                                                    .value
-                                                                            ),
-                                                                        };
+                                                                        modal.style =
+                                                                            {
+                                                                                ...modal.style,
+                                                                                left: toNumber(
+                                                                                    e
+                                                                                        .currentTarget
+                                                                                        .value
+                                                                                ),
+                                                                            };
                                                                         popupHook.setPopups(
                                                                             [
                                                                                 ...popupHook.popups,
@@ -418,14 +425,15 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                                     onChange={(
                                                                         e
                                                                     ) => {
-                                                                        modal.style = {
-                                                                            ...modal.style,
-                                                                            top: toNumber(
-                                                                                e
-                                                                                    .currentTarget
-                                                                                    .value
-                                                                            ),
-                                                                        };
+                                                                        modal.style =
+                                                                            {
+                                                                                ...modal.style,
+                                                                                top: toNumber(
+                                                                                    e
+                                                                                        .currentTarget
+                                                                                        .value
+                                                                                ),
+                                                                            };
                                                                         popupHook.setPopups(
                                                                             [
                                                                                 ...popupHook.popups,
@@ -450,7 +458,8 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                                     모바일 사용
                                                                     <input
                                                                         onChange={() => {
-                                                                            modal.useMobile = !modal.useMobile;
+                                                                            modal.useMobile =
+                                                                                !modal.useMobile;
                                                                             popupHook.setPopups(
                                                                                 [
                                                                                     ...popupHook.popups,
@@ -475,7 +484,8 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                                     PC사용
                                                                     <input
                                                                         onChange={() => {
-                                                                            modal.usePc = !modal.usePc;
+                                                                            modal.usePc =
+                                                                                !modal.usePc;
                                                                             popupHook.setPopups(
                                                                                 [
                                                                                     ...popupHook.popups,
@@ -511,14 +521,15 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                                     onChange={(
                                                                         e
                                                                     ) => {
-                                                                        modal.style = {
-                                                                            ...modal.style,
-                                                                            width: toNumber(
-                                                                                e
-                                                                                    .currentTarget
-                                                                                    .value
-                                                                            ),
-                                                                        };
+                                                                        modal.style =
+                                                                            {
+                                                                                ...modal.style,
+                                                                                width: toNumber(
+                                                                                    e
+                                                                                        .currentTarget
+                                                                                        .value
+                                                                                ),
+                                                                            };
                                                                         popupHook.setPopups(
                                                                             [
                                                                                 ...popupHook.popups,
@@ -539,14 +550,15 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                                     onChange={(
                                                                         e
                                                                     ) => {
-                                                                        modal.style = {
-                                                                            ...modal.style,
-                                                                            height: toNumber(
-                                                                                e
-                                                                                    .currentTarget
-                                                                                    .value
-                                                                            ),
-                                                                        };
+                                                                        modal.style =
+                                                                            {
+                                                                                ...modal.style,
+                                                                                height: toNumber(
+                                                                                    e
+                                                                                        .currentTarget
+                                                                                        .value
+                                                                                ),
+                                                                            };
                                                                         popupHook.setPopups(
                                                                             [
                                                                                 ...popupHook.popups,
@@ -597,10 +609,11 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                                             (
                                                                                 url
                                                                             ) => {
-                                                                                modal.style = {
-                                                                                    ...modal.style,
-                                                                                    backgroundImage: `url(${url})`,
-                                                                                };
+                                                                                modal.style =
+                                                                                    {
+                                                                                        ...modal.style,
+                                                                                        backgroundImage: `url(${url})`,
+                                                                                    };
                                                                                 // setPopModal({
                                                                                 //     ...modal
                                                                                 // })
@@ -625,7 +638,8 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                                     onChange={(
                                                                         data: any
                                                                     ) => {
-                                                                        modal.content = data;
+                                                                        modal.content =
+                                                                            data;
                                                                         popupHook.setPopups(
                                                                             [
                                                                                 ...popupHook.popups,
@@ -662,10 +676,272 @@ export const MsDesignB: React.FC<IProp> = () => {
                                         저장하기
                                     </button>
                                 </div>
+                            </div> */}
+                            <button onClick={modalHook.openModal}>OPEN</button>
+                            <div className="popupsetting__list">
+                                <div className="popupsetting__con">
+                                    <div className="title">
+                                        <h5>제목입니당~</h5>
+                                        <div className="tag">
+                                            <span className="state_on">ON</span>
+                                            <span className="state_off">
+                                                OFF
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="body">
+                                        <span className="date">
+                                            2020.12.12 ~ 2020.12.12
+                                        </span>
+                                        dddddddddddddddddddddddddddddddddddddddd
+                                    </div>
+                                </div>
+                                <div className="popupsetting__con">
+                                    <div className="title">
+                                        <h5>제목입니당~</h5>
+                                        <div className="tag">
+                                            <span className="state_on">ON</span>
+                                            <span className="state_off">
+                                                OFF
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="body">
+                                        <span className="date">
+                                            2020.12.12 ~ 2020.12.12
+                                        </span>
+                                        dddddddddddddddddddddddddddddddddddddddd
+                                    </div>
+                                </div>
+                                <div className="popupsetting__con">
+                                    <div className="title">
+                                        <h5>제목입니당~</h5>
+                                        <div className="tag">
+                                            <span className="state_on">ON</span>
+                                            <span className="state_off">
+                                                OFF
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="body">
+                                        <span className="date">
+                                            2020.12.12 ~ 2020.12.12
+                                        </span>
+                                        dddddddddddddddddddddddddddddddddddddddd
+                                    </div>
+                                </div>
+                                <div className="popupsetting__con">
+                                    <div className="title">
+                                        <h5>제목입니당~</h5>
+                                        <div className="tag">
+                                            <span className="state_on">ON</span>
+                                            <span className="state_off">
+                                                OFF
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="body">
+                                        <span className="date">
+                                            2020.12.12 ~ 2020.12.12
+                                        </span>
+                                        dddddddddddddddddddddddddddddddddddddddd
+                                    </div>
+                                </div>
+                                <div className="popupsetting__con">
+                                    <div className="title">
+                                        <h5>제목입니당~</h5>
+                                        <div className="tag">
+                                            <span className="state_on">ON</span>
+                                            <span className="state_off">
+                                                OFF
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="body">
+                                        <span className="date">
+                                            2020.12.12 ~ 2020.12.12
+                                        </span>
+                                        dddddddddddddddddddddddddddddddddddddddd
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <Modal2
+                    UpCon={
+                        <h3 className="popup__tittle">
+                            팝업설정
+                            <div className="switch">
+                                <input
+                                    className="tgl tgl-skewed"
+                                    type="checkbox"
+                                />
+                                <label
+                                    className="tgl-btn"
+                                    data-tg-off="OFF"
+                                    data-tg-on="ON"
+                                />
+                            </div>
+                        </h3>
+                    }
+                    {...modalHook}
+                >
+                    <ul className="list__setting">
+                        <li className="con_toggle">
+                            <div className="content">
+                                <div className="line">
+                                    <h6>팝업 타이틀</h6>
+                                    <div className="txt">
+                                        <input
+                                            type="text"
+                                            className="w100"
+                                            placeholder="title"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="line">
+                                    <h6>우선순위</h6>
+                                    <div className="txt">
+                                        <select className="w50">
+                                            <option value={0}>0</option>
+                                            <option value={1}>1</option>
+                                            <option value={2}>2</option>
+                                            <option value={3}>3</option>
+                                            <option value={4}>4</option>
+                                            <option value={5}>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="line">
+                                    <h6>노출기간</h6>
+                                    <div className="txt">
+                                        <div className="input_box mr5">
+                                            <input
+                                                readOnly
+                                                type="text"
+                                                className="day w100"
+                                            />
+                                            <CalendarIcon />
+                                        </div>
+                                        <span className="pc"> ~ </span>
+                                        <div className="input_box ml5">
+                                            <input
+                                                readOnly
+                                                type="text"
+                                                className="day w100"
+                                            />
+                                            <CalendarIcon />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="line">
+                                    <h6>링크연결</h6>
+
+                                    <div className="txt">
+                                        <input
+                                            type="text"
+                                            className="w100 mr5"
+                                            placeholder="https://"
+                                        />
+                                        <select className="w100">
+                                            <option value={LinkBehavior._blank}>
+                                                새창
+                                            </option>
+                                            <option value={LinkBehavior._self}>
+                                                현재창
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="line">
+                                    <h6>좌표설정</h6>
+                                    <p>모바일일떄는 가운데 정렬 됩니다.</p>
+                                    <div className="txt">
+                                        <input
+                                            type="text"
+                                            className="w100 mr5"
+                                            placeholder="Left"
+                                        />
+                                        <input
+                                            type="text"
+                                            className="w100"
+                                            placeholder="Top"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="line">
+                                    <h6>PC/Mobile</h6>
+                                    <div className="txt">
+                                        <div className="switch">
+                                            모바일 사용
+                                            <input
+                                                className="tgl tgl-skewed"
+                                                type="checkbox"
+                                            />
+                                            <label
+                                                className="tgl-btn"
+                                                data-tg-off="OFF"
+                                                data-tg-on="ON"
+                                            />
+                                        </div>
+                                        <div className="switch">
+                                            PC사용
+                                            <input
+                                                className="tgl tgl-skewed"
+                                                type="checkbox"
+                                            />
+                                            <label
+                                                className="tgl-btn"
+                                                data-tg-off="OFF"
+                                                data-tg-on="ON"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="line">
+                                    <h6>크기조절</h6>
+                                    <p>최대 화면 크기를 초과할 수 없습니다.</p>
+                                    <div className="txt">
+                                        <input
+                                            type="text"
+                                            className="w100 mr5"
+                                            placeholder="width"
+                                        />
+                                        <input
+                                            type="text"
+                                            className="w100"
+                                            placeholder="height"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="line">
+                                    <h6>백그라운드 설정</h6>
+                                    <div className="txt">
+                                        <div className="fileNameInputLabel"></div>
+                                        <input type="file" />
+                                    </div>
+                                </div>
+                                <div className="line">
+                                    <h6>컨텐츠 설정</h6>
+                                    <div className="txt">
+                                        <div className="fileNameInputLabel"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li className="add_popup">
+                            <button
+                                onClick={handleAddPopUp}
+                                className="btn small pink_font mr10"
+                            >
+                                팝업 생성하기
+                            </button>
+                            <button className="btn small mr10">미리보기</button>
+                            <button className="btn small">삭제하기</button>
+                        </li>
+                    </ul>
+                </Modal2>
             </MasterLayout>
         </div>
     );

@@ -8,7 +8,11 @@ import { AppContext } from "../../_app";
 import { useRouter } from "next/router";
 import { MemberTopNav } from "../../../components/topNav/MemberTopNav";
 import { useQnaList } from "../../../hook/useQna";
-import { qnaList_QnaList_data } from "../../../types/api";
+import {
+    CategoryType,
+    qnaList_QnaList_data,
+    QnaTarget,
+} from "../../../types/api";
 import sanitizeHtml from "sanitize-html";
 import { Change } from "../../../components/loadingList/LoadingList";
 import { generateClientPaging } from "../../../utils/generateClientPaging";
@@ -17,13 +21,16 @@ import { PageEditor } from "../../../components/common/PageEditer";
 
 export const getStaticProps = getStaticPageInfo("qna");
 export const Qna: React.FC<Ipage> = (pageInfo) => {
-    const { isManager, categoriesMap, myProfile } = useContext(AppContext);
-    const { items, getLoading } = useQnaList({
+    const { isManager, categoriesMap, myProfile, isSeller } =
+        useContext(AppContext);
+    const { items, getLoading, filter, setFilter } = useQnaList({
         initialViewCount: 999,
-        // fixingFilter: {
-        //     isOpen_eq: isManager ? undefined : true
-        // }
+        initialFilter: {
+            target_eq: QnaTarget.ALL,
+        },
     });
+    const target = filter.target_eq;
+    const isTargetAll = filter.target_eq === QnaTarget.ALL;
     const [filterCat, setFilterCat] = useState<string>();
     const router = useRouter();
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
@@ -58,6 +65,11 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
         10
     );
 
+    const handleTargetChange = () => {
+        filter.target_eq = isTargetAll ? QnaTarget.SELLER : QnaTarget.ALL;
+        setFilter({ ...filter });
+    };
+
     return (
         <div>
             <SubTopNav pageTools={pageTools}>
@@ -73,6 +85,14 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                 <MemberTopNav />
                 <div className="board_qna board_box">
                     <h4>자주하는 질문</h4>
+                    {isSeller && (
+                        <button
+                            className="btn samll mb10"
+                            onClick={handleTargetChange}
+                        >
+                            {isTargetAll ? "파트너" : "일반"}
+                        </button>
+                    )}
                     <div className="alignment">
                         <div className="center_div">
                             <ul className="board_option__btn">
@@ -82,8 +102,11 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                                 >
                                     <a>전체</a>
                                 </li>
-                                {categoriesMap.QNA.map((cat) => (
-                                    // <li className={checkCatEq(cat._id)} onClick={handleCatFilter(cat._id)} key={cat._id}><a>{cat.label}<strong>{checkCatCount(cat._id)}</strong></a></li>
+                                {categoriesMap[
+                                    target === QnaTarget.ALL
+                                        ? CategoryType.QNA
+                                        : CategoryType.QNA_FOR_PARTNER
+                                ].map((cat) => (
                                     <li
                                         className={checkCatEq(cat._id)}
                                         onClick={handleCatFilter(cat._id)}
@@ -148,7 +171,16 @@ export const Qna: React.FC<Ipage> = (pageInfo) => {
                     </Change>
                 </div>
                 <Paginater setPage={setPage} pageInfo={paging} />
-
+                {isSeller && (
+                    <button
+                        className="btn samll mb10"
+                        onClick={() => {
+                            router.push("/member/question/write");
+                        }}
+                    >
+                        더 궁금하신 내용이 있으신가요?
+                    </button>
+                )}
                 <div className="list_bottom mt30 mb100">
                     {isManager && (
                         <button

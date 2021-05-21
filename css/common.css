@@ -884,24 +884,7 @@ ul {
   padding: 0;
 }
 
-.red_font {
-  color: #e80000!important;
-}
 
-.blue_font {
-  color: #000d98;
-}
-
-.sky_font {
-  color: #2196f3;
-}
-
-.gray_font {
-  color: #ababab;
-}
-.pink_font {
-  color: #ed297b;
-}
 
 input:focus,
 textarea:focus,
@@ -1115,4 +1098,34 @@ br.no {
     box-sizing: border-box;
     padding: 0 5% !important;
   }
+}
+
+
+.red_font {
+  color: #e80000!important;
+}
+
+.blue_font {
+  color: #000d98 !important;
+}
+
+.sky_font {
+  color: #2196f3 !important;
+}
+
+.gray_font {
+  color: #ababab !important;
+}
+.pink_font {
+  color: #ed297b !important;
+}
+.btn.pink_font {
+  color: #ffffff !important;
+  background-color: #ed297b;
+  border-color: #ed297b;
+}
+.btn.pink_font:hover {
+  color: #ffffff !important;
+  background-color: #ed297b;
+  border-color: #ed297b;
 }

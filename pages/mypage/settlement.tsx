@@ -70,15 +70,11 @@ export const MySettlement: React.FC<IProp> = () => {
         getLoading,
     } = useSettlementList();
     const [target] = useState<Fsettlement | null>(null);
-    const {
-        filterEnd,
-        filterStart,
-        hanldeCreateDateChange,
-        setDateKey,
-    } = useDateFilter({
-        filter,
-        setFilter,
-    });
+    const { filterEnd, filterStart, hanldeCreateDateChange, setDateKey } =
+        useDateFilter({
+            filter,
+            setFilter,
+        });
     const [searchType, setSearchType] = useState<TsearchType>(
         "exField__code_eq" as TsearchType
     );
@@ -288,7 +284,13 @@ export const MySettlement: React.FC<IProp> = () => {
                                     <div className="tbody">
                                         <ul>
                                             {items.map((item, i) => (
-                                                <li className="mypageSettlement__list">
+                                                <li
+                                                    key={
+                                                        item._id +
+                                                        "settlementLi"
+                                                    }
+                                                    className="mypageSettlement__list"
+                                                >
                                                     <div className="th02">
                                                         {item.product.code}
                                                     </div>

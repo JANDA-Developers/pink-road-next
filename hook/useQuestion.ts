@@ -40,6 +40,7 @@ export const useQuestionFindById = generateFindQuery<
     questionFindByIdVariables,
     questionFindById_QuestionFindById_data
 >("id", QUESTION_FIND_BY_ID);
+
 export const useQuestionList = generateListQueryHook<
     _QuestionFilter,
     _QuestionSort,
@@ -47,6 +48,7 @@ export const useQuestionList = generateListQueryHook<
     questionCreateVariables,
     questionList_QuestionList_data
 >(QUESTION_LIST, { initialSort: [_QuestionSort.createdAt_desc] });
+
 export const useQuestionCreate = generateMutationHook<
     questionCreate,
     questionCreateVariables

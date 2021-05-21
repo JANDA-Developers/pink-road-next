@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React from "react";
 import ReactDOM from "react-dom";
 import { IUseModal } from "../../hook/useModal";
-import { IDiv } from "../../types/interface";
+import { IDiv, TElements } from "../../types/interface";
 import { closeModal } from "../../utils/popUp";
 
 interface IProp extends IDiv {
@@ -52,8 +52,9 @@ export const Modal: React.FC<IProp> = ({
 };
 
 interface IModalReNewProp extends IUseModal, IDiv {
-    title: string;
+    title?: string;
     inClassName?: string;
+    UpCon?: TElements;
 }
 
 export const Modal2: React.FC<IModalReNewProp> = ({
@@ -62,6 +63,7 @@ export const Modal2: React.FC<IModalReNewProp> = ({
     inClassName,
     isOpen,
     className,
+    UpCon,
     title,
     children,
     ...props
@@ -86,11 +88,12 @@ export const Modal2: React.FC<IModalReNewProp> = ({
             {...props}
         >
             <div className={`in_txt ${inClassName}`}>
-                <h3 className="popup__tittle">{title}</h3>
+                {title && <h3 className="popup__tittle">{title}</h3>}
                 <a onClick={closeModal} className="close_icon">
                     <i className="flaticon-multiply" />
                 </a>
                 <div className="page">
+                    {UpCon}
                     <div className="con">{children}</div>
                 </div>
             </div>

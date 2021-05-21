@@ -26,7 +26,7 @@ export const MsReservationMain: React.FC<IProp> = () => {
             <li onClick={filterByStatus(BookingStatus.CANCEL)} className={checkOnByStatus(BookingStatus.CANCEL)}><a>취소예약<strong>{cancelBookingCountMaster}</strong></a></li>
             <li onClick={filterByReq(true)} className={checkOnByReq(true)}><a>취소요청<strong>{cancelReqBookingCountMaster}</strong></a></li>
         </ul>}
-    />
+/>
 };
 
 export default auth(ALLOW_ADMINS)(MsReservationMain);

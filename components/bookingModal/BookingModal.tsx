@@ -16,6 +16,7 @@ import {
     PaymentStatus,
     PayMethod,
     ProductStatus,
+    ProductType,
 } from "../../types/api";
 import {
     bankrefundTransInfo,
@@ -69,8 +70,8 @@ export const BookingModal: React.FC<IProp> = ({
         target: "cancelReq",
     });
     const [bookingCopy, setBookingCopy] = useCopy(booking);
-
     const paymentId = booking?.payment?._id;
+    const isTour = booking?.product?.type === ProductType.TOUR;
 
     const [bookingUpdate, { loading: updateLoading }] = useBookingUpdate({
         onCompleted: ({ BookingUpdate }) => {
@@ -525,7 +526,26 @@ export const BookingModal: React.FC<IProp> = ({
                                         전표출력
                                     </button>
                                 </h4>
+
                                 <div className="info_table w50">
+                                    <div className="tr">
+                                        <div className="th01">예약자</div>
+                                        <div className="td01">
+                                            <span className="lineHeight-2">
+                                                {booking.name}
+                                            </span>
+                                        </div>
+                                        <div className="th02">
+                                            예약자 연락처
+                                        </div>
+                                        <div className="td02">
+                                            <span>
+                                                {autoHypenPhone(
+                                                    booking.phoneNumber
+                                                )}
+                                            </span>
+                                        </div>
+                                    </div>
                                     <div className="tr">
                                         <div
                                             className="th01"
@@ -654,7 +674,11 @@ export const BookingModal: React.FC<IProp> = ({
                         </div>
                         <div className="info_page">
                             <div className="full_div">
-                                <h4>예약자 정보</h4>
+                                <h4>
+                                    {isTour
+                                        ? "실제여행자 정보"
+                                        : "실제참여자 정보"}
+                                </h4>
                                 <div className="info_table peoplelist">
                                     <div className="top_info">
                                         <span className="tt">
@@ -666,15 +690,59 @@ export const BookingModal: React.FC<IProp> = ({
                                             {booking.kidCount} / 유아
                                             {booking.babyCount} )
                                         </span>
-                                        {/* <span className="float_right">
-                                        {booking.bookerInclue ? <i className="menok">예약자-포함</i> :
-                                            <i className="menno">예약자-미포함</i>}
-                                    </span> */}
+                                        <span className="float_right">
+                                            {bookingCopy.bookerInclue ? (
+                                                <i
+                                                    onClick={() => {
+                                                        bookingCopy.bookerInclue =
+                                                            false;
+                                                        bookingCopy.travelers =
+                                                            [
+                                                                {
+                                                                    __typename:
+                                                                        "Traveler",
+                                                                    name: bookingCopy.name,
+                                                                    phoneNumber:
+                                                                        bookingCopy.phoneNumber,
+                                                                    age: "",
+                                                                    gender: "",
+                                                                },
+                                                                ...bookingCopy.travelers,
+                                                            ];
+                                                        setBookingCopy({
+                                                            ...bookingCopy,
+                                                        });
+                                                    }}
+                                                    className="menok"
+                                                >
+                                                    예약자-포함
+                                                </i>
+                                            ) : (
+                                                <i
+                                                    onClick={() => {
+                                                        bookingCopy.bookerInclue =
+                                                            true;
+
+                                                        bookingCopy.travelers.splice(
+                                                            0,
+                                                            1
+                                                        );
+                                                        setBookingCopy({
+                                                            ...bookingCopy,
+                                                        });
+                                                    }}
+                                                    className="menno"
+                                                >
+                                                    예약자-미포함
+                                                </i>
+                                            )}
+                                        </span>
                                     </div>
-                                    <div className="tr first peoplelist__wrap">
+                                    {/* <div className="tr first peoplelist__wrap">
                                         <div className="re01 peoplelist__li">
                                             예약자{" "}
-                                            {booking.bookerInclue && "(본인)"}
+                                            {bookingCopy.bookerInclue &&
+                                                "(본인)"}
                                         </div>
                                         <div className="re02 peoplelist__li">
                                             예약자명
@@ -713,7 +781,7 @@ export const BookingModal: React.FC<IProp> = ({
                                                 {booking.age || "정보없음"}
                                             </span>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {isSeller && (
                                         <div>
                                             {bookingCopy?.travelers?.map(
@@ -742,8 +810,7 @@ export const BookingModal: React.FC<IProp> = ({
                                                                     __typename:
                                                                         "Traveler",
                                                                     age: "",
-                                                                    gender:
-                                                                        GENDER.FEMALE,
+                                                                    gender: GENDER.FEMALE,
                                                                     name: "",
                                                                     phoneNumber:
                                                                         "",
