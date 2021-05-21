@@ -49,12 +49,23 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
             <div className="payment_box">
                 <div className="head">
                     <h2 className="endtxt">
-                        <i>예약</i>이 완료되었습니다.
+                        {!isBank && (
+                            <span className="subtxt">
+                                <i className="pink_font">예약</i>이
+                                완료되었습니다.
+                            </span>
+                        )}
+                        {isBank && (
+                            <span className="subtxt">
+                                <i className="pink_font">입금</i>을 해주시면{" "}
+                                <i className="pink_font">예약</i>이 완료됩니다.
+                            </span>
+                        )}
                     </h2>
                 </div>
                 {items.map((booking) => (
                     <div key={booking._id} className="table">
-                        <div className="payment_tr">
+                        {/* <div className="payment_tr">
                             <div className="payment_th">예약상품</div>
                             <div className="payment_td">
                                 <span style={{ marginRight: "5px" }}>
@@ -62,10 +73,30 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
                                 </span>
                                 <span>({booking.product.code})</span>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="payment_tr">
                             <div className="payment_th">예약번호</div>
-                            <div className="payment_td">{booking.code}</div>
+                            <div className="payment_td pink_font">
+                                {booking.code}
+                            </div>
+                        </div>
+                        <div className="payment_tr">
+                            <div className="payment_th">예약 상품명</div>
+                            <div className="payment_td">
+                                {booking.product.title}
+                            </div>
+                        </div>
+                        <div className="payment_tr">
+                            <div className="payment_th">일정</div>
+                            <div className="payment_td">
+                                {/* 2020.03.03 ~ 2020.03.05 / 2박3일 */}
+                            </div>
+                        </div>
+                        <div className="payment_tr">
+                            <div className="payment_th">선택인원</div>
+                            <div className="payment_td">
+                                {/* 성인1/아동1/유아0 */}
+                            </div>
                         </div>
                         <div className="payment_tr">
                             <div className="payment_th">결제상태</div>
@@ -74,14 +105,25 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
                             </div>
                         </div>
 
-                        <div className="payment_tr">
-                            <div className="payment_th">결제수단</div>
-                            <div className="payment_td">
-                                <span>{payMethodToKR(booking.payMethod)}</span>
+                        {!isBank && (
+                            <div className="payment_tr">
+                                <div className="payment_th">결제상태</div>
+                                <div className="payment_td">
+                                    <span>결제완료</span>
+                                </div>
                             </div>
-                        </div>
-
-                        {booking.payment && (
+                        )}
+                        {!isBank && (
+                            <div className="payment_tr">
+                                <div className="payment_th">결제수단</div>
+                                <div className="payment_td">
+                                    <span>
+                                        {payMethodToKR(booking.payMethod)}
+                                    </span>
+                                </div>
+                            </div>
+                        )}
+                        {!isBank && (
                             <div className="payment_tr">
                                 <div className="payment_th">결제코드</div>
                                 <div className="payment_td">
@@ -89,15 +131,32 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
                                 </div>
                             </div>
                         )}
-
-                        <div className="payment_tr">
-                            <div className="payment_th">결제금액</div>
-                            <div className="payment_td">
-                                <strong>
-                                    {autoComma(booking.bookingPrice || 0)}원
-                                </strong>
+                        {!isBank && (
+                            <div className="payment_tr">
+                                <div className="payment_th">결제금액</div>
+                                <div className="payment_td">
+                                    <strong>
+                                        {autoComma(booking.bookingPrice || 0)}원
+                                    </strong>
+                                </div>
                             </div>
-                        </div>
+                        )}
+                        {isBank && (
+                            <div className="payment_tr">
+                                <div className="payment_th">결제상태</div>
+                                <div className="payment_td">
+                                    <span>결제대기</span>
+                                </div>
+                            </div>
+                        )}
+                        {isBank && (
+                            <div className="payment_tr">
+                                <div className="payment_th">결제수단</div>
+                                <div className="payment_td">
+                                    <span>무통장입금</span>
+                                </div>
+                            </div>
+                        )}
                         {isBank && (
                             <div className="payment_tr">
                                 <div className="payment_th">입금은행</div>
@@ -122,17 +181,32 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
                                 자동취소 됩니다.
                             </p>
                         )}
+                        {isBank && (
+                            <div className="payment_tr">
+                                <div className="payment_th">입금예정금액</div>
+                                <div className="payment_td">
+                                    <strong>
+                                        {autoComma(booking.bookingPrice || 0)}원
+                                    </strong>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 ))}
                 <div className="btn_box">
-                    {isLogin && (
-                        <Link href="/mypage/purchase">
-                            <a className="btn">구매내역 확인하기</a>
-                        </Link>
-                    )}
                     <Link href="/">
                         <a className="btn">홈으로</a>
                     </Link>
+                    {isLogin && (
+                        <Link href="/mypage/purchase">
+                            <a className="btn pink_font">예약내역 확인하기</a>
+                        </Link>
+                    )}
+                    {!isLogin && (
+                        <Link href="/member/anonyMemberFindBook">
+                            <a className="btn pink_font">예약내역 확인하기</a>
+                        </Link>
+                    )}
                 </div>
             </div>
         </PaymentLayout>
