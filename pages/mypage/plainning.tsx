@@ -26,9 +26,8 @@ import { Change } from "../../components/loadingList/LoadingList";
 interface IProp {}
 
 export const Plainning: React.FC<IProp> = () => {
-    const { myProfile, isParterNonB, isParterB, isManager } = useContext(
-        AppContext
-    );
+    const { myProfile, isParterNonB, isParterB, isManager } =
+        useContext(AppContext);
     const {
         items,
         filter,
@@ -434,7 +433,7 @@ export const Plainning: React.FC<IProp> = () => {
                                             isParterNonB ||
                                             isManager) && (
                                             <Link href="/tour/write">
-                                                <a className="btn medium pointcolor">
+                                                <a className="btn medium pink_font">
                                                     상품 생성하기
                                                 </a>
                                             </Link>

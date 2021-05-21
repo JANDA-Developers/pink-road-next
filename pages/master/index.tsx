@@ -811,6 +811,9 @@ export const MsIndex: React.FC<IProp> = () => {
                     {/* <BookingModal code={""} /> */}
                     {/* <ProductModal productId={} /> */}
                 </div>
+                <div className="infobox__bottom">
+                    <i className="jandaicon-info3" /> 주의사항
+                </div>
             </div>
         </MasterLayout>
     );

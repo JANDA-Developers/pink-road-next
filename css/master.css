@@ -42,49 +42,28 @@
   display: block;
   line-height: 126%;
 }
-.master_box .search_info_box {
+.infobox__bottom {
   position: relative;
   width: 100%;
   display: block;
   padding: 50px;
   box-sizing: border-box;
-  background-color: #ffffff;
-  border: 1px solid #d0d0d0;
+  border: 1px solid #e9e9e9;
   margin-top: 30px;
+  background-color: #fafafa;
+  border-radius: 5px;
+  color: #8f8f8f;
 }
-.master_box .search_info_box h3 {
+.infobox__bottom h3 {
   color: #adadad;
 }
-.master_box .search_info_box li {
+.infobox__bottom li {
   line-height: 180%;
   font-weight: 100;
   font-size: 0.9em;
   color: #adadad;
 }
-.master_box .search_info_box li i {
-  line-height: 60%;
-  margin-right: 5px;
-}
-.search__info_box {
-  position: relative;
-  width: 100%;
-  display: block;
-  padding: 50px;
-  box-sizing: border-box;
-  background-color: #ffffff;
-  border: 1px solid #d0d0d0;
-  margin-top: 30px;
-}
-.search__info_box h3 {
-  color: #adadad;
-}
-.search__info_box li {
-  line-height: 180%;
-  font-weight: 100;
-  font-size: 0.9em;
-  color: #adadad;
-}
-.master_box .search_info_box li i {
+.master_box .infobox__bottom li i {
   line-height: 60%;
   margin-right: 5px;
 }
@@ -3347,6 +3326,149 @@ div.master_popup div.alignment {
 .master_box .main_paper_div .m_title{
   display: none !important;
 }
+.popupsetting__list{
+  position: relative;
+  display: block;
+}
+.popupsetting__con{
+  position: relative;
+    display: inline-block;
+    width: 100%;
+    margin: 15px 0;
+    box-sizing: border-box;
+    border: 1px solid #cfcfcf;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    vertical-align: top;
+    border-radius: 5px;
+    line-height: 150%;
+    cursor: pointer;
+    overflow: hidden;
+}
+.popupsetting__con .title {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-top: 18px;
+}
+.popupsetting__con .tag {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  right: 15px;
+}
+.popupsetting__con .tag span {
+  padding: 0px 5px;
+  background-color: #676767;
+  color: #fff;
+  font-size: 0.8em;
+  vertical-align: top;
+  display: inline-block;
+  line-height: 18px;
+}
+.popupsetting__con .tag .state_on {
+  background-color: #5f7bba;
+}
+.popupsetting__con h5 {
+  position: relative;
+  width: 100%;
+  display: block;
+  margin-top: 0;
+  padding: 5px 20px 10px 20px;
+  box-sizing: border-box;
+  font-size: 1.2em;
+  border-bottom: 2px solid #333;
+  line-height: 19px;
+  overflow-wrap: anywhere;
+}
+.popupsetting__con .body {
+  font-weight: 100;
+  overflow-wrap: anywhere;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 0.8em;
+  line-height: 140%;
+}
+.popupsetting__con .date {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 1.3em;
+  line-height: 140%;
+  font-weight: 600;
+}
+.list__setting { 
+ min-height: 300px;
+ max-height: 500px;
+ overflow-y: scroll;
+}
+.popup__tittle .switch{ 
+  position: absolute;
+  top: 5px;
+  right: 79px;
+}
+.popup__tittle .switch .tgl + .tgl-btn{ 
+  height: 1em !important;
+}
+.popup__tittle .switch .tgl-skewed + .tgl-btn:after, .popup__tittle .switch .tgl-skewed + .tgl-btn:before {
+  line-height: 1.3em !important;
+  font-size: 0.7em;
+  letter-spacing: 0.6px;
+}
+.list__setting{
+  position: relative;
+}
+.list__setting .txt{
+
+  display: block;
+}
+
+.list__setting h5{
+  position: relative;
+  line-height: 150%;
+  margin-top: 10px;
+  font-size: 1.3em;
+}
+.list__setting h6{
+  position: relative;
+  line-height: 150%;
+  margin-top: 10px;
+  font-size: 1em;
+}
+  .list__setting .line {
+    display: block;
+    margin-bottom: 20px;
+}
+  .list__setting .switch {
+    display: flex
+}
+.list__setting .switch {
+  margin-right: 15px;
+  line-height: 210%;
+}
+.list__setting .switch label {
+  margin-left: 5px;
+}
+  .list__setting .input_box {
+    display: block !important;
+}
+  .list__setting .add_popup .btn {
+    margin-right: 5px !important;
+}
+  .list__setting .calendar {
+    width: 0px;
+    height: 0px;
+}
+  .list__setting .svg_calendar {
+    position: absolute;
+    top: 7px;
+    right: 13px;
+    opacity: 0.5;
+}
+.list__setting .input_box{
+  border: 0 !important;
+  padding: 0 !important;
+}
 @media (min-width: 768px) {
   .master_box .main_paper_div .hang .table.typeA .td01 strong{
     font-size: 1em;
@@ -3495,6 +3617,28 @@ div.master_popup div.alignment {
   }
 }
 @media (min-width: 1000px) {
+  .list__setting .input_box {
+    display: flex !important;
+    width: 45%;
+    position: relative;
+    box-sizing: border-box;
+}
+.list__setting .txt{
+
+  display: flex;
+}
+.list__setting { 
+  min-height: 400px;
+  max-height: 600px;
+  overflow-y: scroll;
+ }
+  .popupsetting__con{
+      width: 272px;
+      margin: 7px;
+  }
+  .popupsetting__list .popupsetting__con:nth-child(4n + 1){
+    margin: 7px 7px 7px 0;
+  }
   .master_box .goods .td10 .btn {
     width: auto !important;
   }
