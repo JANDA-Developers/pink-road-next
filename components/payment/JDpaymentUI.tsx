@@ -326,7 +326,8 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                                                     e
                                                                         .currentTarget
                                                                         .value;
-                                                                bankRefundInfo.bankTransfter = val;
+                                                                bankRefundInfo.bankTransfter =
+                                                                    val;
                                                                 setBankRefundInfo(
                                                                     {
                                                                         ...bankRefundInfo,
@@ -363,7 +364,8 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                                                         e
                                                                             .currentTarget
                                                                             .value;
-                                                                    bankRefundInfo.bankName = val;
+                                                                    bankRefundInfo.bankName =
+                                                                        val;
                                                                     setBankRefundInfo(
                                                                         {
                                                                             ...bankRefundInfo,
@@ -386,7 +388,8 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                                                         e
                                                                             .currentTarget
                                                                             .value;
-                                                                    bankRefundInfo.accountHolder = val;
+                                                                    bankRefundInfo.accountHolder =
+                                                                        val;
                                                                     setBankRefundInfo(
                                                                         {
                                                                             ...bankRefundInfo,
@@ -409,7 +412,8 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                                                         e
                                                                             .currentTarget
                                                                             .value;
-                                                                    bankRefundInfo.accountNumber = val;
+                                                                    bankRefundInfo.accountNumber =
+                                                                        val;
                                                                     setBankRefundInfo(
                                                                         {
                                                                             ...bankRefundInfo,
@@ -587,6 +591,32 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                             </li>
                         </ul>
                     </div>
+                    <div className="infobox__bottom">
+                        <i className="jandaicon-info2"></i> 유의사항 <br />
+                        모든 상품은 당사의 취소·환불 정책을 적용하지만, 상품
+                        상세 설명 내용에 별도 취소 및 환불 규정이 기재되어 있는
+                        경우 그 내용을 우선으로 합니다. 약관 동의 후 예약을
+                        진행하시면 이 내용을 숙지 후 동의한 것으로 간주합니다.
+                        <br /> <br />
+                        • 결제가 정상적으로 진행되지 않으면 최종 예약이 완료되지
+                        않습니다.
+                        <br />
+                        • 상품 관련 변경사항 발생 시 안내드리고자 모든 만 19세
+                        이상 참여자는 휴대폰번호를 필수로 입력하셔야 합니다.
+                        <br />
+                        • 휴대폰이 없으실 경우 연락 가능한 대체 휴대폰번호를
+                        입력해 주시기 바랍니다.
+                        <br />
+                        • 예약 정보는 예약/결제 진행 후 마이페이지→예약내역에서
+                        확인 가능 합니다.
+                        <br />
+                        • 보호자가 동반되지 않은 미성년자는 참여가 불가합니다.
+                        <br />
+                        • 출발일 기준 7일 전 진행 확정 여부가 안내됩니다.
+                        (최소인원 미달 시 취소될 수 있습니다.)
+                        <br />• 일정은 현지 사정 및 기상에 따라 다소 변경될 수
+                        있습니다.
+                    </div>
                     <Modal id="PolicyModal" title="약관보기">
                         <Tabs
                             onSelect={setSelectedIndex}
@@ -633,7 +663,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                     </Modal>
                 </div>
                 <a onClick={handlePayment} className="paymentBtn">
-                    결제하기
+                    예약하기
                 </a>
             </div>
         </div>

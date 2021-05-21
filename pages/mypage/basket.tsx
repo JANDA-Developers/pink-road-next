@@ -85,7 +85,7 @@ export const MyPageBasket: React.FC<IProp> = ({ context, pageInfo }) => {
                                     onClick={handleOrder}
                                     className="btn orders"
                                 >
-                                    결제하기
+                                    예약하기
                                 </button>
                             </div>
                         </div>
