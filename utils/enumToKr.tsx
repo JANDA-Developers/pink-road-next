@@ -12,6 +12,8 @@ import {
     Fuser,
     GENDER,
     getContext_GetProfile_data,
+    KakaoTemplateInspStatus,
+    KakaoTemplateStatus,
     MethodType,
     NEWS_TYPE,
     PaymentStatus,
@@ -107,14 +109,15 @@ export const determinedKr = (isDetermined: boolean) => {
     return "";
 };
 
-export const categoryToKR = (catType?: CategoryType | null) => {
-    if (catType === CategoryType.QUESTION) return "문의글";
-    if (catType === CategoryType.PORTPOLIO) return "포트폴리오";
-    if (catType === CategoryType.QNA) return "문의하기";
-    if (catType === CategoryType.TOUR) return "투어";
-    if (catType === CategoryType.EXPERIENCE) return "체험";
-    if (catType === CategoryType.REGION) return "지역";
-    return "";
+export const categoryToKR: Record<CategoryType, string> = {
+    EXPERIENCE: "체험",
+    PORTPOLIO: "포트폴리오",
+    QNA: "자주하는질문",
+    QNA_FOR_PARTNER: "파트너 문의하기",
+    QUESTION: "문의하기",
+    QUESTION_FOR_PARTNER: "파트너 문의하기",
+    REGION: "지역",
+    TOUR: "투어",
 };
 
 export const payMethodToKR = (paymethod?: PayMethod) => {
@@ -300,4 +303,16 @@ export const phoneNumberOf = (author?: getContext_GetProfile_data | null) => {
         author?.busi_contact ||
         ""
     );
+};
+
+export const kakaoInspStatusKr: Record<KakaoTemplateInspStatus, string> = {
+    APR: "승인",
+    REG: "등록",
+    REJ: "반려",
+    REQ: "심사요청",
+};
+export const kakaoStatusKr: Record<KakaoTemplateStatus, string> = {
+    ACK: "정상",
+    READY: "대기",
+    STOP: "멈춤",
 };

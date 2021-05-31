@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { useBasket, useBasketCount } from "../../hook/useBasket";
+import React from "react";
+import { useBasketCount } from "../../hook/useBasket";
 import { Fproduct } from "../../types/api";
-import { IHumanCount } from "../../types/interface";
 import { autoComma } from "../../utils/formatter";
 import { closeModal } from "../../utils/popUp";
 import { IBasketItem, overrideItem } from "../../utils/Storage";
@@ -31,7 +30,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
         adult_price,
         count: { adult, baby, kids },
     } = product || defaultCountAndPrice;
-    const { count, handleCount, totalPrice, travelers, setTravlers } =
+    const { count, handleCount, totalPrice, travelers, settravelers } =
         useBasketCount({
             baby_price,
             kids_price,
@@ -46,6 +45,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
     const handleBracketSave = () => {
         overrideItem(product!._id, {
             count,
+            travelers,
             price: totalPrice,
         });
         updateComponent();
@@ -153,7 +153,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
                     bookerPhoneNumber=""
                     totalCount={0}
                     kidsCount={count.kids}
-                    onChangeTravlers={setTravlers}
+                    onChangetravelers={settravelers}
                     withIncludeBooker={false}
                     onChnageBookerInclude={() => {}}
                     travelers={travelers}

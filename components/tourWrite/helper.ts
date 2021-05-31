@@ -50,9 +50,9 @@ export const detactRangeChange = (range: TRange): string[] => {
     ];
 };
 
-export const filterOver = (sch: ItineraryCreateInput[]) => {
+export const filterOver = (sch: ItineraryCreateInput[], range: number) => {
     // @ts-ignore
-    return sch.filter((sch) => !sch.isOver);
+    return sch.filter((sch, i) => i < range);
 };
 
 type IGetNextDataProp = {

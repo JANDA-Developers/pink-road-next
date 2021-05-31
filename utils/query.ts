@@ -58,16 +58,11 @@ const dataCheck = (
     checkProperty: string[] = ["data", "page"]
 ) => {
     try {
-        console.log({ data });
-        console.log({ operationName });
         if (data?.hasOwnProperty(operationName) === false) {
             console.warn(
                 `result data object dose not have property ${operationName} look this above object ↑ `
             );
         }
-
-        console.log("data?.[operationName]");
-        console.log(data?.[operationName]);
 
         checkProperty.forEach((p) => {
             if (data?.[operationName].hasOwnProperty(p) === false) {

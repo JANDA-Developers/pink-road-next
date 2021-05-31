@@ -14,7 +14,7 @@ interface IProp {
     bookerInclue: boolean;
     travelers: Ftraveler[];
     onChnageBookerInclude: (include: boolean) => void;
-    onChangeTravlers: (travlers: Ftraveler[]) => void;
+    onChangetravelers: (travelers: Ftraveler[]) => void;
 }
 
 export const TravlerControlTable: React.FC<IProp> = ({
@@ -28,7 +28,7 @@ export const TravlerControlTable: React.FC<IProp> = ({
     bookerInclue,
     travelers,
     onChnageBookerInclude,
-    onChangeTravlers,
+    onChangetravelers,
 }) => {
     const handleToggleBookerInclude = () => {
         onChnageBookerInclude(!bookerInclue);
@@ -58,11 +58,11 @@ export const TravlerControlTable: React.FC<IProp> = ({
                 nextTravelers = nextTravelers.splice(0, totalCount - 1);
             }
             console.log({ nextTravelers });
-            onChangeTravlers([...nextTravelers]);
+            onChangetravelers([...nextTravelers]);
         } else {
             if (!travelers) return;
             travelers.splice(0, 1);
-            onChangeTravlers([...travelers]);
+            onChangetravelers([...travelers]);
         }
     }, [bookerInclue]);
 
@@ -95,16 +95,16 @@ export const TravlerControlTable: React.FC<IProp> = ({
                         isLast={index === travelers.length - 1}
                         handleDelete={() => {
                             travelers.splice(index, 1);
-                            onChangeTravlers([...travelers]);
+                            onChangetravelers([...travelers]);
                         }}
                         handleAdd={() => {
                             travelers.push({ ...DEFAULT_TRAVLER });
-                            onChangeTravlers([...travelers]);
+                            onChangetravelers([...travelers]);
                         }}
                         traveler={traveler}
                         key={index + "traveler"}
                         onChange={() => {
-                            onChangeTravlers([...travelers]);
+                            onChangetravelers([...travelers]);
                         }}
                     />
                 ))}

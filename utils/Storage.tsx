@@ -100,7 +100,7 @@ export interface IBasketItem extends Partial<Fproduct> {
     count: IHumanCount;
     pickupAt?: Date;
     version?: number;
-    travlers?: Ftraveler[];
+    travelers?: Ftraveler[];
 }
 
 export const deleteExpireBracket = () => {

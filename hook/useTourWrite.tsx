@@ -4,6 +4,7 @@ import {
     RefObject,
     SetStateAction,
     useContext,
+    useEffect,
     useRef,
     useState,
 } from "react";
@@ -39,6 +40,7 @@ import { useRouter } from "next/router";
 import { ProductTempBoard } from "../utils/Storage2";
 import { openModal } from "../utils/popUp";
 import { AppContext } from "../pages/_app";
+import { cloneDeep } from "@apollo/client/utilities";
 
 type SimpleTypePart =
     | "isOpen"
@@ -90,6 +92,9 @@ export interface IUseTourData {
     keyWards: string[];
     thumbs: Ffile[];
     type: ProductType;
+    dates: Date[];
+    range: number;
+    rangeType: TRangeType;
 }
 
 interface IUseTourDefaultData {
@@ -117,6 +122,8 @@ interface ITourDataSet {
 }
 
 export interface IUseTour {
+    setDates: ISet<Date[]>;
+    dates: Date[];
     rangeType: TRangeType;
     setRangeType: ISet<TRangeType>;
     tempSavedIts: ItineraryCreateInput[];
@@ -128,24 +135,25 @@ export interface IUseTour {
     tourData: IUseTourData;
     tourSets: ITourDataSet;
     validater: Validater;
+    groupCode: string;
     setGroupCode: Dispatch<SetStateAction<string | undefined>>;
     setTourData: (data: Partial<IUseTourData>) => void;
     loadKey: number;
     firstDate?: Date;
     lastDate?: Date;
     mutations: {
-        createFn: (params: ProductCreateInput) => void;
+        createFn: (params: [ProductCreateInput]) => void;
         updateFn: (_id: string, params: ProductUpdateInput) => void;
         deleteFn: (id: string) => void;
     };
-    getCreateInput: () => ProductCreateInput;
+    getCreateInput: () => [ProductCreateInput];
     getUpdateInput: () => ProductUpdateInput;
     hiddenFileInput: RefObject<HTMLInputElement>;
     handles: {
         handleRegionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
         handleTextData: (key: keyof TSimpleTypePart) => (data: string) => void;
         handleTempSave: () => Promise<void>;
-        handleDateState: ({ from, to }: any) => void;
+        handleDateState: (dates: Date[]) => void;
         handleClearThumb: (index: number) => () => void;
         handleChangeSumbNail: (
             event: React.ChangeEvent<HTMLInputElement>
@@ -168,14 +176,26 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const { isParterB, isParterNonB, isManager } = useContext(AppContext);
     const [range, setRange] = useState(1);
     const [rangeType, setRangeType] = useState<TRangeType>("Single");
-    const [tempSavedIts, setTempSavedIts] = useState<ItineraryCreateInput[]>();
+    const [tempSavedIts, setTempSavedIts] =
+        useState<ItineraryCreateInput[] | undefined>();
     const [type, setType] = useState<ProductType>(
         defaults.type || ProductType.TOUR
     );
+    const [dates, setDates] = useState<Date[]>(defaults.its?.[0]?.date || []);
     const [its, setits] = useState<ItineraryCreateInput[]>(
-        deepCopy(defaults.its || [])
+        deepCopy(
+            defaults.its ||
+                // generateitinery(
+                //     {
+                //         from: dates[0],
+                //         to: dayjs(dates[0]).add(range, "day").toDate(),
+                //     },
+                //     []
+                // )
+                []
+        )
     );
-    const filterOverIts = filterOver(its);
+    const filterOverIts = filterOver(its, range);
     const [simpleData, setSimpleData] = useState<TSimpleTypePart>(
         defaults.simpleData || DEFAULT_SIMPLE_TOUR_DATA
     );
@@ -213,20 +233,21 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
 
     const [ProductCreateMu, { loading: createLoading }] = useProductCreate({
         onCompleted: ({ ProductCreate }) => {
+            console.log({ ProductCreate });
             if (ProductCreate.ok) {
                 if (!isManager) {
-                    if (isParterB)
+                    if (isParterB) alert("상품 등록이 완료되었습니다.");
+                    else if (isParterNonB)
                         alert(
                             "등록 요청이 완료되었습니다. 핑크로더 승인 후 홈페이지에 상품이 바로 오픈 됩니다."
                         );
-                    if (isParterNonB) alert("상품 등록이 완료되었습니다.");
                 }
                 router.push(`/tour/view/${ProductCreate!.data!._id}`);
             }
         },
     });
 
-    const createFn = (params: ProductCreateInput) => {
+    const createFn = (params: ProductCreateInput[]) => {
         if (createLoading) return;
         ProductCreateMu({
             variables: {
@@ -303,6 +324,11 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             id: "category",
         },
         {
+            value: simpleData.startPoint,
+            failMsg: "출발 장소값은 필수 입니다.",
+            id: "startPoint",
+        },
+        {
             value: regionId,
             failMsg: "지역을 선택 해주세요",
             id: "RegionId",
@@ -348,6 +374,9 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         simpleData,
         status,
         thumbs,
+        dates,
+        range,
+        rangeType,
     };
     const {
         address,
@@ -378,8 +407,8 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         setType,
     };
 
-    const getCreateInput = (): ProductCreateInput => {
-        const createData: ProductCreateInput = {
+    const getTemplate = () => {
+        const template = {
             categoryId,
             keyWards,
             address,
@@ -394,7 +423,9 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             inOrNor,
             info,
             regionId,
-            itinerary: omits(filterOverIts, ["isOver" as any]),
+            itinerary: omits(filterOverIts, [
+                "isOver" as any,
+            ]) as ItineraryCreateInput[],
             startPoint,
             title,
             isNotice,
@@ -402,12 +433,28 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             subTitle,
             type,
         };
-        return omits(createData);
+        return template;
+    };
+
+    const getCreateInput = (): [ProductCreateInput] => {
+        const template: ReturnType<typeof getTemplate> = getTemplate();
+
+        const inputs = dates.map((date) => {
+            const templateCopy: ReturnType<typeof getTemplate> = JSON.parse(
+                JSON.stringify(template)
+            );
+            templateCopy.itinerary.forEach((its, i) => {
+                its.date = dayjs(date).add(i, "day").toDate();
+            });
+            return templateCopy;
+        });
+        return omits(inputs);
     };
 
     const getUpdateInput = (): ProductUpdateInput => {
-        const updateParams = getCreateInput();
-        return updateParams;
+        const updateParams = getCreateInput()?.[0];
+        const updateInput = omits(updateParams);
+        return updateInput;
     };
 
     const loadKeyAdd = () => {
@@ -442,13 +489,14 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         if (data.categoryId) setCategoryId(data.categoryId);
         if (data.its) setits(data.its);
         if (data.simpleData) setSimpleData(data.simpleData);
-        if (data.status) setStatus(data.status);
         if (data.thumbs) setThumbs(data.thumbs);
         if (data.type) setType(data.type);
         if (data.keyWards) setkeyWards(data.keyWards);
         if (data.regionId) setRegionId(data.regionId);
-        if (data.its) setRange(data.its?.length || 1);
-        if (data.its) setRangeType(data.its?.length === 1 ? "Single" : "Range");
+        if (data.dates) setDates(data.dates);
+        if (data.range) setRange(data.range);
+        if (data.rangeType) setRangeType(data.rangeType);
+        if (!data.dates) setDates([data?.its?.[0]?.date]);
     };
 
     const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -480,15 +528,20 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
         openModal("#LocalStorageBoard")();
     };
 
-    const handleDateState = ({ from, to }: TRange) => {
-        if (from) {
-            const addRagne = rangeType === "Range" ? range : 0;
-            to = dayjs(from).add(addRagne, "day").toDate();
-        }
-        const newItinerary = generateitinery({ from, to }, tempSavedIts || its);
-        if (newItinerary) setits([...newItinerary]);
-        setTempSavedIts(undefined);
+    const handleDateState = (dates: Date[]) => {
+        setDates([...dates]);
     };
+
+    useEffect(() => {
+        const from = dates[0];
+        const to = dayjs(from)
+            .add(rangeType === "Range" ? range : 0, "day")
+            .toDate();
+        const newItinerary = generateitinery({ from, to }, tempSavedIts || its);
+        console.log({ newItinerary });
+        setits([...newItinerary]);
+        setTempSavedIts(undefined);
+    }, [range, dates.length]);
 
     function set<T extends keyof TSimpleTypePart>(key: T, value: any) {
         simpleData[key] = value;
@@ -517,6 +570,9 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
     const lastDate = lastItDate ? dayjs(lastItDate).toDate() : undefined;
 
     return {
+        dates,
+        groupCode,
+        setDates,
         rangeType,
         setRangeType,
         tempSavedIts,

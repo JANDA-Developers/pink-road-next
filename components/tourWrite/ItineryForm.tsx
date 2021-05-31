@@ -86,12 +86,12 @@ export const ItineryForm: React.FC<IProp> = ({
                     value={itinery.title}
                     placeholder={single ? "OO체험" : `${index + 1}일차`}
                 />
-                <input
+                {/* <input
                     readOnly
                     type="text"
                     className="input_02"
                     value={dayjs(itinery.date).format("YYYY.MM.DD (ddd)")}
-                />
+                /> */}
             </div>
             {itinery.contents?.map((content, contentIndex) => (
                 <div key={`${contentIndex}${index}content`}>

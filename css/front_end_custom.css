@@ -558,3 +558,31 @@ figure:after {
         width: 100%;
     }
 }
+
+
+
+
+.tourWrite__dateViewr {
+}
+
+.tourWrite__dateViewrs {
+    display: flex;
+}
+
+
+.tourWrite__daypikcerInDate {
+    display: inline-block;
+    min-width: 100%;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+.DayPicker-Day--fixed {
+    background-color: #ffdedd;
+}
+.DayPicker-Day--fixed:hover {
+    background-color: #ffdedd!important;
+    cursor: auto!important;
+}
+.tourWrite__daypikcer .DayPicker-Day {
+    padding: 0rem!important;
+}

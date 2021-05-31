@@ -37,9 +37,14 @@ export const HomepageTopNav = () => {
                         <a>기본설정</a>
                     </Link>
                 </li>
-                <li className={checkOn("sms")}>
+                {/* <li className={checkOn("sms")}>
                     <Link href="/master/homepage/sms">
                         <a>SMS설정</a>
+                    </Link>
+                </li> */}
+                <li className={checkOn("kakao")}>
+                    <Link href="/master/homepage/kakao">
+                        <a>KAKAO설정</a>
                     </Link>
                 </li>
                 {/* <li><Link href="/master/homepage/homepage1-3"><a>카카오비즈톡</a></Link></li> */}

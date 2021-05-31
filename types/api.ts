@@ -1904,10 +1904,10 @@ export interface bookingFindByCode_BookingFindByCode_data_booker {
 export interface bookingFindByCode_BookingFindByCode_data_travelers {
   __typename: "Traveler";
   name: string | null;
-  phoneNumber: string;
+  phoneNumber: string | null;
   gender: string | null;
-  ageType: AgeType;
-  isForegin: boolean;
+  ageType: AgeType | null;
+  isForegin: boolean | null;
 }
 
 export interface bookingFindByCode_BookingFindByCode_data_payment_history {
@@ -3590,6 +3590,321 @@ export interface homepageUpdateVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: kakaoTemplateCreate
+// ====================================================
+
+export interface kakaoTemplateCreate_KakaoTemplateCreate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface kakaoTemplateCreate_KakaoTemplateCreate {
+  __typename: "KakaoTemplateCreateResponse";
+  ok: boolean;
+  error: kakaoTemplateCreate_KakaoTemplateCreate_error | null;
+}
+
+export interface kakaoTemplateCreate {
+  KakaoTemplateCreate: kakaoTemplateCreate_KakaoTemplateCreate;
+}
+
+export interface kakaoTemplateCreateVariables {
+  input: KakaoTemplateCreateInput;
+  event: NotificationTriggerEvent;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: kakaoTemplateDelete
+// ====================================================
+
+export interface kakaoTemplateDelete_KakaoTemplateDelete_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface kakaoTemplateDelete_KakaoTemplateDelete {
+  __typename: "KakaoTemplateDeleteResponse";
+  ok: boolean;
+  error: kakaoTemplateDelete_KakaoTemplateDelete_error | null;
+}
+
+export interface kakaoTemplateDelete {
+  KakaoTemplateDelete: kakaoTemplateDelete_KakaoTemplateDelete;
+}
+
+export interface kakaoTemplateDeleteVariables {
+  tpl_code: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: kakaoTemplateUpdate
+// ====================================================
+
+export interface kakaoTemplateUpdate_KakaoTemplateUpdate_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface kakaoTemplateUpdate_KakaoTemplateUpdate {
+  __typename: "KakaoTemplateUpdateResponse";
+  ok: boolean;
+  error: kakaoTemplateUpdate_KakaoTemplateUpdate_error | null;
+}
+
+export interface kakaoTemplateUpdate {
+  KakaoTemplateUpdate: kakaoTemplateUpdate_KakaoTemplateUpdate;
+}
+
+export interface kakaoTemplateUpdateVariables {
+  input?: KakaoTemplateUpdateInput | null;
+  templtCode: string;
+  event: NotificationTriggerEvent;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: kakaoTemplateList
+// ====================================================
+
+export interface kakaoTemplateList_KakaoTemplateList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface kakaoTemplateList_KakaoTemplateList_data_buttons {
+  __typename: "KakaoTemplateButton";
+  ordering: string | null;
+  /**
+   * 버튼명
+   */
+  name: string;
+  linkType: KakaoTemplateButtonLinkType;
+  linkTypeName: string | null;
+  /**
+   * 모바일 링크 주소
+   */
+  linkMo: string | null;
+  /**
+   * PC웹 링크 주소
+   */
+  linkPc: string | null;
+  /**
+   * IOS앱 링크 주소
+   */
+  linkIos: string | null;
+  /**
+   * 안드로이드 앱 링크 주소
+   */
+  linkAnd: string | null;
+  /**
+   * 모바일 링크 주소
+   */
+  linkM: string | null;
+  /**
+   * PC웹 링크 주소
+   */
+  linkP: string | null;
+  /**
+   * IOS앱 링크 주소
+   */
+  linkI: string | null;
+  /**
+   * 안드로이드 앱 링크 주소
+   */
+  linkA: string | null;
+}
+
+export interface kakaoTemplateList_KakaoTemplateList_data_comments {
+  __typename: "KakaoTemplateComment";
+  id: number;
+  commentContent: string;
+  name: string;
+  cdate: string;
+  status: string;
+}
+
+export interface kakaoTemplateList_KakaoTemplateList_data {
+  __typename: "KakaoTemplate";
+  event: NotificationTriggerEvent | null;
+  templtContent: string;
+  templtName: string;
+  status: KakaoTemplateStatus;
+  inspStatus: KakaoTemplateInspStatus;
+  buttons: kakaoTemplateList_KakaoTemplateList_data_buttons[] | null;
+  cdate: string;
+  udate: string | null;
+  templtCode: string;
+  comments: kakaoTemplateList_KakaoTemplateList_data_comments[] | null;
+}
+
+export interface kakaoTemplateList_KakaoTemplateList {
+  __typename: "KakaoTemplateListResponse";
+  ok: boolean;
+  error: kakaoTemplateList_KakaoTemplateList_error | null;
+  data: kakaoTemplateList_KakaoTemplateList_data[] | null;
+}
+
+export interface kakaoTemplateList {
+  KakaoTemplateList: kakaoTemplateList_KakaoTemplateList;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: kakaoTemplateRequest
+// ====================================================
+
+export interface kakaoTemplateRequest_KakaoTemplateRequest_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface kakaoTemplateRequest_KakaoTemplateRequest {
+  __typename: "KakaoTemplateRequestResponse";
+  ok: boolean;
+  error: kakaoTemplateRequest_KakaoTemplateRequest_error | null;
+}
+
+export interface kakaoTemplateRequest {
+  KakaoTemplateRequest: kakaoTemplateRequest_KakaoTemplateRequest;
+}
+
+export interface kakaoTemplateRequestVariables {
+  templtCode: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: kakaoTemplateListSync
+// ====================================================
+
+export interface kakaoTemplateListSync_KakaoTemplateListSync_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface kakaoTemplateListSync_KakaoTemplateListSync_data_buttons {
+  __typename: "KakaoTemplateButton";
+  ordering: string | null;
+  /**
+   * 버튼명
+   */
+  name: string;
+  linkType: KakaoTemplateButtonLinkType;
+  linkTypeName: string | null;
+  /**
+   * 모바일 링크 주소
+   */
+  linkMo: string | null;
+  /**
+   * PC웹 링크 주소
+   */
+  linkPc: string | null;
+  /**
+   * IOS앱 링크 주소
+   */
+  linkIos: string | null;
+  /**
+   * 안드로이드 앱 링크 주소
+   */
+  linkAnd: string | null;
+  /**
+   * 모바일 링크 주소
+   */
+  linkM: string | null;
+  /**
+   * PC웹 링크 주소
+   */
+  linkP: string | null;
+  /**
+   * IOS앱 링크 주소
+   */
+  linkI: string | null;
+  /**
+   * 안드로이드 앱 링크 주소
+   */
+  linkA: string | null;
+}
+
+export interface kakaoTemplateListSync_KakaoTemplateListSync_data_comments {
+  __typename: "KakaoTemplateComment";
+  id: number;
+  commentContent: string;
+  name: string;
+  cdate: string;
+  status: string;
+}
+
+export interface kakaoTemplateListSync_KakaoTemplateListSync_data {
+  __typename: "KakaoTemplate";
+  event: NotificationTriggerEvent | null;
+  templtContent: string;
+  templtName: string;
+  status: KakaoTemplateStatus;
+  inspStatus: KakaoTemplateInspStatus;
+  buttons: kakaoTemplateListSync_KakaoTemplateListSync_data_buttons[] | null;
+  cdate: string;
+  udate: string | null;
+  templtCode: string;
+  comments: kakaoTemplateListSync_KakaoTemplateListSync_data_comments[] | null;
+}
+
+export interface kakaoTemplateListSync_KakaoTemplateListSync {
+  __typename: "KakaoTemplateListSyncResponse";
+  ok: boolean;
+  error: kakaoTemplateListSync_KakaoTemplateListSync_error | null;
+  data: kakaoTemplateListSync_KakaoTemplateListSync_data[] | null;
+}
+
+export interface kakaoTemplateListSync {
+  KakaoTemplateListSync: kakaoTemplateListSync_KakaoTemplateListSync;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: pageInfoCreate
 // ====================================================
 
@@ -4730,27 +5045,31 @@ export interface templateList_TemplateList_page {
   remainder: number;
 }
 
-export interface templateList_TemplateList_data_trigger_tags {
+export interface templateList_TemplateList_data_TemplateKakaoTalk {
+  __typename: "TemplateKakaoTalk";
+}
+
+export interface templateList_TemplateList_data_TemplateSms_trigger_tags {
   __typename: "Tag";
   key: string;
   value: string;
 }
 
-export interface templateList_TemplateList_data_trigger {
+export interface templateList_TemplateList_data_TemplateSms_trigger {
   __typename: "NotificationTrigger";
   sender: string;
   event: NotificationTriggerEvent;
   isEnabled: boolean;
-  tags: templateList_TemplateList_data_trigger_tags[];
+  tags: templateList_TemplateList_data_TemplateSms_trigger_tags[];
 }
 
-export interface templateList_TemplateList_data_tags {
+export interface templateList_TemplateList_data_TemplateSms_tags {
   __typename: "Tag";
   key: string;
   value: string;
 }
 
-export interface templateList_TemplateList_data {
+export interface templateList_TemplateList_data_TemplateSms {
   __typename: "TemplateSms";
   _id: string;
   createdAt: any;
@@ -4761,10 +5080,12 @@ export interface templateList_TemplateList_data {
    * 코드겐용
    */
   _replaceEnum: ReplaceString | null;
-  trigger: templateList_TemplateList_data_trigger | null;
-  tags: templateList_TemplateList_data_tags[];
+  trigger: templateList_TemplateList_data_TemplateSms_trigger | null;
+  tags: templateList_TemplateList_data_TemplateSms_tags[];
   replacers: string[];
 }
+
+export type templateList_TemplateList_data = templateList_TemplateList_data_TemplateKakaoTalk | templateList_TemplateList_data_TemplateSms;
 
 export interface templateList_TemplateList {
   __typename: "TemplateListResponse";
@@ -5606,7 +5927,7 @@ export interface productCreate {
 }
 
 export interface productCreateVariables {
-  params: ProductCreateInput;
+  params: ProductCreateInput[];
   groupCode?: string | null;
 }
 
@@ -5995,6 +6316,255 @@ export interface productDelete {
 
 export interface productDeleteVariables {
   id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: productGroupList
+// ====================================================
+
+export interface productGroupList_ProductGroupList_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productGroupList_ProductGroupList_page {
+  __typename: "Page";
+  /**
+   * 현재 페이지 번호
+   */
+  page: number;
+  /**
+   * 페이지당 문서 갯수
+   */
+  cntPerPage: number;
+  /**
+   * 페이지 총 갯수
+   */
+  totalPageSize: number;
+  /**
+   * 시작 페이지 번호
+   */
+  start_page_num: number;
+  /**
+   * 마지막 페이지 번호
+   */
+  end_page_num: number;
+  /**
+   * 이전(<<) 표시 여부
+   */
+  isPrev: boolean;
+  /**
+   * 다음(>>) 표시 여부
+   */
+  isNext: boolean;
+  /**
+   * 이전(<<) 클릭시 표시할 페이지 번호
+   */
+  prev_page_num: number;
+  /**
+   * 다음(>>) 클릭시 표시할 페이지 번호
+   */
+  next_page_num: number;
+  /**
+   * 총 갯수
+   */
+  totalCount: number;
+  /**
+   * 마지막 패이지의 갯수 (index계산 하는데 사용함)
+   */
+  remainder: number;
+}
+
+export interface productGroupList_ProductGroupList_data_product_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
+}
+
+export interface productGroupList_ProductGroupList_data_product_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface productGroupList_ProductGroupList_data_product_bookerSummary {
+  __typename: "BookerSummary";
+  adultCount: number;
+  babyCount: number;
+  kidsCount: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
+}
+
+export interface productGroupList_ProductGroupList_data_product_itinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface productGroupList_ProductGroupList_data_product_itinerary_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: productGroupList_ProductGroupList_data_product_itinerary_images_imgScaleUrl | null;
+}
+
+export interface productGroupList_ProductGroupList_data_product_itinerary {
+  __typename: "Itinerary";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string[];
+  images: productGroupList_ProductGroupList_data_product_itinerary_images[];
+  date: any;
+}
+
+export interface productGroupList_ProductGroupList_data_product_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface productGroupList_ProductGroupList_data_product_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: productGroupList_ProductGroupList_data_product_images_imgScaleUrl | null;
+}
+
+export interface productGroupList_ProductGroupList_data_product {
+  __typename: "Product";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  regionLabel: string | null;
+  isDelete: boolean;
+  title: string;
+  code: string;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
+  contents: string;
+  determined: boolean;
+  endDate: any;
+  dateRange: number;
+  adminMemo: string;
+  groupCode: string;
+  region: productGroupList_ProductGroupList_data_product_region | null;
+  category: productGroupList_ProductGroupList_data_product_category | null;
+  /**
+   * 예약인원에 대한 요약
+   */
+  bookerSummary: productGroupList_ProductGroupList_data_product_bookerSummary;
+  status: ProductStatus;
+  itinerary: productGroupList_ProductGroupList_data_product_itinerary[];
+  inOrNor: string;
+  info: string;
+  caution: string;
+  images: productGroupList_ProductGroupList_data_product_images[] | null;
+  keyWards: string[] | null;
+  address: string | null;
+  startPoint: string;
+  maxMember: number;
+  minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
+  subTitle: string | null;
+  adult_price: number;
+  bookingCount: number;
+  kids_price: number;
+  /**
+   * 상품 하나에 대한 결제완료된 예약 총 인원
+   */
+  compeltePeopleCnt: number;
+  baby_price: number;
+  isNotice: boolean | null;
+  elseReq: ProductReOpenReq | null;
+  isOpen: boolean | null;
+  type: ProductType;
+  startDate: any;
+  Dday: number;
+  boardType: BoardType;
+}
+
+export interface productGroupList_ProductGroupList_data {
+  __typename: "ProductGroup";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  isDisplay: boolean;
+  groupCode: string;
+  /**
+   * 1.그룹코드와 연관된 상품 갯수, 2. OPEN, EXPIRED, COMPLETED 상품 갯수
+   */
+  openProductCnt: number;
+  title: string;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  isOpen: boolean | null;
+  sellerName: string;
+  sellerNickName: string;
+  regionLabel: string | null;
+  categoryId: string;
+  address: string;
+  type: ProductType;
+  adult_price: number;
+  startDate: any;
+  endDate: any;
+  /**
+   * 리뷰 평점
+   */
+  avgRating: number;
+  /**
+   * 리뷰 별점 총합
+   */
+  sumRating: number;
+  /**
+   * 리뷰 갯수
+   */
+  reviewCnt: number;
+  product: productGroupList_ProductGroupList_data_product;
+}
+
+export interface productGroupList_ProductGroupList {
+  __typename: "ProductGroupListResponse";
+  ok: boolean;
+  error: productGroupList_ProductGroupList_error | null;
+  page: productGroupList_ProductGroupList_page;
+  data: productGroupList_ProductGroupList_data[];
+}
+
+export interface productGroupList {
+  ProductGroupList: productGroupList_ProductGroupList;
+}
+
+export interface productGroupListVariables {
+  sort?: _ProductGroupSort[] | null;
+  filter?: _ProductGroupFilter | null;
+  pageInput: pageInput;
 }
 
 /* tslint:disable */
@@ -6793,6 +7363,204 @@ export interface productFindById {
 
 export interface productFindByIdVariables {
   _id: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: productGroupFindById
+// ====================================================
+
+export interface productGroupFindById_ProductGroupFindById_error {
+  __typename: "CustomError";
+  location: string;
+  severity: ERR_SEVERITY;
+  code: ERR_CODE;
+  message: string;
+}
+
+export interface productGroupFindById_ProductGroupFindById_data_product_region {
+  __typename: "Category";
+  label: string;
+  _id: string;
+}
+
+export interface productGroupFindById_ProductGroupFindById_data_product_category {
+  __typename: "Category";
+  _id: string;
+  label: string;
+}
+
+export interface productGroupFindById_ProductGroupFindById_data_product_bookerSummary {
+  __typename: "BookerSummary";
+  adultCount: number;
+  babyCount: number;
+  kidsCount: number;
+  completeBookCount: number;
+  readyBookCount: number;
+  cancelBookCount: number;
+}
+
+export interface productGroupFindById_ProductGroupFindById_data_product_itinerary_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface productGroupFindById_ProductGroupFindById_data_product_itinerary_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: productGroupFindById_ProductGroupFindById_data_product_itinerary_images_imgScaleUrl | null;
+}
+
+export interface productGroupFindById_ProductGroupFindById_data_product_itinerary {
+  __typename: "Itinerary";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  title: string;
+  contents: string[];
+  images: productGroupFindById_ProductGroupFindById_data_product_itinerary_images[];
+  date: any;
+}
+
+export interface productGroupFindById_ProductGroupFindById_data_product_images_imgScaleUrl {
+  __typename: "ImgScaleUrl";
+  tiny: string | null;
+  small: string | null;
+  medium: string | null;
+  large: string | null;
+  huge: string | null;
+}
+
+export interface productGroupFindById_ProductGroupFindById_data_product_images {
+  __typename: "File";
+  name: string;
+  uri: string;
+  owner: string;
+  imgScaleUrl: productGroupFindById_ProductGroupFindById_data_product_images_imgScaleUrl | null;
+}
+
+export interface productGroupFindById_ProductGroupFindById_data_product {
+  __typename: "Product";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  regionLabel: string | null;
+  isDelete: boolean;
+  title: string;
+  code: string;
+  /**
+   * 취소를 제외한 상품 하나에 대한 모든 인원
+   */
+  peopleCount: number;
+  contents: string;
+  determined: boolean;
+  endDate: any;
+  dateRange: number;
+  adminMemo: string;
+  groupCode: string;
+  region: productGroupFindById_ProductGroupFindById_data_product_region | null;
+  category: productGroupFindById_ProductGroupFindById_data_product_category | null;
+  /**
+   * 예약인원에 대한 요약
+   */
+  bookerSummary: productGroupFindById_ProductGroupFindById_data_product_bookerSummary;
+  status: ProductStatus;
+  itinerary: productGroupFindById_ProductGroupFindById_data_product_itinerary[];
+  inOrNor: string;
+  info: string;
+  caution: string;
+  images: productGroupFindById_ProductGroupFindById_data_product_images[] | null;
+  keyWards: string[] | null;
+  address: string | null;
+  startPoint: string;
+  maxMember: number;
+  minMember: number;
+  /**
+   * 유저가 업데이트 요청을 했을때 어떤 변경이였는지 메모
+   */
+  requestMemo: string;
+  subTitle: string | null;
+  adult_price: number;
+  bookingCount: number;
+  kids_price: number;
+  /**
+   * 상품 하나에 대한 결제완료된 예약 총 인원
+   */
+  compeltePeopleCnt: number;
+  baby_price: number;
+  isNotice: boolean | null;
+  elseReq: ProductReOpenReq | null;
+  isOpen: boolean | null;
+  type: ProductType;
+  startDate: any;
+  Dday: number;
+  boardType: BoardType;
+}
+
+export interface productGroupFindById_ProductGroupFindById_data {
+  __typename: "ProductGroup";
+  _id: string;
+  createdAt: any;
+  updatedAt: any;
+  isDelete: boolean;
+  isDisplay: boolean;
+  groupCode: string;
+  /**
+   * 1.그룹코드와 연관된 상품 갯수, 2. OPEN, EXPIRED, COMPLETED 상품 갯수
+   */
+  openProductCnt: number;
+  title: string;
+  subTitle: string | null;
+  keyWards: string[] | null;
+  isOpen: boolean | null;
+  sellerName: string;
+  sellerNickName: string;
+  regionLabel: string | null;
+  categoryId: string;
+  address: string;
+  type: ProductType;
+  adult_price: number;
+  startDate: any;
+  endDate: any;
+  /**
+   * 리뷰 평점
+   */
+  avgRating: number;
+  /**
+   * 리뷰 별점 총합
+   */
+  sumRating: number;
+  /**
+   * 리뷰 갯수
+   */
+  reviewCnt: number;
+  product: productGroupFindById_ProductGroupFindById_data_product;
+}
+
+export interface productGroupFindById_ProductGroupFindById {
+  __typename: "ProductGroupFindByIdResponse";
+  ok: boolean;
+  error: productGroupFindById_ProductGroupFindById_error | null;
+  data: productGroupFindById_ProductGroupFindById_data | null;
+}
+
+export interface productGroupFindById {
+  ProductGroupFindById: productGroupFindById_ProductGroupFindById;
+}
+
+export interface productGroupFindByIdVariables {
+  code: string;
 }
 
 /* tslint:disable */
@@ -12795,10 +13563,10 @@ export interface Fanswer {
 export interface Ftraveler {
   __typename: "Traveler";
   name: string | null;
-  phoneNumber: string;
+  phoneNumber: string | null;
   gender: string | null;
-  ageType: AgeType;
-  isForegin: boolean;
+  ageType: AgeType | null;
+  isForegin: boolean | null;
 }
 
 /* tslint:disable */
@@ -13783,6 +14551,151 @@ export interface Fhomepage {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL fragment: FkakaoTemplateCommnet
+// ====================================================
+
+export interface FkakaoTemplateCommnet {
+  __typename: "KakaoTemplateComment";
+  id: number;
+  commentContent: string;
+  name: string;
+  cdate: string;
+  status: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FkakaoTemplateButton
+// ====================================================
+
+export interface FkakaoTemplateButton {
+  __typename: "KakaoTemplateButton";
+  ordering: string | null;
+  /**
+   * 버튼명
+   */
+  name: string;
+  linkType: KakaoTemplateButtonLinkType;
+  linkTypeName: string | null;
+  /**
+   * 모바일 링크 주소
+   */
+  linkMo: string | null;
+  /**
+   * PC웹 링크 주소
+   */
+  linkPc: string | null;
+  /**
+   * IOS앱 링크 주소
+   */
+  linkIos: string | null;
+  /**
+   * 안드로이드 앱 링크 주소
+   */
+  linkAnd: string | null;
+  /**
+   * 모바일 링크 주소
+   */
+  linkM: string | null;
+  /**
+   * PC웹 링크 주소
+   */
+  linkP: string | null;
+  /**
+   * IOS앱 링크 주소
+   */
+  linkI: string | null;
+  /**
+   * 안드로이드 앱 링크 주소
+   */
+  linkA: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: FkakaoTemplate
+// ====================================================
+
+export interface FkakaoTemplate_buttons {
+  __typename: "KakaoTemplateButton";
+  ordering: string | null;
+  /**
+   * 버튼명
+   */
+  name: string;
+  linkType: KakaoTemplateButtonLinkType;
+  linkTypeName: string | null;
+  /**
+   * 모바일 링크 주소
+   */
+  linkMo: string | null;
+  /**
+   * PC웹 링크 주소
+   */
+  linkPc: string | null;
+  /**
+   * IOS앱 링크 주소
+   */
+  linkIos: string | null;
+  /**
+   * 안드로이드 앱 링크 주소
+   */
+  linkAnd: string | null;
+  /**
+   * 모바일 링크 주소
+   */
+  linkM: string | null;
+  /**
+   * PC웹 링크 주소
+   */
+  linkP: string | null;
+  /**
+   * IOS앱 링크 주소
+   */
+  linkI: string | null;
+  /**
+   * 안드로이드 앱 링크 주소
+   */
+  linkA: string | null;
+}
+
+export interface FkakaoTemplate_comments {
+  __typename: "KakaoTemplateComment";
+  id: number;
+  commentContent: string;
+  name: string;
+  cdate: string;
+  status: string;
+}
+
+export interface FkakaoTemplate {
+  __typename: "KakaoTemplate";
+  event: NotificationTriggerEvent | null;
+  templtContent: string;
+  templtName: string;
+  status: KakaoTemplateStatus;
+  inspStatus: KakaoTemplateInspStatus;
+  buttons: FkakaoTemplate_buttons[] | null;
+  cdate: string;
+  udate: string | null;
+  templtCode: string;
+  comments: FkakaoTemplate_comments[] | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL fragment: Fnews
 // ====================================================
 
@@ -14014,7 +14927,7 @@ export interface FsmsTemplate_tags {
 }
 
 export interface FsmsTemplate {
-  __typename: "TemplateSms";
+  __typename: "TemplateSms" | "TemplateKakaoTalk";
   _id: string;
   createdAt: any;
   name: string;
@@ -15078,11 +15991,13 @@ export enum ERR_CODE {
   DOC_ALEADY_EXIST = "DOC_ALEADY_EXIST",
   DOC_NOT_FOUND = "DOC_NOT_FOUND",
   DOC_RELATED_INVALID = "DOC_RELATED_INVALID",
+  ENV_INVALID = "ENV_INVALID",
   EXPECTED_STATUS_NOT = "EXPECTED_STATUS_NOT",
   EXPECTED_VALUE_RANGE_NOT = "EXPECTED_VALUE_RANGE_NOT",
   GENERAL = "GENERAL",
   INVALID_DOC = "INVALID_DOC",
   INVALID_PARAMS = "INVALID_PARAMS",
+  KAKAOTALK_API_ERROR = "KAKAOTALK_API_ERROR",
   NICKNAME_ALEADY_EXIST = "NICKNAME_ALEADY_EXIST",
   PASSWORD_NOT_EQUAL = "PASSWORD_NOT_EQUAL",
   PAY_TIME_OVER = "PAY_TIME_OVER",
@@ -15113,6 +16028,36 @@ export enum FeePolicyStatus {
 export enum GENDER {
   FEMALE = "FEMALE",
   MAIL = "MAIL",
+}
+
+/**
+ * 템플릿 상태
+ */
+export enum KakaoTemplateButtonLinkType {
+  APP_LINK = "APP_LINK",
+  BOT_KEYWORD = "BOT_KEYWORD",
+  DELIVERY_STOP = "DELIVERY_STOP",
+  MESSAGE_DELIVERY = "MESSAGE_DELIVERY",
+  WEB_LINK = "WEB_LINK",
+}
+
+/**
+ * 템플릿 승인 상태
+ */
+export enum KakaoTemplateInspStatus {
+  APR = "APR",
+  REG = "REG",
+  REJ = "REJ",
+  REQ = "REQ",
+}
+
+/**
+ * 템플릿 상태
+ */
+export enum KakaoTemplateStatus {
+  ACK = "ACK",
+  READY = "READY",
+  STOP = "STOP",
 }
 
 /**
@@ -15150,6 +16095,7 @@ export enum NEWS_TYPE {
  */
 export enum NotificationMethod {
   EMAIL = "EMAIL",
+  KAKAO_TALK = "KAKAO_TALK",
   SMS = "SMS",
 }
 
@@ -15160,6 +16106,7 @@ export enum NotificationTriggerEvent {
   CANCEL_BOOKING_SELLER = "CANCEL_BOOKING_SELLER",
   COMPLETE_BOOKING_BOOKER = "COMPLETE_BOOKING_BOOKER",
   COMPLETE_BOOKING_SELLER = "COMPLETE_BOOKING_SELLER",
+  NONE = "NONE",
   PRODUCT_CONFIRM_REQUEST = "PRODUCT_CONFIRM_REQUEST",
   PRODUCT_EXPIRE_SELLER = "PRODUCT_EXPIRE_SELLER",
   SETTLEMENT_CANCEL = "SETTLEMENT_CANCEL",
@@ -15491,6 +16438,32 @@ export enum _PortfolioSort {
 /**
  * Auto generated sort type
  */
+export enum _ProductGroupSort {
+  address_asc = "address_asc",
+  address_desc = "address_desc",
+  adult_price_asc = "adult_price_asc",
+  adult_price_desc = "adult_price_desc",
+  avgRating_asc = "avgRating_asc",
+  avgRating_desc = "avgRating_desc",
+  createdAt_asc = "createdAt_asc",
+  createdAt_desc = "createdAt_desc",
+  openProductCnt_asc = "openProductCnt_asc",
+  openProductCnt_desc = "openProductCnt_desc",
+  reviewCnt_asc = "reviewCnt_asc",
+  reviewCnt_desc = "reviewCnt_desc",
+  subTitle_asc = "subTitle_asc",
+  subTitle_desc = "subTitle_desc",
+  sumRating_asc = "sumRating_asc",
+  sumRating_desc = "sumRating_desc",
+  title_asc = "title_asc",
+  title_desc = "title_desc",
+  updatedAt_asc = "updatedAt_asc",
+  updatedAt_desc = "updatedAt_desc",
+}
+
+/**
+ * Auto generated sort type
+ */
 export enum _ProductReviewSort {
   createdAt_asc = "createdAt_asc",
   createdAt_desc = "createdAt_desc",
@@ -15773,7 +16746,6 @@ export interface BookingsCreateInput {
   bankTransfter?: BankTransInfoInput | null;
   payMethod: PayMethod;
   product: string;
-  travelers?: TravelerInput[] | null;
   message?: string | null;
   babyCount: number;
   kidCount: number;
@@ -15782,6 +16754,14 @@ export interface BookingsCreateInput {
   email: string;
   phoneNumber: string;
   bookerInclue?: boolean | null;
+}
+
+export interface ButtonCreateInput {
+  button: KakaoTemplateButtonCreateInput[];
+}
+
+export interface ButtonUpdateInput {
+  button: KakaoTemplateButtonUpdateInput[];
 }
 
 export interface CategoryCreateInput {
@@ -15940,6 +16920,36 @@ export interface ItineraryUpdateInput {
   thumb?: FileUpdateInput | null;
   images?: FileUpdateInput[] | null;
   date?: any | null;
+}
+
+export interface KakaoTemplateButtonCreateInput {
+  name: string;
+  linkType: KakaoTemplateButtonLinkType;
+  linkM?: string | null;
+  linkP?: string | null;
+  linkI?: string | null;
+  linkA?: string | null;
+}
+
+export interface KakaoTemplateButtonUpdateInput {
+  name: string;
+  linkType: KakaoTemplateButtonLinkType;
+  linkM?: string | null;
+  linkP?: string | null;
+  linkI?: string | null;
+  linkA?: string | null;
+}
+
+export interface KakaoTemplateCreateInput {
+  tpl_name: string;
+  tpl_content: string;
+  tpl_button?: ButtonCreateInput | null;
+}
+
+export interface KakaoTemplateUpdateInput {
+  tpl_name: string;
+  tpl_content: string;
+  tpl_button?: ButtonUpdateInput | null;
 }
 
 export interface ModalInput {
@@ -16287,10 +17297,10 @@ export interface TicketUpdateInput {
 
 export interface TravelerInput {
   name?: string | null;
-  phoneNumber: string;
+  phoneNumber?: string | null;
   gender?: string | null;
-  isForegin: boolean;
-  ageType: AgeType;
+  isForegin?: boolean | null;
+  ageType?: AgeType | null;
 }
 
 export interface UserUpdateInput {
@@ -16749,6 +17759,85 @@ export interface _ProductFilter {
   exField__endDate_lt?: any | null;
   exField__endDate_gte?: any | null;
   exField__endDate_gt?: any | null;
+}
+
+export interface _ProductGroupFilter {
+  AND?: _ProductGroupFilter[] | null;
+  OR?: _ProductGroupFilter[] | null;
+  isDisplay_eq?: boolean | null;
+  isDisplay_not_eq?: boolean | null;
+  groupCode_eq?: string | null;
+  groupCode_not_eq?: string | null;
+  groupCode_in?: string[] | null;
+  product_eq?: string | null;
+  product_not_eq?: string | null;
+  product_in?: string[] | null;
+  title_eq?: string | null;
+  title_not_eq?: string | null;
+  title_contains?: string | null;
+  title_not_contains?: string | null;
+  title_in?: string[] | null;
+  title_not_in?: string[] | null;
+  subTitle_eq?: string | null;
+  subTitle_not_eq?: string | null;
+  subTitle_contains?: string | null;
+  subTitle_not_contains?: string | null;
+  subTitle_in?: string[] | null;
+  subTitle_not_in?: string[] | null;
+  keyWards_eq?: string | null;
+  keyWards_not_eq?: string | null;
+  keyWards_in?: string[] | null;
+  keyWards_contains?: string | null;
+  isOpen_eq?: boolean | null;
+  isOpen_not_eq?: boolean | null;
+  sellerName_eq?: string | null;
+  sellerName_not_eq?: string | null;
+  sellerName_contains?: string | null;
+  sellerName_not_contains?: string | null;
+  sellerName_in?: string[] | null;
+  sellerName_not_in?: string[] | null;
+  sellerNickName_eq?: string | null;
+  sellerNickName_not_eq?: string | null;
+  sellerNickName_contains?: string | null;
+  sellerNickName_not_contains?: string | null;
+  sellerNickName_in?: string[] | null;
+  sellerNickName_not_in?: string[] | null;
+  regionLabel_eq?: string | null;
+  regionLabel_not_eq?: string | null;
+  regionLabel_in?: string[] | null;
+  categoryId_eq?: string | null;
+  categoryId_not_eq?: string | null;
+  categoryId_in?: string[] | null;
+  address_eq?: string | null;
+  address_not_eq?: string | null;
+  address_contains?: string | null;
+  address_not_contains?: string | null;
+  address_in?: string[] | null;
+  address_not_in?: string[] | null;
+  type_eq?: ProductType | null;
+  type_not_eq?: ProductType | null;
+  type_in?: ProductType[] | null;
+  startDate_eq?: any | null;
+  startDate_not_eq?: any | null;
+  startDate_lte?: any | null;
+  startDate_lt?: any | null;
+  startDate_gte?: any | null;
+  startDate_gt?: any | null;
+  endDate_eq?: any | null;
+  endDate_not_eq?: any | null;
+  endDate_lte?: any | null;
+  endDate_lt?: any | null;
+  endDate_gte?: any | null;
+  endDate_gt?: any | null;
+  _id_eq?: string | null;
+  _id_not_eq?: string | null;
+  _id_in?: string[] | null;
+  createdAt_eq?: any | null;
+  createdAt_not_eq?: any | null;
+  createdAt_lte?: any | null;
+  createdAt_lt?: any | null;
+  createdAt_gte?: any | null;
+  createdAt_gt?: any | null;
 }
 
 export interface _ProductReviewFilter {

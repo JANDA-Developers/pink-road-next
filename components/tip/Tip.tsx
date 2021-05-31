@@ -7,7 +7,7 @@ const s4 = () => {
 
 interface IProp extends IDiv {
     Tag?: keyof JSX.IntrinsicElements;
-    message: string;
+    message?: string;
 }
 
 export const Tip: React.FC<IProp> = ({
@@ -22,6 +22,8 @@ export const Tip: React.FC<IProp> = ({
         "data-tip": "tooltip",
         "data-for": `Tip${newId}`,
     };
+
+    if (!message) return <Tag {...(props as any)}>{children}</Tag>;
 
     return (
         <Tag

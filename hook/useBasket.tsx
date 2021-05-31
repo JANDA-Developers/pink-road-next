@@ -37,7 +37,7 @@ export const useBasketCount = (
         capacity = 0,
     }: Partial<IPrices> = { adult_price: 0, baby_price: 0, kids_price: 0 }
 ) => {
-    const [travelers, setTravlers] = useState<Ftraveler[]>([]);
+    const [travelers, settravelers] = useState<Ftraveler[]>([]);
     const [count, setCount] = useState<IHumanCount>(defaultCount);
     const [totalPrice, setPrice] = useState(0);
 
@@ -65,7 +65,7 @@ export const useBasketCount = (
     };
 
     useEffect(() => {
-        const nextTravlers: Ftraveler[] = [];
+        const nexttravelers: Ftraveler[] = [];
 
         const genTravler = (count: number, type: AgeType) => {
             Array(count)
@@ -74,7 +74,7 @@ export const useBasketCount = (
                     const PrevTravlerData = travelers.filter(
                         (tv) => tv.ageType === type
                     )[i];
-                    nextTravlers.push({
+                    nexttravelers.push({
                         ...DEFAULT_TRAVLER,
                         ...PrevTravlerData,
                         ageType: type,
@@ -85,7 +85,7 @@ export const useBasketCount = (
         genTravler(count.adult, AgeType.adult);
         genTravler(count.kids, AgeType.kid);
         genTravler(count.baby, AgeType.baby);
-        setTravlers(nextTravlers);
+        settravelers(nexttravelers);
 
         const totalPrice =
             count.adult * adult_price +
@@ -96,7 +96,7 @@ export const useBasketCount = (
 
     return {
         travelers,
-        setTravlers,
+        settravelers,
         count,
         totalPrice,
         handleCount,

@@ -688,8 +688,8 @@ export const BookingModal: React.FC<IProp> = ({
                                     bookerInclue={bookingCopy?.bookerInclue}
                                     bookerName={bookingCopy?.name}
                                     bookerPhoneNumber={bookingCopy?.phoneNumber}
-                                    onChangeTravlers={(travlers) => {
-                                        bookingCopy.travelers = travlers;
+                                    onChangetravelers={(travelers) => {
+                                        bookingCopy.travelers = travelers;
                                         setBookingCopy({ ...bookingCopy });
                                     }}
                                     onChnageBookerInclude={(include) => {

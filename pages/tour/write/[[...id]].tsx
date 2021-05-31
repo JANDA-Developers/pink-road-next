@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { initStorage } from "../../../utils/Storage";
 import "react-day-picker/lib/style.css";
 import SubTopNav from "layout/components/SubTop";
@@ -7,6 +7,8 @@ import Link from "next/link";
 import {
     Fproduct,
     ItineraryCreateInput,
+    productFindById,
+    productFindByIdVariables,
     ProductStatus,
     ProductType,
 } from "../../../types/api";
@@ -21,6 +23,7 @@ import {
     useTourWrite,
 } from "../../../hook/useTourWrite";
 import {
+    useFindProductsByGroup,
     useProductFindById,
     useProductUpdateReq,
 } from "../../../hook/useProduct";
@@ -51,10 +54,29 @@ import {
 import { ProductSelectModal } from "../../../components/ProductSelectModal";
 import { useHomepage, useHomepageUpdate } from "../../../hook/useHomepage";
 import { toNumber } from "../../../utils/toNumber";
+import ChainedDayRangesPicker, {
+    getAllDaysFromRange,
+} from "../../../components/dayPicker/ChainedDayRangesPicker";
+import { IProductTemp } from "../../../utils/Storage2";
+import { Tip } from "../../../components/tip/Tip";
+import {
+    TourWriteDateViewer,
+    TourWriteDateViewerCurrentModify,
+} from "../../../components/tourWriteDateViewer/TourWriteDateViewer";
+import { measureMemory } from "vm";
+import isEmpty from "../../../utils/isEmpty";
+import { GraphQLClient } from "graphql-request";
+import PinkClient from "../../../apollo/client";
+import { PRODUCT_FIND_BY_ID } from "../../../apollo/gql/product";
 // const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = LoadEditor();
 interface IProp {}
+
+// 그룹을 어차피 조회할거면 애초에 그룹을 조회하는게 좋지않아 ?
+// 그러게말이야....
+// 그룹만 불러오고 싶을 수도 있지 ㅇㅇ
+// 그룹만 불러오는 경우라면 어떻게함?
 
 export async function getStaticPaths() {
     // Call an external API endpoint to get posts
@@ -82,7 +104,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     const { query } = router;
     const pageTools = usePageEdit(pageInfo, pageInfoDefault);
     const id = query.id?.[0] as string | undefined;
-    const isCreateMode = id ? false : true;
+    const isCreateMode = id?.length > 10 ? false : true;
     const { item: product, getData, loading } = useProductFindById(id);
     const [selectEditorIndex, setSelectEditorIndex] = useState({
         itsIndex: 0,
@@ -147,6 +169,12 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         }
     };
 
+    const onLoadeded = (item: IProductTemp) => {
+        setTourData(item);
+        alert("불러오기 완료");
+        closeModal("#LocalStorageBoard")();
+    };
+
     const [updateReq, { loading: updateReqLoading }] = useProductUpdateReq({
         onCompleted: ({ ProductUpdateReq }) => {
             if (ProductUpdateReq?.ok) {
@@ -164,12 +192,14 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         isManager,
         isParterB,
         isParterNonB,
-        productGroupList,
     } = useContext(AppContext);
     const isMyProduct = product?.author?._id === myProfile?._id;
 
     const {
+        dates,
+        setDates,
         rangeType,
+        groupCode,
         setRangeType,
         range,
         setRange,
@@ -192,6 +222,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
     } = useTourWrite(getDefault(cloneObject(product)));
 
     useEffect(() => {
+        if (!product) return;
         const newProductData = getDefault(cloneObject(product));
 
         // 수정일때는 회차연결을 신경쓰지 말아야함
@@ -265,7 +296,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         if (!product) return;
         if (validate()) {
             const nextData = getUpdateInput();
-            updateFn(product._id, nextData);
+            updateFn(product?._id, nextData);
         }
     };
     const handleEditReq = () => {
@@ -321,20 +352,52 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         openModal("#SampleSelecter")();
     };
 
-    const changeBaseProd = (code: string) => {
-        const target = productGroupList.find((g) => g.groupCode === code);
-        setGroupCode(target?.groupCode);
+    const changeBaseProd = async (productId: string) => {
+        const reuslt = await PinkClient.query<
+            productFindById,
+            productFindByIdVariables
+        >({
+            query: PRODUCT_FIND_BY_ID,
+            variables: {
+                _id: productId,
+            },
+        });
+        const result = reuslt?.data?.ProductFindById?.data;
+
+        const newProductData = getDefault(cloneObject(result));
+
+        if (result) {
+            setTourData({ ...newProductData });
+            setGroupCode(result.groupCode);
+            closeModal("#ProductSearchModal")();
+        }
+    };
+
+    const callAnotherProd = (pid: string) => {
         getData({
             variables: {
-                _id: target?._id || "",
+                _id: pid,
             },
         });
         closeModal("#ProductSearchModal")();
     };
 
+    const {
+        dateOrderedItems: dateOrderGroupProducts,
+        filter,
+        setFilter,
+    } = useFindProductsByGroup(product?.groupCode || groupCode);
     useEffect(() => {
         initStorage();
     }, []);
+    useEffect(() => {
+        if (product?.groupCode) {
+            filter.groupCode_eq = groupCode;
+            setFilter({
+                ...filter,
+            });
+        }
+    }, [product?.groupCode, groupCode]);
 
     const noram_partner_updateable_status = [
         ProductStatus.READY,
@@ -356,7 +419,22 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
             : categoriesMap.EXPERIENCE;
     const regionCategories = categoriesMap.REGION;
 
-    // if (!isManager && !isMyProduct) return <PageDeny />
+    const isDateOverDisabled = (date: Date) => {
+        const daysAgo = dayjs().add(30, "day").toDate();
+        const daysAfter = dayjs().add(90, "day").toDate();
+
+        return dayjs(date).isBefore(daysAgo) || dayjs(date).isAfter(daysAfter);
+    };
+
+    const allDaysFixed = useMemo(
+        () =>
+            dateOrderGroupProducts
+                .filter((pd) => pd._id !== product?._id)
+                .map((prod) => prod.itinerary.map((it) => it.date))
+                .flat(2),
+        [dateOrderGroupProducts?.map((d) => d._id).join(""), range]
+    );
+
     if (loading) return <PageLoading />;
     return (
         <div>
@@ -381,11 +459,27 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                 <PageEditor pageTools={pageTools} />
                 <div className="w1200 con_bottom">
                     <div className="write_box">
-                        {product && (
-                            <h3 className="write_top_tag">
+                        {!isCreateMode && product && (
+                            <Tip
+                                message="수정중인 상품의 현재상태"
+                                className="write_top_tag"
+                                Tag="h3"
+                            >
                                 {productStatus(product.status)}
-                            </h3>
+                            </Tip>
                         )}
+                        {/* 
+                            새로상품을 만들경우에는 프로덕트들이 여기서 그냥 나열될 수 없지.
+                            하지만 회차를 끌어오거나, 수정하는경우에는 여기에 나열된다
+                            // 우선은 수정하는 경우에만 집중해보자
+                            // 수정할경우 회차를 나열해준다음 각각에 대한 수정이 가능하도록 조치해야지
+
+                            // 회차를 당겨온 경우에는, 
+                            // 회차를 당겨오는 행위가 해당 회차를 이어가는 경우임.
+                            // 회차를 이어갈경우
+                            // 기존날짜들은 손못대야함.
+                        */}
+
                         {isCreateMode && (
                             <div className="write_type">
                                 <div className="title">등록타입</div>
@@ -420,6 +514,28 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         신규상품으로 등록해 주세요.
                                     </p>
                                 </div>
+                            </div>
+                        )}
+
+                        {!isCreateMode && (
+                            <div className="tourWrite__dateViewrs mb10">
+                                {dateOrderGroupProducts.map((gp, index) => (
+                                    <div
+                                        onClick={() => {
+                                            callAnotherProd(gp._id);
+                                        }}
+                                        key={gp._id + "tourWrite"}
+                                        className={`mr10 btn tourWrite__dateViewr 
+                                        ${
+                                            product?._id === gp._id &&
+                                            "pink_font tourWrite__dateViewr--selected"
+                                        }`}
+                                    >
+                                        {`[${index + 1}회차] ${yyyymmdd(
+                                            gp.startDate
+                                        )}`}
+                                    </div>
+                                ))}
                             </div>
                         )}
                         <div className="write_type">
@@ -789,37 +905,98 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             className="texta tourWrite__daypikcer"
                         >
                             <h5 id="itinerary">상품일정</h5>
-                            <DayRangePicker
-                                intercept
-                                Header={
-                                    tempSavedIts && (
-                                        <h2 style={{ marginBottom: "1rem" }}>
-                                            새로운 상품일정 시작일을 선택
-                                            해주세요{" "}
-                                        </h2>
-                                    )
-                                }
-                                month={dayjs().add(20, "day").toDate()}
-                                disabledDays={{
-                                    before: dayjs()
-                                        .add(isManager ? 0 : 30, "day")
-                                        .toDate(),
-                                    after: dayjs()
-                                        .add(isManager ? 9999 : 90, "day")
-                                        .toDate(),
+                            <ChainedDayRangesPicker
+                                singleDay={!isCreateMode}
+                                startDays={dates}
+                                isFixedDate={(_date) => {
+                                    return !!allDaysFixed.find((date) =>
+                                        dayjs(date).isSame(_date, "day")
+                                    );
                                 }}
-                                isRange={type === ProductType.TOUR}
+                                length={rangeType === "Range" ? range + 1 : 1}
+                                month={dayjs().add(20, "day").toDate()}
+                                disabledDays={isDateOverDisabled}
+                                renderDay={(date, props) => {
+                                    const isOverDate = isDateOverDisabled(date);
+
+                                    let messages: string | undefined =
+                                        undefined;
+
+                                    if (isOverDate) {
+                                        messages =
+                                            "최소 30일 이전 최대 90일 앞까지 가능합니다.";
+                                    } else if (props.fixed) {
+                                        messages = "해당 상품의 다른 회차";
+                                    }
+
+                                    return (
+                                        <Tip
+                                            className="tourWrite__daypikcerInDate"
+                                            message={messages}
+                                        >
+                                            {date.getDate()}
+                                        </Tip>
+                                    );
+                                }}
                                 onRangeChange={handleDateState}
-                                from={firstDate}
-                                to={lastDate}
                             >
-                                <div className="tourWrite__dayPikcerRangeViewer  mb10">
-                                    <div className="tourWrite__Choiceday">
-                                        <strong>선택된 상품날짜</strong>{" "}
-                                        {yyyymmdd(firstDate)} ~{" "}
-                                        {yyyymmdd(lastDate)}
+                                {!isEmpty(dateOrderGroupProducts) && (
+                                    <div className="tourWrite__dayPikcerRangeViewer  mb10">
+                                        {dateOrderGroupProducts.map(
+                                            (prd, index) => {
+                                                const isModifyProd =
+                                                    prd._id === product?._id;
+
+                                                if (isModifyProd) {
+                                                    return (
+                                                        <TourWriteDateViewerCurrentModify
+                                                            key={prd._id}
+                                                            range={
+                                                                prd.itinerary
+                                                                    .length
+                                                            }
+                                                            date={prd.startDate}
+                                                            index={
+                                                                isCreateMode
+                                                                    ? undefined
+                                                                    : index
+                                                            }
+                                                            nextDate={dates[0]}
+                                                            nextRange={range}
+                                                        />
+                                                    );
+                                                }
+                                                return (
+                                                    <TourWriteDateViewer
+                                                        key={prd._id}
+                                                        fixed
+                                                        range={
+                                                            prd.itinerary.length
+                                                        }
+                                                        date={prd.startDate}
+                                                        index={
+                                                            isCreateMode
+                                                                ? undefined
+                                                                : index
+                                                        }
+                                                    />
+                                                );
+                                            }
+                                        )}
                                     </div>
-                                </div>
+                                )}
+
+                                {isCreateMode && (
+                                    <div className="tourWrite__dayPikcerRangeViewer  mb10">
+                                        {dates.map((date, index) => (
+                                            <TourWriteDateViewer
+                                                range={range}
+                                                date={date}
+                                                index={index}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
                                 <div className="info_txt">
                                     <h4>
                                         <i className="jandaicon-info2 mini"></i>
@@ -859,9 +1036,8 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         </li>
                                     </ul>
                                 </div>
-                            </DayRangePicker>
-
-                            {filterOver(its).map((itinery, index) => (
+                            </ChainedDayRangesPicker>
+                            {filterOver(its, range).map((itinery, index) => (
                                 <div key={"itineryForm" + index}>
                                     <ItineryForm
                                         setSelectEditorIndex={
@@ -973,7 +1149,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     type="submit"
                                     className="btn medium pointcolor"
                                 >
-                                    {isParterNonB ? "등록요청 " : "등록완료"}
+                                    {isParterB ? "등록완료" : "등록요청 "}
                                 </button>
                             )}
                             {isManager && (
@@ -1009,7 +1185,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             )}
                         </div>
                     </div>
-                    <LocalStorageBoard key={loadKey} onLoad={setTourData} />
+                    <LocalStorageBoard key={loadKey} onLoad={onLoadeded} />
                     <SampleBoard
                         items={sampleProducts}
                         onDelete={handleSampleDelete}
@@ -1028,8 +1204,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                     authorEmail_eq: isAdmin ? undefined : myProfile?.email,
                 }}
                 onSelect={(pd) => {
-                    const groupdCode = pd.groupCode;
-                    changeBaseProd(groupdCode);
+                    changeBaseProd(pd._id);
                 }}
             />
         </div>

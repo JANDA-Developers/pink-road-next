@@ -1,5 +1,9 @@
 import dayjs from "dayjs";
-import { useProductFindById, useProductList } from "hook/useProduct";
+import {
+    useProductFindById,
+    useProductGroupList,
+    useProductList,
+} from "hook/useProduct";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -68,12 +72,12 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     const travelersModalHook =
         useModal<{
             nextAction: "bracket" | "pay";
-        }>(true);
+        }>();
 
     const { item: group } = useGroupFind("Recommend");
     const groupExsist = !isEmpty(group?.members);
     const { handleLoaded, loaded } = useImgLoading();
-    const { items, filter, setFilter } = useProductList({
+    const { items } = useProductGroupList({
         initialFilter: {
             // ...openListFilter,
             isOpen_eq: true,
@@ -81,7 +85,10 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         },
     });
 
-    const randomSortedItems = useMemo(() => randomSort(items), [items.length]);
+    const randomSortedItems = useMemo(
+        () => randomSort(items.map((item) => item.product)),
+        [items.length]
+    );
     const randomSorted: productList_ProductList_data[] = groupExsist
         ? cloneObject(items).sort(
               (a, b) =>
@@ -104,7 +111,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     } = generateClientPaging(product?.questions || [], 4);
 
     const sliderRef = useRef<SLIDER>(null);
-    const { count, handleCount, totalPrice, setTravlers, travelers } =
+    const { count, handleCount, totalPrice, settravelers, travelers } =
         useBasketCount({
             adult_price: product?.adult_price,
             baby_price: product?.baby_price,
@@ -161,7 +168,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             price: totalPrice,
             name: product!.title,
             _id: product!._id,
-            travlers: [],
+            travelers: [],
         });
     };
 
@@ -927,8 +934,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                             </div>
                             <div className="add_list">
                                 <h4>핑크로더 추천여행</h4>
-                                {/* 랜덤노출 */}
-                                {/* //슬라이스 한다음  ㅁ */}
                                 <ul className="tourView__recommendList  list_ul line3">
                                     {randomSorted.slice(0, 3).map((item) => (
                                         <ProductPhotoBlock
@@ -952,7 +957,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     bookerInclue={false}
                     bookerName={""}
                     bookerPhoneNumber={""}
-                    onChangeTravlers={setTravlers}
+                    onChangetravelers={settravelers}
                     onChnageBookerInclude={() => {}}
                     travelers={travelers}
                     totalCount={totalResvCount}

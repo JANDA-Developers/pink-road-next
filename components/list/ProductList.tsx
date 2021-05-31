@@ -5,7 +5,6 @@ import { generateSearchLink } from "../../pages/search[drepreacted]";
 import { Fproduct } from "../../types/api";
 import { BG } from "../../types/const";
 import { autoComma } from "../../utils/formatter";
-import { yyyymmdd } from "../../utils/yyyymmdd";
 
 interface IProp {
     product: Fproduct;
@@ -44,12 +43,6 @@ export const ProductListBlock: React.FC<IProp> = ({ product }) => {
                 <span>출발장소 : {product.startPoint}</span>
                 <span>
                     모집인원 : {product.peopleCount}/{product.maxMember}
-                </span>
-                <span>
-                    기간 :{" "}
-                    {yyyymmdd(product.startDate) +
-                        "~" +
-                        yyyymmdd(product.endDate)}
                 </span>
                 <Link href={"/tour/view/" + product._id}>
                     <span className="btn">바로가기</span>

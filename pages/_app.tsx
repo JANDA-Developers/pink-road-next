@@ -12,6 +12,7 @@ import {
     Fhomepage,
     Fcategory,
     CategoryType,
+    Fproduct,
 } from "types/api";
 import PinkClient from "apollo/client";
 import {
@@ -54,7 +55,11 @@ export type TContext = {
     homepage?: Fhomepage;
     isParterNonB?: boolean;
     categoriesMap: Record<CategoryType, Fcategory[]>;
-    productGroupList: TProductGrop[];
+    productList: {
+        _id: string;
+        label: string;
+        groupCode: string;
+    }[];
 };
 
 export type TProductGrop = {
@@ -75,7 +80,7 @@ const defaultContext: TContext = {
     isParterB: false,
     isParterNonB: false,
     categoriesMap: defaultCatsMap,
-    productGroupList: [],
+    productList: [],
 };
 
 export const AppContext = React.createContext<TContext>(defaultContext);
@@ -104,20 +109,6 @@ function App({ Component, pageProps }: any) {
         label: p.title,
         groupCode: p.groupCode,
     }));
-
-    const productGroupList: {
-        _id: string;
-        label: string;
-        groupCode: string;
-    }[] = [];
-
-    productList?.forEach((p) => {
-        if (!productGroupList.find((g) => g.groupCode === p.groupCode)) {
-            productGroupList.push({
-                ...p,
-            });
-        }
-    });
 
     const isSeller = [
         UserRole.partner,
@@ -200,7 +191,7 @@ function App({ Component, pageProps }: any) {
                         isLogin: !!myProfile,
                         isParterNonB,
                         homepage,
-                        productGroupList,
+                        productList,
                     }}
                 >
                     <ComponentLayout>

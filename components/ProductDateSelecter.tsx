@@ -15,25 +15,15 @@ export const ProductDateSelecter: React.FC<IProp> = ({
     groupCode,
     onChange,
 }) => {
-    const { items } = useFindProductsByGroup(groupCode);
+    const { dateOrderedItems, getLoading } = useFindProductsByGroup(groupCode);
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const id = e.currentTarget.value;
-        const target = items.find((item) => item._id === id);
+        const target = dateOrderedItems.find((item) => item._id === id);
         onChange(target);
     };
 
-    let availableExsist = false;
-
-    for (let item of items) {
-        if (dayjs(item.startDate).isAfter(new Date(), "day")) {
-            availableExsist = true;
-        }
-    }
-    if (isEmpty(items)) return <span>예약이 가능한 상태가 아닙니다.</span>;
-    if (!availableExsist) return <span>예약가능 기간이 지났습니다.</span>;
-    if (!groupCode) return <span>{}</span>;
-    return (
+    const Result = () => (
         <div className="productDateSelecter write_type">
             <div className="input_form">
                 <span className="productDateSelecter__categoryWrap category r3">
@@ -42,7 +32,7 @@ export const ProductDateSelecter: React.FC<IProp> = ({
                         value={currentId}
                         name="type"
                     >
-                        {items.map((p) => (
+                        {dateOrderedItems?.map((p) => (
                             <option key={p._id} value={p._id}>
                                 {dayjs(p.startDate).format("YYYY.MM.DD")}{" "}
                                 {p.isOpen ? "" : ` [비공개]`}
@@ -53,4 +43,19 @@ export const ProductDateSelecter: React.FC<IProp> = ({
             </div>
         </div>
     );
+
+    let availableExsist = false;
+
+    if (getLoading) return <Result />;
+    for (let item of dateOrderedItems) {
+        if (dayjs(item.startDate).isAfter(new Date(), "day")) {
+            availableExsist = true;
+        }
+    }
+    if (isEmpty(dateOrderedItems))
+        return <span>예약이 가능한 상태가 아닙니다.</span>;
+    if (!availableExsist) return <span>예약가능 기간이 지났습니다.</span>;
+    if (!groupCode) return <span>{}</span>;
+
+    return <Result />;
 };

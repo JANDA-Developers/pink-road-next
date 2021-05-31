@@ -22,6 +22,7 @@ export interface IPageInfo extends productList_ProductList_page {}
 export interface ILi extends React.HTMLAttributes<HTMLLIElement> {}
 export declare type TElements = string | JSX.Element | JSX.Element[] | string[];
 export interface IDiv extends React.HTMLAttributes<HTMLDivElement> {}
+export interface IP extends React.HTMLAttributes<HTMLParagraphElement> {}
 
 export type TUserFilterKeys = keyof _UserFilter;
 export type TCount = {

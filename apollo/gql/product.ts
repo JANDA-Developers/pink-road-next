@@ -11,8 +11,11 @@ import { F_QUESTION } from "./question";
 import { F_PRODUCT_REVIEW } from "./review";
 import { F_SETTLEMENT } from "./settlement";
 
-export const PRODUCTS_CREATE = gql`
-    mutation productCreate($params: ProductCreateInput!, $groupCode: String) {
+export const PRODUCT_CREATE = gql`
+    mutation productCreate(
+        $params: [ProductCreateInput!]!
+        $groupCode: String
+    ) {
         ProductCreate(params: $params, groupCode: $groupCode) {
             ok
             error {
@@ -162,6 +165,57 @@ export const PRODUCT_DELETE = gql`
     ${F_PRODUCT}
 `;
 
+export const PRODUCT_GROUP_LIST = gql`
+    query productGroupList(
+        $sort: [_ProductGroupSort!]
+        $filter: _ProductGroupFilter
+        $pageInput: pageInput!
+    ) {
+        ProductGroupList(sort: $sort, pageInput: $pageInput, filter: $filter) {
+            ok
+            error {
+                location
+                severity
+                code
+                message
+            }
+            page {
+                ...Fpage
+            }
+            data {
+                _id
+                createdAt
+                updatedAt
+                isDelete
+                isDisplay
+                groupCode
+                openProductCnt
+                title
+                subTitle
+                keyWards
+                isOpen
+                sellerName
+                sellerNickName
+                regionLabel
+                categoryId
+                address
+                type
+                adult_price
+                startDate
+                endDate
+                avgRating
+                sumRating
+                reviewCnt
+                product {
+                    ...Fproduct
+                }
+            }
+        }
+    }
+    ${F_PRODUCT}
+    ${F_PAGE}
+`;
+
 export const PRODUCT_LIST = gql`
     query productList(
         $sort: [_ProductSort!]
@@ -263,6 +317,50 @@ export const PRODUCT_FIND_BY_ID = gql`
     }
     ${F_USER}
     ${F_QUESTION}
+    ${F_PRODUCT}
+    ${F_PRODUCT_REVIEW}
+`;
+
+export const PRODUCT_GROUP_FIND_BY_ID = gql`
+    query productGroupFindById($code: String!) {
+        ProductGroupFindById(code: $code) {
+            ok
+            error {
+                location
+                severity
+                code
+                message
+            }
+            data {
+                _id
+                createdAt
+                updatedAt
+                isDelete
+                isDisplay
+                groupCode
+                openProductCnt
+                title
+                subTitle
+                keyWards
+                isOpen
+                sellerName
+                sellerNickName
+                regionLabel
+                categoryId
+                address
+                type
+                adult_price
+                startDate
+                endDate
+                avgRating
+                sumRating
+                reviewCnt
+                product {
+                    ...Fproduct
+                }
+            }
+        }
+    }
     ${F_PRODUCT}
     ${F_PRODUCT_REVIEW}
 `;

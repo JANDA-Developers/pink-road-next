@@ -9578,6 +9578,14 @@ ul.photo_ul.main_photo_ul li .title {
   padding: 11px 10px;
   box-sizing: border-box;
 }
+.tourWrite__Choiceday--currentModify .tourWrite__ChoicedayPreview {
+  text-decoration: line-through;
+}
+
+.tourWrite__Choiceday--fixed {
+  background-color: #ffdedd!important;
+}
+
 .no__data{
   display: block;
   line-height: 500%;
