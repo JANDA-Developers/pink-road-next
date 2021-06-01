@@ -2571,6 +2571,10 @@ div.master_popup .info_txt span {
   display: inline-block;
   position: relative;
 }
+div.master_popup .info_txt span:last-child::after {
+  display: none!important;
+}
+
 div.master_popup .info_txt span:after {
   position: absolute;
   content: "";
@@ -2928,7 +2932,7 @@ div.master_popup .top_info .tt {
   margin-right: 20px;
   padding-left: 0px;
 }
-div.master_popup .menno {
+ .menno {
   width: 100% !important;
   display: block;
   line-height: 122%;
@@ -2944,7 +2948,7 @@ div.master_popup .menno {
   border: 1px solid #616161 !important;
   color: #616161 !important;
 }
-div.master_popup .menok {
+ .menok {
   width: 100% !important;
   display: block;
   line-height: 122%;
@@ -4706,13 +4710,15 @@ div.master_popup div.alignment {
     padding-right: 10px;
     padding-left: 10px;
   }
-  div.master_popup .menno {
+   .menno {
+    cursor: pointer;
     width: auto !important;
     display: inline-block;
     margin: 0 10px;
     padding: 4px 15px !important;
   }
-  div.master_popup .menok {
+   .menok {
+     cursor: pointer;
     width: auto !important;
     display: inline-block;
     margin: 0 10px;

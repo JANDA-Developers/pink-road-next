@@ -1846,6 +1846,7 @@ export interface bookingFindByCode_BookingFindByCode_data_product {
   updatedAt: any;
   regionLabel: string | null;
   isDelete: boolean;
+  slug: string;
   /**
    * 취소를 제외한 상품 하나에 대한 모든 인원
    */
@@ -6254,6 +6255,7 @@ export interface productDelete_ProductDelete_data {
   isDelete: boolean;
   title: string;
   code: string;
+  slug: string;
   /**
    * 취소를 제외한 상품 하나에 대한 모든 인원
    */
@@ -6460,6 +6462,7 @@ export interface productGroupList_ProductGroupList_data_product {
   isDelete: boolean;
   title: string;
   code: string;
+  slug: string;
   /**
    * 취소를 제외한 상품 하나에 대한 모든 인원
    */
@@ -6529,7 +6532,7 @@ export interface productGroupList_ProductGroupList_data {
   sellerNickName: string;
   regionLabel: string | null;
   categoryId: string;
-  address: string;
+  address: string | null;
   type: ProductType;
   adult_price: number;
   startDate: any;
@@ -6835,6 +6838,7 @@ export interface productList_ProductList_data {
   isDelete: boolean;
   title: string;
   code: string;
+  slug: string;
   /**
    * 취소를 제외한 상품 하나에 대한 모든 인원
    */
@@ -7297,6 +7301,7 @@ export interface productFindById_ProductFindById_data {
   isDelete: boolean;
   title: string;
   code: string;
+  slug: string;
   /**
    * 취소를 제외한 상품 하나에 대한 모든 인원
    */
@@ -7459,6 +7464,7 @@ export interface productGroupFindById_ProductGroupFindById_data_product {
   isDelete: boolean;
   title: string;
   code: string;
+  slug: string;
   /**
    * 취소를 제외한 상품 하나에 대한 모든 인원
    */
@@ -7528,7 +7534,7 @@ export interface productGroupFindById_ProductGroupFindById_data {
   sellerNickName: string;
   regionLabel: string | null;
   categoryId: string;
-  address: string;
+  address: string | null;
   type: ProductType;
   adult_price: number;
   startDate: any;
@@ -7997,6 +8003,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data {
   isDelete: boolean;
   title: string;
   code: string;
+  slug: string;
   /**
    * 취소를 제외한 상품 하나에 대한 모든 인원
    */
@@ -10641,6 +10648,7 @@ export interface settlementFindById_SettlementFindById_data_product {
   isDelete: boolean;
   title: string;
   code: string;
+  slug: string;
   /**
    * 취소를 제외한 상품 하나에 대한 모든 인원
    */
@@ -11126,6 +11134,7 @@ export interface settlementList_SettlementList_data_product {
   isDelete: boolean;
   title: string;
   code: string;
+  slug: string;
   /**
    * 취소를 제외한 상품 하나에 대한 모든 인원
    */
@@ -13042,6 +13051,7 @@ export interface userFindById_UserFindById_data_products {
   isDelete: boolean;
   title: string;
   code: string;
+  slug: string;
   /**
    * 취소를 제외한 상품 하나에 대한 모든 인원
    */
@@ -13870,6 +13880,7 @@ export interface Fproduct {
   isDelete: boolean;
   title: string;
   code: string;
+  slug: string;
   /**
    * 취소를 제외한 상품 하나에 대한 모든 인원
    */

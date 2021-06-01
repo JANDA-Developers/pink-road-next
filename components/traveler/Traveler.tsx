@@ -95,13 +95,13 @@ export const Traveler: React.FC<IProp> = ({
                 <select
                     value={traveler.isForegin ? "true" : "false"}
                     onChange={(op) => {
-                        const val = op.currentTarget.value;
-                        traveler.gender = val as GENDER;
+                        const val = op.currentTarget.value === "true";
+                        traveler.isForegin = val;
                         onChange(traveler);
                     }}
                 >
-                    <option value={"true"}>내국인</option>
-                    <option value={"false"}>외국인</option>
+                    <option value={"false"}>내국인</option>
+                    <option value={"true"}>외국인</option>
                 </select>
             </div>
         </div>

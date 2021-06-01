@@ -4,11 +4,7 @@ import SubTopNav from "layout/components/SubTop";
 import { ProductPhotoBlock } from "../../components/list/ProductPhoto";
 import BoardList from "../../components/board/List";
 import { ProductListBlock } from "../../components/list/ProductList";
-import {
-    openListFilter,
-    useProductGroupList,
-    useProductList,
-} from "../../hook/useProduct";
+import { useProductGroupList } from "../../hook/useProduct";
 import { getTypeFilterByUrl, checkIsExp } from "../../utils/product";
 import { getStaticPageInfo, Ipage } from "../../utils/page";
 import pageInfoDefault from "info/tourList.json";

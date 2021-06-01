@@ -268,22 +268,26 @@ export const MsIndex: React.FC<IProp> = () => {
                                         <span>
                                             완료{" "}
                                             <strong>
-                                                {pd.bookings.map(
-                                                    (bk) =>
-                                                        bk.status ===
-                                                        BookingStatus.COMPLETE
-                                                )}
+                                                {
+                                                    pd.bookings.map(
+                                                        (bk) =>
+                                                            bk.status ===
+                                                            BookingStatus.COMPLETE
+                                                    ).length
+                                                }
                                             </strong>
                                         </span>
                                         &nbsp;&frasl;&nbsp;
                                         <span>
                                             취소{" "}
                                             <strong>
-                                                {pd.bookings.map(
-                                                    (bk) =>
-                                                        bk.status ===
-                                                        BookingStatus.CANCEL
-                                                )}
+                                                {
+                                                    pd.bookings.map(
+                                                        (bk) =>
+                                                            bk.status ===
+                                                            BookingStatus.CANCEL
+                                                    ).length
+                                                }
                                             </strong>
                                         </span>
                                     </div>
@@ -500,7 +504,10 @@ export const MsIndex: React.FC<IProp> = () => {
                                         <span className="m_title">
                                             정산요청일:{" "}
                                         </span>
-                                        <span>{yyyymmdd(st.requestDate)}</span>
+                                        <span>
+                                            {yyyymmdd(st.requestDate) ||
+                                                "요청되지 않았음"}
+                                        </span>
                                     </div>
                                     <div className="td03">
                                         <span className="m_title">
@@ -811,9 +818,9 @@ export const MsIndex: React.FC<IProp> = () => {
                     {/* <BookingModal code={""} /> */}
                     {/* <ProductModal productId={} /> */}
                 </div>
-                <div className="infobox__bottom">
+                {/* <div className="infobox__bottom">
                     <i className="jandaicon-info3" /> 주의사항
-                </div>
+                </div> */}
             </div>
         </MasterLayout>
     );

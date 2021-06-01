@@ -100,7 +100,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
     const id = router.query.id as string;
     const { loading, item: product, getData, called } = useProductFindById(id);
-    const { isManager, isAdmin, myProfile, isSeller, isParterB } =
+    const { isManager, isAdmin, myProfile, isSeller, isParterB, isLogin } =
         useContext(AppContext);
     const isMyProduct = product?.author?._id === myProfile?._id;
     const status = product?.status;
@@ -111,18 +111,25 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
     } = generateClientPaging(product?.questions || [], 4);
 
     const sliderRef = useRef<SLIDER>(null);
-    const { count, handleCount, totalPrice, settravelers, travelers } =
-        useBasketCount({
-            adult_price: product?.adult_price,
-            baby_price: product?.baby_price,
-            kids_price: product?.kids_price,
-            capacity: product ? product.maxMember - product.peopleCount : 999,
-            defaultCount: {
-                adult: 0,
-                baby: 0,
-                kids: 0,
-            },
-        });
+    const {
+        count,
+        handleCount,
+        totalPrice,
+        settravelers,
+        travelers,
+        bookerInclude,
+        setBookerInclude,
+    } = useBasketCount({
+        adult_price: product?.adult_price,
+        baby_price: product?.baby_price,
+        kids_price: product?.kids_price,
+        capacity: product ? product.maxMember - product.peopleCount : 999,
+        defaultCount: {
+            adult: 0,
+            baby: 0,
+            kids: 0,
+        },
+    });
     const reviews = product?.productReview || [];
 
     const [sliderIndex, setSlideIndex] = useState(0);
@@ -168,7 +175,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             price: totalPrice,
             name: product!.title,
             _id: product!._id,
-            travelers: [],
+            travelers,
+            includeBooker: bookerInclude
         });
     };
 
@@ -953,12 +961,15 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                 {...travelersModalHook}
             >
                 <TravlerControlTable
-                    withIncludeBooker={false}
-                    bookerInclue={false}
-                    bookerName={""}
-                    bookerPhoneNumber={""}
+                    className="travelerTableInModal"
+                    withIncludeBooker={isLogin}
+                    bookerInclue={bookerInclude}
+                    bookerName={myProfile.name}
+                    bookerPhoneNumber={myProfile.phoneNumber}
                     onChangetravelers={settravelers}
-                    onChnageBookerInclude={() => {}}
+                    onChnageBookerInclude={() => {
+                        setBookerInclude(!bookerInclude);
+                    }}
                     travelers={travelers}
                     totalCount={totalResvCount}
                     kidsCount={count.kids}

@@ -109,10 +109,6 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                                 정산상태:{" "}
                                 <i>{settlementStatus(settlement.status)}</i>
                             </span>
-                            {/* <span className="r-day">예약일: {yyyymmdd(booking.createdAt)}</span>
-                        {booking.isCancelRequest && <span>[취소요청]</span>}
-                        {booking.payment && <span className="pay-day">결제일: {yyyymmdd(booking.payment?.createdAt)}</span>}
-                        <button onClick={print} className="btn"><i className="flaticon-print mr5"></i>프린터</button> */}
                         </div>
                         <div className="info_page">
                             <h4 className="historyTable__head">

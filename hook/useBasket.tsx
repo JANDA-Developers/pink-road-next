@@ -18,6 +18,8 @@ interface IPrices {
     baby_price: number;
     adult_price: number;
     kids_price: number;
+    travelers?: Ftraveler[];
+    defaultBookerInclude?: boolean;
     defaultCount?: IHumanCount;
     capacity?: number;
 }
@@ -34,10 +36,13 @@ export const useBasketCount = (
         baby_price = 0,
         kids_price = 0,
         defaultCount = DEFAULT_COUNT,
+        defaultBookerInclude = false,
+        travelers: defaultTravelers,
         capacity = 0,
     }: Partial<IPrices> = { adult_price: 0, baby_price: 0, kids_price: 0 }
 ) => {
-    const [travelers, settravelers] = useState<Ftraveler[]>([]);
+    const [bookerInclude, setBookerInclude] = useState(defaultBookerInclude);
+    const [travelers, settravelers] = useState<Ftraveler[]>(defaultTravelers);
     const [count, setCount] = useState<IHumanCount>(defaultCount);
     const [totalPrice, setPrice] = useState(0);
 
@@ -95,6 +100,8 @@ export const useBasketCount = (
     }, [count]);
 
     return {
+        bookerInclude,
+        setBookerInclude,
         travelers,
         settravelers,
         count,

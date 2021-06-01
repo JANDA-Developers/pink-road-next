@@ -438,9 +438,6 @@ export const BookingModal: React.FC<IProp> = ({
                                     {yyyymmdd(booking.payment?.createdAt)}
                                 </span>
                             )}
-                            <button onClick={print} className="btn">
-                                <i className="flaticon-print mr5"></i>프린터
-                            </button>
                         </div>
                         <div className="info_table goodsinfo">
                             <div className="tr">

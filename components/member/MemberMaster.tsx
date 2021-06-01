@@ -75,23 +75,25 @@ export const MemberMaster: React.FC<IProp> = ({
     SortOptions,
 }) => {
     const userWriteModal = useModal();
-    const role_eq = type;
+    let role_eq = type;
     const isIndiTap = type === UserRole.individual;
     const isNonBusiPartnerTap = type === UserRole.partnerB;
     const isBusiTap = type === UserRole.partner;
     const isSignOut = type === "signOut";
     const isResigned_eq = signOut;
-    const fixedFilter: _UserFilter = { role_eq, isResigned_eq };
-    const {
-        totalIndiMemberCount,
-        koreanMemberCount,
-        foreginMemberCount,
-    } = useCustomCount([
-        "totalPartnerMemberCount",
-        "koreanMemberCount",
-        "foreginMemberCount",
-        "totalIndiMemberCount",
-    ]);
+    let fixedFilter: _UserFilter = { role_eq, isResigned_eq };
+    if (isSignOut) {
+        fixedFilter = {
+            isResigned_eq: true,
+        };
+    }
+    const { totalIndiMemberCount, koreanMemberCount, foreginMemberCount } =
+        useCustomCount([
+            "totalPartnerMemberCount",
+            "koreanMemberCount",
+            "foreginMemberCount",
+            "totalIndiMemberCount",
+        ]);
     const [searchType, setSearchType] = useState<TuniqSearch>("name_eq");
     const [popupUser, setPopupUser] = useState<Fuser>();
     const useHook = useUserList({ initialFilter: fixedFilter });
@@ -117,9 +119,27 @@ export const MemberMaster: React.FC<IProp> = ({
     const { selectAll, selectedIds } = idHooks;
     const singleSort = useSingleSort(sort, setSort);
     const [popupId, setPopUserId] = useState("");
-    const [restartUsers] = useRestartUsers();
-    const [stopUsers] = useStopUsers();
-    const [resignUser] = useUserResign();
+    const [restartUsers] = useRestartUsers({
+        onCompleted: ({ RestartUser }) => {
+            if (RestartUser.ok) {
+                alert("유저 활동이 재개되었습니다.");
+            }
+        },
+    });
+    const [stopUsers] = useStopUsers({
+        onCompleted: ({ StopUser }) => {
+            if (StopUser.ok) {
+                alert("유저 활동이 정지되었습니다.");
+            }
+        },
+    });
+    const [resignUser] = useUserResign({
+        onCompleted: ({ UserResign }) => {
+            if (UserResign.ok) {
+                alert("유저 탈퇴완료");
+            }
+        },
+    });
     const [updateUser] = useUserUpdate();
     const [signUpAccept] = useSignUpAccept();
     const [signUpDeny] = useSignUpDeny();
@@ -172,9 +192,11 @@ export const MemberMaster: React.FC<IProp> = ({
             }
         }
         if (targetUser || confirm("정말로 해당 유저를 삭제하십니까?")) {
+            const reason =
+                prompt("탈퇴사유를 입력해주세요.") || "매니저에의한 탈퇴";
             resignUser({
                 variables: {
-                    reason: "manager",
+                    reason,
                     resignReasonType: "manager",
                     _id: userId || selected,
                     pw: "", //마스터 일때는 안넣어도됨
@@ -184,10 +206,7 @@ export const MemberMaster: React.FC<IProp> = ({
     };
 
     const handleStopUser = (userIds?: string[]) => {
-        if (
-            !confirm(`정말로 유저를 정지 시키겠습니까?`)
-        )
-            return;
+        if (!confirm(`정말로 유저를 정지 시키겠습니까?`)) return;
         stopUsers({
             variables: {
                 reason: "",

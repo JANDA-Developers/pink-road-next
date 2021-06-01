@@ -74,8 +74,6 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
     const { keyward, title } = all;
     const defaultSearch = getFromUrl("search") || keyward || title;
 
-    const [,] = useState();
-
     const fixingFilter = {
         ...openListFilter,
     };
@@ -84,7 +82,6 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
 
     const [boardFilter, setBoardFilter] = useState(urlSearchFilter);
     const initialFilter = boardFilter;
-
     const [search, setSearch] = useState(defaultSearch);
     const productListHook = useProductList({ fixingFilter, initialFilter });
     const {
@@ -100,6 +97,7 @@ export const Search: React.FC<Ipage> = (_pageInfo) => {
         setViewCount,
         setOR,
     } = productListHook;
+
     const { categoriesMap } = useContext(AppContext);
     const { totalCount: totalProdCount } = pageInfo;
 

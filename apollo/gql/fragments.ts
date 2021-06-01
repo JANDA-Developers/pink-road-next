@@ -89,6 +89,7 @@ export const F_PRODUCT = gql`
         isDelete
         title
         code
+        slug
         peopleCount
         contents
         determined

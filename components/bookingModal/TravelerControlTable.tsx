@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { AgeType, Ftraveler, GENDER } from "../../types/api";
 import { DEFAULT_TRAVLER } from "../../types/const";
+import { IDiv } from "../../types/interface";
+import isEmpty from "../../utils/isEmpty";
 import { Traveler } from "../traveler/Traveler";
 
-interface IProp {
+interface IProp extends IDiv {
     withIncludeBooker?: boolean;
     bookerName: string;
     bookerPhoneNumber: string;
@@ -29,17 +31,21 @@ export const TravlerControlTable: React.FC<IProp> = ({
     travelers,
     onChnageBookerInclude,
     onChangetravelers,
+    className,
+    ...props
 }) => {
     const handleToggleBookerInclude = () => {
         onChnageBookerInclude(!bookerInclue);
     };
 
-    useEffect(() => {
+    const whenBookerIncludeChange = () => {
+        const nameBooker = travelers[0]?.name === bookerName;
+        const contactBooker = travelers[0]?.phoneNumber === bookerPhoneNumber;
+        const bookerIsInPlace = nameBooker && contactBooker;
+
+        //예약자 포함사항이 변경되었을때 투글 로직
         if (bookerInclue) {
-            const nameBooker = travelers[0]?.name === bookerName;
-            const contactBooker =
-                travelers[0]?.phoneNumber === bookerPhoneNumber;
-            const isBookerAleradyIncluded = nameBooker && contactBooker;
+            if (bookerIsInPlace) return;
 
             let nextTravelers = [
                 {
@@ -47,27 +53,18 @@ export const TravlerControlTable: React.FC<IProp> = ({
                     name: bookerName,
                     phoneNumber: bookerPhoneNumber,
                 },
-                ...travelers,
+                ...travelers.slice(0, travelers.length - 1),
             ];
 
-            if (isBookerAleradyIncluded) {
-                return;
-            }
-
-            if (nextTravelers.length > totalCount) {
-                nextTravelers = nextTravelers.splice(0, totalCount - 1);
-            }
-            console.log({ nextTravelers });
             onChangetravelers([...nextTravelers]);
         } else {
-            if (!travelers) return;
-            travelers.splice(0, 1);
-            onChangetravelers([...travelers]);
         }
-    }, [bookerInclue]);
+    };
+
+    useEffect(whenBookerIncludeChange, [bookerInclue]);
 
     return (
-        <div className="info_table peoplelist">
+        <div className={`info_table peoplelist ${className}`} {...props}>
             <div className="top_info">
                 <span className="tt">선택된 예약 인원</span>
                 <span>

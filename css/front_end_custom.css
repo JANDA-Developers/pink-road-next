@@ -586,3 +586,23 @@ figure:after {
 .tourWrite__daypikcer .DayPicker-Day {
     padding: 0rem!important;
 }
+
+
+
+.travelerTableInModal .tr {
+    display: flex;
+    text-align: left!important; 
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.travelerTableInModal .tr div {
+    padding: 0.2rem;
+}
+.travelerTableInModal .re01 {
+    font-weight: 600;
+}
+.travelerTableInModal input {
+    width: 100%!important;
+}

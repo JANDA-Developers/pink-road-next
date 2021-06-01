@@ -24,12 +24,17 @@ export const ProductListBlock: React.FC<IProp> = ({ product }) => {
             />
             <div className="txt1">
                 <div className="title">
-                    <a href={"/tour/view/" + product._id}>{product.title}</a>
+                    <Link href={`/tour/view/${product._id}/${product.slug}`}>
+                        <a>{product.title}</a>
+                    </Link>
                 </div>
                 <div className="subtitle">{product.subTitle}</div>
                 <div className="tag">
                     {product.keyWards?.map((keyward, i) => (
-                        <Link href={generateSearchLink({ keyward })}>
+                        <Link
+                            key={i + "productKeywards"}
+                            href={generateSearchLink({ keyward })}
+                        >
                             <a key={product._id + i}>#{keyward}</a>
                         </Link>
                     ))}
@@ -41,9 +46,9 @@ export const ProductListBlock: React.FC<IProp> = ({ product }) => {
             <div className="txt2">
                 <span>지역 : {product.regionLabel}</span>
                 <span>출발장소 : {product.startPoint}</span>
-                <span>
+                {/* <span>
                     모집인원 : {product.peopleCount}/{product.maxMember}
-                </span>
+                </span> */}
                 <Link href={"/tour/view/" + product._id}>
                     <span className="btn">바로가기</span>
                 </Link>

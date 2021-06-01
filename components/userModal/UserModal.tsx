@@ -73,9 +73,6 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                                 탈퇴일: {yyyymmdd(item.resignDate)}
                             </span>
                         )}
-                        <button onClick={print} className="btn">
-                            <i className="flaticon-print mr5"></i>프린터
-                        </button>
                     </div>
                     {/* 가입 */}
                     {isResigned && (

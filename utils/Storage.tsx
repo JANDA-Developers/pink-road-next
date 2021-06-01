@@ -101,6 +101,7 @@ export interface IBasketItem extends Partial<Fproduct> {
     pickupAt?: Date;
     version?: number;
     travelers?: Ftraveler[];
+    includeBooker?: boolean;
 }
 
 export const deleteExpireBracket = () => {

@@ -125,6 +125,10 @@ export const generateListQueryHook = <F, S, Q, V, R>(
                 ...ops,
             });
 
+        console.log({ data });
+        console.log({ data });
+        console.log({ data });
+
         const operationName = defaultOptions?.queryName || getQueryName(QUERY);
 
         dataCheck(data, operationName);
@@ -132,6 +136,11 @@ export const generateListQueryHook = <F, S, Q, V, R>(
         const items: R[] = data?.[operationName]?.data || [];
         const pageInfo: Fpage =
             (data as any)?.[operationName]?.page || DEFAULT_PAGE;
+
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        console.log({ pageInfo });
+        console.log((data as any)?.[operationName]);
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         // @ts-ignore
         userErrorHandle(data?.[operationName]);

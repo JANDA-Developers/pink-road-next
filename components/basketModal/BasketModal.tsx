@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useBasketCount } from "../../hook/useBasket";
+import { AppContext } from "../../pages/_app";
 import { Fproduct } from "../../types/api";
 import { autoComma } from "../../utils/formatter";
 import { closeModal } from "../../utils/popUp";
@@ -13,6 +14,8 @@ interface IProp {
 }
 
 const defaultCountAndPrice = {
+    travelers: [],
+    includeBooker: false,
     baby_price: 0,
     kids_price: 0,
     adult_price: 0,
@@ -24,24 +27,37 @@ const defaultCountAndPrice = {
 };
 
 export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
+    const { isLogin, myProfile } = useContext(AppContext);
     const {
+        includeBooker: defaultBookerInclude,
+        travelers: defaultTravelers,
         baby_price,
         kids_price,
         adult_price,
         count: { adult, baby, kids },
     } = product || defaultCountAndPrice;
-    const { count, handleCount, totalPrice, travelers, settravelers } =
-        useBasketCount({
-            baby_price,
-            kids_price,
-            adult_price,
-            capacity: product ? product.maxMember - product.peopleCount : 0,
-            defaultCount: {
-                adult,
-                baby,
-                kids,
-            },
-        });
+    product;
+    const {
+        count,
+        handleCount,
+        totalPrice,
+        travelers,
+        settravelers,
+        bookerInclude,
+        setBookerInclude,
+    } = useBasketCount({
+        baby_price,
+        kids_price,
+        adult_price,
+        defaultBookerInclude,
+        travelers: defaultTravelers,
+        capacity: product ? product.maxMember - product.peopleCount : 0,
+        defaultCount: {
+            adult,
+            baby,
+            kids,
+        },
+    });
     const handleBracketSave = () => {
         overrideItem(product!._id, {
             count,
@@ -133,7 +149,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
                         </tr>
                     </tbody>
                 </table>
-                <div className="Chash__box">
+                <div className="Chash__box mb10">
                     <table className="chash_tb">
                         <tbody>
                             <tr>
@@ -145,17 +161,21 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
                         </tbody>
                     </table>
                 </div>
+                <h4>실여행자정보</h4>
                 <TravlerControlTable
+                    className="travelerTableInModal"
                     adultCount={count.adult}
                     babyCount={count.baby}
-                    bookerInclue
-                    bookerName={""}
-                    bookerPhoneNumber=""
-                    totalCount={0}
+                    bookerInclue={bookerInclude}
+                    bookerName={myProfile?.name || ""}
+                    bookerPhoneNumber={myProfile?.phoneNumber || ""}
+                    totalCount={count.adult + count.baby + count.kids}
                     kidsCount={count.kids}
                     onChangetravelers={settravelers}
-                    withIncludeBooker={false}
-                    onChnageBookerInclude={() => {}}
+                    withIncludeBooker={isLogin}
+                    onChnageBookerInclude={() => {
+                        setBookerInclude(!bookerInclude);
+                    }}
                     travelers={travelers}
                 />
                 <button onClick={handleBracketSave} className="btn w100">

@@ -189,9 +189,6 @@ export const ProductModal: React.FC<IProp> = ({ productId }) => {
                                 <span className="goods-state2">
                                     상품상태: {productStatus(status)}
                                 </span>
-                                <button onClick={print} className="btn">
-                                    <i className="flaticon-print mr5"></i>프린터
-                                </button>
                             </div>
 
                             <div className="info_table goodsinfo">
