@@ -54,20 +54,19 @@ import {
 import { ProductSelectModal } from "../../../components/ProductSelectModal";
 import { useHomepage, useHomepageUpdate } from "../../../hook/useHomepage";
 import { toNumber } from "../../../utils/toNumber";
-import ChainedDayRangesPicker, {
-    getAllDaysFromRange,
-} from "../../../components/dayPicker/ChainedDayRangesPicker";
 import { IProductTemp } from "../../../utils/Storage2";
 import { Tip } from "../../../components/tip/Tip";
-import {
-    TourWriteDateViewer,
-    TourWriteDateViewerCurrentModify,
-} from "../../../components/tourWriteDateViewer/TourWriteDateViewer";
 import { measureMemory } from "vm";
 import isEmpty from "../../../utils/isEmpty";
 import { GraphQLClient } from "graphql-request";
 import PinkClient from "../../../apollo/client";
 import { PRODUCT_FIND_BY_ID } from "../../../apollo/gql/product";
+import { generateRandomStringCode } from "../../../utils/codeGenerator";
+import ChainedDayRangesPicker from "../../../components/dayPicker/ChainedDayRangesPicker";
+import {
+    TourWriteDateViewer,
+    TourWriteDateViewerCurrentModify,
+} from "../../../components/tourWriteDateViewer/TourWriteDateViewer";
 // const ReactTooltip = dynamic(() => import('react-tooltip'), { ssr: false });
 
 const Editor = LoadEditor();
@@ -345,7 +344,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         if (!val) {
             setAsNewProduct();
             return;
-        } else if (val === "ProductLink") openProductSelecter();
+        } else if (val?.includes("ProductLink")) openProductSelecter();
     };
 
     const sampleSelectOpen = () => {
@@ -494,7 +493,12 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                                 <option value={""}>
                                                     새로운상품
                                                 </option>
-                                                <option value="ProductLink">
+                                                <option
+                                                    value={
+                                                        "ProductLink" +
+                                                        generateRandomStringCode()
+                                                    }
+                                                >
                                                     등록타입(기존 상품 재오픈)
                                                 </option>
                                             </select>

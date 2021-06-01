@@ -1,15 +1,10 @@
 import dayjs from "dayjs";
-import {
-    useProductFindById,
-    useProductGroupList,
-    useProductList,
-} from "hook/useProduct";
+import { useProductFindById, useProductGroupList } from "hook/useProduct";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { autoComma } from "utils/formatter";
-import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
 import { useProductDelete } from "hook/useProduct";
 import Slider, { Slide } from "../../../components/slider/Slider";
@@ -176,7 +171,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             name: product!.title,
             _id: product!._id,
             travelers,
-            includeBooker: bookerInclude
+            includeBooker: bookerInclude,
         });
     };
 
@@ -964,8 +959,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     className="travelerTableInModal"
                     withIncludeBooker={isLogin}
                     bookerInclue={bookerInclude}
-                    bookerName={myProfile.name}
-                    bookerPhoneNumber={myProfile.phoneNumber}
+                    bookerName={myProfile?.name}
+                    bookerPhoneNumber={myProfile?.phoneNumber}
                     onChangetravelers={settravelers}
                     onChnageBookerInclude={() => {
                         setBookerInclude(!bookerInclude);

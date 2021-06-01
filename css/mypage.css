@@ -649,6 +649,7 @@
   font-size: 12px !important;
   border-radius: 3px !important;
   line-height: 16px;
+  white-space: nowrap;
 }
 
 .mypage_in .box_right .btn_mini:hover {
@@ -3001,6 +3002,10 @@ div.reservation_popup .tr select {
   background-color: #fbfbfb;
   border: #e3e3e3 1px solid;
   margin-right: 3px;
+}
+.upload_out_box .upload_out_box__fileName {
+  padding: 0px;
+  border: 0px;
 }
 .popup_bg_mini .upload_out_box__fileName{
   vertical-align: bottom;

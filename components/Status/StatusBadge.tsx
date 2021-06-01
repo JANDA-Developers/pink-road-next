@@ -13,12 +13,19 @@ import {
     productStatus,
     settlementStatus,
 } from "../../utils/enumToKr";
+import { Tip } from "../tip/Tip";
 
 interface IProp {
     status: ProductStatus;
+    Tag?: any;
+    className?: string;
 }
 
-export const PordStatusBadge: React.FC<IProp> = ({ status }) => {
+export const PordStatusBadge: React.FC<IProp> = ({
+    Tag = "span",
+    status,
+    className,
+}) => {
     const getClass = () => {
         if (status === ProductStatus.CANCELD) return "tour-no";
         if (status === ProductStatus.READY) return "tour-yes";
@@ -32,7 +39,9 @@ export const PordStatusBadge: React.FC<IProp> = ({ status }) => {
     // <span> </span>
     const _class = getClass();
     return (
-        <span className={`state_icon ${_class}`}>{productStatus(status)}</span>
+        <Tag className={`state_icon ${_class} ${className}`}>
+            {productStatus(status)}
+        </Tag>
     );
 };
 
@@ -101,18 +110,25 @@ export const SettlementStatusBadge: React.FC<ISettlementStatusProp> = ({
     status,
     productStatus,
 }) => {
+    const productStatusNotComplete = productStatus !== ProductStatus.COMPLETED;
     const getClass = () => {
-        if (productStatus && productStatus !== ProductStatus.COMPLETED)
-            return "not-ready";
+        if (productStatus && productStatusNotComplete) return "not-ready";
         if (status === SettlementStatus.COMPLETE) return "complete";
         if (status === SettlementStatus.READY) return "ready";
         if (status === SettlementStatus.REQUEST) return "request";
     };
 
     return (
-        <span className={`settlementStatus ${getClass()}`}>
+        <Tip
+            message={
+                productStatusNotComplete
+                    ? "여행이끝난 상품만 정산요청이 가능합니다."
+                    : undefined
+            }
+            className={`settlementStatus ${getClass()}`}
+        >
             {settlementStatus(status, productStatus)}
-        </span>
+        </Tip>
     );
 };
 

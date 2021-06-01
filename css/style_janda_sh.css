@@ -8204,6 +8204,7 @@ i.calendar svg {
 }
 
 .portfolio_in .con02 li.img02 .img {
+  width: 100%;
   background-size: 70px;
   background-image: url("/img/svg/work_icon_02.svg");
 }

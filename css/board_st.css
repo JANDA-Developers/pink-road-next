@@ -1866,6 +1866,8 @@ div.board_list_mini div.w100 {
 }
 
 .board_write .con_tap {
+  display: flex;
+  overflow: auto;
   width: 100%;
   position: relative;
   margin-top: 15px;

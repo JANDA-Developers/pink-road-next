@@ -198,7 +198,14 @@ export const Question: React.FC<Ipage> = (pageInfo) => {
                                                         alt="new"
                                                     />
                                                 )}
-                                                <i className="q_no">
+                                                <i
+                                                    className={
+                                                        inq.status ===
+                                                        QuestionStatus.READY
+                                                            ? "q_no"
+                                                            : "q_ok"
+                                                    }
+                                                >
                                                     {questionSatus(inq.status)}
                                                 </i>
                                             </div>

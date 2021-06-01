@@ -24,7 +24,7 @@ import { MyBoardViewBoardNav } from "../../../components/topNav/MasterTopNav";
 
 interface IProp {}
 
-export const MyPageBoardQuestions: React.FC<IProp> = () => {
+export const MypageQuestion: React.FC<IProp> = () => {
     const { myProfile } = useContext(AppContext);
     const rotuer = useRouter();
     const {
@@ -43,7 +43,7 @@ export const MyPageBoardQuestions: React.FC<IProp> = () => {
         fixingFilter: {
             OR: [
                 {
-                    productOwner_eq: myProfile._id,
+                    authorEmail_eq: myProfile.email,
                 },
             ],
         },
@@ -216,4 +216,4 @@ export const MyPageBoardQuestions: React.FC<IProp> = () => {
     );
 };
 
-export default auth(ALLOW_LOGINED)(MyPageBoardQuestions);
+export default auth(ALLOW_LOGINED)(MypageQuestion);

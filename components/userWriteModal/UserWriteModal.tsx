@@ -169,7 +169,7 @@ export const UserHandWriteModal: React.FC<IHandWriteModalProp> = ({
         onCompleted: ({ SignUp }) => {
             if (SignUp.ok) {
                 alert("회원가입 완료");
-                closeModal("#addressFindModal")
+                closeModal("#addressFindModal");
             } else {
                 if (SignUp.error?.code === ERR_CODE.ALEADY_SAME_DATA) {
                     alert("이미 가입된 회원입니다.");

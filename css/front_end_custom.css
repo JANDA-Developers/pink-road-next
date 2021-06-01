@@ -606,3 +606,8 @@ figure:after {
 .travelerTableInModal input {
     width: 100%!important;
 }
+
+
+.mypage-myboard__PordStatusBage {
+    margin-left: 10px;
+}

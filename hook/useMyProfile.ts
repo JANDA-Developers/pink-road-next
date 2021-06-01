@@ -120,7 +120,7 @@ export const useMyProfile = (
         }
         profile.busi_address = fullAddress;
         profile.address = fullAddress;
-        closeModal("popup_bg_mini")();
+        closeModal(".popup_bg_mini")();
         setProfile({ ...profile });
     };
 

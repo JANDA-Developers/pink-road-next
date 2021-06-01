@@ -13,11 +13,23 @@ import { useDateFilter } from "../../hook/useSearch";
 import { useSingleSort } from "../../hook/useSort";
 import { Change } from "../../components/loadingList/LoadingList";
 import Link from "next/link";
-import { BoardType, myBoardList_MyBoardList_data } from "../../types/api";
+import {
+    BoardType,
+    myBoardList_MyBoardList_data,
+    ProductStatus,
+    QuestionStatus,
+} from "../../types/api";
 import { useRouter } from "next/router";
-import { isOpenKr } from "../../utils/enumToKr";
+import {
+    BoardTypeKr,
+    isOpenKr,
+    productStatus,
+    questionSatusKr,
+} from "../../utils/enumToKr";
 import { generateClientPaging } from "../../utils/generateClientPaging";
 import { Paginater } from "../../components/common/Paginator";
+import { PordStatusBadge } from "../../components/Status/StatusBadge";
+import { MyBoardViewBoardNav } from "../../components/topNav/MasterTopNav";
 
 interface IProp {}
 
@@ -60,20 +72,8 @@ export const MyPageBoard: React.FC<IProp> = () => {
             <div className="in myboard_box">
                 <h4>나의 게시글</h4>
                 <div className="mypage__tap">
-                    <ul>
-                        <li className="on">
-                            <Link href="/mypage/my-board/questions">
-                                <a>질문목록</a>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/mypage/my-board/reviews">
-                                <a>리뷰목록</a>
-                            </Link>
-                        </li>
-                    </ul>
+                    <MyBoardViewBoardNav />
                 </div>
-
                 <div className="paper_div">
                     <div className="con_top">
                         <h6>상세검색</h6>
@@ -128,7 +128,11 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                                     key={item._id}
                                                 >
                                                     <div className="th02">
-                                                        {item.boardType}
+                                                        {
+                                                            BoardTypeKr[
+                                                                item.boardType
+                                                            ]
+                                                        }
                                                     </div>
                                                     <div className="th03">
                                                         {isOpenKr(
@@ -138,11 +142,29 @@ export const MyPageBoard: React.FC<IProp> = () => {
                                                     <div className="th04">
                                                         <a>
                                                             {item.title}
-                                                            {item.questionStatus && (
-                                                                <i className="q_ok">
-                                                                    {
-                                                                        item.questionStatus
+                                                            {item.boardType ===
+                                                                BoardType.PRODUCT && (
+                                                                <PordStatusBadge
+                                                                    Tag="i"
+                                                                    className="mypage-myboard__PordStatusBage"
+                                                                    status={
+                                                                        item.questionStatus as ProductStatus
                                                                     }
+                                                                />
+                                                            )}
+                                                            {item.boardType ===
+                                                                BoardType.QUESTION && (
+                                                                <i
+                                                                    className={
+                                                                        item.questionStatus ===
+                                                                        QuestionStatus.READY
+                                                                            ? "q_no"
+                                                                            : "q_ok"
+                                                                    }
+                                                                >
+                                                                    {questionSatusKr(
+                                                                        item.questionStatus as QuestionStatus
+                                                                    )}
                                                                 </i>
                                                             )}
                                                         </a>

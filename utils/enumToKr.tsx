@@ -2,6 +2,7 @@ import {
     AddtionalFeesStatus,
     AgeType,
     AnnounceType,
+    BoardType,
     bookingFindByCode_BookingFindByCode_data_bankTransInfo,
     BookingStatus,
     CategoryType,
@@ -90,6 +91,7 @@ export const questionSatus = (status: QuestionStatus) => {
     if (status === QuestionStatus.READY) return "미답변";
     return "";
 };
+export const questionSatusKr = questionSatus;
 
 export const itemTypeToKr = (type: ProductType) => {
     if (type === ProductType.EXPERIENCE) return "체험";
@@ -97,6 +99,15 @@ export const itemTypeToKr = (type: ProductType) => {
     return "";
 };
 
+export const BoardTypeKr:Record<BoardType,string> = {
+    ANNOUNCE: "공지사항",
+    News: "뉴스",
+    PORTFOLIO: "포트폴리오",
+    PRODUCT: "상품",
+    PRODUCT_REVIEW: "리뷰",
+    QNA: "자주하는질문",
+    QUESTION: "문의글"
+}
 export const questionAsKr = (type: QuestionAS) => {
     if (type === QuestionAS.NORMAL) return "일반문의";
     if (type === QuestionAS.PARTNER) return "파트너문의";

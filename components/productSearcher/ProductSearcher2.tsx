@@ -24,8 +24,10 @@ export const ProductSearcher: React.FC<IProp> = ({
 }) => {
     const [search, setSearch] = useState(defaultSearch);
     const { setFilter, items } = useProductList({
-        initialFilter: {
+        fixingFilter: {
             ...filter,
+        },
+        initialFilter: {
             _id_eq: defaultProductId,
         },
     });

@@ -8,7 +8,7 @@ import { useUnReadSystemNotiFind } from "../hook/useSystemNoti";
 import { useUpload } from "../hook/useUpload";
 import { useUserUpdate } from "../hook/useUser";
 import { AppContext } from "../pages/_app";
-import { Ffile, ProductStatus } from "../types/api";
+import { Ffile } from "../types/api";
 import { BG, BGprofile } from "../types/const";
 import { autoComma } from "../utils/formatter";
 import { omits } from "../utils/omit";
@@ -219,13 +219,14 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                                 {salesTotalCount}
                                             </span>
                                             <p>
-                                                총 판매 수
+                                                <span className="mr5">
+                                                    총 판매 수
+                                                </span>
                                                 <Tip
                                                     Tag="i"
                                                     message="총 예약자 수"
-                                                >
-                                                    <i className="jandaicon-info2" />
-                                                </Tip>
+                                                    className="jandaicon-info2"
+                                                />
                                             </p>
                                         </li>
                                         <li className="ct">
@@ -312,7 +313,12 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                         )}
                                         {/*기업파트너/개인파트너*/}
                                         {isSeller && (
-                                            <span className="point">
+                                            <Tip
+                                                style={{}}
+                                                message="정산받을 수 있는 금액"
+                                                Tag="span"
+                                                className="point"
+                                            >
                                                 <i>Point</i>
                                                 <strong>
                                                     {autoComma(
@@ -320,7 +326,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                                     )}
                                                 </strong>
                                                 원
-                                            </span>
+                                            </Tip>
                                         )}
                                         {/*기업파트너/개인파트너*/}
                                         {isSeller || (
