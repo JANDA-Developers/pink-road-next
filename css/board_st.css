@@ -2524,8 +2524,9 @@ div.sum_div .last_ul i {
     left: 87%;
     margin-left: -126px;
   }
-  ul .list_ul.line3 li {
+  ul.list_ul.line3 li {
     width: auto;
+    max-width: 32%;
   }
 
   ul.list_ul.line3 li:last-child {

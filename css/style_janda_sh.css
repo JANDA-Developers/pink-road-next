@@ -1496,7 +1496,7 @@ div.alignment .move-right {
 }
 
 div.alignment .move-right {
-  margin-right: 10px;
+  margin-right: 0;
   margin-left: 3px;
 }
 
@@ -2694,7 +2694,7 @@ ul.rank_ul li .number {
 /* login */
 
 .sign_in {
-  margin: 38px 0 150px;
+  margin: 38px 3% 150px;
 }
 
 .sign_in .inner {
@@ -12423,6 +12423,13 @@ div.popup_bg_full h4{
   }
 }
 @media (max-width: 360px) {
+  .sign_in .inner{
+    margin-bottom: 100px;
+  }
+  .join_wrap2 .certified li{
+    height: auto;
+    padding: 7px 20px 20px 20px;
+  }
   .profile_box .welcometxt{
     font-size: 0.8em;
   }
@@ -12454,6 +12461,13 @@ div.popup_bg_full h4{
   }
   div.popup_bg_mini {
     background-color: #ffffff;
+    display: block !important;
+  }
+  div.popup_bg_mini .con{
+    max-width: 100vw;
+  }
+  div.popup_bg_mini .in_txt{
+    max-width: 100%;
   }
   div.popup_bg_mini .con {
     padding: 25px 5% 0;
@@ -12461,8 +12475,11 @@ div.popup_bg_full h4{
   div.popup_bg_mini .page {
     border-radius: 0;
     box-shadow: none;
+    padding: 20px 0;
   }
-
+  div.popup_bg_mini .con.mini {
+    padding: 15px 20px 0;
+}
   div.popup_bg_mini h3 {
     padding: 0 5%;
   }
