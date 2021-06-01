@@ -228,10 +228,6 @@ div.master_popup .info_page div[class*="th0"]{
     right: 16px!important
 }
 
-.emailVerifiModal {
-    width: 300px;
-}
-
 .birthday-picker {
     display: flex;
 }
@@ -384,6 +380,11 @@ background-color: #fff;
         padding: 17px 0 !important;
         text-align: center !important;
       }
+      
+.emailVerifiModal {
+    width: 300px;
+}
+
 }
 @media (min-width: 1200px) {
     div.master_popup .info_page div[class*="th0"]{
@@ -405,6 +406,13 @@ background-color: #fff;
     align-items: center;
     justify-content: center;
 }
+}
+
+@media (max-width: 300px) {
+
+    .emailVerifiModal {
+        width: 100% !important;
+    }
 }
 #addressFindModal {
     z-index: 200;

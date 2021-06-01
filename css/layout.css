@@ -4343,4 +4343,7 @@ i.icon_plus {
   #all_menu ul .a_menu_tit .depth1 li a {
     font-size: 14px;
   }
+  .mobile__select .mobile__select_box li{
+    line-height: 41px;
+  }
 }
