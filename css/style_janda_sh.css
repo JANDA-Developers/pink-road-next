@@ -6252,7 +6252,7 @@ i.important_icon {
   border-right: 1px solid #ccc;
   margin-bottom: -2px;
   box-sizing: border-box;
-  z-index: 90;
+  z-index: 80;
 }
 
 .tour_details_in .boardReadBody .con_top_tap span {
@@ -11294,6 +11294,21 @@ ul.photo_ul.main_photo_ul li .title {
   }
 }
 
+.main_top_images__delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 140px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: initial;
+  color: white;
+  cursor: pointer;
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
 @media (min-width: 1100px) {
   .tour_details_in .boardReadBody .con_top_tap {
     top: 94px;
@@ -11382,20 +11397,7 @@ ul.photo_ul.main_photo_ul li .title {
     margin-top: 50px;
   }
 
-  .main_top_images__delete {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 140px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: initial;
-    color: white;
-    cursor: pointer;
-    background-color: rgba(255, 0, 0, 0.3);
-  }
+
 
   .main_top_images__close {
     position: absolute;
@@ -12461,7 +12463,15 @@ div.popup_bg_full h4{
   }
   div.popup_bg_mini {
     background-color: #ffffff;
-    display: block !important;
+    display: block;
+  }
+
+  div.popup_bg_mini {
+    align-items: start!important;
+  }
+
+  div.popup_bg_mini .in_txt {
+    flex: 1 1;
   }
   div.popup_bg_mini .con{
     max-width: 100vw;

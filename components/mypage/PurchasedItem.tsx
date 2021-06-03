@@ -14,6 +14,7 @@ import { autoComma } from "../../utils/formatter";
 import { getTypeTextOfProduct } from "../../utils/product";
 import { yyyymmdd } from "../../utils/yyyymmdd";
 import { BookingStatusBadge } from "../Status/StatusBadge";
+import { Tip } from "../tip/Tip";
 
 interface IProp {
     item: bookingList_BookingList_data;
@@ -44,6 +45,10 @@ export const PurChasedItem: React.FC<IProp> = ({
         if (status === BookingStatus.READY)
             return "입금이 확인되면 완료 상태로 변합니다.";
     };
+
+    const isReady = status === BookingStatus.READY;
+    const readyMessage =
+        "24시간이내에 입금을 완료하지 않으면 자동 예약취소가 됩니다.";
 
     return (
         <li className="list_in">
@@ -79,16 +84,15 @@ export const PurChasedItem: React.FC<IProp> = ({
                     </div>
                 </div>
                 <div className="bottom_info">
-                    {status && (
-                        <BookingStatusBadge
-                            square
-                            status={status}
-                            title={
-                                status === BookingStatus.READY &&
-                                "24시간이내에 입금을 완료하지 않으면 자동 예약취소가 됩니다."
-                            }
-                        />
-                    )}
+                    <Tip message={readyMessage}>
+                        {status && (
+                            <BookingStatusBadge
+                                square
+                                status={status}
+                                title={isReady && readyMessage}
+                            />
+                        )}
+                    </Tip>
                 </div>
             </div>
             <div className="txt2">

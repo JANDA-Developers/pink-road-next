@@ -19,10 +19,14 @@ export const UserSearcher: React.FC<IProp> = ({
     defaultUserId,
 }) => {
     const [search, setSearch] = useState(defaultSearch);
-    const { setFilter, items } = useUserList({
+    const { filter, setFilter, items, fetchMore } = useUserList({
         initialFilter: {
             _id_eq: defaultUserId,
         },
+    });
+
+    fetchMore({
+        variables: {},
     });
 
     const getData = () => {
@@ -60,9 +64,11 @@ export const UserSearcher: React.FC<IProp> = ({
                         </div>
                     </div>
                     <div className="goodsall__list">
-                        <p>
-                            검색결과 <strong>{items.length}건</strong>
-                        </p>
+                        {filter?.OR[0]?.nickName_contains && (
+                            <p>
+                                검색결과 <strong>{items.length}건</strong>
+                            </p>
+                        )}
                         <ul>
                             {items.map((item, i) => (
                                 <li

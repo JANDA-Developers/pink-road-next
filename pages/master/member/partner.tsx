@@ -1,11 +1,12 @@
-import React from 'react';
-import { MemberMaster } from '../../../components/member/MemberMaster';
-import { UserRole } from '../../../types/api';
-import { BusiPartnerTable } from '../../../components/member/BusiPartnerTable';
+import React from "react";
+import { MemberMaster } from "../../../components/member/MemberMaster";
+import { UserRole } from "../../../types/api";
+import { BusiPartnerTable } from "../../../components/member/BusiPartnerTable";
 
-interface IProp { }
+interface IProp {}
 export const PartnerMemberMaster: React.FC<IProp> = () => {
-    return <MemberMaster type={UserRole.partner} Table={BusiPartnerTable} />
+    if (typeof window === "undefined") return <div />;
+    return <MemberMaster type={UserRole.partner} Table={BusiPartnerTable} />;
 };
 
 export default PartnerMemberMaster;
@@ -275,7 +276,6 @@ export default PartnerMemberMaster;
 //                             </div>
 //                         </div>
 
-
 //                         {/* 약관동의 */}
 //                         <div className="info_page">
 //                             <div className="full_div">
@@ -304,7 +304,6 @@ export default PartnerMemberMaster;
 //                                 </div>
 //                             </div>
 //                         </div>
-
 
 //                         {/* 사업자회원 주의사항 */}
 //                         <div className="info_page">
@@ -426,7 +425,6 @@ export default PartnerMemberMaster;
 //                                 {/* <Paginater pageNumber={10} totalPageCount={20} /> */}
 //                             </div>
 //                         </div>
-
 
 //                         {/* 메모 */}
 //                         <div className="info_page">

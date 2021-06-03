@@ -25,7 +25,7 @@ import { MyBoardViewBoardNav } from "../../../components/topNav/MasterTopNav";
 interface IProp {}
 
 export const MyPageBoardQuestions: React.FC<IProp> = () => {
-    const { myProfile } = useContext(AppContext);
+    const { myProfile, isSeller } = useContext(AppContext);
     const rotuer = useRouter();
     const {
         setPage,
@@ -42,9 +42,13 @@ export const MyPageBoardQuestions: React.FC<IProp> = () => {
     } = useQuestionList({
         fixingFilter: {
             OR: [
-                {
-                    productOwner_eq: myProfile._id,
-                },
+                isSeller
+                    ? {
+                          productOwner_eq: myProfile._id,
+                      }
+                    : {
+                          authorEmail_eq: myProfile.email,
+                      },
             ],
         },
     });

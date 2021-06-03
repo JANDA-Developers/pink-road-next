@@ -51,8 +51,8 @@ export const productStatus = (status?: ProductStatus | null) => {
 
 export const paymentStatus = (status?: PaymentStatus | null) => {
     if (status === PaymentStatus.CANCEL) return "환불완료";
-    if (status === PaymentStatus.COMPLETE) return "완료";
-    if (status === PaymentStatus.READY) return "대기중";
+    if (status === PaymentStatus.COMPLETE) return "결제완료";
+    if (status === PaymentStatus.READY) return "결제대기중";
     return "";
 };
 
@@ -99,15 +99,15 @@ export const itemTypeToKr = (type: ProductType) => {
     return "";
 };
 
-export const BoardTypeKr:Record<BoardType,string> = {
+export const BoardTypeKr: Record<BoardType, string> = {
     ANNOUNCE: "공지사항",
     News: "뉴스",
     PORTFOLIO: "포트폴리오",
     PRODUCT: "상품",
     PRODUCT_REVIEW: "리뷰",
     QNA: "자주하는질문",
-    QUESTION: "문의글"
-}
+    QUESTION: "문의글",
+};
 export const questionAsKr = (type: QuestionAS) => {
     if (type === QuestionAS.NORMAL) return "일반문의";
     if (type === QuestionAS.PARTNER) return "파트너문의";

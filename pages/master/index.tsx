@@ -791,10 +791,20 @@ export const MsIndex: React.FC<IProp> = () => {
                                         </span>
                                     </div>
                                     <div className="td01">
-                                        <strong>{q.title} []</strong>
+                                        <strong>{q.title}</strong>
                                     </div>
                                     <div className="td03">
-                                        <span>{questionSatus(q.status)}</span>
+                                        <i
+                                            className={
+                                                "static " +
+                                                (q.status ===
+                                                QuestionStatus.READY
+                                                    ? "q_no"
+                                                    : "q_ok")
+                                            }
+                                        >
+                                            {questionSatus(q.status)}
+                                        </i>
                                     </div>
                                     <div className="td04">
                                         <span className="m_title">

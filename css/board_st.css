@@ -2226,6 +2226,9 @@ i.q_ok {
   right: 0;
 }
 
+i.static {
+  position: static!important;
+}
 i.q_no {
   font-style: unset;
   display: inline-block;

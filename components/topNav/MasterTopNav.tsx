@@ -94,11 +94,13 @@ export const MyBoardViewBoardNav: React.FC<IProp> = () => {
                         <a>질문목록</a>
                     </Link>
                 </li>
-                <li className={checkOn("myquestion")}>
-                    <Link href="/mypage/my-board/myquestion">
-                        <a>1:1문의</a>
-                    </Link>
-                </li>
+                {isSeller && (
+                    <li className={checkOn("myquestion")}>
+                        <Link href="/mypage/my-board/myquestion">
+                            <a>1:1문의</a>
+                        </Link>
+                    </li>
+                )}
             </ul>
         </div>
     );

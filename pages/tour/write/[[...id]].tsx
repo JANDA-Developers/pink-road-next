@@ -368,6 +368,10 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         if (result) {
             setTourData({ ...newProductData });
             setGroupCode(result.groupCode);
+            filter.groupCode_eq = result.groupCode;
+            setFilter({
+                ...filter,
+            });
             closeModal("#ProductSearchModal")();
         }
     };
@@ -386,9 +390,11 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
         filter,
         setFilter,
     } = useFindProductsByGroup(product?.groupCode || groupCode);
+
     useEffect(() => {
         initStorage();
     }, []);
+
     useEffect(() => {
         if (product?.groupCode) {
             filter.groupCode_eq = groupCode;
@@ -676,6 +682,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         onChange={handleInputCommaChange(
                                             "adult_price"
                                         )}
+                                        id="inputAdultPrice"
                                         value={adult_price}
                                         type="text"
                                         className="text w20 mr15"
@@ -685,6 +692,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         onChange={handleInputCommaChange(
                                             "kids_price"
                                         )}
+                                        id="inputKidsPrice"
                                         value={kids_price}
                                         type="text"
                                         className="text w20 mr15"
@@ -694,6 +702,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                         onChange={handleInputCommaChange(
                                             "baby_price"
                                         )}
+                                        id="inputBabyPrice"
                                         value={baby_price}
                                         type="text"
                                         className="text w20"

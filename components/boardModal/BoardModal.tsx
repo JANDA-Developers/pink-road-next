@@ -1,16 +1,17 @@
 import dayjs from "dayjs";
-import { Router } from "next/router";
+import { Router, useRouter } from "next/router";
 import React from "react";
 import { useIdSelecter } from "../../hook/useIdSelecter";
 import { useBoardControl, useMyBoardList } from "../../hook/useMyBoardList";
 import { BoardAction, Fuser, _BoardSort } from "../../types/api";
-import { isOpenKr } from "../../utils/enumToKr";
+import { BoardTypeKr, isOpenKr } from "../../utils/enumToKr";
 import isEmpty from "../../utils/isEmpty";
 import { closeModal } from "../../utils/popUp";
 import { Paginater } from "../common/Paginator";
 import SortSelect from "../common/SortMethod";
 import { ViewCount } from "../common/ViewCount";
 import { Change } from "../loadingList/LoadingList";
+import { boardTypeRedirection } from "../../utils/boardTypeRedirection";
 
 interface IProp {
     user: Fuser;
@@ -18,6 +19,7 @@ interface IProp {
 
 export const BoardModal: React.FC<IProp> = ({ user }) => {
     const { email, name } = user;
+    const router = useRouter();
     const [boardControl] = useBoardControl();
     const {
         items: boards,
@@ -120,7 +122,13 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
                                     <ul>
                                         {boards.map((board) => (
                                             <li
-                                                onClick={() => {}}
+                                                onClick={() => {
+                                                    boardTypeRedirection(
+                                                        router,
+                                                        board.boardType,
+                                                        board._id
+                                                    );
+                                                }}
                                                 key={board._id}
                                             >
                                                 <div className="tt01 checkbox">
@@ -146,7 +154,11 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
                                                     <i className="m_title">
                                                         게시판:
                                                     </i>
-                                                    {board.boardType}
+                                                    {
+                                                        BoardTypeKr[
+                                                            board.boardType
+                                                        ]
+                                                    }
                                                 </div>
                                                 <div className="tt03">
                                                     <i className="m_title">

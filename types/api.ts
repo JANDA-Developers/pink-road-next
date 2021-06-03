@@ -962,6 +962,7 @@ export interface bookingList_BookingList_data_payment {
   payMethod: PayMethod;
   status: PaymentStatus;
   price: number;
+  payDate: any | null;
   totalCancelPrice: number;
   cancelDate: any | null;
   isPartialCancel: number;
@@ -1036,6 +1037,7 @@ export interface bookingList_BookingList_data_product {
   isOpen: boolean | null;
   type: ProductType;
   startDate: any;
+  endDate: any;
   Dday: number;
   author: bookingList_BookingList_data_product_author | null;
 }
@@ -1130,6 +1132,7 @@ export interface bookingFindByInfo_BookingFindByInfo_data_payment {
   payMethod: PayMethod;
   status: PaymentStatus;
   price: number;
+  payDate: any | null;
   totalCancelPrice: number;
   cancelDate: any | null;
   isPartialCancel: number;
@@ -1929,6 +1932,7 @@ export interface bookingFindByCode_BookingFindByCode_data_payment {
   payMethod: PayMethod;
   status: PaymentStatus;
   price: number;
+  payDate: any | null;
   totalCancelPrice: number;
   cancelDate: any | null;
   isPartialCancel: number;
@@ -5189,6 +5193,7 @@ export interface paymentList_PaymentList_data {
   payMethod: PayMethod;
   status: PaymentStatus;
   price: number;
+  payDate: any | null;
   totalCancelPrice: number;
   cancelDate: any | null;
   isPartialCancel: number;
@@ -5284,6 +5289,7 @@ export interface bankDepositConfirm_BankDepositConfirm_data {
   payMethod: PayMethod;
   status: PaymentStatus;
   price: number;
+  payDate: any | null;
   totalCancelPrice: number;
   cancelDate: any | null;
   isPartialCancel: number;
@@ -7951,6 +7957,7 @@ export interface productFindByIdForSeller_ProductFindByIdForSeller_data_bookings
   payMethod: PayMethod;
   status: PaymentStatus;
   price: number;
+  payDate: any | null;
   totalCancelPrice: number;
   cancelDate: any | null;
   isPartialCancel: number;
@@ -10597,6 +10604,7 @@ export interface settlementFindById_SettlementFindById_data_product_bookings_pay
   payMethod: PayMethod;
   status: PaymentStatus;
   price: number;
+  payDate: any | null;
   totalCancelPrice: number;
   cancelDate: any | null;
   isPartialCancel: number;
@@ -13957,6 +13965,7 @@ export interface Fpayment {
   payMethod: PayMethod;
   status: PaymentStatus;
   price: number;
+  payDate: any | null;
   totalCancelPrice: number;
   cancelDate: any | null;
   isPartialCancel: number;

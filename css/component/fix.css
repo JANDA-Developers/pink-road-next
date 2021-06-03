@@ -417,3 +417,8 @@ background-color: #fff;
 #addressFindModal {
     z-index: 200;
 }
+
+
+.productSelectInfoForm,.productSelectInfoForm input {
+    cursor: pointer;
+}

@@ -156,6 +156,7 @@ export const F_PAYMENT = gql`
         payMethod
         status
         price
+        payDate
         totalCancelPrice
         cancelDate
         isPartialCancel

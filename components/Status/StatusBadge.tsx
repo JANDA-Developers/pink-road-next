@@ -68,6 +68,7 @@ export const BookingStatusBadge: React.FC<IBookingStatusBadgeProp> = ({
                 {bookingStatus(status)}
             </span>
         );
+
     return (
         <i {...props} className={`state ${getClass()}`}>
             {bookingStatus(status)}

@@ -357,23 +357,32 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                                 Tag="li"
                                                 message={"읽지않은 알림"}
                                             >
-                                                <a href="/mypage/notification">
-                                                    알림
-                                                    <i>{items.length}</i>
-                                                </a>
+                                                <Link href="/mypage/notification">
+                                                    <a>
+                                                        알림
+                                                        <i>{items.length}</i>
+                                                    </a>
+                                                </Link>
                                             </Tip>
                                             {/* 개인/기업파트너/개인파트너 -*/}
                                             {isSeller || (
-                                                <li>
-                                                    <Link href="/mypage/purchase/">
-                                                        <a>
-                                                            구매
-                                                            <i>
-                                                                {buyTotalCount}
-                                                            </i>
-                                                        </a>
-                                                    </Link>
-                                                </li>
+                                                <Tip
+                                                    Tag="li"
+                                                    message={"총 구매수"}
+                                                >
+                                                    <li>
+                                                        <Link href="/mypage/purchase/">
+                                                            <a>
+                                                                구매
+                                                                <i>
+                                                                    {
+                                                                        buyTotalCount
+                                                                    }
+                                                                </i>
+                                                            </a>
+                                                        </Link>
+                                                    </li>
+                                                </Tip>
                                             )}
                                             {/* 개인 -*/}
                                             {isSeller || (
@@ -392,7 +401,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                             {isSeller && (
                                                 <Tip
                                                     Tag="li"
-                                                    message="총예약집계"
+                                                    message="내 상품에 들어온 총 예약집계"
                                                 >
                                                     <Link href="/mypage/reservation">
                                                         <a>

@@ -62,6 +62,7 @@ export async function getStaticPaths() {
 }
 const TourDetail: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
+    let urlFragment = router.asPath.match(/#([a-z0-9]+)/gi);
     const isExp = checkIsExp();
     const reviewModalHook = useModal<IModalInfo>();
     const travelersModalHook =
@@ -202,6 +203,25 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         });
     };
 
+    useEffect(() => {
+        if (typeof urlFragment?.[0] === "string") {
+            setTimeout(() => {
+                const id = urlFragment?.[0].replace("#", "");
+                console.log({ id });
+                const target = document.getElementById(id);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        inline: "start",
+                        block: "start",
+                    });
+                }
+            }, 700);
+
+            return;
+        }
+    }, [urlFragment?.[0]]);
+
     const reviewPagination = generateClientPaging(reviews, 4);
 
     if (!called && loading) return <PageLoading />;
@@ -270,9 +290,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
 
     // 프로덕트 없을떄 로딩처리
     if (!product) return null;
-    // 오픈상태가 아닌 페이지 가드처리
-    if (!isSeller && !product.isOpen) return <PageDeny />;
-    // if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
 
     return (
         <div className="edtiorView">
@@ -622,12 +639,13 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                             <div className={`link02`}>
                                                 <a
                                                     onClick={() => {
-                                                        travelersModalHook.openModal(
-                                                            {
-                                                                nextAction:
-                                                                    "pay",
-                                                            }
-                                                        );
+                                                        if (validate())
+                                                            travelersModalHook.openModal(
+                                                                {
+                                                                    nextAction:
+                                                                        "pay",
+                                                                }
+                                                            );
                                                     }}
                                                 >
                                                     예약하기
@@ -636,12 +654,13 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
 
                                             <div
                                                 onClick={() => {
-                                                    travelersModalHook.openModal(
-                                                        {
-                                                            nextAction:
-                                                                "bracket",
-                                                        }
-                                                    );
+                                                    if (validate())
+                                                        travelersModalHook.openModal(
+                                                            {
+                                                                nextAction:
+                                                                    "bracket",
+                                                            }
+                                                        );
                                                 }}
                                                 className={`link05`}
                                             >
@@ -751,7 +770,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                 </div>
                                 {/* 리뷰 신규추가 */}
                                 <div className="in_box" id="tap__04">
-                                    <h4>리뷰</h4>
+                                    <h4 id="reviews">리뷰</h4>
                                     <div className="text ck-content">
                                         <div className="review__box">
                                             <ul className="review__list">
@@ -867,10 +886,10 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                         <div className="thead">
                                             <div className="th01">No.</div>
                                             <div className="th02">제목</div>
-                                            <div className="th03">글쓴이</div>
+                                            {/* <div className="th03">글쓴이</div> */}
                                             <div className="th04">날짜</div>
                                         </div>
-                                        <div className="tbody">
+                                        <div id="questions" className="tbody">
                                             <ul>
                                                 {questionSliced.map(
                                                     (qs, index) => (

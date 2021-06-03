@@ -35,7 +35,7 @@ export const ReviewWrite: React.FC<IProp> = () => {
         onCompleted: ({ ProductReviewUpdate }) => {
             if (ProductReviewUpdate.ok) {
                 const id = ProductReviewUpdate.data!._id;
-                location.href = `/tour/view/${urlProductId}`;
+                location.href = `/tour/view/${urlProductId}` + "#reviews";
             }
         },
         awaitRefetchQueries: true,

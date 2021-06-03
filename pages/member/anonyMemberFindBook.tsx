@@ -18,6 +18,7 @@ import SubTopNav from "../../layout/components/SubTop";
 
 export const getStaticProps = getStaticPageInfo("anonymouseFindBook");
 export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
+    if (typeof window === "undefined") return <div />;
     const pageTools = usePageEdit(pageInfo, defaultPageInfo);
     const verifiHook = useVerification();
 

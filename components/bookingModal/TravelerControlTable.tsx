@@ -39,8 +39,8 @@ export const TravlerControlTable: React.FC<IProp> = ({
     };
 
     const whenBookerIncludeChange = () => {
-        const nameBooker = travelers[0]?.name === bookerName;
-        const contactBooker = travelers[0]?.phoneNumber === bookerPhoneNumber;
+        const nameBooker = travelers?.[0]?.name === bookerName;
+        const contactBooker = travelers?.[0]?.phoneNumber === bookerPhoneNumber;
         const bookerIsInPlace = nameBooker && contactBooker;
 
         //예약자 포함사항이 변경되었을때 투글 로직

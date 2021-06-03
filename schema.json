@@ -1334,6 +1334,18 @@
             "deprecationReason": null
           },
           {
+            "name": "payDate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "cancelDate",
             "description": null,
             "args": [],

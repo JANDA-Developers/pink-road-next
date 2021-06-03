@@ -342,6 +342,21 @@ export const useTourWrite = ({ ...defaults }: IUseTourProps): IUseTour => {
             id: "itinerary",
         },
         {
+            value: simpleData.baby_price || simpleData.baby_price === 0,
+            failMsg: "유아 가격을 입력 해주세요.",
+            id: "inputBabyPrice",
+        },
+        {
+            value: simpleData.adult_price || simpleData.adult_price === 0,
+            failMsg: "성인 가격을 입력 해주세요.",
+            id: "inputAdultPrice",
+        },
+        {
+            value: simpleData.kids_price || simpleData.kids_price === 0,
+            failMsg: "소인 가격을 입력 해주세요.",
+            id: "inputKidsPrice",
+        },
+        {
             value: !isEmpty(keyWards),
             failMsg: "키워드 값은 필수 입니다.",
             id: "keywards",

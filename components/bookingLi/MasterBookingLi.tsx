@@ -35,7 +35,9 @@ export const MasterBookingLi: React.FC<IProp> = ({ booking: bk }) => {
             </div>
             <div className="td04">
                 <strong>{bookingStatus(bk.status)}</strong>
-                <span>({paymentStatus(bk.payment?.status)})</span>
+                {bk.payment?.status && (
+                    <span>({paymentStatus(bk.payment?.status)})</span>
+                )}
             </div>
             <div className="td05">
                 {bk.name}

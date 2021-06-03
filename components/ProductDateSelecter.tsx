@@ -53,7 +53,7 @@ export const ProductDateSelecter: React.FC<IProp> = ({
         }
     }
     if (isEmpty(dateOrderedItems))
-        return <span>예약이 가능한 상태가 아닙니다.</span>;
+        return <span>예약가능 기간이 지났습니다.</span>;
     if (!availableExsist) return <span>예약가능 기간이 지났습니다.</span>;
     if (!groupCode) return <span>{}</span>;
 

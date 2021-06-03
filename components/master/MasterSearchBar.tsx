@@ -17,6 +17,7 @@ import {
     IDayPickerModal,
 } from "../dayPickerModal/DayPickerModal";
 import { TDateShortCut } from "../searchBar/SearchBar";
+import { Tip } from "../tip/Tip";
 import { TRange } from "../tourWrite/helper";
 
 interface IProp extends Omit<IDayPickerModal, "onSubmit"> {
@@ -99,7 +100,12 @@ export const MasterSearchBar: React.FC<IProp> = ({
     return (
         <div className="search_top">
             <div className="hang">
-                <ul className="day_ul">
+                <Tip
+                    style={{}}
+                    message="생성일자 검색"
+                    className="day_ul"
+                    Tag="ul"
+                >
                     <li className={checkOn("thisMonth")} onClick={setThisMonth}>
                         <span>이번달</span>
                     </li>
@@ -112,7 +118,7 @@ export const MasterSearchBar: React.FC<IProp> = ({
                     <li className={checkOn("oneYear")} onClick={oneYear}>
                         <span>1년</span>
                     </li>
-                </ul>
+                </Tip>
             </div>
             <div className="hang">
                 <div className="input_box">
