@@ -322,6 +322,9 @@ font-weight: 600;
     opacity:0 !important;
 }
 
+.inner__input{
+    display: flex;
+}
 
 @media (min-width: 1000px) {
     .join_birthday input{
@@ -339,7 +342,12 @@ font-weight: 600;
         height: 120px;
         
     }
-
+    .inner__input{
+        display: block;
+    }
+    .join_wrap2 .inner__input select.w20{
+        width: 20%;
+    }
 }
 @media (max-width: 1000px) {
     .sign_in .inner .join_address i[class*="svg"]{

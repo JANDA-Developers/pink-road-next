@@ -54,3 +54,29 @@
   .react-tabs__tab-panel--selected {
     display: block;
   }
+
+  @media (max-width: 767px) {
+    .react-tabs__tab-list {
+      border-bottom: 0 !important;
+      height: auto;
+      width: 100%;
+      display: block;
+      position: relative;
+    }
+    .react-tabs__tab{
+      background: #fff;
+      border-color: #aaa !important;
+      color: black;
+      border-radius: 5px;
+      border-bottom: 1px solid #aaa !important;
+      border: 1px solid #aaa !important;
+      margin-bottom: 3px;
+      margin-right: 3px;
+    }
+    .react-tabs__tab--selected{
+      background-color: #ed297B !important;
+      border-color: #ed297B !important;
+      color: #fff !important;
+      border-radius: 5px !important;
+    }
+  }
