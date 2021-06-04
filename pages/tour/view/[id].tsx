@@ -430,6 +430,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                                     </th>
                                                     <td className="smtxt bt_line">
                                                         <ProductDateSelecter
+                                                            isMyProduct={
+                                                                isMyProduct
+                                                            }
                                                             currentId={
                                                                 product._id
                                                             }
