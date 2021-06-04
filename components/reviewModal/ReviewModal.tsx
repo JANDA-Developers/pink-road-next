@@ -12,6 +12,7 @@ import { AppContext } from "../../pages/_app";
 import { Fanswer } from "../../types/api";
 import { BG, BGprofile } from "../../types/const";
 import { getRefetch } from "../../utils/api";
+import { nameOf } from "../../utils/enumToKr";
 import { yyyymmdd } from "../../utils/yyyymmdd";
 import Comment from "../comment/Comment";
 import { CommentWrite } from "../comment/CommentWrite";
@@ -61,16 +62,15 @@ export const ReviewModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
 
     const next = nextReview?._id;
     const prev = prevReview?._id;
-    const move = (id: string) => (
-        e: React.MouseEvent<HTMLDivElement, MouseEvent>
-    ) => {
-        e.stopPropagation();
-        getData({
-            variables: {
-                id,
-            },
-        });
-    };
+    const move =
+        (id: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+            e.stopPropagation();
+            getData({
+                variables: {
+                    id,
+                },
+            });
+        };
 
     const handleReply = () => {
         setReply(true);
@@ -216,7 +216,7 @@ export const ReviewModal: React.FC<IProp> = ({ info, isOpen, closeModal }) => {
                                         .map((answer) => (
                                             <Comment
                                                 className="comment__review"
-                                                title={answer?.author?.name}
+                                                title={nameOf(answer?.author)}
                                                 onCompleteEdit={handleEdit}
                                                 onDelete={handleAnswerDelete(
                                                     answer!

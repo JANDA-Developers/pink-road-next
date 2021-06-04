@@ -162,7 +162,7 @@ export const ReviewWrite: React.FC<IProp> = () => {
             files.push(data);
             setFiles([...files]);
         };
-        signleUpload(fileUploaded, onUpload);
+        signleUpload(fileUploaded, onUpload, { resizes: ["tiny", "small"] });
     };
 
     const handleClearThumb = (index: number) => () => {

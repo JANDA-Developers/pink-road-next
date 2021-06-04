@@ -1,39 +1,29 @@
 import { MasterLayout } from "layout/MasterLayout";
-import CalendarIcon from "components/common/icon/CalendarIcon";
 import React, { useContext, useEffect, useState } from "react";
-import { IPopupBox, usePopups } from "../../../hook/usePopups";
+import { usePopups } from "../../../hook/usePopups";
 import { useHomepageUpdate } from "../../../hook/useHomepage";
 import { AppContext } from "../../_app";
-import dayjs from "dayjs";
-import { Fmodal, LinkBehavior } from "../../../types/api";
-import { closeModal, openModal } from "../../../utils/popUp";
+import { Fmodal } from "../../../types/api";
+import { openModal } from "../../../utils/popUp";
 import { Ipopup } from "../../../types/interface";
 import { omits } from "../../../utils/omit";
 import { ALLOW_ADMINS, defaultModalGet } from "../../../types/const";
 import { cloneObject } from "../../../utils/clone";
 import { DesignTopNav } from "../../../components/topNav/MasterTopNav";
 import { auth } from "../../../utils/with";
-import { useUpload } from "../../../hook/useUpload";
-import { LoadEditor } from "../../../components/edit/EdiotrLoading";
-import { DayPickerModal } from "../../../components/dayPickerModal/DayPickerModal";
-import { toNumber } from "../../../utils/toNumber";
-import { JDPCpopup } from "../../../components/popup/PCPopup";
 import { JDpopup } from "../../../components/popup/JDpopup";
-import { Modal2 } from "components/modal/Modal";
 import { useModal } from "hook/useModal";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
 import { cutStr } from "../../../utils/cutStr";
-import { IPopUpModalHookInfo } from "./PopUpModal";
-
-const Editor = LoadEditor();
+import { IPopUpModalHookInfo, PopUpConfigModal } from "./PopUpConfigModal";
+import { InfoText } from "../../../components/infoText/InfoText";
 
 interface IProp {}
 
 export const MsDesignB: React.FC<IProp> = () => {
     const { homepage } = useContext(AppContext);
     const popupHook = usePopups(homepage?.modal || [], { autoOpen: false });
-    const { signleUpload } = useUpload();
-    const modalHook = useModal<IPopUpModalHookInfo>();
+    const popupConfigModal = useModal<IPopUpModalHookInfo>();
     const [datePopUp, setDatePopUp] = useState<Ipopup>();
     const [homepageUpdate] = useHomepageUpdate({
         onCompleted: ({ HomepageUpdate }) => {
@@ -42,7 +32,7 @@ export const MsDesignB: React.FC<IProp> = () => {
             }
         },
     });
-    const { selectedIndex, setSelcetedIndex } = popupHook;
+    const { selectedIndex, setSelcetedIndex, openPopup } = popupHook;
 
     const handleUpdate = () => {
         homepageUpdate({
@@ -61,27 +51,37 @@ export const MsDesignB: React.FC<IProp> = () => {
 
     const selectedModal =
         selectedIndex !== undefined ? popupHook.popups[selectedIndex] : null;
-    const handleContentChange = (data: string) => {
-        if (selectedIndex === undefined) throw Error("no selected Index");
-        popupHook.popups[selectedIndex].content = data;
+
+    // const handleContentChange = (data: string) => {
+    //     if (selectedIndex === undefined) throw Error("no selected Index");
+    //     popupHook.popups[selectedIndex].content = data;
+    //     popupHook.setPopups([...popupHook.popups]);
+    // };
+
+    const handleAddPopUp = () => {
+        const newPopUp: Ipopup = { ...defaultModalGet() };
+        popupHook.popups.push(newPopUp);
         popupHook.setPopups([...popupHook.popups]);
     };
 
-    const handleAddPopUp = () => {
-        const newPopUp: Ipopup = defaultModalGet();
-        popupHook.setPopups([...popupHook.popups, newPopUp]);
-    };
+    const handleDelete =
+        (popup: Fmodal) =>
+        (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            e.stopPropagation();
+            e.preventDefault();
+            const filtered = popupHook.popups.filter(
+                (pop) => pop._id !== popup._id
+            );
+            popupHook.setPopups([...filtered]);
+        };
 
-    const handleDelete = (popup: Fmodal) => () => {
-        const filtered = popupHook.popups.filter(
-            (pop) => pop._id !== popup._id
-        );
-        popupHook.setPopups([...filtered]);
-    };
-
-    const handlePreview = (popup: Fmodal) => () => {
-        popupHook.openPopup(popup);
-    };
+    const handlePreview =
+        (popup: Fmodal) =>
+        (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            e.stopPropagation();
+            e.preventDefault();
+            popupHook.openPopup(popup);
+        };
 
     const handleCollapesToggle = (popup: Fmodal) => () => {
         // setCollapseList([popup._id]);
@@ -98,28 +98,13 @@ export const MsDesignB: React.FC<IProp> = () => {
         if (homepage?.modal) popupHook.setPopups(cloneObject(homepage.modal));
     }, [homepage?.modal]);
 
-    const defaultPopStartDate = new Date();
-    const defaultPopEndDate = dayjs().add(1, "d").toDate();
     return (
         <div>
-            {datePopUp && (
-                <DayPickerModal
-                    defaultRange={{
-                        from: datePopUp.startDate
-                            ? dayjs(datePopUp.startDate).toDate()
-                            : defaultPopStartDate,
-                        to: datePopUp.endDate
-                            ? dayjs(datePopUp.endDate).toDate()
-                            : defaultPopEndDate,
-                    }}
-                    onSubmit={(range) => {
-                        closeModal("#dayPickerModal")();
-                        datePopUp.startDate = range.from;
-                        datePopUp.endDate = range.to;
-                        popupHook.setPopups([...popupHook.popups]);
-                    }}
-                />
-            )}
+            <PopUpConfigModal
+                key={popupConfigModal.info?.popup._id}
+                popupHook={popupHook}
+                {...popupConfigModal}
+            />
             <MasterLayout>
                 <JDpopup popupHook={popupHook} />
                 <div className="in ">
@@ -128,7 +113,16 @@ export const MsDesignB: React.FC<IProp> = () => {
                         <DesignTopNav />
                         <div className="con design popup_setting">
                             <div className="fin">
-                                <div className="float_left"></div>
+                                <div className="float_left">
+                                    <button
+                                        className="btn medium"
+                                        onClick={() => {
+                                            popupHook.openAllPopUp();
+                                        }}
+                                    >
+                                        OPEN
+                                    </button>
+                                </div>
                                 <div className="float_right">
                                     <button
                                         onClick={handleUpdate}
@@ -139,46 +133,77 @@ export const MsDesignB: React.FC<IProp> = () => {
                                     </button>
                                 </div>
                             </div>
-                            <button
-                                onClick={() => {
-                                    modalHook.openModal();
-                                }}
-                            >
-                                OPEN
-                            </button>
+
                             <div className="popupsetting__list">
-                                {popupHook.popups.map((popup) => (
-                                    <div
-                                        onClick={() => {
-                                            modalHook.openModal({ popup });
-                                        }}
-                                        key={popup._id + "previewCard"}
-                                        className="popupsetting__con"
-                                    >
-                                        <div className="title">
-                                            <h5>제목입니당~</h5>
-                                            <div className="tag">
-                                                {popup.isOpen ? (
-                                                    <span className="state_on">
-                                                        ON
-                                                    </span>
-                                                ) : (
-                                                    <span className="state_off">
-                                                        OFF
-                                                    </span>
-                                                )}
+                                {popupHook.popups
+                                    .sort((a, b) => b.createdAt - a.createdAt)
+                                    .map((popup, i) => (
+                                        <div
+                                            onClick={() => {
+                                                popupConfigModal.openModal({
+                                                    popup,
+                                                });
+                                            }}
+                                            key={popup._id + "previewCard"}
+                                            className="popupsetting__con"
+                                        >
+                                            <div>
+                                                <h5>{popup.title}</h5>
+                                                <div className="tag">
+                                                    {popup.usePc ? (
+                                                        <span className="state_on mr5">
+                                                            PC ON
+                                                        </span>
+                                                    ) : (
+                                                        <span className="state_off mr5">
+                                                            PC OFF
+                                                        </span>
+                                                    )}
+                                                    {popup.useMobile ? (
+                                                        <span className="state_on ">
+                                                            MB ON
+                                                        </span>
+                                                    ) : (
+                                                        <span className="state_off ">
+                                                            MB OFF
+                                                        </span>
+                                                    )}
+                                                </div>
                                             </div>
+                                            <div className="body">
+                                                <span>
+                                                    우선순위: {popup.priority}
+                                                </span>
+                                                <span className="date">
+                                                    {yyyymmdd(popup.startDate)}{" "}
+                                                    ~ {yyyymmdd(popup.endDate)}
+                                                </span>
+                                            </div>
+                                            <button
+                                                className="btn small mr10"
+                                                onClick={handlePreview(popup)}
+                                            >
+                                                미리보기
+                                            </button>
+                                            <button
+                                                className="btn small"
+                                                onClick={handleDelete(popup)}
+                                            >
+                                                삭제하기
+                                            </button>
                                         </div>
-                                        <div className="body">
-                                            <span className="date">
-                                                {yyyymmdd(popup.startDate)} ~{" "}
-                                                {yyyymmdd(popup.endDate)}
-                                            </span>
-                                            {cutStr(popup.content, 50)}
-                                        </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                <div
+                                    className="add mb10"
+                                    onClick={handleAddPopUp}
+                                >
+                                    <button className="btn medium">
+                                        <i className="flaticon-add"></i>팝업
+                                        생성
+                                    </button>
+                                </div>
                             </div>
+                            <InfoText>우선순위 정렬</InfoText>
                         </div>
                     </div>
                 </div>
@@ -240,22 +265,7 @@ export default auth(ALLOW_ADMINS)(MsDesignB);
                                                         </span>
                                                     </div>
                                                     <div className="content">
-                                                        <button
-                                                            className="btn small mr10"
-                                                            onClick={handlePreview(
-                                                                modal
-                                                            )}
-                                                        >
-                                                            미리보기
-                                                        </button>
-                                                        <button
-                                                            className="btn small"
-                                                            onClick={handleDelete(
-                                                                modal
-                                                            )}
-                                                        >
-                                                            삭제하기
-                                                        </button>
+                                                       
                                                         <div className="line">
                                                             <h6>우선순위</h6>
                                                             <div className="txt">

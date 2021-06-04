@@ -56,7 +56,7 @@ export interface IMemberTableProp {
 
 type TuniqSearch = keyof Pick<
     _UserFilter,
-    "name_eq" | "email_eq" | "phoneNumber_eq"
+    "name_contains" | "email_contains" | "phoneNumber_contains"
 >;
 
 interface IProp {
@@ -94,7 +94,7 @@ export const MemberMaster: React.FC<IProp> = ({
             "foreginMemberCount",
             "totalIndiMemberCount",
         ]);
-    const [searchType, setSearchType] = useState<TuniqSearch>("name_eq");
+    const [searchType, setSearchType] = useState<TuniqSearch>("name_contains");
     const [popupUser, setPopupUser] = useState<Fuser>();
     const useHook = useUserList({ initialFilter: fixedFilter });
     const {
@@ -249,11 +249,14 @@ export const MemberMaster: React.FC<IProp> = ({
         if (searchType) {
             setUniqFilter(
                 searchType,
-                ["name_eq", "email_eq", "phoneNumber_eq"],
+                ["name_contains", "email_contains", "phoneNumber_contains"],
                 search
             );
         } else {
-            setOR(["name_eq", "email_eq", "phoneNumber_eq"], search);
+            setOR(
+                ["name_contains", "email_contains", "phoneNumber_contains"],
+                search
+            );
         }
     };
     const checkOnGender = (gender?: Gender) =>
@@ -309,18 +312,22 @@ export const MemberMaster: React.FC<IProp> = ({
                                         {BoardOptions}
                                         <option value={undefined}>전체</option>
                                         <option
-                                            value={"name_eq" as TuniqSearch}
+                                            value={
+                                                "name_contains" as TuniqSearch
+                                            }
                                         >
                                             이름
                                         </option>
                                         <option
-                                            value={"email_eq" as TuniqSearch}
+                                            value={
+                                                "email_contains" as TuniqSearch
+                                            }
                                         >
                                             아이디
                                         </option>
                                         <option
                                             value={
-                                                "phoneNumber_eq" as TuniqSearch
+                                                "phoneNumber_contains" as TuniqSearch
                                             }
                                         >
                                             휴대폰
@@ -373,12 +380,7 @@ export const MemberMaster: React.FC<IProp> = ({
                                                     false
                                                 )}
                                             >
-                                                <a>
-                                                    내국인
-                                                    <strong>
-                                                        {koreanMemberCount}
-                                                    </strong>
-                                                </a>
+                                                <a>내국인</a>
                                             </li>
                                             <li
                                                 onClick={setIsForeginer(true)}
@@ -386,12 +388,7 @@ export const MemberMaster: React.FC<IProp> = ({
                                                     true
                                                 )}
                                             >
-                                                <a>
-                                                    외국인
-                                                    <strong>
-                                                        {foreginMemberCount}
-                                                    </strong>
-                                                </a>
+                                                <a>외국인</a>
                                             </li>
                                         </ul>
                                         <ul className="board_option">
@@ -416,12 +413,7 @@ export const MemberMaster: React.FC<IProp> = ({
                                                     GENDER.MAIL
                                                 )}
                                             >
-                                                <a>
-                                                    남
-                                                    <strong>
-                                                        {koreanMemberCount}
-                                                    </strong>
-                                                </a>
+                                                <a>남</a>
                                             </li>
                                             <li
                                                 onClick={setGenderFilter(
@@ -431,12 +423,7 @@ export const MemberMaster: React.FC<IProp> = ({
                                                     GENDER.FEMALE
                                                 )}
                                             >
-                                                <a>
-                                                    녀
-                                                    <strong>
-                                                        {foreginMemberCount}
-                                                    </strong>
-                                                </a>
+                                                <a>녀</a>
                                             </li>
                                         </ul>
                                         <ul className="board_option">

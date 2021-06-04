@@ -974,7 +974,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                                                     ? undefined
                                                                     : index
                                                             }
-                                                            nextDate={dates[0]}
+                                                            nextDate={dates?.[0]}
                                                             nextRange={range}
                                                         />
                                                     );

@@ -1,28 +1,24 @@
-import React, { useContext, useEffect } from 'react'
-import DaumPostcode from 'react-daum-postcode';
-import RegisterCheck from './RegisterCheck';
-import 'react-day-picker/lib/style.css';
-import { GENDER, VerificationTarget } from '../../types/api';
-import { useJoin } from '../../hook/useJoin';
-import { JoinContext } from '../../pages/member/join';
-import { autoHypenPhone } from '../../utils/formatter';
-import { BirthDayPicker } from '../birthdayPicker/BirthdayPicker';
-import dayjs from 'dayjs';
-import { VerifiEamilModal } from '../verifiModal/VerifiEmailModal';
-import { useVerification } from '../../hook/useVerification';
-import { closeModal, openModal } from '../../utils/popUp';
-import { phoneNumberDivider } from '../phoneNumberInput/PhoneNumberInput';
-import { NUMBER_OPS } from '../../types/const';
+import React, { useContext, useEffect } from "react";
+import DaumPostcode from "react-daum-postcode";
+import RegisterCheck from "./RegisterCheck";
+import "react-day-picker/lib/style.css";
+import { GENDER, VerificationTarget } from "../../types/api";
+import { useJoin } from "../../hook/useJoin";
+import { JoinContext } from "../../pages/member/join";
+import { autoHypenPhone } from "../../utils/formatter";
+import { BirthDayPicker } from "../birthdayPicker/BirthdayPicker";
+import dayjs from "dayjs";
+import { VerifiEamilModal } from "../verifiModal/VerifiEmailModal";
+import { useVerification } from "../../hook/useVerification";
+import { closeModal, openModal } from "../../utils/popUp";
+import { phoneNumberDivider } from "../phoneNumberInput/PhoneNumberInput";
+import { NUMBER_OPS } from "../../types/const";
 
 const UserInfoForm: React.FC = () => {
     const verifiHook = useVerification();
 
-    const {
-        isIndi,
-        isPartenerB,
-        isPartner,
-        verifiData
-    } = useContext(JoinContext)!;
+    const { isIndi, isPartenerB, isPartner, verifiData } =
+        useContext(JoinContext)!;
 
     const { target } = verifiData || {};
     const isPhoneVerified = target === VerificationTarget.PHONE;
@@ -47,26 +43,27 @@ const UserInfoForm: React.FC = () => {
         errDisplay,
         setDaumAddress,
         handleBusinessLicense,
-    } = useJoin()
+    } = useJoin();
 
     useEffect(() => {
         const hideDaumAddress = () => {
-            setDaumAddress(false)
-            setBirthDayPicker(false)
-        }
-        window.addEventListener("click", hideDaumAddress)
+            setDaumAddress(false);
+            setBirthDayPicker(false);
+        };
+        window.addEventListener("click", hideDaumAddress);
         return () => {
-            window.removeEventListener("click", hideDaumAddress)
-        }
-    }, [])
+            window.removeEventListener("click", hideDaumAddress);
+        };
+    }, []);
 
     return (
         <>
-            <form onSubmit={(e) => {
-                e.preventDefault();
-                e.persist();
-
-            }}>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    e.persist();
+                }}
+            >
                 <div className="information_box">
                     {/* 회원정보:개인 */}
                     <h5>
@@ -82,18 +79,25 @@ const UserInfoForm: React.FC = () => {
                             <i className="important_icon" />
                             아이디
                         </label>
-                        <span className={`er red_font ${errDisplay.email && `on`}`}>
+                        <span
+                            className={`er red_font ${
+                                errDisplay.email && `on`
+                            }`}
+                        >
                             *해당 이메일은 이미 사용중입니다.
                         </span>
                         <div
                             onClick={() => {
-                                if (isPhoneVerified && !verifiHook.verifiData?.isVerified) {
+                                if (
+                                    isPhoneVerified &&
+                                    !verifiHook.verifiData?.isVerified
+                                ) {
                                     openModal("#ElseVeirifiModal")();
                                 }
                             }}
                         >
                             <input
-
+                                id="EmailInput"
                                 type="email"
                                 className={!isPhoneVerified ? "w100" : "w80"}
                                 placeholder="인증하기를 통해 이메일을 입력 해주세요."
@@ -101,24 +105,37 @@ const UserInfoForm: React.FC = () => {
                                 readOnly
                                 value={data.email}
                             />
-                            {isPhoneVerified ?
-                                <button disabled={verifiHook.verifiData?.isVerified} style={{ lineHeight: "100%" }} className="btn btn_mini" onClick={() => {
-                                    openModal("#ElseVeirifiModal")();
-                                }}>
-                                    {verifiHook.verifiData?.isVerified ? "인증완료" : "인증하기"}
-                                </button> : <></>
-                            }
+                            {isPhoneVerified ? (
+                                <button
+                                    disabled={verifiHook.verifiData?.isVerified}
+                                    style={{ lineHeight: "100%" }}
+                                    className="btn btn_mini"
+                                    onClick={() => {
+                                        openModal("#ElseVeirifiModal")();
+                                    }}
+                                >
+                                    {verifiHook.verifiData?.isVerified
+                                        ? "인증완료"
+                                        : "인증하기"}
+                                </button>
+                            ) : (
+                                <></>
+                            )}
                         </div>
                     </div>
                     <div className="pw_wrap">
                         <label>
                             <i className="important_icon" />
-                        비밀번호
-                    </label>
-                        <span className={`er red_font ${errDisplay.pw && `on`}`}>
-                            * 비밀번호는 특수문자 1개이상 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다
-                    </span>
+                            비밀번호
+                        </label>
+                        <span
+                            className={`er red_font ${errDisplay.pw && `on`}`}
+                        >
+                            * 비밀번호는 특수문자 1개이상 숫자가 포함된 7~15
+                            자리의 영문 숫자 조합이여야 합니다
+                        </span>
                         <input
+                            id="PasswordInput"
                             type="password"
                             className="w100"
                             placeholder="비밀번호를 입력해주세요"
@@ -130,12 +147,13 @@ const UserInfoForm: React.FC = () => {
                     <div className="pw_wrap_c">
                         <label>
                             <i className="important_icon" />
-                        비밀번호 확인
-                    </label>
+                            비밀번호 확인
+                        </label>
                         <span className="er red_font">
                             *비밀번호가 일치하지 않습니다.
-                    </span>
+                        </span>
                         <input
+                            id="PasswordCheckInput"
                             type="password"
                             className="w100"
                             placeholder="비밀번호 확인"
@@ -168,43 +186,67 @@ const UserInfoForm: React.FC = () => {
                         <div>
                             <label>
                                 <i className="important_icon" />
-                        이름
-                        </label>
+                                이름
+                            </label>
                         </div>
-                        <span className={`er red_font ${errDisplay.name && `on`}`}>*한글 이외에 입력이 안됩니다.</span>
+                        <span
+                            className={`er red_font ${errDisplay.name && `on`}`}
+                        >
+                            *한글 이외에 입력이 안됩니다.
+                        </span>
                         <div className="userInfoForm__nameBlueBirdWrap">
                             <input
                                 id="NameInput"
                                 type="text"
-                                className={isPartner ? `w65 mr5` : 'w100'}
+                                className={isPartner ? `w65 mr5` : "w100"}
                                 placeholder="이름을 입력해주세요"
                                 name="name"
                                 value={data.name}
                                 onChange={handleData("name")}
                             />
-                            {isPartner &&
-                                <select className="w30" onChange={handleData("blueBird")} value={data.blueBird || undefined} name="type">
-                                    {NUMBER_OPS.map(op =>
-                                        <option key={"blueBird" + op} value={op}>
+                            {isPartner && (
+                                <select
+                                    id="BlueBirdInput"
+                                    className="w30"
+                                    onChange={handleData("blueBird")}
+                                    value={data.blueBird || undefined}
+                                    name="type"
+                                >
+                                    {NUMBER_OPS.map((op) => (
+                                        <option
+                                            key={"blueBird" + op}
+                                            value={op}
+                                        >
                                             {op + "기 파랑새"}
                                         </option>
-                                    )}
-                                </select>}
+                                    ))}
+                                </select>
+                            )}
                         </div>
                     </div>
                     <div className="ph_wrap">
                         <label>
                             <i className="important_icon" />
-                        휴대폰번호
+                            휴대폰번호
                         </label>
-                        <span className={`er red_font ${errDisplay.phoneNumber && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
+                        <span
+                            className={`er red_font ${
+                                errDisplay.phoneNumber && `on`
+                            }`}
+                        >
+                            *숫자이외에 입력이 안됩니다.
+                        </span>
                         <div
                             onClick={() => {
-                                if (!isPhoneVerified && !verifiHook.verifiData?.isVerified) {
+                                if (
+                                    !isPhoneVerified &&
+                                    !verifiHook.verifiData?.isVerified
+                                ) {
                                     openModal("#ElseVeirifiModal")();
                                 }
                             }}
-                            className="w100 userInfoForm__phoneNumberWrap">
+                            className="w100 userInfoForm__phoneNumberWrap"
+                        >
                             {/* <ThreePhoneNumberInput
                                 className={isPhoneVerified ? "w100" : "w80"}
                                 onChange={phoneNumberHack[1]}
@@ -219,16 +261,23 @@ const UserInfoForm: React.FC = () => {
                                 value={autoHypenPhone(data.phoneNumber)}
                                 onChange={handleData("phoneNumber")}
                             />
-                            {!isPhoneVerified ?
-                                <button disabled={verifiHook.verifiData?.isVerified} style={{ lineHeight: "100%" }} className="btn btn_mini" onClick={() => {
-                                    openModal("#ElseVeirifiModal")();
-                                }}>
-                                    {verifiHook.verifiData?.isVerified ? "인증완료" : "인증하기"}
-                                </button> : null
-                            }
+                            {!isPhoneVerified ? (
+                                <button
+                                    disabled={verifiHook.verifiData?.isVerified}
+                                    style={{ lineHeight: "100%" }}
+                                    className="btn btn_mini"
+                                    onClick={() => {
+                                        openModal("#ElseVeirifiModal")();
+                                    }}
+                                >
+                                    {verifiHook.verifiData?.isVerified
+                                        ? "인증완료"
+                                        : "인증하기"}
+                                </button>
+                            ) : null}
                         </div>
                     </div>
-                    {isIndi &&
+                    {isIndi && (
                         <div>
                             <div className="ph_wrap">
                                 <label>성별</label>
@@ -237,23 +286,52 @@ const UserInfoForm: React.FC = () => {
                                 </span>
                                 <div className="w100">
                                     <ul className="gender_check">
-                                        <li className={`female ${data.gender == GENDER.FEMALE ? "on" : ""}`}
-                                            onClick={handleGender(GENDER.FEMALE)}>여</li>
-                                        <li className={`men ${data.gender == GENDER.MAIL ? "on" : ""}`}
-                                            onClick={handleGender(GENDER.MAIL)}>남</li>
+                                        <li
+                                            className={`female ${
+                                                data.gender == GENDER.FEMALE
+                                                    ? "on"
+                                                    : ""
+                                            }`}
+                                            onClick={handleGender(
+                                                GENDER.FEMALE
+                                            )}
+                                        >
+                                            여
+                                        </li>
+                                        <li
+                                            className={`men ${
+                                                data.gender == GENDER.MAIL
+                                                    ? "on"
+                                                    : ""
+                                            }`}
+                                            onClick={handleGender(GENDER.MAIL)}
+                                        >
+                                            남
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                             <div className="ph_wrap">
                                 <label>생년월일</label>
-                                <BirthDayPicker setDate={(date) => {
-                                    data.brith_date = dayjs(date).format("YYYY-MM-DD");
-                                    console.log(data.brith_date);
-                                    console.log(data.brith_date);
-                                    console.log(data.brith_date);
-                                    console.log(data.brith_date);
-                                    setData({ ...data })
-                                }} date={data.brith_date ? dayjs(data.brith_date, "YYYY-MM-DD").toDate() : new Date()} />
+                                <BirthDayPicker
+                                    setDate={(date) => {
+                                        data.brith_date =
+                                            dayjs(date).format("YYYY-MM-DD");
+                                        console.log(data.brith_date);
+                                        console.log(data.brith_date);
+                                        console.log(data.brith_date);
+                                        console.log(data.brith_date);
+                                        setData({ ...data });
+                                    }}
+                                    date={
+                                        data.brith_date
+                                            ? dayjs(
+                                                  data.brith_date,
+                                                  "YYYY-MM-DD"
+                                              ).toDate()
+                                            : new Date()
+                                    }
+                                />
                                 {/* <span className={`er red_font ${errDisplay.brith_date && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
                                 <div
                                     className="w100 join_birthday">
@@ -271,52 +349,85 @@ const UserInfoForm: React.FC = () => {
                                 </div> */}
                             </div>
                         </div>
-                    }
-                    {isPartenerB ||
+                    )}
+                    {isPartenerB || (
                         <div className="ph_wrap">
                             <label>내국인/외국인</label>
-                            <span className="er red_font">*둘중 한개를 선택해 주세요.</span>
+                            <span className="er red_font">
+                                *둘중 한개를 선택해 주세요.
+                            </span>
                             <div className="w100">
                                 <ul className="country_check">
-                                    <li className={`c_in ${!data.is_froreginer ? "on" : ""}`}
-                                        onClick={handleNationality(true)}>내국인</li>
-                                    <li className={`c_out ${data.is_froreginer ? "on" : ""}`}
-                                        onClick={handleNationality(false)}>외국인</li>
+                                    <li
+                                        className={`c_in ${
+                                            !data.is_froreginer ? "on" : ""
+                                        }`}
+                                        onClick={handleNationality(true)}
+                                    >
+                                        내국인
+                                    </li>
+                                    <li
+                                        className={`c_out ${
+                                            data.is_froreginer ? "on" : ""
+                                        }`}
+                                        onClick={handleNationality(false)}
+                                    >
+                                        외국인
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                    }
+                    )}
                     <div className="ph_wrap daum_addresss_wrap">
                         <label>주소</label>
-                        <span className="er red_font">*주소가 정확하지 않습니다.</span>
+                        <span className="er red_font">
+                            *주소가 정확하지 않습니다.
+                        </span>
                         <div onClick={handleAddress} className="w100">
-                            <input type="text" className="w80" name="address"
+                            <input
+                                id="AddressInput"
+                                type="text"
+                                className="w80"
+                                name="address"
                                 value={data.address}
                                 readOnly
-                                onChange={handleData("address")} />
-                            <button style={{ lineHeight: "100%" }} type="button" className="btn btn_mini" >
+                                onChange={handleData("address")}
+                            />
+                            <button
+                                style={{ lineHeight: "100%" }}
+                                type="button"
+                                className="btn btn_mini"
+                            >
                                 찾기
                             </button>
                         </div>
                         <div className="w100 mt5">
-                            <input id="AddressInput" type="text" className="w100" name="address_detail" placeholder="상세주소"
+                            <input
+                                id="AddressDetailInput"
+                                type="text"
+                                className="w100"
+                                name="address_detail"
+                                placeholder="상세주소"
                                 value={data.address_detail}
-                                onChange={handleData("address_detail")} />
+                                onChange={handleData("address_detail")}
+                            />
                         </div>
-                        <div className={`daum_addresss ${daumAddress && 'on'}`}>
+                        <div className={`daum_addresss ${daumAddress && "on"}`}>
                             <DaumPostcode
                                 onComplete={handleDaumPostalComplete}
                             />
                         </div>
                     </div>
-                    {isPartenerB &&
+                    {isPartenerB && (
                         <div>
                             <div className="ph_wrap">
                                 <label>
                                     <i className="important_icon" />
-                            파트너명(회사명)
-                        </label>
-                                <span className="er red_font">*숫자는 입력이 불가능합니다.</span>
+                                    파트너명(회사명)
+                                </label>
+                                <span className="er red_font">
+                                    *숫자는 입력이 불가능합니다.
+                                </span>
                                 <input
                                     type="text"
                                     className="w100"
@@ -335,7 +446,16 @@ const UserInfoForm: React.FC = () => {
                                     *사업자번호가 바르지 않습니다.
                                 </span>
                                 <div className="w100">
-                                    <select style={{ marginRight: "5px" }} className="w20 mr5" value={data.is_priv_corper ? "true" : "false"} onChange={handleData("is_priv_corper")}>
+                                    <select
+                                        style={{ marginRight: "5px" }}
+                                        className="w20 mr5"
+                                        value={
+                                            data.is_priv_corper
+                                                ? "true"
+                                                : "false"
+                                        }
+                                        onChange={handleData("is_priv_corper")}
+                                    >
                                         <option value={"false"}>개인</option>
                                         <option value={"true"}>법인</option>
                                     </select>
@@ -351,7 +471,13 @@ const UserInfoForm: React.FC = () => {
                             </div>
                             <div className="ph_wrap">
                                 <label>대표 전화번호</label>
-                                <span className={`er red_font ${errDisplay.busi_contact && `on`}`}>*숫자만 입력이 가능합니다.</span>
+                                <span
+                                    className={`er red_font ${
+                                        errDisplay.busi_contact && `on`
+                                    }`}
+                                >
+                                    *숫자만 입력이 가능합니다.
+                                </span>
                                 <div className="w100">
                                     {/* <ThreePhoneNumberInput
                                         className={isPhoneVerified ? "w100" : "w80"}
@@ -359,18 +485,23 @@ const UserInfoForm: React.FC = () => {
                                         value={phoneNumberHack[0]}
                                     /> */}
                                     <input
+                                        id="BusiContactInput"
                                         type="text"
                                         className="form-control w100"
                                         name="contact"
                                         placeholder="전화번호를 입력해주세요."
-                                        value={autoHypenPhone(data.busi_contact || "")}
+                                        value={autoHypenPhone(
+                                            data.busi_contact || ""
+                                        )}
                                         onChange={handleData("busi_contact")}
                                     />
                                 </div>
                             </div>
                             <div className="ph_wrap">
                                 <label>담당자</label>
-                                <span className="er red_font">*숫자를 입력 할 수 없습니다.</span>
+                                <span className="er red_font">
+                                    *숫자를 입력 할 수 없습니다.
+                                </span>
                                 <div className="w100">
                                     <input
                                         type="text"
@@ -392,14 +523,19 @@ const UserInfoForm: React.FC = () => {
                             </div>
                             <div className="ph_wrap">
                                 <label>담당자 연락처</label>
-                                <span className="er red_font">*숫자이외에 입력이 안됩니다.</span>
+                                <span className="er red_font">
+                                    *숫자이외에 입력이 안됩니다.
+                                </span>
                                 <div className="w100">
                                     <input
+                                        id="ManagerContact"
                                         type="text"
                                         className="w100"
                                         name="incharge_number"
                                         placeholder="-를 제외한 휴대폰 번호를 입력해주세요"
-                                        value={autoHypenPhone(data.manageContact || "")}
+                                        value={autoHypenPhone(
+                                            data.manageContact || ""
+                                        )}
                                         onChange={handleData("manageContact")}
                                     />
                                 </div>
@@ -427,7 +563,7 @@ const UserInfoForm: React.FC = () => {
                                 </div>
                             </div> */}
                         </div>
-                    }
+                    )}
                     {/* <div className="ph_wrap">
                         <label>
                             <i className="important_icon" />
@@ -449,7 +585,7 @@ const UserInfoForm: React.FC = () => {
                                 onChange={handleBankImg}></input>
                         </div>
                     </div> */}
-                    {isIndi ||
+                    {isIndi || (
                         <div className="ph_wrap">
                             <label>정산계좌</label>
                             <span className="er red_font">
@@ -475,34 +611,37 @@ const UserInfoForm: React.FC = () => {
                                 />
                             </div>
                         </div>
-                    }
+                    )}
                 </div>
                 <VerifiEamilModal
                     id="ElseVeirifiModal"
-                    target={isPhoneVerified ? VerificationTarget.EMAIL : VerificationTarget.PHONE}
+                    target={
+                        isPhoneVerified
+                            ? VerificationTarget.EMAIL
+                            : VerificationTarget.PHONE
+                    }
                     onSuccess={() => {
                         const payload = verifiHook.verifiData?.payload || "";
                         if (isPhoneVerified) {
-                            data.email = payload
-                            setData({ ...data })
+                            data.email = payload;
+                            setData({ ...data });
                             closeModal("#ElseVeirifiModal")();
                         } else {
                             data.phoneNumber = payload;
-                            setData({ ...data })
+                            setData({ ...data });
                             phoneNumberHack[1](phoneNumberDivider(payload));
                             closeModal("#ElseVeirifiModal")();
                         }
-                    }} verifiHook={verifiHook} />
+                    }}
+                    verifiHook={verifiHook}
+                />
                 <RegisterCheck
                     phoneNumberHack={phoneNumberHack}
                     registerInfo={data}
                 />
             </form>
         </>
+    );
+};
 
-    )
-}
-
-export default UserInfoForm
-
-
+export default UserInfoForm;

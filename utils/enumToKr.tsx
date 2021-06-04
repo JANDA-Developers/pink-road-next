@@ -305,7 +305,7 @@ export const bankrefundTransInfo = (
 };
 
 export const nameOf = (author?: any) => {
-    return author?.manageName || author?.name || author?.busi_name || "";
+    return author?.busi_name || author?.manageName || author?.name || "";
 };
 export const phoneNumberOf = (author?: getContext_GetProfile_data | null) => {
     return (

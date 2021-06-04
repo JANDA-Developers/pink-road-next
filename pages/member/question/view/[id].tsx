@@ -199,7 +199,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
                                 )}
                                 <CommentWrite
                                     defaultContent={""}
-                                    title={`${title} : ` + myProfile?.nickName}
+                                    title={nameOf(myProfile)}
                                     onSubmit={handleAnswer}
                                 />
                             </div>

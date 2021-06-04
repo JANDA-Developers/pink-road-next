@@ -519,3 +519,18 @@ export const getResized = (
 
     return namePart + (ready ? endFixStr : "") + "." + extend;
 };
+
+export const getSize = (
+    src: string,
+    hopeSize?: 200 | 500 | 1000 | 2000 | 3000 | 4000
+) => {
+    let endFix;
+    if (src.includes("__resized__")) {
+        endFix = hopeSize;
+    }
+    const { extend, namePart } = fileExtendDivider(src);
+    const endFixStr = endFix ? "---" + endFix : "";
+    const ready = true;
+
+    return namePart + (ready ? endFixStr : "") + "." + extend;
+};

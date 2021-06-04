@@ -15,6 +15,7 @@ import { getFromUrl } from "../../utils/url";
 import { AppContext } from "../../pages/_app";
 import Page404 from "../../pages/404";
 import PageLoading from "../../pages/Loading";
+import { nameOf } from "../../utils/enumToKr";
 
 interface IProp {}
 
@@ -131,10 +132,9 @@ export const TicketDetail: React.FC<IProp> = () => {
                                                 .map((answer) => {
                                                     return (
                                                         <Comment
-                                                            title={
+                                                            title={nameOf(
                                                                 answer.author
-                                                                    ?.name
-                                                            }
+                                                            )}
                                                             onCompleteEdit={
                                                                 handleEdit
                                                             }
@@ -151,7 +151,7 @@ export const TicketDetail: React.FC<IProp> = () => {
                                 )}
                                 <CommentWrite
                                     defaultContent={""}
-                                    title={`${title} : ` + myProfile?.nickName}
+                                    title={nameOf(myProfile)}
                                     onSubmit={handleAnswer}
                                 />
                             </div>

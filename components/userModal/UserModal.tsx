@@ -347,7 +347,7 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                     </div>
                     <div className="fin ifMobile">
                         <div className="float_left">
-                            {!item.isVerifiedManager && (
+                            {!item.isVerifiedManager && isSeller && (
                                 <div style={{ display: "flex" }}>
                                     <div>
                                         <i

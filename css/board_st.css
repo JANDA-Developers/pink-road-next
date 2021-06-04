@@ -993,7 +993,7 @@ ul.boardlist_ul li .cash strong {
   text-indent: -999px;
   background-size: 120%;
   background-position: center center;
-  background-image: url(/img/test_img_01.jpg) !important;
+  /* background-image: url(/img/test_img_01.jpg) !important; */
 }
 
 .board_list.st03 .tbody .td03 {

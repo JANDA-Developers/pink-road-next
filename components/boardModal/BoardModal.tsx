@@ -3,8 +3,15 @@ import { Router, useRouter } from "next/router";
 import React from "react";
 import { useIdSelecter } from "../../hook/useIdSelecter";
 import { useBoardControl, useMyBoardList } from "../../hook/useMyBoardList";
-import { BoardAction, Fuser, _BoardSort } from "../../types/api";
-import { BoardTypeKr, isOpenKr } from "../../utils/enumToKr";
+import {
+    BoardAction,
+    BoardType,
+    Fuser,
+    ProductStatus,
+    QuestionStatus,
+    _BoardSort,
+} from "../../types/api";
+import { BoardTypeKr, isOpenKr, questionSatusKr } from "../../utils/enumToKr";
 import isEmpty from "../../utils/isEmpty";
 import { closeModal } from "../../utils/popUp";
 import { Paginater } from "../common/Paginator";
@@ -12,6 +19,7 @@ import SortSelect from "../common/SortMethod";
 import { ViewCount } from "../common/ViewCount";
 import { Change } from "../loadingList/LoadingList";
 import { boardTypeRedirection } from "../../utils/boardTypeRedirection";
+import { PordStatusBadge } from "../Status/StatusBadge";
 
 interface IProp {
     user: Fuser;
@@ -38,9 +46,14 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
             },
         }
     );
-    const { selectAll, selectedIds, toggle, isChecked } = useIdSelecter(
-        boards.map((bd) => bd._id)
-    );
+    const {
+        selectAll,
+        selectedIds,
+        toggle,
+        isChecked,
+        toggleAll,
+        isAllSelected,
+    } = useIdSelecter(boards.map((bd) => bd._id));
 
     const handleBoardChange = (action: BoardAction) => () => {
         const selectedBoards = boards.filter((bd) =>
@@ -79,6 +92,7 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
                             <div className="left_div">
                                 <span className="infotxt">
                                     총 <strong>{boards.length}</strong>건
+                                    {/* {selectedIds.join(",")} */}
                                 </span>
                             </div>
                             <div className="right_div">
@@ -101,21 +115,21 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
 
                         <div className="board_list_mini ln05">
                             <div className="thead">
-                                <div className="tt01 checkbox">
+                                {/* <div className="tt01 checkbox">
                                     <input
-                                        onClick={selectAll}
+                                        onClick={toggleAll}
+                                        checked={isAllSelected}
                                         type="checkbox"
                                         name="agree"
                                         id="agree-popup-0"
                                         title="모두선택"
                                     />
                                     <label htmlFor="agree-popup-0" />
-                                </div>
+                                </div> */}
                                 <div className="tt02">게시판</div>
-                                <div className="tt03">번호</div>
+                                <div className="tt03">조회</div>
                                 <div className="tt04">제목</div>
-                                <div className="tt05">날짜</div>
-                                <div className="tt06">공개</div>
+                                <div className="tt05">작성일</div>
                             </div>
                             <div className="tbody">
                                 <Change change={!getLoading}>
@@ -131,13 +145,15 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
                                                 }}
                                                 key={board._id}
                                             >
-                                                <div className="tt01 checkbox">
-                                                    <i
-                                                        onClick={() => {
-                                                            toggle(board._id);
-                                                        }}
-                                                        className="checkbox"
-                                                    >
+                                                {/* <div
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        e.preventDefault();
+                                                        toggle(board._id);
+                                                    }}
+                                                    className="tt01 checkbox"
+                                                >
+                                                    <i className="checkbox">
                                                         <input
                                                             checked={isChecked(
                                                                 board._id
@@ -149,7 +165,7 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
                                                         />
                                                         <label htmlFor="agree0" />
                                                     </i>
-                                                </div>
+                                                </div> */}
                                                 <div className="tt02">
                                                     <i className="m_title">
                                                         게시판:
@@ -169,11 +185,31 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
                                                 <div className="tt04">
                                                     <a>
                                                         {board.title}
-                                                        <i className="q_ok">
-                                                            {
-                                                                board.questionStatus
-                                                            }
-                                                        </i>
+                                                        {board.boardType ===
+                                                            BoardType.PRODUCT && (
+                                                            <PordStatusBadge
+                                                                Tag="i"
+                                                                className="mypage-myboard__PordStatusBage"
+                                                                status={
+                                                                    board.questionStatus as ProductStatus
+                                                                }
+                                                            />
+                                                        )}
+                                                        {board.boardType ===
+                                                            BoardType.QUESTION && (
+                                                            <i
+                                                                className={
+                                                                    board.questionStatus ===
+                                                                    QuestionStatus.READY
+                                                                        ? "q_no"
+                                                                        : "q_ok"
+                                                                }
+                                                            >
+                                                                {questionSatusKr(
+                                                                    board.questionStatus as QuestionStatus
+                                                                )}
+                                                            </i>
+                                                        )}
                                                     </a>
                                                 </div>
                                                 <div className="tt05">
@@ -183,9 +219,9 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
                                                         "YYYY.MM.DD hh:mm"
                                                     )}
                                                 </div>
-                                                <div className="tt06">
+                                                {/* <div className="tt06">
                                                     {isOpenKr(!!board.isOpen)}
-                                                </div>
+                                                </div> */}
                                             </li>
                                         ))}
                                         {isEmpty(boards) && (
@@ -203,16 +239,16 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
 
                         <div className="fin ifMobile">
                             <div className="float_left">
-                                <button
+                                {/* <button
                                     onClick={selectAll}
                                     type="submit"
                                     className="btn medium"
                                 >
                                     모두선택
-                                </button>
+                                </button> */}
                             </div>
                             <div className="float_right">
-                                <button
+                                {/* <button
                                     onClick={handleBoardChange(
                                         BoardAction.delete
                                     )}
@@ -220,25 +256,7 @@ export const BoardModal: React.FC<IProp> = ({ user }) => {
                                     className="btn medium mr5"
                                 >
                                     삭제
-                                </button>
-                                <button
-                                    onClick={handleBoardChange(
-                                        BoardAction.hide
-                                    )}
-                                    type="submit"
-                                    className="btn medium mr5"
-                                >
-                                    비공개전환
-                                </button>
-                                <button
-                                    onClick={handleBoardChange(
-                                        BoardAction.open
-                                    )}
-                                    type="submit"
-                                    className="btn medium"
-                                >
-                                    공개전환
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>

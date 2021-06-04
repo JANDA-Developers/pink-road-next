@@ -107,7 +107,7 @@ export const ProductSearcher: React.FC<IProp> = ({
                         })}
                         className="goodsall__list"
                     >
-                        {filter?.OR[0]?.title_contains && (
+                        {filter?.OR?.[0]?.title_contains && (
                             <p>
                                 검색결과 <strong>{items.length}건</strong>
                             </p>

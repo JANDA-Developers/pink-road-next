@@ -52,6 +52,7 @@ import { getClientIndex } from "../../../utils/getClientIndex";
 import { Validater } from "../../../utils/validate";
 import { Modal2 } from "../../../components/modal/Modal";
 import { TravlerControlTable } from "../../../components/bookingModal/TravelerControlTable";
+import { useFragmentMove } from "../../../hook/useFragmentMove";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -203,24 +204,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         });
     };
 
-    useEffect(() => {
-        if (typeof urlFragment?.[0] === "string") {
-            setTimeout(() => {
-                const id = urlFragment?.[0].replace("#", "");
-                console.log({ id });
-                const target = document.getElementById(id);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        inline: "start",
-                        block: "start",
-                    });
-                }
-            }, 700);
-
-            return;
-        }
-    }, [urlFragment?.[0]]);
+    const moveToFragment = () => {};
 
     const reviewPagination = generateClientPaging(reviews, 4);
 
@@ -287,6 +271,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         if (travelersModalHook.info.nextAction === "pay") handleDoPay();
         else handleAddBracket();
     };
+
+    useFragmentMove();
 
     // 프로덕트 없을떄 로딩처리
     if (!product) return null;
