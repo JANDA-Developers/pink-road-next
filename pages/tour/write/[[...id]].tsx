@@ -46,7 +46,7 @@ import {
 import dayjs from "dayjs";
 import { checkIsExp } from "../../../utils/product";
 import { PageEditor } from "../../../components/common/PageEditer";
-import { yyyymmdd } from "../../../utils/yyyymmdd";
+import { yyyymmdd, weekOf } from "../../../utils/yyyymmdd";
 import {
     filterOver,
     generateitinery,
@@ -543,7 +543,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                     >
                                         {`[${index + 1}회차] ${yyyymmdd(
                                             gp.startDate
-                                        )}`}
+                                        )} (${weekOf(gp.startDate)})`}
                                     </div>
                                 ))}
                             </div>
@@ -974,7 +974,9 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                                                     ? undefined
                                                                     : index
                                                             }
-                                                            nextDate={dates?.[0]}
+                                                            nextDate={
+                                                                dates?.[0]
+                                                            }
                                                             nextRange={range}
                                                         />
                                                     );

@@ -151,7 +151,11 @@ export const useProductUpdate = (
         productUpdateVariables
     >(PRODUCT_POST_UPDATE, {
         awaitRefetchQueries: true,
-        ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+        ...getRefetch(
+            PRODUCT_LIST,
+            PRODUCT_FIND_BY_ID,
+            PRODUCT_FIND_BY_ID_FOR_SELLER
+        ),
         ...options,
     });
 
@@ -175,75 +179,119 @@ export const useProductUpdateReq = generateMutationHook<
     productUpdateReq,
     productUpdateReqVariables
 >(PRODUCT_POST_UPDATE_REQ, {
-    ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+    ...getRefetch(
+        PRODUCT_LIST,
+        PRODUCT_FIND_BY_ID,
+        PRODUCT_FIND_BY_ID_FOR_SELLER
+    ),
 });
 
 export const useAcceptCreateProduct = generateMutationHook<
     productCreateAccept,
     productCreateAcceptVariables
 >(ACCEPT_PRODUCT_CREATE, {
-    ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+    ...getRefetch(
+        PRODUCT_LIST,
+        PRODUCT_FIND_BY_ID,
+        PRODUCT_FIND_BY_ID_FOR_SELLER
+    ),
 });
 
 export const useAcceptUpdateProduct = generateMutationHook<
     productUpdateAccept,
     productUpdateAcceptVariables
 >(ACCEPT_PRODUCT_UPDATE, {
-    ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+    ...getRefetch(
+        PRODUCT_LIST,
+        PRODUCT_FIND_BY_ID,
+        PRODUCT_FIND_BY_ID_FOR_SELLER
+    ),
 });
 
 export const useRejectCreateProduct = generateMutationHook<
     productCreateReject,
     productCreateRejectVariables
 >(REJECT_PRODUCT_CREATE, {
-    ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+    ...getRefetch(
+        PRODUCT_LIST,
+        PRODUCT_FIND_BY_ID,
+        PRODUCT_FIND_BY_ID_FOR_SELLER
+    ),
 });
 export const useRejectUpdateProduct = generateMutationHook<
     productUpdateReject,
     productUpdateRejectVariables
 >(REJECT_PRODUCT_UPDATE, {
-    ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+    ...getRefetch(
+        PRODUCT_LIST,
+        PRODUCT_FIND_BY_ID,
+        PRODUCT_FIND_BY_ID_FOR_SELLER
+    ),
 });
 
 export const useTravelDetermine = generateMutationHook<
     travelDetermine,
     travelDetermineVariables
 >(TRAVEL_DETERMINE, {
-    ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+    ...getRefetch(
+        PRODUCT_LIST,
+        PRODUCT_FIND_BY_ID,
+        PRODUCT_FIND_BY_ID_FOR_SELLER
+    ),
 });
 export const useTravelCancel = generateMutationHook<
     travelCancel,
     travelCancelVariables
 >(TRAVEL_CANCEL, {
-    ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+    ...getRefetch(
+        PRODUCT_LIST,
+        PRODUCT_FIND_BY_ID,
+        PRODUCT_FIND_BY_ID_FOR_SELLER
+    ),
 });
 
 export const useTravelWithdrwal = generateMutationHook<
     travelWithdrwal,
     travelWithdrwalVariables
 >(TRAVEL_WITDRWAL, {
-    ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+    ...getRefetch(
+        PRODUCT_LIST,
+        PRODUCT_FIND_BY_ID,
+        PRODUCT_FIND_BY_ID_FOR_SELLER
+    ),
 });
 
 export const useProductReOpenDeny = generateMutationHook<
     productReOpenDeny,
     productReOpenDenyVariables
 >(PRODUCT_ELSE_DENY, {
-    ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+    ...getRefetch(
+        PRODUCT_LIST,
+        PRODUCT_FIND_BY_ID,
+        PRODUCT_FIND_BY_ID_FOR_SELLER
+    ),
 });
 
 export const useProductReOpenAccept = generateMutationHook<
     productElseAccept,
     productElseAcceptVariables
 >(PRODUCT_ELSE_ACCEPT, {
-    ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+    ...getRefetch(
+        PRODUCT_LIST,
+        PRODUCT_FIND_BY_ID,
+        PRODUCT_FIND_BY_ID_FOR_SELLER
+    ),
 });
 
 export const useProductReOpenReq = generateMutationHook<
     productElseReq,
     productElseReqVariables
 >(PRODUCT_ELSE_REQ, {
-    ...getRefetch(PRODUCT_LIST, PRODUCT_FIND_BY_ID),
+    ...getRefetch(
+        PRODUCT_LIST,
+        PRODUCT_FIND_BY_ID,
+        PRODUCT_FIND_BY_ID_FOR_SELLER
+    ),
 });
 
 export const openListFilter = {
@@ -266,7 +314,7 @@ export const useProductController = (onSucess: () => void, role: UserRole) => {
         useProductReOpenDeny({
             onCompleted: ({ ProductReOpenDeny }) => {
                 if (ProductReOpenDeny.ok) {
-                    alert("상품 요청이 거절 되었습니다.");
+                    alert("상품 오픈 요청이 거절 되었습니다.");
                     onSucess();
                 }
             },
@@ -322,7 +370,7 @@ export const useProductController = (onSucess: () => void, role: UserRole) => {
     const [acceptCreate, { loading: accept_loading }] = useAcceptCreateProduct({
         onCompleted: ({ ProductCreateAccept }) => {
             if (ProductCreateAccept.ok) {
-                alert("상품 생성 요청이 허용 되었습니다.");
+                alert("상품이 오픈 되었습니다.");
                 onSucess();
             }
         },
@@ -331,7 +379,7 @@ export const useProductController = (onSucess: () => void, role: UserRole) => {
     const [rejectCreate, { loading: reject_loading }] = useRejectCreateProduct({
         onCompleted: ({ ProductCreateReject }) => {
             if (ProductCreateReject.ok) {
-                alert("상품 생성이 거절처리 되었습니다.");
+                alert("상품 오픈이 거절처리 되었습니다.");
                 onSucess();
             }
         },
@@ -395,8 +443,6 @@ export const useFindProductsByGroup = (groupCode: string) => {
                     page: 1,
                 },
                 filter: {
-                    ...openListFilter,
-                    isOpen_eq: isManager || isSeller ? undefined : true,
                     groupCode_eq: groupCode,
                 },
             },

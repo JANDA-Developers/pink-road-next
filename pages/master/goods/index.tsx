@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useProductList } from "../../../hook/useProduct";
 import { yyyymmdd } from "../../../utils/yyyymmdd";
-import { generateSearchLink } from "../../search[drepreacted]";
 import { getTypeTextOfProduct } from "../../../utils/product";
-import { PordStatusBadge } from "../../../components/Status/StatusBadge";
+import {
+    PordStatusBadge,
+    ProductStatusTooltip,
+} from "../../../components/Status/StatusBadge";
 import { useCustomCount } from "../../../hook/useCount";
 import { useDateFilter } from "../../../hook/useSearch";
 import { MasterSearchBar } from "../../../components/master/MasterSearchBar";
@@ -17,9 +19,7 @@ import { getExcelByProduct } from "../../../utils/getExcelData";
 import { ProductModal } from "../../../components/productModal/ProductModal";
 import { GoodsTopNav } from "../../../components/topNav/MasterTopNav";
 import {
-    BookingStatus,
     ProductReOpenReq,
-    productElseReq,
     ProductStatus,
     _ProductFilter,
 } from "../../../types/api";
@@ -67,9 +67,8 @@ const popupClose2 = () => {
     });
 };
 export const MsGoodsMain: React.FC<IProp> = () => {
-    const [fitlerType, setFilterType] = useState<TProductFilterKey>(
-        "title_contains"
-    );
+    const [fitlerType, setFilterType] =
+        useState<TProductFilterKey>("title_contains");
     const {
         items,
         filter,
@@ -87,13 +86,8 @@ export const MsGoodsMain: React.FC<IProp> = () => {
         filter,
         setFilter,
     });
-    const {
-        selectAll,
-        toggleAll,
-        isAllSelected,
-        isChecked,
-        toggle,
-    } = useIdSelecter(items.map((item, i) => item._id));
+    const { selectAll, toggleAll, isAllSelected, isChecked, toggle } =
+        useIdSelecter(items.map((item, i) => item._id));
     const singleSort = useSingleSort(sort, setSort);
     const [popProductId, setPopProductId] = useState("");
 
@@ -557,9 +551,13 @@ export const MsGoodsMain: React.FC<IProp> = () => {
                                             )}
                                         </div>
                                         <div className="td08">
-                                            <PordStatusBadge
+                                            <ProductStatusTooltip
                                                 status={item.status}
-                                            />{" "}
+                                            >
+                                                <PordStatusBadge
+                                                    status={item.status}
+                                                />{" "}
+                                            </ProductStatusTooltip>
                                         </div>
                                         <div className="td09">
                                             <i className="m_title">

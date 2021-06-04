@@ -63,6 +63,7 @@ export async function getStaticPaths() {
 }
 const TourDetail: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
+    useFragmentMove();
     let urlFragment = router.asPath.match(/#([a-z0-9]+)/gi);
     const isExp = checkIsExp();
     const reviewModalHook = useModal<IModalInfo>();
@@ -248,8 +249,12 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             failFn: moveToQuestionTap,
         },
         {
-            value: !isDisable,
+            value: !isPast,
             failMsg: "예약 가능한 기간이 지났습니다.",
+        },
+        {
+            value: !productStatusIsNotOk,
+            failMsg: "예약 가능한 상태가 아닙니다.",
         },
         {
             value: totalResvCount,
@@ -271,8 +276,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         if (travelersModalHook.info.nextAction === "pay") handleDoPay();
         else handleAddBracket();
     };
-
-    useFragmentMove();
 
     // 프로덕트 없을떄 로딩처리
     if (!product) return null;
@@ -318,12 +321,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                             {images?.map((img, i) => (
                                                 <Slide key={i + "sliderImg"}>
                                                     <img
-                                                        src={
-                                                            getResized(
-                                                                img.uri,
-                                                                1000
-                                                            ) || ""
-                                                        }
+                                                        src={img.uri}
                                                         alt={img.name}
                                                     />
                                                 </Slide>

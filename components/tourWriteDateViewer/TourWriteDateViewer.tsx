@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import React from "react";
+import { weekOf } from "../../utils/yyyymmdd";
 import { InfoText } from "../infoText/InfoText";
 
 interface IProp {
@@ -25,8 +26,8 @@ export const TourWriteDateViewer: React.FC<IProp> = ({
                 fixed && "tourWrite__Choiceday--fixed"
             }`}
         >
-            {index !== undefined && <strong>[{index + 1}회차]</strong>}
-            {dayjs(date).format("YYYY.MM.DD")} ~{" "}
+            {index !== undefined && <strong>[{index + 1}회차] </strong>}
+            {dayjs(date).format("YYYY.MM.DD") + `(${weekOf(date)})`} ~{" "}
             {dayjs(date).add(range, "day").format("YYYY.MM.DD")}
         </div>
     );

@@ -42,8 +42,8 @@ export const productStatus = (status?: ProductStatus | null) => {
     if (status === ProductStatus.COMPLETED) return "완료";
     if (status === ProductStatus.EXPIRED) return "만료";
     if (status === ProductStatus.OPEN) return "판매중";
-    if (status === ProductStatus.READY) return "생성요청";
-    if (status === ProductStatus.REFUSED) return "생성거절됨";
+    if (status === ProductStatus.READY) return "오픈요청";
+    if (status === ProductStatus.REFUSED) return "오픈거절됨";
     if (status === ProductStatus.UPDATE_REQ) return "업데이트요청";
     if (status === ProductStatus.UPDATE_REQ_REFUSED) return "업데이트요청거절";
     return status || "";
@@ -235,8 +235,8 @@ export const requestStatusKr = (req?: RequestStatus) => {
 export const methodTypeKr = (mt?: MethodType) => {
     if (mt === MethodType.BOOKING) return "예약";
     if (mt === MethodType.PRODUCT) return "상품";
-    if (mt === MethodType.PRODUCT_CREATE) return "상품생성";
-    if (mt === MethodType.PRODUCT_REOPEN) return "상품재개";
+    if (mt === MethodType.PRODUCT_CREATE) return "오픈요청";
+    if (mt === MethodType.PRODUCT_REOPEN) return "오픈재개";
     if (mt === MethodType.SETTLEMENT) return "정산";
     if (mt === MethodType.TRAVEL) return "여행";
     return "";

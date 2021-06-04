@@ -422,3 +422,8 @@ background-color: #fff;
 .productSelectInfoForm,.productSelectInfoForm input {
     cursor: pointer;
 }
+
+
+.tourWrite__contap {
+    overflow: hidden;
+}
