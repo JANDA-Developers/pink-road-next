@@ -346,7 +346,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                         )}
                                         {/*개인*/}
                                         {/* //최근접속시간은 최근에 본 상품으로 변경함 */}
-                                        <ul>
+                                        <ul className="mypage__not_ul">
                                             <Tip
                                                 Tag="li"
                                                 message={"읽지않은 알림"}

@@ -73,4 +73,10 @@ div.popup_bg_mini h3:after {
     }
 
 }
+@media (max-width: 360px) {
+ 
+.LocalStorageBoard .page{
+    max-height: 100%;
+}
+}
 
