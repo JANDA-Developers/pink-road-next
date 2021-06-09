@@ -1101,19 +1101,6 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                             </button>
                         </div>
                         <div className="float_right">
-                            {/* 차라리 여기서 상품을 취소 상태로 변경하거나, 다시 오픈 상태로 변경 하거나 요청을 수락 하거나  */}
-                            {/* {isManager && status === ProductStatus.OPEN && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
-                        상품취소
-                    </button>}
-                    {isManager && status === ProductStatus.CANCELD && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
-                        취소철회
-                    </button>}
-                    {isManager && status === ProductStatus.UPDATE_REQ && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
-                        수정수락
-                    </button>}
-                    {isManager && status === ProductStatus.READY && <button onClick={handleEdit} type="submit" className="btn medium pointcolor">
-                        생성수락
-                    </button>} */}
                             {!updateAble && !isCreateMode && isParterNonB && (
                                 <button
                                     disabled={!normalPartnerUpdateReqAble}

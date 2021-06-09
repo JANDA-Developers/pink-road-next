@@ -2084,6 +2084,10 @@ div.reservation_popup .tr select {
   background-color: #efefef;
   border: 1px solid #ccc;
   margin-right: 10px;
+  vertical-align: middle;
+}
+.notification_box .date_fom::after {
+  left: 13px;
 }
 .notification_box .ovj img {
   fill: #fff;
@@ -2221,7 +2225,7 @@ div.reservation_popup .tr select {
   padding: 3%;
   box-shadow: 0px 0px 3px rgb(0 0 0 / 22%);
 }
-
+/* 
 .basket_box .top_info {
   position: relative;
   border: 1px solid #eee;
@@ -2247,7 +2251,7 @@ div.reservation_popup .tr select {
   background-color: #333;
   top: 50%;
   left: 0;
-}
+} */
 
 .basket_box .basket_list {
   position: relative;
@@ -4311,5 +4315,34 @@ div.reservation_popup .tr select {
   }
   .reservation_div .search_box{
     padding: 50px 5%;
+  }
+  .notification_box .right .hang strong.blue {
+    box-sizing: border-box;
+    padding: 2px 2px;
+    border-radius: 3px;
+    background-color: #ed297b21;
+    margin-right: 8px;
+    color: #e41773;
+    font-size: 12px;
+  }
+  .notification_box .right .hang {
+    padding: 28px 10px 10px;
+    font-size: 0.9rem;
+}
+  .notification_box .right .hang span{
+    line-height: 1.7rem;
+  }
+  .notification_box .ovj i {
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+  }
+  .notification_box .right {
+    display: block;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 23px;
+    margin: 0;
   }
 }

@@ -101,7 +101,7 @@ export const AnonymouseFindBook: React.FC<Ipage> = (pageInfo) => {
                             />
                         </div>
                         <button
-                            className="btn mr5"
+                            className="btn medium mr5"
                             onClick={() => {
                                 openModal("#PhoneVerifi")();
                             }}

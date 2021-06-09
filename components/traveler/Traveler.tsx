@@ -58,6 +58,7 @@ export const Traveler: React.FC<IProp> = ({
                             onChange(traveler);
                         }}
                         value={traveler.name || ""}
+                        className="inputname"
                     />
                 </span>
             </div>
@@ -73,6 +74,7 @@ export const Traveler: React.FC<IProp> = ({
                             onChange(traveler);
                         }}
                         value={autoHypenPhone(traveler.phoneNumber)}
+                        className="inputtell"
                     />
                 </span>
             </div>

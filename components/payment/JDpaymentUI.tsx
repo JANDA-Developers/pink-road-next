@@ -633,7 +633,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                         closeModal("#PolicyModal")();
                                         handleAgreeAll();
                                     }}
-                                    className="btn w50"
+                                    className="btn medium w50"
                                 >
                                     전체동의
                                 </button>
@@ -643,7 +643,7 @@ export const JDpaymentUI: React.FC<IProp> = ({ Preview, onDoPay, booking }) => {
                                     onClick={() => {
                                         closeModal("#PolicyModal")();
                                     }}
-                                    className="btn w50"
+                                    className="btn medium w50"
                                 >
                                     확인
                                 </button>

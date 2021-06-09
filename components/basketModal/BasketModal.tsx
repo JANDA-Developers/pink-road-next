@@ -69,7 +69,11 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
     };
 
     return (
-        <Modal title="조건 추가/변경" id="basketModal">
+        <Modal
+            title="조건 추가/변경"
+            id="basketModal"
+            className="popup_bg_mini peplelist__popup"
+        >
             <div className="box">
                 <table className="option_tb">
                     <tbody>
@@ -161,7 +165,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
                         </tbody>
                     </table>
                 </div>
-                <h4>실여행자정보</h4>
+                <h4 className="mt15">실여행자정보</h4>
                 <TravlerControlTable
                     className="travelerTableInModal"
                     adultCount={count.adult}
@@ -178,7 +182,7 @@ export const BasketModal: React.FC<IProp> = ({ product, updateComponent }) => {
                     }}
                     travelers={travelers}
                 />
-                <button onClick={handleBracketSave} className="btn w100">
+                <button onClick={handleBracketSave} className="btn medium w100">
                     변경하기
                 </button>
             </div>

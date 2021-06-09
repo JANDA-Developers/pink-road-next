@@ -63,6 +63,13 @@
   font-size: 0.9em;
   color: #adadad;
 }
+.popup_bg_mini .infobox__bottom {
+  margin-top: 5px;
+  padding: 1% 1.5%;
+}
+.popup_bg_mini .infobox__bottom li {
+  font-size: 0.8em;
+}
 .master_box .infobox__bottom li i {
   line-height: 60%;
   margin-right: 5px;

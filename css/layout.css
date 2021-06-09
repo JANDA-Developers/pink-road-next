@@ -4317,6 +4317,30 @@ i.icon_plus {
     background-position: left top;
     background-size: 256%;
   }
+  #all_menu{
+    padding: 70px 0;
+    top: -15px !important;
+  }
+  #all_menu .m_all_menu_in span {
+    display: inline-block;
+    margin-right: 12px;
+    position: relative;
+}
+  #all_menu .m_all_menu_in a {
+    color: #c8c8c8;
+    font-weight: 600;
+    font-size: 0.7em;
+}
+  #all_menu .m_all_menu_in span:after {
+    display: inline-block;
+    content: "";
+    position: absolute;
+    top: 9px;
+    right: -7px;
+    width: 1px;
+    height: 5px;
+    background-color: #fff;
+}
   #all_menu .m_member .profile {
     width: 30%;
   }

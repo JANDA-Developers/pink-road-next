@@ -190,7 +190,7 @@ export const Basket: React.FC<IProp> = ({
                                     onClick={() => {
                                         handleSingleOrder?.(item);
                                     }}
-                                    className="btn hit"
+                                    className="btn medium hit"
                                 >
                                     주문하기
                                 </button>

@@ -176,7 +176,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             name: product!.title,
             _id: product!._id,
             travelers,
-            includeBooker: bookerInclude
+            includeBooker: bookerInclude,
         });
     };
 
@@ -959,6 +959,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             <Modal2
                 UpCon={<h3 className="popup__tittle">실여행자 정보등록</h3>}
                 {...travelersModalHook}
+                className="popup_bg_mini peplelist__popup"
             >
                 <TravlerControlTable
                     className="travelerTableInModal"
@@ -976,7 +977,11 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     adultCount={count.adult}
                     babyCount={count.baby}
                 />
-                <button onClick={handleSubmitTravelers} className="btn">
+                <p className="infobox__bottom">
+                    결제가 완료되지 않으면 여기서 수집한 정보는 기록이나 정보로
+                    남지 않습니다.
+                </p>
+                <button onClick={handleSubmitTravelers} className="btn medium">
                     제출하기
                 </button>
             </Modal2>
