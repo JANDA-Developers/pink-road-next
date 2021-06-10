@@ -33,6 +33,7 @@
 .option_tb td,
 .infobox__bottom,
 .JDtagInput__tag,
+.tourWrite__Choiceday,
 .master__table .tbody div[class*="t0"],
 .master__table .tbody div[class*="t0"] span,
 div.master_popup .info_table .top_info span,
@@ -959,7 +960,7 @@ div.popup_bg h5 {
 .goodsall__list__img {
   display: inline-block;
   width: 20%;
-  height: 100px;
+  height:auto;
   overflow: hidden;
   vertical-align: top;
 }
@@ -1215,6 +1216,7 @@ div.popup_bg_mini .in_txt .option_tb td {
 div.popup_bg_mini .in_txt .btn {
   margin: 0;
   margin-top: 5px;
+  margin-right: 5px;
 }
 
 div.popup_bg_mini .close_icon {
@@ -5738,6 +5740,11 @@ div.bn_box.line2 a:first-child {
   border: #d2d2d2 1px solid;
   margin-right: 0px;
 }
+.join_wrap2 .inner__input select {
+  flex: 1 1;
+  flex-grow: 1;
+  width: auto;
+}
 .join_wrap2 select.mr5 {
   margin-right: 4px !important;
 }
@@ -5748,10 +5755,14 @@ div.bn_box.line2 a:first-child {
   line-height: 40px !important;
 }
 .join_wrap2 .gender_check {
-  margin-left: -10px !important;
+  margin-left: -18px !important;
 }
 .join_wrap2 .gender_check li {
   line-height: 38px !important;
+  vertical-align: top;
+}
+.join_wrap2 .gender_check li.men  {
+  margin-left: -44px;
 }
 
 .join_wrap2 .upload_out_box {
@@ -5892,7 +5903,8 @@ div.bn_box.line2 a:first-child {
   padding: 8px 13px 5px !important;
   border: 0;
   font-size: 14px !important;
-  width: 30% !important;
+  min-width: 30% !important;
+  width: auto !important;
 }
 
 .join_wrap2 .agreeChk {
@@ -5915,7 +5927,6 @@ div.bn_box.line2 a:first-child {
 .join_wrap2 .agreeChk .txt {
   font-size: 14px;
   display: inline-block;
-  float: right;
 }
 
 .join_wrap2 .agreeChk input[type="radio"] {
@@ -7374,10 +7385,13 @@ div.gallery_lightbox .thumbList {
   background-color: #ed297b;
   color: #ffffff;
   padding: 0 16px !important;
-  margin-right: -20px;
+ 
   z-index: 2;
 }
-
+.join_wrap2 .gender_check .on.female ~ .men{
+  margin-left: -39px;
+  padding: 0 16px 0 42px !important;
+}
 .gender_check .on.men {
   border: 2px solid #2196f3 !important;
   background-color: #2196f3;
@@ -7386,7 +7400,9 @@ div.gallery_lightbox .thumbList {
   color: #ffffff;
   z-index: 2;
 }
-
+.join_wrap2 .gender_check .on.men ~ .female{
+  padding: 0 46px 0 16px !important;
+}
 .country_check {
   width: 100% !important;
   position: relative;
@@ -9575,9 +9591,12 @@ ul.photo_ul.main_photo_ul li .title {
   padding-bottom: 100px;
 }
 .tourWrite__Choiceday {
-  background-color: #cce9ff;
-  padding: 11px 10px;
+  font-size:1rem;
+  padding: 0 0 10px 0;
   box-sizing: border-box;
+}
+.tourWrite__Choiceday strong{
+  margin-right: 5px;
 }
 .tourWrite__Choiceday--currentModify .tourWrite__ChoicedayPreview {
   text-decoration: line-through;
@@ -9645,6 +9664,13 @@ ul.photo_ul.main_photo_ul li .title {
   border-right: 6px solid #ed297b;
   border-left: 6px solid  none;
 }
+.tourWrite__dayPikcerRangeViewer {
+  padding: 11px 10px;
+  box-sizing: border-box;
+  background-color: #cce9ff;
+}
+
+
 @media (min-width: 768px) {
   div.alignment select {
     height: 32px;
@@ -10574,7 +10600,9 @@ ul.photo_ul.main_photo_ul li .title {
     margin: 30px 8% 0px 0;
     padding: 0;
   }
-
+  .join_wrap2 .inner__input select {
+    width: 30%;
+  }
   .siteInfo_in .con04 .li05::after {
     content: "";
     position: absolute;
@@ -11193,6 +11221,10 @@ ul.photo_ul.main_photo_ul li .title {
     position: relative;
     width: 80%;
     margin: 0 auto 20px;
+  }
+  .join_wrap2 .fin.last {
+    width:100%;
+    display: block;
   }
   .join_wrap2 .sum {
     width: 50% !important;
@@ -12012,7 +12044,9 @@ ul.photo_ul.main_photo_ul li .title {
   .join_wrap2 .choice_box .choice__link > li:first-child {
     border-bottom: 1px dotted #d5d5d5;
   }
-
+  .DayPicker-Months > .DayPicker-Month:first-child::after {
+    border-right: 0;
+  }
   .board_box {
     padding-top: 20px;
     padding-bottom: 50px;
@@ -12023,23 +12057,43 @@ ul.photo_ul.main_photo_ul li .title {
   #viewControl {
     width: 58%;
     margin-left: 43%;
-  }  .Number__box {
+  }  
+  .Number__box {
     margin-left: 0 !important;
 
+  }
+  .tour_details_in .boardReadBody .in_box{
+    padding: 20px 3%;
+  }
+  .historyTable__li > div{
+    margin-right: 15px;
+  }
+  .historyTable__li > div:first-child{
+    font-weight: 600 !important;
+    color: #333333 !important;
+  }
+  .join_wrap2 .wellcom{
+    width: 100%;
+    padding: 15% 5%;
+    
+  }
+  .join_wrap2 .fin{
+    display: block;
+  }
+  .sign_in .inner .join_address ul {
+    height: 110px;
 }
-.tour_details_in .boardReadBody .in_box{
-  padding: 20px 3%;
-}
-.historyTable__li > div{
-  margin-right: 15px;
-}
-.historyTable__li > div:first-child{
-  font-weight: 600 !important;
-  color: #333333 !important;
+.join_wrap2 .wellcom p {
+  line-height: 1.5rem;
+  font-size: 0.9rem;
 }
 }
 @media (max-width: 767px) {
-
+  .join_wrap2 input.w80{
+    width: 70%;
+  }.reservation__inquiry i {
+    display: none;
+}
   .reservation__inquiry{
     top: 39.5%;
     right: 10%;
@@ -12073,8 +12127,9 @@ div.popup_bg_full h4{
     width: 100%;
   }
   .login_box {
-    height: 840px;
+    min-height: 840px;
   }
+  
   .siteInfo_in .con06 {
     padding: 100px 5%;
   }
@@ -12409,13 +12464,13 @@ div.popup_bg_full h4{
   .quotation__table_fom .content > div {
     width: 49%;
   }
-  .DayPicker-Months > .DayPicker-Month:first-child::after {
-    border-right: 0;
-  }
+ 
   .DayPicker-Month {
     margin-bottom: 20px !important;
   }
-  
+  .reservation__inquiry a::before{
+    display: none;
+  }
 }
 
 @media (max-width: 580px) {
@@ -12425,6 +12480,104 @@ div.popup_bg_full h4{
   }
 }
 @media (max-width: 360px) {
+  .reservation__inquiry {
+    top: 0;
+    right: 0;
+    position: relative;
+}
+.board_write .write_type .category{
+  width: 50%;
+}
+.board_write .write_type .category.mr20{
+  width: 95%;
+}
+.board_write .write_type p.info_txt {
+  font-size: 0.7rem;
+  line-height: 1rem;
+}
+.reservation__inquiry a{
+  width: 100%;
+  text-align: center;
+  border-radius: 3px;
+}
+.login_wrap h3 {
+  font-size: 1.8rem !important;
+}
+
+  .join_wrap2 .fin.last .btn.sum{
+    display: block;
+    margin-bottom: 8px;
+    width: 100% !important;
+    margin-left: 0 !important;
+
+  }
+  .login_box .login_page .login_tap {
+    font-size: 0.8rem;
+}
+  .portfolio_in .con02 ul li{
+    width: 100%;
+  }
+  .portfolio_in .con02 ul li .img{
+    width: 100%;
+  }
+  .portfolio_in .con02 li.img01 .img {
+    background-size: 72px;
+}
+  .portfolio_in .con02 li.img02 .img {
+    background-size: 78px;
+}
+  .portfolio_in .con02 li.img03 .img {
+    background-size: 81px;
+}
+  .portfolio_in .con02 li.img04 .img {
+    background-size: 80px;
+}
+.portfolio_in .con05{
+  background-size: 190%;
+}
+.portfolio_in .top_bg span {
+  font-size: 1.2rem;
+}
+.portfolio_in .con03 {
+  padding: 100px 3% 60px;
+}
+.portfolio_in .con03 span {
+  color: #bcbcbc;
+  line-height: 1.9rem;
+  font-size: 1.1rem;
+}
+.header .hidden{
+  top: 62px;
+}
+.portfolio_in .con04 {
+  top: 0;
+  padding: 40px 3% 10px;
+}
+.portfolio_in .con04 .portfolio_box {
+  top: 10px;
+}
+.portfolio_in .con04 .photo_tap_div .photo_tap {
+  font-size: 11px;
+  padding: 0 16px;
+}
+.portfolio_in .con04 .photo_tap_div .tab-selector-1 + .tab-label-1{
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  color: #333333;
+  border-radius: 3px;
+
+}
+.portfolio_in .con04 .photo_tap_div .tab-selector-1:checked + .tab-label-1{
+  background-color: #ed297b;
+  border: 0;
+  color: #ffffff;
+}
+  .portfolio_in .top_bg{
+    background-size: 580%;
+  }
+  .join_wrap2 .wellcom h5{
+    font-size: 1.5rem;
+  }
   .sign_in .inner{
     margin-bottom: 100px;
   }
@@ -12433,7 +12586,7 @@ div.popup_bg_full h4{
     padding: 7px 20px 20px 20px;
   }
   .profile_box .welcometxt{
-    font-size: 0.8em;
+    font-size: 0.7em;
   }
   .mypage_in .lnb .profile_box .point strong {
     font-size: 1em;
@@ -12461,23 +12614,39 @@ div.popup_bg_full h4{
   .join_wrap2 .choice_box {
     padding: 50px 0;
   }
+  div.alignment .left_div {
+    display: inline-block;
+    width: auto;
+}
+  div.alignment .right_div {
+    display: inline-block;
+    width: auto;
+    margin-left: 10px;
+}
+.login_box{
+  padding-left: 3%;
+  padding-right: 3%;
+}
+.search_in .alignment select{
+  width: 100%;
+}
   div.popup_bg_mini {
     background-color: #ffffff;
-    display: block;
+    /* display: block !important; */
   }
-
-  div.popup_bg_mini {
-    align-items: start!important;
+  .search_box .jul1{
+    padding: 0;
   }
-
-  div.popup_bg_mini .in_txt {
-    flex: 1 1;
+  .search_in .search_box .jul1 input{
+    border-radius: 5px;
   }
   div.popup_bg_mini .con{
     max-width: 100vw;
   }
   div.popup_bg_mini .in_txt{
     max-width: 100%;
+    max-height: 100%;
+    display: contents;
   }
   div.popup_bg_mini .con {
     padding: 25px 5% 0;
@@ -12521,6 +12690,9 @@ div.popup_bg_full h4{
   .main_con_box1 .main_top_images {
     min-height: 490px;
     background-size: cover;
+  }
+  .tourWrite__Choiceday {
+    font-size: 0.8rem;
   }
   .main_con_box3 li {
     min-height: 190px;
@@ -12622,6 +12794,7 @@ div.popup_bg_full h4{
     font-size: 22px;
     line-height: 115%;
   }
+
 }
 
 .cdx-input.image-tool__caption {

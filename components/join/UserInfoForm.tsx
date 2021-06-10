@@ -74,7 +74,7 @@ const UserInfoForm: React.FC = () => {
                             <i className="important_icon" />는 필수항목입니다.
                         </span>
                     </h5>
-                    <div className="ph_wrap">
+                    <div className="id_wrap">
                         <label>
                             <i className="important_icon" />
                             아이디
@@ -87,6 +87,7 @@ const UserInfoForm: React.FC = () => {
                             *해당 이메일은 이미 사용중입니다.
                         </span>
                         <div
+                            className="inner__input"
                             onClick={() => {
                                 if (
                                     isPhoneVerified &&
@@ -134,15 +135,17 @@ const UserInfoForm: React.FC = () => {
                             * 비밀번호는 특수문자 1개이상 숫자가 포함된 7~15
                             자리의 영문 숫자 조합이여야 합니다
                         </span>
-                        <input
-                            id="PasswordInput"
-                            type="password"
-                            className="w100"
-                            placeholder="비밀번호를 입력해주세요"
-                            name="password"
-                            value={data.pw}
-                            onChange={handleData("pw")}
-                        />
+                        <div className="inner__input">
+                            <input
+                                id="PasswordInput"
+                                type="password"
+                                className="w100"
+                                placeholder="비밀번호를 입력해주세요"
+                                name="password"
+                                value={data.pw}
+                                onChange={handleData("pw")}
+                            />
+                        </div>
                     </div>
                     <div className="pw_wrap_c">
                         <label>
@@ -152,36 +155,18 @@ const UserInfoForm: React.FC = () => {
                         <span className="er red_font">
                             *비밀번호가 일치하지 않습니다.
                         </span>
-                        <input
-                            id="PasswordCheckInput"
-                            type="password"
-                            className="w100"
-                            placeholder="비밀번호 확인"
-                            name="passwordChk"
-                            value={data.pwcheck}
-                            onChange={handleData("pwcheck")}
-                        />
-                    </div>
-                    {/* {isIndi ? <div /> :
-                        <div className="name_wrap">
-                            <label>
-                                <i className="important_icon" />
-                        닉네임
-                        </label>
-                            <span className={`er red_font ${errDisplay.nickName && `on`}`}>*특수문자를 입력하지 말아주세요.</span>
-                            <div>
-                                <input
-                                    type="text"
-                                    className="w80"
-                                    placeholder="닉네임을 입력해주세요"
-                                    name="name"
-                                    value={data.nickName}
-                                    onChange={handleData("nickName")}
-                                />
-                                <button style={{ lineHeight: "100%" }} onClick={handleNickNameCheck} type="button" className={`btn btn_mini ${nickNameChecked && "ok"}`}>{nickNameChecked ? "사용가능" : "중복확인"} </button>
-                            </div>
+                        <div className="inner__input">
+                            <input
+                                id="PasswordCheckInput"
+                                type="password"
+                                className="w100"
+                                placeholder="비밀번호 확인"
+                                name="passwordChk"
+                                value={data.pwcheck}
+                                onChange={handleData("pwcheck")}
+                            />
                         </div>
-                    } */}
+                    </div>
                     <div className="name_wrap">
                         <div>
                             <label>
@@ -194,7 +179,7 @@ const UserInfoForm: React.FC = () => {
                         >
                             *한글 이외에 입력이 안됩니다.
                         </span>
-                        <div className="userInfoForm__nameBlueBirdWrap">
+                        <div className="userInfoForm__nameBlueBirdWrap inner__input">
                             <input
                                 id="NameInput"
                                 type="text"
@@ -245,7 +230,7 @@ const UserInfoForm: React.FC = () => {
                                     openModal("#ElseVeirifiModal")();
                                 }
                             }}
-                            className="w100 userInfoForm__phoneNumberWrap"
+                            className="w100 userInfoForm__phoneNumberWrap inner__input"
                         >
                             {/* <ThreePhoneNumberInput
                                 className={isPhoneVerified ? "w100" : "w80"}
@@ -279,12 +264,12 @@ const UserInfoForm: React.FC = () => {
                     </div>
                     {isIndi && (
                         <div>
-                            <div className="ph_wrap">
+                            <div className="gender_wrap">
                                 <label>성별</label>
                                 <span className="er red_font">
                                     *두개의 성별중 하나를 선택하여 주세요.
                                 </span>
-                                <div className="w100">
+                                <div className="w100 inner__input">
                                     <ul className="gender_check">
                                         <li
                                             className={`female ${
@@ -311,28 +296,31 @@ const UserInfoForm: React.FC = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="ph_wrap">
+                            <div className="biryhday_wrap">
                                 <label>생년월일</label>
-                                <BirthDayPicker
-                                    setDate={(date) => {
-                                        data.brith_date =
-                                            dayjs(date).format("YYYY-MM-DD");
-                                        console.log(data.brith_date);
-                                        console.log(data.brith_date);
-                                        console.log(data.brith_date);
-                                        console.log(data.brith_date);
-                                        setData({ ...data });
-                                    }}
-                                    date={
-                                        data.brith_date
-                                            ? dayjs(
-                                                  data.brith_date,
-                                                  "YYYY-MM-DD"
-                                              ).toDate()
-                                            : new Date()
-                                    }
-                                />
-                                {/* <span className={`er red_font ${errDisplay.brith_date && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
+                                <div className="inner__input">
+                                    <BirthDayPicker
+                                        setDate={(date) => {
+                                            data.brith_date =
+                                                dayjs(date).format(
+                                                    "YYYY-MM-DD"
+                                                );
+                                            console.log(data.brith_date);
+                                            console.log(data.brith_date);
+                                            console.log(data.brith_date);
+                                            console.log(data.brith_date);
+                                            setData({ ...data });
+                                        }}
+                                        date={
+                                            data.brith_date
+                                                ? dayjs(
+                                                      data.brith_date,
+                                                      "YYYY-MM-DD"
+                                                  ).toDate()
+                                                : new Date()
+                                        }
+                                    />
+                                    {/* <span className={`er red_font ${errDisplay.brith_date && `on`}`}>*숫자이외에 입력이 안됩니다.</span>
                                 <div
                                     className="w100 join_birthday">
                                     <input
@@ -347,16 +335,17 @@ const UserInfoForm: React.FC = () => {
                                         <Calendar />
                                     </i>
                                 </div> */}
+                                </div>
                             </div>
                         </div>
                     )}
                     {isPartenerB || (
-                        <div className="ph_wrap">
+                        <div className="country_wrap">
                             <label>내국인/외국인</label>
                             <span className="er red_font">
                                 *둘중 한개를 선택해 주세요.
                             </span>
-                            <div className="w100">
+                            <div className="w100 inner__input">
                                 <ul className="country_check">
                                     <li
                                         className={`c_in ${
@@ -378,14 +367,16 @@ const UserInfoForm: React.FC = () => {
                             </div>
                         </div>
                     )}
-                    <div className="ph_wrap daum_addresss_wrap">
+                    <div className="address_wrap daum_addresss_wrap">
                         <label>주소</label>
                         <span className="er red_font">
                             *주소가 정확하지 않습니다.
                         </span>
-                        <div onClick={handleAddress} className="w100">
+                        <div
+                            onClick={handleAddress}
+                            className="w100 inner__input"
+                        >
                             <input
-                                id="AddressInput"
                                 type="text"
                                 className="w80"
                                 name="address"
@@ -420,7 +411,7 @@ const UserInfoForm: React.FC = () => {
                     </div>
                     {isPartenerB && (
                         <div>
-                            <div className="ph_wrap">
+                            <div className="company_wrap">
                                 <label>
                                     <i className="important_icon" />
                                     파트너명(회사명)
@@ -428,16 +419,18 @@ const UserInfoForm: React.FC = () => {
                                 <span className="er red_font">
                                     *숫자는 입력이 불가능합니다.
                                 </span>
-                                <input
-                                    type="text"
-                                    className="w100"
-                                    name="name_company"
-                                    placeholder="업체명을 입력해주세요"
-                                    value={data.busi_name || ""}
-                                    onChange={handleData("busi_name")}
-                                />
+                                <div className="inner__input">
+                                    <input
+                                        type="text"
+                                        className="w100"
+                                        name="name_company"
+                                        placeholder="업체명을 입력해주세요"
+                                        value={data.busi_name || ""}
+                                        onChange={handleData("busi_name")}
+                                    />
+                                </div>
                             </div>
-                            <div className="ph_wrap">
+                            <div className="companynumber_wrap">
                                 <label>
                                     <i className="important_icon" />
                                     사업자번호
@@ -445,7 +438,7 @@ const UserInfoForm: React.FC = () => {
                                 <span className="er red_font">
                                     *사업자번호가 바르지 않습니다.
                                 </span>
-                                <div className="w100">
+                                <div className="w100 inner__input">
                                     <select
                                         style={{ marginRight: "5px" }}
                                         className="w20 mr5"
@@ -469,7 +462,7 @@ const UserInfoForm: React.FC = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="ph_wrap">
+                            <div className="tell_wrap">
                                 <label>대표 전화번호</label>
                                 <span
                                     className={`er red_font ${
@@ -478,7 +471,7 @@ const UserInfoForm: React.FC = () => {
                                 >
                                     *숫자만 입력이 가능합니다.
                                 </span>
-                                <div className="w100">
+                                <div className="w100 inner__input">
                                     {/* <ThreePhoneNumberInput
                                         className={isPhoneVerified ? "w100" : "w80"}
                                         onChange={phoneNumberHack[1]}
@@ -497,12 +490,12 @@ const UserInfoForm: React.FC = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="ph_wrap">
+                            <div className="director_wrap">
                                 <label>담당자</label>
                                 <span className="er red_font">
                                     *숫자를 입력 할 수 없습니다.
                                 </span>
-                                <div className="w100">
+                                <div className="w100 inner__input">
                                     <input
                                         type="text"
                                         className="form-control w20"
@@ -521,12 +514,12 @@ const UserInfoForm: React.FC = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="ph_wrap">
+                            <div className="directorph_wrap">
                                 <label>담당자 연락처</label>
                                 <span className="er red_font">
                                     *숫자이외에 입력이 안됩니다.
                                 </span>
-                                <div className="w100">
+                                <div className="w100 inner__input">
                                     <input
                                         id="ManagerContact"
                                         type="text"
@@ -540,7 +533,7 @@ const UserInfoForm: React.FC = () => {
                                     />
                                 </div>
                             </div>
-                            {/* <div className="ph_wrap">
+                            {/* <div className="companypaper_wrap">
                                 <label>
                                     <i className="important_icon" />
                                 사업자등록증
@@ -564,7 +557,7 @@ const UserInfoForm: React.FC = () => {
                             </div> */}
                         </div>
                     )}
-                    {/* <div className="ph_wrap">
+                    {/* <div className="bankpaper_wrap">
                         <label>
                             <i className="important_icon" />
                                 통장사본
@@ -586,12 +579,12 @@ const UserInfoForm: React.FC = () => {
                         </div>
                     </div> */}
                     {isIndi || (
-                        <div className="ph_wrap">
+                        <div className="banknumber_wrap">
                             <label>정산계좌</label>
                             <span className="er red_font">
                                 *정보를 정확하게 입력해주세요.
                             </span>
-                            <div className="w100">
+                            <div className="w100 inner__input">
                                 <input
                                     type="text"
                                     className="w10"

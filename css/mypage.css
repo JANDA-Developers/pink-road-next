@@ -612,7 +612,7 @@
   padding-left: 10px;
   box-sizing: border-box;
   vertical-align: middle;
-  border-radius: 5px;
+  border-radius:3px;
   background-color: #fbfbfb;
   border: #e3e3e3 1px solid;
   margin-right: 3px;
@@ -1161,7 +1161,7 @@
   display: block;
   width: 100%;
   margin: 0 auto;
-  padding: 50px 36px;
+  padding: 50px 5%;
   box-sizing: border-box;
   border: 1px solid #ccc;
   text-align: left;
@@ -3003,9 +3003,9 @@ div.reservation_popup .tr select {
   border: #e3e3e3 1px solid;
   margin-right: 3px;
 }
-.upload_out_box .upload_out_box__fileName {
-  padding: 0px;
-  border: 0px;
+.mypage_in .upload_out_box__fileName{
+  padding-left: 0;
+  border: 0;
 }
 .popup_bg_mini .upload_out_box__fileName{
   vertical-align: bottom;
@@ -4130,23 +4130,25 @@ div.reservation_popup .tr select {
   }
   .basket_box .basket_list .right {
     padding-left: 0;
-}
-.mypage_in .btn{
-  margin-right: 10px;
-  
-}
+  }
+  .mypage_in .btn{
+    margin-right: 10px;
+  }
 }
 
 @media (max-width: 767px) {
-  .mypage__topcunt .mypage__topcntSpan{
-    font-size: 1.5em;
+  .mypage_in .in{
+    margin-bottom: 0;
   }
   .mypage__topcunt p {
     font-size: 0.8em;
-}
-.mypage__tap li a {
-  font-size: 0.9em;
-}
+ }
+  .mypage__topcunt .mypage__topcntSpan{
+    font-size: 1.5em;
+  }
+  .mypage__tap li a {
+    font-size: 0.9em;
+  }
   .mypage_in .btn{
     width: 100%;
     margin-right: 0;
@@ -4250,7 +4252,65 @@ div.reservation_popup .tr select {
   .mypage_in .box_right .txt {
     text-align: left !important;
   }
+  .mypage_in .box_right .txt.txt--flex{
+    display: block !important;
+  }
+  .mypage__topcunt{
+    padding: 5%;
+  }
+  .mypage_in .reservation_div div.alignment .right_div{
+    margin-left: 0;
+  }
+  .mypage_in .reservation_div div.alignment .right_div .board_option{
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
 }
 
 @media (max-width: 360px) {
+
+  .mypage__topcunt ul{
+    display: block;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+  }
+  .mypage__topcunt li {
+    width: auto;
+    flex-grow: 1;
+    flex: 1 1;
+    display: inline-block;
+    text-align: center;
+    min-width: 33%;
+    padding: 2% 0;
+  }
+  .mypage_in .lnb .profile_box [class*="name"] i.ct_manager {
+    line-height: 10px;
+    vertical-align: middle;
+    padding: 2px 4px
+}
+  .mypage_in .lnb .profile_box .mypage__not_ul i {
+    padding: 2px 0px 2px 8px;
+  }
+  .mypage_in .box_right input.w20{
+    width: 100%;
+  }
+  .mypage_in .box_right input.w50{
+    width: 100%;
+  }
+  .mypage_in .box_right .w80{
+    width: 100%;
+  }
+  .mypage_in .box_right .w70{
+    width: 50%;
+  }
+  .mypage_in .box_right select.w20{
+    width: 26%;
+  }
+  .mypage_in .box_right li{
+    padding: 0;
+  }
+  .reservation_div .search_box{
+    padding: 50px 5%;
+  }
 }

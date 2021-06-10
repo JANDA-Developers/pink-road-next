@@ -44,7 +44,6 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo, phoneNumberHack }) => {
     const [signUpMu] = useSignUp({
         onCompleted: ({ SignUp }) => {
             if (SignUp.ok) {
-                // alert("회원가입 완료")
                 setJoinProcess("registered");
             } else {
                 if (SignUp.error?.code === ERR_CODE.ALEADY_SAME_DATA) {
@@ -466,7 +465,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo, phoneNumberHack }) => {
                         closeModal("#PolicyModal")();
                         handleAgreeAlltoggle(true);
                     }}
-                    className="btn mr10"
+                    className="btn medium mr10"
                 >
                     전체동의
                 </button>
@@ -474,7 +473,7 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo, phoneNumberHack }) => {
                     onClick={() => {
                         closeModal("#PolicyModal")();
                     }}
-                    className="btn"
+                    className="btn medium"
                 >
                     확인
                 </button>

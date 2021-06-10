@@ -555,15 +555,11 @@ figure:after {
 }
 @media (max-width:767px) {
     .write_type .JDtagInput__input{
-        width: 100%;
+        width: 50%;
     }
 }
 
 
-
-
-.tourWrite__dateViewr {
-}
 
 .tourWrite__dateViewrs {
     display: flex;

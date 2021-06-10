@@ -593,7 +593,7 @@ export const TourWrite: React.FC<Ipage> = (pageInfo) => {
                                 />
                                 <label htmlFor="range">연일여행</label>
                                 {rangeType === "Range" && (
-                                    <div>
+                                    <div className="ddday__cunt">
                                         <input
                                             onChange={(e) => {
                                                 const range = toNumber(

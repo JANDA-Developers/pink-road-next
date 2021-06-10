@@ -2347,7 +2347,7 @@ div.sum_div .last_ul i {
   border-bottom: 1px solid #c4c4c4;
   line-height: 22px;
   box-sizing: border-box;
-  padding: 5% 0 80px 0;
+  padding: 5% 0 50px 0;
 }
 .master__table .th div[class*="t0"] {
   display: inline-block;
@@ -2969,12 +2969,23 @@ div.sum_div .last_ul i {
   .board_write .write_type .img_box_add {
     width: 100%;
   }
+  .board_write .con_tap {
+    line-height: 38px;
+    padding-bottom: 5px;
+}
   .board_write .con_tap li {
-    margin: 0px 2px;
+    margin: 0px 2px 0 0;
     font-size: 0.8em;
-    line-height: 13px;
+    line-height: 1rem;
+    padding: 10px;
+    background-color: #cccccc;
+    border-radius: 3px;
   }
-
+  .board_write .con_tap li.on {
+    background-color: #ed297b;
+    
+    color: #ffffff;
+}
   .board_write .con_tap li.on span:after {
     bottom: -17px;
   }
@@ -3001,7 +3012,46 @@ div.sum_div .last_ul i {
     width: 100%;
     margin-bottom: 3px;
   }
+  .board_write .con_tap li.on span:after{
+    display: none;
+  }
+  .boardNavigation{
+    height: auto;
+  }
+  .boardNavigation .float_left{
+    float: none;
+    text-align: left;
+  }
+  .boardNavigation .float_right{
+    float: none;
+    text-align: left;
+  }
+  .board_write .con_bottom{
+    padding-bottom: 0;
+  }
+  .ddday__cunt{
+    display: flex;
+    line-height: 3.8rem;
+  }
 }
 
 @media (max-width: 360px) {
+  .board_write .write_con .day_tap .elimination {
+    left: 74%;
+}
+.board_write .write_con .day_tap .add {
+  left: 74%;
+  margin-left: -126px;
+}
+  .board_write .write_type .input_form, 
+  .board_write .write_type .form{
+    line-height: 2rem;
+    font-size: 0.9rem;
+  }
+  .board_write .bottom_write {
+    border: 1px solid #cccc;
+}
+.board_write .write_type .img_box_add .img_add {
+  margin-bottom: 0px;
+}
 }
