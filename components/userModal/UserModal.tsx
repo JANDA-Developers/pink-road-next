@@ -8,6 +8,7 @@ import {
     userRoleToKR,
     managerVerifiedKR,
     withCompany,
+    genderToKR,
 } from "../../utils/enumToKr";
 import { autoHypenPhone } from "../../utils/formatter";
 import { closeModal } from "../../utils/popUp";
@@ -120,16 +121,7 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                                             </div>
                                             <div className="th04">성별</div>
                                             <div className="td04">
-                                                <select value={gender}>
-                                                    <option
-                                                        value={GENDER.FEMALE}
-                                                    >
-                                                        여성
-                                                    </option>
-                                                    <option value={GENDER.MAIL}>
-                                                        남성
-                                                    </option>
-                                                </select>
+                                                {genderToKR(gender)}
                                             </div>
                                         </div>
                                         <div className="tr">
@@ -355,7 +347,7 @@ export const UserModal: React.FC<IProp> = ({ userId, handlers }) => {
                     </div>
                     <div className="fin ifMobile">
                         <div className="float_left">
-                            {!item.isVerifiedManager && (
+                            {!item.isVerifiedManager && isSeller && (
                                 <div style={{ display: "flex" }}>
                                     <div>
                                         <i

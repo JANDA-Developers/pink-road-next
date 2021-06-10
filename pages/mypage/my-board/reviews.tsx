@@ -11,7 +11,6 @@ import { SearchBar } from "../../../components/searchBar/SearchBar";
 import { useDateFilter } from "../../../hook/useSearch";
 import { useSingleSort } from "../../../hook/useSort";
 import { Change } from "../../../components/loadingList/LoadingList";
-import { useRouter } from "next/router";
 import { isOpenKr } from "../../../utils/enumToKr";
 import { Paginater } from "../../../components/common/Paginator";
 import { useProductReviewList } from "../../../hook/useReview";
@@ -22,11 +21,11 @@ import {
 import { useModal } from "../../../hook/useModal";
 import { AppContext } from "../../_app";
 import Link from "next/link";
+import { MyBoardViewBoardNav } from "../../../components/topNav/MasterTopNav";
 
 interface IProp {}
 
 export const MyPageBoardReviews: React.FC<IProp> = () => {
-    const rotuer = useRouter();
     const { myProfile } = useContext(AppContext);
     const {
         items,
@@ -71,23 +70,7 @@ export const MyPageBoardReviews: React.FC<IProp> = () => {
             <div className="in myboard_box">
                 <h4>나의 게시글</h4>
                 <div className="mypage__tap">
-                    <ul>
-                        <li>
-                            <Link href="/mypage/my-board/questions">
-                                <a>질문목록</a>
-                            </Link>
-                        </li>
-                        <li className="on">
-                            <Link href="/mypage/my-board/reviews">
-                                <a>리뷰목록</a>
-                            </Link>
-                        </li>
-                        <li className="on">
-                            <Link href="/mypage/my-board/ticket">
-                                <a>1:1문의</a>
-                            </Link>
-                        </li>
-                    </ul>
+                    <MyBoardViewBoardNav />
                 </div>
                 <div className="paper_div">
                     <div className="con_top">
@@ -130,8 +113,6 @@ export const MyPageBoardReviews: React.FC<IProp> = () => {
                                 </div>
                                 <div className="board_list_mini ln05">
                                     <div className="thead">
-                                        <div className="th02">게시판</div>
-                                        <div className="th03">공개</div>
                                         <div className="th04">제목</div>
                                         <div className="th05">생성일</div>
                                     </div>
@@ -146,14 +127,6 @@ export const MyPageBoardReviews: React.FC<IProp> = () => {
                                                     }}
                                                     key={item._id}
                                                 >
-                                                    <div className="th02">
-                                                        {item.boardType}
-                                                    </div>
-                                                    <div className="th03">
-                                                        {isOpenKr(
-                                                            !!item.isOpen
-                                                        )}
-                                                    </div>
                                                     <div className="th04">
                                                         <a>{item.title}</a>
                                                     </div>

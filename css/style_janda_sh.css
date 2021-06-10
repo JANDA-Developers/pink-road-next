@@ -6263,7 +6263,7 @@ i.important_icon {
   border-right: 1px solid #ccc;
   margin-bottom: -2px;
   box-sizing: border-box;
-  z-index: 90;
+  z-index: 80;
 }
 
 .tour_details_in .boardReadBody .con_top_tap span {
@@ -8220,6 +8220,7 @@ i.calendar svg {
 }
 
 .portfolio_in .con02 li.img02 .img {
+  width: 100%;
   background-size: 70px;
   background-image: url("/img/svg/work_icon_02.svg");
 }
@@ -11406,6 +11407,21 @@ ul.photo_ul.main_photo_ul li .title {
   }
 }
 
+.main_top_images__delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 140px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: initial;
+  color: white;
+  cursor: pointer;
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
 @media (min-width: 1100px) {
   div.popup_bg_mini .con.mini {
     padding: 15px 30px 0;
@@ -11550,20 +11566,7 @@ ul.photo_ul.main_photo_ul li .title {
     margin-top: 50px;
   }
 
-  .main_top_images__delete {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 140px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: initial;
-    color: white;
-    cursor: pointer;
-    background-color: rgba(255, 0, 0, 0.3);
-  }
+
 
   .main_top_images__close {
     position: absolute;

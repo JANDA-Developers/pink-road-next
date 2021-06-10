@@ -8,6 +8,7 @@
 .JDpopup__handler {
     cursor: grab;
     background-color: white;
+    height: 8px;
 }
 .JDpopup__handler:active {
     cursor: grabbing;

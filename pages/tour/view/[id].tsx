@@ -1,15 +1,10 @@
 import dayjs from "dayjs";
-import {
-    useProductFindById,
-    useProductGroupList,
-    useProductList,
-} from "hook/useProduct";
+import { useProductFindById, useProductGroupList } from "hook/useProduct";
 import SubTopNav from "layout/components/SubTop";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { autoComma } from "utils/formatter";
-import Page404 from "pages/404";
 import { AppContext } from "pages/_app";
 import { useProductDelete } from "hook/useProduct";
 import Slider, { Slide } from "../../../components/slider/Slider";
@@ -57,6 +52,7 @@ import { getClientIndex } from "../../../utils/getClientIndex";
 import { Validater } from "../../../utils/validate";
 import { Modal2 } from "../../../components/modal/Modal";
 import { TravlerControlTable } from "../../../components/bookingModal/TravelerControlTable";
+import { useFragmentMove } from "../../../hook/useFragmentMove";
 
 export const getStaticProps = getStaticPageInfo("tourView");
 export async function getStaticPaths() {
@@ -67,6 +63,8 @@ export async function getStaticPaths() {
 }
 const TourDetail: React.FC<Ipage> = (pageInfo) => {
     const router = useRouter();
+    useFragmentMove();
+    let urlFragment = router.asPath.match(/#([a-z0-9]+)/gi);
     const isExp = checkIsExp();
     const reviewModalHook = useModal<IModalInfo>();
     const travelersModalHook =
@@ -207,6 +205,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
         });
     };
 
+    const moveToFragment = () => {};
+
     const reviewPagination = generateClientPaging(reviews, 4);
 
     if (!called && loading) return <PageLoading />;
@@ -249,8 +249,12 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
             failFn: moveToQuestionTap,
         },
         {
-            value: !isDisable,
+            value: !isPast,
             failMsg: "예약 가능한 기간이 지났습니다.",
+        },
+        {
+            value: !productStatusIsNotOk,
+            failMsg: "예약 가능한 상태가 아닙니다.",
         },
         {
             value: totalResvCount,
@@ -275,9 +279,6 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
 
     // 프로덕트 없을떄 로딩처리
     if (!product) return null;
-    // 오픈상태가 아닌 페이지 가드처리
-    if (!isSeller && !product.isOpen) return <PageDeny />;
-    // if (!isSeller && product.status !== ProductStatus.OPEN) return <Page404 />
 
     return (
         <div className="edtiorView">
@@ -320,12 +321,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                             {images?.map((img, i) => (
                                                 <Slide key={i + "sliderImg"}>
                                                     <img
-                                                        src={
-                                                            getResized(
-                                                                img.uri,
-                                                                1000
-                                                            ) || ""
-                                                        }
+                                                        src={img.uri}
                                                         alt={img.name}
                                                     />
                                                 </Slide>
@@ -434,6 +430,9 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                                     </th>
                                                     <td className="smtxt bt_line">
                                                         <ProductDateSelecter
+                                                            isMyProduct={
+                                                                isMyProduct
+                                                            }
                                                             currentId={
                                                                 product._id
                                                             }
@@ -627,12 +626,13 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                             <div className={`link02`}>
                                                 <a
                                                     onClick={() => {
-                                                        travelersModalHook.openModal(
-                                                            {
-                                                                nextAction:
-                                                                    "pay",
-                                                            }
-                                                        );
+                                                        if (validate())
+                                                            travelersModalHook.openModal(
+                                                                {
+                                                                    nextAction:
+                                                                        "pay",
+                                                                }
+                                                            );
                                                     }}
                                                 >
                                                     예약하기
@@ -641,12 +641,13 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
 
                                             <div
                                                 onClick={() => {
-                                                    travelersModalHook.openModal(
-                                                        {
-                                                            nextAction:
-                                                                "bracket",
-                                                        }
-                                                    );
+                                                    if (validate())
+                                                        travelersModalHook.openModal(
+                                                            {
+                                                                nextAction:
+                                                                    "bracket",
+                                                            }
+                                                        );
                                                 }}
                                                 className={`link05`}
                                             >
@@ -756,7 +757,7 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                 </div>
                                 {/* 리뷰 신규추가 */}
                                 <div className="in_box" id="tap__04">
-                                    <h4>리뷰</h4>
+                                    <h4 id="reviews">리뷰</h4>
                                     <div className="text ck-content">
                                         <div className="review__box">
                                             <ul className="review__list">
@@ -872,10 +873,10 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                                         <div className="thead">
                                             <div className="th01">No.</div>
                                             <div className="th02">제목</div>
-                                            <div className="th03">글쓴이</div>
+                                            {/* <div className="th03">글쓴이</div> */}
                                             <div className="th04">날짜</div>
                                         </div>
-                                        <div className="tbody">
+                                        <div id="questions" className="tbody">
                                             <ul>
                                                 {questionSliced.map(
                                                     (qs, index) => (
@@ -965,8 +966,8 @@ const TourDetail: React.FC<Ipage> = (pageInfo) => {
                     className="travelerTableInModal"
                     withIncludeBooker={isLogin}
                     bookerInclue={bookerInclude}
-                    bookerName={myProfile.name}
-                    bookerPhoneNumber={myProfile.phoneNumber}
+                    bookerName={myProfile?.name}
+                    bookerPhoneNumber={myProfile?.phoneNumber}
                     onChangetravelers={settravelers}
                     onChnageBookerInclude={() => {
                         setBookerInclude(!bookerInclude);

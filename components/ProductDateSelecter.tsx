@@ -1,16 +1,19 @@
 import dayjs from "dayjs";
-import React from "react";
+import React, { useContext } from "react";
 import { useFindProductsByGroup } from "../hook/useProduct";
-import { productList_ProductList_data } from "../types/api";
+import { AppContext } from "../pages/_app";
+import { productList_ProductList_data, ProductStatus } from "../types/api";
 import isEmpty from "../utils/isEmpty";
 
 interface IProp {
+    isMyProduct: boolean;
     currentId: string;
     groupCode: string;
     onChange: (target?: productList_ProductList_data) => void;
 }
 
 export const ProductDateSelecter: React.FC<IProp> = ({
+    isMyProduct,
     currentId,
     groupCode,
     onChange,
@@ -47,13 +50,13 @@ export const ProductDateSelecter: React.FC<IProp> = ({
     let availableExsist = false;
 
     if (getLoading) return <Result />;
+    if (isMyProduct) return <Result />;
     for (let item of dateOrderedItems) {
         if (dayjs(item.startDate).isAfter(new Date(), "day")) {
             availableExsist = true;
         }
     }
-    if (isEmpty(dateOrderedItems))
-        return <span>예약이 가능한 상태가 아닙니다.</span>;
+    if (isEmpty(dateOrderedItems)) return <span>탐색된 날짜가 없습니다.</span>;
     if (!availableExsist) return <span>예약가능 기간이 지났습니다.</span>;
     if (!groupCode) return <span>{}</span>;
 

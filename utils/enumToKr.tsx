@@ -2,6 +2,7 @@ import {
     AddtionalFeesStatus,
     AgeType,
     AnnounceType,
+    BoardType,
     bookingFindByCode_BookingFindByCode_data_bankTransInfo,
     BookingStatus,
     CategoryType,
@@ -41,8 +42,8 @@ export const productStatus = (status?: ProductStatus | null) => {
     if (status === ProductStatus.COMPLETED) return "완료";
     if (status === ProductStatus.EXPIRED) return "만료";
     if (status === ProductStatus.OPEN) return "판매중";
-    if (status === ProductStatus.READY) return "생성요청";
-    if (status === ProductStatus.REFUSED) return "생성거절됨";
+    if (status === ProductStatus.READY) return "오픈요청";
+    if (status === ProductStatus.REFUSED) return "오픈거절됨";
     if (status === ProductStatus.UPDATE_REQ) return "업데이트요청";
     if (status === ProductStatus.UPDATE_REQ_REFUSED) return "업데이트요청거절";
     return status || "";
@@ -50,8 +51,8 @@ export const productStatus = (status?: ProductStatus | null) => {
 
 export const paymentStatus = (status?: PaymentStatus | null) => {
     if (status === PaymentStatus.CANCEL) return "환불완료";
-    if (status === PaymentStatus.COMPLETE) return "완료";
-    if (status === PaymentStatus.READY) return "대기중";
+    if (status === PaymentStatus.COMPLETE) return "결제완료";
+    if (status === PaymentStatus.READY) return "결제대기중";
     return "";
 };
 
@@ -90,6 +91,7 @@ export const questionSatus = (status: QuestionStatus) => {
     if (status === QuestionStatus.READY) return "미답변";
     return "";
 };
+export const questionSatusKr = questionSatus;
 
 export const itemTypeToKr = (type: ProductType) => {
     if (type === ProductType.EXPERIENCE) return "체험";
@@ -97,6 +99,15 @@ export const itemTypeToKr = (type: ProductType) => {
     return "";
 };
 
+export const BoardTypeKr: Record<BoardType, string> = {
+    ANNOUNCE: "공지사항",
+    News: "뉴스",
+    PORTFOLIO: "포트폴리오",
+    PRODUCT: "상품",
+    PRODUCT_REVIEW: "리뷰",
+    QNA: "자주하는질문",
+    QUESTION: "문의글",
+};
 export const questionAsKr = (type: QuestionAS) => {
     if (type === QuestionAS.NORMAL) return "일반문의";
     if (type === QuestionAS.PARTNER) return "파트너문의";
@@ -224,8 +235,8 @@ export const requestStatusKr = (req?: RequestStatus) => {
 export const methodTypeKr = (mt?: MethodType) => {
     if (mt === MethodType.BOOKING) return "예약";
     if (mt === MethodType.PRODUCT) return "상품";
-    if (mt === MethodType.PRODUCT_CREATE) return "상품생성";
-    if (mt === MethodType.PRODUCT_REOPEN) return "상품재개";
+    if (mt === MethodType.PRODUCT_CREATE) return "오픈요청";
+    if (mt === MethodType.PRODUCT_REOPEN) return "오픈재개";
     if (mt === MethodType.SETTLEMENT) return "정산";
     if (mt === MethodType.TRAVEL) return "여행";
     return "";
@@ -294,7 +305,7 @@ export const bankrefundTransInfo = (
 };
 
 export const nameOf = (author?: any) => {
-    return author?.manageName || author?.name || author?.busi_name || "";
+    return author?.busi_name || author?.manageName || author?.name || "";
 };
 export const phoneNumberOf = (author?: getContext_GetProfile_data | null) => {
     return (

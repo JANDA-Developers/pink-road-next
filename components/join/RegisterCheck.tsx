@@ -44,7 +44,6 @@ const RegisterCheck: React.FC<IProps> = ({ registerInfo, phoneNumberHack }) => {
     const [signUpMu] = useSignUp({
         onCompleted: ({ SignUp }) => {
             if (SignUp.ok) {
-                alert("회원가입 완료");
                 setJoinProcess("registered");
             } else {
                 if (SignUp.error?.code === ERR_CODE.ALEADY_SAME_DATA) {

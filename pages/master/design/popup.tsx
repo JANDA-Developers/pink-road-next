@@ -1,36 +1,29 @@
 import { MasterLayout } from "layout/MasterLayout";
-import CalendarIcon from "components/common/icon/CalendarIcon";
 import React, { useContext, useEffect, useState } from "react";
 import { usePopups } from "../../../hook/usePopups";
 import { useHomepageUpdate } from "../../../hook/useHomepage";
 import { AppContext } from "../../_app";
-import dayjs from "dayjs";
-import { Fmodal, LinkBehavior } from "../../../types/api";
-import { closeModal, openModal } from "../../../utils/popUp";
+import { Fmodal } from "../../../types/api";
+import { openModal } from "../../../utils/popUp";
 import { Ipopup } from "../../../types/interface";
 import { omits } from "../../../utils/omit";
 import { ALLOW_ADMINS, defaultModalGet } from "../../../types/const";
 import { cloneObject } from "../../../utils/clone";
 import { DesignTopNav } from "../../../components/topNav/MasterTopNav";
 import { auth } from "../../../utils/with";
-import { useUpload } from "../../../hook/useUpload";
-import { LoadEditor } from "../../../components/edit/EdiotrLoading";
-import { DayPickerModal } from "../../../components/dayPickerModal/DayPickerModal";
-import { toNumber } from "../../../utils/toNumber";
-import { JDPCpopup } from "../../../components/popup/PCPopup";
 import { JDpopup } from "../../../components/popup/JDpopup";
-import { Modal2 } from "components/modal/Modal";
 import { useModal } from "hook/useModal";
-
-const Editor = LoadEditor();
+import { yyyymmdd } from "../../../utils/yyyymmdd";
+import { cutStr } from "../../../utils/cutStr";
+import { IPopUpModalHookInfo, PopUpConfigModal } from "./PopUpConfigModal";
+import { InfoText } from "../../../components/infoText/InfoText";
 
 interface IProp {}
 
 export const MsDesignB: React.FC<IProp> = () => {
     const { homepage } = useContext(AppContext);
     const popupHook = usePopups(homepage?.modal || [], { autoOpen: false });
-    const { signleUpload } = useUpload();
-    const modalHook = useModal();
+    const popupConfigModal = useModal<IPopUpModalHookInfo>();
     const [datePopUp, setDatePopUp] = useState<Ipopup>();
     const [homepageUpdate] = useHomepageUpdate({
         onCompleted: ({ HomepageUpdate }) => {
@@ -39,7 +32,7 @@ export const MsDesignB: React.FC<IProp> = () => {
             }
         },
     });
-    const { selectedIndex, setSelcetedIndex } = popupHook;
+    const { selectedIndex, setSelcetedIndex, openPopup } = popupHook;
 
     const handleUpdate = () => {
         homepageUpdate({
@@ -58,27 +51,37 @@ export const MsDesignB: React.FC<IProp> = () => {
 
     const selectedModal =
         selectedIndex !== undefined ? popupHook.popups[selectedIndex] : null;
-    const handleContentChange = (data: string) => {
-        if (selectedIndex === undefined) throw Error("no selected Index");
-        popupHook.popups[selectedIndex].content = data;
+
+    // const handleContentChange = (data: string) => {
+    //     if (selectedIndex === undefined) throw Error("no selected Index");
+    //     popupHook.popups[selectedIndex].content = data;
+    //     popupHook.setPopups([...popupHook.popups]);
+    // };
+
+    const handleAddPopUp = () => {
+        const newPopUp: Ipopup = { ...defaultModalGet() };
+        popupHook.popups.push(newPopUp);
         popupHook.setPopups([...popupHook.popups]);
     };
 
-    const handleAddPopUp = () => {
-        const newPopUp: Ipopup = defaultModalGet();
-        popupHook.setPopups([...popupHook.popups, newPopUp]);
-    };
+    const handleDelete =
+        (popup: Fmodal) =>
+        (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            e.stopPropagation();
+            e.preventDefault();
+            const filtered = popupHook.popups.filter(
+                (pop) => pop._id !== popup._id
+            );
+            popupHook.setPopups([...filtered]);
+        };
 
-    const handleDelete = (popup: Fmodal) => () => {
-        const filtered = popupHook.popups.filter(
-            (pop) => pop._id !== popup._id
-        );
-        popupHook.setPopups([...filtered]);
-    };
-
-    const handlePreview = (popup: Fmodal) => () => {
-        popupHook.openPopup(popup);
-    };
+    const handlePreview =
+        (popup: Fmodal) =>
+        (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            e.stopPropagation();
+            e.preventDefault();
+            popupHook.openPopup(popup);
+        };
 
     const handleCollapesToggle = (popup: Fmodal) => () => {
         // setCollapseList([popup._id]);
@@ -95,28 +98,13 @@ export const MsDesignB: React.FC<IProp> = () => {
         if (homepage?.modal) popupHook.setPopups(cloneObject(homepage.modal));
     }, [homepage?.modal]);
 
-    const defaultPopStartDate = new Date();
-    const defaultPopEndDate = dayjs().add(1, "d").toDate();
     return (
         <div>
-            {datePopUp && (
-                <DayPickerModal
-                    defaultRange={{
-                        from: datePopUp.startDate
-                            ? dayjs(datePopUp.startDate).toDate()
-                            : defaultPopStartDate,
-                        to: datePopUp.endDate
-                            ? dayjs(datePopUp.endDate).toDate()
-                            : defaultPopEndDate,
-                    }}
-                    onSubmit={(range) => {
-                        closeModal("#dayPickerModal")();
-                        datePopUp.startDate = range.from;
-                        datePopUp.endDate = range.to;
-                        popupHook.setPopups([...popupHook.popups]);
-                    }}
-                />
-            )}
+            <PopUpConfigModal
+                key={popupConfigModal.info?.popup._id}
+                popupHook={popupHook}
+                {...popupConfigModal}
+            />
             <MasterLayout>
                 <JDpopup popupHook={popupHook} />
                 <div className="in ">
@@ -125,7 +113,16 @@ export const MsDesignB: React.FC<IProp> = () => {
                         <DesignTopNav />
                         <div className="con design popup_setting">
                             <div className="fin">
-                                <div className="float_left"></div>
+                                <div className="float_left">
+                                    <button
+                                        className="btn medium"
+                                        onClick={() => {
+                                            popupHook.openAllPopUp();
+                                        }}
+                                    >
+                                        OPEN
+                                    </button>
+                                </div>
                                 <div className="float_right">
                                     <button
                                         onClick={handleUpdate}
@@ -136,7 +133,89 @@ export const MsDesignB: React.FC<IProp> = () => {
                                     </button>
                                 </div>
                             </div>
-                            {/* <div className="popupst_box">
+
+                            <div className="popupsetting__list">
+                                {popupHook.popups
+                                    .sort((a, b) => b.createdAt - a.createdAt)
+                                    .map((popup, i) => (
+                                        <div
+                                            onClick={() => {
+                                                popupConfigModal.openModal({
+                                                    popup,
+                                                });
+                                            }}
+                                            key={popup._id + "previewCard"}
+                                            className="popupsetting__con"
+                                        >
+                                            <div>
+                                                <h5>{popup.title}</h5>
+                                                <div className="tag">
+                                                    {popup.usePc ? (
+                                                        <span className="state_on mr5">
+                                                            PC ON
+                                                        </span>
+                                                    ) : (
+                                                        <span className="state_off mr5">
+                                                            PC OFF
+                                                        </span>
+                                                    )}
+                                                    {popup.useMobile ? (
+                                                        <span className="state_on ">
+                                                            MB ON
+                                                        </span>
+                                                    ) : (
+                                                        <span className="state_off ">
+                                                            MB OFF
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="body">
+                                                <span>
+                                                    우선순위: {popup.priority}
+                                                </span>
+                                                <span className="date">
+                                                    {yyyymmdd(popup.startDate)}{" "}
+                                                    ~ {yyyymmdd(popup.endDate)}
+                                                </span>
+                                            </div>
+                                            <button
+                                                className="btn small mr10"
+                                                onClick={handlePreview(popup)}
+                                            >
+                                                미리보기
+                                            </button>
+                                            <button
+                                                className="btn small"
+                                                onClick={handleDelete(popup)}
+                                            >
+                                                삭제하기
+                                            </button>
+                                        </div>
+                                    ))}
+                                <div
+                                    className="add mb10"
+                                    onClick={handleAddPopUp}
+                                >
+                                    <button className="btn medium">
+                                        <i className="flaticon-add"></i>팝업
+                                        생성
+                                    </button>
+                                </div>
+                            </div>
+                            <InfoText>우선순위 정렬</InfoText>
+                        </div>
+                    </div>
+                </div>
+            </MasterLayout>
+        </div>
+    );
+};
+
+export default auth(ALLOW_ADMINS)(MsDesignB);
+
+{
+    /* <div className="popupst_box">
                                 <div className="hang_list">
                                     <ul className="list_setting">
                                         {popupHook.popups.map(
@@ -186,22 +265,7 @@ export const MsDesignB: React.FC<IProp> = () => {
                                                         </span>
                                                     </div>
                                                     <div className="content">
-                                                        <button
-                                                            className="btn small mr10"
-                                                            onClick={handlePreview(
-                                                                modal
-                                                            )}
-                                                        >
-                                                            미리보기
-                                                        </button>
-                                                        <button
-                                                            className="btn small"
-                                                            onClick={handleDelete(
-                                                                modal
-                                                            )}
-                                                        >
-                                                            삭제하기
-                                                        </button>
+                                                       
                                                         <div className="line">
                                                             <h6>우선순위</h6>
                                                             <div className="txt">
@@ -676,275 +740,5 @@ export const MsDesignB: React.FC<IProp> = () => {
                                         저장하기
                                     </button>
                                 </div>
-                            </div> */}
-                            <button onClick={modalHook.openModal}>OPEN</button>
-                            <div className="popupsetting__list">
-                                <div className="popupsetting__con">
-                                    <div className="title">
-                                        <h5>제목입니당~</h5>
-                                        <div className="tag">
-                                            <span className="state_on">ON</span>
-                                            <span className="state_off">
-                                                OFF
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="body">
-                                        <span className="date">
-                                            2020.12.12 ~ 2020.12.12
-                                        </span>
-                                        dddddddddddddddddddddddddddddddddddddddd
-                                    </div>
-                                </div>
-                                <div className="popupsetting__con">
-                                    <div className="title">
-                                        <h5>제목입니당~</h5>
-                                        <div className="tag">
-                                            <span className="state_on">ON</span>
-                                            <span className="state_off">
-                                                OFF
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="body">
-                                        <span className="date">
-                                            2020.12.12 ~ 2020.12.12
-                                        </span>
-                                        dddddddddddddddddddddddddddddddddddddddd
-                                    </div>
-                                </div>
-                                <div className="popupsetting__con">
-                                    <div className="title">
-                                        <h5>제목입니당~</h5>
-                                        <div className="tag">
-                                            <span className="state_on">ON</span>
-                                            <span className="state_off">
-                                                OFF
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="body">
-                                        <span className="date">
-                                            2020.12.12 ~ 2020.12.12
-                                        </span>
-                                        dddddddddddddddddddddddddddddddddddddddd
-                                    </div>
-                                </div>
-                                <div className="popupsetting__con">
-                                    <div className="title">
-                                        <h5>제목입니당~</h5>
-                                        <div className="tag">
-                                            <span className="state_on">ON</span>
-                                            <span className="state_off">
-                                                OFF
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="body">
-                                        <span className="date">
-                                            2020.12.12 ~ 2020.12.12
-                                        </span>
-                                        dddddddddddddddddddddddddddddddddddddddd
-                                    </div>
-                                </div>
-                                <div className="popupsetting__con">
-                                    <div className="title">
-                                        <h5>제목입니당~</h5>
-                                        <div className="tag">
-                                            <span className="state_on">ON</span>
-                                            <span className="state_off">
-                                                OFF
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="body">
-                                        <span className="date">
-                                            2020.12.12 ~ 2020.12.12
-                                        </span>
-                                        dddddddddddddddddddddddddddddddddddddddd
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <Modal2
-                    UpCon={
-                        <h3 className="popup__tittle">
-                            팝업설정
-                            <div className="switch">
-                                <input
-                                    className="tgl tgl-skewed"
-                                    type="checkbox"
-                                />
-                                <label
-                                    className="tgl-btn"
-                                    data-tg-off="OFF"
-                                    data-tg-on="ON"
-                                />
-                            </div>
-                        </h3>
-                    }
-                    {...modalHook}
-                >
-                    <ul className="list__setting">
-                        <li className="con_toggle">
-                            <div className="content">
-                                <div className="line">
-                                    <h6>팝업 타이틀</h6>
-                                    <div className="txt">
-                                        <input
-                                            type="text"
-                                            className="w100"
-                                            placeholder="title"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="line">
-                                    <h6>우선순위</h6>
-                                    <div className="txt">
-                                        <select className="w50">
-                                            <option value={0}>0</option>
-                                            <option value={1}>1</option>
-                                            <option value={2}>2</option>
-                                            <option value={3}>3</option>
-                                            <option value={4}>4</option>
-                                            <option value={5}>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="line">
-                                    <h6>노출기간</h6>
-                                    <div className="txt">
-                                        <div className="input_box mr5">
-                                            <input
-                                                readOnly
-                                                type="text"
-                                                className="day w100"
-                                            />
-                                            <CalendarIcon />
-                                        </div>
-                                        <span className="pc"> ~ </span>
-                                        <div className="input_box ml5">
-                                            <input
-                                                readOnly
-                                                type="text"
-                                                className="day w100"
-                                            />
-                                            <CalendarIcon />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="line">
-                                    <h6>링크연결</h6>
-
-                                    <div className="txt">
-                                        <input
-                                            type="text"
-                                            className="w100 mr5"
-                                            placeholder="https://"
-                                        />
-                                        <select className="w100">
-                                            <option value={LinkBehavior._blank}>
-                                                새창
-                                            </option>
-                                            <option value={LinkBehavior._self}>
-                                                현재창
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="line">
-                                    <h6>좌표설정</h6>
-                                    <p>모바일일떄는 가운데 정렬 됩니다.</p>
-                                    <div className="txt">
-                                        <input
-                                            type="text"
-                                            className="w100 mr5"
-                                            placeholder="Left"
-                                        />
-                                        <input
-                                            type="text"
-                                            className="w100"
-                                            placeholder="Top"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="line">
-                                    <h6>PC/Mobile</h6>
-                                    <div className="txt">
-                                        <div className="switch">
-                                            모바일 사용
-                                            <input
-                                                className="tgl tgl-skewed"
-                                                type="checkbox"
-                                            />
-                                            <label
-                                                className="tgl-btn"
-                                                data-tg-off="OFF"
-                                                data-tg-on="ON"
-                                            />
-                                        </div>
-                                        <div className="switch">
-                                            PC사용
-                                            <input
-                                                className="tgl tgl-skewed"
-                                                type="checkbox"
-                                            />
-                                            <label
-                                                className="tgl-btn"
-                                                data-tg-off="OFF"
-                                                data-tg-on="ON"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="line">
-                                    <h6>크기조절</h6>
-                                    <p>최대 화면 크기를 초과할 수 없습니다.</p>
-                                    <div className="txt">
-                                        <input
-                                            type="text"
-                                            className="w100 mr5"
-                                            placeholder="width"
-                                        />
-                                        <input
-                                            type="text"
-                                            className="w100"
-                                            placeholder="height"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="line">
-                                    <h6>백그라운드 설정</h6>
-                                    <div className="txt">
-                                        <div className="fileNameInputLabel"></div>
-                                        <input type="file" />
-                                    </div>
-                                </div>
-                                <div className="line">
-                                    <h6>컨텐츠 설정</h6>
-                                    <div className="txt">
-                                        <div className="fileNameInputLabel"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="add_popup">
-                            <button
-                                onClick={handleAddPopUp}
-                                className="btn small pink_font mr10"
-                            >
-                                팝업 생성하기
-                            </button>
-                            <button className="btn small mr10">미리보기</button>
-                            <button className="btn small">삭제하기</button>
-                        </li>
-                    </ul>
-                </Modal2>
-            </MasterLayout>
-        </div>
-    );
-};
-
-export default auth(ALLOW_ADMINS)(MsDesignB);
+                            </div> */
+}

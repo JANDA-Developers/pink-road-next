@@ -211,9 +211,30 @@ export const getImg = (
     console.log({ largetThans });
 
     const size = largetThans.find((size) => checkExist(size));
+    console.log({ size });
 
     if (size) {
         return file.imgScaleUrl?.[size];
+    }
+    return file.uri;
+};
+
+export const getSize = (
+    file: Ffile | null | undefined,
+    hopeSize: ResizeKeys
+) => {
+    if (!file) return "";
+    const sizes: ResizeKeys[] = ["tiny", "small", "medium", "large", "huge"];
+    const checkExist = (size: ResizeKeys) => {
+        return !!file.imgScaleUrl?.[size];
+    };
+
+    const hasSize = checkExist(hopeSize);
+    console.log("file.imgScaleUrl");
+    console.log(file.imgScaleUrl);
+
+    if (hasSize) {
+        return file.imgScaleUrl?.[hopeSize];
     }
     return file.uri;
 };

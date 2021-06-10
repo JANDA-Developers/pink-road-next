@@ -37,7 +37,12 @@ export const ProductGroup: React.FC<IProp> = ({
     onSave: handleSave,
 }) => {
     const [group, setGroup] = useCopy(defaultGroup);
-    const { items: products, filter, setFilter, getLoading } = useProductList(
+    const {
+        items: products,
+        filter,
+        setFilter,
+        getLoading,
+    } = useProductList(
         {
             initialViewCount: 40,
             initialFilter: {
@@ -49,18 +54,22 @@ export const ProductGroup: React.FC<IProp> = ({
 
     const handleDrop = (result: DropResult) => {
         const ordered = reorder(
-            arrangedProd.map(p => p._id),
+            arrangedProd.map((p) => p._id),
             result.source.index,
             result.destination?.index!
         );
         group.members = [...ordered];
 
+        console.log({ ordered });
+
         setGroup({ ...group });
     };
 
-    const handleExtract = (index: number) => () => {
-        group.members.splice(index, 1);
-        console.log(group.members);
+    const handleExtract = (provided: productList_ProductList_data) => () => {
+        console.log(provided);
+        const newGroups = group.members.filter((m) => m !== provided._id);
+        group.members = newGroups;
+        // group.members.splice(index, 1);
         setGroup({ ...group });
     };
 
@@ -84,8 +93,6 @@ export const ProductGroup: React.FC<IProp> = ({
     const arrangedProd = group.members
         .map((member) => groupMembersProd.find((prod) => prod._id === member)!)
         .filter((prod) => prod);
-
-    console.log({ arrangedProd });
 
     return (
         <div className="block_box productGroupBox">
@@ -127,7 +134,7 @@ export const ProductGroup: React.FC<IProp> = ({
                                                     >
                                                         <span
                                                             onClick={handleExtract(
-                                                                index
+                                                                pd
                                                             )}
                                                             className="productGroup__del del"
                                                         >

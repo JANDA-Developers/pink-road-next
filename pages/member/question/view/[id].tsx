@@ -79,6 +79,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
         contents,
         subTitle,
         _id,
+        files,
         product,
         author,
         isOpen,
@@ -98,7 +99,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
         const to = updateURLParameter("/member/question", "page", page);
 
         if (pid) {
-            location.href = `/tour/view/` + pid;
+            location.href = `/tour/view/` + pid + "#questions";
         } else router.push(to);
     };
 
@@ -151,6 +152,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
     return (
         <div>
             <BoardView
+                files={files}
                 isOpen={!!isOpen}
                 authorId={author?._id || ""}
                 onList={toList}
@@ -197,7 +199,7 @@ export const QuestionDetail: React.FC<IProp> = () => {
                                 )}
                                 <CommentWrite
                                     defaultContent={""}
-                                    title={`${title} : ` + myProfile?.nickName}
+                                    title={nameOf(myProfile)}
                                     onSubmit={handleAnswer}
                                 />
                             </div>

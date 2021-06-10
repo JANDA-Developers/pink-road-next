@@ -14,7 +14,7 @@ import {
 } from "../../utils/enumToKr";
 import { autoComma, card_hypen } from "../../utils/formatter";
 import { getFromUrl } from "../../utils/url";
-import { yyyymmddHHmm } from "../../utils/yyyymmdd";
+import { yyyymmdd, yyyymmddHHmm } from "../../utils/yyyymmdd";
 
 interface IProp {}
 
@@ -89,13 +89,14 @@ export const JDpayCompleteUI: React.FC<IProp> = () => {
                         <div className="payment_tr">
                             <div className="payment_th">일정</div>
                             <div className="payment_td">
-                                {/* 2020.03.03 ~ 2020.03.05 / 2박3일 */}
+                                {yyyymmdd(booking.product.startDate)} ~{" "}
+                                {yyyymmdd(booking.product.endDate)}
                             </div>
                         </div>
                         <div className="payment_tr">
                             <div className="payment_th">선택인원</div>
                             <div className="payment_td">
-                                {/* 성인1/아동1/유아0 */}
+                                {`성인${booking.adultCount}/아동${booking.kidCount}/유아${booking.babyCount}`}
                             </div>
                         </div>
                         <div className="payment_tr">

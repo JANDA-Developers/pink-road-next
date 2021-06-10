@@ -95,25 +95,29 @@ export const UserHandWriteModal: React.FC<IHandWriteModalProp> = ({
     const { nodes: sharedValidate } = new Validater([
         {
             value: isEmail(userData.email),
-            failMsg: "올바른 이메일이 아닙니다..",
+            failMsg: "올바른 이메일이 아닙니다.",
+            id: "EmailInput",
         },
         {
             value: userData.pw === userData.pwCheck,
             failMsg: "비밀번호가 일치하지 않습니다.",
+            id: "PasswordCheckInput",
         },
         {
             value: isPassword(userData.pw || ""),
             failMsg:
                 "비밀번호는 특수문자 1개이상 및 숫자가 포함된 7~15 자리의 영문 숫자 조합이여야 합니다",
+            id: "PasswordInput",
         },
         {
             value: userData.address,
             failMsg: "주소값을 입력 해주세요.",
+            id: "AddressInput",
         },
         {
             value: userData.address_detail,
             failMsg: "상세 주소값을 입력 해주세요.",
-            id: "AddressInput",
+            id: "AddressDetailInput",
         },
     ]);
 
@@ -130,10 +134,12 @@ export const UserHandWriteModal: React.FC<IHandWriteModalProp> = ({
         {
             value: isName(userData.name || ""),
             failMsg: "이름 값이 올바르지 않습니다.",
+            id: "NameInput",
         },
         {
             value: userData.blueBird,
             failMsg: "파랑새 기수를 입력 해주세요.",
+            id: "BlueBirdInput",
         },
         ...sharedValidate,
     ]);
@@ -142,10 +148,12 @@ export const UserHandWriteModal: React.FC<IHandWriteModalProp> = ({
         {
             value: isPhone(userData.busi_contact || ""),
             failMsg: "대표 연락처가 올바르지 않습니다.",
+            id: "BusiContactInput",
         },
         {
             value: isPhone(userData.manageContact || ""),
             failMsg: "담당자 연락처가 올바르지 않습니다.",
+            id: "ManagerContact",
         },
         ...sharedValidate,
     ]);
@@ -169,7 +177,7 @@ export const UserHandWriteModal: React.FC<IHandWriteModalProp> = ({
         onCompleted: ({ SignUp }) => {
             if (SignUp.ok) {
                 alert("회원가입 완료");
-                closeModal("#addressFindModal")
+                closeModal("#addressFindModal");
             } else {
                 if (SignUp.error?.code === ERR_CODE.ALEADY_SAME_DATA) {
                     alert("이미 가입된 회원입니다.");

@@ -101,16 +101,12 @@ export interface IGetEditUtilsResult<Page> {
         index: number,
         key2: string
     ) => IEditableUlProp;
-    bg: (
-        key: keyof Page
-    ) =>
+    bg: (key: keyof Page) =>
         | {
               backgroundImage: string;
           }
         | undefined;
-    src: (
-        key: keyof Page
-    ) =>
+    src: (key: keyof Page) =>
         | {
               src: any;
               "data-imgkey": keyof Page;
@@ -202,9 +198,10 @@ export const getEditUtils = <T extends { [key: string]: any }>(
     const set = (key: keyof T, value: any, index?: number, key2?: string) => {
         validateKey(key, index);
 
-        if (value.include("__resized__")) {
-            value = value.replace(/---[0-9]{3,4}/, "");
-        }
+        if (value?.include)
+            if (value?.include("__resized__")) {
+                value = value.replace(/---[0-9]{3,4}/, "");
+            }
 
         const setPageData = () => {
             const isArray = index !== undefined;
@@ -515,6 +512,21 @@ export const getResized = (
 
             endFix = targetSize;
         }
+    }
+    const { extend, namePart } = fileExtendDivider(src);
+    const endFixStr = endFix ? "---" + endFix : "";
+    const ready = true;
+
+    return namePart + (ready ? endFixStr : "") + "." + extend;
+};
+
+export const getSize = (
+    src: string,
+    hopeSize?: 200 | 500 | 1000 | 2000 | 3000 | 4000
+) => {
+    let endFix;
+    if (src.includes("__resized__")) {
+        endFix = hopeSize;
     }
     const { extend, namePart } = fileExtendDivider(src);
     const endFixStr = endFix ? "---" + endFix : "";

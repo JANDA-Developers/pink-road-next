@@ -895,7 +895,7 @@ div.tab-nav li a {
   border-bottom: 0;
   cursor: pointer;
 }
-div.tab-nav li.on a {
+div.tab-nav li.on a, .tab-nav .react-tabs__tab--selected a {
   display: block;
   background-color: #fff;
   z-index: 51;
@@ -3412,6 +3412,7 @@ div.master_popup div.alignment {
  min-height: 300px;
  max-height: 500px;
  overflow-y: scroll;
+ overflow-x: hidden;
 }
 .popup__tittle .switch{ 
   position: absolute;

@@ -24,6 +24,7 @@ export const Tip: React.FC<IProp> = ({
     };
 
     if (!message) return <Tag {...(props as any)}>{children}</Tag>;
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
     return (
         <Tag
@@ -32,7 +33,12 @@ export const Tip: React.FC<IProp> = ({
             {...(props as any)}
         >
             {children}
-            <ReactTooltip type="dark" effect="solid" id={`Tip${newId}`}>
+            <ReactTooltip
+                globalEventOff={isMobile ? "click" : undefined}
+                type="dark"
+                effect="solid"
+                id={`Tip${newId}`}
+            >
                 <span>{message}</span>
             </ReactTooltip>
         </Tag>

@@ -107,18 +107,27 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                             </span>
                             <span className="r-number">
                                 정산상태:{" "}
-                                <i>{settlementStatus(settlement.status)}</i>
+                                <i>
+                                    {settlementStatus(
+                                        settlement.status,
+                                        product.status
+                                    )}
+                                </i>
                             </span>
                         </div>
                         <div className="info_page">
-                            <h4 className="historyTable__head">
-                                <i>
-                                    {yyyymmdd(createdAt)} ~{" "}
-                                    {yyyymmdd(startDate)}
-                                </i>
-                                예약건 - 총 <strong>{bookings?.length}</strong>
-                                건
-                            </h4>
+                            <div className="alignment">
+                                <div className="left_div">
+                                    <span className="infotxt">
+                                        <i className="mr10">
+                                            {yyyymmdd(createdAt)} ~{" "}
+                                            {yyyymmdd(startDate)}
+                                        </i>
+                                        예약건 - 총{" "}
+                                        <strong>{bookings?.length}</strong>건
+                                    </span>
+                                </div>
+                            </div>
                             <div className="fuction_list_mini">
                                 <div className="thead">
                                     <div className="th02">결제방법</div>
@@ -174,11 +183,17 @@ export const SettlementModal: React.FC<IProp> = ({ settlementId }) => {
                             </div>
                         </div>
                         <div className="info_page">
-                            <h4 className="historyTable__head">
-                                <i>취소</i>건 - 총{" "}
-                                <strong>{canceldBooking.length}</strong>건
-                            </h4>
-
+                            <div className="alignment">
+                                <div className="left_div">
+                                    <span className="infotxt">
+                                        <span className="mr10">
+                                            <i>취소</i>건 - 총{" "}
+                                        </span>
+                                        <strong>{canceldBooking.length}</strong>
+                                        건
+                                    </span>
+                                </div>
+                            </div>
                             <div className="fuction_list_mini">
                                 <div className="thead">
                                     <div className="th02">결제방법</div>

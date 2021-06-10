@@ -5,24 +5,35 @@ export const setVal = (callBack: (foo: any) => void) => (e: E_INPUT) => {
     callBack(e.currentTarget.value);
 };
 
-export const whenEnter = (
-    callBack: (e: React.KeyboardEvent<HTMLInputElement>) => void
-) => (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-        callBack(e);
-    }
-};
-export const whenDelete = (callBack: (e: React.KeyboardEvent<any>) => void) => (
-    e: React.KeyboardEvent<any>
-) => {
-    if (e.key === "Delete" || e.key === "Backspace") {
-        callBack(e);
-    }
-};
+export const whenEnter =
+    (callBack: (e: React.KeyboardEvent<HTMLInputElement>) => void) =>
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            callBack(e);
+        }
+    };
 
-export const changeVal = (callBack: (foo: any) => void) => (
-    e: React.ChangeEvent<HTMLSelectElement>
-) => {
-    const val = e.currentTarget.value;
-    callBack(val);
-};
+export const whenScrollBottom =
+    (callBack: () => void) => (e: React.UIEvent<HTMLElement, UIEvent>) => {
+        if (
+            e.currentTarget.scrollTop + e.currentTarget.clientHeight >=
+            e.currentTarget.scrollHeight
+        ) {
+            callBack();
+        }
+    };
+
+export const whenDelete =
+    (callBack: (e: React.KeyboardEvent<any>) => void) =>
+    (e: React.KeyboardEvent<any>) => {
+        if (e.key === "Delete" || e.key === "Backspace") {
+            callBack(e);
+        }
+    };
+
+export const changeVal =
+    (callBack: (foo: any) => void) =>
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const val = e.currentTarget.value;
+        callBack(val);
+    };

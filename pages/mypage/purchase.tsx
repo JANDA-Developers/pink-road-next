@@ -1,10 +1,7 @@
 import { PurChasedItem } from "components/mypage/PurchasedItem";
 import { MypageLayout } from "layout/MypageLayout";
-import React, { useEffect, useState } from "react";
-import {
-    BookingModal,
-    IBookingModalInfo,
-} from "../../components/bookingModal/BookingModal";
+import React from "react";
+import { BookingModal } from "../../components/bookingModal/BookingModal";
 import { Paginater } from "../../components/common/Paginator";
 import SortSelect from "../../components/common/SortMethod";
 import { ViewCount } from "../../components/common/ViewCount";
@@ -12,6 +9,7 @@ import { DayPickerModal } from "../../components/dayPickerModal/DayPickerModal";
 import { Change } from "../../components/loadingList/LoadingList";
 import { Nodata } from "../../components/noData/Nodata";
 import { SearchBar } from "../../components/searchBar/SearchBar";
+import { Tip } from "../../components/tip/Tip";
 import {
     TBookingSearchType,
     useBookingBoard,
@@ -19,7 +17,7 @@ import {
 import { BookingStatus, _BookingFilter, _ProductFilter } from "../../types/api";
 import { rangeToFilter } from "../../utils/filter";
 import isEmpty from "../../utils/isEmpty";
-import { closeModal, openModal } from "../../utils/popUp";
+import { closeModal } from "../../utils/popUp";
 
 interface IProp {}
 export const MyPagePurchase: React.FC<IProp> = () => {
@@ -82,6 +80,7 @@ export const MyPagePurchase: React.FC<IProp> = () => {
                                         >
                                             예약완료
                                         </span>
+                                        <Tip />
                                         <span
                                             onClick={setType(
                                                 BookingStatus.READY

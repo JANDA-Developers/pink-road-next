@@ -58,9 +58,10 @@ export const JDPCpopup: React.FC<IPopUp> = ({
                 y: top,
             }}
             Handler={(handleMouseDown) => (
-                <div className="JDpopup__handler" onMouseDown={handleMouseDown}>
-                    HANDLE
-                </div>
+                <div
+                    className="JDpopup__handler"
+                    onMouseDown={handleMouseDown}
+                ></div>
             )}
             id={popup._id + "popup"}
             onClick={handleClick}

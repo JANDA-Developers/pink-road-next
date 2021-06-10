@@ -98,6 +98,7 @@ const UserInfoForm: React.FC = () => {
                             }}
                         >
                             <input
+                                id="EmailInput"
                                 type="email"
                                 className={!isPhoneVerified ? "w100" : "w80"}
                                 placeholder="인증하기를 통해 이메일을 입력 해주세요."
@@ -136,6 +137,7 @@ const UserInfoForm: React.FC = () => {
                         </span>
                         <div className="inner__input">
                             <input
+                                id="PasswordInput"
                                 type="password"
                                 className="w100"
                                 placeholder="비밀번호를 입력해주세요"
@@ -155,6 +157,7 @@ const UserInfoForm: React.FC = () => {
                         </span>
                         <div className="inner__input">
                             <input
+                                id="PasswordCheckInput"
                                 type="password"
                                 className="w100"
                                 placeholder="비밀번호 확인"
@@ -164,26 +167,6 @@ const UserInfoForm: React.FC = () => {
                             />
                         </div>
                     </div>
-                    {/* {isIndi ? <div /> :
-                        <div className="name_wrap">
-                            <label>
-                                <i className="important_icon" />
-                        닉네임
-                        </label>
-                            <span className={`er red_font ${errDisplay.nickName && `on`}`}>*특수문자를 입력하지 말아주세요.</span>
-                            <div>
-                                <input
-                                    type="text"
-                                    className="w80"
-                                    placeholder="닉네임을 입력해주세요"
-                                    name="name"
-                                    value={data.nickName}
-                                    onChange={handleData("nickName")}
-                                />
-                                <button style={{ lineHeight: "100%" }} onClick={handleNickNameCheck} type="button" className={`btn btn_mini ${nickNameChecked && "ok"}`}>{nickNameChecked ? "사용가능" : "중복확인"} </button>
-                            </div>
-                        </div>
-                    } */}
                     <div className="name_wrap">
                         <div>
                             <label>
@@ -208,6 +191,7 @@ const UserInfoForm: React.FC = () => {
                             />
                             {isPartner && (
                                 <select
+                                    id="BlueBirdInput"
                                     className="w30"
                                     onChange={handleData("blueBird")}
                                     value={data.blueBird || undefined}
@@ -410,7 +394,7 @@ const UserInfoForm: React.FC = () => {
                         </div>
                         <div className="w100 mt5">
                             <input
-                                id="AddressInput"
+                                id="AddressDetailInput"
                                 type="text"
                                 className="w100"
                                 name="address_detail"
@@ -494,6 +478,7 @@ const UserInfoForm: React.FC = () => {
                                         value={phoneNumberHack[0]}
                                     /> */}
                                     <input
+                                        id="BusiContactInput"
                                         type="text"
                                         className="form-control w100"
                                         name="contact"
@@ -536,6 +521,7 @@ const UserInfoForm: React.FC = () => {
                                 </span>
                                 <div className="w100 inner__input">
                                     <input
+                                        id="ManagerContact"
                                         type="text"
                                         className="w100"
                                         name="incharge_number"

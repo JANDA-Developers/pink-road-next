@@ -85,6 +85,7 @@ export const BOOKING_LIST = gql`
                     isOpen
                     type
                     startDate
+                    endDate
                     Dday
                     author {
                         name

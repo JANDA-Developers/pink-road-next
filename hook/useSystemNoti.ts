@@ -32,10 +32,16 @@ export const useSystemNotiList = generateListQueryHook<
     systemNotiList,
     systemNotiListVariables,
     FsystemNoti
->(SYSTEMNOTI_LIST, {
-    initialSort: [_SystemNotiSort.createdAt_desc],
-    initialViewCount: 400,
-});
+>(
+    SYSTEMNOTI_LIST,
+    {
+        initialSort: [_SystemNotiSort.createdAt_desc],
+        initialViewCount: 400,
+    },
+    {
+        nextFetchPolicy: "network-only",
+    }
+);
 export const useSystemNotiRead = generateMutationHook<
     systemNotiRead,
     systemNotiReadVariables

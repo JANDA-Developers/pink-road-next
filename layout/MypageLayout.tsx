@@ -8,7 +8,7 @@ import { useUnReadSystemNotiFind } from "../hook/useSystemNoti";
 import { useUpload } from "../hook/useUpload";
 import { useUserUpdate } from "../hook/useUser";
 import { AppContext } from "../pages/_app";
-import { Ffile, ProductStatus } from "../types/api";
+import { Ffile } from "../types/api";
 import { BG, BGprofile } from "../types/const";
 import { autoComma } from "../utils/formatter";
 import { omits } from "../utils/omit";
@@ -219,13 +219,14 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                                 {salesTotalCount}
                                             </span>
                                             <p>
-                                                총 판매 수
+                                                <span className="mr5">
+                                                    총 판매 수
+                                                </span>
                                                 <Tip
                                                     Tag="i"
                                                     message="총 예약자 수"
-                                                >
-                                                    <i className="jandaicon-info2" />
-                                                </Tip>
+                                                    className="jandaicon-info2"
+                                                />
                                             </p>
                                         </li>
                                         <li className="ct">
@@ -312,7 +313,12 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                         )}
                                         {/*기업파트너/개인파트너*/}
                                         {isSeller && (
-                                            <span className="point">
+                                            <Tip
+                                                style={{}}
+                                                message="정산받을 수 있는 금액"
+                                                Tag="span"
+                                                className="point"
+                                            >
                                                 <i>Point</i>
                                                 <strong>
                                                     {autoComma(
@@ -320,7 +326,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                                     )}
                                                 </strong>
                                                 원
-                                            </span>
+                                            </Tip>
                                         )}
                                         {/*기업파트너/개인파트너*/}
                                         {isSeller || (
@@ -351,23 +357,32 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                                 Tag="li"
                                                 message={"읽지않은 알림"}
                                             >
-                                                <a href="/mypage/notification">
-                                                    알림
-                                                    <i>{items.length}</i>
-                                                </a>
+                                                <Link href="/mypage/notification">
+                                                    <a>
+                                                        알림
+                                                        <i>{items.length}</i>
+                                                    </a>
+                                                </Link>
                                             </Tip>
                                             {/* 개인/기업파트너/개인파트너 -*/}
                                             {isSeller || (
-                                                <li>
-                                                    <Link href="/mypage/purchase/">
-                                                        <a>
-                                                            구매
-                                                            <i>
-                                                                {buyTotalCount}
-                                                            </i>
-                                                        </a>
-                                                    </Link>
-                                                </li>
+                                                <Tip
+                                                    Tag="li"
+                                                    message={"총 구매수"}
+                                                >
+                                                    <li>
+                                                        <Link href="/mypage/purchase/">
+                                                            <a>
+                                                                구매
+                                                                <i>
+                                                                    {
+                                                                        buyTotalCount
+                                                                    }
+                                                                </i>
+                                                            </a>
+                                                        </Link>
+                                                    </li>
+                                                </Tip>
                                             )}
                                             {/* 개인 -*/}
                                             {isSeller || (
@@ -386,7 +401,7 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                             {isSeller && (
                                                 <Tip
                                                     Tag="li"
-                                                    message="총예약집계"
+                                                    message="내 상품에 들어온 총 예약집계"
                                                 >
                                                     <Link href="/mypage/reservation">
                                                         <a>

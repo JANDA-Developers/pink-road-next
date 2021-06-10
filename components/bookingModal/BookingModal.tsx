@@ -578,7 +578,7 @@ export const BookingModal: React.FC<IProp> = ({
                                         <div className="td02">
                                             <span>
                                                 {yyyymmddHHmm(
-                                                    booking.payment?.createdAt
+                                                    booking.payment?.payDate
                                                 )}
                                             </span>
                                         </div>

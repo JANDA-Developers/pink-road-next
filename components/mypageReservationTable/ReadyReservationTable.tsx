@@ -7,7 +7,7 @@ import {
     personCountBracket,
     productStatus,
 } from "../../utils/enumToKr";
-import { autoComma } from "../../utils/formatter";
+import { autoComma, autoHypenPhone } from "../../utils/formatter";
 import { yyyymmdd } from "../../utils/yyyymmdd";
 import { BookingStatusBadge } from "../Status/StatusBadge";
 
@@ -125,7 +125,9 @@ export const ReadyReservationTable: React.FC<IProp> = ({
                                 <i className="m_title">예약자:</i>
                                 {item.name}
                             </span>
-                            <span className="ph">{item.phoneNumber}</span>
+                            <span className="ph">
+                                {autoHypenPhone(item.phoneNumber)}
+                            </span>
                             <span className="men">
                                 예약인원: 총 {item.totalCount}명<br />
                                 {personCountBracket(item)}

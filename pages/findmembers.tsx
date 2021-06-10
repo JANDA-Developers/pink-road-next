@@ -14,6 +14,7 @@ interface IProp {}
 
 export const getStaticProps = getStaticPageInfo("findmember");
 export const Search: React.FC<Ipage> = (pageInfo) => {
+    if (typeof window === "undefined") return <div />;
     const editTools = usePageEdit(pageInfo, defaultPageInfo);
     const verifiHook = useVerification();
     const [info, setInfo] = useState({

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../../pages/_app";
 
 interface IProp {}
 
@@ -68,6 +69,38 @@ export const HomepageTopNav = () => {
                         <a>맞춤견적설정</a>
                     </Link>
                 </li>
+            </ul>
+        </div>
+    );
+};
+
+export const MyBoardViewBoardNav: React.FC<IProp> = () => {
+    const { myProfile, isSeller } = useContext(AppContext);
+    return (
+        <div className="tab-nav">
+            <ul>
+                <li className={checkOn("/mypage/my-board", true)}>
+                    <Link href="/mypage/my-board/">
+                        <a>전체목록</a>
+                    </Link>
+                </li>
+                <li className={checkOn("reviews")}>
+                    <Link href="/mypage/my-board/reviews">
+                        <a>리뷰목록</a>
+                    </Link>
+                </li>
+                <li className={checkOn("questions")}>
+                    <Link href="/mypage/my-board/questions">
+                        <a>질문목록</a>
+                    </Link>
+                </li>
+                {isSeller && (
+                    <li className={checkOn("myquestion")}>
+                        <Link href="/mypage/my-board/myquestion">
+                            <a>1:1문의</a>
+                        </Link>
+                    </li>
+                )}
             </ul>
         </div>
     );

@@ -993,7 +993,7 @@ ul.boardlist_ul li .cash strong {
   text-indent: -999px;
   background-size: 120%;
   background-position: center center;
-  background-image: url(/img/test_img_01.jpg) !important;
+  /* background-image: url(/img/test_img_01.jpg) !important; */
 }
 
 .board_list.st03 .tbody .td03 {
@@ -1866,6 +1866,8 @@ div.board_list_mini div.w100 {
 }
 
 .board_write .con_tap {
+  display: flex;
+  overflow: auto;
   width: 100%;
   position: relative;
   margin-top: 15px;
@@ -2224,6 +2226,9 @@ i.q_ok {
   right: 0;
 }
 
+i.static {
+  position: static!important;
+}
 i.q_no {
   font-style: unset;
   display: inline-block;

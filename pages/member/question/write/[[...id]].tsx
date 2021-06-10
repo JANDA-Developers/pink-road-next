@@ -17,6 +17,7 @@ import { closeModal, openModal } from "../../../../utils/popUp";
 import { ThreePhoneNumberInput } from "../../../../components/phoneNumberInput/PhoneNumberInput";
 import { isPhone } from "../../../../utils/validation";
 import { QuestionAS, QuestionUpdateInput } from "../../../../types/api";
+import { Tip } from "../../../../components/tip/Tip";
 
 interface IProp {}
 
@@ -203,45 +204,54 @@ export const QuestionWrite: React.FC<IProp> = () => {
                 className={urlProductId ? "boardWrite--categoryFix" : ""}
                 categoryList={categoryList}
                 WriteInjectionTop={
-                    <div>
-                        <div className="write_type">
-                            <div className="title">문의타입</div>
-                            <div className="input_form">
-                                <input
-                                    onChange={(e) => {
-                                        const val = e.currentTarget.value;
-                                        setTarget(val as QuestionAS);
-                                    }}
-                                    type="radio"
-                                    id="all"
-                                    name="all"
-                                    value={QuestionAS.NORMAL}
-                                    checked={target === QuestionAS.NORMAL}
-                                />
-                                <label htmlFor="all">일반문의</label>
-                                <input
-                                    onChange={(e) => {
-                                        const val = e.currentTarget.value;
-                                        setTarget(val as QuestionAS.PARTNER);
-                                    }}
-                                    type="radio"
-                                    id="partner"
-                                    name="partner"
-                                    value={QuestionAS.PARTNER}
-                                    checked={target === QuestionAS.PARTNER}
-                                />
-                                <label htmlFor="partner">파트너문의</label>
+                    isSeller ? (
+                        <div>
+                            <div className="write_type">
+                                <div className="title">문의타입</div>
+                                <div className="input_form">
+                                    <input
+                                        onChange={(e) => {
+                                            const val = e.currentTarget.value;
+                                            setTarget(val as QuestionAS);
+                                        }}
+                                        type="radio"
+                                        id="all"
+                                        name="all"
+                                        value={QuestionAS.NORMAL}
+                                        checked={target === QuestionAS.NORMAL}
+                                    />
+                                    <label htmlFor="all">일반문의</label>
+                                    <input
+                                        onChange={(e) => {
+                                            const val = e.currentTarget.value;
+                                            setTarget(
+                                                val as QuestionAS.PARTNER
+                                            );
+                                        }}
+                                        type="radio"
+                                        id="partner"
+                                        name="partner"
+                                        value={QuestionAS.PARTNER}
+                                        checked={target === QuestionAS.PARTNER}
+                                    />
+                                    <label htmlFor="partner">파트너문의</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    ) : undefined
                 }
                 WriteInjection={
                     <div>
                         {isProductMode ? (
                             <div className="write_type">
                                 <div className="title">상품명</div>
-                                <div className="input_form">
+                                <Tip
+                                    style={{}}
+                                    message="클릭하여 다른 상품을 검색할 수 있습니다."
+                                    className="input_form productSelectInfoForm"
+                                >
                                     <input
+                                        tabIndex={-1}
                                         onFocus={openModal(
                                             "#ProductSelectModal"
                                         )}
@@ -252,7 +262,7 @@ export const QuestionWrite: React.FC<IProp> = () => {
                                         name="title"
                                         className="inputText w100"
                                     />
-                                </div>
+                                </Tip>
                             </div>
                         ) : (
                             <div />

@@ -16,7 +16,7 @@ export const QnaLi: React.FC<IProp> = ({ no, question: qs, ...props }) => {
                 {qs.title}
                 <i className="q_ok">{qs.status}</i>
             </div>
-            <div className="th03">{qs.author?.nickName}</div>
+            {/* <div className="th03">{qs.author?.nickName || qs.author.name}</div> */}
             <div className="th04">
                 {dayjs(qs.createdAt).format("YYYY.MM.DD hh:mm")}
             </div>

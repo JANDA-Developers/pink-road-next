@@ -5,6 +5,7 @@ import { BusiPartnerTable } from "../../../components/member/BusiPartnerTable";
 
 interface IProp {}
 export const PartnerMemberMaster: React.FC<IProp> = () => {
+    if (typeof window === "undefined") return <div />;
     return <MemberMaster type={UserRole.partner} Table={BusiPartnerTable} />;
 };
 
