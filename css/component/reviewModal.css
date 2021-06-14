@@ -193,7 +193,6 @@
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            box-shadow: 2px 2px 2px #00000052;
         }
         div.popup_bg__review .in_txt .page {
             height: 100%;
@@ -225,6 +224,7 @@
             min-height: 90%;
             border-radius: 10px;
             overflow: hidden;
+            box-shadow: 2px 2px 2px #00000052;
             border-radius: 5px;
         }
         div.popup_bg__review .review__photo {

@@ -73,7 +73,7 @@ export const MypageQuestion: React.FC<IProp> = () => {
 
     return (
         <MypageLayout>
-            <div className="in myboard_box">
+            <div className="in myboard__box">
                 <h4>나의 게시글</h4>
                 <div className="mypage__tap">
                     <MyBoardViewBoardNav />

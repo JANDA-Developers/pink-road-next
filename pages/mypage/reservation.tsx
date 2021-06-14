@@ -119,7 +119,7 @@ export const MyReservation: React.FC<IProp> = () => {
 
     return (
         <MypageLayout>
-            <div className="in reservation_div">
+            <div className="in reservation__div">
                 <h4>예약관리</h4>
                 <div className="paper_div">
                     <div className="con_top">

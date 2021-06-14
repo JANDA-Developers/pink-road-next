@@ -121,18 +121,16 @@ export const HandBookingModal: React.FC<IProp> = ({ defaultProductId }) => {
         });
     };
 
-    const handleCount = (
-        key: keyof BookingCreateByHandInput,
-        isUp: boolean
-    ) => () => {
-        let val = input[key] as number;
-        val = val + (isUp ? 1 : -1);
-        if (val < 0) val = 0;
-        // @ts-ignore
-        input[key] = val;
+    const handleCount =
+        (key: keyof BookingCreateByHandInput, isUp: boolean) => () => {
+            let val = input[key] as number;
+            val = val + (isUp ? 1 : -1);
+            if (val < 0) val = 0;
+            // @ts-ignore
+            input[key] = val;
 
-        setInput({ ...input });
-    };
+            setInput({ ...input });
+        };
 
     let totalPrice = 0;
 
@@ -450,7 +448,7 @@ export const HandBookingModal: React.FC<IProp> = ({ defaultProductId }) => {
                         </div>
                     </div>
                 </div>
-                <button onClick={handleRegist} className="btn">
+                <button onClick={handleRegist} className="btn medium">
                     등록하기
                 </button>
             </div>

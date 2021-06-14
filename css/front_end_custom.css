@@ -540,9 +540,7 @@ figure:after {
     }
 }
 @media (min-width:1100px) {
-    .deps {
-        padding-bottom: 6px;
-    }
+
     .JDtagInput__tag{
         padding: 5px 16px;
     }

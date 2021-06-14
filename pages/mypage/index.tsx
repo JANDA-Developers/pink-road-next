@@ -252,7 +252,7 @@ export const MyPageProfile: React.FC<IProp> = () => {
 
     return (
         <MypageLayout>
-            <div className="in">
+            <div className="in mypagemain__div">
                 <h4>회원정보</h4>
                 <div className="mypage_page">
                     {/* <div className="box1">
