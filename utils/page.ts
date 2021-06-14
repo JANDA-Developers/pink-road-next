@@ -12,8 +12,8 @@ export const getQueryIndex = (
     pageInfo: Fpage | Page,
     currentPageCnt: number
 ) => {
-    const { cntPerPage, page } = pageInfo;
-    let pageStartNumber = (page - 1) * pageInfo.cntPerPage;
+    const { cntPerPage, page, totalPageSize } = pageInfo;
+    let pageStartNumber = (totalPageSize - page) * pageInfo.cntPerPage;
     if (pageStartNumber < 0) {
         pageStartNumber = 0;
     }
