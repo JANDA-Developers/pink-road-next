@@ -107,7 +107,7 @@ export const Plainning: React.FC<IProp> = () => {
 
     return (
         <MypageLayout>
-            <div className="in goods_div">
+            <div className="in goods__div">
                 <h4>상품관리</h4>
                 <div className="paper_div">
                     <div className="con_top">

@@ -59,7 +59,7 @@ export const MyPageBasket: React.FC<IProp> = ({ context, pageInfo }) => {
     );
 
     const Content = (
-        <div>
+        <div className="in baskect__div">
             <h4>장바구니</h4>
             <div className="paper_div">
                 <div className="top_info">
