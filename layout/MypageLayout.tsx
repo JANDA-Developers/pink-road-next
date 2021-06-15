@@ -370,18 +370,14 @@ export const MypageLayout: React.FC<IProp> = ({ children }) => {
                                                     Tag="li"
                                                     message={"총 구매수"}
                                                 >
-                                                    <li>
-                                                        <Link href="/mypage/purchase/">
-                                                            <a>
-                                                                구매
-                                                                <i>
-                                                                    {
-                                                                        buyTotalCount
-                                                                    }
-                                                                </i>
-                                                            </a>
-                                                        </Link>
-                                                    </li>
+                                                    <Link href="/mypage/purchase/">
+                                                        <a>
+                                                            구매
+                                                            <i>
+                                                                {buyTotalCount}
+                                                            </i>
+                                                        </a>
+                                                    </Link>
                                                 </Tip>
                                             )}
                                             {/* 개인 -*/}

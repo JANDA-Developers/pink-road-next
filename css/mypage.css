@@ -4065,7 +4065,7 @@ div.reservation_popup .tr select {
     padding: 0 32px 0 10px !important;
   }
   .country_check .c_in.on {
-    margin-right: -32px;
+    margin-right: -40px;
     z-index: 2;
     padding: 0 10px 0 10px !important;
   }
@@ -4076,7 +4076,7 @@ div.reservation_popup .tr select {
     padding: 0 10px 0 32px !important;
   }
   .country_check .c_out.on {
-    margin-left: -32px;
+    margin-left: -40px;
     padding: 0 10px 0 10px !important;
     z-index: 2;
   }
@@ -4245,6 +4245,7 @@ div.reservation_popup .tr select {
 
   .mypage_in .lnb ul {
     width: auto !important;
+    margin-top: 10px;
   }
   .mypage_in .lnb li:after {
     top: 17px;

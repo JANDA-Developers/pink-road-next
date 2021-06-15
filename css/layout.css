@@ -303,7 +303,7 @@ i.tooltip {
   right: -12px;
 }
 .header .top-menu p.welcome_ms strong {
-  color: #5555;
+  color: #555;
 }
 .header .top-menu ul {
   display: inline-block;
@@ -3437,6 +3437,7 @@ i.icon_plus {
   }
 }
 
+
 @media (min-width: 1000px) {
   .login__text{
     display: none;
@@ -3908,7 +3909,11 @@ i.icon_plus {
     padding: 0 20px;
   }
 }
-
+/* @media (min-width: 1100px) {
+  .header .hidden {
+    top: 100px;
+  }
+} */
 @media (min-width: 1200px) {
   .pc {
     display: inline-block;
@@ -3924,9 +3929,6 @@ i.icon_plus {
 
   .m {
     display: none;
-  }
-  .header .hidden {
-    top: 100px;
   }
   .header .hd_left .logo img {
     padding-top: 6px;
@@ -4014,7 +4016,9 @@ i.icon_plus {
   }
 }
 @media (min-width: 1230px) {
-
+  .header .hidden {
+    top: 100px;
+  }
   .header .hd_center .nav_wrap .deps1 > li > a:before {
     bottom: -7px;
 }
